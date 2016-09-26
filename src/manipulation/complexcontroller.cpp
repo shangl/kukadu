@@ -39,9 +39,6 @@ namespace kukadu {
         this->nothingStateProbThresh = nothingStateProbThresh;
         this->creativityMultiplier = creativityMultiplier;
 
-        cout << creativityAlpha1 << " " << creativityAlpha2 << " " << creativityBeta << " " << creativityCthresh << " " << nothingStateProbThresh << " " << creativityMultiplier << endl;
-        getchar();
-
         this->creativityGamma = (atanh(1.0 - 2 * creativityAlpha1) - atanh(1.0 - 2 * creativityAlpha2)) / (creativityCthresh * creativityBeta);
         this->creativityDelta = ((2 * creativityBeta - 1.0) * tanh(1.0 - 2 * creativityAlpha1) + atanh(1.0 - 2 * creativityAlpha2)) / creativityBeta;
 
