@@ -10,6 +10,7 @@ namespace kukadu {
     KUKADU_SHARED_PTR<kukadu_thread> ControlQueue::startQueue() {
         setInitValues();
         thr = KUKADU_SHARED_PTR<kukadu_thread>(new kukadu_thread(&ControlQueue::run, this));
+
         while(!this->isInitialized());
         startQueueHook();
         return thr;
@@ -19,16 +20,24 @@ namespace kukadu {
 
         jointPtpRunning = false;
         cartesianPtpRunning = false;
-
+        currentFrcTrqSensorFilter=KUKADU_SHARED_PTR<FrcTrqSensorFilter>(new StandardFilter());
+        frcTrqFilterRunning=true;
+        frcTrqFilterUpdateThr = KUKADU_SHARED_PTR<kukadu_thread>(new kukadu_thread(&ControlQueue::frcTrqFilterUpdateHandler, this));
         currentTime = 0.0;
         this->degOfFreedom = degOfFreedom;
         this->desiredCycleTime = desiredCycleTime;
         this->sleepTime = desiredCycleTime;
-
         continueCollecting = false;
 
     }
-    
+   void ControlQueue::setFrcTrqSensorFilter(KUKADU_SHARED_PTR<FrcTrqSensorFilter> myFilter){
+       currentFrcTrqSensorFilter=myFilter;
+   }
+
+    mes_result ControlQueue::getCurrentProcessedCartesianFrcTrq(){
+        return currentFrcTrqSensorFilter->getProcessedReading();
+    }
+
     void ControlQueue::setDegOfFreedom(int degOfFreedom) {
 		this->degOfFreedom = degOfFreedom;
 	}
@@ -160,10 +169,15 @@ namespace kukadu {
     }
 
     void ControlQueue::synchronizeToQueue(int maxNumJointsInQueue) {
+        ros::Rate r(1.0 / sleepTime);
         if(currentControlType == CONTROLQUEUE_JNT_IMP_MODE || currentControlType == CONTROLQUEUE_JNT_POS_MODE) {
-            while(movementQueue.size() > maxNumJointsInQueue);
+            while(movementQueue.size() > maxNumJointsInQueue) {
+                r.sleep();
+            }
         } else if(currentControlType == CONTROLQUEUE_CART_IMP_MODE) {
-            while(cartesianMovementQueue.size() > maxNumJointsInQueue);
+            while(cartesianMovementQueue.size() > maxNumJointsInQueue) {
+                r.sleep();
+            }
         }
     }
 
@@ -322,6 +336,7 @@ namespace kukadu {
     }
 
     std::vector<mes_result> ControlQueue::jointPtp(arma::vec joints) {
+
         jointPtpRunning = true;
 
         if(!continueCollecting) {
@@ -425,4 +440,11 @@ namespace kukadu {
 
     }
 
+    void ControlQueue::frcTrqFilterUpdateHandler(){
+        ros::Rate myRate(50);
+        while(frcTrqFilterRunning){
+            currentFrcTrqSensorFilter->updateFilter(getCurrentCartesianFrcTrq());
+            myRate.sleep();
+        }
+    }
 }

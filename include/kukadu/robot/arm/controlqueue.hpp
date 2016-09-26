@@ -1,4 +1,4 @@
-#ifndef KUKADU_CONTROLQUEUE
+﻿#ifndef KUKADU_CONTROLQUEUE
 #define KUKADU_CONTROLQUEUE
 
 /**
@@ -15,6 +15,8 @@
 #include <kukadu/types/kukadutypes.hpp>
 #include <kukadu/utils/destroyableobject.hpp>
 #include <kukadu/kinematics/constraints/constraints.hpp>
+#include "kukadu/robot/sensors/FrcTrqSensorFilter.hpp"
+#include "kukadu/robot/sensors/StandardFilter.hpp"
 
 #include <queue>
 #include <armadillo>
@@ -56,7 +58,7 @@ namespace kukadu {
 
         bool jointPtpRunning;
         bool cartesianPtpRunning;
-
+        bool frcTrqFilterRunning;
         int degOfFreedom;
         int rollBackQueueSize;
 
@@ -82,10 +84,11 @@ namespace kukadu {
         std::queue<geometry_msgs::Pose> cartesianMovementQueue;
 
         std::deque<arma::vec> rollBackQueue;
-
+        KUKADU_SHARED_PTR<FrcTrqSensorFilter> currentFrcTrqSensorFilter;
         TicToc t;
 
         KUKADU_SHARED_PTR<kukadu_thread> thr;
+        KUKADU_SHARED_PTR<kukadu_thread> frcTrqFilterUpdateThr;
         KUKADU_SHARED_PTR<kukadu_thread> cartPtpThr;
         KUKADU_SHARED_PTR<kukadu_thread> jointPtpThr;
         KUKADU_SHARED_PTR<kukadu_thread> jointsColletorThr;
@@ -342,6 +345,15 @@ namespace kukadu {
          */
         virtual mes_result getCurrentCartesianFrcTrq() = 0;
 
+        /**
+         * \brief Returns the forces and torques measured at the robot end-effector
+         * \return The current forces and torques (in Newton and Newton / meter)
+         */
+
+        mes_result getCurrentProcessedCartesianFrcTrq();
+
+        void setFrcTrqSensorFilter(KUKADU_SHARED_PTR<FrcTrqSensorFilter> myFilter);
+        void frcTrqFilterUpdateHandler();
         /**
          * \brief Sets the maximum deviation in joint space that is tolerated
          * for a point to point movement

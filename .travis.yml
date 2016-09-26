@@ -7,22 +7,27 @@ env:
   global:
     - CATKIN_WS=~/catkin_ws
     - CATKIN_WS_SRC=${CATKIN_WS}/src
+    - CATKIN_WS_UNDERLAY=~/catkin_ws_underlay
+    - CATKIN_WS_UNDERLAY_SRC=${CATKIN_WS_UNDERLAY}/src
     - CI_ROS_DISTRO="indigo"
 install:
   - sudo sh -c 'echo "deb http://packages.ros.org/ros/ubuntu trusty main" > /etc/apt/sources.list.d/ros-latest.list'
   - wget http://packages.ros.org/ros.key -O - | sudo apt-key add -
   - sudo apt-get update -qq
-  - sudo apt-get install -qq -y python-rosdep python-catkin-tools
+  - sudo apt-get install qt5-default
+  - sudo apt-get install -qq -y python-rosdep python-catkin-tools python-wstool
+  - sudo apt-get install -qq -y ros-${CI_ROS_DISTRO}-ros > /dev/null 2>&1
   - sudo rosdep init
   - rosdep update
-  - rosdep install --from-paths ./ -i -y --rosdistro $CI_ROS_DISTRO
 script:
-  - source /opt/ros/$CI_ROS_DISTRO/setup.bash
+  - source /opt/ros/$CI_ROS_DISTRO/setup.bash > /dev/null 2>&1
   - mkdir -p $CATKIN_WS_SRC
   - ln -s $TRAVIS_BUILD_DIR $CATKIN_WS_SRC
+  - cd $CATKIN_WS/src/kukadu
+  - git submodule update --init
   - cd $CATKIN_WS
+  - git clone https://github.com/squirrel-project/uibk_moveit_tools.git ~/catkin_ws/src/uibk_moveit_tools
   - catkin init
-  - cd $CATKIN_WS_SRC/squirrel_driver/ft17_driver
-  - ./install.sh
-  - cd $CATKIN_WS
+  - rosdep install --from-paths src/ -i -y --rosdistro $CI_ROS_DISTRO
   - catkin build --limit-status-rate 0.1 --no-notify -DCMAKE_BUILD_TYPE=Release
+  - catkin build --limit-status-rate 0.1 --no-notify --make-args tests

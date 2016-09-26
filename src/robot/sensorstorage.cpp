@@ -558,10 +558,10 @@ namespace kukadu {
             times = vec(mes.col(timeIdx));
 
         if(jointsPosStartIdx >= 0)
-            jointPos = mat(mes.cols(jointsPosStartIdx, jointsPosStartIdx + queue->getJointNames().size() - 1));
+            jointPos = mat(mes.cols(jointsPosStartIdx, jointsPosStartIdx + queue->getMovementDegreesOfFreedom() - 1));
 
         if(jointsForceStartIdx >= 0)
-            jointFrcs = mat(mes.cols(jointsForceStartIdx, jointsForceStartIdx + queue->getJointNames().size() - 1));
+            jointFrcs = mat(mes.cols(jointsForceStartIdx, jointsForceStartIdx + queue->getMovementDegreesOfFreedom() - 1));
 
         if(cartsPosStartIdx >= 0)
             cartPos = mat(mes.cols(cartsPosStartIdx, cartsPosStartIdx + 7 - 1));

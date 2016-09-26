@@ -46,7 +46,11 @@ namespace kukadu {
         }
         */
 
-        return !planningScene->isStateColliding(state, modelGroup->getName());
+        auto isOk = !planningScene->isStateColliding(state, modelGroup->getName());
+        if(!isOk)
+            planningScene->isStateColliding(state, modelGroup->getName(), true);
+
+        return isOk;
 
     }
 

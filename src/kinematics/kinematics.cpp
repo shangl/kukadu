@@ -5,8 +5,30 @@ using namespace std;
 
 namespace kukadu {
 
-    Kinematics::Kinematics() {
+    Kinematics::Kinematics(std::vector<std::string> jointNames) {
         Constraints.clear();
+        this->jointNames = jointNames;
+    }
+
+    std::vector<std::string> Kinematics::generateDefaultJointNames(int jointCount)  {
+
+        std::vector<std::string> jointNames;
+        for(int i = 0; i < jointCount; ++i) {
+            stringstream s;
+            s << "joint" << i;
+            jointNames.push_back(s.str());
+        }
+
+        return jointNames;
+
+    }
+
+    void Kinematics::setJointNames(std::vector<std::string> jointNames) {
+        this->jointNames = jointNames;
+    }
+
+    std::vector<std::string> Kinematics::getJointNames() {
+        return jointNames;
     }
 
     void Kinematics::addConstraint(KUKADU_SHARED_PTR<Constraint> Constraint) {

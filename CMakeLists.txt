@@ -67,7 +67,7 @@ pkg_check_modules(GTK REQUIRED gtkglext-1.0)
 catkin_package(
     INCLUDE_DIRS include external/ReflexxesTypeII/include external/komo/share/src /usr/include/python3.4m
     LIBRARIES ${PROJECT_NAME}
-    CATKIN_DEPENDS actionlib_msgs control_msgs control_msgs eigen_conversions
+    CATKIN_DEPENDS cmake_modules actionlib_msgs control_msgs control_msgs eigen_conversions
         geometry_msgs iis_robot_dep message_generation moveit_core moveit_msgs
         moveit_ros_planning_interface pcl_conversions pcl_ros roscpp sensor_msgs std_msgs
         tf tf2_msgs tf_conversions trajectory_msgs
@@ -106,6 +106,7 @@ AUX_SOURCE_DIRECTORY(src/manipulation/ KUKADUSRC)
 
 AUX_SOURCE_DIRECTORY(src/robot/arm/ KUKADUSRC)
 AUX_SOURCE_DIRECTORY(src/robot/gripper/ KUKADUSRC)
+AUX_SOURCE_DIRECTORY(src/robot/sensors/ KUKADUSRC)
 
 AUX_SOURCE_DIRECTORY(src/learning/clustering/ KUKADUSRC)
 AUX_SOURCE_DIRECTORY(src/manipulation/haptic/ KUKADUSRC)

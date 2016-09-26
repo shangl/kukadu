@@ -30,9 +30,15 @@ namespace kukadu {
 
         std::vector<KUKADU_SHARED_PTR<Constraint> > Constraints;
 
+        std::vector<std::string> jointNames;
+
+    protected:
+
+        static std::vector<std::string> generateDefaultJointNames(int jointCount);
+
     public:
 
-        Kinematics();
+        Kinematics(std::vector<std::string> jointNames);
 
         void addConstraint(KUKADU_SHARED_PTR<Constraint> Constraint);
         void removeConstraint(KUKADU_SHARED_PTR<Constraint> Constraint);
@@ -48,6 +54,9 @@ namespace kukadu {
         virtual std::vector<arma::vec> computeIk(std::vector<double> currentJointState, const geometry_msgs::Pose& goal) = 0;
 
         virtual geometry_msgs::Pose computeFk(std::vector<double> jointState) = 0;
+
+        virtual void setJointNames(std::vector<std::string> jointNames);
+        virtual std::vector<std::string> getJointNames();
 
     };
 

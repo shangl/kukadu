@@ -9,7 +9,8 @@ namespace kukadu {
 
     kukadu_mutex KomoPlanner::oneAtATimeMutex;
 
-    KomoPlanner::KomoPlanner(KUKADU_SHARED_PTR<ControlQueue> queue, string configPath, string mtConfigPath, string activeJointsPrefix, bool acceptCollision) {
+    KomoPlanner::KomoPlanner(KUKADU_SHARED_PTR<ControlQueue> queue, string configPath, string mtConfigPath, string activeJointsPrefix, bool acceptCollision)
+                : Kinematics(generateDefaultJointNames(queue->getMovementDegreesOfFreedom())) {
 
         oneAtATimeMutex.lock();
 

@@ -281,9 +281,9 @@ namespace kukadu {
     }
 
     std::vector<std::string> KukieControlQueue::getJointNames() {
-        vector<string> retVal;
-        retVal.push_back("A1"); retVal.push_back("A2"); retVal.push_back("E1"); retVal.push_back("A3"); retVal.push_back("A4"); retVal.push_back("A5"); retVal.push_back("A6");
-        return retVal;
+
+        return kin->getJointNames();
+
     }
 
     void KukieControlQueue::jntMoveCallback(const std_msgs::Float64MultiArray& msg) {
@@ -349,14 +349,14 @@ namespace kukadu {
             planAndKinMutex.unlock();
 
         }
-
+        ros::Rate myRate(50);
         while(getQueueRunning()) {
 
             planAndKinMutex.lock();
 
                 currCarts = kin->computeFk(armadilloToStdVec(getCurrentJoints().joints));
                 firstCartsComputed = true;
-
+                myRate.sleep();
             planAndKinMutex.unlock();
 
         }
@@ -454,7 +454,6 @@ namespace kukadu {
         }
 
         auto currentPose = getCurrentCartesianPose();
-        printPose(currentPose);
         vector<geometry_msgs::Pose> desiredPlan;
         desiredPlan.push_back(currentPose);
         desiredPlan.push_back(pos);
@@ -508,7 +507,6 @@ namespace kukadu {
                 break;
             }
 
-
         vector<vec> desiredJointPlan;
         if(performPtp) {
 
@@ -526,7 +524,6 @@ namespace kukadu {
 
                 for(int i = 0; i < desiredJointPlan.size(); ++i)
                     move(desiredJointPlan.at(i));
-
                 synchronizeToQueue(1);
 
             } else {
