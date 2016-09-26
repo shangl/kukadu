@@ -15,8 +15,8 @@
 #include <kukadu/types/kukadutypes.hpp>
 #include <kukadu/utils/destroyableobject.hpp>
 #include <kukadu/kinematics/constraints/constraints.hpp>
-#include "kukadu/robot/sensors/FrcTrqSensorFilter.hpp"
-#include "kukadu/robot/sensors/StandardFilter.hpp"
+#include "kukadu/robot/sensors/frctrqsensorfilter.hpp"
+#include "kukadu/robot/sensors/standardfilter.hpp"
 
 #include <queue>
 #include <armadillo>
