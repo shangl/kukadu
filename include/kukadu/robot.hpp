@@ -5,8 +5,8 @@
 #include <kukadu/robot/gripper/generichand.hpp>
 #include <kukadu/robot/gripper/plottinghand.hpp>
 #include <kukadu/robot/gripper/rosschunk.hpp>
-#include "kukadu/robot/sensors/frctrqsensorfilter.hpp"
-#include "kukadu/robot/sensors/standardfilter.hpp"
-#include "kukadu/robot/sensors/autocompensatingfilter.hpp"
-#include "kukadu/robot/kinestheticteacher.hpp"
-#include "kukadu/robot/customkinestheticteacher.hpp"
+#include <kukadu/robot/sensors/frctrqsensorfilter.hpp>
+#include <kukadu/robot/sensors/standardfilter.hpp>
+#include <kukadu/robot/sensors/autocompensatingfilter.hpp>
+#include <kukadu/robot/kinestheticteacher.hpp>
+#include <kukadu/robot/customkinestheticteacher.hpp>
