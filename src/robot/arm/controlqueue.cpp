@@ -8,33 +8,38 @@ using namespace arma;
 namespace kukadu {
 
     KUKADU_SHARED_PTR<kukadu_thread> ControlQueue::startQueue() {
+
         setInitValues();
+
+        frcTrqFilterUpdateThr = KUKADU_SHARED_PTR<kukadu_thread>(new kukadu_thread(&ControlQueue::frcTrqFilterUpdateHandler, this));
         thr = KUKADU_SHARED_PTR<kukadu_thread>(new kukadu_thread(&ControlQueue::run, this));
 
         while(!this->isInitialized());
         startQueueHook();
         return thr;
+
     }
 
     ControlQueue::ControlQueue(int degOfFreedom, double desiredCycleTime) {
 
         jointPtpRunning = false;
         cartesianPtpRunning = false;
-        currentFrcTrqSensorFilter=KUKADU_SHARED_PTR<FrcTrqSensorFilter>(new StandardFilter());
         frcTrqFilterRunning=true;
-        frcTrqFilterUpdateThr = KUKADU_SHARED_PTR<kukadu_thread>(new kukadu_thread(&ControlQueue::frcTrqFilterUpdateHandler, this));
         currentTime = 0.0;
         this->degOfFreedom = degOfFreedom;
         this->desiredCycleTime = desiredCycleTime;
         this->sleepTime = desiredCycleTime;
         continueCollecting = false;
 
-    }
-   void ControlQueue::setFrcTrqSensorFilter(KUKADU_SHARED_PTR<FrcTrqSensorFilter> myFilter){
-       currentFrcTrqSensorFilter=myFilter;
-   }
+        currentFrcTrqSensorFilter = make_shared<StandardFilter>();
 
-    mes_result ControlQueue::getCurrentProcessedCartesianFrcTrq(){
+    }
+
+    void ControlQueue::setFrcTrqSensorFilter(KUKADU_SHARED_PTR<FrcTrqSensorFilter> myFilter) {
+        currentFrcTrqSensorFilter=myFilter;
+    }
+
+    mes_result ControlQueue::getCurrentProcessedCartesianFrcTrq() {
         return currentFrcTrqSensorFilter->getProcessedReading();
     }
 

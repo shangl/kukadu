@@ -678,6 +678,7 @@ namespace kukadu {
                               });
                     for(auto&  path : possiblePaths) {
                         bool pathCanBeChosen = false;
+                        double nothingProb = 0.0;
                         auto& resultingState = std::get<1>(path);
                         auto& clipPath = std::get<2>(path);
                         // path has to contain more than 1 preparatory action (path here is state -> prep action -> state -> ... -> final state). therefore length
@@ -688,6 +689,7 @@ namespace kukadu {
                                 // found a proper transition - it may be added as a new preparatory controller
                                 if(resultingState == nothingStateClip.second && resultingState != stateClip && !hasDuplicateStatesInPath(clipPath)) {// && !projSim->findClipInLevelByIdVec()) {
                                     pathCanBeChosen = true;
+                                    nothingProb = std::get<1>(resultingState->getMaxProbability());
                                     break;
                                 }
                             }
@@ -696,7 +698,7 @@ namespace kukadu {
 
                                 // compute probability for adding a new clip from clip composition (will be referred as creativity in the paper)
                                 double pathConfidence = std::get<0>(path);
-                                double creativityProb = sigmoid(creativityGamma * pathConfidence + creativityDelta);
+                                double creativityProb = sigmoid(creativityGamma * pathConfidence * nothingProb + creativityDelta);
                                 KUKADU_DISCRETE_DISTRIBUTION<int> creativityDist({1.0 - creativityProb, creativityProb});
                                 int beCreative = creativityDist(*generator);
 
