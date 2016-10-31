@@ -166,6 +166,8 @@ namespace kukadu {
         bool isTrained();
         bool setUseCreativity(bool useCreativity);
 
+        virtual int getStateCount(const std::string& sensingName) = 0;
+
         void setSensingControllers(std::vector<KUKADU_SHARED_PTR<kukadu::SensingController> > sensingControllers);
         void setPreparatoryControllers(std::vector<KUKADU_SHARED_PTR<kukadu::Controller> > preparatoryControllers);
 

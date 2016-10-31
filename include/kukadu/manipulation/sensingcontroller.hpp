@@ -23,6 +23,7 @@ namespace kukadu {
         bool classifierParamsSet;
 
         int hapticMode;
+        int stateCount;
         int currentIterationNum;
         int simulationGroundTruth;
         int simulatedClassificationPrecision;
@@ -86,7 +87,8 @@ namespace kukadu {
         int createRandomGroundTruthIdx();
         int getSimulationGroundTruthIdx();
 
-        virtual int getSensingCatCount() = 0;
+        int getStateCount();
+        void setStateCount(const int& stateCount);
 
         double createDataBase();
 

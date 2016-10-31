@@ -193,7 +193,7 @@ namespace kukadu {
 
                 KUKADU_SHARED_PTR<Clip> nextSensClip = KUKADU_SHARED_PTR<Clip>(new IntermediateEventClip(sensCont, 1, generator, clipDimVal, INT_MAX));
                 ++currentId;
-                for(int j = 0; j < sensCont->getSensingCatCount(); ++j, ++currentId) {
+                for(int j = 0; j < getStateCount(sensCont->getCaption()); ++j, ++currentId) {
 
                     clipDimVal = KUKADU_SHARED_PTR<vector<int> >(new vector<int>());
                     clipDimVal->push_back(currentId);
@@ -205,7 +205,7 @@ namespace kukadu {
 
                 }
 
-                double nextWeight = std::exp(senseStretch * max(0.0, sensingWeights.at(i) - 1.0 / sensCont->getSensingCatCount()));
+                double nextWeight = std::exp(senseStretch * max(0.0, sensingWeights.at(i) - 1.0 / getStateCount(sensCont->getCaption())));
                 sensCont->setSimulationClassificationPrecision(min(sensingWeights.at(i) * 100.0, 100.0));
                 if(!isShutUp)
                     cout << "(ComplexController) relative weight of sensing action \"" << sensCont->getCaption() << "\" is " << nextWeight << endl;

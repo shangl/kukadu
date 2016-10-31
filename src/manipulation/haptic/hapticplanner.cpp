@@ -84,9 +84,9 @@ namespace kukadu {
             std::vector<KUKADU_SHARED_PTR<kukadu::SensingController> > sensingCopy;
             // sensing and complex controllers are assumed to require the same (grasped or not grasped)
             if(castCompCont->requiresGrasp())
-                sensingCopy = copySensingControllers(requiresGraspSensingControllersVec, hapticPath);
+                sensingCopy = copySensingControllers(castCompCont, requiresGraspSensingControllersVec, hapticPath);
             else
-                sensingCopy = copySensingControllers(nonRequiresGraspSensingControllersVec, hapticPath);
+                sensingCopy = copySensingControllers(castCompCont, nonRequiresGraspSensingControllersVec, hapticPath);
 
             std::map<std::string, KUKADU_SHARED_PTR<kukadu::SensingController> > copiedMap;
             for(auto sense : sensingCopy)
@@ -201,12 +201,13 @@ namespace kukadu {
         throw KukaduException("getDimensionlity not implemented yet");
     }
 
-    std::vector<KUKADU_SHARED_PTR<kukadu::SensingController> > HapticPlanner::copySensingControllers(std::vector<KUKADU_SHARED_PTR<kukadu::SensingController> > controllers,
+    std::vector<KUKADU_SHARED_PTR<kukadu::SensingController> > HapticPlanner::copySensingControllers(KUKADU_SHARED_PTR<kukadu::ComplexController> parentComplexController, std::vector<KUKADU_SHARED_PTR<kukadu::SensingController> > controllers,
                                                                                       std::string newBasePath) {
 
         vector<KUKADU_SHARED_PTR<kukadu::SensingController> > retVec;
         for(auto sens : controllers) {
             auto copiedSens = sens->clone();
+            copiedSens->setStateCount(parentComplexController->getStateCount(copiedSens->getCaption()));
             copiedSens->setDatabasePath(newBasePath + sens->getCaption() + "/");
             copiedSens->createDataBase();
             retVec.push_back(copiedSens);

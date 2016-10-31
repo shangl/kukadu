@@ -24,6 +24,8 @@ namespace kukadu {
         this->classifierPath = classifierPath;
         this->classifierFunction = classifierFunction;
 
+        this->stateCount = 4;
+
         databaseAlreadySet = false;
 
         bestParamC = 0.0;
@@ -111,6 +113,14 @@ namespace kukadu {
 
     }
 
+    int SensingController::getStateCount() {
+        return stateCount;
+    }
+
+    void SensingController::setStateCount(const int& stateCount) {
+        this->stateCount = stateCount;
+    }
+
     std::string SensingController::getFirstRobotFileName() {
         return queues.at(0)->getRobotFileName();
     }
@@ -166,13 +176,13 @@ namespace kukadu {
             }
 
             if(temporaryHapticMode == SensingController::HAPTIC_MODE_TERMINAL) {
-                cout << "(SensingController) what was the haptic result? [0, " << (getSensingCatCount() - 1) << "]" << endl;
+                cout << "(SensingController) what was the haptic result? [0, " << (getStateCount() - 1) << "]" << endl;
                 cin >> classifierRes;
             } else if(temporaryHapticMode == SensingController::HAPTIC_MODE_CLASSIFIER) {
                 vector<double> res = callClassifier(databasePath, tmpPath + "hapticTest/" + queues.at(0)->getRobotFileName() + "_0", true, bestParamC, bestParamD, bestParamParam1, bestParamParam2);
                 int maxIdx = 0;
                 double maxElement = res.at(0);
-                for(int i = 1; i < getSensingCatCount(); ++i) {
+                for(int i = 1; i < getStateCount(); ++i) {
                     if(res.at(i) > maxElement) {
                         maxElement = res.at(i);
                         maxIdx = i;
@@ -182,7 +192,7 @@ namespace kukadu {
             } else {
                 throw KukaduException("haptic mode not known");
             }
-cout << 4 << endl;
+
             if(!isShutUp)
                 cout << "(SensinController) press enter to continue" << endl;
             getchar();
@@ -226,7 +236,7 @@ cout << 4 << endl;
 
     int SensingController::createRandomGroundTruthIdx() {
         vector<int> randValues;
-        for(int i = 0; i < getSensingCatCount(); ++i)
+        for(int i = 0; i < getStateCount(); ++i)
             randValues.push_back(1);
         classifierDist = KUKADU_DISCRETE_DISTRIBUTION<int>(randValues.begin(),randValues.end());
         return classifierDist(*generator);
@@ -258,7 +268,7 @@ cout << 4 << endl;
             createDirectory(path);
 
             // create the database
-            numClasses = getSensingCatCount();
+            numClasses = getStateCount();
             if(!isShutUp)
                 cout << "(SensingController) " << getCaption() << " offers " << numClasses << " classes" << endl;
 

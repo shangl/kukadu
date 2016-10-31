@@ -12,6 +12,7 @@
 #include <kukadu/utils/utils.hpp>
 #include <kukadu/types/controllerresult.hpp>
 #include <kukadu/manipulation/controller.hpp>
+#include <kukadu/manipulation/complexcontroller.hpp>
 #include <kukadu/manipulation/sensingcontroller.hpp>
 #include <kukadu/learning/projective_simulation/core/projectivesimulator.hpp>
 
@@ -45,7 +46,8 @@ namespace kukadu {
 
         void printNamedVector(std::vector<std::string> names);
 
-        std::vector<KUKADU_SHARED_PTR<kukadu::SensingController> > copySensingControllers(std::vector<KUKADU_SHARED_PTR<kukadu::SensingController> > controllers,
+        std::vector<KUKADU_SHARED_PTR<kukadu::SensingController> > copySensingControllers(KUKADU_SHARED_PTR<kukadu::ComplexController> parentComplexController,
+                                                                                          std::vector<KUKADU_SHARED_PTR<kukadu::SensingController> > controllers,
                                                                                           std::string newBasePath);
 
     protected:
