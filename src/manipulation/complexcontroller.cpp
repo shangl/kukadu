@@ -85,6 +85,10 @@ namespace kukadu {
             rewardHistoryStream->close();
     }
 
+    int ComplexController::getPrepActionCount() {
+        return prepActions->size();
+    }
+
     void ComplexController::setSensingControllers(std::vector<KUKADU_SHARED_PTR<kukadu::SensingController> > sensingControllers) {
         this->sensingControllers = sensingControllers;
     }
@@ -238,9 +242,11 @@ namespace kukadu {
 
             // load environment model
             for(auto sens : sensingControllers) {
+
                 auto envModel = createEnvironmentModelForSensingAction(sens, projSim);
                 environmentModels.insert(std::pair<std::string, KUKADU_SHARED_PTR<kukadu::ProjectiveSimulator> >(sens->getCaption(), envModel));
                 envModel->storePS(envModelPath + sens->getCaption());
+
             }
 
         }
@@ -358,14 +364,12 @@ namespace kukadu {
             throw KukaduException("(createEnvironmentModel) sensing action not available");
 
         auto prepClips = sensingClip->getSubClipByIdx(0)->getSubClips();
-
         int sensingCatCount = sensingClip->getSubClipCount();
         int prepActionsCount = prepClips->size();
 
         auto stateClips = sensingClip->getSubClips();
-
-        auto environmentPercepts = KUKADU_SHARED_PTR<vector<KUKADU_SHARED_PTR<PerceptClip> > >(new vector<KUKADU_SHARED_PTR<PerceptClip> >());
-        auto resultingStatePercepts = KUKADU_SHARED_PTR<vector<KUKADU_SHARED_PTR<Clip> > >(new vector<KUKADU_SHARED_PTR<Clip> >());
+        auto environmentPercepts = make_shared<vector<KUKADU_SHARED_PTR<PerceptClip> > >();
+        auto resultingStatePercepts = make_shared<vector<KUKADU_SHARED_PTR<Clip> > >();
 
         auto idVec = KUKADU_SHARED_PTR< vector<int> >(new vector<int>{0, 0});
         for(auto stateClip : *stateClips) {
@@ -373,9 +377,10 @@ namespace kukadu {
             stringstream s;
             s << "E" << stateId;
             // have to make it -1 because action clip says internally --> -stateId - 1 (i can't remember the reason anymore)
-            resultingStatePercepts->push_back(KUKADU_SHARED_PTR<ActionClip>(new ActionClip(stateId - 1, idVec->size(), s.str(), generator)));
+            resultingStatePercepts->push_back(make_shared<ActionClip>(stateId - 1, idVec->size(), s.str(), generator));
         }
 
+        bool containsPrepAction = false;
         for(int stateIdx = 0, overallId = sensingCatCount; stateIdx < sensingCatCount; ++stateIdx) {
 
             int stateId = stateClips->at(stateIdx)->getClipDimensions()->at(0);
@@ -387,12 +392,13 @@ namespace kukadu {
                 // can't be used to change the environment state
                 if(prepClips->at(actId)->toString() != nothingController->getCaption()) {
 
+                    containsPrepAction = true;
                     idVec->at(1) = prepClips->at(actId)->getClipDimensions()->at(0);
 
                     stringstream s;
                     s << "(E" << stateId << ",P" << idVec->at(1) << ")";
-                    auto vecCopy = KUKADU_SHARED_PTR<vector<int> >(new vector<int>(idVec->begin(), idVec->end()));
-                    auto newPercept = KUKADU_SHARED_PTR<PerceptClip>(new PerceptClip(overallId, s.str(), generator, vecCopy, INT_MAX));
+                    auto vecCopy = make_shared<vector<int> >(idVec->begin(), idVec->end());
+                    auto newPercept = make_shared<PerceptClip>(overallId, s.str(), generator, vecCopy, INT_MAX);
                     newPercept->setChildren(resultingStatePercepts);
                     environmentPercepts->push_back(newPercept);
 
@@ -402,7 +408,12 @@ namespace kukadu {
 
         }
 
-        auto retProjSim = KUKADU_SHARED_PTR<ProjectiveSimulator>(new ProjectiveSimulator(envReward, generator, environmentPercepts, 0.0, ProjectiveSimulator::PS_USE_ORIGINAL, false));
+        if(!containsPrepAction)
+            throw KukaduException("(ComplexController) No preparatory action without the label of the nothing action provided");
+
+        auto psMode = ProjectiveSimulator::PS_USE_ORIGINAL;
+        auto retProjSim = make_shared<ProjectiveSimulator>(envReward, generator, environmentPercepts, 0.0, psMode, false);
+
         return retProjSim;
 
     }

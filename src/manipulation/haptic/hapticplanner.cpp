@@ -13,13 +13,18 @@ namespace kukadu {
                                  KUKADU_SHARED_PTR<kukadu::Controller> nothingController,
                                  KUKADU_SHARED_PTR<kukadu_mersenne_twister> generator, std::vector<KUKADU_SHARED_PTR<SensingController> > meanAndVarianceForSensingIds) : Reward(generator, false) {
 
+        if(!preparatoryControllers.size())
+            throw KukaduException("(HapticPlanner) no preparatory controllers defined");
+
+        if(!sensingControllers.size())
+            throw KukaduException("(HapticPlanner) no sensing controllers defined");
+
         if(meanAndVarianceForSensingIds.size() > 0)
             this->computeMeanAndVariance = true;
         else
             this->computeMeanAndVariance = false;
 
         this->meanAndVarianceForSensingIds = meanAndVarianceForSensingIds;
-
         this->generator = generator;
 
         preparePathString(skillDatabase);
@@ -63,12 +68,10 @@ namespace kukadu {
 
             KUKADU_SHARED_PTR<kukadu::ComplexController> castCompCont = KUKADU_DYNAMIC_POINTER_CAST<kukadu::ComplexController>(compCont);
             string contName = compCont->getCaption();
-
             replace(contName.begin(), contName.end(), ' ', '_');
 
             string complexPath = skillDatabase + contName;
             preparePathString(complexPath);
-
             replace(complexPath.begin(), complexPath.end(), ' ', '_');
 
             string hapticPath = complexPath + "haptics";

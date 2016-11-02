@@ -150,6 +150,13 @@ namespace kukadu {
                           double nothingStateProbThresh = 0.8, double creativityMultiplier = 3.0);
         ~ComplexController();
 
+        virtual void cleanupAfterAction() = 0;
+        virtual void executeComplexAction() = 0;
+        virtual int getStateCount(const std::string& sensingName) = 0;
+        virtual KUKADU_SHARED_PTR<Clip> computeGroundTruthTransition(KUKADU_SHARED_PTR<Clip> sensingClip, KUKADU_SHARED_PTR<Clip> stateClip, KUKADU_SHARED_PTR<Clip> actionClip) = 0;
+
+        int getPrepActionCount();
+
         void store();
         void load(std::string path, std::map<std::string, KUKADU_SHARED_PTR<kukadu::SensingController> > availableSensingControllers, std::map<std::string, KUKADU_SHARED_PTR<kukadu::Controller> > availablePreparatoryControllers);
 
@@ -166,22 +173,16 @@ namespace kukadu {
         bool isTrained();
         bool setUseCreativity(bool useCreativity);
 
-        virtual int getStateCount(const std::string& sensingName) = 0;
-
         void setSensingControllers(std::vector<KUKADU_SHARED_PTR<kukadu::SensingController> > sensingControllers);
         void setPreparatoryControllers(std::vector<KUKADU_SHARED_PTR<kukadu::Controller> > preparatoryControllers);
 
         void clearPreparatoryControllers();
         void addPreparatoryController(KUKADU_SHARED_PTR<kukadu::Controller> prepCont);
 
-        virtual void executeComplexAction() = 0;
-
         int getDimensionality();
 
         // overwrite this virtual function if the next idx should be created randomly
         virtual int getNextSimulatedGroundTruth(KUKADU_SHARED_PTR<SensingController> sensCont);
-
-        virtual KUKADU_SHARED_PTR<Clip> computeGroundTruthTransition(KUKADU_SHARED_PTR<Clip> sensingClip, KUKADU_SHARED_PTR<Clip> stateClip, KUKADU_SHARED_PTR<Clip> actionClip) = 0;
 
         double getStdReward();
         double getPunishReward();
@@ -191,7 +192,6 @@ namespace kukadu {
 
         KUKADU_SHARED_PTR<kukadu_mersenne_twister> getGenerator();
 
-        virtual void cleanupAfterAction() = 0;
         virtual KUKADU_SHARED_PTR<ControllerResult> performAction();
         virtual KUKADU_SHARED_PTR<ControllerResult> performAction(bool cleanup, bool generateNewGroundTruth = true);
 
