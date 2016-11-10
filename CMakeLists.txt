@@ -73,7 +73,7 @@ catkin_package(
         tf tf2_msgs tf_conversions trajectory_msgs
     DEPENDS gsl gslcblas ncurses
         stdc++ ${Boost_LIBRARIES} ${PCL_LIBRARIES} ${ARMADILLO_LIBRARIES} ${PythonLibs_LIBRARIES} python3.4m
-        komo swift algo gui ors rt lapack blas ann glut GLU GL X11 ${GTK_LIBRARIES} ${GTK2_LIBRARIES} gthread-2.0 qhull m
+        komo swift algo gui ors rt lapack blas ann glut GLU GL X11 ${GTK_LIBRARIES} ${GTK2_LIBRARIES} gthread-2.0 qhull m mysqlcppconn
 )
 
 include_directories(
@@ -99,6 +99,7 @@ AUX_SOURCE_DIRECTORY(src/robot/ KUKADUSRC)
 AUX_SOURCE_DIRECTORY(src/types/ KUKADUSRC)
 #AUX_SOURCE_DIRECTORY(src/vision/ KUKADUSRC)
 AUX_SOURCE_DIRECTORY(src/control/ KUKADUSRC)
+AUX_SOURCE_DIRECTORY(src/storage/ KUKADUSRC)
 AUX_SOURCE_DIRECTORY(src/learning/ KUKADUSRC)
 AUX_SOURCE_DIRECTORY(src/kinematics/ KUKADUSRC)
 AUX_SOURCE_DIRECTORY(src/kinematics/constraints/ KUKADUSRC)
@@ -132,7 +133,8 @@ add_library(${PROJECT_NAME} ${KUKADUSRC})
 add_library(reflexxeslib ${REFLEXXESSRC})
 
 target_link_libraries(${PROJECT_NAME} ${catkin_LIBRARIES} ${Boost_LIBRARIES} ${PCL_LIBRARIES} ${ARMADILLO_LIBRARIES} ${PCL_LIBRARIES}
-    reflexxeslib ncurses gsl gslcblas stdc++ pthread dl util m komo swift algo ann gui ors optim motion rt lapack blas glut GLU GL X11 ${GTK_LIBRARIES} ${GTK2_LIBRARIES} gthread-2.0 qhull python3.4m m)
+    reflexxeslib ncurses gsl gslcblas stdc++ pthread dl util m komo swift algo ann gui ors optim motion rt lapack blas glut GLU GL X11 ${GTK_LIBRARIES} ${GTK2_LIBRARIES}
+    gthread-2.0 qhull python3.4m m mysqlcppconn)
 
 add_executable(kukadu_demo_guided tutorials/guided.cpp)
 target_link_libraries(kukadu_demo_guided kukadu ${catkin_LIBRARIES} komo swift algo ann gui ors optim motion rt lapack blas glut GLU GL X11 ${GTK_LIBRARIES} ${GTK2_LIBRARIES} gthread-2.0 qhull m)

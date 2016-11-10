@@ -504,11 +504,13 @@ namespace kukadu {
 
     vector<string> getFilesInDirectory(string folderPath) {
 
-        vector<string> ret;
         DIR *dir;
         struct dirent *ent;
-        if ((dir = opendir (folderPath.c_str())) != NULL) {
-            while ((ent = readdir(dir)) != NULL) {
+        vector<string> ret;
+
+        if((dir = opendir (folderPath.c_str())) != NULL) {
+
+            while((ent = readdir(dir)) != NULL) {
                 string tmp(ent->d_name);
                 ret.push_back(tmp);
             }
