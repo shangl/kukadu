@@ -5,8 +5,8 @@
 #include <vector>
 #include <armadillo>
 
-#include "../types/dmp.hpp"
-#include "../types/kukadutypes.hpp"
+#include <kukadu/control/dmp.hpp>
+#include <kukadu/types/kukadutypes.hpp>
 
 namespace kukadu {
 

@@ -1,9 +1,7 @@
-#include <kukadu/learning/rl/dmprewardcomputer.hpp>
-#include <kukadu/types/dmp.hpp>
+#include <kukadu/control/dmp.hpp>
 #include <kukadu/types/sensordata.hpp>
 #include <kukadu/robot/sensorstorage.hpp>
-#include <kukadu/control/dmpexecutor.hpp>
-#include <kukadu/control/jointdmplearner.hpp>
+#include <kukadu/learning/rl/dmprewardcomputer.hpp>
 
 using namespace std;
 using namespace arma;

@@ -8,11 +8,10 @@
 #include <armadillo>
 #include <kukadu/utils/utils.hpp>
 #include <kukadu/utils/types.hpp>
-#include <kukadu/types/dmpbase.hpp>
+#include <kukadu/control/dmp.hpp>
 #include <kukadu/types/querypoint.hpp>
 #include <kukadu/types/trajectory.hpp>
 #include <kukadu/utils/conversion_utils.hpp>
-#include <kukadu/control/jointdmplearner.hpp>
 
 namespace kukadu {
 

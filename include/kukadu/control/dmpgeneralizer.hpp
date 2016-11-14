@@ -4,18 +4,14 @@
 #include <string>
 #include <vector>
 #include <armadillo>
-#include <kukadu/types/dmp.hpp>
 #include <kukadu/utils/types.hpp>
 #include <kukadu/utils/utils.hpp>
-#include <kukadu/types/dmpbase.hpp>
-#include <kukadu/control/genericgeneralizer.hpp>
 #include <kukadu/types/querypoint.hpp>
 #include <kukadu/types/kukadutypes.hpp>
+#include <kukadu/types/dictionarytrajectory.hpp>
+#include <kukadu/control/genericgeneralizer.hpp>
 #include <kukadu/learning/regression/lwrregressor.hpp>
 #include <kukadu/learning/regression/generickernel.hpp>
-#include <kukadu/control/jointdmplearner.hpp>
-#include <kukadu/types/dictionarytrajectory.hpp>
-#include <kukadu/control/dmptrajectorygenerator.hpp>
 #include <kukadu/learning/regression/gaussianprocessregressor.hpp>
 
 namespace kukadu {

@@ -125,7 +125,7 @@ namespace kukadu {
                 string currentTrajFile = string(trajFiles.at(j));
                 string trajAppendix = currentTrajFile.substr(prefix2Size, currentTrajFile.size() - 1);
                 if(!queryAppendix.compare(trajAppendix)) {
-                    QueryPoint toAdd(queryFiles.at(i), trajFiles.at(j), string("dmp") + trajAppendix, KUKADU_SHARED_PTR<Dmp>(new JointDmp()), vec());
+                    QueryPoint toAdd(queryFiles.at(i), trajFiles.at(j), string("dmp") + trajAppendix, make_shared<JointDmp>(), vec());
                     ret.push_back(toAdd);
                     if(i == 0)
                         startingPos = toAdd.getDmp()->getY0();

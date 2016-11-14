@@ -10,6 +10,7 @@
 #include <memory>
 #include <armadillo>
 #include <map>
+#include <kukadu/types/kukadutypes.hpp>
 
 #ifndef USEBOOST
 #include <tuple>

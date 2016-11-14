@@ -4,11 +4,10 @@
 #include <vector>
 #include <iostream>
 #include <armadillo>
-#include <kukadu/learning/rl/costcomputer.hpp>
-#include <kukadu/types/dmp.hpp>
+#include <kukadu/control/dmp.hpp>
 #include <kukadu/types/kukadutypes.hpp>
 #include <kukadu/robot/arm/controlqueue.hpp>
-#include <kukadu/control/dmpexecutor.hpp>
+#include <kukadu/learning/rl/costcomputer.hpp>
 
 namespace kukadu {
 

@@ -14,9 +14,8 @@
 #include <pcl_ros/transforms.h>
 #include <tf/transform_listener.h>
 #include <sensor_msgs/PointCloud2.h>
-
-#include "pcltransformator.hpp"
-#include "../types/kukadutypes.hpp"
+#include <kukadu/types/kukadutypes.hpp>
+#include <kukadu/vision/pcltransformator.hpp>
 
 namespace kukadu {
 

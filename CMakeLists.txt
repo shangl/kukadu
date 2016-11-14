@@ -154,12 +154,16 @@ target_link_libraries(cart_traj kukadu ${catkin_LIBRARIES})
 add_executable(control_queue tutorials/control_queue.cpp)
 target_link_libraries(control_queue kukadu ${catkin_LIBRARIES})
 
+add_executable(dmp tutorials/dmp.cpp)
+target_link_libraries(dmp kukadu ${catkin_LIBRARIES})
+
 add_dependencies(${PROJECT_NAME} ${catkin_EXPORTED_TARGETS} python3.4m)
 add_dependencies(reflexxeslib ${catkin_EXPORTED_TARGETS})
 add_dependencies(kukadu_demo_guided ${catkin_EXPORTED_TARGETS})
 add_dependencies(komo_planning ${catkin_EXPORTED_TARGETS})
 add_dependencies(moveit_planning ${catkin_EXPORTED_TARGETS})
 add_dependencies(simple_planning ${catkin_EXPORTED_TARGETS})
+add_dependencies(dmp ${catkin_EXPORTED_TARGETS})
 
 if(CATKIN_ENABLE_TESTING)
 	catkin_add_gtest(kukadutest test/kukadutest.cpp)
@@ -170,5 +174,6 @@ install(TARGETS control_queue RUNTIME DESTINATION ${CATKIN_PACKAGE_BIN_DESTINATI
 install(TARGETS simple_planning RUNTIME DESTINATION ${CATKIN_PACKAGE_BIN_DESTINATION})
 install(TARGETS komo_planning RUNTIME DESTINATION ${CATKIN_PACKAGE_BIN_DESTINATION})
 install(TARGETS moveit_planning RUNTIME DESTINATION ${CATKIN_PACKAGE_BIN_DESTINATION})
+install(TARGETS dmp RUNTIME DESTINATION ${CATKIN_PACKAGE_BIN_DESTINATION})
 install(TARGETS ${PROJECT_NAME} reflexxeslib ARCHIVE DESTINATION ${CATKIN_PACKAGE_LIB_DESTINATION} LIBRARY DESTINATION ${CATKIN_PACKAGE_LIB_DESTINATION} RUNTIME DESTINATION ${CATKIN_GLOBAL_BIN_DESTINATION})
 install(DIRECTORY include/${PROJECT_NAME}/ DESTINATION ${CATKIN_PACKAGE_INCLUDE_DESTINATION})

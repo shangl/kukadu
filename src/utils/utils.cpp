@@ -14,7 +14,6 @@
 
 #include <kukadu/utils/utils.hpp>
 #include <kukadu/types/kukadutypes.hpp>
-#include <kukadu/control/dmpexecutor.hpp>
 
 using namespace std;
 using namespace arma;
@@ -92,15 +91,6 @@ namespace kukadu {
         return ch;
     }
 
-    std::vector<double> constructDmpMys(mat joints) {
-        vector<double> ret;
-        double tmax = joints(joints.n_rows - 1, 0);
-        for(double i = 0; i < (tmax + 1); i += 1.0) {
-            ret.push_back(i);
-        }
-        return ret;
-    }
-
     float* copyJoints(const float* arr, int arrSize) {
         float* ret = new float[arrSize];
         for(int i = 0; i < arrSize; ++i) ret[i] = arr[i];
@@ -113,16 +103,6 @@ namespace kukadu {
             cout << data->at(i) << ", ";
         }
         cout << endl;
-    }
-
-    vector<double> computeDMPMys(vector<double> mys, double ax, double tau) {
-        int mysSize = mys.size();
-        vector<double> dmpMys;
-        for(int i = 0; i < mysSize; ++i) {
-            double val = std::exp(-ax / tau * mys.at(i));
-            dmpMys.push_back(val);
-        }
-        return dmpMys;
     }
 
     std::vector<double>* getDoubleVectorFromArray(double* arr, int size) {
@@ -421,7 +401,7 @@ namespace kukadu {
 
                     for(int i = 0; (token = tok.next()) != "" && i < fileColumns; ++i) {
 
-                        dn = string_to_double(token);
+                        dn = stod(token);
 
                         if(i == 0 && prevTime == dn) {
                             ignoreLine = true;
@@ -489,7 +469,7 @@ namespace kukadu {
                 getline(inFile, line);
                 KukaduTokenizer tok(line);
                 while((token = tok.next()) != "") {
-                    dn = string_to_double(token);
+                    dn = stod(token);
                     ret(i) = dn;
                     ++i;
                     ret.resize(i + 1);
@@ -531,37 +511,6 @@ namespace kukadu {
             if(!pos) ret.push_back(currentString);
         }
         return ret;
-    }
-
-    std::vector<DMPBase> buildDMPBase(vector<double> tmpmys, vector<double> tmpsigmas, double ax, double tau) {
-
-        std::vector<DMPBase> baseDef;
-        vector<DMPBase>::iterator it = baseDef.begin();
-
-        vector<double> mys = computeDMPMys(tmpmys, ax, tau);
-
-        for(int i = 0; i < mys.size(); ++i) {
-
-            double realMy = tmpmys.at(i);
-            double my = mys.at(i);
-
-            vector<double> sigmas;
-
-            for(int j = 0; j < tmpsigmas.size(); ++j) {
-                double realSigma = tmpsigmas.at(j);
-                double sigma = my - std::exp( -ax / tau * ( realMy + realSigma ) );
-                sigmas.push_back(sigma);
-            }
-
-            DMPBase base(my, sigmas);
-
-            // with this implementation, currently all sigmas have to be of the same size (see DMPTrajectoryGenerator::evaluateBasisFunction)
-            it = baseDef.insert(it, base);
-
-        }
-
-        return baseDef;
-
     }
 
     mat gslToArmadilloMatrix(gsl_matrix* matrix) {

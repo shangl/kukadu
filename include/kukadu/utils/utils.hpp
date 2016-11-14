@@ -39,14 +39,12 @@
 #include <Python.h>
 
 #include <kukadu/utils/types.hpp>
-#include <kukadu/utils/kukadutokenizer.hpp>
-#include <kukadu/types/dmpbase.hpp>
-#include <kukadu/robot/arm/controlqueue.hpp>
 #include <kukadu/utils/gnuplot.hpp>
+#include <kukadu/utils/kukadutokenizer.hpp>
+#include <kukadu/types/controllerresult.hpp>
+#include <kukadu/robot/arm/controlqueue.hpp>
 #include <kukadu/learning/regression/tricubekernel.hpp>
 #include <kukadu/learning/regression/gaussiankernel.hpp>
-#include <kukadu/types/controllerresult.hpp>
-#include <kukadu/control/dmptrajectorygenerator.hpp>
 #include <kukadu/learning/regression/gaussianprocessregressor.hpp>
 
 namespace kukadu {
@@ -101,7 +99,6 @@ namespace kukadu {
     std::string stringFromDouble(double d);
 
     std::vector<double> armadilloToStdVec(arma::vec armadilloVec);
-    std::vector<double> computeDMPMys(std::vector<double> mys, double ax, double tau);
 
     // taken from http://rosettacode.org/wiki/Polynomial_regression
     double* polynomialfit(int obs, int degree, double *dx, double *dy);
@@ -111,11 +108,9 @@ namespace kukadu {
 
     std::string buildPolynomialEquation(double* w, int paramCount);
     std::vector<double>* getDoubleVectorFromArray(double* arr, int size);
-    std::vector<DMPBase> buildDMPBase(std::vector<double> tmpmys, std::vector<double> tmpsigmas, double ax, double tau);
 
     arma::mat gslToArmadilloMatrix(gsl_matrix* matrix);
     std::vector<double>* testGaussianRegressor();
-    std::vector<double> constructDmpMys(arma::mat joints);
 
     arma::vec squareMatrixToColumn(arma::mat m);
     arma::mat columnToSquareMatrix(arma::vec c);

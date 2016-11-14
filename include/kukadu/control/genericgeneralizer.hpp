@@ -5,9 +5,9 @@
 #include <string>
 #include <armadillo>
 
-#include "../utils/types.hpp"
-#include "../types/jointdmp.hpp"
-#include "../types/kukadutypes.hpp"
+#include <kukadu/utils/types.hpp>
+#include <kukadu/control/dmp.hpp>
+#include <kukadu/types/kukadutypes.hpp>
 
 namespace kukadu {
 
