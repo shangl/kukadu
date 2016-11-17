@@ -63,10 +63,11 @@ namespace kukadu {
         int rollBackQueueSize;
 
         double sleepTime;
-        double currentTime;
         double rollBackTime;
         double lastDuration;
         double desiredCycleTime;
+
+        long long int currentTime;
 
         arma::vec currentJoints;
         arma::vec startingJoints;
@@ -85,6 +86,7 @@ namespace kukadu {
 
         std::deque<arma::vec> rollBackQueue;
         KUKADU_SHARED_PTR<FrcTrqSensorFilter> currentFrcTrqSensorFilter;
+
         TicToc t;
 
         KUKADU_SHARED_PTR<kukadu_thread> thr;
@@ -428,7 +430,7 @@ namespace kukadu {
          * the current time according to this clock.
          * \return current time
          */
-        virtual double getCurrentTime();
+        virtual long long int getCurrentTime();
 
         /**
          * \brief Indicates whether or not the queue is printing debug information to the terminal

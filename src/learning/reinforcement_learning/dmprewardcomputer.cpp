@@ -18,8 +18,9 @@ namespace kukadu {
 
         cout << "(DmpRewardComputer) starting execution of sample trajectory with timeStep size " << timeStep << endl;
         KUKADU_SHARED_PTR<SensorData> data = SensorStorage::readStorage(pcq, file);
-        arma::vec times = data->getTimes();
-        KUKADU_SHARED_PTR<JointDMPLearner> dmpLearner = KUKADU_SHARED_PTR<JointDMPLearner>(new JointDMPLearner(az, bz, join_rows(times, data->getJointPos())));
+        auto timesInMilliseconds = data->getTimeInMilliSeconds();
+        auto times = convertAndRemoveOffset(timesInMilliseconds);
+        KUKADU_SHARED_PTR<JointDMPLearner> dmpLearner = KUKADU_SHARED_PTR<JointDMPLearner>(new JointDMPLearner(az, bz, times, data->getJointPos()));
         KUKADU_SHARED_PTR<Dmp> finalDmp = dmpLearner->fitTrajectories();
         DMPExecutor execDmp(finalDmp, pcq);
         executionResult = execDmp.executeTrajectory(0, 0, finalDmp->getTmax(), 0.1, 0.1);

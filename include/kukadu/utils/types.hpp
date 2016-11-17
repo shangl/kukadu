@@ -6,7 +6,7 @@
 #include <gsl/gsl_matrix.h>
 
 struct mes_result {
-	double time;
+    long long int time;
     arma::vec joints;
 };
 

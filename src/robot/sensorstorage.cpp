@@ -30,8 +30,9 @@ namespace kukadu {
 
         storeCartAbsFrc = storeTime = storeJntPos = storeCartPos = storeJntFrc = storeCartFrcTrq = storeHndJntPos = storeHndTctle = false;
 
-        if(mode & STORE_TIME)
-            storeTime = true;
+        //if(mode & STORE_TIME)
+        // in the current version, the time must always be stored
+        storeTime = true;
 
         if(mode & STORE_RBT_JNT_POS)
             storeJntPos = true;
@@ -171,14 +172,14 @@ namespace kukadu {
         stopped = false;
         double waitTime = 1.0 / pollingFrequency;
         ros::Rate rate(pollingFrequency);
-        double currentTime = 0.0;
 
         bool firstTime = true;
         int iterationSize = (data.size()) ? data.size() : queues.size();
 
-        double time = 0.0;
+        long long int time = 0;
+        long long int currentTime = 0;
 
-        for(int dataPointIdx = 0; !stopped && (!data.size() || dataPointIdx < data.at(0)->getTimes().n_elem); ++dataPointIdx) {
+        for(int dataPointIdx = 0; !stopped && (!data.size() || dataPointIdx < data.at(0)->getNormalizedTimeInSeconds().n_elem); ++dataPointIdx) {
 
             for(int i = 0; i < iterationSize; ++i) {
 
@@ -194,7 +195,7 @@ namespace kukadu {
 
                 // if not collect data live
                 if(data.size()) {
-                    time = data.at(i)->getTimes()(dataPointIdx);
+                    time = data.at(i)->getNormalizedTimeInSeconds()(dataPointIdx);
 
                     if(storeJntPos) {
                         joints.time = time;
@@ -302,33 +303,33 @@ namespace kukadu {
 
                 }
 
-                if(storeTime)
-                    *currentOfStream << time << "\t";
+                if(currentTime != time) {
 
-                if(storeJntPos) {
-                    writeVectorInLine(currentOfStream, joints.joints);
+                    if(storeTime)
+                        *currentOfStream << time << "\t";
+
+                    if(storeJntPos)
+                        writeVectorInLine(currentOfStream, joints.joints);
+
+                    if(storeCartPos)
+                        writeVectorInLine(currentOfStream, cartPos.joints);
+
+                    if(storeJntFrc)
+                        writeVectorInLine(currentOfStream, jntFrcTrq.joints);
+
+                    if(storeCartFrcTrq)
+                        writeVectorInLine(currentOfStream, cartFrcTrq.joints);
+
+                    if(storeCartAbsFrc) {
+                        vec absForce(1);
+                        absForce(0) = absCartFrc;
+                        writeVectorInLine(currentOfStream, absForce);
+                    }
+
+                    *currentOfStream << endl;
+                    currentTime = time;
+
                 }
-
-                if(storeCartPos) {
-                    writeVectorInLine(currentOfStream, cartPos.joints);
-                }
-
-                if(storeJntFrc) {
-                    writeVectorInLine(currentOfStream, jntFrcTrq.joints);
-                }
-
-                if(storeCartFrcTrq) {
-                    writeVectorInLine(currentOfStream, cartFrcTrq.joints);
-                }
-
-                if(storeCartAbsFrc) {
-                    vec absForce(1);
-                    absForce(0) = absCartFrc;
-                    writeVectorInLine(currentOfStream, absForce);
-                }
-
-                *currentOfStream << endl;
-                currentTime = time;
 
             }
 
@@ -437,13 +438,16 @@ namespace kukadu {
                 foundDimension = true;
                 timeIdx = tok.getTokenIdx();
 
+                if(timeIdx != 0)
+                    throw KukaduException("(SensorStorage) time must be the first column");
+
             } else {
 
                 // if first joint token found, all of them have to be in consecutive order
                 if(!nextToken.compare("joint_" + jointNames.at(0))) {
 
                     foundDimension = true;
-                    jointsPosStartIdx = tok.getTokenIdx();
+                    jointsPosStartIdx = tok.getTokenIdx() - 1;
 
                     for(int i = 0; i < jointNames.size(); ++i) {
                         if(!nextToken.compare(jointPosLabels.at(i))) {
@@ -468,7 +472,7 @@ namespace kukadu {
             if(!foundDimension) {
 
                 if(!nextToken.compare("cart_pos_x")) {
-                    cartsPosStartIdx = tok.getTokenIdx();
+                    cartsPosStartIdx = tok.getTokenIdx() - 1;
                     foundDimension = true;
 
                     if(tok.next().compare("cart_pos_y") || tok.next().compare("cart_pos_z") ||
@@ -486,7 +490,7 @@ namespace kukadu {
             if(!foundDimension) {
 
                 if(!nextToken.compare("cart_force_x")) {
-                    cartsForceStartIdx = tok.getTokenIdx();
+                    cartsForceStartIdx = tok.getTokenIdx() - 1;
                     foundDimension = true;
 
                     if(tok.next().compare("cart_force_y") || tok.next().compare("cart_force_z") ||
@@ -507,7 +511,7 @@ namespace kukadu {
                 if(!nextToken.compare(jointFrcLabels.at(0))) {
 
                     foundDimension = true;
-                    jointsForceStartIdx = tok.getTokenIdx();
+                    jointsForceStartIdx = tok.getTokenIdx() - 1;
 
                     for(int i = 0; i < jointNames.size(); ++i) {
                         if(!nextToken.compare("force_joint_" + jointNames.at(i))) {
@@ -534,7 +538,7 @@ namespace kukadu {
                 if(!nextToken.compare(cartAbsForceLabels.at(0))) {
 
                     foundDimension = true;
-                    cartsAbsForceStartIdx = tok.getTokenIdx();
+                    cartsAbsForceStartIdx = tok.getTokenIdx() - 1;
 
                 }
 
@@ -543,19 +547,20 @@ namespace kukadu {
         }
 
         // reading all present measurements
-        mat mes = readMovements(inFile);
-        // ignoring first line (something is wrong with first line)
-        mes = mes.rows(1, mes.n_rows - 1);
+        auto mesData = readDmpData(inFile);
+        if(mesData.second.n_rows <= 1)
+            throw KukaduException("(SensorStorage) the provided file does not have the right format or contains to less data");
 
-        vec times(1);
+        // ignoring first line (something is wrong with first line)
+        auto mes = mesData.second.rows(1, mesData.second.n_rows - 1);
+        auto timeInMilliSeconds = mesData.first;
+        timeInMilliSeconds.resize(timeInMilliSeconds.size() - 1);
+
         mat jointPos(1,1);
         mat jointFrcs(1,1);
         mat cartPos(1,1);
         mat cartFrcTrqs(1,1);
         mat cartAbsFrcs(1,1);
-
-        if(timeIdx >= 0)
-            times = vec(mes.col(timeIdx));
 
         if(jointsPosStartIdx >= 0)
             jointPos = mat(mes.cols(jointsPosStartIdx, jointsPosStartIdx + queue->getMovementDegreesOfFreedom() - 1));
@@ -572,8 +577,19 @@ namespace kukadu {
         if(cartsAbsForceStartIdx >= 0)
             cartAbsFrcs = mat(mes.cols(cartsAbsForceStartIdx, cartsAbsForceStartIdx + 1 - 1));
 
-        KUKADU_SHARED_PTR<SensorData> dat = KUKADU_SHARED_PTR<SensorData>(new SensorData("time", jointPosLabels, jointFrcLabels, cartPosLabels, cartAbsForceLabels, cartFrcTrqLabels,
-                                                                           times, jointPos, jointFrcs, cartPos, cartAbsFrcs, cartFrcTrqs));
+        auto passedJointPosLabels = (jointsPosStartIdx >= 0) ? jointPosLabels : vector<string>();
+        auto passedJointFrcLabels = (jointsForceStartIdx >= 0) ? jointFrcLabels : vector<string>();
+        auto passedCartPosLabels = (cartsPosStartIdx >= 0) ? cartPosLabels : vector<string>();
+        auto passedCartAbsFrcLabels = (cartsAbsForceStartIdx >= 0) ? cartAbsForceLabels : vector<string>();
+        auto passedCartFrcLabels = (cartsForceStartIdx >= 0) ? cartFrcTrqLabels : vector<string>();
+
+        KUKADU_SHARED_PTR<SensorData> dat = KUKADU_SHARED_PTR<SensorData>(new SensorData("time",
+                                                                                         passedJointPosLabels,
+                                                                                         passedJointFrcLabels,
+                                                                                         passedCartPosLabels,
+                                                                                         passedCartAbsFrcLabels,
+                                                                                         passedCartFrcLabels,
+                                                                                         timeInMilliSeconds, jointPos, jointFrcs, cartPos, cartAbsFrcs, cartFrcTrqs));
 
         inFile.close();
         return dat;

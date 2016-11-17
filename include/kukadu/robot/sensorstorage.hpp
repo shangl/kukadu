@@ -70,7 +70,7 @@ namespace kukadu {
         KUKADU_SHARED_PTR<kukadu_thread> startDataStorage(std::string folderName);
         static KUKADU_SHARED_PTR<SensorData> readStorage(KUKADU_SHARED_PTR<ControlQueue> queue, std::string file);
 
-        static const int STORE_TIME = 512;
+        //static const int STORE_TIME = 512;
         static const int STORE_RBT_JNT_POS = 1;
         static const int STORE_RBT_CART_POS = 2;
         static const int STORE_RBT_JNT_FTRQ = 4;

@@ -18,7 +18,6 @@ namespace kukadu {
 
     vec GeneralFitter::computeLinFitCoefficients(mat desMat) {
 
-        int basisFunctionCount = trajGen->getBasisFunctionCount();
         vec t(sampleCount);
 
         for(int i = 0; i < sampleCount; ++i)
@@ -28,9 +27,11 @@ namespace kukadu {
 
         cout << "(GeneralFitter) learned coefficients: " << res.t() << endl;
 
-        vec resid = t - desMat * res;
-        double sig2 = as_scalar( trans(resid) * resid / (sampleCount - basisFunctionCount) );
-        vec stderrest = sqrt( sig2 * diagvec( inv(trans(desMat) * desMat)) );
+        // not needed
+        // int basisFunctionCount = trajGen->getBasisFunctionCount();
+        // vec resid = t - desMat * res;
+        // double sig2 = as_scalar( trans(resid) * resid / (sampleCount - basisFunctionCount) );
+        // vec stderrest = sqrt( sig2 * diagvec( inv(trans(desMat) * desMat)) );
 
         return res;
 

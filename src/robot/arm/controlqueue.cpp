@@ -1,9 +1,11 @@
-#include <kukadu/robot/arm/controlqueue.hpp>
+#include <chrono>
 #include <kukadu/utils/utils.hpp>
 #include <kukadu/types/kukadutypes.hpp>
+#include <kukadu/robot/arm/controlqueue.hpp>
 
 using namespace std;
 using namespace arma;
+using namespace chrono;
 
 namespace kukadu {
 
@@ -25,7 +27,7 @@ namespace kukadu {
         jointPtpRunning = false;
         cartesianPtpRunning = false;
         frcTrqFilterRunning=true;
-        currentTime = 0.0;
+        currentTime = duration_cast<milliseconds>(system_clock::now().time_since_epoch()).count();
         this->degOfFreedom = degOfFreedom;
         this->desiredCycleTime = desiredCycleTime;
         this->sleepTime = desiredCycleTime;
@@ -122,7 +124,7 @@ namespace kukadu {
         isInit = false;
         finish = 0;
 
-        currentTime = 0.0;
+        currentTime = duration_cast<milliseconds>(system_clock::now().time_since_epoch()).count();
 
         rollbackMode = false;
         rollBackQueueSize = 0;
@@ -136,7 +138,8 @@ namespace kukadu {
 
     }
 
-    double ControlQueue::getCurrentTime() {
+    long long int ControlQueue::getCurrentTime() {
+        currentTime = duration_cast<milliseconds>(system_clock::now().time_since_epoch()).count();
         return currentTime;
     }
 

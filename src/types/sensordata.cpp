@@ -6,7 +6,7 @@ using namespace arma;
 namespace kukadu {
 
     SensorData::SensorData(std::string timeLabel, std::vector<std::string> jointPosLabels, std::vector<std::string> jointFrcLabels, std::vector<std::string> cartPosLabels,
-               std::vector<std::string> cartForceAbsLabel, std::vector<std::string> cartFrcTrqLabels, arma::vec time, arma::mat jointPos, arma::mat jointFrc, arma::mat cartPos, arma::mat cartForceAbs, arma::mat cartFrcTrq) {
+               std::vector<std::string> cartForceAbsLabel, std::vector<std::string> cartFrcTrqLabels, std::vector<long long int> time, arma::mat jointPos, arma::mat jointFrc, arma::mat cartPos, arma::mat cartForceAbs, arma::mat cartFrcTrq) {
 
         this->jointPosLabels = jointPosLabels;
         this->jointFrcLabels = jointPosLabels;
@@ -45,22 +45,32 @@ namespace kukadu {
         } else
             this->cartForceAbsLabel.clear();
 
-        if((time.n_elem > 1)&&(jointPos.n_elem > 1))
-            values = armaJoinRows(time, jointPos);
-        else values = time;
+        this->time = time;
+        removeDuplicateTimes();
 
+        if(jointPos.n_cols > 1)
+            if(values.n_rows > 1) values = armaJoinRows(values, jointPos);
+            else values = jointPos;
 
         if(jointFrc.n_cols > 1)
-            values = armaJoinRows(values, jointFrc);
+            if(values.n_rows > 1) values = armaJoinRows(values, jointFrc);
+            else values = jointFrc;
 
-        if(cartPos.n_cols > 1){
-            values = armaJoinRows(values, cartPos);}
+        if(cartPos.n_cols > 1)
+            if(values.n_rows > 1) values = armaJoinRows(values, cartPos);
+            else values = cartPos;
 
         if(cartFrcTrq.n_cols > 1)
-            values = armaJoinRows(values, cartFrcTrq);
+            if(values.n_rows > 1) values = armaJoinRows(values, cartFrcTrq);
+            else values = cartFrcTrq;
 
         if(cartForceAbs.n_cols > 1)
-            values = armaJoinRows(values, cartForceAbs);
+            if(values.n_rows > 1) values = armaJoinRows(values, cartForceAbs);
+            else values = cartForceAbs;
+
+        auto labelCount = jointPosLabels.size() + jointFrcLabels.size() + cartPosLabels.size() + cartFrcTrqLabels.size() + cartForceAbsLabel.size();
+        if(labelCount != values.n_cols)
+            throw KukaduException("(SensorData) the number of labels does not match the number of data columns");
 
     }
 
@@ -69,9 +79,10 @@ namespace kukadu {
         double currentTime = DBL_MAX;
         int vecSize = values.n_rows;
         for(int i = 0; i < vecSize; ++i) {
-            double nextTime = getTime(i);
+            double nextTime = getTimeNormalizedTimeInSeconds(i);
             if(currentTime == nextTime) {
                 values.shed_row(i);
+                time.erase(time.begin() + i);
             }
         }
 
@@ -89,21 +100,26 @@ namespace kukadu {
     }
 
     arma::vec SensorData::getDataByIdx(int idx) {
-
         return vec(values.col(idx));
-
     }
 
-    arma::vec SensorData::getTime() {
+    std::vector<long long int> SensorData::getTimeInMilliSeconds() {
+        return time;
+    }
 
-        return getDataByLabel("time");
+    arma::vec SensorData::getNormalizedTimeInSeconds() {
+        auto normalizedTimeInMilliseconds = getNormalizedTimeInMilliSeconds();
+        return convertTimesInMillisecondsToTimeInSeconds(normalizedTimeInMilliseconds);
+    }
 
+    std::vector<long long int> SensorData::getNormalizedTimeInMilliSeconds() {
+        auto timeInSeconds = getTimeInMilliSeconds();
+        auto t = convertAndRemoveOffset(timeInSeconds);
+        return convertTimesInSecondsToTimeInMilliseconds(t);
     }
 
     arma::vec SensorData::getDataByLabel(std::string label) {
-
         return getDataByIdx(labelExists(label));
-
     }
 
     arma::mat SensorData::getRange(std::vector<std::string> indexes) {
@@ -145,31 +161,37 @@ namespace kukadu {
 
     }
 
-    arma::vec SensorData::getTimes() {
-        return values.col(0);
-    }
-
     arma::mat SensorData::getJointPos() {
-        return values.cols(1, 1 + jointPosLabels.size() - 1);
+        if(!jointPosLabels.size())
+            throw KukaduException("(SensorData) no joint positions stored");
+        return values.cols(0, jointPosLabels.size() - 1);
     }
 
     arma::mat SensorData::getJointForces() {
-        return values.cols(1 + jointPosLabels.size(), 1 + jointPosLabels.size() + jointFrcLabels.size() - 1);
+        if(!jointPosLabels.size())
+            throw KukaduException("(SensorData) no joint positions stored");
+        return values.cols(jointPosLabels.size(), jointPosLabels.size() + jointFrcLabels.size() - 1);
     }
 
     arma::mat SensorData::getCartPos() {
-        return values.cols(1 + jointPosLabels.size() + jointFrcLabels.size(), 1 + jointPosLabels.size() + jointFrcLabels.size() + cartPosLabels.size() - 1);
+        if(!cartPosLabels.size())
+            throw KukaduException("(SensorData) no Cartesian positions stored");
+        return values.cols(jointPosLabels.size() + jointFrcLabels.size(), jointPosLabels.size() + jointFrcLabels.size() + cartPosLabels.size() - 1);
     }
 
     arma::mat SensorData::getCartFrcTrqs() {
-        return values.cols(1 + jointPosLabels.size() + jointFrcLabels.size() + cartPosLabels.size(), 1 + jointPosLabels.size() + jointFrcLabels.size() + cartPosLabels.size() + cartFrcTrqLabels.size() - 1);
+        if(!cartFrcTrqLabels.size())
+            throw KukaduException("(SensorData) no Cartesian positions stored");
+        return values.cols(jointPosLabels.size() + jointFrcLabels.size() + cartPosLabels.size(), jointPosLabels.size() + jointFrcLabels.size() + cartPosLabels.size() + cartFrcTrqLabels.size() - 1);
     }
 
-    double SensorData::getTime(int rowIdx) {
-        return values(rowIdx, 0);
+    double SensorData::getTimeNormalizedTimeInSeconds(int rowIdx) {
+        return getNormalizedTimeInSeconds()(rowIdx);
     }
 
     arma::vec SensorData::getJointPosRow(int rowIdx) {
+        if(!jointPosLabels.size())
+            throw KukaduException("(SensorData) no joint positions stored");
         vec retVal(jointPosLabels.size());
         for(int i = 0; i < jointPosLabels.size(); ++i)
             retVal(i) = values(rowIdx, i + 1);
@@ -177,6 +199,8 @@ namespace kukadu {
     }
 
     arma::vec SensorData::getJointForcesRow(int rowIdx) {
+        if(!jointPosLabels.size())
+            throw KukaduException("(SensorData) no joint positions stored");
         vec retVal(jointFrcLabels.size());
         for(int i = 0; i < jointFrcLabels.size(); ++i)
             retVal(i) = values(rowIdx, i + 1 + jointPosLabels.size());
@@ -184,6 +208,8 @@ namespace kukadu {
     }
 
     arma::vec SensorData::getCartPosRow(int rowIdx) {
+        if(!cartPosLabels.size())
+            throw KukaduException("(SensorData) no Cartesian positions stored");
         vec retVal(cartPosLabels.size());
         for(int i = 0; i < cartPosLabels.size(); ++i)
             retVal(i) = values(rowIdx, i + 1 + jointPosLabels.size() + jointFrcLabels.size());
@@ -191,6 +217,8 @@ namespace kukadu {
     }
 
     arma::vec SensorData::getCartFrcTrqsRow(int rowIdx) {
+        if(!cartFrcTrqLabels.size())
+            throw KukaduException("(SensorData) no Cartesian positions stored");
         vec retVal(cartFrcTrqLabels.size());
         for(int i = 0; i < cartFrcTrqLabels.size(); ++i)
             retVal(i) = values(rowIdx, i + 1 + jointPosLabels.size() + jointFrcLabels.size() + cartPosLabels.size());

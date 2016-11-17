@@ -102,7 +102,7 @@ namespace kukadu {
 
         virtual int getCurrentMode();
 
-        double getCurrentTime();
+        long long int getCurrentTime();
 
         std::string getRobotName();
         std::string getRobotFileName();

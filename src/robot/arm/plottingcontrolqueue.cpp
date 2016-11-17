@@ -70,7 +70,7 @@ namespace kukadu {
 
     }
 
-    double PlottingControlQueue::getCurrentTime() {
+    long long int PlottingControlQueue::getCurrentTime() {
         return currTime;
     }
 
@@ -106,7 +106,7 @@ namespace kukadu {
 
     void PlottingControlQueue::addJointsPosToQueue(arma::vec joints) {
         currJoints = joints;
-        currTime += getCycleTime();
+        currTime += (long) (getCycleTime() * 1e3);
     }
 
     void PlottingControlQueue::addCartesianPosToQueue(geometry_msgs::Pose pose) {

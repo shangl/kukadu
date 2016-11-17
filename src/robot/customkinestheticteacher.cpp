@@ -47,7 +47,7 @@ void CustomKinestheticTeacher::generateNextCommand(){
 
 void CustomKinestheticTeacher::startRecording(){
 
-    store->setExportMode(SensorStorage::STORE_TIME | SensorStorage::STORE_RBT_CART_POS | SensorStorage::STORE_RBT_JNT_POS);
+    store->setExportMode(SensorStorage::STORE_RBT_CART_POS | SensorStorage::STORE_RBT_JNT_POS);
     deleteDirectory(recordingPath);
     recordingThread= store->startDataStorage(recordingPath);
 
@@ -66,7 +66,7 @@ arma::vec CustomKinestheticTeacher::getNextDifferentialCommand(Eigen::MatrixXd j
     auto numberOfCartesianFTs=jacobian.rows();
     if (numberOfCartesianFTs != sensorReading.size()){
         cout << "Problem in sensor readings vector size" << endl;
-        return stdToArmadilloVec({0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0});
+        return stdToArmadilloVec({0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0});
     }
     std::vector<double> forceVector = scaleForcesTorques(sensorReading);
     std::vector<double> additiveDifferential;

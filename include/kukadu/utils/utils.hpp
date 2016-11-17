@@ -67,9 +67,11 @@ namespace kukadu {
 
     int getch();
 
-    arma::mat readMovements(std::string file);
-    arma::mat readMovements(std::ifstream& stream);
-    std::pair<std::vector<std::string>, arma::mat> readSensorStorage(std::string file);
+    std::pair<std::vector<long long int>, arma::mat> readDmpData(std::string file);
+    std::pair<std::vector<long long int>, arma::mat> readDmpData(std::ifstream& stream);
+
+    // returns the labels (first vector) of the data columns, the time vector second vector.first and the concrete measured values second vector.second
+    std::pair<std::vector<std::string>, std::pair<std::vector<long long int>, arma::mat> > readSensorStorage(std::string file);
 
     arma::vec readQuery(std::string file);
     std::vector<double>* createStdVectorFromGslVector(gsl_vector* vec);
@@ -94,7 +96,7 @@ namespace kukadu {
     double** createDoubleArrayFromMatrix(gsl_matrix* data);
 
     arma::vec stdToArmadilloVec(std::vector<double> stdVec);
-    arma::mat fillTrajectoryMatrix(arma::mat joints, double tMax);
+    std::pair<arma::vec, arma::mat> fillTrajectoryMatrix(arma::vec timesInSec, arma::mat joints, double tMax);
 
     std::string stringFromDouble(double d);
 
@@ -160,6 +162,10 @@ namespace kukadu {
     void preparePathString(std::string& s);
 
     double computeMaxJointDistance(arma::vec joints1, arma::vec joints2);
+
+    arma::vec convertAndRemoveOffset(std::vector<long long int>& supervisedTs);
+    arma::vec convertTimesInMillisecondsToTimeInSeconds(std::vector<long long int>& supervisedTs);
+    std::vector<long long int> convertTimesInSecondsToTimeInMilliseconds(arma::vec& timesInSeconds);
 
 }
 

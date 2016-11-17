@@ -21,15 +21,19 @@ namespace kukadu {
             KUKADU_SHARED_PTR<JointDMPLearner> dmpLearner;
 
             vector<mat> jointsVec;
+            vector<vec> timesVec;
             double tMax = 0.0;
             for(int i = 0; i < queryPoints.size(); ++i) {
 
-                mat joints = readMovements((string(baseFolder) + string(queryPoints.at(i).getFileDataPath())).c_str());
-                degOfFreedom = joints.n_cols - 1;
+                auto dmpData = readDmpData((string(baseFolder) + string(queryPoints.at(i).getFileDataPath())).c_str());
+                vector<long long int> times = dmpData.first;
+                mat joints = dmpData.second;
+                degOfFreedom = joints.n_cols;
 
                 queryPoints.at(i).setQueryPoint(readQuery(string(baseFolder) + string(queryPoints.at(i).getFileQueryPath())));
                 jointsVec.push_back(joints);
-                double currentTMax = joints(joints.n_rows - 1, 0);
+                timesVec.push_back(convertAndRemoveOffset(times));
+                double currentTMax = times.back();
 
                 if(tMax < currentTMax)
                         tMax = currentTMax;
@@ -40,8 +44,10 @@ namespace kukadu {
 
                 QueryPoint currentQueryPoint = queryPoints.at(i);
                 mat joints = jointsVec.at(i);
-                joints = fillTrajectoryMatrix(joints, tMax);
-                dmpLearner = KUKADU_SHARED_PTR<JointDMPLearner>(new JointDMPLearner(az, bz, joints));
+                auto filledData = fillTrajectoryMatrix(timesVec.at(i), joints, tMax);
+                auto filledTimesInSec = filledData.first;
+                joints = filledData.second;
+                dmpLearner = KUKADU_SHARED_PTR<JointDMPLearner>(new JointDMPLearner(az, bz, filledTimesInSec, joints));
 
                 KUKADU_SHARED_PTR<Dmp> learnedDmps = dmpLearner->fitTrajectories();
                 learnedDmps->serialize(baseFolder + currentQueryPoint.getFileDmpPath());

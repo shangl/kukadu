@@ -92,7 +92,7 @@ int main(int argc, char** args) {
 
     cout << "starting measurement" << endl;
     SensorStorage scaredOfSenka(queueVectors, std::vector<KUKADU_SHARED_PTR<GenericHand> >(), 1000);
-    scaredOfSenka.setExportMode(SensorStorage::STORE_TIME | SensorStorage::STORE_RBT_CART_POS | SensorStorage::STORE_RBT_JNT_POS);
+    scaredOfSenka.setExportMode(SensorStorage::STORE_RBT_CART_POS | SensorStorage::STORE_RBT_JNT_POS);
     scaredOfSenka.startDataStorage(storeDir);
     cout << "measuerment started" << endl;
 
@@ -127,8 +127,8 @@ int main(int argc, char** args) {
     arma::vec timesFinalPush;
 
     dataFinalPush = SensorStorage::readStorage(simLeftQueue, storeDir + string("/kuka_lwr_") + prefix + string("_left_arm_0"));
-    timesFinalPush = dataFinalPush->getTimes();
-    learnerFinalPush = KUKADU_SHARED_PTR<JointDMPLearner>(new JointDMPLearner(az, bz, join_rows(timesFinalPush, dataFinalPush->getJointPos())));
+    timesFinalPush = dataFinalPush->getNormalizedTimeInSeconds();
+    learnerFinalPush = KUKADU_SHARED_PTR<JointDMPLearner>(new JointDMPLearner(az, bz, timesFinalPush, dataFinalPush->getJointPos()));
     dmpFinalPush = learnerFinalPush->fitTrajectories();
 
     // simLeftQueue->setStiffness(KukieControlQueue::KUKA_STD_XYZ_STIFF, KukieControlQueue::KUKA_STD_ABC_STIFF, KukieControlQueue::KUKA_STD_CPDAMPING, 15000, 150, 1500);

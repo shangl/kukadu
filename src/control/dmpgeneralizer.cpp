@@ -74,7 +74,7 @@ namespace kukadu {
 
         }
 
-        return KUKADU_SHARED_PTR<JointDmp>(new JointDmp(vec(), vector<vec>(), vector<vec>(), dmpCoeffs, dictTraj->getQueryPoints().at(0).getDmp()->getDmpBase(), vector<mat>(), dictTraj->getQueryPoints().at(0).getDmp()->getTau(),
+        return KUKADU_SHARED_PTR<JointDmp>(new JointDmp({}, vector<vec>(), vector<vec>(), dmpCoeffs, dictTraj->getQueryPoints().at(0).getDmp()->getDmpBase(), vector<mat>(), dictTraj->getQueryPoints().at(0).getDmp()->getTau(),
                dictTraj->getQueryPoints().at(0).getDmp()->getAz(), dictTraj->getQueryPoints().at(0).getDmp()->getBz(), dictTraj->getQueryPoints().at(0).getDmp()->getAx()));
 
     }
