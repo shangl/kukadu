@@ -1,6 +1,7 @@
-#include <kukadu/manipulation/haptic/hapticplanner.hpp>
-#include <kukadu/manipulation/complexcontroller.hpp>
+#include <kukadu/utils/utils.hpp>
 #include <kukadu/types/kukadutypes.hpp>
+#include <kukadu/manipulation/playing/core.hpp>
+#include <kukadu/manipulation/playing/controllers.hpp>
 
 using namespace std;
 

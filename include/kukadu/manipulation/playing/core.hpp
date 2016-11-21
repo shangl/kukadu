@@ -1,19 +1,11 @@
-#ifndef KUKADU_HAPTICPLANNER_H
-#define KUKADU_HAPTICPLANNER_H
+#ifndef KUKADU_PLAYINGCORE_H
+#define KUKADU_PLAYINGCORE_H
 
-#include <cstdio>
 #include <string>
 #include <vector>
-#include <fstream>
-#include <iostream>
-#include <wordexp.h>
-#include <ros/ros.h>
-#include <std_msgs/Int32.h>
-#include <kukadu/utils/utils.hpp>
 #include <kukadu/control/controller.hpp>
 #include <kukadu/types/controllerresult.hpp>
-#include <kukadu/manipulation/complexcontroller.hpp>
-#include <kukadu/manipulation/sensingcontroller.hpp>
+#include <kukadu/manipulation/playing/controllers.hpp>
 #include <kukadu/learning/projective_simulation/core.hpp>
 
 namespace kukadu {
