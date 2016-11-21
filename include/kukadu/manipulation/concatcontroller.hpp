@@ -3,7 +3,7 @@
 
 #include <vector>
 #include <string>
-#include <kukadu/manipulation/controller.hpp>
+#include <kukadu/control/controller.hpp>
 
 namespace kukadu {
 

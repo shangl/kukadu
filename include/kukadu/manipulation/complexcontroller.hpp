@@ -4,8 +4,8 @@
 #include <vector>
 #include <string>
 #include <kukadu/types/kukadutypes.hpp>
+#include <kukadu/control/controller.hpp>
 #include <kukadu/types/controllerresult.hpp>
-#include <kukadu/manipulation/controller.hpp>
 #include <kukadu/robot/arm/kukiecontrolqueue.hpp>
 #include <kukadu/manipulation/sensingcontroller.hpp>
 #include <kukadu/learning/projective_simulation/core.hpp>

@@ -43,9 +43,6 @@
 #include <kukadu/utils/kukadutokenizer.hpp>
 #include <kukadu/types/controllerresult.hpp>
 #include <kukadu/robot/arm/controlqueue.hpp>
-#include <kukadu/learning/regression/tricubekernel.hpp>
-#include <kukadu/learning/regression/gaussiankernel.hpp>
-#include <kukadu/learning/regression/gaussianprocessregressor.hpp>
 
 namespace kukadu {
 
@@ -112,7 +109,6 @@ namespace kukadu {
     std::vector<double>* getDoubleVectorFromArray(double* arr, int size);
 
     arma::mat gslToArmadilloMatrix(gsl_matrix* matrix);
-    std::vector<double>* testGaussianRegressor();
 
     arma::vec squareMatrixToColumn(arma::mat m);
     arma::mat columnToSquareMatrix(arma::vec c);

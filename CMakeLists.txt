@@ -117,8 +117,8 @@ AUX_SOURCE_DIRECTORY(src/utils/easyloggingpp/src/ KUKADUSRC)
 AUX_SOURCE_DIRECTORY(src/learning/metric_learning/ KUKADUSRC)
 AUX_SOURCE_DIRECTORY(src/robot/kinematics/constraints KUKADUSRC)
 
+AUX_SOURCE_DIRECTORY(src/learning/rl/ KUKADUSRC)
 AUX_SOURCE_DIRECTORY(src/learning/regression/ KUKADUSRC)
-AUX_SOURCE_DIRECTORY(src/learning/reinforcement_learning/ KUKADUSRC)
 
 AUX_SOURCE_DIRECTORY(src/learning/projective_simulation KUKADUSRC)
 
@@ -151,6 +151,9 @@ target_link_libraries(cart_traj kukadu ${catkin_LIBRARIES})
 add_executable(control_queue tutorials/control_queue.cpp)
 target_link_libraries(control_queue kukadu ${catkin_LIBRARIES})
 
+add_executable(gaussian tutorials/gaussianprocess.cpp)
+target_link_libraries(gaussian kukadu ${catkin_LIBRARIES})
+
 add_executable(dmp tutorials/dmp.cpp)
 target_link_libraries(dmp kukadu ${catkin_LIBRARIES})
 
@@ -161,11 +164,13 @@ add_dependencies(komo_planning ${catkin_EXPORTED_TARGETS})
 add_dependencies(moveit_planning ${catkin_EXPORTED_TARGETS})
 add_dependencies(simple_planning ${catkin_EXPORTED_TARGETS})
 add_dependencies(dmp ${catkin_EXPORTED_TARGETS})
+add_dependencies(gaussian ${catkin_EXPORTED_TARGETS})
 
 if(CATKIN_ENABLE_TESTING)
 	catkin_add_gtest(kukadutest test/kukadutest.cpp)
 endif()
 
+install(TARGETS gaussian RUNTIME DESTINATION ${CATKIN_PACKAGE_BIN_DESTINATION})
 install(TARGETS kukadu_demo_guided RUNTIME DESTINATION ${CATKIN_PACKAGE_BIN_DESTINATION})
 install(TARGETS control_queue RUNTIME DESTINATION ${CATKIN_PACKAGE_BIN_DESTINATION})
 install(TARGETS simple_planning RUNTIME DESTINATION ${CATKIN_PACKAGE_BIN_DESTINATION})

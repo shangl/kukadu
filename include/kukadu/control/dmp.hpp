@@ -1,15 +1,13 @@
-#ifndef KUKADU_DMP_CONTROLLER
-#define KUKADU_DMP_CONTROLLER
+#ifndef KUKADU_DMP_CONTROLLER_H
+#define KUKADU_DMP_CONTROLLER_H
 
 #include <vector>
 #include <armadillo>
 #include <kukadu/control/dmp.hpp>
 #include <kukadu/utils/types.hpp>
+#include <kukadu/control/trajectory.hpp>
 #include <kukadu/robot/arm/controlqueue.hpp>
-#include <kukadu/control/trajectoryexecutor.hpp>
-#include <kukadu/control/trajectorygenerator.hpp>
-#include <kukadu/types/singlesampletrajectory.hpp>
-#include <kukadu/learning/regression/generalfitter.hpp>
+#include <kukadu/learning/regression/fitting.hpp>
 
 #include <tf/tf.h>
 #include <gsl/gsl_odeiv2.h>

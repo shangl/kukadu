@@ -1,9 +1,9 @@
+#include <gsl/gsl_errno.h>
+#include <gsl/gsl_matrix.h>
 #include <kukadu/utils/utils.hpp>
 #include <kukadu/control/dmp.hpp>
 #include <tf/transform_datatypes.h>
-
-#include <gsl/gsl_errno.h>
-#include <gsl/gsl_matrix.h>
+#include <kukadu/utils/conversion_utils.hpp>
 
 using namespace std;
 using namespace arma;

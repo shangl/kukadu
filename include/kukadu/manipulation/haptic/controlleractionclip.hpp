@@ -1,7 +1,7 @@
 #ifndef KUKADU_CONTROLLERACTIONCLIP_H
 #define KUKADU_CONTROLLERACTIONCLIP_H
 
-#include <kukadu/manipulation/controller.hpp>
+#include <kukadu/control/controller.hpp>
 #include <kukadu/learning/projective_simulation/clips.hpp>
 
 #include <cstdio>

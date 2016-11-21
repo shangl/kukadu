@@ -4,9 +4,9 @@
 #include <string>
 #include <vector>
 #include <kukadu/types/kukadutypes.hpp>
+#include <kukadu/control/controller.hpp>
 #include <kukadu/storage/sensorstorage.hpp>
 #include <kukadu/types/controllerresult.hpp>
-#include <kukadu/manipulation/controller.hpp>
 #include <kukadu/robot/arm/kukiecontrolqueue.hpp>
 
 namespace kukadu {

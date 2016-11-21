@@ -10,8 +10,8 @@
 #include <ros/ros.h>
 #include <std_msgs/Int32.h>
 #include <kukadu/utils/utils.hpp>
+#include <kukadu/control/controller.hpp>
 #include <kukadu/types/controllerresult.hpp>
-#include <kukadu/manipulation/controller.hpp>
 #include <kukadu/manipulation/complexcontroller.hpp>
 #include <kukadu/manipulation/sensingcontroller.hpp>
 #include <kukadu/learning/projective_simulation/core.hpp>

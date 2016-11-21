@@ -1,7 +1,7 @@
 #include <tuple>
 #include <armadillo>
+#include <kukadu/control/controller.hpp>
 #include <kukadu/utils/kukadutokenizer.hpp>
-#include <kukadu/manipulation/controller.hpp>
 #include <kukadu/manipulation/concatcontroller.hpp>
 #include <kukadu/manipulation/complexcontroller.hpp>
 #include <kukadu/manipulation/haptic/controlleractionclip.hpp>
