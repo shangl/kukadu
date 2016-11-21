@@ -22,7 +22,7 @@ int main(int argc, char** args) {
         realLeftQueue->switchMode(KukieControlQueue::KUKA_JNT_IMP_MODE);
     }
 
-    KomoPlanner leftSimKomoPlanner(realLeftQueue, resolvePath("$KUKADU_HOME/external/komo/share/data/kuka/data/iis_robot.kvg"), resolvePath("$KUKADU_HOME/external/komo/share/data/kuka/config/MT.cfg"), "left");
+    Komo leftSimKomoPlanner(realLeftQueue, resolvePath("$KUKADU_HOME/external/komo/share/data/kuka/data/iis_robot.kvg"), resolvePath("$KUKADU_HOME/external/komo/share/data/kuka/config/MT.cfg"), "left");
 
     /****** stuff is set up now --> here you can move as much as you want *******/
 

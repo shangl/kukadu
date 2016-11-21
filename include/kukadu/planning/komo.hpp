@@ -8,28 +8,11 @@
 #include <Motion/motion.h>
 #include <sensor_msgs/JointState.h>
 #include <kukadu/types/kukadutypes.hpp>
-#include <kukadu/kinematics/kinematics.hpp>
-#include <kukadu/kinematics/pathplanner.hpp>
+#include <kukadu/planning/planning.hpp>
 #include <kukadu/robot/arm/controlqueue.hpp>
-#include <kukadu/kinematics/simpleplanner.hpp>
+#include <trajectory_msgs/JointTrajectory.h>
 
 namespace kukadu {
-
-    struct PlanningResult {
-
-        int status;
-
-        double planning_time;
-
-        std::string error_msg;
-
-        ors::Vector pos_error;
-        ors::Vector ang_error;
-
-        ors::Transformation resulting_pose;
-        trajectory_msgs::JointTrajectory path;
-
-    };
 
     /**
      * \class KomoPlanner
@@ -37,7 +20,7 @@ namespace kukadu {
      * \brief
      * \ingroup Kinematics
      */
-    class KomoPlanner : public PathPlanner, public Kinematics {
+    class Komo : public PathPlanner, public Kinematics {
 
     private:
 
@@ -99,8 +82,8 @@ namespace kukadu {
 
     public:
 
-        KomoPlanner(KUKADU_SHARED_PTR<ControlQueue> queue, std::string configPath, std::string mtConfigPath, std::string activeJointsPrefix, bool acceptCollision = false);
-        ~KomoPlanner();
+        Komo(KUKADU_SHARED_PTR<ControlQueue> queue, std::string configPath, std::string mtConfigPath, std::string activeJointsPrefix, bool acceptCollision = false);
+        ~Komo();
 
         virtual std::vector<arma::vec> planJointTrajectory(std::vector<arma::vec> intermediateJoints);
         virtual std::vector<arma::vec> planCartesianTrajectory(std::vector<geometry_msgs::Pose> intermediatePoses, bool smoothCartesians = false, bool useCurrentRobotState = true);
@@ -110,6 +93,9 @@ namespace kukadu {
 
         virtual geometry_msgs::Pose computeFk(std::vector<double> jointState);
         virtual std::vector<arma::vec> computeIk(std::vector<double> currentJointState, const geometry_msgs::Pose& goal);
+
+        virtual bool isColliding(arma::vec jointState, geometry_msgs::Pose pose);
+        virtual Eigen::MatrixXd getJacobian(std::vector<double> jointState = std::vector<double>());
 
     };
 

@@ -1,8 +1,9 @@
 #include <kukadu/utils/utils.hpp>
+#include <kukadu/planning/moveit.hpp>
+#include <moveit_msgs/GetMotionPlan.h>
 #include <eigen_conversions/eigen_msg.h>
 #include <moveit/robot_state/conversions.h>
 #include <moveit/robot_state/robot_state.h>
-#include <kukadu/kinematics/moveitkinematics.hpp>
 #include <moveit/move_group_interface/move_group.h>
 
 using namespace ros;
@@ -11,21 +12,21 @@ using namespace arma;
 
 namespace kukadu {
 
-    MoveItKinematics::MoveItKinematics(KUKADU_SHARED_PTR<ControlQueue> queue, NodeHandle node, std::string moveGroupName, std::vector<std::string> jointNames, std::string tipLink)
+    MoveIt::MoveIt(KUKADU_SHARED_PTR<ControlQueue> queue, NodeHandle node, std::string moveGroupName, std::vector<std::string> jointNames, std::string tipLink)
         : Kinematics(jointNames) {
 
         construct(queue, node, moveGroupName, jointNames, tipLink, STD_AVOID_COLLISIONS, STD_MAX_ATTEMPTS, STD_TIMEOUT);
 
     }
 
-    MoveItKinematics::MoveItKinematics(KUKADU_SHARED_PTR<ControlQueue> queue, ros::NodeHandle node, std::string moveGroupName, std::vector<std::string> jointNames, std::string tipLink, bool avoidCollisions, int maxAttempts, double timeOut)
+    MoveIt::MoveIt(KUKADU_SHARED_PTR<ControlQueue> queue, ros::NodeHandle node, std::string moveGroupName, std::vector<std::string> jointNames, std::string tipLink, bool avoidCollisions, int maxAttempts, double timeOut)
         : Kinematics(jointNames) {
 
         construct(queue, node, moveGroupName, jointNames, tipLink, avoidCollisions, maxAttempts, timeOut);
 
     }
 
-    Eigen::MatrixXd MoveItKinematics::getJacobian(std::vector<double> jointState) {
+    Eigen::MatrixXd MoveIt::getJacobian(std::vector<double> jointState) {
 
         if(jointState.size() == 0)
             jointState = armadilloToStdVec(queue->getCurrentJoints().joints);
@@ -39,7 +40,7 @@ namespace kukadu {
 
     }
 
-    void MoveItKinematics::construct(KUKADU_SHARED_PTR<ControlQueue> queue, ros::NodeHandle node, std::string moveGroupName, std::vector<std::string> jointNames, std::string tipLink, bool avoidCollisions, int maxAttempts, double timeOut) {
+    void MoveIt::construct(KUKADU_SHARED_PTR<ControlQueue> queue, ros::NodeHandle node, std::string moveGroupName, std::vector<std::string> jointNames, std::string tipLink, bool avoidCollisions, int maxAttempts, double timeOut) {
 
         this->queue = queue;
         this->moveGroupName = moveGroupName;
@@ -55,8 +56,8 @@ namespace kukadu {
 
         robot_model_ = rml_->getModel();
         if(!robot_model_) {
-            string error = "(MoveItKinematics) Unable to load robot model - make sure, that the robot_description is uploaded to the server";
-            ROS_ERROR("(MoveItKinematics) Unable to load robot model - make sure, that the robot_description is uploaded to the server");
+            string error = "(MoveIt) Unable to load robot model - make sure, that the robot_description is uploaded to the server";
+            ROS_ERROR("(MoveIt) Unable to load robot model - make sure, that the robot_description is uploaded to the server");
             throw KukaduException(error.c_str());
         }
 
@@ -66,7 +67,7 @@ namespace kukadu {
         jnt_model_group = robot_model_->getJointModelGroup(moveGroupName);
 
         if(!jnt_model_group) {
-            ROS_ERROR("(MoveItKinematics) unknown group name");
+            ROS_ERROR("(MoveIt) unknown group name");
             return;
         }
 
@@ -97,7 +98,7 @@ namespace kukadu {
 
     }
 
-    geometry_msgs::Pose MoveItKinematics::computeFk(std::vector<double> jointState) {
+    geometry_msgs::Pose MoveIt::computeFk(std::vector<double> jointState) {
 
         geometry_msgs::Pose retPose;
 
@@ -111,7 +112,7 @@ namespace kukadu {
 
     }
 
-    std::vector<arma::vec> MoveItKinematics::computeIk(std::vector<double> currentJointState, const geometry_msgs::Pose &goal) {
+    std::vector<arma::vec> MoveIt::computeIk(std::vector<double> currentJointState, const geometry_msgs::Pose &goal) {
 
         vector<vec> retVec;
         vector<double> solution;
@@ -132,7 +133,7 @@ namespace kukadu {
         }
 
         // compute result
-        if(state.setFromIK(jnt_model_group, goal, tipLink, maxAttempts, timeOut, boost::bind(&MoveItKinematics::collisionCheckCallback, this, _1, _2, _3))) {
+        if(state.setFromIK(jnt_model_group, goal, tipLink, maxAttempts, timeOut, boost::bind(&MoveIt::collisionCheckCallback, this, _1, _2, _3))) {
             state.copyJointGroupPositions(jnt_model_group, solution);
             retVec.push_back(stdToArmadilloVec(solution));
         }
@@ -141,7 +142,7 @@ namespace kukadu {
 
     }
 
-    bool MoveItKinematics::collisionCheckCallback(moveit::core::RobotState *state, const moveit::core::JointModelGroup* joint_group, const double* solution) {
+    bool MoveIt::collisionCheckCallback(moveit::core::RobotState *state, const moveit::core::JointModelGroup* joint_group, const double* solution) {
 
         if(avoidCollisions) {
 
@@ -158,15 +159,15 @@ namespace kukadu {
 
     }
 
-    bool MoveItKinematics::isColliding(arma::vec jointState, geometry_msgs::Pose pose) {
+    bool MoveIt::isColliding(arma::vec jointState, geometry_msgs::Pose pose) {
         return !modelRestriction->stateOk(jointState, pose);
     }
 
-    KUKADU_SHARED_PTR<Constraint> MoveItKinematics::getModelConstraint() {
+    KUKADU_SHARED_PTR<Constraint> MoveIt::getModelConstraint() {
         return modelRestriction;
     }
 
-    std::vector<arma::vec> MoveItKinematics::planJointTrajectory(std::vector<arma::vec> intermediateJoints) {
+    std::vector<arma::vec> MoveIt::planJointTrajectory(std::vector<arma::vec> intermediateJoints) {
 
         sensor_msgs::JointState start_state;
         start_state.name = jointNames;
@@ -238,7 +239,7 @@ namespace kukadu {
 
     }
 
-    std::vector<arma::vec> MoveItKinematics::planCartesianTrajectory(std::vector<geometry_msgs::Pose> intermediatePoses, bool smoothCartesians, bool useCurrentRobotState) {
+    std::vector<arma::vec> MoveIt::planCartesianTrajectory(std::vector<geometry_msgs::Pose> intermediatePoses, bool smoothCartesians, bool useCurrentRobotState) {
 
         vector<double> ikStart;
         for(int i = 0; i < jointNames.size(); ++i)
@@ -247,7 +248,7 @@ namespace kukadu {
 
     }
 
-    std::vector<arma::vec> MoveItKinematics::planCartesianTrajectory(arma::vec startJoints, std::vector<geometry_msgs::Pose> intermediatePoses, bool smoothCartesians, bool useCurrentRobotState) {
+    std::vector<arma::vec> MoveIt::planCartesianTrajectory(arma::vec startJoints, std::vector<geometry_msgs::Pose> intermediatePoses, bool smoothCartesians, bool useCurrentRobotState) {
 
         sensor_msgs::JointState start_state;
         start_state.name = jointNames;
@@ -333,6 +334,57 @@ namespace kukadu {
 
 		return simplePlanner->planJointTrajectory(jointPath);
 
+    }
+
+    MoveItConstraint::MoveItConstraint(robot_model::RobotModelPtr robotModel, planning_scene::PlanningScenePtr planningScene, robot_model::JointModelGroup* modelGroup) {
+
+        this->planningScene = planningScene;
+        this->modelGroup = modelGroup;
+        this->robotModel = robotModel;
+
+    }
+
+    bool MoveItConstraint::stateOk(arma::vec joint, geometry_msgs::Pose cartPose) {
+
+        moveit::core::RobotState state(robotModel);
+        double jointStateArray[joint.n_elem];
+        for(int i = 0; i < joint.n_elem; ++i)
+            jointStateArray[i] = joint[i];
+        state.setJointGroupPositions(modelGroup, jointStateArray);
+        state.update();
+
+        if(planningScene->isStateColliding(state, modelGroup->getName())) {
+            vector<string> collidingLinks;
+            collision_detection::CollisionRequest requ;
+            collision_detection::CollisionResult res;
+            requ.contacts = true;
+            requ.max_contacts = 10000;
+            planningScene->getCollidingLinks(collidingLinks, state);
+            planningScene->checkCollision(requ, res, state);
+
+            cout << cartPose << endl;
+
+            for(collision_detection::CollisionResult::ContactMap::iterator it = res.contacts.begin(); it != res.contacts.end(); ++it) {
+                cout << "collission: " << it->first.first << " " << it->first.second << endl;
+            }
+
+            cout << "colliding links: ";
+            for(int i = 0; i < collidingLinks.size(); ++i) {
+                cout << collidingLinks.at(i) << endl;
+            }
+
+        }
+
+        auto isOk = !planningScene->isStateColliding(state, modelGroup->getName());
+        if(!isOk)
+            planningScene->isStateColliding(state, modelGroup->getName(), true);
+
+        return isOk;
+
+    }
+
+    std::string MoveItConstraint::getConstraintName() {
+        return string("MoveItConstraint");
     }
 
 }

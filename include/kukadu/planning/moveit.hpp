@@ -4,17 +4,36 @@
 #include <string>
 #include <armadillo>
 #include <geometry_msgs/Pose.h>
-#include <moveit_msgs/GetMotionPlan.h>
+#include <kukadu/planning/planning.hpp>
 #include <kukadu/types/kukadutypes.hpp>
 #include <moveit/robot_model/robot_model.h>
-#include <kukadu/kinematics/kinematics.hpp>
-#include <kukadu/kinematics/pathplanner.hpp>
-#include <kukadu/kinematics/simpleplanner.hpp>
 #include <moveit/planning_scene/planning_scene.h>
-#include <kukadu/kinematics/constraints/constraints.hpp>
 #include <moveit/robot_model_loader/robot_model_loader.h>
 
 namespace kukadu {
+
+    /**
+     * \class MoveItConstraint
+     *
+     * \brief
+     * \ingroup Kinematics
+     */
+    class MoveItConstraint: public Constraint {
+
+    private:
+
+        robot_model::RobotModelPtr robotModel;
+        planning_scene::PlanningScenePtr planningScene;
+        moveit::core::JointModelGroup* modelGroup;
+
+    public:
+
+        MoveItConstraint(robot_model::RobotModelPtr, planning_scene::PlanningScenePtr planningScene, moveit::core::JointModelGroup* modelGroup);
+
+        virtual std::string getConstraintName();
+        virtual bool stateOk(arma::vec joint, geometry_msgs::Pose cartPose);
+
+    };
 
     /**
      * \class MoveItKinematics
@@ -22,7 +41,7 @@ namespace kukadu {
      * \brief
      * \ingroup Kinematics
      */
-    class MoveItKinematics : public PathPlanner, public Kinematics {
+    class MoveIt : public PathPlanner, public Kinematics {
 
     private:
 
@@ -66,8 +85,8 @@ namespace kukadu {
 
     public:
 
-        MoveItKinematics(KUKADU_SHARED_PTR<ControlQueue> queue, ros::NodeHandle node, std::string moveGroupName, std::vector<std::string> jointNames, std::string tipLink);
-        MoveItKinematics(KUKADU_SHARED_PTR<ControlQueue> queue, ros::NodeHandle node, std::string moveGroupName, std::vector<std::string> jointNames, std::string tipLink, bool avoidCollisions, int maxAttempts, double timeOut);
+        MoveIt(KUKADU_SHARED_PTR<ControlQueue> queue, ros::NodeHandle node, std::string moveGroupName, std::vector<std::string> jointNames, std::string tipLink);
+        MoveIt(KUKADU_SHARED_PTR<ControlQueue> queue, ros::NodeHandle node, std::string moveGroupName, std::vector<std::string> jointNames, std::string tipLink, bool avoidCollisions, int maxAttempts, double timeOut);
 
         virtual geometry_msgs::Pose computeFk(std::vector<double> jointState);
         virtual std::vector<arma::vec> computeIk(std::vector<double> currentJointState, const geometry_msgs::Pose& goal);
@@ -78,7 +97,7 @@ namespace kukadu {
 
         virtual Eigen::MatrixXd getJacobian(std::vector<double> jointState = std::vector<double>());
 
-        bool isColliding(arma::vec jointState, geometry_msgs::Pose pose);
+        virtual bool isColliding(arma::vec jointState, geometry_msgs::Pose pose);
 
         KUKADU_SHARED_PTR<Constraint> getModelConstraint();
 

@@ -12,7 +12,7 @@ int main(int argc, char** args) {
 
     cout << "setting up control queue" << endl;
     auto realLeftQueue = make_shared<KukieControlQueue>("simulation", "left_arm", node);
-    auto moveit = make_shared<MoveItKinematics>(realLeftQueue, node, "left_arm",
+    auto moveit = make_shared<MoveIt>(realLeftQueue, node, "left_arm",
             vector<string>({"left_arm_0_joint", "left_arm_1_joint", "left_arm_2_joint", "left_arm_3_joint", "left_arm_4_joint", "left_arm_5_joint", "left_arm_6_joint"}),
             "left_arm_7_link");
     realLeftQueue->setPathPlanner(moveit);

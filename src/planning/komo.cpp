@@ -5,10 +5,10 @@
 #include <Motion/taskMap_proxy.h>
 #include <Motion/taskMap_default.h>
 #include <Motion/taskMap_default.h>
+#include <kukadu/planning/komo.hpp>
 #include <Motion/taskMap_transition.h>
 #include <Motion/taskMap_constrained.h>
 #include <Motion/taskMap_constrained.h>
-#include <kukadu/kinematics/komoplanner.hpp>
 
 using namespace std;
 using namespace ros;
@@ -16,9 +16,25 @@ using namespace arma;
 
 namespace kukadu {
 
-    kukadu_mutex KomoPlanner::oneAtATimeMutex;
+    struct PlanningResult {
 
-    KomoPlanner::KomoPlanner(KUKADU_SHARED_PTR<ControlQueue> queue, string configPath, string mtConfigPath, string activeJointsPrefix, bool acceptCollision)
+        int status;
+
+        double planning_time;
+
+        std::string error_msg;
+
+        ors::Vector pos_error;
+        ors::Vector ang_error;
+
+        ors::Transformation resulting_pose;
+        trajectory_msgs::JointTrajectory path;
+
+    };
+
+    kukadu_mutex Komo::oneAtATimeMutex;
+
+    Komo::Komo(KUKADU_SHARED_PTR<ControlQueue> queue, string configPath, string mtConfigPath, string activeJointsPrefix, bool acceptCollision)
                 : Kinematics(generateDefaultJointNames(queue->getMovementDegreesOfFreedom())) {
 
         oneAtATimeMutex.lock();
@@ -77,7 +93,7 @@ namespace kukadu {
 
     }
 
-    KomoPlanner::~KomoPlanner() {
+    Komo::~Komo() {
 
         if(_world) {
             delete _world;
@@ -86,7 +102,7 @@ namespace kukadu {
 
     }
 
-    void KomoPlanner::setJointPosition(const string &name, const double pos) {
+    void Komo::setJointPosition(const string &name, const double pos) {
         ors::Joint *jnt = _world->getJointByName(name.c_str());
         if(!jnt)
             cerr << "Unable to set joint position - no joint with name '" << name << "' found!" << endl;
@@ -94,7 +110,7 @@ namespace kukadu {
             jnt->Q.rot.setRad(pos, 1, 0, 0);
     }
 
-    void KomoPlanner::setState(const sensor_msgs::JointState &state) {
+    void Komo::setState(const sensor_msgs::JointState &state) {
 
         CHECK(state.name.size() == state.position.size(), "Illegal joint states!");
         for(size_t i = 0; i < state.name.size(); ++i) {
@@ -111,7 +127,7 @@ namespace kukadu {
 
     }
 
-    void KomoPlanner::setState(const std::vector<std::string>& jointNames, const arma::vec& joints) {
+    void Komo::setState(const std::vector<std::string>& jointNames, const arma::vec& joints) {
         sensor_msgs::JointState state;
         for(size_t i = 0; i < joints.n_elem; ++i) {
             state.name.push_back(jointNames.at(i));
@@ -120,7 +136,7 @@ namespace kukadu {
         setState(state);
     }
 
-    std::vector<arma::vec> KomoPlanner::planJointTrajectory(std::vector<arma::vec> intermediateJoints) {
+    std::vector<arma::vec> Komo::planJointTrajectory(std::vector<arma::vec> intermediateJoints) {
 
         std::vector<arma::vec> retTrajectory;
         PlanningResult result;
@@ -194,14 +210,14 @@ namespace kukadu {
 
             if(!validateCollisions(*_world, x, result.error_msg)) {
                 result.status = RESULT_FAILED;
-                cerr << "(KomoPlanner) Collision Validation failed!" << endl;
+                cerr << "(Komo) Collision Validation failed!" << endl;
                 if(!acceptCollision)
                     return retTrajectory;
             }
             // not necessary any more - just for test purposes...
             if(!validateJointLimits(*_world, x, result.error_msg)) {
                 result.status = RESULT_FAILED;
-                cerr << "(KomoPlanner) Joint Limit Validation failed!" << endl;
+                cerr << "(Komo) Joint Limit Validation failed!" << endl;
                 return retTrajectory;
             }
 
@@ -237,7 +253,7 @@ namespace kukadu {
 
     }
 
-    geometry_msgs::Pose KomoPlanner::computeFk(arma::vec joints) {
+    geometry_msgs::Pose Komo::computeFk(arma::vec joints) {
 
         geometry_msgs::Pose retPose;
         ors::Shape* endeff = _world->getShapeByName(eef_link.c_str());
@@ -253,19 +269,19 @@ namespace kukadu {
 
     }
 
-    geometry_msgs::Pose KomoPlanner::computeFk(std::vector<double> jointState) {
+    geometry_msgs::Pose Komo::computeFk(std::vector<double> jointState) {
 
         return computeFk(stdToArmadilloVec(jointState));
 
     }
 
-    std::vector<arma::vec> KomoPlanner::computeIk(std::vector<double> currentJointState, const geometry_msgs::Pose& goal) {
+    std::vector<arma::vec> Komo::computeIk(std::vector<double> currentJointState, const geometry_msgs::Pose& goal) {
 
         throw KukaduException("(Komo) ik solver not supported yet");
 
     }
 
-    std::vector<arma::vec> KomoPlanner::planCartesianTrajectory(arma::vec startJoints, std::vector<geometry_msgs::Pose> intermediatePoses, bool smoothCartesians, bool useCurrentRobotState) {
+    std::vector<arma::vec> Komo::planCartesianTrajectory(arma::vec startJoints, std::vector<geometry_msgs::Pose> intermediatePoses, bool smoothCartesians, bool useCurrentRobotState) {
 
         vector<arma::vec> finalJointPlan;
 
@@ -295,13 +311,13 @@ namespace kukadu {
 
     }
 
-    std::vector<arma::vec> KomoPlanner::planCartesianTrajectory(std::vector<geometry_msgs::Pose> intermediatePoses, bool smoothCartesians, bool useCurrentRobotState) {
+    std::vector<arma::vec> Komo::planCartesianTrajectory(std::vector<geometry_msgs::Pose> intermediatePoses, bool smoothCartesians, bool useCurrentRobotState) {
 
         return planCartesianTrajectory(queue->getCurrentJoints().joints, intermediatePoses, smoothCartesians, useCurrentRobotState);
 
     }
 
-    std::vector<arma::vec> KomoPlanner::computeSinglePlan(arma::vec startJoints, geometry_msgs::Pose targetPose, bool smoothCartesians, bool useCurrentRobotState) {
+    std::vector<arma::vec> Komo::computeSinglePlan(arma::vec startJoints, geometry_msgs::Pose targetPose, bool smoothCartesians, bool useCurrentRobotState) {
 
         std::vector<arma::vec> retTrajectory;
         PlanningResult result;
@@ -411,14 +427,14 @@ namespace kukadu {
 
             if(!validateCollisions(*_world, x, result.error_msg)) {
                 result.status = RESULT_FAILED;
-                cerr << "(KomoPlanner) Collision Validation failed!" << endl;
+                cerr << "(Komo) Collision Validation failed!" << endl;
                 if(!acceptCollision)
                     return retTrajectory;
             }
             // not necessary any more - just for test purposes...
             if(!validateJointLimits(*_world, x, result.error_msg)) {
                 result.status = RESULT_FAILED;
-                cerr << "(KomoPlanner) Joint Limit Validation failed!" << endl;
+                cerr << "(Komo) Joint Limit Validation failed!" << endl;
                 return retTrajectory;
             }
 
@@ -481,7 +497,7 @@ namespace kukadu {
      * helper functions
      *
      */
-    double KomoPlanner::keyframeOptimizer(arr& x, MotionProblem& MP, bool x_is_initialized, uint verbose) {
+    double Komo::keyframeOptimizer(arr& x, MotionProblem& MP, bool x_is_initialized, uint verbose) {
 
         MotionProblem_EndPoseFunction MF(MP);
 
@@ -494,7 +510,7 @@ namespace kukadu {
         return cost;
     }
 
-    double KomoPlanner::optimizeEndpose(arr &xT, ors::KinematicWorld &w, const char *link, const char *target, bool allowCollision) {
+    double Komo::optimizeEndpose(arr &xT, ors::KinematicWorld &w, const char *link, const char *target, bool allowCollision) {
 
         double posPrec = 1e4;
         double alignPrec = 1e5; // original 1e3
@@ -539,18 +555,18 @@ namespace kukadu {
         return keyframeOptimizer(xT, MP, false, 1);
     }
 
-    void KomoPlanner::computePositionError(const ors::Shape &eef, const ors::Shape &target, ors::Vector &error) {
+    void Komo::computePositionError(const ors::Shape &eef, const ors::Shape &target, ors::Vector &error) {
         CHECK(&eef && &target, "One of the provided shapes does not exist!");
         error = eef.X.pos - target.X.pos;
     }
 
-    void KomoPlanner::computePositionError(ors::KinematicWorld &w, const char *eef, const char *target, ors::Vector &error) {
+    void Komo::computePositionError(ors::KinematicWorld &w, const char *eef, const char *target, ors::Vector &error) {
         ors::Shape *_eef = w.getShapeByName(eef);
         ors::Shape *_target = w.getShapeByName(target);
         return computePositionError(*_eef, *_target, error);
     }
 
-    void KomoPlanner::computeAlignmentError(const ors::Shape &eef, const ors::Shape &target, ors::Vector &error, int axes) {
+    void Komo::computeAlignmentError(const ors::Shape &eef, const ors::Shape &target, ors::Vector &error, int axes) {
         CHECK(&eef && &target, "One of the provided shapes does not exist!");
 
         ors::Vector tx,ty,tz, ex, ey, ez;
@@ -571,13 +587,13 @@ namespace kukadu {
         }
     }
 
-    void KomoPlanner::computeAlignmentError(ors::KinematicWorld &w, const char *eef, const char *target, ors::Vector &error) {
+    void Komo::computeAlignmentError(ors::KinematicWorld &w, const char *eef, const char *target, ors::Vector &error) {
         ors::Shape *_eef = w.getShapeByName(eef);
         ors::Shape *_target = w.getShapeByName(target);
         return computeAlignmentError(*_eef, *_target, error);
     }
 
-    bool KomoPlanner::withinTolerance(ors::Vector &error, ors::Vector &tolerance, int axes) {
+    bool Komo::withinTolerance(ors::Vector &error, ors::Vector &tolerance, int axes) {
         for(uint i = 0; i < 3; i++) if(axes & (1 << i)) {
             if(fabs(error(i)) > tolerance(i))
                 return false;
@@ -585,7 +601,7 @@ namespace kukadu {
         return true;
     }
 
-    bool KomoPlanner::withinTolerance(ors::Vector &error, ors::Vector &tolerance) {
+    bool Komo::withinTolerance(ors::Vector &error, ors::Vector &tolerance) {
         return withinTolerance(error, tolerance, 7);
     }
 
@@ -596,7 +612,7 @@ namespace kukadu {
      * @param limits	The limits to enforce
      * @return			True if no joint limit violation was detected
      */
-    bool KomoPlanner::validateJointLimits(arr wp, arr limits, string &error_msg) {
+    bool Komo::validateJointLimits(arr wp, arr limits, string &error_msg) {
         CHECK(wp.d0 == limits.d0, "Wrong dimensions!");
         for (int i = 0; i < wp.d0; ++i) {
             double hi = limits(i,1);
@@ -623,7 +639,7 @@ namespace kukadu {
      *			waypoints(nd=2)
      * @return  True, if no configuration violates the joint limits
      */
-    bool KomoPlanner::validateJointLimits(ors::KinematicWorld &w, arr x, string &error_msg) {
+    bool Komo::validateJointLimits(ors::KinematicWorld &w, arr x, string &error_msg) {
         // get the joint limits as configured in the ors description
         arr limits = w.getLimits();
         CHECK(x.nd > 0, "Given value is neither a trajectory nor a waypoint!");
@@ -650,7 +666,7 @@ namespace kukadu {
      * @param w			The KinematicWorld to use
      * @param x			The trajectory to check
      */
-    void KomoPlanner::ensureJointLimits(ors::KinematicWorld &w, arr &x) {
+    void Komo::ensureJointLimits(ors::KinematicWorld &w, arr &x) {
         // get the joint limits as configured in the ors description
         arr limits = w.getLimits();
         // steps neccessary for each single point
@@ -686,7 +702,7 @@ namespace kukadu {
      * @param error_msg	A string that will contain a resulting error message
      * @return			True, if no collision was detected
      */
-    bool KomoPlanner::validateCollisions(ors::KinematicWorld &w, const arr &x, string &error_msg) {
+    bool Komo::validateCollisions(ors::KinematicWorld &w, const arr &x, string &error_msg) {
         CHECK(x.nd > 0, "Given value is neither a trajectory nor a waypoint!");
         if(x.nd == 2) { // x is trajectory
             for (int i = 0; i < x.d0 - 1; ++i) {
@@ -737,7 +753,7 @@ namespace kukadu {
      * @param actual	The actual state
      * @return			True, if actual state is within goal tolerance
      */
-    bool KomoPlanner::check_goal_state(const arr &desired, const arr &actual) {
+    bool Komo::check_goal_state(const arr &desired, const arr &actual) {
         arr error = desired - actual;
         for (int i = 0; i < desired.d0; ++i) {
             if(fabs(error(i)) > 1e-2)
@@ -746,7 +762,7 @@ namespace kukadu {
         return true;
     }
 
-    void KomoPlanner::pathToTrajectory(trajectory_msgs::JointTrajectory &traj, const arr &path) {
+    void Komo::pathToTrajectory(trajectory_msgs::JointTrajectory &traj, const arr &path) {
 
         // set joint names
         for (ors::Joint *jnt : _active_joints)
@@ -766,17 +782,25 @@ namespace kukadu {
 
     }
 
-    void KomoPlanner::display(bool block, const char *msg) {
+    void Komo::display(bool block, const char *msg) {
         _world->watch(block, msg);
     }
 
-    void KomoPlanner::allowContact(const char* link, bool allow) {
+    void Komo::allowContact(const char* link, bool allow) {
         ors::Shape *shape = _world->getShapeByName(link);
         if(shape) {
             shape->cont = !allow;
         } else {
             cerr << "Unable to find shape with name '" << string(link) << "' within model." << endl;
         }
+    }
+
+    bool Komo::isColliding(arma::vec jointState, geometry_msgs::Pose pose) {
+        throw KukaduException("(Komo) isColliding not implemented yet");
+    }
+
+    Eigen::MatrixXd Komo::getJacobian(std::vector<double> jointState) {
+        throw KukaduException("(Komo) getJacobian not implemented yet");
     }
 
 }

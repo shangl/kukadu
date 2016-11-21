@@ -1,15 +1,124 @@
-#include <kukadu/kinematics/simpleplanner.hpp>
 #include <kukadu/utils/utils.hpp>
+#include <kukadu/planning/planning.hpp>
 
 using namespace std;
-using namespace ros;
 using namespace arma;
 
 namespace kukadu {
-	
-	void SimplePlanner::initialize(double cycleTime, int degOfFreedom) {
-		
-		refApi = new ReflexxesAPI(queue->getMovementDegreesOfFreedom(), 1.0 / cycleTime);
+
+    bool TableConstraint::stateOk(arma::vec joint, geometry_msgs::Pose cartPose) {
+
+        if(cartPose.position.z < 0) {
+            if(cartPose.position.x > 0) {
+                return false;
+            }
+        }
+
+        return true;
+
+    }
+
+    std::string TableConstraint::getConstraintName() {
+        return string("TableConstraint");
+    }
+
+    Kinematics::Kinematics(std::vector<std::string> jointNames) {
+        Constraints.clear();
+        this->jointNames = jointNames;
+    }
+
+    std::vector<std::string> Kinematics::generateDefaultJointNames(int jointCount)  {
+
+        std::vector<std::string> jointNames;
+        for(int i = 0; i < jointCount; ++i) {
+            stringstream s;
+            s << "joint" << i;
+            jointNames.push_back(s.str());
+        }
+
+        return jointNames;
+
+    }
+
+    void Kinematics::setJointNames(std::vector<std::string> jointNames) {
+        this->jointNames = jointNames;
+    }
+
+    std::vector<std::string> Kinematics::getJointNames() {
+        return jointNames;
+    }
+
+    void Kinematics::addConstraint(KUKADU_SHARED_PTR<Constraint> Constraint) {
+        Constraints.push_back(Constraint);
+    }
+
+    void Kinematics::removeConstraint(KUKADU_SHARED_PTR<Constraint> Constraint) {
+        std::remove(Constraints.begin(), Constraints.end(), Constraint);
+    }
+
+    int Kinematics::getConstraintsCount() {
+        return Constraints.size();
+    }
+
+    int  Kinematics::getConstraintIdx(KUKADU_SHARED_PTR<Constraint> Constraint) {
+        return std::find(Constraints.begin(), Constraints.end(), Constraint) - Constraints.begin();
+    }
+
+    KUKADU_SHARED_PTR<Constraint> Kinematics::getConstraintByIdx(int idx) {
+        return Constraints.at(idx);
+    }
+
+    std::vector<arma::vec> Kinematics::computeIk(arma::vec currentJointState, const geometry_msgs::Pose &goal) {
+        return computeIk(armadilloToStdVec(currentJointState), goal);
+    }
+
+    bool Kinematics::checkAllConstraints(arma::vec currentState, geometry_msgs::Pose pose) {
+
+        for(int i = 0; i < getConstraintsCount(); ++i) {
+
+            KUKADU_SHARED_PTR<Constraint> currRest = getConstraintByIdx(i);
+            if(!currRest->stateOk(currentState, pose))
+                return false;
+
+        }
+
+        return true;
+
+    }
+
+    PathPlanner::PathPlanner() {
+    }
+
+    void PathPlanner::setCheckCollisions(bool collision) {
+        checkCollision = collision;
+    }
+
+    bool PathPlanner::getCheckCollision() {
+        return checkCollision;
+    }
+
+    std::vector<arma::vec> PathPlanner::smoothJointPlan(std::vector<arma::vec> jointPlan) {
+
+        vector<vec> smoothedPlan;
+
+        if(jointPlan.size()) {
+            vec lastUsedJoints = jointPlan.at(0);
+            smoothedPlan.push_back(lastUsedJoints);
+            for(vec joints : jointPlan) {
+                if(computeMaxJointDistance(lastUsedJoints, joints) > 0.001) {
+                    lastUsedJoints = joints;
+                    smoothedPlan.push_back(lastUsedJoints);
+                }
+            }
+        }
+
+        return smoothedPlan;
+
+    }
+
+    void SimplePlanner::initialize(double cycleTime, int degOfFreedom) {
+
+        refApi = new ReflexxesAPI(queue->getMovementDegreesOfFreedom(), 1.0 / cycleTime);
         refInputParams = new RMLPositionInputParameters(queue->getMovementDegreesOfFreedom());
         refOutputParams = new RMLPositionOutputParameters(queue->getMovementDegreesOfFreedom());
 
@@ -20,8 +129,8 @@ namespace kukadu {
             refInputParams->MaxVelocityVector->VecData[i] = 0.002 * cycleTime;
             refInputParams->SelectionVector->VecData[i] = true;
         }
-		
-	}
+
+    }
 
     SimplePlanner::SimplePlanner(KUKADU_SHARED_PTR<ControlQueue> queue, KUKADU_SHARED_PTR<Kinematics> kin) {
 
@@ -30,10 +139,10 @@ namespace kukadu {
 
         cycleTime = queue->getCycleTime();
         degOfFreedom = queue->getMovementDegreesOfFreedom();
-        
+
         refApi = NULL;
         refInputParams = NULL;
-		refOutputParams = NULL;
+        refOutputParams = NULL;
         initialize(cycleTime, degOfFreedom);
 
     }
@@ -49,11 +158,11 @@ namespace kukadu {
         int intermedJointsSize = intermediateJoints.size();
         int newDegOfFreedom = intermediateJoints.front().n_elem;
         int degOfFreedom = this->degOfFreedom;
-        
+
         if(newDegOfFreedom != degOfFreedom) {
-			initialize(cycleTime, newDegOfFreedom);
-			degOfFreedom = newDegOfFreedom;
-		}
+            initialize(cycleTime, newDegOfFreedom);
+            degOfFreedom = newDegOfFreedom;
+        }
 
         if(intermedJointsSize >= 1) {
 
@@ -99,9 +208,9 @@ namespace kukadu {
             }
 
         }
-        
+
         if(newDegOfFreedom != degOfFreedom)
-			initialize(cycleTime, degOfFreedom);
+            initialize(cycleTime, degOfFreedom);
 
         return returnedTrajectory;
 

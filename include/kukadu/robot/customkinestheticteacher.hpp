@@ -12,7 +12,7 @@
 #include <kukadu/storage/sensorstorage.hpp>
 #include <kukadu/robot/kinestheticteacher.hpp>
 #include <kukadu/robot/arm/kukiecontrolqueue.hpp>
-#include <kukadu/kinematics/moveitkinematics.hpp>
+#include <kukadu/planning/planning.hpp>
 #include <kukadu/robot/sensors/autocompensatingfilter.hpp>
 
 #include <kukadu/types/kukadutypes.hpp>
@@ -53,14 +53,14 @@ namespace kukadu {
         std::vector<double> sensorVal;
 
         KUKADU_SHARED_PTR<kukadu::ControlQueue> robotinoQueue;
-        KUKADU_SHARED_PTR<kukadu::MoveItKinematics> mvKin;
+        KUKADU_SHARED_PTR<kukadu::Kinematics> mvKin;
         KUKADU_SHARED_PTR<kukadu_thread> qThread;
         KUKADU_SHARED_PTR<kukadu_thread>recordingThread;
         KUKADU_SHARED_PTR<kukadu_thread> moveThread;
         KUKADU_SHARED_PTR<kukadu_thread> filterThread;
         KUKADU_SHARED_PTR<kukadu::SensorStorage> store;
 
-        enum ControllerType {JACOBIAN,INVERSE,IK,HYBRID};
+        enum ControllerType {JACOBIAN, INVERSE, IK, HYBRID};
 
         Eigen::VectorXd stdToEigenVec(std::vector<double> myVec);
         std::vector<double> eigenToStdVec(Eigen::VectorXd myVec);
@@ -78,7 +78,7 @@ namespace kukadu {
 
     public:
 
-        CustomKinestheticTeacher(KUKADU_SHARED_PTR<kukadu::ControlQueue> myQueue,KUKADU_SHARED_PTR<kukadu::MoveItKinematics> myKin, KUKADU_SHARED_PTR<kukadu::SensorStorage> myStore, std::string targetPath = "~/kinteachsample");
+        CustomKinestheticTeacher(KUKADU_SHARED_PTR<kukadu::ControlQueue> myQueue,KUKADU_SHARED_PTR<kukadu::Kinematics> myKin, KUKADU_SHARED_PTR<kukadu::SensorStorage> myStore, std::string targetPath = "~/kinteachsample");
 
         void init();
         void startTeaching();

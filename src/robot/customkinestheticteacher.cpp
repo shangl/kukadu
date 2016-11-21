@@ -6,7 +6,7 @@ using namespace arma;
 
 namespace kukadu{
 
-CustomKinestheticTeacher::CustomKinestheticTeacher(KUKADU_SHARED_PTR<kukadu::ControlQueue> myQueue,KUKADU_SHARED_PTR<kukadu::MoveItKinematics> myKin, KUKADU_SHARED_PTR<kukadu::SensorStorage> myStore, std::string targetPath) {//(ros::NodeHandle &node)
+CustomKinestheticTeacher::CustomKinestheticTeacher(KUKADU_SHARED_PTR<kukadu::ControlQueue> myQueue,KUKADU_SHARED_PTR<kukadu::Kinematics> myKin, KUKADU_SHARED_PTR<kukadu::SensorStorage> myStore, std::string targetPath) {//(ros::NodeHandle &node)
 
     teacherRunning=false;
     filterRunning=false;

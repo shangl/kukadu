@@ -10,19 +10,11 @@
  *
  */
 
-#include <queue>
-#include <deque>
-#include <math.h>
-#include <time.h>
-#include <cstdlib>
-#include <unistd.h>
-#include <iostream>
 #include <kukadu/utils/types.hpp>
 #include <kukadu/utils/utils.hpp>
 #include <kukadu/types/kukadutypes.hpp>
 #include <kukadu/robot/arm/controlqueue.hpp>
-#include <kukadu/kinematics/kinematics.hpp>
-#include <kukadu/kinematics/pathplanner.hpp>
+#include <kukadu/planning/planning.hpp>
 #include <kukadu/utils/destroyableobject.hpp>
 
 #include <ros/ros.h>
@@ -36,13 +28,7 @@
 #include <std_msgs/Int32MultiArray.h>
 #include <std_msgs/Float64MultiArray.h>
 #include <std_msgs/Float32MultiArray.h>
-#include <iis_robot_dep/FriRobotData.h>
-#include <iis_robot_dep/FriJointState.h>
 #include <std_msgs/MultiArrayDimension.h>
-#include <iis_robot_dep/FriJointCommand.h>
-#include <iis_robot_dep/FriRobotJntData.h>
-#include <iis_robot_dep/FriJointImpedance.h>
-#include <iis_robot_dep/CartesianImpedance.h>
 
 namespace kukadu {
 

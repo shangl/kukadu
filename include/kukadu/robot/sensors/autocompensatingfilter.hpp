@@ -12,7 +12,7 @@
 #include <kukadu/robot/sensors/frctrqsensorfilter.hpp>
 #include <kukadu/utils.hpp>
 #include <kukadu/robot/arm/kukiecontrolqueue.hpp>
-#include <kukadu/kinematics/moveitkinematics.hpp>
+#include <kukadu/planning/planning.hpp>
 
 namespace kukadu {
 

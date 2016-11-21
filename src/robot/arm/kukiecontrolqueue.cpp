@@ -1,11 +1,12 @@
 #include <kukadu/robot/arm/kukiecontrolqueue.hpp>
-#include <kukadu/kinematics/komoplanner.hpp>
+#include <kukadu/planning/komo.hpp>
 #include <kukadu/utils/kukadutokenizer.hpp>
-#include <kukadu/kinematics/moveitkinematics.hpp>
 #include <tf/tf.h>
 #include <stdexcept>
 #include <chrono>
 #include <thread>
+#include <iis_robot_dep/CartesianImpedance.h>
+#include <iis_robot_dep/FriJointImpedance.h>
 
 using namespace std;
 using namespace arma;
@@ -341,7 +342,7 @@ namespace kukadu {
         if(!kinematicsInitialized) {
 
             planAndKinMutex.lock();
-            kin = make_shared<KomoPlanner>(shared_from_this(),
+            kin = make_shared<Komo>(shared_from_this(),
                                                                      resolvePath("$KUKADU_HOME/external/komo/share/data/kuka/data/iis_robot.kvg"),
                                                                      resolvePath("$KUKADU_HOME/external/komo/share/data/kuka/config/MT.cfg"),
                                                                      getRobotSidePrefix(), acceptCollisions);
@@ -444,7 +445,7 @@ namespace kukadu {
         if(!plannerInitialized) {
 
             planAndKinMutex.lock();
-            planner = make_shared<KomoPlanner>(shared_from_this(),
+            planner = make_shared<Komo>(shared_from_this(),
                                                                      resolvePath("$KUKADU_HOME/external/komo/share/data/kuka/data/iis_robot.kvg"),
                                                                      resolvePath("$KUKADU_HOME/external/komo/share/data/kuka/config/MT.cfg"),
                                                                      getRobotSidePrefix(), acceptCollisions);
@@ -490,7 +491,7 @@ namespace kukadu {
         if(!plannerInitialized) {
 
             planAndKinMutex.lock();
-            planner = make_shared<KomoPlanner>(shared_from_this(),
+            planner = make_shared<Komo>(shared_from_this(),
                                                                      resolvePath("$KUKADU_HOME/external/komo/share/data/kuka/data/iis_robot.kvg"),
                                                                      resolvePath("$KUKADU_HOME/external/komo/share/data/kuka/config/MT.cfg"),
                                                                      getRobotSidePrefix(), acceptCollisions);
