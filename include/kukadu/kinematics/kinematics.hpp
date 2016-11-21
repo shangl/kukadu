@@ -2,11 +2,10 @@
 #define KUKADU_KINEMATICS_H
 
 #include <vector>
-#include <ros/ros.h>
 #include <armadillo>
 #include <geometry_msgs/Pose.h>
-#include <kukadu/kinematics/constraints/constraints.hpp>
 #include <kukadu/types/kukadutypes.hpp>
+#include <kukadu/kinematics/constraints/constraints.hpp>
 
 namespace kukadu {
 

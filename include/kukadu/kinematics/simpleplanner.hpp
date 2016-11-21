@@ -2,17 +2,16 @@
 #define KUKADU_SIMPLEPLANNER_H
 
 #include <vector>
-#include <ros/ros.h>
 #include <armadillo>
 #include <ReflexxesAPI.h>
 #include <RMLPositionFlags.h>
 #include <geometry_msgs/Pose.h>
+#include <kukadu/types/kukadutypes.hpp>
 #include <RMLPositionInputParameters.h>
 #include <RMLPositionOutputParameters.h>
 #include <kukadu/kinematics/kinematics.hpp>
 #include <kukadu/kinematics/pathplanner.hpp>
 #include <kukadu/robot/arm/controlqueue.hpp>
-#include <kukadu/types/kukadutypes.hpp>
 
 namespace kukadu {
 

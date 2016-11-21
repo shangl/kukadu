@@ -1,6 +1,6 @@
 #include <kukadu/control/dmp.hpp>
 #include <kukadu/types/sensordata.hpp>
-#include <kukadu/robot/sensorstorage.hpp>
+#include <kukadu/storage/sensorstorage.hpp>
 #include <kukadu/learning/rl/dmprewardcomputer.hpp>
 
 using namespace std;

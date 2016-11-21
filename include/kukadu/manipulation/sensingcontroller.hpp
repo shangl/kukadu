@@ -3,14 +3,10 @@
 
 #include <string>
 #include <vector>
-#include <cstdio>
-#include <fstream>
-#include <iostream>
-#include <wordexp.h>
-#include <kukadu/manipulation/controller.hpp>
-#include <kukadu/types/controllerresult.hpp>
 #include <kukadu/types/kukadutypes.hpp>
-#include <kukadu/robot/sensorstorage.hpp>
+#include <kukadu/storage/sensorstorage.hpp>
+#include <kukadu/types/controllerresult.hpp>
+#include <kukadu/manipulation/controller.hpp>
 #include <kukadu/robot/arm/kukiecontrolqueue.hpp>
 
 namespace kukadu {

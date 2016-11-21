@@ -1,25 +1,21 @@
 #ifndef KUKADU_CUSTOMKINESTHETICTEACHER_HPP
 #define KUKADU_CUSTOMKINESTHETICTEACHER_HPP
 
-#ifndef USEBOOST
-#include <mutex>
-#else
-#include <boost/thread/mutex.hpp>
-#endif
-
-#include <std_msgs/Float64MultiArray.h>
 #include <cmath>
-#include <eigen_conversions/eigen_msg.h>
 #include <iostream>
 #include <ros/ros.h>
+#include <Eigen/Dense>
 #include <ros/publisher.h>
 #include <ros/subscriber.h>
-#include <Eigen/Dense>
-#include <kukadu/robot/sensors/autocompensatingfilter.hpp>
+#include <std_msgs/Float64MultiArray.h>
+#include <eigen_conversions/eigen_msg.h>
+#include <kukadu/storage/sensorstorage.hpp>
+#include <kukadu/robot/kinestheticteacher.hpp>
 #include <kukadu/robot/arm/kukiecontrolqueue.hpp>
 #include <kukadu/kinematics/moveitkinematics.hpp>
-#include <kukadu/robot/sensorstorage.hpp>
-#include <kukadu/robot/kinestheticteacher.hpp>
+#include <kukadu/robot/sensors/autocompensatingfilter.hpp>
+
+#include <kukadu/types/kukadutypes.hpp>
 
 namespace kukadu {
 

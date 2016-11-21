@@ -14,7 +14,7 @@
 #include <kukadu/manipulation/controller.hpp>
 #include <kukadu/manipulation/complexcontroller.hpp>
 #include <kukadu/manipulation/sensingcontroller.hpp>
-#include <kukadu/learning/projective_simulation/core/projectivesimulator.hpp>
+#include <kukadu/learning/projective_simulation/core.hpp>
 
 namespace kukadu {
 

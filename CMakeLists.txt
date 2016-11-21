@@ -120,10 +120,7 @@ AUX_SOURCE_DIRECTORY(src/robot/kinematics/constraints KUKADUSRC)
 AUX_SOURCE_DIRECTORY(src/learning/regression/ KUKADUSRC)
 AUX_SOURCE_DIRECTORY(src/learning/reinforcement_learning/ KUKADUSRC)
 
-AUX_SOURCE_DIRECTORY(src/learning/projective_simulation/core KUKADUSRC)
-AUX_SOURCE_DIRECTORY(src/learning/projective_simulation/application KUKADUSRC)
-AUX_SOURCE_DIRECTORY(src/learning/projective_simulation/visualization KUKADUSRC)
-AUX_SOURCE_DIRECTORY(src/learning/projective_simulation/application/reward KUKADUSRC)
+AUX_SOURCE_DIRECTORY(src/learning/projective_simulation KUKADUSRC)
 
 AUX_SOURCE_DIRECTORY(src/statistics/ KUKADUSRC)
 

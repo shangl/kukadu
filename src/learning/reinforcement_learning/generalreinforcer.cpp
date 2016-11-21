@@ -84,12 +84,12 @@ namespace kukadu {
             bool useRollout = true;
             if(doExecution) {
 
-                cout << "(DMPReinforcer) do you want to execute this trajectory? (y/N) ";
+                cout << "(GeneralReinforcer) do you want to execute this trajectory? (y/N) ";
                 cin >> cont;
 
                 if(cont == 'y' || cont == 'Y') {
 
-                    cout << "(DMPReinforcer) executing rollout" << endl;
+                    cout << "(GeneralReinforcer) executing rollout" << endl;
 
                     simulationQueue->jointPtp(startingJoints);
 

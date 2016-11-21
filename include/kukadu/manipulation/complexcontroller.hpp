@@ -1,25 +1,50 @@
 #ifndef KUKADU_COMPLEXCONTROLLER_H
 #define KUKADU_COMPLEXCONTROLLER_H
 
-#include <cstdio>
 #include <vector>
 #include <string>
-#include <fstream>
-#include <iostream>
-#include <wordexp.h>
-#include <kukadu/manipulation/controller.hpp>
-#include <kukadu/types/controllerresult.hpp>
-#include <kukadu/manipulation/sensingcontroller.hpp>
 #include <kukadu/types/kukadutypes.hpp>
-#include <kukadu/robot/sensorstorage.hpp>
+#include <kukadu/types/controllerresult.hpp>
+#include <kukadu/manipulation/controller.hpp>
 #include <kukadu/robot/arm/kukiecontrolqueue.hpp>
-#include <kukadu/learning/projective_simulation/core/reward.hpp>
-#include <kukadu/learning/projective_simulation/core/projectivesimulator.hpp>
-#include <kukadu/learning/projective_simulation/application/manualreward.hpp>
-#include <kukadu/manipulation/haptic/intermediateeventclip.hpp>
+#include <kukadu/manipulation/sensingcontroller.hpp>
+#include <kukadu/learning/projective_simulation/core.hpp>
 #include <kukadu/manipulation/haptic/controlleractionclip.hpp>
+#include <kukadu/manipulation/haptic/intermediateeventclip.hpp>
 
 namespace kukadu {
+
+    class HapticControllerResult : public ControllerResult {
+
+    private:
+
+        bool bored;
+
+        std::vector<int> walkedPath;
+
+        std::map<std::string, std::vector<double> > entropies;
+        std::map<std::string, std::pair<double, double> > meanAndVar;
+
+        KUKADU_SHARED_PTR<std::tuple<double, KUKADU_SHARED_PTR<kukadu::Clip>, std::vector<KUKADU_SHARED_PTR<kukadu::Clip> > > > environmentTransition;
+
+    public:
+
+        HapticControllerResult(arma::vec t, std::vector<arma::vec> ys, bool success, bool bored, std::vector<int> walkedPath, KUKADU_SHARED_PTR<std::tuple<double, KUKADU_SHARED_PTR<kukadu::Clip>, std::vector<KUKADU_SHARED_PTR<kukadu::Clip> > > > environmentTransition);
+
+        bool wasBored();
+
+        void setWasBored(bool wasBored);
+
+        int getFinalStateClass();
+        std::vector<int> getWalkedPath();
+
+        std::map<std::string, std::vector<double> > getEntropies();
+        std::map<std::string, std::pair<double, double> > getMeanAndVar();
+
+        void setEntropyMeanAndVariance(std::map<std::string, std::pair<double, double> > meanAndVar);
+        void setEntropies(std::map<std::string, std::vector<double> > entropies);
+
+    };
 
     class EnvironmentReward : public Reward {
 

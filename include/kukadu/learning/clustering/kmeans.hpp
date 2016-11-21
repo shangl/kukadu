@@ -5,9 +5,6 @@
 #include <vector>
 #include <iostream>
 
-#include <boost/unordered_map.hpp>
-#include <boost/foreach.hpp>
-
 namespace kukadu {
 
   typedef double Coord;            // a coordinate
@@ -76,8 +73,8 @@ namespace kukadu {
     friend std::ostream& operator << (std::ostream& os, PointsSpace & ps){
 
       PointId i = 0;
-      BOOST_FOREACH(Points::value_type p, ps.points__){     
-	os << "point["<<i++<<"]=" << p << std::endl;
+      for(Points::value_type p : ps.points__){
+            os << "point["<<i++<<"]=" << p << std::endl;
       }
       return os;
     };
@@ -138,17 +135,17 @@ namespace kukadu {
     //
     // Dump ClustersToPoints
     //
-    friend std::ostream& operator << (std::ostream& os, Clusters & cl){
+    friend std::ostream& operator << (std::ostream& os, Clusters & cl) {
       
       ClusterId cid = 0;
-      BOOST_FOREACH(ClustersToPoints::value_type set, cl.clusters_to_points__){
-	os << "Cluster["<<cid<<"]=(";
-	BOOST_FOREACH(SetPoints::value_type pid, set){
-	  Point p = cl.ps__.getPoint(pid);
-	  os << "(" << p << ")";
-	}
-	os << ")" << std::endl;
-	cid++;
+        for(ClustersToPoints::value_type set : cl.clusters_to_points__) {
+            os << "Cluster["<<cid<<"]=(";
+            for(SetPoints::value_type pid : set) {
+            Point p = cl.ps__.getPoint(pid);
+            os << "(" << p << ")";
+        }
+        os << ")" << std::endl;
+        cid++;
       }
       return os;
     }

@@ -1,23 +1,18 @@
 #ifndef KUKADU_MOVEITKINEMATICS_H
 #define KUKADU_MOVEITKINEMATICS_H
 
-#include <vector>
 #include <string>
-#include <ros/ros.h>
 #include <armadillo>
 #include <geometry_msgs/Pose.h>
+#include <moveit_msgs/GetMotionPlan.h>
+#include <kukadu/types/kukadutypes.hpp>
+#include <moveit/robot_model/robot_model.h>
+#include <kukadu/kinematics/kinematics.hpp>
 #include <kukadu/kinematics/pathplanner.hpp>
 #include <kukadu/kinematics/simpleplanner.hpp>
-#include <moveit/robot_state/conversions.h>
-#include <moveit/robot_state/robot_state.h>
-#include <moveit/robot_model/robot_model.h>
 #include <moveit/planning_scene/planning_scene.h>
-#include <moveit/robot_model_loader/robot_model_loader.h>
-#include <kukadu/kinematics/kinematics.hpp>
 #include <kukadu/kinematics/constraints/constraints.hpp>
-#include <kukadu/types/kukadutypes.hpp>
-#include <moveit_msgs/GetMotionPlan.h>
-#include <moveit/move_group_interface/move_group.h>
+#include <moveit/robot_model_loader/robot_model_loader.h>
 
 namespace kukadu {
 

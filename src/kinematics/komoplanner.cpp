@@ -1,5 +1,14 @@
-#include <kukadu/kinematics/komoplanner.hpp>
+#include <Motion/motion.h>
+#include <Optim/optimization.h>
 #include <kukadu/utils/utils.hpp>
+#include <Motion/taskMap_proxy.h>
+#include <Motion/taskMap_proxy.h>
+#include <Motion/taskMap_default.h>
+#include <Motion/taskMap_default.h>
+#include <Motion/taskMap_transition.h>
+#include <Motion/taskMap_constrained.h>
+#include <Motion/taskMap_constrained.h>
+#include <kukadu/kinematics/komoplanner.hpp>
 
 using namespace std;
 using namespace ros;

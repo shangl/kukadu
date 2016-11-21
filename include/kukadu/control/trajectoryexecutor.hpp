@@ -1,17 +1,10 @@
 #ifndef KUKADU_TRAJECTORYEXECUTOR_H
 #define KUKADU_TRAJECTORYEXECUTOR_H
 
-#include <vector>
-#include <cstdlib>
-#include <iostream>
-#include <unistd.h>
-#include <iostream>
-#include <armadillo>
-#include <kukadu/utils/types.hpp>
 #include <kukadu/types/trajectory.hpp>
 #include <kukadu/types/kukadutypes.hpp>
-#include <kukadu/manipulation/controller.hpp>
 #include <kukadu/types/controllerresult.hpp>
+#include <kukadu/manipulation/controller.hpp>
 
 namespace kukadu {
 

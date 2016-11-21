@@ -3,12 +3,11 @@
 
 #include <armadillo>
 #include <geometry_msgs/Pose.h>
+#include <kukadu/types/kukadutypes.hpp>
 #include <moveit/robot_state/conversions.h>
 #include <moveit/robot_state/robot_state.h>
 #include <moveit/robot_model/robot_model.h>
 #include <moveit/planning_scene/planning_scene.h>
-#include <moveit/robot_model_loader/robot_model_loader.h>
-#include <kukadu/types/kukadutypes.hpp>
 
 namespace kukadu {
 

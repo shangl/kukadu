@@ -1,6 +1,9 @@
-#include <kukadu/kinematics/moveitkinematics.hpp>
-#include <eigen_conversions/eigen_msg.h>
 #include <kukadu/utils/utils.hpp>
+#include <eigen_conversions/eigen_msg.h>
+#include <moveit/robot_state/conversions.h>
+#include <moveit/robot_state/robot_state.h>
+#include <kukadu/kinematics/moveitkinematics.hpp>
+#include <moveit/move_group_interface/move_group.h>
 
 using namespace ros;
 using namespace std;

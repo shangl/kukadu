@@ -1,17 +1,5 @@
 #include <kukadu/learning/clustering/kmeans.hpp>
-#include <kukadu/learning/metric_learning/inftheoconstraints.hpp>
-#include <kukadu/learning/metric_learning/inftheometriclearner.hpp>
-#include <kukadu/learning/metric_learning/mahalanobicslearner.hpp>
-#include <kukadu/learning/metric_learning/mahalanobis.hpp>
-#include <kukadu/learning/metric_learning/togersonmetriclearner.hpp>
-#ifndef USEBOOST
-#include <kukadu/learning/projective_simulation/core/actionclip.hpp>
-#include <kukadu/learning/projective_simulation/core/clip.hpp>
-#include <kukadu/learning/projective_simulation/core/perceptclip.hpp>
-#include <kukadu/learning/projective_simulation/core/projectivesimulator.hpp>
-#include <kukadu/learning/projective_simulation/core/psevaluator.hpp>
-#include <kukadu/learning/projective_simulation/core/reward.hpp>
-#endif
+#include <kukadu/learning/metric_learning/metriclearner.hpp>
 #include <kukadu/learning/regression/gaussiankernel.hpp>
 #include <kukadu/learning/regression/gaussianprocessregressor.hpp>
 #include <kukadu/learning/regression/generalfitter.hpp>
@@ -29,3 +17,7 @@
 #include <kukadu/learning/rl/samplerewardcomputer.hpp>
 #include <kukadu/learning/rl/terminalcostcomputer.hpp>
 #include <kukadu/learning/rl/trajectorybasedreward.hpp>
+#ifndef USEBOOST
+#include <kukadu/learning/projective_simulation/core.hpp>
+#include <kukadu/learning/projective_simulation/clips.hpp>
+#endif

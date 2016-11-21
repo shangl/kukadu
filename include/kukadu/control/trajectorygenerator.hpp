@@ -3,7 +3,6 @@
 
 #include <string>
 #include <armadillo>
-#include <iostream>
 
 namespace kukadu {
 

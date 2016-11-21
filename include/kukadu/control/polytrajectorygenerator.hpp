@@ -1,11 +1,8 @@
 #ifndef KUKADU_POLYTRAJECTORYGENERATOR
 #define KUKADU_POLYTRAJECTORYGENERATOR
 
-#include "trajectorygenerator.hpp"
-
-#include <vector>
-#include <iostream>
-#include <math.h>
+#include <armadillo>
+#include <kukadu/control/trajectorygenerator.hpp>
 
 namespace kukadu {
 

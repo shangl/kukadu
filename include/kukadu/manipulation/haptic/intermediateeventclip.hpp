@@ -1,13 +1,11 @@
 #ifndef KUKADU_INTERMEDIATEEVENTCLIP_H
 #define KUKADU_INTERMEDIATEEVENTCLIP_H
 
-#include "../sensingcontroller.hpp"
-#include "../../types/kukadutypes.hpp"
-#include "../../learning/projective_simulation/core/clip.hpp"
-
-#include <cstdio>
 #include <string>
 #include <vector>
+#include <kukadu/types/kukadutypes.hpp>
+#include <kukadu/manipulation/sensingcontroller.hpp>
+#include <kukadu/learning/projective_simulation/clips.hpp>
 
 namespace kukadu {
 

@@ -6,8 +6,7 @@
 #include <kukadu/manipulation/complexcontroller.hpp>
 #include <kukadu/manipulation/haptic/controlleractionclip.hpp>
 #include <kukadu/manipulation/haptic/intermediateeventclip.hpp>
-#include <kukadu/learning/projective_simulation/core/clip.hpp>
-#include <kukadu/learning/projective_simulation/core/perceptclip.hpp>
+#include <kukadu/learning/projective_simulation/core.hpp>
 
 using namespace std;
 using namespace arma;
@@ -1175,6 +1174,48 @@ namespace kukadu {
 
     KUKADU_SHARED_PTR<std::vector<KUKADU_SHARED_PTR<PerceptClip> > > EnvironmentReward::generatePerceptClips() {
         return KUKADU_SHARED_PTR<std::vector<KUKADU_SHARED_PTR<PerceptClip> > >(new std::vector<KUKADU_SHARED_PTR<PerceptClip> >());
+    }
+
+    HapticControllerResult::HapticControllerResult(arma::vec t, std::vector<arma::vec> ys, bool success, bool bored, std::vector<int> walkedPath,
+                                                   KUKADU_SHARED_PTR<std::tuple<double, KUKADU_SHARED_PTR<kukadu::Clip>, std::vector<KUKADU_SHARED_PTR<kukadu::Clip> > > > environmentTransition)
+        : ControllerResult(t, ys, success) {
+
+        this->bored = bored;
+        this->walkedPath = walkedPath;
+        this->environmentTransition = environmentTransition;
+
+    }
+
+    bool HapticControllerResult::wasBored() {
+        return bored;
+    }
+
+    std::vector<int> HapticControllerResult::getWalkedPath() {
+        return walkedPath;
+    }
+
+    void HapticControllerResult::setEntropyMeanAndVariance(std::map<std::string, std::pair<double, double> > meanAndVar) {
+        this->meanAndVar = meanAndVar;
+    }
+
+    std::map<std::string, std::pair<double, double> > HapticControllerResult::getMeanAndVar() {
+        return meanAndVar;
+    }
+
+    void HapticControllerResult::setEntropies(std::map<std::string, std::vector<double> > entropies) {
+        this->entropies = entropies;
+    }
+
+    std::map<std::string, std::vector<double> > HapticControllerResult::getEntropies() {
+        return entropies;
+    }
+
+    int HapticControllerResult::getFinalStateClass() {
+        return *(getWalkedPath().end() - 2);
+    }
+
+    void HapticControllerResult::setWasBored(bool wasBored) {
+        bored = wasBored;
     }
 
 }

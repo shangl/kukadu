@@ -3,25 +3,15 @@
 
 #include <vector>
 #include <string>
-
-#include <sensor_msgs/JointState.h>
-
 #include <Ors/ors.h>
 #include <Ors/ors_swift.h>
 #include <Motion/motion.h>
-#include <Motion/taskMap_proxy.h>
-#include <Motion/taskMap_default.h>
-#include <Motion/taskMap_constrained.h>
-#include <Optim/optimization.h>
-#include <Motion/taskMap_default.h>
-#include <Motion/taskMap_proxy.h>
-#include <Motion/taskMap_constrained.h>
-#include <Motion/taskMap_transition.h>
+#include <sensor_msgs/JointState.h>
+#include <kukadu/types/kukadutypes.hpp>
 #include <kukadu/kinematics/kinematics.hpp>
 #include <kukadu/kinematics/pathplanner.hpp>
-#include <kukadu/kinematics/simpleplanner.hpp>
 #include <kukadu/robot/arm/controlqueue.hpp>
-#include <kukadu/types/kukadutypes.hpp>
+#include <kukadu/kinematics/simpleplanner.hpp>
 
 namespace kukadu {
 

@@ -2,7 +2,7 @@
 #define KUKADU_CONTROLLERACTIONCLIP_H
 
 #include <kukadu/manipulation/controller.hpp>
-#include <kukadu/learning/projective_simulation/core/actionclip.hpp>
+#include <kukadu/learning/projective_simulation/clips.hpp>
 
 #include <cstdio>
 #include <string>
