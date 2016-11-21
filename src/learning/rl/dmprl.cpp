@@ -1,8 +1,8 @@
+#include <kukadu/robot/queue.hpp>
 #include <kukadu/utils/gnuplot.hpp>
 #include <kukadu/types/sensordata.hpp>
 #include <kukadu/learning/rl/dmprl.hpp>
 #include <kukadu/storage/sensorstorage.hpp>
-#include <kukadu/robot/arm/plottingcontrolqueue.hpp>
 
 using namespace std;
 using namespace arma;

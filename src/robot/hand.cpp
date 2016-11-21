@@ -1,4 +1,9 @@
-#include <kukadu/robot/gripper/rosschunk.hpp>
+#include <string>
+#include <kukadu/robot/hand.hpp>
+#include <kukadu/utils/utils.hpp>
+#include <kukadu/robot/kukiehand.hpp>
+#include <std_msgs/Float64MultiArray.h>
+#include <iis_robot_dep/TactileMatrix.h>
 
 using namespace std;
 using namespace arma;
@@ -6,11 +11,34 @@ using namespace iis_robot_dep;
 
 namespace kukadu {
 
-    RosSchunk::RosSchunk(std::string type, std::string hand) {
+    PlottingHand::PlottingHand(int sensingPatchCount, std::pair<int, int> patchDimensions) {
+        this->sensingPatchCount = sensingPatchCount;
+        this->patchDimensions = patchDimensions;
+    }
+
+    void PlottingHand::connectHand() { }
+
+    void PlottingHand::closeHand(double percentage, double velocity) { }
+
+    void PlottingHand::moveJoints(arma::vec joints) { }
+
+    void PlottingHand::disconnectHand() { }
+
+    std::vector<arma::mat> PlottingHand::getTactileSensing() {
+
+        std::vector<arma::mat> retSensing;
+        for(int i = 0; i < sensingPatchCount; ++i) {
+            arma::mat dummyPatch(patchDimensions.first, patchDimensions.second);
+            dummyPatch.fill(0.0);
+            retSensing.push_back(dummyPatch);
+        }
+        return retSensing;
 
     }
 
-    RosSchunk::RosSchunk(ros::NodeHandle node, std::string type, std::string hand) {
+    std::string PlottingHand::getHandName() { return "PlottingHand"; }
+
+    KukieHand::KukieHand(ros::NodeHandle node, std::string type, std::string hand) {
 
         this->node = node;
         waitForReached = true;
@@ -18,8 +46,8 @@ namespace kukadu {
 
         this->hand = hand;
 
-        stateSub = node.subscribe(string("/") + type + string("/") + hand + "_sdh/joint_control/get_state", 1, &RosSchunk::stateCallback, this);
-        tactileSub = node.subscribe(string("/") + type + string("/") + hand + "_sdh/sensoring/tactile", 1, &RosSchunk::tactileCallback, this);
+        stateSub = node.subscribe(string("/") + type + string("/") + hand + "_sdh/joint_control/get_state", 1, &KukieHand::stateCallback, this);
+        tactileSub = node.subscribe(string("/") + type + string("/") + hand + "_sdh/sensoring/tactile", 1, &KukieHand::tactileCallback, this);
         previousCurrentPosQueueSize = 10;
         isFirstCallback = true;
 
@@ -35,15 +63,15 @@ namespace kukadu {
 
     }
 
-    std::string RosSchunk::getHandName() {
+    std::string KukieHand::getHandName() {
         return string("schunk_") + hand;
     }
 
-    void RosSchunk::setWaitForReached(bool waitForReached) {
+    void KukieHand::setWaitForReached(bool waitForReached) {
         this->waitForReached = waitForReached;
     }
 
-    void RosSchunk::tactileCallback(const iis_robot_dep::TactileSensor& state) {
+    void KukieHand::tactileCallback(const iis_robot_dep::TactileSensor& state) {
 
         tactileMutex.lock();
 
@@ -68,7 +96,7 @@ namespace kukadu {
 
     }
 
-    void RosSchunk::stateCallback(const sensor_msgs::JointState& state) {
+    void KukieHand::stateCallback(const sensor_msgs::JointState& state) {
 
         currentPosMutex.lock();
 
@@ -120,7 +148,7 @@ namespace kukadu {
 
     }
 
-    bool RosSchunk::vectorsDeviate(const std::vector<double> v1, const std::vector<double> v2, double tolerance) {
+    bool KukieHand::vectorsDeviate(const std::vector<double> v1, const std::vector<double> v2, double tolerance) {
 
         bool tmpReached = true;
 
@@ -133,7 +161,7 @@ namespace kukadu {
 
     }
 
-    std::vector<double> RosSchunk::generateCylindricalPose(double percentage) {
+    std::vector<double> KukieHand::generateCylindricalPose(double percentage) {
 
         vector<double> hand_pose;
 
@@ -149,7 +177,7 @@ namespace kukadu {
 
     }
 
-    std::vector<double> RosSchunk::generateParallelPose(double percentage) {
+    std::vector<double> KukieHand::generateParallelPose(double percentage) {
 
         vector<double> hand_pose;
 
@@ -175,7 +203,7 @@ namespace kukadu {
 
     }
 
-    std::vector<double> RosSchunk::generateCentricalPose(double percentage) {
+    std::vector<double> KukieHand::generateCentricalPose(double percentage) {
 
         vector<double> hand_pose;
 
@@ -191,7 +219,7 @@ namespace kukadu {
 
     }
 
-    std::vector<double> RosSchunk::generateSphericalPose(double percentage) {
+    std::vector<double> KukieHand::generateSphericalPose(double percentage) {
 
         vector<double> hand_pose;
 
@@ -207,11 +235,11 @@ namespace kukadu {
 
     }
 
-    void RosSchunk::connectHand() {
+    void KukieHand::connectHand() {
         // nothing to do when using ros
     }
 
-    void RosSchunk::closeHand(double percentage, double velocity) {
+    void KukieHand::closeHand(double percentage, double velocity) {
 
         if(percentage >= 0.0 && percentage <= 1.1) {
 
@@ -231,7 +259,7 @@ namespace kukadu {
                 hand_pose = generateSphericalPose(percentage);
                 break;
             default:
-                string msg = "(RosSchunk) grasp type not supported";
+                string msg = "(KukieHand) grasp type not supported";
                 cerr << msg << endl;
                 throw KukaduException(msg.c_str());
 
@@ -240,48 +268,50 @@ namespace kukadu {
             moveJoints(stdToArmadilloVec(hand_pose));
 
         } else {
-            string msg = "(RosSchunk) grasp percentage out of range";
+            string msg = "(KukieHand) grasp percentage out of range";
             cerr << msg << endl;
             throw KukaduException(msg.c_str());
         }
 
     }
 
-    void RosSchunk::disconnectHand() {
+    void KukieHand::disconnectHand() {
 
         // nothing to do when using ros
 
     }
 
-    void RosSchunk::setGrasp(kukadu_grasps grasp) {
+    void KukieHand::setGrasp(kukadu_grasps grasp) {
 
         currentGraspId = grasp;
 
     }
 
-    void RosSchunk::safelyDestroy() {
+    void KukieHand::safelyDestroy() {
 
     }
 
-    void RosSchunk::publishSingleJoint(int idx, double pos) {
+    void KukieHand::publishSingleJoint(int idx, double pos) {
 
         vector<double> command;
+        auto ignoreJoint = SDH_IGNORE_JOINT;
         for(int i = 0; i < currentCommandedPos.size(); ++i)
             if(i == idx)
                 command.push_back(pos);
             else
-                command.push_back(SDH_IGNORE_JOINT);
+                command.push_back(ignoreJoint);
 
         moveJoints(stdToArmadilloVec(command));
 
     }
 
-    void RosSchunk::moveJoints(arma::vec positions) {
+    void KukieHand::moveJoints(arma::vec positions) {
 
+        auto ignoreJoint = SDH_IGNORE_JOINT;
         std::vector<double> stdPos = armadilloToStdVec(positions);
         std_msgs::Float64MultiArray newJoints;
         for(int i = 0; i < stdPos.size(); ++i) {
-            if(stdPos.at(i) != SDH_IGNORE_JOINT)
+            if(stdPos.at(i) != ignoreJoint)
                 newJoints.data.push_back(stdPos.at(i));
             else
                 newJoints.data.push_back(currentCommandedPos.at(i));
@@ -307,7 +337,7 @@ namespace kukadu {
 
     }
 
-    std::vector<arma::mat> RosSchunk::getTactileSensing() {
+    std::vector<arma::mat> KukieHand::getTactileSensing() {
 
         std::vector<arma::mat> ret;
         tactileMutex.lock();

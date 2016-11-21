@@ -1,8 +1,8 @@
-﻿#ifndef KUKADU_CONTROLQUEUE
-#define KUKADU_CONTROLQUEUE
+#ifndef KUKADU_QUEUE_H
+#define KUKADU_QUEUE_H
 
 /**
- * @file   controlqueue.hpp
+ * @file   queue.hpp
  * @Author Simon Hangl (simon.hangl@uibk.ac.at)
  * @date   May, 2016
  * @brief  Contains the control queue interface. This interface is responsible for all communication
@@ -10,17 +10,12 @@
  *
  */
 
-#include <kukadu/utils/types.hpp>
-#include <kukadu/utils/tictoc.hpp>
-#include <kukadu/types/kukadutypes.hpp>
-#include <kukadu/utils/destroyableobject.hpp>
-#include <kukadu/robot/sensors/frctrqsensorfilter.hpp>
-#include <kukadu/robot/sensors/standardfilter.hpp>
-
 #include <queue>
 #include <armadillo>
-#include <ros/ros.h>
 #include <geometry_msgs/Pose.h>
+#include <kukadu/robot/filters.hpp>
+#include <kukadu/types/kukadutypes.hpp>
+#include <kukadu/utils/destroyableobject.hpp>
 
 namespace kukadu {
 
@@ -86,8 +81,6 @@ namespace kukadu {
         std::deque<arma::vec> rollBackQueue;
         KUKADU_SHARED_PTR<FrcTrqSensorFilter> currentFrcTrqSensorFilter;
 
-        TicToc t;
-
         KUKADU_SHARED_PTR<kukadu_thread> thr;
         KUKADU_SHARED_PTR<kukadu_thread> frcTrqFilterUpdateThr;
         KUKADU_SHARED_PTR<kukadu_thread> cartPtpThr;
@@ -110,7 +103,7 @@ namespace kukadu {
     protected:
 
         int currentControlType;
-        
+
         /**
          * @brief Can be used to set the number of degrees of freedom.
          */
@@ -448,6 +441,87 @@ namespace kukadu {
         static const int CONTROLQUEUE_JNT_POS_MODE = 10;
         static const int CONTROLQUEUE_CART_IMP_MODE = 20;
         static const int CONTROLQUEUE_JNT_IMP_MODE = 30;
+
+    };
+
+    /**
+    * \class PlottingControlQueue
+    *
+    * \brief Contains an implementation of the control queue interface. The PlottingControlQueue
+    * is not bound to a specific robot. It can be used to simulate a robot without any real
+    * hardware available.
+    * \ingroup Robot
+    */
+    class PlottingControlQueue : public ControlQueue {
+
+    private:
+
+        int impMode;
+        int ptpReached;
+        int monComMode;
+        int currentMode;
+
+        double currTime;
+
+        arma::vec currJoints;
+        arma::vec startJoints;
+
+        geometry_msgs::Pose fakeCurrentPose;
+
+        std::vector<std::string> jointNames;
+
+        void construct(std::vector<std::string> jointNames, double timeStep);
+
+    protected:
+
+        virtual void startQueueHook();
+        virtual void submitNextJointMove(arma::vec joints);
+        virtual void submitNextCartMove(geometry_msgs::Pose pose);
+        virtual void setCurrentControlTypeInternal(int controlType);
+
+        virtual bool stopQueueWhilePtp();
+
+    public:
+
+        PlottingControlQueue(int degOfFreedom, double timeStep);
+        PlottingControlQueue(std::vector<std::string> jointNames, double timeStep);
+
+        void safelyDestroy();
+        void setInitValues();
+        void stopCurrentMode();
+        void switchMode(int mode);
+        void jointPtpInternal(arma::vec joints);
+        void setJntPtpThresh(double thresh);
+        void setStartingJoints(arma::vec joints);
+        void addJointsPosToQueue(arma::vec joints);
+        void cartPtpInternal(geometry_msgs::Pose pos, double maxForce);
+        void addCartesianPosToQueue(geometry_msgs::Pose pose);
+        void setAdditionalLoad(float loadMass, float loadPos);
+        void synchronizeToControlQueue(int maxNumJointsInQueue);
+        void setStiffness(float cpstiffnessxyz, float cpstiffnessabc, float cpdamping, float cpmaxdelta, float maxforce, float axismaxdeltatrq);
+
+        virtual int getCurrentMode();
+
+        long long int getCurrentTime();
+
+        std::string getRobotName();
+        std::string getRobotFileName();
+
+        arma::vec getStartingJoints();
+        arma::vec retrieveJointsFromRobot();
+
+        std::vector<std::string> getJointNames();
+
+        mes_result getCurrentJoints();
+        mes_result getCurrentJntFrc();
+        mes_result getCurrentCartesianPos();
+        mes_result getCurrentCartesianFrcTrq();
+
+        geometry_msgs::Pose getCurrentCartesianPose();
+
+        virtual void rollBack(double time);
+        virtual void stopJointRollBackMode();
+        virtual void startJointRollBackMode(double possibleTime);
 
     };
 

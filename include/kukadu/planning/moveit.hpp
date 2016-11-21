@@ -3,7 +3,9 @@
 
 #include <string>
 #include <armadillo>
+#include <ros/ros.h>
 #include <geometry_msgs/Pose.h>
+#include <kukadu/planning/simple.hpp>
 #include <kukadu/planning/planning.hpp>
 #include <kukadu/types/kukadutypes.hpp>
 #include <moveit/robot_model/robot_model.h>

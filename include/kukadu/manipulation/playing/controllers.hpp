@@ -3,11 +3,11 @@
 
 #include <vector>
 #include <string>
+#include <kukadu/robot/hand.hpp>
+#include <kukadu/robot/queue.hpp>
 #include <kukadu/types/kukadutypes.hpp>
 #include <kukadu/control/controller.hpp>
 #include <kukadu/types/controllerresult.hpp>
-#include <kukadu/robot/arm/controlqueue.hpp>
-#include <kukadu/robot/gripper/generichand.hpp>
 #include <kukadu/learning/projective_simulation/core.hpp>
 
 namespace kukadu {

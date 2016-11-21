@@ -1,27 +1,11 @@
-#ifndef KUKADU_ROSSCHUNK_H
-#define KUKADU_ROSSCHUNK_H
+#ifndef KUKADU_KUKIEHAND_H
+#define KUKADU_KUKIEHAND_H
 
-#include <vector>
-#include <string>
-#include <limits>
-#include <iostream>
-#include <ros/ros.h>
-#include <std_msgs/String.h>
+#include <kukadu/robot/hand.hpp>
 #include <sensor_msgs/JointState.h>
-#include <std_msgs/Float64MultiArray.h>
-#include <trajectory_msgs/JointTrajectory.h>
-#include <iis_robot_dep/TactileMatrix.h>
 #include <iis_robot_dep/TactileSensor.h>
-#include <trajectory_msgs/JointTrajectoryPoint.h>
-#include <control_msgs/FollowJointTrajectoryGoal.h>
-#include <control_msgs/FollowJointTrajectoryActionGoal.h>
-#include <kukadu/robot/gripper/generichand.hpp>
-#include <kukadu/utils/utils.hpp>
-#include <kukadu/types/kukadutypes.hpp>
 
 namespace kukadu {
-
-    #define SDH_IGNORE_JOINT std::numeric_limits<double>::min()
 
     enum kukadu_grasps {eGID_CENTRICAL, eGID_CYLINDRICAL, eGID_PARALLEL, eGID_SPHERICAL};
 
@@ -32,7 +16,7 @@ namespace kukadu {
      * Implements the GenericHand interface for the Schunk SDH robotic hand. Note that using this class the programm has to be executed with root rights
      * \ingroup Robot
      */
-    class RosSchunk : public GenericHand {
+    class KukieHand : public GenericHand {
 
     private:
 
@@ -51,10 +35,10 @@ namespace kukadu {
 
         std::string hand;
 
-        std::vector<double> generateCylindricalPose(double percentage);
         std::vector<double> generateParallelPose(double percentage);
         std::vector<double> generateCentricalPose(double percentage);
         std::vector<double> generateSphericalPose(double percentage);
+        std::vector<double> generateCylindricalPose(double percentage);
 
         bool targetReached;
         bool isFirstCallback;
@@ -74,11 +58,11 @@ namespace kukadu {
 
     protected:
 
-        RosSchunk(std::string type, std::string hand);
+        KukieHand(std::string type, std::string hand);
 
     public:
 
-        RosSchunk(ros::NodeHandle node, std::string type, std::string hand);
+        KukieHand(ros::NodeHandle node, std::string type, std::string hand);
 
         virtual void connectHand();
         virtual void safelyDestroy();
@@ -93,6 +77,8 @@ namespace kukadu {
         virtual std::string getHandName();
 
         virtual std::vector<arma::mat> getTactileSensing();
+
+        static auto constexpr SDH_IGNORE_JOINT = std::numeric_limits<double>::min();
 
     };
 

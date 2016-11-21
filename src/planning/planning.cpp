@@ -1,4 +1,5 @@
 #include <kukadu/utils/utils.hpp>
+#include <kukadu/planning/simple.hpp>
 #include <kukadu/planning/planning.hpp>
 
 using namespace std;

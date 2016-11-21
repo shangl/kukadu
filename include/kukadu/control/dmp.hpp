@@ -5,8 +5,8 @@
 #include <armadillo>
 #include <kukadu/control/dmp.hpp>
 #include <kukadu/utils/types.hpp>
+#include <kukadu/robot/queue.hpp>
 #include <kukadu/control/trajectory.hpp>
-#include <kukadu/robot/arm/controlqueue.hpp>
 #include <kukadu/learning/regression/fitting.hpp>
 
 #include <tf/tf.h>

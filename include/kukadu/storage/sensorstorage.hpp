@@ -7,12 +7,12 @@
 #include <iostream>
 #include <armadillo>
 #include <ros/ros.h>
+#include <kukadu/robot/queue.hpp>
 #include <kukadu/utils/types.hpp>
 #include <kukadu/utils/utils.hpp>
 #include <kukadu/types/sensordata.hpp>
-#include <kukadu/robot/gripper/generichand.hpp>
+#include <kukadu/robot/hand.hpp>
 #include <kukadu/types/kukadutypes.hpp>
-#include <kukadu/robot/arm/controlqueue.hpp>
 #include <kukadu/vision/visioninterface.hpp>
 
 namespace kukadu {

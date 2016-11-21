@@ -1,38 +1,25 @@
-#ifndef KUKADU_KUKIECONTROLQUEUE_H
-#define KUKADU_KUKIECONTROLQUEUE_H
+#ifndef KUKADU_KUKIE_H
+#define KUKADU_KUKIE_H
 
-/**
- * @file   kukiecontrolqueue.hpp
- * @Author Simon Hangl (simon.hangl@uibk.ac.at)
- * @date   May, 2016
- * @brief  Contains an implementation of the control queue interface for robots supporting the IISKukie system.
- * This interface is responsible for all communication the kukadu software stack and the robotic arm.
- *
- */
-
-#include <kukadu/utils/types.hpp>
-#include <kukadu/utils/utils.hpp>
-#include <kukadu/types/kukadutypes.hpp>
-#include <kukadu/robot/arm/controlqueue.hpp>
-#include <kukadu/planning/planning.hpp>
-#include <kukadu/utils/destroyableobject.hpp>
-
+#include <queue>
+#include <armadillo>
 #include <ros/ros.h>
-#include <std_msgs/Int32.h>
-#include <std_msgs/String.h>
 #include <std_msgs/Float64.h>
 #include <geometry_msgs/Pose.h>
+#include <kukadu/robot/queue.hpp>
 #include <geometry_msgs/Wrench.h>
+#include <kukadu/robot/filters.hpp>
 #include <sensor_msgs/JointState.h>
-#include <iis_robot_dep/KukieError.h>
 #include <std_msgs/Int32MultiArray.h>
-#include <std_msgs/Float64MultiArray.h>
 #include <std_msgs/Float32MultiArray.h>
-#include <std_msgs/MultiArrayDimension.h>
+#include <std_msgs/Float64MultiArray.h>
+#include <kukadu/planning/planning.hpp>
+#include <kukadu/types/kukadutypes.hpp>
+#include <kukadu/utils/destroyableobject.hpp>
 
 namespace kukadu {
 
-    /** \brief Contains an implementation of the control queue interface for robots supporting the IISKukie system.
+	/** \brief Contains an implementation of the control queue interface for robots supporting the IISKukie system.
     * This interface is responsible for all communication the kukadu software stack and the robotic arm.
     * \ingroup Robot
     */
@@ -169,7 +156,7 @@ namespace kukadu {
                           double sleepTime = -1.0, double maxDistPerCycle = -1.0);
 
         void safelyDestroy();
-        
+
         void setKinematics(KUKADU_SHARED_PTR<Kinematics> kin);
         void setPathPlanner(KUKADU_SHARED_PTR<PathPlanner> planner);
 
@@ -209,7 +196,7 @@ namespace kukadu {
         static const int KUKA_STD_CPDAMPING = 0.3;
 
     };
-
+    
 }
 
 #endif

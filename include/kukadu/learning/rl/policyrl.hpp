@@ -3,9 +3,9 @@
 
 #include <vector>
 #include <armadillo>
+#include <kukadu/robot/queue.hpp>
 #include <kukadu/types/kukadutypes.hpp>
 #include <kukadu/control/trajectory.hpp>
-#include <kukadu/robot/arm/controlqueue.hpp>
 
 namespace kukadu {
 

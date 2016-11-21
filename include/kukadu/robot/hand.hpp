@@ -1,10 +1,12 @@
-#ifndef KUKADU_GENERICHAND
-#define KUKADU_GENERICHAND
+#ifndef KUKADU_HAND_H
+#define KUKADU_HAND_H
 
+#include <limits>
 #include <vector>
+#include <ros/ros.h>
 #include <armadillo>
-
-#include "../../utils/destroyableobject.hpp"
+#include <kukadu/types/kukadutypes.hpp>
+#include <kukadu/utils/destroyableobject.hpp>
 
 namespace kukadu {
 
@@ -43,6 +45,38 @@ namespace kukadu {
         virtual std::vector<arma::mat> getTactileSensing() = 0;
 
         virtual std::string getHandName() = 0;
+
+    };
+
+    /**
+     * \class PlottingHand
+     *
+     * \brief Provides control capabilities for the Schunk SDH robotic hand with ROS binding
+     * Implements the GenericHand interface for the Schunk SDH robotic hand. Note that using this class the programm has to be executed with root rights
+     * \ingroup Robot
+     */
+    class PlottingHand : public GenericHand {
+
+    private:
+
+        int sensingPatchCount;
+        std::pair<int, int> patchDimensions;
+
+    public:
+
+        PlottingHand(int sensingPatchCount, std::pair<int, int> patchDimensions);
+
+        virtual void connectHand();
+
+        virtual void closeHand(double percentage, double velocity);
+
+        virtual void moveJoints(arma::vec joints);
+
+        virtual void disconnectHand();
+
+        virtual std::vector<arma::mat> getTactileSensing();
+
+        virtual std::string getHandName();
 
     };
 

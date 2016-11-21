@@ -6,10 +6,11 @@
 #include <Ors/ors.h>
 #include <Ors/ors_swift.h>
 #include <Motion/motion.h>
+#include <kukadu/robot/queue.hpp>
 #include <sensor_msgs/JointState.h>
+#include <kukadu/planning/simple.hpp>
 #include <kukadu/types/kukadutypes.hpp>
 #include <kukadu/planning/planning.hpp>
-#include <kukadu/robot/arm/controlqueue.hpp>
 #include <trajectory_msgs/JointTrajectory.h>
 
 namespace kukadu {

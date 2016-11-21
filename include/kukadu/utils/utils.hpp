@@ -36,13 +36,10 @@
 #include <tf/transform_datatypes.h>
 #include <sensor_msgs/PointCloud2.h>
 #include <geometry_msgs/Quaternion.h>
-#include <Python.h>
 
 #include <kukadu/utils/types.hpp>
 #include <kukadu/utils/gnuplot.hpp>
 #include <kukadu/utils/kukadutokenizer.hpp>
-#include <kukadu/types/controllerresult.hpp>
-#include <kukadu/robot/arm/controlqueue.hpp>
 
 namespace kukadu {
 

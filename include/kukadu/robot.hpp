@@ -1,11 +1,7 @@
-#include <kukadu/robot/arm/controlqueue.hpp>
-#include <kukadu/robot/arm/kukiecontrolqueue.hpp>
-#include <kukadu/robot/arm/plottingcontrolqueue.hpp>
-#include <kukadu/robot/gripper/generichand.hpp>
-#include <kukadu/robot/gripper/plottinghand.hpp>
-#include <kukadu/robot/gripper/rosschunk.hpp>
-#include <kukadu/robot/sensors/frctrqsensorfilter.hpp>
-#include <kukadu/robot/sensors/standardfilter.hpp>
-#include <kukadu/robot/sensors/autocompensatingfilter.hpp>
+#include <kukadu/robot/hand.hpp>
+#include <kukadu/robot/queue.hpp>
+#include <kukadu/robot/filters.hpp>
+#include <kukadu/robot/kukiehand.hpp>
+#include <kukadu/robot/kukiequeue.hpp>
+#include <kukadu/robot/autocompfilter.hpp>
 #include <kukadu/robot/kinestheticteacher.hpp>
-#include <kukadu/robot/customkinestheticteacher.hpp>
