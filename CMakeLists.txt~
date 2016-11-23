@@ -141,7 +141,7 @@ target_link_libraries(planning kukadu ${catkin_LIBRARIES})
 add_executable(cart_traj src/demo/cartesian_trajectories.cpp)
 target_link_libraries(cart_traj kukadu ${catkin_LIBRARIES})
 
-add_executable(cart_traj_ozgur src/demo/cartesian_trajectoriesOzgur.cpp)
+add_executable(cart_traj_ozgur src/demo/cartesian_trajectories_ozgur.cpp)
 target_link_libraries(cart_traj_ozgur kukadu ${catkin_LIBRARIES})
 
 add_dependencies(${PROJECT_NAME} ${catkin_EXPORTED_TARGETS} python3.4m)

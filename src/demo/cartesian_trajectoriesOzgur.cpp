@@ -1,0 +1,317 @@
+#include <kukadu/kukadu.hpp>
+#include <geometry_msgs/Pose.h>
+#include <geometry_msgs/Point.h>
+#include <geometry_msgs/PoseArray.h>
+#include <ros/ros.h>
+#include <sensor_msgs/JointState.h>
+
+using namespace std;
+using namespace kukadu;
+
+#define CYCLE_TIME_IN_SECONDS 0.01
+int arm_msg_status = 0;
+int move_msg_status = 0;
+double rqrdJointPositionLeft[7];
+double rqrdJointPositionRight[7];
+double angleThreshold = 10*3.14/180.0;//threshold for sum of angle errors
+geometry_msgs::PoseArray trajLeft, trajRight;
+
+
+
+void komo_jnt_left(sensor_msgs::JointState jointState) {
+    cout <<"received left joint ptp"<<endl;
+    for (int j=0;j<7;j++) {
+        rqrdJointPositionLeft[j]=jointState.position[j];
+        //measuredJointVelocity[j]=jointState.velocity[j];
+        }
+    arm_msg_status = 2;
+    move_msg_status = 1;
+}
+
+void komo_cart_left(geometry_msgs::PoseArray poses) {
+    cout <<"received left cart trajectory"<<endl;
+    trajLeft = poses;
+    arm_msg_status = 2;
+    move_msg_status = 2;
+}
+
+
+
+int main(int argc, char** args) {
+    cout << argc << endl;
+    cout << args[0] << endl;
+    cout << args[1] << endl;
+    const char *robot_type;
+    const char *arm;
+    char arm_name[30], node_name[30];
+    if (argc<2) {
+        cout<<"usage: rosrun kukadu cart_traj_ozgur [simulation|real] [left|right] "<<endl;
+    }
+    robot_type = args[1];
+    arm = args[2];
+    sprintf(arm_name,"%s_arm",arm);
+
+    cout << "setting up ros node" << endl;
+    sprintf(node_name,"%s_kukadu_planning",arm);
+    ros::init(argc, args, node_name); ros::NodeHandle node; sleep(1);
+    ros::AsyncSpinner spinner(10); spinner.start();
+cout<<"robot type left: "<<robot_type<<" arm name: "<<arm_name<<endl;
+    char newTopic[100];
+    sprintf(newTopic,"/%s/%s/komo_jntptp",robot_type,arm_name);
+cout<<"topic name: "<<newTopic<<endl;
+    ros::Publisher  pubLeft  =  node.advertise<sensor_msgs::JointState>(newTopic, (int) 1/CYCLE_TIME_IN_SECONDS);
+    sprintf(newTopic,"/%s/%s/komo_jntptp_err",robot_type,arm_name);
+    ros::Publisher  pubLeftJntErr =  node.advertise<std_msgs::Float64>(newTopic, (int) 1/CYCLE_TIME_IN_SECONDS);
+    sprintf(newTopic,"/%s/%s/komo_cartptp",robot_type,arm_name);
+    ros::Publisher  pubLeftCart  =  node.advertise<geometry_msgs::PoseArray>(newTopic, (int) 1/CYCLE_TIME_IN_SECONDS);
+    sprintf(newTopic,"/%s/%s/komo_cartptp_err",robot_type,arm_name);
+    ros::Publisher  pubLeftCartErr =  node.advertise<geometry_msgs::Point>(newTopic, (int) 1/CYCLE_TIME_IN_SECONDS);
+    sprintf(newTopic,"/%s/%s/komo_cartpose",robot_type,arm_name);
+    ros::Publisher  pubLeftCartPose  =  node.advertise<geometry_msgs::Pose>(newTopic, (int) 1/CYCLE_TIME_IN_SECONDS);
+    sprintf(newTopic,"/%s/%s/komo_jntptp",robot_type,arm_name);
+    ros::Subscriber subLeft = node.subscribe (newTopic, 1, komo_jnt_left);
+    sprintf(newTopic,"/%s/%s/komo_cartptp",robot_type,arm_name);
+    ros::Subscriber subLeftCart = node.subscribe (newTopic, 1, komo_cart_left);
+
+    /*
+    sprintf(newTopic,"/%s/right_arm/komo_jntptp",robot_type);
+    ros::Publisher  pubRight =  node.advertise<sensor_msgs::JointState>(newTopic, (int) 1/CYCLE_TIME_IN_SECONDS);
+    sprintf(newTopic,"/%s/right_arm/komo_jntptp_err",robot_type);
+    ros::Publisher  pubRightJntErr =  node.advertise<std_msgs::Float64>(newTopic, (int) 1/CYCLE_TIME_IN_SECONDS);
+    sprintf(newTopic,"/%s/right_arm/komo_cartptp",robot_type);
+    ros::Publisher  pubRightCart =  node.advertise<geometry_msgs::PoseArray>(newTopic, (int) 1/CYCLE_TIME_IN_SECONDS);
+    sprintf(newTopic,"/%s/right_arm/komo_cartptp_err",robot_type);
+    ros::Publisher  pubRightCartErr =  node.advertise<geometry_msgs::Point>(newTopic, (int) 1/CYCLE_TIME_IN_SECONDS);
+    sprintf(newTopic,"/%s/right_arm/komo_cartpose",robot_type);
+    ros::Publisher  pubRightCartPose =  node.advertise<geometry_msgs::Pose>(newTopic, (int) 1/CYCLE_TIME_IN_SECONDS);
+    sprintf(newTopic,"/%s/right_arm/komo_jntptp",robot_type);
+    ros::Subscriber subRight = node.subscribe (newTopic, 1, komo_jnt_right);
+    sprintf(newTopic,"/%s/right_arm/komo_cartptp",robot_type);
+    ros::Subscriber subRightCart = node.subscribe (newTopic, 1, komo_cart_right);
+    */
+    std_msgs::Float64 errStatusJntRight;
+    std_msgs::Float64 errStatusJntLeft;
+    geometry_msgs::Point errStatusCartRight;
+    geometry_msgs::Point errStatusCartLeft;
+    /*
+    // from weird pose to initial pose:
+    pathQueue->jointPtp({ 1.40, -1.56, 2.333, -1.743, -1.851, 1.27, 0.711});
+    pathQueue->jointPtp({-0.152447, -0.569943, 2.49458, -0.0452154, -0.283475, 1.00912, 0.493952});
+    pathQueue->jointPtp({-0.152447, -0.569943, 2.49458, -0.0452154, -0.283475, 0.00912, 0.493952});
+    pathQueue->jointPtp({-0.152447, -0.469943, 2.49458, -0.0452154, -0.283475, 0.00912, 0.493952});
+    pathQueue->jointPtp({-0.552447, -0.469943, 2.49458, -0.0452154, -0.283475, 0.00912, 0.493952});
+    pathQueue->jointPtp({-0.5652447, -0.969943, 2.49458, -0.0452154, -0.283475, 0.00912, 0.493952});
+    pathQueue->jointPtp({-0.652447, -0.969943, 2.49458, -0.0452154, -0.283475, 0.00912, 0.493952});
+    pathQueue->jointPtp({-0.652447, 0.969943, 2.49458, -0.0452154, -0.283475, 0.00912, 0.493952});
+    pathQueue->jointPtp({-0.952447, 0.969943, 2.49458, -0.0452154, -0.283475, 0.00912, 0.493952});
+    pathQueue->jointPtp({-1.14, 1.57, 2.49458, -0.0452154, -0.283475, 0.00912, 0.493952});
+    pathQueue->jointPtp({-1.143358826637268, 1.5699433088302612, 2.494802951812744, -1.4451591968536377, -0.28166747093200684, 1.0086722373962402, 0.4939518868923187});
+    */
+    //pathQueue->jointPtp({-1.143358826637268, 1.5699433088302612, 2.494802951812744, -1.4451591968536377, -0.28166747093200684, 1.0086722373962402, 0.4939518868923187});
+    geometry_msgs::Pose pose_msg;
+    double errx, errtheta;
+    cout<<"robot type left: "<<robot_type<<endl;
+    auto pathQueueLeft = make_shared<KukieControlQueue>(robot_type, arm_name, node);
+    auto realLqThreadLeft = pathQueueLeft->startQueueThread();
+    if(pathQueueLeft->getCurrentControlType() != KukieControlQueue::KUKA_JNT_IMP_MODE) {
+	pathQueueLeft->stopCurrentMode();
+	pathQueueLeft->switchMode(KukieControlQueue::KUKA_JNT_IMP_MODE);
+    }
+    KomoPlanner robotKomoPlannerLeft(pathQueueLeft, resolvePath("$KUKADU_HOME/external/komo/share/data/kuka/data/iis_robot.kvg"), resolvePath("$KUKADU_HOME/external/komo/share/data/kuka/config/MT.cfg"), arm);
+    cout<<"robot type : "<<robot_type<<" arm: "<<arm_name<<endl;
+    /*
+    auto pathQueueRight= make_shared<KukieControlQueue>(robot_type, "right_arm", node);
+cout<<"robot type right: "<<robot_type<<endl;
+    auto realLqThreadRight = pathQueueRight->startQueueThread();
+cout<<"robot type right: "<<robot_type<<endl;
+    if(pathQueueRight->getCurrentControlType() != KukieControlQueue::KUKA_JNT_IMP_MODE) {
+        pathQueueRight->stopCurrentMode();
+        pathQueueRight->switchMode(KukieControlQueue::KUKA_JNT_IMP_MODE);
+    }
+cout<<"robot type right: "<<robot_type<<endl;
+    KomoPlanner robotKomoPlannerRight(pathQueueRight, resolvePath("$KUKADU_HOME/external/komo/share/data/kuka/data/iis_robot.kvg"), resolvePath("$KUKADU_HOME/external/komo/share/data/kuka/config/MT.cfg"), "right");
+cout<<"robot type right: "<<robot_type<<endl;
+    */
+    while (1) {
+        int doNothing = 0;
+        while (arm_msg_status==0) {
+            //pose_msg = pathQueueRight->getCurrentCartesianPose();
+            //pubRightCartPose.publish(pose_msg);
+            pose_msg = pathQueueLeft->getCurrentCartesianPose();
+            pubLeftCartPose.publish(pose_msg);
+            doNothing=1;
+        }
+        /*
+        if (arm_msg_status==1) {
+            cout<<"robot type right: "<<robot_type<<endl;
+
+            if (move_msg_status==1) {
+                pathQueueRight->jointPtp({rqrdJointPositionRight[0], rqrdJointPositionRight[1],
+                             rqrdJointPositionRight[2], rqrdJointPositionRight[3],
+                             rqrdJointPositionRight[4], rqrdJointPositionRight[5],
+                             rqrdJointPositionRight[6]});
+                sleep(1);
+                mes_result res_joints = pathQueueRight->getCurrentJoints();
+                double distAngles = 0;
+                for (int i=0;i<7;i++)
+                    distAngles = distAngles + abs(res_joints.joints[i]-rqrdJointPositionRight[i]);
+                errStatusJntRight.data = distAngles;
+                cout<<"angle error: "<<distAngles<<endl;
+                pubRightJntErr.publish(errStatusJntRight);
+            }
+            else {
+                geometry_msgs::Pose rqrdPose;
+                vector<geometry_msgs::Pose> cartTraj;
+                cartTraj = trajRight.poses;
+                int plannerFlag = 0;
+                try {
+                    auto jointPlan = robotKomoPlannerRight.planCartesianTrajectory(cartTraj, true, true);
+                    if (jointPlan.size()>5)
+                        pathQueueRight->setNextTrajectory(jointPlan);
+                    plannerFlag=1;
+                }
+                catch (int e) {
+                    cout << "An error occured with planning."<<endl;
+                }
+                pose_msg = pathQueueRight->getCurrentCartesianPose();
+                rqrdPose = trajRight.poses[trajRight.poses.size()-1];
+
+                cout << endl << "current x: " << pose_msg.position.x;
+                cout << " y: " << pose_msg.position.y;
+                cout << " z: " << pose_msg.position.z;
+                cout << " qw: " << pose_msg.orientation.w;
+                cout << " qx: " << pose_msg.orientation.x;
+                cout << " qy: " << pose_msg.orientation.y;
+                cout << " qz: " << pose_msg.orientation.z << endl;
+                errx = abs(pose_msg.position.x-rqrdPose.position.x)+
+                        abs(pose_msg.position.y-rqrdPose.position.y)+
+                        abs(pose_msg.position.z-rqrdPose.position.z);
+                double r0, r1,r2,r3, q0,q1,q2,q3;
+                r0=pose_msg.orientation.w;r1=pose_msg.orientation.x;
+                r2=pose_msg.orientation.y;r3=pose_msg.orientation.z;
+                q0=rqrdPose.orientation.w;q1=-rqrdPose.orientation.x;
+                q2=-rqrdPose.orientation.y;q3=-rqrdPose.orientation.z;
+                errtheta = abs(2*acos(r0*q0-r1*q1-r2*q2-r3*q3));
+                errStatusCartRight.x = errx;
+                errStatusCartRight.y = min(errtheta,2*3.14-errtheta);
+                pubRightCartErr.publish(errStatusCartRight);
+            }
+         }
+        */
+        
+        if (arm_msg_status==2) {
+            cout<<"robot type: "<<robot_type<<endl;
+
+            if (move_msg_status==1) {
+                pathQueueLeft->jointPtp({rqrdJointPositionLeft[0], rqrdJointPositionLeft[1],
+                                 rqrdJointPositionLeft[2], rqrdJointPositionLeft[3],
+                                 rqrdJointPositionLeft[4], rqrdJointPositionLeft[5],
+                                 rqrdJointPositionLeft[6]});
+                sleep(1);
+                mes_result res_joints = pathQueueLeft->getCurrentJoints();
+                double distAngles = 0;
+                for (int i=0;i<7;i++)
+                    distAngles = distAngles + abs(res_joints.joints[i]-rqrdJointPositionLeft[i]);
+                errStatusJntLeft.data = distAngles;
+                cout<<"angle error: "<<distAngles<<endl;
+                pubLeftJntErr.publish(errStatusJntLeft);
+            }
+            else {
+                geometry_msgs::Pose rqrdPose;
+                vector<geometry_msgs::Pose> cartTraj;
+                cartTraj = trajLeft.poses;
+                int plannerFlag = 0;
+                try {
+                    cout << "hi 1!"<<endl;
+                    auto jointPlan = robotKomoPlannerLeft.planCartesianTrajectory(cartTraj, true, true);
+                    cout << "hi 2!"<<endl;
+                    if (jointPlan.size()>5)
+                        pathQueueLeft->setNextTrajectory(jointPlan);
+                    plannerFlag = 1;
+                }
+                catch (int e) {
+                    cout << "An error occured with planning."<<endl;
+                }
+                pose_msg = pathQueueLeft->getCurrentCartesianPose();
+                rqrdPose = trajLeft.poses[trajLeft.poses.size()-1];
+
+                cout << endl << "current x: " << pose_msg.position.x;
+                cout << " y: " << pose_msg.position.y;
+                cout << " z: " << pose_msg.position.z;
+                cout << " qw: " << pose_msg.orientation.w;
+                cout << " qx: " << pose_msg.orientation.x;
+                cout << " qy: " << pose_msg.orientation.y;
+                cout << " qz: " << pose_msg.orientation.z << endl;
+                errx = abs(pose_msg.position.x-rqrdPose.position.x)+
+                        abs(pose_msg.position.y-rqrdPose.position.y)+
+                        abs(pose_msg.position.z-rqrdPose.position.z);
+                double r0, r1,r2,r3, q0,q1,q2,q3;
+                r0=pose_msg.orientation.w;r1=pose_msg.orientation.x;
+                r2=pose_msg.orientation.y;r3=pose_msg.orientation.z;
+                q0=rqrdPose.orientation.w;q1=-rqrdPose.orientation.x;
+                q2=-rqrdPose.orientation.y;q3=-rqrdPose.orientation.z;
+                errtheta = abs(2*acos(r0*q0-r1*q1-r2*q2-r3*q3));
+                errStatusCartLeft.x = errx;
+                errStatusCartLeft.y = min(errtheta,2*3.14-errtheta);
+                pubLeftCartErr.publish(errStatusCartLeft);
+            }
+        }
+        
+        cout << "sent"<<endl;
+        arm_msg_status=0;
+    }
+    //pathQueueRight->stopCurrentMode();
+    //pathQueueRight->setFinish();
+    //realLqThreadRight->join();
+    pathQueueLeft->stopCurrentMode();
+    pathQueueLeft->setFinish();
+    realLqThreadLeft->join();
+
+
+    pose_msg.position.x = 0.05;
+    pose_msg.position.y = 1.4;
+    pose_msg.position.z = 0.7;
+    pose_msg.orientation.w = 0.;
+    pose_msg.orientation.x = -1.0;
+    pose_msg.orientation.y = 0.0;
+    pose_msg.orientation.z = 0.0;
+    //pathQueue->cartesianPtp(pose_msg);
+
+    // some cartesian position from which the trajectory should be started
+
+
+    geometry_msgs::PoseArray cartTrajectory;
+
+
+    // creating the cartesian trajectory with some intermediate steps the robot should pass through
+    cout << "planning in z direction" << endl;
+    auto stepSize = 0.01;
+    vector<geometry_msgs::Pose> cartesianTrajectory;
+
+    //cartesianTrajectory.push_back(pose_msg);
+    //cartesianTrajectory.push_back(pose_msg);
+
+    // after creating the trajectory, the planner can plan the trajectory and returns a joint trajectory
+    // corresponding to the cartesian path
+
+    // argument 1: cartesian trajectory (with the intermediate poses of the endeffector)
+    // argument 2: whether or not the joint trajectory should be smoothed a bit or not (smoothing not perfect yet)
+    // argument 3: whether or not considering the current pose of the robot --> will first move from the current
+    // state to the first pose in the cartesian trajectory (if you set this to false, you should be sure
+    // about what you are doing)
+    // // auto jointPlan = robotKomoPlanner.planCartesianTrajectory(cartesianTrajectory, true, true);
+    //export KUKADU_HOME='/home/c7031016/iis_robot_sw/iis_catkin_ws/src/kukadu'
+    //you can check the pose of the robot/simulator:
+    //armadillo vector: realLeftQueue->getCurrentJoints().joints
+    //Pose(): realLeftQueue->getCurrentCartesian()
+    //check jointPlan to be larger than 5 elements
+
+    // the complete trajectory can be added to the control queue and will be executed
+    // as soon as the previously loaded movements are done (in this case no previous movement is in the
+    // queue anymore)
+    // // pathQueue->setNextTrajectory(jointPlan);
+
+    cout << "execution done" << endl;
+
+
+}
