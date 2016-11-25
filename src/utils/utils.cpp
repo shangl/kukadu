@@ -377,7 +377,6 @@ namespace kukadu {
         vector<long long int> time;
 
         string line;
-        string token;
         double dn = 0.0;
         long long int t0 = 0;
         long long int currentTime = 0;
@@ -410,14 +409,14 @@ namespace kukadu {
                     // if its the first column - it is the time, otherwise its a measurement
                     if(i > 0)
                         inFile >> dn;
-                        //dn = stod(token);
                     else
                         inFile >> currentTime;
-                        //currentTime = stoll(token);
 
                     // only store the new data, if the time has changed
                     if(i == 0 && prevTime == currentTime) {
                         ignoreLine = true;
+                        // remove the rest of the line from the buffer
+                        getline(inFile, line);
                         break;
                     } else if(i == 0)
                         prevTime = currentTime;

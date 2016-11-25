@@ -11,6 +11,10 @@ using namespace iis_robot_dep;
 
 namespace kukadu {
 
+#ifdef USEBOOST
+    KukieHand::SDH_IGNORE_JOINT = DBL_MAX;
+#endif
+
     PlottingHand::PlottingHand(int sensingPatchCount, std::pair<int, int> patchDimensions) {
         this->sensingPatchCount = sensingPatchCount;
         this->patchDimensions = patchDimensions;

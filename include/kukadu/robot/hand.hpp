@@ -10,6 +10,8 @@
 
 namespace kukadu {
 
+    enum kukadu_grasps {eGID_CENTRICAL, eGID_CYLINDRICAL, eGID_PARALLEL, eGID_SPHERICAL};
+
     /**
      * \class GenericHand
      *
@@ -46,6 +48,10 @@ namespace kukadu {
 
         virtual std::string getHandName() = 0;
 
+        virtual void setWaitForReached(bool waitForReached) = 0;
+
+        virtual void setGrasp(kukadu_grasps grasp) = 0;
+
     };
 
     /**
@@ -77,6 +83,12 @@ namespace kukadu {
         virtual std::vector<arma::mat> getTactileSensing();
 
         virtual std::string getHandName();
+
+        virtual void safelyDestroy() {}
+
+        virtual void setWaitForReached(bool waitForReached) { }
+
+        virtual void setGrasp(kukadu_grasps grasp) { }
 
     };
 

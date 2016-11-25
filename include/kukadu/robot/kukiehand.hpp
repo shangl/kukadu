@@ -1,13 +1,16 @@
 #ifndef KUKADU_KUKIEHAND_H
 #define KUKADU_KUKIEHAND_H
 
+#ifndef USEBOOST
+#include <limits>
+#else
+#include <climits>
+#endif
 #include <kukadu/robot/hand.hpp>
 #include <sensor_msgs/JointState.h>
 #include <iis_robot_dep/TactileSensor.h>
 
 namespace kukadu {
-
-    enum kukadu_grasps {eGID_CENTRICAL, eGID_CYLINDRICAL, eGID_PARALLEL, eGID_SPHERICAL};
 
     /**
      * \class RosSchunk
@@ -78,7 +81,11 @@ namespace kukadu {
 
         virtual std::vector<arma::mat> getTactileSensing();
 
+#ifndef USEBOOST
         static auto constexpr SDH_IGNORE_JOINT = std::numeric_limits<double>::min();
+#else
+        static double const SDH_IGNORE_JOINT;
+#endif
 
     };
 
