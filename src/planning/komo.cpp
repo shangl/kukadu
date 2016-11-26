@@ -35,7 +35,7 @@ namespace kukadu {
     kukadu_mutex Komo::oneAtATimeMutex;
 
     Komo::Komo(KUKADU_SHARED_PTR<ControlQueue> queue, string configPath, string mtConfigPath, string activeJointsPrefix, bool acceptCollision)
-                : Kinematics(generateDefaultJointNames(queue->getMovementDegreesOfFreedom())) {
+                : Kinematics(generateDefaultJointNames(queue->getDegreesOfFreedom())) {
 
         oneAtATimeMutex.lock();
 

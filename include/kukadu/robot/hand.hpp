@@ -19,7 +19,7 @@ namespace kukadu {
      * This class provides very an interface for the very basic functionalities such as "connect to hand" or "close hand"
      * \ingroup Robot
      */
-    class GenericHand : public DestroyableObject {
+    class GenericHand : public DestroyableObject, public TimedObject {
 
     private:
 

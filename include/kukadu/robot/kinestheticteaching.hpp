@@ -46,7 +46,6 @@ namespace kukadu {
         KUKADU_SHARED_PTR<kukadu::ControlQueue> robotinoQueue;
         KUKADU_SHARED_PTR<kukadu::Kinematics> mvKin;
         KUKADU_SHARED_PTR<kukadu_thread> qThread;
-        KUKADU_SHARED_PTR<kukadu_thread>recordingThread;
         KUKADU_SHARED_PTR<kukadu_thread> moveThread;
         KUKADU_SHARED_PTR<kukadu_thread> filterThread;
         KUKADU_SHARED_PTR<kukadu::SensorStorage> store;

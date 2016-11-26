@@ -1333,7 +1333,8 @@ namespace kukadu {
         return actionController->getCaption();
     }
 
-    SensingController::SensingController(KUKADU_SHARED_PTR<kukadu_mersenne_twister> generator, int hapticMode, string caption, std::vector<KUKADU_SHARED_PTR<ControlQueue> > queues, vector<KUKADU_SHARED_PTR<GenericHand> > hands, std::string tmpPath, std::string classifierPath, std::string classifierFile, std::string classifierFunction, int simClassificationPrecision) : Controller(caption, 1) {
+    SensingController::SensingController(StorageSingleton& storage, KUKADU_SHARED_PTR<kukadu_mersenne_twister> generator, int hapticMode, string caption, std::vector<KUKADU_SHARED_PTR<ControlQueue> > queues, vector<KUKADU_SHARED_PTR<GenericHand> > hands, std::string tmpPath, std::string classifierPath, std::string classifierFile, std::string classifierFunction, int simClassificationPrecision)
+        : Controller(caption, 1), dbStorage(storage) {
 
         currentIterationNum = 0;
         classifierParamsSet = false;
@@ -1426,16 +1427,13 @@ namespace kukadu {
             castedQueues.push_back(queue);
         }
 
-        SensorStorage store(castedQueues, hands, 100);
+        SensorStorage store(dbStorage, castedQueues, hands, 100);
 
         prepare();
 
-        KUKADU_SHARED_PTR<kukadu_thread> storageThread = store.startDataStorage(completePath);
-
+        store.startDataStorage(completePath);
         performCore();
-
         store.stopDataStorage();
-        storageThread->join();
 
     }
 

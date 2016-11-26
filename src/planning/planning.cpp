@@ -119,9 +119,9 @@ namespace kukadu {
 
     void SimplePlanner::initialize(double cycleTime, int degOfFreedom) {
 
-        refApi = new ReflexxesAPI(queue->getMovementDegreesOfFreedom(), 1.0 / cycleTime);
-        refInputParams = new RMLPositionInputParameters(queue->getMovementDegreesOfFreedom());
-        refOutputParams = new RMLPositionOutputParameters(queue->getMovementDegreesOfFreedom());
+        refApi = new ReflexxesAPI(queue->getDegreesOfFreedom(), 1.0 / cycleTime);
+        refInputParams = new RMLPositionInputParameters(queue->getDegreesOfFreedom());
+        refOutputParams = new RMLPositionOutputParameters(queue->getDegreesOfFreedom());
 
         for(int i = 0; i < degOfFreedom; ++i) {
             // this seems to be not normal velocity but velocity normalized by time step
@@ -139,7 +139,7 @@ namespace kukadu {
         this->kin = kin;
 
         cycleTime = queue->getCycleTime();
-        degOfFreedom = queue->getMovementDegreesOfFreedom();
+        degOfFreedom = queue->getDegreesOfFreedom();
 
         refApi = NULL;
         refInputParams = NULL;

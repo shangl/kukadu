@@ -27,7 +27,6 @@ int main(int argc, char** args) {
     double tau, az, bz, dmpStepSize, tolAbsErr, tolRelErr, ac;
 
     string storeDir = resolvePath("/tmp/kukadu_demo_guided");
-    string prefix = "simulation";
     string arm = "left";
 
     if(argc == 2)
@@ -45,7 +44,7 @@ int main(int argc, char** args) {
             ("dmp.ac", po::value<double>(), "ac")
     ;
 
-    ifstream parseFile(resolvePath("$KUKADU_HOME/cfg/dmp.prop").c_str(), std::ifstream::in);
+    ifstream parseFile(resolvePath("$KUKADU_HOME/cfg/database.prop").c_str(), std::ifstream::in);
     po::variables_map vm;
     po::store(po::parse_config_file(parseFile, desc), vm);
     po::notify(vm);
@@ -77,8 +76,6 @@ int main(int argc, char** args) {
     vector<KUKADU_SHARED_PTR<ControlQueue> > queueVectors;
     queueVectors.push_back(simLeftQueue);
 
-    deleteDirectory(storeDir);
-
     simLeftQueue->stopCurrentMode();
     KUKADU_SHARED_PTR<kukadu_thread> laThr = simLeftQueue->startQueue();
     simLeftQueue->switchMode(KukieControlQueue::KUKA_JNT_POS_MODE);
@@ -89,18 +86,23 @@ int main(int argc, char** args) {
     getchar();
 
     cout << "starting measurement" << endl;
-    SensorStorage sensorStorage(storage, queueVectors, std::vector<KUKADU_SHARED_PTR<GenericHand> >(), 1000);
-    sensorStorage.setExportMode(SensorStorage::STORE_RBT_CART_POS | SensorStorage::STORE_RBT_JNT_POS);
-    sensorStorage.startDataStorage(storeDir);
+    SensorStorage dataStorage(storage, queueVectors, std::vector<KUKADU_SHARED_PTR<GenericHand> >(), 1000);
+    dataStorage.setExportMode(SensorStorage::STORE_RBT_CART_POS | SensorStorage::STORE_RBT_JNT_POS);
+
+    // if no parameter is provided, the data is stored to the database
+    dataStorage.startDataStorage();
+
     cout << "measuerment started" << endl;
 
     ros::Rate r(2); r.sleep();
     simLeftQueue->jointPtp({-1.5, 1.56, 2.33, -1.74, -1.85, 1.27, 0.71});
 
-    sensorStorage.stopDataStorage();
+    dataStorage.stopDataStorage();
 
     cout << "press enter to execute in simulation" << endl;
     getchar();
+
+    /*
 
     KUKADU_SHARED_PTR<Dmp> sampleDmp;
     KUKADU_SHARED_PTR<SensorData> sampleData;
@@ -113,6 +115,8 @@ int main(int argc, char** args) {
     sampleDmp = sampleDmpLearner->fitTrajectories();
     DMPExecutor sampleExec(sampleDmp, simLeftQueue);
     sampleExec.executeTrajectory(ac, 0, sampleDmp->getTmax(), tolAbsErr, tolRelErr);
+
+    */
 
     simLeftQueue->stopCurrentMode();
     simLeftQueue->stopQueue();

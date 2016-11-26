@@ -8,6 +8,7 @@
 #include <kukadu/types/kukadutypes.hpp>
 #include <kukadu/control/controller.hpp>
 #include <kukadu/types/controllerresult.hpp>
+#include <kukadu/storage/storagesingleton.hpp>
 #include <kukadu/learning/projective_simulation/core.hpp>
 
 namespace kukadu {
@@ -91,6 +92,7 @@ namespace kukadu {
         std::string classifierFile;
         std::string classifierFunction;
 
+        StorageSingleton& dbStorage;
         KUKADU_SHARED_PTR<kukadu_mersenne_twister> generator;
 
         std::vector<KUKADU_SHARED_PTR<GenericHand> > hands;
@@ -118,7 +120,7 @@ namespace kukadu {
 
     public:
 
-        SensingController(KUKADU_SHARED_PTR<kukadu_mersenne_twister> generator, int hapticMode, std::string caption, std::vector<KUKADU_SHARED_PTR<ControlQueue> > queues, std::vector<KUKADU_SHARED_PTR<GenericHand> > hands,
+        SensingController(StorageSingleton& storage, KUKADU_SHARED_PTR<kukadu_mersenne_twister> generator, int hapticMode, std::string caption, std::vector<KUKADU_SHARED_PTR<ControlQueue> > queues, std::vector<KUKADU_SHARED_PTR<GenericHand> > hands,
                           std::string tmpPath, std::string classifierPath, std::string classifierFile, std::string classifierFunction,
                           int simClassificationPrecision);
 

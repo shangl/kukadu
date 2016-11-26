@@ -49,7 +49,7 @@ namespace kukadu {
 
         store->setExportMode(SensorStorage::STORE_RBT_CART_POS | SensorStorage::STORE_RBT_JNT_POS);
         deleteDirectory(recordingPath);
-        recordingThread= store->startDataStorage(recordingPath);
+        store->startDataStorage(recordingPath);
 
     }
 

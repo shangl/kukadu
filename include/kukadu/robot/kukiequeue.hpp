@@ -150,7 +150,7 @@ namespace kukadu {
 
     public:
 
-        KukieControlQueue(std::string deviceType, std::string armPrefix, ros::NodeHandle node,
+        KukieControlQueue(StorageSingleton& storage, std::string robotName, std::string deviceType, std::string armPrefix, ros::NodeHandle node,
                           bool acceptCollisions = false,
                           KUKADU_SHARED_PTR<Kinematics> kin = KUKADU_SHARED_PTR<Kinematics>(), KUKADU_SHARED_PTR<PathPlanner> planner = KUKADU_SHARED_PTR<PathPlanner>(),
                           double sleepTime = -1.0, double maxDistPerCycle = -1.0);
@@ -167,7 +167,6 @@ namespace kukadu {
 
         int getCurrentMode();
 
-        std::string getRobotName();
         std::string getRobotFileName();
         std::string getRobotSidePrefix();
         std::string getRobotDeviceType();

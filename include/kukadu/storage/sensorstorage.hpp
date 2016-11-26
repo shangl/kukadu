@@ -14,6 +14,7 @@
 #include <kukadu/robot/hand.hpp>
 #include <kukadu/types/kukadutypes.hpp>
 #include <kukadu/vision/visioninterface.hpp>
+#include <kukadu/storage/storagesingleton.hpp>
 
 namespace kukadu {
 
@@ -35,12 +36,13 @@ namespace kukadu {
         bool storeJntFrc;
         bool storeCartPos;
         bool storeHndTctle;
-        bool storageStopped;
         bool storeHndJntPos;
         bool storeCartFrcTrq;
         bool storeCartAbsFrc;
 
         double pollingFrequency;
+
+        StorageSingleton& dbStorage;
 
         KUKADU_SHARED_PTR<kukadu_thread> thr;
 
@@ -57,20 +59,29 @@ namespace kukadu {
         void writeMatrixMetaInfo(KUKADU_SHARED_PTR<std::ofstream> stream, int matrixNum, int xDim, int yDim);
         void initSensorStorage(std::vector<KUKADU_SHARED_PTR<ControlQueue> > queues, std::vector<KUKADU_SHARED_PTR<GenericHand> > hands, double pollingFrequency);
 
+        /*
+         * \brief: Stores gathered data. If the SensorData data is null, the data is collected live. Otherwise the passed data is written. The write destination
+         * is a file if the string file is not empty. Otherwise, data is stored to the database
+         */
+        void storeData(bool storeHeader, KUKADU_SHARED_PTR<SensorData> data, std::string file = "");
+        void storeData(bool storeHeader, std::vector<KUKADU_SHARED_PTR<SensorData> > data, std::vector<std::string> files);
+        void storeData(bool storeHeader, std::vector<KUKADU_SHARED_PTR<SensorData> > data, std::vector<KUKADU_SHARED_PTR<std::ofstream> > queueStreams);
+
+        void storeJointInfoToDatabase(const int& robotId, const long long int& timeStamp, std::vector<int>& jointIds, arma::vec& jointVelocities, arma::vec& jointAccelerations, arma::vec& jointPositions, arma::vec& jointForces);
+
     public:
 
-        SensorStorage(std::vector<KUKADU_SHARED_PTR<ControlQueue> > queues, std::vector<KUKADU_SHARED_PTR<GenericHand> > hands, double pollingFrequency);
+        SensorStorage(StorageSingleton& storage, std::vector<KUKADU_SHARED_PTR<ControlQueue> > queues, std::vector<KUKADU_SHARED_PTR<GenericHand> > hands, double pollingFrequency);
 
         void stopDataStorage();
         void setExportMode(int mode);
-        void storeData(bool storeHeader, std::string file, KUKADU_SHARED_PTR<SensorData> data);
-        void storeData(bool storeHeader, std::vector<std::string> files, std::vector<KUKADU_SHARED_PTR<SensorData> > data);
-        void storeData(bool storeHeader, std::vector<KUKADU_SHARED_PTR<std::ofstream> > queueStreams, std::vector<KUKADU_SHARED_PTR<SensorData> > data);
 
-        KUKADU_SHARED_PTR<kukadu_thread> startDataStorage(std::string folderName);
+        /*
+         * \brief: Starts the storage of data. If a parameter is passed, the data is stored to a file. Otherwise it is stored to the database
+         */
+        long long int startDataStorage(std::string folderName = "");
         static KUKADU_SHARED_PTR<SensorData> readStorage(KUKADU_SHARED_PTR<ControlQueue> queue, std::string file);
 
-        //static const int STORE_TIME = 512;
         static const int STORE_RBT_JNT_POS = 1;
         static const int STORE_RBT_CART_POS = 2;
         static const int STORE_RBT_JNT_FTRQ = 4;

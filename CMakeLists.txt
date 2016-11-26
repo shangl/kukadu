@@ -155,6 +155,9 @@ target_link_libraries(gaussian kukadu ${catkin_LIBRARIES})
 add_executable(dmp tutorials/dmp.cpp)
 target_link_libraries(dmp kukadu ${catkin_LIBRARIES})
 
+add_executable(database tutorials/database.cpp)
+target_link_libraries(database kukadu ${catkin_LIBRARIES})
+
 add_dependencies(${PROJECT_NAME} ${catkin_EXPORTED_TARGETS} python3.4m)
 add_dependencies(reflexxeslib ${catkin_EXPORTED_TARGETS})
 add_dependencies(kukadu_demo_guided ${catkin_EXPORTED_TARGETS})
@@ -163,11 +166,13 @@ add_dependencies(moveit_planning ${catkin_EXPORTED_TARGETS})
 add_dependencies(simple_planning ${catkin_EXPORTED_TARGETS})
 add_dependencies(dmp ${catkin_EXPORTED_TARGETS})
 add_dependencies(gaussian ${catkin_EXPORTED_TARGETS})
+add_dependencies(database ${catkin_EXPORTED_TARGETS})
 
 if(CATKIN_ENABLE_TESTING)
 	catkin_add_gtest(kukadutest test/kukadutest.cpp)
 endif()
 
+install(TARGETS database RUNTIME DESTINATION ${CATKIN_PACKAGE_BIN_DESTINATION})
 install(TARGETS gaussian RUNTIME DESTINATION ${CATKIN_PACKAGE_BIN_DESTINATION})
 install(TARGETS kukadu_demo_guided RUNTIME DESTINATION ${CATKIN_PACKAGE_BIN_DESTINATION})
 install(TARGETS control_queue RUNTIME DESTINATION ${CATKIN_PACKAGE_BIN_DESTINATION})

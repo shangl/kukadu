@@ -16,6 +16,7 @@
 #include <kukadu/robot/filters.hpp>
 #include <kukadu/types/kukadutypes.hpp>
 #include <kukadu/utils/destroyableobject.hpp>
+#include <kukadu/storage/storagesingleton.hpp>
 
 namespace kukadu {
 
@@ -39,7 +40,7 @@ namespace kukadu {
      * planning or security mechanisms such as maximum force values for execution.
      * \ingroup Robot
      */
-    class ControlQueue : public DestroyableObject, public KUKADU_ENABLE_SHARED_FROM_THIS<ControlQueue> {
+    class ControlQueue : public DestroyableObject, public KUKADU_ENABLE_SHARED_FROM_THIS<ControlQueue>, public TimedObject {
 
     private:
 
@@ -62,6 +63,8 @@ namespace kukadu {
         double desiredCycleTime;
 
         long long int currentTime;
+
+        std::string robotName;
 
         arma::vec currentJoints;
         arma::vec startingJoints;
@@ -86,6 +89,8 @@ namespace kukadu {
         KUKADU_SHARED_PTR<kukadu_thread> cartPtpThr;
         KUKADU_SHARED_PTR<kukadu_thread> jointPtpThr;
         KUKADU_SHARED_PTR<kukadu_thread> jointsColletorThr;
+
+        StorageSingleton& dbStorage;
 
         void setInitValuesInternal();
         void internalCartPtpCaller();
@@ -167,19 +172,21 @@ namespace kukadu {
          */
         virtual bool stopQueueWhilePtp() = 0;
 
+        int loadDegOfFreedom(StorageSingleton& storage, std::string robotName);
+
     public:
 
         /**
          * \brief Constructor taking the robot dependent degrees of freedom
          * \param degOfFreedom number of robots degrees of freedom
          */
-        ControlQueue(int degOfFreedom, double desiredCycleTime);
+        ControlQueue(StorageSingleton& storage, std::string robotName, double desiredCycleTime);
 
         /**
          * \brief Returns number of the robots degrees of freedom
          * @return number of degrees of freedom
          */
-        int getMovementDegreesOfFreedom();
+        int getDegreesOfFreedom();
 
         /**
          * \brief Sets the queue cycle time
@@ -365,7 +372,7 @@ namespace kukadu {
          * \brief Returns the robot name
          * \return robot name
          */
-        virtual std::string getRobotName() = 0;
+        virtual std::string getRobotName();
 
         /**
          * \brief Returns the robot name with escaped special characaters (e.g. white spaces)
@@ -418,13 +425,6 @@ namespace kukadu {
         virtual void startRollBackMode(double possibleTimeReach);
 
         /**
-         * \brief An intrinsic clock is started with startQueue(). This method returns
-         * the current time according to this clock.
-         * \return current time
-         */
-        virtual long long int getCurrentTime();
-
-        /**
          * \brief Indicates whether or not the queue is printing debug information to the terminal
          * (see shutUp()).
          * \return false if the queue is printing debug information to the terminal, true otherwise
@@ -436,6 +436,13 @@ namespace kukadu {
          * \return Current robot control mode
          */
         virtual int getCurrentMode() = 0;
+
+        virtual int getRobotId();
+
+        int getJointId(std::string jointName);
+
+        std::vector<int> getJointIds();
+        std::vector<int> getJointIds(std::vector<std::string> jointNames);
 
         static const int CONTROLQUEUE_STOP_MODE = 0;
         static const int CONTROLQUEUE_JNT_POS_MODE = 10;
@@ -483,8 +490,7 @@ namespace kukadu {
 
     public:
 
-        PlottingControlQueue(int degOfFreedom, double timeStep);
-        PlottingControlQueue(std::vector<std::string> jointNames, double timeStep);
+        PlottingControlQueue(StorageSingleton& storage, std::string robotName, double timeStep);
 
         void safelyDestroy();
         void setInitValues();
@@ -501,10 +507,6 @@ namespace kukadu {
         void setStiffness(float cpstiffnessxyz, float cpstiffnessabc, float cpdamping, float cpmaxdelta, float maxforce, float axismaxdeltatrq);
 
         virtual int getCurrentMode();
-
-        long long int getCurrentTime();
-
-        std::string getRobotName();
         std::string getRobotFileName();
 
         arma::vec getStartingJoints();

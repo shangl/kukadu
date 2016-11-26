@@ -63,6 +63,8 @@
         typedef std::uniform_real_distribution<double> kukadu_uniform_real_distribution;
     #endif
 
+namespace kukadu {
+
     class KukaduException : public std::exception {
 
     private:
@@ -77,5 +79,20 @@
             return message;
         }
     };
+
+    class TimedObject {
+
+    public:
+
+        /**
+         * \brief An intrinsic clock is started with startQueue(). This method returns
+         * the current time according to this clock.
+         * \return current time
+         */
+        virtual long long int getCurrentTime();
+
+    };
+
+}
 
 #endif

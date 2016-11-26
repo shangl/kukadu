@@ -10,8 +10,10 @@ int main(int argc, char** args) {
     ros::init(argc, args, "kukadu_planning"); ros::NodeHandle node; sleep(1);
     ros::AsyncSpinner spinner(10); spinner.start();
 
+    StorageSingleton& storage = StorageSingleton::get();
+
     cout << "setting up control queue" << endl;
-    auto realLeftQueue = make_shared<KukieControlQueue>("simulation", "left_arm", node);
+    auto realLeftQueue = make_shared<KukieControlQueue>(storage, "robinn", "simulation", "left_arm", node);
     auto moveit = make_shared<MoveIt>(realLeftQueue, node, "left_arm",
             vector<string>({"left_arm_0_joint", "left_arm_1_joint", "left_arm_2_joint", "left_arm_3_joint", "left_arm_4_joint", "left_arm_5_joint", "left_arm_6_joint"}),
             "left_arm_7_link");

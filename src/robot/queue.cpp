@@ -1,4 +1,5 @@
 #include <chrono>
+#include <sstream>
 #include <ros/ros.h>
 #include <std_msgs/Int32.h>
 #include <kukadu/utils/utils.hpp>
@@ -15,6 +16,59 @@ using namespace chrono;
 
 namespace kukadu {
 
+    int ControlQueue::getRobotId() {
+
+        int robotId = 0;
+        auto idQuery = "SELECT robot_id FROM robot WHERE robot_name=\"" + getRobotName() + "\"";
+        auto idResult = dbStorage.executeQuery(idQuery);
+        if(idResult->next())
+            robotId = idResult->getInt("robot_id");
+        else
+            throw KukaduException("(ControlQueue) cannot find robot id in database");
+        return robotId;
+
+    }
+
+    int ControlQueue::loadDegOfFreedom(StorageSingleton& storage, std::string robotName) {
+
+        int degOfFreedom = 0;
+        auto idQuery = "SELECT deg_of_freedom FROM robot WHERE robot_name=\"" + robotName + "\"";
+        auto idResult = storage.executeQuery(idQuery);
+        if(idResult->next())
+            degOfFreedom = idResult->getInt("deg_of_freedom");
+        else
+            throw KukaduException("(ControlQueue) cannot find robot degrees of freedom in database");
+        return degOfFreedom;
+
+    }
+
+    std::string ControlQueue::getRobotName() {
+        return robotName;
+    }
+
+    int ControlQueue::getJointId(std::string jointName) {
+
+        stringstream s;
+        s << "select joint_id from robot_joints where robot_id=" << getRobotId() << " and joint_name=\"" << jointName << "\"";
+        auto idRes = dbStorage.executeQuery(s.str());
+        if(idRes->next())
+            return idRes->getInt("joint_id");
+        else
+            throw KukaduException("(ControlQueue) searched joint is not part of the robot");
+
+    }
+
+    std::vector<int> ControlQueue::getJointIds() {
+        return getJointIds(getJointNames());
+    }
+
+    std::vector<int> ControlQueue::getJointIds(std::vector<std::string> jointNames) {
+        vector<int> jointIds;
+        for(int i = 0; i < jointNames.size(); ++i)
+            jointIds.push_back(getJointId(jointNames.at(i)));
+        return jointIds;
+    }
+
     KUKADU_SHARED_PTR<kukadu_thread> ControlQueue::startQueue() {
 
         setInitValues();
@@ -28,17 +82,18 @@ namespace kukadu {
 
     }
 
-    ControlQueue::ControlQueue(int degOfFreedom, double desiredCycleTime) {
+    ControlQueue::ControlQueue(StorageSingleton& storage, std::string robotName, double desiredCycleTime) : dbStorage(storage) {
+
+        this->robotName = robotName;
+        this->desiredCycleTime = desiredCycleTime;
+        this->sleepTime = desiredCycleTime;
 
         jointPtpRunning = false;
         cartesianPtpRunning = false;
         frcTrqFilterRunning=true;
-        currentTime = duration_cast<milliseconds>(system_clock::now().time_since_epoch()).count();
-        this->degOfFreedom = degOfFreedom;
-        this->desiredCycleTime = desiredCycleTime;
-        this->sleepTime = desiredCycleTime;
+        currentTime = getCurrentTime();
+        degOfFreedom = loadDegOfFreedom(storage, robotName);
         continueCollecting = false;
-
         currentFrcTrqSensorFilter = make_shared<StandardFilter>();
 
     }
@@ -55,7 +110,7 @@ namespace kukadu {
         this->degOfFreedom = degOfFreedom;
     }
 
-    int ControlQueue::getMovementDegreesOfFreedom() {
+    int ControlQueue::getDegreesOfFreedom() {
         return degOfFreedom;
     }
 
@@ -131,7 +186,7 @@ namespace kukadu {
         isInit = false;
         finish = 0;
 
-        currentTime = duration_cast<milliseconds>(system_clock::now().time_since_epoch()).count();
+        currentTime = getCurrentTime();
 
         rollbackMode = false;
         rollBackQueueSize = 0;
@@ -143,11 +198,6 @@ namespace kukadu {
 
         setInitValues();
 
-    }
-
-    long long int ControlQueue::getCurrentTime() {
-        currentTime = duration_cast<milliseconds>(system_clock::now().time_since_epoch()).count();
-        return currentTime;
     }
 
     void ControlQueue::stopQueue() {
@@ -406,7 +456,7 @@ namespace kukadu {
         int stretchFactor = ceil((double) rollBackCount / (double) rollBackQueue.size());
         stretchFactor = max((double) stretchFactor, 1.0);
 
-        vec lastCommand(getMovementDegreesOfFreedom());
+        vec lastCommand(getDegreesOfFreedom());
         if(rollBackQueue.size())
             lastCommand = rollBackQueue.front();
 
@@ -546,7 +596,7 @@ namespace kukadu {
         currentCartFrqTrq = vec(6);
         currentCartFrqTrq.fill(0.0);
 
-        currentJntFrqTrq = vec(getMovementDegreesOfFreedom());
+        currentJntFrqTrq = vec(getDegreesOfFreedom());
         currentJntFrqTrq.fill(0.0);
 
         usleep(1e6);
@@ -586,7 +636,7 @@ namespace kukadu {
             std::this_thread::sleep_for(std::chrono::milliseconds(100));
     }
 
-    KukieControlQueue::KukieControlQueue(std::string deviceType, std::string armPrefix, ros::NodeHandle node, bool acceptCollisions, KUKADU_SHARED_PTR<Kinematics> kin, KUKADU_SHARED_PTR<PathPlanner> planner, double sleepTime, double maxDistPerCycle) : ControlQueue(7, sleepTime) {
+    KukieControlQueue::KukieControlQueue(StorageSingleton& storage, std::string robotName, std::string deviceType, std::string armPrefix, ros::NodeHandle node, bool acceptCollisions, KUKADU_SHARED_PTR<Kinematics> kin, KUKADU_SHARED_PTR<PathPlanner> planner, double sleepTime, double maxDistPerCycle) : ControlQueue(storage, robotName, sleepTime) {
 
         commandTopic = "/" + deviceType + "/" + armPrefix + "/joint_control/move";
         retJointPosTopic = "/" + deviceType + "/" + armPrefix + "/joint_control/get_state";
@@ -643,7 +693,7 @@ namespace kukadu {
     void KukieControlQueue::submitNextJointMove(arma::vec joints) {
 
         std_msgs::Float64MultiArray nextCommand;
-        for(int i = 0; i < getMovementDegreesOfFreedom(); ++i)
+        for(int i = 0; i < getDegreesOfFreedom(); ++i)
             nextCommand.data.push_back(joints[i]);
         pubCommand.publish(nextCommand);
 
@@ -706,10 +756,6 @@ namespace kukadu {
         return string("kuka_lwr_") + deviceType + string("_") + armPrefix;
     }
 
-    std::string KukieControlQueue::getRobotName() {
-        return string("KUKA LWR (") + deviceType + string(" ") + armPrefix + string(")");
-    }
-
     std::vector<std::string> KukieControlQueue::getJointNames() {
 
         return kin->getJointNames();
@@ -743,7 +789,7 @@ namespace kukadu {
         if(isRealRobot)
             currentJntFrqTrq = stdToArmadilloVec(msg.data);
         else {
-            currentJntFrqTrq = vec(getMovementDegreesOfFreedom());
+            currentJntFrqTrq = vec(getDegreesOfFreedom());
             currentJntFrqTrq.fill(0.0);
         }
 
@@ -965,7 +1011,7 @@ namespace kukadu {
 
     double KukieControlQueue::computeDistance(float* a1, float* a2, int size) {
         double ret = 0.0;
-        for(int i = 0 ; i < size; ++i) {
+        for(int i = 0; i < size; ++i) {
             ret = pow(a1[i] - a2[i], 2);
         }
 
@@ -1035,21 +1081,15 @@ namespace kukadu {
     void KukieControlQueue::safelyDestroy() {
     }
 
-    PlottingControlQueue::PlottingControlQueue(int degOfFreedom, double timeStep) : ControlQueue(degOfFreedom, timeStep) {
+    PlottingControlQueue::PlottingControlQueue(StorageSingleton& storage, std::string robotName, double timeStep) : ControlQueue(storage, robotName, timeStep) {
 
         vector<string> jntNames;
-        for(int i = 0; i < degOfFreedom; ++i) {
+        for(int i = 0; i < getDegreesOfFreedom(); ++i) {
             stringstream s;
             s << i;
             jntNames.push_back(string("joint_") + s.str());
         }
         construct(jntNames, timeStep);
-
-    }
-
-    PlottingControlQueue::PlottingControlQueue(std::vector<std::string> jointNames, double timeStep) : ControlQueue(jointNames.size(), timeStep) {
-
-        construct(jointNames, timeStep);
 
     }
 
@@ -1076,10 +1116,6 @@ namespace kukadu {
         return string("simulation_plotting_control_queue");
     }
 
-    std::string PlottingControlQueue::getRobotName() {
-        return string("Simulation (PlottingControlQueue)");
-    }
-
     std::vector<std::string> PlottingControlQueue::getJointNames() {
         return jointNames;
     }
@@ -1100,10 +1136,6 @@ namespace kukadu {
 
     }
 
-    long long int PlottingControlQueue::getCurrentTime() {
-        return currTime;
-    }
-
     mes_result PlottingControlQueue::getCurrentCartesianFrcTrq() {
 
         mes_result ret;
@@ -1120,7 +1152,7 @@ namespace kukadu {
     mes_result PlottingControlQueue::getCurrentJntFrc() {
 
         mes_result ret;
-        vec frcTrq(getMovementDegreesOfFreedom());
+        vec frcTrq(getDegreesOfFreedom());
         frcTrq.fill(0.0);
 
         ret.joints = frcTrq;

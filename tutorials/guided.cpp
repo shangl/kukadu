@@ -71,8 +71,10 @@ int main(int argc, char** args) {
     ros::AsyncSpinner spinner(10);
     spinner.start();
 
-    auto leftQueue = KUKADU_SHARED_PTR<ControlQueue>(new KukieControlQueue("real", arm + string("_arm"), *node));
-    auto simLeftQueue = KUKADU_SHARED_PTR<ControlQueue>(new KukieControlQueue("simulation", arm + string("_arm"), *node));
+    StorageSingleton& storage = StorageSingleton::get();
+
+    auto leftQueue = make_shared<KukieControlQueue>(storage, "robinn", "real", arm + string("_arm"), *node);
+    auto simLeftQueue = make_shared<KukieControlQueue>(storage, "robinn", "simulation", arm + string("_arm"), *node);
     vector<KUKADU_SHARED_PTR<ControlQueue> > queueVectors;
     queueVectors.push_back(leftQueue);
 
@@ -91,7 +93,7 @@ int main(int argc, char** args) {
     }
 
     cout << "starting measurement" << endl;
-    SensorStorage scaredOfSenka(queueVectors, std::vector<KUKADU_SHARED_PTR<GenericHand> >(), 1000);
+    SensorStorage scaredOfSenka(storage, queueVectors, std::vector<KUKADU_SHARED_PTR<GenericHand> >(), 1000);
     scaredOfSenka.setExportMode(SensorStorage::STORE_RBT_CART_POS | SensorStorage::STORE_RBT_JNT_POS);
     scaredOfSenka.startDataStorage(storeDir);
     cout << "measuerment started" << endl;

@@ -1,5 +1,6 @@
-#include <kukadu/storage/sensorstorage.hpp>
+#include <sstream>
 #include <kukadu/types/sensordata.hpp>
+#include <kukadu/storage/sensorstorage.hpp>
 
 using namespace std;
 using namespace arma;
@@ -13,14 +14,13 @@ namespace kukadu {
         this->pollingFrequency = pollingFrequency;
 
         stopped = false;
-        storageStopped = true;
-
         storeCartAbsFrc = false;
         storeTime = storeJntPos = storeCartPos = storeJntFrc = storeCartFrcTrq = storeHndJntPos = storeHndTctle = true;
 
     }
 
-    SensorStorage::SensorStorage(std::vector<KUKADU_SHARED_PTR<ControlQueue> > queues, std::vector<KUKADU_SHARED_PTR<GenericHand> > hands, double pollingFrequency) {
+    SensorStorage::SensorStorage(StorageSingleton& storage, std::vector<KUKADU_SHARED_PTR<ControlQueue> > queues, std::vector<KUKADU_SHARED_PTR<GenericHand> > hands, double pollingFrequency)
+        : dbStorage(storage) {
 
         initSensorStorage(queues, hands, pollingFrequency);
 
@@ -57,48 +57,58 @@ namespace kukadu {
 
     }
 
-    KUKADU_SHARED_PTR<kukadu_thread> SensorStorage::startDataStorage(std::string folderName) {
+    long long int SensorStorage::startDataStorage(std::string folderName) {
 
-        if(createDirectory(folderName)) {
+        long long int startTime = 0;
+        if(queues.size())
+            startTime = queues.front()->getCurrentTime();
+        else if(hands.size())
+            startTime = hands.front()->getCurrentTime();
 
-            queueStreams.clear();
-            for(int i = 0; i < queues.size(); ++i) {
-                stringstream s;
-                s << i;
-                KUKADU_SHARED_PTR<std::ofstream> queueFile = KUKADU_SHARED_PTR<std::ofstream>(new ofstream());
-                queueFile->open((folderName + string("/") + queues.at(i)->getRobotFileName() + string("_") + s.str()).c_str());
-                queueStreams.push_back(queueFile);
+        if(queues.size() || hands.size()) {
+
+            bool createFolderWorked = false;
+            if(folderName != "") {
+
+                if(createFolderWorked = createDirectory(folderName)) {
+
+                    queueStreams.clear();
+                    for(int i = 0; i < queues.size(); ++i) {
+                        stringstream s;
+                        s << i;
+                        KUKADU_SHARED_PTR<std::ofstream> queueFile = KUKADU_SHARED_PTR<std::ofstream>(new ofstream());
+                        queueFile->open((folderName + string("/") + queues.at(i)->getRobotFileName() + string("_") + s.str()).c_str());
+                        queueStreams.push_back(queueFile);
+                    }
+
+                    handStreams.clear();
+                    for(int i = 0; i < hands.size(); ++i) {
+                        stringstream s;
+                        s << i;
+                        KUKADU_SHARED_PTR<std::ofstream> queueFile = KUKADU_SHARED_PTR<std::ofstream>(new ofstream());
+                        queueFile->open((folderName + string("/") + hands.at(i)->getHandName() + string("_") + s.str()).c_str());
+                        handStreams.push_back(queueFile);
+                    }
+
+                }
+
             }
 
-            handStreams.clear();
-            for(int i = 0; i < hands.size(); ++i) {
-                stringstream s;
-                s << i;
-                KUKADU_SHARED_PTR<std::ofstream> queueFile = KUKADU_SHARED_PTR<std::ofstream>(new ofstream());
-                queueFile->open((folderName + string("/") + hands.at(i)->getHandName() + string("_") + s.str()).c_str());
-                handStreams.push_back(queueFile);
-            }
+            if(folderName == "" || createFolderWorked)
+                thr = KUKADU_SHARED_PTR<kukadu_thread>(new kukadu_thread(&SensorStorage::store, this));
 
-            thr = KUKADU_SHARED_PTR<kukadu_thread>();
-            thr = KUKADU_SHARED_PTR<kukadu_thread>(new kukadu_thread(&SensorStorage::store, this));
-            storageStopped = false;
-            return thr;
+        } else
+            throw KukaduException("(SensorStorage) no queues and hands to store");
 
-        } else {
-
-            return KUKADU_SHARED_PTR<kukadu_thread>();
-
-        }
+        return startTime;
 
     }
 
     void SensorStorage::stopDataStorage() {
 
         stopped = true;
-
-        ros::Rate r(40);
-        while(!storageStopped)
-            r.sleep();
+        if(thr)
+            thr->join();
 
         for(int i = 0; i < queueStreams.size(); ++i)
             queueStreams.at(i)->close();
@@ -137,37 +147,37 @@ namespace kukadu {
     }
 
     void SensorStorage::store() {
-
-        storeData(true, queueStreams, std::vector<KUKADU_SHARED_PTR<SensorData> >());
-
+        storeData(true, std::vector<KUKADU_SHARED_PTR<SensorData> >(), queueStreams);
     }
 
-    void SensorStorage::storeData(bool storeHeader, std::string file, KUKADU_SHARED_PTR<SensorData> data) {
-
-        vector<KUKADU_SHARED_PTR<SensorData> > dataVec;
-        vector<string> filesVec;
-
-        dataVec.push_back(data);
-        filesVec.push_back(file);
-
-        storeData(storeHeader, filesVec, dataVec);
-
+    void SensorStorage::storeData(bool storeHeader, KUKADU_SHARED_PTR<SensorData> data, std::string file) {
+        storeData(storeHeader, std::vector<KUKADU_SHARED_PTR<SensorData> >{data}, {file});
     }
 
-    void SensorStorage::storeData(bool storeHeader, std::vector<std::string> files, std::vector<KUKADU_SHARED_PTR<SensorData> > data) {
+    void SensorStorage::storeData(bool storeHeader, std::vector<KUKADU_SHARED_PTR<SensorData> > data, std::vector<std::string> files) {
 
         std::vector<KUKADU_SHARED_PTR<ofstream> > queueStreams;
+
+        // if the data shall not be stored in a file, but in the database --> pass an empty stream vector
+        if(files.front() == "")
+            files.clear();
+
         for(int i = 0; i < files.size(); ++i) {
             string file = files.at(i);
             KUKADU_SHARED_PTR<ofstream> currentStream = KUKADU_SHARED_PTR<ofstream>(new ofstream());
             currentStream->open(file.c_str());
             queueStreams.push_back(currentStream);
         }
-        storeData(storeHeader, queueStreams, data);
+        storeData(storeHeader, data, queueStreams);
 
     }
 
-    void SensorStorage::storeData(bool storeHeader, std::vector<KUKADU_SHARED_PTR<std::ofstream> > queueStreams, std::vector<KUKADU_SHARED_PTR<SensorData> > data) {
+    void SensorStorage::storeData(bool storeHeader, std::vector<KUKADU_SHARED_PTR<SensorData> > data, std::vector<KUKADU_SHARED_PTR<std::ofstream> > queueStreams) {
+
+        bool storeToFile = (queueStreams.size()) ? true : false;
+
+        if(storeToFile && data.size() != queueStreams.size())
+            throw KukaduException("(SensorStorage) number of files does not match the number of data blocks to store");
 
         stopped = false;
         double waitTime = 1.0 / pollingFrequency;
@@ -179,12 +189,30 @@ namespace kukadu {
         long long int time = 0;
         long long int currentTime = 0;
 
+        vector<int> robotIdVec;
+        vector<vector<int> > jointIdsVec;
+        vector<vector<string> > jointNamesVec;
+        for(int i = 0; i < iterationSize; ++i) {
+            jointIdsVec.push_back(queues.at(i)->getJointIds(queues.at(i)->getJointNames()));
+            jointNamesVec.push_back(queues.at(i)->getJointNames());
+            robotIdVec.push_back(queues.at(i)->getRobotId());
+        }
+
+        vector<bool> firstTimes(iterationSize);
+        for(int i = 0; i < firstTimes.size(); ++i)
+            firstTimes.at(i) = true;
+
+        vector<mes_result> prevJoints(iterationSize);
+        vector<mes_result> prevPrevJoints(iterationSize);
+
         for(int dataPointIdx = 0; !stopped && (!data.size() || dataPointIdx < data.at(0)->getNormalizedTimeInSeconds().n_elem); ++dataPointIdx) {
 
             for(int i = 0; i < iterationSize; ++i) {
 
                 KUKADU_SHARED_PTR<ControlQueue> currentQueue = queues.at(i);
-                KUKADU_SHARED_PTR<ofstream> currentOfStream = queueStreams.at(i);
+                KUKADU_SHARED_PTR<ofstream> currentOfStream;
+                if(storeToFile)
+                    currentOfStream = queueStreams.at(i);
 
                 mes_result joints;
                 mes_result cartPos;
@@ -195,11 +223,14 @@ namespace kukadu {
 
                 // if not collect data live
                 if(data.size()) {
-                    time = data.at(i)->getNormalizedTimeInSeconds()(dataPointIdx);
+
+                    time = data.at(i)->getTimeInMilliSeconds().at(dataPointIdx);
 
                     if(storeJntPos) {
+
                         joints.time = time;
                         joints.joints = data.at(i)->getJointPosRow(dataPointIdx);
+
                     }
 
                     if(storeCartPos) {
@@ -229,7 +260,7 @@ namespace kukadu {
 
                 } else {
 
-                    if(storeCartPos)
+                    if(storeJntPos)
                         joints = currentQueue->getCurrentJoints();
 
                     if(storeCartPos)
@@ -248,9 +279,17 @@ namespace kukadu {
 
                 }
 
+                if(storeJntPos) {
+                    prevPrevJoints.at(i) = prevJoints.at(i);
+                    prevJoints.at(i) = joints;
+                    if(firstTimes.at(i)) {
+                        prevPrevJoints.at(i) = prevJoints.at(i) = joints;
+                        firstTimes.at(i) = false;
+                    }
+                }
+
                 if(firstTime && storeHeader) {
 
-                    vector<string> jointNames = currentQueue->getJointNames();
                     vector<string> labels;
 
                     if(storeTime)
@@ -258,6 +297,7 @@ namespace kukadu {
 
                     if(storeJntPos) {
 
+                        auto& jointNames = jointNamesVec.at(i);
                         for(int j = 0; j < jointNames.size(); ++j)
                             labels.push_back(string("joint_") + jointNames.at(j));
 
@@ -277,6 +317,7 @@ namespace kukadu {
 
                     if(storeJntFrc) {
 
+                        auto& jointNames = jointNamesVec.at(i);
                         for(int j = 0; j < jointNames.size(); ++j)
                             labels.push_back(string("force_joint_") + jointNames.at(j));
 
@@ -299,34 +340,86 @@ namespace kukadu {
 
                     }
 
-                    writeLabels(currentOfStream, labels);
+                    if(storeToFile)
+                        writeLabels(currentOfStream, labels);
 
                 }
 
                 if(currentTime != time) {
 
-                    if(storeTime)
-                        *currentOfStream << time << "\t";
+                    if(storeToFile) {
 
-                    if(storeJntPos)
-                        writeVectorInLine(currentOfStream, joints.joints);
+                        if(storeTime)
+                            *currentOfStream << time << "\t";
 
-                    if(storeCartPos)
-                        writeVectorInLine(currentOfStream, cartPos.joints);
+                        if(storeJntPos)
+                            writeVectorInLine(currentOfStream, joints.joints);
 
-                    if(storeJntFrc)
-                        writeVectorInLine(currentOfStream, jntFrcTrq.joints);
+                        if(storeCartPos)
+                            writeVectorInLine(currentOfStream, cartPos.joints);
 
-                    if(storeCartFrcTrq)
-                        writeVectorInLine(currentOfStream, cartFrcTrq.joints);
+                        if(storeJntFrc)
+                            writeVectorInLine(currentOfStream, jntFrcTrq.joints);
 
-                    if(storeCartAbsFrc) {
-                        vec absForce(1);
-                        absForce(0) = absCartFrc;
-                        writeVectorInLine(currentOfStream, absForce);
+                        if(storeCartFrcTrq)
+                            writeVectorInLine(currentOfStream, cartFrcTrq.joints);
+
+                        if(storeCartAbsFrc) {
+                            vec absForce(1);
+                            absForce(0) = absCartFrc;
+                            writeVectorInLine(currentOfStream, absForce);
+                        }
+
+                        *currentOfStream << endl;
+
+                    } else {
+
+                        auto& robotId = robotIdVec.at(i);
+                        if(storeJntPos || storeJntFrc) {
+
+                            vec vel;
+                            vec acc;
+                            // if the previous times are the same, it is the first time - acceleration are 0
+                            if(prevPrevJoints.at(i).time == prevJoints.at(i).time)
+                                acc = zeros(joints.joints.n_elem);
+                            else {
+                                auto timeDiffInSec = (double) (prevJoints.at(i).time - prevPrevJoints.at(i).time) / 1000.0;
+                                acc = (prevPrevJoints.at(i).joints - prevJoints.at(i).joints) / timeDiffInSec;
+                            }
+
+                            // same reasoning vor velocity
+                            if(prevJoints.at(i).time == joints.time)
+                                vel = zeros(joints.joints.n_elem);
+                            else {
+                                auto timeDiffInSec = (double) (joints.time - prevJoints.at(i).time) / 1000.0;
+                                vel = (joints.joints - prevJoints.at(i).joints) / timeDiffInSec;
+                            }
+
+                            // store the data in the database
+                            storeJointInfoToDatabase(robotId, time, jointIdsVec.at(i), joints.joints, vel, acc, jntFrcTrq.joints);
+
+                        }
+
+                        /*
+                        if(storeCartPos)
+                            writeVectorInLine(currentOfStream, cartPos.joints);
+
+                        if(storeJntFrc)
+                            writeVectorInLine(currentOfStream, jntFrcTrq.joints);
+
+                        if(storeCartFrcTrq)
+                            writeVectorInLine(currentOfStream, cartFrcTrq.joints);
+
+                        if(storeCartAbsFrc) {
+                            vec absForce(1);
+                            absForce(0) = absCartFrc;
+                            writeVectorInLine(currentOfStream, absForce);
+                        }
+                        */
+
                     }
 
-                    *currentOfStream << endl;
+
                     currentTime = time;
 
                 }
@@ -376,7 +469,44 @@ namespace kukadu {
 
         }
 
-        storageStopped = true;
+    }
+
+    void SensorStorage::storeJointInfoToDatabase(const int& robotId, const long long int& timeStamp, std::vector<int>& jointIds, arma::vec& jointPositions,
+                                                 arma::vec& jointVelocities, arma::vec& jointAccelerations, arma::vec& jointForces) {
+
+        bool usePos = false;
+        if(jointPositions.n_elem > 0)
+            usePos = true;
+
+        bool useForce = false;
+        if(jointForces.n_elem > 0)
+            useForce = true;
+
+        // if none is selected, don't store anything (not even timestamp)
+        if(!useForce && !usePos)
+            return;
+
+        vector<string> statements(jointIds.size());
+        for(int i = 0; i < jointIds.size(); ++i) {
+            stringstream s;
+            s << "insert into joint_mes(robot_id, joint_id, time_stamp, position, velocity, acceleration, frc)" <<
+                 " values (" << robotId << ", " << jointIds.at(i) << ", " << timeStamp << ", ";
+            if(usePos)
+                s   << jointPositions(i) << ", " <<
+                 jointVelocities(i) << ", " << jointAccelerations(i) << ", ";
+            else
+                s << "NULL, NULL, NULL, NULL, ";
+
+            if(useForce)
+                s << jointForces(i) << ");";
+            else
+                s << "NULL);";
+
+            statements.at(i) = s.str();
+
+        }
+
+        dbStorage.executeStatements(statements);
 
     }
 
@@ -563,10 +693,10 @@ namespace kukadu {
         mat cartAbsFrcs(1,1);
 
         if(jointsPosStartIdx >= 0)
-            jointPos = mat(mes.cols(jointsPosStartIdx, jointsPosStartIdx + queue->getMovementDegreesOfFreedom() - 1));
+            jointPos = mat(mes.cols(jointsPosStartIdx, jointsPosStartIdx + queue->getDegreesOfFreedom() - 1));
 
         if(jointsForceStartIdx >= 0)
-            jointFrcs = mat(mes.cols(jointsForceStartIdx, jointsForceStartIdx + queue->getMovementDegreesOfFreedom() - 1));
+            jointFrcs = mat(mes.cols(jointsForceStartIdx, jointsForceStartIdx + queue->getDegreesOfFreedom() - 1));
 
         if(cartsPosStartIdx >= 0)
             cartPos = mat(mes.cols(cartsPosStartIdx, cartsPosStartIdx + 7 - 1));

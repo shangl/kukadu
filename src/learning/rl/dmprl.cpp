@@ -137,13 +137,13 @@ namespace kukadu {
         this->lastUpdate = lastUpdate;
     }
 
-    DmpRewardComputer::DmpRewardComputer(string file, double az, double bz, double timeStep, int degOfFreedom, double tmax, double step) : TrajectoryBasedReward(degOfFreedom, tmax, step) {
+    DmpRewardComputer::DmpRewardComputer(StorageSingleton& storage, string robotName, string file, double az, double bz, double timeStep, int degOfFreedom, double tmax, double step) : TrajectoryBasedReward(degOfFreedom, tmax, step) {
 
         this->file = file;
         this->az = az;
         this->bz = bz;
         this->timeStep = timeStep;
-        KUKADU_SHARED_PTR<ControlQueue> pcq = KUKADU_SHARED_PTR<ControlQueue>(new PlottingControlQueue(degOfFreedom, timeStep));
+        KUKADU_SHARED_PTR<ControlQueue> pcq = KUKADU_SHARED_PTR<ControlQueue>(new PlottingControlQueue(storage, robotName, timeStep));
 
         cout << "(DmpRewardComputer) starting execution of sample trajectory with timeStep size " << timeStep << endl;
         KUKADU_SHARED_PTR<SensorData> data = SensorStorage::readStorage(pcq, file);
