@@ -7,11 +7,12 @@
 #include <iostream>
 #include <armadillo>
 #include <ros/ros.h>
+#include <geometry_msgs/Pose.h>
+#include <kukadu/robot/hand.hpp>
 #include <kukadu/robot/queue.hpp>
 #include <kukadu/utils/types.hpp>
 #include <kukadu/utils/utils.hpp>
 #include <kukadu/types/sensordata.hpp>
-#include <kukadu/robot/hand.hpp>
 #include <kukadu/types/kukadutypes.hpp>
 #include <kukadu/vision/visioninterface.hpp>
 #include <kukadu/storage/storagesingleton.hpp>
@@ -67,6 +68,7 @@ namespace kukadu {
         void storeData(bool storeHeader, std::vector<KUKADU_SHARED_PTR<SensorData> > data, std::vector<std::string> files);
         void storeData(bool storeHeader, std::vector<KUKADU_SHARED_PTR<SensorData> > data, std::vector<KUKADU_SHARED_PTR<std::ofstream> > queueStreams);
 
+        void storeCartPosInformation(const int& robotId, const long long int& timeStamp, std::string& referenceFrame, std::string& linkName, geometry_msgs::Pose cartesianPose);
         void storeJointInfoToDatabase(const int& robotId, const long long int& timeStamp, std::vector<int>& jointIds, arma::vec& jointVelocities, arma::vec& jointAccelerations, arma::vec& jointPositions, arma::vec& jointForces);
 
     public:

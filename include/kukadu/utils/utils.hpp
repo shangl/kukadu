@@ -129,6 +129,10 @@ namespace kukadu {
     double distQuat(tf::Quaternion q1, tf::Quaternion q2);
 
     tf::Transform Matrix4f2Transform(Eigen::Matrix4f Tm);
+
+    arma::vec quatToRpy(tf::Quaternion quat);
+    arma::vec quatToRpy(geometry_msgs::Quaternion quat);
+
     /*
      * converts roll pitch yaw to quaternions
      */

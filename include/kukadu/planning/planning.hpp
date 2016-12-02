@@ -93,6 +93,9 @@ namespace kukadu {
         virtual void setJointNames(std::vector<std::string> jointNames);
         virtual std::vector<std::string> getJointNames();
 
+        virtual std::string getCartesianLinkName() = 0;
+        virtual std::string getCartesianReferenceFrame() = 0;
+
     };
 
     /**
@@ -101,7 +104,7 @@ namespace kukadu {
      * \brief
      * \ingroup Kinematics
      */
-    class PathPlanner {
+    class PathPlanner : public Kinematics {
 
     private:
 
@@ -109,7 +112,7 @@ namespace kukadu {
 
     public:
 
-        PathPlanner();
+        PathPlanner(std::vector<std::string> jointNames);
 
         void setCheckCollisions(bool collision);
 

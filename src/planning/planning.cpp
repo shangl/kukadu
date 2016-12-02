@@ -87,7 +87,7 @@ namespace kukadu {
 
     }
 
-    PathPlanner::PathPlanner() {
+    PathPlanner::PathPlanner(std::vector<std::string> jointNames) : Kinematics(jointNames) {
     }
 
     void PathPlanner::setCheckCollisions(bool collision) {
@@ -117,6 +117,30 @@ namespace kukadu {
 
     }
 
+    bool SimplePlanner::isColliding(arma::vec jointState, geometry_msgs::Pose pose) {
+        throw KukaduException("(SimplePlanner) isColliding is not supported by SimplePlanner");
+    }
+
+    Eigen::MatrixXd SimplePlanner::getJacobian(std::vector<double> jointState) {
+        throw KukaduException("(SimplePlanner) getJacobian is not supported by SimplePlanner");
+    }
+
+    std::vector<arma::vec> SimplePlanner::computeIk(std::vector<double> currentJointState, const geometry_msgs::Pose& goal) {
+        throw KukaduException("(SimplePlanner) computeIk is not supported by SimplePlanner");
+    }
+
+    geometry_msgs::Pose SimplePlanner::computeFk(std::vector<double> jointState) {
+        throw KukaduException("(SimplePlanner) computeFk is not supported by SimplePlanner");
+    }
+
+    std::string SimplePlanner::getCartesianLinkName() {
+        return kin->getCartesianLinkName();
+    }
+
+    std::string SimplePlanner::getCartesianReferenceFrame() {
+        return kin->getCartesianReferenceFrame();
+    }
+
     void SimplePlanner::initialize(double cycleTime, int degOfFreedom) {
 
         refApi = new ReflexxesAPI(queue->getDegreesOfFreedom(), 1.0 / cycleTime);
@@ -133,7 +157,7 @@ namespace kukadu {
 
     }
 
-    SimplePlanner::SimplePlanner(KUKADU_SHARED_PTR<ControlQueue> queue, KUKADU_SHARED_PTR<Kinematics> kin) {
+    SimplePlanner::SimplePlanner(KUKADU_SHARED_PTR<ControlQueue> queue, KUKADU_SHARED_PTR<Kinematics> kin) : PathPlanner(kin->getJointNames()) {
 
         this->queue = queue;
         this->kin = kin;

@@ -56,6 +56,14 @@ namespace kukadu {
         virtual std::vector<arma::vec> planCartesianTrajectory(std::vector<geometry_msgs::Pose> intermediatePoses, bool smoothCartesians = false, bool useCurrentRobotState = true);
         virtual std::vector<arma::vec> planCartesianTrajectory(arma::vec startJoints, std::vector<geometry_msgs::Pose> intermediatePoses, bool smoothCartesians = false, bool useCurrentRobotState = true);
 
+        virtual std::string getCartesianLinkName();
+        virtual std::string getCartesianReferenceFrame();
+
+        virtual geometry_msgs::Pose computeFk(std::vector<double> jointState);
+        virtual bool isColliding(arma::vec jointState, geometry_msgs::Pose pose);
+        virtual Eigen::MatrixXd getJacobian(std::vector<double> jointState = std::vector<double>());
+        virtual std::vector<arma::vec> computeIk(std::vector<double> currentJointState, const geometry_msgs::Pose& goal);
+
     };
     
 }

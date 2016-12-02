@@ -143,7 +143,7 @@ namespace kukadu {
         this->az = az;
         this->bz = bz;
         this->timeStep = timeStep;
-        KUKADU_SHARED_PTR<ControlQueue> pcq = KUKADU_SHARED_PTR<ControlQueue>(new PlottingControlQueue(storage, robotName, timeStep));
+        KUKADU_SHARED_PTR<ControlQueue> pcq = KUKADU_SHARED_PTR<ControlQueue>(new PlottingControlQueue(storage, robotName, "origin", "hand_link", timeStep));
 
         cout << "(DmpRewardComputer) starting execution of sample trajectory with timeStep size " << timeStep << endl;
         KUKADU_SHARED_PTR<SensorData> data = SensorStorage::readStorage(pcq, file);

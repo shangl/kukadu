@@ -42,6 +42,8 @@ int main(int argc, char** args) {
     }
 
     cout << "execution done" << endl;
+    cout << "press a key to end the program" << endl;
+    getchar();
 
     /****** done with moving? --> clean up everything and quit *******/
 

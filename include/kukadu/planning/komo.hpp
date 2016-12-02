@@ -21,7 +21,7 @@ namespace kukadu {
      * \brief
      * \ingroup Kinematics
      */
-    class Komo : public PathPlanner, public Kinematics {
+    class Komo : public PathPlanner {
 
     private:
 
@@ -97,6 +97,9 @@ namespace kukadu {
 
         virtual bool isColliding(arma::vec jointState, geometry_msgs::Pose pose);
         virtual Eigen::MatrixXd getJacobian(std::vector<double> jointState = std::vector<double>());
+
+        virtual std::string getCartesianLinkName();
+        virtual std::string getCartesianReferenceFrame();
 
     };
 

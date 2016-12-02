@@ -136,6 +136,9 @@ namespace kukadu {
                             KUKADU_SHARED_PTR<Kinematics> kin, KUKADU_SHARED_PTR<PathPlanner> planner, double sleepTime, double maxDistPerCycle
                         );
 
+        KUKADU_SHARED_PTR<PathPlanner> loadPlanner();
+        KUKADU_SHARED_PTR<Kinematics> loadKinematics();
+
     protected:
 
         virtual void setInitValues();
@@ -182,6 +185,9 @@ namespace kukadu {
         geometry_msgs::Pose moveCartesianRelativeWf(geometry_msgs::Pose basePoseRf, geometry_msgs::Pose offset);
 
         arma::vec getFrcTrqCart();
+
+        virtual std::string getCartesianLinkName();
+        virtual std::string getCartesianReferenceFrame();
 
         KUKADU_SHARED_PTR<Kinematics> getKinematics();
 

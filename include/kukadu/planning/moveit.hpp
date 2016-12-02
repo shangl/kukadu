@@ -10,6 +10,11 @@
 #include <kukadu/types/kukadutypes.hpp>
 #include <moveit/robot_model/robot_model.h>
 #include <moveit/planning_scene/planning_scene.h>
+#ifdef ROSKINETIC
+#include <moveit/move_group_interface/move_group_interface.h>
+#else
+#include <moveit/move_group_interface/move_group.h>
+#endif
 #include <moveit/robot_model_loader/robot_model_loader.h>
 
 namespace kukadu {
@@ -43,7 +48,7 @@ namespace kukadu {
      * \brief
      * \ingroup Kinematics
      */
-    class MoveIt : public PathPlanner, public Kinematics {
+    class MoveIt : public PathPlanner {
 
     private:
 
@@ -73,6 +78,12 @@ namespace kukadu {
         robot_model_loader::RobotModelLoaderPtr rml_;
         planning_scene::PlanningScenePtr planning_scene_;
 
+#ifdef ROSKINETIC
+        const moveit::planning_interface::MoveGroupInterface& moveGroup;
+#else
+        const moveit::planning_interface::MoveGroup& moveGroup;
+#endif
+
         ros::ServiceClient planning_client_;
 
         KUKADU_SHARED_PTR<Constraint> modelRestriction;
@@ -81,14 +92,14 @@ namespace kukadu {
         KUKADU_SHARED_PTR<SimplePlanner> simplePlanner;
         KUKADU_SHARED_PTR<ControlQueue> queue;
 
-        void construct(KUKADU_SHARED_PTR<ControlQueue> queue, ros::NodeHandle node, std::string moveGroupName, std::vector<std::string> jointNames, std::string tipLink, bool avoidCollisions, int maxAttempts, double timeOut);
+        void construct(KUKADU_SHARED_PTR<ControlQueue> queue, ros::NodeHandle node, const std::string& moveGroupName, std::vector<std::string> jointNames, std::string tipLink, bool avoidCollisions, int maxAttempts, double timeOut);
 
         bool collisionCheckCallback(moveit::core::RobotState* state, const moveit::core::JointModelGroup* joint_group, const double* solution);
 
     public:
 
-        MoveIt(KUKADU_SHARED_PTR<ControlQueue> queue, ros::NodeHandle node, std::string moveGroupName, std::vector<std::string> jointNames, std::string tipLink);
-        MoveIt(KUKADU_SHARED_PTR<ControlQueue> queue, ros::NodeHandle node, std::string moveGroupName, std::vector<std::string> jointNames, std::string tipLink, bool avoidCollisions, int maxAttempts, double timeOut);
+        MoveIt(KUKADU_SHARED_PTR<ControlQueue> queue, ros::NodeHandle node, const std::string& moveGroupName, std::vector<std::string> jointNames, std::string tipLink);
+        MoveIt(KUKADU_SHARED_PTR<ControlQueue> queue, ros::NodeHandle node, const std::string& moveGroupName, std::vector<std::string> jointNames, std::string tipLink, bool avoidCollisions, int maxAttempts, double timeOut);
 
         virtual geometry_msgs::Pose computeFk(std::vector<double> jointState);
         virtual std::vector<arma::vec> computeIk(std::vector<double> currentJointState, const geometry_msgs::Pose& goal);
@@ -102,6 +113,9 @@ namespace kukadu {
         virtual bool isColliding(arma::vec jointState, geometry_msgs::Pose pose);
 
         KUKADU_SHARED_PTR<Constraint> getModelConstraint();
+
+        virtual std::string getCartesianLinkName();
+        virtual std::string getCartesianReferenceFrame();
 
 #ifdef CPP11SUPPORTED
         static constexpr int STD_MAX_ATTEMPTS = 5;

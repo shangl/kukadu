@@ -970,6 +970,18 @@ namespace kukadu {
         return retVec;
     }
 
+    arma::vec quatToRpy(tf::Quaternion quat) {
+        tf::Matrix3x3 rot(quat);
+        arma::vec retRpy(3);
+        rot.getRPY(retRpy(0), retRpy(1), retRpy(2));
+        return retRpy;
+    }
+
+    arma::vec quatToRpy(geometry_msgs::Quaternion quat) {
+        tf::Quaternion q(quat.x, quat.y, quat.z, quat.w);
+        return quatToRpy(q);
+    }
+
     tf::Quaternion rpyToQuat(const double roll, const double pitch, const double yaw) {
         tf::Quaternion quat(yaw, pitch, roll);
         return quat;
@@ -984,7 +996,6 @@ namespace kukadu {
     double roundByDigits(double number, int numDigitsBehindComma) {
         return ceilf(number * pow(10.0, (double) numDigitsBehindComma)) / 100;
     }
-
     std::wstring stringToWString(const std::string& s) {
 
         std::wstring wsTmp(s.begin(), s.end());

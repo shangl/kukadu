@@ -75,6 +75,19 @@ namespace kukadu {
 
     }
 
+    geometry_msgs::Pose SensorData::getCartPose(int rowIdx) {
+        auto poseRow = getCartPosRow(rowIdx);
+        geometry_msgs::Pose retPose;
+        retPose.position.x = poseRow(0);
+        retPose.position.y = poseRow(1);
+        retPose.position.z = poseRow(2);
+        retPose.orientation.x = poseRow(3);
+        retPose.orientation.y = poseRow(4);
+        retPose.orientation.z = poseRow(5);
+        retPose.orientation.w = poseRow(6);
+        return retPose;
+    }
+
     void SensorData::removeDuplicateTimes() {
 
         double currentTime = DBL_MAX;

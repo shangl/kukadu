@@ -35,7 +35,7 @@ namespace kukadu {
     kukadu_mutex Komo::oneAtATimeMutex;
 
     Komo::Komo(KUKADU_SHARED_PTR<ControlQueue> queue, string configPath, string mtConfigPath, string activeJointsPrefix, bool acceptCollision)
-                : Kinematics(generateDefaultJointNames(queue->getDegreesOfFreedom())) {
+                : PathPlanner(generateDefaultJointNames(queue->getDegreesOfFreedom())) {
 
         oneAtATimeMutex.lock();
 
@@ -100,6 +100,15 @@ namespace kukadu {
         }
         //deleteFile("./MT.cfg");
 
+    }
+
+    std::string Komo::getCartesianLinkName() {
+        return eef_link;
+    }
+
+    std::string Komo::getCartesianReferenceFrame() {
+        // hack for now: don't know how to find out the reference frame with komo (or if it even has that defined)
+        return "origin";
     }
 
     void Komo::setJointPosition(const string &name, const double pos) {

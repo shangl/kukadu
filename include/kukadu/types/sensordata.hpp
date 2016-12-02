@@ -5,6 +5,7 @@
 #include <string>
 #include <utility>
 #include <armadillo>
+#include <geometry_msgs/Pose.h>
 #include <kukadu/utils/utils.hpp>
 
 namespace kukadu {
@@ -48,6 +49,8 @@ namespace kukadu {
         arma::mat getJointForces();
         arma::mat getCartPos();
         arma::mat getCartFrcTrqs();
+
+        geometry_msgs::Pose getCartPose(int rowIdx);
 
         double getTimeNormalizedTimeInSeconds(int rowIdx);
         arma::vec getJointPosRow(int rowIdx);

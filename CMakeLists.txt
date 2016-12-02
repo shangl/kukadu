@@ -49,7 +49,19 @@ find_package(catkin REQUIRED COMPONENTS
 find_package(PCL REQUIRED)
 find_package(Boost 1.54 REQUIRED)
 find_package(Armadillo REQUIRED)
-find_package(PythonLibs 3.4 REQUIRED)
+
+if($ENV{ROS_DISTRO} STREQUAL "kinetic")
+    set(PYTH_INC /usr/include/python3.5m)
+    set(PYTH_LIB python3.5m)
+    set(PYTH_LIB_PATH /usr/lib/python3.5/config-3.5m-x86_64-linux-gnu)
+    add_definitions(-DROSKINETIC)
+else()
+    set(PYTH_INC /usr/include/python3.4m)
+    set(PYTH_LIB python3.4m)
+    set(PYTH_LIB_PATH /usr/lib/python3.4/config-3.4m-x86_64-linux-gnu)
+    add_definitions(-DUSEOLD)
+endif()
+
 find_package(Qt5Gui REQUIRED)
 find_package(Qt5Core REQUIRED)
 find_package(Qt5Widgets REQUIRED)
@@ -65,14 +77,14 @@ pkg_check_modules(GTK2 REQUIRED gtk+-2.0)
 pkg_check_modules(GTK REQUIRED gtkglext-1.0)
 
 catkin_package(
-    INCLUDE_DIRS include external/ReflexxesTypeII/include external/komo/share/src /usr/include/python3.4m
+    INCLUDE_DIRS include external/ReflexxesTypeII/include external/komo/share/src ${PYTH_INC}
     LIBRARIES ${PROJECT_NAME}
     CATKIN_DEPENDS cmake_modules actionlib_msgs control_msgs control_msgs eigen_conversions
         geometry_msgs iis_robot_dep message_generation moveit_core moveit_msgs
         moveit_ros_planning_interface pcl_conversions pcl_ros roscpp sensor_msgs std_msgs
         tf tf2_msgs tf_conversions trajectory_msgs
     DEPENDS gsl gslcblas ncurses
-        stdc++ ${Boost_LIBRARIES} ${PCL_LIBRARIES} ${ARMADILLO_LIBRARIES} ${PythonLibs_LIBRARIES} python3.4m
+        stdc++ ${Boost_LIBRARIES} ${PCL_LIBRARIES} ${ARMADILLO_LIBRARIES} ${PYTH_LIB}
         komo swift algo gui ors rt lapack blas ann glut GLU GL X11 ${GTK_LIBRARIES} ${GTK2_LIBRARIES} gthread-2.0 qhull m mysqlcppconn
 )
 
@@ -82,13 +94,13 @@ include_directories(
     ${Boost_INCLUDE_DIRS}
     ${catkin_INCLUDE_DIRS}
     external/komo/share/src
-    /usr/include/python3.4m
+    ${PYTH_INC}
     external/ReflexxesTypeII/include
 )
 
 set(CURSES_USE_NCURSES TRUE)
-set(Python_ADDITIONAL_VERSIONS 3.4)
-link_directories(/usr/lib/python3.4/config-3.4m-x86_64-linux-gnu /usr/lib)
+
+link_directories(${PYTH_LIB_PATH})
 
 set(ENABLE_VISUALIZATION 1)
 
@@ -129,7 +141,7 @@ add_library(reflexxeslib ${REFLEXXESSRC})
 
 target_link_libraries(${PROJECT_NAME} ${catkin_LIBRARIES} ${Boost_LIBRARIES} ${PCL_LIBRARIES} ${ARMADILLO_LIBRARIES} ${PCL_LIBRARIES}
     reflexxeslib ncurses gsl gslcblas stdc++ pthread dl util m komo swift algo ann gui ors optim motion rt lapack blas glut GLU GL X11 ${GTK_LIBRARIES} ${GTK2_LIBRARIES}
-    gthread-2.0 qhull python3.4m m mysqlcppconn)
+    gthread-2.0 qhull ${PYTH_LIB} m mysqlcppconn)
 
 add_executable(kukadu_demo_guided tutorials/guided.cpp)
 target_link_libraries(kukadu_demo_guided kukadu ${catkin_LIBRARIES} komo swift algo ann gui ors optim motion rt lapack blas glut GLU GL X11 ${GTK_LIBRARIES} ${GTK2_LIBRARIES} gthread-2.0 qhull m)
@@ -158,7 +170,7 @@ target_link_libraries(dmp kukadu ${catkin_LIBRARIES})
 add_executable(database tutorials/database.cpp)
 target_link_libraries(database kukadu ${catkin_LIBRARIES})
 
-add_dependencies(${PROJECT_NAME} ${catkin_EXPORTED_TARGETS} python3.4m)
+add_dependencies(${PROJECT_NAME} ${catkin_EXPORTED_TARGETS} ${PYTH_LIB})
 add_dependencies(reflexxeslib ${catkin_EXPORTED_TARGETS})
 add_dependencies(kukadu_demo_guided ${catkin_EXPORTED_TARGETS})
 add_dependencies(komo_planning ${catkin_EXPORTED_TARGETS})

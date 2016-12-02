@@ -410,7 +410,15 @@ namespace kukadu {
 
             continueCollecting = true;
             jointsColletorThr = KUKADU_SHARED_PTR<kukadu_thread>(new kukadu_thread(&ControlQueue::jointsCollector, this));
-            cartPtpInternal(pos, maxForce);
+
+            try {
+                cartPtpInternal(pos, maxForce);
+            } catch(KukaduException& ex) {
+                continueCollecting = false;
+                jointsColletorThr->join();
+                throw ex;
+            }
+
             continueCollecting = false;
             jointsColletorThr->join();
 
@@ -603,8 +611,47 @@ namespace kukadu {
 
     }
 
+    std::string KukieControlQueue::getCartesianLinkName() {
+        return kin->getCartesianLinkName();
+    }
+
+    std::string KukieControlQueue::getCartesianReferenceFrame() {
+        return kin->getCartesianReferenceFrame();
+    }
+
     KUKADU_SHARED_PTR<Kinematics> KukieControlQueue::getKinematics() {
         return kin;
+    }
+
+    KUKADU_SHARED_PTR<Kinematics> KukieControlQueue::loadKinematics() {
+        if(!kinematicsInitialized) {
+
+            planAndKinMutex.lock();
+            kin = make_shared<Komo>(shared_from_this(),
+                                                                     resolvePath("$KUKADU_HOME/external/komo/share/data/kuka/data/iis_robot.kvg"),
+                                                                     resolvePath("$KUKADU_HOME/external/komo/share/data/kuka/config/MT.cfg"),
+                                                                     getRobotSidePrefix(), acceptCollisions);
+            kinematicsInitialized = true;
+            planAndKinMutex.unlock();
+
+        }
+        return kin;
+    }
+
+    KUKADU_SHARED_PTR<PathPlanner> KukieControlQueue::loadPlanner() {
+
+        if(!plannerInitialized) {
+
+            planAndKinMutex.lock();
+            planner = make_shared<Komo>(shared_from_this(),
+                                                                     resolvePath("$KUKADU_HOME/external/komo/share/data/kuka/data/iis_robot.kvg"),
+                                                                     resolvePath("$KUKADU_HOME/external/komo/share/data/kuka/config/MT.cfg"),
+                                                                     getRobotSidePrefix(), acceptCollisions);
+            plannerInitialized = true;
+            planAndKinMutex.unlock();
+
+        }
+
     }
 
     void KukieControlQueue::setKinematics(KUKADU_SHARED_PTR<Kinematics> kin) {
@@ -814,17 +861,7 @@ namespace kukadu {
 
     void KukieControlQueue::computeCurrentCartPose() {
 
-        if(!kinematicsInitialized) {
-
-            planAndKinMutex.lock();
-            kin = make_shared<Komo>(shared_from_this(),
-                                                                     resolvePath("$KUKADU_HOME/external/komo/share/data/kuka/data/iis_robot.kvg"),
-                                                                     resolvePath("$KUKADU_HOME/external/komo/share/data/kuka/config/MT.cfg"),
-                                                                     getRobotSidePrefix(), acceptCollisions);
-            kinematicsInitialized = true;
-            planAndKinMutex.unlock();
-
-        }
+        loadKinematics();
         ros::Rate myRate(50);
         while(getQueueRunning()) {
 
@@ -917,17 +954,7 @@ namespace kukadu {
 
         cartesianPtpReached = false;
 
-        if(!plannerInitialized) {
-
-            planAndKinMutex.lock();
-            planner = make_shared<Komo>(shared_from_this(),
-                                                                     resolvePath("$KUKADU_HOME/external/komo/share/data/kuka/data/iis_robot.kvg"),
-                                                                     resolvePath("$KUKADU_HOME/external/komo/share/data/kuka/config/MT.cfg"),
-                                                                     getRobotSidePrefix(), acceptCollisions);
-            plannerInitialized = true;
-            planAndKinMutex.unlock();
-
-        }
+        loadPlanner();
 
         auto currentPose = getCurrentCartesianPose();
         vector<geometry_msgs::Pose> desiredPlan;
@@ -936,7 +963,13 @@ namespace kukadu {
 
         planAndKinMutex.lock();
 
-            vector<vec> desiredJointPlan = planner->planCartesianTrajectory(getCurrentJoints().joints, desiredPlan, false, true);
+        vector<vec> desiredJointPlan;
+        try {
+            desiredJointPlan = planner->planCartesianTrajectory(getCurrentJoints().joints, desiredPlan, false, true);
+        } catch(KukaduException& ex) {
+            planAndKinMutex.unlock();
+            throw ex;
+        }
 
         planAndKinMutex.unlock();
 
@@ -963,17 +996,7 @@ namespace kukadu {
 
         ptpReached = false;
 
-        if(!plannerInitialized) {
-
-            planAndKinMutex.lock();
-            planner = make_shared<Komo>(shared_from_this(),
-                                                                     resolvePath("$KUKADU_HOME/external/komo/share/data/kuka/data/iis_robot.kvg"),
-                                                                     resolvePath("$KUKADU_HOME/external/komo/share/data/kuka/config/MT.cfg"),
-                                                                     getRobotSidePrefix(), acceptCollisions);
-            plannerInitialized = true;
-            planAndKinMutex.unlock();
-
-        }
+        loadPlanner();
 
         bool performPtp = false;
         vec currentState = getCurrentJoints().joints;
@@ -1081,7 +1104,10 @@ namespace kukadu {
     void KukieControlQueue::safelyDestroy() {
     }
 
-    PlottingControlQueue::PlottingControlQueue(StorageSingleton& storage, std::string robotName, double timeStep) : ControlQueue(storage, robotName, timeStep) {
+    PlottingControlQueue::PlottingControlQueue(StorageSingleton& storage, std::string robotName, string linkName, string referenceFrame, double timeStep) : ControlQueue(storage, robotName, timeStep) {
+
+        this->linkName = linkName;
+        this->referenceFrame = referenceFrame;
 
         vector<string> jntNames;
         for(int i = 0; i < getDegreesOfFreedom(); ++i) {
@@ -1216,6 +1242,14 @@ namespace kukadu {
 
     int PlottingControlQueue::getCurrentMode() {
         return CONTROLQUEUE_JNT_POS_MODE;
+    }
+
+    std::string PlottingControlQueue::getCartesianLinkName() {
+        return linkName;
+    }
+
+    std::string PlottingControlQueue::getCartesianReferenceFrame() {
+        return referenceFrame;
     }
 
     void PlottingControlQueue::setAdditionalLoad(float loadMass, float loadPos) {

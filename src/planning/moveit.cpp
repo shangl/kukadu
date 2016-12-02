@@ -4,7 +4,11 @@
 #include <eigen_conversions/eigen_msg.h>
 #include <moveit/robot_state/conversions.h>
 #include <moveit/robot_state/robot_state.h>
+#ifdef ROSKINETIC
+#include <moveit/move_group_interface/move_group_interface.h>
+#else
 #include <moveit/move_group_interface/move_group.h>
+#endif
 
 using namespace ros;
 using namespace std;
@@ -12,15 +16,15 @@ using namespace arma;
 
 namespace kukadu {
 
-    MoveIt::MoveIt(KUKADU_SHARED_PTR<ControlQueue> queue, NodeHandle node, std::string moveGroupName, std::vector<std::string> jointNames, std::string tipLink)
-        : Kinematics(jointNames) {
+    MoveIt::MoveIt(KUKADU_SHARED_PTR<ControlQueue> queue, NodeHandle node, const std::string& moveGroupName, std::vector<std::string> jointNames, std::string tipLink)
+        : PathPlanner(jointNames), moveGroup(string(moveGroupName)) {
 
         construct(queue, node, moveGroupName, jointNames, tipLink, STD_AVOID_COLLISIONS, STD_MAX_ATTEMPTS, STD_TIMEOUT);
 
     }
 
-    MoveIt::MoveIt(KUKADU_SHARED_PTR<ControlQueue> queue, ros::NodeHandle node, std::string moveGroupName, std::vector<std::string> jointNames, std::string tipLink, bool avoidCollisions, int maxAttempts, double timeOut)
-        : Kinematics(jointNames) {
+    MoveIt::MoveIt(KUKADU_SHARED_PTR<ControlQueue> queue, ros::NodeHandle node, const std::string& moveGroupName, std::vector<std::string> jointNames, std::string tipLink, bool avoidCollisions, int maxAttempts, double timeOut)
+        : PathPlanner(jointNames), moveGroup(string(moveGroupName)) {
 
         construct(queue, node, moveGroupName, jointNames, tipLink, avoidCollisions, maxAttempts, timeOut);
 
@@ -40,7 +44,7 @@ namespace kukadu {
 
     }
 
-    void MoveIt::construct(KUKADU_SHARED_PTR<ControlQueue> queue, ros::NodeHandle node, std::string moveGroupName, std::vector<std::string> jointNames, std::string tipLink, bool avoidCollisions, int maxAttempts, double timeOut) {
+    void MoveIt::construct(KUKADU_SHARED_PTR<ControlQueue> queue, ros::NodeHandle node, const std::string& moveGroupName, std::vector<std::string> jointNames, std::string tipLink, bool avoidCollisions, int maxAttempts, double timeOut) {
 
         this->queue = queue;
         this->moveGroupName = moveGroupName;
@@ -96,6 +100,14 @@ namespace kukadu {
 
         planning_client_ = node.serviceClient<moveit_msgs::GetMotionPlan>("/plan_kinematic_path");
 
+    }
+
+    std::string MoveIt::getCartesianLinkName() {
+        return tipLink;
+    }
+
+    std::string MoveIt::getCartesianReferenceFrame() {
+        return moveGroup.getPlanningFrame();
     }
 
     geometry_msgs::Pose MoveIt::computeFk(std::vector<double> jointState) {

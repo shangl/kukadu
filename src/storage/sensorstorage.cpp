@@ -219,6 +219,9 @@ namespace kukadu {
                 mes_result jntFrcTrq;
                 mes_result cartFrcTrq;
                 mes_result cartAbsFrcTrq;
+
+                geometry_msgs::Pose cartPose;
+
                 double absCartFrc = 0.0;
 
                 // if not collect data live
@@ -227,7 +230,6 @@ namespace kukadu {
                     time = data.at(i)->getTimeInMilliSeconds().at(dataPointIdx);
 
                     if(storeJntPos) {
-
                         joints.time = time;
                         joints.joints = data.at(i)->getJointPosRow(dataPointIdx);
 
@@ -236,6 +238,7 @@ namespace kukadu {
                     if(storeCartPos) {
                         cartPos.time = time;
                         cartPos.joints = data.at(i)->getCartPosRow(dataPointIdx);
+                        cartPose = data.at(i)->getCartPose(dataPointIdx);
                     }
 
                     if(storeJntFrc) {
@@ -263,8 +266,10 @@ namespace kukadu {
                     if(storeJntPos)
                         joints = currentQueue->getCurrentJoints();
 
-                    if(storeCartPos)
+                    if(storeCartPos) {
                         cartPos = currentQueue->getCurrentCartesianPos();
+                        cartPose = currentQueue->getCurrentCartesianPose();
+                    }
 
                     if(storeJntFrc)
                         jntFrcTrq = currentQueue->getCurrentJntFrc();
@@ -400,6 +405,14 @@ namespace kukadu {
 
                         }
 
+                        if(storeCartPos) {
+
+                            string referenceFrame = "";
+                            string linkName = "";
+                            storeCartPosInformation(robotId, time, referenceFrame, linkName, cartPose);
+
+                        }
+
                         /*
                         if(storeCartPos)
                             writeVectorInLine(currentOfStream, cartPos.joints);
@@ -471,6 +484,19 @@ namespace kukadu {
 
     }
 
+    void SensorStorage::storeCartPosInformation(const int& robotId, const long long int& timeStamp, std::string& referenceFrame, std::string& linkName, geometry_msgs::Pose cartesianPose) {
+
+        auto rpy = quatToRpy(cartesianPose.orientation);
+
+        stringstream s;
+        s << "insert into cart_mes_pos(robot_id, timestamp, reference_frame, link_name, cart_pos_x, cart_pos_y, cart_pos_z, cart_rot_x, cart_rot_y, cart_rot_z) values (" <<
+             robotId << ", " << timeStamp << ", " << referenceFrame << ", " << linkName << ", " << cartesianPose.position.x << ", " << cartesianPose.position.y << ", " << cartesianPose.position.z << ", " <<
+             rpy(0) << ", " << rpy(1) << ", " << rpy(2) << ")";
+
+        dbStorage.executeStatement(s.str());
+
+    }
+
     void SensorStorage::storeJointInfoToDatabase(const int& robotId, const long long int& timeStamp, std::vector<int>& jointIds, arma::vec& jointPositions,
                                                  arma::vec& jointVelocities, arma::vec& jointAccelerations, arma::vec& jointForces) {
 
@@ -490,7 +516,7 @@ namespace kukadu {
         for(int i = 0; i < jointIds.size(); ++i) {
             stringstream s;
             s << "insert into joint_mes(robot_id, joint_id, time_stamp, position, velocity, acceleration, frc)" <<
-                 " values (" << robotId << ", " << jointIds.at(i) << ", " << timeStamp << ", ";
+                 " values(" << robotId << ", " << jointIds.at(i) << ", " << timeStamp << ", ";
             if(usePos)
                 s   << jointPositions(i) << ", " <<
                  jointVelocities(i) << ", " << jointAccelerations(i) << ", ";

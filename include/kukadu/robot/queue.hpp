@@ -402,6 +402,9 @@ namespace kukadu {
          */
         virtual void startTalking();
 
+        virtual std::string getCartesianLinkName() = 0;
+        virtual std::string getCartesianReferenceFrame() = 0;
+
         /**
          * \brief If the rollback mode is started by startRollBackMode()
          * the robot can stop the current execution and move backwards the same
@@ -470,6 +473,9 @@ namespace kukadu {
 
         double currTime;
 
+        std::string linkName;
+        std::string referenceFrame;
+
         arma::vec currJoints;
         arma::vec startJoints;
 
@@ -490,7 +496,7 @@ namespace kukadu {
 
     public:
 
-        PlottingControlQueue(StorageSingleton& storage, std::string robotName, double timeStep);
+        PlottingControlQueue(StorageSingleton& storage, std::string robotName, std::string linkName, std::string referenceFrame, double timeStep);
 
         void safelyDestroy();
         void setInitValues();
@@ -524,6 +530,9 @@ namespace kukadu {
         virtual void rollBack(double time);
         virtual void stopJointRollBackMode();
         virtual void startJointRollBackMode(double possibleTime);
+
+        virtual std::string getCartesianLinkName();
+        virtual std::string getCartesianReferenceFrame();
 
     };
 
