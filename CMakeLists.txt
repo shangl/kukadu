@@ -170,7 +170,7 @@ target_link_libraries(dmp kukadu ${catkin_LIBRARIES})
 add_executable(database tutorials/database.cpp)
 target_link_libraries(database kukadu ${catkin_LIBRARIES})
 
-add_dependencies(${PROJECT_NAME} ${catkin_EXPORTED_TARGETS} ${PYTH_LIB})
+add_dependencies(${PROJECT_NAME} ${catkin_EXPORTED_TARGETS} ${PYTH_LIB} iis_robot_dep)
 add_dependencies(reflexxeslib ${catkin_EXPORTED_TARGETS})
 add_dependencies(kukadu_demo_guided ${catkin_EXPORTED_TARGETS})
 add_dependencies(komo_planning ${catkin_EXPORTED_TARGETS})

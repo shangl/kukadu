@@ -2,6 +2,7 @@
 #include <boost/program_options.hpp>
 #include <kukadu/utils/utils.hpp>
 #include <algorithm>
+#include <sstream>
 
 using namespace std;
 
@@ -78,6 +79,97 @@ namespace kukadu {
     StorageSingleton& StorageSingleton::get() {
         static StorageSingleton instance;
         return instance;
+    }
+
+    long long int StorageSingleton::getNextIdInTable(std::string table, std::string idCol) {
+
+        auto key = table + "+++" + idCol;
+        auto el = idsMap.find(key);
+
+        // check if id is already in map --> increment id and return it
+        if(el != idsMap.end()) {
+            auto& id = *el;
+            return ++(id.second);
+        }
+        // else find highest id, increment it and insert new value in map
+        else {
+            string maxIdQuery = "select max(" + idCol + ") as max_val from " + table;
+            auto maxIdRes = executeQuery(maxIdQuery);
+            long long int maxId;
+            if(maxIdRes->next())
+                // thats a bit nasty (need to do that better at some point)
+                maxId = maxIdRes->getUInt64("max_val");
+            else
+                throw KukaduException("(StorageSingleton) retrieving maximum id failed");
+
+            idsMap[key] = ++maxId;
+            return maxId;
+
+        }
+
+    }
+
+    int StorageSingleton::getCachedLabelId(std::string table, std::string labelIdCol, std::string labelCol, std::string label, string additionalWhere) {
+
+        auto key = table + "+++" + labelCol + "+++" + additionalWhere;
+        auto el = labelIdsMap.find(key);
+
+        // check if label is already in map --> increment id and return it
+        if(el != labelIdsMap.end()) {
+            auto& id = *el;
+            return id.second;
+        }
+
+        // else find highest id, insert new label in map
+        else {
+
+            stringstream s;
+            s << "select " << labelIdCol << " from " << table << " where " << labelCol << " = \"" << label << "\"" << ((additionalWhere == "") ? "" : " and ") << additionalWhere << ";";
+            auto labelQuery = s.str();
+
+            auto labelResSet = executeQuery(labelQuery);
+            int labelId;
+            if(labelResSet->next())
+                // thats a bit nasty (need to do that better at some point)
+                labelId = labelResSet->getInt(labelIdCol);
+            else
+                throw KukaduException("(StorageSingleton) retrieving label id failed");
+
+            labelIdsMap[key] = labelId;
+            return labelId;
+
+        }
+
+    }
+
+    std::string StorageSingleton::getCachedLabel(std::string table, std::string labelIdCol, std::string labelCol, int labelId) {
+
+        auto key = table + "+++" + labelCol;
+        auto el = labelsMap.find(key);
+
+        // check if label is already in map --> increment id and return it
+        if(el != labelsMap.end()) {
+            auto& id = *el;
+            return id.second;
+        }
+        // else find highest id, insert new label in map
+        else {
+            stringstream s;
+            s << "select " << labelCol << " from " << table << " where " << labelIdCol << " = " << labelId;
+            auto labelQuery = s.str();
+            auto labelResSet = executeQuery(labelQuery);
+            string labelRes;
+            if(labelResSet->next())
+                // thats a bit nasty (need to do that better at some point)
+                labelRes = labelResSet->getString(labelCol);
+            else
+                throw KukaduException("(StorageSingleton) retrieving label failed");
+
+            labelsMap[key] = labelRes;
+            return labelRes;
+
+        }
+
     }
 
     void StorageSingleton::executeStatement(std::string sql) {

@@ -39,11 +39,13 @@ namespace kukadu {
 
         oneAtATimeMutex.lock();
 
+            auto generatedJointNames = generateDefaultJointNames(queue->getDegreesOfFreedom());
+
             this->queue = queue;
             this->activeJointsPrefix = activeJointsPrefix;
             MT::openConfigFile(mtConfigPath.c_str());
 
-            simplePlanner = make_shared<SimplePlanner>(queue, KUKADU_SHARED_PTR<Kinematics>());
+            simplePlanner = make_shared<SimplePlanner>(queue, KUKADU_SHARED_PTR<Kinematics>(), generatedJointNames);
 
             _world = new ors::KinematicWorld(configPath.c_str());
             _world->swift().initActivations(*_world);
@@ -55,7 +57,6 @@ namespace kukadu {
 
                     string currJointName = string((char*) j->name);
                     if(currJointName.find(activeJointsPrefix) != string::npos) {
-
                         _active_joints.push_back(j);
                         sJointNames.push_back(currJointName);
 
@@ -153,8 +154,9 @@ namespace kukadu {
         setState(sJointNames, queue->getCurrentJoints().joints);
 
         std::vector<double> goal_state = armadilloToStdVec(intermediateJoints.back());
+        if(goal_state.size() != _active_joints.size())
+            throw KukaduException("(Komo)  size of joint vector does not fit the number of joint names");
 
-        CHECK(goal_state.size() == _active_joints.size(), "Unable to plan - invalid size of goal state");
         MT::timerStart();
 
         arr state = _world->getJointState();

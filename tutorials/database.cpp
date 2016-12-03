@@ -71,15 +71,16 @@ int main(int argc, char** args) {
     spinner.start();
 
     StorageSingleton& storage = StorageSingleton::get();
-
     auto simLeftQueue = make_shared<KukieControlQueue>(storage, "robinn", "simulation", arm + string("_arm"), *node);
+
     vector<KUKADU_SHARED_PTR<ControlQueue> > queueVectors;
     queueVectors.push_back(simLeftQueue);
 
     simLeftQueue->stopCurrentMode();
-    KUKADU_SHARED_PTR<kukadu_thread> laThr = simLeftQueue->startQueue();
-    simLeftQueue->switchMode(KukieControlQueue::KUKA_JNT_POS_MODE);
 
+    KUKADU_SHARED_PTR<kukadu_thread> laThr = simLeftQueue->startQueue();
+
+    simLeftQueue->switchMode(KukieControlQueue::KUKA_JNT_POS_MODE);
     simLeftQueue->jointPtp({-0.7, 0.7, 1.5, -1.74, -1.85, 1.27, 0.71});
 
     cout << "press enter to measure trajectory" << endl;
@@ -87,7 +88,7 @@ int main(int argc, char** args) {
 
     cout << "starting measurement" << endl;
     SensorStorage dataStorage(storage, queueVectors, std::vector<KUKADU_SHARED_PTR<GenericHand> >(), 1000);
-    dataStorage.setExportMode(SensorStorage::STORE_RBT_CART_POS | SensorStorage::STORE_RBT_JNT_POS);
+    dataStorage.setExportMode(SensorStorage::STORE_RBT_JNT_POS | SensorStorage::STORE_RBT_CART_POS | SensorStorage::STORE_RBT_CART_FTRQ);
 
     // if no parameter is provided, the data is stored to the database
     dataStorage.startDataStorage();
@@ -102,8 +103,7 @@ int main(int argc, char** args) {
     cout << "press enter to execute in simulation" << endl;
     getchar();
 
-    /*
-
+/*
     KUKADU_SHARED_PTR<Dmp> sampleDmp;
     KUKADU_SHARED_PTR<SensorData> sampleData;
     KUKADU_SHARED_PTR<JointDMPLearner> sampleDmpLearner;

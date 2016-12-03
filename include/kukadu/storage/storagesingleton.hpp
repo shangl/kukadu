@@ -1,6 +1,7 @@
 #ifndef KUKADU_STORAGESINGLETON
 #define KUKADU_STORAGESINGLETON
 
+#include <map>
 #include <string>
 #include <vector>
 #include <iostream>
@@ -23,6 +24,11 @@ private:
 
     std::string databaseName;
 
+    std::map<std::string, long long int> idsMap;
+
+    std::map<std::string, int> labelIdsMap;
+    std::map<std::string, std::string> labelsMap;
+
     StorageSingleton();
 
     void installDirectory(std::string directory);
@@ -30,6 +36,11 @@ private:
 public:
 
     static StorageSingleton& get();
+
+    long long int getNextIdInTable(std::string table, std::string idCol);
+
+    int getCachedLabelId(std::string table, std::string labelIdCol, std::string labelCol, std::string label, std::string additionalWhere = "");
+    std::string getCachedLabel(std::string table, std::string labelIdCol, std::string labelCol, int labelId);
 
     void executeStatement(std::string sql);
     void executeStatements(std::vector<std::string> sqls);
