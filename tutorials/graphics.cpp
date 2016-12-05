@@ -2,14 +2,25 @@
 #include <armadillo>
 #include <kukadu/kukadu.hpp>
 
+#include <QStyle>
+#include <QStyleFactory>
+#include <QtWidgets/QApplication>
+
 using namespace std;
 using namespace arma;
 using namespace kukadu;
 
 int main(int argc, char** args) {
 
+    StorageSingleton& storage = StorageSingleton::get();
 
-    KukaduGui g(argc, args);
-    ~KukaduGui();
+    QApplication w(argc, args);
+    //w.setStyle(QStyleFactory::create("Windows"));
+    w.setStyle(QStyleFactory::create("Fusion"));
+
+    KukaduGui g(storage);
+    g.show();
+
+    return w.exec();
 
 }

@@ -49,6 +49,7 @@ find_package(catkin REQUIRED COMPONENTS
 find_package(PCL REQUIRED)
 find_package(Boost 1.54 REQUIRED)
 find_package(Armadillo REQUIRED)
+find_package(Qt5Widgets REQUIRED)
 
 if($ENV{ROS_DISTRO} STREQUAL "kinetic")
     set(PYTH_INC /usr/include/python3.5m)
@@ -73,6 +74,11 @@ add_definitions(-pthread)
 add_definitions(-DROS_SUPPORT)
 add_definitions(-DOSNAME_LINUX=1)
 
+set(MyProjectLib_src ${PROJECT_SOURCE_DIR}/src/gui/gui.cpp)
+set(MyProjectLib_hdr ${PROJECT_SOURCE_DIR}/include/kukadu/gui/gui.hpp)
+
+qt5_wrap_cpp(MyProjectLib_hdr_moc ${MyProjectLib_hdr})
+
 pkg_check_modules(GTK2 REQUIRED gtk+-2.0)
 pkg_check_modules(GTK REQUIRED gtkglext-1.0)
 
@@ -90,11 +96,11 @@ catkin_package(
 
 include_directories(
     include
+    ${PYTH_INC}
     ${PCL_INCLUDE_DIRS}
     ${Boost_INCLUDE_DIRS}
     ${catkin_INCLUDE_DIRS}
     external/komo/share/src
-    ${PYTH_INC}
     external/ReflexxesTypeII/include
 )
 
@@ -137,52 +143,52 @@ AUX_SOURCE_DIRECTORY(src/statistics/ KUKADUSRC)
 
 add_subdirectory(external/komo)
 
-add_library(${PROJECT_NAME} ${KUKADUSRC})
+add_library(${PROJECT_NAME} ${KUKADUSRC} ${MyProjectLib_src} ${MyProjectLib_hdr_moc})
 add_library(reflexxeslib ${REFLEXXESSRC})
 
 target_link_libraries(${PROJECT_NAME} ${catkin_LIBRARIES} ${Boost_LIBRARIES} ${PCL_LIBRARIES} ${ARMADILLO_LIBRARIES} ${PCL_LIBRARIES}
     reflexxeslib ncurses gsl gslcblas stdc++ pthread dl util m komo swift algo ann gui ors optim motion rt lapack blas glut GLU GL X11 ${GTK_LIBRARIES} ${GTK2_LIBRARIES}
-    gthread-2.0 qhull ${PYTH_LIB} m mysqlcppconn)
+    gthread-2.0 qhull ${PYTH_LIB} m mysqlcppconn Qt5::Widgets)
 
-add_executable(kukadu_demo_guided tutorials/guided.cpp)
-target_link_libraries(kukadu_demo_guided kukadu ${catkin_LIBRARIES} komo swift algo ann gui ors optim motion rt lapack blas glut GLU GL X11 ${GTK_LIBRARIES} ${GTK2_LIBRARIES} gthread-2.0 qhull m)
+#add_executable(kukadu_demo_guided tutorials/guided.cpp)
+#target_link_libraries(kukadu_demo_guided kukadu ${catkin_LIBRARIES} komo swift algo ann gui ors optim motion rt lapack blas glut GLU GL X11 ${GTK_LIBRARIES} ${GTK2_LIBRARIES} gthread-2.0 qhull m)
 
-add_executable(simple_planning tutorials/simple_planning.cpp)
-target_link_libraries(simple_planning kukadu ${catkin_LIBRARIES})
+#add_executable(simple_planning tutorials/simple_planning.cpp)
+#target_link_libraries(simple_planning kukadu ${catkin_LIBRARIES})
 
-add_executable(komo_planning tutorials/komo_planning.cpp)
-target_link_libraries(komo_planning kukadu ${catkin_LIBRARIES})
+#add_executable(komo_planning tutorials/komo_planning.cpp)
+#target_link_libraries(komo_planning kukadu ${catkin_LIBRARIES})
 
-add_executable(moveit_planning tutorials/moveit_planning.cpp)
-target_link_libraries(moveit_planning kukadu ${catkin_LIBRARIES})
+#add_executable(moveit_planning tutorials/moveit_planning.cpp)
+#target_link_libraries(moveit_planning kukadu ${catkin_LIBRARIES})
 
-add_executable(cart_traj tutorials/cartesian_trajectories.cpp)
-target_link_libraries(cart_traj kukadu ${catkin_LIBRARIES})
+#add_executable(cart_traj tutorials/cartesian_trajectories.cpp)
+#target_link_libraries(cart_traj kukadu ${catkin_LIBRARIES})
 
-add_executable(control_queue tutorials/control_queue.cpp)
-target_link_libraries(control_queue kukadu ${catkin_LIBRARIES})
+#add_executable(control_queue tutorials/control_queue.cpp)
+#target_link_libraries(control_queue kukadu ${catkin_LIBRARIES})
 
-add_executable(gaussian tutorials/gaussianprocess.cpp)
-target_link_libraries(gaussian kukadu ${catkin_LIBRARIES})
+#add_executable(gaussian tutorials/gaussianprocess.cpp)
+#target_link_libraries(gaussian kukadu ${catkin_LIBRARIES})
 
-add_executable(dmp tutorials/dmp.cpp)
-target_link_libraries(dmp kukadu ${catkin_LIBRARIES})
+#add_executable(dmp tutorials/dmp.cpp)
+#target_link_libraries(dmp kukadu ${catkin_LIBRARIES})
 
-add_executable(database tutorials/database.cpp)
-target_link_libraries(database kukadu ${catkin_LIBRARIES})
+#add_executable(database tutorials/database.cpp)
+#target_link_libraries(database kukadu ${catkin_LIBRARIES})
 
 add_executable(graphics tutorials/graphics.cpp)
 target_link_libraries(graphics kukadu ${catkin_LIBRARIES})
 
 add_dependencies(${PROJECT_NAME} ${catkin_EXPORTED_TARGETS} ${PYTH_LIB})
-add_dependencies(reflexxeslib ${catkin_EXPORTED_TARGETS})
-add_dependencies(kukadu_demo_guided ${catkin_EXPORTED_TARGETS})
-add_dependencies(komo_planning ${catkin_EXPORTED_TARGETS})
-add_dependencies(moveit_planning ${catkin_EXPORTED_TARGETS})
-add_dependencies(simple_planning ${catkin_EXPORTED_TARGETS})
-add_dependencies(dmp ${catkin_EXPORTED_TARGETS})
-add_dependencies(gaussian ${catkin_EXPORTED_TARGETS})
-add_dependencies(database ${catkin_EXPORTED_TARGETS})
+#add_dependencies(reflexxeslib ${catkin_EXPORTED_TARGETS})
+#add_dependencies(kukadu_demo_guided ${catkin_EXPORTED_TARGETS})
+#add_dependencies(komo_planning ${catkin_EXPORTED_TARGETS})
+#add_dependencies(moveit_planning ${catkin_EXPORTED_TARGETS})
+#add_dependencies(simple_planning ${catkin_EXPORTED_TARGETS})
+#add_dependencies(dmp ${catkin_EXPORTED_TARGETS})
+#add_dependencies(gaussian ${catkin_EXPORTED_TARGETS})
+#add_dependencies(database ${catkin_EXPORTED_TARGETS})
 add_dependencies(graphics ${catkin_EXPORTED_TARGETS})
 
 if(CATKIN_ENABLE_TESTING)
@@ -190,13 +196,13 @@ if(CATKIN_ENABLE_TESTING)
 endif()
 
 install(TARGETS graphics RUNTIME DESTINATION ${CATKIN_PACKAGE_BIN_DESTINATION})
-install(TARGETS database RUNTIME DESTINATION ${CATKIN_PACKAGE_BIN_DESTINATION})
-install(TARGETS gaussian RUNTIME DESTINATION ${CATKIN_PACKAGE_BIN_DESTINATION})
-install(TARGETS kukadu_demo_guided RUNTIME DESTINATION ${CATKIN_PACKAGE_BIN_DESTINATION})
-install(TARGETS control_queue RUNTIME DESTINATION ${CATKIN_PACKAGE_BIN_DESTINATION})
-install(TARGETS simple_planning RUNTIME DESTINATION ${CATKIN_PACKAGE_BIN_DESTINATION})
-install(TARGETS komo_planning RUNTIME DESTINATION ${CATKIN_PACKAGE_BIN_DESTINATION})
-install(TARGETS moveit_planning RUNTIME DESTINATION ${CATKIN_PACKAGE_BIN_DESTINATION})
-install(TARGETS dmp RUNTIME DESTINATION ${CATKIN_PACKAGE_BIN_DESTINATION})
+#install(TARGETS database RUNTIME DESTINATION ${CATKIN_PACKAGE_BIN_DESTINATION})
+#install(TARGETS gaussian RUNTIME DESTINATION ${CATKIN_PACKAGE_BIN_DESTINATION})
+#install(TARGETS kukadu_demo_guided RUNTIME DESTINATION ${CATKIN_PACKAGE_BIN_DESTINATION})
+#install(TARGETS control_queue RUNTIME DESTINATION ${CATKIN_PACKAGE_BIN_DESTINATION})
+#install(TARGETS simple_planning RUNTIME DESTINATION ${CATKIN_PACKAGE_BIN_DESTINATION})
+#install(TARGETS komo_planning RUNTIME DESTINATION ${CATKIN_PACKAGE_BIN_DESTINATION})
+#install(TARGETS moveit_planning RUNTIME DESTINATION ${CATKIN_PACKAGE_BIN_DESTINATION})
+#install(TARGETS dmp RUNTIME DESTINATION ${CATKIN_PACKAGE_BIN_DESTINATION})
 install(TARGETS ${PROJECT_NAME} reflexxeslib ARCHIVE DESTINATION ${CATKIN_PACKAGE_LIB_DESTINATION} LIBRARY DESTINATION ${CATKIN_PACKAGE_LIB_DESTINATION} RUNTIME DESTINATION ${CATKIN_GLOBAL_BIN_DESTINATION})
 install(DIRECTORY include/${PROJECT_NAME}/ DESTINATION ${CATKIN_PACKAGE_INCLUDE_DESTINATION})
