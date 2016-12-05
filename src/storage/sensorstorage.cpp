@@ -222,6 +222,9 @@ namespace kukadu {
 
                 geometry_msgs::Pose cartPose;
 
+                string referenceFrame = currentQueue->getCartesianReferenceFrame();
+                string linkName = currentQueue->getCartesianLinkName();
+
                 double absCartFrc = 0.0;
 
                 // if not collect data live
@@ -405,33 +408,10 @@ namespace kukadu {
 
                         }
 
-                        if(storeCartPos) {
-
-                            string referenceFrame = "";
-                            string linkName = "";
-                            storeCartPosInformation(robotId, time, referenceFrame, linkName, cartPose);
-
-                        }
-
-                        /*
-                        if(storeCartPos)
-                            writeVectorInLine(currentOfStream, cartPos.joints);
-
-                        if(storeJntFrc)
-                            writeVectorInLine(currentOfStream, jntFrcTrq.joints);
-
-                        if(storeCartFrcTrq)
-                            writeVectorInLine(currentOfStream, cartFrcTrq.joints);
-
-                        if(storeCartAbsFrc) {
-                            vec absForce(1);
-                            absForce(0) = absCartFrc;
-                            writeVectorInLine(currentOfStream, absForce);
-                        }
-                        */
+                        if(storeCartPos || storeCartFrcTrq || storeCartAbsFrc)
+                            storeCartInformation(robotId, time, referenceFrame, linkName, cartPose, cartFrcTrq.joints, absCartFrc, storeCartPos, storeCartFrcTrq, storeCartAbsFrc);
 
                     }
-
 
                     currentTime = time;
 
@@ -484,16 +464,54 @@ namespace kukadu {
 
     }
 
-    void SensorStorage::storeCartPosInformation(const int& robotId, const long long int& timeStamp, std::string& referenceFrame, std::string& linkName, geometry_msgs::Pose cartesianPose) {
+    void SensorStorage::storeCartInformation(const int& robotId, const long long int& timeStamp, const std::string& referenceFrame, const std::string& linkName, geometry_msgs::Pose& cartesianPose, const arma::vec& frcTrq, const double& absFrc, const bool& storePos, const bool& storeFrc, const bool& storeAbsFrc) {
 
-        auto rpy = quatToRpy(cartesianPose.orientation);
+        if(storePos || storeFrc || storeAbsFrc) {
 
-        stringstream s;
-        s << "insert into cart_mes_pos(robot_id, timestamp, reference_frame, link_name, cart_pos_x, cart_pos_y, cart_pos_z, cart_rot_x, cart_rot_y, cart_rot_z) values (" <<
-             robotId << ", " << timeStamp << ", " << referenceFrame << ", " << linkName << ", " << cartesianPose.position.x << ", " << cartesianPose.position.y << ", " << cartesianPose.position.z << ", " <<
-             rpy(0) << ", " << rpy(1) << ", " << rpy(2) << ")";
+            stringstream s;
+            s << "robot_id = " << robotId;
+            auto robotWhere = s.str();
 
-        dbStorage.executeStatement(s.str());
+            auto nextId = dbStorage.getNextIdInTable("cart_mes", "cart_mes_id");
+            auto referenceId = dbStorage.getCachedLabelId("reference_frames", "frame_id", "frame_name", referenceFrame, robotWhere);
+            auto linkId = dbStorage.getCachedLabelId("links", "link_id", "link_name", linkName, robotWhere);
+            auto rpy = quatToRpy(cartesianPose.orientation);
+
+            vector<string> stmts;
+
+            s.str("");
+            s << "insert into cart_mes(cart_mes_id, time_stamp, robot_id, reference_frame_id, link_id) values(" << nextId << ", " << timeStamp << ", " << robotId << ", " << referenceId << ", " << linkId << ")";
+            stmts.push_back(s.str());
+
+            if(storePos) {
+                s.str("");
+                s << "insert into cart_mes_pos(cart_mes_id, cart_pos_x, cart_pos_y, cart_pos_z, cart_rot_x, cart_rot_y, cart_rot_z) values (" <<
+                     nextId << ", " << cartesianPose.position.x << ", " << cartesianPose.position.y << ", " << cartesianPose.position.z << ", " <<
+                     rpy(0) << ", " << rpy(1) << ", " << rpy(2) << ")";
+                stmts.push_back(s.str());
+            }
+
+            if(storeFrc || storeAbsFrc) {
+
+                s.str("");
+                s << "insert into cart_mes_frc(cart_mes_id, cart_frc_x, cart_frc_y, cart_frc_z, cart_trq_x, cart_trq_y, cart_trq_z, cart_abs_frc) values (" <<
+                     nextId << ", ";
+                if(storeFrc)
+                    s << frcTrq(0) << ", " << frcTrq(1) << ", " << frcTrq(2)<< ", " << frcTrq(3)<< ", " << frcTrq(4)<< ", " << frcTrq(5) << ", ";
+                else
+                    s << "null, " << "null, " << "null, " << "null, " << "null, " << "null" << ", ";
+                if(storeAbsFrc)
+                    s << absFrc;
+                else
+                    s << "null";
+                s << ")";
+                stmts.push_back(s.str());
+
+            }
+
+            dbStorage.executeStatements(stmts);
+
+        }
 
     }
 

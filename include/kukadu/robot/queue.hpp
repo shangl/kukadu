@@ -496,7 +496,7 @@ namespace kukadu {
 
     public:
 
-        PlottingControlQueue(StorageSingleton& storage, std::string robotName, std::string linkName, std::string referenceFrame, double timeStep);
+        PlottingControlQueue(StorageSingleton& storage, std::string robotName, std::string referenceFrame, std::string linkName, double timeStep);
 
         void safelyDestroy();
         void setInitValues();

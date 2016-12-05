@@ -68,8 +68,11 @@ namespace kukadu {
         void storeData(bool storeHeader, std::vector<KUKADU_SHARED_PTR<SensorData> > data, std::vector<std::string> files);
         void storeData(bool storeHeader, std::vector<KUKADU_SHARED_PTR<SensorData> > data, std::vector<KUKADU_SHARED_PTR<std::ofstream> > queueStreams);
 
-        void storeCartPosInformation(const int& robotId, const long long int& timeStamp, std::string& referenceFrame, std::string& linkName, geometry_msgs::Pose cartesianPose);
+        void storeCartInformation(const int& robotId, const long long int& timeStamp, const std::string& referenceFrame, const std::string& linkName, geometry_msgs::Pose& cartesianPose,
+                                  const arma::vec& frcTrq, const double& absFrc,
+                                  const bool& storePos, const bool& storeFrc, const bool& storeAbsFrc);
         void storeJointInfoToDatabase(const int& robotId, const long long int& timeStamp, std::vector<int>& jointIds, arma::vec& jointVelocities, arma::vec& jointAccelerations, arma::vec& jointPositions, arma::vec& jointForces);
+        void storeJointFrcTrqToDatabase(const int& robotId, const long long int& timeStamp, std::string& referenceFrame, std::string& linkName, arma::vec& frcTrq);
 
     public:
 

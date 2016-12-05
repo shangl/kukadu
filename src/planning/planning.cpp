@@ -134,11 +134,11 @@ namespace kukadu {
     }
 
     std::string SimplePlanner::getCartesianLinkName() {
-        return kin->getCartesianLinkName();
+        return queue->getCartesianLinkName();
     }
 
     std::string SimplePlanner::getCartesianReferenceFrame() {
-        return kin->getCartesianReferenceFrame();
+        return queue->getCartesianReferenceFrame();
     }
 
     void SimplePlanner::initialize(double cycleTime, int degOfFreedom) {
@@ -157,7 +157,8 @@ namespace kukadu {
 
     }
 
-    SimplePlanner::SimplePlanner(KUKADU_SHARED_PTR<ControlQueue> queue, KUKADU_SHARED_PTR<Kinematics> kin) : PathPlanner(kin->getJointNames()) {
+    SimplePlanner::SimplePlanner(KUKADU_SHARED_PTR<ControlQueue> queue, KUKADU_SHARED_PTR<Kinematics> kin, std::vector<std::string> jointNames)
+        : PathPlanner((jointNames.size()) ? jointNames : kin->getJointNames()) {
 
         this->queue = queue;
         this->kin = kin;

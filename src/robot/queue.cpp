@@ -78,6 +78,7 @@ namespace kukadu {
 
         while(!this->isInitialized());
         startQueueHook();
+
         return thr;
 
     }
@@ -624,18 +625,19 @@ namespace kukadu {
     }
 
     KUKADU_SHARED_PTR<Kinematics> KukieControlQueue::loadKinematics() {
+
         if(!kinematicsInitialized) {
 
             planAndKinMutex.lock();
-            kin = make_shared<Komo>(shared_from_this(),
-                                                                     resolvePath("$KUKADU_HOME/external/komo/share/data/kuka/data/iis_robot.kvg"),
-                                                                     resolvePath("$KUKADU_HOME/external/komo/share/data/kuka/config/MT.cfg"),
-                                                                     getRobotSidePrefix(), acceptCollisions);
+            kin = make_shared<Komo>(shared_from_this(), resolvePath("$KUKADU_HOME/external/komo/share/data/kuka/data/iis_robot.kvg"), resolvePath("$KUKADU_HOME/external/komo/share/data/kuka/config/MT.cfg"), getRobotSidePrefix(), acceptCollisions);
+
             kinematicsInitialized = true;
             planAndKinMutex.unlock();
 
         }
+
         return kin;
+
     }
 
     KUKADU_SHARED_PTR<PathPlanner> KukieControlQueue::loadPlanner() {
@@ -643,14 +645,13 @@ namespace kukadu {
         if(!plannerInitialized) {
 
             planAndKinMutex.lock();
-            planner = make_shared<Komo>(shared_from_this(),
-                                                                     resolvePath("$KUKADU_HOME/external/komo/share/data/kuka/data/iis_robot.kvg"),
-                                                                     resolvePath("$KUKADU_HOME/external/komo/share/data/kuka/config/MT.cfg"),
-                                                                     getRobotSidePrefix(), acceptCollisions);
+            planner = make_shared<Komo>(shared_from_this(), resolvePath("$KUKADU_HOME/external/komo/share/data/kuka/data/iis_robot.kvg"), resolvePath("$KUKADU_HOME/external/komo/share/data/kuka/config/MT.cfg"), getRobotSidePrefix(), acceptCollisions);
             plannerInitialized = true;
             planAndKinMutex.unlock();
 
         }
+
+        return planner;
 
     }
 
@@ -677,10 +678,13 @@ namespace kukadu {
     }
 
     void KukieControlQueue::startQueueHook() {
+
         firstCartsComputed = false;
         cartPoseThr = kukadu_thread(&KukieControlQueue::computeCurrentCartPose, this);
+
         while(!firstCartsComputed)
             std::this_thread::sleep_for(std::chrono::milliseconds(100));
+
     }
 
     KukieControlQueue::KukieControlQueue(StorageSingleton& storage, std::string robotName, std::string deviceType, std::string armPrefix, ros::NodeHandle node, bool acceptCollisions, KUKADU_SHARED_PTR<Kinematics> kin, KUKADU_SHARED_PTR<PathPlanner> planner, double sleepTime, double maxDistPerCycle) : ControlQueue(storage, robotName, sleepTime) {
@@ -870,6 +874,7 @@ namespace kukadu {
                 currCarts = kin->computeFk(armadilloToStdVec(getCurrentJoints().joints));
                 firstCartsComputed = true;
                 myRate.sleep();
+
             planAndKinMutex.unlock();
 
         }
@@ -997,7 +1002,6 @@ namespace kukadu {
         ptpReached = false;
 
         loadPlanner();
-
         bool performPtp = false;
         vec currentState = getCurrentJoints().joints;
         for(int i = 0; i < joints.n_elem; ++i)
@@ -1012,6 +1016,7 @@ namespace kukadu {
             vector<arma::vec> desiredPlan;
             desiredPlan.push_back(getCurrentJoints().joints);
             desiredPlan.push_back(joints);
+
             planAndKinMutex.lock();
             desiredJointPlan = planner->planJointTrajectory(desiredPlan);
             planAndKinMutex.unlock();
@@ -1104,7 +1109,7 @@ namespace kukadu {
     void KukieControlQueue::safelyDestroy() {
     }
 
-    PlottingControlQueue::PlottingControlQueue(StorageSingleton& storage, std::string robotName, string linkName, string referenceFrame, double timeStep) : ControlQueue(storage, robotName, timeStep) {
+    PlottingControlQueue::PlottingControlQueue(StorageSingleton& storage, std::string robotName, std::string referenceFrame, std::string linkName, double timeStep) : ControlQueue(storage, robotName, timeStep) {
 
         this->linkName = linkName;
         this->referenceFrame = referenceFrame;

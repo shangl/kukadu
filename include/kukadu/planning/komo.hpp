@@ -21,7 +21,7 @@ namespace kukadu {
      * \brief
      * \ingroup Kinematics
      */
-    class Komo : public PathPlanner {
+    class Komo : public PathPlanner, public KUKADU_ENABLE_SHARED_FROM_THIS<Komo> {
 
     private:
 

@@ -49,7 +49,7 @@ namespace kukadu {
 
     public:
 
-        SimplePlanner(KUKADU_SHARED_PTR<ControlQueue> queue, KUKADU_SHARED_PTR<Kinematics> kin);
+        SimplePlanner(KUKADU_SHARED_PTR<ControlQueue> queue, KUKADU_SHARED_PTR<Kinematics> kin, std::vector<std::string> jointNames = std::vector<std::string>());
         ~SimplePlanner();
 
         virtual std::vector<arma::vec> planJointTrajectory(std::vector<arma::vec> intermediateJoints);

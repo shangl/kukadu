@@ -93,9 +93,9 @@ int main(int argc, char** args) {
     }
 
     cout << "starting measurement" << endl;
-    SensorStorage scaredOfSenka(storage, queueVectors, std::vector<KUKADU_SHARED_PTR<GenericHand> >(), 1000);
-    scaredOfSenka.setExportMode(SensorStorage::STORE_RBT_CART_POS | SensorStorage::STORE_RBT_JNT_POS);
-    scaredOfSenka.startDataStorage(storeDir);
+    SensorStorage storeObj(storage, queueVectors, std::vector<KUKADU_SHARED_PTR<GenericHand> >(), 1000);
+    storeObj.setExportMode(SensorStorage::STORE_RBT_CART_POS | SensorStorage::STORE_RBT_JNT_POS);
+    storeObj.startDataStorage(storeDir);
     cout << "measuerment started" << endl;
 
     if(!prefix.compare("simulation")) {
@@ -110,7 +110,7 @@ int main(int argc, char** args) {
         }
     }
 
-    scaredOfSenka.stopDataStorage();
+    storeObj.stopDataStorage();
 
     mes_result finalJoints = leftQueue->getCurrentJoints();
     for(int i = 0; i < 10; ++i)
