@@ -1,3 +1,4 @@
+#include <kukadu/gui.hpp>
 #include <kukadu/robot.hpp>
 #include <kukadu/types.hpp>
 #include <kukadu/utils.hpp>
