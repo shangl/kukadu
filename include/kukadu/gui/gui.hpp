@@ -39,10 +39,13 @@ namespace kukadu {
 
         int getId(const QModelIndex& index);
 
+        QModelIndex getIndex(int robotId);
+
         int rowCount(const QModelIndex& parent = QModelIndex()) const ;
         int columnCount(const QModelIndex& parent = QModelIndex()) const;
         QVariant data(const QModelIndex& index, int role = Qt::DisplayRole) const;
 
+        void reset();
         void setWhereClause(std::string whereClause);
 
     };
