@@ -4,4 +4,4 @@ CREATE TABLE IF NOT EXISTS `robot` (
   `deg_of_freedom` int(5) NOT NULL,
   PRIMARY KEY (`robot_id`),
   UNIQUE KEY `robot_id` (`robot_id`)
-) ENGINE=InnoDB DEFAULT CHARSET=latin1 AUTO_INCREMENT=1;
+) ENGINE=InnoDB DEFAULT CHARSET=latin1 AUTO_INCREMENT=1 ;
