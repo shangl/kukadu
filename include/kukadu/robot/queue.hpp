@@ -13,6 +13,7 @@
 #include <queue>
 #include <armadillo>
 #include <geometry_msgs/Pose.h>
+#include <kukadu/robot/robot.hpp>
 #include <kukadu/robot/filters.hpp>
 #include <kukadu/types/kukadutypes.hpp>
 #include <kukadu/utils/destroyableobject.hpp>
@@ -83,6 +84,8 @@ namespace kukadu {
 
         std::deque<arma::vec> rollBackQueue;
         KUKADU_SHARED_PTR<FrcTrqSensorFilter> currentFrcTrqSensorFilter;
+
+        KUKADU_SHARED_PTR<Robot> robot;
 
         KUKADU_SHARED_PTR<kukadu_thread> thr;
         KUKADU_SHARED_PTR<kukadu_thread> frcTrqFilterUpdateThr;

@@ -1,4 +1,5 @@
 #include <kukadu/robot/hand.hpp>
+#include <kukadu/robot/robot.hpp>
 #include <kukadu/robot/queue.hpp>
 #include <kukadu/robot/filters.hpp>
 #include <kukadu/robot/kukiehand.hpp>

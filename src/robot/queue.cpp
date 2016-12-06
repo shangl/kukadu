@@ -18,27 +18,19 @@ namespace kukadu {
 
     int ControlQueue::getRobotId() {
 
-        int robotId = 0;
-        auto idQuery = "SELECT robot_id FROM robot WHERE robot_name=\"" + getRobotName() + "\"";
-        auto idResult = dbStorage.executeQuery(idQuery);
-        if(idResult->next())
-            robotId = idResult->getInt("robot_id");
-        else
-            throw KukaduException("(ControlQueue) cannot find robot id in database");
-        return robotId;
+        if(!robot)
+            robot = make_shared<Robot>(dbStorage, getRobotName());
+
+        return robot->getRobotId();
 
     }
 
     int ControlQueue::loadDegOfFreedom(StorageSingleton& storage, std::string robotName) {
 
-        int degOfFreedom = 0;
-        auto idQuery = "SELECT deg_of_freedom FROM robot WHERE robot_name=\"" + robotName + "\"";
-        auto idResult = storage.executeQuery(idQuery);
-        if(idResult->next())
-            degOfFreedom = idResult->getInt("deg_of_freedom");
-        else
-            throw KukaduException("(ControlQueue) cannot find robot degrees of freedom in database");
-        return degOfFreedom;
+        if(!robot)
+            robot = make_shared<Robot>(storage, robotName);
+
+        return robot->getDegOfFreedom();
 
     }
 
