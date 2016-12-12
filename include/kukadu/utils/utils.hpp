@@ -165,12 +165,14 @@ namespace kukadu {
     arma::vec convertTimesInMillisecondsToTimeInSeconds(std::vector<long long int>& supervisedTs);
     std::vector<long long int> convertTimesInSecondsToTimeInMilliseconds(arma::vec& timesInSeconds);
 
+#ifndef USEBOOST
     template<typename S, typename T> bool mapContainsValue(std::map<S, T> m, T val) {
         for(auto it = m.begin(); it != m.end(); ++it )
             if (it->second == val)
                 return true;
         return false;
     }
+#endif
 
 }
 
