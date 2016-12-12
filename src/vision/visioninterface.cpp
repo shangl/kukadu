@@ -1,4 +1,4 @@
-#include "visioninterface.hpp"
+#include <kukadu/vision/visioninterface.hpp>
 
 #include<iostream>
 #include<string>
@@ -9,7 +9,7 @@ namespace kukadu {
 
     VisionInterface::VisionInterface(int sleepTime, ros::NodeHandle node)  {
 
-        // (@ senka) arTagTracker was not initialized in the original code, so i initialize it with false (dont know if this is the intended behaviour)
+        // (@senka) arTagTracker was not initialized in the original code, so i initialize it with false (dont know if this is the intended behaviour)
         this->construct(sleepTime, node, "", false);
 
     }

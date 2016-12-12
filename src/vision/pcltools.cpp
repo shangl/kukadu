@@ -1,4 +1,4 @@
-#include "pcltools.hpp"
+#include <kukadu/vision/pcltools.hpp>
 
 using namespace std;
 using namespace pcl;
