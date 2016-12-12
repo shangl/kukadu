@@ -1,5 +1,6 @@
-#include <kukadu/robot/robot.hpp>
 #include <sstream>
+#include <kukadu/robot/robot.hpp>
+#include <kukadu/utils/utils.hpp>
 
 using namespace std;
 
@@ -10,7 +11,9 @@ namespace kukadu {
         this->robotId = robotId;
         this->robotName = loadRobotName(dbStorage, robotId);
         this->degOfFreedom = loadDegOfFreedom(dbStorage, robotId);
-        this->robotJoints = loadRobotJoints(dbStorage, robotId);
+        auto loadedJoints = loadRobotJoints(dbStorage, robotId);
+        this->robotJoints = loadedJoints.first;
+        this->maxJointId = loadedJoints.second;
 
     }
 
@@ -19,18 +22,103 @@ namespace kukadu {
         this->robotName = robotName;
         this->robotId = loadRobotId(dbStorage, robotName);
         this->degOfFreedom = loadDegOfFreedom(dbStorage, robotId);
-        this->robotJoints = loadRobotJoints(dbStorage, robotId);
+        auto loadedJoints = loadRobotJoints(dbStorage, robotId);
+        this->robotJoints = loadedJoints.first;
+        this->maxJointId = loadedJoints.second;
 
     }
 
-    std::vector<std::string> Robot::loadRobotJoints(StorageSingleton& dbStorage, int& robotId) {
-        return {};
+    // returns map[joint_id] = joint_name and maximum joint_id
+    std::pair<std::map<int, std::string>, int> Robot::loadRobotJoints(StorageSingleton& dbStorage, int& robotId) {
+
+        int maxJointId = 0;
+        map<int, string> jointsMap;
+
+        stringstream s;
+        s << "select joint_id, joint_name from robot_joints where robot_id = " << robotId;
+        auto queryRes = dbStorage.executeQuery(s.str());
+        while(queryRes->next()) {
+            auto jointId = queryRes->getInt("joint_id");
+            jointsMap[jointId] = queryRes->getString("joint_name");
+            maxJointId = std::max(maxJointId, jointId);
+        }
+        return {jointsMap, maxJointId};
+
+    }
+
+    void Robot::reload() {
+
+        this->robotId = loadRobotId(dbStorage, robotName);
+        this->degOfFreedom = loadDegOfFreedom(dbStorage, robotId);
+        auto loadedJoints = loadRobotJoints(dbStorage, robotId);
+        this->robotJoints = loadedJoints.first;
+        this->maxJointId = loadedJoints.second;
+
+    }
+
+    bool Robot::insertJoint(std::string jointName) {
+
+        if(!mapContainsValue(robotJoints, jointName)) {
+
+            vector<string> stmts;
+
+            stringstream s;
+            s << "insert into robot_joints(robot_id, joint_id, joint_name) values(" << robotId << ", " << ++maxJointId << ", \"" << jointName << "\")";
+            stmts.push_back(s.str());
+
+            s.str("");
+            s << "update robot set deg_of_freedom = " << maxJointId << " where robot_id = " << robotId;
+            stmts.push_back(s.str());
+            dbStorage.executeStatements(stmts);
+
+            reload();
+
+            return true;
+
+        }
+
+        return false;
+
+    }
+
+    bool Robot::deleteRobot() {
+
+        for(auto& joints : robotJoints)
+            deleteJoint(joints.first);
+
+        stringstream s;
+        s << "delete from robot where robot_id = " << robotId;
+        dbStorage.executeStatement(s.str());
+
+        return true;
+
+    }
+
+    std::string Robot::getJointName(int jointId) {
+        return robotJoints[jointId];
+    }
+
+    bool Robot::deleteJoint(int jointId) {
+
+        if(robotJoints.find(jointId) != robotJoints.end()) {
+
+            stringstream s;
+            s << "delete from robot_joints where robot_id = " << robotId << " and joint_id = " << jointId;
+            dbStorage.executeStatement(s.str());
+            return true;
+
+        }
+
+        return false;
+
     }
 
     std::string Robot::loadRobotName(StorageSingleton& dbStorage, const int& robotId) {
 
         string robotName;
-        auto idQuery = "SELECT robot_name FROM robot WHERE robot_id = " + robotId;
+        stringstream s;
+        s << "select robot_name from robot where robot_id = " << robotId;
+        auto idQuery = s.str();
         auto idResult = dbStorage.executeQuery(idQuery);
         if(idResult->next())
             robotName = idResult->getString("robot_name");
@@ -43,7 +131,7 @@ namespace kukadu {
     int Robot::loadRobotId(StorageSingleton& dbStorage, const std::string& robotName) {
 
         int robotId = 0;
-        auto idQuery = "SELECT robot_id FROM robot WHERE robot_name=\"" + robotName + "\"";
+        auto idQuery = "select robot_id from robot where robot_name=\"" + robotName + "\"";
         auto idResult = dbStorage.executeQuery(idQuery);
         if(idResult->next())
             robotId = idResult->getInt("robot_id");
@@ -65,7 +153,7 @@ namespace kukadu {
 
         int degOfFreedom = 0;
         stringstream s;
-        s << "SELECT deg_of_freedom FROM robot WHERE robot_id = " << robotId;
+        s << "select deg_of_freedom from robot where robot_id = " << robotId;
         auto idQuery = s.str();
         auto idResult = dbStorage.executeQuery(idQuery);
         if(idResult->next())
@@ -89,6 +177,14 @@ namespace kukadu {
         } catch(KukaduException& ex) { }
         return false;
 
+    }
+
+    bool Robot::createRobot(StorageSingleton& dbStorage, std::string robotName) {
+        if(!checkRobotExists(dbStorage, robotName)) {
+            dbStorage.executeStatement("insert into robot(robot_id, robot_name, deg_of_freedom) values(null, \"" + robotName + "\", 0)");
+            return true;
+        }
+        return false;
     }
 
 }

@@ -1,6 +1,7 @@
 #ifndef KUKADU_KUKADUUTILS
 #define KUKADU_KUKADUUTILS
 
+#include <map>
 #include <queue>
 #include <vector>
 #include <math.h>
@@ -163,6 +164,13 @@ namespace kukadu {
     arma::vec convertAndRemoveOffset(std::vector<long long int>& supervisedTs);
     arma::vec convertTimesInMillisecondsToTimeInSeconds(std::vector<long long int>& supervisedTs);
     std::vector<long long int> convertTimesInSecondsToTimeInMilliseconds(arma::vec& timesInSeconds);
+
+    template<typename S, typename T> bool mapContainsValue(std::map<S, T> m, T val) {
+        for(auto it = m.begin(); it != m.end(); ++it )
+            if (it->second == val)
+                return true;
+        return false;
+    }
 
 }
 

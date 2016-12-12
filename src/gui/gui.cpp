@@ -15,6 +15,13 @@ using namespace std;
 
 namespace kukadu {
 
+    void showInfoBox(std::string message) {
+        QMessageBox msgBox;
+        msgBox.setText(QString(message.c_str()));
+        msgBox.setStandardButtons(QMessageBox::Ok);
+        msgBox.exec();
+    }
+
     void KukaduGui::currentChanged(const QModelIndex& current, const QModelIndex& previous) {
         current.row();
 
@@ -47,29 +54,24 @@ namespace kukadu {
         robotList->setModel(robotListModel);
 
         auto firstIndex = robotListModel->index(0, 0);
-        robotList->setCurrentIndex(firstIndex);
-
-        auto firstId = robotListModel->getId(firstIndex);
         stringstream s;
-        s << "robot_id = " << firstId << endl;
+        if(firstIndex.row() >= 0) {
+            auto firstId = robotListModel->getId(firstIndex);
+            s << "robot_id = " << firstId << endl;
+        }
 
         auto jointList = new QListView();
         jointList->setAutoScroll(true);
         auto jointListModel = new DatabaseModel(storage, "robot_joints", "joint_id", {"joint_id", "joint_name"}, s.str());
         jointList->setModel(jointListModel);
 
-        //connect(robotList->selectionModel(), &QItemSelectionModel::currentChanged, this, &KukaduGui::currentChanged);
-        connect(robotList->selectionModel(), &QItemSelectionModel::currentChanged,
-                [robotListModel, jointListModel](const QModelIndex& current, const QModelIndex& previous) {
-                    auto robotId = robotListModel->getId(current);
-                    stringstream s;
-                    s << "robot_id = " << robotId << endl;
-                    jointListModel->setWhereClause(s.str());
-                }
-        );
+        auto deleteRobotButton = new QPushButton("Delete robot");
+        auto deleteJointButton = new QPushButton("Delete joint");
 
         boxesLayout->addWidget(robotList, 0, 0);
         boxesLayout->addWidget(jointList, 0, 1);
+        boxesLayout->addWidget(deleteRobotButton, 1, 0);
+        boxesLayout->addWidget(deleteJointButton, 1, 1);
 
         robotListBox->setLayout(boxesLayout);
         robotListBox->setMinimumSize(DEFAULT_WIDTH / 3.0, DEFAULT_HEIGHT / 3.0);
@@ -86,37 +88,6 @@ namespace kukadu {
         auto jointNameField = new QLineEdit();
         auto addJointButton = new QPushButton("Add joint");
         auto jointNameLabel = new QLabel("Joint name: ");
-
-        connect(addJointButton, &QPushButton::clicked,
-                [this, robotNameField, robotListModel, jointListModel](bool checked) {
-                    auto robotName = robotNameField->text().toStdString();
-                    if(robotName != "") {
-                        if(Robot::checkRobotExists(storage, robotName)) {
-                            auto selectedRobot = Robot(storage, robotName);
-                            auto robotId = selectedRobot.getRobotId();
-                            stringstream s;
-                            s << "robot_id = " << robotId << endl;
-                            jointListModel->setWhereClause(s.str());
-                        } else {
-                            QMessageBox msgBox;
-                            msgBox.setText(QString((string("Cannot add joint to non-existant robot (") + robotName + string("). First create the robot.")).c_str()));
-                            msgBox.setStandardButtons(QMessageBox::Ok);
-                            msgBox.exec();
-                        }
-                    } else {
-                        QMessageBox msgBox;
-                        msgBox.setText(QString((string("No robot defined").c_str())));
-                        msgBox.setStandardButtons(QMessageBox::Ok);
-                        msgBox.exec();
-                    }
-                }
-        );
-
-        connect(addRobotButton, &QPushButton::clicked,
-                [robotListModel, jointListModel](bool checked) {
-                    jointListModel;
-                }
-        );
 
         robotNameField->setMaximumWidth(DEFAULT_WIDTH / 7);
         robotNameLabel->setMaximumWidth(DEFAULT_WIDTH / 7);
@@ -135,6 +106,107 @@ namespace kukadu {
 
         robotAddBox->setMinimumSize(DEFAULT_WIDTH / 3.0, DEFAULT_HEIGHT / 3.0);
         robotAddBox->setMaximumSize(DEFAULT_WIDTH / 3.0, DEFAULT_HEIGHT / 3.0);
+
+        /*************** set event handlers ******************/
+
+        // handler for showing another robot
+        connect(robotList->selectionModel(), &QItemSelectionModel::currentChanged,
+                [this, robotListModel, jointListModel, robotNameField](const QModelIndex& current, const QModelIndex& previous) {
+                    auto robotId = robotListModel->getId(current);
+                    auto selectedRobot = Robot(storage, robotId);
+                    stringstream s;
+                    s << "robot_id = " << robotId << endl;
+                    jointListModel->setWhereClause(s.str());
+                    robotNameField->setText(QString(selectedRobot.getRobotName().c_str()));
+                }
+        );
+
+        // handler for adding a new joint
+        connect(addJointButton, &QPushButton::clicked,
+                [this, robotNameField, jointNameField, robotList, robotListModel, jointListModel](bool checked) {
+                    auto robotName = robotNameField->text().toStdString();
+                    auto jointName = jointNameField->text().toStdString();
+                    if(jointName != "") {
+                        if(robotName != "") {
+                            if(Robot::checkRobotExists(storage, robotName)) {
+                                auto selectedRobot = Robot(storage, robotName);
+                                auto robotId = selectedRobot.getRobotId();
+                                robotList->setCurrentIndex(robotListModel->getIndex(robotId));
+                                if(selectedRobot.insertJoint(jointName))
+                                    jointListModel->reset();
+                                else showInfoBox("The robot " + robotName + " already has a joint named " + jointName);
+                            } else showInfoBox("Cannot add joint to non-existent robot (" + robotName + "). First create the robot");
+                        } else showInfoBox("No robot name defined");
+                    } else showInfoBox("No joint name defined");
+                }
+        );
+
+        // handler for adding a new robot
+        connect(addRobotButton, &QPushButton::clicked,
+                [this, robotNameField, robotListModel, jointListModel](bool checked) {
+                    auto robotName = robotNameField->text().toStdString();
+                    if(robotName != "") {
+                        if(Robot::createRobot(storage, robotName))
+                            robotListModel->reset();
+                        else showInfoBox("Could not create robot (maybe a robot with that name already exists?)");
+                    } else showInfoBox("No robot name defined");
+                }
+        );
+
+        // handler for deleting a robot
+        connect(deleteRobotButton, &QPushButton::clicked,
+                [this, robotList, jointList, robotListModel, jointListModel](bool checked) {
+
+                    auto robotIndex = robotList->currentIndex();
+
+                    if(robotIndex.row() >= 0) {
+
+                        auto robotId = robotListModel->getId(robotIndex);
+                        Robot currentRobot(storage, robotId);
+                        if(currentRobot.deleteRobot()) {
+                            robotListModel->reset();
+                            if(robotListModel->rowCount()) {
+                                auto firstIndex = robotListModel->index(0, 0);
+                                robotList->setCurrentIndex(firstIndex);
+                            }
+                        } else showInfoBox("Couldn't delete robot " + currentRobot.getRobotName());
+
+                        // if no robot there, reset also the joint list
+                        if(robotListModel->rowCount() == 0)
+                            jointListModel->reset();
+
+                    } else showInfoBox("No robot selected");
+
+                }
+        );
+
+        // handler for deleting a joint
+        connect(deleteJointButton, &QPushButton::clicked,
+                [this, robotList, jointList, robotListModel, jointListModel](bool checked) {
+
+                    auto robotIndex = robotList->currentIndex();
+                    auto jointIndex = jointList->currentIndex();
+
+                    if(robotIndex.row() >= 0) {
+
+                        if(jointIndex.row() >= 0) {
+
+                            auto robotId = robotListModel->getId(robotIndex);
+                            auto jointId = jointListModel->getId(jointIndex);
+                            Robot currentRobot(storage, robotId);
+                            if(currentRobot.deleteJoint(jointId))
+                                jointListModel->reset();
+                            else showInfoBox("Couldn't delete joint " + currentRobot.getJointName(jointId));
+
+                        } else showInfoBox("No joint selected");
+
+                    } else showInfoBox("No robot selected");
+                }
+        );
+
+        // select first element
+        if(robotListModel->rowCount())
+            robotList->setCurrentIndex(firstIndex);
 
         /*************** sticking layouts together ******************/
         mainLayout->addWidget(robotListBox, 0, 0);
@@ -163,6 +235,10 @@ namespace kukadu {
         return cachedIds.at(index.row());
     }
 
+    QModelIndex DatabaseModel::getIndex(int robotId) {
+        return index(std::find(cachedIds.begin(), cachedIds.end(), robotId) - cachedIds.begin(), 0);
+    }
+
     int DatabaseModel::getCount() {
         return cachedData.size();
     }
@@ -176,6 +252,12 @@ namespace kukadu {
 
         endResetModel();
 
+    }
+
+    void DatabaseModel::reset() {
+        beginResetModel();
+        cacheData();
+        endResetModel();
     }
 
     void DatabaseModel::cacheData() {
