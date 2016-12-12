@@ -1,11 +1,6 @@
 #ifndef KUKADU_KUKADUTYPES_H
 #define KUKADU_KUKADUTYPES_H
 
-    #if __cplusplus > 199711L
-    #else
-        #define USEBOOST
-    #endif
-
     #include <exception>
 
     // shared_ptr
