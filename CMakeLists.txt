@@ -160,9 +160,11 @@ add_library(reflexxeslib ${REFLEXXESSRC})
 add_library(kukaduvision ${KUKADUVISIONSRC})
 add_library(${PROJECT_NAME} ${KUKADUSRC} ${MyProjectLib_src} ${MyProjectLib_hdr_moc})
 
-target_link_libraries(${PROJECT_NAME} ${catkin_LIBRARIES} ${Boost_LIBRARIES} ${PCL_LIBRARIES} ${ARMADILLO_LIBRARIES} ${PCL_LIBRARIES}
+target_link_libraries(${PROJECT_NAME} ${catkin_LIBRARIES} ${Boost_LIBRARIES} ${ARMADILLO_LIBRARIES}
     reflexxeslib ncurses gsl gslcblas stdc++ pthread dl util m komo swift algo ann gui ors optim motion rt lapack blas glut GLU GL X11 ${GTK_LIBRARIES} ${GTK2_LIBRARIES}
     gthread-2.0 qhull ${PYTH_LIB} m mysqlcppconn Qt5::Widgets)
+
+target_link_libraries(kukadu_vision ${catkin_LIBRARIES} ${Boost_LIBRARIES} ${PCL_LIBRARIES} ${ARMADILLO_LIBRARIES})
 
 #add_executable(kukadu_demo_guided tutorials/guided.cpp)
 #target_link_libraries(kukadu_demo_guided kukadu ${catkin_LIBRARIES} komo swift algo ann gui ors optim motion rt lapack blas glut GLU GL X11 ${GTK_LIBRARIES} ${GTK2_LIBRARIES} gthread-2.0 qhull m)
@@ -224,5 +226,6 @@ install(TARGETS control_queue RUNTIME DESTINATION ${CATKIN_PACKAGE_BIN_DESTINATI
 #install(TARGETS komo_planning RUNTIME DESTINATION ${CATKIN_PACKAGE_BIN_DESTINATION})
 #install(TARGETS moveit_planning RUNTIME DESTINATION ${CATKIN_PACKAGE_BIN_DESTINATION})
 #install(TARGETS dmp RUNTIME DESTINATION ${CATKIN_PACKAGE_BIN_DESTINATION})
-install(TARGETS ${PROJECT_NAME} reflexxeslib ARCHIVE DESTINATION ${CATKIN_PACKAGE_LIB_DESTINATION} LIBRARY DESTINATION ${CATKIN_PACKAGE_LIB_DESTINATION} RUNTIME DESTINATION ${CATKIN_GLOBAL_BIN_DESTINATION})
+
+install(TARGETS ${PROJECT_NAME} kukadu_vision reflexxeslib ARCHIVE DESTINATION ${CATKIN_PACKAGE_LIB_DESTINATION} LIBRARY DESTINATION ${CATKIN_PACKAGE_LIB_DESTINATION} RUNTIME DESTINATION ${CATKIN_GLOBAL_BIN_DESTINATION})
 install(DIRECTORY include/${PROJECT_NAME}/ DESTINATION ${CATKIN_PACKAGE_INCLUDE_DESTINATION})
