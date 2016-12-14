@@ -41,10 +41,16 @@ namespace kukadu {
         void stopVisualizationWindow();
         void visDrawBox(std::string id, struct FitCube dim);
         void visDrawPlaneWithNormal(std::string id, arma::vec r0, arma::vec n);
-        void visualizePointCloud(std::string id, pcl::PointCloud<pcl::PointXYZ>::Ptr pc);
-        void visualizePointCloud(std::string id, pcl::PointCloud<pcl::PointXYZRGB>::Ptr pc);
 
+        void visualizePointCloud(std::string id, pcl::PointCloud<pcl::PointXYZ>::Ptr pc);
+        void visualizePointCloud(std::string id, pcl::PointCloud<pcl::PointXYZI>::Ptr pc);
+        void visualizePointCloud(std::string id, pcl::PointCloud<pcl::PointXYZRGB>::Ptr pc);
+        void visualizePointCloud(std::string id, pcl::PointCloud<pcl::PointXYZRGBA>::Ptr pc);
+
+        void updateVisualizedPointCloud(std::string id, pcl::PointCloud<pcl::PointXYZ>::Ptr pc);
+        void updateVisualizedPointCloud(std::string id, pcl::PointCloud<pcl::PointXYZI>::Ptr pc);
         void updateVisualizedPointCloud(std::string id, pcl::PointCloud<pcl::PointXYZRGB>::Ptr pc);
+        void updateVisualizedPointCloud(std::string id, pcl::PointCloud<pcl::PointXYZRGBA>::Ptr pc);
 
         KUKADU_SHARED_PTR<kukadu_thread> initializeVisualizationWindow();
         KUKADU_SHARED_PTR<pcl::visualization::PCLVisualizer> getVisualizer();

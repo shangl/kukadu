@@ -7,6 +7,7 @@
 #include <pcl_conversions/pcl_conversions.h>
 
 using namespace std;
+using namespace pcl;
 
 namespace kukadu {
 
@@ -132,8 +133,12 @@ namespace kukadu {
 
     }
 
-    pcl::PointCloud<pcl::PointXYZRGB>::Ptr Kinect::getCurrentPclPointCloud() {
-        return sensorMsgsPcToPclPc(getCurrentPointCloud());
+    pcl::PointCloud<pcl::PointXYZRGB>::Ptr Kinect::getCurrentColorPointCloud() {
+        return sensorMsgsPcToPclPc<pcl::PointCloud<PointXYZRGB>::Ptr, pcl::PointXYZRGB>(getCurrentPointCloud());
+    }
+
+    pcl::PointCloud<pcl::PointXYZI>::Ptr Kinect::getCurrentIntensityPointCloud() {
+        return sensorMsgsPcToPclPc<pcl::PointCloud<PointXYZI>::Ptr, pcl::PointXYZI>(getCurrentPointCloud());
     }
 
     std::string Kinect::getVisPubTopic() {
@@ -151,7 +156,7 @@ namespace kukadu {
 
     void Kinect::visualizeCurrentTransformedPc(KUKADU_SHARED_PTR<PCTransformator> transformator) {
 
-        pcl::PointCloud<pcl::PointXYZRGB>::Ptr currentPc = sensorMsgsPcToPclPc(getCurrentPointCloud());
+        pcl::PointCloud<pcl::PointXYZRGB>::Ptr currentPc = sensorMsgsPcToPclPc<pcl::PointCloud<PointXYZRGB>::Ptr, pcl::PointXYZRGB>(getCurrentPointCloud());
         pcl::PointCloud<pcl::PointXYZRGB>::Ptr transformed = transformator->transformPc(currentPc);
         visPublisher.publish(pclPcToSensorMsgsPc(transformed));
 

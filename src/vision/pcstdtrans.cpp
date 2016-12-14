@@ -1,3 +1,4 @@
+#include <iostream>
 #include <kukadu/utils/utils.hpp>
 #include <kukadu/vision/pcstdtrans.hpp>
 #include <pcl_conversions/pcl_conversions.h>
@@ -20,6 +21,14 @@ namespace kukadu {
     pcl::PointCloud<pcl::PointXYZRGB>::Ptr PCTransformator::fakeRgb(pcl::PointCloud<pcl::PointXYZ>::Ptr toTransform) {
 
         PointCloud<PointXYZRGB> retPc;
+        pcl::copyPointCloud(*toTransform, retPc);
+        return retPc.makeShared();
+
+    }
+
+    pcl::PointCloud<pcl::PointXYZ>::Ptr PCTransformator::removeIntensity(pcl::PointCloud<pcl::PointXYZI>::Ptr toTransform) {
+
+        PointCloud<PointXYZ> retPc;
         pcl::copyPointCloud(*toTransform, retPc);
         return retPc.makeShared();
 
@@ -150,6 +159,31 @@ namespace kukadu {
 
     pcl::PointCloud<pcl::PointXYZ>::Ptr ColorFilter::transformPc(pcl::PointCloud<pcl::PointXYZ>::Ptr pc) {
         return pc;
+    }
+
+    IntensityFilter::IntensityFilter(int intensityCut) {
+        this->intensityCut = intensityCut;
+    }
+
+    pcl::PointCloud<pcl::PointXYZ>::Ptr IntensityFilter::transformPc(pcl::PointCloud<pcl::PointXYZ>::Ptr cloud) {
+        return cloud;
+    }
+
+    pcl::PointCloud<pcl::PointXYZRGB>::Ptr IntensityFilter::transformPc(pcl::PointCloud<pcl::PointXYZRGB>::Ptr pc) {
+
+        pcl::PointCloud<pcl::PointXYZRGB> retCloud;
+        for(PointCloud<pcl::PointXYZRGB>::iterator pointIt = pc->begin(); pointIt != pc->end(); ++pointIt) {
+            PointXYZRGB& p = *pointIt;
+            Eigen::Vector3i rgb = p.getRGBVector3i();
+            int r = rgb.coeff(0);
+            int g = rgb.coeff(1);
+            int b = rgb.coeff(2);
+            int brightness = (r + r + b + g + g + g) / 6;
+            if(brightness > 230)
+                retCloud.push_back(p);
+        }
+        return retCloud.makeShared();
+
     }
 
 }

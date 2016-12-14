@@ -8,6 +8,7 @@
 #include <sensor_msgs/PointCloud2.h>
 #include <kukadu/types/kukadutypes.hpp>
 #include <kukadu/vision/pcstdtrans.hpp>
+#include <pcl_conversions/pcl_conversions.h>
 
 namespace kukadu {
 
@@ -64,11 +65,24 @@ namespace kukadu {
         std::string getVisPubTopic();
 
         sensor_msgs::PointCloud2::Ptr getCurrentPointCloud();
-        pcl::PointCloud<pcl::PointXYZRGB>::Ptr getCurrentPclPointCloud();
+        pcl::PointCloud<pcl::PointXYZRGB>::Ptr getCurrentColorPointCloud();
+        pcl::PointCloud<pcl::PointXYZI>::Ptr getCurrentIntensityPointCloud();
 
         KUKADU_SHARED_PTR<kukadu_thread> startSensing();
 
     };
+
+    template <typename PointCloudPtr, typename Point> PointCloudPtr sensorMsgsPcToPclPc(sensor_msgs::PointCloud2::Ptr pc) {
+
+        pcl::PCLPointCloud2 intermediate;
+        pcl::PointCloud<Point> output;
+        PointCloudPtr outputPtr;
+        pcl_conversions::toPCL(*pc, intermediate);
+        pcl::fromPCLPointCloud2(intermediate, output);
+        outputPtr = output.makeShared();
+        return outputPtr;
+
+    }
 
 }
 

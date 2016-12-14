@@ -29,6 +29,14 @@ namespace kukadu {
         visualizePointCloud(id, PCTransformator::fakeRgb(pc));
 	}
 
+    void PCLTools::visualizePointCloud(std::string id, pcl::PointCloud<pcl::PointXYZI>::Ptr pc) {
+        visualizePointCloud(id, PCTransformator::removeIntensity(pc));
+    }
+
+    void PCLTools::visualizePointCloud(std::string id, pcl::PointCloud<pcl::PointXYZRGBA>::Ptr pc) {
+        visualizePointCloud(id, pc);
+    }
+
     void PCLTools::visualizePointCloud(std::string id, pcl::PointCloud<pcl::PointXYZRGB>::Ptr pc) {
 
         pair<string, PointCloud<PointXYZRGB>::Ptr> nextPcPair(id, pc);
@@ -198,6 +206,18 @@ namespace kukadu {
     void PCLTools::updateVisualizedPointCloud(std::string id, pcl::PointCloud<pcl::PointXYZRGB>::Ptr pc) {
 		viewer->updatePointCloud(pc, id);
 	}
+
+    void PCLTools::updateVisualizedPointCloud(std::string id, pcl::PointCloud<pcl::PointXYZRGBA>::Ptr pc) {
+        viewer->updatePointCloud(pc, id);
+    }
+
+    void PCLTools::updateVisualizedPointCloud(std::string id, pcl::PointCloud<pcl::PointXYZ>::Ptr pc) {
+        viewer->updatePointCloud(pc, id);
+    }
+
+    void PCLTools::updateVisualizedPointCloud(std::string id, pcl::PointCloud<pcl::PointXYZI>::Ptr pc) {
+        viewer->updatePointCloud(PCTransformator::removeIntensity(pc), id);
+    }
 
 	void PCLTools::visDrawBox(std::string id, struct FitCube dim) {
 		viewer->addCube(dim.translation, dim.rotation, dim.width, dim.height, dim.depth, id);

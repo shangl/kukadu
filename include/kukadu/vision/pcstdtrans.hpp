@@ -16,6 +16,7 @@ namespace kukadu {
         virtual pcl::PointCloud<pcl::PointXYZ>::Ptr transformPc(pcl::PointCloud<pcl::PointXYZ>::Ptr pc) = 0;
         virtual pcl::PointCloud<pcl::PointXYZRGB>::Ptr transformPc(pcl::PointCloud<pcl::PointXYZRGB>::Ptr pc) = 0;
 
+        static pcl::PointCloud<pcl::PointXYZ>::Ptr removeIntensity(pcl::PointCloud<pcl::PointXYZI>::Ptr toTransform);
         static pcl::PointCloud<pcl::PointXYZ>::Ptr removeRgb(pcl::PointCloud<pcl::PointXYZRGB>::Ptr toTransform);
         static pcl::PointCloud<pcl::PointXYZRGB>::Ptr fakeRgb(pcl::PointCloud<pcl::PointXYZ>::Ptr toTransform);
 
@@ -39,7 +40,7 @@ namespace kukadu {
 
     };
 
-    class OpenBoxFilter : PCTransformator {
+    class OpenBoxFilter : public PCTransformator {
 
     private:
 
@@ -59,7 +60,7 @@ namespace kukadu {
 
     };
 
-    class ColorFilter : PCTransformator {
+    class ColorFilter : public PCTransformator {
 
     private:
 
@@ -69,6 +70,21 @@ namespace kukadu {
     public:
 
         ColorFilter(std::vector<int> rgbRangeStart, std::vector<int> rgbRangeEnd);
+
+        virtual pcl::PointCloud<pcl::PointXYZ>::Ptr transformPc(pcl::PointCloud<pcl::PointXYZ>::Ptr cloud);
+        virtual pcl::PointCloud<pcl::PointXYZRGB>::Ptr transformPc(pcl::PointCloud<pcl::PointXYZRGB>::Ptr pc);
+
+    };
+
+    class IntensityFilter : public PCTransformator {
+
+    private:
+
+        int intensityCut;
+
+    public:
+
+        IntensityFilter(int intensityCut);
 
         virtual pcl::PointCloud<pcl::PointXYZ>::Ptr transformPc(pcl::PointCloud<pcl::PointXYZ>::Ptr cloud);
         virtual pcl::PointCloud<pcl::PointXYZRGB>::Ptr transformPc(pcl::PointCloud<pcl::PointXYZRGB>::Ptr pc);
