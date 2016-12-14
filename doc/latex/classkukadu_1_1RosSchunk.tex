@@ -1,0 +1,152 @@
+\hypertarget{classkukadu_1_1RosSchunk}{\section{kukadu\-:\-:Ros\-Schunk Class Reference}
+\label{classkukadu_1_1RosSchunk}\index{kukadu\-::\-Ros\-Schunk@{kukadu\-::\-Ros\-Schunk}}
+}
+
+
+Provides control capabilities for the Schunk S\-D\-H robotic hand with R\-O\-S binding Implements the \hyperlink{classkukadu_1_1GenericHand}{Generic\-Hand} interface for the Schunk S\-D\-H robotic hand. Note that using this class the programm has to be executed with root rights.  
+
+
+
+
+{\ttfamily \#include $<$rosschunk.\-hpp$>$}
+
+Inheritance diagram for kukadu\-:\-:Ros\-Schunk\-:\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[height=4.000000cm]{classkukadu_1_1RosSchunk}
+\end{center}
+\end{figure}
+\subsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\hypertarget{classkukadu_1_1RosSchunk_aa15781f706cc2591f4e2e5ec12136800}{{\bfseries Ros\-Schunk} (ros\-::\-Node\-Handle node, std\-::string type, std\-::string hand)}\label{classkukadu_1_1RosSchunk_aa15781f706cc2591f4e2e5ec12136800}
+
+\item 
+virtual void \hyperlink{classkukadu_1_1RosSchunk_a2b263c93cd2afe970121fe0102b5e502}{connect\-Hand} ()
+\begin{DoxyCompactList}\small\item\em Initializes the connection to the hand. \end{DoxyCompactList}\item 
+virtual void \hyperlink{classkukadu_1_1RosSchunk_a3a50fb0908f1fac2151934ba9759825c}{safely\-Destroy} ()
+\begin{DoxyCompactList}\small\item\em Method is called whenever destroy event occurs and ensures safe and clean termination of the programm (e.\-g. stops robot) \end{DoxyCompactList}\item 
+virtual void \hyperlink{classkukadu_1_1RosSchunk_a8b07d0af90c8b1b0827eb9587007a7c0}{disconnect\-Hand} ()
+\begin{DoxyCompactList}\small\item\em Closes connection between host computer and hand. \end{DoxyCompactList}\item 
+\hypertarget{classkukadu_1_1RosSchunk_ac94d4d5cc98000f0aeba0f99c9393f25}{virtual void {\bfseries set\-Grasp} (kukadu\-\_\-grasps grasp)}\label{classkukadu_1_1RosSchunk_ac94d4d5cc98000f0aeba0f99c9393f25}
+
+\item 
+\hypertarget{classkukadu_1_1RosSchunk_a2e63ac42d96b5849b26103fe6273c5bf}{virtual void {\bfseries publish\-Single\-Joint} (int idx, double pos)}\label{classkukadu_1_1RosSchunk_a2e63ac42d96b5849b26103fe6273c5bf}
+
+\item 
+virtual void \hyperlink{classkukadu_1_1RosSchunk_accae3e1fa1da2b98bfeddf06d3682f81}{close\-Hand} (double percentage, double velocity)
+\begin{DoxyCompactList}\small\item\em Opens and closes the hand according to the provided closing percentage and velocity. \end{DoxyCompactList}\item 
+\hypertarget{classkukadu_1_1RosSchunk_a0e29db81dedf7db7ef47ce4c8d4887c6}{void {\bfseries move\-Joints} (arma\-::vec joints)}\label{classkukadu_1_1RosSchunk_a0e29db81dedf7db7ef47ce4c8d4887c6}
+
+\item 
+\hypertarget{classkukadu_1_1RosSchunk_a66998cc565db52295c3c614ba78ca892}{void {\bfseries set\-Wait\-For\-Reached} (bool wait\-For\-Reached)}\label{classkukadu_1_1RosSchunk_a66998cc565db52295c3c614ba78ca892}
+
+\item 
+\hypertarget{classkukadu_1_1RosSchunk_a2e32363ebee4dba2674586416231d2f9}{virtual std\-::string {\bfseries get\-Hand\-Name} ()}\label{classkukadu_1_1RosSchunk_a2e32363ebee4dba2674586416231d2f9}
+
+\item 
+\hypertarget{classkukadu_1_1RosSchunk_ad3a0fc65d57752cada78ce38b4f48b21}{virtual std\-::vector$<$ arma\-::mat $>$ {\bfseries get\-Tactile\-Sensing} ()}\label{classkukadu_1_1RosSchunk_ad3a0fc65d57752cada78ce38b4f48b21}
+
+\end{DoxyCompactItemize}
+\subsection*{Protected Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\hypertarget{classkukadu_1_1RosSchunk_af9f84ca2f92b7bd0367961b2f6f7d030}{{\bfseries Ros\-Schunk} (std\-::string type, std\-::string hand)}\label{classkukadu_1_1RosSchunk_af9f84ca2f92b7bd0367961b2f6f7d030}
+
+\end{DoxyCompactItemize}
+
+
+\subsection{Detailed Description}
+Provides control capabilities for the Schunk S\-D\-H robotic hand with R\-O\-S binding Implements the \hyperlink{classkukadu_1_1GenericHand}{Generic\-Hand} interface for the Schunk S\-D\-H robotic hand. Note that using this class the programm has to be executed with root rights. 
+
+\subsection{Member Function Documentation}
+\hypertarget{classkukadu_1_1RosSchunk_accae3e1fa1da2b98bfeddf06d3682f81}{\index{kukadu\-::\-Ros\-Schunk@{kukadu\-::\-Ros\-Schunk}!close\-Hand@{close\-Hand}}
+\index{close\-Hand@{close\-Hand}!kukadu::RosSchunk@{kukadu\-::\-Ros\-Schunk}}
+\subsubsection[{close\-Hand}]{\setlength{\rightskip}{0pt plus 5cm}void kukadu\-::\-Ros\-Schunk\-::close\-Hand (
+\begin{DoxyParamCaption}
+\item[{double}]{percentage, }
+\item[{double}]{velocity}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [virtual]}}}\label{classkukadu_1_1RosSchunk_accae3e1fa1da2b98bfeddf06d3682f81}
+
+
+Opens and closes the hand according to the provided closing percentage and velocity. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em percentage} & closing percentage (0.\-0 -\/ hand fully open, 1.\-0 hand fully closed) \\
+\hline
+{\em velocity} & closing velocity in range between 0 and 1 \\
+\hline
+\end{DoxyParams}
+
+
+Implements \hyperlink{classkukadu_1_1GenericHand_a000e4d03e93f50d7101c50e6096d28a0}{kukadu\-::\-Generic\-Hand}.
+
+
+
+Reimplemented in \hyperlink{classkukadu_1_1PlottingHand_adcdc57d192c5dfca6ca154a50a904824}{kukadu\-::\-Plotting\-Hand}.
+
+\hypertarget{classkukadu_1_1RosSchunk_a2b263c93cd2afe970121fe0102b5e502}{\index{kukadu\-::\-Ros\-Schunk@{kukadu\-::\-Ros\-Schunk}!connect\-Hand@{connect\-Hand}}
+\index{connect\-Hand@{connect\-Hand}!kukadu::RosSchunk@{kukadu\-::\-Ros\-Schunk}}
+\subsubsection[{connect\-Hand}]{\setlength{\rightskip}{0pt plus 5cm}void kukadu\-::\-Ros\-Schunk\-::connect\-Hand (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [virtual]}}}\label{classkukadu_1_1RosSchunk_a2b263c93cd2afe970121fe0102b5e502}
+
+
+Initializes the connection to the hand. 
+
+
+
+Implements \hyperlink{classkukadu_1_1GenericHand_a965ed8a8d225fb36eabf5089fa5d4f32}{kukadu\-::\-Generic\-Hand}.
+
+
+
+Reimplemented in \hyperlink{classkukadu_1_1PlottingHand_ae1f5f384a2e8db0423b2a2ebe889f4f9}{kukadu\-::\-Plotting\-Hand}.
+
+\hypertarget{classkukadu_1_1RosSchunk_a8b07d0af90c8b1b0827eb9587007a7c0}{\index{kukadu\-::\-Ros\-Schunk@{kukadu\-::\-Ros\-Schunk}!disconnect\-Hand@{disconnect\-Hand}}
+\index{disconnect\-Hand@{disconnect\-Hand}!kukadu::RosSchunk@{kukadu\-::\-Ros\-Schunk}}
+\subsubsection[{disconnect\-Hand}]{\setlength{\rightskip}{0pt plus 5cm}void kukadu\-::\-Ros\-Schunk\-::disconnect\-Hand (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [virtual]}}}\label{classkukadu_1_1RosSchunk_a8b07d0af90c8b1b0827eb9587007a7c0}
+
+
+Closes connection between host computer and hand. 
+
+
+
+Implements \hyperlink{classkukadu_1_1GenericHand_a94c4a983aae8562bda7711a71baa7502}{kukadu\-::\-Generic\-Hand}.
+
+
+
+Reimplemented in \hyperlink{classkukadu_1_1PlottingHand_a14fc064b6e159b0d7c7a9ce896bfa7d9}{kukadu\-::\-Plotting\-Hand}.
+
+\hypertarget{classkukadu_1_1RosSchunk_a3a50fb0908f1fac2151934ba9759825c}{\index{kukadu\-::\-Ros\-Schunk@{kukadu\-::\-Ros\-Schunk}!safely\-Destroy@{safely\-Destroy}}
+\index{safely\-Destroy@{safely\-Destroy}!kukadu::RosSchunk@{kukadu\-::\-Ros\-Schunk}}
+\subsubsection[{safely\-Destroy}]{\setlength{\rightskip}{0pt plus 5cm}void kukadu\-::\-Ros\-Schunk\-::safely\-Destroy (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [virtual]}}}\label{classkukadu_1_1RosSchunk_a3a50fb0908f1fac2151934ba9759825c}
+
+
+Method is called whenever destroy event occurs and ensures safe and clean termination of the programm (e.\-g. stops robot) 
+
+
+
+Implements \hyperlink{classkukadu_1_1DestroyableObject_a9e490cfa46af84690eb5ff0682df986c}{kukadu\-::\-Destroyable\-Object}.
+
+
+
+Reimplemented in \hyperlink{classkukadu_1_1PlottingHand_aa57430413a6c183592debe8c881c8520}{kukadu\-::\-Plotting\-Hand}.
+
+
+
+The documentation for this class was generated from the following files\-:\begin{DoxyCompactItemize}
+\item 
+/home/c7031109/iis\-\_\-robot\-\_\-sw/iis\-\_\-catkin\-\_\-ws/src/kukadu/include/kukadu/robot/gripper/rosschunk.\-hpp\item 
+/home/c7031109/iis\-\_\-robot\-\_\-sw/iis\-\_\-catkin\-\_\-ws/src/kukadu/src/robot/gripper/rosschunk.\-cpp\end{DoxyCompactItemize}

@@ -1,10 +1,10 @@
-#include "openboxfilter.hpp"
+#include <kukadu/vision/openboxfilter.hpp>
 
 #include <iostream>
 #include <armadillo>
 
-#include "../utils/utils.hpp"
-#include "planarcuttransformator.hpp"
+#include <kukadu/utils/utils.hpp>
+#include <kukadu/vision/planarcuttransformator.hpp>
 
 using namespace std;
 using namespace arma;

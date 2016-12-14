@@ -1,7 +1,9 @@
-#include "pcltools.hpp"
+#include <kukadu/vision/pcltools.hpp>
+#include <pcl/filters/statistical_outlier_removal.h>
 
 using namespace std;
 using namespace pcl;
+using namespace arma;
 
 namespace kukadu {
 
@@ -183,5 +185,66 @@ namespace kukadu {
 	void PCLTools::visDrawBox(std::string id, struct FitCube dim) {
 		viewer->addCube(dim.translation, dim.rotation, dim.width, dim.height, dim.depth, id);
 	}
+
+    pcl::PointCloud<pcl::PointXYZ>::Ptr PCLTools::filterCluster(pcl::PointCloud<pcl::PointXYZ>::Ptr cloud, bool negative) {
+
+        // Create the filtering object
+        pcl::StatisticalOutlierRemoval<pcl::PointXYZ> sor;
+        sor.setInputCloud(cloud);
+        sor.setMeanK(50);
+        sor.setStddevMulThresh (1.0);
+        sor.filter(*cloud);
+
+        int count = 0;
+        vector<pcl::PointCloud<pcl::PointXYZ>::Ptr> clusterPointers;
+        for(pcl::PointCloud<pcl::PointXYZ>::iterator it = cloud->begin(); it != cloud->end(); it++, ++count) {
+
+            if(!(count % 4)) {
+
+                vec point(3);
+                point(0) = it->x; point(1) = it->y; point(2) = it->z;
+
+                bool foundPlace = false;
+                for(int i = 0; i < clusterPointers.size() && !foundPlace; ++i) {
+
+                    pcl::PointCloud<pcl::PointXYZ>::Ptr currentCluster = clusterPointers.at(i);
+                    for(pcl::PointCloud<pcl::PointXYZ>::iterator it2 = currentCluster->begin(); it2 != currentCluster->end(); it2++) {
+                        vec clusterPoint(3);
+                        clusterPoint(0) = it2->x; clusterPoint(1) = it2->y; clusterPoint(2) = it2->z;
+                        vec difVec = point - clusterPoint;
+                        vec distVec = difVec.t() * difVec;
+                        double distance = distVec(0);
+                        if(distance < pow(0.05, 2)) {
+                            foundPlace = true;
+                            currentCluster->push_back(*it);
+                            break;
+                        }
+                    }
+
+                }
+
+                if(!foundPlace) {
+                    pcl::PointCloud<pcl::PointXYZ>::Ptr nextCluster(new pcl::PointCloud<pcl::PointXYZ>());
+                    nextCluster->push_back(*it);
+                    clusterPointers.push_back(nextCluster);
+                }
+
+            }
+
+        }
+
+        int maxClusterIdx = 0;
+        int maxClusterSize = 0;
+        for(int i = 0; i < clusterPointers.size(); ++i) {
+            int currentClusterSize = (clusterPointers.at(i))->size();
+            if(currentClusterSize > maxClusterSize) {
+                maxClusterIdx = i;
+                maxClusterSize = currentClusterSize;
+            }
+        }
+
+        return clusterPointers.at(maxClusterIdx);
+
+    }
 
 }

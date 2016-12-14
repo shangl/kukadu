@@ -1,0 +1,57 @@
+\hypertarget{classkukadu_1_1MoveItKinematics}{\section{kukadu\-:\-:Move\-It\-Kinematics Class Reference}
+\label{classkukadu_1_1MoveItKinematics}\index{kukadu\-::\-Move\-It\-Kinematics@{kukadu\-::\-Move\-It\-Kinematics}}
+}
+Inheritance diagram for kukadu\-:\-:Move\-It\-Kinematics\-:\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[height=2.000000cm]{classkukadu_1_1MoveItKinematics}
+\end{center}
+\end{figure}
+\subsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\hypertarget{classkukadu_1_1MoveItKinematics_a2014973f734e343eab24ee034b4136ae}{{\bfseries Move\-It\-Kinematics} (K\-U\-K\-A\-D\-U\-\_\-\-S\-H\-A\-R\-E\-D\-\_\-\-P\-T\-R$<$ \hyperlink{classkukadu_1_1ControlQueue}{Control\-Queue} $>$ queue, ros\-::\-Node\-Handle node, std\-::string move\-Group\-Name, std\-::vector$<$ std\-::string $>$ joint\-Names, std\-::string tip\-Link)}\label{classkukadu_1_1MoveItKinematics_a2014973f734e343eab24ee034b4136ae}
+
+\item 
+\hypertarget{classkukadu_1_1MoveItKinematics_a5b4c08edeb86780f498525d03669faf5}{{\bfseries Move\-It\-Kinematics} (K\-U\-K\-A\-D\-U\-\_\-\-S\-H\-A\-R\-E\-D\-\_\-\-P\-T\-R$<$ \hyperlink{classkukadu_1_1ControlQueue}{Control\-Queue} $>$ queue, ros\-::\-Node\-Handle node, std\-::string move\-Group\-Name, std\-::vector$<$ std\-::string $>$ joint\-Names, std\-::string tip\-Link, bool avoid\-Collisions, int max\-Attempts, double time\-Out)}\label{classkukadu_1_1MoveItKinematics_a5b4c08edeb86780f498525d03669faf5}
+
+\item 
+\hypertarget{classkukadu_1_1MoveItKinematics_a5e0335477c0b1880b1c1cd8ce281933a}{virtual geometry\-\_\-msgs\-::\-Pose {\bfseries compute\-Fk} (std\-::vector$<$ double $>$ joint\-State)}\label{classkukadu_1_1MoveItKinematics_a5e0335477c0b1880b1c1cd8ce281933a}
+
+\item 
+\hypertarget{classkukadu_1_1MoveItKinematics_ac79665569fe1c5dde2623c2de0d450f0}{virtual std\-::vector$<$ arma\-::vec $>$ {\bfseries compute\-Ik} (std\-::vector$<$ double $>$ current\-Joint\-State, const geometry\-\_\-msgs\-::\-Pose \&goal)}\label{classkukadu_1_1MoveItKinematics_ac79665569fe1c5dde2623c2de0d450f0}
+
+\item 
+\hypertarget{classkukadu_1_1MoveItKinematics_a8e4bd89a6483eff718671d2877297da8}{virtual std\-::vector$<$ arma\-::vec $>$ {\bfseries plan\-Joint\-Trajectory} (std\-::vector$<$ arma\-::vec $>$ intermediate\-Joints)}\label{classkukadu_1_1MoveItKinematics_a8e4bd89a6483eff718671d2877297da8}
+
+\item 
+\hypertarget{classkukadu_1_1MoveItKinematics_a1a51e4de20c5b79eccf09ad547de6914}{virtual std\-::vector$<$ arma\-::vec $>$ {\bfseries plan\-Cartesian\-Trajectory} (std\-::vector$<$ geometry\-\_\-msgs\-::\-Pose $>$ intermediate\-Poses, bool smooth\-Cartesians=false, bool use\-Current\-Robot\-State=true)}\label{classkukadu_1_1MoveItKinematics_a1a51e4de20c5b79eccf09ad547de6914}
+
+\item 
+\hypertarget{classkukadu_1_1MoveItKinematics_a51f3a5d4e74240413173c7e9a7c1b454}{virtual std\-::vector$<$ arma\-::vec $>$ {\bfseries plan\-Cartesian\-Trajectory} (arma\-::vec start\-Joints, std\-::vector$<$ geometry\-\_\-msgs\-::\-Pose $>$ intermediate\-Poses, bool smooth\-Cartesians=false, bool use\-Current\-Robot\-State=true)}\label{classkukadu_1_1MoveItKinematics_a51f3a5d4e74240413173c7e9a7c1b454}
+
+\item 
+\hypertarget{classkukadu_1_1MoveItKinematics_ae51321ad291b1028a08ed778e8648a69}{bool {\bfseries is\-Colliding} (arma\-::vec joint\-State, geometry\-\_\-msgs\-::\-Pose pose)}\label{classkukadu_1_1MoveItKinematics_ae51321ad291b1028a08ed778e8648a69}
+
+\item 
+\hypertarget{classkukadu_1_1MoveItKinematics_a529444d890549bcf9b6c53f94a340040}{K\-U\-K\-A\-D\-U\-\_\-\-S\-H\-A\-R\-E\-D\-\_\-\-P\-T\-R$<$ \hyperlink{classkukadu_1_1Constraint}{Constraint} $>$ {\bfseries get\-Model\-Constraint} ()}\label{classkukadu_1_1MoveItKinematics_a529444d890549bcf9b6c53f94a340040}
+
+\end{DoxyCompactItemize}
+\subsection*{Static Public Attributes}
+\begin{DoxyCompactItemize}
+\item 
+\hypertarget{classkukadu_1_1MoveItKinematics_ae539766efac62822c841cf211c666ce1}{static const int {\bfseries S\-T\-D\-\_\-\-M\-A\-X\-\_\-\-A\-T\-T\-E\-M\-P\-T\-S} = 5}\label{classkukadu_1_1MoveItKinematics_ae539766efac62822c841cf211c666ce1}
+
+\item 
+\hypertarget{classkukadu_1_1MoveItKinematics_a5172477ff4cdf5f48bb8a2b1a2e453e8}{static const double {\bfseries S\-T\-D\-\_\-\-T\-I\-M\-E\-O\-U\-T} = 0.\-1}\label{classkukadu_1_1MoveItKinematics_a5172477ff4cdf5f48bb8a2b1a2e453e8}
+
+\item 
+\hypertarget{classkukadu_1_1MoveItKinematics_af3bfbf694219dc9784ffd78093d32913}{static const bool {\bfseries S\-T\-D\-\_\-\-A\-V\-O\-I\-D\-\_\-\-C\-O\-L\-L\-I\-S\-I\-O\-N\-S} = true}\label{classkukadu_1_1MoveItKinematics_af3bfbf694219dc9784ffd78093d32913}
+
+\end{DoxyCompactItemize}
+
+
+The documentation for this class was generated from the following files\-:\begin{DoxyCompactItemize}
+\item 
+/home/c7031109/iis\-\_\-robot\-\_\-sw/iis\-\_\-catkin\-\_\-ws/src/kukadu/include/kukadu/kinematics/moveitkinematics.\-hpp\item 
+/home/c7031109/iis\-\_\-robot\-\_\-sw/iis\-\_\-catkin\-\_\-ws/src/kukadu/src/kinematics/moveitkinematics.\-cpp\end{DoxyCompactItemize}

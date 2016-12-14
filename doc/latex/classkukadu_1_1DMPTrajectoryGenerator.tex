@@ -1,0 +1,212 @@
+\hypertarget{classkukadu_1_1DMPTrajectoryGenerator}{\section{kukadu\-:\-:D\-M\-P\-Trajectory\-Generator Class Reference}
+\label{classkukadu_1_1DMPTrajectoryGenerator}\index{kukadu\-::\-D\-M\-P\-Trajectory\-Generator@{kukadu\-::\-D\-M\-P\-Trajectory\-Generator}}
+}
+
+
+Implements the \hyperlink{classkukadu_1_1TrajectoryGenerator}{Trajectory\-Generator} interface for dynamic movement primitives.  
+
+
+
+
+{\ttfamily \#include $<$dmptrajectorygenerator.\-hpp$>$}
+
+Inheritance diagram for kukadu\-:\-:D\-M\-P\-Trajectory\-Generator\-:\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[height=2.000000cm]{classkukadu_1_1DMPTrajectoryGenerator}
+\end{center}
+\end{figure}
+\subsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\hyperlink{classkukadu_1_1DMPTrajectoryGenerator_a0bf8fd4b7bc9aded7f0929743228e73a}{D\-M\-P\-Trajectory\-Generator} (std\-::vector$<$ \hyperlink{classkukadu_1_1DMPBase}{D\-M\-P\-Base} $>$ base\-Def, double ax, double tau)
+\begin{DoxyCompactList}\small\item\em constructor \end{DoxyCompactList}\item 
+double \hyperlink{classkukadu_1_1DMPTrajectoryGenerator_a6072064f086581981d1b1540953d4bd0}{evaluate\-Basis\-Function} (double x, int fun)
+\begin{DoxyCompactList}\small\item\em evaluates the value of a single basis function \end{DoxyCompactList}\item 
+double \hyperlink{classkukadu_1_1DMPTrajectoryGenerator_ad85bfa03fb1b426b9c808607a22d4f95}{evaluate\-Basis\-Function\-Non\-Exponential} (double x, int fun)
+\begin{DoxyCompactList}\small\item\em computes the basis function value by setting x = e$^\wedge$(-\/ax / tau $\ast$ x) \end{DoxyCompactList}\item 
+double \hyperlink{classkukadu_1_1DMPTrajectoryGenerator_aa14fb2c9ba08e0a8323090593b46d7f4}{evaluate\-By\-Coefficients\-Single} (double x, arma\-::vec coeff)
+\begin{DoxyCompactList}\small\item\em evaluates the linear combination of basis functions by defining the coefficients for a single value x \end{DoxyCompactList}\item 
+double \hyperlink{classkukadu_1_1DMPTrajectoryGenerator_a48f050d0bded75b1babaafda54aa0432}{evaluate\-By\-Coefficients\-Single\-Non\-Exponential} (double x, arma\-::vec coeff)
+\begin{DoxyCompactList}\small\item\em computes the linear combination of basis functions values by setting x = e$^\wedge$(-\/ax / tau $\ast$ x) \end{DoxyCompactList}\item 
+arma\-::vec \hyperlink{classkukadu_1_1DMPTrajectoryGenerator_affb281e54fbddd566338d3c8e826bd40}{evaluate\-By\-Coefficients\-Multiple} (arma\-::vec x, int sample\-Count, arma\-::vec coeff)
+\begin{DoxyCompactList}\small\item\em performs the same as evaluate\-By\-Coefficients\-Single, but for multiple values of x \end{DoxyCompactList}\item 
+arma\-::vec \hyperlink{classkukadu_1_1DMPTrajectoryGenerator_a759b1a5b259bcc7ab26554232f94a393}{evaluate\-By\-Coefficients\-Multiple\-Non\-Exponential} (arma\-::vec x, int sample\-Count, arma\-::vec coeff)
+\begin{DoxyCompactList}\small\item\em computes the linear combination of basis functions values for multiple positions by setting x = e$^\wedge$(-\/ax / tau $\ast$ x) \end{DoxyCompactList}\item 
+\hypertarget{classkukadu_1_1DMPTrajectoryGenerator_a2554959c04ce802829324fced3bb872b}{int \hyperlink{classkukadu_1_1DMPTrajectoryGenerator_a2554959c04ce802829324fced3bb872b}{get\-Basis\-Function\-Count} ()}\label{classkukadu_1_1DMPTrajectoryGenerator_a2554959c04ce802829324fced3bb872b}
+
+\begin{DoxyCompactList}\small\item\em returns the number of basis functions \end{DoxyCompactList}\item 
+\hypertarget{classkukadu_1_1DMPTrajectoryGenerator_a9b6535bbc5e82c84238ebe41f04bca3f}{std\-::string \hyperlink{classkukadu_1_1DMPTrajectoryGenerator_a9b6535bbc5e82c84238ebe41f04bca3f}{get\-Trajectory\-Type} ()}\label{classkukadu_1_1DMPTrajectoryGenerator_a9b6535bbc5e82c84238ebe41f04bca3f}
+
+\begin{DoxyCompactList}\small\item\em returns the name of the basis function system as a string \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\subsection{Detailed Description}
+Implements the \hyperlink{classkukadu_1_1TrajectoryGenerator}{Trajectory\-Generator} interface for dynamic movement primitives. 
+
+This class provides the basis functions for learning dynamic movement primitives with linear regression (see papers on dmps) 
+
+\subsection{Constructor \& Destructor Documentation}
+\hypertarget{classkukadu_1_1DMPTrajectoryGenerator_a0bf8fd4b7bc9aded7f0929743228e73a}{\index{kukadu\-::\-D\-M\-P\-Trajectory\-Generator@{kukadu\-::\-D\-M\-P\-Trajectory\-Generator}!D\-M\-P\-Trajectory\-Generator@{D\-M\-P\-Trajectory\-Generator}}
+\index{D\-M\-P\-Trajectory\-Generator@{D\-M\-P\-Trajectory\-Generator}!kukadu::DMPTrajectoryGenerator@{kukadu\-::\-D\-M\-P\-Trajectory\-Generator}}
+\subsubsection[{D\-M\-P\-Trajectory\-Generator}]{\setlength{\rightskip}{0pt plus 5cm}kukadu\-::\-D\-M\-P\-Trajectory\-Generator\-::\-D\-M\-P\-Trajectory\-Generator (
+\begin{DoxyParamCaption}
+\item[{std\-::vector$<$ {\bf D\-M\-P\-Base} $>$}]{base\-Def, }
+\item[{double}]{ax, }
+\item[{double}]{tau}
+\end{DoxyParamCaption}
+)}}\label{classkukadu_1_1DMPTrajectoryGenerator_a0bf8fd4b7bc9aded7f0929743228e73a}
+
+
+constructor 
+
+
+\begin{DoxyParams}{Parameters}
+{\em base\-Def} & defines the basis functions by setting the means and variances of the Gaussian basis functions \\
+\hline
+{\em ax} & dmp constant \\
+\hline
+{\em tau} & dmp time constant \\
+\hline
+\end{DoxyParams}
+
+
+\subsection{Member Function Documentation}
+\hypertarget{classkukadu_1_1DMPTrajectoryGenerator_a6072064f086581981d1b1540953d4bd0}{\index{kukadu\-::\-D\-M\-P\-Trajectory\-Generator@{kukadu\-::\-D\-M\-P\-Trajectory\-Generator}!evaluate\-Basis\-Function@{evaluate\-Basis\-Function}}
+\index{evaluate\-Basis\-Function@{evaluate\-Basis\-Function}!kukadu::DMPTrajectoryGenerator@{kukadu\-::\-D\-M\-P\-Trajectory\-Generator}}
+\subsubsection[{evaluate\-Basis\-Function}]{\setlength{\rightskip}{0pt plus 5cm}double kukadu\-::\-D\-M\-P\-Trajectory\-Generator\-::evaluate\-Basis\-Function (
+\begin{DoxyParamCaption}
+\item[{double}]{x, }
+\item[{int}]{fun}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [virtual]}}}\label{classkukadu_1_1DMPTrajectoryGenerator_a6072064f086581981d1b1540953d4bd0}
+
+
+evaluates the value of a single basis function 
+
+
+\begin{DoxyParams}{Parameters}
+{\em x} & value, where the basis function should be evaluated \\
+\hline
+{\em fun} & basis function index that specifies the basis function \\
+\hline
+\end{DoxyParams}
+
+
+Implements \hyperlink{classkukadu_1_1TrajectoryGenerator_abbd50214ceb85171e7103a1fded7fd91}{kukadu\-::\-Trajectory\-Generator}.
+
+\hypertarget{classkukadu_1_1DMPTrajectoryGenerator_ad85bfa03fb1b426b9c808607a22d4f95}{\index{kukadu\-::\-D\-M\-P\-Trajectory\-Generator@{kukadu\-::\-D\-M\-P\-Trajectory\-Generator}!evaluate\-Basis\-Function\-Non\-Exponential@{evaluate\-Basis\-Function\-Non\-Exponential}}
+\index{evaluate\-Basis\-Function\-Non\-Exponential@{evaluate\-Basis\-Function\-Non\-Exponential}!kukadu::DMPTrajectoryGenerator@{kukadu\-::\-D\-M\-P\-Trajectory\-Generator}}
+\subsubsection[{evaluate\-Basis\-Function\-Non\-Exponential}]{\setlength{\rightskip}{0pt plus 5cm}double kukadu\-::\-D\-M\-P\-Trajectory\-Generator\-::evaluate\-Basis\-Function\-Non\-Exponential (
+\begin{DoxyParamCaption}
+\item[{double}]{x, }
+\item[{int}]{fun}
+\end{DoxyParamCaption}
+)}}\label{classkukadu_1_1DMPTrajectoryGenerator_ad85bfa03fb1b426b9c808607a22d4f95}
+
+
+computes the basis function value by setting x = e$^\wedge$(-\/ax / tau $\ast$ x) 
+
+
+\begin{DoxyParams}{Parameters}
+{\em x} & position to evaluate \\
+\hline
+{\em fun} & basis function index \\
+\hline
+\end{DoxyParams}
+\hypertarget{classkukadu_1_1DMPTrajectoryGenerator_affb281e54fbddd566338d3c8e826bd40}{\index{kukadu\-::\-D\-M\-P\-Trajectory\-Generator@{kukadu\-::\-D\-M\-P\-Trajectory\-Generator}!evaluate\-By\-Coefficients\-Multiple@{evaluate\-By\-Coefficients\-Multiple}}
+\index{evaluate\-By\-Coefficients\-Multiple@{evaluate\-By\-Coefficients\-Multiple}!kukadu::DMPTrajectoryGenerator@{kukadu\-::\-D\-M\-P\-Trajectory\-Generator}}
+\subsubsection[{evaluate\-By\-Coefficients\-Multiple}]{\setlength{\rightskip}{0pt plus 5cm}vec kukadu\-::\-D\-M\-P\-Trajectory\-Generator\-::evaluate\-By\-Coefficients\-Multiple (
+\begin{DoxyParamCaption}
+\item[{arma\-::vec}]{x, }
+\item[{int}]{sample\-Count, }
+\item[{arma\-::vec}]{coeff}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [virtual]}}}\label{classkukadu_1_1DMPTrajectoryGenerator_affb281e54fbddd566338d3c8e826bd40}
+
+
+performs the same as evaluate\-By\-Coefficients\-Single, but for multiple values of x 
+
+
+\begin{DoxyParams}{Parameters}
+{\em x} & vector of evaluation points \\
+\hline
+{\em sample\-Count} & size of vector x \\
+\hline
+{\em coeff} & coefficients that have to be used for computing the linear combination \\
+\hline
+\end{DoxyParams}
+
+
+Implements \hyperlink{classkukadu_1_1TrajectoryGenerator_a80e470d557ac5fc9a075b582d97bf67b}{kukadu\-::\-Trajectory\-Generator}.
+
+\hypertarget{classkukadu_1_1DMPTrajectoryGenerator_a759b1a5b259bcc7ab26554232f94a393}{\index{kukadu\-::\-D\-M\-P\-Trajectory\-Generator@{kukadu\-::\-D\-M\-P\-Trajectory\-Generator}!evaluate\-By\-Coefficients\-Multiple\-Non\-Exponential@{evaluate\-By\-Coefficients\-Multiple\-Non\-Exponential}}
+\index{evaluate\-By\-Coefficients\-Multiple\-Non\-Exponential@{evaluate\-By\-Coefficients\-Multiple\-Non\-Exponential}!kukadu::DMPTrajectoryGenerator@{kukadu\-::\-D\-M\-P\-Trajectory\-Generator}}
+\subsubsection[{evaluate\-By\-Coefficients\-Multiple\-Non\-Exponential}]{\setlength{\rightskip}{0pt plus 5cm}vec kukadu\-::\-D\-M\-P\-Trajectory\-Generator\-::evaluate\-By\-Coefficients\-Multiple\-Non\-Exponential (
+\begin{DoxyParamCaption}
+\item[{arma\-::vec}]{x, }
+\item[{int}]{sample\-Count, }
+\item[{arma\-::vec}]{coeff}
+\end{DoxyParamCaption}
+)}}\label{classkukadu_1_1DMPTrajectoryGenerator_a759b1a5b259bcc7ab26554232f94a393}
+
+
+computes the linear combination of basis functions values for multiple positions by setting x = e$^\wedge$(-\/ax / tau $\ast$ x) 
+
+
+\begin{DoxyParams}{Parameters}
+{\em x} & vector of positions to evaluate \\
+\hline
+{\em sample\-Count} & size of vector x \\
+\hline
+{\em coeff} & vector of basis function coefficients \\
+\hline
+\end{DoxyParams}
+\hypertarget{classkukadu_1_1DMPTrajectoryGenerator_aa14fb2c9ba08e0a8323090593b46d7f4}{\index{kukadu\-::\-D\-M\-P\-Trajectory\-Generator@{kukadu\-::\-D\-M\-P\-Trajectory\-Generator}!evaluate\-By\-Coefficients\-Single@{evaluate\-By\-Coefficients\-Single}}
+\index{evaluate\-By\-Coefficients\-Single@{evaluate\-By\-Coefficients\-Single}!kukadu::DMPTrajectoryGenerator@{kukadu\-::\-D\-M\-P\-Trajectory\-Generator}}
+\subsubsection[{evaluate\-By\-Coefficients\-Single}]{\setlength{\rightskip}{0pt plus 5cm}double kukadu\-::\-D\-M\-P\-Trajectory\-Generator\-::evaluate\-By\-Coefficients\-Single (
+\begin{DoxyParamCaption}
+\item[{double}]{x, }
+\item[{arma\-::vec}]{coeff}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [virtual]}}}\label{classkukadu_1_1DMPTrajectoryGenerator_aa14fb2c9ba08e0a8323090593b46d7f4}
+
+
+evaluates the linear combination of basis functions by defining the coefficients for a single value x 
+
+
+\begin{DoxyParams}{Parameters}
+{\em x} & value, where the basis functions should be evaluated \\
+\hline
+{\em coeff} & coefficients that have to be used for computing the linear combination \\
+\hline
+\end{DoxyParams}
+
+
+Implements \hyperlink{classkukadu_1_1TrajectoryGenerator_a3cd7129235c868a1cad3d56f3a05ad49}{kukadu\-::\-Trajectory\-Generator}.
+
+\hypertarget{classkukadu_1_1DMPTrajectoryGenerator_a48f050d0bded75b1babaafda54aa0432}{\index{kukadu\-::\-D\-M\-P\-Trajectory\-Generator@{kukadu\-::\-D\-M\-P\-Trajectory\-Generator}!evaluate\-By\-Coefficients\-Single\-Non\-Exponential@{evaluate\-By\-Coefficients\-Single\-Non\-Exponential}}
+\index{evaluate\-By\-Coefficients\-Single\-Non\-Exponential@{evaluate\-By\-Coefficients\-Single\-Non\-Exponential}!kukadu::DMPTrajectoryGenerator@{kukadu\-::\-D\-M\-P\-Trajectory\-Generator}}
+\subsubsection[{evaluate\-By\-Coefficients\-Single\-Non\-Exponential}]{\setlength{\rightskip}{0pt plus 5cm}double kukadu\-::\-D\-M\-P\-Trajectory\-Generator\-::evaluate\-By\-Coefficients\-Single\-Non\-Exponential (
+\begin{DoxyParamCaption}
+\item[{double}]{x, }
+\item[{arma\-::vec}]{coeff}
+\end{DoxyParamCaption}
+)}}\label{classkukadu_1_1DMPTrajectoryGenerator_a48f050d0bded75b1babaafda54aa0432}
+
+
+computes the linear combination of basis functions values by setting x = e$^\wedge$(-\/ax / tau $\ast$ x) 
+
+
+\begin{DoxyParams}{Parameters}
+{\em x} & position to evaluate \\
+\hline
+{\em coeff} & vector of basis function coefficients \\
+\hline
+\end{DoxyParams}
+
+
+The documentation for this class was generated from the following files\-:\begin{DoxyCompactItemize}
+\item 
+/home/c7031109/iis\-\_\-robot\-\_\-sw/iis\-\_\-catkin\-\_\-ws/src/kukadu/include/kukadu/control/dmptrajectorygenerator.\-hpp\item 
+/home/c7031109/iis\-\_\-robot\-\_\-sw/iis\-\_\-catkin\-\_\-ws/src/kukadu/src/control/dmptrajectorygenerator.\-cpp\end{DoxyCompactItemize}

@@ -1,0 +1,17 @@
+Currently, kukadu consists for 4 major modules\-:
+\begin{DoxyItemize}
+\item The robot module (\hyperlink{robotpage}{The robot module})\-: The robot module is the interface to a concrete robot. It provides an interface that defines what kukadu expects a robot to be able to do. If this interface is implemented for a specific robot, the complete stack of the framework is available.
+\item The kinematics module (\hyperlink{kinematicspage}{The kinematics module})\-: As the name already says, the kinematics module provides kinematics for a given robot. It includes interfaces and implementations for forward and inverse kinematics as well as path planning functionality. The only prerequisite is an appropriate robot model in U\-R\-D\-F format. Currently, interfaces to Move\-It and K\-O\-M\-O are available.
+\item The control module (\hyperlink{controlpage}{The control module})\-: The control module provides interfaces for control algorithms as well as certain implementations of these interfaces such as D\-M\-Ps and splines.
+\item The machine learning module (\hyperlink{mlpage}{The machine learning module})\-: The machine learning module provides interfaces for supervised learning and reinforcement learning. Further, these interfaces are implemented for several methods such as
+\begin{DoxyItemize}
+\item Linear regression
+\item Locally weighted regression
+\item Gaussian process regression
+\item S\-V\-M
+\item Control policy reinforcement learning (Po\-W\-E\-R)
+\item Reinforcement learning (Projective simulation, Monte carlo R\-L, Q-\/\-Learning, S\-A\-R\-S\-A)
+\end{DoxyItemize}
+\end{DoxyItemize}
+
+Prev (\hyperlink{gettingstartedpage}{Getting Started}), Next (\hyperlink{robotpage}{The robot module}) 

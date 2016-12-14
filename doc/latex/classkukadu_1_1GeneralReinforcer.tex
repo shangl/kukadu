@@ -1,0 +1,131 @@
+\hypertarget{classkukadu_1_1GeneralReinforcer}{\section{kukadu\-:\-:General\-Reinforcer Class Reference}
+\label{classkukadu_1_1GeneralReinforcer}\index{kukadu\-::\-General\-Reinforcer@{kukadu\-::\-General\-Reinforcer}}
+}
+
+
+The \hyperlink{classkukadu_1_1GeneralReinforcer}{General\-Reinforcer} provides a general framework for reinforcement learning.  
+
+
+
+
+{\ttfamily \#include $<$generalreinforcer.\-hpp$>$}
+
+Inheritance diagram for kukadu\-:\-:General\-Reinforcer\-:\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[height=2.000000cm]{classkukadu_1_1GeneralReinforcer}
+\end{center}
+\end{figure}
+\subsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\hyperlink{classkukadu_1_1GeneralReinforcer_a1de3f2b46e82b37454f8095701992c8d}{General\-Reinforcer} (K\-U\-K\-A\-D\-U\-\_\-\-S\-H\-A\-R\-E\-D\-\_\-\-P\-T\-R$<$ \hyperlink{classkukadu_1_1TrajectoryExecutor}{Trajectory\-Executor} $>$ traj\-Ex, K\-U\-K\-A\-D\-U\-\_\-\-S\-H\-A\-R\-E\-D\-\_\-\-P\-T\-R$<$ \hyperlink{classkukadu_1_1CostComputer}{Cost\-Computer} $>$ cost, K\-U\-K\-A\-D\-U\-\_\-\-S\-H\-A\-R\-E\-D\-\_\-\-P\-T\-R$<$ \hyperlink{classkukadu_1_1ControlQueue}{Control\-Queue} $>$ simulation\-Queue, K\-U\-K\-A\-D\-U\-\_\-\-S\-H\-A\-R\-E\-D\-\_\-\-P\-T\-R$<$ \hyperlink{classkukadu_1_1ControlQueue}{Control\-Queue} $>$ execution\-Queue)
+\begin{DoxyCompactList}\small\item\em constructor \end{DoxyCompactList}\item 
+\hypertarget{classkukadu_1_1GeneralReinforcer_aa384f66bcf7487b449dc67c768e86f5e}{bool \hyperlink{classkukadu_1_1GeneralReinforcer_aa384f66bcf7487b449dc67c768e86f5e}{get\-Is\-First\-Iteration} ()}\label{classkukadu_1_1GeneralReinforcer_aa384f66bcf7487b449dc67c768e86f5e}
+
+\begin{DoxyCompactList}\small\item\em returns true if the first iteration has not been performed yet \end{DoxyCompactList}\item 
+void \hyperlink{classkukadu_1_1GeneralReinforcer_aee9cbeaac91379e1926088150f9c5063}{perform\-Rollout} (int do\-Simulation, int do\-Execution)
+\begin{DoxyCompactList}\small\item\em executes rollout. first, the trajectory is simulated and the user is asked, whether the trajectory really should be executed \end{DoxyCompactList}\item 
+\hypertarget{classkukadu_1_1GeneralReinforcer_a0fe9f486ada94bb1eeeb6e460da5579f}{void {\bfseries set\-Last\-Update} (K\-U\-K\-A\-D\-U\-\_\-\-S\-H\-A\-R\-E\-D\-\_\-\-P\-T\-R$<$ \hyperlink{classkukadu_1_1Trajectory}{Trajectory} $>$ last\-Update)}\label{classkukadu_1_1GeneralReinforcer_a0fe9f486ada94bb1eeeb6e460da5579f}
+
+\item 
+\hypertarget{classkukadu_1_1GeneralReinforcer_aa65904e99bffab1272d49b01d515a670}{double {\bfseries get\-Last\-Update\-Reward} ()}\label{classkukadu_1_1GeneralReinforcer_aa65904e99bffab1272d49b01d515a670}
+
+\item 
+\hypertarget{classkukadu_1_1GeneralReinforcer_a19213b562d0a5a0320347e51ae108f9e}{K\-U\-K\-A\-D\-U\-\_\-\-S\-H\-A\-R\-E\-D\-\_\-\-P\-T\-R$<$ \hyperlink{classkukadu_1_1Trajectory}{Trajectory} $>$ {\bfseries get\-Last\-Update} ()}\label{classkukadu_1_1GeneralReinforcer_a19213b562d0a5a0320347e51ae108f9e}
+
+\item 
+\hypertarget{classkukadu_1_1GeneralReinforcer_a7aa17bfed379c5673d81eb17db4b4932}{K\-U\-K\-A\-D\-U\-\_\-\-S\-H\-A\-R\-E\-D\-\_\-\-P\-T\-R\\*
+$<$ \hyperlink{classkukadu_1_1ControllerResult}{Controller\-Result} $>$ {\bfseries get\-Last\-Update\-Res} ()}\label{classkukadu_1_1GeneralReinforcer_a7aa17bfed379c5673d81eb17db4b4932}
+
+\item 
+\hypertarget{classkukadu_1_1GeneralReinforcer_a5c26cdef91f856f34c528547eee94472}{std\-::vector$<$ double $>$ \hyperlink{classkukadu_1_1GeneralReinforcer_a5c26cdef91f856f34c528547eee94472}{get\-Last\-Rollout\-Cost} ()}\label{classkukadu_1_1GeneralReinforcer_a5c26cdef91f856f34c528547eee94472}
+
+\begin{DoxyCompactList}\small\item\em returns cost for the last executed rollout \end{DoxyCompactList}\item 
+\hypertarget{classkukadu_1_1GeneralReinforcer_a4223bf864a5fe99bd42fe92c7e453869}{std\-::vector$<$ K\-U\-K\-A\-D\-U\-\_\-\-S\-H\-A\-R\-E\-D\-\_\-\-P\-T\-R\\*
+$<$ \hyperlink{classkukadu_1_1Trajectory}{Trajectory} $>$ $>$ {\bfseries get\-Last\-Rollout\-Parameters} ()}\label{classkukadu_1_1GeneralReinforcer_a4223bf864a5fe99bd42fe92c7e453869}
+
+\item 
+\hypertarget{classkukadu_1_1GeneralReinforcer_a1ed63236a3d31d26152ffb9f01f5363a}{std\-::vector$<$ K\-U\-K\-A\-D\-U\-\_\-\-S\-H\-A\-R\-E\-D\-\_\-\-P\-T\-R\\*
+$<$ \hyperlink{classkukadu_1_1ControllerResult}{Controller\-Result} $>$ $>$ {\bfseries get\-Last\-Execution\-Results} ()}\label{classkukadu_1_1GeneralReinforcer_a1ed63236a3d31d26152ffb9f01f5363a}
+
+\item 
+\hypertarget{classkukadu_1_1GeneralReinforcer_a2925052d641e845dba068fa03d567b20}{virtual K\-U\-K\-A\-D\-U\-\_\-\-S\-H\-A\-R\-E\-D\-\_\-\-P\-T\-R\\*
+$<$ \hyperlink{classkukadu_1_1Trajectory}{Trajectory} $>$ {\bfseries update\-Step} ()=0}\label{classkukadu_1_1GeneralReinforcer_a2925052d641e845dba068fa03d567b20}
+
+\item 
+\hypertarget{classkukadu_1_1GeneralReinforcer_aa7e72994ca8c009d1331129480d2e49f}{virtual std\-::vector\\*
+$<$ K\-U\-K\-A\-D\-U\-\_\-\-S\-H\-A\-R\-E\-D\-\_\-\-P\-T\-R\\*
+$<$ \hyperlink{classkukadu_1_1Trajectory}{Trajectory} $>$ $>$ \hyperlink{classkukadu_1_1GeneralReinforcer_aa7e72994ca8c009d1331129480d2e49f}{get\-Initial\-Rollout} ()=0}\label{classkukadu_1_1GeneralReinforcer_aa7e72994ca8c009d1331129480d2e49f}
+
+\begin{DoxyCompactList}\small\item\em returns the first rollout of the reinforcement learning algorithm \end{DoxyCompactList}\item 
+\hypertarget{classkukadu_1_1GeneralReinforcer_aec3cde390852d93c52a01926bbc6feb3}{virtual std\-::vector\\*
+$<$ K\-U\-K\-A\-D\-U\-\_\-\-S\-H\-A\-R\-E\-D\-\_\-\-P\-T\-R\\*
+$<$ \hyperlink{classkukadu_1_1Trajectory}{Trajectory} $>$ $>$ \hyperlink{classkukadu_1_1GeneralReinforcer_aec3cde390852d93c52a01926bbc6feb3}{compute\-Rollout\-Paramters} ()=0}\label{classkukadu_1_1GeneralReinforcer_aec3cde390852d93c52a01926bbc6feb3}
+
+\begin{DoxyCompactList}\small\item\em computes the dmp parameters for the next rollout \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\subsection{Detailed Description}
+The \hyperlink{classkukadu_1_1GeneralReinforcer}{General\-Reinforcer} provides a general framework for reinforcement learning. 
+
+It is an abstract class that implements elementary functionality that should be in common for all reinforcement learning methods (such as rollout execution). A concrete implementation of the \hyperlink{classkukadu_1_1DMPReinforcer}{D\-M\-P\-Reinforcer} has to implement the missing parts such as the methods get\-Initial\-Rollout and compute\-Rollout\-Paramters. 
+
+\subsection{Constructor \& Destructor Documentation}
+\hypertarget{classkukadu_1_1GeneralReinforcer_a1de3f2b46e82b37454f8095701992c8d}{\index{kukadu\-::\-General\-Reinforcer@{kukadu\-::\-General\-Reinforcer}!General\-Reinforcer@{General\-Reinforcer}}
+\index{General\-Reinforcer@{General\-Reinforcer}!kukadu::GeneralReinforcer@{kukadu\-::\-General\-Reinforcer}}
+\subsubsection[{General\-Reinforcer}]{\setlength{\rightskip}{0pt plus 5cm}kukadu\-::\-General\-Reinforcer\-::\-General\-Reinforcer (
+\begin{DoxyParamCaption}
+\item[{K\-U\-K\-A\-D\-U\-\_\-\-S\-H\-A\-R\-E\-D\-\_\-\-P\-T\-R$<$ {\bf Trajectory\-Executor} $>$}]{traj\-Ex, }
+\item[{K\-U\-K\-A\-D\-U\-\_\-\-S\-H\-A\-R\-E\-D\-\_\-\-P\-T\-R$<$ {\bf Cost\-Computer} $>$}]{cost, }
+\item[{K\-U\-K\-A\-D\-U\-\_\-\-S\-H\-A\-R\-E\-D\-\_\-\-P\-T\-R$<$ {\bf Control\-Queue} $>$}]{simulation\-Queue, }
+\item[{K\-U\-K\-A\-D\-U\-\_\-\-S\-H\-A\-R\-E\-D\-\_\-\-P\-T\-R$<$ {\bf Control\-Queue} $>$}]{execution\-Queue}
+\end{DoxyParamCaption}
+)}}\label{classkukadu_1_1GeneralReinforcer_a1de3f2b46e82b37454f8095701992c8d}
+
+
+constructor 
+
+
+\begin{DoxyParams}{Parameters}
+{\em cost} & \hyperlink{classkukadu_1_1CostComputer}{Cost\-Computer} instance that computes the cost of a given rollout \\
+\hline
+{\em movement\-Queue} & \hyperlink{classkukadu_1_1ControlQueue}{Control\-Queue} instance for robot execution \\
+\hline
+{\em ac} & dmp phase stopping parameter \\
+\hline
+{\em dmp\-Step\-Size} & step size for dmp execution \\
+\hline
+{\em tol\-Abs\-Err} & absolute tolerated error for numerical approximation \\
+\hline
+{\em tol\-Rel\-Err} & relative tolerated error for numerical approximation \\
+\hline
+\end{DoxyParams}
+
+
+\subsection{Member Function Documentation}
+\hypertarget{classkukadu_1_1GeneralReinforcer_aee9cbeaac91379e1926088150f9c5063}{\index{kukadu\-::\-General\-Reinforcer@{kukadu\-::\-General\-Reinforcer}!perform\-Rollout@{perform\-Rollout}}
+\index{perform\-Rollout@{perform\-Rollout}!kukadu::GeneralReinforcer@{kukadu\-::\-General\-Reinforcer}}
+\subsubsection[{perform\-Rollout}]{\setlength{\rightskip}{0pt plus 5cm}void kukadu\-::\-General\-Reinforcer\-::perform\-Rollout (
+\begin{DoxyParamCaption}
+\item[{int}]{do\-Simulation, }
+\item[{int}]{do\-Execution}
+\end{DoxyParamCaption}
+)}}\label{classkukadu_1_1GeneralReinforcer_aee9cbeaac91379e1926088150f9c5063}
+
+
+executes rollout. first, the trajectory is simulated and the user is asked, whether the trajectory really should be executed 
+
+
+\begin{DoxyParams}{Parameters}
+{\em do\-Simulation} & flag whether trajectory should be simulated \\
+\hline
+{\em do\-Execution} & flag whether trajectory should be executed at robot \\
+\hline
+\end{DoxyParams}
+
+
+The documentation for this class was generated from the following files\-:\begin{DoxyCompactItemize}
+\item 
+/home/c7031109/iis\-\_\-robot\-\_\-sw/iis\-\_\-catkin\-\_\-ws/src/kukadu/include/kukadu/learning/rl/generalreinforcer.\-hpp\item 
+/home/c7031109/iis\-\_\-robot\-\_\-sw/iis\-\_\-catkin\-\_\-ws/src/kukadu/src/learning/reinforcement\-\_\-learning/generalreinforcer.\-cpp\end{DoxyCompactItemize}

@@ -1,0 +1,32 @@
+kukadu requires a current \href{http://www.ros.org/}{\tt R\-O\-S} system installed on your P\-C. We recommend R\-O\-S Indigo, however, using kukadu with any later version of R\-O\-S should not yield any problem. An installation guide for different operating systems can be found \href{http://wiki.ros.org/indigo/Installation}{\tt here}. Currently, kukadu is only supported with Ubuntu ($>$= 14.\-10) and a gcc compiler that supports at least C++11.
+
+As kukadu provides a clean interface to a wide range of robotics applications and state-\/of-\/the art methods, several dependencies have to be installed.
+
+
+\begin{DoxyCode}
+sudo apt-\textcolor{keyword}{get} install libgsl0-dev gnuplot gnuplot-x11 libarmadillo-dev libboost-all-dev libncurses5-dev 
+      libarmadillo-dev liballegro5-dev ros-indigo-pcl-ros ros-indigo-moveit-ros-planning-\textcolor{keyword}{interface }python3.4-dev 
+      liblapacke-dev gtk+2.0 bison build-essential cmake doxygen fabric flex freeglut3-dev g++ gcc gfortran git-core 
+      gnuplot graphviz-dev libann-dev libcv-dev libcvaux-dev libdc1394-22-dev libf2c2-dev libgtest-dev libgtkglext1-
+      dev libhighgui-dev liblapack-dev libplib-dev libqhull-dev libsdl1.2-dev libx11-dev libx11-dev libxi-dev 
+      libxmu-dev make meld python-nose python-unittest2 realpath regexxer swig2.0 tcl8.5-dev tk-dev tk8.5-dev 
+      libfreenect-dev qt5-default ros-indigo-desktop-full ros-indigo-cob-common ros-indigo-ros-comm ros-indigo-geometry 
+      ros-indigo-common-msgs ros-indigo-control-msgs ros-indigo-geometry-experimental libgsl0ldbl libgsl0-dev 
+      libgstreamer0.10-dev libgstreamer-plugins-base0.10-dev ros-indigo-moveit-core ros-indigo-moveit-ros-planning ros-
+      indigo-moveit-ros-planning-interface libghc-zlib-dev zlibc zlib1g-dbg zlib-bin ros-indigo-qt-build libqwt6 
+      libqwt-dev libsdl1.2-dev ros-indigo-moveit-full ros-indigo-cmake-modules ros-indigo-map-msgs ros-indigo-
+      controller-manager
+\end{DoxyCode}
+
+
+After installing the dependencies, you can clone kukadu to a \href{http://wiki.ros.org/catkin}{\tt catkin} workspace from our \href{https://git-scm.com/}{\tt Git} repository. If you are new to programming under R\-O\-S, you might be interested in the \href{http://wiki.ros.org/catkin/Tutorials}{\tt catkin tutorial}. You can find the kukadu Git repository \href{https://github.com/shangl/kukadu}{\tt here}. If you are not familiar with Git, simply go to your C\-A\-T\-K\-I\-N\-\_\-\-D\-I\-R/src directory and insert the following line to your terminal 
+\begin{DoxyCode}
+git clone --recursive https:\textcolor{comment}{//github.com/shangl/kukadu.git}
+\end{DoxyCode}
+ After cloning the repository, you can start compiling it by change to the root of your catkin workspace and typing 
+\begin{DoxyCode}
+catkin\_make
+\end{DoxyCode}
+ After the successful compilation kukadu is ready and you may continue with the next section (\hyperlink{gettingstartedpage}{Getting Started}).
+
+Prev (\hyperlink{introductionpage}{Introduction}), Next (\hyperlink{gettingstartedpage}{Getting Started}) 

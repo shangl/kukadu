@@ -10,16 +10,6 @@ namespace kukadu {
         this->success = success;
     }
 
-    HapticControllerResult::HapticControllerResult(arma::vec t, std::vector<arma::vec> ys, bool success, bool bored, std::vector<int> walkedPath,
-                                                   KUKADU_SHARED_PTR<std::tuple<double, KUKADU_SHARED_PTR<kukadu::Clip>, std::vector<KUKADU_SHARED_PTR<kukadu::Clip> > > > environmentTransition)
-        : ControllerResult(t, ys, success) {
-
-        this->bored = bored;
-        this->walkedPath = walkedPath;
-        this->environmentTransition = environmentTransition;
-
-    }
-
     arma::vec ControllerResult::getTimes() {
         return t;
     }
@@ -34,14 +24,6 @@ namespace kukadu {
 
     bool ControllerResult::getSuccess() {
         return success;
-    }
-
-    bool HapticControllerResult::wasBored() {
-        return bored;
-    }
-
-    std::vector<int> HapticControllerResult::getWalkedPath() {
-        return walkedPath;
     }
 
 }

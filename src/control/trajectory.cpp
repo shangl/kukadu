@@ -1,0 +1,125 @@
+#include <kukadu/control/trajectory.hpp>
+#include <kukadu/utils/conversion_utils.hpp>
+
+using namespace std;
+using namespace arma;
+
+namespace kukadu {
+
+    // TODO: write copy constructor
+    Trajectory::Trajectory(const Trajectory& copy) { }
+
+    Trajectory::Trajectory() { }
+
+    // TODO: write the == operator properly
+    int Trajectory::operator==(Trajectory const& comp) const { return 1; }
+
+    SingleSampleTrajectory::SingleSampleTrajectory(arma::vec supervisedTs, std::vector<arma::vec> sampleYs) {
+        this->supervisedTs = supervisedTs;
+        this->sampleYs = sampleYs;
+    }
+
+    SingleSampleTrajectory::SingleSampleTrajectory(const SingleSampleTrajectory& copy) {
+        this->supervisedTs = copy.supervisedTs;
+        this->sampleYs = copy.sampleYs;
+    }
+
+    SingleSampleTrajectory::SingleSampleTrajectory() {
+    }
+
+    int SingleSampleTrajectory::getDegreesOfFreedom() const {
+        return sampleYs.size();
+    }
+
+    int SingleSampleTrajectory::getDataPointsNum() {
+        return supervisedTs.n_elem;
+    }
+
+    double SingleSampleTrajectory::getDataPoint(int freedomIdx, int ptIdx) {
+        arma::vec sample =  getSampleYByIndex(freedomIdx);
+        return sample(ptIdx);
+    }
+
+    double SingleSampleTrajectory::getT(int ptIdx) {
+        return supervisedTs(ptIdx);
+    }
+
+    void SingleSampleTrajectory::setSupervisedTs(arma::vec supervisedTs) {
+        this->supervisedTs = supervisedTs;
+    }
+
+    void SingleSampleTrajectory::setSampleYs(std::vector<arma::vec> sampleYs) {
+        this->sampleYs = sampleYs;
+    }
+
+    arma::vec SingleSampleTrajectory::getSupervisedTs() {
+        return supervisedTs;
+    }
+
+    arma::vec SingleSampleTrajectory::getSampleYByIndex(int idx) {
+        return sampleYs.at(idx);
+    }
+
+    int SingleSampleTrajectory::operator==(SingleSampleTrajectory const& comp) const {
+
+        return compareArmadilloVec(supervisedTs, comp.supervisedTs) && compareVectorOfArmadillos(sampleYs, comp.sampleYs);
+
+    }
+
+    arma::vec SingleSampleTrajectory::getStartingPos() {
+
+        vec ret(getDegreesOfFreedom());
+
+        for(int i = 0; i < getDegreesOfFreedom(); ++i) {
+            ret(i) = getDataPoint(i, 0);
+        }
+
+        return ret;
+
+    }
+
+    std::vector<arma::vec> SingleSampleTrajectory::getSampleYs() {
+        return sampleYs;
+    }
+
+    TrajectoryGenerator::TrajectoryGenerator() { }
+
+    TrajectoryExecutor::TrajectoryExecutor() : Controller("simple trajectory executor", 0.0) { }
+
+    KUKADU_SHARED_PTR<ControllerResult> TrajectoryExecutor::performAction() {
+        return executeTrajectory();
+    }
+
+    PolyTrajectoryGenerator::PolyTrajectoryGenerator(int basisFunctionCount) {
+        this->basisFunctionCount = basisFunctionCount;
+    }
+
+    double PolyTrajectoryGenerator::evaluateBasisFunction(double x, int fun) {
+        return pow(x, fun);
+    }
+
+    double PolyTrajectoryGenerator::evaluateByCoefficientsSingle(double x, vec coeff) {
+        double ret = 0.0;
+        int coeffDegree = this->getBasisFunctionCount();
+        for(int i = 0; i < coeffDegree; ++i) ret += coeff(i) * pow(x, i + 1);
+        return ret;
+    }
+
+    vec PolyTrajectoryGenerator::evaluateByCoefficientsMultiple(vec x, int sampleCount, vec coeff) {
+        int coeffDegree = this->getBasisFunctionCount();
+        vec evals(sampleCount);
+        for(int i = 0; i < sampleCount; ++i) {
+            evals(i) = evaluateByCoefficientsSingle(x(i), coeff);
+        }
+        return evals;
+    }
+
+    int PolyTrajectoryGenerator::getBasisFunctionCount() {
+        return basisFunctionCount;
+    }
+
+    string PolyTrajectoryGenerator::getTrajectoryType() {
+        return "polynomial";
+    }
+
+}

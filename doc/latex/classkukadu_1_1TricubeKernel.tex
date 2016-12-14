@@ -1,0 +1,66 @@
+\hypertarget{classkukadu_1_1TricubeKernel}{\section{kukadu\-:\-:Tricube\-Kernel Class Reference}
+\label{classkukadu_1_1TricubeKernel}\index{kukadu\-::\-Tricube\-Kernel@{kukadu\-::\-Tricube\-Kernel}}
+}
+
+
+Implements a tricube kernel according to the \hyperlink{classkukadu_1_1GenericKernel}{Generic\-Kernel} specifiction.  
+
+
+
+
+{\ttfamily \#include $<$tricubekernel.\-hpp$>$}
+
+Inheritance diagram for kukadu\-:\-:Tricube\-Kernel\-:\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[height=2.000000cm]{classkukadu_1_1TricubeKernel}
+\end{center}
+\end{figure}
+\subsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\hypertarget{classkukadu_1_1TricubeKernel_a9b9c6b0452e019ba8f9028e6dce00f64}{\hyperlink{classkukadu_1_1TricubeKernel_a9b9c6b0452e019ba8f9028e6dce00f64}{Tricube\-Kernel} ()}\label{classkukadu_1_1TricubeKernel_a9b9c6b0452e019ba8f9028e6dce00f64}
+
+\begin{DoxyCompactList}\small\item\em constructor \end{DoxyCompactList}\item 
+double \hyperlink{classkukadu_1_1TricubeKernel_a2c4053e0212bdfae0652c8bde2ae70df}{evaluate\-Kernel} (arma\-::vec q1, arma\-::vec q2, void $\ast$kernel\-Param)
+\begin{DoxyCompactList}\small\item\em computes kernel values with given vectors q1 and q2 and passes a not further specified kernel parameter that can be used by the kernel implementation \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\subsection{Detailed Description}
+Implements a tricube kernel according to the \hyperlink{classkukadu_1_1GenericKernel}{Generic\-Kernel} specifiction. 
+
+This class implements a tricube kernel given by the function K(u) = 70/81 (1 -\/ $\vert$u$\vert$$^\wedge$3)$^\wedge$3 
+
+\subsection{Member Function Documentation}
+\hypertarget{classkukadu_1_1TricubeKernel_a2c4053e0212bdfae0652c8bde2ae70df}{\index{kukadu\-::\-Tricube\-Kernel@{kukadu\-::\-Tricube\-Kernel}!evaluate\-Kernel@{evaluate\-Kernel}}
+\index{evaluate\-Kernel@{evaluate\-Kernel}!kukadu::TricubeKernel@{kukadu\-::\-Tricube\-Kernel}}
+\subsubsection[{evaluate\-Kernel}]{\setlength{\rightskip}{0pt plus 5cm}double kukadu\-::\-Tricube\-Kernel\-::evaluate\-Kernel (
+\begin{DoxyParamCaption}
+\item[{arma\-::vec}]{q1, }
+\item[{arma\-::vec}]{q2, }
+\item[{void $\ast$}]{kernel\-Param}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [virtual]}}}\label{classkukadu_1_1TricubeKernel_a2c4053e0212bdfae0652c8bde2ae70df}
+
+
+computes kernel values with given vectors q1 and q2 and passes a not further specified kernel parameter that can be used by the kernel implementation 
+
+
+\begin{DoxyParams}{Parameters}
+{\em q1} & vector q1 with K = K(d(q1, q2)) \\
+\hline
+{\em q2} & vector q2 with K = K(d(q1, q2)) \\
+\hline
+{\em kernel\-Param} & arbitrary kernel parameter \\
+\hline
+\end{DoxyParams}
+
+
+Implements \hyperlink{classkukadu_1_1GenericKernel_a802a15e8fb5f863e798c9114be976045}{kukadu\-::\-Generic\-Kernel}.
+
+
+
+The documentation for this class was generated from the following files\-:\begin{DoxyCompactItemize}
+\item 
+/home/c7031109/iis\-\_\-robot\-\_\-sw/iis\-\_\-catkin\-\_\-ws/src/kukadu/include/kukadu/learning/regression/tricubekernel.\-hpp\item 
+/home/c7031109/iis\-\_\-robot\-\_\-sw/iis\-\_\-catkin\-\_\-ws/src/kukadu/src/learning/tricubekernel.\-cpp\end{DoxyCompactItemize}

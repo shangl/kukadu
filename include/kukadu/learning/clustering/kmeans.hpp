@@ -5,8 +5,9 @@
 #include <vector>
 #include <iostream>
 
-#include <boost/unordered_map.hpp>
+#ifndef USEBOOST
 #include <boost/foreach.hpp>
+#endif
 
 namespace kukadu {
 
@@ -76,9 +77,13 @@ namespace kukadu {
     friend std::ostream& operator << (std::ostream& os, PointsSpace & ps){
 
       PointId i = 0;
-      BOOST_FOREACH(Points::value_type p, ps.points__){     
-	os << "point["<<i++<<"]=" << p << std::endl;
-      }
+#ifndef USEBOOST
+      for(Points::value_type p : ps.points__)
+            os << "point["<<i++<<"]=" << p << std::endl;
+#else
+      for(int j = 0; j < ps.points__.size(); ++j)
+          os << "point["<<i++<<"]=" << ps.points__.at(j) << std::endl;
+#endif
       return os;
     };
 
@@ -138,18 +143,31 @@ namespace kukadu {
     //
     // Dump ClustersToPoints
     //
-    friend std::ostream& operator << (std::ostream& os, Clusters & cl){
-      
+    friend std::ostream& operator << (std::ostream& os, Clusters & cl) {
+
       ClusterId cid = 0;
-      BOOST_FOREACH(ClustersToPoints::value_type set, cl.clusters_to_points__){
-	os << "Cluster["<<cid<<"]=(";
-	BOOST_FOREACH(SetPoints::value_type pid, set){
-	  Point p = cl.ps__.getPoint(pid);
-	  os << "(" << p << ")";
-	}
-	os << ")" << std::endl;
-	cid++;
+
+#ifndef USEBOOST
+        for(ClustersToPoints::value_type set : cl.clusters_to_points__) {
+            os << "Cluster["<<cid<<"]=(";
+            for(SetPoints::value_type pid : set) {
+                Point p = cl.ps__.getPoint(pid);
+                os << "(" << p << ")";
+            }
+            os << ")" << std::endl;
+            cid++;
+        }
+#else
+      BOOST_FOREACH(ClustersToPoints::value_type set, cl.clusters_to_points__) {
+      os << "Cluster["<<cid<<"]=(";
+      BOOST_FOREACH(SetPoints::value_type pid, set){
+        Point p = cl.ps__.getPoint(pid);
+        os << "(" << p << ")";
       }
+      os << ")" << std::endl;
+      cid++;
+        }
+#endif
       return os;
     }
     

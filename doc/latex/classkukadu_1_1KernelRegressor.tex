@@ -1,0 +1,60 @@
+\hypertarget{classkukadu_1_1KernelRegressor}{\section{kukadu\-:\-:Kernel\-Regressor Class Reference}
+\label{classkukadu_1_1KernelRegressor}\index{kukadu\-::\-Kernel\-Regressor@{kukadu\-::\-Kernel\-Regressor}}
+}
+
+
+Provides arbitrary interface for kernel methods.  
+
+
+
+
+{\ttfamily \#include $<$kernelregressor.\-hpp$>$}
+
+Inheritance diagram for kukadu\-:\-:Kernel\-Regressor\-:\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[height=2.000000cm]{classkukadu_1_1KernelRegressor}
+\end{center}
+\end{figure}
+\subsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\hypertarget{classkukadu_1_1KernelRegressor_a9b1048e4eb0cbc70797e27909f886e1a}{\hyperlink{classkukadu_1_1KernelRegressor_a9b1048e4eb0cbc70797e27909f886e1a}{Kernel\-Regressor} ()}\label{classkukadu_1_1KernelRegressor_a9b1048e4eb0cbc70797e27909f886e1a}
+
+\begin{DoxyCompactList}\small\item\em constructor \end{DoxyCompactList}\item 
+virtual arma\-::vec \hyperlink{classkukadu_1_1KernelRegressor_afd1489310e11cff4bd88390ba76c38e1}{fit\-At\-Position} (arma\-::vec pos)=0
+\begin{DoxyCompactList}\small\item\em performs the kernel method for predicting the functin value at a given position \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\subsection{Detailed Description}
+Provides arbitrary interface for kernel methods. 
+
+This class provides the interface for kernel machine learning methods such as Gaussian process regression or locally weighted regression 
+
+\subsection{Member Function Documentation}
+\hypertarget{classkukadu_1_1KernelRegressor_afd1489310e11cff4bd88390ba76c38e1}{\index{kukadu\-::\-Kernel\-Regressor@{kukadu\-::\-Kernel\-Regressor}!fit\-At\-Position@{fit\-At\-Position}}
+\index{fit\-At\-Position@{fit\-At\-Position}!kukadu::KernelRegressor@{kukadu\-::\-Kernel\-Regressor}}
+\subsubsection[{fit\-At\-Position}]{\setlength{\rightskip}{0pt plus 5cm}virtual arma\-::vec kukadu\-::\-Kernel\-Regressor\-::fit\-At\-Position (
+\begin{DoxyParamCaption}
+\item[{arma\-::vec}]{pos}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [pure virtual]}}}\label{classkukadu_1_1KernelRegressor_afd1489310e11cff4bd88390ba76c38e1}
+
+
+performs the kernel method for predicting the functin value at a given position 
+
+
+\begin{DoxyParams}{Parameters}
+{\em pos} & vector defining the required position \\
+\hline
+\end{DoxyParams}
+
+
+Implemented in \hyperlink{classkukadu_1_1LWRRegressor_ae7d3e23243abefbfd47677967b60918b}{kukadu\-::\-L\-W\-R\-Regressor}, and \hyperlink{classkukadu_1_1GaussianProcessRegressor_a397a1d055761ae22ec9edc3d311949ec}{kukadu\-::\-Gaussian\-Process\-Regressor}.
+
+
+
+The documentation for this class was generated from the following files\-:\begin{DoxyCompactItemize}
+\item 
+/home/c7031109/iis\-\_\-robot\-\_\-sw/iis\-\_\-catkin\-\_\-ws/src/kukadu/include/kukadu/learning/regression/kernelregressor.\-hpp\item 
+/home/c7031109/iis\-\_\-robot\-\_\-sw/iis\-\_\-catkin\-\_\-ws/src/kukadu/src/learning/kernelregressor.\-cpp\end{DoxyCompactItemize}

@@ -1,0 +1,85 @@
+\hypertarget{classkukadu_1_1SensorStorage}{\section{kukadu\-:\-:Sensor\-Storage Class Reference}
+\label{classkukadu_1_1SensorStorage}\index{kukadu\-::\-Sensor\-Storage@{kukadu\-::\-Sensor\-Storage}}
+}
+
+
+Can collect and store sensor information of the robot represented by a \hyperlink{classkukadu_1_1ControlQueue}{kukadu\-::\-Control\-Queue} and a \hyperlink{classkukadu_1_1GenericHand}{kukadu\-::\-Generic\-Hand}.  
+
+
+
+
+{\ttfamily \#include $<$sensorstorage.\-hpp$>$}
+
+\subsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\hypertarget{classkukadu_1_1SensorStorage_a08a91e75da152f2194e573cd9915f609}{{\bfseries Sensor\-Storage} (std\-::vector$<$ K\-U\-K\-A\-D\-U\-\_\-\-S\-H\-A\-R\-E\-D\-\_\-\-P\-T\-R$<$ \hyperlink{classkukadu_1_1ControlQueue}{Control\-Queue} $>$ $>$ queues, std\-::vector$<$ K\-U\-K\-A\-D\-U\-\_\-\-S\-H\-A\-R\-E\-D\-\_\-\-P\-T\-R$<$ \hyperlink{classkukadu_1_1GenericHand}{Generic\-Hand} $>$ $>$ hands, double polling\-Frequency)}\label{classkukadu_1_1SensorStorage_a08a91e75da152f2194e573cd9915f609}
+
+\item 
+\hypertarget{classkukadu_1_1SensorStorage_aadec9c676bea6c4f817cd4de8e57ad54}{void {\bfseries stop\-Data\-Storage} ()}\label{classkukadu_1_1SensorStorage_aadec9c676bea6c4f817cd4de8e57ad54}
+
+\item 
+\hypertarget{classkukadu_1_1SensorStorage_acbdfa07aa2e4997ad6e5491861fc5821}{void {\bfseries set\-Export\-Mode} (int mode)}\label{classkukadu_1_1SensorStorage_acbdfa07aa2e4997ad6e5491861fc5821}
+
+\item 
+\hypertarget{classkukadu_1_1SensorStorage_af139ac656f258cfa38b200e5daa8bef0}{void {\bfseries store\-Data} (bool store\-Header, std\-::string file, K\-U\-K\-A\-D\-U\-\_\-\-S\-H\-A\-R\-E\-D\-\_\-\-P\-T\-R$<$ \hyperlink{classkukadu_1_1SensorData}{Sensor\-Data} $>$ data)}\label{classkukadu_1_1SensorStorage_af139ac656f258cfa38b200e5daa8bef0}
+
+\item 
+\hypertarget{classkukadu_1_1SensorStorage_ab9d6af653b8aa0822f80c6278ca2f093}{void {\bfseries store\-Data} (bool store\-Header, std\-::vector$<$ std\-::string $>$ files, std\-::vector$<$ K\-U\-K\-A\-D\-U\-\_\-\-S\-H\-A\-R\-E\-D\-\_\-\-P\-T\-R$<$ \hyperlink{classkukadu_1_1SensorData}{Sensor\-Data} $>$ $>$ data)}\label{classkukadu_1_1SensorStorage_ab9d6af653b8aa0822f80c6278ca2f093}
+
+\item 
+\hypertarget{classkukadu_1_1SensorStorage_ae327ec5a25cb995598c0a04fd2675074}{void {\bfseries store\-Data} (bool store\-Header, std\-::vector$<$ K\-U\-K\-A\-D\-U\-\_\-\-S\-H\-A\-R\-E\-D\-\_\-\-P\-T\-R$<$ std\-::ofstream $>$ $>$ queue\-Streams, std\-::vector$<$ K\-U\-K\-A\-D\-U\-\_\-\-S\-H\-A\-R\-E\-D\-\_\-\-P\-T\-R$<$ \hyperlink{classkukadu_1_1SensorData}{Sensor\-Data} $>$ $>$ data)}\label{classkukadu_1_1SensorStorage_ae327ec5a25cb995598c0a04fd2675074}
+
+\item 
+\hypertarget{classkukadu_1_1SensorStorage_ab68803e1c9d13b0431cf7635137e3c6b}{K\-U\-K\-A\-D\-U\-\_\-\-S\-H\-A\-R\-E\-D\-\_\-\-P\-T\-R$<$ kukadu\-\_\-thread $>$ {\bfseries start\-Data\-Storage} (std\-::string folder\-Name)}\label{classkukadu_1_1SensorStorage_ab68803e1c9d13b0431cf7635137e3c6b}
+
+\end{DoxyCompactItemize}
+\subsection*{Static Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\hypertarget{classkukadu_1_1SensorStorage_a670a757897a4f1f0008b4f877dc8480e}{static K\-U\-K\-A\-D\-U\-\_\-\-S\-H\-A\-R\-E\-D\-\_\-\-P\-T\-R\\*
+$<$ \hyperlink{classkukadu_1_1SensorData}{Sensor\-Data} $>$ {\bfseries read\-Storage} (K\-U\-K\-A\-D\-U\-\_\-\-S\-H\-A\-R\-E\-D\-\_\-\-P\-T\-R$<$ \hyperlink{classkukadu_1_1ControlQueue}{Control\-Queue} $>$ queue, std\-::string file)}\label{classkukadu_1_1SensorStorage_a670a757897a4f1f0008b4f877dc8480e}
+
+\end{DoxyCompactItemize}
+\subsection*{Static Public Attributes}
+\begin{DoxyCompactItemize}
+\item 
+\hypertarget{classkukadu_1_1SensorStorage_a05ce1bf702c832c2b5e7f52066534e8f}{static const int {\bfseries S\-T\-O\-R\-E\-\_\-\-T\-I\-M\-E} = 512}\label{classkukadu_1_1SensorStorage_a05ce1bf702c832c2b5e7f52066534e8f}
+
+\item 
+\hypertarget{classkukadu_1_1SensorStorage_a070f1783a6c3350f8a23d74903840ec8}{static const int {\bfseries S\-T\-O\-R\-E\-\_\-\-R\-B\-T\-\_\-\-J\-N\-T\-\_\-\-P\-O\-S} = 1}\label{classkukadu_1_1SensorStorage_a070f1783a6c3350f8a23d74903840ec8}
+
+\item 
+\hypertarget{classkukadu_1_1SensorStorage_a88de0ab747ea7a103fcf4365ea75be45}{static const int {\bfseries S\-T\-O\-R\-E\-\_\-\-R\-B\-T\-\_\-\-C\-A\-R\-T\-\_\-\-P\-O\-S} = 2}\label{classkukadu_1_1SensorStorage_a88de0ab747ea7a103fcf4365ea75be45}
+
+\item 
+\hypertarget{classkukadu_1_1SensorStorage_add023dda2818acad70d3c841e73f5930}{static const int {\bfseries S\-T\-O\-R\-E\-\_\-\-R\-B\-T\-\_\-\-J\-N\-T\-\_\-\-F\-T\-R\-Q} = 4}\label{classkukadu_1_1SensorStorage_add023dda2818acad70d3c841e73f5930}
+
+\item 
+\hypertarget{classkukadu_1_1SensorStorage_a7d212ebdda136ab741bc52643aba4d44}{static const int {\bfseries S\-T\-O\-R\-E\-\_\-\-R\-B\-T\-\_\-\-C\-A\-R\-T\-\_\-\-F\-T\-R\-Q} = 8}\label{classkukadu_1_1SensorStorage_a7d212ebdda136ab741bc52643aba4d44}
+
+\item 
+\hypertarget{classkukadu_1_1SensorStorage_a51ed1a7670752c1364cfd92ad26cff2a}{static const int {\bfseries S\-T\-O\-R\-E\-\_\-\-H\-N\-D\-\_\-\-J\-N\-T\-\_\-\-P\-O\-S} = 16}\label{classkukadu_1_1SensorStorage_a51ed1a7670752c1364cfd92ad26cff2a}
+
+\item 
+\hypertarget{classkukadu_1_1SensorStorage_ad42b6b0b8ad5186068fb59765f289796}{static const int {\bfseries S\-T\-O\-R\-E\-\_\-\-H\-N\-D\-\_\-\-T\-C\-T\-L\-E} = 32}\label{classkukadu_1_1SensorStorage_ad42b6b0b8ad5186068fb59765f289796}
+
+\item 
+\hypertarget{classkukadu_1_1SensorStorage_aa737207c828d766772106bbb6ec59a81}{static const int {\bfseries S\-T\-O\-R\-E\-\_\-\-C\-A\-R\-T\-\_\-\-A\-B\-S\-\_\-\-F\-R\-C} = 64}\label{classkukadu_1_1SensorStorage_aa737207c828d766772106bbb6ec59a81}
+
+\item 
+\hypertarget{classkukadu_1_1SensorStorage_ad2b1ffec1c7466a22d0f4431ba987931}{static const int {\bfseries S\-T\-O\-R\-E\-\_\-\-S\-I\-M\-\_\-\-O\-B\-J\-E\-C\-T} = 128}\label{classkukadu_1_1SensorStorage_ad2b1ffec1c7466a22d0f4431ba987931}
+
+\item 
+\hypertarget{classkukadu_1_1SensorStorage_a041506263812ebe4d18bd0a7f780cef8}{static const int {\bfseries S\-T\-O\-R\-E\-\_\-\-V\-I\-S\-\_\-\-O\-B\-J\-E\-C\-T} = 256}\label{classkukadu_1_1SensorStorage_a041506263812ebe4d18bd0a7f780cef8}
+
+\end{DoxyCompactItemize}
+
+
+\subsection{Detailed Description}
+Can collect and store sensor information of the robot represented by a \hyperlink{classkukadu_1_1ControlQueue}{kukadu\-::\-Control\-Queue} and a \hyperlink{classkukadu_1_1GenericHand}{kukadu\-::\-Generic\-Hand}. 
+
+The documentation for this class was generated from the following files\-:\begin{DoxyCompactItemize}
+\item 
+/home/c7031109/iis\-\_\-robot\-\_\-sw/iis\-\_\-catkin\-\_\-ws/src/kukadu/include/kukadu/robot/sensorstorage.\-hpp\item 
+/home/c7031109/iis\-\_\-robot\-\_\-sw/iis\-\_\-catkin\-\_\-ws/src/kukadu/src/robot/sensorstorage.\-cpp\end{DoxyCompactItemize}

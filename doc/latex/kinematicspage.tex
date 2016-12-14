@@ -1,0 +1,313 @@
+The \hyperlink{index_kinematics}{The kinematics and Planning module} module provides interfaces and their implementations for path planning and kinematics (forward, inverse). It is possible to easily instantiate different versions of path planners and use the optimal planner for the desired purpose. Currently, there are 3 different planners implemented\-:
+\begin{DoxyItemize}
+\item \hyperlink{classkukadu_1_1SimplePlanner}{kukadu\-::\-Simple\-Planner}\-: This planner implements a simple interpolation in joint space in order to compute a plan from one joint position to another. In order to do so, it uses the \href{http://www.reflexxes.ws/}{\tt Reflexxes} library. For Cartesian planning it simple performs inverse kinematics for the target position and interpolates in joint space. It does not support any functionality for obstacle avoidance or for fulfilling specific constraints.
+\item \hyperlink{classkukadu_1_1KomoPlanner}{kukadu\-::\-Komo\-Planner}\-:
+\item \hyperlink{classkukadu_1_1MoveItKinematics}{kukadu\-::\-Move\-It\-Kinematics}\-:
+\end{DoxyItemize}
+
+\section*{\hyperlink{classkukadu_1_1KomoPlanner}{kukadu\-::\-Komo\-Planner}}
+
+The next code snippet shows, how kukadu can be used in combination with K\-O\-M\-O. K\-O\-M\-O is a robust and stable path planner and we recommend to use this planner. If you don't select a specific planner, K\-O\-M\-O will be used automatically.
+
+
+\begin{DoxyCodeInclude}
+1 \textcolor{preprocessor}{#include <kukadu/kukadu.hpp>}
+2 \textcolor{preprocessor}{#include <geometry\_msgs/Pose.h>}
+3 
+4 \textcolor{keyword}{using namespace }std;
+5 \textcolor{keyword}{using namespace }kukadu;
+6 
+7 \textcolor{keywordtype}{int} main(\textcolor{keywordtype}{int} argc, \textcolor{keywordtype}{char}** args) \{
+8 
+9     cout << \textcolor{stringliteral}{"setting up ros node"} << endl;
+10     ros::init(argc, args, \textcolor{stringliteral}{"kukadu\_planning"}); ros::NodeHandle node; sleep(1);
+11     ros::AsyncSpinner spinner(10); spinner.start();
+12 
+13     cout << \textcolor{stringliteral}{"setting up control queue"} << endl;
+14     \textcolor{keyword}{auto} realLeftQueue = make\_shared<KukieControlQueue>(\textcolor{stringliteral}{"simulation"}, \textcolor{stringliteral}{"left\_arm"}, node);
+15     \textcolor{keyword}{auto} komo = make\_shared<KomoPlanner>(realLeftQueue, resolvePath(\textcolor{stringliteral}{"
+      $KUKADU\_HOME/external/komo/share/data/kuka/data/iis\_robot.kvg"}), resolvePath(\textcolor{stringliteral}{"$KUKADU\_HOME/external/komo/share/data/kuka/config/MT.cfg"}), 
+      realLeftQueue->getRobotSidePrefix());
+16     realLeftQueue->setPathPlanner(komo);
+17     realLeftQueue->setKinematics(komo);
+18 
+19     cout << \textcolor{stringliteral}{"starting queue"} << endl;
+20     \textcolor{keyword}{auto} realLqThread = realLeftQueue->startQueue();
+21 
+22     cout << \textcolor{stringliteral}{"switching to impedance mode if it is not there yet"} << endl;
+23     \textcolor{keywordflow}{if}(realLeftQueue->getCurrentMode() != KukieControlQueue::KUKA\_JNT\_IMP\_MODE) \{
+24         realLeftQueue->stopCurrentMode();
+25         realLeftQueue->switchMode(KukieControlQueue::KUKA\_JNT\_IMP\_MODE);
+26     \}
+27 
+28     \textcolor{comment}{/****** stuff is set up now --> here you can move as much as you want *******/}
+29 
+30     cout << \textcolor{stringliteral}{"joint ptp"} << endl;
+31     realLeftQueue->jointPtp(\{-1.5, 1.56, 2.33, -1.74, -1.85, 1.27, 0.71\});
+32 
+33     cout << \textcolor{stringliteral}{"ptp without max force"} << endl;
+34     geometry\_msgs::Pose nextPose; nextPose.position.x = 0.3; nextPose.position.y = 1.3; nextPose.position.z
+       = 0.6;
+35     nextPose.orientation.x = -0.06; nextPose.orientation.y = -0.14; nextPose.orientation.z = -0.29; 
+      nextPose.orientation.w = 0.94;
+36     realLeftQueue->cartesianPtp(nextPose);
+37     cout << \textcolor{stringliteral}{"first ptp done"} << endl;
+38 
+39     cout << \textcolor{stringliteral}{"ptp with max force"} << endl;
+40     nextPose.position.z = 0.45;
+41     realLeftQueue->cartesianPtp(nextPose, 10.0);
+42     cout << \textcolor{stringliteral}{"second ptp done"} << endl;
+43 
+44     \textcolor{comment}{/****** done with moving? --> clean up everything and quit *******/}
+45 
+46     realLeftQueue->stopCurrentMode();
+47     realLeftQueue->stopQueue();
+48     realLqThread->join();
+49 
+50 \}
+\end{DoxyCodeInclude}
+
+
+\subsection*{Prerequisites}
+
+The only prerequisite is the started kukie controller. Further, the environment variable {\itshape K\-U\-K\-A\-D\-U\-\_\-\-H\-O\-M\-E} needs to be set to the base folder of kukadu. This variable should be set in your bash by 
+\begin{DoxyCode}
+export KUKADU\_HOME=%INSERT\_YOUR\_PATH\_TO\_YOUR\_CATKIN%/src/kukadu
+\end{DoxyCode}
+ Alternatively, instead of exporting this value every time, you can also add this line to your {\itshape .bashrc} file.
+
+\subsection*{Description}
+
+In this example, most lines should look familiar to you. If not, please check out again chapter \hyperlink{robotpage}{The robot module}. The new part is found in lines 15 -\/ 17. In line 15 a new K\-O\-M\-O instance is created. In lines 16 and 17 this instance is set as the planner and kinematics solver in your \hyperlink{classkukadu_1_1KukieControlQueue}{kukadu\-::\-Kukie\-Control\-Queue}. In the current version of kukadu, this theoretically is not required, as K\-O\-M\-O is the standard planner. However, you can set it explitely, which is done in the shown example. Whenever the functions \hyperlink{classkukadu_1_1ControlQueue_ad11059100321b24a1af8ef7de8314353}{kukadu\-::\-Control\-Queue\-::joint\-Ptp()} and \hyperlink{classkukadu_1_1ControlQueue_a1bfa23a8ce6319f6ef0ed9208e896054}{kukadu\-::\-Control\-Queue\-::cartesian\-Ptp()} are used, the planner that was set in lines 16 and 17 is consulted. The generated plan is executed immediately.
+
+It is also possible to use the planner directly without calling the Pt\-P methods of \hyperlink{classkukadu_1_1ControlQueue}{kukadu\-::\-Control\-Queue}. You find these functions in the A\-P\-I description of \hyperlink{classkukadu_1_1PathPlanner}{kukadu\-::\-Path\-Planner}. You can execute the generated plan by using \hyperlink{classkukadu_1_1ControlQueue_a0025c5c010a1b33d637e52fb24f767b2}{kukadu\-::\-Control\-Queue\-::set\-Next\-Trajectory()}. An example on how this is done is given in the next code snippet.
+
+
+\begin{DoxyCodeInclude}
+1 \textcolor{preprocessor}{#include <kukadu/kukadu.hpp>}
+2 \textcolor{preprocessor}{#include <geometry\_msgs/Pose.h>}
+3 
+4 \textcolor{keyword}{using namespace }std;
+5 \textcolor{keyword}{using namespace }kukadu;
+6 
+7 \textcolor{keywordtype}{int} main(\textcolor{keywordtype}{int} argc, \textcolor{keywordtype}{char}** args) \{
+8 
+9     cout << \textcolor{stringliteral}{"setting up ros node"} << endl;
+10     ros::init(argc, args, \textcolor{stringliteral}{"kukadu\_planning"}); ros::NodeHandle node; sleep(1);
+11     ros::AsyncSpinner spinner(10); spinner.start();
+12 
+13     cout << \textcolor{stringliteral}{"setting up control queue"} << endl;
+14     \textcolor{keyword}{auto} realLeftQueue = make\_shared<KukieControlQueue>(\textcolor{stringliteral}{"simulation"}, \textcolor{stringliteral}{"left\_arm"}, node);
+15 
+16     cout << \textcolor{stringliteral}{"starting queue"} << endl;
+17     \textcolor{keyword}{auto} realLqThread = realLeftQueue->startQueue();
+18 
+19     cout << \textcolor{stringliteral}{"switching to impedance mode if it is not there yet"} << endl;
+20     \textcolor{keywordflow}{if}(realLeftQueue->getCurrentMode() != KukieControlQueue::KUKA\_JNT\_IMP\_MODE) \{
+21         realLeftQueue->stopCurrentMode();
+22         realLeftQueue->switchMode(KukieControlQueue::KUKA\_JNT\_IMP\_MODE);
+23     \}
+24 
+25     \hyperlink{classkukadu_1_1KomoPlanner}{KomoPlanner} leftSimKomoPlanner(realLeftQueue, resolvePath(\textcolor{stringliteral}{"
+      $KUKADU\_HOME/external/komo/share/data/kuka/data/iis\_robot.kvg"}), resolvePath(\textcolor{stringliteral}{"$KUKADU\_HOME/external/komo/share/data/kuka/config/MT.cfg"}), \textcolor{stringliteral}{"
+      left"});
+26 
+27     \textcolor{comment}{/****** stuff is set up now --> here you can move as much as you want *******/}
+28 
+29     \textcolor{comment}{// this places the robot somewhere}
+30     cout << \textcolor{stringliteral}{"joint ptp"} << endl;
+31     realLeftQueue->jointPtp(\{-1.5, 1.56, 2.33, -1.74, -1.85, 1.27, 0.71\});
+32 
+33     \textcolor{comment}{// some cartesian position from which the trajectory should be started}
+34     cout << \textcolor{stringliteral}{"ptp without max force"} << endl;
+35     geometry\_msgs::Pose nextPose; nextPose.position.x = 0.21; nextPose.position.y = 1.3; nextPose.position.
+      z = 0.6;
+36     nextPose.orientation.x = -0.06; nextPose.orientation.y = -0.14; nextPose.orientation.z = -0.29; 
+      nextPose.orientation.w = 0.94;
+37 
+38     \textcolor{comment}{// creating the cartesian trajectory with some intermediate steps the robot should pass through}
+39     cout << \textcolor{stringliteral}{"planning in z direction"} << endl;
+40     \textcolor{keyword}{auto} stepSize = 0.01;
+41     vector<geometry\_msgs::Pose> cartesianTrajectory;
+42     \textcolor{keywordflow}{for}(\textcolor{keywordtype}{double} i = 0.0; i < 0.1; i += stepSize) \{
+43         nextPose.position.z -= stepSize;
+44         cartesianTrajectory.push\_back(nextPose);
+45     \}
+46 
+47     cout << \textcolor{stringliteral}{"planning in x direction"} << endl;
+48     \textcolor{keywordflow}{for}(\textcolor{keywordtype}{double} i = 0.0; i < 0.1; i += 0.01) \{
+49         nextPose.position.y -= stepSize;
+50         cartesianTrajectory.push\_back(nextPose);
+51     \}
+52 
+53     \textcolor{comment}{// after creating the trajectory, the planner can plan the trajectory and returns a joint trajectory}
+54     \textcolor{comment}{// corresponding to the cartesian path}
+55     cout << \textcolor{stringliteral}{"planning"} << endl;
+56     \textcolor{comment}{// argument 1: cartesian trajectory (with the intermediate poses of the endeffector)}
+57     \textcolor{comment}{// argument 2: whether or not the joint trajectory should be smoothed a bit or not (smoothing not
+       perfect yet)}
+58     \textcolor{comment}{// argument 3: whether or not considering the current pose of the robot --> will first move from the
+       current}
+59     \textcolor{comment}{// state to the first pose in the cartesian trajectory (if you set this to false, you should be sure}
+60     \textcolor{comment}{// about what you are doing)}
+61     \textcolor{keyword}{auto} jointPlan = leftSimKomoPlanner.planCartesianTrajectory(cartesianTrajectory, \textcolor{keyword}{true}, \textcolor{keyword}{true});
+62 
+63     \textcolor{comment}{// the complete trajectory can be added to the control queue and will be executed}
+64     \textcolor{comment}{// as soon as the previously loaded movements are done (in this case no previous movement is in the}
+65     \textcolor{comment}{// queue anymore)}
+66     realLeftQueue->setNextTrajectory(jointPlan);
+67     realLeftQueue->synchronizeToQueue(1);
+68 
+69     cout << \textcolor{stringliteral}{"execution done"} << endl;
+70 
+71     \textcolor{comment}{/****** done with moving? --> clean up everything and quit *******/}
+72 
+73     realLeftQueue->stopCurrentMode();
+74     realLeftQueue->stopQueue();
+75     realLqThread->join();
+76 
+77 \}
+\end{DoxyCodeInclude}
+
+
+\section*{\hyperlink{classkukadu_1_1MoveItKinematics}{kukadu\-::\-Move\-It\-Kinematics}}
+
+Move\-It is one of the standard ways in the R\-O\-S universe for robot control and path planning. kukadu also provides an interface to this framework.
+
+
+\begin{DoxyCodeInclude}
+1 \textcolor{preprocessor}{#include <kukadu/kukadu.hpp>}
+2 \textcolor{preprocessor}{#include <geometry\_msgs/Pose.h>}
+3 
+4 \textcolor{keyword}{using namespace }std;
+5 \textcolor{keyword}{using namespace }kukadu;
+6 
+7 \textcolor{keywordtype}{int} main(\textcolor{keywordtype}{int} argc, \textcolor{keywordtype}{char}** args) \{
+8 
+9     cout << \textcolor{stringliteral}{"setting up ros node"} << endl;
+10     ros::init(argc, args, \textcolor{stringliteral}{"kukadu\_planning"}); ros::NodeHandle node; sleep(1);
+11     ros::AsyncSpinner spinner(10); spinner.start();
+12 
+13     cout << \textcolor{stringliteral}{"setting up control queue"} << endl;
+14     \textcolor{keyword}{auto} realLeftQueue = make\_shared<KukieControlQueue>(\textcolor{stringliteral}{"simulation"}, \textcolor{stringliteral}{"left\_arm"}, node);
+15     \textcolor{keyword}{auto} moveit = make\_shared<MoveItKinematics>(realLeftQueue, node, \textcolor{stringliteral}{"left\_arm"},
+16             vector<string>(\{\textcolor{stringliteral}{"left\_arm\_0\_joint"}, \textcolor{stringliteral}{"left\_arm\_1\_joint"}, \textcolor{stringliteral}{"left\_arm\_2\_joint"}, \textcolor{stringliteral}{"left\_arm\_3\_joint"},
+       \textcolor{stringliteral}{"left\_arm\_4\_joint"}, \textcolor{stringliteral}{"left\_arm\_5\_joint"}, \textcolor{stringliteral}{"left\_arm\_6\_joint"}\}),
+17             \textcolor{stringliteral}{"left\_arm\_7\_link"});
+18     realLeftQueue->setPathPlanner(moveit);
+19     realLeftQueue->setKinematics(moveit);
+20 
+21     cout << \textcolor{stringliteral}{"starting queue"} << endl;
+22     \textcolor{keyword}{auto} realLqThread = realLeftQueue->startQueue();
+23 
+24     cout << \textcolor{stringliteral}{"switching to impedance mode if it is not there yet"} << endl;
+25     \textcolor{keywordflow}{if}(realLeftQueue->getCurrentMode() != KukieControlQueue::KUKA\_JNT\_IMP\_MODE) \{
+26         realLeftQueue->stopCurrentMode();
+27         realLeftQueue->switchMode(KukieControlQueue::KUKA\_JNT\_IMP\_MODE);
+28     \}
+29 
+30     \textcolor{comment}{/****** stuff is set up now --> here you can move as much as you want *******/}
+31 
+32     cout << \textcolor{stringliteral}{"joint ptp"} << endl;
+33     realLeftQueue->jointPtp(\{-1.5, 1.56, 2.33, -1.74, -1.85, 1.27, 0.71\});
+34 
+35     cout << \textcolor{stringliteral}{"ptp without max force"} << endl;
+36     geometry\_msgs::Pose nextPose; nextPose.position.x = 0.3; nextPose.position.y = 1.3; nextPose.position.z
+       = 0.6;
+37     nextPose.orientation.x = -0.06; nextPose.orientation.y = -0.14; nextPose.orientation.z = -0.29; 
+      nextPose.orientation.w = 0.94;
+38     realLeftQueue->cartesianPtp(nextPose);
+39     cout << \textcolor{stringliteral}{"first ptp done"} << endl;
+40 
+41     cout << \textcolor{stringliteral}{"ptp with max force"} << endl;
+42     nextPose.position.z = 0.45;
+43     realLeftQueue->cartesianPtp(nextPose, 10.0);
+44     cout << \textcolor{stringliteral}{"second ptp done"} << endl;
+45 
+46     \textcolor{comment}{/****** done with moving? --> clean up everything and quit *******/}
+47 
+48     realLeftQueue->stopCurrentMode();
+49     realLeftQueue->stopQueue();
+50     realLqThread->join();
+51 
+52 \}
+\end{DoxyCodeInclude}
+
+
+\subsection*{Prerequisites}
+
+In order to use kukadu with Move\-It, you need to upload the robot model and the Move\-It configuration to the parameter server. Typically, this can be done by using the launch files generated by the Move\-It configuration setup. You might execute something similar to 
+\begin{DoxyCode}
+roslaunch uibk\_robot\_moveit\_config demo.launch
+\end{DoxyCode}
+ If you are not familiar with Move\-It, please consult the \href{http://moveit.ros.org/documentation/tutorials/}{\tt Move\-It tutorial} on how to set up Move\-It for your robot.
+
+\subsection*{Description}
+
+The code is very similar to the one that was described for the K\-O\-M\-O planner. As both planners (Move\-It and K\-O\-M\-O) implement the same kukadu interface (\hyperlink{classkukadu_1_1PathPlanner}{kukadu\-::\-Path\-Planner}), the only difference is found in line 15, where you create a \hyperlink{classkukadu_1_1MoveItKinematics}{kukadu\-::\-Move\-It\-Kinematics} instance instead of an \hyperlink{classkukadu_1_1KomoPlanner}{kukadu\-::\-Komo\-Planner} instance. The rest of the code is independent of the concrete planner.
+
+\section*{\hyperlink{classkukadu_1_1SimplePlanner}{kukadu\-::\-Simple\-Planner}}
+
+T\-O\-D\-O\-: this code is not tested yet
+
+
+\begin{DoxyCodeInclude}
+1 \textcolor{preprocessor}{#include <kukadu/kukadu.hpp>}
+2 \textcolor{preprocessor}{#include <geometry\_msgs/Pose.h>}
+3 
+4 \textcolor{keyword}{using namespace }std;
+5 \textcolor{keyword}{using namespace }kukadu;
+6 
+7 \textcolor{keywordtype}{int} main(\textcolor{keywordtype}{int} argc, \textcolor{keywordtype}{char}** args) \{
+8 
+9     cout << \textcolor{stringliteral}{"setting up ros node"} << endl;
+10     ros::init(argc, args, \textcolor{stringliteral}{"kukadu\_planning"}); ros::NodeHandle node; sleep(1);
+11     ros::AsyncSpinner spinner(10); spinner.start();
+12 
+13     cout << \textcolor{stringliteral}{"setting up control queue"} << endl;
+14     \textcolor{keyword}{auto} realLeftQueue = make\_shared<KukieControlQueue>(\textcolor{stringliteral}{"simulation"}, \textcolor{stringliteral}{"left\_arm"}, node);
+15     \textcolor{keyword}{auto} simple = make\_shared<SimplePlanner>(realLeftQueue, realLeftQueue->getKinematics());
+16     realLeftQueue->setPathPlanner(simple);
+17 
+18     cout << \textcolor{stringliteral}{"starting queue"} << endl;
+19     \textcolor{keyword}{auto} realLqThread = realLeftQueue->startQueue();
+20 
+21     cout << \textcolor{stringliteral}{"switching to impedance mode if it is not there yet"} << endl;
+22     \textcolor{keywordflow}{if}(realLeftQueue->getCurrentMode() != KukieControlQueue::KUKA\_JNT\_IMP\_MODE) \{
+23         realLeftQueue->stopCurrentMode();
+24         realLeftQueue->switchMode(KukieControlQueue::KUKA\_JNT\_IMP\_MODE);
+25     \}
+26 
+27     \textcolor{comment}{/****** stuff is set up now --> here you can move as much as you want *******/}
+28 
+29     cout << \textcolor{stringliteral}{"joint ptp"} << endl;
+30     realLeftQueue->jointPtp(\{-1.5, 1.56, 2.33, -1.74, -1.85, 1.27, 0.71\});
+31 
+32     cout << \textcolor{stringliteral}{"ptp without max force"} << endl;
+33     geometry\_msgs::Pose nextPose; nextPose.position.x = 0.3; nextPose.position.y = 1.3; nextPose.position.z
+       = 0.6;
+34     nextPose.orientation.x = -0.06; nextPose.orientation.y = -0.14; nextPose.orientation.z = -0.29; 
+      nextPose.orientation.w = 0.94;
+35     realLeftQueue->cartesianPtp(nextPose);
+36     cout << \textcolor{stringliteral}{"first ptp done"} << endl;
+37 
+38     cout << \textcolor{stringliteral}{"ptp with max force"} << endl;
+39     nextPose.position.z = 0.45;
+40     realLeftQueue->cartesianPtp(nextPose, 10.0);
+41     cout << \textcolor{stringliteral}{"second ptp done"} << endl;
+42 
+43     \textcolor{comment}{/****** done with moving? --> clean up everything and quit *******/}
+44 
+45     realLeftQueue->stopCurrentMode();
+46     realLeftQueue->stopQueue();
+47     realLqThread->join();
+48 
+49 \}
+\end{DoxyCodeInclude}
+
+
+\subsection*{Prerequisites}
+
+None
+
+Prev (\hyperlink{robotpage}{The robot module}), Next (\hyperlink{controlpage}{The control module}) 

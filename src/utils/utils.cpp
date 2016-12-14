@@ -14,12 +14,19 @@
 
 #include <kukadu/utils/utils.hpp>
 #include <kukadu/types/kukadutypes.hpp>
-#include <kukadu/control/dmpexecutor.hpp>
 
 using namespace std;
 using namespace arma;
 
 namespace kukadu {
+
+    double sigmoid(double x) {
+        return (1.0 + tanh(x / 2.0)) / 2.0;
+    }
+
+    void printPose(const geometry_msgs::Pose& p) {
+        cout << p.position.x << " " << p.position.y << " " << p.position.z << " " << p.orientation.x << " " << p.orientation.y << " " << p.orientation.z << " " << p.orientation.w << endl;
+    }
 
     double computeMaxJointDistance(arma::vec joints1, arma::vec joints2) {
 
@@ -84,15 +91,6 @@ namespace kukadu {
         return ch;
     }
 
-    std::vector<double> constructDmpMys(mat joints) {
-        vector<double> ret;
-        double tmax = joints(joints.n_rows - 1, 0);
-        for(double i = 0; i < (tmax + 1); i += 1.0) {
-            ret.push_back(i);
-        }
-        return ret;
-    }
-
     float* copyJoints(const float* arr, int arrSize) {
         float* ret = new float[arrSize];
         for(int i = 0; i < arrSize; ++i) ret[i] = arr[i];
@@ -107,16 +105,6 @@ namespace kukadu {
         cout << endl;
     }
 
-    vector<double> computeDMPMys(vector<double> mys, double ax, double tau) {
-        int mysSize = mys.size();
-        vector<double> dmpMys;
-        for(int i = 0; i < mysSize; ++i) {
-            double val = std::exp(-ax / tau * mys.at(i));
-            dmpMys.push_back(val);
-        }
-        return dmpMys;
-    }
-
     std::vector<double>* getDoubleVectorFromArray(double* arr, int size) {
 
         vector<double>* v = new vector<double>(arr, arr + size);
@@ -126,8 +114,11 @@ namespace kukadu {
 
     vec computeDiscreteDerivatives(vec x, vec y) {
 
-        double y0, y1, x0, x1, k;
+        if(x.n_elem != y.n_elem)
+            throw KukaduException("(utils.computeDiscreteDerivatives) vector dimensions do not match");
+
         vec ret(x.n_elem);
+        double y0, y1, x0, x1, k;
         for(int i = 1; i < x.n_elem; ++i) {
 
             y0 = y(i - 1);
@@ -136,8 +127,11 @@ namespace kukadu {
             x1 = x(i);
 
             k = (y1 - y0) / (x1 - x0);
-            //        cout << (y1 - y0) << " " << (x1 - x0) << endl;
+            if(k != k)
+                throw KukaduException("(utils.computeDiscreteDerivatives) two consecutive data lines have the same time (would resoult in division by 0)");
+
             ret(i - 1) = k;
+
         }
 
         ret(ret.n_elem - 1) = k;
@@ -358,24 +352,34 @@ namespace kukadu {
      *	char* file:		complete path to input file
      *	int fileColumns:	count of columns to import
     */
-    mat readMovements(string file) {
+    std::pair<std::vector<long long int>, mat> readDmpData(string file) {
 
         ifstream inFile;
         inFile.open(file.c_str(), ios::in | ios::app | ios::binary);
-        mat retMat = readMovements(inFile);
+        auto retMat = readDmpData(inFile);
         inFile.close();
 
         return retMat;
 
     }
 
-    arma::mat readMovements(std::ifstream& inFile) {
+    bool fileIsEmpty(std::string& filePath) {
+        ifstream inFile;
+        inFile.open(filePath.c_str(), ios::in | ios::app | ios::binary);
+        auto retVal = fileIsEmpty(inFile);
+        inFile.close();
+        return retVal;
+    }
+
+    std::pair<std::vector<long long int>, mat> readDmpData(std::ifstream& inFile) {
 
         mat joints;
+        vector<long long int> time;
+
         string line;
-        string token;
         double dn = 0.0;
-        double t0 = 0.0;
+        long long int t0 = 0;
+        long long int currentTime = 0;
         double prevTime = DBL_MIN;
         int fileColumns = 0;
 
@@ -386,59 +390,68 @@ namespace kukadu {
             int j = 0;
             while(inFile.good()) {
 
-                getline(inFile, line);
-
-                if(line != "") {
-
+                // find out how many columns there are
+                if(firstIteration) {
+                    getline(inFile, line);
                     KukaduTokenizer tok(line);
+                    int i = 0;
+                    for(i = 0; tok.next() != ""; ++i);
+                    fileColumns = i;
+                    firstIteration = false;
+                    joints = mat(1, fileColumns - 1);
+                }
 
-                    if(firstIteration) {
-                        int i = 0;
-                        for(i = 0; tok.next() != ""; ++i);
-                        fileColumns = i;
-                        tok = KukaduTokenizer(line);
-                        firstIteration = false;
-                        joints = mat(1, fileColumns);
-                    }
+                bool ignoreLine = false;
 
-                    bool ignoreLine = false;
+                // iterate over all columns
+                for(int i = 0; i < fileColumns; ++i) {
 
-                    for(int i = 0; (token = tok.next()) != "" && i < fileColumns; ++i) {
+                    // if its the first column - it is the time, otherwise its a measurement
+                    if(i > 0)
+                        inFile >> dn;
+                    else
+                        inFile >> currentTime;
 
-                        dn = string_to_double(token);
+                    // only store the new data, if the time has changed
+                    if(i == 0 && prevTime == currentTime) {
+                        ignoreLine = true;
+                        // remove the rest of the line from the buffer
+                        getline(inFile, line);
+                        break;
+                    } else if(i == 0)
+                        prevTime = currentTime;
 
-                        if(i == 0 && prevTime == dn) {
-                            ignoreLine = true;
-                            break;
-                        } else if(i == 0)
-                            prevTime = dn;
+                    // normalization
+                    if(j == 0 && i == 0) { t0 = currentTime; currentTime = 0; }
+                    else if(i == 0) currentTime -= t0;
 
-                        // normalization
-                        if(j == 0 && i == 0) { t0 = dn; dn = 0; }
-                        else if(i == 0) dn -= t0;
+                    // if i > 0 it is joint data
+                    if(i > 0)
+                        joints(j, i - 1) = dn;
+                    else
+                        time.push_back(currentTime);
 
-                        joints(j, i) = dn;
+                }
 
-                    }
+                if(!ignoreLine) {
 
-                    if(!ignoreLine) {
-
-                        j++;
-                        joints.resize(j + 1, fileColumns);
-
-                    }
+                    j++;
+                    joints.resize(j + 1, fileColumns);
 
                 }
 
             }
+
             joints.resize(j - 1, fileColumns);
+            time.resize(j - 1);
+
         }
 
-        return joints;
+        return {time, joints};
 
     }
 
-    std::pair<std::vector<std::string>, arma::mat> readSensorStorage(std::string file) {
+    std::pair<std::vector<std::string>, std::pair<std::vector<long long int>, arma::mat> > readSensorStorage(std::string file) {
 
         vector<string> labels;
         string token;
@@ -451,8 +464,8 @@ namespace kukadu {
         while((token = tok.next()) != "")
             labels.push_back(token);
 
-        mat data = readMovements(inFile);
-        pair<std::vector<std::string>, arma::mat> retPair(labels, data);
+        auto data = readDmpData(inFile);
+        pair<std::vector<std::string>, std::pair<std::vector<long long int>, arma::mat> > retPair(labels, data);
 
         inFile.close();
         return retPair;
@@ -473,7 +486,7 @@ namespace kukadu {
                 getline(inFile, line);
                 KukaduTokenizer tok(line);
                 while((token = tok.next()) != "") {
-                    dn = string_to_double(token);
+                    dn = stod(token);
                     ret(i) = dn;
                     ++i;
                     ret.resize(i + 1);
@@ -488,11 +501,13 @@ namespace kukadu {
 
     vector<string> getFilesInDirectory(string folderPath) {
 
-        vector<string> ret;
         DIR *dir;
         struct dirent *ent;
-        if ((dir = opendir (folderPath.c_str())) != NULL) {
-            while ((ent = readdir(dir)) != NULL) {
+        vector<string> ret;
+
+        if((dir = opendir (folderPath.c_str())) != NULL) {
+
+            while((ent = readdir(dir)) != NULL) {
                 string tmp(ent->d_name);
                 ret.push_back(tmp);
             }
@@ -513,37 +528,6 @@ namespace kukadu {
             if(!pos) ret.push_back(currentString);
         }
         return ret;
-    }
-
-    std::vector<DMPBase> buildDMPBase(vector<double> tmpmys, vector<double> tmpsigmas, double ax, double tau) {
-
-        std::vector<DMPBase> baseDef;
-        vector<DMPBase>::iterator it = baseDef.begin();
-
-        vector<double> mys = computeDMPMys(tmpmys, ax, tau);
-
-        for(int i = 0; i < mys.size(); ++i) {
-
-            double realMy = tmpmys.at(i);
-            double my = mys.at(i);
-
-            vector<double> sigmas;
-
-            for(int j = 0; j < tmpsigmas.size(); ++j) {
-                double realSigma = tmpsigmas.at(j);
-                double sigma = my - std::exp( -ax / tau * ( realMy + realSigma ) );
-                sigmas.push_back(sigma);
-            }
-
-            DMPBase base(my, sigmas);
-
-            // with this implementation, currently all sigmas have to be of the same size (see DMPTrajectoryGenerator::evaluateBasisFunction)
-            it = baseDef.insert(it, base);
-
-        }
-
-        return baseDef;
-
     }
 
     mat gslToArmadilloMatrix(gsl_matrix* matrix) {
@@ -568,108 +552,6 @@ namespace kukadu {
         for(int i = 0; i < stdVec.size(); ++i) {
             ret(i) = stdVec.at(i);
         }
-        return ret;
-    }
-
-    vector<double>* testGaussianRegressor() {
-
-        vector<double>* ret = new vector<double>[4];
-        vector<vec> data;
-
-        vector<double> sampleXs;
-        vector<double> sampleYs;
-        cout << "producing sample data" << endl;
-        /*
-        vec ts(20);
-        for(double i = 0; i < 1; i = i + 0.05) {
-            cout << "\t" << i; fflush(stdout);
-            vec point(1);
-            point(0) = i;
-            data.push_back(point);
-            ts(i) = sin(i * 6);
-
-            sampleXs.push_back(i);
-            sampleYs.push_back(ts(i));
-        }
-    */
-
-        /*
-        vec x0(1); x0(0) = -1.5; data.push_back(x0);
-        vec x1(1); x1(0) = -1.0; data.push_back(x1);
-        vec x2(1); x2(0) = -0.75; data.push_back(x2);
-        vec x3(1); x3(0) = -0.4; data.push_back(x3);
-        vec x4(1); x4(0) = -0.25; data.push_back(x4);
-        vec x5(1); x5(0) = 0.0; data.push_back(x5);
-
-        vec ts(6);
-        ts(0) = -1.7; ts(1) = -1.2; ts(2) = -0.35; ts(3) = 0.1; ts(4) = 0.5; ts(5) = 0.75;
-
-        sampleXs.push_back(-1.5);
-        sampleXs.push_back(-1.0);
-        sampleXs.push_back(-0.75);
-        sampleXs.push_back(-0.4);
-        sampleXs.push_back(-0.25);
-        sampleXs.push_back(0.0);
-
-        sampleYs.push_back(-1.7);
-        sampleYs.push_back(-1.2);
-        sampleYs.push_back(-0.35);
-        sampleYs.push_back(0.1);
-        sampleYs.push_back(0.5);
-        sampleYs.push_back(0.75);
-    */
-        /*
-        vec ts(15);
-        int j = 0;
-        for(double i = 0.0; i < 3.0; i = i + 0.2) {
-
-            vec dat(1);
-            dat(0) = i;
-            data.push_back(dat);
-
-            ts(j) = sin(2 * i);
-
-            sampleXs.push_back(i);
-            sampleYs.push_back(sin(2 * i));
-
-            j++;
-        }
-    */
-        vec ts(6);
-        for(int i = 0; i < 6; ++i) {
-            vec dat(1);
-            dat(0) = i + 2;
-            data.push_back(dat);
-
-            sampleXs.push_back(i + 2);
-        }
-
-        ts(0) = -1.75145; sampleYs.push_back(-1.75145);
-        ts(1) = -1.74119; sampleYs.push_back(-1.74119);
-        ts(2) = -1.73314; sampleYs.push_back(-1.73314);
-        ts(3) = -1.72789; sampleYs.push_back(-1.72789);
-        ts(4) = -1.73026; sampleYs.push_back(-1.73026);
-        ts(5) = -1.72266; sampleYs.push_back(-1.72266);
-
-        vector<double> xs;
-        vector<double> ys;
-        GaussianProcessRegressor* reg = new GaussianProcessRegressor(data, ts, new GaussianKernel(0.5, 0.05), 10000);
-        //	GaussianProcessRegressor* reg = new GaussianProcessRegressor(data, ts, new GaussianKernel(0.5, 1), 10000);
-        //	GaussianProcessRegressor* reg = new GaussianProcessRegressor(data, ts, new TricubeKernel(), 1000);
-        cout << endl << "do fitting" << endl;
-        for(double i = 2.0; i < 7.0; i = i + 0.01) {
-            vec query(1);
-            query(0) = i;
-            double res = reg->fitAtPosition(query)(0);
-            xs.push_back(i);
-            ys.push_back(res);
-        }
-
-        ret[0] = sampleXs;
-        ret[1] = sampleYs;
-        ret[2] = xs;
-        ret[3] = ys;
-
         return ret;
     }
 
@@ -751,34 +633,37 @@ namespace kukadu {
 
     }
 
-    arma::mat fillTrajectoryMatrix(arma::mat joints, double tMax) {
+    std::pair<arma::vec, arma::mat> fillTrajectoryMatrix(arma::vec timesInSec, arma::mat joints, double tMax) {
 
         int prevMaxIdx = joints.n_rows;
-        double prevTMax = joints(joints.n_rows - 1, 0);
+        double prevTMax = timesInSec(timesInSec.n_rows - 1, 0);
 
         if(tMax > prevTMax) {
-            double tDiff = prevTMax - joints(joints.n_rows - 2, 0);
+            double tDiff = prevTMax - timesInSec(timesInSec.n_rows - 2, 0);
 
             int insertSteps = (int) ((tMax - prevTMax) / tDiff);
             joints.resize(joints.n_rows + insertSteps + 1, joints.n_cols);
+            timesInSec.resize(joints.n_rows + insertSteps + 1, joints.n_cols);
             for(int i = 0; i < insertSteps; ++i) {
-                for(int j = 1; j < joints.n_cols; ++j) {
+                for(int j = 0; j < joints.n_cols; ++j) {
                     joints(prevMaxIdx + i, j) = joints(prevMaxIdx - 1, j);
                 }
-                joints(prevMaxIdx + i, 0) = prevTMax + (i + 1) * tDiff;
+                timesInSec(prevMaxIdx + i, 0) = prevTMax + (i + 1) * tDiff;
             }
 
             if(joints(prevMaxIdx + insertSteps - 1, 0) != tMax) {
                 for(int j = 1; j < joints.n_cols; ++j) {
                     joints(prevMaxIdx + insertSteps, j) = joints(prevMaxIdx - 1, j);
                 }
-                joints(prevMaxIdx + insertSteps, 0) = tMax;
-            } else
+                timesInSec(prevMaxIdx + insertSteps, 0) = tMax;
+            } else {
                 joints.resize(joints.n_rows - 1, joints.n_cols);
+                timesInSec.resize(joints.n_rows - 1, joints.n_cols);
+            }
 
         }
 
-        return joints;
+        return {timesInSec, joints};
 
     }
 
@@ -825,6 +710,10 @@ namespace kukadu {
         sigemptyset(&sigIntHandler.sa_mask);
         sigIntHandler.sa_flags = 0;
         sigaction(SIGINT, &sigIntHandler, NULL);
+    }
+
+    bool fileIsEmpty(std::ifstream& pFile) {
+        return pFile.peek() == std::ifstream::traits_type::eof();
     }
 
     void exit_handler(int s) {
@@ -1081,6 +970,18 @@ namespace kukadu {
         return retVec;
     }
 
+    arma::vec quatToRpy(tf::Quaternion quat) {
+        tf::Matrix3x3 rot(quat);
+        arma::vec retRpy(3);
+        rot.getRPY(retRpy(0), retRpy(1), retRpy(2));
+        return retRpy;
+    }
+
+    arma::vec quatToRpy(geometry_msgs::Quaternion quat) {
+        tf::Quaternion q(quat.x, quat.y, quat.z, quat.w);
+        return quatToRpy(q);
+    }
+
     tf::Quaternion rpyToQuat(const double roll, const double pitch, const double yaw) {
         tf::Quaternion quat(yaw, pitch, roll);
         return quat;
@@ -1095,12 +996,41 @@ namespace kukadu {
     double roundByDigits(double number, int numDigitsBehindComma) {
         return ceilf(number * pow(10.0, (double) numDigitsBehindComma)) / 100;
     }
-
     std::wstring stringToWString(const std::string& s) {
 
         std::wstring wsTmp(s.begin(), s.end());
         return wsTmp;
 
+    }
+
+    arma::vec convertAndRemoveOffset(std::vector<long long int>& supervisedTs) {
+        int sampleCount = supervisedTs.size();
+        arma::vec convertedVec(sampleCount ? sampleCount : 1);
+        if(sampleCount) {
+            long long int tOff = supervisedTs.at(0);
+            for(int i = 0; i < sampleCount; ++i)
+                convertedVec(i) = (double) (supervisedTs.at(i) - tOff) / 1e3;
+        }
+        return convertedVec;
+    }
+
+    std::vector<long long int> convertTimesInSecondsToTimeInMilliseconds(arma::vec& timesInSeconds) {
+        std::vector<long long int> retVec;
+        for(int i = 0; i < timesInSeconds.n_elem; ++i) {
+            long long int newTime = round((double) timesInSeconds(i) * 1000.0);
+            retVec.push_back(newTime);
+        }
+        return retVec;
+    }
+
+    arma::vec convertTimesInMillisecondsToTimeInSeconds(std::vector<long long int>& timesInSeconds) {
+        int sampleCount = timesInSeconds.size();
+        arma::vec convertedVec(sampleCount ? sampleCount : 1);
+        if(sampleCount) {
+            for(int i = 0; i < sampleCount; ++i)
+                convertedVec(i) = (double) timesInSeconds.at(i) / 1e3;
+        }
+        return convertedVec;
     }
 
 }

@@ -1,0 +1,105 @@
+The \hyperlink{group__Robot}{Robot} module is the interface to a concrete robot. It provides an interface that defines what kukadu expects a robot to be able to do. If this interface is implemented for a specific robot, the complete stack of the framework is available.
+
+The major interface is the abstract \hyperlink{classkukadu_1_1ControlQueue}{kukadu\-::\-Control\-Queue} class. It defines all the functions that are available for a robot (e.\-g. a robotic arm) without the robot base. If you want to bind kukadu to the robot in your lab, you have to implement the pure virtual functions of the \hyperlink{classkukadu_1_1ControlQueue}{kukadu\-::\-Control\-Queue}. Currently, there exist 2 implementations of \hyperlink{classkukadu_1_1ControlQueue}{kukadu\-::\-Control\-Queue}\-:
+\begin{DoxyItemize}
+\item \hyperlink{classkukadu_1_1KukieControlQueue}{kukadu\-::\-Kukie\-Control\-Queue}\-: Binds the kukadu framework to robots for which the \href{https://iis.uibk.ac.at/intranet/projects/robot/armtopics}{\tt kukie} framework is available. Kukie is a robot control framework based on R\-O\-S that defines certain topics and services for low-\/level robot control. Check out the kukie page to find out, if kukie is available for your system.
+\item \hyperlink{classkukadu_1_1PlottingControlQueue}{kukadu\-::\-Plotting\-Control\-Queue}\-: Provides the kukadu functionility independent of the actual robot. With the \hyperlink{classkukadu_1_1PlottingControlQueue}{kukadu\-::\-Plotting\-Control\-Queue} no robot can be controlled, but it can be used as dummy robot in order to test other functionality. The \hyperlink{classkukadu_1_1PlottingControlQueue}{kukadu\-::\-Plotting\-Control\-Queue} simply ignores all submitted control commands.
+\end{DoxyItemize}
+
+Further, kukadu provides an interface for hand control, namely \hyperlink{classkukadu_1_1GenericHand}{kukadu\-::\-Generic\-Hand}. It supports similar functionality to the \hyperlink{classkukadu_1_1ControlQueue}{kukadu\-::\-Control\-Queue}. However, the interface is different to the arm interface, as many hands behave different than arms, e.\-g. the \hyperlink{classkukadu_1_1GenericHand}{kukadu\-::\-Generic\-Hand} interface provides functions for simply closing and opening the hand. This is especially essential in order to react to the rise of underactuated hands in modern robotics.
+
+The last part of the \hyperlink{group__Robot}{Robot} module is the \hyperlink{classkukadu_1_1SensorStorage}{kukadu\-::\-Sensor\-Storage} interface. This class is made to collect and store sensor information from robotic arms and hands.
+
+\section*{\hyperlink{classkukadu_1_1KukieControlQueue}{kukadu\-::\-Kukie\-Control\-Queue}}
+
+The following code snippet shows how to use the \hyperlink{classkukadu_1_1KukieControlQueue}{kukadu\-::\-Kukie\-Control\-Queue}. In order to make the program run, make sure that the kukie system is started (e.\-g. by starting the simulator or the real robot). 
+\begin{DoxyCodeInclude}
+1 \textcolor{preprocessor}{#include <kukadu/kukadu.hpp>}
+2 
+3 \textcolor{keyword}{using namespace }std;
+4 \textcolor{keyword}{using namespace }kukadu;
+5 
+6 \textcolor{keywordtype}{int} main(\textcolor{keywordtype}{int} argc, \textcolor{keywordtype}{char}** args) \{
+7 
+8     cout << \textcolor{stringliteral}{"setting up ros node"} << endl;
+9     ros::init(argc, args, \textcolor{stringliteral}{"kukadu\_controlqueue\_demo"}); ros::NodeHandle node; sleep(1);
+10     ros::AsyncSpinner spinner(10); spinner.start();
+11 
+12     cout << \textcolor{stringliteral}{"setting up control queue"} << endl;
+13     \textcolor{keyword}{auto} realLeftQueue = make\_shared<KukieControlQueue>(\textcolor{stringliteral}{"simulation"}, \textcolor{stringliteral}{"left\_arm"}, node);
+14 
+15     cout << \textcolor{stringliteral}{"starting queue"} << endl;
+16     \textcolor{keyword}{auto} realLqThread = realLeftQueue->startQueue();
+17 
+18     cout << \textcolor{stringliteral}{"switching to impedance mode if it is not there yet"} << endl;
+19     \textcolor{keywordflow}{if}(realLeftQueue->getCurrentMode() != KukieControlQueue::KUKA\_JNT\_IMP\_MODE) \{
+20         realLeftQueue->stopCurrentMode();
+21         realLeftQueue->switchMode(KukieControlQueue::KUKA\_JNT\_IMP\_MODE);
+22     \}
+23 
+24     \textcolor{comment}{// joint point to point movement in order to go to the start position}
+25     \textcolor{comment}{// remark: you only define where to go, not how to get there}
+26     realLeftQueue->jointPtp(stdToArmadilloVec(\{-1.0, 1.0, -0.5, 0.0, 0.0, 0.0, 0.0\}));
+27 
+28     \textcolor{comment}{// retrieving the current joint state of the robot after the joint}
+29     \textcolor{comment}{// point to point movement}
+30     \textcolor{keyword}{auto} startState = realLeftQueue->getCurrentJoints().joints;
+31 
+32     \textcolor{comment}{// execution a trajectory for the 3rd joint (i.e. rotation the arm)}
+33     \textcolor{comment}{// here you also provide HOW to get to the target}
+34     \textcolor{keywordflow}{for}(\textcolor{keyword}{auto} currentState = startState; currentState(2) < startState(2) + 1.0; currentState(2) += 0.005) \{
+35         \textcolor{comment}{// sending a the next desired position}
+36         realLeftQueue->move(currentState);
+37         \textcolor{comment}{// the queue has an intrinsic clock, so you can wait until the packet has been}
+38         \textcolor{comment}{// submit in order to not send the positions too fast}
+39         realLeftQueue->synchronizeToQueue(1);
+40     \}
+41 
+42     cout << \textcolor{stringliteral}{"execution done"} << endl;
+43 
+44     \textcolor{comment}{/****** done with moving? --> clean up everything and quit *******/}
+45 
+46     \textcolor{comment}{// leaves the mode for robot movement}
+47     realLeftQueue->stopCurrentMode();
+48 
+49     \textcolor{comment}{// stops the queue}
+50     realLeftQueue->stopQueue();
+51 
+52     \textcolor{comment}{// waits until everything has stopped}
+53     realLqThread->join();
+54 
+55 \}
+\end{DoxyCodeInclude}
+
+
+\subsection*{Code description}
+
+Lets have a closer look to the tutorial code. First of all, the kukadu library needs to be included (line 1). All kukadu functionality is contained in the kukadu namespace (line 4). kukadu is a framework embedded in R\-O\-S, so the first action that should be done is setting up the ros connection (lines 8 -\/ 10).
+
+The direct connection to the robot is given by the \hyperlink{classkukadu_1_1ControlQueue}{kukadu\-::\-Control\-Queue} interface. This means that an implementation of that interface should be instantiated per robot. This is done line 13 where an instance of the \hyperlink{classkukadu_1_1KukieControlQueue}{kukadu\-::\-Kukie\-Control\-Queue} is created for the left arm in simulation. In line 16, the queue is started -\/ so the queue is ready to go. However, you can't move the robot until it is switched to an appropriate control mode (lines 19 -\/ 22). Afterwards, the robot is ready to go, so you should pay special attention to it.
+
+In the first step, we can make the robot arm move by a simple point to point movement (line 26). This means that you don't need to take care how the robot reaches the desired position. All the path planning is done automatically by the system and you only need to execute the \hyperlink{classkukadu_1_1ControlQueue_ad11059100321b24a1af8ef7de8314353}{kukadu\-::\-Control\-Queue\-::joint\-Ptp()} function (there is also a method for \hyperlink{classkukadu_1_1ControlQueue_a1bfa23a8ce6319f6ef0ed9208e896054}{kukadu\-::\-Control\-Queue\-::cartesian\-Ptp()}). This function blocks until the last packet is sent to the robot -\/ however, it is not guaranteed that the robot reaches that position with precision. You can check if it was precise enough by looking at the returned joint positions.
+
+After the Pt\-P execution the program retrieves the current joint state of the robot with the kukadu\-::\-Controlqueue\-::get\-Current\-Joints() function. There is also a function for the Cartesian state named \hyperlink{classkukadu_1_1ControlQueue_a9e79e1d0d9697bbf146d66a2d01fea9e}{kukadu\-::\-Control\-Queue\-::get\-Current\-Cartesian\-Pose()}.
+
+The final step of the demo program is the execution of a specific trajectory. In this case you can not only define the target but also the path the robot should use to get there. In general, the \hyperlink{classkukadu_1_1ControlQueue}{kukadu\-::\-Control\-Queue} is a clocked queue that submits one joint packet per clock cycle. This packet is then submitted to the robot. If no new packet is set, then the robot is commanded to stay at the current position. In lines 34 -\/ 40, a specific trajectory is submitted to the queue by added one packet per clock cycle using the \hyperlink{classkukadu_1_1ControlQueue_aca70a978b2950d7c9ab99d55c5977eec}{kukadu\-::\-Control\-Queue\-::move()} function. This procedure is synchronized to the queue by the \hyperlink{classkukadu_1_1ControlQueue_a324484e79a5505656a32d9f32054e5d0}{kukadu\-::\-Control\-Queue\-::synchronize\-To\-Queue()} function. This function blocks until at most N packets (in this case N = 1) is left in the queue. This makes sure that your program stays in synch with the queue. However, if you dont use this function, all packets are added to the queue at once and the queue sent on packet per clock cycle. However, you need to make sure to synchronize with the queue otherwise then.
+
+In lines 44 -\/ 53, the queue is disconnected from the robot. The most important part is to leave the execution mode (line 47). After leaving the execution mode, the queue is stopped (line 50) and the program waits until the queue is stopped completely (line 53).
+
+\section*{\hyperlink{classkukadu_1_1PlottingControlQueue}{kukadu\-::\-Plotting\-Control\-Queue}}
+
+todo
+
+\section*{\hyperlink{classkukadu_1_1GenericHand}{kukadu\-::\-Generic\-Hand}}
+
+todo
+
+\section*{\hyperlink{classkukadu_1_1PlottingHand}{kukadu\-::\-Plotting\-Hand}}
+
+todo
+
+\section*{\hyperlink{classkukadu_1_1SensorStorage}{kukadu\-::\-Sensor\-Storage}}
+
+todo
+
+Prev (\hyperlink{modulespage}{Modules}), Next (\hyperlink{kinematicspage}{The kinematics module}) 

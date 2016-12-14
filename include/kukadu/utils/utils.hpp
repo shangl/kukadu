@@ -1,6 +1,7 @@
 #ifndef KUKADU_KUKADUUTILS
 #define KUKADU_KUKADUUTILS
 
+#include <map>
 #include <queue>
 #include <vector>
 #include <math.h>
@@ -36,24 +37,22 @@
 #include <tf/transform_datatypes.h>
 #include <sensor_msgs/PointCloud2.h>
 #include <geometry_msgs/Quaternion.h>
-#include <Python.h>
 
 #include <kukadu/utils/types.hpp>
-#include <kukadu/utils/kukadutokenizer.hpp>
-#include <kukadu/types/dmpbase.hpp>
-#include <kukadu/robot/arm/controlqueue.hpp>
 #include <kukadu/utils/gnuplot.hpp>
-#include <kukadu/learning/regression/tricubekernel.hpp>
-#include <kukadu/learning/regression/gaussiankernel.hpp>
-#include <kukadu/types/controllerresult.hpp>
-#include <kukadu/control/dmptrajectorygenerator.hpp>
-#include <kukadu/learning/regression/gaussianprocessregressor.hpp>
+#include <kukadu/utils/kukadutokenizer.hpp>
 
 namespace kukadu {
 
+    double sigmoid(double x);
+
+    void printPose(const geometry_msgs::Pose &p);
     int createDirectory(std::string path);
     void deleteFile(std::string path);
     void deleteDirectory(std::string path);
+
+    bool fileIsEmpty(std::string& filePath);
+    bool fileIsEmpty(std::ifstream& pFile);
 
     void printDoubleVector(std::vector<double>* data);
     void printDoubleVector(double* data, int size);
@@ -63,9 +62,11 @@ namespace kukadu {
 
     int getch();
 
-    arma::mat readMovements(std::string file);
-    arma::mat readMovements(std::ifstream& stream);
-    std::pair<std::vector<std::string>, arma::mat> readSensorStorage(std::string file);
+    std::pair<std::vector<long long int>, arma::mat> readDmpData(std::string file);
+    std::pair<std::vector<long long int>, arma::mat> readDmpData(std::ifstream& stream);
+
+    // returns the labels (first vector) of the data columns, the time vector second vector.first and the concrete measured values second vector.second
+    std::pair<std::vector<std::string>, std::pair<std::vector<long long int>, arma::mat> > readSensorStorage(std::string file);
 
     arma::vec readQuery(std::string file);
     std::vector<double>* createStdVectorFromGslVector(gsl_vector* vec);
@@ -90,12 +91,11 @@ namespace kukadu {
     double** createDoubleArrayFromMatrix(gsl_matrix* data);
 
     arma::vec stdToArmadilloVec(std::vector<double> stdVec);
-    arma::mat fillTrajectoryMatrix(arma::mat joints, double tMax);
+    std::pair<arma::vec, arma::mat> fillTrajectoryMatrix(arma::vec timesInSec, arma::mat joints, double tMax);
 
     std::string stringFromDouble(double d);
 
     std::vector<double> armadilloToStdVec(arma::vec armadilloVec);
-    std::vector<double> computeDMPMys(std::vector<double> mys, double ax, double tau);
 
     // taken from http://rosettacode.org/wiki/Polynomial_regression
     double* polynomialfit(int obs, int degree, double *dx, double *dy);
@@ -105,11 +105,8 @@ namespace kukadu {
 
     std::string buildPolynomialEquation(double* w, int paramCount);
     std::vector<double>* getDoubleVectorFromArray(double* arr, int size);
-    std::vector<DMPBase> buildDMPBase(std::vector<double> tmpmys, std::vector<double> tmpsigmas, double ax, double tau);
 
     arma::mat gslToArmadilloMatrix(gsl_matrix* matrix);
-    std::vector<double>* testGaussianRegressor();
-    std::vector<double> constructDmpMys(arma::mat joints);
 
     arma::vec squareMatrixToColumn(arma::mat m);
     arma::mat columnToSquareMatrix(arma::vec c);
@@ -133,6 +130,10 @@ namespace kukadu {
     double distQuat(tf::Quaternion q1, tf::Quaternion q2);
 
     tf::Transform Matrix4f2Transform(Eigen::Matrix4f Tm);
+
+    arma::vec quatToRpy(tf::Quaternion quat);
+    arma::vec quatToRpy(geometry_msgs::Quaternion quat);
+
     /*
      * converts roll pitch yaw to quaternions
      */
@@ -159,6 +160,19 @@ namespace kukadu {
     void preparePathString(std::string& s);
 
     double computeMaxJointDistance(arma::vec joints1, arma::vec joints2);
+
+    arma::vec convertAndRemoveOffset(std::vector<long long int>& supervisedTs);
+    arma::vec convertTimesInMillisecondsToTimeInSeconds(std::vector<long long int>& supervisedTs);
+    std::vector<long long int> convertTimesInSecondsToTimeInMilliseconds(arma::vec& timesInSeconds);
+
+#ifndef USEBOOST
+    template<typename S, typename T> bool mapContainsValue(std::map<S, T> m, T val) {
+        for(auto it = m.begin(); it != m.end(); ++it )
+            if (it->second == val)
+                return true;
+        return false;
+    }
+#endif
 
 }
 

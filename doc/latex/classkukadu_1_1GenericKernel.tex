@@ -1,0 +1,66 @@
+\hypertarget{classkukadu_1_1GenericKernel}{\section{kukadu\-:\-:Generic\-Kernel Class Reference}
+\label{classkukadu_1_1GenericKernel}\index{kukadu\-::\-Generic\-Kernel@{kukadu\-::\-Generic\-Kernel}}
+}
+
+
+Provides an interface for generic kernel functions.  
+
+
+
+
+{\ttfamily \#include $<$generickernel.\-hpp$>$}
+
+Inheritance diagram for kukadu\-:\-:Generic\-Kernel\-:\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[height=2.000000cm]{classkukadu_1_1GenericKernel}
+\end{center}
+\end{figure}
+\subsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\hypertarget{classkukadu_1_1GenericKernel_a9392e79e7da5d8473ac9e42f74e8ef3e}{\hyperlink{classkukadu_1_1GenericKernel_a9392e79e7da5d8473ac9e42f74e8ef3e}{Generic\-Kernel} ()}\label{classkukadu_1_1GenericKernel_a9392e79e7da5d8473ac9e42f74e8ef3e}
+
+\begin{DoxyCompactList}\small\item\em constructor \end{DoxyCompactList}\item 
+virtual double \hyperlink{classkukadu_1_1GenericKernel_a802a15e8fb5f863e798c9114be976045}{evaluate\-Kernel} (arma\-::vec q1, arma\-::vec q2, void $\ast$kernel\-Param)=0
+\begin{DoxyCompactList}\small\item\em computes kernel values with given vectors q1 and q2 and passes a not further specified kernel parameter that can be used by the kernel implementation \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\subsection{Detailed Description}
+Provides an interface for generic kernel functions. 
+
+The \hyperlink{classkukadu_1_1GenericKernel}{Generic\-Kernel} class is used by the \hyperlink{classkukadu_1_1KernelRegressor}{Kernel\-Regressor}. Implementations of \hyperlink{classkukadu_1_1GenericKernel}{Generic\-Kernel} have to provide a certain kernel function, according to the kernel criteria. 
+
+\subsection{Member Function Documentation}
+\hypertarget{classkukadu_1_1GenericKernel_a802a15e8fb5f863e798c9114be976045}{\index{kukadu\-::\-Generic\-Kernel@{kukadu\-::\-Generic\-Kernel}!evaluate\-Kernel@{evaluate\-Kernel}}
+\index{evaluate\-Kernel@{evaluate\-Kernel}!kukadu::GenericKernel@{kukadu\-::\-Generic\-Kernel}}
+\subsubsection[{evaluate\-Kernel}]{\setlength{\rightskip}{0pt plus 5cm}virtual double kukadu\-::\-Generic\-Kernel\-::evaluate\-Kernel (
+\begin{DoxyParamCaption}
+\item[{arma\-::vec}]{q1, }
+\item[{arma\-::vec}]{q2, }
+\item[{void $\ast$}]{kernel\-Param}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [pure virtual]}}}\label{classkukadu_1_1GenericKernel_a802a15e8fb5f863e798c9114be976045}
+
+
+computes kernel values with given vectors q1 and q2 and passes a not further specified kernel parameter that can be used by the kernel implementation 
+
+
+\begin{DoxyParams}{Parameters}
+{\em q1} & vector q1 with K = K(d(q1, q2)) \\
+\hline
+{\em q2} & vector q2 with K = K(d(q1, q2)) \\
+\hline
+{\em kernel\-Param} & arbitrary kernel parameter \\
+\hline
+\end{DoxyParams}
+
+
+Implemented in \hyperlink{classkukadu_1_1GaussianKernel_a11fec7aa4348f339008a454e268bf815}{kukadu\-::\-Gaussian\-Kernel}, \hyperlink{classkukadu_1_1QuadraticKernel_ac9a3385e7532ed38dcdcc0ee4acea035}{kukadu\-::\-Quadratic\-Kernel}, and \hyperlink{classkukadu_1_1TricubeKernel_a2c4053e0212bdfae0652c8bde2ae70df}{kukadu\-::\-Tricube\-Kernel}.
+
+
+
+The documentation for this class was generated from the following files\-:\begin{DoxyCompactItemize}
+\item 
+/home/c7031109/iis\-\_\-robot\-\_\-sw/iis\-\_\-catkin\-\_\-ws/src/kukadu/include/kukadu/learning/regression/generickernel.\-hpp\item 
+/home/c7031109/iis\-\_\-robot\-\_\-sw/iis\-\_\-catkin\-\_\-ws/src/kukadu/src/learning/generickernel.\-cpp\end{DoxyCompactItemize}

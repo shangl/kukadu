@@ -1,0 +1,66 @@
+\hypertarget{classkukadu_1_1QuadraticKernel}{\section{kukadu\-:\-:Quadratic\-Kernel Class Reference}
+\label{classkukadu_1_1QuadraticKernel}\index{kukadu\-::\-Quadratic\-Kernel@{kukadu\-::\-Quadratic\-Kernel}}
+}
+
+
+Implements a quadratic kernel according to the \hyperlink{classkukadu_1_1GenericKernel}{Generic\-Kernel} specifiction.  
+
+
+
+
+{\ttfamily \#include $<$quadratickernel.\-hpp$>$}
+
+Inheritance diagram for kukadu\-:\-:Quadratic\-Kernel\-:\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[height=2.000000cm]{classkukadu_1_1QuadraticKernel}
+\end{center}
+\end{figure}
+\subsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\hypertarget{classkukadu_1_1QuadraticKernel_a8222d39cddab25c2d23b7ada7930c9ce}{\hyperlink{classkukadu_1_1QuadraticKernel_a8222d39cddab25c2d23b7ada7930c9ce}{Quadratic\-Kernel} ()}\label{classkukadu_1_1QuadraticKernel_a8222d39cddab25c2d23b7ada7930c9ce}
+
+\begin{DoxyCompactList}\small\item\em constructor \end{DoxyCompactList}\item 
+double \hyperlink{classkukadu_1_1QuadraticKernel_ac9a3385e7532ed38dcdcc0ee4acea035}{evaluate\-Kernel} (arma\-::vec q1, arma\-::vec q2, void $\ast$kernel\-Param)
+\begin{DoxyCompactList}\small\item\em computes kernel values with given vectors q1 and q2 and passes a not further specified kernel parameter that can be used by the kernel implementation \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\subsection{Detailed Description}
+Implements a quadratic kernel according to the \hyperlink{classkukadu_1_1GenericKernel}{Generic\-Kernel} specifiction. 
+
+This class implements a quadratic kernel given by the function K(u) = 15/16 (1 -\/ $\vert$u$\vert$$^\wedge$2)$^\wedge$2 
+
+\subsection{Member Function Documentation}
+\hypertarget{classkukadu_1_1QuadraticKernel_ac9a3385e7532ed38dcdcc0ee4acea035}{\index{kukadu\-::\-Quadratic\-Kernel@{kukadu\-::\-Quadratic\-Kernel}!evaluate\-Kernel@{evaluate\-Kernel}}
+\index{evaluate\-Kernel@{evaluate\-Kernel}!kukadu::QuadraticKernel@{kukadu\-::\-Quadratic\-Kernel}}
+\subsubsection[{evaluate\-Kernel}]{\setlength{\rightskip}{0pt plus 5cm}double kukadu\-::\-Quadratic\-Kernel\-::evaluate\-Kernel (
+\begin{DoxyParamCaption}
+\item[{arma\-::vec}]{q1, }
+\item[{arma\-::vec}]{q2, }
+\item[{void $\ast$}]{kernel\-Param}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [virtual]}}}\label{classkukadu_1_1QuadraticKernel_ac9a3385e7532ed38dcdcc0ee4acea035}
+
+
+computes kernel values with given vectors q1 and q2 and passes a not further specified kernel parameter that can be used by the kernel implementation 
+
+
+\begin{DoxyParams}{Parameters}
+{\em q1} & vector q1 with K = K(d(q1, q2)) \\
+\hline
+{\em q2} & vector q2 with K = K(d(q1, q2)) \\
+\hline
+{\em kernel\-Param} & arbitrary kernel parameter \\
+\hline
+\end{DoxyParams}
+
+
+Implements \hyperlink{classkukadu_1_1GenericKernel_a802a15e8fb5f863e798c9114be976045}{kukadu\-::\-Generic\-Kernel}.
+
+
+
+The documentation for this class was generated from the following files\-:\begin{DoxyCompactItemize}
+\item 
+/home/c7031109/iis\-\_\-robot\-\_\-sw/iis\-\_\-catkin\-\_\-ws/src/kukadu/include/kukadu/learning/regression/quadratickernel.\-hpp\item 
+/home/c7031109/iis\-\_\-robot\-\_\-sw/iis\-\_\-catkin\-\_\-ws/src/kukadu/src/learning/quadratickernel.\-cpp\end{DoxyCompactItemize}

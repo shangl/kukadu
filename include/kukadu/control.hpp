@@ -1,11 +1,4 @@
-#include <kukadu/control/cartesiandmplearner.hpp>
-#include <kukadu/control/dmpexecutor.hpp>
-#include <kukadu/control/dmpgeneralizer.hpp>
-#include <kukadu/control/dmptrajectorygenerator.hpp>
-#include <kukadu/control/generaldmplearner.hpp>
-#include <kukadu/control/genericgeneralizer.hpp>
-#include <kukadu/control/jointdmplearner.hpp>
-#include <kukadu/control/polytrajectorygenerator.hpp>
-#include <kukadu/control/trajectorycomparator.hpp>
-#include <kukadu/control/trajectoryexecutor.hpp>
-#include <kukadu/control/trajectorygenerator.hpp>
+#include <kukadu/control/dmp.hpp>
+#include <kukadu/control/controller.hpp>
+#include <kukadu/control/trajectory.hpp>
+#include <kukadu/control/generalizer.hpp>

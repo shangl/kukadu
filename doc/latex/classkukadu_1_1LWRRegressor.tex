@@ -1,0 +1,87 @@
+\hypertarget{classkukadu_1_1LWRRegressor}{\section{kukadu\-:\-:L\-W\-R\-Regressor Class Reference}
+\label{classkukadu_1_1LWRRegressor}\index{kukadu\-::\-L\-W\-R\-Regressor@{kukadu\-::\-L\-W\-R\-Regressor}}
+}
+
+
+Implements the locally weighted regression method.  
+
+
+
+
+{\ttfamily \#include $<$lwrregressor.\-hpp$>$}
+
+Inheritance diagram for kukadu\-:\-:L\-W\-R\-Regressor\-:\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[height=2.000000cm]{classkukadu_1_1LWRRegressor}
+\end{center}
+\end{figure}
+\subsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\hyperlink{classkukadu_1_1LWRRegressor_a587e643f830a35a4ecdd21c1c8ac162a}{L\-W\-R\-Regressor} (std\-::vector$<$ arma\-::vec $>$ sample\-Xs, std\-::vector$<$ arma\-::vec $>$ sample\-Ts, \hyperlink{classkukadu_1_1GenericKernel}{Generic\-Kernel} $\ast$kernel, std\-::vector$<$ arma\-::mat $>$ design\-Matrices)
+\begin{DoxyCompactList}\small\item\em constructor, setting all the sample data, the selected kernel and a vector of design matrices (one design matrix for each sample) \end{DoxyCompactList}\item 
+arma\-::vec \hyperlink{classkukadu_1_1LWRRegressor_ae7d3e23243abefbfd47677967b60918b}{fit\-At\-Position} (arma\-::vec pos)
+\begin{DoxyCompactList}\small\item\em performs the kernel method for predicting the functin value at a given position \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\subsection{Detailed Description}
+Implements the locally weighted regression method. 
+
+This class inherits from the \hyperlink{classkukadu_1_1KernelRegressor}{Kernel\-Regressor} and implements locally weighted regression. It reuses the design matrices computed by the \hyperlink{classkukadu_1_1GeneralFitter}{General\-Fitter} class. 
+
+\subsection{Constructor \& Destructor Documentation}
+\hypertarget{classkukadu_1_1LWRRegressor_a587e643f830a35a4ecdd21c1c8ac162a}{\index{kukadu\-::\-L\-W\-R\-Regressor@{kukadu\-::\-L\-W\-R\-Regressor}!L\-W\-R\-Regressor@{L\-W\-R\-Regressor}}
+\index{L\-W\-R\-Regressor@{L\-W\-R\-Regressor}!kukadu::LWRRegressor@{kukadu\-::\-L\-W\-R\-Regressor}}
+\subsubsection[{L\-W\-R\-Regressor}]{\setlength{\rightskip}{0pt plus 5cm}kukadu\-::\-L\-W\-R\-Regressor\-::\-L\-W\-R\-Regressor (
+\begin{DoxyParamCaption}
+\item[{std\-::vector$<$ arma\-::vec $>$}]{sample\-Xs, }
+\item[{std\-::vector$<$ arma\-::vec $>$}]{sample\-Ts, }
+\item[{{\bf Generic\-Kernel} $\ast$}]{kernel, }
+\item[{std\-::vector$<$ arma\-::mat $>$}]{design\-Matrices}
+\end{DoxyParamCaption}
+)}}\label{classkukadu_1_1LWRRegressor_a587e643f830a35a4ecdd21c1c8ac162a}
+
+
+constructor, setting all the sample data, the selected kernel and a vector of design matrices (one design matrix for each sample) 
+
+
+\begin{DoxyParams}{Parameters}
+{\em sample\-Xs} & vector of samples (x-\/axis) \\
+\hline
+{\em sample\-Ts} & vector of samples (y-\/axis) \\
+\hline
+{\em kernel} & the selected kernel implementation \\
+\hline
+{\em design\-Matrices} & vector of design matrices \\
+\hline
+\end{DoxyParams}
+
+
+\subsection{Member Function Documentation}
+\hypertarget{classkukadu_1_1LWRRegressor_ae7d3e23243abefbfd47677967b60918b}{\index{kukadu\-::\-L\-W\-R\-Regressor@{kukadu\-::\-L\-W\-R\-Regressor}!fit\-At\-Position@{fit\-At\-Position}}
+\index{fit\-At\-Position@{fit\-At\-Position}!kukadu::LWRRegressor@{kukadu\-::\-L\-W\-R\-Regressor}}
+\subsubsection[{fit\-At\-Position}]{\setlength{\rightskip}{0pt plus 5cm}vec kukadu\-::\-L\-W\-R\-Regressor\-::fit\-At\-Position (
+\begin{DoxyParamCaption}
+\item[{arma\-::vec}]{pos}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [virtual]}}}\label{classkukadu_1_1LWRRegressor_ae7d3e23243abefbfd47677967b60918b}
+
+
+performs the kernel method for predicting the functin value at a given position 
+
+
+\begin{DoxyParams}{Parameters}
+{\em pos} & vector defining the required position \\
+\hline
+\end{DoxyParams}
+
+
+Implements \hyperlink{classkukadu_1_1KernelRegressor_afd1489310e11cff4bd88390ba76c38e1}{kukadu\-::\-Kernel\-Regressor}.
+
+
+
+The documentation for this class was generated from the following files\-:\begin{DoxyCompactItemize}
+\item 
+/home/c7031109/iis\-\_\-robot\-\_\-sw/iis\-\_\-catkin\-\_\-ws/src/kukadu/include/kukadu/learning/regression/lwrregressor.\-hpp\item 
+/home/c7031109/iis\-\_\-robot\-\_\-sw/iis\-\_\-catkin\-\_\-ws/src/kukadu/src/learning/lwrregressor.\-cpp\end{DoxyCompactItemize}

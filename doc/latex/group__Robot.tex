@@ -1,0 +1,24 @@
+\hypertarget{group__Robot}{\section{Robot}
+\label{group__Robot}\index{Robot@{Robot}}
+}
+\subsection*{Classes}
+\begin{DoxyCompactItemize}
+\item 
+class \hyperlink{classkukadu_1_1KukieControlQueue}{kukadu\-::\-Kukie\-Control\-Queue}
+\begin{DoxyCompactList}\small\item\em Contains an implementation of the control queue interface for robots supporting the I\-I\-S\-Kukie system. This interface is responsible for all communication the kukadu software stack and the robotic arm. \end{DoxyCompactList}\item 
+class \hyperlink{classkukadu_1_1ControlQueue}{kukadu\-::\-Control\-Queue}
+\begin{DoxyCompactList}\small\item\em Interface between the kukadu software stack and the robot hardware. If kukadu shall support another robot, the abstract methods need to be implemented according to the documentation. Then the kukadu software stack is available for usage with the robot. \end{DoxyCompactList}\item 
+class \hyperlink{classkukadu_1_1PlottingControlQueue}{kukadu\-::\-Plotting\-Control\-Queue}
+\begin{DoxyCompactList}\small\item\em Contains an implementation of the control queue interface. The \hyperlink{classkukadu_1_1PlottingControlQueue}{Plotting\-Control\-Queue} is not bound to a specific robot. It can be used to simulate a robot without any real hardware available. \end{DoxyCompactList}\item 
+class \hyperlink{classkukadu_1_1GenericHand}{kukadu\-::\-Generic\-Hand}
+\begin{DoxyCompactList}\small\item\em The \hyperlink{classkukadu_1_1GenericHand}{Generic\-Hand} provides a very elementary interface to control robot hands mounted on a robot arm This class provides very an interface for the very basic functionalities such as \char`\"{}connect to hand\char`\"{} or \char`\"{}close hand\char`\"{}. \end{DoxyCompactList}\item 
+class \hyperlink{classkukadu_1_1PlottingHand}{kukadu\-::\-Plotting\-Hand}
+\begin{DoxyCompactList}\small\item\em Provides control capabilities for the Schunk S\-D\-H robotic hand with R\-O\-S binding Implements the \hyperlink{classkukadu_1_1GenericHand}{Generic\-Hand} interface for the Schunk S\-D\-H robotic hand. Note that using this class the programm has to be executed with root rights. \end{DoxyCompactList}\item 
+class \hyperlink{classkukadu_1_1RosSchunk}{kukadu\-::\-Ros\-Schunk}
+\begin{DoxyCompactList}\small\item\em Provides control capabilities for the Schunk S\-D\-H robotic hand with R\-O\-S binding Implements the \hyperlink{classkukadu_1_1GenericHand}{Generic\-Hand} interface for the Schunk S\-D\-H robotic hand. Note that using this class the programm has to be executed with root rights. \end{DoxyCompactList}\item 
+class \hyperlink{classkukadu_1_1SensorStorage}{kukadu\-::\-Sensor\-Storage}
+\begin{DoxyCompactList}\small\item\em Can collect and store sensor information of the robot represented by a \hyperlink{classkukadu_1_1ControlQueue}{kukadu\-::\-Control\-Queue} and a \hyperlink{classkukadu_1_1GenericHand}{kukadu\-::\-Generic\-Hand}. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\subsection{Detailed Description}
+The robot module provides control interfaces to robots and methods to automatically collect and store sensor and robot state information 

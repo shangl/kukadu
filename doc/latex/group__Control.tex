@@ -1,0 +1,16 @@
+\hypertarget{group__Control}{\section{Control}
+\label{group__Control}\index{Control@{Control}}
+}
+\subsection*{Classes}
+\begin{DoxyCompactItemize}
+\item 
+class \hyperlink{classkukadu_1_1KukieControlQueue}{kukadu\-::\-Kukie\-Control\-Queue}
+\begin{DoxyCompactList}\small\item\em Contains an implementation of the control queue interface for robots supporting the I\-I\-S\-Kukie system. This interface is responsible for all communication the kukadu software stack and the robotic arm. \end{DoxyCompactList}\item 
+class \hyperlink{classkukadu_1_1PlottingControlQueue}{kukadu\-::\-Plotting\-Control\-Queue}
+\begin{DoxyCompactList}\small\item\em Contains an implementation of the control queue interface. The \hyperlink{classkukadu_1_1PlottingControlQueue}{Plotting\-Control\-Queue} is not bound to a specific robot. It can be used to simulate a robot without any real hardware available. \end{DoxyCompactList}\item 
+class \hyperlink{classkukadu_1_1ControlQueue}{kukadu\-::\-Control\-Queue}
+\begin{DoxyCompactList}\small\item\em Interface between the kukadu software stack and the robot hardware. If kukadu shall support another robot, the abstract methods need to be implemented according to the documentation. Then the kukadu software stack is available for usage with the robot. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\subsection{Detailed Description}
+The control module provides control interfaces to robots and certain control methods such as D\-M\-Ps 

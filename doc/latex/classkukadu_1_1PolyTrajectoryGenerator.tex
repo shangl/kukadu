@@ -1,0 +1,140 @@
+\hypertarget{classkukadu_1_1PolyTrajectoryGenerator}{\section{kukadu\-:\-:Poly\-Trajectory\-Generator Class Reference}
+\label{classkukadu_1_1PolyTrajectoryGenerator}\index{kukadu\-::\-Poly\-Trajectory\-Generator@{kukadu\-::\-Poly\-Trajectory\-Generator}}
+}
+
+
+Implements the \hyperlink{classkukadu_1_1TrajectoryGenerator}{Trajectory\-Generator} interface for polynomials.  
+
+
+
+
+{\ttfamily \#include $<$polytrajectorygenerator.\-hpp$>$}
+
+Inheritance diagram for kukadu\-:\-:Poly\-Trajectory\-Generator\-:\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[height=2.000000cm]{classkukadu_1_1PolyTrajectoryGenerator}
+\end{center}
+\end{figure}
+\subsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\hyperlink{classkukadu_1_1PolyTrajectoryGenerator_aaae3f21fde5c8bef81f3cc9eb365fcfb}{Poly\-Trajectory\-Generator} (int basis\-Function\-Count)
+\begin{DoxyCompactList}\small\item\em constructor. the polynomials are defined by giving the degree of the polynomial \end{DoxyCompactList}\item 
+double \hyperlink{classkukadu_1_1PolyTrajectoryGenerator_aaad5efdc0b4a8a4e55db0ffcfd7939f7}{evaluate\-Basis\-Function} (double x, int fun)
+\begin{DoxyCompactList}\small\item\em evaluates the value of a single basis function \end{DoxyCompactList}\item 
+double \hyperlink{classkukadu_1_1PolyTrajectoryGenerator_a3ce8a84b6a838a73708414baf2a688ba}{evaluate\-By\-Coefficients\-Single} (double x, arma\-::vec coeff)
+\begin{DoxyCompactList}\small\item\em evaluates the linear combination of basis functions by defining the coefficients for a single value x \end{DoxyCompactList}\item 
+arma\-::vec \hyperlink{classkukadu_1_1PolyTrajectoryGenerator_a00a575cf44a1b0061131227baae4f593}{evaluate\-By\-Coefficients\-Multiple} (arma\-::vec x, int sample\-Count, arma\-::vec coeff)
+\begin{DoxyCompactList}\small\item\em performs the same as evaluate\-By\-Coefficients\-Single, but for multiple values of x \end{DoxyCompactList}\item 
+\hypertarget{classkukadu_1_1PolyTrajectoryGenerator_ae8578365c5ae221c8cf14208b74c8975}{int \hyperlink{classkukadu_1_1PolyTrajectoryGenerator_ae8578365c5ae221c8cf14208b74c8975}{get\-Basis\-Function\-Count} ()}\label{classkukadu_1_1PolyTrajectoryGenerator_ae8578365c5ae221c8cf14208b74c8975}
+
+\begin{DoxyCompactList}\small\item\em returns the number of basis functions \end{DoxyCompactList}\item 
+\hypertarget{classkukadu_1_1PolyTrajectoryGenerator_adb937d18031924c54829977211e1d250}{std\-::string \hyperlink{classkukadu_1_1PolyTrajectoryGenerator_adb937d18031924c54829977211e1d250}{get\-Trajectory\-Type} ()}\label{classkukadu_1_1PolyTrajectoryGenerator_adb937d18031924c54829977211e1d250}
+
+\begin{DoxyCompactList}\small\item\em returns the name of the basis function system as a string \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\subsection{Detailed Description}
+Implements the \hyperlink{classkukadu_1_1TrajectoryGenerator}{Trajectory\-Generator} interface for polynomials. 
+
+This class provides simple polynomials as basis functions. f(x) = sum c\-\_\-i x$^\wedge$i 
+
+\subsection{Constructor \& Destructor Documentation}
+\hypertarget{classkukadu_1_1PolyTrajectoryGenerator_aaae3f21fde5c8bef81f3cc9eb365fcfb}{\index{kukadu\-::\-Poly\-Trajectory\-Generator@{kukadu\-::\-Poly\-Trajectory\-Generator}!Poly\-Trajectory\-Generator@{Poly\-Trajectory\-Generator}}
+\index{Poly\-Trajectory\-Generator@{Poly\-Trajectory\-Generator}!kukadu::PolyTrajectoryGenerator@{kukadu\-::\-Poly\-Trajectory\-Generator}}
+\subsubsection[{Poly\-Trajectory\-Generator}]{\setlength{\rightskip}{0pt plus 5cm}kukadu\-::\-Poly\-Trajectory\-Generator\-::\-Poly\-Trajectory\-Generator (
+\begin{DoxyParamCaption}
+\item[{int}]{basis\-Function\-Count}
+\end{DoxyParamCaption}
+)}}\label{classkukadu_1_1PolyTrajectoryGenerator_aaae3f21fde5c8bef81f3cc9eb365fcfb}
+
+
+constructor. the polynomials are defined by giving the degree of the polynomial 
+
+
+\begin{DoxyParams}{Parameters}
+{\em basis\-Function\-Count} & polynomial degree \\
+\hline
+\end{DoxyParams}
+
+
+\subsection{Member Function Documentation}
+\hypertarget{classkukadu_1_1PolyTrajectoryGenerator_aaad5efdc0b4a8a4e55db0ffcfd7939f7}{\index{kukadu\-::\-Poly\-Trajectory\-Generator@{kukadu\-::\-Poly\-Trajectory\-Generator}!evaluate\-Basis\-Function@{evaluate\-Basis\-Function}}
+\index{evaluate\-Basis\-Function@{evaluate\-Basis\-Function}!kukadu::PolyTrajectoryGenerator@{kukadu\-::\-Poly\-Trajectory\-Generator}}
+\subsubsection[{evaluate\-Basis\-Function}]{\setlength{\rightskip}{0pt plus 5cm}double kukadu\-::\-Poly\-Trajectory\-Generator\-::evaluate\-Basis\-Function (
+\begin{DoxyParamCaption}
+\item[{double}]{x, }
+\item[{int}]{fun}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [virtual]}}}\label{classkukadu_1_1PolyTrajectoryGenerator_aaad5efdc0b4a8a4e55db0ffcfd7939f7}
+
+
+evaluates the value of a single basis function 
+
+
+\begin{DoxyParams}{Parameters}
+{\em x} & value, where the basis function should be evaluated \\
+\hline
+{\em fun} & basis function index that specifies the basis function \\
+\hline
+\end{DoxyParams}
+
+
+Implements \hyperlink{classkukadu_1_1TrajectoryGenerator_abbd50214ceb85171e7103a1fded7fd91}{kukadu\-::\-Trajectory\-Generator}.
+
+\hypertarget{classkukadu_1_1PolyTrajectoryGenerator_a00a575cf44a1b0061131227baae4f593}{\index{kukadu\-::\-Poly\-Trajectory\-Generator@{kukadu\-::\-Poly\-Trajectory\-Generator}!evaluate\-By\-Coefficients\-Multiple@{evaluate\-By\-Coefficients\-Multiple}}
+\index{evaluate\-By\-Coefficients\-Multiple@{evaluate\-By\-Coefficients\-Multiple}!kukadu::PolyTrajectoryGenerator@{kukadu\-::\-Poly\-Trajectory\-Generator}}
+\subsubsection[{evaluate\-By\-Coefficients\-Multiple}]{\setlength{\rightskip}{0pt plus 5cm}vec kukadu\-::\-Poly\-Trajectory\-Generator\-::evaluate\-By\-Coefficients\-Multiple (
+\begin{DoxyParamCaption}
+\item[{arma\-::vec}]{x, }
+\item[{int}]{sample\-Count, }
+\item[{arma\-::vec}]{coeff}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [virtual]}}}\label{classkukadu_1_1PolyTrajectoryGenerator_a00a575cf44a1b0061131227baae4f593}
+
+
+performs the same as evaluate\-By\-Coefficients\-Single, but for multiple values of x 
+
+
+\begin{DoxyParams}{Parameters}
+{\em x} & vector of evaluation points \\
+\hline
+{\em sample\-Count} & size of vector x \\
+\hline
+{\em coeff} & coefficients that have to be used for computing the linear combination \\
+\hline
+\end{DoxyParams}
+
+
+Implements \hyperlink{classkukadu_1_1TrajectoryGenerator_a80e470d557ac5fc9a075b582d97bf67b}{kukadu\-::\-Trajectory\-Generator}.
+
+\hypertarget{classkukadu_1_1PolyTrajectoryGenerator_a3ce8a84b6a838a73708414baf2a688ba}{\index{kukadu\-::\-Poly\-Trajectory\-Generator@{kukadu\-::\-Poly\-Trajectory\-Generator}!evaluate\-By\-Coefficients\-Single@{evaluate\-By\-Coefficients\-Single}}
+\index{evaluate\-By\-Coefficients\-Single@{evaluate\-By\-Coefficients\-Single}!kukadu::PolyTrajectoryGenerator@{kukadu\-::\-Poly\-Trajectory\-Generator}}
+\subsubsection[{evaluate\-By\-Coefficients\-Single}]{\setlength{\rightskip}{0pt plus 5cm}double kukadu\-::\-Poly\-Trajectory\-Generator\-::evaluate\-By\-Coefficients\-Single (
+\begin{DoxyParamCaption}
+\item[{double}]{x, }
+\item[{arma\-::vec}]{coeff}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [virtual]}}}\label{classkukadu_1_1PolyTrajectoryGenerator_a3ce8a84b6a838a73708414baf2a688ba}
+
+
+evaluates the linear combination of basis functions by defining the coefficients for a single value x 
+
+
+\begin{DoxyParams}{Parameters}
+{\em x} & value, where the basis functions should be evaluated \\
+\hline
+{\em coeff} & coefficients that have to be used for computing the linear combination \\
+\hline
+\end{DoxyParams}
+
+
+Implements \hyperlink{classkukadu_1_1TrajectoryGenerator_a3cd7129235c868a1cad3d56f3a05ad49}{kukadu\-::\-Trajectory\-Generator}.
+
+
+
+The documentation for this class was generated from the following files\-:\begin{DoxyCompactItemize}
+\item 
+/home/c7031109/iis\-\_\-robot\-\_\-sw/iis\-\_\-catkin\-\_\-ws/src/kukadu/include/kukadu/control/polytrajectorygenerator.\-hpp\item 
+/home/c7031109/iis\-\_\-robot\-\_\-sw/iis\-\_\-catkin\-\_\-ws/src/kukadu/src/control/polytrajectorygenerator.\-cpp\end{DoxyCompactItemize}

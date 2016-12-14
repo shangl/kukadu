@@ -7,7 +7,7 @@ namespace kukadu {
     //
     std::ostream& operator << (std::ostream& os, Point& p) {
 
-        BOOST_FOREACH(Point::value_type d, p) { os << d << " "; }
+        for(Point::value_type d : p) { os << d << " "; }
             return os;
 
     }
@@ -33,7 +33,7 @@ namespace kukadu {
     // Dump collection of Points
     //
     std::ostream& operator << (std::ostream& os, Points& cps) {
-        BOOST_FOREACH(Points::value_type p, cps) { os<<p <<std::endl;}
+        for(Points::value_type p : cps) { os<<p <<std::endl;}
         return os;
     }
 
@@ -42,7 +42,7 @@ namespace kukadu {
     //
     std::ostream& operator << (std::ostream& os, SetPoints & sp) {
 
-        BOOST_FOREACH(SetPoints::value_type pid, sp) {
+        for(SetPoints::value_type pid : sp) {
           os << "pid=" << pid << " " ;
         }
         return os;
@@ -53,7 +53,7 @@ namespace kukadu {
     //
     std::ostream& operator << (std::ostream& os, ClustersToPoints & cp) {
         ClusterId cid = 0;
-        BOOST_FOREACH(ClustersToPoints::value_type set, cp) {
+        for(ClustersToPoints::value_type set : cp) {
           os << "clusterid["  << cid << "]" << "=("
          << set << ")" << std::endl;
           cid++;
@@ -66,7 +66,7 @@ namespace kukadu {
     //
     std::ostream& operator << (std::ostream& os, PointsToClusters & pc) {
         PointId pid = 0;
-        BOOST_FOREACH(PointsToClusters::value_type cid, pc) {
+        for(PointsToClusters::value_type cid : pc) {
 
           std::cout << "pid[" << pid << "]=" << cid << std::endl;
           pid ++;
@@ -94,8 +94,8 @@ namespace kukadu {
     //
     void Clusters::zero_centroids() {
 
-        BOOST_FOREACH(Centroids::value_type& centroid, centroids__) {
-              BOOST_FOREACH(Point::value_type& d, centroid) {
+        for(Centroids::value_type& centroid : centroids__) {
+              for(Point::value_type& d : centroid) {
             d = 0.0;
               }
         }
@@ -110,12 +110,12 @@ namespace kukadu {
         ClusterId cid = 0;
         PointId num_points_in_cluster;
         // For each centroid
-        BOOST_FOREACH(Centroids::value_type& centroid, centroids__) {
+        for(Centroids::value_type& centroid : centroids__) {
 
           num_points_in_cluster = 0;
 
           // For earch PointId in this set
-          BOOST_FOREACH(SetPoints::value_type pid,
+          for(SetPoints::value_type pid :
                 clusters_to_points__[cid]) {
 
                 Point p = ps__.getPoint(pid);
@@ -198,7 +198,7 @@ namespace kukadu {
                 //
                 cid = 0;
                 move = false;
-                BOOST_FOREACH(Centroids::value_type c, centroids__) {
+                for(Centroids::value_type c : centroids__) {
 
 
                     d = kukadu::distance(c, ps__.getPoint(pid));

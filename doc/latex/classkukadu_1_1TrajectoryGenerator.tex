@@ -1,0 +1,122 @@
+\hypertarget{classkukadu_1_1TrajectoryGenerator}{\section{kukadu\-:\-:Trajectory\-Generator Class Reference}
+\label{classkukadu_1_1TrajectoryGenerator}\index{kukadu\-::\-Trajectory\-Generator@{kukadu\-::\-Trajectory\-Generator}}
+}
+
+
+The \hyperlink{classkukadu_1_1TrajectoryGenerator}{Trajectory\-Generator} defines an interface to define basis functions for linear regression (see \hyperlink{classkukadu_1_1GeneralFitter}{General\-Fitter})  
+
+
+
+
+{\ttfamily \#include $<$trajectorygenerator.\-hpp$>$}
+
+Inheritance diagram for kukadu\-:\-:Trajectory\-Generator\-:\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[height=2.000000cm]{classkukadu_1_1TrajectoryGenerator}
+\end{center}
+\end{figure}
+\subsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\hypertarget{classkukadu_1_1TrajectoryGenerator_ab8e8192c73d62ba4d5d22151f3c3b1a2}{\hyperlink{classkukadu_1_1TrajectoryGenerator_ab8e8192c73d62ba4d5d22151f3c3b1a2}{Trajectory\-Generator} ()}\label{classkukadu_1_1TrajectoryGenerator_ab8e8192c73d62ba4d5d22151f3c3b1a2}
+
+\begin{DoxyCompactList}\small\item\em constructor \end{DoxyCompactList}\item 
+virtual double \hyperlink{classkukadu_1_1TrajectoryGenerator_abbd50214ceb85171e7103a1fded7fd91}{evaluate\-Basis\-Function} (double x, int fun)=0
+\begin{DoxyCompactList}\small\item\em evaluates the value of a single basis function \end{DoxyCompactList}\item 
+virtual double \hyperlink{classkukadu_1_1TrajectoryGenerator_a3cd7129235c868a1cad3d56f3a05ad49}{evaluate\-By\-Coefficients\-Single} (double x, arma\-::vec coeff)=0
+\begin{DoxyCompactList}\small\item\em evaluates the linear combination of basis functions by defining the coefficients for a single value x \end{DoxyCompactList}\item 
+virtual arma\-::vec \hyperlink{classkukadu_1_1TrajectoryGenerator_a80e470d557ac5fc9a075b582d97bf67b}{evaluate\-By\-Coefficients\-Multiple} (arma\-::vec x, int sample\-Count, arma\-::vec coeff)=0
+\begin{DoxyCompactList}\small\item\em performs the same as evaluate\-By\-Coefficients\-Single, but for multiple values of x \end{DoxyCompactList}\item 
+\hypertarget{classkukadu_1_1TrajectoryGenerator_a8204375540872676478a83e2b24da772}{virtual int \hyperlink{classkukadu_1_1TrajectoryGenerator_a8204375540872676478a83e2b24da772}{get\-Basis\-Function\-Count} ()=0}\label{classkukadu_1_1TrajectoryGenerator_a8204375540872676478a83e2b24da772}
+
+\begin{DoxyCompactList}\small\item\em returns the number of basis functions \end{DoxyCompactList}\item 
+\hypertarget{classkukadu_1_1TrajectoryGenerator_a10929c80057835d260493eb05a335148}{virtual std\-::string \hyperlink{classkukadu_1_1TrajectoryGenerator_a10929c80057835d260493eb05a335148}{get\-Trajectory\-Type} ()=0}\label{classkukadu_1_1TrajectoryGenerator_a10929c80057835d260493eb05a335148}
+
+\begin{DoxyCompactList}\small\item\em returns the name of the basis function system as a string \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\subsection{Detailed Description}
+The \hyperlink{classkukadu_1_1TrajectoryGenerator}{Trajectory\-Generator} defines an interface to define basis functions for linear regression (see \hyperlink{classkukadu_1_1GeneralFitter}{General\-Fitter}) 
+
+An implementation of this class has to define an internal index on the basis functions where each basis function value can be computed by setting the basis function index 
+
+\subsection{Member Function Documentation}
+\hypertarget{classkukadu_1_1TrajectoryGenerator_abbd50214ceb85171e7103a1fded7fd91}{\index{kukadu\-::\-Trajectory\-Generator@{kukadu\-::\-Trajectory\-Generator}!evaluate\-Basis\-Function@{evaluate\-Basis\-Function}}
+\index{evaluate\-Basis\-Function@{evaluate\-Basis\-Function}!kukadu::TrajectoryGenerator@{kukadu\-::\-Trajectory\-Generator}}
+\subsubsection[{evaluate\-Basis\-Function}]{\setlength{\rightskip}{0pt plus 5cm}virtual double kukadu\-::\-Trajectory\-Generator\-::evaluate\-Basis\-Function (
+\begin{DoxyParamCaption}
+\item[{double}]{x, }
+\item[{int}]{fun}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [pure virtual]}}}\label{classkukadu_1_1TrajectoryGenerator_abbd50214ceb85171e7103a1fded7fd91}
+
+
+evaluates the value of a single basis function 
+
+
+\begin{DoxyParams}{Parameters}
+{\em x} & value, where the basis function should be evaluated \\
+\hline
+{\em fun} & basis function index that specifies the basis function \\
+\hline
+\end{DoxyParams}
+
+
+Implemented in \hyperlink{classkukadu_1_1DMPTrajectoryGenerator_a6072064f086581981d1b1540953d4bd0}{kukadu\-::\-D\-M\-P\-Trajectory\-Generator}, and \hyperlink{classkukadu_1_1PolyTrajectoryGenerator_aaad5efdc0b4a8a4e55db0ffcfd7939f7}{kukadu\-::\-Poly\-Trajectory\-Generator}.
+
+\hypertarget{classkukadu_1_1TrajectoryGenerator_a80e470d557ac5fc9a075b582d97bf67b}{\index{kukadu\-::\-Trajectory\-Generator@{kukadu\-::\-Trajectory\-Generator}!evaluate\-By\-Coefficients\-Multiple@{evaluate\-By\-Coefficients\-Multiple}}
+\index{evaluate\-By\-Coefficients\-Multiple@{evaluate\-By\-Coefficients\-Multiple}!kukadu::TrajectoryGenerator@{kukadu\-::\-Trajectory\-Generator}}
+\subsubsection[{evaluate\-By\-Coefficients\-Multiple}]{\setlength{\rightskip}{0pt plus 5cm}virtual arma\-::vec kukadu\-::\-Trajectory\-Generator\-::evaluate\-By\-Coefficients\-Multiple (
+\begin{DoxyParamCaption}
+\item[{arma\-::vec}]{x, }
+\item[{int}]{sample\-Count, }
+\item[{arma\-::vec}]{coeff}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [pure virtual]}}}\label{classkukadu_1_1TrajectoryGenerator_a80e470d557ac5fc9a075b582d97bf67b}
+
+
+performs the same as evaluate\-By\-Coefficients\-Single, but for multiple values of x 
+
+
+\begin{DoxyParams}{Parameters}
+{\em x} & vector of evaluation points \\
+\hline
+{\em sample\-Count} & size of vector x \\
+\hline
+{\em coeff} & coefficients that have to be used for computing the linear combination \\
+\hline
+\end{DoxyParams}
+
+
+Implemented in \hyperlink{classkukadu_1_1DMPTrajectoryGenerator_affb281e54fbddd566338d3c8e826bd40}{kukadu\-::\-D\-M\-P\-Trajectory\-Generator}, and \hyperlink{classkukadu_1_1PolyTrajectoryGenerator_a00a575cf44a1b0061131227baae4f593}{kukadu\-::\-Poly\-Trajectory\-Generator}.
+
+\hypertarget{classkukadu_1_1TrajectoryGenerator_a3cd7129235c868a1cad3d56f3a05ad49}{\index{kukadu\-::\-Trajectory\-Generator@{kukadu\-::\-Trajectory\-Generator}!evaluate\-By\-Coefficients\-Single@{evaluate\-By\-Coefficients\-Single}}
+\index{evaluate\-By\-Coefficients\-Single@{evaluate\-By\-Coefficients\-Single}!kukadu::TrajectoryGenerator@{kukadu\-::\-Trajectory\-Generator}}
+\subsubsection[{evaluate\-By\-Coefficients\-Single}]{\setlength{\rightskip}{0pt plus 5cm}virtual double kukadu\-::\-Trajectory\-Generator\-::evaluate\-By\-Coefficients\-Single (
+\begin{DoxyParamCaption}
+\item[{double}]{x, }
+\item[{arma\-::vec}]{coeff}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [pure virtual]}}}\label{classkukadu_1_1TrajectoryGenerator_a3cd7129235c868a1cad3d56f3a05ad49}
+
+
+evaluates the linear combination of basis functions by defining the coefficients for a single value x 
+
+
+\begin{DoxyParams}{Parameters}
+{\em x} & value, where the basis functions should be evaluated \\
+\hline
+{\em coeff} & coefficients that have to be used for computing the linear combination \\
+\hline
+\end{DoxyParams}
+
+
+Implemented in \hyperlink{classkukadu_1_1DMPTrajectoryGenerator_aa14fb2c9ba08e0a8323090593b46d7f4}{kukadu\-::\-D\-M\-P\-Trajectory\-Generator}, and \hyperlink{classkukadu_1_1PolyTrajectoryGenerator_a3ce8a84b6a838a73708414baf2a688ba}{kukadu\-::\-Poly\-Trajectory\-Generator}.
+
+
+
+The documentation for this class was generated from the following files\-:\begin{DoxyCompactItemize}
+\item 
+/home/c7031109/iis\-\_\-robot\-\_\-sw/iis\-\_\-catkin\-\_\-ws/src/kukadu/include/kukadu/control/trajectorygenerator.\-hpp\item 
+/home/c7031109/iis\-\_\-robot\-\_\-sw/iis\-\_\-catkin\-\_\-ws/src/kukadu/src/control/trajectorygenerator.\-cpp\end{DoxyCompactItemize}

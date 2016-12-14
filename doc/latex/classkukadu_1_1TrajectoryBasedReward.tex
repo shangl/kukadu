@@ -1,0 +1,74 @@
+\hypertarget{classkukadu_1_1TrajectoryBasedReward}{\section{kukadu\-:\-:Trajectory\-Based\-Reward Class Reference}
+\label{classkukadu_1_1TrajectoryBasedReward}\index{kukadu\-::\-Trajectory\-Based\-Reward@{kukadu\-::\-Trajectory\-Based\-Reward}}
+}
+Inheritance diagram for kukadu\-:\-:Trajectory\-Based\-Reward\-:\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[height=3.000000cm]{classkukadu_1_1TrajectoryBasedReward}
+\end{center}
+\end{figure}
+\subsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\hypertarget{classkukadu_1_1TrajectoryBasedReward_a646065b5b00ac72e582f9553ca790f32}{{\bfseries Trajectory\-Based\-Reward} (int deg\-Of\-Freedom, double tmax, double time\-Step)}\label{classkukadu_1_1TrajectoryBasedReward_a646065b5b00ac72e582f9553ca790f32}
+
+\item 
+\hypertarget{classkukadu_1_1TrajectoryBasedReward_a6778592c4f88c8abdc0327f12080c550}{{\bfseries Trajectory\-Based\-Reward} (int deg\-Of\-Freedom, arma\-::vec rewards\-Weights, double tmax, double time\-Step)}\label{classkukadu_1_1TrajectoryBasedReward_a6778592c4f88c8abdc0327f12080c550}
+
+\item 
+\hypertarget{classkukadu_1_1TrajectoryBasedReward_a434ee68a4e810d796789eebbd5ce17bf}{void {\bfseries write\-To\-File} (std\-::string file, double t\-Start, double t\-End, double step\-Size)}\label{classkukadu_1_1TrajectoryBasedReward_a434ee68a4e810d796789eebbd5ce17bf}
+
+\item 
+double \hyperlink{classkukadu_1_1TrajectoryBasedReward_a320c223ada03c976b2c545203d1b26d8}{compute\-Cost} (K\-U\-K\-A\-D\-U\-\_\-\-S\-H\-A\-R\-E\-D\-\_\-\-P\-T\-R$<$ \hyperlink{classkukadu_1_1ControllerResult}{Controller\-Result} $>$ results)
+\begin{DoxyCompactList}\small\item\em computes cost for a given dmp execution \end{DoxyCompactList}\item 
+\hypertarget{classkukadu_1_1TrajectoryBasedReward_abed1b45c79d4925e3d3ec860a1a2d736}{K\-U\-K\-A\-D\-U\-\_\-\-S\-H\-A\-R\-E\-D\-\_\-\-P\-T\-R\\*
+$<$ \hyperlink{classkukadu_1_1ControllerResult}{Controller\-Result} $>$ {\bfseries get\-Optimal\-Traj} ()}\label{classkukadu_1_1TrajectoryBasedReward_abed1b45c79d4925e3d3ec860a1a2d736}
+
+\item 
+\hypertarget{classkukadu_1_1TrajectoryBasedReward_a1faa4baa7554aa2199293b97b67d715e}{K\-U\-K\-A\-D\-U\-\_\-\-S\-H\-A\-R\-E\-D\-\_\-\-P\-T\-R\\*
+$<$ \hyperlink{classkukadu_1_1ControllerResult}{Controller\-Result} $>$ {\bfseries get\-Optimal\-Traj} (double tmax)}\label{classkukadu_1_1TrajectoryBasedReward_a1faa4baa7554aa2199293b97b67d715e}
+
+\item 
+\hypertarget{classkukadu_1_1TrajectoryBasedReward_a30b268ffa8e9df7d2b6af3a5741e389e}{K\-U\-K\-A\-D\-U\-\_\-\-S\-H\-A\-R\-E\-D\-\_\-\-P\-T\-R\\*
+$<$ \hyperlink{classkukadu_1_1ControllerResult}{Controller\-Result} $>$ {\bfseries get\-Optimal\-Traj} (double tmax, int freedom\-Idx)}\label{classkukadu_1_1TrajectoryBasedReward_a30b268ffa8e9df7d2b6af3a5741e389e}
+
+\item 
+\hypertarget{classkukadu_1_1TrajectoryBasedReward_a65f5ac9332273b99b470e74deb126fda}{K\-U\-K\-A\-D\-U\-\_\-\-S\-H\-A\-R\-E\-D\-\_\-\-P\-T\-R\\*
+$<$ \hyperlink{classkukadu_1_1ControllerResult}{Controller\-Result} $>$ {\bfseries get\-Optimal\-Traj} (double tmin, double tmax, int freedom\-Idx)}\label{classkukadu_1_1TrajectoryBasedReward_a65f5ac9332273b99b470e74deb126fda}
+
+\item 
+\hypertarget{classkukadu_1_1TrajectoryBasedReward_a4352dea3dc32bf7558991523d9f02f9d}{std\-::vector$<$ arma\-::vec $>$ {\bfseries compute\-Fun} (arma\-::vec t)}\label{classkukadu_1_1TrajectoryBasedReward_a4352dea3dc32bf7558991523d9f02f9d}
+
+\item 
+\hypertarget{classkukadu_1_1TrajectoryBasedReward_a44c9d712ca3399bd04fa76aac118e6b9}{virtual arma\-::vec {\bfseries compute\-Fun} (double t)=0}\label{classkukadu_1_1TrajectoryBasedReward_a44c9d712ca3399bd04fa76aac118e6b9}
+
+\end{DoxyCompactItemize}
+
+
+\subsection{Member Function Documentation}
+\hypertarget{classkukadu_1_1TrajectoryBasedReward_a320c223ada03c976b2c545203d1b26d8}{\index{kukadu\-::\-Trajectory\-Based\-Reward@{kukadu\-::\-Trajectory\-Based\-Reward}!compute\-Cost@{compute\-Cost}}
+\index{compute\-Cost@{compute\-Cost}!kukadu::TrajectoryBasedReward@{kukadu\-::\-Trajectory\-Based\-Reward}}
+\subsubsection[{compute\-Cost}]{\setlength{\rightskip}{0pt plus 5cm}double kukadu\-::\-Trajectory\-Based\-Reward\-::compute\-Cost (
+\begin{DoxyParamCaption}
+\item[{K\-U\-K\-A\-D\-U\-\_\-\-S\-H\-A\-R\-E\-D\-\_\-\-P\-T\-R$<$ {\bf Controller\-Result} $>$}]{results}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [virtual]}}}\label{classkukadu_1_1TrajectoryBasedReward_a320c223ada03c976b2c545203d1b26d8}
+
+
+computes cost for a given dmp execution 
+
+
+\begin{DoxyParams}{Parameters}
+{\em results} & measured results of the last dmp execution \\
+\hline
+\end{DoxyParams}
+
+
+Implements \hyperlink{classkukadu_1_1CostComputer_a8d02974e1f097ac0451f03f535843175}{kukadu\-::\-Cost\-Computer}.
+
+
+
+The documentation for this class was generated from the following files\-:\begin{DoxyCompactItemize}
+\item 
+/home/c7031109/iis\-\_\-robot\-\_\-sw/iis\-\_\-catkin\-\_\-ws/src/kukadu/include/kukadu/learning/rl/trajectorybasedreward.\-hpp\item 
+/home/c7031109/iis\-\_\-robot\-\_\-sw/iis\-\_\-catkin\-\_\-ws/src/kukadu/src/learning/reinforcement\-\_\-learning/trajectorybasedreward.\-cpp\end{DoxyCompactItemize}

@@ -1,0 +1,126 @@
+\hypertarget{classkukadu_1_1DMPGeneralizer}{\section{kukadu\-:\-:D\-M\-P\-Generalizer Class Reference}
+\label{classkukadu_1_1DMPGeneralizer}\index{kukadu\-::\-D\-M\-P\-Generalizer@{kukadu\-::\-D\-M\-P\-Generalizer}}
+}
+
+
+This class is able to generalize task specific trajectories from previous examples.  
+
+
+
+
+{\ttfamily \#include $<$dmpgeneralizer.\-hpp$>$}
+
+Inheritance diagram for kukadu\-:\-:D\-M\-P\-Generalizer\-:\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[height=2.000000cm]{classkukadu_1_1DMPGeneralizer}
+\end{center}
+\end{figure}
+\subsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\hyperlink{classkukadu_1_1DMPGeneralizer_a75bfc264da4632ef2ce2454759b53d9c}{D\-M\-P\-Generalizer} (std\-::string base\-Folder, int deg\-Of\-Freedom, std\-::vector$<$ double $>$ tmpmys, std\-::vector$<$ double $>$ tmpsigmas, double az, double bz)
+\begin{DoxyCompactList}\small\item\em constructor \end{DoxyCompactList}\item 
+\hypertarget{classkukadu_1_1DMPGeneralizer_a66ae70315e509c84bb1763825a15b2ea}{int \hyperlink{classkukadu_1_1DMPGeneralizer_a66ae70315e509c84bb1763825a15b2ea}{get\-Query\-Point\-Count} ()}\label{classkukadu_1_1DMPGeneralizer_a66ae70315e509c84bb1763825a15b2ea}
+
+\begin{DoxyCompactList}\small\item\em returns number of trajectory samples \end{DoxyCompactList}\item 
+\hypertarget{classkukadu_1_1DMPGeneralizer_a603d560be6c932e1715d74bc581900fa}{double {\bfseries get\-Deg\-Of\-Freedom} ()}\label{classkukadu_1_1DMPGeneralizer_a603d560be6c932e1715d74bc581900fa}
+
+\item 
+\hyperlink{classkukadu_1_1QueryPoint}{Query\-Point} \hyperlink{classkukadu_1_1DMPGeneralizer_a670a0b673aee54cc4c10f308b1d211a2}{get\-Query\-Point\-By\-Index} (int index)
+\begin{DoxyCompactList}\small\item\em returns a sample point by index \end{DoxyCompactList}\item 
+K\-U\-K\-A\-D\-U\-\_\-\-S\-H\-A\-R\-E\-D\-\_\-\-P\-T\-R$<$ \hyperlink{classkukadu_1_1JointDmp}{Joint\-Dmp} $>$ \hyperlink{classkukadu_1_1DMPGeneralizer_acb8a703ee5bb8492d2035120ab51942b}{generalize\-Dmp} (\hyperlink{classkukadu_1_1GenericKernel}{Generic\-Kernel} $\ast$trajectory\-Kernel, \hyperlink{classkukadu_1_1GenericKernel}{Generic\-Kernel} $\ast$parameter\-Kernel, arma\-::vec query, double beta)
+\begin{DoxyCompactList}\small\item\em returns the generalized trajectory at a certain query point \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\subsection{Detailed Description}
+This class is able to generalize task specific trajectories from previous examples. 
+
+This method works well on tasks, where the sample trajectories are similar in shape. Therefore, several simple trajectories have to be measured and stored in files. 
+
+\subsection{Constructor \& Destructor Documentation}
+\hypertarget{classkukadu_1_1DMPGeneralizer_a75bfc264da4632ef2ce2454759b53d9c}{\index{kukadu\-::\-D\-M\-P\-Generalizer@{kukadu\-::\-D\-M\-P\-Generalizer}!D\-M\-P\-Generalizer@{D\-M\-P\-Generalizer}}
+\index{D\-M\-P\-Generalizer@{D\-M\-P\-Generalizer}!kukadu::DMPGeneralizer@{kukadu\-::\-D\-M\-P\-Generalizer}}
+\subsubsection[{D\-M\-P\-Generalizer}]{\setlength{\rightskip}{0pt plus 5cm}kukadu\-::\-D\-M\-P\-Generalizer\-::\-D\-M\-P\-Generalizer (
+\begin{DoxyParamCaption}
+\item[{std\-::string}]{base\-Folder, }
+\item[{int}]{deg\-Of\-Freedom, }
+\item[{std\-::vector$<$ double $>$}]{tmpmys, }
+\item[{std\-::vector$<$ double $>$}]{tmpsigmas, }
+\item[{double}]{az, }
+\item[{double}]{bz}
+\end{DoxyParamCaption}
+)}}\label{classkukadu_1_1DMPGeneralizer_a75bfc264da4632ef2ce2454759b53d9c}
+
+
+constructor 
+
+
+\begin{DoxyParams}{Parameters}
+{\em base\-Folder} & folder that contains the sample trajectory files \\
+\hline
+{\em deg\-Of\-Freedom} & number of degrees of freedom \\
+\hline
+{\em tmpmys} & defines basis functions for dynamic movement primitives \\
+\hline
+{\em tmpsigmas} & defines basis functions for dynamic movement primitives \\
+\hline
+{\em az} & dmp az parameter \\
+\hline
+{\em bz} & dmp bz parameter \\
+\hline
+\end{DoxyParams}
+
+
+\subsection{Member Function Documentation}
+\hypertarget{classkukadu_1_1DMPGeneralizer_acb8a703ee5bb8492d2035120ab51942b}{\index{kukadu\-::\-D\-M\-P\-Generalizer@{kukadu\-::\-D\-M\-P\-Generalizer}!generalize\-Dmp@{generalize\-Dmp}}
+\index{generalize\-Dmp@{generalize\-Dmp}!kukadu::DMPGeneralizer@{kukadu\-::\-D\-M\-P\-Generalizer}}
+\subsubsection[{generalize\-Dmp}]{\setlength{\rightskip}{0pt plus 5cm}K\-U\-K\-A\-D\-U\-\_\-\-S\-H\-A\-R\-E\-D\-\_\-\-P\-T\-R$<$ {\bf Joint\-Dmp} $>$ kukadu\-::\-D\-M\-P\-Generalizer\-::generalize\-Dmp (
+\begin{DoxyParamCaption}
+\item[{{\bf Generic\-Kernel} $\ast$}]{trajectory\-Kernel, }
+\item[{{\bf Generic\-Kernel} $\ast$}]{parameter\-Kernel, }
+\item[{arma\-::vec}]{query, }
+\item[{double}]{beta}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [virtual]}}}\label{classkukadu_1_1DMPGeneralizer_acb8a703ee5bb8492d2035120ab51942b}
+
+
+returns the generalized trajectory at a certain query point 
+
+
+\begin{DoxyParams}{Parameters}
+{\em trajectory\-Kernel} & kernel for trajectory shape generalization \\
+\hline
+{\em parameter\-Kernel} & kernel for trajectory goal generalization \\
+\hline
+{\em query} & required query point \\
+\hline
+{\em beta} & beta for Gaussian processes \\
+\hline
+\end{DoxyParams}
+
+
+Implements \hyperlink{classkukadu_1_1GenericGeneralizer}{kukadu\-::\-Generic\-Generalizer}.
+
+\hypertarget{classkukadu_1_1DMPGeneralizer_a670a0b673aee54cc4c10f308b1d211a2}{\index{kukadu\-::\-D\-M\-P\-Generalizer@{kukadu\-::\-D\-M\-P\-Generalizer}!get\-Query\-Point\-By\-Index@{get\-Query\-Point\-By\-Index}}
+\index{get\-Query\-Point\-By\-Index@{get\-Query\-Point\-By\-Index}!kukadu::DMPGeneralizer@{kukadu\-::\-D\-M\-P\-Generalizer}}
+\subsubsection[{get\-Query\-Point\-By\-Index}]{\setlength{\rightskip}{0pt plus 5cm}{\bf Query\-Point} kukadu\-::\-D\-M\-P\-Generalizer\-::get\-Query\-Point\-By\-Index (
+\begin{DoxyParamCaption}
+\item[{int}]{index}
+\end{DoxyParamCaption}
+)}}\label{classkukadu_1_1DMPGeneralizer_a670a0b673aee54cc4c10f308b1d211a2}
+
+
+returns a sample point by index 
+
+
+\begin{DoxyParams}{Parameters}
+{\em index} & index of sample point \\
+\hline
+\end{DoxyParams}
+
+
+The documentation for this class was generated from the following files\-:\begin{DoxyCompactItemize}
+\item 
+/home/c7031109/iis\-\_\-robot\-\_\-sw/iis\-\_\-catkin\-\_\-ws/src/kukadu/include/kukadu/control/dmpgeneralizer.\-hpp\item 
+/home/c7031109/iis\-\_\-robot\-\_\-sw/iis\-\_\-catkin\-\_\-ws/src/kukadu/src/control/dmpgeneralizer.\-cpp\end{DoxyCompactItemize}

@@ -1,0 +1,706 @@
+\hypertarget{classkukadu_1_1Gnuplot}{\section{kukadu\-:\-:Gnuplot Class Reference}
+\label{classkukadu_1_1Gnuplot}\index{kukadu\-::\-Gnuplot@{kukadu\-::\-Gnuplot}}
+}
+\subsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+bool \hyperlink{classkukadu_1_1Gnuplot_a04d7a36bbe70dcb878a1ae5d8299d012}{set\-\_\-\-G\-N\-U\-Plot\-Path} (const std\-::string \&path)
+\begin{DoxyCompactList}\small\item\em optional function\-: set \hyperlink{classkukadu_1_1Gnuplot}{Gnuplot} path manual attention\-: for windows\-: path with slash '/' not backslash '\textbackslash{}' \end{DoxyCompactList}\item 
+void \hyperlink{classkukadu_1_1Gnuplot_aecc02fa13c09680a010e50331d50804c}{set\-\_\-terminal\-\_\-std} (const std\-::string \&type)
+\item 
+\hypertarget{classkukadu_1_1Gnuplot_afb20839c235bdf281f61a7c8e1ea8de9}{\hyperlink{classkukadu_1_1Gnuplot_afb20839c235bdf281f61a7c8e1ea8de9}{Gnuplot} (const std\-::string \&style=\char`\"{}lines lw 3\char`\"{})}\label{classkukadu_1_1Gnuplot_afb20839c235bdf281f61a7c8e1ea8de9}
+
+\begin{DoxyCompactList}\small\item\em set a style during construction \end{DoxyCompactList}\item 
+\hypertarget{classkukadu_1_1Gnuplot_a116918cb455b18e367cfcd34dfe2ecab}{\hyperlink{classkukadu_1_1Gnuplot_a116918cb455b18e367cfcd34dfe2ecab}{Gnuplot} (const std\-::vector$<$ double $>$ \&x, const std\-::string \&title=\char`\"{}\char`\"{}, const std\-::string \&style=\char`\"{}lines lw 3\char`\"{}, const std\-::string \&labelx=\char`\"{}x\char`\"{}, const std\-::string \&labely=\char`\"{}y\char`\"{})}\label{classkukadu_1_1Gnuplot_a116918cb455b18e367cfcd34dfe2ecab}
+
+\begin{DoxyCompactList}\small\item\em plot a single std\-::vector at one go \end{DoxyCompactList}\item 
+\hypertarget{classkukadu_1_1Gnuplot_a78963c977dfcc32904344da61d35e57a}{\hyperlink{classkukadu_1_1Gnuplot_a78963c977dfcc32904344da61d35e57a}{Gnuplot} (const std\-::vector$<$ double $>$ \&x, const std\-::vector$<$ double $>$ \&y, const std\-::string \&title=\char`\"{}\char`\"{}, const std\-::string \&style=\char`\"{}lines lw 3\char`\"{}, const std\-::string \&labelx=\char`\"{}x\char`\"{}, const std\-::string \&labely=\char`\"{}y\char`\"{})}\label{classkukadu_1_1Gnuplot_a78963c977dfcc32904344da61d35e57a}
+
+\begin{DoxyCompactList}\small\item\em plot pairs std\-::vector at one go \end{DoxyCompactList}\item 
+\hypertarget{classkukadu_1_1Gnuplot_a871b56fac856507973efb00861f7cd06}{\hyperlink{classkukadu_1_1Gnuplot_a871b56fac856507973efb00861f7cd06}{Gnuplot} (const std\-::vector$<$ double $>$ \&x, const std\-::vector$<$ double $>$ \&y, const std\-::vector$<$ double $>$ \&z, const std\-::string \&title=\char`\"{}\char`\"{}, const std\-::string \&style=\char`\"{}lines lw 3\char`\"{}, const std\-::string \&labelx=\char`\"{}x\char`\"{}, const std\-::string \&labely=\char`\"{}y\char`\"{}, const std\-::string \&labelz=\char`\"{}z\char`\"{})}\label{classkukadu_1_1Gnuplot_a871b56fac856507973efb00861f7cd06}
+
+\begin{DoxyCompactList}\small\item\em plot triples std\-::vector at one go \end{DoxyCompactList}\item 
+\hypertarget{classkukadu_1_1Gnuplot_a512e0f34eacae8a6a819b0b74fab029b}{\hyperlink{classkukadu_1_1Gnuplot_a512e0f34eacae8a6a819b0b74fab029b}{$\sim$\-Gnuplot} ()}\label{classkukadu_1_1Gnuplot_a512e0f34eacae8a6a819b0b74fab029b}
+
+\begin{DoxyCompactList}\small\item\em destructor\-: needed to delete temporary files \end{DoxyCompactList}\item 
+\hypertarget{classkukadu_1_1Gnuplot_a02945efc7719ceb26b97bdee6dfa0c76}{\hyperlink{classkukadu_1_1Gnuplot}{Gnuplot} \& \hyperlink{classkukadu_1_1Gnuplot_a02945efc7719ceb26b97bdee6dfa0c76}{cmd} (const std\-::string \&cmdstr)}\label{classkukadu_1_1Gnuplot_a02945efc7719ceb26b97bdee6dfa0c76}
+
+\begin{DoxyCompactList}\small\item\em send a command to gnuplot \end{DoxyCompactList}\item 
+\hyperlink{classkukadu_1_1Gnuplot}{Gnuplot} \& \hyperlink{classkukadu_1_1Gnuplot_a76d956598dab9d160127acf2c7d06e1f}{operator$<$$<$} (const std\-::string \&cmdstr)
+\begin{DoxyCompactList}\small\item\em Sends a command to an active gnuplot session, identical to \hyperlink{classkukadu_1_1Gnuplot_a02945efc7719ceb26b97bdee6dfa0c76}{cmd()} send a command to gnuplot using the $<$$<$ operator. \end{DoxyCompactList}\item 
+\hypertarget{classkukadu_1_1Gnuplot_a88c750479a441fe5e0113e7f795d6f42}{\hyperlink{classkukadu_1_1Gnuplot}{Gnuplot} \& \hyperlink{classkukadu_1_1Gnuplot_a88c750479a441fe5e0113e7f795d6f42}{showonscreen} ()}\label{classkukadu_1_1Gnuplot_a88c750479a441fe5e0113e7f795d6f42}
+
+\begin{DoxyCompactList}\small\item\em sets terminal type to terminal\-\_\-std \end{DoxyCompactList}\item 
+\hypertarget{classkukadu_1_1Gnuplot_ae6857197036b0739d792b5aa3833c673}{\hyperlink{classkukadu_1_1Gnuplot}{Gnuplot} \& \hyperlink{classkukadu_1_1Gnuplot_ae6857197036b0739d792b5aa3833c673}{savetops} (const std\-::string \&filename=\char`\"{}gnuplot\-\_\-output\char`\"{})}\label{classkukadu_1_1Gnuplot_ae6857197036b0739d792b5aa3833c673}
+
+\begin{DoxyCompactList}\small\item\em saves a gnuplot session to a postscript file, filename without extension \end{DoxyCompactList}\item 
+\hyperlink{classkukadu_1_1Gnuplot}{Gnuplot} \& \hyperlink{classkukadu_1_1Gnuplot_a168775b6cf04b25a621886d2f0f85806}{set\-\_\-style} (const std\-::string \&stylestr=\char`\"{}points\char`\"{})
+\item 
+\hyperlink{classkukadu_1_1Gnuplot}{Gnuplot} \& \hyperlink{classkukadu_1_1Gnuplot_a8b8849a77a1c674c30e4e5f8d59f8308}{set\-\_\-smooth} (const std\-::string \&stylestr=\char`\"{}csplines\char`\"{})
+\item 
+\hyperlink{classkukadu_1_1Gnuplot}{Gnuplot} \& \hyperlink{classkukadu_1_1Gnuplot_abbebd88fffd2654ff192d6222f4d8e65}{unset\-\_\-smooth} ()
+\begin{DoxyCompactList}\small\item\em unset smooth attention\-: smooth is not set by default \end{DoxyCompactList}\item 
+\hypertarget{classkukadu_1_1Gnuplot_ab1033881b0494423cd292c5084bf3925}{\hyperlink{classkukadu_1_1Gnuplot}{Gnuplot} \& \hyperlink{classkukadu_1_1Gnuplot_ab1033881b0494423cd292c5084bf3925}{set\-\_\-pointsize} (const double pointsize=1.\-0)}\label{classkukadu_1_1Gnuplot_ab1033881b0494423cd292c5084bf3925}
+
+\begin{DoxyCompactList}\small\item\em scales the size of the points used in plots \end{DoxyCompactList}\item 
+\hypertarget{classkukadu_1_1Gnuplot_aebcefffa35cefd5e4e0cffab0f3b5a6a}{\hyperlink{classkukadu_1_1Gnuplot}{Gnuplot} \& \hyperlink{classkukadu_1_1Gnuplot_aebcefffa35cefd5e4e0cffab0f3b5a6a}{set\-\_\-grid} ()}\label{classkukadu_1_1Gnuplot_aebcefffa35cefd5e4e0cffab0f3b5a6a}
+
+\begin{DoxyCompactList}\small\item\em turns grid on/off \end{DoxyCompactList}\item 
+\hypertarget{classkukadu_1_1Gnuplot_a58316e0929ce39f1a50aefd528ba835e}{\hyperlink{classkukadu_1_1Gnuplot}{Gnuplot} \& \hyperlink{classkukadu_1_1Gnuplot_a58316e0929ce39f1a50aefd528ba835e}{unset\-\_\-grid} ()}\label{classkukadu_1_1Gnuplot_a58316e0929ce39f1a50aefd528ba835e}
+
+\begin{DoxyCompactList}\small\item\em grid is not set by default \end{DoxyCompactList}\item 
+\hyperlink{classkukadu_1_1Gnuplot}{Gnuplot} \& \hyperlink{classkukadu_1_1Gnuplot_aab85e8b17756b471d3c800be4aab9cff}{set\-\_\-multiplot} ()
+\item 
+\hyperlink{classkukadu_1_1Gnuplot}{Gnuplot} \& \hyperlink{classkukadu_1_1Gnuplot_a91600bc5fa98295f48440bb211ba89db}{unset\-\_\-multiplot} ()
+\item 
+\hypertarget{classkukadu_1_1Gnuplot_aed34438f8adfdd17b5b529e77eca3dd8}{\hyperlink{classkukadu_1_1Gnuplot}{Gnuplot} \& \hyperlink{classkukadu_1_1Gnuplot_aed34438f8adfdd17b5b529e77eca3dd8}{set\-\_\-samples} (const int samples=100)}\label{classkukadu_1_1Gnuplot_aed34438f8adfdd17b5b529e77eca3dd8}
+
+\begin{DoxyCompactList}\small\item\em set sampling rate of functions, or for interpolating data \end{DoxyCompactList}\item 
+\hypertarget{classkukadu_1_1Gnuplot_ae915b506a6ad7667635b1c8f2d41365e}{\hyperlink{classkukadu_1_1Gnuplot}{Gnuplot} \& \hyperlink{classkukadu_1_1Gnuplot_ae915b506a6ad7667635b1c8f2d41365e}{set\-\_\-isosamples} (const int isolines=10)}\label{classkukadu_1_1Gnuplot_ae915b506a6ad7667635b1c8f2d41365e}
+
+\begin{DoxyCompactList}\small\item\em set isoline density (grid) for plotting functions as surfaces (for 3d plots) \end{DoxyCompactList}\item 
+\hyperlink{classkukadu_1_1Gnuplot}{Gnuplot} \& \hyperlink{classkukadu_1_1Gnuplot_ac6aa969947a3e5ad968726b58d839d0a}{set\-\_\-hidden3d} ()
+\item 
+\hyperlink{classkukadu_1_1Gnuplot}{Gnuplot} \& \hyperlink{classkukadu_1_1Gnuplot_a4e93a0f9c069b953a70502765d31dc1e}{unset\-\_\-hidden3d} ()
+\item 
+\hyperlink{classkukadu_1_1Gnuplot}{Gnuplot} \& \hyperlink{classkukadu_1_1Gnuplot_a6666c2286bcd0f8fea294b94a6c8545c}{set\-\_\-contour} (const std\-::string \&position=\char`\"{}base\char`\"{})
+\item 
+\hyperlink{classkukadu_1_1Gnuplot}{Gnuplot} \& \hyperlink{classkukadu_1_1Gnuplot_a6fe8c0d459872698c3531c50cf57be88}{unset\-\_\-contour} ()
+\item 
+\hyperlink{classkukadu_1_1Gnuplot}{Gnuplot} \& \hyperlink{classkukadu_1_1Gnuplot_a2b1dba26cececc7cb0c0c3d6c6345c18}{set\-\_\-surface} ()
+\item 
+\hyperlink{classkukadu_1_1Gnuplot}{Gnuplot} \& \hyperlink{classkukadu_1_1Gnuplot_a23283eaf224fede9a5a9378f678226a1}{unset\-\_\-surface} ()
+\item 
+\hyperlink{classkukadu_1_1Gnuplot}{Gnuplot} \& \hyperlink{classkukadu_1_1Gnuplot_aca9ce23dbc33bd29ff563c23a29e47ae}{set\-\_\-legend} (const std\-::string \&position=\char`\"{}default\char`\"{})
+\item 
+\hyperlink{classkukadu_1_1Gnuplot}{Gnuplot} \& \hyperlink{classkukadu_1_1Gnuplot_a5c8dab8e316a7d9b316d45f715ff0859}{unset\-\_\-legend} ()
+\begin{DoxyCompactList}\small\item\em Switches legend off attention\-:legend is set by default. \end{DoxyCompactList}\item 
+\hyperlink{classkukadu_1_1Gnuplot}{Gnuplot} \& \hyperlink{classkukadu_1_1Gnuplot_a1f0757bd29d5e3bee4e23be95951bc13}{set\-\_\-title} (const std\-::string \&title=\char`\"{}\char`\"{})
+\begin{DoxyCompactList}\small\item\em sets and clears the title of a gnuplot session \end{DoxyCompactList}\item 
+\hyperlink{classkukadu_1_1Gnuplot}{Gnuplot} \& \hyperlink{classkukadu_1_1Gnuplot_a5fc9e87f3c624fbff79a960c66a16bd1}{unset\-\_\-title} ()
+\begin{DoxyCompactList}\small\item\em Clears the title of a gnuplot session The title is not set by default. \end{DoxyCompactList}\item 
+\hypertarget{classkukadu_1_1Gnuplot_abee1cfd744420fd989db8092acedcc93}{\hyperlink{classkukadu_1_1Gnuplot}{Gnuplot} \& \hyperlink{classkukadu_1_1Gnuplot_abee1cfd744420fd989db8092acedcc93}{set\-\_\-ylabel} (const std\-::string \&label=\char`\"{}x\char`\"{})}\label{classkukadu_1_1Gnuplot_abee1cfd744420fd989db8092acedcc93}
+
+\begin{DoxyCompactList}\small\item\em set x axis label \end{DoxyCompactList}\item 
+\hypertarget{classkukadu_1_1Gnuplot_a48b3c2b23f740375b73d27d1906968d0}{\hyperlink{classkukadu_1_1Gnuplot}{Gnuplot} \& \hyperlink{classkukadu_1_1Gnuplot_a48b3c2b23f740375b73d27d1906968d0}{set\-\_\-xlabel} (const std\-::string \&label=\char`\"{}y\char`\"{})}\label{classkukadu_1_1Gnuplot_a48b3c2b23f740375b73d27d1906968d0}
+
+\begin{DoxyCompactList}\small\item\em set y axis label \end{DoxyCompactList}\item 
+\hypertarget{classkukadu_1_1Gnuplot_a439a74f49c171b12df1a941a39b3e8c1}{\hyperlink{classkukadu_1_1Gnuplot}{Gnuplot} \& \hyperlink{classkukadu_1_1Gnuplot_a439a74f49c171b12df1a941a39b3e8c1}{set\-\_\-zlabel} (const std\-::string \&label=\char`\"{}z\char`\"{})}\label{classkukadu_1_1Gnuplot_a439a74f49c171b12df1a941a39b3e8c1}
+
+\begin{DoxyCompactList}\small\item\em set z axis label \end{DoxyCompactList}\item 
+\hypertarget{classkukadu_1_1Gnuplot_a1e27f156415728196a52946e304f5d1e}{\hyperlink{classkukadu_1_1Gnuplot}{Gnuplot} \& \hyperlink{classkukadu_1_1Gnuplot_a1e27f156415728196a52946e304f5d1e}{set\-\_\-xrange} (const double i\-From, const double i\-To)}\label{classkukadu_1_1Gnuplot_a1e27f156415728196a52946e304f5d1e}
+
+\begin{DoxyCompactList}\small\item\em set axis -\/ ranges \end{DoxyCompactList}\item 
+\hypertarget{classkukadu_1_1Gnuplot_a5b27c86aa6c5505aa9b7f65958f1da26}{\hyperlink{classkukadu_1_1Gnuplot}{Gnuplot} \& \hyperlink{classkukadu_1_1Gnuplot_a5b27c86aa6c5505aa9b7f65958f1da26}{set\-\_\-yrange} (const double i\-From, const double i\-To)}\label{classkukadu_1_1Gnuplot_a5b27c86aa6c5505aa9b7f65958f1da26}
+
+\begin{DoxyCompactList}\small\item\em set y-\/axis -\/ ranges \end{DoxyCompactList}\item 
+\hypertarget{classkukadu_1_1Gnuplot_a719ea05d40c1cdd23f6844a494064720}{\hyperlink{classkukadu_1_1Gnuplot}{Gnuplot} \& \hyperlink{classkukadu_1_1Gnuplot_a719ea05d40c1cdd23f6844a494064720}{set\-\_\-zrange} (const double i\-From, const double i\-To)}\label{classkukadu_1_1Gnuplot_a719ea05d40c1cdd23f6844a494064720}
+
+\begin{DoxyCompactList}\small\item\em set z-\/axis -\/ ranges \end{DoxyCompactList}\item 
+\hyperlink{classkukadu_1_1Gnuplot}{Gnuplot} \& \hyperlink{classkukadu_1_1Gnuplot_ad895bac1da923236a2bbbddf13df4f5b}{set\-\_\-xautoscale} ()
+\item 
+\hyperlink{classkukadu_1_1Gnuplot}{Gnuplot} \& \hyperlink{classkukadu_1_1Gnuplot_aa5c079210584a06fa50ae99f5fe2d00d}{set\-\_\-yautoscale} ()
+\item 
+\hyperlink{classkukadu_1_1Gnuplot}{Gnuplot} \& \hyperlink{classkukadu_1_1Gnuplot_a24266265b9d32e8991d1ac053dbc58c5}{set\-\_\-zautoscale} ()
+\item 
+\hypertarget{classkukadu_1_1Gnuplot_a11893bdae68ab25f8ecb95818ca65395}{\hyperlink{classkukadu_1_1Gnuplot}{Gnuplot} \& \hyperlink{classkukadu_1_1Gnuplot_a11893bdae68ab25f8ecb95818ca65395}{set\-\_\-xlogscale} (const double base=10)}\label{classkukadu_1_1Gnuplot_a11893bdae68ab25f8ecb95818ca65395}
+
+\begin{DoxyCompactList}\small\item\em turns on/off log scaling for the specified xaxis (logscale is not set by default) \end{DoxyCompactList}\item 
+\hypertarget{classkukadu_1_1Gnuplot_a83bdceeb4e068075caf98b030ef9372f}{\hyperlink{classkukadu_1_1Gnuplot}{Gnuplot} \& \hyperlink{classkukadu_1_1Gnuplot_a83bdceeb4e068075caf98b030ef9372f}{set\-\_\-ylogscale} (const double base=10)}\label{classkukadu_1_1Gnuplot_a83bdceeb4e068075caf98b030ef9372f}
+
+\begin{DoxyCompactList}\small\item\em turns on/off log scaling for the specified yaxis (logscale is not set by default) \end{DoxyCompactList}\item 
+\hypertarget{classkukadu_1_1Gnuplot_aaeecd89ae7aabf9fb304f60965198588}{\hyperlink{classkukadu_1_1Gnuplot}{Gnuplot} \& \hyperlink{classkukadu_1_1Gnuplot_aaeecd89ae7aabf9fb304f60965198588}{set\-\_\-zlogscale} (const double base=10)}\label{classkukadu_1_1Gnuplot_aaeecd89ae7aabf9fb304f60965198588}
+
+\begin{DoxyCompactList}\small\item\em turns on/off log scaling for the specified zaxis (logscale is not set by default) \end{DoxyCompactList}\item 
+\hyperlink{classkukadu_1_1Gnuplot}{Gnuplot} \& \hyperlink{classkukadu_1_1Gnuplot_a8d4ff3b840757c7d7e248aa2932dfd9e}{unset\-\_\-xlogscale} ()
+\item 
+\hyperlink{classkukadu_1_1Gnuplot}{Gnuplot} \& \hyperlink{classkukadu_1_1Gnuplot_ab4faf2a5d5572733967ef00b03937a98}{unset\-\_\-ylogscale} ()
+\item 
+\hyperlink{classkukadu_1_1Gnuplot}{Gnuplot} \& \hyperlink{classkukadu_1_1Gnuplot_a2bccf59dc2f3dc853d45e6f0ebbc33e2}{unset\-\_\-zlogscale} ()
+\item 
+\hypertarget{classkukadu_1_1Gnuplot_ab1eeecc6cca9d87af3be7af4e37ab1c0}{\hyperlink{classkukadu_1_1Gnuplot}{Gnuplot} \& \hyperlink{classkukadu_1_1Gnuplot_ab1eeecc6cca9d87af3be7af4e37ab1c0}{set\-\_\-cbrange} (const double i\-From, const double i\-To)}\label{classkukadu_1_1Gnuplot_ab1eeecc6cca9d87af3be7af4e37ab1c0}
+
+\begin{DoxyCompactList}\small\item\em set palette range (autoscale by default) \end{DoxyCompactList}\item 
+\hyperlink{classkukadu_1_1Gnuplot}{Gnuplot} \& \hyperlink{classkukadu_1_1Gnuplot_a6f7bb713dd84b3ad5a737f7005411bfc}{plotfile\-\_\-x} (const std\-::string \&filename, const unsigned int column=1, const std\-::string \&title=\char`\"{}\char`\"{})
+\item 
+{\footnotesize template$<$typename X $>$ }\\\hyperlink{classkukadu_1_1Gnuplot}{Gnuplot} \& \hyperlink{classkukadu_1_1Gnuplot_af942480ea37a33cbd5bef00e8592404d}{plot\-\_\-x} (const X \&x, const std\-::string \&title=\char`\"{}\char`\"{})
+\begin{DoxyCompactList}\small\item\em from std\-::vector \end{DoxyCompactList}\item 
+\hyperlink{classkukadu_1_1Gnuplot}{Gnuplot} \& \hyperlink{classkukadu_1_1Gnuplot_a69a964c20551ba369846d10c74e53d51}{plotfile\-\_\-xy} (const std\-::string \&filename, const unsigned int column\-\_\-x=1, const unsigned int column\-\_\-y=2, const std\-::string \&title=\char`\"{}\char`\"{})
+\item 
+{\footnotesize template$<$typename X , typename Y $>$ }\\\hyperlink{classkukadu_1_1Gnuplot}{Gnuplot} \& \hyperlink{classkukadu_1_1Gnuplot_ac80122ec909d18c1c1b22bd7c3570fb9}{plot\-\_\-xy} (const X \&x, const Y \&y, const std\-::string \&title=\char`\"{}\char`\"{})
+\begin{DoxyCompactList}\small\item\em from data \end{DoxyCompactList}\item 
+\hyperlink{classkukadu_1_1Gnuplot}{Gnuplot} \& \hyperlink{classkukadu_1_1Gnuplot_a78fb33f6b8f7c169bad61f7767b4452f}{plotfile\-\_\-xy\-\_\-err} (const std\-::string \&filename, const unsigned int column\-\_\-x=1, const unsigned int column\-\_\-y=2, const unsigned int column\-\_\-dy=3, const std\-::string \&title=\char`\"{}\char`\"{})
+\item 
+{\footnotesize template$<$typename X , typename Y , typename E $>$ }\\\hyperlink{classkukadu_1_1Gnuplot}{Gnuplot} \& \hyperlink{classkukadu_1_1Gnuplot_a4cc62bb2504de6635ed6b47cbaf02c1c}{plot\-\_\-xy\-\_\-err} (const X \&x, const Y \&y, const E \&dy, const std\-::string \&title=\char`\"{}\char`\"{})
+\begin{DoxyCompactList}\small\item\em from data \end{DoxyCompactList}\item 
+\hyperlink{classkukadu_1_1Gnuplot}{Gnuplot} \& \hyperlink{classkukadu_1_1Gnuplot_a03b4eec7a72bc05abfcdfd7bcd61513b}{plotfile\-\_\-xyz} (const std\-::string \&filename, const unsigned int column\-\_\-x=1, const unsigned int column\-\_\-y=2, const unsigned int column\-\_\-z=3, const std\-::string \&title=\char`\"{}\char`\"{})
+\item 
+\hypertarget{classkukadu_1_1Gnuplot_ac3e5d63b5a9729d5e609e45abc65520f}{{\footnotesize template$<$typename X , typename Y , typename Z $>$ }\\\hyperlink{classkukadu_1_1Gnuplot}{Gnuplot} \& \hyperlink{classkukadu_1_1Gnuplot_ac3e5d63b5a9729d5e609e45abc65520f}{plot\-\_\-xyz} (const X \&x, const Y \&y, const Z \&z, const std\-::string \&title=\char`\"{}\char`\"{})}\label{classkukadu_1_1Gnuplot_ac3e5d63b5a9729d5e609e45abc65520f}
+
+\begin{DoxyCompactList}\small\item\em from std\-::vector \end{DoxyCompactList}\item 
+\hypertarget{classkukadu_1_1Gnuplot_aaddc220bf3a1726a962c801a1218b826}{\hyperlink{classkukadu_1_1Gnuplot}{Gnuplot} \& \hyperlink{classkukadu_1_1Gnuplot_aaddc220bf3a1726a962c801a1218b826}{plot\-\_\-slope} (const double a, const double b, const std\-::string \&title=\char`\"{}\char`\"{})}\label{classkukadu_1_1Gnuplot_aaddc220bf3a1726a962c801a1218b826}
+
+\begin{DoxyCompactList}\small\item\em plot an equation of the form\-: y = ax + b, you supply a and b \end{DoxyCompactList}\item 
+\hyperlink{classkukadu_1_1Gnuplot}{Gnuplot} \& \hyperlink{classkukadu_1_1Gnuplot_a96c92aa357fa26095bfeb7afcc1d7ae5}{plot\-\_\-equation} (const std\-::string \&equation, const std\-::string \&title=\char`\"{}\char`\"{})
+\item 
+\hyperlink{classkukadu_1_1Gnuplot}{Gnuplot} \& \hyperlink{classkukadu_1_1Gnuplot_a2500bea1234a30061b30cb66247d101e}{plot\-\_\-equation3d} (const std\-::string \&equation, const std\-::string \&title=\char`\"{}\char`\"{})
+\item 
+\hyperlink{classkukadu_1_1Gnuplot}{Gnuplot} \& \hyperlink{classkukadu_1_1Gnuplot_a00fa2629225493cef7be8e0263fb7fa4}{plot\-\_\-image} (const unsigned char $\ast$uc\-Pic\-Buf, const unsigned int i\-Width, const unsigned int i\-Height, const std\-::string \&title=\char`\"{}\char`\"{})
+\begin{DoxyCompactList}\small\item\em plot image \end{DoxyCompactList}\item 
+\hyperlink{classkukadu_1_1Gnuplot}{Gnuplot} \& \hyperlink{classkukadu_1_1Gnuplot_a775739d7e45f805b8e8d6629a7fc1e6c}{replot} (void)
+\begin{DoxyCompactList}\small\item\em replot repeats the last plot or splot command. this can be useful for viewing a plot with different set options, or when generating the same plot for several devices (showonscreen, savetops) \end{DoxyCompactList}\item 
+\hypertarget{classkukadu_1_1Gnuplot_a8437ccf75a256391bc8727c72af71ba7}{\hyperlink{classkukadu_1_1Gnuplot}{Gnuplot} \& \hyperlink{classkukadu_1_1Gnuplot_a8437ccf75a256391bc8727c72af71ba7}{reset\-\_\-plot} ()}\label{classkukadu_1_1Gnuplot_a8437ccf75a256391bc8727c72af71ba7}
+
+\begin{DoxyCompactList}\small\item\em resets a gnuplot session (next plot will erase previous ones) \end{DoxyCompactList}\item 
+\hypertarget{classkukadu_1_1Gnuplot_a90fcd1025b2bc89e5d1f1d3c0ac4121e}{\hyperlink{classkukadu_1_1Gnuplot}{Gnuplot} \& \hyperlink{classkukadu_1_1Gnuplot_a90fcd1025b2bc89e5d1f1d3c0ac4121e}{reset\-\_\-all} ()}\label{classkukadu_1_1Gnuplot_a90fcd1025b2bc89e5d1f1d3c0ac4121e}
+
+\begin{DoxyCompactList}\small\item\em resets a gnuplot session and sets all variables to default \end{DoxyCompactList}\item 
+\hypertarget{classkukadu_1_1Gnuplot_ae0d9d829d071346b0d137ea5167417a0}{void \hyperlink{classkukadu_1_1Gnuplot_ae0d9d829d071346b0d137ea5167417a0}{remove\-\_\-tmpfiles} ()}\label{classkukadu_1_1Gnuplot_ae0d9d829d071346b0d137ea5167417a0}
+
+\begin{DoxyCompactList}\small\item\em deletes temporary files \end{DoxyCompactList}\item 
+bool \hyperlink{classkukadu_1_1Gnuplot_af51379284d1d3b6b2e1a51106a81788b}{is\-\_\-valid} ()
+\begin{DoxyCompactList}\small\item\em Is the gnuplot session valid ?? \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\subsection{Member Function Documentation}
+\hypertarget{classkukadu_1_1Gnuplot_af51379284d1d3b6b2e1a51106a81788b}{\index{kukadu\-::\-Gnuplot@{kukadu\-::\-Gnuplot}!is\-\_\-valid@{is\-\_\-valid}}
+\index{is\-\_\-valid@{is\-\_\-valid}!kukadu::Gnuplot@{kukadu\-::\-Gnuplot}}
+\subsubsection[{is\-\_\-valid}]{\setlength{\rightskip}{0pt plus 5cm}bool kukadu\-::\-Gnuplot\-::is\-\_\-valid (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [inline]}}}\label{classkukadu_1_1Gnuplot_af51379284d1d3b6b2e1a51106a81788b}
+
+
+Is the gnuplot session valid ?? 
+
+
+\begin{DoxyParams}{Parameters}
+{\em \&mdash;} & \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+true if valid, false if not 
+\end{DoxyReturn}
+\hypertarget{classkukadu_1_1Gnuplot_a76d956598dab9d160127acf2c7d06e1f}{\index{kukadu\-::\-Gnuplot@{kukadu\-::\-Gnuplot}!operator$<$$<$@{operator$<$$<$}}
+\index{operator$<$$<$@{operator$<$$<$}!kukadu::Gnuplot@{kukadu\-::\-Gnuplot}}
+\subsubsection[{operator$<$$<$}]{\setlength{\rightskip}{0pt plus 5cm}{\bf Gnuplot}\& kukadu\-::\-Gnuplot\-::operator$<$$<$ (
+\begin{DoxyParamCaption}
+\item[{const std\-::string \&}]{cmdstr}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [inline]}}}\label{classkukadu_1_1Gnuplot_a76d956598dab9d160127acf2c7d06e1f}
+
+
+Sends a command to an active gnuplot session, identical to \hyperlink{classkukadu_1_1Gnuplot_a02945efc7719ceb26b97bdee6dfa0c76}{cmd()} send a command to gnuplot using the $<$$<$ operator. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em cmdstr} & --$>$ the command string\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+$<$-- a reference to the gnuplot object 
+\end{DoxyReturn}
+\hypertarget{classkukadu_1_1Gnuplot_a96c92aa357fa26095bfeb7afcc1d7ae5}{\index{kukadu\-::\-Gnuplot@{kukadu\-::\-Gnuplot}!plot\-\_\-equation@{plot\-\_\-equation}}
+\index{plot\-\_\-equation@{plot\-\_\-equation}!kukadu::Gnuplot@{kukadu\-::\-Gnuplot}}
+\subsubsection[{plot\-\_\-equation}]{\setlength{\rightskip}{0pt plus 5cm}{\bf Gnuplot} \& kukadu\-::\-Gnuplot\-::plot\-\_\-equation (
+\begin{DoxyParamCaption}
+\item[{const std\-::string \&}]{equation, }
+\item[{const std\-::string \&}]{title = {\ttfamily \char`\"{}\char`\"{}}}
+\end{DoxyParamCaption}
+)}}\label{classkukadu_1_1Gnuplot_a96c92aa357fa26095bfeb7afcc1d7ae5}
+plot an equation supplied as a std\-::string y=f(x), write only the function f(x) not y= the independent variable has to be x binary operators\-: $\ast$$\ast$ exponentiation, $\ast$ multiply, / divide, + add, -\/ substract, \% modulo unary operators\-: -\/ minus, ! factorial elementary functions\-: rand(x), abs(x), sgn(x), ceil(x), floor(x), int(x), imag(x), real(x), arg(x), sqrt(x), exp(x), log(x), log10(x), sin(x), cos(x), tan(x), asin(x), acos(x), atan(x), atan2(y,x), sinh(x), cosh(x), tanh(x), asinh(x), acosh(x), atanh(x) special functions\-: erf(x), erfc(x), inverf(x), gamma(x), igamma(a,x), lgamma(x), ibeta(p,q,x), besj0(x), besj1(x), besy0(x), besy1(x), lambertw(x) statistical fuctions\-: norm(x), invnorm(x) \hypertarget{classkukadu_1_1Gnuplot_a2500bea1234a30061b30cb66247d101e}{\index{kukadu\-::\-Gnuplot@{kukadu\-::\-Gnuplot}!plot\-\_\-equation3d@{plot\-\_\-equation3d}}
+\index{plot\-\_\-equation3d@{plot\-\_\-equation3d}!kukadu::Gnuplot@{kukadu\-::\-Gnuplot}}
+\subsubsection[{plot\-\_\-equation3d}]{\setlength{\rightskip}{0pt plus 5cm}{\bf Gnuplot} \& kukadu\-::\-Gnuplot\-::plot\-\_\-equation3d (
+\begin{DoxyParamCaption}
+\item[{const std\-::string \&}]{equation, }
+\item[{const std\-::string \&}]{title = {\ttfamily \char`\"{}\char`\"{}}}
+\end{DoxyParamCaption}
+)}}\label{classkukadu_1_1Gnuplot_a2500bea1234a30061b30cb66247d101e}
+plot an equation supplied as a std\-::string z=f(x,y), write only the function f(x,y) not z= the independent variables have to be x and y \hypertarget{classkukadu_1_1Gnuplot_a00fa2629225493cef7be8e0263fb7fa4}{\index{kukadu\-::\-Gnuplot@{kukadu\-::\-Gnuplot}!plot\-\_\-image@{plot\-\_\-image}}
+\index{plot\-\_\-image@{plot\-\_\-image}!kukadu::Gnuplot@{kukadu\-::\-Gnuplot}}
+\subsubsection[{plot\-\_\-image}]{\setlength{\rightskip}{0pt plus 5cm}{\bf Gnuplot} \& kukadu\-::\-Gnuplot\-::plot\-\_\-image (
+\begin{DoxyParamCaption}
+\item[{const unsigned char $\ast$}]{uc\-Pic\-Buf, }
+\item[{const unsigned int}]{i\-Width, }
+\item[{const unsigned int}]{i\-Height, }
+\item[{const std\-::string \&}]{title = {\ttfamily \char`\"{}\char`\"{}}}
+\end{DoxyParamCaption}
+)}}\label{classkukadu_1_1Gnuplot_a00fa2629225493cef7be8e0263fb7fa4}
+
+
+plot image 
+
+
+\begin{DoxyItemize}
+\item note that this function is not valid for versions of G\-N\-U\-Plot below 4.\-2 
+\end{DoxyItemize}\hypertarget{classkukadu_1_1Gnuplot_af942480ea37a33cbd5bef00e8592404d}{\index{kukadu\-::\-Gnuplot@{kukadu\-::\-Gnuplot}!plot\-\_\-x@{plot\-\_\-x}}
+\index{plot\-\_\-x@{plot\-\_\-x}!kukadu::Gnuplot@{kukadu\-::\-Gnuplot}}
+\subsubsection[{plot\-\_\-x}]{\setlength{\rightskip}{0pt plus 5cm}template$<$typename X $>$ {\bf Gnuplot} \& kukadu\-::\-Gnuplot\-::plot\-\_\-x (
+\begin{DoxyParamCaption}
+\item[{const X \&}]{x, }
+\item[{const std\-::string \&}]{title = {\ttfamily \char`\"{}\char`\"{}}}
+\end{DoxyParamCaption}
+)}}\label{classkukadu_1_1Gnuplot_af942480ea37a33cbd5bef00e8592404d}
+
+
+from std\-::vector 
+
+Plots a 2d graph from a list of doubles\-: x. \hypertarget{classkukadu_1_1Gnuplot_ac80122ec909d18c1c1b22bd7c3570fb9}{\index{kukadu\-::\-Gnuplot@{kukadu\-::\-Gnuplot}!plot\-\_\-xy@{plot\-\_\-xy}}
+\index{plot\-\_\-xy@{plot\-\_\-xy}!kukadu::Gnuplot@{kukadu\-::\-Gnuplot}}
+\subsubsection[{plot\-\_\-xy}]{\setlength{\rightskip}{0pt plus 5cm}template$<$typename X , typename Y $>$ {\bf Gnuplot} \& kukadu\-::\-Gnuplot\-::plot\-\_\-xy (
+\begin{DoxyParamCaption}
+\item[{const X \&}]{x, }
+\item[{const Y \&}]{y, }
+\item[{const std\-::string \&}]{title = {\ttfamily \char`\"{}\char`\"{}}}
+\end{DoxyParamCaption}
+)}}\label{classkukadu_1_1Gnuplot_ac80122ec909d18c1c1b22bd7c3570fb9}
+
+
+from data 
+
+Plots a 2d graph from a list of doubles\-: x y. \hypertarget{classkukadu_1_1Gnuplot_a4cc62bb2504de6635ed6b47cbaf02c1c}{\index{kukadu\-::\-Gnuplot@{kukadu\-::\-Gnuplot}!plot\-\_\-xy\-\_\-err@{plot\-\_\-xy\-\_\-err}}
+\index{plot\-\_\-xy\-\_\-err@{plot\-\_\-xy\-\_\-err}!kukadu::Gnuplot@{kukadu\-::\-Gnuplot}}
+\subsubsection[{plot\-\_\-xy\-\_\-err}]{\setlength{\rightskip}{0pt plus 5cm}template$<$typename X , typename Y , typename E $>$ {\bf Gnuplot} \& kukadu\-::\-Gnuplot\-::plot\-\_\-xy\-\_\-err (
+\begin{DoxyParamCaption}
+\item[{const X \&}]{x, }
+\item[{const Y \&}]{y, }
+\item[{const E \&}]{dy, }
+\item[{const std\-::string \&}]{title = {\ttfamily \char`\"{}\char`\"{}}}
+\end{DoxyParamCaption}
+)}}\label{classkukadu_1_1Gnuplot_a4cc62bb2504de6635ed6b47cbaf02c1c}
+
+
+from data 
+
+
+
+
+
+plot x,y pairs with dy errorbars \hypertarget{classkukadu_1_1Gnuplot_a6f7bb713dd84b3ad5a737f7005411bfc}{\index{kukadu\-::\-Gnuplot@{kukadu\-::\-Gnuplot}!plotfile\-\_\-x@{plotfile\-\_\-x}}
+\index{plotfile\-\_\-x@{plotfile\-\_\-x}!kukadu::Gnuplot@{kukadu\-::\-Gnuplot}}
+\subsubsection[{plotfile\-\_\-x}]{\setlength{\rightskip}{0pt plus 5cm}{\bf Gnuplot} \& kukadu\-::\-Gnuplot\-::plotfile\-\_\-x (
+\begin{DoxyParamCaption}
+\item[{const std\-::string \&}]{filename, }
+\item[{const unsigned int}]{column = {\ttfamily 1}, }
+\item[{const std\-::string \&}]{title = {\ttfamily \char`\"{}\char`\"{}}}
+\end{DoxyParamCaption}
+)}}\label{classkukadu_1_1Gnuplot_a6f7bb713dd84b3ad5a737f7005411bfc}
+plot a single std\-::vector\-: x from file \hypertarget{classkukadu_1_1Gnuplot_a69a964c20551ba369846d10c74e53d51}{\index{kukadu\-::\-Gnuplot@{kukadu\-::\-Gnuplot}!plotfile\-\_\-xy@{plotfile\-\_\-xy}}
+\index{plotfile\-\_\-xy@{plotfile\-\_\-xy}!kukadu::Gnuplot@{kukadu\-::\-Gnuplot}}
+\subsubsection[{plotfile\-\_\-xy}]{\setlength{\rightskip}{0pt plus 5cm}{\bf Gnuplot} \& kukadu\-::\-Gnuplot\-::plotfile\-\_\-xy (
+\begin{DoxyParamCaption}
+\item[{const std\-::string \&}]{filename, }
+\item[{const unsigned int}]{column\-\_\-x = {\ttfamily 1}, }
+\item[{const unsigned int}]{column\-\_\-y = {\ttfamily 2}, }
+\item[{const std\-::string \&}]{title = {\ttfamily \char`\"{}\char`\"{}}}
+\end{DoxyParamCaption}
+)}}\label{classkukadu_1_1Gnuplot_a69a964c20551ba369846d10c74e53d51}
+plot x,y pairs\-: x y from file \hypertarget{classkukadu_1_1Gnuplot_a78fb33f6b8f7c169bad61f7767b4452f}{\index{kukadu\-::\-Gnuplot@{kukadu\-::\-Gnuplot}!plotfile\-\_\-xy\-\_\-err@{plotfile\-\_\-xy\-\_\-err}}
+\index{plotfile\-\_\-xy\-\_\-err@{plotfile\-\_\-xy\-\_\-err}!kukadu::Gnuplot@{kukadu\-::\-Gnuplot}}
+\subsubsection[{plotfile\-\_\-xy\-\_\-err}]{\setlength{\rightskip}{0pt plus 5cm}{\bf Gnuplot} \& kukadu\-::\-Gnuplot\-::plotfile\-\_\-xy\-\_\-err (
+\begin{DoxyParamCaption}
+\item[{const std\-::string \&}]{filename, }
+\item[{const unsigned int}]{column\-\_\-x = {\ttfamily 1}, }
+\item[{const unsigned int}]{column\-\_\-y = {\ttfamily 2}, }
+\item[{const unsigned int}]{column\-\_\-dy = {\ttfamily 3}, }
+\item[{const std\-::string \&}]{title = {\ttfamily \char`\"{}\char`\"{}}}
+\end{DoxyParamCaption}
+)}}\label{classkukadu_1_1Gnuplot_a78fb33f6b8f7c169bad61f7767b4452f}
+plot x,y pairs with dy errorbars\-: x y dy from file \hypertarget{classkukadu_1_1Gnuplot_a03b4eec7a72bc05abfcdfd7bcd61513b}{\index{kukadu\-::\-Gnuplot@{kukadu\-::\-Gnuplot}!plotfile\-\_\-xyz@{plotfile\-\_\-xyz}}
+\index{plotfile\-\_\-xyz@{plotfile\-\_\-xyz}!kukadu::Gnuplot@{kukadu\-::\-Gnuplot}}
+\subsubsection[{plotfile\-\_\-xyz}]{\setlength{\rightskip}{0pt plus 5cm}{\bf Gnuplot} \& kukadu\-::\-Gnuplot\-::plotfile\-\_\-xyz (
+\begin{DoxyParamCaption}
+\item[{const std\-::string \&}]{filename, }
+\item[{const unsigned int}]{column\-\_\-x = {\ttfamily 1}, }
+\item[{const unsigned int}]{column\-\_\-y = {\ttfamily 2}, }
+\item[{const unsigned int}]{column\-\_\-z = {\ttfamily 3}, }
+\item[{const std\-::string \&}]{title = {\ttfamily \char`\"{}\char`\"{}}}
+\end{DoxyParamCaption}
+)}}\label{classkukadu_1_1Gnuplot_a03b4eec7a72bc05abfcdfd7bcd61513b}
+plot x,y,z triples\-: x y z from file \hypertarget{classkukadu_1_1Gnuplot_a775739d7e45f805b8e8d6629a7fc1e6c}{\index{kukadu\-::\-Gnuplot@{kukadu\-::\-Gnuplot}!replot@{replot}}
+\index{replot@{replot}!kukadu::Gnuplot@{kukadu\-::\-Gnuplot}}
+\subsubsection[{replot}]{\setlength{\rightskip}{0pt plus 5cm}{\bf Gnuplot}\& kukadu\-::\-Gnuplot\-::replot (
+\begin{DoxyParamCaption}
+\item[{void}]{}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [inline]}}}\label{classkukadu_1_1Gnuplot_a775739d7e45f805b8e8d6629a7fc1e6c}
+
+
+replot repeats the last plot or splot command. this can be useful for viewing a plot with different set options, or when generating the same plot for several devices (showonscreen, savetops) 
+
+
+\begin{DoxyParams}{Parameters}
+{\em \&mdash;} & \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+--- 
+\end{DoxyReturn}
+\hypertarget{classkukadu_1_1Gnuplot_a6666c2286bcd0f8fea294b94a6c8545c}{\index{kukadu\-::\-Gnuplot@{kukadu\-::\-Gnuplot}!set\-\_\-contour@{set\-\_\-contour}}
+\index{set\-\_\-contour@{set\-\_\-contour}!kukadu::Gnuplot@{kukadu\-::\-Gnuplot}}
+\subsubsection[{set\-\_\-contour}]{\setlength{\rightskip}{0pt plus 5cm}{\bf Gnuplot} \& kukadu\-::\-Gnuplot\-::set\-\_\-contour (
+\begin{DoxyParamCaption}
+\item[{const std\-::string \&}]{position = {\ttfamily \char`\"{}base\char`\"{}}}
+\end{DoxyParamCaption}
+)}}\label{classkukadu_1_1Gnuplot_a6666c2286bcd0f8fea294b94a6c8545c}
+enables/disables contour drawing for surfaces (for 3d plot) base, surface, both \hypertarget{classkukadu_1_1Gnuplot_a04d7a36bbe70dcb878a1ae5d8299d012}{\index{kukadu\-::\-Gnuplot@{kukadu\-::\-Gnuplot}!set\-\_\-\-G\-N\-U\-Plot\-Path@{set\-\_\-\-G\-N\-U\-Plot\-Path}}
+\index{set\-\_\-\-G\-N\-U\-Plot\-Path@{set\-\_\-\-G\-N\-U\-Plot\-Path}!kukadu::Gnuplot@{kukadu\-::\-Gnuplot}}
+\subsubsection[{set\-\_\-\-G\-N\-U\-Plot\-Path}]{\setlength{\rightskip}{0pt plus 5cm}bool kukadu\-::\-Gnuplot\-::set\-\_\-\-G\-N\-U\-Plot\-Path (
+\begin{DoxyParamCaption}
+\item[{const std\-::string \&}]{path}
+\end{DoxyParamCaption}
+)}}\label{classkukadu_1_1Gnuplot_a04d7a36bbe70dcb878a1ae5d8299d012}
+
+
+optional function\-: set \hyperlink{classkukadu_1_1Gnuplot}{Gnuplot} path manual attention\-: for windows\-: path with slash '/' not backslash '\textbackslash{}' 
+
+
+\begin{DoxyParams}{Parameters}
+{\em path} & --$>$ the gnuplot path\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+true on success, false otherwise 
+\end{DoxyReturn}
+\hypertarget{classkukadu_1_1Gnuplot_ac6aa969947a3e5ad968726b58d839d0a}{\index{kukadu\-::\-Gnuplot@{kukadu\-::\-Gnuplot}!set\-\_\-hidden3d@{set\-\_\-hidden3d}}
+\index{set\-\_\-hidden3d@{set\-\_\-hidden3d}!kukadu::Gnuplot@{kukadu\-::\-Gnuplot}}
+\subsubsection[{set\-\_\-hidden3d}]{\setlength{\rightskip}{0pt plus 5cm}{\bf Gnuplot}\& kukadu\-::\-Gnuplot\-::set\-\_\-hidden3d (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [inline]}}}\label{classkukadu_1_1Gnuplot_ac6aa969947a3e5ad968726b58d839d0a}
+enables/disables hidden line removal for surface plotting (for 3d plot)
+
+
+\begin{DoxyParams}{Parameters}
+{\em \&mdash;} & \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+$<$-- reference to the gnuplot object 
+\end{DoxyReturn}
+\hypertarget{classkukadu_1_1Gnuplot_aca9ce23dbc33bd29ff563c23a29e47ae}{\index{kukadu\-::\-Gnuplot@{kukadu\-::\-Gnuplot}!set\-\_\-legend@{set\-\_\-legend}}
+\index{set\-\_\-legend@{set\-\_\-legend}!kukadu::Gnuplot@{kukadu\-::\-Gnuplot}}
+\subsubsection[{set\-\_\-legend}]{\setlength{\rightskip}{0pt plus 5cm}{\bf Gnuplot} \& kukadu\-::\-Gnuplot\-::set\-\_\-legend (
+\begin{DoxyParamCaption}
+\item[{const std\-::string \&}]{position = {\ttfamily \char`\"{}default\char`\"{}}}
+\end{DoxyParamCaption}
+)}}\label{classkukadu_1_1Gnuplot_aca9ce23dbc33bd29ff563c23a29e47ae}
+switches legend on/off position\-: inside/outside, left/center/right, top/center/bottom, nobox/box \hypertarget{classkukadu_1_1Gnuplot_aab85e8b17756b471d3c800be4aab9cff}{\index{kukadu\-::\-Gnuplot@{kukadu\-::\-Gnuplot}!set\-\_\-multiplot@{set\-\_\-multiplot}}
+\index{set\-\_\-multiplot@{set\-\_\-multiplot}!kukadu::Gnuplot@{kukadu\-::\-Gnuplot}}
+\subsubsection[{set\-\_\-multiplot}]{\setlength{\rightskip}{0pt plus 5cm}{\bf Gnuplot}\& kukadu\-::\-Gnuplot\-::set\-\_\-multiplot (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [inline]}}}\label{classkukadu_1_1Gnuplot_aab85e8b17756b471d3c800be4aab9cff}
+set the mulitplot mode
+
+
+\begin{DoxyParams}{Parameters}
+{\em \&mdash;} & \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+$<$-- reference to the gnuplot object 
+\end{DoxyReturn}
+\hypertarget{classkukadu_1_1Gnuplot_a8b8849a77a1c674c30e4e5f8d59f8308}{\index{kukadu\-::\-Gnuplot@{kukadu\-::\-Gnuplot}!set\-\_\-smooth@{set\-\_\-smooth}}
+\index{set\-\_\-smooth@{set\-\_\-smooth}!kukadu::Gnuplot@{kukadu\-::\-Gnuplot}}
+\subsubsection[{set\-\_\-smooth}]{\setlength{\rightskip}{0pt plus 5cm}{\bf Gnuplot} \& kukadu\-::\-Gnuplot\-::set\-\_\-smooth (
+\begin{DoxyParamCaption}
+\item[{const std\-::string \&}]{stylestr = {\ttfamily \char`\"{}csplines\char`\"{}}}
+\end{DoxyParamCaption}
+)}}\label{classkukadu_1_1Gnuplot_a8b8849a77a1c674c30e4e5f8d59f8308}
+interpolation and approximation of data, arguments\-: csplines, bezier, acsplines (for data values $>$ 0), sbezier, unique, frequency (works only with plot\-\_\-x, plot\-\_\-xy, plotfile\-\_\-x, plotfile\-\_\-xy (if smooth is set, set\-\_\-style has no effekt on data plotting) \hypertarget{classkukadu_1_1Gnuplot_a168775b6cf04b25a621886d2f0f85806}{\index{kukadu\-::\-Gnuplot@{kukadu\-::\-Gnuplot}!set\-\_\-style@{set\-\_\-style}}
+\index{set\-\_\-style@{set\-\_\-style}!kukadu::Gnuplot@{kukadu\-::\-Gnuplot}}
+\subsubsection[{set\-\_\-style}]{\setlength{\rightskip}{0pt plus 5cm}{\bf Gnuplot} \& kukadu\-::\-Gnuplot\-::set\-\_\-style (
+\begin{DoxyParamCaption}
+\item[{const std\-::string \&}]{stylestr = {\ttfamily \char`\"{}points\char`\"{}}}
+\end{DoxyParamCaption}
+)}}\label{classkukadu_1_1Gnuplot_a168775b6cf04b25a621886d2f0f85806}
+set line style (some of these styles require additional information)\-: lines, points, linespoints, impulses, dots, steps, fsteps, histeps, boxes, histograms, filledcurves \hypertarget{classkukadu_1_1Gnuplot_a2b1dba26cececc7cb0c0c3d6c6345c18}{\index{kukadu\-::\-Gnuplot@{kukadu\-::\-Gnuplot}!set\-\_\-surface@{set\-\_\-surface}}
+\index{set\-\_\-surface@{set\-\_\-surface}!kukadu::Gnuplot@{kukadu\-::\-Gnuplot}}
+\subsubsection[{set\-\_\-surface}]{\setlength{\rightskip}{0pt plus 5cm}{\bf Gnuplot}\& kukadu\-::\-Gnuplot\-::set\-\_\-surface (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [inline]}}}\label{classkukadu_1_1Gnuplot_a2b1dba26cececc7cb0c0c3d6c6345c18}
+enables/disables the display of surfaces (for 3d plot)
+
+
+\begin{DoxyParams}{Parameters}
+{\em \&mdash;} & \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+$<$-- reference to the gnuplot object 
+\end{DoxyReturn}
+\hypertarget{classkukadu_1_1Gnuplot_aecc02fa13c09680a010e50331d50804c}{\index{kukadu\-::\-Gnuplot@{kukadu\-::\-Gnuplot}!set\-\_\-terminal\-\_\-std@{set\-\_\-terminal\-\_\-std}}
+\index{set\-\_\-terminal\-\_\-std@{set\-\_\-terminal\-\_\-std}!kukadu::Gnuplot@{kukadu\-::\-Gnuplot}}
+\subsubsection[{set\-\_\-terminal\-\_\-std}]{\setlength{\rightskip}{0pt plus 5cm}void kukadu\-::\-Gnuplot\-::set\-\_\-terminal\-\_\-std (
+\begin{DoxyParamCaption}
+\item[{const std\-::string \&}]{type}
+\end{DoxyParamCaption}
+)}}\label{classkukadu_1_1Gnuplot_aecc02fa13c09680a010e50331d50804c}
+optional\-: set standart terminal, used by showonscreen defaults\-: Windows -\/ win, Linux -\/ x11, Mac -\/ aqua
+
+
+\begin{DoxyParams}{Parameters}
+{\em type} & --$>$ the terminal type\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+--- 
+\end{DoxyReturn}
+\hypertarget{classkukadu_1_1Gnuplot_a1f0757bd29d5e3bee4e23be95951bc13}{\index{kukadu\-::\-Gnuplot@{kukadu\-::\-Gnuplot}!set\-\_\-title@{set\-\_\-title}}
+\index{set\-\_\-title@{set\-\_\-title}!kukadu::Gnuplot@{kukadu\-::\-Gnuplot}}
+\subsubsection[{set\-\_\-title}]{\setlength{\rightskip}{0pt plus 5cm}{\bf Gnuplot}\& kukadu\-::\-Gnuplot\-::set\-\_\-title (
+\begin{DoxyParamCaption}
+\item[{const std\-::string \&}]{title = {\ttfamily \char`\"{}\char`\"{}}}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [inline]}}}\label{classkukadu_1_1Gnuplot_a1f0757bd29d5e3bee4e23be95951bc13}
+
+
+sets and clears the title of a gnuplot session 
+
+
+\begin{DoxyParams}{Parameters}
+{\em title} & --$>$ the title of the plot \mbox{[}optional, default == \char`\"{}\char`\"{}\mbox{]}\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+$<$-- reference to the gnuplot object 
+\end{DoxyReturn}
+\hypertarget{classkukadu_1_1Gnuplot_ad895bac1da923236a2bbbddf13df4f5b}{\index{kukadu\-::\-Gnuplot@{kukadu\-::\-Gnuplot}!set\-\_\-xautoscale@{set\-\_\-xautoscale}}
+\index{set\-\_\-xautoscale@{set\-\_\-xautoscale}!kukadu::Gnuplot@{kukadu\-::\-Gnuplot}}
+\subsubsection[{set\-\_\-xautoscale}]{\setlength{\rightskip}{0pt plus 5cm}{\bf Gnuplot}\& kukadu\-::\-Gnuplot\-::set\-\_\-xautoscale (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [inline]}}}\label{classkukadu_1_1Gnuplot_ad895bac1da923236a2bbbddf13df4f5b}
+autoscale axis (set by default) of xaxis
+
+
+\begin{DoxyParams}{Parameters}
+{\em \&mdash;} & \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+$<$-- reference to the gnuplot object 
+\end{DoxyReturn}
+\hypertarget{classkukadu_1_1Gnuplot_aa5c079210584a06fa50ae99f5fe2d00d}{\index{kukadu\-::\-Gnuplot@{kukadu\-::\-Gnuplot}!set\-\_\-yautoscale@{set\-\_\-yautoscale}}
+\index{set\-\_\-yautoscale@{set\-\_\-yautoscale}!kukadu::Gnuplot@{kukadu\-::\-Gnuplot}}
+\subsubsection[{set\-\_\-yautoscale}]{\setlength{\rightskip}{0pt plus 5cm}{\bf Gnuplot}\& kukadu\-::\-Gnuplot\-::set\-\_\-yautoscale (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [inline]}}}\label{classkukadu_1_1Gnuplot_aa5c079210584a06fa50ae99f5fe2d00d}
+autoscale axis (set by default) of yaxis
+
+
+\begin{DoxyParams}{Parameters}
+{\em \&mdash;} & \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+$<$-- reference to the gnuplot object 
+\end{DoxyReturn}
+\hypertarget{classkukadu_1_1Gnuplot_a24266265b9d32e8991d1ac053dbc58c5}{\index{kukadu\-::\-Gnuplot@{kukadu\-::\-Gnuplot}!set\-\_\-zautoscale@{set\-\_\-zautoscale}}
+\index{set\-\_\-zautoscale@{set\-\_\-zautoscale}!kukadu::Gnuplot@{kukadu\-::\-Gnuplot}}
+\subsubsection[{set\-\_\-zautoscale}]{\setlength{\rightskip}{0pt plus 5cm}{\bf Gnuplot}\& kukadu\-::\-Gnuplot\-::set\-\_\-zautoscale (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [inline]}}}\label{classkukadu_1_1Gnuplot_a24266265b9d32e8991d1ac053dbc58c5}
+autoscale axis (set by default) of zaxis
+
+
+\begin{DoxyParams}{Parameters}
+{\em \&mdash;} & \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+$<$-- reference to the gnuplot object 
+\end{DoxyReturn}
+\hypertarget{classkukadu_1_1Gnuplot_a6fe8c0d459872698c3531c50cf57be88}{\index{kukadu\-::\-Gnuplot@{kukadu\-::\-Gnuplot}!unset\-\_\-contour@{unset\-\_\-contour}}
+\index{unset\-\_\-contour@{unset\-\_\-contour}!kukadu::Gnuplot@{kukadu\-::\-Gnuplot}}
+\subsubsection[{unset\-\_\-contour}]{\setlength{\rightskip}{0pt plus 5cm}{\bf Gnuplot}\& kukadu\-::\-Gnuplot\-::unset\-\_\-contour (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [inline]}}}\label{classkukadu_1_1Gnuplot_a6fe8c0d459872698c3531c50cf57be88}
+contour is not set by default, it disables contour drawing for surfaces
+
+
+\begin{DoxyParams}{Parameters}
+{\em \&mdash;} & \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+$<$-- reference to the gnuplot object 
+\end{DoxyReturn}
+\hypertarget{classkukadu_1_1Gnuplot_a4e93a0f9c069b953a70502765d31dc1e}{\index{kukadu\-::\-Gnuplot@{kukadu\-::\-Gnuplot}!unset\-\_\-hidden3d@{unset\-\_\-hidden3d}}
+\index{unset\-\_\-hidden3d@{unset\-\_\-hidden3d}!kukadu::Gnuplot@{kukadu\-::\-Gnuplot}}
+\subsubsection[{unset\-\_\-hidden3d}]{\setlength{\rightskip}{0pt plus 5cm}{\bf Gnuplot}\& kukadu\-::\-Gnuplot\-::unset\-\_\-hidden3d (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [inline]}}}\label{classkukadu_1_1Gnuplot_a4e93a0f9c069b953a70502765d31dc1e}
+hidden3d is not set by default
+
+
+\begin{DoxyParams}{Parameters}
+{\em \&mdash;} & \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+$<$-- reference to the gnuplot object 
+\end{DoxyReturn}
+\hypertarget{classkukadu_1_1Gnuplot_a5c8dab8e316a7d9b316d45f715ff0859}{\index{kukadu\-::\-Gnuplot@{kukadu\-::\-Gnuplot}!unset\-\_\-legend@{unset\-\_\-legend}}
+\index{unset\-\_\-legend@{unset\-\_\-legend}!kukadu::Gnuplot@{kukadu\-::\-Gnuplot}}
+\subsubsection[{unset\-\_\-legend}]{\setlength{\rightskip}{0pt plus 5cm}{\bf Gnuplot}\& kukadu\-::\-Gnuplot\-::unset\-\_\-legend (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [inline]}}}\label{classkukadu_1_1Gnuplot_a5c8dab8e316a7d9b316d45f715ff0859}
+
+
+Switches legend off attention\-:legend is set by default. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em \&mdash;} & \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+$<$-- reference to the gnuplot object 
+\end{DoxyReturn}
+\hypertarget{classkukadu_1_1Gnuplot_a91600bc5fa98295f48440bb211ba89db}{\index{kukadu\-::\-Gnuplot@{kukadu\-::\-Gnuplot}!unset\-\_\-multiplot@{unset\-\_\-multiplot}}
+\index{unset\-\_\-multiplot@{unset\-\_\-multiplot}!kukadu::Gnuplot@{kukadu\-::\-Gnuplot}}
+\subsubsection[{unset\-\_\-multiplot}]{\setlength{\rightskip}{0pt plus 5cm}{\bf Gnuplot}\& kukadu\-::\-Gnuplot\-::unset\-\_\-multiplot (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [inline]}}}\label{classkukadu_1_1Gnuplot_a91600bc5fa98295f48440bb211ba89db}
+unsets the mulitplot mode
+
+
+\begin{DoxyParams}{Parameters}
+{\em \&mdash;} & \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+$<$-- reference to the gnuplot object 
+\end{DoxyReturn}
+\hypertarget{classkukadu_1_1Gnuplot_abbebd88fffd2654ff192d6222f4d8e65}{\index{kukadu\-::\-Gnuplot@{kukadu\-::\-Gnuplot}!unset\-\_\-smooth@{unset\-\_\-smooth}}
+\index{unset\-\_\-smooth@{unset\-\_\-smooth}!kukadu::Gnuplot@{kukadu\-::\-Gnuplot}}
+\subsubsection[{unset\-\_\-smooth}]{\setlength{\rightskip}{0pt plus 5cm}{\bf Gnuplot}\& kukadu\-::\-Gnuplot\-::unset\-\_\-smooth (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [inline]}}}\label{classkukadu_1_1Gnuplot_abbebd88fffd2654ff192d6222f4d8e65}
+
+
+unset smooth attention\-: smooth is not set by default 
+
+
+\begin{DoxyParams}{Parameters}
+{\em \&mdash;} & \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+$<$-- a reference to a gnuplot object 
+\end{DoxyReturn}
+\hypertarget{classkukadu_1_1Gnuplot_a23283eaf224fede9a5a9378f678226a1}{\index{kukadu\-::\-Gnuplot@{kukadu\-::\-Gnuplot}!unset\-\_\-surface@{unset\-\_\-surface}}
+\index{unset\-\_\-surface@{unset\-\_\-surface}!kukadu::Gnuplot@{kukadu\-::\-Gnuplot}}
+\subsubsection[{unset\-\_\-surface}]{\setlength{\rightskip}{0pt plus 5cm}{\bf Gnuplot}\& kukadu\-::\-Gnuplot\-::unset\-\_\-surface (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [inline]}}}\label{classkukadu_1_1Gnuplot_a23283eaf224fede9a5a9378f678226a1}
+surface is set by default, it disables the display of surfaces (for 3d plot)
+
+
+\begin{DoxyParams}{Parameters}
+{\em \&mdash;} & \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+$<$-- reference to the gnuplot object 
+\end{DoxyReturn}
+\hypertarget{classkukadu_1_1Gnuplot_a5fc9e87f3c624fbff79a960c66a16bd1}{\index{kukadu\-::\-Gnuplot@{kukadu\-::\-Gnuplot}!unset\-\_\-title@{unset\-\_\-title}}
+\index{unset\-\_\-title@{unset\-\_\-title}!kukadu::Gnuplot@{kukadu\-::\-Gnuplot}}
+\subsubsection[{unset\-\_\-title}]{\setlength{\rightskip}{0pt plus 5cm}{\bf Gnuplot}\& kukadu\-::\-Gnuplot\-::unset\-\_\-title (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [inline]}}}\label{classkukadu_1_1Gnuplot_a5fc9e87f3c624fbff79a960c66a16bd1}
+
+
+Clears the title of a gnuplot session The title is not set by default. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em \&mdash;} & \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+$<$-- reference to the gnuplot object 
+\end{DoxyReturn}
+\hypertarget{classkukadu_1_1Gnuplot_a8d4ff3b840757c7d7e248aa2932dfd9e}{\index{kukadu\-::\-Gnuplot@{kukadu\-::\-Gnuplot}!unset\-\_\-xlogscale@{unset\-\_\-xlogscale}}
+\index{unset\-\_\-xlogscale@{unset\-\_\-xlogscale}!kukadu::Gnuplot@{kukadu\-::\-Gnuplot}}
+\subsubsection[{unset\-\_\-xlogscale}]{\setlength{\rightskip}{0pt plus 5cm}{\bf Gnuplot}\& kukadu\-::\-Gnuplot\-::unset\-\_\-xlogscale (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [inline]}}}\label{classkukadu_1_1Gnuplot_a8d4ff3b840757c7d7e248aa2932dfd9e}
+turns off log scaling for the x axis
+
+
+\begin{DoxyParams}{Parameters}
+{\em \&mdash;} & \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+$<$-- reference to the gnuplot object 
+\end{DoxyReturn}
+\hypertarget{classkukadu_1_1Gnuplot_ab4faf2a5d5572733967ef00b03937a98}{\index{kukadu\-::\-Gnuplot@{kukadu\-::\-Gnuplot}!unset\-\_\-ylogscale@{unset\-\_\-ylogscale}}
+\index{unset\-\_\-ylogscale@{unset\-\_\-ylogscale}!kukadu::Gnuplot@{kukadu\-::\-Gnuplot}}
+\subsubsection[{unset\-\_\-ylogscale}]{\setlength{\rightskip}{0pt plus 5cm}{\bf Gnuplot}\& kukadu\-::\-Gnuplot\-::unset\-\_\-ylogscale (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [inline]}}}\label{classkukadu_1_1Gnuplot_ab4faf2a5d5572733967ef00b03937a98}
+turns off log scaling for the y axis
+
+
+\begin{DoxyParams}{Parameters}
+{\em \&mdash;} & \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+$<$-- reference to the gnuplot object 
+\end{DoxyReturn}
+\hypertarget{classkukadu_1_1Gnuplot_a2bccf59dc2f3dc853d45e6f0ebbc33e2}{\index{kukadu\-::\-Gnuplot@{kukadu\-::\-Gnuplot}!unset\-\_\-zlogscale@{unset\-\_\-zlogscale}}
+\index{unset\-\_\-zlogscale@{unset\-\_\-zlogscale}!kukadu::Gnuplot@{kukadu\-::\-Gnuplot}}
+\subsubsection[{unset\-\_\-zlogscale}]{\setlength{\rightskip}{0pt plus 5cm}{\bf Gnuplot}\& kukadu\-::\-Gnuplot\-::unset\-\_\-zlogscale (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [inline]}}}\label{classkukadu_1_1Gnuplot_a2bccf59dc2f3dc853d45e6f0ebbc33e2}
+turns off log scaling for the z axis
+
+
+\begin{DoxyParams}{Parameters}
+{\em \&mdash;} & \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+$<$-- reference to the gnuplot object 
+\end{DoxyReturn}
+
+
+The documentation for this class was generated from the following files\-:\begin{DoxyCompactItemize}
+\item 
+/home/c7031109/iis\-\_\-robot\-\_\-sw/iis\-\_\-catkin\-\_\-ws/src/kukadu/include/kukadu/utils/gnuplot.\-hpp\item 
+/home/c7031109/iis\-\_\-robot\-\_\-sw/iis\-\_\-catkin\-\_\-ws/src/kukadu/src/utils/gnuplot.\-cpp\end{DoxyCompactItemize}

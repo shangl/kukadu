@@ -1,0 +1,796 @@
+\hypertarget{classkukadu_1_1ControlQueue}{\section{kukadu\-:\-:Control\-Queue Class Reference}
+\label{classkukadu_1_1ControlQueue}\index{kukadu\-::\-Control\-Queue@{kukadu\-::\-Control\-Queue}}
+}
+
+
+Interface between the kukadu software stack and the robot hardware. If kukadu shall support another robot, the abstract methods need to be implemented according to the documentation. Then the kukadu software stack is available for usage with the robot.  
+
+
+
+
+{\ttfamily \#include $<$controlqueue.\-hpp$>$}
+
+Inheritance diagram for kukadu\-:\-:Control\-Queue\-:\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[height=2.301370cm]{classkukadu_1_1ControlQueue}
+\end{center}
+\end{figure}
+\subsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\hyperlink{classkukadu_1_1ControlQueue_a946b967c77d0b6d663239fa60ff602f9}{Control\-Queue} (int deg\-Of\-Freedom, double desired\-Cycle\-Time)
+\begin{DoxyCompactList}\small\item\em Constructor taking the robot dependent degrees of freedom. \end{DoxyCompactList}\item 
+int \hyperlink{classkukadu_1_1ControlQueue_aaa583d0b0c04c7f0acc869cca0e8ef41}{get\-Movement\-Degrees\-Of\-Freedom} ()
+\begin{DoxyCompactList}\small\item\em Returns number of the robots degrees of freedom. \end{DoxyCompactList}\item 
+void \hyperlink{classkukadu_1_1ControlQueue_a5245ff31c7dea26070743d1f6560801c}{set\-Cycle\-Time} (double cycle\-Time)
+\begin{DoxyCompactList}\small\item\em Sets the queue cycle time. \end{DoxyCompactList}\item 
+\hypertarget{classkukadu_1_1ControlQueue_a35d6a6e4e7c8467691c11567fe21f340}{K\-U\-K\-A\-D\-U\-\_\-\-S\-H\-A\-R\-E\-D\-\_\-\-P\-T\-R$<$ kukadu\-\_\-thread $>$ \hyperlink{classkukadu_1_1ControlQueue_a35d6a6e4e7c8467691c11567fe21f340}{start\-Queue} ()}\label{classkukadu_1_1ControlQueue_a35d6a6e4e7c8467691c11567fe21f340}
+
+\begin{DoxyCompactList}\small\item\em Starts new thread to control the robot with real time capability. \end{DoxyCompactList}\item 
+virtual double \hyperlink{classkukadu_1_1ControlQueue_a82349f67c4ea6f2dc2689e765717d8e2}{get\-Cycle\-Time} ()
+\begin{DoxyCompactList}\small\item\em Returns the time between two cycles. \end{DoxyCompactList}\item 
+virtual bool \hyperlink{classkukadu_1_1ControlQueue_aa02fcb2c8cd2c1c8ca553ae636000beb}{get\-Queue\-Running} ()
+\begin{DoxyCompactList}\small\item\em Returns whether or not the queue is currently running. \end{DoxyCompactList}\item 
+\hypertarget{classkukadu_1_1ControlQueue_a8d413404960c7597032876396777e38f}{virtual void \hyperlink{classkukadu_1_1ControlQueue_a8d413404960c7597032876396777e38f}{stop\-Queue} ()}\label{classkukadu_1_1ControlQueue_a8d413404960c7597032876396777e38f}
+
+\begin{DoxyCompactList}\small\item\em Stops the queue. \end{DoxyCompactList}\item 
+\hypertarget{classkukadu_1_1ControlQueue_a0025c5c010a1b33d637e52fb24f767b2}{virtual void \hyperlink{classkukadu_1_1ControlQueue_a0025c5c010a1b33d637e52fb24f767b2}{set\-Next\-Trajectory} (std\-::vector$<$ arma\-::vec $>$ joint\-Trajectory)}\label{classkukadu_1_1ControlQueue_a0025c5c010a1b33d637e52fb24f767b2}
+
+\begin{DoxyCompactList}\small\item\em With \hyperlink{classkukadu_1_1ControlQueue_a0025c5c010a1b33d637e52fb24f767b2}{set\-Next\-Trajectory()} a complete trajectory can be added to the queue. The trajectory will be executed after all other added commands (already contained in the queue) were executed. \end{DoxyCompactList}\item 
+virtual void \hyperlink{classkukadu_1_1ControlQueue_aca70a978b2950d7c9ab99d55c5977eec}{move} (arma\-::vec joints)
+\begin{DoxyCompactList}\small\item\em Adds next joint position to the end of the queue (can be used for trajectory following) \end{DoxyCompactList}\item 
+virtual void \hyperlink{classkukadu_1_1ControlQueue_a62b3e0c02b1937b09ae538a71ee0e855}{move} (geometry\-\_\-msgs\-::\-Pose pose)
+\begin{DoxyCompactList}\small\item\em Adds next cartesian position to the end of the queue (can be used for trajectory following) \end{DoxyCompactList}\item 
+virtual void \hyperlink{classkukadu_1_1ControlQueue_a5defe63d9f1b9829676f9a31a4683911}{switch\-Mode} (int mode)
+\begin{DoxyCompactList}\small\item\em Switches robot modes. A state might be a real time command mode or monitoring mode. \end{DoxyCompactList}\item 
+\hypertarget{classkukadu_1_1ControlQueue_ae4236dc4c31aff57d2295dd11dbf453b}{virtual void \hyperlink{classkukadu_1_1ControlQueue_ae4236dc4c31aff57d2295dd11dbf453b}{stop\-Current\-Mode} ()}\label{classkukadu_1_1ControlQueue_ae4236dc4c31aff57d2295dd11dbf453b}
+
+\begin{DoxyCompactList}\small\item\em Stops current mode and switches back to default mode (e.\-g. monitoring mode) \end{DoxyCompactList}\item 
+virtual void \hyperlink{classkukadu_1_1ControlQueue_a324484e79a5505656a32d9f32054e5d0}{synchronize\-To\-Queue} (int max\-Num\-Joints\-In\-Queue)
+\begin{DoxyCompactList}\small\item\em Blocks, if more than the defined maximum element count is in the queue. \end{DoxyCompactList}\item 
+virtual void \hyperlink{classkukadu_1_1ControlQueue_a225130ca0fa4a22e98cc0e5679917841}{set\-Starting\-Joints} (arma\-::vec joints)
+\begin{DoxyCompactList}\small\item\em If this is set, the robot moves to the desired position by \hyperlink{classkukadu_1_1ControlQueue_ad11059100321b24a1af8ef7de8314353}{joint\-Ptp()} before the queue is started. \end{DoxyCompactList}\item 
+virtual std\-::vector$<$ \hyperlink{structmes__result}{mes\-\_\-result} $>$ \hyperlink{classkukadu_1_1ControlQueue_ad11059100321b24a1af8ef7de8314353}{joint\-Ptp} (arma\-::vec joints)
+\begin{DoxyCompactList}\small\item\em Implements simple point to point movement in joint space (blocks until target reached) \end{DoxyCompactList}\item 
+K\-U\-K\-A\-D\-U\-\_\-\-S\-H\-A\-R\-E\-D\-\_\-\-P\-T\-R$<$ kukadu\-\_\-thread $>$ \hyperlink{classkukadu_1_1ControlQueue_aaf35ae626b08ac53508acdc84ab58c8f}{joint\-Ptp\-Nb} (arma\-::vec joints)
+\begin{DoxyCompactList}\small\item\em Implements simple point to point movement in joint space (not blocking) \end{DoxyCompactList}\item 
+virtual std\-::vector$<$ \hyperlink{structmes__result}{mes\-\_\-result} $>$ \hyperlink{classkukadu_1_1ControlQueue_a1bfa23a8ce6319f6ef0ed9208e896054}{cartesian\-Ptp} (geometry\-\_\-msgs\-::\-Pose pos)
+\begin{DoxyCompactList}\small\item\em Implements simple point to point movement in cartesian space. \end{DoxyCompactList}\item 
+virtual std\-::vector$<$ \hyperlink{structmes__result}{mes\-\_\-result} $>$ \hyperlink{classkukadu_1_1ControlQueue_a58518838c503e7eaa9c220bdf34ddd33}{cartesian\-Ptp} (geometry\-\_\-msgs\-::\-Pose pos, double max\-Force)
+\begin{DoxyCompactList}\small\item\em Implements simple point to point movement in cartesian space. \end{DoxyCompactList}\item 
+virtual K\-U\-K\-A\-D\-U\-\_\-\-S\-H\-A\-R\-E\-D\-\_\-\-P\-T\-R\\*
+$<$ kukadu\-\_\-thread $>$ \hyperlink{classkukadu_1_1ControlQueue_a1c0ad5ad4d3af98f26d0c633181df010}{cartesian\-Ptp\-Nb} (geometry\-\_\-msgs\-::\-Pose pos)
+\begin{DoxyCompactList}\small\item\em Implements simple point to point movement in cartesian space (does not block until the position is reached) \end{DoxyCompactList}\item 
+virtual void \hyperlink{classkukadu_1_1ControlQueue_a18e628686b8c86abfdbd097b60aa5768}{set\-Additional\-Load} (float load\-Mass, float load\-Pos)=0
+\begin{DoxyCompactList}\small\item\em Changes the expected load data of the robot (e.\-g. can be used whenever robot picks up an object). Some robots might require this information in order to avoid control problems. \end{DoxyCompactList}\item 
+virtual void \hyperlink{classkukadu_1_1ControlQueue_aee25e6410909af34d740edbece98d677}{set\-Stiffness} (float cpstiffnessxyz, float cpstiffnessabc, float cpdamping, float cpmaxdelta, float maxforce, float axismaxdeltatrq)=0
+\begin{DoxyCompactList}\small\item\em Sets certain stiffness parameters in cartesian space (if the robot supports this) according to a mass spring damper system model. \end{DoxyCompactList}\item 
+virtual \hyperlink{structmes__result}{mes\-\_\-result} \hyperlink{classkukadu_1_1ControlQueue_abddacca2f9bf2db7a42a80d347843cec}{get\-Current\-Cartesian\-Pos} ()
+\begin{DoxyCompactList}\small\item\em Returns the current robot position in cartesian space. \end{DoxyCompactList}\item 
+virtual geometry\-\_\-msgs\-::\-Pose \hyperlink{classkukadu_1_1ControlQueue_a9e79e1d0d9697bbf146d66a2d01fea9e}{get\-Current\-Cartesian\-Pose} ()=0
+\begin{DoxyCompactList}\small\item\em Returns current robot position in cartesian space. \end{DoxyCompactList}\item 
+virtual arma\-::vec \hyperlink{classkukadu_1_1ControlQueue_a53b2ecff4ae71b1e01d18793f63645ce}{get\-Starting\-Joints} ()
+\begin{DoxyCompactList}\small\item\em Returns the robot joints the robot has been directly before starting command mode. \end{DoxyCompactList}\item 
+virtual \hyperlink{structmes__result}{mes\-\_\-result} \hyperlink{classkukadu_1_1ControlQueue_a6ba7b6db5099073eadd7bc04792bc643}{get\-Current\-Joints} ()=0
+\begin{DoxyCompactList}\small\item\em Returns joints if the robot is in command mode. \end{DoxyCompactList}\item 
+virtual \hyperlink{structmes__result}{mes\-\_\-result} \hyperlink{classkukadu_1_1ControlQueue_a1468c1771ea7dfd1ee3b0a7279407241}{get\-Current\-Jnt\-Frc} ()=0
+\begin{DoxyCompactList}\small\item\em Returns the forces measured for the robot joints. \end{DoxyCompactList}\item 
+virtual \hyperlink{structmes__result}{mes\-\_\-result} \hyperlink{classkukadu_1_1ControlQueue_aa557f386f03cfb4986ed7cd9997212ab}{get\-Current\-Cartesian\-Frc\-Trq} ()=0
+\begin{DoxyCompactList}\small\item\em Returns the forces and torques measured at the robot end-\/effector. \end{DoxyCompactList}\item 
+virtual void \hyperlink{classkukadu_1_1ControlQueue_a5af587fff906cf978225a317e701d41f}{set\-Jnt\-Ptp\-Thresh} (double thresh)=0
+\begin{DoxyCompactList}\small\item\em Sets the maximum deviation in joint space that is tolerated for a point to point movement. \end{DoxyCompactList}\item 
+virtual bool \hyperlink{classkukadu_1_1ControlQueue_ac6e06776a9e03107aabc111ef5ce2b6d}{is\-Initialized} ()
+\begin{DoxyCompactList}\small\item\em Returns true if the command mode initialization is done. \end{DoxyCompactList}\item 
+virtual std\-::string \hyperlink{classkukadu_1_1ControlQueue_aff34133be55d32e07d0ce6aac26cf10d}{get\-Robot\-Name} ()=0
+\begin{DoxyCompactList}\small\item\em Returns the robot name. \end{DoxyCompactList}\item 
+virtual std\-::string \hyperlink{classkukadu_1_1ControlQueue_aab7dbf0d07b829b9612cfe7141c801a1}{get\-Robot\-File\-Name} ()=0
+\begin{DoxyCompactList}\small\item\em Returns the robot name with escaped special characaters (e.\-g. white spaces) \end{DoxyCompactList}\item 
+virtual std\-::vector$<$ std\-::string $>$ \hyperlink{classkukadu_1_1ControlQueue_a85702573cb64f7f3dd9c3d2eac95a6ea}{get\-Joint\-Names} ()=0
+\begin{DoxyCompactList}\small\item\em Returns the robot joint names. \end{DoxyCompactList}\item 
+virtual double \hyperlink{classkukadu_1_1ControlQueue_a550f23320f1b124b1cd587605317e37c}{get\-Absolute\-Cart\-Force} ()
+\begin{DoxyCompactList}\small\item\em Returns currently measured absolute force on the end-\/effector. \end{DoxyCompactList}\item 
+\hypertarget{classkukadu_1_1ControlQueue_a8e76e19772053274046193436b0cae1c}{virtual void \hyperlink{classkukadu_1_1ControlQueue_a8e76e19772053274046193436b0cae1c}{shut\-Up} ()}\label{classkukadu_1_1ControlQueue_a8e76e19772053274046193436b0cae1c}
+
+\begin{DoxyCompactList}\small\item\em Prevents the queue from printing debug information to the terminal. \end{DoxyCompactList}\item 
+\hypertarget{classkukadu_1_1ControlQueue_ac9042952868522099628074d22d61742}{virtual void \hyperlink{classkukadu_1_1ControlQueue_ac9042952868522099628074d22d61742}{start\-Talking} ()}\label{classkukadu_1_1ControlQueue_ac9042952868522099628074d22d61742}
+
+\begin{DoxyCompactList}\small\item\em Makes the queue printing debug information to the terminal. \end{DoxyCompactList}\item 
+virtual void \hyperlink{classkukadu_1_1ControlQueue_a650c486b9f78d3dec1db8741b575a0ab}{roll\-Back} (double time)
+\begin{DoxyCompactList}\small\item\em If the rollback mode is started by \hyperlink{classkukadu_1_1ControlQueue_acb6ba5c61e9c26dcaa8e4073946e3791}{start\-Roll\-Back\-Mode()} the robot can stop the current execution and move backwards the same trajectory it came. Therefore it can move back in time for a given time (in seconds) \end{DoxyCompactList}\item 
+\hypertarget{classkukadu_1_1ControlQueue_a38ba0b9fffb0fff6d39d742b1a2eb76b}{virtual void \hyperlink{classkukadu_1_1ControlQueue_a38ba0b9fffb0fff6d39d742b1a2eb76b}{stop\-Joint\-Roll\-Back\-Mode} ()}\label{classkukadu_1_1ControlQueue_a38ba0b9fffb0fff6d39d742b1a2eb76b}
+
+\begin{DoxyCompactList}\small\item\em Stops the rollback mode (see \hyperlink{classkukadu_1_1ControlQueue_acb6ba5c61e9c26dcaa8e4073946e3791}{start\-Roll\-Back\-Mode()}) \end{DoxyCompactList}\item 
+virtual void \hyperlink{classkukadu_1_1ControlQueue_acb6ba5c61e9c26dcaa8e4073946e3791}{start\-Roll\-Back\-Mode} (double possible\-Time\-Reach)
+\begin{DoxyCompactList}\small\item\em Starts the rollback mode. When the function \hyperlink{classkukadu_1_1ControlQueue_a650c486b9f78d3dec1db8741b575a0ab}{roll\-Back()} is called the robot can roll back the current trajectory for at most a the given time (in seconds). This mode is only available in joint space execution. \end{DoxyCompactList}\item 
+virtual double \hyperlink{classkukadu_1_1ControlQueue_a35a0fc7a7b46b1f77dc6c4c8e34e5e58}{get\-Current\-Time} ()
+\begin{DoxyCompactList}\small\item\em An intrinsic clock is started with \hyperlink{classkukadu_1_1ControlQueue_a35d6a6e4e7c8467691c11567fe21f340}{start\-Queue()}. This method returns the current time according to this clock. \end{DoxyCompactList}\item 
+bool \hyperlink{classkukadu_1_1ControlQueue_af8d1c646ba20dc854675b6af5fcb6701}{is\-Shut\-Up} ()
+\begin{DoxyCompactList}\small\item\em Indicates whether or not the queue is printing debug information to the terminal (see \hyperlink{classkukadu_1_1ControlQueue_a8e76e19772053274046193436b0cae1c}{shut\-Up()}). \end{DoxyCompactList}\item 
+virtual int \hyperlink{classkukadu_1_1ControlQueue_afce92074c674d8a1b0127190fd0603cf}{get\-Current\-Mode} ()=0
+\begin{DoxyCompactList}\small\item\em Returns the current robot control mode (see \hyperlink{classkukadu_1_1ControlQueue_a5defe63d9f1b9829676f9a31a4683911}{switch\-Mode()}) \end{DoxyCompactList}\end{DoxyCompactItemize}
+\subsection*{Static Public Attributes}
+\begin{DoxyCompactItemize}
+\item 
+\hypertarget{classkukadu_1_1ControlQueue_a1a207e4332a8b1ac5a8bf425d697570f}{static const int {\bfseries C\-O\-N\-T\-R\-O\-L\-Q\-U\-E\-U\-E\-\_\-\-S\-T\-O\-P\-\_\-\-M\-O\-D\-E} = 0}\label{classkukadu_1_1ControlQueue_a1a207e4332a8b1ac5a8bf425d697570f}
+
+\item 
+\hypertarget{classkukadu_1_1ControlQueue_a9c8511060b437868de842e7456f18018}{static const int {\bfseries C\-O\-N\-T\-R\-O\-L\-Q\-U\-E\-U\-E\-\_\-\-J\-N\-T\-\_\-\-P\-O\-S\-\_\-\-M\-O\-D\-E} = 10}\label{classkukadu_1_1ControlQueue_a9c8511060b437868de842e7456f18018}
+
+\item 
+\hypertarget{classkukadu_1_1ControlQueue_a664a52e365e9185a0aef587e331fe94f}{static const int {\bfseries C\-O\-N\-T\-R\-O\-L\-Q\-U\-E\-U\-E\-\_\-\-C\-A\-R\-T\-\_\-\-I\-M\-P\-\_\-\-M\-O\-D\-E} = 20}\label{classkukadu_1_1ControlQueue_a664a52e365e9185a0aef587e331fe94f}
+
+\item 
+\hypertarget{classkukadu_1_1ControlQueue_a8372490df9e7fbfa75afb9cfe1c0e6b4}{static const int {\bfseries C\-O\-N\-T\-R\-O\-L\-Q\-U\-E\-U\-E\-\_\-\-J\-N\-T\-\_\-\-I\-M\-P\-\_\-\-M\-O\-D\-E} = 30}\label{classkukadu_1_1ControlQueue_a8372490df9e7fbfa75afb9cfe1c0e6b4}
+
+\end{DoxyCompactItemize}
+\subsection*{Protected Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\hypertarget{classkukadu_1_1ControlQueue_ac38a2bac4927cf5d424e735af703f199}{virtual void \hyperlink{classkukadu_1_1ControlQueue_ac38a2bac4927cf5d424e735af703f199}{set\-Deg\-Of\-Freedom} (int deg\-Of\-Freedom)}\label{classkukadu_1_1ControlQueue_ac38a2bac4927cf5d424e735af703f199}
+
+\begin{DoxyCompactList}\small\item\em Can be used to set the number of degrees of freedom. \end{DoxyCompactList}\item 
+\hypertarget{classkukadu_1_1ControlQueue_a743fbc08007b777393a6f14d66ed2e8a}{virtual void \hyperlink{classkukadu_1_1ControlQueue_a743fbc08007b777393a6f14d66ed2e8a}{set\-Init\-Values} ()=0}\label{classkukadu_1_1ControlQueue_a743fbc08007b777393a6f14d66ed2e8a}
+
+\begin{DoxyCompactList}\small\item\em This method can be used to initialize custom parts of the \hyperlink{classkukadu_1_1ControlQueue}{Control\-Queue} implementation before the queue is started by \hyperlink{classkukadu_1_1ControlQueue_a35d6a6e4e7c8467691c11567fe21f340}{start\-Queue()}. \end{DoxyCompactList}\item 
+\hypertarget{classkukadu_1_1ControlQueue_a89a7b21307ccd0759a9e8b8e483cb919}{virtual void \hyperlink{classkukadu_1_1ControlQueue_a89a7b21307ccd0759a9e8b8e483cb919}{joint\-Ptp\-Internal} (arma\-::vec joints)=0}\label{classkukadu_1_1ControlQueue_a89a7b21307ccd0759a9e8b8e483cb919}
+
+\begin{DoxyCompactList}\small\item\em The control queue collects the data about the actually executed trajectory during a point to point movement. This is automatically done by \hyperlink{classkukadu_1_1ControlQueue_ad11059100321b24a1af8ef7de8314353}{joint\-Ptp()}. \hyperlink{classkukadu_1_1ControlQueue_ad11059100321b24a1af8ef7de8314353}{joint\-Ptp()} calls the \hyperlink{classkukadu_1_1ControlQueue_a89a7b21307ccd0759a9e8b8e483cb919}{joint\-Ptp\-Internal()} function that actually plans the movement in joint space and executes it. \end{DoxyCompactList}\item 
+\hypertarget{classkukadu_1_1ControlQueue_a12166afa17d758aa6b43362fc999e146}{virtual void \hyperlink{classkukadu_1_1ControlQueue_a12166afa17d758aa6b43362fc999e146}{submit\-Next\-Joint\-Move} (arma\-::vec joints)=0}\label{classkukadu_1_1ControlQueue_a12166afa17d758aa6b43362fc999e146}
+
+\begin{DoxyCompactList}\small\item\em This method is called by the run() method once per clock cycle and actually submits the command about the next desired joint pose to the robot. \end{DoxyCompactList}\item 
+\hypertarget{classkukadu_1_1ControlQueue_a910db788a6da11006d358a84197bff23}{virtual void \hyperlink{classkukadu_1_1ControlQueue_a910db788a6da11006d358a84197bff23}{submit\-Next\-Cart\-Move} (geometry\-\_\-msgs\-::\-Pose pose)=0}\label{classkukadu_1_1ControlQueue_a910db788a6da11006d358a84197bff23}
+
+\begin{DoxyCompactList}\small\item\em This method is called by the run() method once per clock cycle and actually submits the command about the next desired Cartesian pose to the robot. \end{DoxyCompactList}\item 
+\hypertarget{classkukadu_1_1ControlQueue_a76e7bf30b8e694c0db9bec92e06529a0}{virtual void \hyperlink{classkukadu_1_1ControlQueue_a76e7bf30b8e694c0db9bec92e06529a0}{set\-Current\-Control\-Type\-Internal} (int control\-Type)=0}\label{classkukadu_1_1ControlQueue_a76e7bf30b8e694c0db9bec92e06529a0}
+
+\begin{DoxyCompactList}\small\item\em This method is called by \hyperlink{classkukadu_1_1ControlQueue_a5defe63d9f1b9829676f9a31a4683911}{switch\-Mode()} and actually sends the control mode command to the robot. \end{DoxyCompactList}\item 
+\hypertarget{classkukadu_1_1ControlQueue_a13059c37abe4846a356e0cfcf10958b9}{virtual void \hyperlink{classkukadu_1_1ControlQueue_a13059c37abe4846a356e0cfcf10958b9}{cart\-Ptp\-Internal} (geometry\-\_\-msgs\-::\-Pose pose, double max\-Force)=0}\label{classkukadu_1_1ControlQueue_a13059c37abe4846a356e0cfcf10958b9}
+
+\begin{DoxyCompactList}\small\item\em The control queue collects the data about the actually executed trajectory during a point to point movement. This is automatically done by \hyperlink{classkukadu_1_1ControlQueue_a1bfa23a8ce6319f6ef0ed9208e896054}{cartesian\-Ptp()}. \hyperlink{classkukadu_1_1ControlQueue_a1bfa23a8ce6319f6ef0ed9208e896054}{cartesian\-Ptp()} calls the \hyperlink{classkukadu_1_1ControlQueue_a13059c37abe4846a356e0cfcf10958b9}{cart\-Ptp\-Internal()} function that actually plans the movement in Cartesian space and executes it. \end{DoxyCompactList}\item 
+\hypertarget{classkukadu_1_1ControlQueue_a87d7c2d918d0ca720eeae609959d4d78}{virtual void \hyperlink{classkukadu_1_1ControlQueue_a87d7c2d918d0ca720eeae609959d4d78}{start\-Queue\-Hook} ()=0}\label{classkukadu_1_1ControlQueue_a87d7c2d918d0ca720eeae609959d4d78}
+
+\begin{DoxyCompactList}\small\item\em This method can be used to add some additional initialization behavior when the queue is started. If no additional initialization is required, the method can be left empty. \end{DoxyCompactList}\item 
+virtual bool \hyperlink{classkukadu_1_1ControlQueue_a6ebb66d1bd2188e1fca3ee1440b8c0fe}{stop\-Queue\-While\-Ptp} ()=0
+\begin{DoxyCompactList}\small\item\em This method determines, if the queue execetion should be stopped while ptp commands are executed (this is typically the case when ptp is done outside of the control queue implementation). If two different controls interfere it can result in dangerous behaviour. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\subsection*{Protected Attributes}
+\begin{DoxyCompactItemize}
+\item 
+\hypertarget{classkukadu_1_1ControlQueue_aadba228efd6e34095ce7d52bc94a4d29}{int {\bfseries current\-Control\-Type}}\label{classkukadu_1_1ControlQueue_aadba228efd6e34095ce7d52bc94a4d29}
+
+\end{DoxyCompactItemize}
+
+
+\subsection{Detailed Description}
+Interface between the kukadu software stack and the robot hardware. If kukadu shall support another robot, the abstract methods need to be implemented according to the documentation. Then the kukadu software stack is available for usage with the robot. 
+
+The \hyperlink{classkukadu_1_1ControlQueue}{Control\-Queue} interface is the bridge between all implemented control methods (D\-M\-Ps, ...) and the robot hardware. It supports functionlity such as trajectory following, simple point to point planning or security mechanisms such as maximum force values for execution. 
+
+\subsection{Constructor \& Destructor Documentation}
+\hypertarget{classkukadu_1_1ControlQueue_a946b967c77d0b6d663239fa60ff602f9}{\index{kukadu\-::\-Control\-Queue@{kukadu\-::\-Control\-Queue}!Control\-Queue@{Control\-Queue}}
+\index{Control\-Queue@{Control\-Queue}!kukadu::ControlQueue@{kukadu\-::\-Control\-Queue}}
+\subsubsection[{Control\-Queue}]{\setlength{\rightskip}{0pt plus 5cm}kukadu\-::\-Control\-Queue\-::\-Control\-Queue (
+\begin{DoxyParamCaption}
+\item[{int}]{deg\-Of\-Freedom, }
+\item[{double}]{desired\-Cycle\-Time}
+\end{DoxyParamCaption}
+)}}\label{classkukadu_1_1ControlQueue_a946b967c77d0b6d663239fa60ff602f9}
+
+
+Constructor taking the robot dependent degrees of freedom. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em deg\-Of\-Freedom} & number of robots degrees of freedom \\
+\hline
+\end{DoxyParams}
+
+
+\subsection{Member Function Documentation}
+\hypertarget{classkukadu_1_1ControlQueue_a1bfa23a8ce6319f6ef0ed9208e896054}{\index{kukadu\-::\-Control\-Queue@{kukadu\-::\-Control\-Queue}!cartesian\-Ptp@{cartesian\-Ptp}}
+\index{cartesian\-Ptp@{cartesian\-Ptp}!kukadu::ControlQueue@{kukadu\-::\-Control\-Queue}}
+\subsubsection[{cartesian\-Ptp}]{\setlength{\rightskip}{0pt plus 5cm}std\-::vector$<$ {\bf mes\-\_\-result} $>$ kukadu\-::\-Control\-Queue\-::cartesian\-Ptp (
+\begin{DoxyParamCaption}
+\item[{geometry\-\_\-msgs\-::\-Pose}]{pos}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [virtual]}}}\label{classkukadu_1_1ControlQueue_a1bfa23a8ce6319f6ef0ed9208e896054}
+
+
+Implements simple point to point movement in cartesian space. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em pose} & of end-\/effector \\
+\hline
+\end{DoxyParams}
+\hypertarget{classkukadu_1_1ControlQueue_a58518838c503e7eaa9c220bdf34ddd33}{\index{kukadu\-::\-Control\-Queue@{kukadu\-::\-Control\-Queue}!cartesian\-Ptp@{cartesian\-Ptp}}
+\index{cartesian\-Ptp@{cartesian\-Ptp}!kukadu::ControlQueue@{kukadu\-::\-Control\-Queue}}
+\subsubsection[{cartesian\-Ptp}]{\setlength{\rightskip}{0pt plus 5cm}std\-::vector$<$ {\bf mes\-\_\-result} $>$ kukadu\-::\-Control\-Queue\-::cartesian\-Ptp (
+\begin{DoxyParamCaption}
+\item[{geometry\-\_\-msgs\-::\-Pose}]{pos, }
+\item[{double}]{max\-Force}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [virtual]}}}\label{classkukadu_1_1ControlQueue_a58518838c503e7eaa9c220bdf34ddd33}
+
+
+Implements simple point to point movement in cartesian space. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em pose} & of end-\/effector \\
+\hline
+{\em max\-Force} & the point to point movement is stopped if the observed force exceeds this value (in Newton) \\
+\hline
+\end{DoxyParams}
+\hypertarget{classkukadu_1_1ControlQueue_a1c0ad5ad4d3af98f26d0c633181df010}{\index{kukadu\-::\-Control\-Queue@{kukadu\-::\-Control\-Queue}!cartesian\-Ptp\-Nb@{cartesian\-Ptp\-Nb}}
+\index{cartesian\-Ptp\-Nb@{cartesian\-Ptp\-Nb}!kukadu::ControlQueue@{kukadu\-::\-Control\-Queue}}
+\subsubsection[{cartesian\-Ptp\-Nb}]{\setlength{\rightskip}{0pt plus 5cm}K\-U\-K\-A\-D\-U\-\_\-\-S\-H\-A\-R\-E\-D\-\_\-\-P\-T\-R$<$ kukadu\-\_\-thread $>$ kukadu\-::\-Control\-Queue\-::cartesian\-Ptp\-Nb (
+\begin{DoxyParamCaption}
+\item[{geometry\-\_\-msgs\-::\-Pose}]{pos}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [virtual]}}}\label{classkukadu_1_1ControlQueue_a1c0ad5ad4d3af98f26d0c633181df010}
+
+
+Implements simple point to point movement in cartesian space (does not block until the position is reached) 
+
+
+\begin{DoxyParams}{Parameters}
+{\em pose} & of end-\/effector \\
+\hline
+\end{DoxyParams}
+\hypertarget{classkukadu_1_1ControlQueue_a550f23320f1b124b1cd587605317e37c}{\index{kukadu\-::\-Control\-Queue@{kukadu\-::\-Control\-Queue}!get\-Absolute\-Cart\-Force@{get\-Absolute\-Cart\-Force}}
+\index{get\-Absolute\-Cart\-Force@{get\-Absolute\-Cart\-Force}!kukadu::ControlQueue@{kukadu\-::\-Control\-Queue}}
+\subsubsection[{get\-Absolute\-Cart\-Force}]{\setlength{\rightskip}{0pt plus 5cm}double kukadu\-::\-Control\-Queue\-::get\-Absolute\-Cart\-Force (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [virtual]}}}\label{classkukadu_1_1ControlQueue_a550f23320f1b124b1cd587605317e37c}
+
+
+Returns currently measured absolute force on the end-\/effector. 
+
+\begin{DoxyReturn}{Returns}
+absolute end-\/effector force 
+\end{DoxyReturn}
+\hypertarget{classkukadu_1_1ControlQueue_aa557f386f03cfb4986ed7cd9997212ab}{\index{kukadu\-::\-Control\-Queue@{kukadu\-::\-Control\-Queue}!get\-Current\-Cartesian\-Frc\-Trq@{get\-Current\-Cartesian\-Frc\-Trq}}
+\index{get\-Current\-Cartesian\-Frc\-Trq@{get\-Current\-Cartesian\-Frc\-Trq}!kukadu::ControlQueue@{kukadu\-::\-Control\-Queue}}
+\subsubsection[{get\-Current\-Cartesian\-Frc\-Trq}]{\setlength{\rightskip}{0pt plus 5cm}virtual {\bf mes\-\_\-result} kukadu\-::\-Control\-Queue\-::get\-Current\-Cartesian\-Frc\-Trq (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [pure virtual]}}}\label{classkukadu_1_1ControlQueue_aa557f386f03cfb4986ed7cd9997212ab}
+
+
+Returns the forces and torques measured at the robot end-\/effector. 
+
+\begin{DoxyReturn}{Returns}
+The current forces and torques (in Newton and Newton / meter) 
+\end{DoxyReturn}
+
+
+Implemented in \hyperlink{classkukadu_1_1KukieControlQueue_af9999c0af6059520452f0d42a8db4527}{kukadu\-::\-Kukie\-Control\-Queue}, and \hyperlink{classkukadu_1_1PlottingControlQueue_a86ac37d03a159b54981d40d25486ca26}{kukadu\-::\-Plotting\-Control\-Queue}.
+
+\hypertarget{classkukadu_1_1ControlQueue_abddacca2f9bf2db7a42a80d347843cec}{\index{kukadu\-::\-Control\-Queue@{kukadu\-::\-Control\-Queue}!get\-Current\-Cartesian\-Pos@{get\-Current\-Cartesian\-Pos}}
+\index{get\-Current\-Cartesian\-Pos@{get\-Current\-Cartesian\-Pos}!kukadu::ControlQueue@{kukadu\-::\-Control\-Queue}}
+\subsubsection[{get\-Current\-Cartesian\-Pos}]{\setlength{\rightskip}{0pt plus 5cm}{\bf mes\-\_\-result} kukadu\-::\-Control\-Queue\-::get\-Current\-Cartesian\-Pos (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [virtual]}}}\label{classkukadu_1_1ControlQueue_abddacca2f9bf2db7a42a80d347843cec}
+
+
+Returns the current robot position in cartesian space. 
+
+\begin{DoxyReturn}{Returns}
+current pose of the robot in Cartesian space 
+\end{DoxyReturn}
+
+
+Reimplemented in \hyperlink{classkukadu_1_1PlottingControlQueue_a876ce6f03b1ab92384e282a55fd83cf0}{kukadu\-::\-Plotting\-Control\-Queue}.
+
+\hypertarget{classkukadu_1_1ControlQueue_a9e79e1d0d9697bbf146d66a2d01fea9e}{\index{kukadu\-::\-Control\-Queue@{kukadu\-::\-Control\-Queue}!get\-Current\-Cartesian\-Pose@{get\-Current\-Cartesian\-Pose}}
+\index{get\-Current\-Cartesian\-Pose@{get\-Current\-Cartesian\-Pose}!kukadu::ControlQueue@{kukadu\-::\-Control\-Queue}}
+\subsubsection[{get\-Current\-Cartesian\-Pose}]{\setlength{\rightskip}{0pt plus 5cm}virtual geometry\-\_\-msgs\-::\-Pose kukadu\-::\-Control\-Queue\-::get\-Current\-Cartesian\-Pose (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [pure virtual]}}}\label{classkukadu_1_1ControlQueue_a9e79e1d0d9697bbf146d66a2d01fea9e}
+
+
+Returns current robot position in cartesian space. 
+
+\begin{DoxyReturn}{Returns}
+current pose of the robot in Cartesian space 
+\end{DoxyReturn}
+
+
+Implemented in \hyperlink{classkukadu_1_1KukieControlQueue_ab13290e3512b3a1ab10660b0f60e6961}{kukadu\-::\-Kukie\-Control\-Queue}, and \hyperlink{classkukadu_1_1PlottingControlQueue_ac7f7c811fab06667e75a4da5c8364cc8}{kukadu\-::\-Plotting\-Control\-Queue}.
+
+\hypertarget{classkukadu_1_1ControlQueue_a1468c1771ea7dfd1ee3b0a7279407241}{\index{kukadu\-::\-Control\-Queue@{kukadu\-::\-Control\-Queue}!get\-Current\-Jnt\-Frc@{get\-Current\-Jnt\-Frc}}
+\index{get\-Current\-Jnt\-Frc@{get\-Current\-Jnt\-Frc}!kukadu::ControlQueue@{kukadu\-::\-Control\-Queue}}
+\subsubsection[{get\-Current\-Jnt\-Frc}]{\setlength{\rightskip}{0pt plus 5cm}virtual {\bf mes\-\_\-result} kukadu\-::\-Control\-Queue\-::get\-Current\-Jnt\-Frc (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [pure virtual]}}}\label{classkukadu_1_1ControlQueue_a1468c1771ea7dfd1ee3b0a7279407241}
+
+
+Returns the forces measured for the robot joints. 
+
+\begin{DoxyReturn}{Returns}
+The current forces measured at the robot joints (in Newton) 
+\end{DoxyReturn}
+
+
+Implemented in \hyperlink{classkukadu_1_1KukieControlQueue_a947d5f2d42060bdd6d7271d80ac40e7a}{kukadu\-::\-Kukie\-Control\-Queue}, and \hyperlink{classkukadu_1_1PlottingControlQueue_a6934e9ae7b6824b0fc01308dccdfd0e8}{kukadu\-::\-Plotting\-Control\-Queue}.
+
+\hypertarget{classkukadu_1_1ControlQueue_a6ba7b6db5099073eadd7bc04792bc643}{\index{kukadu\-::\-Control\-Queue@{kukadu\-::\-Control\-Queue}!get\-Current\-Joints@{get\-Current\-Joints}}
+\index{get\-Current\-Joints@{get\-Current\-Joints}!kukadu::ControlQueue@{kukadu\-::\-Control\-Queue}}
+\subsubsection[{get\-Current\-Joints}]{\setlength{\rightskip}{0pt plus 5cm}virtual {\bf mes\-\_\-result} kukadu\-::\-Control\-Queue\-::get\-Current\-Joints (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [pure virtual]}}}\label{classkukadu_1_1ControlQueue_a6ba7b6db5099073eadd7bc04792bc643}
+
+
+Returns joints if the robot is in command mode. 
+
+\begin{DoxyReturn}{Returns}
+The current joint pose of the robot 
+\end{DoxyReturn}
+
+
+Implemented in \hyperlink{classkukadu_1_1KukieControlQueue_aecf704318e729f49999d3be51262f068}{kukadu\-::\-Kukie\-Control\-Queue}, and \hyperlink{classkukadu_1_1PlottingControlQueue_ab0cb15c4ab4759bb313ea935149870cf}{kukadu\-::\-Plotting\-Control\-Queue}.
+
+\hypertarget{classkukadu_1_1ControlQueue_afce92074c674d8a1b0127190fd0603cf}{\index{kukadu\-::\-Control\-Queue@{kukadu\-::\-Control\-Queue}!get\-Current\-Mode@{get\-Current\-Mode}}
+\index{get\-Current\-Mode@{get\-Current\-Mode}!kukadu::ControlQueue@{kukadu\-::\-Control\-Queue}}
+\subsubsection[{get\-Current\-Mode}]{\setlength{\rightskip}{0pt plus 5cm}virtual int kukadu\-::\-Control\-Queue\-::get\-Current\-Mode (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [pure virtual]}}}\label{classkukadu_1_1ControlQueue_afce92074c674d8a1b0127190fd0603cf}
+
+
+Returns the current robot control mode (see \hyperlink{classkukadu_1_1ControlQueue_a5defe63d9f1b9829676f9a31a4683911}{switch\-Mode()}) 
+
+\begin{DoxyReturn}{Returns}
+Current robot control mode 
+\end{DoxyReturn}
+
+
+Implemented in \hyperlink{classkukadu_1_1KukieControlQueue_aecd7cca5bf0b7dd990d061acdee56ce3}{kukadu\-::\-Kukie\-Control\-Queue}, and \hyperlink{classkukadu_1_1PlottingControlQueue_a1cac1433bdc6072e4de8be13b113a6c4}{kukadu\-::\-Plotting\-Control\-Queue}.
+
+\hypertarget{classkukadu_1_1ControlQueue_a35a0fc7a7b46b1f77dc6c4c8e34e5e58}{\index{kukadu\-::\-Control\-Queue@{kukadu\-::\-Control\-Queue}!get\-Current\-Time@{get\-Current\-Time}}
+\index{get\-Current\-Time@{get\-Current\-Time}!kukadu::ControlQueue@{kukadu\-::\-Control\-Queue}}
+\subsubsection[{get\-Current\-Time}]{\setlength{\rightskip}{0pt plus 5cm}double kukadu\-::\-Control\-Queue\-::get\-Current\-Time (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [virtual]}}}\label{classkukadu_1_1ControlQueue_a35a0fc7a7b46b1f77dc6c4c8e34e5e58}
+
+
+An intrinsic clock is started with \hyperlink{classkukadu_1_1ControlQueue_a35d6a6e4e7c8467691c11567fe21f340}{start\-Queue()}. This method returns the current time according to this clock. 
+
+\begin{DoxyReturn}{Returns}
+current time 
+\end{DoxyReturn}
+
+
+Reimplemented in \hyperlink{classkukadu_1_1PlottingControlQueue_a8ec0f4f18120273577e913a8d96cc125}{kukadu\-::\-Plotting\-Control\-Queue}.
+
+\hypertarget{classkukadu_1_1ControlQueue_a82349f67c4ea6f2dc2689e765717d8e2}{\index{kukadu\-::\-Control\-Queue@{kukadu\-::\-Control\-Queue}!get\-Cycle\-Time@{get\-Cycle\-Time}}
+\index{get\-Cycle\-Time@{get\-Cycle\-Time}!kukadu::ControlQueue@{kukadu\-::\-Control\-Queue}}
+\subsubsection[{get\-Cycle\-Time}]{\setlength{\rightskip}{0pt plus 5cm}double kukadu\-::\-Control\-Queue\-::get\-Cycle\-Time (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [virtual]}}}\label{classkukadu_1_1ControlQueue_a82349f67c4ea6f2dc2689e765717d8e2}
+
+
+Returns the time between two cycles. 
+
+\begin{DoxyReturn}{Returns}
+cycle time 
+\end{DoxyReturn}
+\hypertarget{classkukadu_1_1ControlQueue_a85702573cb64f7f3dd9c3d2eac95a6ea}{\index{kukadu\-::\-Control\-Queue@{kukadu\-::\-Control\-Queue}!get\-Joint\-Names@{get\-Joint\-Names}}
+\index{get\-Joint\-Names@{get\-Joint\-Names}!kukadu::ControlQueue@{kukadu\-::\-Control\-Queue}}
+\subsubsection[{get\-Joint\-Names}]{\setlength{\rightskip}{0pt plus 5cm}virtual std\-::vector$<$std\-::string$>$ kukadu\-::\-Control\-Queue\-::get\-Joint\-Names (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [pure virtual]}}}\label{classkukadu_1_1ControlQueue_a85702573cb64f7f3dd9c3d2eac95a6ea}
+
+
+Returns the robot joint names. 
+
+\begin{DoxyReturn}{Returns}
+robot joint names 
+\end{DoxyReturn}
+
+
+Implemented in \hyperlink{classkukadu_1_1KukieControlQueue_af3c7ff340cd44a44233c209eeed9d929}{kukadu\-::\-Kukie\-Control\-Queue}, and \hyperlink{classkukadu_1_1PlottingControlQueue_aaf706cd0d7c11787dff3e95a422f38c5}{kukadu\-::\-Plotting\-Control\-Queue}.
+
+\hypertarget{classkukadu_1_1ControlQueue_aaa583d0b0c04c7f0acc869cca0e8ef41}{\index{kukadu\-::\-Control\-Queue@{kukadu\-::\-Control\-Queue}!get\-Movement\-Degrees\-Of\-Freedom@{get\-Movement\-Degrees\-Of\-Freedom}}
+\index{get\-Movement\-Degrees\-Of\-Freedom@{get\-Movement\-Degrees\-Of\-Freedom}!kukadu::ControlQueue@{kukadu\-::\-Control\-Queue}}
+\subsubsection[{get\-Movement\-Degrees\-Of\-Freedom}]{\setlength{\rightskip}{0pt plus 5cm}int kukadu\-::\-Control\-Queue\-::get\-Movement\-Degrees\-Of\-Freedom (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+)}}\label{classkukadu_1_1ControlQueue_aaa583d0b0c04c7f0acc869cca0e8ef41}
+
+
+Returns number of the robots degrees of freedom. 
+
+\begin{DoxyReturn}{Returns}
+number of degrees of freedom 
+\end{DoxyReturn}
+\hypertarget{classkukadu_1_1ControlQueue_aa02fcb2c8cd2c1c8ca553ae636000beb}{\index{kukadu\-::\-Control\-Queue@{kukadu\-::\-Control\-Queue}!get\-Queue\-Running@{get\-Queue\-Running}}
+\index{get\-Queue\-Running@{get\-Queue\-Running}!kukadu::ControlQueue@{kukadu\-::\-Control\-Queue}}
+\subsubsection[{get\-Queue\-Running}]{\setlength{\rightskip}{0pt plus 5cm}bool kukadu\-::\-Control\-Queue\-::get\-Queue\-Running (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [virtual]}}}\label{classkukadu_1_1ControlQueue_aa02fcb2c8cd2c1c8ca553ae636000beb}
+
+
+Returns whether or not the queue is currently running. 
+
+\begin{DoxyReturn}{Returns}
+true if the queue is started, false otherwise 
+\end{DoxyReturn}
+\hypertarget{classkukadu_1_1ControlQueue_aab7dbf0d07b829b9612cfe7141c801a1}{\index{kukadu\-::\-Control\-Queue@{kukadu\-::\-Control\-Queue}!get\-Robot\-File\-Name@{get\-Robot\-File\-Name}}
+\index{get\-Robot\-File\-Name@{get\-Robot\-File\-Name}!kukadu::ControlQueue@{kukadu\-::\-Control\-Queue}}
+\subsubsection[{get\-Robot\-File\-Name}]{\setlength{\rightskip}{0pt plus 5cm}virtual std\-::string kukadu\-::\-Control\-Queue\-::get\-Robot\-File\-Name (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [pure virtual]}}}\label{classkukadu_1_1ControlQueue_aab7dbf0d07b829b9612cfe7141c801a1}
+
+
+Returns the robot name with escaped special characaters (e.\-g. white spaces) 
+
+\begin{DoxyReturn}{Returns}
+robot name 
+\end{DoxyReturn}
+
+
+Implemented in \hyperlink{classkukadu_1_1KukieControlQueue_a390da7a21b5c9f42ceff914155499b76}{kukadu\-::\-Kukie\-Control\-Queue}, and \hyperlink{classkukadu_1_1PlottingControlQueue_a1369090faea626819b1c43acf3ce08d1}{kukadu\-::\-Plotting\-Control\-Queue}.
+
+\hypertarget{classkukadu_1_1ControlQueue_aff34133be55d32e07d0ce6aac26cf10d}{\index{kukadu\-::\-Control\-Queue@{kukadu\-::\-Control\-Queue}!get\-Robot\-Name@{get\-Robot\-Name}}
+\index{get\-Robot\-Name@{get\-Robot\-Name}!kukadu::ControlQueue@{kukadu\-::\-Control\-Queue}}
+\subsubsection[{get\-Robot\-Name}]{\setlength{\rightskip}{0pt plus 5cm}virtual std\-::string kukadu\-::\-Control\-Queue\-::get\-Robot\-Name (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [pure virtual]}}}\label{classkukadu_1_1ControlQueue_aff34133be55d32e07d0ce6aac26cf10d}
+
+
+Returns the robot name. 
+
+\begin{DoxyReturn}{Returns}
+robot name 
+\end{DoxyReturn}
+
+
+Implemented in \hyperlink{classkukadu_1_1KukieControlQueue_aa1edc1807aad2cf5f991c0a70fb2bc40}{kukadu\-::\-Kukie\-Control\-Queue}, and \hyperlink{classkukadu_1_1PlottingControlQueue_a730d43f700bf8b4cf55ba4cf63cb1fec}{kukadu\-::\-Plotting\-Control\-Queue}.
+
+\hypertarget{classkukadu_1_1ControlQueue_a53b2ecff4ae71b1e01d18793f63645ce}{\index{kukadu\-::\-Control\-Queue@{kukadu\-::\-Control\-Queue}!get\-Starting\-Joints@{get\-Starting\-Joints}}
+\index{get\-Starting\-Joints@{get\-Starting\-Joints}!kukadu::ControlQueue@{kukadu\-::\-Control\-Queue}}
+\subsubsection[{get\-Starting\-Joints}]{\setlength{\rightskip}{0pt plus 5cm}arma\-::vec kukadu\-::\-Control\-Queue\-::get\-Starting\-Joints (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [virtual]}}}\label{classkukadu_1_1ControlQueue_a53b2ecff4ae71b1e01d18793f63645ce}
+
+
+Returns the robot joints the robot has been directly before starting command mode. 
+
+\begin{DoxyReturn}{Returns}
+The starting joints set int \hyperlink{classkukadu_1_1ControlQueue_a225130ca0fa4a22e98cc0e5679917841}{set\-Starting\-Joints()} 
+\end{DoxyReturn}
+
+
+Reimplemented in \hyperlink{classkukadu_1_1PlottingControlQueue_aa45636924606a9f4cf09ff2b65108bad}{kukadu\-::\-Plotting\-Control\-Queue}.
+
+\hypertarget{classkukadu_1_1ControlQueue_ac6e06776a9e03107aabc111ef5ce2b6d}{\index{kukadu\-::\-Control\-Queue@{kukadu\-::\-Control\-Queue}!is\-Initialized@{is\-Initialized}}
+\index{is\-Initialized@{is\-Initialized}!kukadu::ControlQueue@{kukadu\-::\-Control\-Queue}}
+\subsubsection[{is\-Initialized}]{\setlength{\rightskip}{0pt plus 5cm}bool kukadu\-::\-Control\-Queue\-::is\-Initialized (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [virtual]}}}\label{classkukadu_1_1ControlQueue_ac6e06776a9e03107aabc111ef5ce2b6d}
+
+
+Returns true if the command mode initialization is done. 
+
+\begin{DoxyReturn}{Returns}
+Initialization status 
+\end{DoxyReturn}
+\hypertarget{classkukadu_1_1ControlQueue_af8d1c646ba20dc854675b6af5fcb6701}{\index{kukadu\-::\-Control\-Queue@{kukadu\-::\-Control\-Queue}!is\-Shut\-Up@{is\-Shut\-Up}}
+\index{is\-Shut\-Up@{is\-Shut\-Up}!kukadu::ControlQueue@{kukadu\-::\-Control\-Queue}}
+\subsubsection[{is\-Shut\-Up}]{\setlength{\rightskip}{0pt plus 5cm}bool kukadu\-::\-Control\-Queue\-::is\-Shut\-Up (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+)}}\label{classkukadu_1_1ControlQueue_af8d1c646ba20dc854675b6af5fcb6701}
+
+
+Indicates whether or not the queue is printing debug information to the terminal (see \hyperlink{classkukadu_1_1ControlQueue_a8e76e19772053274046193436b0cae1c}{shut\-Up()}). 
+
+\begin{DoxyReturn}{Returns}
+false if the queue is printing debug information to the terminal, true otherwise 
+\end{DoxyReturn}
+\hypertarget{classkukadu_1_1ControlQueue_ad11059100321b24a1af8ef7de8314353}{\index{kukadu\-::\-Control\-Queue@{kukadu\-::\-Control\-Queue}!joint\-Ptp@{joint\-Ptp}}
+\index{joint\-Ptp@{joint\-Ptp}!kukadu::ControlQueue@{kukadu\-::\-Control\-Queue}}
+\subsubsection[{joint\-Ptp}]{\setlength{\rightskip}{0pt plus 5cm}std\-::vector$<$ {\bf mes\-\_\-result} $>$ kukadu\-::\-Control\-Queue\-::joint\-Ptp (
+\begin{DoxyParamCaption}
+\item[{arma\-::vec}]{joints}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [virtual]}}}\label{classkukadu_1_1ControlQueue_ad11059100321b24a1af8ef7de8314353}
+
+
+Implements simple point to point movement in joint space (blocks until target reached) 
+
+
+\begin{DoxyParams}{Parameters}
+{\em joints} & array of joint positions \\
+\hline
+\end{DoxyParams}
+\hypertarget{classkukadu_1_1ControlQueue_aaf35ae626b08ac53508acdc84ab58c8f}{\index{kukadu\-::\-Control\-Queue@{kukadu\-::\-Control\-Queue}!joint\-Ptp\-Nb@{joint\-Ptp\-Nb}}
+\index{joint\-Ptp\-Nb@{joint\-Ptp\-Nb}!kukadu::ControlQueue@{kukadu\-::\-Control\-Queue}}
+\subsubsection[{joint\-Ptp\-Nb}]{\setlength{\rightskip}{0pt plus 5cm}K\-U\-K\-A\-D\-U\-\_\-\-S\-H\-A\-R\-E\-D\-\_\-\-P\-T\-R$<$ kukadu\-\_\-thread $>$ kukadu\-::\-Control\-Queue\-::joint\-Ptp\-Nb (
+\begin{DoxyParamCaption}
+\item[{arma\-::vec}]{joints}
+\end{DoxyParamCaption}
+)}}\label{classkukadu_1_1ControlQueue_aaf35ae626b08ac53508acdc84ab58c8f}
+
+
+Implements simple point to point movement in joint space (not blocking) 
+
+
+\begin{DoxyParams}{Parameters}
+{\em joints} & array of joint positions \\
+\hline
+\end{DoxyParams}
+\hypertarget{classkukadu_1_1ControlQueue_aca70a978b2950d7c9ab99d55c5977eec}{\index{kukadu\-::\-Control\-Queue@{kukadu\-::\-Control\-Queue}!move@{move}}
+\index{move@{move}!kukadu::ControlQueue@{kukadu\-::\-Control\-Queue}}
+\subsubsection[{move}]{\setlength{\rightskip}{0pt plus 5cm}void kukadu\-::\-Control\-Queue\-::move (
+\begin{DoxyParamCaption}
+\item[{arma\-::vec}]{joints}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [virtual]}}}\label{classkukadu_1_1ControlQueue_aca70a978b2950d7c9ab99d55c5977eec}
+
+
+Adds next joint position to the end of the queue (can be used for trajectory following) 
+
+
+\begin{DoxyParams}{Parameters}
+{\em joints} & joints to add \\
+\hline
+\end{DoxyParams}
+\hypertarget{classkukadu_1_1ControlQueue_a62b3e0c02b1937b09ae538a71ee0e855}{\index{kukadu\-::\-Control\-Queue@{kukadu\-::\-Control\-Queue}!move@{move}}
+\index{move@{move}!kukadu::ControlQueue@{kukadu\-::\-Control\-Queue}}
+\subsubsection[{move}]{\setlength{\rightskip}{0pt plus 5cm}void kukadu\-::\-Control\-Queue\-::move (
+\begin{DoxyParamCaption}
+\item[{geometry\-\_\-msgs\-::\-Pose}]{pose}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [virtual]}}}\label{classkukadu_1_1ControlQueue_a62b3e0c02b1937b09ae538a71ee0e855}
+
+
+Adds next cartesian position to the end of the queue (can be used for trajectory following) 
+
+
+\begin{DoxyParams}{Parameters}
+{\em pose} & end-\/effector pose to add \\
+\hline
+\end{DoxyParams}
+\hypertarget{classkukadu_1_1ControlQueue_a650c486b9f78d3dec1db8741b575a0ab}{\index{kukadu\-::\-Control\-Queue@{kukadu\-::\-Control\-Queue}!roll\-Back@{roll\-Back}}
+\index{roll\-Back@{roll\-Back}!kukadu::ControlQueue@{kukadu\-::\-Control\-Queue}}
+\subsubsection[{roll\-Back}]{\setlength{\rightskip}{0pt plus 5cm}void kukadu\-::\-Control\-Queue\-::roll\-Back (
+\begin{DoxyParamCaption}
+\item[{double}]{time}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [virtual]}}}\label{classkukadu_1_1ControlQueue_a650c486b9f78d3dec1db8741b575a0ab}
+
+
+If the rollback mode is started by \hyperlink{classkukadu_1_1ControlQueue_acb6ba5c61e9c26dcaa8e4073946e3791}{start\-Roll\-Back\-Mode()} the robot can stop the current execution and move backwards the same trajectory it came. Therefore it can move back in time for a given time (in seconds) 
+
+
+\begin{DoxyParams}{Parameters}
+{\em time} & Time to move back \\
+\hline
+\end{DoxyParams}
+
+
+Reimplemented in \hyperlink{classkukadu_1_1PlottingControlQueue_a85c659edfd047f21763825b14776e723}{kukadu\-::\-Plotting\-Control\-Queue}.
+
+\hypertarget{classkukadu_1_1ControlQueue_a18e628686b8c86abfdbd097b60aa5768}{\index{kukadu\-::\-Control\-Queue@{kukadu\-::\-Control\-Queue}!set\-Additional\-Load@{set\-Additional\-Load}}
+\index{set\-Additional\-Load@{set\-Additional\-Load}!kukadu::ControlQueue@{kukadu\-::\-Control\-Queue}}
+\subsubsection[{set\-Additional\-Load}]{\setlength{\rightskip}{0pt plus 5cm}virtual void kukadu\-::\-Control\-Queue\-::set\-Additional\-Load (
+\begin{DoxyParamCaption}
+\item[{float}]{load\-Mass, }
+\item[{float}]{load\-Pos}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [pure virtual]}}}\label{classkukadu_1_1ControlQueue_a18e628686b8c86abfdbd097b60aa5768}
+
+
+Changes the expected load data of the robot (e.\-g. can be used whenever robot picks up an object). Some robots might require this information in order to avoid control problems. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em load\-Mass} & mass of the picked up object \\
+\hline
+{\em load\-Pos} & position of the objects center of gravity relative to the manipulator \\
+\hline
+\end{DoxyParams}
+
+
+Implemented in \hyperlink{classkukadu_1_1KukieControlQueue_a0fef688170ac5a3e21df426a30ef0e77}{kukadu\-::\-Kukie\-Control\-Queue}, and \hyperlink{classkukadu_1_1PlottingControlQueue_ab6dc63e59f83a1c0ae9fa5b608eb25a4}{kukadu\-::\-Plotting\-Control\-Queue}.
+
+\hypertarget{classkukadu_1_1ControlQueue_a5245ff31c7dea26070743d1f6560801c}{\index{kukadu\-::\-Control\-Queue@{kukadu\-::\-Control\-Queue}!set\-Cycle\-Time@{set\-Cycle\-Time}}
+\index{set\-Cycle\-Time@{set\-Cycle\-Time}!kukadu::ControlQueue@{kukadu\-::\-Control\-Queue}}
+\subsubsection[{set\-Cycle\-Time}]{\setlength{\rightskip}{0pt plus 5cm}void kukadu\-::\-Control\-Queue\-::set\-Cycle\-Time (
+\begin{DoxyParamCaption}
+\item[{double}]{cycle\-Time}
+\end{DoxyParamCaption}
+)}}\label{classkukadu_1_1ControlQueue_a5245ff31c7dea26070743d1f6560801c}
+
+
+Sets the queue cycle time. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em cycle\-Time} & time to wait between two cycles \\
+\hline
+\end{DoxyParams}
+\hypertarget{classkukadu_1_1ControlQueue_a5af587fff906cf978225a317e701d41f}{\index{kukadu\-::\-Control\-Queue@{kukadu\-::\-Control\-Queue}!set\-Jnt\-Ptp\-Thresh@{set\-Jnt\-Ptp\-Thresh}}
+\index{set\-Jnt\-Ptp\-Thresh@{set\-Jnt\-Ptp\-Thresh}!kukadu::ControlQueue@{kukadu\-::\-Control\-Queue}}
+\subsubsection[{set\-Jnt\-Ptp\-Thresh}]{\setlength{\rightskip}{0pt plus 5cm}virtual void kukadu\-::\-Control\-Queue\-::set\-Jnt\-Ptp\-Thresh (
+\begin{DoxyParamCaption}
+\item[{double}]{thresh}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [pure virtual]}}}\label{classkukadu_1_1ControlQueue_a5af587fff906cf978225a317e701d41f}
+
+
+Sets the maximum deviation in joint space that is tolerated for a point to point movement. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em thresh} & joint space threshold \\
+\hline
+\end{DoxyParams}
+
+
+Implemented in \hyperlink{classkukadu_1_1KukieControlQueue_ac6653c3a050bb338702294776b4a8065}{kukadu\-::\-Kukie\-Control\-Queue}, and \hyperlink{classkukadu_1_1PlottingControlQueue_a32b42bcaf1a674c41449ddec692a2dfa}{kukadu\-::\-Plotting\-Control\-Queue}.
+
+\hypertarget{classkukadu_1_1ControlQueue_a225130ca0fa4a22e98cc0e5679917841}{\index{kukadu\-::\-Control\-Queue@{kukadu\-::\-Control\-Queue}!set\-Starting\-Joints@{set\-Starting\-Joints}}
+\index{set\-Starting\-Joints@{set\-Starting\-Joints}!kukadu::ControlQueue@{kukadu\-::\-Control\-Queue}}
+\subsubsection[{set\-Starting\-Joints}]{\setlength{\rightskip}{0pt plus 5cm}void kukadu\-::\-Control\-Queue\-::set\-Starting\-Joints (
+\begin{DoxyParamCaption}
+\item[{arma\-::vec}]{joints}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [virtual]}}}\label{classkukadu_1_1ControlQueue_a225130ca0fa4a22e98cc0e5679917841}
+
+
+If this is set, the robot moves to the desired position by \hyperlink{classkukadu_1_1ControlQueue_ad11059100321b24a1af8ef7de8314353}{joint\-Ptp()} before the queue is started. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em joints} & array of joint positions \\
+\hline
+\end{DoxyParams}
+
+
+Reimplemented in \hyperlink{classkukadu_1_1PlottingControlQueue_a16154678068808ba8989012f044f4a5e}{kukadu\-::\-Plotting\-Control\-Queue}.
+
+\hypertarget{classkukadu_1_1ControlQueue_aee25e6410909af34d740edbece98d677}{\index{kukadu\-::\-Control\-Queue@{kukadu\-::\-Control\-Queue}!set\-Stiffness@{set\-Stiffness}}
+\index{set\-Stiffness@{set\-Stiffness}!kukadu::ControlQueue@{kukadu\-::\-Control\-Queue}}
+\subsubsection[{set\-Stiffness}]{\setlength{\rightskip}{0pt plus 5cm}virtual void kukadu\-::\-Control\-Queue\-::set\-Stiffness (
+\begin{DoxyParamCaption}
+\item[{float}]{cpstiffnessxyz, }
+\item[{float}]{cpstiffnessabc, }
+\item[{float}]{cpdamping, }
+\item[{float}]{cpmaxdelta, }
+\item[{float}]{maxforce, }
+\item[{float}]{axismaxdeltatrq}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [pure virtual]}}}\label{classkukadu_1_1ControlQueue_aee25e6410909af34d740edbece98d677}
+
+
+Sets certain stiffness parameters in cartesian space (if the robot supports this) according to a mass spring damper system model. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em cpstiffnessxyz} & stiffness of the robot in the cartesian space \\
+\hline
+{\em cpstiffnessabc} & stiffness of the rotational axis of the tool mounting point in cartesian space \\
+\hline
+{\em cpdamping} & damping of the robots axis in cartesian space \\
+\hline
+{\em cpmaxdelta} & maximum allows deviation in cartesian space \\
+\hline
+{\em maxforce} & maximum allowed applied force \\
+\hline
+{\em axismaxdeltatrq} & maximum allowed applied torque \\
+\hline
+\end{DoxyParams}
+
+
+Implemented in \hyperlink{classkukadu_1_1KukieControlQueue_a3145cfcb1dc4879e2e3f16ad4829ce09}{kukadu\-::\-Kukie\-Control\-Queue}, and \hyperlink{classkukadu_1_1PlottingControlQueue_a676d19be17f169e3e411fd8f673b5d3d}{kukadu\-::\-Plotting\-Control\-Queue}.
+
+\hypertarget{classkukadu_1_1ControlQueue_acb6ba5c61e9c26dcaa8e4073946e3791}{\index{kukadu\-::\-Control\-Queue@{kukadu\-::\-Control\-Queue}!start\-Roll\-Back\-Mode@{start\-Roll\-Back\-Mode}}
+\index{start\-Roll\-Back\-Mode@{start\-Roll\-Back\-Mode}!kukadu::ControlQueue@{kukadu\-::\-Control\-Queue}}
+\subsubsection[{start\-Roll\-Back\-Mode}]{\setlength{\rightskip}{0pt plus 5cm}void kukadu\-::\-Control\-Queue\-::start\-Roll\-Back\-Mode (
+\begin{DoxyParamCaption}
+\item[{double}]{possible\-Time\-Reach}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [virtual]}}}\label{classkukadu_1_1ControlQueue_acb6ba5c61e9c26dcaa8e4073946e3791}
+
+
+Starts the rollback mode. When the function \hyperlink{classkukadu_1_1ControlQueue_a650c486b9f78d3dec1db8741b575a0ab}{roll\-Back()} is called the robot can roll back the current trajectory for at most a the given time (in seconds). This mode is only available in joint space execution. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em possible\-Time\-Reach} & Maximum rollback time \\
+\hline
+\end{DoxyParams}
+\hypertarget{classkukadu_1_1ControlQueue_a6ebb66d1bd2188e1fca3ee1440b8c0fe}{\index{kukadu\-::\-Control\-Queue@{kukadu\-::\-Control\-Queue}!stop\-Queue\-While\-Ptp@{stop\-Queue\-While\-Ptp}}
+\index{stop\-Queue\-While\-Ptp@{stop\-Queue\-While\-Ptp}!kukadu::ControlQueue@{kukadu\-::\-Control\-Queue}}
+\subsubsection[{stop\-Queue\-While\-Ptp}]{\setlength{\rightskip}{0pt plus 5cm}virtual bool kukadu\-::\-Control\-Queue\-::stop\-Queue\-While\-Ptp (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [protected]}, {\ttfamily [pure virtual]}}}\label{classkukadu_1_1ControlQueue_a6ebb66d1bd2188e1fca3ee1440b8c0fe}
+
+
+This method determines, if the queue execetion should be stopped while ptp commands are executed (this is typically the case when ptp is done outside of the control queue implementation). If two different controls interfere it can result in dangerous behaviour. 
+
+\begin{DoxyReturn}{Returns}
+true if the queue should be stopped during ptp, false otherwise 
+\end{DoxyReturn}
+
+
+Implemented in \hyperlink{classkukadu_1_1KukieControlQueue_abb6d8763fada53c6583b2a1ef58274ed}{kukadu\-::\-Kukie\-Control\-Queue}, and \hyperlink{classkukadu_1_1PlottingControlQueue_a8e686e1dadfb0039e2510270c9a3d330}{kukadu\-::\-Plotting\-Control\-Queue}.
+
+\hypertarget{classkukadu_1_1ControlQueue_a5defe63d9f1b9829676f9a31a4683911}{\index{kukadu\-::\-Control\-Queue@{kukadu\-::\-Control\-Queue}!switch\-Mode@{switch\-Mode}}
+\index{switch\-Mode@{switch\-Mode}!kukadu::ControlQueue@{kukadu\-::\-Control\-Queue}}
+\subsubsection[{switch\-Mode}]{\setlength{\rightskip}{0pt plus 5cm}void kukadu\-::\-Control\-Queue\-::switch\-Mode (
+\begin{DoxyParamCaption}
+\item[{int}]{mode}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [virtual]}}}\label{classkukadu_1_1ControlQueue_a5defe63d9f1b9829676f9a31a4683911}
+
+
+Switches robot modes. A state might be a real time command mode or monitoring mode. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em mode} & mode id \\
+\hline
+\end{DoxyParams}
+
+
+Reimplemented in \hyperlink{classkukadu_1_1PlottingControlQueue_ace69c9adaff27b5d98a42e70f7bc64ff}{kukadu\-::\-Plotting\-Control\-Queue}.
+
+\hypertarget{classkukadu_1_1ControlQueue_a324484e79a5505656a32d9f32054e5d0}{\index{kukadu\-::\-Control\-Queue@{kukadu\-::\-Control\-Queue}!synchronize\-To\-Queue@{synchronize\-To\-Queue}}
+\index{synchronize\-To\-Queue@{synchronize\-To\-Queue}!kukadu::ControlQueue@{kukadu\-::\-Control\-Queue}}
+\subsubsection[{synchronize\-To\-Queue}]{\setlength{\rightskip}{0pt plus 5cm}void kukadu\-::\-Control\-Queue\-::synchronize\-To\-Queue (
+\begin{DoxyParamCaption}
+\item[{int}]{max\-Num\-Joints\-In\-Queue}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [virtual]}}}\label{classkukadu_1_1ControlQueue_a324484e79a5505656a32d9f32054e5d0}
+
+
+Blocks, if more than the defined maximum element count is in the queue. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em max\-Num\-Joints\-In\-Queue} & maximum number of joints in queue \\
+\hline
+\end{DoxyParams}
+
+
+The documentation for this class was generated from the following files\-:\begin{DoxyCompactItemize}
+\item 
+/home/c7031109/iis\-\_\-robot\-\_\-sw/iis\-\_\-catkin\-\_\-ws/src/kukadu/include/kukadu/robot/arm/\hyperlink{controlqueue_8hpp}{controlqueue.\-hpp}\item 
+/home/c7031109/iis\-\_\-robot\-\_\-sw/iis\-\_\-catkin\-\_\-ws/src/kukadu/src/robot/arm/controlqueue.\-cpp\end{DoxyCompactItemize}

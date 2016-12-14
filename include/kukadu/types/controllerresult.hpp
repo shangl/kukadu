@@ -9,11 +9,8 @@
 #include <wordexp.h>
 #include <memory>
 #include <armadillo>
-
-#ifndef USEBOOST
-#include <tuple>
-#include <kukadu/learning/projective_simulation/core/clip.hpp>
-#endif
+#include <map>
+#include <kukadu/types/kukadutypes.hpp>
 
 namespace kukadu {
 
@@ -41,30 +38,6 @@ namespace kukadu {
         virtual ~ControllerResult() { }
 
     };
-
-#ifndef USEBOOST
-
-    class HapticControllerResult : public ControllerResult {
-
-    private:
-
-        bool bored;
-
-        std::vector<int> walkedPath;
-
-        KUKADU_SHARED_PTR<std::tuple<double, KUKADU_SHARED_PTR<kukadu::Clip>, std::vector<KUKADU_SHARED_PTR<kukadu::Clip> > > > environmentTransition;
-
-    public:
-
-        HapticControllerResult(arma::vec t, std::vector<arma::vec> ys, bool success, bool bored, std::vector<int> walkedPath, KUKADU_SHARED_PTR<std::tuple<double, KUKADU_SHARED_PTR<kukadu::Clip>, std::vector<KUKADU_SHARED_PTR<kukadu::Clip> > > > environmentTransition);
-
-        bool wasBored();
-
-        std::vector<int> getWalkedPath();
-
-    };
-
-#endif
 
 }
 

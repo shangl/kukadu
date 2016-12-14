@@ -1,0 +1,403 @@
+#ifndef KUKADU_PLAYINGCONTROLLERS_H
+#define KUKADU_PLAYINGCONTROLLERS_H
+
+#include <vector>
+#include <string>
+#include <kukadu/robot/hand.hpp>
+#include <kukadu/robot/queue.hpp>
+#include <kukadu/types/kukadutypes.hpp>
+#include <kukadu/control/controller.hpp>
+#include <kukadu/types/controllerresult.hpp>
+#include <kukadu/storage/storagesingleton.hpp>
+#include <kukadu/learning/projective_simulation/core.hpp>
+
+namespace kukadu {
+
+    class HapticControllerResult : public ControllerResult {
+
+    private:
+
+        bool bored;
+
+        std::vector<int> walkedPath;
+
+        std::map<std::string, std::vector<double> > entropies;
+        std::map<std::string, std::pair<double, double> > meanAndVar;
+
+        KUKADU_SHARED_PTR<std::tuple<double, KUKADU_SHARED_PTR<kukadu::Clip>, std::vector<KUKADU_SHARED_PTR<kukadu::Clip> > > > environmentTransition;
+
+    public:
+
+        HapticControllerResult(arma::vec t, std::vector<arma::vec> ys, bool success, bool bored, std::vector<int> walkedPath, KUKADU_SHARED_PTR<std::tuple<double, KUKADU_SHARED_PTR<kukadu::Clip>, std::vector<KUKADU_SHARED_PTR<kukadu::Clip> > > > environmentTransition);
+
+        bool wasBored();
+
+        void setWasBored(bool wasBored);
+
+        int getFinalStateClass();
+        std::vector<int> getWalkedPath();
+
+        std::map<std::string, std::vector<double> > getEntropies();
+        std::map<std::string, std::pair<double, double> > getMeanAndVar();
+
+        void setEntropyMeanAndVariance(std::map<std::string, std::pair<double, double> > meanAndVar);
+        void setEntropies(std::map<std::string, std::vector<double> > entropies);
+
+    };
+
+    class EnvironmentReward : public Reward {
+
+    private:
+
+        double reward;
+
+    protected:
+
+        virtual double computeRewardInternal(KUKADU_SHARED_PTR<PerceptClip> providedPercept, KUKADU_SHARED_PTR<ActionClip> takenAction);
+
+    public:
+
+        EnvironmentReward(KUKADU_SHARED_PTR<kukadu_mersenne_twister> generator, double stdReward);
+
+        virtual int getDimensionality();
+        virtual KUKADU_SHARED_PTR<PerceptClip> generateNextPerceptClip(int immunity);
+        virtual KUKADU_SHARED_PTR<std::vector<KUKADU_SHARED_PTR<ActionClip> > > generateActionClips();
+        virtual KUKADU_SHARED_PTR<std::vector<KUKADU_SHARED_PTR<PerceptClip> > > generatePerceptClips();
+
+    };
+
+    class SensingController : public Controller {
+
+    private:
+
+        bool databaseAlreadySet;
+        bool classifierParamsSet;
+
+        int hapticMode;
+        int stateCount;
+        int currentIterationNum;
+        int simulationGroundTruth;
+        int simulatedClassificationPrecision;
+
+        KUKADU_DISCRETE_DISTRIBUTION<int> classifierDist;
+
+        double bestParamC;
+        double bestParamD;
+        double bestParamParam1;
+        double bestParamParam2;
+
+        std::string tmpPath;
+        std::string databasePath;
+        std::string classifierPath;
+        std::string classifierFile;
+        std::string classifierFunction;
+
+        StorageSingleton& dbStorage;
+        KUKADU_SHARED_PTR<kukadu_mersenne_twister> generator;
+
+        std::vector<KUKADU_SHARED_PTR<GenericHand> > hands;
+        std::vector<KUKADU_SHARED_PTR<ControlQueue> > queues;
+
+        std::vector<double> callClassifier(std::string trainedPath, std::string passedFilePath, bool classify,
+                                           double bestParamC, double bestParamD, double bestParamParam1, double bestParamParam2);
+
+        void writeLabelFile(std::string baseFolderPath, std::vector<std::pair<int, std::string> > collectedSamples);
+
+        void gatherData(std::string completePath);
+        void gatherData(std::string dataBasePath, std::string dataName);
+
+    protected:
+
+        KUKADU_SHARED_PTR<kukadu_mersenne_twister> getGenerator();
+        std::vector<KUKADU_SHARED_PTR<ControlQueue> > getQueues();
+        std::vector<KUKADU_SHARED_PTR<GenericHand> > getHands();
+        std::string getTmpPath();
+        std::string getClassifierPath();
+        std::string getClassifierFile();
+        std::string getClassifierFunction();
+        int getHapticMode();
+        int getSimClassificationPrecision();
+
+    public:
+
+        SensingController(StorageSingleton& storage, KUKADU_SHARED_PTR<kukadu_mersenne_twister> generator, int hapticMode, std::string caption, std::vector<KUKADU_SHARED_PTR<ControlQueue> > queues, std::vector<KUKADU_SHARED_PTR<GenericHand> > hands,
+                          std::string tmpPath, std::string classifierPath, std::string classifierFile, std::string classifierFunction,
+                          int simClassificationPrecision);
+
+        void setSimulationGroundTruth(int idx);
+        void setSimulationClassificationPrecision(int percent);
+        void setCLassifierParams(double bestParamC, double bestParamD, double bestParamParam1, double bestParamParam2);
+
+        virtual void prepare() = 0;
+        virtual void cleanUp() = 0;
+        virtual void performCore() = 0;
+        virtual void prepareNextState() = 0;
+
+        virtual KUKADU_SHARED_PTR<kukadu::SensingController> clone() = 0;
+
+        virtual int performClassification();
+        int createRandomGroundTruthIdx();
+        int getSimulationGroundTruthIdx();
+
+        int getStateCount();
+        void setStateCount(const int& stateCount);
+
+        double createDataBase();
+
+        void setDatabasePath(std::string databasePath);
+
+        std::string getDatabasePath();
+        std::string getFirstRobotFileName();
+
+        std::vector<double> callClassifier();
+
+        KUKADU_SHARED_PTR<ControllerResult> performAction();
+
+        static const int HAPTIC_MODE_TERMINAL = 0;
+        static const int HAPTIC_MODE_CLASSIFIER = 1;
+
+    };
+
+    class ConcatController : public Controller {
+
+    private:
+
+        std::vector<KUKADU_SHARED_PTR<kukadu::Controller> > controllers;
+
+    public:
+
+        ConcatController(std::vector<KUKADU_SHARED_PTR<kukadu::Controller> > controllers);
+
+        virtual bool requiresGrasp();
+        virtual bool producesGrasp();
+        virtual bool getSimulationMode();
+
+        virtual KUKADU_SHARED_PTR<ControllerResult> performAction();
+
+        static std::string generateLabelFromControllers(std::vector<KUKADU_SHARED_PTR<kukadu::Controller> >& controllers);
+
+    };
+
+    class ControllerActionClip : public ActionClip {
+
+    private:
+
+        std::string caption;
+
+        KUKADU_SHARED_PTR<Controller> actionController;
+
+    public:
+
+        ControllerActionClip(int actionId, KUKADU_SHARED_PTR<Controller> actionController,
+                              KUKADU_SHARED_PTR<kukadu_mersenne_twister> generator);
+
+        void performAction();
+
+        virtual std::string toString() const;
+
+        KUKADU_SHARED_PTR<Controller> getActionController();
+
+    };
+
+    class IntermediateEventClip : public Clip {
+
+    private:
+
+        int hapticMode;
+
+        std::string caption;
+
+        KUKADU_SHARED_PTR<SensingController> sensingEvent;
+
+    public:
+
+        IntermediateEventClip(KUKADU_SHARED_PTR<SensingController> sensingEvent,
+                              int level, KUKADU_SHARED_PTR<kukadu_mersenne_twister> generator, std::string clipValues, int immunity);
+
+        IntermediateEventClip(KUKADU_SHARED_PTR<SensingController> sensingEvent,
+                              int level, KUKADU_SHARED_PTR<kukadu_mersenne_twister> generator, KUKADU_SHARED_PTR<std::vector<int> > clipValues, int immunity);
+
+        virtual std::string toString() const;
+        std::pair<int, KUKADU_SHARED_PTR<Clip> > jumpNextRandom();
+
+        KUKADU_SHARED_PTR<SensingController> getSensingController();
+
+    };
+
+    class ComplexController : public Controller, public Reward, public KUKADU_ENABLE_SHARED_FROM_THIS<ComplexController> {
+
+    private:
+
+        bool cleanup;
+        bool storeReward;
+        bool useCreativity;
+        bool colPrevRewards;
+
+        int stdPrepWeight;
+        int maxEnvPathLength;
+        int currentIterationNum;
+        int consecutiveBoredomCount;
+
+        double gamma;
+        double boredom;
+        double stdReward;
+        double punishReward;
+        double senseStretch;
+        double pathLengthCost;
+
+        double creativityAlpha1;
+        double creativityAlpha2;
+        double creativityBeta;
+        double creativityCthresh;
+        double creativityMultiplier;
+        double nothingStateProbThresh;
+
+        double creativityGamma;
+        double creativityDelta;
+
+        KUKADU_SHARED_PTR<kukadu_mersenne_twister> generator;
+
+        KUKADU_SHARED_PTR<Controller> nothingController;
+        KUKADU_SHARED_PTR<EnvironmentReward> envReward;
+
+        // outer map is used to create a nothing clip map for each sensing action
+        // the inner one is used to search faster inside the nothing clips
+        std::map<std::string, std::map<std::string, KUKADU_SHARED_PTR<Clip> > > nothingStateClips;
+
+        std::string psPath;
+        std::string storePath;
+        std::string historyPath;
+        std::string envModelPath;
+        std::string rewardHistoryPath;
+
+        std::vector<KUKADU_SHARED_PTR<Clip> > stateClips;
+        std::vector<std::vector<KUKADU_SHARED_PTR<Clip> > > stateClipsBySensing;
+
+        KUKADU_SHARED_PTR<PerceptClip> root;
+        KUKADU_SHARED_PTR<kukadu_mersenne_twister> gen;
+        KUKADU_SHARED_PTR<ProjectiveSimulator> projSim;
+        KUKADU_SHARED_PTR<std::ofstream> rewardHistoryStream;
+        KUKADU_SHARED_PTR<std::vector<KUKADU_SHARED_PTR<Clip> > > prepActions;
+        KUKADU_SHARED_PTR<std::vector<KUKADU_SHARED_PTR<ActionClip> > > prepActionsCasted;
+
+        KUKADU_DISCRETE_DISTRIBUTION<int> simSuccDist;
+
+        std::vector<double> sensingWeights;
+        std::vector<KUKADU_SHARED_PTR<Controller> > preparationControllers;
+        std::vector<KUKADU_SHARED_PTR<SensingController> > sensingControllers;
+
+        std::map<std::string, KUKADU_SHARED_PTR<kukadu::SensingController> > availableSensingControllers;
+        std::map<std::string, KUKADU_SHARED_PTR<kukadu::Controller> > availablePreparatoryControllers;
+
+        // novelty in icdl paper
+        std::map<std::string, KUKADU_SHARED_PTR<kukadu::ProjectiveSimulator> > environmentModels;
+        std::map<std::string, std::vector<KUKADU_SHARED_PTR<kukadu::Clip> > > stateClipsPerSensingAction;
+
+        double computeRewardInternal(KUKADU_SHARED_PTR<PerceptClip> providedPercept, KUKADU_SHARED_PTR<ActionClip> takenAction);
+
+        KUKADU_SHARED_PTR<kukadu::ProjectiveSimulator> createEnvironmentModelForSensingAction(KUKADU_SHARED_PTR<kukadu::SensingController> sensingAction, KUKADU_SHARED_PTR<ProjectiveSimulator> projSim);
+        std::vector<std::tuple<double, KUKADU_SHARED_PTR<Clip>, std::vector<KUKADU_SHARED_PTR<Clip> >, int> > computeEnvironmentPaths(KUKADU_SHARED_PTR<Clip> sensingClip, KUKADU_SHARED_PTR<Clip> stateClip, int maxPathLength, double confidenceCut);
+        void computeTotalPathCost(KUKADU_SHARED_PTR<IntermediateEventClip> sensingClip, std::vector<std::tuple<double, KUKADU_SHARED_PTR<Clip>, std::vector<KUKADU_SHARED_PTR<Clip> >, int> >& paths);
+
+        std::tuple<double, int, int> computeEnvironmentTransitionConfidence(KUKADU_SHARED_PTR<Clip> stateClip);
+
+        void printPaths(std::vector<std::tuple<double, KUKADU_SHARED_PTR<Clip>, std::vector<KUKADU_SHARED_PTR<Clip> > > >& paths);
+
+        std::tuple<KUKADU_SHARED_PTR<IntermediateEventClip>, KUKADU_SHARED_PTR<Clip>, KUKADU_SHARED_PTR<ControllerActionClip> > extractClipsFromPath(std::vector<int>& hops);
+
+        std::vector<KUKADU_SHARED_PTR<Clip> > getAllStateClips();
+        std::vector<KUKADU_SHARED_PTR<Clip> > getStateClipsForSensingId(KUKADU_SHARED_PTR<SensingController> sensingId);
+
+        bool hasDuplicateStatesInPath(std::vector<KUKADU_SHARED_PTR<Clip> >& path);
+
+    protected:
+
+        virtual void setSimulationModeInChain(bool simulationMode);
+        virtual double getSimulatedReward(KUKADU_SHARED_PTR<kukadu::IntermediateEventClip> sensingClip,
+                                          KUKADU_SHARED_PTR<kukadu::Clip> stateClip,
+                                          KUKADU_SHARED_PTR<kukadu::ControllerActionClip> actionClip) = 0;
+
+        virtual double getSimulatedRewardInternal(KUKADU_SHARED_PTR<kukadu::IntermediateEventClip> sensingClip,
+                                          KUKADU_SHARED_PTR<kukadu::Clip> stateClip,
+                                          KUKADU_SHARED_PTR<kukadu::ControllerActionClip> actionClip);
+
+    public:
+
+        ComplexController(std::string caption, std::string storePath,
+                          bool storeReward, double senseStretch, double boredom, KUKADU_SHARED_PTR<kukadu_mersenne_twister> generator,
+                          int stdReward, double punishReward, double gamma, int stdPrepWeight, bool collectPrevRewards, int simulationFailingProbability,
+                          KUKADU_SHARED_PTR<Controller> nothingController,
+                          int maxEnvPathLength = 4, double pathLengthCost = 0.01, double stdEnvironmentReward = 10.0,
+                          double creativityAlpha1 = 0.1, double creativityAlpha2 = 0.9, double creativityBeta = 0.3, double creativityCthresh = 0.8,
+                          double nothingStateProbThresh = 0.8, double creativityMultiplier = 3.0);
+        ~ComplexController();
+
+        virtual void cleanupAfterAction() = 0;
+        virtual void executeComplexAction() = 0;
+        virtual int getStateCount(const std::string& sensingName) = 0;
+        virtual KUKADU_SHARED_PTR<Clip> computeGroundTruthTransition(KUKADU_SHARED_PTR<Clip> sensingClip, KUKADU_SHARED_PTR<Clip> stateClip, KUKADU_SHARED_PTR<Clip> actionClip) = 0;
+
+        int getPrepActionCount();
+
+        void store();
+        void load(std::string path, std::map<std::string, KUKADU_SHARED_PTR<kukadu::SensingController> > availableSensingControllers, std::map<std::string, KUKADU_SHARED_PTR<kukadu::Controller> > availablePreparatoryControllers);
+
+        virtual void initialize();
+        void storeNextIteration();
+        void createSensingDatabase();
+        void setBoredom(double boredom);
+        void store(std::string destination);
+        void setTrainingMode(bool doTraining);
+        void createSensingDatabase(std::vector<KUKADU_SHARED_PTR<SensingController> > sensingControllers);
+
+        std::map<std::string, std::tuple<double, double, std::vector<double> > > computeEntropyMeanAndVariance(std::vector<KUKADU_SHARED_PTR<SensingController> > sensingIds);
+
+        bool isTrained();
+        bool setUseCreativity(bool useCreativity);
+
+        void setSensingControllers(std::vector<KUKADU_SHARED_PTR<kukadu::SensingController> > sensingControllers);
+        void setPreparatoryControllers(std::vector<KUKADU_SHARED_PTR<kukadu::Controller> > preparatoryControllers);
+
+        void clearPreparatoryControllers();
+        void addPreparatoryController(KUKADU_SHARED_PTR<kukadu::Controller> prepCont);
+
+        int getDimensionality();
+
+        // overwrite this virtual function if the next idx should be created randomly
+        virtual int getNextSimulatedGroundTruth(KUKADU_SHARED_PTR<SensingController> sensCont);
+
+        double getStdReward();
+        double getPunishReward();
+
+        // overwrite this if the ground truth of the sensing classes is known for some sensing actions
+        virtual std::string getClassLabel(KUKADU_SHARED_PTR<Clip> sensingClip, KUKADU_SHARED_PTR<Clip> stateClip);
+
+        KUKADU_SHARED_PTR<kukadu_mersenne_twister> getGenerator();
+
+        virtual KUKADU_SHARED_PTR<ControllerResult> performAction();
+        virtual KUKADU_SHARED_PTR<ControllerResult> performAction(bool cleanup, bool generateNewGroundTruth = true);
+
+        KUKADU_SHARED_PTR<ProjectiveSimulator> getProjectiveSimulator();
+        KUKADU_SHARED_PTR<PerceptClip> generateNextPerceptClip(int immunity);
+        KUKADU_SHARED_PTR<std::vector<KUKADU_SHARED_PTR<ActionClip> > > generateActionClips();
+        KUKADU_SHARED_PTR<std::vector<KUKADU_SHARED_PTR<PerceptClip> > > generatePerceptClips();
+
+        void updateFiles();
+
+#ifdef USEBOOST
+        static const std::string FILE_SENSING_PREFIX = "***sensing controllers:";
+        static const std::string FILE_PREP_PREFIX = "***preparatory controllers:";
+        static const std::string FILE_END_PREFIX = "***concatenated controllers:";
+        static const std::string FILE_CONCAT_PREFIX = "***end";
+#else
+        static constexpr auto FILE_SENSING_PREFIX = "***sensing controllers:";
+        static constexpr auto FILE_PREP_PREFIX = "***preparatory controllers:";
+        static constexpr auto FILE_CONCAT_PREFIX = "***concatenated controllers:";
+        static constexpr auto FILE_END_PREFIX = "***end";
+#endif
+
+    };
+
+}
+
+#endif

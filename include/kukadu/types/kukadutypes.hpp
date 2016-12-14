@@ -1,11 +1,6 @@
 #ifndef KUKADU_KUKADUTYPES_H
 #define KUKADU_KUKADUTYPES_H
 
-    #if __cplusplus > 199711L
-    #else
-        #define USEBOOST
-    #endif
-
     #include <exception>
 
     // shared_ptr
@@ -63,6 +58,8 @@
         typedef std::uniform_real_distribution<double> kukadu_uniform_real_distribution;
     #endif
 
+namespace kukadu {
+
     class KukaduException : public std::exception {
 
     private:
@@ -77,5 +74,20 @@
             return message;
         }
     };
+
+    class TimedObject {
+
+    public:
+
+        /**
+         * \brief An intrinsic clock is started with startQueue(). This method returns
+         * the current time according to this clock.
+         * \return current time
+         */
+        virtual long long int getCurrentTime();
+
+    };
+
+}
 
 #endif

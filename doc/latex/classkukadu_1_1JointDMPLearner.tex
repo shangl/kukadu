@@ -1,0 +1,120 @@
+\hypertarget{classkukadu_1_1JointDMPLearner}{\section{kukadu\-:\-:Joint\-D\-M\-P\-Learner Class Reference}
+\label{classkukadu_1_1JointDMPLearner}\index{kukadu\-::\-Joint\-D\-M\-P\-Learner@{kukadu\-::\-Joint\-D\-M\-P\-Learner}}
+}
+
+
+The Trajectory\-D\-M\-P\-Learner encapsulates the dmp learning process.  
+
+
+
+
+{\ttfamily \#include $<$jointdmplearner.\-hpp$>$}
+
+Inheritance diagram for kukadu\-:\-:Joint\-D\-M\-P\-Learner\-:\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[height=2.000000cm]{classkukadu_1_1JointDMPLearner}
+\end{center}
+\end{figure}
+\subsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\hyperlink{classkukadu_1_1JointDMPLearner_aeafe6581d82892f4038e0087f80c48c9}{Joint\-D\-M\-P\-Learner} (std\-::vector$<$ \hyperlink{classkukadu_1_1DMPBase}{D\-M\-P\-Base} $>$ dmp\-Base, double tau, double az, double bz, double ax, arma\-::mat joints)
+\begin{DoxyCompactList}\small\item\em constructor \end{DoxyCompactList}\item 
+\hyperlink{classkukadu_1_1JointDMPLearner_a0831ec240ee08b99bef99d4e2806f31f}{Joint\-D\-M\-P\-Learner} (std\-::vector$<$ double $>$ mys\-Def, std\-::vector$<$ double $>$ sigmas\-Def, double az, double bz, std\-::string file)
+\begin{DoxyCompactList}\small\item\em constructor \end{DoxyCompactList}\item 
+\hypertarget{classkukadu_1_1JointDMPLearner_a40e29048662ca3a660993654e36db047}{{\bfseries Joint\-D\-M\-P\-Learner} (double az, double bz, std\-::string file)}\label{classkukadu_1_1JointDMPLearner_a40e29048662ca3a660993654e36db047}
+
+\item 
+\hypertarget{classkukadu_1_1JointDMPLearner_a96029d28387b06bba16bc2ccd3965cae}{{\bfseries Joint\-D\-M\-P\-Learner} (double az, double bz, arma\-::mat joints)}\label{classkukadu_1_1JointDMPLearner_a96029d28387b06bba16bc2ccd3965cae}
+
+\end{DoxyCompactItemize}
+\subsection*{Protected Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\hypertarget{classkukadu_1_1JointDMPLearner_ac16e6c7d24bbdf194663bdc61788d5ea}{K\-U\-K\-A\-D\-U\-\_\-\-S\-H\-A\-R\-E\-D\-\_\-\-P\-T\-R$<$ \hyperlink{classkukadu_1_1Dmp}{Dmp} $>$ {\bfseries create\-Dmp\-Instance} (arma\-::vec supervised\-Ts, std\-::vector$<$ arma\-::vec $>$ sample\-Ys, std\-::vector$<$ arma\-::vec $>$ fit\-Ys, std\-::vector$<$ arma\-::vec $>$ dmp\-Coeffs, std\-::vector$<$ \hyperlink{classkukadu_1_1DMPBase}{D\-M\-P\-Base} $>$ dmp\-Base, std\-::vector$<$ arma\-::mat $>$ design\-Matrices, double tau, double az, double bz, double ax)}\label{classkukadu_1_1JointDMPLearner_ac16e6c7d24bbdf194663bdc61788d5ea}
+
+\item 
+\hypertarget{classkukadu_1_1JointDMPLearner_a9d5c78a2aa1329efd24baf9fec767021}{arma\-::mat {\bfseries compute\-Fit\-Y} (arma\-::vec \&time, arma\-::mat \&y, arma\-::mat \&dy, arma\-::mat \&ddy, arma\-::vec \&vec\-\_\-g)}\label{classkukadu_1_1JointDMPLearner_a9d5c78a2aa1329efd24baf9fec767021}
+
+\end{DoxyCompactItemize}
+\subsection*{Additional Inherited Members}
+
+
+\subsection{Detailed Description}
+The Trajectory\-D\-M\-P\-Learner encapsulates the dmp learning process. 
+
+Dynamic movement primitives can be easily learned by using this class and providing the joint data or a file containing this data. Basically this is a helper that enables the programmer to reduce code complexity. 
+
+\subsection{Constructor \& Destructor Documentation}
+\hypertarget{classkukadu_1_1JointDMPLearner_aeafe6581d82892f4038e0087f80c48c9}{\index{kukadu\-::\-Joint\-D\-M\-P\-Learner@{kukadu\-::\-Joint\-D\-M\-P\-Learner}!Joint\-D\-M\-P\-Learner@{Joint\-D\-M\-P\-Learner}}
+\index{Joint\-D\-M\-P\-Learner@{Joint\-D\-M\-P\-Learner}!kukadu::JointDMPLearner@{kukadu\-::\-Joint\-D\-M\-P\-Learner}}
+\subsubsection[{Joint\-D\-M\-P\-Learner}]{\setlength{\rightskip}{0pt plus 5cm}kukadu\-::\-Joint\-D\-M\-P\-Learner\-::\-Joint\-D\-M\-P\-Learner (
+\begin{DoxyParamCaption}
+\item[{std\-::vector$<$ {\bf D\-M\-P\-Base} $>$}]{dmp\-Base, }
+\item[{double}]{tau, }
+\item[{double}]{az, }
+\item[{double}]{bz, }
+\item[{double}]{ax, }
+\item[{arma\-::mat}]{joints}
+\end{DoxyParamCaption}
+)}}\label{classkukadu_1_1JointDMPLearner_aeafe6581d82892f4038e0087f80c48c9}
+
+
+constructor 
+
+
+\begin{DoxyParams}{Parameters}
+{\em dmp\-Base} & dmp basis function definition \\
+\hline
+{\em tau} & dmp timing constant \\
+\hline
+{\em az} & dmp az constant \\
+\hline
+{\em bz} & dmp bz constant \\
+\hline
+{\em ax} & dmp ax constant \\
+\hline
+{\em joints} & measured joints \\
+\hline
+{\em deg\-Freedom} & robots degrees of freedom \\
+\hline
+\end{DoxyParams}
+\hypertarget{classkukadu_1_1JointDMPLearner_a0831ec240ee08b99bef99d4e2806f31f}{\index{kukadu\-::\-Joint\-D\-M\-P\-Learner@{kukadu\-::\-Joint\-D\-M\-P\-Learner}!Joint\-D\-M\-P\-Learner@{Joint\-D\-M\-P\-Learner}}
+\index{Joint\-D\-M\-P\-Learner@{Joint\-D\-M\-P\-Learner}!kukadu::JointDMPLearner@{kukadu\-::\-Joint\-D\-M\-P\-Learner}}
+\subsubsection[{Joint\-D\-M\-P\-Learner}]{\setlength{\rightskip}{0pt plus 5cm}kukadu\-::\-Joint\-D\-M\-P\-Learner\-::\-Joint\-D\-M\-P\-Learner (
+\begin{DoxyParamCaption}
+\item[{std\-::vector$<$ double $>$}]{mys\-Def, }
+\item[{std\-::vector$<$ double $>$}]{sigmas\-Def, }
+\item[{double}]{az, }
+\item[{double}]{bz, }
+\item[{std\-::string}]{file}
+\end{DoxyParamCaption}
+)}}\label{classkukadu_1_1JointDMPLearner_a0831ec240ee08b99bef99d4e2806f31f}
+
+
+constructor 
+
+
+\begin{DoxyParams}{Parameters}
+{\em dmp\-Base} & dmp basis function definition \\
+\hline
+{\em tau} & dmp timing constant \\
+\hline
+{\em az} & dmp az constant \\
+\hline
+{\em bz} & dmp bz constant \\
+\hline
+{\em ax} & dmp ax constant \\
+\hline
+{\em file} & file containing the measured joints \\
+\hline
+{\em deg\-Freedom} & robots degrees of freedom \\
+\hline
+\end{DoxyParams}
+
+
+The documentation for this class was generated from the following files\-:\begin{DoxyCompactItemize}
+\item 
+/home/c7031109/iis\-\_\-robot\-\_\-sw/iis\-\_\-catkin\-\_\-ws/src/kukadu/include/kukadu/control/jointdmplearner.\-hpp\item 
+/home/c7031109/iis\-\_\-robot\-\_\-sw/iis\-\_\-catkin\-\_\-ws/src/kukadu/src/control/jointdmplearner.\-cpp\end{DoxyCompactItemize}

@@ -1,0 +1,56 @@
+\hypertarget{classkukadu_1_1CostComputer}{\section{kukadu\-:\-:Cost\-Computer Class Reference}
+\label{classkukadu_1_1CostComputer}\index{kukadu\-::\-Cost\-Computer@{kukadu\-::\-Cost\-Computer}}
+}
+
+
+Interface for reinforcement learning cost function computation used by \hyperlink{classkukadu_1_1DMPReinforcer}{D\-M\-P\-Reinforcer}.  
+
+
+
+
+{\ttfamily \#include $<$costcomputer.\-hpp$>$}
+
+Inheritance diagram for kukadu\-:\-:Cost\-Computer\-:\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[height=2.745098cm]{classkukadu_1_1CostComputer}
+\end{center}
+\end{figure}
+\subsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+virtual double \hyperlink{classkukadu_1_1CostComputer_a8d02974e1f097ac0451f03f535843175}{compute\-Cost} (K\-U\-K\-A\-D\-U\-\_\-\-S\-H\-A\-R\-E\-D\-\_\-\-P\-T\-R$<$ \hyperlink{classkukadu_1_1ControllerResult}{Controller\-Result} $>$ results)=0
+\begin{DoxyCompactList}\small\item\em computes cost for a given dmp execution \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\subsection{Detailed Description}
+Interface for reinforcement learning cost function computation used by \hyperlink{classkukadu_1_1DMPReinforcer}{D\-M\-P\-Reinforcer}. 
+
+This class provides the necessary interfaces for the cost function computation 
+
+\subsection{Member Function Documentation}
+\hypertarget{classkukadu_1_1CostComputer_a8d02974e1f097ac0451f03f535843175}{\index{kukadu\-::\-Cost\-Computer@{kukadu\-::\-Cost\-Computer}!compute\-Cost@{compute\-Cost}}
+\index{compute\-Cost@{compute\-Cost}!kukadu::CostComputer@{kukadu\-::\-Cost\-Computer}}
+\subsubsection[{compute\-Cost}]{\setlength{\rightskip}{0pt plus 5cm}virtual double kukadu\-::\-Cost\-Computer\-::compute\-Cost (
+\begin{DoxyParamCaption}
+\item[{K\-U\-K\-A\-D\-U\-\_\-\-S\-H\-A\-R\-E\-D\-\_\-\-P\-T\-R$<$ {\bf Controller\-Result} $>$}]{results}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [pure virtual]}}}\label{classkukadu_1_1CostComputer_a8d02974e1f097ac0451f03f535843175}
+
+
+computes cost for a given dmp execution 
+
+
+\begin{DoxyParams}{Parameters}
+{\em results} & measured results of the last dmp execution \\
+\hline
+\end{DoxyParams}
+
+
+Implemented in \hyperlink{classkukadu_1_1TrajectoryBasedReward_a320c223ada03c976b2c545203d1b26d8}{kukadu\-::\-Trajectory\-Based\-Reward}, and \hyperlink{classkukadu_1_1TerminalCostComputer_aec0329f108e413d004139f5da01f04e5}{kukadu\-::\-Terminal\-Cost\-Computer}.
+
+
+
+The documentation for this class was generated from the following file\-:\begin{DoxyCompactItemize}
+\item 
+/home/c7031109/iis\-\_\-robot\-\_\-sw/iis\-\_\-catkin\-\_\-ws/src/kukadu/include/kukadu/learning/rl/costcomputer.\-hpp\end{DoxyCompactItemize}

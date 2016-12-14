@@ -1,9 +1,9 @@
-#include "planarcuttransformator.hpp"
+#include <kukadu/vision/planarcuttransformator.hpp>
 
 #include <iostream>
 #include <armadillo>
 
-#include "../utils/utils.hpp"
+#include <kukadu/utils/utils.hpp>
 
 using namespace std;
 using namespace arma;

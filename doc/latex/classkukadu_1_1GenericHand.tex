@@ -1,0 +1,100 @@
+\hypertarget{classkukadu_1_1GenericHand}{\section{kukadu\-:\-:Generic\-Hand Class Reference}
+\label{classkukadu_1_1GenericHand}\index{kukadu\-::\-Generic\-Hand@{kukadu\-::\-Generic\-Hand}}
+}
+
+
+The \hyperlink{classkukadu_1_1GenericHand}{Generic\-Hand} provides a very elementary interface to control robot hands mounted on a robot arm This class provides very an interface for the very basic functionalities such as \char`\"{}connect to hand\char`\"{} or \char`\"{}close hand\char`\"{}.  
+
+
+
+
+{\ttfamily \#include $<$generichand.\-hpp$>$}
+
+Inheritance diagram for kukadu\-:\-:Generic\-Hand\-:\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[height=4.000000cm]{classkukadu_1_1GenericHand}
+\end{center}
+\end{figure}
+\subsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+virtual void \hyperlink{classkukadu_1_1GenericHand_a965ed8a8d225fb36eabf5089fa5d4f32}{connect\-Hand} ()=0
+\begin{DoxyCompactList}\small\item\em Initializes the connection to the hand. \end{DoxyCompactList}\item 
+virtual void \hyperlink{classkukadu_1_1GenericHand_a000e4d03e93f50d7101c50e6096d28a0}{close\-Hand} (double percentage, double velocity)=0
+\begin{DoxyCompactList}\small\item\em Opens and closes the hand according to the provided closing percentage and velocity. \end{DoxyCompactList}\item 
+\hypertarget{classkukadu_1_1GenericHand_a7662305094e40833ef22e6675e41c5fd}{virtual void {\bfseries move\-Joints} (arma\-::vec joints)=0}\label{classkukadu_1_1GenericHand_a7662305094e40833ef22e6675e41c5fd}
+
+\item 
+virtual void \hyperlink{classkukadu_1_1GenericHand_a94c4a983aae8562bda7711a71baa7502}{disconnect\-Hand} ()=0
+\begin{DoxyCompactList}\small\item\em Closes connection between host computer and hand. \end{DoxyCompactList}\item 
+\hypertarget{classkukadu_1_1GenericHand_a85b4263bc45c19fb64fd167d58ca7e43}{virtual std\-::vector$<$ arma\-::mat $>$ {\bfseries get\-Tactile\-Sensing} ()=0}\label{classkukadu_1_1GenericHand_a85b4263bc45c19fb64fd167d58ca7e43}
+
+\item 
+\hypertarget{classkukadu_1_1GenericHand_a8ebf9a9353be157b8c8eace09ea7c872}{virtual std\-::string {\bfseries get\-Hand\-Name} ()=0}\label{classkukadu_1_1GenericHand_a8ebf9a9353be157b8c8eace09ea7c872}
+
+\end{DoxyCompactItemize}
+
+
+\subsection{Detailed Description}
+The \hyperlink{classkukadu_1_1GenericHand}{Generic\-Hand} provides a very elementary interface to control robot hands mounted on a robot arm This class provides very an interface for the very basic functionalities such as \char`\"{}connect to hand\char`\"{} or \char`\"{}close hand\char`\"{}. 
+
+\subsection{Member Function Documentation}
+\hypertarget{classkukadu_1_1GenericHand_a000e4d03e93f50d7101c50e6096d28a0}{\index{kukadu\-::\-Generic\-Hand@{kukadu\-::\-Generic\-Hand}!close\-Hand@{close\-Hand}}
+\index{close\-Hand@{close\-Hand}!kukadu::GenericHand@{kukadu\-::\-Generic\-Hand}}
+\subsubsection[{close\-Hand}]{\setlength{\rightskip}{0pt plus 5cm}virtual void kukadu\-::\-Generic\-Hand\-::close\-Hand (
+\begin{DoxyParamCaption}
+\item[{double}]{percentage, }
+\item[{double}]{velocity}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [pure virtual]}}}\label{classkukadu_1_1GenericHand_a000e4d03e93f50d7101c50e6096d28a0}
+
+
+Opens and closes the hand according to the provided closing percentage and velocity. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em percentage} & closing percentage (0.\-0 -\/ hand fully open, 1.\-0 hand fully closed) \\
+\hline
+{\em velocity} & closing velocity in range between 0 and 1 \\
+\hline
+\end{DoxyParams}
+
+
+Implemented in \hyperlink{classkukadu_1_1RosSchunk_accae3e1fa1da2b98bfeddf06d3682f81}{kukadu\-::\-Ros\-Schunk}, and \hyperlink{classkukadu_1_1PlottingHand_adcdc57d192c5dfca6ca154a50a904824}{kukadu\-::\-Plotting\-Hand}.
+
+\hypertarget{classkukadu_1_1GenericHand_a965ed8a8d225fb36eabf5089fa5d4f32}{\index{kukadu\-::\-Generic\-Hand@{kukadu\-::\-Generic\-Hand}!connect\-Hand@{connect\-Hand}}
+\index{connect\-Hand@{connect\-Hand}!kukadu::GenericHand@{kukadu\-::\-Generic\-Hand}}
+\subsubsection[{connect\-Hand}]{\setlength{\rightskip}{0pt plus 5cm}virtual void kukadu\-::\-Generic\-Hand\-::connect\-Hand (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [pure virtual]}}}\label{classkukadu_1_1GenericHand_a965ed8a8d225fb36eabf5089fa5d4f32}
+
+
+Initializes the connection to the hand. 
+
+
+
+Implemented in \hyperlink{classkukadu_1_1RosSchunk_a2b263c93cd2afe970121fe0102b5e502}{kukadu\-::\-Ros\-Schunk}, and \hyperlink{classkukadu_1_1PlottingHand_ae1f5f384a2e8db0423b2a2ebe889f4f9}{kukadu\-::\-Plotting\-Hand}.
+
+\hypertarget{classkukadu_1_1GenericHand_a94c4a983aae8562bda7711a71baa7502}{\index{kukadu\-::\-Generic\-Hand@{kukadu\-::\-Generic\-Hand}!disconnect\-Hand@{disconnect\-Hand}}
+\index{disconnect\-Hand@{disconnect\-Hand}!kukadu::GenericHand@{kukadu\-::\-Generic\-Hand}}
+\subsubsection[{disconnect\-Hand}]{\setlength{\rightskip}{0pt plus 5cm}virtual void kukadu\-::\-Generic\-Hand\-::disconnect\-Hand (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [pure virtual]}}}\label{classkukadu_1_1GenericHand_a94c4a983aae8562bda7711a71baa7502}
+
+
+Closes connection between host computer and hand. 
+
+
+
+Implemented in \hyperlink{classkukadu_1_1RosSchunk_a8b07d0af90c8b1b0827eb9587007a7c0}{kukadu\-::\-Ros\-Schunk}, and \hyperlink{classkukadu_1_1PlottingHand_a14fc064b6e159b0d7c7a9ce896bfa7d9}{kukadu\-::\-Plotting\-Hand}.
+
+
+
+The documentation for this class was generated from the following file\-:\begin{DoxyCompactItemize}
+\item 
+/home/c7031109/iis\-\_\-robot\-\_\-sw/iis\-\_\-catkin\-\_\-ws/src/kukadu/include/kukadu/robot/gripper/generichand.\-hpp\end{DoxyCompactItemize}
