@@ -927,17 +927,17 @@ namespace kukadu {
         }
     }
 
-    pcl::PointCloud<pcl::PointXYZ>::Ptr sensorMsgsPcToPclPc(sensor_msgs::PointCloud2::Ptr pc) {
+    pcl::PointCloud<pcl::PointXYZRGB>::Ptr sensorMsgsPcToPclPc(sensor_msgs::PointCloud2::Ptr pc) {
         pcl::PCLPointCloud2 intermediate;
-        pcl::PointCloud<pcl::PointXYZ> output;
-        pcl::PointCloud<pcl::PointXYZ>::Ptr outputPtr;
+        pcl::PointCloud<pcl::PointXYZRGB> output;
+        pcl::PointCloud<pcl::PointXYZRGB>::Ptr outputPtr;
         pcl_conversions::toPCL(*pc, intermediate);
         pcl::fromPCLPointCloud2(intermediate, output);
         outputPtr = output.makeShared();
         return outputPtr;
     }
 
-    sensor_msgs::PointCloud2 pclPcToSensorMsgsPc(pcl::PointCloud<pcl::PointXYZ>::Ptr pc) {
+    sensor_msgs::PointCloud2 pclPcToSensorMsgsPc(pcl::PointCloud<pcl::PointXYZRGB>::Ptr pc) {
         sensor_msgs::PointCloud2 output;
         pcl::PCLPointCloud2 intermediate;
         pcl::toPCLPointCloud2(*pc, intermediate);

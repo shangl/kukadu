@@ -149,10 +149,10 @@ namespace kukadu {
 
     std::vector<double> createJointsVector(int n_args, ...);
 
-    pcl::PointCloud<pcl::PointXYZ>::Ptr sensorMsgsPcToPclPc(sensor_msgs::PointCloud2::Ptr pc);
+    pcl::PointCloud<pcl::PointXYZRGB>::Ptr sensorMsgsPcToPclPc(sensor_msgs::PointCloud2::Ptr pc);
     sensor_msgs::PointCloud2 pclPcToSensorMsgsPc(pcl::PointCloud<pcl::PointXYZ> pc);
     pcl::PCLPointCloud2 sensorMsgsPcToPclPc2(sensor_msgs::PointCloud2 pc);
-    sensor_msgs::PointCloud2 pclPcToSensorMsgsPc(pcl::PointCloud<pcl::PointXYZ>::Ptr pc);
+    sensor_msgs::PointCloud2 pclPcToSensorMsgsPc(pcl::PointCloud<pcl::PointXYZRGB>::Ptr pc);
 
     long getFileSize(std::string filename);
     std::wstring stringToWString(const std::string& s);

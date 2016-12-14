@@ -2,20 +2,12 @@
 #define KUKADU_KINECT_H
 
 #include <vector>
-#include <cstdio>
 #include <string>
-#include <fstream>
-#include <iostream>
-#include <wordexp.h>
-#include <ros/ros.h>
-#include <ros/publisher.h>
-#include <ros/subscriber.h>
-#include <tf2_msgs/TFMessage.h>
-#include <pcl_ros/transforms.h>
-#include <tf/transform_listener.h>
+#include <pcl/point_cloud.h>
+#include <pcl/point_types.h>
 #include <sensor_msgs/PointCloud2.h>
 #include <kukadu/types/kukadutypes.hpp>
-#include <kukadu/vision/pcltransformator.hpp>
+#include <kukadu/vision/pcstdtrans.hpp>
 
 namespace kukadu {
 
@@ -72,6 +64,7 @@ namespace kukadu {
         std::string getVisPubTopic();
 
         sensor_msgs::PointCloud2::Ptr getCurrentPointCloud();
+        pcl::PointCloud<pcl::PointXYZRGB>::Ptr getCurrentPclPointCloud();
 
         KUKADU_SHARED_PTR<kukadu_thread> startSensing();
 

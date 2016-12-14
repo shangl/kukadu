@@ -1,4 +1,17 @@
+#include <utility>
+#include <pcl/common/pca.h>
+#include <pcl/conversions.h>
+#include <pcl/common/common.h>
+#include <boost/shared_ptr.hpp>
+#include <pcl/common/transforms.h>
+#include <pcl/filters/voxel_grid.h>
+#include <kukadu/vision/kinect.hpp>
 #include <kukadu/vision/pcltools.hpp>
+#include <kukadu/vision/pcstdtrans.hpp>
+#include <pcl/filters/extract_indices.h>
+#include <pcl_conversions/pcl_conversions.h>
+#include <pcl/segmentation/sac_segmentation.h>
+#include <pcl/segmentation/extract_clusters.h>
 #include <pcl/filters/statistical_outlier_removal.h>
 
 using namespace std;
@@ -13,19 +26,23 @@ namespace kukadu {
 	}
 
 	void PCLTools::visualizePointCloud(std::string id, pcl::PointCloud<pcl::PointXYZ>::Ptr pc) {
-
-		pair<string, PointCloud<PointXYZ>::Ptr> nextPcPair(id, pc);
-		visPointClouds.push_back(nextPcPair);
-
-		viewer->setBackgroundColor(0, 0, 0);
-		for(int currIdx = 0; currIdx < visPointClouds.size(); ++currIdx) {
-			pair<string, PointCloud<PointXYZ>::Ptr> currPcPair = visPointClouds.at(currIdx);
-			viewer->addPointCloud<PointXYZ>(currPcPair.second, currPcPair.first);
-			viewer->setPointCloudRenderingProperties(visualization::PCL_VISUALIZER_POINT_SIZE, 1, currPcPair.first);
-		}
-		viewer->initCameraParameters();
-
+        visualizePointCloud(id, PCTransformator::fakeRgb(pc));
 	}
+
+    void PCLTools::visualizePointCloud(std::string id, pcl::PointCloud<pcl::PointXYZRGB>::Ptr pc) {
+
+        pair<string, PointCloud<PointXYZRGB>::Ptr> nextPcPair(id, pc);
+        visPointClouds.push_back(nextPcPair);
+
+        viewer->setBackgroundColor(0, 0, 0);
+        for(int currIdx = 0; currIdx < visPointClouds.size(); ++currIdx) {
+            pair<string, PointCloud<PointXYZRGB>::Ptr> currPcPair = visPointClouds.at(currIdx);
+            viewer->addPointCloud<PointXYZRGB>(currPcPair.second, currPcPair.first);
+            viewer->setPointCloudRenderingProperties(visualization::PCL_VISUALIZER_POINT_SIZE, 1, currPcPair.first);
+        }
+        viewer->initCameraParameters();
+
+    }
 
 	void PCLTools::stopVisualizationWindow() {
 
@@ -55,7 +72,7 @@ namespace kukadu {
 
 	}
 
-	KUKADU_SHARED_PTR<boost::thread> PCLTools::initializeVisualizationWindow() {
+    KUKADU_SHARED_PTR<kukadu_thread> PCLTools::initializeVisualizationWindow() {
 
 		keepShowingVis = true;
 
@@ -69,21 +86,21 @@ namespace kukadu {
 	}
 
 	// according to http://www.pcl-users.org/Finding-oriented-bounding-box-of-a-cloud-td4024616.html
-	FitCube PCLTools::fitBox(PointCloud<PointXYZ>::Ptr cloud) {
+    FitCube PCLTools::fitBox(PointCloud<PointXYZRGB>::Ptr cloud) {
 
 		FitCube retCube;
-		PCA<PointXYZ> pca;
-		PointCloud<PointXYZ> proj;
+        PCA<PointXYZRGB> pca;
+        PointCloud<PointXYZRGB> proj;
 
 		pca.setInputCloud(cloud);
 		pca.project(*cloud, proj);
 
-		PointXYZ proj_min;
-		PointXYZ proj_max;
+        PointXYZRGB proj_min;
+        PointXYZRGB proj_max;
 		getMinMax3D(proj, proj_min, proj_max);
 
-		PointXYZ min;
-		PointXYZ max;
+        PointXYZRGB min;
+        PointXYZRGB max;
 		pca.reconstruct(proj_min, min);
 		pca.reconstruct(proj_max, max);
 
@@ -113,14 +130,14 @@ namespace kukadu {
 
 	}
 
-	PointCloud<PointXYZ>::Ptr PCLTools::segmentPlanar(PointCloud<PointXYZ>::Ptr cloud, bool negative) {
+    PointCloud<PointXYZRGB>::Ptr PCLTools::segmentPlanar(PointCloud<PointXYZRGB>::Ptr cloud, bool negative) {
 
 		// Create the segmentation object for the planar model and set all the parameters
-		PointCloud<PointXYZ>::Ptr cloud_f(new PointCloud<PointXYZ>);
-		SACSegmentation<PointXYZ> seg;
+        PointCloud<PointXYZRGB>::Ptr cloud_f(new PointCloud<PointXYZRGB>);
+        SACSegmentation<PointXYZRGB> seg;
 		PointIndices::Ptr inliers(new PointIndices);
 		ModelCoefficients::Ptr coefficients(new ModelCoefficients);
-		PointCloud<PointXYZ>::Ptr cloud_plane(new PointCloud<PointXYZ> ());
+        PointCloud<PointXYZRGB>::Ptr cloud_plane(new PointCloud<PointXYZRGB>());
 
 		seg.setOptimizeCoefficients(true);
 		seg.setModelType(pcl::SACMODEL_PLANE);
@@ -137,7 +154,7 @@ namespace kukadu {
 		}
 
 		// Extract the planar inliers from the input cloud
-		ExtractIndices<PointXYZ> extract;
+        ExtractIndices<PointXYZRGB> extract;
 		extract.setInputCloud(cloud);
 		extract.setIndices(inliers);
 		extract.setNegative(false);
@@ -171,14 +188,14 @@ namespace kukadu {
 		newLineEndPoint(0) = r0(0) + n(0);
 		newLineEndPoint(1) = r0(1) + n(1);
 		newLineEndPoint(2) = r0(2) + n(2);
-		PointXYZ p1, p2;
+        PointXYZRGB p1, p2;
 		p1.data[0] = r0(0); p1.data[1] = r0(1); p1.data[2] = r0(2);
 		p2.data[0] = newLineEndPoint(0); p2.data[1] = newLineEndPoint(1); p2.data[2] = newLineEndPoint(2);
 		viewer->addLine(p1, p2, id + "line");
 
 	}
 
-	void PCLTools::updateVisualizedPointCloud(std::string id, pcl::PointCloud<pcl::PointXYZ>::Ptr pc) {
+    void PCLTools::updateVisualizedPointCloud(std::string id, pcl::PointCloud<pcl::PointXYZRGB>::Ptr pc) {
 		viewer->updatePointCloud(pc, id);
 	}
 
@@ -186,18 +203,18 @@ namespace kukadu {
 		viewer->addCube(dim.translation, dim.rotation, dim.width, dim.height, dim.depth, id);
 	}
 
-    pcl::PointCloud<pcl::PointXYZ>::Ptr PCLTools::filterCluster(pcl::PointCloud<pcl::PointXYZ>::Ptr cloud, bool negative) {
+    pcl::PointCloud<pcl::PointXYZRGB>::Ptr PCLTools::filterCluster(pcl::PointCloud<pcl::PointXYZRGB>::Ptr cloud, bool negative) {
 
         // Create the filtering object
-        pcl::StatisticalOutlierRemoval<pcl::PointXYZ> sor;
+        pcl::StatisticalOutlierRemoval<pcl::PointXYZRGB> sor;
         sor.setInputCloud(cloud);
         sor.setMeanK(50);
         sor.setStddevMulThresh (1.0);
         sor.filter(*cloud);
 
         int count = 0;
-        vector<pcl::PointCloud<pcl::PointXYZ>::Ptr> clusterPointers;
-        for(pcl::PointCloud<pcl::PointXYZ>::iterator it = cloud->begin(); it != cloud->end(); it++, ++count) {
+        vector<pcl::PointCloud<pcl::PointXYZRGB>::Ptr> clusterPointers;
+        for(pcl::PointCloud<pcl::PointXYZRGB>::iterator it = cloud->begin(); it != cloud->end(); it++, ++count) {
 
             if(!(count % 4)) {
 
@@ -207,8 +224,8 @@ namespace kukadu {
                 bool foundPlace = false;
                 for(int i = 0; i < clusterPointers.size() && !foundPlace; ++i) {
 
-                    pcl::PointCloud<pcl::PointXYZ>::Ptr currentCluster = clusterPointers.at(i);
-                    for(pcl::PointCloud<pcl::PointXYZ>::iterator it2 = currentCluster->begin(); it2 != currentCluster->end(); it2++) {
+                    pcl::PointCloud<pcl::PointXYZRGB>::Ptr currentCluster = clusterPointers.at(i);
+                    for(pcl::PointCloud<pcl::PointXYZRGB>::iterator it2 = currentCluster->begin(); it2 != currentCluster->end(); it2++) {
                         vec clusterPoint(3);
                         clusterPoint(0) = it2->x; clusterPoint(1) = it2->y; clusterPoint(2) = it2->z;
                         vec difVec = point - clusterPoint;
@@ -224,7 +241,7 @@ namespace kukadu {
                 }
 
                 if(!foundPlace) {
-                    pcl::PointCloud<pcl::PointXYZ>::Ptr nextCluster(new pcl::PointCloud<pcl::PointXYZ>());
+                    pcl::PointCloud<pcl::PointXYZRGB>::Ptr nextCluster(new pcl::PointCloud<pcl::PointXYZRGB>());
                     nextCluster->push_back(*it);
                     clusterPointers.push_back(nextCluster);
                 }

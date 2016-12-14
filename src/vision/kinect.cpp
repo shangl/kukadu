@@ -1,5 +1,8 @@
 #include <pcl/io/pcd_io.h>
+#include <tf2_msgs/TFMessage.h>
+#include <pcl_ros/transforms.h>
 #include <kukadu/utils/utils.hpp>
+#include <tf/transform_listener.h>
 #include <kukadu/vision/kinect.hpp>
 #include <pcl_conversions/pcl_conversions.h>
 
@@ -129,6 +132,10 @@ namespace kukadu {
 
     }
 
+    pcl::PointCloud<pcl::PointXYZRGB>::Ptr Kinect::getCurrentPclPointCloud() {
+        return sensorMsgsPcToPclPc(getCurrentPointCloud());
+    }
+
     std::string Kinect::getVisPubTopic() {
         return visPubTopic;
     }
@@ -144,8 +151,8 @@ namespace kukadu {
 
     void Kinect::visualizeCurrentTransformedPc(KUKADU_SHARED_PTR<PCTransformator> transformator) {
 
-        pcl::PointCloud<pcl::PointXYZ>::Ptr currentPc = sensorMsgsPcToPclPc(getCurrentPointCloud());
-        pcl::PointCloud<pcl::PointXYZ>::Ptr transformed = transformator->transformPc(currentPc);
+        pcl::PointCloud<pcl::PointXYZRGB>::Ptr currentPc = sensorMsgsPcToPclPc(getCurrentPointCloud());
+        pcl::PointCloud<pcl::PointXYZRGB>::Ptr transformed = transformator->transformPc(currentPc);
         visPublisher.publish(pclPcToSensorMsgsPc(transformed));
 
     }
