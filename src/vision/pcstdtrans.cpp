@@ -1,8 +1,14 @@
+#include <vector>
 #include <iostream>
+#include <boost/foreach.hpp>
+#include <boost/foreach_fwd.hpp>
 #include <kukadu/utils/utils.hpp>
+#include <kukadu/types/kukadutypes.hpp>
 #include <kukadu/vision/pcstdtrans.hpp>
 #include <pcl_conversions/pcl_conversions.h>
 #include <pcl/filters/conditional_removal.h>
+#include <boost/accumulators/statistics.hpp>
+#include <boost/accumulators/accumulators.hpp>
 
 using namespace pcl;
 using namespace std;
@@ -171,14 +177,8 @@ namespace kukadu {
 
     bool IntensityFunctor::matchPoint(const pcl::PointCloud<pcl::PointXYZRGB>::Ptr cloud, const pcl::PointXYZRGB& currentPoint) {
 
-        Eigen::Vector3i rgb = currentPoint.getRGBVector3i();
-
-        int r = rgb.coeff(0);
-        int g = rgb.coeff(1);
-        int b = rgb.coeff(2);
-
         // appearance based brightness
-        int brightness = (r + r + b + g + g + g) / 6;
+        int brightness = computeIntensity(currentPoint);
         if(brightness > intensity)
             return true;
 
@@ -186,10 +186,32 @@ namespace kukadu {
 
     }
 
+    int IntensityFunctor::computeIntensity(const pcl::PointXYZRGB& currentPoint) {
+
+        Eigen::Vector3i rgb = currentPoint.getRGBVector3i();
+
+        int r = rgb.coeff(0);
+        int g = rgb.coeff(1);
+        int b = rgb.coeff(2);
+
+        return (r + r + b + g + g + g) / 6;
+
+    }
+
+    void IntensityFunctor::initializeFilterForIteration(pcl::PointCloud<pcl::PointXYZ>::Ptr cloud) {
+        // nothing to do
+    }
+
+    void IntensityFunctor::initializeFilterForIteration(pcl::PointCloud<pcl::PointXYZRGB>::Ptr cloud) {
+        // nothing to do
+    }
+
     CustomLambdaFilter::CustomLambdaFilter(CustomFunctor& f) : func(f) {
     }
 
     pcl::PointCloud<pcl::PointXYZ>::Ptr CustomLambdaFilter::transformPc(pcl::PointCloud<pcl::PointXYZ>::Ptr cloud) {
+
+        func.initializeFilterForIteration(cloud);
 
         pcl::PointCloud<pcl::PointXYZ> retCloud;
         for(PointCloud<pcl::PointXYZ>::iterator pointIt = cloud->begin(); pointIt != cloud->end(); ++pointIt) {
@@ -204,18 +226,71 @@ namespace kukadu {
 
     }
 
-    pcl::PointCloud<pcl::PointXYZRGB>::Ptr CustomLambdaFilter::transformPc(pcl::PointCloud<pcl::PointXYZRGB>::Ptr pc) {
+    pcl::PointCloud<pcl::PointXYZRGB>::Ptr CustomLambdaFilter::transformPc(pcl::PointCloud<pcl::PointXYZRGB>::Ptr cloud) {
+
+        func.initializeFilterForIteration(cloud);
 
         pcl::PointCloud<pcl::PointXYZRGB> retCloud;
-        for(PointCloud<pcl::PointXYZRGB>::iterator pointIt = pc->begin(); pointIt != pc->end(); ++pointIt) {
+        for(PointCloud<pcl::PointXYZRGB>::iterator pointIt = cloud->begin(); pointIt != cloud->end(); ++pointIt) {
 
             PointXYZRGB& p = *pointIt;
-            if(func.matchPoint(pc, p))
+            if(func.matchPoint(cloud, p))
                 retCloud.push_back(p);
 
         }
 
         return retCloud.makeShared();
+
+    }
+
+    HaloFunctor::HaloFunctor(int centerIntensity, double radius, double intensityVariance) : intFunc(centerIntensity) {
+        this->radius = radius;
+        this->intensityVariance = intensityVariance;
+    }
+
+    void HaloFunctor::initializeFilterForIteration(pcl::PointCloud<pcl::PointXYZ>::Ptr cloud) {
+        // only supported for xyz
+        throw KukaduException("Halo functor is only available for clouds with rgb data");
+    }
+
+    void HaloFunctor::initializeFilterForIteration(pcl::PointCloud<pcl::PointXYZRGB>::Ptr cloud) {
+        std::vector<int> indices;
+        pcl::removeNaNFromPointCloud(*cloud, *cloud, indices);
+        intFunc.initializeFilterForIteration(cloud);
+        rgbKdTree.setInputCloud(cloud);
+    }
+
+    bool HaloFunctor::matchPoint(const pcl::PointCloud<pcl::PointXYZ>::Ptr cloud, const pcl::PointXYZ& currentPoint) {
+        // only supported for xyz
+        throw KukaduException("Halo functor is only available for clouds with rgb data");
+    }
+
+    bool HaloFunctor::matchPoint(const pcl::PointCloud<pcl::PointXYZRGB>::Ptr cloud, const pcl::PointXYZRGB& currentPoint) {
+
+        // if we have a bright point candidate --> search for a halo around it (high variance of the whole neighbourhood)
+        if(intFunc.matchPoint(cloud, currentPoint)) {
+
+            vector<int> pointIdxRadiusSearch;
+            vector<float> pointRadiusSquaredDistance;
+
+            if(rgbKdTree.radiusSearch(currentPoint, radius, pointIdxRadiusSearch, pointRadiusSquaredDistance) > 0) {
+
+                vector<int> intensities(pointIdxRadiusSearch.size());
+                //cout << intensities.size() << endl;
+                for(int i = 0; i < pointIdxRadiusSearch.size(); i++)
+                    intensities[i] = intFunc.computeIntensity(cloud->at(pointIdxRadiusSearch.at(i)));
+
+                boost::accumulators::accumulator_set<int, boost::accumulators::stats<boost::accumulators::tag::variance> > acc;
+                for_each(intensities.begin(), intensities.end(), boost::bind<void>(boost::ref(acc), _1));
+
+                if(boost::accumulators::variance(acc) > intensityVariance)
+                    return true;
+
+            }
+
+        }
+
+        return false;
 
     }
 

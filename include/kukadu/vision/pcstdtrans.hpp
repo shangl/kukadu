@@ -3,6 +3,7 @@
 
 #include <armadillo>
 #include <pcl_ros/transforms.h>
+#include <pcl/kdtree/kdtree_flann.h>
 
 namespace kukadu {
 
@@ -80,6 +81,9 @@ namespace kukadu {
 
     public:
 
+        virtual void initializeFilterForIteration(pcl::PointCloud<pcl::PointXYZ>::Ptr cloud) = 0;
+        virtual void initializeFilterForIteration(pcl::PointCloud<pcl::PointXYZRGB>::Ptr cloud) = 0;
+
         virtual bool matchPoint(const pcl::PointCloud<pcl::PointXYZ>::Ptr cloud, const pcl::PointXYZ& currentPoint) = 0;
         virtual bool matchPoint(const pcl::PointCloud<pcl::PointXYZRGB>::Ptr cloud, const pcl::PointXYZRGB& currentPoint) = 0;
 
@@ -94,8 +98,9 @@ namespace kukadu {
     public:
 
         CustomLambdaFilter(CustomFunctor& f);
+
         virtual pcl::PointCloud<pcl::PointXYZ>::Ptr transformPc(pcl::PointCloud<pcl::PointXYZ>::Ptr cloud);
-        virtual pcl::PointCloud<pcl::PointXYZRGB>::Ptr transformPc(pcl::PointCloud<pcl::PointXYZRGB>::Ptr pc);
+        virtual pcl::PointCloud<pcl::PointXYZRGB>::Ptr transformPc(pcl::PointCloud<pcl::PointXYZRGB>::Ptr cloud);
 
     };
 
@@ -108,6 +113,33 @@ namespace kukadu {
     public:
 
         IntensityFunctor(int intensity);
+
+        int computeIntensity(const pcl::PointXYZRGB& currentPoint);
+
+        virtual void initializeFilterForIteration(pcl::PointCloud<pcl::PointXYZ>::Ptr cloud);
+        virtual void initializeFilterForIteration(pcl::PointCloud<pcl::PointXYZRGB>::Ptr cloud);
+
+        virtual bool matchPoint(const pcl::PointCloud<pcl::PointXYZ>::Ptr cloud, const pcl::PointXYZ& currentPoint);
+        virtual bool matchPoint(const pcl::PointCloud<pcl::PointXYZRGB>::Ptr cloud, const pcl::PointXYZRGB& currentPoint);
+
+    };
+
+    class HaloFunctor : public CustomFunctor {
+
+    private:
+
+        double radius;
+        double intensityVariance;
+        IntensityFunctor intFunc;
+
+        pcl::KdTreeFLANN<pcl::PointXYZRGB> rgbKdTree;
+
+    public:
+
+        HaloFunctor(int centerIntensity, double radius, double intensityVariance);
+
+        virtual void initializeFilterForIteration(pcl::PointCloud<pcl::PointXYZ>::Ptr cloud);
+        virtual void initializeFilterForIteration(pcl::PointCloud<pcl::PointXYZRGB>::Ptr cloud);
 
         virtual bool matchPoint(const pcl::PointCloud<pcl::PointXYZ>::Ptr cloud, const pcl::PointXYZ& currentPoint);
         virtual bool matchPoint(const pcl::PointCloud<pcl::PointXYZRGB>::Ptr cloud, const pcl::PointXYZRGB& currentPoint);
