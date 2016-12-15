@@ -76,18 +76,41 @@ namespace kukadu {
 
     };
 
-    class IntensityFilter : public PCTransformator {
-
-    private:
-
-        int intensityCut;
+    class CustomFunctor {
 
     public:
 
-        IntensityFilter(int intensityCut);
+        virtual bool matchPoint(const pcl::PointCloud<pcl::PointXYZ>::Ptr cloud, const pcl::PointXYZ& currentPoint) = 0;
+        virtual bool matchPoint(const pcl::PointCloud<pcl::PointXYZRGB>::Ptr cloud, const pcl::PointXYZRGB& currentPoint) = 0;
 
+    };
+
+    class CustomLambdaFilter : public PCTransformator {
+
+    private:
+
+        CustomFunctor& func;
+
+    public:
+
+        CustomLambdaFilter(CustomFunctor& f);
         virtual pcl::PointCloud<pcl::PointXYZ>::Ptr transformPc(pcl::PointCloud<pcl::PointXYZ>::Ptr cloud);
         virtual pcl::PointCloud<pcl::PointXYZRGB>::Ptr transformPc(pcl::PointCloud<pcl::PointXYZRGB>::Ptr pc);
+
+    };
+
+    class IntensityFunctor : public CustomFunctor {
+
+    private:
+
+        int intensity;
+
+    public:
+
+        IntensityFunctor(int intensity);
+
+        virtual bool matchPoint(const pcl::PointCloud<pcl::PointXYZ>::Ptr cloud, const pcl::PointXYZ& currentPoint);
+        virtual bool matchPoint(const pcl::PointCloud<pcl::PointXYZRGB>::Ptr cloud, const pcl::PointXYZRGB& currentPoint);
 
     };
 

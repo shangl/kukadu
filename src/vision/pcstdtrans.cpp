@@ -161,27 +161,60 @@ namespace kukadu {
         return pc;
     }
 
-    IntensityFilter::IntensityFilter(int intensityCut) {
-        this->intensityCut = intensityCut;
+    IntensityFunctor::IntensityFunctor(int intensity) {
+        this->intensity = intensity;
     }
 
-    pcl::PointCloud<pcl::PointXYZ>::Ptr IntensityFilter::transformPc(pcl::PointCloud<pcl::PointXYZ>::Ptr cloud) {
-        return cloud;
+    bool IntensityFunctor::matchPoint(const pcl::PointCloud<pcl::PointXYZ>::Ptr cloud, const pcl::PointXYZ& currentPoint) {
+        return true;
     }
 
-    pcl::PointCloud<pcl::PointXYZRGB>::Ptr IntensityFilter::transformPc(pcl::PointCloud<pcl::PointXYZRGB>::Ptr pc) {
+    bool IntensityFunctor::matchPoint(const pcl::PointCloud<pcl::PointXYZRGB>::Ptr cloud, const pcl::PointXYZRGB& currentPoint) {
+
+        Eigen::Vector3i rgb = currentPoint.getRGBVector3i();
+
+        int r = rgb.coeff(0);
+        int g = rgb.coeff(1);
+        int b = rgb.coeff(2);
+
+        // appearance based brightness
+        int brightness = (r + r + b + g + g + g) / 6;
+        if(brightness > intensity)
+            return true;
+
+        return false;
+
+    }
+
+    CustomLambdaFilter::CustomLambdaFilter(CustomFunctor& f) : func(f) {
+    }
+
+    pcl::PointCloud<pcl::PointXYZ>::Ptr CustomLambdaFilter::transformPc(pcl::PointCloud<pcl::PointXYZ>::Ptr cloud) {
+
+        pcl::PointCloud<pcl::PointXYZ> retCloud;
+        for(PointCloud<pcl::PointXYZ>::iterator pointIt = cloud->begin(); pointIt != cloud->end(); ++pointIt) {
+
+            PointXYZ& p = *pointIt;
+            if(func.matchPoint(cloud, p))
+                retCloud.push_back(p);
+
+        }
+
+        return retCloud.makeShared();
+
+    }
+
+    pcl::PointCloud<pcl::PointXYZRGB>::Ptr CustomLambdaFilter::transformPc(pcl::PointCloud<pcl::PointXYZRGB>::Ptr pc) {
 
         pcl::PointCloud<pcl::PointXYZRGB> retCloud;
         for(PointCloud<pcl::PointXYZRGB>::iterator pointIt = pc->begin(); pointIt != pc->end(); ++pointIt) {
+
             PointXYZRGB& p = *pointIt;
-            Eigen::Vector3i rgb = p.getRGBVector3i();
-            int r = rgb.coeff(0);
-            int g = rgb.coeff(1);
-            int b = rgb.coeff(2);
-            int brightness = (r + r + b + g + g + g) / 6;
-            if(brightness > 230)
+            if(func.matchPoint(pc, p))
                 retCloud.push_back(p);
+
         }
+
         return retCloud.makeShared();
 
     }
