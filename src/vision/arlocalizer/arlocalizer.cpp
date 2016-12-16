@@ -12,6 +12,34 @@ using namespace std;
 
 namespace kukadu {
 
+    ArLocalizer::ArLocalizer(ros::NodeHandle& n, std::string imageTopic, bool show_camera_image) {
+
+        toolkit = KUKADU_SHARED_PTR<ARToolKitPlusNode>(new ARToolKitPlusNode(n, imageTopic, show_camera_image));
+
+    }
+
+    std::map<std::string, geometry_msgs::Pose> ArLocalizer::localizeObjects() {
+        return toolkit->getDetectedPoses();
+    }
+
+    geometry_msgs::Pose ArLocalizer::localizeObject(std::string id) {
+
+        std::map<std::string, geometry_msgs::Pose> detectedPoses = toolkit->getDetectedPoses();
+        return detectedPoses[id];
+
+    }
+
+    std::vector<geometry_msgs::Pose> ArLocalizer::localizeObjects(std::vector<std::string> ids) {
+
+        std::vector<geometry_msgs::Pose> retPoses;
+        std::map<std::string, geometry_msgs::Pose> detectedPoses = toolkit->getDetectedPoses();
+        for(int i = 0; i < ids.size(); ++i)
+            retPoses.push_back(detectedPoses[ids.at(i)]);
+
+        return retPoses;
+
+    }
+
     class ArLogger : public Logger {
         void artLog(const char* nStr) {
             printf("%s", nStr);
@@ -36,6 +64,31 @@ namespace kukadu {
         undist_mode = UNDIST_STD;
         pose_estimation_mode = POSE_ESTIMATOR_RPP;
         imageTopic = "camera/rgb/image_raw";
+        use_multi_marker_lite_detection = true;
+
+        init();
+        cameraSubscriber_ = imageTransport_.subscribeCamera(ARTOOLKITPLUS_IMAGE_SRC, 1, &ARToolKitPlusNode::imageCallback, this);
+
+    }
+
+    ARToolKitPlusNode::ARToolKitPlusNode(ros::NodeHandle& n, std::string imageTopic, bool show_camera_image) : n_(n), n_param_("~"), callback_counter_(0), imageTransport_(n_) {
+
+        skip_frames = 0;
+        this->show_camera_image = show_camera_image;
+        tf_prefix = "";
+        tracker_single_marker = false;
+        tracker_multi_marker = true;
+        pattern_frame = "pattern";
+        pattern_file = resolvePath("$KUKADU_HOME/cfg/arlocalizer/markerboard_0000-0011.cfg");
+        marker_mode = MARKER_ID_BCH;
+        pattern_width = 0.1;
+        threshold = 0;
+        border_width = 0.125;
+        undist_iterations = 10;
+        distorted_input = true;
+        undist_mode = UNDIST_STD;
+        pose_estimation_mode = POSE_ESTIMATOR_RPP;
+        this->imageTopic = imageTopic;
         use_multi_marker_lite_detection = true;
 
         init();
@@ -343,38 +396,84 @@ namespace kukadu {
         tf::Transform trans;
         tf::StampedTransform st;
         char frame[0xFF];
-        markerTransforms_.clear();
 
-        if(trackerMultiMarker_) {
+        tfMutex.lock();
 
-            if( arMultiMarkerInfo_->marker_num > 0)
-            {
-                const ARFloat *p = trackerMultiMarker_->getModelViewMatrix();
-                for(int r = 0; r < 3; r++) {
-                    pose[r][0] = p[r+0];
-                    pose[r][1] = p[r+4];
-                    pose[r][2] = p[r+8];
-                    pose[r][3] = p[r+12];
+            markerTransforms_.clear();
+
+            if(trackerMultiMarker_) {
+
+                if( arMultiMarkerInfo_->marker_num > 0) {
+                    const ARFloat *p = trackerMultiMarker_->getModelViewMatrix();
+
+                    for(int r = 0; r < 3; r++) {
+                        pose[r][0] = p[r+0];
+                        pose[r][1] = p[r+4];
+                        pose[r][2] = p[r+8];
+                        pose[r][3] = p[r+12];
+                    }
+
+                    matrix2Tf(pose, trans);
+                    std::string child_frame = tf::resolve(tf_prefix, pattern_frame);
+                    st = tf::StampedTransform(trans, header.stamp, header.frame_id, child_frame);
+                    markerTransforms_.push_back(st);
+
                 }
-                matrix2Tf(pose, trans);
-                std::string child_frame = tf::resolve(tf_prefix, pattern_frame);
-                st = tf::StampedTransform(trans, header.stamp, header.frame_id, child_frame);
-                markerTransforms_.push_back(st);
+
             }
-        }
-        for(std::vector<kukadu::ARTag2D>::iterator arTag =  arTags2D_.begin(); arTag != arTags2D_.end(); arTag++) {
-            if (arTag->id < 0)
-                continue;
-            if (arTag->belongsToPattern != kukadu::ARTag2D::NO_PATTERN)
-                continue;
-            sprintf(frame, "t%i", arTag->id);
-            if(trackerMultiMarker_) trackerMultiMarker_->executeSingleMarkerPoseEstimator(&(*arTag), center, pattern_width, pose);
-            if(trackerSingleMarker_) trackerSingleMarker_->executeSingleMarkerPoseEstimator(&(*arTag), center, pattern_width, pose);
-            matrix2Tf(pose, trans);
-            std::string child_frame = tf::resolve(tf_prefix, frame);
-            st = tf::StampedTransform(trans, header.stamp, header.frame_id, child_frame);
-            markerTransforms_.push_back(st);
-        }
+
+            for(std::vector<kukadu::ARTag2D>::iterator arTag =  arTags2D_.begin(); arTag != arTags2D_.end(); arTag++) {
+
+                if (arTag->id < 0)
+                    continue;
+                if (arTag->belongsToPattern != kukadu::ARTag2D::NO_PATTERN)
+                    continue;
+
+                sprintf(frame, "t%i", arTag->id);
+
+                if(trackerMultiMarker_)
+                    trackerMultiMarker_->executeSingleMarkerPoseEstimator(&(*arTag), center, pattern_width, pose);
+
+                if(trackerSingleMarker_)
+                    trackerSingleMarker_->executeSingleMarkerPoseEstimator(&(*arTag), center, pattern_width, pose);
+
+                matrix2Tf(pose, trans);
+                std::string child_frame = tf::resolve(tf_prefix, frame);
+                st = tf::StampedTransform(trans, header.stamp, header.frame_id, child_frame);
+
+                markerTransforms_.push_back(st);
+
+            }
+
+        tfMutex.unlock();
+
+    }
+
+    std::map<std::string, geometry_msgs::Pose> ARToolKitPlusNode::getDetectedPoses() {
+
+        std::map<std::string, geometry_msgs::Pose> posesMap;
+
+        tfMutex.lock();
+
+            for(list<tf::StampedTransform>::iterator it = markerTransforms_.begin(); it != markerTransforms_.end(); ++it) {
+                tf::StampedTransform& currentTransform = *it;
+                tf::Quaternion currentRot = currentTransform.getRotation();
+                tf::Vector3 currentTranslation = currentTransform.getOrigin();
+                geometry_msgs::Pose currentPose;
+                currentPose.position.x = currentTranslation.getX();
+                currentPose.position.y = currentTranslation.getY();
+                currentPose.position.z = currentTranslation.getZ();
+                currentPose.orientation.x = currentRot.getX();
+                currentPose.orientation.y = currentRot.getY();
+                currentPose.orientation.z = currentRot.getZ();
+                currentPose.orientation.w = currentRot.getW();
+                posesMap[string(currentTransform.child_frame_id_)] = currentPose;
+            }
+
+        tfMutex.unlock();
+
+        return posesMap;
+
     }
 
     void ARToolKitPlusNode::init() {
@@ -427,11 +526,15 @@ namespace kukadu {
         transform = tf::Transform(quat, T);
     }
 
-
     void ARToolKitPlusNode::publishTf() {
+
+        // disabled direct tf
+
+        /*
         for(std::list<tf::StampedTransform>::iterator it =  markerTransforms_.begin(); it != markerTransforms_.end(); it++) {
             transformBroadcaster_.sendTransform(*it);
         }
+        */
     }
 
 }

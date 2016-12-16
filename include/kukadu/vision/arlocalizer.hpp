@@ -4,9 +4,11 @@
 #include <kukadu/vision/localizer.hpp>
 #include <kukadu/types/kukadutypes.hpp>
 
+#include <map>
 #include <list>
 #include <ros/ros.h>
 #include <opencv/cv.h>
+#include <boost/thread/mutex.hpp>
 #include <tf/transform_broadcaster.h>
 #include <tf/transform_listener.h>
 #include <image_transport/image_transport.h>
@@ -81,6 +83,8 @@ namespace kukadu {
 
         ARToolKitPlusNode(ros::NodeHandle& n);
 
+        ARToolKitPlusNode(ros::NodeHandle& n, std::string imageTopic, bool show_camera_image);
+
         ARToolKitPlusNode(ros::NodeHandle& n,
                                              int skip_frames,
                                              bool show_camera_image,
@@ -100,7 +104,11 @@ namespace kukadu {
                                              std::string imageTopic,
                                              bool use_multi_marker_lite_detection);
 
+        std::map<std::string, geometry_msgs::Pose> getDetectedPoses();
+
     private:
+
+        boost::mutex tfMutex;
 
         /*** begin parameters ***/
         int skip_frames;
@@ -151,6 +159,22 @@ namespace kukadu {
         int matrix2Tf(const kukadu::ARFloat M[3][4], tf::Transform &transform);
         void readParam();
         void init();
+
+    };
+
+    class ArLocalizer : Localizer {
+
+    private:
+
+        KUKADU_SHARED_PTR<ARToolKitPlusNode> toolkit;
+
+    public:
+
+        ArLocalizer(ros::NodeHandle& n, std::string imageTopic, bool show_camera_image);
+
+        virtual geometry_msgs::Pose localizeObject(std::string id);
+        virtual std::map<std::string, geometry_msgs::Pose> localizeObjects();
+        virtual std::vector<geometry_msgs::Pose> localizeObjects(std::vector<std::string> ids);
 
     };
 
