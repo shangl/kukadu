@@ -117,13 +117,13 @@ namespace kukadu {
         virtual std::string getCartesianLinkName();
         virtual std::string getCartesianReferenceFrame();
 
-#ifdef CPP11SUPPORTED
+#ifndef USEBOOST
         static constexpr int STD_MAX_ATTEMPTS = 5;
-        static constexpr double STD_TIMEOUT = 0.01;
+        static constexpr int STD_TIMEOUT = 10;
         static constexpr bool STD_AVOID_COLLISIONS = true;
 #else
         static const int STD_MAX_ATTEMPTS = 5;
-        static const double STD_TIMEOUT = 0.01;
+        static const double STD_TIMEOUT = 10;
         static const bool STD_AVOID_COLLISIONS = true;
 #endif
 

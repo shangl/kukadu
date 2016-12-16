@@ -33,12 +33,14 @@ find_package(catkin REQUIRED COMPONENTS
     tf2_msgs
     tf_conversions
     trajectory_msgs
+    cv_bridge
 )
 
 find_package(PCL REQUIRED)
 find_package(Boost 1.54 REQUIRED)
 find_package(Armadillo REQUIRED)
 find_package(Qt5Widgets REQUIRED)
+find_package(OpenCV REQUIRED)
 
 if($ENV{ROS_DISTRO} STREQUAL "kinetic")
     set(PYTH_INC /usr/include/python3.5m)
@@ -71,9 +73,13 @@ add_definitions(-DOSNAME_LINUX=1)
 pkg_check_modules(GTK2 REQUIRED gtk+-2.0)
 pkg_check_modules(GTK REQUIRED gtkglext-1.0)
 
+generate_dynamic_reconfigure_options(
+  cfg/arlocalizer/ARParam.cfg
+)
+
 catkin_package(
     INCLUDE_DIRS include external/ReflexxesTypeII/include external/komo/share/src ${PYTH_INC}
-    LIBRARIES ${PROJECT_NAME} kukaduvision reflexxeslib
+    LIBRARIES ${PROJECT_NAME} kukaduvision reflexxeslib artoolkitplus
     CATKIN_DEPENDS cmake_modules actionlib_msgs control_msgs control_msgs eigen_conversions
         geometry_msgs iis_robot_dep message_generation moveit_core moveit_msgs
         moveit_ros_planning_interface pcl_conversions pcl_ros roscpp sensor_msgs std_msgs
@@ -94,6 +100,9 @@ include_directories(
 )
 
 set(CURSES_USE_NCURSES TRUE)
+
+SET(AR_TRACKER_PARAM "6, 6, 6, 1, 16" CACHE STRING "Tracker parameter maker size x, y, sample size, input format, max load, max pattern" )
+add_definitions(-DAR_TRACKER_PARAM=${AR_TRACKER_PARAM})
 
 link_directories(${PYTH_LIB_PATH})
 
@@ -123,6 +132,7 @@ AUX_SOURCE_DIRECTORY(src/robot/kinematics/constraints KUKADUSRC)
 AUX_SOURCE_DIRECTORY(src/learning/projective_simulation KUKADUSRC)
 
 AUX_SOURCE_DIRECTORY(src/vision/ KUKADUVISIONSRC)
+AUX_SOURCE_DIRECTORY(src/vision/arlocalizer ARTOOLKITPLUSSRC)
 
 AUX_SOURCE_DIRECTORY(external/ReflexxesTypeII/src/TypeIIRML/ REFLEXXESSRC)
 
@@ -131,6 +141,12 @@ add_subdirectory(external/komo)
 # vision must not use c++11 because PCL crashes in that case
 SET_SOURCE_FILES_PROPERTIES(
     ${KUKADUVISIONSRC}
+    PROPERTIES
+    COMPILE_FLAGS "-DUSEBOOST"
+)
+
+SET_SOURCE_FILES_PROPERTIES(
+    ${ARTOOLKITPLUSSRC}
     PROPERTIES
     COMPILE_FLAGS "-DUSEBOOST"
 )
@@ -158,13 +174,15 @@ endif()
 
 add_library(reflexxeslib ${REFLEXXESSRC})
 add_library(kukaduvision ${KUKADUVISIONSRC})
+add_library(artoolkitplus ${ARTOOLKITPLUSSRC})
 add_library(${PROJECT_NAME} ${KUKADUSRC} ${MyProjectLib_src} ${MyProjectLib_hdr_moc})
 
 target_link_libraries(${PROJECT_NAME} ${catkin_LIBRARIES} ${Boost_LIBRARIES} ${ARMADILLO_LIBRARIES}
     reflexxeslib ncurses gsl gslcblas stdc++ pthread dl util m komo swift algo ann gui ors optim motion rt lapack blas glut GLU GL X11 ${GTK_LIBRARIES} ${GTK2_LIBRARIES}
     gthread-2.0 qhull ${PYTH_LIB} m mysqlcppconn Qt5::Widgets)
 
-target_link_libraries(kukaduvision ${catkin_LIBRARIES} ${Boost_LIBRARIES} ${PCL_LIBRARIES} ${ARMADILLO_LIBRARIES})
+target_link_libraries(kukaduvision ${catkin_LIBRARIES} ${Boost_LIBRARIES} ${PCL_LIBRARIES} ${ARMADILLO_LIBRARIES} ${OpenCV_LIBRARIES})
+target_link_libraries(artoolkitplus ${catkin_LIBRARIES} ${OpenCV_LIBRARIES})
 
 #add_executable(kukadu_demo_guided tutorials/guided.cpp)
 #target_link_libraries(kukadu_demo_guided kukadu ${catkin_LIBRARIES} komo swift algo ann gui ors optim motion rt lapack blas glut GLU GL X11 ${GTK_LIBRARIES} ${GTK2_LIBRARIES} gthread-2.0 qhull m)
@@ -180,6 +198,9 @@ target_link_libraries(kukaduvision ${catkin_LIBRARIES} ${Boost_LIBRARIES} ${PCL_
 
 #add_executable(cart_traj tutorials/cartesian_trajectories.cpp)
 #target_link_libraries(cart_traj kukadu ${catkin_LIBRARIES})
+
+add_executable(artracker tutorials/artracker.cpp)
+target_link_libraries(artracker ${catkin_LIBRARIES} artoolkitplus kukadu)
 
 add_executable(control_queue tutorials/control_queue.cpp)
 if(COMPILER_SUPPORTS_CXX11)
@@ -202,6 +223,8 @@ target_link_libraries(control_queue kukadu ${catkin_LIBRARIES})
 #target_link_libraries(graphics kukadu ${catkin_LIBRARIES})
 
 add_dependencies(${PROJECT_NAME} ${catkin_EXPORTED_TARGETS} ${PYTH_LIB})
+add_dependencies(kukaduvision ${catkin_EXPORTED_TARGETS})
+#add_dependencies(artoolkitplus ${catkin_EXPORTED_TARGETS} artoolkitplus_gencfg kukadu kukaduvision)
 #add_dependencies(reflexxeslib ${catkin_EXPORTED_TARGETS})
 #add_dependencies(kukadu_demo_guided ${catkin_EXPORTED_TARGETS})
 #add_dependencies(komo_planning ${catkin_EXPORTED_TARGETS})
@@ -212,6 +235,7 @@ add_dependencies(${PROJECT_NAME} ${catkin_EXPORTED_TARGETS} ${PYTH_LIB})
 #add_dependencies(database ${catkin_EXPORTED_TARGETS})
 #add_dependencies(graphics ${catkin_EXPORTED_TARGETS})
 add_dependencies(control_queue ${catkin_EXPORTED_TARGETS})
+add_dependencies(artracker ${catkin_EXPORTED_TARGETS} artoolkitplus kukadu)
 
 if(CATKIN_ENABLE_TESTING)
         catkin_add_gtest(kukadutest test/kukadutest.cpp)
@@ -222,6 +246,7 @@ endif()
 #install(TARGETS gaussian RUNTIME DESTINATION ${CATKIN_PACKAGE_BIN_DESTINATION})
 #install(TARGETS kukadu_demo_guided RUNTIME DESTINATION ${CATKIN_PACKAGE_BIN_DESTINATION})
 install(TARGETS control_queue RUNTIME DESTINATION ${CATKIN_PACKAGE_BIN_DESTINATION})
+install(TARGETS artracker RUNTIME DESTINATION ${CATKIN_PACKAGE_BIN_DESTINATION})
 #install(TARGETS simple_planning RUNTIME DESTINATION ${CATKIN_PACKAGE_BIN_DESTINATION})
 #install(TARGETS komo_planning RUNTIME DESTINATION ${CATKIN_PACKAGE_BIN_DESTINATION})
 #install(TARGETS moveit_planning RUNTIME DESTINATION ${CATKIN_PACKAGE_BIN_DESTINATION})

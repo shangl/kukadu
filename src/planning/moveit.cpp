@@ -19,7 +19,7 @@ namespace kukadu {
     MoveIt::MoveIt(KUKADU_SHARED_PTR<ControlQueue> queue, NodeHandle node, const std::string& moveGroupName, std::vector<std::string> jointNames, std::string tipLink)
         : PathPlanner(jointNames), moveGroup(string(moveGroupName)) {
 
-        construct(queue, node, moveGroupName, jointNames, tipLink, STD_AVOID_COLLISIONS, STD_MAX_ATTEMPTS, STD_TIMEOUT);
+        construct(queue, node, moveGroupName, jointNames, tipLink, STD_AVOID_COLLISIONS, STD_MAX_ATTEMPTS, 1.0 / STD_TIMEOUT);
 
     }
 

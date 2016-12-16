@@ -124,7 +124,7 @@ namespace kukadu {
         virtual std::vector<arma::vec> planCartesianTrajectory(std::vector<geometry_msgs::Pose> intermediatePoses, bool smoothCartesians, bool useCurrentRobotState) = 0;
         virtual std::vector<arma::vec> planCartesianTrajectory(arma::vec startJoints, std::vector<geometry_msgs::Pose> intermediatePoses, bool smoothCartesians = false, bool useCurrentRobotState = true) = 0;
 
-#ifdef CPP11SUPPORTED
+#ifndef USEBOOST
         static constexpr int RESULT_FAILED = 0;
         static constexpr int RESULT_SUCCESS = 1;
         static constexpr int RESULT_APPROXIMATE = 2;

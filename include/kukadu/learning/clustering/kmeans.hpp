@@ -5,7 +5,7 @@
 #include <vector>
 #include <iostream>
 
-#ifndef USEBOOST
+#ifdef USEBOOST
 #include <boost/foreach.hpp>
 #endif
 
