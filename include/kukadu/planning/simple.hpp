@@ -43,8 +43,8 @@ namespace kukadu {
         static constexpr int MAX_NUM_ATTEMPTS = 10;
         static constexpr double MAX_JNT_DIST = 0.2;
 #else
-        static const int MAX_NUM_ATTEMPTS = 10;
-        static const double MAX_JNT_DIST = 0.2;
+        #define MAX_NUM_ATTEMPTS 10;
+        #define MAX_JNT_DIST 0.2;
 #endif
 
     public:

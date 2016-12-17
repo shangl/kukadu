@@ -1,3 +1,4 @@
+#define USEBOOST
 #ifdef USEBOOST
 	#include <kukadu/vision/kinect.hpp>
 	#include <kukadu/vision/pcltools.hpp>

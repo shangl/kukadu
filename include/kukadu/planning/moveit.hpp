@@ -122,9 +122,9 @@ namespace kukadu {
         static constexpr int STD_TIMEOUT = 10;
         static constexpr bool STD_AVOID_COLLISIONS = true;
 #else
-        static const int STD_MAX_ATTEMPTS = 5;
-        static const double STD_TIMEOUT = 10;
-        static const bool STD_AVOID_COLLISIONS = true;
+        #define STD_MAX_ATTEMPTS 5
+        #define STD_TIMEOUT 10
+        #define STD_AVOID_COLLISIONS true;
 #endif
 
     };
