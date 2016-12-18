@@ -1096,7 +1096,8 @@ namespace kukadu {
         executionRunning = false;
         executionStoppingDone = true;
 
-        maxFrcThread->join();
+        if(maxFrcThread && maxFrcThread->joinable())
+            maxFrcThread->join();
 
         return KUKADU_SHARED_PTR<ControllerResult>(new ControllerResult(stdToArmadilloVec(retT), retY, true));
 

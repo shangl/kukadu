@@ -127,7 +127,7 @@ namespace kukadu {
 
     arma::vec log(const tf::Quaternion quat);
     tf::Quaternion vecExp(arma::vec logQuat);
-    double distQuat(tf::Quaternion q1, tf::Quaternion q2);
+    double distQuat(const tf::Quaternion& q1, const tf::Quaternion& q2);
 
     tf::Transform Matrix4f2Transform(Eigen::Matrix4f Tm);
 

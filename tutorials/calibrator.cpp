@@ -12,8 +12,9 @@ int main(int argc, char** args) {
     StorageSingleton& storage = StorageSingleton::get();
 
     cout << "setting up control queue" << endl;
-    auto realLeftQueue = make_shared<KukieControlQueue>(storage, "robinn", "real", "left_arm", node);
+    auto realLeftQueue = make_shared<KukieControlQueue>(storage, "robinn", "simulation", "left_arm", node);
 
+    /*
     cout << "starting queue" << endl;
     KUKADU_SHARED_PTR<kukadu_thread> realLqThread = realLeftQueue->startQueue();
 
@@ -23,32 +24,20 @@ int main(int argc, char** args) {
         realLeftQueue->setStiffness(0.2, 0.01, 0.2, 15000, 150, 1500);
         realLeftQueue->switchMode(KukieControlQueue::KUKA_JNT_IMP_MODE);
     }
+    */
 
-    ArLocalizer arLocal(node, "camera/rgb/image_raw", true);
+    // auto arLocal = make_shared<ArLocalizer>(node, "camera/rgb/image_raw", true);
 
-    ofstream outFile;
-    outFile.open(resolvePath("$HOME/calibdata.txt").c_str());
+    cout << "setting up calibrator" << endl;
+    auto calibrator = make_shared<KinectCalibrator>(realLeftQueue, nullptr, "t15", true, resolvePath("$HOME/calibdata_transferred.txt"));
+    calibrator->setReadDataFromFile(resolvePath("$HOME/calibdata.txt"));
 
-    ros::Rate r(0.5);
-    while(true) {
+    cout << "starting data collection procedure" << endl;
+    calibrator->startDataCollection();
 
-        std::map<std::string, geometry_msgs::Pose> poses = arLocal.localizeObjects();
-        if(poses.find("t15") != poses.end()) {
+    getchar();
 
-            geometry_msgs::Pose arPose = poses["t15"];
-            outFile << "(" << arPose.position.x << ", " << arPose.position.y << ", " << arPose.position.z << ") " <<
-                    "(" << arPose.orientation.x << ", " << arPose.orientation.y << ", " << arPose.orientation.z << ", " << arPose.orientation.w << ")" << endl;
-
-            geometry_msgs::Pose robotPose = realLeftQueue->getCurrentCartesianPose();
-            outFile << "\t(" << robotPose.position.x << ", " << robotPose.position.y << ", " << robotPose.position.z << ") " <<
-                    "(" << robotPose.orientation.x << ", " << robotPose.orientation.y << ", " << robotPose.orientation.z << ", " << robotPose.orientation.w << ")" << endl;
-
-        }
-        outFile.flush();
-
-        r.sleep();
-
-    }
+    calibrator->endDataCollection();
 
     return EXIT_SUCCESS;
 

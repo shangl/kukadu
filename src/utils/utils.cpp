@@ -806,7 +806,7 @@ namespace kukadu {
     }
 
 
-    double distQuat(tf::Quaternion q1, tf::Quaternion q2) {
+    double distQuat(const tf::Quaternion& q1, const tf::Quaternion& q2) {
 
         double d;
         const tf::Quaternion q = q1 * q2.inverse();

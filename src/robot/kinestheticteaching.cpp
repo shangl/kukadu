@@ -247,9 +247,15 @@ namespace kukadu {
     void StandardKinestheticTeacher::quit() {
         teacherRunning = false;
         robotinoQueue->stopQueue();
-        moveThread->join();
-        filterThread->join();
-        qThread->join();
+
+        if(moveThread && moveThread->joinable())
+            moveThread->join();
+
+        if(filterThread && filterThread->joinable())
+            filterThread->join();
+
+        if(qThread && qThread->joinable())
+            qThread->join();
     }
 
 }

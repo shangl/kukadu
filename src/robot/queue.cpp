@@ -382,7 +382,9 @@ namespace kukadu {
             jointsColletorThr = KUKADU_SHARED_PTR<kukadu_thread>(new kukadu_thread(&ControlQueue::jointsCollector, this));
             jointPtpInternal(joints);
             continueCollecting = false;
-            jointsColletorThr->join();
+
+            if(jointsColletorThr && jointsColletorThr->joinable())
+                jointsColletorThr->join();
 
         } else {
 
@@ -408,12 +410,17 @@ namespace kukadu {
                 cartPtpInternal(pos, maxForce);
             } catch(KukaduException& ex) {
                 continueCollecting = false;
-                jointsColletorThr->join();
+
+                if(jointsColletorThr && jointsColletorThr->joinable())
+                    jointsColletorThr->join();
+
                 throw ex;
             }
 
             continueCollecting = false;
-            jointsColletorThr->join();
+
+            if(jointsColletorThr && jointsColletorThr->joinable())
+                jointsColletorThr->join();
 
         } else {
 

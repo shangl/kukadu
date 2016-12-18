@@ -2,6 +2,7 @@
 #include <kukadu/utils/utils.hpp>
 
 #include <iostream>
+#include <opencv/cv.hpp>
 #include <opencv/highgui.h>
 #include <cv_bridge/cv_bridge.h>
 #include <sensor_msgs/image_encodings.h>

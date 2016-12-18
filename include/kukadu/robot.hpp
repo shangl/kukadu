@@ -4,5 +4,6 @@
 #include <kukadu/robot/filters.hpp>
 #include <kukadu/robot/kukiehand.hpp>
 #include <kukadu/robot/kukiequeue.hpp>
+#include <kukadu/robot/calibration.hpp>
 #include <kukadu/robot/autocompfilter.hpp>
 #include <kukadu/robot/kinestheticteacher.hpp>

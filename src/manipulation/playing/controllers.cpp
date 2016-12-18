@@ -1547,7 +1547,7 @@ namespace kukadu {
 
         }
 
-        if(cleanupThread)
+        if(cleanupThread && cleanupThread->joinable())
             cleanupThread->join();
 
         return classifierRes;

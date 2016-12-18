@@ -104,7 +104,9 @@ namespace kukadu {
                     dmpResult.push_back(dmpsim.executeTrajectory(ac, 0, rollout.at(k)->getTmax(), tolAbsErr, tolRelErr));
 
                     movementQueue->stopQueue();
-                    thr->join();
+
+                    if(thr && thr->joinable())
+                        thr->join();
 
                 }
 

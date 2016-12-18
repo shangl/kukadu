@@ -107,7 +107,7 @@ namespace kukadu {
     void SensorStorage::stopDataStorage() {
 
         stopped = true;
-        if(thr)
+        if(thr && thr->joinable())
             thr->join();
 
         for(int i = 0; i < queueStreams.size(); ++i)
