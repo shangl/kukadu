@@ -1023,4 +1023,63 @@ namespace kukadu {
         return convertedVec;
     }
 
+    bool isRotationMatrix(arma::mat rotMatrix) {
+
+        if(rotMatrix.n_rows != 3 || rotMatrix.n_cols != 3)
+            return false;
+
+        mat supposedToBeIdentity = rotMatrix.t() * rotMatrix;
+        if(!isEqualThresh(supposedToBeIdentity, eye(3, 3), 1e-3))
+            return false;
+
+        if(!isEqualThresh(det(rotMatrix), 1.0, 1e-3))
+            return false;
+
+        return true;
+
+    }
+
+    bool isEqualThresh(double value1, double value2, double threshold) {
+        if(abs(value1 - value2) < threshold)
+            return true;
+        return false;
+    }
+
+    bool isEqualThresh(arma::mat mat1, arma::mat mat2, double threshold) {
+        if(mat1.n_rows != mat2.n_rows || mat1.n_cols != mat2.n_cols)
+            throw KukaduException("(isEqualThres) matrix dimensions do not fit");
+        for(int i = 0; i < mat1.n_rows; ++i)
+            for(int j = 0; j < mat1.n_cols; ++j)
+                if(!isEqualThresh(mat1(i, j), mat2(i, j), threshold))
+                    return false;
+        return true;
+    }
+
+    arma::vec rotationMatrixToRpy(arma::mat rotMatrix) {
+
+        arma::vec rpy(3);
+
+        double alpha = 0.0;
+        double gamma = 0.0;
+
+        if(!isRotationMatrix(rotMatrix))
+            throw KukaduException("(rotationMatrixToRpy) passed argument is not a rotation matrix");
+
+        double beta = atan2(-rotMatrix(2, 0), sqrt(pow(rotMatrix(0, 0), 2.0) + pow(rotMatrix(1, 0), 2.0)));
+        if(isEqualThresh(beta, M_PI / 2.0, 1e-3)) {
+            alpha = 0.0;
+            gamma = atan2(rotMatrix(0, 1), rotMatrix(1, 1));
+        } else if(isEqualThresh(beta, -M_PI / 2.0, 1e-3)) {
+            alpha = 0.0;
+            gamma = -atan2(rotMatrix(0, 1), rotMatrix(1, 1));
+        } else {
+            alpha = atan2(rotMatrix(1, 0) / cos(beta), rotMatrix(0, 0) / cos(beta));
+            gamma = atan2(rotMatrix(2, 1) / cos(beta), rotMatrix(2, 2) / cos(beta));
+        }
+
+        rpy(0) = gamma; rpy(1) = beta; rpy(2) = alpha;
+        return rpy;
+
+    }
+
 }

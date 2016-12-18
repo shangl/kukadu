@@ -27,6 +27,8 @@ namespace kukadu {
 
         runDataCollectionThread = false;
 
+        initializeForNewRun();
+
     }
 
     void KinectCalibrator::setReadDataFromRobot() {
@@ -93,8 +95,8 @@ namespace kukadu {
 
                 geometry_msgs::Pose& arPose = cameraPoseRes.second;
 
-                // and the object was moved enough
-                if(isSignificantlyDifferenct(prevPoseCamera, arPose) || isSignificantlyDifferenct(prevPoseRobot, robotPose)) {
+                // and the object was moved enough (only consider the much more precise robot kinematics)
+                if(isSignificantlyDifferenct(prevPoseRobot, robotPose)) {
 
                     prevPoseCamera = arPose;
                     prevPoseRobot = robotPose;
@@ -114,11 +116,28 @@ namespace kukadu {
 
                     }
 
+                    dataMutex.lock();
+
+                        ++dataPointCount;
+                        centroidCamera(0) += arPose.position.x;
+                        centroidCamera(1) += arPose.position.y;
+                        centroidCamera(2) += arPose.position.z;
+
+                        centroidRobot(0) += robotPose.position.x;
+                        centroidRobot(1) += robotPose.position.y;
+                        centroidRobot(2) += robotPose.position.z;
+
+                        samplesCamera.push_back(centroidCamera);
+                        samplesRobot.push_back(centroidRobot);
+
+                    dataMutex.unlock();
+
                 }
 
             }
 
-            r.sleep();
+            if(!readFromFile)
+                r.sleep();
 
         }
 
@@ -145,16 +164,37 @@ namespace kukadu {
 
     }
 
-    void KinectCalibrator::startDataCollection() {
+    void KinectCalibrator::initializeForNewRun() {
 
         if(outFile.is_open())
             outFile.close();
 
-        runDataCollectionThread = true;
+        runDataCollectionThread = false;
 
         lastObjectPoseInCamFrame = geometry_msgs::Pose();
         lastObjectPoseInRobotFrame = geometry_msgs::Pose();
 
+        dataMutex.lock();
+
+            dataPointCount = 0;
+            centroidRobot = vec(3);
+            centroidCamera = vec(3);
+
+            centroidRobot.fill(0.0);
+            centroidCamera.fill(0.0);
+
+            samplesCamera.clear();
+            samplesRobot.clear();
+
+        dataMutex.unlock();
+
+    }
+
+    void KinectCalibrator::startDataCollection() {
+
+        initializeForNewRun();
+
+        runDataCollectionThread = true;
         collectionThread = kukadu_thread(&KinectCalibrator::dataCollectionRunner, this);
 
     }
@@ -199,11 +239,31 @@ namespace kukadu {
 
     }
 
-    arma::mat KinectCalibrator::calibrateRotation() {
+    std::pair<arma::mat, arma::vec> KinectCalibrator::calibrate() {
 
-    }
+        dataMutex.lock();
 
-    arma::vec KinectCalibrator::calibrateTranslation() {
+            auto normalizedCameraCentroid = centroidCamera / (double) dataPointCount;
+            auto normalizedRobotCentroid = centroidRobot / (double) dataPointCount;
+
+            mat h(3, 3); h.fill(0.0);
+            for(int i = 0; i < samplesCamera.size(); ++i)
+                h += (samplesCamera.at(i) - normalizedCameraCentroid) * (samplesRobot.at(i) - normalizedRobotCentroid).t();
+
+            mat u(3, 3); mat v(3, 3); vec s(3);
+            svd(u, s, v, h);
+
+            if(det(v))
+                // if reflection case --> mirror the 3rd column
+                for(int i = 0; i < v.n_rows; ++i)
+                    v(2, i) = -v(2, i);
+
+            mat r = v * u.t();
+            vec t = - r * normalizedCameraCentroid + normalizedRobotCentroid;
+
+        dataMutex.unlock();
+
+        return {r, t};
 
     }
 

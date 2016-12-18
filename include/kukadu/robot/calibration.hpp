@@ -15,8 +15,7 @@ namespace kukadu {
 
     public:
 
-        virtual arma::mat calibrateRotation() = 0;
-        virtual arma::vec calibrateTranslation() = 0;
+        virtual std::pair<arma::mat, arma::vec> calibrate() = 0;
 
     };
 
@@ -43,6 +42,13 @@ namespace kukadu {
         geometry_msgs::Pose lastObjectPoseInCamFrame;
         geometry_msgs::Pose lastObjectPoseInRobotFrame;
 
+        int dataPointCount;
+        arma::vec centroidRobot;
+        arma::vec centroidCamera;
+        std::vector<arma::vec> samplesRobot;
+        std::vector<arma::vec> samplesCamera;
+        kukadu_mutex dataMutex;
+
         KUKADU_SHARED_PTR<ControlQueue> queue;
         KUKADU_SHARED_PTR<Localizer> localizer;
 
@@ -51,6 +57,7 @@ namespace kukadu {
         geometry_msgs::Pose getCurrentPoseRobot();
         std::pair<bool, geometry_msgs::Pose> getCurrentPoseCamera();
 
+        void initializeForNewRun();
         void dataCollectionRunner();
 
         bool isSignificantlyDifferenct(const geometry_msgs::Pose& p1, const geometry_msgs::Pose& p2);
@@ -64,8 +71,7 @@ namespace kukadu {
         virtual void startDataCollection();
         virtual void endDataCollection();
 
-        virtual arma::mat calibrateRotation();
-        virtual arma::vec calibrateTranslation();
+        virtual std::pair<arma::mat, arma::vec> calibrate();
 
         void setReadDataFromRobot();
         void setReadDataFromFile(std::string file);
