@@ -2,6 +2,7 @@
 #include <kukadu/learning/rl/policyrl.hpp>
 #include <kukadu/learning/clustering/kmeans.hpp>
 #include <kukadu/learning/regression/kernel.hpp>
+#include <kukadu/learning/classification/classifier.hpp>
 #include <kukadu/learning/metric_learning/metriclearner.hpp>
 #ifndef USEBOOST
 #include <kukadu/learning/projective_simulation/core.hpp>

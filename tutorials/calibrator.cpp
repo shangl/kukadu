@@ -2,6 +2,7 @@
 #include <kukadu/kukadu.hpp>
 
 using namespace std;
+using namespace arma;
 using namespace kukadu;
 
 int main(int argc, char** args) {
@@ -29,7 +30,7 @@ int main(int argc, char** args) {
     // auto arLocal = make_shared<ArLocalizer>(node, "camera/rgb/image_raw", true);
 
     cout << "setting up calibrator" << endl;
-    auto calibrator = make_shared<KinectCalibrator>(realLeftQueue, nullptr, "t15", true, resolvePath("$HOME/calibdata_transferred.txt"));
+    auto calibrator = make_shared<KinectCalibrator>(realLeftQueue, nullptr, "t15");
     calibrator->setReadDataFromFile(resolvePath("$HOME/calibdata.txt"));
 
     cout << "starting data collection procedure" << endl;
@@ -38,6 +39,16 @@ int main(int argc, char** args) {
     getchar();
 
     calibrator->endDataCollection();
+
+    auto calibration = calibrator->calibrate();
+    cout << "rotation matrix:" << endl << calibration.first << endl;
+    cout << "translation vector in robot frame:" << endl << calibration.second << endl;
+
+    vec transInCamera = inv(calibration.first) * calibration.second;
+    cout << "translation vector in camera frame:" << endl << transInCamera << endl;
+
+    vec rpy = rotationMatrixToRpy(calibration.first);
+    cout << "rpy:" << endl << rpy << endl;
 
     return EXIT_SUCCESS;
 

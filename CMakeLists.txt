@@ -65,10 +65,8 @@ add_definitions(-pthread)
 add_definitions(-DROS_SUPPORT)
 add_definitions(-DOSNAME_LINUX=1)
 
-#set(KukaduGuiLib_src ${PROJECT_SOURCE_DIR}/src/gui/gui.cpp)
-#set(KukaduGuiLib_hdr ${PROJECT_SOURCE_DIR}/include/kukadu/gui/gui.hpp)
-
-#qt5_wrap_cpp(KukaduGuiLib_hdr_moc ${KukaduGuiLib_hdr})
+set(kukaduguilib_hdr ${PROJECT_SOURCE_DIR}/include/kukadu/gui/gui.hpp)
+qt5_wrap_cpp(kukaduguilib_hdr_moc ${kukaduguilib_hdr})
 
 pkg_check_modules(GTK2 REQUIRED gtk+-2.0)
 pkg_check_modules(GTK REQUIRED gtkglext-1.0)
@@ -108,7 +106,7 @@ link_directories(${PYTH_LIB_PATH})
 
 set(ENABLE_VISUALIZATION 1)
 
-#AUX_SOURCE_DIRECTORY(src/gui/ KUKADUSRC)
+AUX_SOURCE_DIRECTORY(src/gui/ KUKADUSRC)
 AUX_SOURCE_DIRECTORY(src/robot/ KUKADUSRC)
 AUX_SOURCE_DIRECTORY(src/utils/ KUKADUSRC)
 AUX_SOURCE_DIRECTORY(src/robot/ KUKADUSRC)
@@ -126,6 +124,7 @@ AUX_SOURCE_DIRECTORY(src/manipulation/haptic/ KUKADUSRC)
 AUX_SOURCE_DIRECTORY(src/learning/clustering/ KUKADUSRC)
 AUX_SOURCE_DIRECTORY(src/manipulation/playing/ KUKADUSRC)
 AUX_SOURCE_DIRECTORY(src/manipulation/pushing/ KUKADUSRC)
+AUX_SOURCE_DIRECTORY(src/learning/classification/ KUKADUSRC)
 AUX_SOURCE_DIRECTORY(src/utils/easyloggingpp/src/ KUKADUSRC)
 AUX_SOURCE_DIRECTORY(src/learning/metric_learning/ KUKADUSRC)
 AUX_SOURCE_DIRECTORY(src/robot/kinematics/constraints KUKADUSRC)
@@ -160,10 +159,20 @@ if(COMPILER_SUPPORTS_CXX11)
         PROPERTIES
         COMPILE_FLAGS "-std=c++11"
     )
+    SET_SOURCE_FILES_PROPERTIES(
+        ${kukaduguilib_hdr_moc}
+        PROPERTIES
+        COMPILE_FLAGS "-std=c++11"
+    )
     add_definitions(-DCPP11SUPPORTED)
 elseif(COMPILER_SUPPORTS_CXX0X)
     SET_SOURCE_FILES_PROPERTIES(
         ${KUKADUSRC}
+        PROPERTIES
+        COMPILE_FLAGS "-std=c++0x"
+    )
+    SET_SOURCE_FILES_PROPERTIES(
+        ${kukaduguilib_hdr_moc}
         PROPERTIES
         COMPILE_FLAGS "-std=c++0x"
     )
@@ -175,7 +184,7 @@ endif()
 add_library(reflexxeslib ${REFLEXXESSRC})
 add_library(kukaduvision ${KUKADUVISIONSRC})
 add_library(artoolkitplus ${ARTOOLKITPLUSSRC})
-add_library(${PROJECT_NAME} ${KUKADUSRC} ${MyProjectLib_src} ${MyProjectLib_hdr_moc})
+add_library(${PROJECT_NAME} ${KUKADUSRC} ${kukaduguilib_hdr_moc})
 
 target_link_libraries(${PROJECT_NAME} ${catkin_LIBRARIES} ${Boost_LIBRARIES} ${ARMADILLO_LIBRARIES}
     reflexxeslib ncurses gsl gslcblas stdc++ pthread dl util m komo swift algo ann gui ors optim motion rt lapack blas glut GLU GL X11 ${GTK_LIBRARIES} ${GTK2_LIBRARIES}
@@ -199,6 +208,18 @@ target_link_libraries(artoolkitplus ${catkin_LIBRARIES} ${OpenCV_LIBRARIES})
 #add_executable(cart_traj tutorials/cartesian_trajectories.cpp)
 #target_link_libraries(cart_traj kukadu ${catkin_LIBRARIES})
 
+#add_executable(gaussian tutorials/gaussianprocess.cpp)
+#target_link_libraries(gaussian kukadu ${catkin_LIBRARIES})
+
+#add_executable(dmp tutorials/dmp.cpp)
+#target_link_libraries(dmp kukadu ${catkin_LIBRARIES})
+
+#add_executable(database tutorials/database.cpp)
+#target_link_libraries(database kukadu ${catkin_LIBRARIES})
+
+add_executable(graphics tutorials/graphics.cpp)
+target_link_libraries(graphics kukadu ${catkin_LIBRARIES})
+
 add_executable(artracker tutorials/artracker.cpp)
 target_link_libraries(artracker ${catkin_LIBRARIES} artoolkitplus kukadu)
 
@@ -209,25 +230,15 @@ add_executable(control_queue tutorials/control_queue.cpp)
 if(COMPILER_SUPPORTS_CXX11)
     SET_TARGET_PROPERTIES(control_queue PROPERTIES COMPILE_FLAGS "-std=c++11")
     SET_TARGET_PROPERTIES(calibrator PROPERTIES COMPILE_FLAGS "-std=c++11")
+    SET_TARGET_PROPERTIES(graphics PROPERTIES COMPILE_FLAGS "-std=c++11")
     SET_TARGET_PROPERTIES(artracker PROPERTIES COMPILE_FLAGS "-std=c++11")
 elseif(COMPILER_SUPPORTS_CXX0X)
     SET_TARGET_PROPERTIES(control_queue PROPERTIES COMPILE_FLAGS "-std=c++0x")
     SET_TARGET_PROPERTIES(calibrator PROPERTIES COMPILE_FLAGS "-std=c++0x")
+    SET_TARGET_PROPERTIES(graphics PROPERTIES COMPILE_FLAGS "-std=c++0x")
     SET_TARGET_PROPERTIES(artracker PROPERTIES COMPILE_FLAGS "-std=c++0x")
 endif()
 target_link_libraries(control_queue kukadu ${catkin_LIBRARIES})
-
-#add_executable(gaussian tutorials/gaussianprocess.cpp)
-#target_link_libraries(gaussian kukadu ${catkin_LIBRARIES})
-
-#add_executable(dmp tutorials/dmp.cpp)
-#target_link_libraries(dmp kukadu ${catkin_LIBRARIES})
-
-#add_executable(database tutorials/database.cpp)
-#target_link_libraries(database kukadu ${catkin_LIBRARIES})
-
-#add_executable(graphics tutorials/graphics.cpp)
-#target_link_libraries(graphics kukadu ${catkin_LIBRARIES})
 
 add_dependencies(${PROJECT_NAME} ${catkin_EXPORTED_TARGETS} ${PYTH_LIB})
 add_dependencies(kukaduvision ${catkin_EXPORTED_TARGETS})
@@ -240,7 +251,7 @@ add_dependencies(kukaduvision ${catkin_EXPORTED_TARGETS})
 #add_dependencies(dmp ${catkin_EXPORTED_TARGETS})
 #add_dependencies(gaussian ${catkin_EXPORTED_TARGETS})
 #add_dependencies(database ${catkin_EXPORTED_TARGETS})
-#add_dependencies(graphics ${catkin_EXPORTED_TARGETS})
+add_dependencies(graphics ${catkin_EXPORTED_TARGETS})
 add_dependencies(control_queue ${catkin_EXPORTED_TARGETS})
 add_dependencies(artracker ${catkin_EXPORTED_TARGETS} artoolkitplus kukadu)
 add_dependencies(calibrator ${catkin_EXPORTED_TARGETS} artoolkitplus kukadu)
@@ -249,7 +260,7 @@ if(CATKIN_ENABLE_TESTING)
         catkin_add_gtest(kukadutest test/kukadutest.cpp)
 endif()
 
-#install(TARGETS graphics RUNTIME DESTINATION ${CATKIN_PACKAGE_BIN_DESTINATION})
+install(TARGETS graphics RUNTIME DESTINATION ${CATKIN_PACKAGE_BIN_DESTINATION})
 #install(TARGETS database RUNTIME DESTINATION ${CATKIN_PACKAGE_BIN_DESTINATION})
 #install(TARGETS gaussian RUNTIME DESTINATION ${CATKIN_PACKAGE_BIN_DESTINATION})
 #install(TARGETS kukadu_demo_guided RUNTIME DESTINATION ${CATKIN_PACKAGE_BIN_DESTINATION})
