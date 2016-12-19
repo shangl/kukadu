@@ -40,7 +40,7 @@ int main(int argc, char** args) {
     }
 
     cout << "setting up calibrator" << endl;
-    auto calibrator = make_shared<KinectCalibrator>(realLeftQueue, arLocal, "t15", true, resolvePath("$HOME/blubWithoutTrans.txt"));
+    auto calibrator = make_shared<KinectCalibrator>(realLeftQueue, arLocal, "t15");
 
     if(calibFile != "")
         calibrator->setReadDataFromFile(resolvePath(calibFile));

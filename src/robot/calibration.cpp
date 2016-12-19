@@ -59,11 +59,6 @@ namespace kukadu {
 
     geometry_msgs::Pose KinectCalibrator::getCurrentPoseRobot() {
 
-//auto fakePose =  getCurrentPoseRobot();
-auto fakePose = lastObjectPoseInCamFrame;
-fakePose.position.x = -fakePose.position.x;
-return fakePose;
-
         if(readFromFile) {
 
             string line;
@@ -149,18 +144,21 @@ return fakePose;
                     dataMutex.lock();
 
                         ++dataPointCount;
-                        centroidCamera = vec(3);
-                        centroidCamera(0) += arPose.position.x;
-                        centroidCamera(1) += arPose.position.y;
-                        centroidCamera(2) += arPose.position.z;
+                        vec cameraPoint(3);
+                        cameraPoint(0) = arPose.position.x;
+                        cameraPoint(1) = arPose.position.y;
+                        cameraPoint(2) = arPose.position.z;
 
-                        centroidRobot = vec(3);
-                        centroidRobot(0) += robotPose.position.x;
-                        centroidRobot(1) += robotPose.position.y;
-                        centroidRobot(2) += robotPose.position.z;
+                        vec robotPoint(3);
+                        robotPoint(0) = robotPose.position.x;
+                        robotPoint(1) = robotPose.position.y;
+                        robotPoint(2) = robotPose.position.z;
 
-                        samplesCamera.push_back(centroidCamera);
-                        samplesRobot.push_back(centroidRobot);
+                        samplesCamera.push_back(cameraPoint);
+                        samplesRobot.push_back(robotPoint);
+
+                        centroidCamera += cameraPoint;
+                        centroidRobot += robotPoint;
 
                     dataMutex.unlock();
 
