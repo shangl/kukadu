@@ -28,6 +28,7 @@ namespace kukadu {
         runDataCollectionThread = false;
 
         initializeForNewRun();
+        setReadDataFromRobot();
 
     }
 
@@ -67,7 +68,33 @@ namespace kukadu {
 
         }
 
-        return (lastObjectPoseInRobotFrame = queue->getCurrentCartesianPose());
+        lastObjectPoseInRobotFrame = queue->getCurrentCartesianPose();
+        return lastObjectPoseInRobotFrame;
+
+    }
+
+    std::pair<bool, geometry_msgs::Pose> KinectCalibrator::getCurrentPoseCamera() {
+//auto fakePose =  getCurrentPoseRobot();
+auto fakePose = lastObjectPoseInRobotFrame;
+fakePose.position.x = -fakePose.position.x - 2.0;
+return {true, fakePose};
+
+        if(readFromFile) {
+
+            string line;
+            if(getline(inStream, line))
+                lastObjectPoseInCamFrame = getPoseFromLine(line);
+            return {true, lastObjectPoseInCamFrame};
+
+        } else {
+
+            auto poses = localizer->localizeObjects();
+            if(poses.find(attachedObjectId) != poses.end())
+                return {true, (lastObjectPoseInCamFrame = poses[attachedObjectId])};
+
+        }
+
+        return {false, geometry_msgs::Pose()};
 
     }
 
@@ -143,27 +170,6 @@ namespace kukadu {
 
     }
 
-    std::pair<bool, geometry_msgs::Pose> KinectCalibrator::getCurrentPoseCamera() {
-
-        if(readFromFile) {
-
-            string line;
-            if(getline(inStream, line))
-                lastObjectPoseInCamFrame = getPoseFromLine(line);
-            return {true, lastObjectPoseInCamFrame};
-
-        } else {
-
-            auto poses = localizer->localizeObjects();
-            if(poses.find(attachedObjectId) != poses.end())
-                return {true, (lastObjectPoseInCamFrame = poses[attachedObjectId])};
-
-        }
-
-        return {false, geometry_msgs::Pose()};
-
-    }
-
     void KinectCalibrator::initializeForNewRun() {
 
         if(outFile.is_open())
@@ -191,6 +197,12 @@ namespace kukadu {
     }
 
     void KinectCalibrator::startDataCollection() {
+
+        if(!readFromFile && !queue)
+            throw KukaduException("(KinectCalibrator) you must either read the data from a file or provide a valid control queue");
+
+        if(!readFromFile && !localizer)
+            throw KukaduException("(KinectCalibrator) you must either read the data from a file or provide a valid localizer");
 
         initializeForNewRun();
 
@@ -250,16 +262,19 @@ namespace kukadu {
             for(int i = 0; i < samplesCamera.size(); ++i)
                 h += (samplesCamera.at(i) - normalizedCameraCentroid) * (samplesRobot.at(i) - normalizedRobotCentroid).t();
 
+cout << "H: " << h << endl;
             mat u(3, 3); mat v(3, 3); vec s(3);
             svd(u, s, v, h);
 
-            if(det(v))
+            if(det(v) < 0.0) {
+cout << "reflection case happened" << endl;
                 // if reflection case --> mirror the 3rd column
                 for(int i = 0; i < v.n_rows; ++i)
                     v(2, i) = -v(2, i);
+            }
 
             mat r = v * u.t();
-            vec t = - r * normalizedCameraCentroid + normalizedRobotCentroid;
+            vec t = -r * normalizedCameraCentroid + normalizedRobotCentroid;
 
         dataMutex.unlock();
 

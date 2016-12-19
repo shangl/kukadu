@@ -162,7 +162,7 @@ namespace kukadu {
 
     };
 
-    class ArLocalizer : Localizer {
+    class ArLocalizer : public Localizer {
 
     private:
 

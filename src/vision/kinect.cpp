@@ -12,19 +12,18 @@ using namespace pcl;
 namespace kukadu {
 
     Kinect::Kinect(ros::NodeHandle node, bool doTransform) {
-        string kinectPrefix = "kinect";
-        construct(kinectPrefix, kinectPrefix + "_depth_frame", node, doTransform);
+        construct("camera/depth_registered/points", "world_link", node, doTransform);
     }
 
-    Kinect::Kinect(std::string kinectPrefix, ros::NodeHandle node, bool doTransform) {
-        construct(kinectPrefix, kinectPrefix + "_depth_frame", node, doTransform);
+    Kinect::Kinect(std::string kinectTopic, ros::NodeHandle node, bool doTransform) {
+        construct(kinectTopic, "world_link", node, doTransform);
     }
 
-    Kinect::Kinect(std::string kinectPrefix, std::string targetFrame, ros::NodeHandle node, bool doTransform) {
-        construct(kinectPrefix, targetFrame, node, doTransform);
+    Kinect::Kinect(std::string kinectTopic, std::string targetFrame, ros::NodeHandle node, bool doTransform) {
+        construct(kinectTopic, targetFrame, node, doTransform);
     }
 
-    void Kinect::construct(std::string kinectPrefix, std::string targetFrame, ros::NodeHandle node, bool doTransform) {
+    void Kinect::construct(std::string kinectTopic, std::string targetFrame, ros::NodeHandle node, bool doTransform) {
 
         this->doTransform = doTransform;
 
@@ -37,10 +36,7 @@ namespace kukadu {
 
         this->node = node;
 
-        this->kinectPrefix = "/" + kinectPrefix;
-        subKinect = node.subscribe(kinectPrefix + "/points", 1, &Kinect::callbackKinectPointCloud, this);
-
-        cout << kinectPrefix << "/points" << endl;
+        subKinect = node.subscribe(kinectTopic, 1, &Kinect::callbackKinectPointCloud, this);
 
         this->visPubTopic = stdVisPubTopic;
         visPublisher = node.advertise<sensor_msgs::PointCloud2>(visPubTopic, 1);
@@ -58,6 +54,7 @@ namespace kukadu {
             transformListener->waitForTransform(targetFrame, currentPc->header.frame_id, ros::Time::now(), ros::Duration(5.0));
 
         this->targetFrame = targetFrame;
+
     }
 
     KUKADU_SHARED_PTR<kukadu_thread> Kinect::startSensing() {

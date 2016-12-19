@@ -203,6 +203,18 @@ namespace kukadu {
 
 	}
 
+    void PCLTools::visDrawLine(std::string id, int pointX1, int pointY1, int pointZ1, int pointX2, int pointY2, int pointZ2) {
+        pcl::ModelCoefficients line_coeff;
+        line_coeff.values.resize(6);
+        line_coeff.values[0] = pointX1;
+        line_coeff.values[1] = pointY1;
+        line_coeff.values[2] = pointZ1;
+        line_coeff.values[3] = pointX2;
+        line_coeff.values[4] = pointY2;
+        line_coeff.values[5] = pointZ2;
+        viewer->addLine(line_coeff, id);
+    }
+
     void PCLTools::updateVisualizedPointCloud(std::string id, pcl::PointCloud<pcl::PointXYZRGB>::Ptr pc) {
 		viewer->updatePointCloud(pc, id);
 	}

@@ -1,4 +1,4 @@
-#include <fstream>
+#include <string>
 #include <kukadu/kukadu.hpp>
 
 using namespace std;
@@ -12,26 +12,38 @@ int main(int argc, char** args) {
 
     StorageSingleton& storage = StorageSingleton::get();
 
-    cout << "setting up control queue" << endl;
-    auto realLeftQueue = make_shared<KukieControlQueue>(storage, "robinn", "simulation", "left_arm", node);
+    string calibFile = "";
+    if(argc == 2)
+        calibFile = string(args[1]);
 
-    /*
-    cout << "starting queue" << endl;
-    KUKADU_SHARED_PTR<kukadu_thread> realLqThread = realLeftQueue->startQueue();
+    KUKADU_SHARED_PTR<ControlQueue> realLeftQueue;
+    KUKADU_SHARED_PTR<kukadu_thread> realLqThread;
+    KUKADU_SHARED_PTR<Localizer> arLocal;
 
-    cout << "switching to impedance mode if it is not there yet" << endl;
-    if(realLeftQueue->getCurrentMode() != KukieControlQueue::KUKA_JNT_IMP_MODE) {
-        realLeftQueue->stopCurrentMode();
-        realLeftQueue->setStiffness(0.2, 0.01, 0.2, 15000, 150, 1500);
-        realLeftQueue->switchMode(KukieControlQueue::KUKA_JNT_IMP_MODE);
+    if(calibFile == "") {
+
+        cout << "setting up control queue" << endl;
+        realLeftQueue = make_shared<KukieControlQueue>(storage, "robinn", "real", "left_arm", node);
+
+        cout << "starting queue" << endl;
+        realLqThread = realLeftQueue->startQueue();
+
+        cout << "switching to impedance mode if it is not there yet" << endl;
+        if(realLeftQueue->getCurrentMode() != KukieControlQueue::KUKA_JNT_IMP_MODE) {
+            realLeftQueue->stopCurrentMode();
+            realLeftQueue->setStiffness(0.2, 0.01, 0.2, 15000, 150, 1500);
+            realLeftQueue->switchMode(KukieControlQueue::KUKA_JNT_IMP_MODE);
+        }
+
+        arLocal = make_shared<ArLocalizer>(node, "camera/rgb/image_raw", true);
+
     }
-    */
-
-    // auto arLocal = make_shared<ArLocalizer>(node, "camera/rgb/image_raw", true);
 
     cout << "setting up calibrator" << endl;
-    auto calibrator = make_shared<KinectCalibrator>(realLeftQueue, nullptr, "t15");
-    calibrator->setReadDataFromFile(resolvePath("$HOME/calibdata.txt"));
+    auto calibrator = make_shared<KinectCalibrator>(realLeftQueue, arLocal, "t15");
+
+    if(calibFile != "")
+        calibrator->setReadDataFromFile(resolvePath(calibFile));
 
     cout << "starting data collection procedure" << endl;
     calibrator->startDataCollection();
@@ -49,6 +61,17 @@ int main(int argc, char** args) {
 
     vec rpy = rotationMatrixToRpy(calibration.first);
     cout << "rpy:" << endl << rpy << endl;
+
+    if(calibFile != "") {
+        // leaves the mode for robot movement
+        realLeftQueue->stopCurrentMode();
+
+        // stops the queue
+        realLeftQueue->stopQueue();
+
+        // waits until everything has stopped
+        realLqThread->join();
+    }
 
     return EXIT_SUCCESS;
 

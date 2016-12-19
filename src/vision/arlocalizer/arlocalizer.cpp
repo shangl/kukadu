@@ -461,9 +461,13 @@ namespace kukadu {
                 tf::Quaternion currentRot = currentTransform.getRotation();
                 tf::Vector3 currentTranslation = currentTransform.getOrigin();
                 geometry_msgs::Pose currentPose;
+
+                // the AR tracker has no right-handed coordinate system --> fixing this manually (align it with the kinect coordinate system)
                 currentPose.position.x = currentTranslation.getX();
-                currentPose.position.y = currentTranslation.getY();
+                currentPose.position.y = -currentTranslation.getY();
                 currentPose.position.z = currentTranslation.getZ();
+
+                // don't know how the coordinate system affects the rotation in
                 currentPose.orientation.x = currentRot.getX();
                 currentPose.orientation.y = currentRot.getY();
                 currentPose.orientation.z = currentRot.getZ();

@@ -41,6 +41,7 @@ namespace kukadu {
         void stopVisualizationWindow();
         void visDrawBox(std::string id, struct FitCube dim);
         void visDrawPlaneWithNormal(std::string id, arma::vec r0, arma::vec n);
+        void visDrawLine(std::string id, int pointX1, int pointY1, int pointZ1, int pointX2, int pointY2, int pointZ2);
 
         void visualizePointCloud(std::string id, pcl::PointCloud<pcl::PointXYZ>::Ptr pc);
         void visualizePointCloud(std::string id, pcl::PointCloud<pcl::PointXYZI>::Ptr pc);

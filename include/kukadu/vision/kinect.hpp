@@ -31,7 +31,7 @@ namespace kukadu {
 
         std::string targetFrame;
         std::string visPubTopic;
-        std::string kinectPrefix;
+        std::string kinectTopic;
 
         KUKADU_SHARED_PTR<tf::TransformListener> transformListener;
 
@@ -46,13 +46,13 @@ namespace kukadu {
 
         void runThread();
         void callbackKinectPointCloud(const sensor_msgs::PointCloud2& pc);
-        void construct(std::string kinectPrefix, std::string targetFrame, ros::NodeHandle node, bool doTransform = true);
+        void construct(std::string kinectTopic, std::string targetFrame, ros::NodeHandle node, bool doTransform = true);
 
     public:
 
         Kinect(ros::NodeHandle node, bool doTransorm = true);
-        Kinect(std::string kinectPrefix, ros::NodeHandle node, bool doTransform = true);
-        Kinect(std::string kinectPrefix, std::string targetFrame, ros::NodeHandle node, bool doTransform = true);
+        Kinect(std::string kinectTopic, std::string targetFrame, ros::NodeHandle node, bool doTransform = true);
+        Kinect(std::string kinectTopic, ros::NodeHandle node, bool doTransform = true);
 
         void stopSensing();
         void visualizeCurrentPc();
