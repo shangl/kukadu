@@ -59,6 +59,11 @@ namespace kukadu {
 
     geometry_msgs::Pose KinectCalibrator::getCurrentPoseRobot() {
 
+//auto fakePose =  getCurrentPoseRobot();
+auto fakePose = lastObjectPoseInCamFrame;
+fakePose.position.x = -fakePose.position.x;
+return fakePose;
+
         if(readFromFile) {
 
             string line;
@@ -74,10 +79,6 @@ namespace kukadu {
     }
 
     std::pair<bool, geometry_msgs::Pose> KinectCalibrator::getCurrentPoseCamera() {
-//auto fakePose =  getCurrentPoseRobot();
-auto fakePose = lastObjectPoseInRobotFrame;
-fakePose.position.x = -fakePose.position.x - 2.0;
-return {true, fakePose};
 
         if(readFromFile) {
 
@@ -105,7 +106,9 @@ return {true, fakePose};
         auto prevPoseRobot = prevPoseCamera;
 
         // store every 4th packet
-        ros::Rate r(4.0 * 1.0 / queue->getCycleTime());
+        ros::Rate r(20);
+        if(!readFromFile)
+            ros::Rate r(4.0 * 1.0 / queue->getCycleTime());
 
         if(storeDataToFile)
             outFile.open(storePath.c_str());
@@ -146,10 +149,12 @@ return {true, fakePose};
                     dataMutex.lock();
 
                         ++dataPointCount;
+                        centroidCamera = vec(3);
                         centroidCamera(0) += arPose.position.x;
                         centroidCamera(1) += arPose.position.y;
                         centroidCamera(2) += arPose.position.z;
 
+                        centroidRobot = vec(3);
                         centroidRobot(0) += robotPose.position.x;
                         centroidRobot(1) += robotPose.position.y;
                         centroidRobot(2) += robotPose.position.z;
@@ -258,10 +263,13 @@ return {true, fakePose};
             auto normalizedCameraCentroid = centroidCamera / (double) dataPointCount;
             auto normalizedRobotCentroid = centroidRobot / (double) dataPointCount;
 
+cout << normalizedCameraCentroid.t() << endl;
+cout << normalizedRobotCentroid.t() << endl;
+
             mat h(3, 3); h.fill(0.0);
             for(int i = 0; i < samplesCamera.size(); ++i)
                 h += (samplesCamera.at(i) - normalizedCameraCentroid) * (samplesRobot.at(i) - normalizedRobotCentroid).t();
-
+cout << "had " << dataPointCount << " points" << endl;
 cout << "H: " << h << endl;
             mat u(3, 3); mat v(3, 3); vec s(3);
             svd(u, s, v, h);
