@@ -1,5 +1,3 @@
-#define USEBOOST
-
 #include <kukadu/kukadu.hpp>
 
 using namespace std;

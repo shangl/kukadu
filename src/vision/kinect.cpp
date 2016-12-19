@@ -38,12 +38,15 @@ namespace kukadu {
         this->node = node;
 
         this->kinectPrefix = "/" + kinectPrefix;
-        subKinect = node.subscribe(kinectPrefix + "/depth_registered/points", 1, &Kinect::callbackKinectPointCloud, this);
+        subKinect = node.subscribe(kinectPrefix + "/points", 1, &Kinect::callbackKinectPointCloud, this);
+
+        cout << kinectPrefix << "/points" << endl;
 
         this->visPubTopic = stdVisPubTopic;
         visPublisher = node.advertise<sensor_msgs::PointCloud2>(visPubTopic, 1);
 
-        transformListener = KUKADU_SHARED_PTR<tf::TransformListener>(new tf::TransformListener());
+        if(doTransform)
+            transformListener = KUKADU_SHARED_PTR<tf::TransformListener>(new tf::TransformListener());
 
         ros::Rate r(10);
         while(!firstCloudSet) {
