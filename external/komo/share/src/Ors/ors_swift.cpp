@@ -300,7 +300,7 @@ void SwiftInterface::pullFromSwift(ors::KinematicWorld& world, bool dumpReport) 
       k++;
     }
 
-    double ab_radius = MT::MAX(proxy->d,0.) + 1.1*(world.shapes(a)->mesh_radius + world.shapes(b)->mesh_radius);
+    double ab_radius = MT::MT_MAX(proxy->d,0.) + 1.1*(world.shapes(a)->mesh_radius + world.shapes(b)->mesh_radius);
     if(proxy->cenD>ab_radius) MT_MSG("shit");
   }
   CHECK(k == (int)world.proxies.N, "");

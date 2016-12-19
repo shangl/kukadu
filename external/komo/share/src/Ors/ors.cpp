@@ -677,7 +677,7 @@ arr ors::KinematicWorld::naturalQmetric(double power) const {
   BM=1.;
   for(uint i=BM.N; i--;) {
     for(uint j=0; j<bodies(i)->outLinks.N; j++) {
-      BM(i) = MT::MAX(BM(bodies(i)->outLinks(j)->to->index)+1., BM(i));
+      BM(i) = MT::MT_MAX(BM(bodies(i)->outLinks(j)->to->index)+1., BM(i));
 //      BM(i) += BM(bodies(i)->outLinks(j)->to->index);
     }
   }

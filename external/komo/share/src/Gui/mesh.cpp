@@ -799,7 +799,7 @@ Vector Mesh::getMeanVertex() {
 
 double Mesh::getRadius() {
   double r=0.;
-  for(uint i=0;i<V.d0;i++) r=MT::MAX(r, sumOfSqr(V[i]));
+  for(uint i=0;i<V.d0;i++) r=MT::MT_MAX(r, sumOfSqr(V[i]));
   return sqrt(r);
 }
 

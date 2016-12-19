@@ -1447,9 +1447,9 @@ arr RowShiftedPackedMatrix::A_At() {
     uint rs_i=rowShift(i);
     for(uint j=Z.d0-1; j>=i+pack_d1; j--) {
       uint rs_j=rowShift(j);
-      uint a=MT::MAX(rs_i,rs_j);
-      uint b=MT::MIN(rs_i+Z.d1,rs_j+Z.d1);
-      b=MT::MIN(real_d1,b);
+      uint a=MT::MT_MAX(rs_i,rs_j);
+      uint b=MT::MT_MIN(rs_i+Z.d1,rs_j+Z.d1);
+      b=MT::MT_MIN(real_d1,b);
       if(a<b) if(pack_d1<j-i+1) pack_d1=j-i+1;
     }
   }
@@ -1468,9 +1468,9 @@ arr RowShiftedPackedMatrix::A_At() {
       double* Zj=&Z(j,0);
       double* Rij=&R(i,j-i);
 
-      uint a=MT::MAX(rs_i,rs_j);
-      uint b=MT::MIN(rs_i+Z.d1,rs_j+Z.d1);
-      b=MT::MIN(real_d1,b);
+      uint a=MT::MT_MAX(rs_i,rs_j);
+      uint b=MT::MT_MIN(rs_i+Z.d1,rs_j+Z.d1);
+      b=MT::MT_MIN(real_d1,b);
       for(uint k=a;k<b;k++) *Rij += Zi[k-rs_i]*Zj[k-rs_j];
     }
   }

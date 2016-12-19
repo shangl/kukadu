@@ -1087,7 +1087,7 @@ template<class T> void MT::Array<T>::setId(int d) {
 template<class T> void MT::Array<T>::setDiag(const T& x, int d) {
   CHECK(d!=-1 || nd==2, "need squared matrix to set to diagonal");
   if(d!=-1) resize(d, d);
-  if(d==-1) d=(int)MT::MIN(d0, d1);
+  if(d==-1) d=(int)MT::MT_MIN(d0, d1);
   setZero();
   uint i;
   for(i=0; i<(uint)d; i++) operator()(i, i)=x;
@@ -2468,7 +2468,7 @@ template<class T> void tensorEquation(MT::Array<T> &X, const MT::Array<T> &A, co
   CHECK(&X!=&A && &X!=&B, "output tensor must be different from input tensors");
   CHECK(A.nd==pickA.N && B.nd==pickB.N, "miss-sized tensor references: " <<A.nd <<"!=" <<pickA.N <<" " <<B.nd <<"!=" <<pickB.N);
   
-  uint n=1+MT::MAX(pickA.max(), pickB.max());
+  uint n=1+MT::MT_MAX(pickA.max(), pickB.max());
   uint i, j, r, s, N, res;
   intA a(n), b(n);
   uintA d(n), dx(n-sum), I, Ia(A.nd), Ib(B.nd);
@@ -2494,7 +2494,7 @@ template<class T> void tensorEquation(MT::Array<T> &X, const MT::Array<T> &A, co
     if(a(i)!=-1) r=A.dim(a(i)); else r=0;
     if(b(i)!=-1) s=B.dim(b(i)); else s=0;
     CHECK(!r || !s || r==s, "inconsistent sharing dimensionalities: " <<r <<"!=" <<s);
-    d(i)=MT::MAX(r, s);
+    d(i)=MT::MT_MAX(r, s);
   }
   DEBUG_TENSOR(cout <<"full dimensionality d=" <<d <<endl;);
   
@@ -2533,7 +2533,7 @@ template<class T> void tensorEquation(MT::Array<T> &X, const MT::Array<T> &A, co
 template<class T> void tensorEquation_doesntWorkLikeThat(MT::Array<T> &X, const MT::Array<T> &A, const uintA &pickA, const MT::Array<T> &B, const uintA &pickB, uint sum) {
   CHECK(A.nd==pickA.N && B.nd==pickB.N, "miss-sized tensor references: " <<A.nd <<"!=" <<pickA.N <<" " <<B.nd <<"!=" <<pickB.N);
   
-  uint n=1+MT::MAX(pickA.max(), pickB.max());
+  uint n=1+MT::MT_MAX(pickA.max(), pickB.max());
   uint i, j;
   uintA a(n), b(n);
   
