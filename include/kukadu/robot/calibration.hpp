@@ -13,13 +13,23 @@ namespace kukadu {
 
     class Calibrator {
 
+        std::string originalFrame;
+        std::string targetFrame;
+
     public:
 
+        Calibrator(std::string originalFrame, std::string targetFrame);
+
+        virtual tf::Transform calibrateTfTransform();
+        virtual arma::mat calibrateAffineTransMatrix();
         virtual std::pair<arma::mat, arma::vec> calibrate() = 0;
+
+        std::string getOriginalFrame();
+        std::string getTargetFrame();
 
     };
 
-    class KinectCalibrator : public Calibrator {
+    class CameraCalibrator : public Calibrator {
 
     private:
 
@@ -64,9 +74,9 @@ namespace kukadu {
 
     public:
 
-        KinectCalibrator(KUKADU_SHARED_PTR<ControlQueue> queue, KUKADU_SHARED_PTR<Localizer> localizer, std::string attachedObjectId, bool storeDataToFile = false, std::string storePath = "",
+        CameraCalibrator(KUKADU_SHARED_PTR<ControlQueue> queue, KUKADU_SHARED_PTR<Localizer> localizer, std::string attachedObjectId, bool storeDataToFile = false, std::string storePath = "",
                          double minCartDistance = 0.03, double minQuatDistance = 0.03);
-        ~KinectCalibrator();
+        ~CameraCalibrator();
 
         virtual void startDataCollection();
         virtual void endDataCollection();

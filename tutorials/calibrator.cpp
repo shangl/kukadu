@@ -40,7 +40,7 @@ int main(int argc, char** args) {
     }
 
     cout << "setting up calibrator" << endl;
-    auto calibrator = make_shared<KinectCalibrator>(realLeftQueue, arLocal, "t15");
+    auto calibrator = make_shared<CameraCalibrator>(realLeftQueue, arLocal, "t15");
 
     if(calibFile != "")
         calibrator->setReadDataFromFile(resolvePath(calibFile));
@@ -62,7 +62,16 @@ int main(int argc, char** args) {
     vec rpy = rotationMatrixToRpy(calibration.first);
     cout << "rpy:" << endl << rpy << endl;
 
+    tf::TransformBroadcaster br;
+    auto transform = affineTransMatrixToTf(calibrator->calibrateAffineTransMatrix());
+
+    cout << "publishing tf from " << calibrator->getOriginalFrame() << " to " << calibrator->getTargetFrame() << endl;
+
+    while(true)
+        br.sendTransform(tf::StampedTransform(transform, ros::Time::now(), calibrator->getOriginalFrame(), calibrator->getTargetFrame()));
+
     if(calibFile != "") {
+
         // leaves the mode for robot movement
         realLeftQueue->stopCurrentMode();
 
@@ -70,7 +79,9 @@ int main(int argc, char** args) {
         realLeftQueue->stopQueue();
 
         // waits until everything has stopped
-        realLqThread->join();
+        if(realLqThread->joinable())
+            realLqThread->join();
+
     }
 
     return EXIT_SUCCESS;

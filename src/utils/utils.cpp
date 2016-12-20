@@ -1082,4 +1082,30 @@ namespace kukadu {
 
     }
 
+    tf::Transform affineTransMatrixToTf(arma::mat transMatrix) {
+
+        if(transMatrix.n_cols != 4 || transMatrix.n_rows != 4)
+            throw KukaduException("(affineTransMatrixToTf) transformation matrix has wrong dimensionality (not 4x4)");
+
+          tf::Vector3 origin;
+          origin.setValue(transMatrix(0, 3), transMatrix(1, 3), transMatrix(2, 3));
+
+          tf::Matrix3x3 tf3d;
+          tf3d.setValue(
+                      transMatrix(0, 0), transMatrix(0, 1), transMatrix(0, 2),
+                      transMatrix(1, 0), transMatrix(1, 1), transMatrix(1 ,2),
+                      transMatrix(2, 0), transMatrix(2, 1), transMatrix(2, 2)
+                );
+
+          tf::Quaternion tfqt;
+          tf3d.getRotation(tfqt);
+
+          tf::Transform transform;
+          transform.setOrigin(origin);
+          transform.setRotation(tfqt);
+
+          return transform;
+
+    }
+
 }

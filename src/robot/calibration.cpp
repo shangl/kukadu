@@ -12,8 +12,46 @@ using namespace arma;
 
 namespace kukadu {
 
-    KinectCalibrator::KinectCalibrator(KUKADU_SHARED_PTR<ControlQueue> queue, KUKADU_SHARED_PTR<Localizer> localizer, std::string attachedObjectId, bool storeDataToFile, std::string storePath,
-                                       double minCartDistance, double minQuatDistance) {
+    Calibrator::Calibrator(std::string originalFrame, std::string targetFrame) {
+        this->originalFrame = originalFrame;
+        this->targetFrame = targetFrame;
+    }
+
+    std::string Calibrator::getOriginalFrame() {
+        return originalFrame;
+    }
+
+    std::string Calibrator::getTargetFrame() {
+        return targetFrame;
+    }
+
+    tf::Transform Calibrator::calibrateTfTransform() {
+
+        tf::Transform retTf = affineTransMatrixToTf(calibrateAffineTransMatrix());
+        return retTf;
+
+    }
+
+    arma::mat Calibrator::calibrateAffineTransMatrix() {
+
+        pair<mat, vec> calibration = calibrate();
+
+        mat retMat(4, 4); retMat.fill(0.0);
+        for(int i = 0; i < 3; ++i) {
+            retMat(i, 3) = calibration.second(i);
+            for(int j = 0; j < 3; ++j)
+                retMat(i, j) = calibration.first(i, j);
+        }
+        retMat(3, 3) = 1.0;
+
+        return retMat;
+
+    }
+
+    CameraCalibrator::CameraCalibrator(KUKADU_SHARED_PTR<ControlQueue> queue, KUKADU_SHARED_PTR<Localizer> localizer, std::string attachedObjectId, bool storeDataToFile, std::string storePath,
+                                       double minCartDistance, double minQuatDistance)
+     : Calibrator((localizer) ? localizer->getLocalizerFrame() : "camera_frame",
+                  (queue) ? queue->getCartesianReferenceFrame() : "robot_frame") {
 
         this->storeDataToFile = storeDataToFile;
         this->storePath = storePath;
@@ -32,18 +70,18 @@ namespace kukadu {
 
     }
 
-    void KinectCalibrator::setReadDataFromRobot() {
+    void CameraCalibrator::setReadDataFromRobot() {
         readFromFile = false;
     }
 
-    void KinectCalibrator::setReadDataFromFile(std::string file) {
+    void CameraCalibrator::setReadDataFromFile(std::string file) {
         if(inStream.is_open())
             inStream.close();
         inStream.open(file.c_str());
         readFromFile = true;
     }
 
-    geometry_msgs::Pose KinectCalibrator::getPoseFromLine(const std::string& line) {
+    geometry_msgs::Pose CameraCalibrator::getPoseFromLine(const std::string& line) {
         geometry_msgs::Pose retPose;
         KukaduTokenizer tok(line, "(,) ");
         auto words = tok.split();
@@ -57,7 +95,7 @@ namespace kukadu {
         return retPose;
     }
 
-    geometry_msgs::Pose KinectCalibrator::getCurrentPoseRobot() {
+    geometry_msgs::Pose CameraCalibrator::getCurrentPoseRobot() {
 
         if(readFromFile) {
 
@@ -73,7 +111,7 @@ namespace kukadu {
 
     }
 
-    std::pair<bool, geometry_msgs::Pose> KinectCalibrator::getCurrentPoseCamera() {
+    std::pair<bool, geometry_msgs::Pose> CameraCalibrator::getCurrentPoseCamera() {
 
         if(readFromFile) {
 
@@ -94,7 +132,7 @@ namespace kukadu {
 
     }
 
-    void KinectCalibrator::dataCollectionRunner() {
+    void CameraCalibrator::dataCollectionRunner() {
 
         geometry_msgs::Pose prevPoseCamera; prevPoseCamera.position.x = prevPoseCamera.position.y = prevPoseCamera.position.z =
                 prevPoseCamera.orientation.x = prevPoseCamera.orientation.y = prevPoseCamera.orientation.z = prevPoseCamera.orientation.w = 0.0;
@@ -173,7 +211,7 @@ namespace kukadu {
 
     }
 
-    void KinectCalibrator::initializeForNewRun() {
+    void CameraCalibrator::initializeForNewRun() {
 
         if(outFile.is_open())
             outFile.close();
@@ -199,22 +237,22 @@ namespace kukadu {
 
     }
 
-    void KinectCalibrator::startDataCollection() {
+    void CameraCalibrator::startDataCollection() {
 
         if(!readFromFile && !queue)
-            throw KukaduException("(KinectCalibrator) you must either read the data from a file or provide a valid control queue");
+            throw KukaduException("(CameraCalibrator) you must either read the data from a file or provide a valid control queue");
 
         if(!readFromFile && !localizer)
-            throw KukaduException("(KinectCalibrator) you must either read the data from a file or provide a valid localizer");
+            throw KukaduException("(CameraCalibrator) you must either read the data from a file or provide a valid localizer");
 
         initializeForNewRun();
 
         runDataCollectionThread = true;
-        collectionThread = kukadu_thread(&KinectCalibrator::dataCollectionRunner, this);
+        collectionThread = kukadu_thread(&CameraCalibrator::dataCollectionRunner, this);
 
     }
 
-    void KinectCalibrator::endDataCollection() {
+    void CameraCalibrator::endDataCollection() {
 
         runDataCollectionThread = false;
 
@@ -226,11 +264,11 @@ namespace kukadu {
 
     }
 
-    KinectCalibrator::~KinectCalibrator() {
+    CameraCalibrator::~CameraCalibrator() {
         endDataCollection();
     }
 
-    bool KinectCalibrator::isSignificantlyDifferenct(const geometry_msgs::Pose& p1, const geometry_msgs::Pose& p2) {
+    bool CameraCalibrator::isSignificantlyDifferenct(const geometry_msgs::Pose& p1, const geometry_msgs::Pose& p2) {
 
         vec p1Pos(3); p1Pos(0) = p1.position.x; p1Pos(1) = p1.position.y; p1Pos(2) = p1.position.z;
         vec p2Pos(3); p2Pos(0) = p2.position.x; p2Pos(1) = p2.position.y; p2Pos(2) = p2.position.z;
@@ -254,29 +292,26 @@ namespace kukadu {
 
     }
 
-    std::pair<arma::mat, arma::vec> KinectCalibrator::calibrate() {
+    std::pair<arma::mat, arma::vec> CameraCalibrator::calibrate() {
 
         dataMutex.lock();
 
             auto normalizedCameraCentroid = centroidCamera / (double) dataPointCount;
             auto normalizedRobotCentroid = centroidRobot / (double) dataPointCount;
 
-cout << normalizedCameraCentroid.t() << endl;
-cout << normalizedRobotCentroid.t() << endl;
-
             mat h(3, 3); h.fill(0.0);
             for(int i = 0; i < samplesCamera.size(); ++i)
                 h += (samplesCamera.at(i) - normalizedCameraCentroid) * (samplesRobot.at(i) - normalizedRobotCentroid).t();
-cout << "had " << dataPointCount << " points" << endl;
-cout << "H: " << h << endl;
+
             mat u(3, 3); mat v(3, 3); vec s(3);
             svd(u, s, v, h);
 
             if(det(v) < 0.0) {
-cout << "reflection case happened" << endl;
+
                 // if reflection case --> mirror the 3rd column
                 for(int i = 0; i < v.n_rows; ++i)
                     v(2, i) = -v(2, i);
+
             }
 
             mat r = v * u.t();

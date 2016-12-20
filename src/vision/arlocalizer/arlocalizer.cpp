@@ -13,6 +13,10 @@ using namespace std;
 
 namespace kukadu {
 
+    std::string ArLocalizer::getLocalizerFrame() {
+        return toolkit->getDetectionFrameName();
+    }
+
     ArLocalizer::ArLocalizer(ros::NodeHandle& n, std::string imageTopic, bool show_camera_image) {
 
         toolkit = KUKADU_SHARED_PTR<ARToolKitPlusNode>(new ARToolKitPlusNode(n, imageTopic, show_camera_image));
@@ -49,6 +53,8 @@ namespace kukadu {
 
     ARToolKitPlusNode::ARToolKitPlusNode(ros::NodeHandle& n) : n_(n), n_param_("~"), callback_counter_(0), imageTransport_(n_) {
 
+        firstImageRetrieved = false;
+
         skip_frames = 0;
         show_camera_image = true;
         tf_prefix = "";
@@ -70,9 +76,15 @@ namespace kukadu {
         init();
         cameraSubscriber_ = imageTransport_.subscribeCamera(ARTOOLKITPLUS_IMAGE_SRC, 1, &ARToolKitPlusNode::imageCallback, this);
 
+        ros::Rate waitRate(10);
+        while(!firstImageRetrieved)
+            waitRate.sleep();
+
     }
 
     ARToolKitPlusNode::ARToolKitPlusNode(ros::NodeHandle& n, std::string imageTopic, bool show_camera_image) : n_(n), n_param_("~"), callback_counter_(0), imageTransport_(n_) {
+
+        firstImageRetrieved = false;
 
         skip_frames = 0;
         this->show_camera_image = show_camera_image;
@@ -94,6 +106,11 @@ namespace kukadu {
 
         init();
         cameraSubscriber_ = imageTransport_.subscribeCamera(ARTOOLKITPLUS_IMAGE_SRC, 1, &ARToolKitPlusNode::imageCallback, this);
+
+        ros::Rate waitRate(10);
+        while(!firstImageRetrieved)
+            waitRate.sleep();
+
 
     }
 
@@ -116,6 +133,8 @@ namespace kukadu {
                                          std::string imageTopic,
                                          bool use_multi_marker_lite_detection) : n_(n), n_param_("~"), callback_counter_(0), imageTransport_(n_) {
 
+        firstImageRetrieved = false;
+
         this->skip_frames = skip_frames;
         this->show_camera_image = show_camera_image;
         this->tf_prefix = tf_prefix;
@@ -137,6 +156,10 @@ namespace kukadu {
         init();
         cameraSubscriber_ = imageTransport_.subscribeCamera(ARTOOLKITPLUS_IMAGE_SRC, 1, &ARToolKitPlusNode::imageCallback, this);
 
+        ros::Rate waitRate(10);
+        while(!firstImageRetrieved)
+            waitRate.sleep();
+
     }
 
     class ARCamera: public kukadu::CameraAdvImpl {
@@ -154,7 +177,6 @@ namespace kukadu {
         }
 
         ARCamera(const sensor_msgs::CameraInfoConstPtr& _camer_info, int _undist_iterations, bool _input_distorted) {
-
 
             // kukadu::CameraAdvImpl Parameter
             if (_input_distorted) {
@@ -214,6 +236,10 @@ namespace kukadu {
                 this->dist_factor[i] = this->kc[i];
         }
     };
+
+    std::string ARToolKitPlusNode::getDetectionFrameName() {
+        return detectionFrameName;
+    }
 
     void ARToolKitPlusNode::initTrackerMultiMarker(const sensor_msgs::CameraInfoConstPtr& camer_info) {
 
@@ -328,6 +354,9 @@ namespace kukadu {
     }
 
     void ARToolKitPlusNode::imageCallback(const sensor_msgs::ImageConstPtr& image_msg, const sensor_msgs::CameraInfoConstPtr& camer_info_) {
+
+        detectionFrameName = camer_info_->header.frame_id;
+
         callback_counter_++;
         if((callback_counter_ % (skip_frames+1) ) != 0) {
             return;
@@ -386,6 +415,9 @@ namespace kukadu {
             cv::imshow("artracker" + std::string(" - debug"), img_debug);
             cv::waitKey(5);
         }
+
+        firstImageRetrieved = true;
+
     }
 
     void ARToolKitPlusNode::estimatePoses(const std_msgs::Header &header) {
@@ -462,12 +494,10 @@ namespace kukadu {
                 tf::Vector3 currentTranslation = currentTransform.getOrigin();
                 geometry_msgs::Pose currentPose;
 
-                // the AR tracker has no right-handed coordinate system --> fixing this manually (align it with the kinect coordinate system)
                 currentPose.position.x = currentTranslation.getX();
-                currentPose.position.y = -currentTranslation.getY();
+                currentPose.position.y = currentTranslation.getY();
                 currentPose.position.z = currentTranslation.getZ();
 
-                // don't know how the coordinate system affects the rotation in
                 currentPose.orientation.x = currentRot.getX();
                 currentPose.orientation.y = currentRot.getY();
                 currentPose.orientation.z = currentRot.getZ();
@@ -533,13 +563,6 @@ namespace kukadu {
 
     void ARToolKitPlusNode::publishTf() {
 
-        // disabled direct tf
-
-        /*
-        for(std::list<tf::StampedTransform>::iterator it =  markerTransforms_.begin(); it != markerTransforms_.end(); it++) {
-            transformBroadcaster_.sendTransform(*it);
-        }
-        */
     }
 
 }

@@ -170,6 +170,8 @@ namespace kukadu {
     bool isEqualThresh(arma::mat mat1, arma::mat mat2, double threshold);
     arma::vec rotationMatrixToRpy(arma::mat rotMatrix);
 
+    tf::Transform affineTransMatrixToTf(arma::mat transMatrix);
+
 #ifndef USEBOOST
     template<typename S, typename T> bool mapContainsValue(std::map<S, T> m, T val) {
         for(auto it = m.begin(); it != m.end(); ++it )

@@ -106,9 +106,14 @@ namespace kukadu {
 
         std::map<std::string, geometry_msgs::Pose> getDetectedPoses();
 
+        std::string getDetectionFrameName();
+
     private:
 
         boost::mutex tfMutex;
+
+        bool firstImageRetrieved;
+        std::string detectionFrameName;
 
         /*** begin parameters ***/
         int skip_frames;
@@ -171,6 +176,8 @@ namespace kukadu {
     public:
 
         ArLocalizer(ros::NodeHandle& n, std::string imageTopic, bool show_camera_image);
+
+        virtual std::string getLocalizerFrame();
 
         virtual geometry_msgs::Pose localizeObject(std::string id);
         virtual std::map<std::string, geometry_msgs::Pose> localizeObjects();
