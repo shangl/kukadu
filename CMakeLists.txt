@@ -77,7 +77,7 @@ generate_dynamic_reconfigure_options(
 
 catkin_package(
     INCLUDE_DIRS include external/ReflexxesTypeII/include external/komo/share/src ${PYTH_INC}
-    LIBRARIES ${PROJECT_NAME} kukaduvision reflexxeslib artoolkitplus
+    LIBRARIES ${PROJECT_NAME} kukaduvision reflexxeslib artoolkitplus kukadugui
     CATKIN_DEPENDS cmake_modules actionlib_msgs control_msgs control_msgs eigen_conversions
         geometry_msgs iis_robot_dep message_generation moveit_core moveit_msgs
         moveit_ros_planning_interface pcl_conversions pcl_ros roscpp sensor_msgs std_msgs
@@ -106,7 +106,6 @@ link_directories(${PYTH_LIB_PATH})
 
 set(ENABLE_VISUALIZATION 1)
 
-#AUX_SOURCE_DIRECTORY(src/gui/ KUKADUSRC)
 AUX_SOURCE_DIRECTORY(src/robot/ KUKADUSRC)
 AUX_SOURCE_DIRECTORY(src/utils/ KUKADUSRC)
 AUX_SOURCE_DIRECTORY(src/robot/ KUKADUSRC)
@@ -129,6 +128,8 @@ AUX_SOURCE_DIRECTORY(src/utils/easyloggingpp/src/ KUKADUSRC)
 AUX_SOURCE_DIRECTORY(src/learning/metric_learning/ KUKADUSRC)
 AUX_SOURCE_DIRECTORY(src/robot/kinematics/constraints KUKADUSRC)
 AUX_SOURCE_DIRECTORY(src/learning/projective_simulation KUKADUSRC)
+
+AUX_SOURCE_DIRECTORY(src/gui/ KUKADUGUISRC)
 
 AUX_SOURCE_DIRECTORY(src/vision/ KUKADUVISIONSRC)
 AUX_SOURCE_DIRECTORY(src/vision/arlocalizer ARTOOLKITPLUSSRC)
@@ -155,6 +156,11 @@ CHECK_CXX_COMPILER_FLAG("-std=c++11" COMPILER_SUPPORTS_CXX11)
 CHECK_CXX_COMPILER_FLAG("-std=c++0x" COMPILER_SUPPORTS_CXX0X)
 if(COMPILER_SUPPORTS_CXX11)
     SET_SOURCE_FILES_PROPERTIES(
+        ${KUKADUGUISRC}
+        PROPERTIES
+        COMPILE_FLAGS "-std=c++11"
+    )
+    SET_SOURCE_FILES_PROPERTIES(
         ${KUKADUSRC}
         PROPERTIES
         COMPILE_FLAGS "-std=c++11"
@@ -166,6 +172,11 @@ if(COMPILER_SUPPORTS_CXX11)
     )
     add_definitions(-DCPP11SUPPORTED)
 elseif(COMPILER_SUPPORTS_CXX0X)
+    SET_SOURCE_FILES_PROPERTIES(
+        ${KUKADUGUISRC}
+        PROPERTIES
+        COMPILE_FLAGS "-std=c++0x"
+    )
     SET_SOURCE_FILES_PROPERTIES(
         ${KUKADUSRC}
         PROPERTIES
@@ -181,10 +192,13 @@ else()
     message(STATUS "The compiler ${CMAKE_CXX_COMPILER} has no C++11 support. Please use a different C++ compiler.")
 endif()
 
+add_library(kukadugui ${KUKADUGUISRC} ${kukaduguilib_hdr_moc})
 add_library(reflexxeslib ${REFLEXXESSRC})
 add_library(kukaduvision ${KUKADUVISIONSRC})
 add_library(artoolkitplus ${ARTOOLKITPLUSSRC})
-add_library(${PROJECT_NAME} ${KUKADUSRC})# ${kukaduguilib_hdr_moc})
+add_library(${PROJECT_NAME} ${KUKADUSRC})
+
+target_link_libraries(kukadugui ${catkin_LIBRARIES} Qt5::Widgets kukadu)
 
 target_link_libraries(${PROJECT_NAME} ${catkin_LIBRARIES} ${Boost_LIBRARIES} ${ARMADILLO_LIBRARIES}
     reflexxeslib ncurses gsl gslcblas stdc++ pthread dl util m komo swift algo ann gui ors optim motion rt lapack blas glut GLU GL X11 ${GTK_LIBRARIES} ${GTK2_LIBRARIES}
@@ -214,11 +228,11 @@ target_link_libraries(artoolkitplus ${catkin_LIBRARIES} ${OpenCV_LIBRARIES})
 #add_executable(dmp tutorials/dmp.cpp)
 #target_link_libraries(dmp kukadu ${catkin_LIBRARIES})
 
-#add_executable(database tutorials/database.cpp)
-#target_link_libraries(database kukadu ${catkin_LIBRARIES})
+add_executable(database tutorials/database.cpp)
+target_link_libraries(database kukadu ${catkin_LIBRARIES})
 
-#add_executable(graphics tutorials/graphics.cpp)
-#target_link_libraries(graphics kukadu ${catkin_LIBRARIES})
+add_executable(graphics tutorials/graphics.cpp)
+target_link_libraries(graphics kukadu ${catkin_LIBRARIES} kukadugui)
 
 add_executable(artracker tutorials/artracker.cpp)
 target_link_libraries(artracker ${catkin_LIBRARIES} artoolkitplus kukadu)
@@ -230,18 +244,21 @@ add_executable(control_queue tutorials/control_queue.cpp)
 if(COMPILER_SUPPORTS_CXX11)
     SET_TARGET_PROPERTIES(control_queue PROPERTIES COMPILE_FLAGS "-std=c++11")
     SET_TARGET_PROPERTIES(calibrator PROPERTIES COMPILE_FLAGS "-std=c++11")
-    #SET_TARGET_PROPERTIES(graphics PROPERTIES COMPILE_FLAGS "-std=c++11")
+    SET_TARGET_PROPERTIES(graphics PROPERTIES COMPILE_FLAGS "-std=c++11")
     SET_TARGET_PROPERTIES(artracker PROPERTIES COMPILE_FLAGS "-std=c++11")
+    SET_TARGET_PROPERTIES(database PROPERTIES COMPILE_FLAGS "-std=c++11")
 elseif(COMPILER_SUPPORTS_CXX0X)
     SET_TARGET_PROPERTIES(control_queue PROPERTIES COMPILE_FLAGS "-std=c++0x")
     SET_TARGET_PROPERTIES(calibrator PROPERTIES COMPILE_FLAGS "-std=c++0x")
-    #SET_TARGET_PROPERTIES(graphics PROPERTIES COMPILE_FLAGS "-std=c++0x")
+    SET_TARGET_PROPERTIES(graphics PROPERTIES COMPILE_FLAGS "-std=c++0x")
     SET_TARGET_PROPERTIES(artracker PROPERTIES COMPILE_FLAGS "-std=c++0x")
+    SET_TARGET_PROPERTIES(database PROPERTIES COMPILE_FLAGS "-std=c++0x")
 endif()
 target_link_libraries(control_queue kukadu ${catkin_LIBRARIES})
 
 add_dependencies(${PROJECT_NAME} ${catkin_EXPORTED_TARGETS} ${PYTH_LIB})
 add_dependencies(kukaduvision ${catkin_EXPORTED_TARGETS})
+add_dependencies(kukadugui ${catkin_EXPORTED_TARGETS} kukadu)
 #add_dependencies(artoolkitplus ${catkin_EXPORTED_TARGETS} artoolkitplus_gencfg kukadu kukaduvision)
 #add_dependencies(reflexxeslib ${catkin_EXPORTED_TARGETS})
 #add_dependencies(kukadu_demo_guided ${catkin_EXPORTED_TARGETS})
@@ -250,8 +267,8 @@ add_dependencies(kukaduvision ${catkin_EXPORTED_TARGETS})
 #add_dependencies(simple_planning ${catkin_EXPORTED_TARGETS})
 #add_dependencies(dmp ${catkin_EXPORTED_TARGETS})
 #add_dependencies(gaussian ${catkin_EXPORTED_TARGETS})
-#add_dependencies(database ${catkin_EXPORTED_TARGETS})
-#add_dependencies(graphics ${catkin_EXPORTED_TARGETS})
+add_dependencies(database ${catkin_EXPORTED_TARGETS})
+add_dependencies(graphics ${catkin_EXPORTED_TARGETS} kukadugui)
 add_dependencies(control_queue ${catkin_EXPORTED_TARGETS})
 add_dependencies(artracker ${catkin_EXPORTED_TARGETS} artoolkitplus kukadu)
 add_dependencies(calibrator ${catkin_EXPORTED_TARGETS} artoolkitplus kukadu)
@@ -260,8 +277,8 @@ if(CATKIN_ENABLE_TESTING)
         catkin_add_gtest(kukadutest test/kukadutest.cpp)
 endif()
 
-#install(TARGETS graphics RUNTIME DESTINATION ${CATKIN_PACKAGE_BIN_DESTINATION})
-#install(TARGETS database RUNTIME DESTINATION ${CATKIN_PACKAGE_BIN_DESTINATION})
+install(TARGETS graphics RUNTIME DESTINATION ${CATKIN_PACKAGE_BIN_DESTINATION})
+install(TARGETS database RUNTIME DESTINATION ${CATKIN_PACKAGE_BIN_DESTINATION})
 #install(TARGETS gaussian RUNTIME DESTINATION ${CATKIN_PACKAGE_BIN_DESTINATION})
 #install(TARGETS kukadu_demo_guided RUNTIME DESTINATION ${CATKIN_PACKAGE_BIN_DESTINATION})
 install(TARGETS control_queue RUNTIME DESTINATION ${CATKIN_PACKAGE_BIN_DESTINATION})

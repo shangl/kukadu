@@ -12,6 +12,10 @@ using namespace kukadu;
 
 int main(int argc, char** args) {
 
+    ros::init(argc, args, "kukadu"); ros::NodeHandle* node = new ros::NodeHandle(); usleep(1e6);
+    ros::AsyncSpinner spinner(10);
+    spinner.start();
+
     StorageSingleton& storage = StorageSingleton::get();
 
     QApplication w(argc, args);
