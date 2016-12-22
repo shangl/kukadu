@@ -70,6 +70,7 @@ namespace kukadu {
             s << "update robot set deg_of_freedom = " << maxJointId << " where robot_id = " << robotId;
             stmts.push_back(s.str());
             dbStorage.executeStatements(stmts);
+            dbStorage.waitForEmptyCache();
 
             reload();
 
@@ -182,6 +183,7 @@ namespace kukadu {
     bool Robot::createRobot(StorageSingleton& dbStorage, std::string robotName) {
         if(!checkRobotExists(dbStorage, robotName)) {
             dbStorage.executeStatement("insert into robot(robot_id, robot_name, deg_of_freedom) values(null, \"" + robotName + "\", 0)");
+            dbStorage.waitForEmptyCache();
             return true;
         }
         return false;

@@ -2,6 +2,7 @@
 #include <boost/program_options.hpp>
 #include <kukadu/utils/utils.hpp>
 #include <algorithm>
+#include <ros/ros.h>
 #include <sstream>
 
 using namespace std;
@@ -15,7 +16,12 @@ namespace kukadu {
                 ("kukadu.databaseurl", boost::program_options::value<string>()->required(), "")
                 ("kukadu.database", boost::program_options::value<string>()->required(), "")
                 ("kukadu.user", boost::program_options::value<string>()->required(), "")
-                ("kukadu.pw", boost::program_options::value<string>()->required(), "");
+                ("kukadu.pw", boost::program_options::value<string>()->required(), "")
+                ("database.storage_caching", boost::program_options::value<bool>()->required(), "")
+                ("database.storage_caching_size", boost::program_options::value<int>()->required(), "")
+                ("database.storage_cache_polling_rate", boost::program_options::value<int>()->required(), "")
+                ("database.storage_caching_bulk_size", boost::program_options::value<int>()->required(), "")
+                ;
         ifstream parseFile(resolvePath("$KUKADU_HOME/cfg/kukadu.prop").c_str(), std::ifstream::in);
         boost::program_options::variables_map vm;
         boost::program_options::store(boost::program_options::parse_config_file(parseFile, desc, true), vm);
@@ -30,6 +36,17 @@ namespace kukadu {
             install();
 
         executeStatement("use " + databaseName);
+\
+        cacheDemonRunning = false;
+        useCaching = vm["database.storage_caching"].as<bool>();
+        maxCacheSize = vm["database.storage_caching_size"].as<int>();
+        cacheDemonPollingRate = vm["database.storage_cache_polling_rate"].as<int>();
+        cacheBulkSize = vm["database.storage_caching_bulk_size"].as<int>();
+
+        if(useCaching) {
+            cacheDemonRunning = true;
+            cacheDemonThread = kukadu_thread(&StorageSingleton::runStatementsDemon, this);
+        }
 
     }
 
@@ -142,6 +159,14 @@ namespace kukadu {
 
     }
 
+    void StorageSingleton::waitForEmptyCache() {
+
+        static ros::Rate r(cacheDemonPollingRate);
+        while(!cachedStatements.empty())
+            r.sleep();
+
+    }
+
     std::string StorageSingleton::getCachedLabel(std::string table, std::string labelIdCol, std::string labelCol, int labelId) {
 
         auto key = table + "+++" + labelCol;
@@ -172,20 +197,70 @@ namespace kukadu {
 
     }
 
-    void StorageSingleton::executeStatement(std::string sql) {
+    void StorageSingleton::runStatementsDemon() {
+
+        static ros::Rate pollingRate(cacheDemonPollingRate);
+        while(cacheDemonRunning) {
+            // if there is something in the cache --> go and store it
+            if(!cachedStatements.empty()) {
+                statementsMutex.lock();
+                    vector<string> cacheBulk;
+                    for(int i = 0; i < cacheBulkSize && !cachedStatements.empty(); ++i) {
+                        cacheBulk.push_back(cachedStatements.front());
+                        cachedStatements.pop();
+                    }
+                statementsMutex.unlock();
+                actualExecuteStatements(cacheBulk);
+            } else
+                // if not, just sleep to not overload the cpu
+                pollingRate.sleep();
+        }
+
+    }
+
+    void StorageSingleton::actualExecuteStatements(const std::vector<std::string>& statements) {
 
         auto stmt = con->createStatement();
-        stmt->execute(sql);
+        for(auto& sql : statements)
+            stmt->execute(sql);
         delete stmt;
+
+    }
+
+    void StorageSingleton::executeStatement(std::string sql) {
+
+        static ros::Rate r(50);
+        if(useCaching) {
+
+            // block until cache has recovered
+            while(cachedStatements.size() > maxCacheSize)
+                r.sleep();
+
+            statementsMutex.lock();
+                cachedStatements.push(sql);
+            statementsMutex.unlock();
+
+        } else
+            actualExecuteStatements({sql});
 
     }
 
     void StorageSingleton::executeStatements(std::vector<std::string> sqls) {
 
-        auto stmt = con->createStatement();
-        for(auto& sql : sqls)
-            stmt->execute(sql);
-        delete stmt;
+        static ros::Rate r(50);
+        if(useCaching) {
+
+            // block until cache has recovered
+            while(cachedStatements.size() > maxCacheSize)
+                r.sleep();
+
+            statementsMutex.lock();
+                for(auto& sql : sqls)
+                    cachedStatements.push(sql);
+            statementsMutex.unlock();
+
+        } else
+            actualExecuteStatements(sqls);
 
     }
 

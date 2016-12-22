@@ -1,6 +1,6 @@
 #ifndef KUKADU_H
 #define KUKADU_H
-    //#include <kukadu/gui.hpp>
+    #include <kukadu/gui.hpp>
     #include <kukadu/robot.hpp>
     #include <kukadu/types.hpp>
     #include <kukadu/utils.hpp>

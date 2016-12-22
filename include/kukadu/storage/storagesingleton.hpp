@@ -2,6 +2,7 @@
 #define KUKADU_STORAGESINGLETON
 
 #include <map>
+#include <queue>
 #include <string>
 #include <vector>
 #include <iostream>
@@ -19,6 +20,16 @@ class StorageSingleton {
 
 private:
 
+    bool useCaching;
+    int maxCacheSize;
+    kukadu_mutex statementsMutex;
+    std::queue<std::string> cachedStatements;
+
+    bool cacheDemonRunning;
+    int cacheDemonPollingRate;
+    int cacheBulkSize;
+    kukadu_thread cacheDemonThread;
+
     sql::Connection* con;
     sql::Driver* driver;
 
@@ -31,7 +42,9 @@ private:
 
     StorageSingleton();
 
+    void runStatementsDemon();
     void installDirectory(std::string directory);
+    void actualExecuteStatements(const std::vector<std::string>& statements);
 
 public:
 
@@ -45,6 +58,8 @@ public:
     void executeStatement(std::string sql);
     void executeStatements(std::vector<std::string> sqls);
     KUKADU_SHARED_PTR<sql::ResultSet> executeQuery(std::string sql);
+
+    void waitForEmptyCache();
 
     void install();
 

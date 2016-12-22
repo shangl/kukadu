@@ -81,13 +81,15 @@ int main(int argc, char** args) {
     KUKADU_SHARED_PTR<kukadu_thread> laThr = simLeftQueue->startQueue();
 
     simLeftQueue->switchMode(KukieControlQueue::KUKA_JNT_POS_MODE);
+
+    cout << "starting ptp (please wait)" << endl;
     simLeftQueue->jointPtp({-0.7, 0.7, 1.5, -1.74, -1.85, 1.27, 0.71});
 
     cout << "press enter to measure trajectory" << endl;
     getchar();
 
     cout << "starting measurement" << endl;
-    SensorStorage dataStorage(storage, queueVectors, std::vector<KUKADU_SHARED_PTR<GenericHand> >(), 1000);
+    SensorStorage dataStorage(storage, queueVectors, {}, 1000);
     dataStorage.setExportMode(SensorStorage::STORE_RBT_JNT_POS | SensorStorage::STORE_RBT_CART_POS | SensorStorage::STORE_RBT_CART_FTRQ);
 
     // if no parameter is provided, the data is stored to the database
