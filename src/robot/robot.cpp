@@ -90,6 +90,7 @@ namespace kukadu {
         stringstream s;
         s << "delete from robot where robot_id = " << robotId;
         dbStorage.executeStatement(s.str());
+        dbStorage.waitForEmptyCache();
 
         return true;
 
@@ -106,6 +107,8 @@ namespace kukadu {
             stringstream s;
             s << "delete from robot_joints where robot_id = " << robotId << " and joint_id = " << jointId;
             dbStorage.executeStatement(s.str());
+            dbStorage.waitForEmptyCache();
+
             return true;
 
         }
