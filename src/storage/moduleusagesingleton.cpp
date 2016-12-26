@@ -67,6 +67,10 @@ namespace kukadu {
                     currentFunction = nextToken.substr(1, nextToken.length() - 1);;
                     currentFunctionStorageId = atoi(tok.next().c_str());
                     currentFunctionStorageMode = atoi(tok.next().c_str());
+
+                    if(currentFunctionStorageMode == MODE_POOL_STORAGE)
+                        poolingWindowSizes[currentFunctionStorageId] = atoi(tok.next().c_str());
+
                     addNewFunction(currentModule, currentNamespace, currentClass, currentFunction, currentFunctionStorageId, currentFunctionStorageMode);
                     break;
                 // ignore comment
@@ -94,6 +98,10 @@ namespace kukadu {
 
             checkConsistencyOrInsert(currentModule, currentNamespace, currentClass, currentFunction, currentId, currentMode);
             supportedFunctions[identifier] = {currentId, currentMode};
+            if(currentMode == MODE_POOL_STORAGE) {
+                pooledFunctionDuration[currentId] = {0, 0};
+                pooledFunctionCount[currentId] = 0;
+            }
 
         } else
             throw KukaduException("(ModuleUsageSingleton) duplicate function signature (check the property file)");
@@ -191,36 +199,78 @@ namespace kukadu {
         return instance;
     }
 
-    int ModuleUsageSingleton::loadFunctionId(std::string prettyFunctionName) {
+    std::pair<int, int> ModuleUsageSingleton::loadFunctionId(std::string prettyFunctionName) {
 
         auto signature = readFunctionSignature(prettyFunctionName);
         auto identifier = combineIdentifiers(signature.at(0), signature.at(1), signature.at(2));
         if(supportedFunctions.find(identifier) != supportedFunctions.end())
-            return supportedFunctions[identifier].first;
+            return supportedFunctions[identifier];
 
         // if not listed in property file --> return ID_NOT_FOUND
-        return ID_NOT_FOUND;
+        auto notFound = ID_NOT_FOUND;
+        return {notFound, notFound};
 
     }
 
-    long long int ModuleUsageSingleton::storeFunctionUsedStart(const int& functionId) {
+    long long int ModuleUsageSingleton::storeFunctionUsedStart(const int& functionId, const int& mode) {
+
+        static auto notFound = ID_NOT_FOUND;
+
+        if(functionId != notFound) {
+
+            auto currentTime = getCurrentTime();
+
+            if(mode == MODE_STD_STORAGE) {
+                stringstream s;
+                s << "insert into software_statistics_mode0(function_id, start_timestamp, end_timestamp) values(" << functionId << ", " << currentTime << ", NULL)";
+                storage.executeStatement(s.str());
+            } else if(mode == MODE_POOL_STORAGE) {
+
+                // the function functionId is called the first time
+                auto& pooledData = pooledFunctionDuration[functionId];
+                auto& pooledCount = pooledFunctionCount[functionId];
+
+                if(pooledData.first == 0) {
+
+                    pooledData.first = currentTime;
+                    pooledData.second = currentTime;
+                    pooledCount = 0;
+
+                } else if((currentTime - pooledData.first) > poolingWindowSizes[functionId]) {
+
+                    // if the window is already bigger than the window --> store it to the database and make a new window
+                    stringstream s;
+                    s << "insert into software_statistics_mode1(function_id, start_timestamp, end_timestamp, cnt) values(" << functionId << ", " << pooledData.first << ", " << pooledData.second << ", " << pooledCount << ")";
+                    storage.executeStatement(s.str());
+                    pooledData.first = currentTime;
+                    pooledData.second = currentTime;
+                    pooledCount = 0;
+
+                } else {
+
+                    // if the window is still open, count more
+                    ++pooledCount;
+                    pooledData.second = currentTime;
+
+                }
+
+
+            }
+
+            return currentTime;
+
+        }
+
+        return 0;
+
+    }
+
+    void ModuleUsageSingleton::storeFunctionUsedEnd(const int& functionId, const int& mode, long long& startTimestamp) {
 
         auto currentTime = getCurrentTime();
 
         stringstream s;
-        s << "insert into software_statistics(function_id, start_timestamp, end_timestamp) values(" << functionId << ", " << currentTime << ", NULL)";
-
-        storage.executeStatement(s.str());
-        return currentTime;
-
-    }
-
-    void ModuleUsageSingleton::storeFunctionUsedEnd(const int& functionId, long long& startTimestamp) {
-
-        auto currentTime = getCurrentTime();
-
-        stringstream s;
-        s << "update software_statistics set end_timestamp = " << currentTime << " where function_id = " << functionId << " and start_timestamp = " << startTimestamp;
+        s << "update software_statistics_mode0 set end_timestamp = " << currentTime << " where function_id = " << functionId << " and start_timestamp = " << startTimestamp;
 
         storage.executeStatement(s.str());
 

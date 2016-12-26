@@ -4,13 +4,15 @@
 // functions are marked by #
 // functions have further settings separated by whitespaces
 //			- function id under which the function statistics are stored in the database
-//			- storate mode: 0 (store each call of the function); for now no other mode supported
+//			- storage mode:
+//				- 0: store each call of the function (meant for normal functions)
+//				- 1 x: pools the function calls in an approximate time period x (in milliseconds)
 [planning]
 -kukadu
 	+Komo
 		#planJointTrajectory		1	0
 		#planCartesianTrajectory	2	0
-		#computeFk					3	0
+		#computeFk					3	1	1000
 [manipulation]
 
 [gui]

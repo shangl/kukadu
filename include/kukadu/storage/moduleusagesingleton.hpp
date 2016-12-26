@@ -8,8 +8,11 @@
 #include <kukadu/types/kukadutypes.hpp>
 #include <kukadu/storage/storagesingleton.hpp>
 
-#define KUKADU_MODULE_START_USAGE() ModuleUsageSingleton& mod = ModuleUsageSingleton::get(); static int functionId = mod.loadFunctionId(__PRETTY_FUNCTION__); long long int startTimeStamp = mod.storeFunctionUsedStart(functionId);
-#define KUKADU_MODULE_END_USAGE() mod.storeFunctionUsedEnd(functionId, startTimeStamp);
+#define KUKADU_MODULE_START_USAGE() ModuleUsageSingleton& mod = ModuleUsageSingleton::get(); static std::pair<int, int> statData = mod.loadFunctionId(__PRETTY_FUNCTION__); \
+    static int functionId = statData.first; static int functionMode = statData.second; \
+    long long int startTimeStamp = mod.storeFunctionUsedStart(functionId, functionMode);
+
+#define KUKADU_MODULE_END_USAGE() if(startTimeStamp) mod.storeFunctionUsedEnd(functionId, functionMode, startTimeStamp);
 
 namespace kukadu {
 
@@ -19,12 +22,19 @@ namespace kukadu {
 
 #ifndef USEBOOST
         static auto constexpr ID_NOT_FOUND{-1};
+        static auto constexpr MODE_STD_STORAGE{0};
+        static auto constexpr MODE_POOL_STORAGE{1};
 #else
         static const int ID_NOT_FOUND = -1;
+        static const int MODE_STD_STORAGE = 0;
+        static const int MODE_POOL_STORAGE = 1;
 #endif
 
         std::map<int, std::string> moduleFunctionMap;
         std::map<std::string, std::pair<int, int> > supportedFunctions;
+        std::map<int, std::pair<long long int, long long int> > pooledFunctionDuration;
+        std::map<int, int> pooledFunctionCount;
+        std::map<int, int> poolingWindowSizes;
 
         StorageSingleton& storage;
 
@@ -41,10 +51,10 @@ namespace kukadu {
 
         static ModuleUsageSingleton& get();
 
-        long long storeFunctionUsedStart(const int& functionId);
-        void storeFunctionUsedEnd(const int& functionId, long long int& startTimestamp);
+        long long storeFunctionUsedStart(const int& functionId, const int& mode);
+        void storeFunctionUsedEnd(const int& functionId, const int& mode, long long int& startTimestamp);
 
-        int loadFunctionId(std::string prettyFunctionName);
+        std::pair<int, int> loadFunctionId(std::string prettyFunctionName);
 
     };
 
