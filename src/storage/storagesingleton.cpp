@@ -1,3 +1,4 @@
+#include <kukadu/storage/moduleusagesingleton.hpp>
 #include <kukadu/storage/storagesingleton.hpp>
 #include <boost/program_options.hpp>
 #include <kukadu/utils/utils.hpp>
@@ -22,7 +23,7 @@ namespace kukadu {
                 ("database.storage_cache_polling_rate", boost::program_options::value<int>()->required(), "")
                 ("database.storage_caching_bulk_size", boost::program_options::value<int>()->required(), "")
                 ;
-        ifstream parseFile(resolvePath("$KUKADU_HOME/cfg/kukadu.prop").c_str(), std::ifstream::in);
+        ifstream parseFile(resolvePath("$KUKADU_HOME/cfg/core/kukadu.prop").c_str(), std::ifstream::in);
         boost::program_options::variables_map vm;
         boost::program_options::store(boost::program_options::parse_config_file(parseFile, desc, true), vm);
         boost::program_options::notify(vm);
@@ -126,6 +127,18 @@ namespace kukadu {
 
     }
 
+    bool StorageSingleton::checkIdExists(std::string table, std::string idCol, int val) {
+
+        stringstream s;
+        s << "select count(*) as c from " << table << " where " << idCol << " = " << val;
+        auto res = executeQuery(s.str());
+        if(res->next()) {
+            return (res->getInt("c")) ? true : false;
+        } else
+            throw KukaduException("(StorageSingleton) sql problem occured");
+
+    }
+
     int StorageSingleton::getCachedLabelId(std::string table, std::string labelIdCol, std::string labelCol, std::string label, string additionalWhere) {
 
         auto key = table + "+++" + labelCol + "+++" + additionalWhere;
@@ -210,7 +223,11 @@ namespace kukadu {
                         cachedStatements.pop();
                     }
                 statementsMutex.unlock();
-                actualExecuteStatements(cacheBulk);
+                try {
+                    actualExecuteStatements(cacheBulk);
+                } catch(sql::SQLException& ex) {
+                    // catch the exception to prevent the thread from breaking down
+                }
             } else
                 // if not, just sleep to not overload the cpu
                 pollingRate.sleep();
@@ -220,9 +237,11 @@ namespace kukadu {
 
     void StorageSingleton::actualExecuteStatements(const std::vector<std::string>& statements) {
 
-        auto stmt = con->createStatement();
-        for(auto& sql : statements)
-            stmt->execute(sql);
+        connectionMutex.lock();
+            auto stmt = con->createStatement();
+            for(auto& sql : statements)
+                stmt->execute(sql);
+        connectionMutex.unlock();
         delete stmt;
 
     }
@@ -266,10 +285,12 @@ namespace kukadu {
 
     KUKADU_SHARED_PTR<sql::ResultSet> StorageSingleton::executeQuery(std::string sql) {
 
-        auto stmt = con->createStatement();
-        auto retSet = KUKADU_SHARED_PTR<sql::ResultSet>(stmt->executeQuery(sql));
-        // is it allowed to delete the statement before deleteing res? (we will find out :) )
-        delete stmt;
+        connectionMutex.lock();
+            auto stmt = con->createStatement();
+            auto retSet = KUKADU_SHARED_PTR<sql::ResultSet>(stmt->executeQuery(sql));
+            // is it allowed to delete the statement before deleteing res? (we will find out :) )
+            delete stmt;
+        connectionMutex.unlock();
         return retSet;
 
     }

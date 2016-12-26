@@ -172,6 +172,8 @@ namespace kukadu {
 
     tf::Transform affineTransMatrixToTf(arma::mat transMatrix);
 
+    std::vector<std::string> readFunctionSignature(std::string prettyFunc);
+
 #ifndef USEBOOST
     template<typename S, typename T> bool mapContainsValue(std::map<S, T> m, T val) {
         for(auto it = m.begin(); it != m.end(); ++it )

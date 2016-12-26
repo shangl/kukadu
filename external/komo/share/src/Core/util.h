@@ -85,7 +85,7 @@ extern int interactivity;
 //----- files
 void open(std::ofstream& fs, const char *name, const char *errmsg="");
 void open(std::ifstream& fs, const char *name, const char *errmsg="");
-std::ofstream& log(const char *name="MT.log");
+std::ofstream& log(const char *name="/tmp/MT.log");
 
 //----- strings and streams
 bool contains(const char *s, char c);

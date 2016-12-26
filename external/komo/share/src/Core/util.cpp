@@ -62,7 +62,7 @@
 
 #ifndef MT_ConfigFileName
 #  define MT_ConfigFileName "MT.cfg"
-#  define MT_LogFileName "MT.log"
+#  define MT_LogFileName "/tmp/MT.log"
 #endif
 
 #include <errno.h>

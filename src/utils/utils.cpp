@@ -1108,4 +1108,49 @@ namespace kukadu {
 
     }
 
+    std::vector<std::string> readFunctionSignature(std::string prettyFunc) {
+
+        std::string funcNamespace;
+        std::string funcClass;
+        std::string funcName;
+cout << 1 << endl;
+        // this function assumes a name according to the following conventions:
+        // arbitrary number of namespaces with lower case names
+        // followed by one class with upper case name (no nested classes)
+        // followed by the function name
+        string signat = prettyFunc;
+        kukadu::KukaduTokenizer signTok(signat, "(");
+        // extract the return type and  complete function name
+        auto retAndName = signTok.next();
+cout << 2 << endl;
+        // kick out the return type
+        signTok = kukadu::KukaduTokenizer(retAndName, " ");
+        auto signSplit = signTok.split();
+cout << 3 << endl;
+        if(signSplit.size() > 0) {
+cout << 4 << endl;
+            auto complFuncName = signSplit.back();
+            signTok = kukadu::KukaduTokenizer(complFuncName, ":");
+            auto signParts = signTok.split();
+            if(signParts.size() >= 2) {
+cout << 5 << endl;
+                int i = 0;
+                for(; i < (signParts.size() - 1) && std::islower(signParts.at(i)[0]); ++i)
+                    funcNamespace += signParts.at(i);
+cout << 6 << endl;
+                // if after the namespace, there are 2 more tokens --> its a class member
+                if(i == (signParts.size() - 2))
+                    funcClass = signParts.at(i++);
+cout << 7 << endl;
+                // the last token must be the function name
+                funcName = signParts.at(i);
+cout << 8 << endl;
+            }
+cout << 9 << endl;
+        }
+cout << 10 << endl;
+        return {funcNamespace, funcClass, funcName};
+
+    }
+
 }

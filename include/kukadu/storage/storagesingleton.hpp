@@ -25,6 +25,9 @@ private:
     kukadu_mutex statementsMutex;
     std::queue<std::string> cachedStatements;
 
+    // required because connection is not thread safe
+    kukadu_mutex connectionMutex;
+
     bool cacheDemonRunning;
     int cacheDemonPollingRate;
     int cacheBulkSize;
@@ -51,6 +54,8 @@ public:
     static StorageSingleton& get();
 
     long long int getNextIdInTable(std::string table, std::string idCol);
+
+    bool checkIdExists(std::string table, std::string idCol, int val);
 
     int getCachedLabelId(std::string table, std::string labelIdCol, std::string labelCol, std::string label, std::string additionalWhere = "");
     std::string getCachedLabel(std::string table, std::string labelIdCol, std::string labelCol, int labelId);

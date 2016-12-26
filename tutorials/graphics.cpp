@@ -1,4 +1,5 @@
 #include <string>
+#include <iostream>
 #include <armadillo>
 #include <kukadu/kukadu.hpp>
 
@@ -15,6 +16,8 @@ int main(int argc, char** args) {
     ros::init(argc, args, "kukadu"); ros::NodeHandle* node = new ros::NodeHandle(); usleep(1e6);
     ros::AsyncSpinner spinner(10);
     spinner.start();
+
+    ModuleUsageSingleton::get();
 
     StorageSingleton& storage = StorageSingleton::get();
 

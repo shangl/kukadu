@@ -96,10 +96,8 @@ namespace kukadu {
 
     Komo::~Komo() {
 
-        if(_world) {
+        if(_world)
             delete _world;
-        }
-        //deleteFile("./MT.cfg");
 
     }
 
