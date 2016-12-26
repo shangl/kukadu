@@ -1,0 +1,6 @@
+CREATE TABLE `software_statistics` (
+  `function_id` int(11) NOT NULL,
+  `start_timestamp` bigint(20) NOT NULL,
+  `end_timestamp` bigint(20) DEFAULT NULL,
+  PRIMARY KEY (`function_id`,`start_timestamp`)
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;

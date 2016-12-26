@@ -37,7 +37,7 @@ namespace kukadu {
             install();
 
         executeStatement("use " + databaseName);
-\
+
         cacheDemonRunning = false;
         useCaching = vm["database.storage_caching"].as<bool>();
         maxCacheSize = vm["database.storage_caching_size"].as<int>();
@@ -214,35 +214,46 @@ namespace kukadu {
 
         static ros::Rate pollingRate(cacheDemonPollingRate);
         while(cacheDemonRunning) {
+
             // if there is something in the cache --> go and store it
             if(!cachedStatements.empty()) {
+
                 statementsMutex.lock();
+
                     vector<string> cacheBulk;
                     for(int i = 0; i < cacheBulkSize && !cachedStatements.empty(); ++i) {
                         cacheBulk.push_back(cachedStatements.front());
                         cachedStatements.pop();
                     }
+
                 statementsMutex.unlock();
+
                 try {
                     actualExecuteStatements(cacheBulk);
                 } catch(sql::SQLException& ex) {
                     // catch the exception to prevent the thread from breaking down
+                    // cout << ex.what() << endl;
                 }
+
             } else
                 // if not, just sleep to not overload the cpu
                 pollingRate.sleep();
+
         }
+
 
     }
 
     void StorageSingleton::actualExecuteStatements(const std::vector<std::string>& statements) {
 
         connectionMutex.lock();
+
             auto stmt = con->createStatement();
             for(auto& sql : statements)
-                stmt->execute(sql);
+                try { stmt->execute(sql); } catch(sql::SQLException& ex) { delete stmt; connectionMutex.unlock(); throw ex; }
+            delete stmt;
+
         connectionMutex.unlock();
-        delete stmt;
 
     }
 
@@ -296,6 +307,9 @@ namespace kukadu {
     }
 
     StorageSingleton::~StorageSingleton() {
+        cacheDemonRunning = false;
+        if(cacheDemonThread.joinable())
+            cacheDemonThread.join();
         delete con;
     }
 

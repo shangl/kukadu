@@ -9,6 +9,7 @@
 #include <Motion/taskMap_transition.h>
 #include <Motion/taskMap_constrained.h>
 #include <Motion/taskMap_constrained.h>
+#include <kukadu/storage/moduleusagesingleton.hpp>
 
 using namespace std;
 using namespace ros;
@@ -33,6 +34,9 @@ namespace kukadu {
     };
 
     kukadu_mutex Komo::oneAtATimeMutex;
+
+
+    /****************** public functions *******************************/
 
     Komo::Komo(KUKADU_SHARED_PTR<ControlQueue> queue, string configPath, string mtConfigPath, string activeJointsPrefix, bool acceptCollision)
                 : PathPlanner(generateDefaultJointNames(queue->getDegreesOfFreedom())) {
@@ -101,50 +105,9 @@ namespace kukadu {
 
     }
 
-    std::string Komo::getCartesianLinkName() {
-        return eef_link;
-    }
-
-    std::string Komo::getCartesianReferenceFrame() {
-        // hack for now: don't know how to find out the reference frame with komo (or if it even has that defined)
-        return "origin";
-    }
-
-    void Komo::setJointPosition(const string &name, const double pos) {
-        ors::Joint *jnt = _world->getJointByName(name.c_str());
-        if(!jnt)
-            cerr << "Unable to set joint position - no joint with name '" << name << "' found!" << endl;
-        else
-            jnt->Q.rot.setRad(pos, 1, 0, 0);
-    }
-
-    void Komo::setState(const sensor_msgs::JointState &state) {
-
-        CHECK(state.name.size() == state.position.size(), "Illegal joint states!");
-        for(size_t i = 0; i < state.name.size(); ++i) {
-            setJointPosition(state.name[i], state.position[i]);
-        }
-        // update mimic joints
-        for(ors::Joint *j:_world->joints) {
-            if(j->mimic)
-                // not very nice, but should work...
-                j->Q.rot = j->mimic->Q.rot;
-        }
-        _world->calc_fwdPropagateFrames();
-        _world->calc_q_from_Q();
-
-    }
-
-    void Komo::setState(const std::vector<std::string>& jointNames, const arma::vec& joints) {
-        sensor_msgs::JointState state;
-        for(size_t i = 0; i < joints.n_elem; ++i) {
-            state.name.push_back(jointNames.at(i));
-            state.position.push_back(joints(i));
-        }
-        setState(state);
-    }
-
     std::vector<arma::vec> Komo::planJointTrajectory(std::vector<arma::vec> intermediateJoints) {
+
+        KUKADU_MODULE_START_USAGE();
 
         std::vector<arma::vec> retTrajectory;
         PlanningResult result;
@@ -258,39 +221,15 @@ namespace kukadu {
         // clear the proxies to clean up the UI
         listDelete(_world->proxies);
 
+        KUKADU_MODULE_END_USAGE();
+
         return simplePlanner->planJointTrajectory(retTrajectory);
 
     }
 
-    geometry_msgs::Pose Komo::computeFk(arma::vec joints) {
-
-        geometry_msgs::Pose retPose;
-        ors::Shape* endeff = _world->getShapeByName(eef_link.c_str());
-        setState(sJointNames, joints);
-        ors::Transformation trans = endeff->X;
-        retPose.position.x = trans.pos(0); retPose.position.y = trans.pos(1); retPose.position.z = trans.pos(2);
-        retPose.orientation.x = trans.rot.x;
-        retPose.orientation.y = trans.rot.y;
-        retPose.orientation.z = trans.rot.z;
-        retPose.orientation.w = trans.rot.w;
-
-        return retPose;
-
-    }
-
-    geometry_msgs::Pose Komo::computeFk(std::vector<double> jointState) {
-
-        return computeFk(stdToArmadilloVec(jointState));
-
-    }
-
-    std::vector<arma::vec> Komo::computeIk(std::vector<double> currentJointState, const geometry_msgs::Pose& goal) {
-
-        throw KukaduException("(Komo) ik solver not supported yet");
-
-    }
-
     std::vector<arma::vec> Komo::planCartesianTrajectory(arma::vec startJoints, std::vector<geometry_msgs::Pose> intermediatePoses, bool smoothCartesians, bool useCurrentRobotState) {
+
+        KUKADU_MODULE_START_USAGE();
 
         vector<arma::vec> finalJointPlan;
 
@@ -316,6 +255,8 @@ namespace kukadu {
         if(smoothCartesians)
             finalJointPlan = smoothJointPlan(finalJointPlan);
 
+        KUKADU_MODULE_END_USAGE();
+
         return finalJointPlan;
 
     }
@@ -324,6 +265,91 @@ namespace kukadu {
 
         return planCartesianTrajectory(queue->getCurrentJoints().joints, intermediatePoses, smoothCartesians, useCurrentRobotState);
 
+    }
+
+    geometry_msgs::Pose Komo::computeFk(arma::vec joints) {
+
+        KUKADU_MODULE_START_USAGE();
+
+        geometry_msgs::Pose retPose;
+        ors::Shape* endeff = _world->getShapeByName(eef_link.c_str());
+        setState(sJointNames, joints);
+        ors::Transformation trans = endeff->X;
+        retPose.position.x = trans.pos(0); retPose.position.y = trans.pos(1); retPose.position.z = trans.pos(2);
+        retPose.orientation.x = trans.rot.x;
+        retPose.orientation.y = trans.rot.y;
+        retPose.orientation.z = trans.rot.z;
+        retPose.orientation.w = trans.rot.w;
+
+        KUKADU_MODULE_END_USAGE();
+
+        return retPose;
+
+    }
+
+    geometry_msgs::Pose Komo::computeFk(std::vector<double> jointState) {
+
+        return computeFk(stdToArmadilloVec(jointState));
+
+    }
+
+    std::vector<arma::vec> Komo::computeIk(std::vector<double> currentJointState, const geometry_msgs::Pose& goal) {
+        throw KukaduException("(Komo) ik solver not supported yet");
+    }
+
+    bool Komo::isColliding(arma::vec jointState, geometry_msgs::Pose pose) {
+        throw KukaduException("(Komo) isColliding not implemented yet");
+    }
+
+    Eigen::MatrixXd Komo::getJacobian(std::vector<double> jointState) {
+        throw KukaduException("(Komo) getJacobian not implemented yet");
+    }
+
+    std::string Komo::getCartesianLinkName() {
+        return eef_link;
+    }
+
+    std::string Komo::getCartesianReferenceFrame() {
+        // hack for now: don't know how to find out the reference frame with komo (or if it even has that defined)
+        return "origin";
+    }
+
+    /****************** private functions ******************************/
+
+    void Komo::setJointPosition(const string &name, const double pos) {
+
+        ors::Joint *jnt = _world->getJointByName(name.c_str());
+        if(!jnt)
+            cerr << "Unable to set joint position - no joint with name '" << name << "' found!" << endl;
+        else
+            jnt->Q.rot.setRad(pos, 1, 0, 0);
+
+    }
+
+    void Komo::setState(const sensor_msgs::JointState &state) {
+
+        CHECK(state.name.size() == state.position.size(), "Illegal joint states!");
+        for(size_t i = 0; i < state.name.size(); ++i) {
+            setJointPosition(state.name[i], state.position[i]);
+        }
+        // update mimic joints
+        for(ors::Joint *j:_world->joints) {
+            if(j->mimic)
+                // not very nice, but should work...
+                j->Q.rot = j->mimic->Q.rot;
+        }
+        _world->calc_fwdPropagateFrames();
+        _world->calc_q_from_Q();
+
+    }
+
+    void Komo::setState(const std::vector<std::string>& jointNames, const arma::vec& joints) {
+        sensor_msgs::JointState state;
+        for(size_t i = 0; i < joints.n_elem; ++i) {
+            state.name.push_back(jointNames.at(i));
+            state.position.push_back(joints(i));
+        }
+        setState(state);
     }
 
     std::vector<arma::vec> Komo::computeSinglePlan(arma::vec startJoints, geometry_msgs::Pose targetPose, bool smoothCartesians, bool useCurrentRobotState) {
@@ -804,12 +830,6 @@ namespace kukadu {
         }
     }
 
-    bool Komo::isColliding(arma::vec jointState, geometry_msgs::Pose pose) {
-        throw KukaduException("(Komo) isColliding not implemented yet");
-    }
-
-    Eigen::MatrixXd Komo::getJacobian(std::vector<double> jointState) {
-        throw KukaduException("(Komo) getJacobian not implemented yet");
-    }
+    /****************** end ********************************************/
 
 }

@@ -47,6 +47,8 @@ int main(int argc, char** args) {
 
     realLeftQueue->stopCurrentMode();
     realLeftQueue->stopQueue();
-    realLqThread->join();
+
+    if(realLqThread->joinable())
+        realLqThread->join();
 
 }

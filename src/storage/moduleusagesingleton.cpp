@@ -8,17 +8,6 @@ using namespace std;
 
 namespace kukadu {
 
-/*
- *
- * // how to do the rest
-// --> create a singleton that reads the function names and id from a file
-// --> initialize static variable with id value (and corresponding module id)
-// --> the same singleton is used to store usage information and maybe some pooling into the database
-// --> write a preprocessor macro that encapsulates all of this
-// --> add it to every function
-std::map<std::string, int> supportedFunctions = {{"asdf", 1}, {"blub", 2}, {"main", 3}};
-*/
-
     ModuleUsageSingleton::ModuleUsageSingleton() : storage(StorageSingleton::get()) {
         loadStatisticsProperties(resolvePath("$KUKADU_HOME/cfg/core/module_stat.list"));
     }
@@ -32,7 +21,7 @@ std::map<std::string, int> supportedFunctions = {{"asdf", 1}, {"blub", 2}, {"mai
         KukaduTokenizer tok(line);
 
         int currentFunctionStorageMode = 0;
-        int currentFunctionStorageId = -1;
+        int currentFunctionStorageId = ID_NOT_FOUND;
 
         string nextToken;
 
@@ -55,7 +44,7 @@ std::map<std::string, int> supportedFunctions = {{"asdf", 1}, {"blub", 2}, {"mai
                 case '[':
                     currentModule = nextToken.substr(1, nextToken.length() - 2);
                     currentFunctionStorageMode = 0;
-                    currentFunctionStorageId = -1;
+                    currentFunctionStorageId = ID_NOT_FOUND;
                     currentNamespace = "";
                     currentClass = "";
                     currentFunction = "";
@@ -64,14 +53,14 @@ std::map<std::string, int> supportedFunctions = {{"asdf", 1}, {"blub", 2}, {"mai
                 case '-':
                     currentNamespace = nextToken.substr(1, nextToken.length() - 1);
                     currentFunctionStorageMode = 0;
-                    currentFunctionStorageId = -1;
+                    currentFunctionStorageId = ID_NOT_FOUND;
                     currentClass = "";
                     currentFunction = "";
                     break;
                 case '+':
                     currentClass = nextToken.substr(1, nextToken.length() - 1);
                     currentFunctionStorageMode = 0;
-                    currentFunctionStorageId = -1;
+                    currentFunctionStorageId = ID_NOT_FOUND;
                     currentFunction = "";
                     break;
                 case '#':
@@ -109,17 +98,16 @@ std::map<std::string, int> supportedFunctions = {{"asdf", 1}, {"blub", 2}, {"mai
         } else
             throw KukaduException("(ModuleUsageSingleton) duplicate function signature (check the property file)");
 
-
     }
 
     int ModuleUsageSingleton::checkConsistencyOrInsert(const std::string& currentModule, const std::string& currentNamespace, const std::string& currentClass, const std::string& currentFunction, const int& currentId, const int& currentMode) {
 
         bool insertNewFunction = false;
 
-        int modId = -1;
-        int classId = -1;
-        int functionId = -1;
-        int namespaceId = -1;
+        int modId = ID_NOT_FOUND;
+        int classId = ID_NOT_FOUND;
+        int functionId = ID_NOT_FOUND;
+        int namespaceId = ID_NOT_FOUND;
 
         // that is very ugly --> fix at some point
         try { modId = storage.getCachedLabelId("software_modules", "id", "name", currentModule); } catch(KukaduException& ex) {}
@@ -127,13 +115,13 @@ std::map<std::string, int> supportedFunctions = {{"asdf", 1}, {"blub", 2}, {"mai
         try { classId = storage.getCachedLabelId("software_classes", "id", "name", currentClass); } catch(KukaduException& ex) {}
         try { namespaceId = storage.getCachedLabelId("software_namespaces", "id", "name", currentNamespace); } catch(KukaduException& ex) {}
 
-        if(modId == -1) {
+        if(modId == ID_NOT_FOUND) {
             storage.executeStatement("insert into software_modules(name) values('" + currentModule + "')");
             storage.waitForEmptyCache();
             modId = storage.getCachedLabelId("software_modules", "id", "name", currentModule);
         }
 
-        if(classId == -1) {
+        if(classId == ID_NOT_FOUND) {
             stringstream s;
             s << "insert into software_classes(module_id, name) values(" << modId << ", '" << currentClass << "')";
 
@@ -142,14 +130,14 @@ std::map<std::string, int> supportedFunctions = {{"asdf", 1}, {"blub", 2}, {"mai
             classId = storage.getCachedLabelId("software_classes", "id", "name", currentClass);
         }
 
-        if(namespaceId == -1) {
+        if(namespaceId == ID_NOT_FOUND) {
             storage.executeStatement("insert into software_namespaces(name) values('" + currentNamespace + "')");
             storage.waitForEmptyCache();
             namespaceId = storage.getCachedLabelId("software_namespaces", "id", "name", currentNamespace);
         }
 
         // if function is in the database
-        if(functionId != -1) {
+        if(functionId != ID_NOT_FOUND) {
 
             // if the id of a function with the same name has a different id --> it must differ in the namespace and/or the class --> otherwise there is an inconsistency
             if(functionId != currentId) {
@@ -160,10 +148,11 @@ std::map<std::string, int> supportedFunctions = {{"asdf", 1}, {"blub", 2}, {"mai
                 if(selResult->next()) {
 
                     auto storedClassId = selResult->getInt("cla");
-                    auto storedNamespaceId = selResult->getInt("name");
+                    auto storedNamespaceId = selResult->getInt("nam");
 
                     if(storedClassId != classId || storedNamespaceId != namespaceId)
                         insertNewFunction = true;
+                    else if(storedClassId == classId && storedNamespaceId == namespaceId) {}
                     else
                         throw KukaduException("(ModuleUsageSingleton) function is already stored with a different id (check you property file)");
 
@@ -205,17 +194,35 @@ std::map<std::string, int> supportedFunctions = {{"asdf", 1}, {"blub", 2}, {"mai
     int ModuleUsageSingleton::loadFunctionId(std::string prettyFunctionName) {
 
         auto signature = readFunctionSignature(prettyFunctionName);
-        //cout << signature.at(0) << " " << signature.at(1) << " " << signature.at(2) << endl;
+        auto identifier = combineIdentifiers(signature.at(0), signature.at(1), signature.at(2));
+        if(supportedFunctions.find(identifier) != supportedFunctions.end())
+            return supportedFunctions[identifier].first;
 
-        return 0;
+        // if not listed in property file --> return ID_NOT_FOUND
+        return ID_NOT_FOUND;
 
     }
 
-    void ModuleUsageSingleton::storeFunctionUsedStart(const int& functionId) {
+    long long int ModuleUsageSingleton::storeFunctionUsedStart(const int& functionId) {
+
+        auto currentTime = getCurrentTime();
+
+        stringstream s;
+        s << "insert into software_statistics(function_id, start_timestamp, end_timestamp) values(" << functionId << ", " << currentTime << ", NULL)";
+
+        storage.executeStatement(s.str());
+        return currentTime;
 
     }
 
-    void ModuleUsageSingleton::storeFunctionUsedEnd(const int& functionId) {
+    void ModuleUsageSingleton::storeFunctionUsedEnd(const int& functionId, long long& startTimestamp) {
+
+        auto currentTime = getCurrentTime();
+
+        stringstream s;
+        s << "update software_statistics set end_timestamp = " << currentTime << " where function_id = " << functionId << " and start_timestamp = " << startTimestamp;
+
+        storage.executeStatement(s.str());
 
     }
 
