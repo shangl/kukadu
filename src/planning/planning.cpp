@@ -1,13 +1,18 @@
 #include <kukadu/utils/utils.hpp>
 #include <kukadu/planning/simple.hpp>
 #include <kukadu/planning/planning.hpp>
+#include <kukadu/storage/moduleusagesingleton.hpp>
 
 using namespace std;
 using namespace arma;
 
 namespace kukadu {
 
+    /****************** public functions *******************************/
+
     bool TableConstraint::stateOk(arma::vec joint, geometry_msgs::Pose cartPose) {
+
+        KUKADU_MODULE_START_USAGE();
 
         if(cartPose.position.z < 0) {
             if(cartPose.position.x > 0) {
@@ -15,12 +20,20 @@ namespace kukadu {
             }
         }
 
+        KUKADU_MODULE_END_USAGE();
+
         return true;
 
     }
 
     std::string TableConstraint::getConstraintName() {
-        return string("TableConstraint");
+        KUKADU_MODULE_START_USAGE();
+        auto retVal = string("TableConstraint");
+        KUKADU_MODULE_END_USAGE();
+        return retVal;
+    }
+
+    PathPlanner::PathPlanner(std::vector<std::string> jointNames) : Kinematics(jointNames) {
     }
 
     Kinematics::Kinematics(std::vector<std::string> jointNames) {
@@ -28,77 +41,87 @@ namespace kukadu {
         this->jointNames = jointNames;
     }
 
-    std::vector<std::string> Kinematics::generateDefaultJointNames(int jointCount)  {
-
-        std::vector<std::string> jointNames;
-        for(int i = 0; i < jointCount; ++i) {
-            stringstream s;
-            s << "joint" << i;
-            jointNames.push_back(s.str());
-        }
-
-        return jointNames;
-
-    }
-
-    void Kinematics::setJointNames(std::vector<std::string> jointNames) {
-        this->jointNames = jointNames;
-    }
-
-    std::vector<std::string> Kinematics::getJointNames() {
-        return jointNames;
-    }
-
     void Kinematics::addConstraint(KUKADU_SHARED_PTR<Constraint> Constraint) {
+        KUKADU_MODULE_START_USAGE();
         Constraints.push_back(Constraint);
+        KUKADU_MODULE_END_USAGE();
     }
 
     void Kinematics::removeConstraint(KUKADU_SHARED_PTR<Constraint> Constraint) {
+        KUKADU_MODULE_START_USAGE();
         std::remove(Constraints.begin(), Constraints.end(), Constraint);
+        KUKADU_MODULE_END_USAGE();
     }
 
     int Kinematics::getConstraintsCount() {
-        return Constraints.size();
+        KUKADU_MODULE_START_USAGE();
+        auto retVal = Constraints.size();
+        KUKADU_MODULE_END_USAGE();
+        return retVal;
     }
 
     int  Kinematics::getConstraintIdx(KUKADU_SHARED_PTR<Constraint> Constraint) {
-        return std::find(Constraints.begin(), Constraints.end(), Constraint) - Constraints.begin();
-    }
-
-    KUKADU_SHARED_PTR<Constraint> Kinematics::getConstraintByIdx(int idx) {
-        return Constraints.at(idx);
-    }
-
-    std::vector<arma::vec> Kinematics::computeIk(arma::vec currentJointState, const geometry_msgs::Pose &goal) {
-        return computeIk(armadilloToStdVec(currentJointState), goal);
+        KUKADU_MODULE_START_USAGE();
+        auto retVal = std::find(Constraints.begin(), Constraints.end(), Constraint) - Constraints.begin();
+        KUKADU_MODULE_END_USAGE();
+        return retVal;
     }
 
     bool Kinematics::checkAllConstraints(arma::vec currentState, geometry_msgs::Pose pose) {
-
+        KUKADU_MODULE_START_USAGE();
+        bool retVal = true;
         for(int i = 0; i < getConstraintsCount(); ++i) {
 
             KUKADU_SHARED_PTR<Constraint> currRest = getConstraintByIdx(i);
             if(!currRest->stateOk(currentState, pose))
-                return false;
+                break;
 
         }
-
-        return true;
+        KUKADU_MODULE_END_USAGE();
+        return retVal;
 
     }
 
-    PathPlanner::PathPlanner(std::vector<std::string> jointNames) : Kinematics(jointNames) {
+    std::vector<arma::vec> Kinematics::computeIk(arma::vec currentJointState, const geometry_msgs::Pose &goal) {
+        KUKADU_MODULE_START_USAGE();
+        auto retVal = computeIk(armadilloToStdVec(currentJointState), goal);
+        KUKADU_MODULE_END_USAGE();
+    }
+
+    void Kinematics::setJointNames(std::vector<std::string> jointNames) {
+        KUKADU_MODULE_START_USAGE();
+        this->jointNames = jointNames;
+        KUKADU_MODULE_END_USAGE();
+    }
+
+    std::vector<std::string> Kinematics::getJointNames() {
+        KUKADU_MODULE_START_USAGE();
+        KUKADU_MODULE_END_USAGE();
+        return jointNames;
+    }
+
+    KUKADU_SHARED_PTR<Constraint> Kinematics::getConstraintByIdx(int idx) {
+        KUKADU_MODULE_START_USAGE();
+        auto retVal = Constraints.at(idx);
+        KUKADU_MODULE_END_USAGE();
+        return retVal;
     }
 
     void PathPlanner::setCheckCollisions(bool collision) {
+        KUKADU_MODULE_START_USAGE();
         checkCollision = collision;
+        KUKADU_MODULE_END_USAGE();
     }
 
     bool PathPlanner::getCheckCollision() {
+        KUKADU_MODULE_START_USAGE();
+        KUKADU_MODULE_END_USAGE();
         return checkCollision;
     }
 
     std::vector<arma::vec> PathPlanner::smoothJointPlan(std::vector<arma::vec> jointPlan) {
+
+        KUKADU_MODULE_START_USAGE();
 
         vector<vec> smoothedPlan;
 
@@ -113,47 +136,9 @@ namespace kukadu {
             }
         }
 
+        KUKADU_MODULE_END_USAGE();
+
         return smoothedPlan;
-
-    }
-
-    bool SimplePlanner::isColliding(arma::vec jointState, geometry_msgs::Pose pose) {
-        throw KukaduException("(SimplePlanner) isColliding is not supported by SimplePlanner");
-    }
-
-    Eigen::MatrixXd SimplePlanner::getJacobian(std::vector<double> jointState) {
-        throw KukaduException("(SimplePlanner) getJacobian is not supported by SimplePlanner");
-    }
-
-    std::vector<arma::vec> SimplePlanner::computeIk(std::vector<double> currentJointState, const geometry_msgs::Pose& goal) {
-        throw KukaduException("(SimplePlanner) computeIk is not supported by SimplePlanner");
-    }
-
-    geometry_msgs::Pose SimplePlanner::computeFk(std::vector<double> jointState) {
-        throw KukaduException("(SimplePlanner) computeFk is not supported by SimplePlanner");
-    }
-
-    std::string SimplePlanner::getCartesianLinkName() {
-        return queue->getCartesianLinkName();
-    }
-
-    std::string SimplePlanner::getCartesianReferenceFrame() {
-        return queue->getCartesianReferenceFrame();
-    }
-
-    void SimplePlanner::initialize(double cycleTime, int degOfFreedom) {
-
-        refApi = new ReflexxesAPI(queue->getDegreesOfFreedom(), 1.0 / cycleTime);
-        refInputParams = new RMLPositionInputParameters(queue->getDegreesOfFreedom());
-        refOutputParams = new RMLPositionOutputParameters(queue->getDegreesOfFreedom());
-
-        for(int i = 0; i < degOfFreedom; ++i) {
-            // this seems to be not normal velocity but velocity normalized by time step
-            refInputParams->MaxJerkVector->VecData[i] = 0.003 * cycleTime;
-            refInputParams->MaxAccelerationVector->VecData[i] = 0.004 * cycleTime;
-            refInputParams->MaxVelocityVector->VecData[i] = 0.002 * cycleTime;
-            refInputParams->SelectionVector->VecData[i] = true;
-        }
 
     }
 
@@ -173,11 +158,51 @@ namespace kukadu {
 
     }
 
+    bool SimplePlanner::isColliding(arma::vec jointState, geometry_msgs::Pose pose) {
+        KUKADU_MODULE_START_USAGE();
+        throw KukaduException("(SimplePlanner) isColliding is not supported by SimplePlanner");
+        KUKADU_MODULE_END_USAGE();
+    }
+
+    Eigen::MatrixXd SimplePlanner::getJacobian(std::vector<double> jointState) {
+        KUKADU_MODULE_START_USAGE();
+        throw KukaduException("(SimplePlanner) getJacobian is not supported by SimplePlanner");
+        KUKADU_MODULE_END_USAGE();
+    }
+
+    std::vector<arma::vec> SimplePlanner::computeIk(std::vector<double> currentJointState, const geometry_msgs::Pose& goal) {
+        KUKADU_MODULE_START_USAGE();
+        throw KukaduException("(SimplePlanner) computeIk is not supported by SimplePlanner");
+        KUKADU_MODULE_END_USAGE();
+    }
+
+    geometry_msgs::Pose SimplePlanner::computeFk(std::vector<double> jointState) {
+        KUKADU_MODULE_START_USAGE();
+        throw KukaduException("(SimplePlanner) computeFk is not supported by SimplePlanner");
+        KUKADU_MODULE_END_USAGE();
+    }
+
+    std::string SimplePlanner::getCartesianLinkName() {
+        KUKADU_MODULE_START_USAGE();
+        auto retVal = queue->getCartesianLinkName();
+        KUKADU_MODULE_END_USAGE();
+        return retVal;
+    }
+
+    std::string SimplePlanner::getCartesianReferenceFrame() {
+        KUKADU_MODULE_START_USAGE();
+        auto retVal = queue->getCartesianReferenceFrame();
+        KUKADU_MODULE_END_USAGE();
+        return retVal;
+    }
+
     SimplePlanner::~SimplePlanner() {
         cout << "(SimplePlanner) memory leak here" << endl;
     }
 
     std::vector<arma::vec> SimplePlanner::planJointTrajectory(std::vector<arma::vec> intermediateJoints) {
+
+        KUKADU_MODULE_START_USAGE();
 
         vector<vec> returnedTrajectory;
 
@@ -238,11 +263,15 @@ namespace kukadu {
         if(newDegOfFreedom != degOfFreedom)
             initialize(cycleTime, degOfFreedom);
 
+        KUKADU_MODULE_END_USAGE();
+
         return returnedTrajectory;
 
     }
 
     std::vector<arma::vec> SimplePlanner::planCartesianTrajectory(arma::vec startJoints, std::vector<geometry_msgs::Pose> intermediatePoses, bool smoothCartesians, bool useCurrentRobotState) {
+
+        KUKADU_MODULE_START_USAGE();
 
         for(int i = 0; i < MAX_NUM_ATTEMPTS; ++i) {
 
@@ -274,13 +303,51 @@ namespace kukadu {
 
         }
 
+        KUKADU_MODULE_END_USAGE();
+
         return vector<vec>();
 
     }
 
     std::vector<arma::vec> SimplePlanner::planCartesianTrajectory(std::vector<geometry_msgs::Pose> intermediatePoses, bool smoothCartesians, bool useCurrentRobotState) {
 
-        return planCartesianTrajectory(queue->getCurrentJoints().joints, intermediatePoses, smoothCartesians, useCurrentRobotState);
+        KUKADU_MODULE_START_USAGE();
+
+        auto retVal = planCartesianTrajectory(queue->getCurrentJoints().joints, intermediatePoses, smoothCartesians, useCurrentRobotState);
+        return retVal;
+
+        KUKADU_MODULE_END_USAGE();
+
+    }
+
+    /****************** private functions ******************************/
+
+    std::vector<std::string> Kinematics::generateDefaultJointNames(int jointCount)  {
+
+        std::vector<std::string> jointNames;
+        for(int i = 0; i < jointCount; ++i) {
+            stringstream s;
+            s << "joint" << i;
+            jointNames.push_back(s.str());
+        }
+
+        return jointNames;
+
+    }
+
+    void SimplePlanner::initialize(double cycleTime, int degOfFreedom) {
+
+        refApi = new ReflexxesAPI(queue->getDegreesOfFreedom(), 1.0 / cycleTime);
+        refInputParams = new RMLPositionInputParameters(queue->getDegreesOfFreedom());
+        refOutputParams = new RMLPositionOutputParameters(queue->getDegreesOfFreedom());
+
+        for(int i = 0; i < degOfFreedom; ++i) {
+            // this seems to be not normal velocity but velocity normalized by time step
+            refInputParams->MaxJerkVector->VecData[i] = 0.003 * cycleTime;
+            refInputParams->MaxAccelerationVector->VecData[i] = 0.004 * cycleTime;
+            refInputParams->MaxVelocityVector->VecData[i] = 0.002 * cycleTime;
+            refInputParams->SelectionVector->VecData[i] = true;
+        }
 
     }
 
@@ -309,5 +376,7 @@ namespace kukadu {
         return true;
 
     }
+
+    /****************** end ********************************************/
 
 }

@@ -13,6 +13,30 @@
 		#planJointTrajectory		1	0
 		#planCartesianTrajectory	2	0
 		#computeFk					3	1	1000
+	+MoveIt
+		#computeFk					4	1	1000
+		#computeIk					5	0
+		#planJointTrajectory		6	0
+		#planCartesianTrajectory	7	0
+		#getJacobian				8	1	1000
+	+TableConstraint
+		#stateOk					9	1	1000
+	+Kinematics
+		#addConstraint				10	0
+		#removeConstraint			11	0
+		#getConstraintsCount		12	1	1000
+		#getConstraintIdx			13	1	1000
+		#checkAllConstraints		14	1	1000
+		#computeIk					15	0
+	+PathPlanner
+		#smoothJointPlan			16	0
+	+SimplePlanner
+		#isColliding				17	0
+		#getJacobian				18	0
+		#computeIk					19	0
+		#computeFk					20	0
+		#planJointTrajectory		21	0
+		#planCartesianTrajectory	22	0
 [manipulation]
 
 [gui]

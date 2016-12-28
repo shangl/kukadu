@@ -96,6 +96,8 @@ namespace kukadu {
 
         bool collisionCheckCallback(moveit::core::RobotState* state, const moveit::core::JointModelGroup* joint_group, const double* solution);
 
+        KUKADU_SHARED_PTR<Constraint> getModelConstraint();
+
     public:
 
         MoveIt(KUKADU_SHARED_PTR<ControlQueue> queue, ros::NodeHandle node, const std::string& moveGroupName, std::vector<std::string> jointNames, std::string tipLink);
@@ -111,8 +113,6 @@ namespace kukadu {
         virtual Eigen::MatrixXd getJacobian(std::vector<double> jointState = std::vector<double>());
 
         virtual bool isColliding(arma::vec jointState, geometry_msgs::Pose pose);
-
-        KUKADU_SHARED_PTR<Constraint> getModelConstraint();
 
         virtual std::string getCartesianLinkName();
         virtual std::string getCartesianReferenceFrame();

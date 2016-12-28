@@ -40,7 +40,7 @@ private:
 
     std::map<std::string, long long int> idsMap;
 
-    std::map<std::string, int> labelIdsMap;
+    std::map<std::string, std::vector<int> > labelIdsMap;
     std::map<std::string, std::string> labelsMap;
 
     StorageSingleton();
@@ -58,6 +58,8 @@ public:
     bool checkIdExists(std::string table, std::string idCol, int val);
 
     int getCachedLabelId(std::string table, std::string labelIdCol, std::string labelCol, std::string label, std::string additionalWhere = "");
+    std::vector<int> getCachedLabelIds(std::string table, std::string labelIdCol, std::string labelCol, std::string label, std::string additionalWhere = "");
+
     std::string getCachedLabel(std::string table, std::string labelIdCol, std::string labelCol, int labelId);
 
     void executeStatement(std::string sql);

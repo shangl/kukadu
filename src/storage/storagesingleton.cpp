@@ -139,37 +139,56 @@ namespace kukadu {
 
     }
 
-    int StorageSingleton::getCachedLabelId(std::string table, std::string labelIdCol, std::string labelCol, std::string label, string additionalWhere) {
+    std::vector<int> StorageSingleton::getCachedLabelIds(string table, string labelIdCol, string labelCol, string label, string additionalWhere) {
 
-        auto key = table + "+++" + labelCol + "+++" + additionalWhere;
+        auto key = table + "+++" + labelCol + "+++" + label + "+++" + additionalWhere;
         auto el = labelIdsMap.find(key);
 
         // check if label is already in map --> increment id and return it
         if(el != labelIdsMap.end()) {
+
             auto& id = *el;
             return id.second;
+
         }
 
         // else find highest id, insert new label in map
         else {
 
             stringstream s;
-            s << "select " << labelIdCol << " from " << table << " where " << labelCol << " = \"" << label << "\"" << ((additionalWhere == "") ? "" : " and ") << additionalWhere << ";";
+            s << "select distinct(" << labelIdCol << ") from " << table << " where " << labelCol << " = \"" << label << "\"" << ((additionalWhere == "") ? "" : " and ") << additionalWhere << ";";
             auto labelQuery = s.str();
 
             auto labelResSet = executeQuery(labelQuery);
-            int labelId;
-            if(labelResSet->next())
+
+            bool firstRun = true;
+            while(labelResSet->next()) {
+
+                if(firstRun) {
+                    labelIdsMap[key] = vector<int>();
+                    firstRun = false;
+                }
+
                 // thats a bit nasty (need to do that better at some point)
-                labelId = labelResSet->getInt(labelIdCol);
-            else
+                labelIdsMap[key].push_back(labelResSet->getInt(labelIdCol));
+
+            }
+
+            // if no label was found
+            if(firstRun)
                 throw KukaduException("(StorageSingleton) retrieving label id failed");
 
-            labelIdsMap[key] = labelId;
-            return labelId;
+
+            return labelIdsMap[key];
 
         }
 
+        return {};
+
+    }
+
+    int StorageSingleton::getCachedLabelId(std::string table, std::string labelIdCol, std::string labelCol, std::string label, string additionalWhere) {
+        return getCachedLabelIds(table, labelIdCol, labelCol, label, additionalWhere).at(0);
     }
 
     void StorageSingleton::waitForEmptyCache() {

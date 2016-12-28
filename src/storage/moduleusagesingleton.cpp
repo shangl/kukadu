@@ -110,18 +110,23 @@ namespace kukadu {
 
     int ModuleUsageSingleton::checkConsistencyOrInsert(const std::string& currentModule, const std::string& currentNamespace, const std::string& currentClass, const std::string& currentFunction, const int& currentId, const int& currentMode) {
 
-        bool insertNewFunction = false;
+        bool insertNewFunction = true;
 
+        if(currentNamespace != "kukadu")
+            throw KukaduException("(ModuleUsageSingleton) currently only the kukadu namespace is supported for function statistics");
+
+        // assume only one class with the same name (currently only one namespace is supported)
         int modId = ID_NOT_FOUND;
         int classId = ID_NOT_FOUND;
-        int functionId = ID_NOT_FOUND;
         int namespaceId = ID_NOT_FOUND;
 
+        vector<int> functionId;
+
         // that is very ugly --> fix at some point
-        try { modId = storage.getCachedLabelId("software_modules", "id", "name", currentModule); } catch(KukaduException& ex) {}
-        try { functionId = storage.getCachedLabelId("software_functions", "id", "name", currentFunction); } catch(KukaduException& ex) {}
-        try { classId = storage.getCachedLabelId("software_classes", "id", "name", currentClass); } catch(KukaduException& ex) {}
-        try { namespaceId = storage.getCachedLabelId("software_namespaces", "id", "name", currentNamespace); } catch(KukaduException& ex) {}
+        try { auto modIdTmp = storage.getCachedLabelId("software_modules", "id", "name", currentModule); modId = modIdTmp; } catch(KukaduException& ex) {}
+        try { auto functionIdTmp = storage.getCachedLabelIds("software_functions", "id", "name", currentFunction); functionId = functionIdTmp; } catch(KukaduException& ex) {}
+        try { auto classIdTmp = storage.getCachedLabelId("software_classes", "id", "name", currentClass); classId = classIdTmp; } catch(KukaduException& ex) {}
+        try { auto namespaceIdTmp = storage.getCachedLabelId("software_namespaces", "id", "name", currentNamespace); namespaceId = namespaceIdTmp; } catch(KukaduException& ex) {}
 
         if(modId == ID_NOT_FOUND) {
             storage.executeStatement("insert into software_modules(name) values('" + currentModule + "')");
@@ -130,12 +135,14 @@ namespace kukadu {
         }
 
         if(classId == ID_NOT_FOUND) {
+
             stringstream s;
             s << "insert into software_classes(module_id, name) values(" << modId << ", '" << currentClass << "')";
 
             storage.executeStatement(s.str());
             storage.waitForEmptyCache();
             classId = storage.getCachedLabelId("software_classes", "id", "name", currentClass);
+
         }
 
         if(namespaceId == ID_NOT_FOUND) {
@@ -145,29 +152,35 @@ namespace kukadu {
         }
 
         // if function is in the database
-        if(functionId != ID_NOT_FOUND) {
+        if(!functionId.size()) {
 
             // if the id of a function with the same name has a different id --> it must differ in the namespace and/or the class --> otherwise there is an inconsistency
-            if(functionId != currentId) {
+            if(std::find(functionId.begin(), functionId.end(), currentId) != functionId.end()) {
 
                 string sel = "select fun.namespace_id as nam, fun.class_id as cla from software_functions as fun where fun.name = '" + currentFunction + "'";
 
                 auto selResult = storage.executeQuery(sel);
-                if(selResult->next()) {
+                int resCount = 0;
+                for(; selResult->next(); ++resCount) {
 
                     auto storedClassId = selResult->getInt("cla");
                     auto storedNamespaceId = selResult->getInt("nam");
 
-                    if(storedClassId != classId || storedNamespaceId != namespaceId)
-                        insertNewFunction = true;
-                    else if(storedClassId == classId && storedNamespaceId == namespaceId) {}
-                    else
+                    if(storedClassId != classId || storedNamespaceId != namespaceId) {}
+                    else if(storedClassId == classId && storedNamespaceId == namespaceId) {
+                        // if function is already in database, do not insert it again
+                        insertNewFunction = false;
+                        break;
+                    } else
                         throw KukaduException("(ModuleUsageSingleton) function is already stored with a different id (check you property file)");
 
-                } else
+                }
+
+                if(resCount == 0)
                     throw KukaduException("(ModuleUsageSingleton) sql problem occurred");
 
-            }
+            } else
+                insertNewFunction = false;
 
         }
         // if it is not in the database --> insert it
@@ -185,12 +198,10 @@ namespace kukadu {
             s << "insert into software_functions(id, namespace_id, class_id, name, storage_mode) values(" << currentId << ", " << namespaceId << ", " << classId << ", '" << currentFunction << "', " << currentMode << ")";
             storage.executeStatement(s.str());
             storage.waitForEmptyCache();
-            functionId = currentId;
-
 
         }
 
-        return functionId;
+        return currentId;
 
     }
 

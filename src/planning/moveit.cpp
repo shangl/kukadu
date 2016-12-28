@@ -9,12 +9,15 @@
 #else
 #include <moveit/move_group_interface/move_group.h>
 #endif
+#include <kukadu/storage/moduleusagesingleton.hpp>
 
 using namespace ros;
 using namespace std;
 using namespace arma;
 
 namespace kukadu {
+
+    /****************** public functions *******************************/
 
     MoveIt::MoveIt(KUKADU_SHARED_PTR<ControlQueue> queue, NodeHandle node, const std::string& moveGroupName, std::vector<std::string> jointNames, std::string tipLink)
         : PathPlanner(jointNames), moveGroup(string(moveGroupName)) {
@@ -30,87 +33,9 @@ namespace kukadu {
 
     }
 
-    Eigen::MatrixXd MoveIt::getJacobian(std::vector<double> jointState) {
-
-        if(jointState.size() == 0)
-            jointState = armadilloToStdVec(queue->getCurrentJoints().joints);
-
-        Eigen::Vector3d reference_point_position(0.0, 0.0, 0.0);
-        Eigen::MatrixXd jacobian;
-        moveit::core::RobotState state(robot_model_);
-        state.setJointGroupPositions(jnt_model_group, jointState);
-        state.getJacobian(jnt_model_group, state.getLinkModel(jnt_model_group->getLinkModelNames().back()), reference_point_position, jacobian);
-        return jacobian;
-
-    }
-
-    void MoveIt::construct(KUKADU_SHARED_PTR<ControlQueue> queue, ros::NodeHandle node, const std::string& moveGroupName, std::vector<std::string> jointNames, std::string tipLink, bool avoidCollisions, int maxAttempts, double timeOut) {
-
-        this->queue = queue;
-        this->moveGroupName = moveGroupName;
-        this->tipLink = tipLink;
-        this->avoidCollisions = avoidCollisions;
-        this->maxAttempts = maxAttempts;
-        this->timeOut = timeOut;
-        
-        simplePlanner = make_shared<SimplePlanner>(queue, KUKADU_SHARED_PTR<Kinematics>());
-
-        /* Load the robot model */
-        rml_.reset(new robot_model_loader::RobotModelLoader("robot_description"));
-
-        robot_model_ = rml_->getModel();
-        if(!robot_model_) {
-            string error = "(MoveIt) Unable to load robot model - make sure, that the robot_description is uploaded to the server";
-            ROS_ERROR("(MoveIt) Unable to load robot model - make sure, that the robot_description is uploaded to the server");
-            throw KukaduException(error.c_str());
-        }
-
-        // create instance of planning scene
-        planning_scene_.reset(new planning_scene::PlanningScene(robot_model_));
-
-        jnt_model_group = robot_model_->getJointModelGroup(moveGroupName);
-
-        if(!jnt_model_group) {
-            ROS_ERROR("(MoveIt) unknown group name");
-            return;
-        }
-
-        degOfFreedom = jnt_model_group->getJointModelNames().size();
-        modelRestriction = KUKADU_SHARED_PTR<Constraint>(new MoveItConstraint(robot_model_, planning_scene_, jnt_model_group));
-
-        if(avoidCollisions)
-            addConstraint(modelRestriction);
-
-        this->jointNames = jointNames;
-
-        if(jnt_model_group->getJointModelNames().size() != jointNames.size()) {
-            stringstream s;
-            s << "number of specified joint names don't match the number of joints specified in the move group (movegroup: " << jnt_model_group->getJointModelNames().size() << " vs provided: " << jointNames.size() << ")";
-            throw KukaduException(s.str().c_str());
-        }
-
-        // set some default values
-        planning_time_ = 5.0;
-        planning_attempts_ = 5;
-        max_traj_pts_ = 50;
-        goal_joint_tolerance_ = 1e-4;
-        goal_position_tolerance_ = 1e-3; // 0.1 mm
-        goal_orientation_tolerance_ = 1e-3; // ~0.1 deg
-        planner_id_ = "RRTstarkConfigDefault";
-
-        planning_client_ = node.serviceClient<moveit_msgs::GetMotionPlan>("/plan_kinematic_path");
-
-    }
-
-    std::string MoveIt::getCartesianLinkName() {
-        return tipLink;
-    }
-
-    std::string MoveIt::getCartesianReferenceFrame() {
-        return moveGroup.getPlanningFrame();
-    }
-
     geometry_msgs::Pose MoveIt::computeFk(std::vector<double> jointState) {
+
+        KUKADU_MODULE_START_USAGE();
 
         geometry_msgs::Pose retPose;
 
@@ -125,6 +50,8 @@ namespace kukadu {
     }
 
     std::vector<arma::vec> MoveIt::computeIk(std::vector<double> currentJointState, const geometry_msgs::Pose &goal) {
+
+        KUKADU_MODULE_START_USAGE();
 
         vector<vec> retVec;
         vector<double> solution;
@@ -150,36 +77,15 @@ namespace kukadu {
             retVec.push_back(stdToArmadilloVec(solution));
         }
 
+        KUKADU_MODULE_END_USAGE();
+
         return retVec;
 
     }
 
-    bool MoveIt::collisionCheckCallback(moveit::core::RobotState *state, const moveit::core::JointModelGroup* joint_group, const double* solution) {
-
-        if(avoidCollisions) {
-
-            vec solVec(degOfFreedom);
-            for(int i = 0; i < degOfFreedom; ++i)
-                solVec(i) = solution[i];
-
-            geometry_msgs::Pose pose = computeFk(armadilloToStdVec(solVec));
-
-            return checkAllConstraints(solVec, pose);
-
-        } else
-            return true;
-
-    }
-
-    bool MoveIt::isColliding(arma::vec jointState, geometry_msgs::Pose pose) {
-        return !modelRestriction->stateOk(jointState, pose);
-    }
-
-    KUKADU_SHARED_PTR<Constraint> MoveIt::getModelConstraint() {
-        return modelRestriction;
-    }
-
     std::vector<arma::vec> MoveIt::planJointTrajectory(std::vector<arma::vec> intermediateJoints) {
+
+        KUKADU_MODULE_START_USAGE();
 
         sensor_msgs::JointState start_state;
         start_state.name = jointNames;
@@ -247,20 +153,30 @@ namespace kukadu {
             throw(KukaduException(s.str().c_str()));
         }
 
-		return simplePlanner->planJointTrajectory(jointPath);
+        KUKADU_MODULE_END_USAGE();
+
+        return simplePlanner->planJointTrajectory(jointPath);
 
     }
 
     std::vector<arma::vec> MoveIt::planCartesianTrajectory(std::vector<geometry_msgs::Pose> intermediatePoses, bool smoothCartesians, bool useCurrentRobotState) {
 
+        KUKADU_MODULE_START_USAGE();
+
         vector<double> ikStart;
         for(int i = 0; i < jointNames.size(); ++i)
             ikStart.push_back(0.0);
-        return planCartesianTrajectory(computeIk(ikStart, intermediatePoses.front()).front(), intermediatePoses, smoothCartesians, useCurrentRobotState);
+        auto planRes = planCartesianTrajectory(computeIk(ikStart, intermediatePoses.front()).front(), intermediatePoses, smoothCartesians, useCurrentRobotState);
+
+        KUKADU_MODULE_END_USAGE();
+
+        return planRes;
 
     }
 
     std::vector<arma::vec> MoveIt::planCartesianTrajectory(arma::vec startJoints, std::vector<geometry_msgs::Pose> intermediatePoses, bool smoothCartesians, bool useCurrentRobotState) {
+
+        KUKADU_MODULE_START_USAGE();
 
         sensor_msgs::JointState start_state;
         start_state.name = jointNames;
@@ -344,8 +260,124 @@ namespace kukadu {
             throw(KukaduException(s.str().c_str()));
         }
 
-		return simplePlanner->planJointTrajectory(jointPath);
+        auto simplePlan = simplePlanner->planJointTrajectory(jointPath);
 
+        KUKADU_MODULE_END_USAGE();
+
+        return simplePlan;
+
+    }
+
+    Eigen::MatrixXd MoveIt::getJacobian(std::vector<double> jointState) {
+
+        KUKADU_MODULE_START_USAGE();
+
+        if(jointState.size() == 0)
+            jointState = armadilloToStdVec(queue->getCurrentJoints().joints);
+
+        Eigen::Vector3d reference_point_position(0.0, 0.0, 0.0);
+        Eigen::MatrixXd jacobian;
+        moveit::core::RobotState state(robot_model_);
+        state.setJointGroupPositions(jnt_model_group, jointState);
+        state.getJacobian(jnt_model_group, state.getLinkModel(jnt_model_group->getLinkModelNames().back()), reference_point_position, jacobian);
+
+        KUKADU_MODULE_END_USAGE();
+
+        return jacobian;
+
+    }
+
+    bool MoveIt::isColliding(arma::vec jointState, geometry_msgs::Pose pose) {
+        return !modelRestriction->stateOk(jointState, pose);
+    }
+
+    std::string MoveIt::getCartesianLinkName() {
+        return tipLink;
+    }
+
+    std::string MoveIt::getCartesianReferenceFrame() {
+        return moveGroup.getPlanningFrame();
+    }
+
+    /****************** private functions ******************************/
+
+    void MoveIt::construct(KUKADU_SHARED_PTR<ControlQueue> queue, ros::NodeHandle node, const std::string& moveGroupName, std::vector<std::string> jointNames, std::string tipLink, bool avoidCollisions, int maxAttempts, double timeOut) {
+
+        this->queue = queue;
+        this->moveGroupName = moveGroupName;
+        this->tipLink = tipLink;
+        this->avoidCollisions = avoidCollisions;
+        this->maxAttempts = maxAttempts;
+        this->timeOut = timeOut;
+
+        simplePlanner = make_shared<SimplePlanner>(queue, KUKADU_SHARED_PTR<Kinematics>());
+
+        /* Load the robot model */
+        rml_.reset(new robot_model_loader::RobotModelLoader("robot_description"));
+
+        robot_model_ = rml_->getModel();
+        if(!robot_model_) {
+            string error = "(MoveIt) Unable to load robot model - make sure, that the robot_description is uploaded to the server";
+            ROS_ERROR("(MoveIt) Unable to load robot model - make sure, that the robot_description is uploaded to the server");
+            throw KukaduException(error.c_str());
+        }
+
+        // create instance of planning scene
+        planning_scene_.reset(new planning_scene::PlanningScene(robot_model_));
+
+        jnt_model_group = robot_model_->getJointModelGroup(moveGroupName);
+
+        if(!jnt_model_group) {
+            ROS_ERROR("(MoveIt) unknown group name");
+            return;
+        }
+
+        degOfFreedom = jnt_model_group->getJointModelNames().size();
+        modelRestriction = KUKADU_SHARED_PTR<Constraint>(new MoveItConstraint(robot_model_, planning_scene_, jnt_model_group));
+
+        if(avoidCollisions)
+            addConstraint(modelRestriction);
+
+        this->jointNames = jointNames;
+
+        if(jnt_model_group->getJointModelNames().size() != jointNames.size()) {
+            stringstream s;
+            s << "number of specified joint names don't match the number of joints specified in the move group (movegroup: " << jnt_model_group->getJointModelNames().size() << " vs provided: " << jointNames.size() << ")";
+            throw KukaduException(s.str().c_str());
+        }
+
+        // set some default values
+        planning_time_ = 5.0;
+        planning_attempts_ = 5;
+        max_traj_pts_ = 50;
+        goal_joint_tolerance_ = 1e-4;
+        goal_position_tolerance_ = 1e-3; // 0.1 mm
+        goal_orientation_tolerance_ = 1e-3; // ~0.1 deg
+        planner_id_ = "RRTstarkConfigDefault";
+
+        planning_client_ = node.serviceClient<moveit_msgs::GetMotionPlan>("/plan_kinematic_path");
+
+    }
+
+    bool MoveIt::collisionCheckCallback(moveit::core::RobotState *state, const moveit::core::JointModelGroup* joint_group, const double* solution) {
+
+        if(avoidCollisions) {
+
+            vec solVec(degOfFreedom);
+            for(int i = 0; i < degOfFreedom; ++i)
+                solVec(i) = solution[i];
+
+            geometry_msgs::Pose pose = computeFk(armadilloToStdVec(solVec));
+
+            return checkAllConstraints(solVec, pose);
+
+        } else
+            return true;
+
+    }
+
+    KUKADU_SHARED_PTR<Constraint> MoveIt::getModelConstraint() {
+        return modelRestriction;
     }
 
     MoveItConstraint::MoveItConstraint(robot_model::RobotModelPtr robotModel, planning_scene::PlanningScenePtr planningScene, robot_model::JointModelGroup* modelGroup) {
@@ -398,5 +430,7 @@ namespace kukadu {
     std::string MoveItConstraint::getConstraintName() {
         return string("MoveItConstraint");
     }
+
+    /****************** end ********************************************/
 
 }
