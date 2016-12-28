@@ -1,5 +1,6 @@
 #include <kukadu/storage/moduleusagesingleton.hpp>
 #include <kukadu/storage/storagesingleton.hpp>
+#include <kukadu/utils/kukadutokenizer.hpp>
 #include <boost/program_options.hpp>
 #include <kukadu/utils/utils.hpp>
 #include <algorithm>
@@ -33,8 +34,9 @@ namespace kukadu {
 
         databaseName = vm["kukadu.database"].as<std::string>();
 
-        if(!isInstalled())
-            install();
+        auto installDirectory = resolvePath("$KUKADU_HOME/install");
+        if(!isInstalled(installDirectory))
+            install(installDirectory);
 
         executeStatement("use " + databaseName);
 
@@ -69,26 +71,38 @@ namespace kukadu {
 
     }
 
-    void StorageSingleton::install() {
+    void StorageSingleton::install(std::string directory) {
 
-        string installDir = "$KUKADU_HOME/install";
         executeStatement("use " + databaseName);
+        installDirectory(directory);
 
-        char answer = 'n';
-        cout << "kukadu is currently not properly installed. do you want to install it? (y = yes, of course, n = no)" << endl;
-        cin >> answer;
-        if(answer == 'y')
-            installDirectory(installDir);
-        else
-            throw KukaduException("(StorageSingleton) you chose not to install kukadu. core functionality might be affected.");
     }
 
-    bool StorageSingleton::isInstalled() {
+    bool StorageSingleton::isInstalled(std::string directory) {
 
         executeStatement("use information_schema");
-        auto existsSet = executeQuery("select count(*) as cnt from tables where table_schema = '" + databaseName + "' and table_name = 'skills'");
+
+        stringstream s;
+        s << "select count(*) as cnt from tables where table_schema = '" << databaseName << "' and (";
+
+        vector<string> installFiles = getFilesInDirectory(resolvePath(directory));
+        std::sort(installFiles.begin(), installFiles.end());
+        int tableCount = 0;
+        for(auto& installFile : installFiles)
+            if(installFile.find("values.sql") == std::string::npos && installFile != "." && installFile != "..") {
+                KukaduTokenizer tok(installFile, ".");
+                auto tableName = tok.next();
+                s << "table_name = '" << tableName << "' or ";
+                ++tableCount;
+            }
+
+        auto totalQuery = s.str();
+        totalQuery = totalQuery.substr(0, totalQuery.length() - 4) + ")";
+
+        auto existsSet = executeQuery(totalQuery);
         existsSet->next();
-        if(existsSet->getInt("cnt") > 0)
+
+        if(existsSet->getInt("cnt") == tableCount)
             return true;
         return false;
 

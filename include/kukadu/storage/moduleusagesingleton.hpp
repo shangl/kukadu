@@ -21,9 +21,9 @@ namespace kukadu {
     private:
 
 #ifndef USEBOOST
-        static auto constexpr ID_NOT_FOUND{-1};
-        static auto constexpr MODE_STD_STORAGE{0};
-        static auto constexpr MODE_POOL_STORAGE{1};
+        static auto constexpr ID_NOT_FOUND = -1;
+        static auto constexpr MODE_STD_STORAGE = 0;
+        static auto constexpr MODE_POOL_STORAGE = 1;
 #else
         static const int ID_NOT_FOUND = -1;
         static const int MODE_STD_STORAGE = 0;

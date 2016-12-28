@@ -1,4 +1,4 @@
-CREATE TABLE `software_functions` (
+CREATE TABLE IF NOT EXISTS `software_functions` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `namespace_id` int(11) NOT NULL,
   `class_id` int(11) NOT NULL,

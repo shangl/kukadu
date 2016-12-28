@@ -68,9 +68,9 @@ public:
 
     void waitForEmptyCache();
 
-    void install();
+    void install(std::string directory);
 
-    bool isInstalled();
+    bool isInstalled(std::string directory);
 
     ~StorageSingleton();
 
