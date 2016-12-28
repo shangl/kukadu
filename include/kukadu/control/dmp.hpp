@@ -64,13 +64,14 @@ namespace kukadu {
             double tau, double az, double bz, double ax, double ac, double dmpStepSize, double tolAbsErr, double tolRelErr);
 
     protected:
-        double dmpStepSize;
 
+        double dmpStepSize;
         std::vector<arma::vec> fitYs;
+
+        Dmp();
 
     public:
 
-        Dmp();
         Dmp(const Dmp& copy);
         Dmp(std::string dmpFile);
         Dmp(std::vector<long long int> supervisedTs, std::vector<arma::vec> sampleYs, std::vector<arma::vec> fitYs, std::vector<arma::vec> dmpCoeffs, std::vector<DMPBase> dmpBase, std::vector<arma::mat> designMatrices,

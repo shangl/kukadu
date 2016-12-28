@@ -4,16 +4,68 @@
 #include <kukadu/control/dmp.hpp>
 #include <tf/transform_datatypes.h>
 #include <kukadu/utils/conversion_utils.hpp>
+#include <kukadu/storage/moduleusagesingleton.hpp>
 
 using namespace std;
 using namespace arma;
 
 namespace kukadu {
 
+    std::vector<double> constructDmpMys(vec& timesInSeconds, mat& joints) {
+        vector<double> ret;
+        double tmax = timesInSeconds(timesInSeconds.n_rows - 1);
+        for(double i = 0; i < (tmax + 1); i += 1.0)
+            ret.push_back(i);
+
+        return ret;
+    }
+
+    vector<double> computeDMPMys(vector<double> mys, double ax, double tau) {
+        int mysSize = mys.size();
+        vector<double> dmpMys;
+        for(int i = 0; i < mysSize; ++i) {
+            double val = std::exp(-ax / tau * mys.at(i));
+            dmpMys.push_back(val);
+        }
+        return dmpMys;
+    }
+
+    std::vector<DMPBase> buildDMPBase(vector<double> tmpmys, vector<double> tmpsigmas, double ax, double tau) {
+
+        std::vector<DMPBase> baseDef;
+        vector<DMPBase>::iterator it = baseDef.begin();
+
+        vector<double> mys = computeDMPMys(tmpmys, ax, tau);
+
+        for(int i = 0; i < mys.size(); ++i) {
+
+            double realMy = tmpmys.at(i);
+            double my = mys.at(i);
+
+            vector<double> sigmas;
+
+            for(int j = 0; j < tmpsigmas.size(); ++j) {
+                double realSigma = tmpsigmas.at(j);
+                double sigma = my - std::exp(-ax / tau * (realMy + realSigma));
+                sigmas.push_back(sigma);
+            }
+
+            DMPBase base(my, sigmas);
+
+            // with this implementation, currently all sigmas have to be of the same size (see DMPTrajectoryGenerator::evaluateBasisFunction)
+            it = baseDef.insert(it, base);
+
+        }
+
+        return baseDef;
+
+    }
+
+    /****************** public functions *******************************/
+
     CartesianDMP::CartesianDMP(std::vector<long long int> supervisedTs, std::vector<arma::vec> sampleYs, std::vector<arma::vec> fitYs, std::vector<arma::vec> dmpCoeffs, std::vector<DMPBase> dmpBase, std::vector<arma::mat> designMatrices,
                                double tau, double az, double bz, double ax, double ac, double dmpStepSize, double tolAbsErr, double tolRelErr) : Dmp(supervisedTs, sampleYs, fitYs, dmpCoeffs, dmpBase, designMatrices,
                                                                                                                                                      tau, az, bz, ax, ac, dmpStepSize, tolAbsErr, tolRelErr) {
-
     }
 
     CartesianDMP::CartesianDMP(std::vector<long long int> supervisedTs, std::vector<arma::vec> sampleYs, std::vector<arma::vec> fitYs, std::vector<arma::vec> dmpCoeffs, std::vector<DMPBase> dmpBase, std::vector<arma::mat> designMatrices,
@@ -104,6 +156,10 @@ namespace kukadu {
 
     }
 
+    Dmp::Dmp() : SingleSampleTrajectory(vec(), vector<vec>()) {
+
+    }
+
     Dmp::Dmp(std::string dmpFile) {
 
         std::ifstream dmpFileStream(dmpFile.c_str(), std::ifstream::in);
@@ -167,8 +223,6 @@ namespace kukadu {
     }
 
     void Dmp::storeDatabase(std::string skillLabel, bool overwriteIfExists) {
-
-
 
     }
 
@@ -290,10 +344,6 @@ namespace kukadu {
         initializeG();
 
         this->tmax = copy.tmax;
-
-    }
-
-    Dmp::Dmp() : SingleSampleTrajectory(vec(), vector<vec>()) {
 
     }
 
@@ -499,68 +549,7 @@ namespace kukadu {
 
     }
 
-    arma::mat CartesianDMPLearner::computeFitY(arma::vec& time, arma::mat &y, arma::mat &dy, arma::mat &ddy, arma::vec& vec_g) {
-
-        // position
-        mat retMat(y.n_cols - 1, y.n_rows);
-
-        for(int i = 0; i < y.n_rows; ++i) {
-
-            for(int j = 0; j < 3; ++j) {
-
-                double yVal = y(i, j);
-                double dyVal = dy(i, j);
-                double ddyVal = ddy(i, j);
-                retMat(j, i) = /*1 / (vec_g(j) - y(0, j)) */ tau * tau * ddyVal - az * (bz * (vec_g(j) - yVal) - tau * dyVal);
-
-            }
-
-        }
-
-        // orientation
-        arma::mat omega(y.n_rows, 3);
-        arma::mat domega;
-        arma::mat eta;
-        arma::mat deta;
-
-        for (int j = 0; j < y.n_rows - 1; ++j) {
-
-            vec logL= log(tf::Quaternion(y(j + 1, 3), y(j + 1,  4), y(j + 1, 5), y(j + 1, 6)) * tf::Quaternion(y(j, 3), y(j, 4), y(j, 5), y(j, 6)).inverse());
-
-            for (int i = 0; i < 3; i++)
-                omega(j, i) = 2 * logL(i) / (time(1)-time(0));
-
-            if (j == y.n_rows - 2)
-                for (int i = 0; i < 3; i++)
-                    omega(y.n_rows - 1, i) = 2 * logL(i) / (time(1)-time(0));
-
-        }
-
-        for(int i = 0; i < 3 ; ++i) {
-
-            vec trajectory = omega.col(i);
-            vec domegaV = computeDiscreteDerivatives(time, trajectory);
-            domega = join_rows(domega, domegaV);
-
-        }
-
-
-        eta = tau * omega;
-        deta = tau * domega;
-
-        for (int i = 0; i < y.n_rows; ++i) {
-
-            vec logL = log(tf::Quaternion(vec_g(3), vec_g(4), vec_g(5), vec_g(6)) * tf::Quaternion(y(i, 3), y(i, 4), y(i, 5), y(i, 6)).inverse());
-            for (int j = 3; j < retMat.n_rows; ++j)
-                retMat(j, i) = tau * deta (i, j - 3) - az * (bz * 2 * logL(j - 3) - eta(i, j - 3));
-
-        }
-
-        return retMat;
-
-    }
-
-	DMPExecutor::DMPExecutor(KUKADU_SHARED_PTR<Dmp> traj, KUKADU_SHARED_PTR<ControlQueue> execQueue) {
+    DMPExecutor::DMPExecutor(KUKADU_SHARED_PTR<Dmp> traj, KUKADU_SHARED_PTR<ControlQueue> execQueue) {
 
         construct(traj, execQueue, 1);
 
@@ -578,6 +567,482 @@ namespace kukadu {
         construct(dmp, execQueue, suppressMessages);
 
     }
+
+    bool DMPExecutor::requiresGrasp() {
+        return false;
+    }
+
+    bool DMPExecutor::producesGrasp() {
+        return true;
+    }
+
+    void  DMPExecutor::setRollbackTime(double rollbackTime) {
+        KUKADU_MODULE_START_USAGE();
+        this->rollbackTime = rollbackTime;
+        KUKADU_MODULE_END_USAGE();
+    }
+
+    void DMPExecutor::setTrajectory(KUKADU_SHARED_PTR<Trajectory> traj) {
+
+        KUKADU_SHARED_PTR<Dmp> dmp = KUKADU_DYNAMIC_POINTER_CAST<Dmp>(traj);
+        construct(dmp, controlQueue, suppressMessages);
+
+        vec_t.clear();
+        vec_y.clear();
+
+    }
+
+    void DMPExecutor::useExternalError(int external) {
+        KUKADU_MODULE_START_USAGE();
+        externalErrorUsing = external;
+        KUKADU_MODULE_END_USAGE();
+    }
+
+    void DMPExecutor::setExternalError(double error) {
+        externalError = error;
+    }
+
+    int DMPExecutor::usesExternalError() {
+        return externalErrorUsing;
+    }
+
+    double DMPExecutor::getExternalError() {
+        return externalError;
+    }
+
+    KUKADU_SHARED_PTR<ControllerResult> DMPExecutor::executeTrajectory(double ac, double tStart, double tEnd, double tolAbsErr, double tolRelErr) {
+
+        KUKADU_MODULE_START_USAGE();
+
+        this->ac = ac;
+        this->simulate = EXECUTE_ROBOT;
+        auto retVal = this->executeDMP(tStart, tEnd, tolAbsErr, tolRelErr);
+
+        KUKADU_MODULE_END_USAGE();
+        return retVal;
+
+    }
+
+    KUKADU_SHARED_PTR<ControllerResult> DMPExecutor::simulateTrajectory(double tStart, double tEnd, double tolAbsErr, double tolRelErr) {
+
+        KUKADU_MODULE_START_USAGE();
+
+        this->simulate = SIMULATE_DMP;
+        KUKADU_SHARED_PTR<ControllerResult> ret = this->executeDMP(tStart, tEnd, tolAbsErr, tolRelErr);
+
+        KUKADU_MODULE_END_USAGE();
+        return ret;
+
+    }
+
+    void DMPExecutor::doRollBackOnMaxForceEvent(bool doRollback) {
+        KUKADU_MODULE_START_USAGE();
+        this->doRollback = doRollback;
+        cout << "(DMPExecutor) doRollback was set to " << this->doRollback << endl;
+        KUKADU_MODULE_END_USAGE();
+    }
+
+    void DMPExecutor::enableMaxForceMode(double maxAbsForce, double maxXForce, double maxYForce, double maxZForce) {
+        KUKADU_MODULE_START_USAGE();
+
+        if(maxAbsForce == IGNORE_FORCE)
+            maxAllowedForce = DBL_MAX;
+        else
+            maxAllowedForce = maxAbsForce;
+
+        if(maxXForce == IGNORE_FORCE)
+            maxXForce = DBL_MAX;
+        else
+            this->maxXForce = maxXForce;
+
+        if(maxYForce == IGNORE_FORCE)
+            maxYForce = DBL_MAX;
+        else
+            this->maxYForce = maxYForce;
+
+        if(maxZForce == IGNORE_FORCE)
+            maxZForce = DBL_MAX;
+        else
+            this->maxZForce = maxZForce;
+
+        KUKADU_MODULE_END_USAGE();
+    }
+
+    KUKADU_SHARED_PTR<ControllerResult> DMPExecutor::simulateTrajectory() {
+
+        this->simulate = SIMULATE_DMP;
+        return this->executeDMP(0, dmp->getTmax(), dmp->getTolAbsErr(), dmp->getTolRelErr());
+
+    }
+
+    KUKADU_SHARED_PTR<ControllerResult> DMPExecutor::executeTrajectory() {
+
+        this->simulate = EXECUTE_ROBOT;
+        return this->executeDMP(0, dmp->getTmax(), dmp->getTolAbsErr(), dmp->getTolRelErr());
+
+    }
+
+    KUKADU_SHARED_PTR<ControllerResult> DMPExecutor::executeDMP(double tStart, double tEnd, double tolAbsErr, double tolRelErr) {
+
+        KUKADU_MODULE_START_USAGE();
+
+        // two variables are really required here, because executionRunning is changed by other functions that really need to know
+        // whether the exeuction was stopped (this is checked by executionStoppingDone)
+        executionRunning = true;
+        executionStoppingDone = false;
+        if(!isCartesian) {
+            maxFrcThread = KUKADU_SHARED_PTR<kukadu_thread>(new kukadu_thread(&DMPExecutor::runCheckMaxForces, this));
+            controlQueue->startRollBackMode(3.0);
+        }
+
+        double currentTime = 0.0;
+
+        vector<vec> retY;
+
+        vector<double> retT;
+        geometry_msgs::Pose start;
+
+        if(!isCartesian) {
+            vec currentState = controlQueue->getCurrentJoints().joints;
+            for(int i = 0; i < y0s.n_elem; ++i)
+                if(abs(currentState(i) - y0s(i)) > 0.01) {
+                    controlQueue->jointPtp(y0s);
+                    ros::Rate r(2); r.sleep();
+                    break;
+                }
+        } else {
+            start = controlQueue->getCurrentCartesianPose();
+            controlQueue->cartesianPtp(vectorarma2pose(&y0s));
+        }
+
+        initializeIntegration(0, tolAbsErr, tolRelErr);
+
+        vec nextJoints(degofFreedom);
+        nextJoints.fill(0.0);
+
+        // execute dmps and compute linear combination
+        for(int j = 0; currentTime < tEnd && executionRunning; ++j, currentTime += controlQueue->getCycleTime()) {
+
+            try {
+
+                nextJoints = doIntegrationStep(ac);
+
+            } catch(const char* s) {
+                cerr << string(s) << ": stopped execution at time " << currentTime << endl;
+                break;
+            }
+
+            retY.push_back(nextJoints);
+
+            if(simulate == EXECUTE_ROBOT)
+                controlQueue->synchronizeToQueue(1);
+
+            if(!isCartesian)
+                controlQueue->move(nextJoints);
+            else {
+
+                geometry_msgs::Pose newP = vectorarma2pose(&nextJoints);
+                controlQueue->move(newP);
+
+            }
+
+            retT.push_back(currentTime);
+
+        }
+
+        executionRunning = false;
+        executionStoppingDone = true;
+
+        if(maxFrcThread && maxFrcThread->joinable())
+            maxFrcThread->join();
+
+        auto retVal = KUKADU_SHARED_PTR<ControllerResult>(new ControllerResult(stdToArmadilloVec(retT), retY, true));
+
+        KUKADU_MODULE_END_USAGE();
+
+        return retVal;
+
+    }
+
+    DMPTrajectoryGenerator::DMPTrajectoryGenerator(std::vector<DMPBase> baseDef, double ax, double tau) {
+
+        this->baseFunctionCount = -1;
+        this->baseDef = baseDef;
+
+        this->ax = ax;
+        this->tau = tau;
+
+        this->previousX = -1;
+        this->prevBasFun = vec(getBasisFunctionCount());
+
+        myssize = baseDef.size();
+        sigmassize = baseDef.at(0).getSigmas().size();
+
+
+    }
+
+    double DMPTrajectoryGenerator::evaluateByCoefficientsSingle(double x, vec coeff) {
+        int coeffDegree = this->getBasisFunctionCount();
+        double val = 0.0;
+
+        if(previousX != x) {
+            for(int i = 0; i < coeffDegree; ++i) {
+                prevBasFun(i) = evaluateBasisFunctionNonExponential(x, i);
+                previousX = x;
+            }
+        }
+
+        for(int i = 0; i < coeffDegree; ++i) {
+            val += coeff(i) * prevBasFun(i);
+        }
+        return val;
+    }
+
+    double DMPTrajectoryGenerator::evaluateByCoefficientsSingleNonExponential(double x, vec coeff) {
+
+        int coeffDegree = this->getBasisFunctionCount();
+        double val = 0.0;
+
+        if(previousX != x) {
+
+            for(int i = 0; i < coeffDegree; ++i) {
+                prevBasFun(i) = evaluateBasisFunctionNonExponential(x, i);
+                previousX = x;
+            }
+        }
+
+        for(int i = 0; i < coeffDegree; ++i) {
+            val += coeff(i) * prevBasFun(i);
+        }
+
+        return val;
+
+    }
+
+
+    vec DMPTrajectoryGenerator::evaluateByCoefficientsMultiple(vec x, int sampleCount, vec coeff) {
+        int coeffDegree = this->getBasisFunctionCount();
+        vec values(sampleCount);
+        for(int i = 0; i < sampleCount; ++i) {
+            values(i) = evaluateByCoefficientsSingle(x(i), coeff);
+        }
+        return values;
+    }
+
+    vec DMPTrajectoryGenerator::evaluateByCoefficientsMultipleNonExponential(vec x, int sampleCount, vec coeff) {
+        int coeffDegree = this->getBasisFunctionCount();
+        vec values(sampleCount);
+        for(int i = 0; i < sampleCount; ++i) {
+            values(i) = evaluateByCoefficientsSingleNonExponential(x(i), coeff);
+        }
+        return values;
+    }
+
+    // with this implementation, currently all sigmas have to be of the same size (see DMPTrajectoryGenerator::evaluateBasisFunction and DMPTrajectoryGenerator::getBasisFunctionCount)
+    double DMPTrajectoryGenerator::evaluateBasisFunction(double x, int fun) {
+
+        int mypos = fun / sigmassize;
+        int sigmapos = fun % sigmassize;
+
+        double my = baseDef.at(mypos).getMy();
+        double sigma = baseDef.at(mypos).getSigmas().at(sigmapos);
+
+        double expVal = exp( -ax / tau * x );
+
+        double base = exp(  - pow( expVal  - my, 2) / (2 * pow(sigma, 2))   ) * expVal;
+        double normVal = computeNormalization(exp( -ax / tau * x ));
+
+        return base / normVal;
+
+    }
+
+    double DMPTrajectoryGenerator::evaluateBasisFunctionNonExponential(double x, int fun) {
+
+        int mypos = fun / sigmassize;
+        int sigmapos = fun % sigmassize;
+
+        double my = baseDef.at(mypos).getMy();
+        double sigma = baseDef.at(mypos).getSigmas().at(sigmapos);
+        double base = exp( -pow( x - my , 2 ) / (2 * pow(sigma, 2)) ) * x;
+        double normVal = computeNormalization(x);
+
+        return base / normVal;
+
+    }
+
+    // with this implementation, currently all sigmas have to be of the same size (see DMPTrajectoryGenerator::evaluateBasisFunction and DMPTrajectoryGenerator::getBasisFunctionCount)
+    int DMPTrajectoryGenerator::getBasisFunctionCount() {
+
+        if(baseFunctionCount == -1) {
+            int myssize = baseDef.size();
+            int sigmassize = baseDef.at(0).getSigmas().size();
+            baseFunctionCount = myssize * sigmassize;
+        }
+
+        return baseFunctionCount;
+
+    }
+
+    string DMPTrajectoryGenerator::getTrajectoryType() {
+        return "dmp";
+    }
+
+    GeneralDmpLearner::GeneralDmpLearner(std::vector<DMPBase> dmpBase, double tau, double az, double bz, double ax, arma::vec timesInSeconds, mat joints) {
+        this->construct(dmpBase, tau, az, bz, ax, timesInSeconds, joints, joints.n_cols);
+    }
+
+    GeneralDmpLearner::GeneralDmpLearner(vector<double> mysDef, vector<double> sigmasDef, double az, double bz, string file) {
+
+        // reading in file
+        auto dmpData = readDmpData(file);
+        vector<long long int> timesInMilliSeconds = dmpData.first;
+        mat joints = dmpData.second;
+
+        double tau = timesInMilliSeconds.back();
+        double ax = -std::log(0.1) / tau / tau;
+
+        int degFreedom = joints.n_cols;
+
+        vector<DMPBase> baseDef = buildDMPBase(mysDef, sigmasDef, ax, tau);
+
+        this->construct(baseDef, tau, az, bz, ax, convertAndRemoveOffset(timesInMilliSeconds), joints, degFreedom);
+
+    }
+
+    GeneralDmpLearner::GeneralDmpLearner(double az, double bz, std::string file) {
+
+        vector<double> tmpmys;
+
+        vector<double> tmpsigmas;
+        tmpsigmas.push_back(0.2); tmpsigmas.push_back(0.8);
+
+        auto dmpData = readDmpData(file);
+        vector<long long int> timesInMilliSeconds = dmpData.first;
+        vec timesInSeconds = convertAndRemoveOffset(timesInMilliSeconds);
+        mat joints = dmpData.second;
+
+        int degFreedom = joints.n_cols;
+
+        tmpmys = constructDmpMys(timesInSeconds, joints);
+
+        double tau = timesInMilliSeconds.back();
+        double ax = -std::log(0.1) / tau / tau;
+
+        vector<DMPBase> baseDef = buildDMPBase(tmpmys, tmpsigmas, ax, tau);
+        this->construct(baseDef, tau, az, bz, ax, timesInSeconds, joints, degFreedom);
+
+    }
+
+    GeneralDmpLearner::GeneralDmpLearner(double az, double bz, arma::vec timesInSeconds, arma::mat joints) {
+
+        this->timesInSeconds = timesInSeconds;
+
+        vector<double> tmpmys;
+        vector<double> tmpsigmas;
+        tmpsigmas.push_back(0.2); tmpsigmas.push_back(0.8);
+        int degFreedom = joints.n_cols;
+
+        tmpmys = constructDmpMys(timesInSeconds, joints);
+
+        double tau = timesInSeconds(timesInSeconds.n_rows - 1, 0);
+        double ax = -std::log(0.1) / tau / tau;
+
+        vector<DMPBase> baseDef = buildDMPBase(tmpmys, tmpsigmas, ax, tau);
+        this->construct(baseDef, tau, az, bz, ax, timesInSeconds, joints, degFreedom);
+
+    }
+
+    KUKADU_SHARED_PTR<Dmp> GeneralDmpLearner::fitTrajectories() {
+
+        KUKADU_MODULE_START_USAGE();
+
+        int dataPointsNum = joints.n_rows;
+
+        vec g(degFreedom);
+        vec y0(degFreedom);
+        vec dy0(degFreedom);
+        vec ddy0(degFreedom);
+
+        vector<vec> dmpCoeffs;
+        vector<vec> sampleYs;
+        vector<vec> fitYs;
+
+        vector<mat> designMatrices;
+        vec timeVec = timesInSeconds;
+
+        mat all_y;
+        mat all_dy;
+        mat all_ddy;
+
+        // retrieve all columns for different degrees of freedom
+        vector<vec> trajectories;
+        for(int i = 0; i < degFreedom; ++i) {
+
+            vec trajectory = joints.col(i);
+            trajectories.push_back(trajectory);
+
+            vec vec_dy = computeDiscreteDerivatives(timeVec, trajectory);
+            vec vec_ddy = computeDiscreteDerivatives(timeVec, vec_dy);
+
+            all_y = join_rows(all_y, trajectory);
+            all_dy = join_rows(all_dy, vec_dy);
+            all_ddy = join_rows(all_ddy, vec_ddy);
+
+        }
+
+        vector<trajectory_learner_internal> dmpResAll = fitTrajectory(timeVec, all_y, all_dy, all_ddy);
+
+        for(int i = 0; i < dmpResAll.size(); ++i) {
+
+            trajectory_learner_internal dmpRes = dmpResAll.at(i);
+            vec dmpCoeff = dmpRes.coeff;
+            vec fity = dmpRes.fity;
+
+            g(i) = (all_y.col(i))(dataPointsNum - 1);
+            y0(i) = all_y.col(i)(0);
+            dy0(i) = all_dy.col(i)(0);
+            ddy0(i) = all_ddy.col(i)(0);
+            dmpCoeffs.push_back(dmpCoeff);
+
+            fitYs.push_back(fity);
+            designMatrices.push_back(dmpRes.desMat);
+
+        }
+
+        for (int i = 0; i < all_y.n_cols; ++i) sampleYs.push_back(all_y.col(i));
+
+        auto retVal = createDmpInstance(timeVec, sampleYs, fitYs, dmpCoeffs, dmpBase, designMatrices, tau, az, bz, ax);
+
+        KUKADU_MODULE_END_USAGE();
+
+        return retVal;
+
+    }
+
+    JointDMPLearner::JointDMPLearner(std::vector<DMPBase> dmpBase, double tau, double az, double bz, double ax, arma::vec timesInSeconds, arma::mat joints) : GeneralDmpLearner(dmpBase, tau, az, bz, ax, timesInSeconds, joints) {
+
+    }
+
+    JointDMPLearner::JointDMPLearner(std::vector<double> mysDef, std::vector<double> sigmasDef, double az, double bz, std::string file) : GeneralDmpLearner(mysDef, sigmasDef, az, bz, file) {
+
+    }
+
+    JointDMPLearner::JointDMPLearner(double az, double bz, std::string file) : GeneralDmpLearner(az, bz, file) {
+
+    }
+
+    JointDMPLearner::JointDMPLearner(double az, double bz, arma::vec& timesInSeconds, arma::mat joints) : GeneralDmpLearner(az, bz, timesInSeconds, joints) {
+
+    }
+
+    KUKADU_SHARED_PTR<Dmp> JointDMPLearner::createDmpInstance(arma::vec& supervisedTsInSeconds, std::vector<arma::vec> sampleYs, std::vector<arma::vec> fitYs, std::vector<arma::vec> dmpCoeffs, std::vector<DMPBase> dmpBase, std::vector<arma::mat> designMatrices,
+                                           double tau, double az, double bz, double ax) {
+
+        return KUKADU_SHARED_PTR<Dmp>(new JointDmp(convertTimesInSecondsToTimeInMilliseconds(supervisedTsInSeconds), sampleYs, fitYs, dmpCoeffs, dmpBase, designMatrices, tau, az, bz, ax));
+
+    }
+
+    /****************** private functions ******************************/
 
     void DMPExecutor::construct(KUKADU_SHARED_PTR<Dmp> traj, KUKADU_SHARED_PTR<ControlQueue> execQueue, int suppressMessages) {
 
@@ -626,16 +1091,68 @@ namespace kukadu {
 
     }
 
-    bool DMPExecutor::requiresGrasp() {
-        return false;
-    }
+    arma::mat CartesianDMPLearner::computeFitY(arma::vec& time, arma::mat &y, arma::mat &dy, arma::mat &ddy, arma::vec& vec_g) {
 
-    bool DMPExecutor::producesGrasp() {
-        return true;
-    }
+        KUKADU_MODULE_START_USAGE();
 
-    void  DMPExecutor::setRollbackTime(double rollbackTime) {
-        this->rollbackTime = rollbackTime;
+        // position
+        mat retMat(y.n_cols - 1, y.n_rows);
+
+        for(int i = 0; i < y.n_rows; ++i) {
+
+            for(int j = 0; j < 3; ++j) {
+
+                double yVal = y(i, j);
+                double dyVal = dy(i, j);
+                double ddyVal = ddy(i, j);
+                retMat(j, i) = /*1 / (vec_g(j) - y(0, j)) */ tau * tau * ddyVal - az * (bz * (vec_g(j) - yVal) - tau * dyVal);
+
+            }
+
+        }
+
+        // orientation
+        arma::mat omega(y.n_rows, 3);
+        arma::mat domega;
+        arma::mat eta;
+        arma::mat deta;
+
+        for (int j = 0; j < y.n_rows - 1; ++j) {
+
+            vec logL= log(tf::Quaternion(y(j + 1, 3), y(j + 1,  4), y(j + 1, 5), y(j + 1, 6)) * tf::Quaternion(y(j, 3), y(j, 4), y(j, 5), y(j, 6)).inverse());
+
+            for (int i = 0; i < 3; i++)
+                omega(j, i) = 2 * logL(i) / (time(1)-time(0));
+
+            if (j == y.n_rows - 2)
+                for (int i = 0; i < 3; i++)
+                    omega(y.n_rows - 1, i) = 2 * logL(i) / (time(1)-time(0));
+
+        }
+
+        for(int i = 0; i < 3 ; ++i) {
+
+            vec trajectory = omega.col(i);
+            vec domegaV = computeDiscreteDerivatives(time, trajectory);
+            domega = join_rows(domega, domegaV);
+
+        }
+
+        eta = tau * omega;
+        deta = tau * domega;
+
+        for (int i = 0; i < y.n_rows; ++i) {
+
+            vec logL = log(tf::Quaternion(vec_g(3), vec_g(4), vec_g(5), vec_g(6)) * tf::Quaternion(y(i, 3), y(i, 4), y(i, 5), y(i, 6)).inverse());
+            for (int j = 3; j < retMat.n_rows; ++j)
+                retMat(j, i) = tau * deta (i, j - 3) - az * (bz * 2 * logL(j - 3) - eta(i, j - 3));
+
+        }
+
+        KUKADU_MODULE_END_USAGE();
+
+        return retMat;
+
     }
 
     void DMPExecutor::runCheckMaxForces() {
@@ -673,32 +1190,6 @@ namespace kukadu {
 
         }
 
-    }
-
-    void DMPExecutor::setTrajectory(KUKADU_SHARED_PTR<Trajectory> traj) {
-
-        KUKADU_SHARED_PTR<Dmp> dmp = KUKADU_DYNAMIC_POINTER_CAST<Dmp>(traj);
-        construct(dmp, controlQueue, suppressMessages);
-
-        vec_t.clear();
-        vec_y.clear();
-
-    }
-
-    void DMPExecutor::useExternalError(int external) {
-        externalErrorUsing = external;
-    }
-
-    void DMPExecutor::setExternalError(double error) {
-        externalError = error;
-    }
-
-    int DMPExecutor::usesExternalError() {
-        return externalErrorUsing;
-    }
-
-    double DMPExecutor::getExternalError() {
-        return externalError;
     }
 
     double DMPExecutor::addTerm(double t, const double* currentDesiredYs, int jointNumber, KUKADU_SHARED_PTR<ControlQueue> queue) {
@@ -839,64 +1330,6 @@ namespace kukadu {
 
     }
 
-    KUKADU_SHARED_PTR<ControllerResult> DMPExecutor::executeTrajectory(double ac, double tStart, double tEnd, double tolAbsErr, double tolRelErr) {
-
-        this->ac = ac;
-        this->simulate = EXECUTE_ROBOT;
-        return this->executeDMP(tStart, tEnd, tolAbsErr, tolRelErr);
-
-    }
-
-    KUKADU_SHARED_PTR<ControllerResult> DMPExecutor::simulateTrajectory(double tStart, double tEnd, double tolAbsErr, double tolRelErr) {
-
-        this->simulate = SIMULATE_DMP;
-        KUKADU_SHARED_PTR<ControllerResult> ret = this->executeDMP(tStart, tEnd, tolAbsErr, tolRelErr);
-        return ret;
-
-    }
-
-    void DMPExecutor::doRollBackOnMaxForceEvent(bool doRollback) {
-        this->doRollback = doRollback;
-        cout << "(DMPExecutor) doRollback was set to " << this->doRollback << endl;
-    }
-
-    void DMPExecutor::enableMaxForceMode(double maxAbsForce, double maxXForce, double maxYForce, double maxZForce) {
-        if(maxAbsForce == IGNORE_FORCE)
-            maxAllowedForce = DBL_MAX;
-        else
-            maxAllowedForce = maxAbsForce;
-
-        if(maxXForce == IGNORE_FORCE)
-            maxXForce = DBL_MAX;
-        else
-            this->maxXForce = maxXForce;
-
-        if(maxYForce == IGNORE_FORCE)
-            maxYForce = DBL_MAX;
-        else
-            this->maxYForce = maxYForce;
-
-        if(maxZForce == IGNORE_FORCE)
-            maxZForce = DBL_MAX;
-        else
-            this->maxZForce = maxZForce;
-
-    }
-
-    KUKADU_SHARED_PTR<ControllerResult> DMPExecutor::simulateTrajectory() {
-
-        this->simulate = SIMULATE_DMP;
-        return this->executeDMP(0, dmp->getTmax(), dmp->getTolAbsErr(), dmp->getTolRelErr());
-
-    }
-
-    KUKADU_SHARED_PTR<ControllerResult> DMPExecutor::executeTrajectory() {
-
-        this->simulate = EXECUTE_ROBOT;
-        return this->executeDMP(0, dmp->getTmax(), dmp->getTolAbsErr(), dmp->getTolRelErr());
-
-    }
-
     struct gsl_delete_expression {
         void operator()(gsl_odeiv2_driver* p) const {
             gsl_odeiv2_driver_free(p);
@@ -1027,162 +1460,12 @@ namespace kukadu {
 
     }
 
-    KUKADU_SHARED_PTR<ControllerResult> DMPExecutor::executeDMP(double tStart, double tEnd, double tolAbsErr, double tolRelErr) {
-
-        // two variables are really required here, because executionRunning is changed by other functions that really need to know
-        // whether the exeuction was stopped (this is checked by executionStoppingDone)
-        executionRunning = true;
-        executionStoppingDone = false;
-        if(!isCartesian) {
-            maxFrcThread = KUKADU_SHARED_PTR<kukadu_thread>(new kukadu_thread(&DMPExecutor::runCheckMaxForces, this));
-            controlQueue->startRollBackMode(3.0);
-        }
-
-        double currentTime = 0.0;
-
-        vector<vec> retY;
-
-        vector<double> retT;
-        geometry_msgs::Pose start;
-
-        if(!isCartesian) {
-            vec currentState = controlQueue->getCurrentJoints().joints;
-            for(int i = 0; i < y0s.n_elem; ++i)
-                if(abs(currentState(i) - y0s(i)) > 0.01) {
-                    controlQueue->jointPtp(y0s);
-                    ros::Rate r(2); r.sleep();
-                    break;
-                }
-        } else {
-            start = controlQueue->getCurrentCartesianPose();
-            controlQueue->cartesianPtp(vectorarma2pose(&y0s));
-        }
-
-        initializeIntegration(0, tolAbsErr, tolRelErr);
-
-        vec nextJoints(degofFreedom);
-        nextJoints.fill(0.0);
-
-        // execute dmps and compute linear combination
-        for(int j = 0; currentTime < tEnd && executionRunning; ++j, currentTime += controlQueue->getCycleTime()) {
-
-            try {
-
-                nextJoints = doIntegrationStep(ac);
-
-            } catch(const char* s) {
-                cerr << string(s) << ": stopped execution at time " << currentTime << endl;
-                break;
-            }
-
-            retY.push_back(nextJoints);
-
-            if(simulate == EXECUTE_ROBOT)
-                controlQueue->synchronizeToQueue(1);
-
-            if(!isCartesian)
-                controlQueue->move(nextJoints);
-            else {
-
-                geometry_msgs::Pose newP = vectorarma2pose(&nextJoints);
-                controlQueue->move(newP);
-
-            }
-
-            retT.push_back(currentTime);
-
-        }
-
-        executionRunning = false;
-        executionStoppingDone = true;
-
-        if(maxFrcThread && maxFrcThread->joinable())
-            maxFrcThread->join();
-
-        return KUKADU_SHARED_PTR<ControllerResult>(new ControllerResult(stdToArmadilloVec(retT), retY, true));
-
-    }
-
     int DMPExecutor::static_func(double t, const double y[], double f[], void *params) {
         return ((DMPExecutor*)params)->func(t, y, f, NULL);
     }
 
     int DMPExecutor::static_jac (double t, const double y[], double *dfdy, double dfdt[], void *params) {
         return ((DMPExecutor*)params)->jac(t, y, dfdy, dfdt, NULL);
-    }
-    
-    DMPTrajectoryGenerator::DMPTrajectoryGenerator(std::vector<DMPBase> baseDef, double ax, double tau) {
-
-        this->baseFunctionCount = -1;
-        this->baseDef = baseDef;
-
-        this->ax = ax;
-        this->tau = tau;
-
-        this->previousX = -1;
-        this->prevBasFun = vec(getBasisFunctionCount());
-
-        myssize = baseDef.size();
-        sigmassize = baseDef.at(0).getSigmas().size();
-
-
-    }
-
-    double DMPTrajectoryGenerator::evaluateByCoefficientsSingle(double x, vec coeff) {
-        int coeffDegree = this->getBasisFunctionCount();
-        double val = 0.0;
-
-        if(previousX != x) {
-            for(int i = 0; i < coeffDegree; ++i) {
-                prevBasFun(i) = evaluateBasisFunctionNonExponential(x, i);
-                previousX = x;
-            }
-        }
-
-        for(int i = 0; i < coeffDegree; ++i) {
-            val += coeff(i) * prevBasFun(i);
-        }
-        return val;
-    }
-
-    double DMPTrajectoryGenerator::evaluateByCoefficientsSingleNonExponential(double x, vec coeff) {
-
-        int coeffDegree = this->getBasisFunctionCount();
-        double val = 0.0;
-
-        if(previousX != x) {
-
-            for(int i = 0; i < coeffDegree; ++i) {
-                prevBasFun(i) = evaluateBasisFunctionNonExponential(x, i);
-                previousX = x;
-            }
-        }
-
-        for(int i = 0; i < coeffDegree; ++i) {
-            val += coeff(i) * prevBasFun(i);
-        }
-
-        return val;
-
-    }
-
-
-    vec DMPTrajectoryGenerator::evaluateByCoefficientsMultiple(vec x, int sampleCount, vec coeff) {
-        int coeffDegree = this->getBasisFunctionCount();
-        vec values(sampleCount);
-        for(int i = 0; i < sampleCount; ++i) {
-            values(i) = evaluateByCoefficientsSingle(x(i), coeff);
-        }
-        return values;
-    }
-
-    vec DMPTrajectoryGenerator::evaluateByCoefficientsMultipleNonExponential(vec x, int sampleCount, vec coeff) {
-        int coeffDegree = this->getBasisFunctionCount();
-        vec values(sampleCount);
-        for(int i = 0; i < sampleCount; ++i) {
-            values(i) = evaluateByCoefficientsSingleNonExponential(x(i), coeff);
-        }
-        return values;
     }
 
     double DMPTrajectoryGenerator::computeNormalization(double x) {
@@ -1208,237 +1491,12 @@ namespace kukadu {
 
     }
 
-    // with this implementation, currently all sigmas have to be of the same size (see DMPTrajectoryGenerator::evaluateBasisFunction and DMPTrajectoryGenerator::getBasisFunctionCount)
-    double DMPTrajectoryGenerator::evaluateBasisFunction(double x, int fun) {
-
-        int mypos = fun / sigmassize;
-        int sigmapos = fun % sigmassize;
-
-        double my = baseDef.at(mypos).getMy();
-        double sigma = baseDef.at(mypos).getSigmas().at(sigmapos);
-
-        double expVal = exp( -ax / tau * x );
-
-        double base = exp(  - pow( expVal  - my, 2) / (2 * pow(sigma, 2))   ) * expVal;
-        double normVal = computeNormalization(exp( -ax / tau * x ));
-
-        return base / normVal;
-
-    }
-
-    double DMPTrajectoryGenerator::evaluateBasisFunctionNonExponential(double x, int fun) {
-
-        int mypos = fun / sigmassize;
-        int sigmapos = fun % sigmassize;
-
-        double my = baseDef.at(mypos).getMy();
-        double sigma = baseDef.at(mypos).getSigmas().at(sigmapos);
-        double base = exp( -pow( x - my , 2 ) / (2 * pow(sigma, 2)) ) * x;
-        double normVal = computeNormalization(x);
-
-        return base / normVal;
-
-    }
-
-    // with this implementation, currently all sigmas have to be of the same size (see DMPTrajectoryGenerator::evaluateBasisFunction and DMPTrajectoryGenerator::getBasisFunctionCount)
-    int DMPTrajectoryGenerator::getBasisFunctionCount() {
-
-        if(baseFunctionCount == -1) {
-            int myssize = baseDef.size();
-            int sigmassize = baseDef.at(0).getSigmas().size();
-            baseFunctionCount = myssize * sigmassize;
-        }
-
-        return baseFunctionCount;
-
-    }
-
-    string DMPTrajectoryGenerator::getTrajectoryType() {
-        return "dmp";
-    }
-    
     void GeneralDmpLearner::construct(std::vector<DMPBase> dmpBase, double tau, double az, double bz, double ax, arma::mat timesInSeconds, mat joints, int degFreedom) {
         this->dmpBase = dmpBase;
         this->tau = tau; this->az = az; this->bz = bz; this->ax = ax;
         this->joints = joints;
         this->degFreedom = degFreedom;
         this->timesInSeconds = timesInSeconds;
-    }
-
-    GeneralDmpLearner::GeneralDmpLearner(std::vector<DMPBase> dmpBase, double tau, double az, double bz, double ax, arma::vec timesInSeconds, mat joints) {
-        this->construct(dmpBase, tau, az, bz, ax, timesInSeconds, joints, joints.n_cols);
-    }
-
-    std::vector<double> constructDmpMys(vec& timesInSeconds, mat& joints) {
-        vector<double> ret;
-        double tmax = timesInSeconds(timesInSeconds.n_rows - 1);
-        for(double i = 0; i < (tmax + 1); i += 1.0)
-            ret.push_back(i);
-
-        return ret;
-    }
-
-    vector<double> computeDMPMys(vector<double> mys, double ax, double tau) {
-        int mysSize = mys.size();
-        vector<double> dmpMys;
-        for(int i = 0; i < mysSize; ++i) {
-            double val = std::exp(-ax / tau * mys.at(i));
-            dmpMys.push_back(val);
-        }
-        return dmpMys;
-    }
-
-    std::vector<DMPBase> buildDMPBase(vector<double> tmpmys, vector<double> tmpsigmas, double ax, double tau) {
-
-        std::vector<DMPBase> baseDef;
-        vector<DMPBase>::iterator it = baseDef.begin();
-
-        vector<double> mys = computeDMPMys(tmpmys, ax, tau);
-
-        for(int i = 0; i < mys.size(); ++i) {
-
-            double realMy = tmpmys.at(i);
-            double my = mys.at(i);
-
-            vector<double> sigmas;
-
-            for(int j = 0; j < tmpsigmas.size(); ++j) {
-                double realSigma = tmpsigmas.at(j);
-                double sigma = my - std::exp(-ax / tau * (realMy + realSigma));
-                sigmas.push_back(sigma);
-            }
-
-            DMPBase base(my, sigmas);
-
-            // with this implementation, currently all sigmas have to be of the same size (see DMPTrajectoryGenerator::evaluateBasisFunction)
-            it = baseDef.insert(it, base);
-
-        }
-
-        return baseDef;
-
-    }
-
-    GeneralDmpLearner::GeneralDmpLearner(vector<double> mysDef, vector<double> sigmasDef, double az, double bz, string file) {
-
-        // reading in file
-        auto dmpData = readDmpData(file);
-        vector<long long int> timesInMilliSeconds = dmpData.first;
-        mat joints = dmpData.second;
-
-        double tau = timesInMilliSeconds.back();
-        double ax = -std::log(0.1) / tau / tau;
-
-        int degFreedom = joints.n_cols;
-
-        vector<DMPBase> baseDef = buildDMPBase(mysDef, sigmasDef, ax, tau);
-
-        this->construct(baseDef, tau, az, bz, ax, convertAndRemoveOffset(timesInMilliSeconds), joints, degFreedom);
-
-    }
-
-    GeneralDmpLearner::GeneralDmpLearner(double az, double bz, std::string file) {
-
-        vector<double> tmpmys;
-
-        vector<double> tmpsigmas;
-        tmpsigmas.push_back(0.2); tmpsigmas.push_back(0.8);
-
-        auto dmpData = readDmpData(file);
-        vector<long long int> timesInMilliSeconds = dmpData.first;
-        vec timesInSeconds = convertAndRemoveOffset(timesInMilliSeconds);
-        mat joints = dmpData.second;
-
-        int degFreedom = joints.n_cols;
-
-        tmpmys = constructDmpMys(timesInSeconds, joints);
-
-        double tau = timesInMilliSeconds.back();
-        double ax = -std::log(0.1) / tau / tau;
-
-        vector<DMPBase> baseDef = buildDMPBase(tmpmys, tmpsigmas, ax, tau);
-        this->construct(baseDef, tau, az, bz, ax, timesInSeconds, joints, degFreedom);
-
-    }
-
-    GeneralDmpLearner::GeneralDmpLearner(double az, double bz, arma::vec timesInSeconds, arma::mat joints) {
-
-        this->timesInSeconds = timesInSeconds;
-
-        vector<double> tmpmys;
-        vector<double> tmpsigmas;
-        tmpsigmas.push_back(0.2); tmpsigmas.push_back(0.8);
-        int degFreedom = joints.n_cols;
-
-        tmpmys = constructDmpMys(timesInSeconds, joints);
-
-        double tau = timesInSeconds(timesInSeconds.n_rows - 1, 0);
-        double ax = -std::log(0.1) / tau / tau;
-
-        vector<DMPBase> baseDef = buildDMPBase(tmpmys, tmpsigmas, ax, tau);
-        this->construct(baseDef, tau, az, bz, ax, timesInSeconds, joints, degFreedom);
-
-    }
-
-    KUKADU_SHARED_PTR<Dmp> GeneralDmpLearner::fitTrajectories() {
-
-        int dataPointsNum = joints.n_rows;
-
-        vec g(degFreedom);
-        vec y0(degFreedom);
-        vec dy0(degFreedom);
-        vec ddy0(degFreedom);
-
-        vector<vec> dmpCoeffs;
-        vector<vec> sampleYs;
-        vector<vec> fitYs;
-
-        vector<mat> designMatrices;
-        vec timeVec = timesInSeconds;
-
-        mat all_y;
-        mat all_dy;
-        mat all_ddy;
-
-        // retrieve all columns for different degrees of freedom
-        vector<vec> trajectories;
-        for(int i = 0; i < degFreedom; ++i) {
-
-            vec trajectory = joints.col(i);
-            trajectories.push_back(trajectory);
-
-            vec vec_dy = computeDiscreteDerivatives(timeVec, trajectory);
-            vec vec_ddy = computeDiscreteDerivatives(timeVec, vec_dy);
-
-            all_y = join_rows(all_y, trajectory);
-            all_dy = join_rows(all_dy, vec_dy);
-            all_ddy = join_rows(all_ddy, vec_ddy);
-
-        }
-
-        vector<trajectory_learner_internal> dmpResAll = fitTrajectory(timeVec, all_y, all_dy, all_ddy);
-
-        for(int i = 0; i < dmpResAll.size(); ++i) {
-
-            trajectory_learner_internal dmpRes = dmpResAll.at(i);
-            vec dmpCoeff = dmpRes.coeff;
-            vec fity = dmpRes.fity;
-
-            g(i) = (all_y.col(i))(dataPointsNum - 1);
-            y0(i) = all_y.col(i)(0);
-            dy0(i) = all_dy.col(i)(0);
-            ddy0(i) = all_ddy.col(i)(0);
-            dmpCoeffs.push_back(dmpCoeff);
-
-            fitYs.push_back(fity);
-            designMatrices.push_back(dmpRes.desMat);
-
-        }
-
-        for (int i = 0; i < all_y.n_cols; ++i) sampleYs.push_back(all_y.col(i));
-
-        return createDmpInstance(timeVec, sampleYs, fitYs, dmpCoeffs, dmpBase, designMatrices, tau, az, bz, ax);
-
     }
 
     std::vector<trajectory_learner_internal> GeneralDmpLearner::fitTrajectory(vec time, mat y, mat dy, mat ddy) {
@@ -1469,31 +1527,10 @@ namespace kukadu {
         return retVec;
 
     }
-    
-    JointDMPLearner::JointDMPLearner(std::vector<DMPBase> dmpBase, double tau, double az, double bz, double ax, arma::vec timesInSeconds, arma::mat joints) : GeneralDmpLearner(dmpBase, tau, az, bz, ax, timesInSeconds, joints) {
-
-    }
-
-    JointDMPLearner::JointDMPLearner(std::vector<double> mysDef, std::vector<double> sigmasDef, double az, double bz, std::string file) : GeneralDmpLearner(mysDef, sigmasDef, az, bz, file) {
-
-    }
-
-    JointDMPLearner::JointDMPLearner(double az, double bz, std::string file) : GeneralDmpLearner(az, bz, file) {
-
-    }
-
-    JointDMPLearner::JointDMPLearner(double az, double bz, arma::vec& timesInSeconds, arma::mat joints) : GeneralDmpLearner(az, bz, timesInSeconds, joints) {
-
-    }
-
-    KUKADU_SHARED_PTR<Dmp> JointDMPLearner::createDmpInstance(arma::vec& supervisedTsInSeconds, std::vector<arma::vec> sampleYs, std::vector<arma::vec> fitYs, std::vector<arma::vec> dmpCoeffs, std::vector<DMPBase> dmpBase, std::vector<arma::mat> designMatrices,
-                                           double tau, double az, double bz, double ax) {
-
-        return KUKADU_SHARED_PTR<Dmp>(new JointDmp(convertTimesInSecondsToTimeInMilliseconds(supervisedTsInSeconds), sampleYs, fitYs, dmpCoeffs, dmpBase, designMatrices, tau, az, bz, ax));
-
-    }
 
     arma::mat JointDMPLearner::computeFitY(arma::vec& timeInSec, arma::mat &y, arma::mat &dy, arma::mat &ddy, arma::vec& vec_g) {
+
+        KUKADU_MODULE_START_USAGE();
 
         mat retMat(y.n_cols, y.n_rows);
         for(int i = 0; i < y.n_rows; ++i) {
@@ -1509,8 +1546,12 @@ namespace kukadu {
 
         }
 
+        KUKADU_MODULE_END_USAGE();
+
         return retMat;
 
     }
+
+    /****************** end ********************************************/
 
 }

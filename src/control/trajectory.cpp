@@ -1,18 +1,23 @@
 #include <kukadu/control/trajectory.hpp>
 #include <kukadu/utils/conversion_utils.hpp>
+#include <kukadu/storage/moduleusagesingleton.hpp>
 
 using namespace std;
 using namespace arma;
 
 namespace kukadu {
 
-    // TODO: write copy constructor
-    Trajectory::Trajectory(const Trajectory& copy) { }
+    /****************** public functions *******************************/
+
+    Trajectory::Trajectory(const Trajectory& copy) {
+        throw KukaduException("(Trajectory) copy constructor not supported yet");
+    }
 
     Trajectory::Trajectory() { }
 
-    // TODO: write the == operator properly
-    int Trajectory::operator==(Trajectory const& comp) const { return 1; }
+    int Trajectory::operator==(Trajectory const& comp) const {
+        throw KukaduException("(Trajectory) == operator not supported yet");
+    }
 
     SingleSampleTrajectory::SingleSampleTrajectory(arma::vec supervisedTs, std::vector<arma::vec> sampleYs) {
         this->supervisedTs = supervisedTs;
@@ -87,7 +92,10 @@ namespace kukadu {
     TrajectoryExecutor::TrajectoryExecutor() : Controller("simple trajectory executor", 0.0) { }
 
     KUKADU_SHARED_PTR<ControllerResult> TrajectoryExecutor::performAction() {
-        return executeTrajectory();
+        KUKADU_MODULE_START_USAGE();
+        auto retVal = executeTrajectory();
+        KUKADU_MODULE_END_USAGE();
+        return retVal;
     }
 
     PolyTrajectoryGenerator::PolyTrajectoryGenerator(int basisFunctionCount) {
@@ -121,5 +129,9 @@ namespace kukadu {
     string PolyTrajectoryGenerator::getTrajectoryType() {
         return "polynomial";
     }
+
+    /****************** private functions ******************************/
+
+    /****************** end ********************************************/
 
 }

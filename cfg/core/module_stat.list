@@ -42,7 +42,27 @@
 [gui]
 
 [control]
-
+	+Controller
+		#setSimulationMode			23	0
+	+DMPExecutor
+		#setRollbackTime			24	0
+		#useExternalError			25	0
+		#executeTrajectory			26	0
+		#simulateTrajectory			27	0
+		#doRollbackOnMaxForceEvent	28	0
+		#enableMaxForceMode			29	0
+		#executeDMP					30	0
+	+GeneralDmpLearner
+		#fitTrajectories			31	0
+	+CartesianDMPLearner
+		#computeFitY				32	0
+	+JointDMPLearner
+		#computeFitY				33	0
+	+DMPGeneralizer
+		#generalizeDmp				34	0
+		#operator==					35	0
+	+TrajectoryExecutor
+		performAction				36	0
 [learning]
 
 [robot]

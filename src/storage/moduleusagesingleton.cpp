@@ -152,7 +152,7 @@ namespace kukadu {
         }
 
         // if function is in the database
-        if(!functionId.size()) {
+        if(functionId.size()) {
 
             // if the id of a function with the same name has a different id --> it must differ in the namespace and/or the class --> otherwise there is an inconsistency
             if(std::find(functionId.begin(), functionId.end(), currentId) != functionId.end()) {
@@ -170,6 +170,7 @@ namespace kukadu {
                     else if(storedClassId == classId && storedNamespaceId == namespaceId) {
                         // if function is already in database, do not insert it again
                         insertNewFunction = false;
+                        ++resCount;
                         break;
                     } else
                         throw KukaduException("(ModuleUsageSingleton) function is already stored with a different id (check you property file)");

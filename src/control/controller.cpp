@@ -5,6 +5,8 @@ using namespace std;
 
 namespace kukadu {
 
+    /****************** public functions *******************************/
+
     Controller::Controller(std::string caption, double simulationFailingProbability) {
 
         std::replace(caption.begin(), caption.end(), ' ', '_');
@@ -21,10 +23,6 @@ namespace kukadu {
     }
 
     void Controller::initialize() {
-
-    }
-
-    void Controller::setSimulationModeInChain(bool simulationMode) {
 
     }
 
@@ -59,6 +57,12 @@ namespace kukadu {
         return simulationFailingProbability;
     }
 
+    /****************** private functions ******************************/
 
+    void Controller::setSimulationModeInChain(bool simulationMode) {
+
+    }
+
+    /****************** end ********************************************/
 
 }
