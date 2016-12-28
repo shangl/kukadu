@@ -1,5 +1,6 @@
 #include <kukadu/types/kukadutypes.hpp>
 #include <kukadu/learning/regression/fitting.hpp>
+#include <kukadu/storage/moduleusagesingleton.hpp>
 
 using namespace std;
 using namespace arma;
@@ -19,6 +20,8 @@ namespace kukadu {
 
     vec GeneralFitter::computeLinFitCoefficients(mat desMat) {
 
+        KUKADU_MODULE_START_USAGE();
+
         vec t(sampleCount);
 
         for(int i = 0; i < sampleCount; ++i)
@@ -30,14 +33,20 @@ namespace kukadu {
             if(res(i) != res(i))
                 throw KukaduException("(GeneralFitter) Learned coefficients contain NaN");
 
+        KUKADU_MODULE_END_USAGE();
+
         return res;
 
     }
 
     vec GeneralFitter::computeLinFitCoefficients() {
 
+        KUKADU_MODULE_START_USAGE();
+
         mat desMat = computeDesignMatrix();
         vec ret = computeLinFitCoefficients(desMat);
+
+        KUKADU_MODULE_END_USAGE();
 
         return ret;
 

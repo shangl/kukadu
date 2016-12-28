@@ -1,4 +1,5 @@
 #include <kukadu/learning/clustering/kmeans.hpp>
+#include <kukadu/storage/moduleusagesingleton.hpp>
 
 namespace kukadu {
 
@@ -157,6 +158,8 @@ namespace kukadu {
     //
     void Clusters::k_means(void) {
 
+        KUKADU_MODULE_START_USAGE();
+
         bool move;
         bool some_point_is_moving = true;
         unsigned int num_iterations = 0;
@@ -231,6 +234,8 @@ namespace kukadu {
 
             num_iterations++;
         } // end while (some_point_is_moving)
+
+        KUKADU_MODULE_END_USAGE();
 
     }
 

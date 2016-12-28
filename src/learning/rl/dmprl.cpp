@@ -3,6 +3,7 @@
 #include <kukadu/types/sensordata.hpp>
 #include <kukadu/learning/rl/dmprl.hpp>
 #include <kukadu/storage/sensorstorage.hpp>
+#include <kukadu/storage/moduleusagesingleton.hpp>
 
 using namespace std;
 using namespace arma;
@@ -50,6 +51,8 @@ namespace kukadu {
     }
 
     void DMPReinforcer::performRollout(int doSimulation, int doExecution) {
+
+        KUKADU_MODULE_START_USAGE();
 
         char cont = 'y';
         vector<Gnuplot*> gs;
@@ -126,6 +129,8 @@ namespace kukadu {
         this->lastUpdate = lastUpdate;
 
         cout << "(DMPReinforcer) last update reward/cost: " << lastUpdateCost << endl << endl;
+
+        KUKADU_MODULE_END_USAGE();
 
     }
 

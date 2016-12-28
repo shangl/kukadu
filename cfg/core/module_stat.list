@@ -65,7 +65,63 @@
 	+TrajectoryExecutor
 		performAction				36	0
 [learning]
-
+-kukadu
+	+Clusters
+		#k_means					37	0
+	+Mahalanobis
+		#getDecomposition			38	0
+	+InfTheoMetricLearner
+		#learnMetric				39	0
+	+TogersonMetricLearner
+		#learnMetric				40	0
+	+ActionClip
+		#jumpNextRandom				41	0
+	+Clip
+		#getMaxProbability			42	0
+		#getSubClips				43	0
+		#computeSubEntropy			44	0
+		#jumpNextRandom				45	0
+		#updateWeights				46	0
+		#getLikeliestChildWithWeight	47	0
+	+ManualReward
+		#computeRewardInternal		48	0
+	+PSEvaluator
+		#evaluateStatistics			49	0
+		#produceStatistics			50	0
+	+ProjectiveSimulator
+		#loadPsConstructor			51	0
+		#setBoredom					52	0
+		#eliminateClip				53	0
+		#cleanByRank				54	0
+		#performRandomWalk			55	0
+		#computeBoredom				56	0
+		#performRewarding			57	0
+		#generalize					58	0
+		#connectNewClip				59	0
+		#createNewClips				60	0
+		#computeRankVec				61	0
+		#storePS					62	0
+	+GeneralFitter
+		#computeLinFitCoefficients	63	0
+	+GaussianKernel
+		#evaluateKernel				64	1	500
+	+TricubeKernel
+		#evaluateKernel				65	1	500
+	+QuadraticKernel
+		#evaluateKernel				66	1	500
+	+GaussianProcessRegressor
+		#fitAtPosition				67	1	500
+	+DMPReinforcer
+		#performRollout				68	0
+	+GeneralReinforcer
+		#performRollout				69	0
+	+GradientDescent
+		#computeRolloutParamters	70	0
+		#updateStep					71	0
+	+TerminalCostComputer
+		#computeCost				72	0
+	+TrajectoryBasedReward
+		#computeCost				73	0
 [robot]
 
 [statistics]

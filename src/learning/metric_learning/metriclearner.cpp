@@ -1,9 +1,12 @@
+#include <kukadu/storage/moduleusagesingleton.hpp>
 #include <kukadu/learning/metric_learning/metriclearner.hpp>
 
 using namespace arma;
 using namespace std;
 
 namespace kukadu {
+
+    /****************** public functions *******************************/
 
     Mahalanobis::Mahalanobis() {
 
@@ -60,12 +63,12 @@ namespace kukadu {
     }
 
     void Mahalanobis::setM(arma::mat M) {
-        if(M.n_cols != M.n_rows) {
-            string error = "(Mahalanobis) not a squared matrix";
-            cerr << error << endl;
-            throw KukaduException(error.c_str());
-        }
+
+        if(M.n_cols != M.n_rows)
+            throw KukaduException("(Mahalanobis) not a squared matrix");
+
         this->M = M;
+
     }
 
     arma::mat Mahalanobis::getM() const {
@@ -73,6 +76,8 @@ namespace kukadu {
     }
 
     arma::mat Mahalanobis::getDecomposition() {
+
+        KUKADU_MODULE_START_USAGE();
 
         mat Z;
         mat U, V;
@@ -87,7 +92,170 @@ namespace kukadu {
 
         Z = U * matS;
 
+        KUKADU_MODULE_END_USAGE();
+
         return Z;
+
+    }
+
+    InfTheoConstraints::InfTheoConstraints() {
+    }
+
+    void InfTheoConstraints::addConstraint(arma::vec x1, arma::vec x2, double slack) {
+
+        x1s.push_back(x1);
+        x2s.push_back(x2);
+
+        slacks.push_back(slack);
+        lambdas.push_back(0.0);
+
+    }
+
+    void InfTheoConstraints::flush() {
+        x1s.clear();
+        x2s.clear();
+        slacks.clear();
+        lambdas.clear();
+    }
+
+    int InfTheoConstraints::getConstraintCount() {
+        return x1s.size();
+    }
+
+    arma::vec InfTheoConstraints::getX1(int idx) {
+        return x1s.at(idx);
+    }
+
+    arma::vec InfTheoConstraints::getX2(int idx) {
+        return x2s.at(idx);
+    }
+
+    double InfTheoConstraints::getSlack(int idx) {
+        return slacks.at(idx);
+    }
+
+    double InfTheoConstraints::getLambda(int idx) {
+        return lambdas.at(idx);
+    }
+
+    void InfTheoConstraints::setSlack(int idx, double slack) {
+        slacks.at(idx) = slack;
+    }
+
+    void InfTheoConstraints::setLambda(int idx, double lambda) {
+        lambdas.at(idx) = lambda;
+    }
+
+    InfTheoMetricLearner::InfTheoMetricLearner(std::vector<arma::vec> x1s, std::vector<arma::vec> x2s, std::vector<double> distances, double simBorder, double disSimBorder, double gamma,
+                           double divTol, int checkForConCount) : MahalanobisLearner(x1s, x2s, distances) {
+
+        this->simBorder = simBorder;
+        this->disSimBorder = disSimBorder;
+        this->gamma = gamma;
+        this->divTol = divTol;
+        this->checkForConCount = checkForConCount;
+
+        int dim = getVectorDim();
+
+        vec dia(dim);
+        dia.fill(1.0);
+
+        // euclidean distance is standard matrix
+        M0 = mat(dim, dim);
+        M0.fill(0.0);
+        M0.diag() = dia;
+
+    }
+
+    Mahalanobis InfTheoMetricLearner::learnMetric() {
+
+        KUKADU_MODULE_START_USAGE();
+
+        computeConstraints();
+
+        Mahalanobis metric = getMetric();
+        metric.setM(M0);
+
+        int simConCount = simConstraints.getConstraintCount();
+        int disSimConCount = disSimConstraints.getConstraintCount();
+
+        vec x1;
+        vec x2;
+        double slack = 0.0;
+        double lambda = 0.0;
+
+        InfTheoConstraints* currentConstSet = NULL;
+        int currentIdx = 0;
+        int currentSimIdx = 0;
+        int currentDisSimIdx = 0;
+
+        double p = 0.0;
+        double delta = 0.0;
+        double alpha = 0.0;
+        double beta = 0.0;
+
+        int i = 0;
+
+        for(i = 0; !checkConvergence(metric.getM()) && (simConCount || disSimConCount); ++i) {
+
+            // choose sim constraint
+            if(i % 2 && simConCount) {
+
+                currentConstSet = &simConstraints;
+                currentIdx = currentSimIdx = (currentSimIdx + 1) % simConCount;
+
+                // line 3.3
+                delta = 1;
+
+            }
+            // choose dissim constraint
+            else if(!(i %2) && disSimConCount) {
+                currentConstSet = &disSimConstraints;
+                currentIdx = currentDisSimIdx = (currentDisSimIdx + 1) % disSimConCount;
+
+                // line 3.3
+                delta = -1;
+
+            }
+
+            // pick some constraint (line 3.1)
+            x1 = currentConstSet->getX1(currentIdx);
+            x2 = currentConstSet->getX2(currentIdx);
+            slack = currentConstSet->getSlack(currentIdx);
+            lambda = currentConstSet->getLambda(currentIdx);
+
+            // line 3.2
+            p = metric.computeSquaredDistance(x1, x2);
+
+            // ignore pairs with x1 == x2
+            if(p > 0) {
+
+                // line 3.4
+                alpha = min(lambda, delta / 2.0 * (1.0 / p - gamma / slack));
+
+                // line 3.5
+                beta = delta * alpha / (1.0 - delta * alpha * p);
+
+                // line 3.6
+                double nextSlack = gamma * slack / (gamma + delta * alpha * slack);
+                currentConstSet->setSlack(currentIdx, nextSlack);
+
+                // line 3.7
+                double nextLambda = lambda - alpha;
+                currentConstSet->setLambda(currentIdx, nextLambda);
+
+                // line 3.8
+                mat currentM = metric.getM();
+                currentM = currentM + beta * currentM * (x1 - x2) * (x1 - x2).t() * currentM;
+                metric.setM(currentM);
+
+            }
+
+        }
+
+        KUKADU_MODULE_END_USAGE();
+
+        return metric;
 
     }
 
@@ -155,176 +323,36 @@ namespace kukadu {
         return x2s.at(idx);
     }
 
-    InfTheoConstraints::InfTheoConstraints() {
+    TogersonMetricLearner::TogersonMetricLearner(std::vector<arma::vec> x1s, std::vector<arma::vec> x2s, std::vector<double> distances) : MahalanobisLearner(x1s, x2s, distances) {
     }
 
-    void InfTheoConstraints::addConstraint(arma::vec x1, arma::vec x2, double slack) {
+    Mahalanobis TogersonMetricLearner::learnMetric() {
 
-        x1s.push_back(x1);
-        x2s.push_back(x2);
+        KUKADU_MODULE_START_USAGE();
 
-        slacks.push_back(slack);
-        lambdas.push_back(0.0);
+        dim = getVectorDim();
+        sampleCount = getSampleCount();
 
-    }
 
-    void InfTheoConstraints::flush() {
-        x1s.clear();
-        x2s.clear();
-        slacks.clear();
-        lambdas.clear();
-    }
+        int iIdx = selectI();
 
-    int InfTheoConstraints::getConstraintCount() {
-        return x1s.size();
-    }
+        mat B = generateB(iIdx);
+        mat X = generateX();
+        mat Y = generateY(B);
+        mat Z = generateZ(X, Y);
+        mat A = Z.t() * Z;
 
-    arma::vec InfTheoConstraints::getX1(int idx) {
-        return x1s.at(idx);
-    }
+        // normalize it for convenience
+        A = 1 / A(0, 0) * A;
+        auto mA = Mahalanobis(A);
 
-    arma::vec InfTheoConstraints::getX2(int idx) {
-        return x2s.at(idx);
-    }
+        KUKADU_MODULE_END_USAGE();
 
-    double InfTheoConstraints::getSlack(int idx) {
-        return slacks.at(idx);
-    }
-
-    double InfTheoConstraints::getLambda(int idx) {
-        return lambdas.at(idx);
-    }
-
-    void InfTheoConstraints::setSlack(int idx, double slack) {
-        slacks.at(idx) = slack;
-    }
-
-    void InfTheoConstraints::setLambda(int idx, double lambda) {
-        lambdas.at(idx) = lambda;
-    }
-    
-    InfTheoMetricLearner::InfTheoMetricLearner(std::vector<arma::vec> x1s, std::vector<arma::vec> x2s, std::vector<double> distances, double simBorder, double disSimBorder, double gamma,
-                           double divTol, int checkForConCount) : MahalanobisLearner(x1s, x2s, distances) {
-
-        this->simBorder = simBorder;
-        this->disSimBorder = disSimBorder;
-        this->gamma = gamma;
-        this->divTol = divTol;
-        this->checkForConCount = checkForConCount;
-
-        int dim = getVectorDim();
-
-        vec dia(dim);
-        dia.fill(1.0);
-
-        // euclidean distance is standard matrix
-        M0 = mat(dim, dim);
-        M0.fill(0.0);
-        M0.diag() = dia;
+        return mA;
 
     }
 
-    Mahalanobis InfTheoMetricLearner::learnMetric() {
-
-        computeConstraints();
-        int dim = getVectorDim();
-
-        Mahalanobis metric = getMetric();
-        metric.setM(M0);
-
-        int simConCount = simConstraints.getConstraintCount();
-        int disSimConCount = disSimConstraints.getConstraintCount();
-
-        vec x1;
-        vec x2;
-        double slack = 0.0;
-        double lambda = 0.0;
-
-        InfTheoConstraints* currentConstSet = NULL;
-        int currentIdx = 0;
-        int currentSimIdx = 0;
-        int currentDisSimIdx = 0;
-
-        double p = 0.0;
-        double delta = 0.0;
-        double alpha = 0.0;
-        double beta = 0.0;
-
-        int i = 0;
-
-        for(i = 0; !checkConvergence(metric.getM()) && (simConCount || disSimConCount); ++i) {
-
-            // choose sim constraint
-            if(i % 2 && simConCount) {
-
-                currentConstSet = &simConstraints;
-                currentIdx = currentSimIdx = (currentSimIdx + 1) % simConCount;
-
-                // line 3.3
-                delta = 1;
-
-            }
-            // choose dissim constraint
-            else if(!(i %2) && disSimConCount) {
-                currentConstSet = &disSimConstraints;
-                currentIdx = currentDisSimIdx = (currentDisSimIdx + 1) % disSimConCount;
-
-                // line 3.3
-                delta = -1;
-
-            }
-
-            // pick some constraint (line 3.1)
-            x1 = currentConstSet->getX1(currentIdx);
-            x2 = currentConstSet->getX2(currentIdx);
-            slack = currentConstSet->getSlack(currentIdx);
-            lambda = currentConstSet->getLambda(currentIdx);
-
-            // line 3.2
-            p = metric.computeSquaredDistance(x1, x2);
-
-            // ignore pairs with x1 == x2
-            if(p > 0) {
-
-                // line 3.4
-                alpha = min(lambda, delta / 2.0 * (1.0 / p - gamma / slack));
-
-                // line 3.5
-                beta = delta * alpha / (1.0 - delta * alpha * p);
-
-                /*
-                // prints debug information
-                cout << "p: " << p << endl;
-                cout << "alpha: " << alpha << endl;
-                cout << "1.0 / p: " << (1.0 / p) << endl;
-                cout << "gamma / slack: " << (gamma / slack) << endl;
-                cout << x1.t() << endl << x2.t() << endl;
-                cout << "delta / 2.0 * (1.0 / p - gamma / slack): " << (delta / 2.0 * (1.0 / p - gamma / slack)) << endl;
-                cout << "beta: " << beta << endl;
-                */
-
-                // line 3.6
-                double nextSlack = gamma * slack / (gamma + delta * alpha * slack);
-                currentConstSet->setSlack(currentIdx, nextSlack);
-
-                // line 3.7
-                double nextLambda = lambda - alpha;
-                currentConstSet->setLambda(currentIdx, nextLambda);
-
-                // line 3.8
-                mat currentM = metric.getM();
-                currentM = currentM + beta * currentM * (x1 - x2) * (x1 - x2).t() * currentM;
-                metric.setM(currentM);
-
-            }
-
-        }
-
-        cout << "(InfTheoMetricLearner) metric learning converged in " << i << " iterations" << endl;
-
-        return metric;
-
-    }
+    /****************** private functions ******************************/
 
     int InfTheoMetricLearner::checkConvergence(arma::mat currentM) {
 
@@ -387,30 +415,6 @@ namespace kukadu {
             }
 
         }
-
-    }
-    
-    TogersonMetricLearner::TogersonMetricLearner(std::vector<arma::vec> x1s, std::vector<arma::vec> x2s, std::vector<double> distances) : MahalanobisLearner(x1s, x2s, distances) {
-    }
-
-    Mahalanobis TogersonMetricLearner::learnMetric() {
-
-        dim = getVectorDim();
-        sampleCount = getSampleCount();
-
-
-        int iIdx = selectI();
-
-        mat B = generateB(iIdx);
-        mat X = generateX();
-        mat Y = generateY(B);
-        mat Z = generateZ(X, Y);
-        mat A = Z.t() * Z;
-
-        // normalize it for convenience
-        A = 1 / A(0, 0) * A;
-
-        return Mahalanobis(A);
 
     }
 
@@ -578,5 +582,7 @@ namespace kukadu {
 
     arma::mat TogersonMetricLearner::generateA() {
     }
+
+    /****************** end ********************************************/
 
 }

@@ -206,7 +206,7 @@ namespace kukadu {
     //
     // k-means
     //
-    void k_means (void);
+    void k_means(void);
   };
 
 };

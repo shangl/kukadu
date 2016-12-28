@@ -1,4 +1,5 @@
 #include <kukadu/learning/regression/kernel.hpp>
+#include <kukadu/storage/moduleusagesingleton.hpp>
 
 using namespace std;
 using namespace arma;
@@ -12,6 +13,8 @@ namespace kukadu {
 
     double GaussianKernel::evaluateKernel(vec q1, vec q2, void* kernelParam) {
 
+        KUKADU_MODULE_START_USAGE();
+
         double ret = 0.0;
         double dist = 0.0;
 
@@ -20,6 +23,8 @@ namespace kukadu {
 
         ret = theta0 * pow(M_E, - theta1 / 2.0 * pow(dist, 2));
 
+        KUKADU_MODULE_END_USAGE();
+
         return ret;
 
     }
@@ -27,6 +32,8 @@ namespace kukadu {
     TricubeKernel::TricubeKernel() { }
 
     double TricubeKernel::evaluateKernel(vec q1, vec q2, void* kernelParam) {
+
+        KUKADU_MODULE_START_USAGE();
 
         double ret = 0.0;
         double dist = 0.0;
@@ -38,6 +45,8 @@ namespace kukadu {
         if(dist >= 1.0) dist = 1.0;
         ret = 70.0/81.0 * pow(1 - pow(dist, 3), 3);
 
+        KUKADU_MODULE_END_USAGE();
+
         return ret;
 
     }
@@ -46,6 +55,8 @@ namespace kukadu {
 
     // K(u) = 15/16 (1 - |u|^2)^2
     double QuadraticKernel::evaluateKernel(vec q1, vec q2, void* kernelParam) {
+
+        KUKADU_MODULE_START_USAGE();
 
         double ret = 0.0;
         double dist = 0.0;
@@ -56,6 +67,8 @@ namespace kukadu {
 
         if(dist >= 1.0) dist = 1.0;
         ret = 15.0/16.0 * pow(1 - pow(dist, 2), 2);
+
+        KUKADU_MODULE_END_USAGE();
 
         return ret;
 
@@ -74,6 +87,8 @@ namespace kukadu {
 
     vec GaussianProcessRegressor::fitAtPosition(vec pos) {
 
+        KUKADU_MODULE_START_USAGE();
+
         vec retVector(1);
         double normVal = computeKernelNormValue();
         int sampleSize = sampleXs.size();
@@ -87,6 +102,9 @@ namespace kukadu {
 
         mat ret = k.t() * inv(coVarMatrix) * sampleTs;
         retVector(0) = ret(0,0);
+
+        KUKADU_MODULE_END_USAGE();
+
         return retVector;
 
     }

@@ -3,6 +3,7 @@
 #include <iostream>
 #include <kukadu/utils/utils.hpp>
 #include <kukadu/utils/kukadutokenizer.hpp>
+#include <kukadu/storage/moduleusagesingleton.hpp>
 #include <kukadu/learning/projective_simulation/core.hpp>
 
 using namespace std;
@@ -74,6 +75,8 @@ namespace kukadu {
 
     double ManualReward::computeRewardInternal(KUKADU_SHARED_PTR<PerceptClip> providedPercept, KUKADU_SHARED_PTR<ActionClip> takenAction) {
 
+        KUKADU_MODULE_START_USAGE();
+
         int worked = 0;
         double retReward = 0.0;
         cout << "selected percept " << *providedPercept << " resulted in action " << *takenAction << endl;
@@ -87,6 +90,8 @@ namespace kukadu {
             cout << "preparation action didn't work; no reward given" << endl;
             retReward = 0.0;
         }
+
+        KUKADU_MODULE_END_USAGE();
 
         return retReward;
 
@@ -104,6 +109,8 @@ namespace kukadu {
     }
 
     std::pair<std::vector<int>, std::vector<double> > PSEvaluator::evaluateStatistics(std::vector<string> inputFiles, std::vector<int> inputPos) {
+
+        KUKADU_MODULE_START_USAGE();
 
         vector<double> retSuccess;
         vector<double> walkSuccess;
@@ -173,11 +180,17 @@ namespace kukadu {
                 retSuccess.push_back(walkSuccess.at(i) / usedFilesCount);
             }
 
-        return std::pair<std::vector<int>, std::vector<double> >(inputPos, retSuccess);
+        auto retVal = std::pair<std::vector<int>, std::vector<double> >(inputPos, retSuccess);
+
+        KUKADU_MODULE_END_USAGE();
+
+        return retVal;
 
     }
 
     vector<double> PSEvaluator::evaluateStatistics(std::vector<KUKADU_SHARED_PTR<std::ifstream> >& inputStreams) {
+
+        KUKADU_MODULE_START_USAGE();
 
         vector<double> retSuccess;
         vector<double> walkSuccess;
@@ -237,11 +250,15 @@ namespace kukadu {
             retSuccess.push_back(walkSuccess.at(i) / usedFilesCount);
         }
 
+        KUKADU_MODULE_END_USAGE();
+
         return retSuccess;
 
     }
 
     void PSEvaluator::produceStatistics(KUKADU_SHARED_PTR<ProjectiveSimulator> ps, KUKADU_SHARED_PTR<Reward> reward, int numberOfWalks, int clipImmunity, int rewardValue, std::ostream& outStream) {
+
+        KUKADU_MODULE_START_USAGE();
 
         char currentOutput = 0;
         int fieldsInCurrentOutput = 0;
@@ -270,10 +287,14 @@ namespace kukadu {
 
         }
 
+        KUKADU_MODULE_END_USAGE();
+
     }
 
     void ProjectiveSimulator::loadPsConstructor(KUKADU_SHARED_PTR<Reward> reward, KUKADU_SHARED_PTR<kukadu_mersenne_twister> generator, std::string file,
                        std::function<KUKADU_SHARED_PTR<Clip> (const std::string&, const int&, const int&, KUKADU_SHARED_PTR<kukadu_mersenne_twister> generator) > createClipFunc) {
+
+        KUKADU_MODULE_START_USAGE();
 
         maxActionId = 0;
         maxPerceptId = 0;
@@ -458,13 +479,14 @@ namespace kukadu {
 
             }
 
-        } else {
+        } else
             throw KukaduException("PS file version cannot be handled");
-        }
 
         boredomLevels.clear();
         for(int i = 0; i < clipLayers->size(); ++i)
             boredomLevels.push_back(0.0);
+
+        KUKADU_MODULE_END_USAGE();
 
     }
 
@@ -637,10 +659,16 @@ namespace kukadu {
     }
 
     void ProjectiveSimulator::setBoredom(double boredom, int level) {
+
+        KUKADU_MODULE_START_USAGE();
+
         if(boredom <= 0.0)
             this->boredomLevels.at(level) = 0.0;
         else
             this->boredomLevels.at(level) = boredom;
+
+        KUKADU_MODULE_END_USAGE();
+
     }
 
     void ProjectiveSimulator::setTrainingMode(bool doTraining) {
@@ -847,6 +875,8 @@ namespace kukadu {
 
     void ProjectiveSimulator::eliminateClip(KUKADU_SHARED_PTR<Clip> currClip) {
 
+        KUKADU_MODULE_START_USAGE();
+
         int level = currClip->getLevel();
         KUKADU_SHARED_PTR<set<KUKADU_SHARED_PTR<Clip>, clip_compare> > currLayer = clipLayers->at(level);
         currLayer->erase(currClip);
@@ -863,6 +893,8 @@ namespace kukadu {
 
         currClip->removeAllSubClips();
 
+        KUKADU_MODULE_END_USAGE();
+
     }
 
     int ProjectiveSimulator::getStandardImmunity() {
@@ -870,6 +902,8 @@ namespace kukadu {
     }
 
     void ProjectiveSimulator::cleanByRank() {
+
+        KUKADU_MODULE_START_USAGE();
 
         int clipNumber = rankVec.size();
 
@@ -911,6 +945,8 @@ namespace kukadu {
 
         }
 
+        KUKADU_MODULE_END_USAGE();
+
     }
 
     void ProjectiveSimulator::setStandardImmunity(int immunity) {
@@ -949,6 +985,8 @@ namespace kukadu {
     }
 
     std::pair<int, KUKADU_SHARED_PTR<Clip> > ProjectiveSimulator::performRandomWalk(int untilLevel, bool continueLastWalk) {
+
+        KUKADU_MODULE_START_USAGE();
 
         KUKADU_SHARED_PTR<Clip> previousClip;
         KUKADU_SHARED_PTR<Clip> currentClip;
@@ -1033,11 +1071,16 @@ namespace kukadu {
             intermediateHops->resize(intermediateHops->size() - 1);
 
         lastActionClip = KUKADU_DYNAMIC_POINTER_CAST<ActionClip>(currentClip);
+
+        KUKADU_MODULE_END_USAGE();
+
         return {currentClip->getLevel(), currentClip};
 
     }
 
     bool ProjectiveSimulator::computeBoredom(KUKADU_SHARED_PTR<Clip> clip) {
+
+        KUKADU_MODULE_START_USAGE();
 
         bool beingBored = false;
         auto clipLevel = clip->getLevel();
@@ -1062,13 +1105,18 @@ namespace kukadu {
                 beingBored =  (1 - boredomDist(*generator)) ? true : false;
 
             }
+
         }
+
+        KUKADU_MODULE_END_USAGE();
 
         return beingBored;
 
     }
 
     std::tuple<bool, double, vector<int> > ProjectiveSimulator::performRewarding() {
+
+        KUKADU_MODULE_START_USAGE();
 
         double computedReward = 0.0;
         if(!lastRunWasBored) {
@@ -1106,11 +1154,15 @@ namespace kukadu {
 
         lastRunWasBored = false;
 
+        KUKADU_MODULE_END_USAGE();
+
         return make_tuple(lastRunWasBored, computedReward, *getIntermediateHopIdx());
 
     }
 
     void ProjectiveSimulator::generalize(KUKADU_SHARED_PTR<PerceptClip> nextClip) {
+
+        KUKADU_MODULE_START_USAGE();
 
         lastGeneralizedPercept = nextClip;
 
@@ -1130,6 +1182,8 @@ namespace kukadu {
         }
 
         toConnect.reset();
+
+        KUKADU_MODULE_END_USAGE();
 
     }
 
@@ -1159,6 +1213,8 @@ namespace kukadu {
     }
 
     void ProjectiveSimulator::connectNewClip(KUKADU_SHARED_PTR<Clip> conClip) {
+
+        KUKADU_MODULE_START_USAGE();
 
         int currentLevel = 0;
 
@@ -1190,9 +1246,13 @@ namespace kukadu {
             ++currentLevel;
         }
 
+        KUKADU_MODULE_END_USAGE();
+
     }
 
     KUKADU_SHARED_PTR<std::set<KUKADU_SHARED_PTR<Clip>, clip_compare> > ProjectiveSimulator::createNewClips(KUKADU_SHARED_PTR<PerceptClip> newClip) {
+
+        KUKADU_MODULE_START_USAGE();
 
         KUKADU_SHARED_PTR<set<KUKADU_SHARED_PTR<Clip>, clip_compare> > conClips = KUKADU_SHARED_PTR<set<KUKADU_SHARED_PTR<Clip>, clip_compare> >(new set<KUKADU_SHARED_PTR<Clip>, clip_compare>());
 
@@ -1251,6 +1311,8 @@ namespace kukadu {
 
         }
 
+        KUKADU_MODULE_END_USAGE();
+
         return conClips;
 
     }
@@ -1277,6 +1339,8 @@ namespace kukadu {
 
     void ProjectiveSimulator::computeRankVec() {
 
+        KUKADU_MODULE_START_USAGE();
+
         rankVec.clear();
         for(int i = 0; i < clipLayers->size() - 1; i++) {
 
@@ -1294,6 +1358,8 @@ namespace kukadu {
 
         if(PS_PRINT_RANKING_DEBUG_INFO)
             printRankVec();
+
+        KUKADU_MODULE_END_USAGE();
 
     }
 
@@ -1319,6 +1385,8 @@ namespace kukadu {
     }
 
     void ProjectiveSimulator::storePS(std::string targetFile) {
+
+        KUKADU_MODULE_START_USAGE();
 
         int deleteFile = 0;
         if(fileExists(targetFile)) {
@@ -1398,6 +1466,8 @@ namespace kukadu {
                 }
             }
         }
+
+        KUKADU_MODULE_END_USAGE();
 
     }
 

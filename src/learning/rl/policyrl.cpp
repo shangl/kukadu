@@ -1,4 +1,5 @@
 #include <kukadu/learning/rl/policyrl.hpp>
+#include <kukadu/storage/moduleusagesingleton.hpp>
 
 using namespace std;
 using namespace arma;
@@ -38,6 +39,8 @@ namespace kukadu {
     }
 
     void GeneralReinforcer::performRollout(int doSimulation, int doExecution) {
+
+        KUKADU_MODULE_START_USAGE();
 
         char cont = 'n';
 
@@ -197,6 +200,8 @@ namespace kukadu {
 
         cout << "(DMPReinforcer) last update reward/cost: " << lastUpdateCost << endl;
 
+        KUKADU_MODULE_END_USAGE();
+
     }
 
     double GeneralReinforcer::getLastUpdateReward() {
@@ -269,6 +274,8 @@ namespace kukadu {
 
     std::vector<KUKADU_SHARED_PTR<Trajectory> > GradientDescent::computeRolloutParamters() {
 
+        KUKADU_MODULE_START_USAGE();
+
         KUKADU_SHARED_PTR<Trajectory> lastUp = getLastUpdate();
         vector<vec> dmpCoeffs = lastUp->getCoefficients();
         vector<KUKADU_SHARED_PTR<Trajectory> > nextCoeffs;
@@ -299,11 +306,15 @@ namespace kukadu {
 
         }
 
+        KUKADU_MODULE_END_USAGE();
+
         return nextCoeffs;
 
     }
 
     KUKADU_SHARED_PTR<Trajectory> GradientDescent::updateStep() {
+
+        KUKADU_MODULE_START_USAGE();
 
         ++updateNum;
         KUKADU_SHARED_PTR<Trajectory> lastUp = getLastUpdate();
@@ -346,9 +357,10 @@ namespace kukadu {
             newUp = lastUp->copy();
             newUp->setCoefficients(newCoeffs);
 
-        } else {
+        } else
             newUp = lastDmps.at(0);
-        }
+
+        KUKADU_MODULE_END_USAGE();
 
         return newUp;
 
@@ -370,9 +382,13 @@ namespace kukadu {
 
     double TerminalCostComputer::computeCost(KUKADU_SHARED_PTR<ControllerResult> results) {
 
+        KUKADU_MODULE_START_USAGE();
+
         double delta = 0.0;
         cout << "(TerminalCostComputer) Enter the deviation in query space (also be aware of the sign; e.g. qmeasured +/- cost = qdesired)...";
         cin >> delta;
+
+        KUKADU_MODULE_END_USAGE();
 
         return delta;
 
@@ -399,6 +415,8 @@ namespace kukadu {
 
     double TrajectoryBasedReward::computeCost(KUKADU_SHARED_PTR<ControllerResult> results) {
 
+        KUKADU_MODULE_START_USAGE();
+
         int tCount = results->getTimes().n_elem;
         tmax = results->getTimes()(tCount - 1);
 
@@ -416,6 +434,8 @@ namespace kukadu {
 
         reward = reward / (tCount * sum(rewardsWeights));
         reward = 1.0 / exp(sqrt(reward));
+
+        KUKADU_MODULE_END_USAGE();
 
         return reward;
 

@@ -4,6 +4,7 @@
 #include <iostream>
 #include <algorithm>
 #include <kukadu/utils/kukadutokenizer.hpp>
+#include <kukadu/storage/moduleusagesingleton.hpp>
 #include <kukadu/learning/projective_simulation/clips.hpp>
 
 using namespace std;
@@ -28,7 +29,10 @@ namespace kukadu {
     }
 
     std::pair<int, KUKADU_SHARED_PTR<Clip> > ActionClip::jumpNextRandom() {
-        return pair<int, KUKADU_SHARED_PTR<Clip> >(0, shared_from_this());
+        KUKADU_MODULE_START_USAGE();
+        pair<int, KUKADU_SHARED_PTR<Clip> > retPair{0, shared_from_this()};
+        KUKADU_MODULE_END_USAGE();
+        return retPair;
     }
 
     std::string ActionClip::toString() const {
@@ -86,6 +90,8 @@ namespace kukadu {
 
     std::tuple<double, int, KUKADU_SHARED_PTR<Clip> > Clip::getMaxProbability() {
 
+        KUKADU_MODULE_START_USAGE();
+
         int maxWeight = 0;
         double maxWeightSum = 0.0;
         double maxProbability = 0.0;
@@ -105,7 +111,11 @@ namespace kukadu {
 
         }
 
-        return make_tuple(maxProbability / maxWeightSum, maxWeight, maxProbClip);
+        auto retVal = make_tuple(maxProbability / maxWeightSum, maxWeight, maxProbClip);
+
+        KUKADU_MODULE_END_USAGE();
+
+        return retVal;
 
     }
 
@@ -114,10 +124,21 @@ namespace kukadu {
     }
 
     int Clip::getSubClipIdx(KUKADU_SHARED_PTR<Clip> subClip) {
+
+        KUKADU_MODULE_START_USAGE();
+
+        int retVal = 0;
+
         auto foundClipIt = std::find(subClips->begin(), subClips->end(), subClip);
         if(subClip == *foundClipIt)
-            return (foundClipIt - subClips->begin());
-        throw KukaduException("(Clip) clip not found");
+            retVal = (foundClipIt - subClips->begin());
+        else
+            throw KukaduException("(Clip) clip not found");
+
+        KUKADU_MODULE_END_USAGE();
+
+        return retVal;
+
     }
 
     KUKADU_SHARED_PTR<std::vector<int> > Clip::getIdVectorFromString(std::string str) {
@@ -156,6 +177,8 @@ namespace kukadu {
 
     double Clip::computeSubEntropy() const {
 
+        KUKADU_MODULE_START_USAGE();
+
         double entropy = 0.0;
         vector<double> probs = discDist.probabilities();
 
@@ -163,6 +186,8 @@ namespace kukadu {
             double prob = probs.at(i);
             entropy -= prob * log2(prob);
         }
+
+        KUKADU_MODULE_END_USAGE();
 
         return entropy;
 
@@ -190,6 +215,7 @@ namespace kukadu {
     }
 
     void Clip::addParentDownwards(KUKADU_SHARED_PTR<Clip> par) {
+
         addParent(par);
         par->addSubClip(shared_from_this(), CLIP_H_STD_WEIGHT);
 
@@ -214,6 +240,8 @@ namespace kukadu {
 
     std::pair<int, KUKADU_SHARED_PTR<Clip> > Clip::jumpNextRandom() {
 
+        KUKADU_MODULE_START_USAGE();
+
         if(nextHop == NEXT_HOP_NOT_PREDEF)
             visitedSubNode = discDist(*generator);
         else {
@@ -221,7 +249,11 @@ namespace kukadu {
             nextHop = NEXT_HOP_NOT_PREDEF;
         }
 
-        return pair<int, KUKADU_SHARED_PTR<Clip> >(visitedSubNode, subClips->at(visitedSubNode));
+        pair<int, KUKADU_SHARED_PTR<Clip> > retVal{visitedSubNode, subClips->at(visitedSubNode)};
+
+        KUKADU_MODULE_END_USAGE();
+
+        return retVal;
 
     }
 
@@ -292,14 +324,22 @@ namespace kukadu {
     // sum outgoing weights - initial weights * number of outgoing edges
     double Clip::computeRank() const {
 
+        KUKADU_MODULE_START_USAGE();
+
         double outWeights = std::accumulate(subH.begin(), subH.end(), 0.0);
         double outNum = subH.size();
 
-        return outWeights - CLIP_H_STD_WEIGHT * outNum;
+        double retVal = outWeights - CLIP_H_STD_WEIGHT * outNum;
+
+        KUKADU_MODULE_END_USAGE();
+
+        return retVal;
 
     }
 
     void Clip::updateWeights(double reward, double gamma) {
+
+        KUKADU_MODULE_START_USAGE();
 
         int subClipCount = subH.size();
         for(int i = 0; i < subClipCount; ++i) {
@@ -313,6 +353,8 @@ namespace kukadu {
         }
         visitedSubNode = CLIP_H_NOT_WALKED_YET;
         initRandomGenerator();
+
+        KUKADU_MODULE_END_USAGE();
 
     }
 
@@ -467,9 +509,17 @@ namespace kukadu {
     }
 
     std::pair<int, KUKADU_SHARED_PTR<Clip> > Clip::getLikeliestChildWithWeight() {
+
+        KUKADU_MODULE_START_USAGE();
+
         auto maxIt = std::max_element(subH.begin(), subH.end());
         int maxIdx = maxIt - subH.begin();
-        return {*maxIt, subClips->at(maxIdx)};
+        pair<int, KUKADU_SHARED_PTR<Clip> > retVal{*maxIt, subClips->at(maxIdx)};
+
+        KUKADU_MODULE_END_USAGE();
+
+        return retVal;
+
     }
 
     KUKADU_SHARED_PTR<Clip> Clip::compareClip(KUKADU_SHARED_PTR<Clip> c) {
