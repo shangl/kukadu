@@ -2,6 +2,7 @@
 // namespaces are marked by -
 // classes are marked by +
 // functions are marked by #
+// non-class-member functions have to be listed before class-member functions
 // functions have further settings separated by whitespaces
 //			- function id under which the function statistics are stored in the database
 //			- storage mode:
@@ -207,6 +208,7 @@
 		#getCurrentJoints			157	1	2000
 		#getCurrentCartesianPoseRf	158	1	2000
 [manipulation]
+-kukadu
 	+ComplexController
 		#updateFiles				159	0
 		#computeEntropyMeanAndVariance	160	0
@@ -225,80 +227,78 @@
 		#setUseCreativity			173	0
 		#setTrainingMode			174	0
 		#createSensingDatabase		175	0
-		#createSensingDatabase		176	0
 	+ConcatController
-		#performAction				177	0
+		#performAction				176	0
 	+IntermediateEventClip
-		#jumpNextRandom				178	0
+		#jumpNextRandom				177	0
 	+ControllerActionClip
-		#performAction				179	0
+		#performAction				178	0
 	+SensingController
-		#gatherData					180	0
-		#performClassification		181	0
-		#createDataBase				182	0
-		#performAction				183	0
+		#gatherData					179	0
+		#performClassification		180	0
+		#createDataBase				181	0
+		#performAction				182	0
 	+HapticPlanner
-		#pickAndPerformComplexSkill	184	0
-		#performComplexSkill		185	0
-		#updateModels				186	0
-		#setSimulationMode			187	0
-		#pickComplexSkill			188	0
-		#generateNextPerceptClip	189	0
-		#generateActionClips		190	0
-		#generatePerceptClips		191	0
-		#computeRewardInternal		192	0
-		#getDimensionality			193	0
-		#copySensingControllers		194	1	2000
+		#pickAndPerformComplexSkill	183	0
+		#performComplexSkill		184	0
+		#updateModels				185	0
+		#setSimulationMode			186	0
+		#pickComplexSkill			187	0
+		#generateNextPerceptClip	188	0
+		#generateActionClips		189	0
+		#generatePerceptClips		190	0
+		#computeRewardInternal		191	0
+		#getDimensionality			192	0
+		#copySensingControllers		193	1	2000
 [storage]
 -kukadu
 	+SensorStorage
-		#setExportMode				195	0
-		#startDataStorage			196	0
-		#stopDataStorage			197	0
-		#stopDataStorage			198	0
-		#store						199	0
-		#storeCartInformation		200	1	2000
-		#storeJointInfoToDatabase	201	1	2000
-		#readStorage				202	0
+		#setExportMode				194	0
+		#startDataStorage			195	0
+		#stopDataStorage			196	0
+		#store						197	0
+		#storeCartInformation		198	1	2000
+		#storeJointInfoToDatabase	199	1	2000
+		#readStorage				200	0
 [statistics]
 -kukadu
-		#computeUnalikeability		203	0
+		#computeUnalikeability		201	0
 [vision]
 -kukadu
 	+ArLocalizer
-		#localizeObject				204	1	2000
-		#localizeObjects			205	1	2000
+		#localizeObject				202	1	2000
+		#localizeObjects			203	1	2000
 	+Kinect
-		#startSensing				206	0
-		#stopSensing				207	0
-		#getCurrentPointCloud		208	1	2000
-		#getCurrentColorPointCloud	209	1	2000
-		#getCurrentIntensityPointCloud	210	1	2000
-		#visualizeCurrentPc			211	1	2000
-		#storeCurrentPc				212	0
+		#startSensing				204	0
+		#stopSensing				205	0
+		#getCurrentPointCloud		206	1	2000
+		#getCurrentColorPointCloud	207	1	2000
+		#getCurrentIntensityPointCloud	209	1	2000
+		#visualizeCurrentPc			210	1	2000
+		#storeCurrentPc				211	0
 	+PCLTools
-		#visualizePointCloud		213	1	2000
-		#stopVisualizationWindow	214	0
-		#runVisThread				215	0
-		#initializeVisualizationWindow	216	0
-		#fitBox						217	0
-		#segmentPlanar				218	0
-		#visDrawPlaneWithNormal		219	0
-		#updateVisualizedPointCloud	220	1	2000
-		#filterCluster				221	0
+		#visualizePointCloud		212	1	2000
+		#stopVisualizationWindow	213	0
+		#runVisThread				214	0
+		#initializeVisualizationWindow	215	0
+		#fitBox						216	0
+		#segmentPlanar				217	0
+		#visDrawPlaneWithNormal		218	0
+		#updateVisualizedPointCloud	219	1	2000
+		#filterCluster				220	0
 	+PCTransformator
-		#removeRgb					220	1	2000
-		#fakeRgb					221	1	2000
-		#removeIntensity			222	1	2000
+		#removeRgb					221	1	2000
+		#fakeRgb					222	1	2000
+		#removeIntensity			223	1	2000
 	+PlanarCutTransformator
-		#transformPc				223	0
-		#setPlane					224	0
+		#transformPc				224	0
+		#setPlane					225	0
 	+OpenBoxFilter
-		#setBox						225	0
-		#transformPc				226	0
+		#setBox						226	0
+		#transformPc				227	0
 	+ColorFilter
-		#transformPc				227	1	2000
-	+CustomLambdaFilter
 		#transformPc				228	1	2000
+	+CustomLambdaFilter
+		#transformPc				229	1	2000
 [gui]
 

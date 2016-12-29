@@ -81,6 +81,7 @@ namespace kukadu {
                         poolingWindowSizes[currentFunctionStorageId] = atoi(tok.next().c_str());
 
                     addNewFunction(currentModule, currentNamespace, currentClass, currentFunction, currentFunctionStorageId, currentFunctionStorageMode);
+
                     break;
                 // ignore comment
                 case '/':
