@@ -1,6 +1,7 @@
 #include <kukadu/utils/utils.hpp>
 #include <kukadu/types/kukadutypes.hpp>
 #include <kukadu/manipulation/playing/core.hpp>
+#include <kukadu/storage/moduleusagesingleton.hpp>
 #include <kukadu/manipulation/playing/controllers.hpp>
 
 using namespace std;
@@ -127,12 +128,18 @@ namespace kukadu {
 
     void HapticPlanner::pickAndPerformComplexSkill(bool updateFiles) {
 
+        KUKADU_MODULE_START_USAGE();
+
         auto selectedId = pickComplexSkill();
         performComplexSkill(selectedId, updateFiles);
+
+        KUKADU_MODULE_END_USAGE();
 
     }
 
     KUKADU_SHARED_PTR<kukadu::HapticControllerResult> HapticPlanner::performComplexSkill(std::string skillId, bool updateModels) {
+
+        KUKADU_MODULE_START_USAGE();
 
         auto complSkill = KUKADU_DYNAMIC_POINTER_CAST<ComplexController>(registeredComplexControllers[skillId]);
 
@@ -154,21 +161,37 @@ namespace kukadu {
         if(updateModels)
             complSkill->updateFiles();
 
+        KUKADU_MODULE_END_USAGE();
+
         return result;
 
     }
 
     void HapticPlanner::updateModels() {
+
+        KUKADU_MODULE_START_USAGE();
+
         for(auto complSkill : registeredComplexControllers)
             KUKADU_DYNAMIC_POINTER_CAST<ComplexController>(complSkill.second)->updateFiles();
+
+        KUKADU_MODULE_END_USAGE();
+
     }
 
     void HapticPlanner::setSimulationMode(bool simulationMode) {
+
+        KUKADU_MODULE_START_USAGE();
+
         for(auto c : registeredComplexControllers)
             c.second->setSimulationMode(simulationMode);
+
+        KUKADU_MODULE_END_USAGE();
+
     }
 
     std::string HapticPlanner::pickComplexSkill() {
+
+        KUKADU_MODULE_START_USAGE();
 
         int selection = 0;
         map<int, string> keyMap;
@@ -181,32 +204,47 @@ namespace kukadu {
         }
         cout << endl << "selection: ";
         cin >> selection;
+
+        KUKADU_MODULE_END_USAGE();
+
         return keyMap[selection];
 
     }
 
     KUKADU_SHARED_PTR<PerceptClip> HapticPlanner::generateNextPerceptClip(int immunity) {
+        KUKADU_MODULE_START_USAGE();
         throw KukaduException("generateNextPerceptClip not implemented yet");
+        KUKADU_MODULE_END_USAGE();
     }
 
     KUKADU_SHARED_PTR<std::vector<KUKADU_SHARED_PTR<ActionClip> > > HapticPlanner::generateActionClips() {
+        KUKADU_MODULE_START_USAGE();
         throw KukaduException("generateActionClips not implemented yet");
+        KUKADU_MODULE_END_USAGE();
     }
 
     KUKADU_SHARED_PTR<std::vector<KUKADU_SHARED_PTR<PerceptClip> > > HapticPlanner::generatePerceptClips() {
+        KUKADU_MODULE_START_USAGE();
         throw KukaduException("generatePerceptClips not implemented yet");
+        KUKADU_MODULE_END_USAGE();
     }
 
     double HapticPlanner::computeRewardInternal(KUKADU_SHARED_PTR<PerceptClip> providedPercept, KUKADU_SHARED_PTR<ActionClip> takenAction) {
+        KUKADU_MODULE_START_USAGE();
         throw KukaduException("compouteRewardInternal not implemented yet");
+        KUKADU_MODULE_END_USAGE();
     }
 
     int HapticPlanner::getDimensionality() {
+        KUKADU_MODULE_START_USAGE();
         throw KukaduException("getDimensionlity not implemented yet");
+        KUKADU_MODULE_END_USAGE();
     }
 
     std::vector<KUKADU_SHARED_PTR<kukadu::SensingController> > HapticPlanner::copySensingControllers(KUKADU_SHARED_PTR<kukadu::ComplexController> parentComplexController, std::vector<KUKADU_SHARED_PTR<kukadu::SensingController> > controllers,
                                                                                       std::string newBasePath) {
+
+        KUKADU_MODULE_START_USAGE();
 
         vector<KUKADU_SHARED_PTR<kukadu::SensingController> > retVec;
         for(auto sens : controllers) {
@@ -216,6 +254,9 @@ namespace kukadu {
             copiedSens->createDataBase();
             retVec.push_back(copiedSens);
         }
+
+        KUKADU_MODULE_END_USAGE();
+
         return retVec;
 
     }

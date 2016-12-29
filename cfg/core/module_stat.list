@@ -37,8 +37,6 @@
 		#computeFk					20	0
 		#planJointTrajectory		21	0
 		#planCartesianTrajectory	22	0
-[manipulation]
-
 [gui]
 
 [control]
@@ -210,6 +208,49 @@
 		#setStiffness				156	0
 		#getCurrentJoints			157	1	2000
 		#getCurrentCartesianPoseRf	158	1	2000
+[manipulation]
+	+ComplexController
+		#updateFiles				159	0
+		#computeEntropyMeanAndVariance	160	0
+		#setBoredom					161	0
+		#setSimulationModeInChain	162	0
+		#createEnvironmentModelForSensingAction	163	0
+		#load						164	0
+		#store						165	0
+		#storeNextIteration			166	0
+		#getSimulatedRewardInternal	167	0
+		#computeRewardInternal		168	0
+		#performAction				169	0
+		#computeTotalPathCost		170	0
+		#computeEnvironmentPaths	171	0
+		#computeEnvironmentTransitionConfidence	172	1	2000
+		#setUseCreativity			173	0
+		#setTrainingMode			174	0
+		#createSensingDatabase		175	0
+		#createSensingDatabase		176	0
+	+ConcatController
+		#performAction				177	0
+	+IntermediateEventClip
+		#jumpNextRandom				178	0
+	+ControllerActionClip
+		#performAction				179	0
+	+SensingController
+		#gatherData					180	0
+		#performClassification		181	0
+		#createDataBase				182	0
+		#performAction				183	0
+	+HapticPlanner
+		#pickAndPerformComplexSkill	184	0
+		#performComplexSkill		185	0
+		#updateModels				186	0
+		#setSimulationMode			187	0
+		#pickComplexSkill			188	0
+		#generateNextPerceptClip	189	0
+		#generateActionClips		190	0
+		#generatePerceptClips		191	0
+		#computeRewardInternal		192	0
+		#getDimensionality			193	0
+		#copySensingControllers		194	1	2000
 [statistics]
 
 [storage]

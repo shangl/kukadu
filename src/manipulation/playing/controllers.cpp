@@ -3,6 +3,7 @@
 #include <boost/filesystem.hpp>
 #include <kukadu/utils/utils.hpp>
 #include <kukadu/storage/sensorstorage.hpp>
+#include <kukadu/storage/moduleusagesingleton.hpp>
 #include <kukadu/manipulation/playing/controllers.hpp>
 
 using namespace std;
@@ -97,10 +98,14 @@ namespace kukadu {
 
     void ComplexController::updateFiles() {
 
+        KUKADU_MODULE_START_USAGE();
+
         for(auto env : environmentModels)
             env.second->updatePsFile();
 
         projSim->updatePsFile();
+
+        KUKADU_MODULE_END_USAGE();
 
     }
 
@@ -276,6 +281,8 @@ namespace kukadu {
 
     std::map<std::string, std::tuple<double, double, std::vector<double> > > ComplexController::computeEntropyMeanAndVariance(std::vector<KUKADU_SHARED_PTR<SensingController> > sensingIds) {
 
+        KUKADU_MODULE_START_USAGE();
+
         std::map<std::string, std::tuple<double, double, std::vector<double> > > retMap;
 
         for(auto sensingId : sensingIds) {
@@ -302,6 +309,8 @@ namespace kukadu {
 
         }
 
+        KUKADU_MODULE_END_USAGE();
+
         return retMap;
 
     }
@@ -311,7 +320,9 @@ namespace kukadu {
     }
 
     void ComplexController::setBoredom(double boredom) {
+        KUKADU_MODULE_START_USAGE();
         projSim->setBoredom(boredom, 2);
+        KUKADU_MODULE_END_USAGE();
     }
 
     double ComplexController::getPunishReward() {
@@ -324,11 +335,15 @@ namespace kukadu {
 
     void ComplexController::setSimulationModeInChain(bool simulationMode) {
 
+        KUKADU_MODULE_START_USAGE();
+
         for(auto sensCont : sensingControllers)
             sensCont->setSimulationMode(simulationMode);
 
         for(auto prepCont : preparationControllers)
             prepCont->setSimulationMode(simulationMode);
+
+        KUKADU_MODULE_END_USAGE();
 
     }
 
@@ -340,6 +355,8 @@ namespace kukadu {
 
     KUKADU_SHARED_PTR<kukadu::ProjectiveSimulator> ComplexController::createEnvironmentModelForSensingAction(KUKADU_SHARED_PTR<kukadu::SensingController> sensingAction,
                                                                                           KUKADU_SHARED_PTR<ProjectiveSimulator> projSim) {
+
+        KUKADU_MODULE_START_USAGE();
 
         KUKADU_SHARED_PTR<IntermediateEventClip> sensingClip = nullptr;
         auto sensingLayer = projSim->getClipLayers()->at(1);
@@ -404,6 +421,8 @@ namespace kukadu {
         auto psMode = ProjectiveSimulator::PS_USE_ORIGINAL;
         auto retProjSim = make_shared<ProjectiveSimulator>(envReward, generator, environmentPercepts, 0.0, psMode, false);
 
+        KUKADU_MODULE_END_USAGE();
+
         return retProjSim;
 
     }
@@ -413,6 +432,8 @@ namespace kukadu {
     }
 
     void ComplexController::load(std::string path, std::map<std::string, KUKADU_SHARED_PTR<kukadu::SensingController> > availableSensingControllers, std::map<std::string, KUKADU_SHARED_PTR<kukadu::Controller> > availablePreparatoryControllers) {
+
+        KUKADU_MODULE_START_USAGE();
 
         sensingControllers.clear();
         if(prepActions)
@@ -469,13 +490,19 @@ namespace kukadu {
 
         initialize();
 
+        KUKADU_MODULE_END_USAGE();
+
     }
 
     void ComplexController::store() {
+        KUKADU_MODULE_START_USAGE();
         store(storePath);
+        KUKADU_MODULE_END_USAGE();
     }
 
     void ComplexController::store(std::string destination) {
+
+        KUKADU_MODULE_START_USAGE();
 
         preparePathString(destination);
         string psDestination = destination + "ps";
@@ -503,12 +530,20 @@ namespace kukadu {
 
         compositionFile.close();
 
+        KUKADU_MODULE_END_USAGE();
+
     }
 
     void ComplexController::storeNextIteration() {
+
+        KUKADU_MODULE_START_USAGE();
+
         stringstream s;
         s << psPath << currentIterationNum;
         projSim->storePS(s.str());
+
+        KUKADU_MODULE_END_USAGE();
+
     }
 
     int ComplexController::getDimensionality() {
@@ -536,12 +571,16 @@ namespace kukadu {
                                                  KUKADU_SHARED_PTR<kukadu::Clip> stateClip,
                                                  KUKADU_SHARED_PTR<kukadu::ControllerActionClip> actionClip) {
 
+        KUKADU_MODULE_START_USAGE();
+
         // simulates non-perfect complex controller
         int failed = simSuccDist(*generator);
         if(failed)
             return getPunishReward();
 
         double simReward = getSimulatedReward(sensingClip, stateClip, actionClip);
+
+        KUKADU_MODULE_END_USAGE();
 
         return simReward;
 
@@ -580,6 +619,8 @@ namespace kukadu {
     }
 
     double ComplexController::computeRewardInternal(KUKADU_SHARED_PTR<PerceptClip> providedPercept, KUKADU_SHARED_PTR<ActionClip> takenAction) {
+
+        KUKADU_MODULE_START_USAGE();
 
         int worked = 0;
         int executeIt = 0;
@@ -624,6 +665,8 @@ namespace kukadu {
         if(storeReward)
             *rewardHistoryStream << retReward << "\t" << *sensClip << "\t" << sensCont->getSimulationGroundTruthIdx() << "\t" << *stateClip << "\t\t" << *takenAction << endl;
 
+        KUKADU_MODULE_END_USAGE();
+
         return retReward;
 
     }
@@ -633,6 +676,8 @@ namespace kukadu {
     }
 
     KUKADU_SHARED_PTR<ControllerResult> ComplexController::performAction(bool cleanup, bool generateNewGroundTruth) {
+
+        KUKADU_MODULE_START_USAGE();
 
         this->cleanup = cleanup;
         KUKADU_SHARED_PTR<ControllerResult> ret = nullptr;
@@ -993,6 +1038,8 @@ namespace kukadu {
         if(!ret)
             ret = make_shared<HapticControllerResult>(vec(), vector<vec>(), (reward > 0.0) ? true : false, false, *(projSim->getIntermediateHopIdx()), selectedPathPointer);
 
+        KUKADU_MODULE_END_USAGE();
+
         return ret;
 
     }
@@ -1024,6 +1071,8 @@ namespace kukadu {
                                                  std::vector<std::tuple<double, KUKADU_SHARED_PTR<Clip>,
                                                  std::vector<KUKADU_SHARED_PTR<Clip> >, int> >& paths) {
 
+        KUKADU_MODULE_START_USAGE();
+
         for(auto& path : paths) {
 
             double& pathCost = std::get<0>(path);
@@ -1047,10 +1096,14 @@ namespace kukadu {
 
         }
 
+        KUKADU_MODULE_END_USAGE();
+
     }
 
     std::vector<std::tuple<double, KUKADU_SHARED_PTR<Clip>, std::vector<KUKADU_SHARED_PTR<Clip> >, int> > ComplexController::computeEnvironmentPaths(
             KUKADU_SHARED_PTR<Clip> sensingClip, KUKADU_SHARED_PTR<Clip> stateClip, int maxPathLength, double confidenceCut) {
+
+        KUKADU_MODULE_START_USAGE();
 
         auto sensingId = sensingClip->toString();
         auto stateId = stateClip->getClipDimensions()->at(0);
@@ -1103,42 +1156,61 @@ namespace kukadu {
 
         }
 
+        KUKADU_MODULE_END_USAGE();
+
         return allPaths;
 
     }
 
     std::tuple<double, int, int> ComplexController::computeEnvironmentTransitionConfidence(KUKADU_SHARED_PTR<Clip> stateClip) {
 
+        KUKADU_MODULE_START_USAGE();
+
         auto likeliest = stateClip->getLikeliestChildWithWeight();
         double stateEntropy = stateClip->computeSubEntropy();
         double confidenceProb = 1.0 - stateEntropy / log2(stateClip->getSubClipCount());
         auto likeliestResult = likeliest.second;
         int envId = atoi(likeliestResult->toString().substr(1).c_str());
+
+        KUKADU_MODULE_END_USAGE();
+
         return std::make_tuple(confidenceProb, envId, likeliest.first);
 
     }
 
     bool ComplexController::setUseCreativity(bool useCreativity) {
+        KUKADU_MODULE_START_USAGE();
         this->useCreativity = useCreativity;
+        KUKADU_MODULE_END_USAGE();
     }
 
     void ComplexController::setTrainingMode(bool doTraining) {
+        KUKADU_MODULE_START_USAGE();
         projSim->setTrainingMode(doTraining);
+        KUKADU_MODULE_END_USAGE();
     }
 
     void ComplexController::createSensingDatabase() {
 
+        KUKADU_MODULE_START_USAGE();
+
         createSensingDatabase(sensingControllers);
+
+        KUKADU_MODULE_END_USAGE();
 
     }
 
     void ComplexController::createSensingDatabase(std::vector<KUKADU_SHARED_PTR<SensingController> > sensingControllers) {
+
+        KUKADU_MODULE_START_USAGE();
 
         sensingWeights.clear();
         for(int i = 0; i < sensingControllers.size(); ++i) {
             double validationScore = sensingControllers.at(i)->createDataBase();
             sensingWeights.push_back(validationScore);
         }
+
+        KUKADU_MODULE_END_USAGE();
 
     }
 
@@ -1258,10 +1330,14 @@ namespace kukadu {
 
     KUKADU_SHARED_PTR<ControllerResult> ConcatController::performAction() {
 
+        KUKADU_MODULE_START_USAGE();
+
         KUKADU_SHARED_PTR<ControllerResult> lastResult;
         // execute all controllers
         for(auto& cont : controllers)
             lastResult = cont->performAction();
+
+        KUKADU_MODULE_END_USAGE();
 
         // dummy for now takes only the last result
         return lastResult;
@@ -1287,9 +1363,14 @@ namespace kukadu {
 
     std::pair<int, KUKADU_SHARED_PTR<Clip> > IntermediateEventClip::jumpNextRandom() {
 
+        KUKADU_MODULE_START_USAGE();
+
         pair<int, KUKADU_SHARED_PTR<Clip> > retVal;
         visitedSubNode = retVal.first = sensingEvent->performClassification();
         retVal.second = getSubClipByIdx(retVal.first);
+
+        KUKADU_MODULE_END_USAGE();
+
         return retVal;
 
     }
@@ -1309,6 +1390,8 @@ namespace kukadu {
 
     void ControllerActionClip::performAction() {
 
+        KUKADU_MODULE_START_USAGE();
+
         if(!actionController->getSimulationMode()) {
 
             int executeIt = 0;
@@ -1322,6 +1405,8 @@ namespace kukadu {
             }
 
         }
+
+        KUKADU_MODULE_END_USAGE();
 
     }
 
@@ -1402,10 +1487,14 @@ namespace kukadu {
 
     void SensingController::gatherData(std::string dataBasePath, std::string dataName) {
 
+        KUKADU_MODULE_START_USAGE();
+
         if(!fileExists(dataBasePath))
             createDirectory(dataBasePath);
 
         gatherData(dataBasePath + dataName);
+
+        KUKADU_MODULE_END_USAGE();
 
     }
 
@@ -1421,6 +1510,8 @@ namespace kukadu {
 
     void SensingController::gatherData(std::string completePath) {
 
+        KUKADU_MODULE_START_USAGE();
+
         vector<KUKADU_SHARED_PTR<ControlQueue> > castedQueues;
         for(int i = 0; i < queues.size(); ++i) {
             KUKADU_SHARED_PTR<ControlQueue> queue = queues.at(i);
@@ -1434,6 +1525,8 @@ namespace kukadu {
         store.startDataStorage(completePath);
         performCore();
         store.stopDataStorage();
+
+        KUKADU_MODULE_END_USAGE();
 
     }
 
@@ -1458,6 +1551,8 @@ namespace kukadu {
     }
 
     int SensingController::performClassification() {
+
+        KUKADU_MODULE_START_USAGE();
 
         if(!databaseAlreadySet)
             throw KukaduException("(SensingController::performClassification) database not defined yet");
@@ -1550,6 +1645,8 @@ namespace kukadu {
         if(cleanupThread && cleanupThread->joinable())
             cleanupThread->join();
 
+        KUKADU_MODULE_END_USAGE();
+
         return classifierRes;
 
     }
@@ -1575,6 +1672,8 @@ namespace kukadu {
     }
 
     double SensingController::createDataBase() {
+
+        KUKADU_MODULE_START_USAGE();
 
         if(!databaseAlreadySet)
             throw KukaduException("(SensingController::createDataBase) database not defined yet");
@@ -1678,15 +1777,21 @@ namespace kukadu {
         if(!isShutUp)
             cout << "(SensingController) determined a confidence of " << confidence << endl;
 
+        KUKADU_MODULE_END_USAGE();
+
         return confidence;
 
     }
 
     KUKADU_SHARED_PTR<ControllerResult> SensingController::performAction() {
 
+        KUKADU_MODULE_START_USAGE();
+
         prepare();
         performCore();
         cleanUp();
+
+        KUKADU_MODULE_END_USAGE();
 
         return KUKADU_SHARED_PTR<ControllerResult>();
 
