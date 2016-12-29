@@ -6,7 +6,6 @@
         #include <kukadu/vision/pcltools.hpp>
         #include <kukadu/vision/pcstdtrans.hpp>
         #include <kukadu/vision/arlocalizer.hpp>
-        #include <kukadu/vision/visioninterface.hpp>
     #endif
     #undef USEBOOST
 #endif

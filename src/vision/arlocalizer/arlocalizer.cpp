@@ -1,11 +1,11 @@
-#include <kukadu/vision/arlocalizer.hpp>
-#include <kukadu/utils/utils.hpp>
-
 #include <iostream>
 #include <opencv/cv.hpp>
 #include <opencv/highgui.h>
 #include <cv_bridge/cv_bridge.h>
+#include <kukadu/utils/utils.hpp>
 #include <sensor_msgs/image_encodings.h>
+#include <kukadu/vision/arlocalizer.hpp>
+#include <kukadu/storage/moduleusagesingleton.hpp>
 #include <kukadu/vision/arlocalizer/TrackerMultiMarkerImpl.h>
 #include <kukadu/vision/arlocalizer/TrackerSingleMarkerImpl.h>
 
@@ -24,22 +24,38 @@ namespace kukadu {
     }
 
     std::map<std::string, geometry_msgs::Pose> ArLocalizer::localizeObjects() {
-        return toolkit->getDetectedPoses();
+
+        KUKADU_MODULE_START_USAGE();
+
+        std::map<std::string, geometry_msgs::Pose> retVal = toolkit->getDetectedPoses();
+
+        KUKADU_MODULE_END_USAGE();
+
+        return retVal;
     }
 
     geometry_msgs::Pose ArLocalizer::localizeObject(std::string id) {
 
+        KUKADU_MODULE_START_USAGE();
+
         std::map<std::string, geometry_msgs::Pose> detectedPoses = toolkit->getDetectedPoses();
+
+        KUKADU_MODULE_END_USAGE();
+
         return detectedPoses[id];
 
     }
 
     std::vector<geometry_msgs::Pose> ArLocalizer::localizeObjects(std::vector<std::string> ids) {
 
+        KUKADU_MODULE_START_USAGE();
+
         std::vector<geometry_msgs::Pose> retPoses;
         std::map<std::string, geometry_msgs::Pose> detectedPoses = toolkit->getDetectedPoses();
         for(int i = 0; i < ids.size(); ++i)
             retPoses.push_back(detectedPoses[ids.at(i)]);
+
+        KUKADU_MODULE_END_USAGE();
 
         return retPoses;
 

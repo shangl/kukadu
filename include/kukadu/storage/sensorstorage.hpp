@@ -14,7 +14,6 @@
 #include <kukadu/utils/utils.hpp>
 #include <kukadu/types/sensordata.hpp>
 #include <kukadu/types/kukadutypes.hpp>
-#include <kukadu/vision/visioninterface.hpp>
 #include <kukadu/storage/storagesingleton.hpp>
 
 namespace kukadu {

@@ -261,8 +261,44 @@
 		#storeJointInfoToDatabase	201	1	2000
 		#readStorage				202	0
 [statistics]
-
+-kukadu
+		#computeUnalikeability		203	0
 [vision]
-
+-kukadu
+	+ArLocalizer
+		#localizeObject				204	1	2000
+		#localizeObjects			205	1	2000
+	+Kinect
+		#startSensing				206	0
+		#stopSensing				207	0
+		#getCurrentPointCloud		208	1	2000
+		#getCurrentColorPointCloud	209	1	2000
+		#getCurrentIntensityPointCloud	210	1	2000
+		#visualizeCurrentPc			211	1	2000
+		#storeCurrentPc				212	0
+	+PCLTools
+		#visualizePointCloud		213	1	2000
+		#stopVisualizationWindow	214	0
+		#runVisThread				215	0
+		#initializeVisualizationWindow	216	0
+		#fitBox						217	0
+		#segmentPlanar				218	0
+		#visDrawPlaneWithNormal		219	0
+		#updateVisualizedPointCloud	220	1	2000
+		#filterCluster				221	0
+	+PCTransformator
+		#removeRgb					220	1	2000
+		#fakeRgb					221	1	2000
+		#removeIntensity			222	1	2000
+	+PlanarCutTransformator
+		#transformPc				223	0
+		#setPlane					224	0
+	+OpenBoxFilter
+		#setBox						225	0
+		#transformPc				226	0
+	+ColorFilter
+		#transformPc				227	1	2000
+	+CustomLambdaFilter
+		#transformPc				228	1	2000
 [gui]
 

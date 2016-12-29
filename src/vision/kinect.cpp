@@ -5,6 +5,7 @@
 #include <tf/transform_listener.h>
 #include <kukadu/vision/kinect.hpp>
 #include <pcl_conversions/pcl_conversions.h>
+#include <kukadu/storage/moduleusagesingleton.hpp>
 
 using namespace std;
 using namespace pcl;
@@ -58,16 +59,31 @@ namespace kukadu {
     }
 
     KUKADU_SHARED_PTR<kukadu_thread> Kinect::startSensing() {
+
+        KUKADU_MODULE_START_USAGE();
+
         keepRunning = true;
         thr = KUKADU_SHARED_PTR<kukadu_thread>(new kukadu_thread(&Kinect::runThread, this));
         while(!this->isInitialized());
+
+        KUKADU_MODULE_END_USAGE();
+
         return thr;
     }
 
     void Kinect::stopSensing() {
+
+        KUKADU_MODULE_START_USAGE();
+
         keepRunning = false;
+        if(thr && thr->joinable())
+            thr->join();
+
+        KUKADU_MODULE_END_USAGE();
+
     }
 
+    // question to myself: why is this here???
     void Kinect::runThread() {
 
         isInit = true;
@@ -97,6 +113,8 @@ namespace kukadu {
     }
 
     sensor_msgs::PointCloud2::Ptr Kinect::getCurrentPointCloud() {
+
+        KUKADU_MODULE_START_USAGE();
 
         pcRequested = true;
 
@@ -129,16 +147,24 @@ namespace kukadu {
 
         pcMutex.unlock();
 
+        KUKADU_MODULE_END_USAGE();
+
         return retCloud;
 
     }
 
     pcl::PointCloud<pcl::PointXYZRGB>::Ptr Kinect::getCurrentColorPointCloud() {
-        return sensorMsgsPcToPclPc<pcl::PointCloud<PointXYZRGB>::Ptr, pcl::PointXYZRGB>(getCurrentPointCloud());
+        KUKADU_MODULE_START_USAGE();
+        pcl::PointCloud<pcl::PointXYZRGB>::Ptr retCloud = sensorMsgsPcToPclPc<pcl::PointCloud<PointXYZRGB>::Ptr, pcl::PointXYZRGB>(getCurrentPointCloud());
+        KUKADU_MODULE_END_USAGE();
+        return retCloud;
     }
 
     pcl::PointCloud<pcl::PointXYZI>::Ptr Kinect::getCurrentIntensityPointCloud() {
-        return sensorMsgsPcToPclPc<pcl::PointCloud<PointXYZI>::Ptr, pcl::PointXYZI>(getCurrentPointCloud());
+        KUKADU_MODULE_START_USAGE();
+        pcl::PointCloud<pcl::PointXYZI>::Ptr retCloud = sensorMsgsPcToPclPc<pcl::PointCloud<PointXYZI>::Ptr, pcl::PointXYZI>(getCurrentPointCloud());
+        KUKADU_MODULE_END_USAGE();
+        return retCloud;
     }
 
     std::string Kinect::getVisPubTopic() {
@@ -151,7 +177,9 @@ namespace kukadu {
     }
 
     void Kinect::visualizeCurrentPc() {
+        KUKADU_MODULE_START_USAGE();
         visPublisher.publish(getCurrentPointCloud());
+        KUKADU_MODULE_END_USAGE();
     }
 
     void Kinect::visualizeCurrentTransformedPc(KUKADU_SHARED_PTR<PCTransformator> transformator) {
@@ -163,7 +191,9 @@ namespace kukadu {
     }
 
     void Kinect::storeCurrentPc(std::string fileName) {
+        KUKADU_MODULE_START_USAGE();
         pcl::io::savePCDFile(fileName, sensorMsgsPcToPclPc2(*getCurrentPointCloud()), Eigen::Vector4f::Zero(), Eigen::Quaternionf::Identity(), true);
+        KUKADU_MODULE_END_USAGE();
     }
 
 }

@@ -12,6 +12,7 @@
 #include <pcl_conversions/pcl_conversions.h>
 #include <pcl/segmentation/sac_segmentation.h>
 #include <pcl/segmentation/extract_clusters.h>
+#include <kukadu/storage/moduleusagesingleton.hpp>
 #include <pcl/filters/statistical_outlier_removal.h>
 
 using namespace std;
@@ -26,18 +27,26 @@ namespace kukadu {
 	}
 
 	void PCLTools::visualizePointCloud(std::string id, pcl::PointCloud<pcl::PointXYZ>::Ptr pc) {
+        KUKADU_MODULE_START_USAGE();
         visualizePointCloud(id, PCTransformator::fakeRgb(pc));
+        KUKADU_MODULE_END_USAGE();
 	}
 
     void PCLTools::visualizePointCloud(std::string id, pcl::PointCloud<pcl::PointXYZI>::Ptr pc) {
+        KUKADU_MODULE_START_USAGE();
         visualizePointCloud(id, PCTransformator::removeIntensity(pc));
+        KUKADU_MODULE_END_USAGE();
     }
 
     void PCLTools::visualizePointCloud(std::string id, pcl::PointCloud<pcl::PointXYZRGBA>::Ptr pc) {
+        KUKADU_MODULE_START_USAGE();
         visualizePointCloud(id, pc);
+        KUKADU_MODULE_END_USAGE();
     }
 
     void PCLTools::visualizePointCloud(std::string id, pcl::PointCloud<pcl::PointXYZRGB>::Ptr pc) {
+
+        KUKADU_MODULE_START_USAGE();
 
         pair<string, PointCloud<PointXYZRGB>::Ptr> nextPcPair(id, pc);
         visPointClouds.push_back(nextPcPair);
@@ -50,18 +59,29 @@ namespace kukadu {
         }
         viewer->initCameraParameters();
 
+        KUKADU_MODULE_END_USAGE();
+
     }
 
 	void PCLTools::stopVisualizationWindow() {
 
+        KUKADU_MODULE_START_USAGE();
+
 		isVisInit = false;
 		keepShowingVis = false;
 
+        if(visThread && visThread->joinable())
+            visThread->join();
+
 		visPointClouds.clear();
+
+        KUKADU_MODULE_END_USAGE();
 
 	}
 
 	void PCLTools::runVisThread() {
+
+        KUKADU_MODULE_START_USAGE();
 
 		viewer = KUKADU_SHARED_PTR<pcl::visualization::PCLVisualizer>(new pcl::visualization::PCLVisualizer("3D Viewer"));
 		viewer->setBackgroundColor(0, 0, 0);
@@ -78,9 +98,13 @@ namespace kukadu {
 		isVisInit = false;
 		keepShowingVis = false;
 
+        KUKADU_MODULE_END_USAGE();
+
 	}
 
     KUKADU_SHARED_PTR<kukadu_thread> PCLTools::initializeVisualizationWindow() {
+
+        KUKADU_MODULE_START_USAGE();
 
 		keepShowingVis = true;
 
@@ -89,12 +113,16 @@ namespace kukadu {
 		while(!isVisInit)
 			s.sleep();
 
+        KUKADU_MODULE_END_USAGE();
+
 		return visThread;
 
 	}
 
 	// according to http://www.pcl-users.org/Finding-oriented-bounding-box-of-a-cloud-td4024616.html
     FitCube PCLTools::fitBox(PointCloud<PointXYZRGB>::Ptr cloud) {
+
+        KUKADU_MODULE_START_USAGE();
 
 		FitCube retCube;
         PCA<PointXYZRGB> pca;
@@ -134,11 +162,15 @@ namespace kukadu {
 		retCube.height = fabs(proj_max.y - proj_min.y);
 		retCube.depth = fabs(proj_max.z - proj_min.z);
 
+        KUKADU_MODULE_END_USAGE();
+
 		return retCube;
 
 	}
 
     PointCloud<PointXYZRGB>::Ptr PCLTools::segmentPlanar(PointCloud<PointXYZRGB>::Ptr cloud, bool negative) {
+
+        KUKADU_MODULE_START_USAGE();
 
 		// Create the segmentation object for the planar model and set all the parameters
         PointCloud<PointXYZRGB>::Ptr cloud_f(new PointCloud<PointXYZRGB>);
@@ -174,6 +206,8 @@ namespace kukadu {
 		extract.setNegative(negative);
 		extract.filter(*cloud_f);
 
+        KUKADU_MODULE_END_USAGE();
+
 		return cloud_f;
 
 	}
@@ -183,6 +217,8 @@ namespace kukadu {
 	}
 
 	void PCLTools::visDrawPlaneWithNormal(std::string id, arma::vec r0, arma::vec n) {
+
+        KUKADU_MODULE_START_USAGE();
 
 		pcl::ModelCoefficients plane_coeff;
 		plane_coeff.values.resize(4);
@@ -201,6 +237,8 @@ namespace kukadu {
 		p2.data[0] = newLineEndPoint(0); p2.data[1] = newLineEndPoint(1); p2.data[2] = newLineEndPoint(2);
 		viewer->addLine(p1, p2, id + "line");
 
+        KUKADU_MODULE_END_USAGE();
+
 	}
 
     void PCLTools::visDrawLine(std::string id, int pointX1, int pointY1, int pointZ1, int pointX2, int pointY2, int pointZ2) {
@@ -216,19 +254,27 @@ namespace kukadu {
     }
 
     void PCLTools::updateVisualizedPointCloud(std::string id, pcl::PointCloud<pcl::PointXYZRGB>::Ptr pc) {
+        KUKADU_MODULE_START_USAGE();
 		viewer->updatePointCloud(pc, id);
+        KUKADU_MODULE_END_USAGE();
 	}
 
     void PCLTools::updateVisualizedPointCloud(std::string id, pcl::PointCloud<pcl::PointXYZRGBA>::Ptr pc) {
+        KUKADU_MODULE_START_USAGE();
         viewer->updatePointCloud(pc, id);
+        KUKADU_MODULE_END_USAGE();
     }
 
     void PCLTools::updateVisualizedPointCloud(std::string id, pcl::PointCloud<pcl::PointXYZ>::Ptr pc) {
+        KUKADU_MODULE_START_USAGE();
         viewer->updatePointCloud(pc, id);
+        KUKADU_MODULE_END_USAGE();
     }
 
     void PCLTools::updateVisualizedPointCloud(std::string id, pcl::PointCloud<pcl::PointXYZI>::Ptr pc) {
+        KUKADU_MODULE_START_USAGE();
         viewer->updatePointCloud(PCTransformator::removeIntensity(pc), id);
+        KUKADU_MODULE_END_USAGE();
     }
 
 	void PCLTools::visDrawBox(std::string id, struct FitCube dim) {
@@ -236,6 +282,8 @@ namespace kukadu {
 	}
 
     pcl::PointCloud<pcl::PointXYZRGB>::Ptr PCLTools::filterCluster(pcl::PointCloud<pcl::PointXYZRGB>::Ptr cloud, bool negative) {
+
+        KUKADU_MODULE_START_USAGE();
 
         // Create the filtering object
         pcl::StatisticalOutlierRemoval<pcl::PointXYZRGB> sor;
@@ -291,6 +339,8 @@ namespace kukadu {
                 maxClusterSize = currentClusterSize;
             }
         }
+
+        KUKADU_MODULE_END_USAGE();
 
         return clusterPointers.at(maxClusterIdx);
 

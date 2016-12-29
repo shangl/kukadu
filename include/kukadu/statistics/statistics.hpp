@@ -1,10 +1,12 @@
 #ifndef KUKADU_STATISTICS_H
 #define KUKADU_STATISTICS_H
 
-#include <cmath>
-#include <queue>
 #include <vector>
 
-double computeUnalikeability(std::vector<int>& dist);
+namespace kukadu {
+
+    double computeUnalikeability(std::vector<int>& dist);
+
+}
 
 #endif

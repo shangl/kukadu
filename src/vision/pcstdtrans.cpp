@@ -9,6 +9,7 @@
 #include <pcl/filters/conditional_removal.h>
 #include <boost/accumulators/statistics.hpp>
 #include <boost/accumulators/accumulators.hpp>
+#include <kukadu/storage/moduleusagesingleton.hpp>
 
 using namespace pcl;
 using namespace std;
@@ -18,25 +19,43 @@ namespace kukadu {
 
     pcl::PointCloud<pcl::PointXYZ>::Ptr PCTransformator::removeRgb(pcl::PointCloud<pcl::PointXYZRGB>::Ptr toTransform) {
 
+        KUKADU_MODULE_START_USAGE();
+
         PointCloud<PointXYZ> retPc;
         pcl::copyPointCloud(*toTransform, retPc);
-        return retPc.makeShared();
+        pcl::PointCloud<pcl::PointXYZ>::Ptr retCloud = retPc.makeShared();
+
+        KUKADU_MODULE_END_USAGE();
+
+        return retCloud;
 
     }
 
     pcl::PointCloud<pcl::PointXYZRGB>::Ptr PCTransformator::fakeRgb(pcl::PointCloud<pcl::PointXYZ>::Ptr toTransform) {
 
+        KUKADU_MODULE_START_USAGE();
+
         PointCloud<PointXYZRGB> retPc;
         pcl::copyPointCloud(*toTransform, retPc);
-        return retPc.makeShared();
+        pcl::PointCloud<pcl::PointXYZRGB>::Ptr retCloud = retPc.makeShared();
+
+        KUKADU_MODULE_END_USAGE();
+
+        return retCloud;
 
     }
 
     pcl::PointCloud<pcl::PointXYZ>::Ptr PCTransformator::removeIntensity(pcl::PointCloud<pcl::PointXYZI>::Ptr toTransform) {
 
+        KUKADU_MODULE_START_USAGE();
+
         PointCloud<PointXYZ> retPc;
         pcl::copyPointCloud(*toTransform, retPc);
-        return retPc.makeShared();
+        pcl::PointCloud<pcl::PointXYZ>::Ptr retCloud = retPc.makeShared();
+
+        KUKADU_MODULE_END_USAGE();
+
+        return retCloud;
 
     }
 
@@ -45,15 +64,22 @@ namespace kukadu {
     }
 
     pcl::PointCloud<pcl::PointXYZ>::Ptr PlanarCutTransformator::transformPc(pcl::PointCloud<pcl::PointXYZ>::Ptr pc) {
-        return removeRgb(transformPc(fakeRgb(pc)));
+        KUKADU_MODULE_START_USAGE();
+        pcl::PointCloud<pcl::PointXYZ>::Ptr retCloud = removeRgb(transformPc(fakeRgb(pc)));
+        KUKADU_MODULE_END_USAGE();
+        return retCloud;
     }
 
     void PlanarCutTransformator::setPlane(arma::vec normalVec, arma::vec plainOriginalVec) {
+        KUKADU_MODULE_START_USAGE();
         this->normalVec = normalise(normalVec);
         this->plainOriginVec = plainOriginalVec;
+        KUKADU_MODULE_END_USAGE();
     }
 
     pcl::PointCloud<pcl::PointXYZRGB>::Ptr PlanarCutTransformator::transformPc(pcl::PointCloud<pcl::PointXYZRGB>::Ptr pc) {
+
+        KUKADU_MODULE_START_USAGE();
 
         pcl::PointCloud<pcl::PointXYZRGB> retPc;
 
@@ -73,7 +99,11 @@ namespace kukadu {
             ++pointIt;
         }
 
-        return retPc.makeShared();
+        pcl::PointCloud<pcl::PointXYZRGB>::Ptr retCloud = retPc.makeShared();
+
+        KUKADU_MODULE_END_USAGE();
+
+        return retCloud;
 
     }
 
@@ -82,16 +112,23 @@ namespace kukadu {
     }
 
     void OpenBoxFilter::setBox(arma::vec center, double xOffset, double yOffset) {
+        KUKADU_MODULE_START_USAGE();
         this->center = center;
         this->xOffset = xOffset;
         this->yOffset = yOffset;
+        KUKADU_MODULE_END_USAGE();
     }
 
     pcl::PointCloud<pcl::PointXYZ>::Ptr OpenBoxFilter::transformPc(pcl::PointCloud<pcl::PointXYZ>::Ptr pc) {
-        return removeRgb(transformPc(fakeRgb(pc)));
+        KUKADU_MODULE_START_USAGE();
+        pcl::PointCloud<pcl::PointXYZ>::Ptr retCloud = removeRgb(transformPc(fakeRgb(pc)));
+        KUKADU_MODULE_END_USAGE();
+        return retCloud;
     }
 
     pcl::PointCloud<pcl::PointXYZRGB>::Ptr OpenBoxFilter::transformPc(pcl::PointCloud<pcl::PointXYZRGB>::Ptr cloud) {
+
+        KUKADU_MODULE_START_USAGE();
 
         vec n = stdToArmadilloVec(createJointsVector(3, 0.0, 0.0, 1.0));
         vec r0 = stdToArmadilloVec(createJointsVector(3, 0.0, 0.0, center(2)));
@@ -122,6 +159,8 @@ namespace kukadu {
         planarCut.setPlane(n, r0);
         cloud = planarCut.transformPc(cloud);
 
+        KUKADU_MODULE_END_USAGE();
+
         return cloud;
 
     }
@@ -132,6 +171,8 @@ namespace kukadu {
     }
 
     pcl::PointCloud<pcl::PointXYZRGB>::Ptr ColorFilter::transformPc(pcl::PointCloud<pcl::PointXYZRGB>::Ptr cloud) {
+
+        KUKADU_MODULE_START_USAGE();
 
         pcl::PointCloud<pcl::PointXYZRGB>::Ptr cloud_filtered(new pcl::PointCloud<pcl::PointXYZRGB>());
 
@@ -158,6 +199,8 @@ namespace kukadu {
 
         // apply filter
         condrem.filter(*cloud_filtered);
+
+        KUKADU_MODULE_END_USAGE();
 
         return cloud_filtered;
 
@@ -211,6 +254,8 @@ namespace kukadu {
 
     pcl::PointCloud<pcl::PointXYZ>::Ptr CustomLambdaFilter::transformPc(pcl::PointCloud<pcl::PointXYZ>::Ptr cloud) {
 
+        KUKADU_MODULE_START_USAGE();
+
         func.initializeFilterForIteration(cloud);
 
         pcl::PointCloud<pcl::PointXYZ> retCloud;
@@ -222,11 +267,17 @@ namespace kukadu {
 
         }
 
-        return retCloud.makeShared();
+        pcl::PointCloud<pcl::PointXYZ>::Ptr retCloudPtr = retCloud.makeShared();
+
+        KUKADU_MODULE_END_USAGE();
+
+        return retCloudPtr;
 
     }
 
     pcl::PointCloud<pcl::PointXYZRGB>::Ptr CustomLambdaFilter::transformPc(pcl::PointCloud<pcl::PointXYZRGB>::Ptr cloud) {
+
+        KUKADU_MODULE_START_USAGE();
 
         func.initializeFilterForIteration(cloud);
 
@@ -239,7 +290,11 @@ namespace kukadu {
 
         }
 
-        return retCloud.makeShared();
+        pcl::PointCloud<pcl::PointXYZRGB>::Ptr retCloudPtr = retCloud.makeShared();
+
+        KUKADU_MODULE_END_USAGE();
+
+        return retCloudPtr;
 
     }
 
