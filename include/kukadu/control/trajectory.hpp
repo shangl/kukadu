@@ -151,6 +151,10 @@ namespace kukadu {
 
     private:
 
+    protected:
+
+        virtual KUKADU_SHARED_PTR<ControllerResult> executeInternal();
+
     public:
 
         TrajectoryExecutor();
@@ -159,8 +163,6 @@ namespace kukadu {
         virtual KUKADU_SHARED_PTR<ControllerResult> simulateTrajectory() = 0;
 
         virtual void setTrajectory(KUKADU_SHARED_PTR<Trajectory> traj) = 0;
-
-        KUKADU_SHARED_PTR<ControllerResult> performAction();
 
     };
 

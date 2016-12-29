@@ -30,11 +30,13 @@ namespace kukadu {
         static const int MODE_POOL_STORAGE = 1;
 #endif
 
+        bool statisticsActivated;
+
+        std::map<int, int> poolingWindowSizes;
+        std::map<int, int> pooledFunctionCount;
         std::map<int, std::string> moduleFunctionMap;
         std::map<std::string, std::pair<int, int> > supportedFunctions;
         std::map<int, std::pair<long long int, long long int> > pooledFunctionDuration;
-        std::map<int, int> pooledFunctionCount;
-        std::map<int, int> poolingWindowSizes;
 
         StorageSingleton& storage;
 
@@ -53,6 +55,9 @@ namespace kukadu {
     public :
 
         static ModuleUsageSingleton& get();
+
+        void startStatisticsModule();
+        void stopStatisticsModule();
 
         long long storeFunctionUsedStart(const int& functionId, const int& mode);
         void storeFunctionUsedEnd(const int& functionId, const int& mode, long long int& startTimestamp);

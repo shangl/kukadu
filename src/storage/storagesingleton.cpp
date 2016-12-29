@@ -274,7 +274,10 @@ namespace kukadu {
 
         }
 
+    }
 
+    void StorageSingleton::executeStatementPriority(std::string sql) {
+        actualExecuteStatements({sql});
     }
 
     void StorageSingleton::actualExecuteStatements(const std::vector<std::string>& statements) {

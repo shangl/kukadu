@@ -23,6 +23,7 @@ namespace kukadu {
 
         // is called by set simulation mode
         virtual void setSimulationModeInChain(bool simulationMode);
+        virtual KUKADU_SHARED_PTR<ControllerResult> executeInternal() = 0;
 
     public:
 
@@ -45,7 +46,7 @@ namespace kukadu {
 
         std::string getCaption();
 
-        virtual KUKADU_SHARED_PTR<ControllerResult> performAction() = 0;
+        virtual KUKADU_SHARED_PTR<ControllerResult> execute();
 
     };
 

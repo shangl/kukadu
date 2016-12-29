@@ -118,6 +118,8 @@ namespace kukadu {
         int getHapticMode();
         int getSimClassificationPrecision();
 
+        virtual KUKADU_SHARED_PTR<ControllerResult> executeInternal();
+
     public:
 
         SensingController(StorageSingleton& storage, KUKADU_SHARED_PTR<kukadu_mersenne_twister> generator, int hapticMode, std::string caption, std::vector<KUKADU_SHARED_PTR<ControlQueue> > queues, std::vector<KUKADU_SHARED_PTR<GenericHand> > hands,
@@ -151,8 +153,6 @@ namespace kukadu {
 
         std::vector<double> callClassifier();
 
-        KUKADU_SHARED_PTR<ControllerResult> performAction();
-
         static const int HAPTIC_MODE_TERMINAL = 0;
         static const int HAPTIC_MODE_CLASSIFIER = 1;
 
@@ -164,6 +164,10 @@ namespace kukadu {
 
         std::vector<KUKADU_SHARED_PTR<kukadu::Controller> > controllers;
 
+    protected:
+
+        virtual KUKADU_SHARED_PTR<ControllerResult> executeInternal();
+
     public:
 
         ConcatController(std::vector<KUKADU_SHARED_PTR<kukadu::Controller> > controllers);
@@ -172,13 +176,11 @@ namespace kukadu {
         virtual bool producesGrasp();
         virtual bool getSimulationMode();
 
-        virtual KUKADU_SHARED_PTR<ControllerResult> performAction();
-
         static std::string generateLabelFromControllers(std::vector<KUKADU_SHARED_PTR<kukadu::Controller> >& controllers);
 
     };
 
-    class ControllerActionClip : public ActionClip {
+    class ControllerActionClip : public ActionClip, public Controller {
 
     private:
 
@@ -186,16 +188,21 @@ namespace kukadu {
 
         KUKADU_SHARED_PTR<Controller> actionController;
 
+    protected:
+
+        virtual KUKADU_SHARED_PTR<ControllerResult> executeInternal();
+
     public:
 
         ControllerActionClip(int actionId, KUKADU_SHARED_PTR<Controller> actionController,
                               KUKADU_SHARED_PTR<kukadu_mersenne_twister> generator);
 
-        void performAction();
-
         virtual std::string toString() const;
 
         KUKADU_SHARED_PTR<Controller> getActionController();
+
+        virtual bool requiresGrasp();
+        virtual bool producesGrasp();
 
     };
 
@@ -232,6 +239,8 @@ namespace kukadu {
         bool storeReward;
         bool useCreativity;
         bool colPrevRewards;
+
+        bool generateNewGroundTruth;
 
         int stdPrepWeight;
         int maxEnvPathLength;
@@ -321,6 +330,8 @@ namespace kukadu {
                                           KUKADU_SHARED_PTR<kukadu::Clip> stateClip,
                                           KUKADU_SHARED_PTR<kukadu::ControllerActionClip> actionClip);
 
+        virtual KUKADU_SHARED_PTR<ControllerResult> executeInternal();
+
     public:
 
         ComplexController(std::string caption, std::string storePath,
@@ -374,8 +385,11 @@ namespace kukadu {
 
         KUKADU_SHARED_PTR<kukadu_mersenne_twister> getGenerator();
 
-        virtual KUKADU_SHARED_PTR<ControllerResult> performAction();
-        virtual KUKADU_SHARED_PTR<ControllerResult> performAction(bool cleanup, bool generateNewGroundTruth = true);
+        bool getCleanup();
+        bool getGenerateNewGroundTruth();
+
+        void setCleanup(bool cleanup);
+        void setGenerateNewGroundTruth(bool groundTruth);
 
         KUKADU_SHARED_PTR<ProjectiveSimulator> getProjectiveSimulator();
         KUKADU_SHARED_PTR<PerceptClip> generateNextPerceptClip(int immunity);

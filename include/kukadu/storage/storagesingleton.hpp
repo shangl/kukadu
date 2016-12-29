@@ -62,6 +62,8 @@ public:
 
     std::string getCachedLabel(std::string table, std::string labelIdCol, std::string labelCol, int labelId);
 
+    void executeStatementPriority(std::string sql);
+
     void executeStatement(std::string sql);
     void executeStatements(std::vector<std::string> sqls);
     KUKADU_SHARED_PTR<sql::ResultSet> executeQuery(std::string sql);

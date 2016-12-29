@@ -64,11 +64,30 @@ namespace kukadu {
         this->punishReward = punishReward;
         this->stdPrepWeight = stdPrepWeight;
 
+        cleanup = true;
+        generateNewGroundTruth = true;
+
         vector<int> distributionWeights; distributionWeights.push_back(100 - simulationFailingProbability); distributionWeights.push_back(simulationFailingProbability);
         simSuccDist = KUKADU_DISCRETE_DISTRIBUTION<int>(distributionWeights.begin(), distributionWeights.end());
 
         envReward = KUKADU_SHARED_PTR<EnvironmentReward>(new EnvironmentReward(generator, stdEnvironmentReward));
 
+    }
+
+    bool ComplexController::getCleanup() {
+        return cleanup;
+    }
+
+    bool ComplexController::getGenerateNewGroundTruth() {
+        return generateNewGroundTruth;
+    }
+
+    void ComplexController::setCleanup(bool cleanup) {
+        this->cleanup = cleanup;
+    }
+
+    void ComplexController::setGenerateNewGroundTruth(bool groundTruth) {
+        this->generateNewGroundTruth = groundTruth;
     }
 
     ComplexController::~ComplexController() {
@@ -671,15 +690,10 @@ namespace kukadu {
 
     }
 
-    KUKADU_SHARED_PTR<ControllerResult> ComplexController::performAction() {
-        return performAction(false);
-    }
-
-    KUKADU_SHARED_PTR<ControllerResult> ComplexController::performAction(bool cleanup, bool generateNewGroundTruth) {
+    KUKADU_SHARED_PTR<ControllerResult> ComplexController::executeInternal() {
 
         KUKADU_MODULE_START_USAGE();
 
-        this->cleanup = cleanup;
         KUKADU_SHARED_PTR<ControllerResult> ret = nullptr;
 
         // if simulation - set observed state as ground truth for each sensing action (it is not yet know, which sensing action will be selected)
@@ -845,10 +859,10 @@ namespace kukadu {
 
             if(!getSimulationMode()) {
                 auto sensedLabel = getClassLabel(sensingClip, stateClip);
-                cout << "(ComplexController::performAction) selected sensing action \"" << *sensingClip << "\" resulted in predicted class " << sensedLabel << " and preparation action \"" << *actionClip << "\"" << endl;
+                cout << "(ComplexController::execute) selected sensing action \"" << *sensingClip << "\" resulted in predicted class " << sensedLabel << " and preparation action \"" << *actionClip << "\"" << endl;
             }
 
-            KUKADU_DYNAMIC_POINTER_CAST<ControllerActionClip>(actionClip)->performAction();
+            KUKADU_DYNAMIC_POINTER_CAST<ControllerActionClip>(actionClip)->execute();
 
             auto sensedState = stateClip;
 
@@ -886,7 +900,7 @@ namespace kukadu {
 
                 if(!getSimulationMode()) {
                     auto sensedLabel = getClassLabel(sensingClip, sensedState);
-                    cout << "(ComplexController::performAction) classifier result is category " << sensedLabel << endl;
+                    cout << "(ComplexController::execute) classifier result is category " << sensedLabel << endl;
                 }
 
                 vector<int> stateVector{stateId, actionId};
@@ -979,7 +993,7 @@ namespace kukadu {
                     if(i % 2) {
                         if(!isShutUp)
                             cout << "(ComplexController) next action is " << *cl;
-                        KUKADU_DYNAMIC_POINTER_CAST<ControllerActionClip>(cl)->performAction();
+                        KUKADU_DYNAMIC_POINTER_CAST<ControllerActionClip>(cl)->execute();
                     } else {
                         if(!isShutUp)
                             cout << "(ComplexController) current state should be " << *cl;
@@ -1024,7 +1038,10 @@ namespace kukadu {
             this->setBoredom(false);
 
             // perform action again
-            ret = this->performAction(cleanup, false);
+            auto prevGenerateNewGroundTruth = generateNewGroundTruth;
+            setGenerateNewGroundTruth(false);
+            ret = execute();
+            setGenerateNewGroundTruth(prevGenerateNewGroundTruth);
             KUKADU_DYNAMIC_POINTER_CAST<HapticControllerResult>(ret)->setWasBored(true);
 
             // switching on boredom again
@@ -1328,14 +1345,14 @@ namespace kukadu {
 
     }
 
-    KUKADU_SHARED_PTR<ControllerResult> ConcatController::performAction() {
+    KUKADU_SHARED_PTR<ControllerResult> ConcatController::executeInternal() {
 
         KUKADU_MODULE_START_USAGE();
 
         KUKADU_SHARED_PTR<ControllerResult> lastResult;
         // execute all controllers
         for(auto& cont : controllers)
-            lastResult = cont->performAction();
+            lastResult = cont->execute();
 
         KUKADU_MODULE_END_USAGE();
 
@@ -1384,13 +1401,27 @@ namespace kukadu {
     }
 
     ControllerActionClip::ControllerActionClip(int actionId, KUKADU_SHARED_PTR<Controller> actionController,
-                          KUKADU_SHARED_PTR<kukadu_mersenne_twister> generator) : ActionClip(actionId, 1, actionController->getCaption(), generator) {
+                          KUKADU_SHARED_PTR<kukadu_mersenne_twister> generator) :
+        ActionClip(actionId, 1, actionController->getCaption(), generator),
+        Controller(actionController->getCaption(), actionController->getSimFailingProb()) {
+
         this->actionController = actionController;
+
     }
 
-    void ControllerActionClip::performAction() {
+    bool ControllerActionClip::requiresGrasp() {
+        return actionController->requiresGrasp();
+    }
+
+    bool ControllerActionClip::producesGrasp() {
+        return actionController->producesGrasp();
+    }
+
+    KUKADU_SHARED_PTR<ControllerResult> ControllerActionClip::executeInternal() {
 
         KUKADU_MODULE_START_USAGE();
+
+        KUKADU_SHARED_PTR<ControllerResult> retVal;
 
         if(!actionController->getSimulationMode()) {
 
@@ -1399,7 +1430,7 @@ namespace kukadu {
             cin >> executeIt;
 
             if(executeIt == 1) {
-                actionController->performAction();
+                retVal = actionController->execute();
             } else {
                 cout << "(ControllerActionClip) you decided not to perform the action; continue" << endl;
             }
@@ -1407,6 +1438,8 @@ namespace kukadu {
         }
 
         KUKADU_MODULE_END_USAGE();
+
+        return retVal;
 
     }
 
@@ -1783,7 +1816,7 @@ namespace kukadu {
 
     }
 
-    KUKADU_SHARED_PTR<ControllerResult> SensingController::performAction() {
+    KUKADU_SHARED_PTR<ControllerResult> SensingController::executeInternal() {
 
         KUKADU_MODULE_START_USAGE();
 

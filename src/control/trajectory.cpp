@@ -91,7 +91,7 @@ namespace kukadu {
 
     TrajectoryExecutor::TrajectoryExecutor() : Controller("simple trajectory executor", 0.0) { }
 
-    KUKADU_SHARED_PTR<ControllerResult> TrajectoryExecutor::performAction() {
+    KUKADU_SHARED_PTR<ControllerResult> TrajectoryExecutor::executeInternal() {
         KUKADU_MODULE_START_USAGE();
         auto retVal = executeTrajectory();
         KUKADU_MODULE_END_USAGE();

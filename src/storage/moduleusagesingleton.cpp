@@ -9,6 +9,7 @@ using namespace std;
 namespace kukadu {
 
     ModuleUsageSingleton::ModuleUsageSingleton() : storage(StorageSingleton::get()) {
+        statisticsActivated = true;
         loadStatisticsProperties(resolvePath("$KUKADU_HOME/cfg/core/module_stat.list"));
     }
 
@@ -19,6 +20,14 @@ namespace kukadu {
             if(pooledFunctions.second)
                 storePooledStatistics(pooledFunctions.first, currentFakeTime, true);
 
+    }
+
+    void ModuleUsageSingleton::startStatisticsModule() {
+        statisticsActivated = true;
+    }
+
+    void ModuleUsageSingleton::stopStatisticsModule() {
+        statisticsActivated = false;
     }
 
     void ModuleUsageSingleton::loadStatisticsProperties(const std::string file) {
@@ -139,8 +148,7 @@ namespace kukadu {
         try { auto namespaceIdTmp = storage.getCachedLabelId("software_namespaces", "id", "name", currentNamespace); namespaceId = namespaceIdTmp; } catch(KukaduException& ex) {}
 
         if(modId == ID_NOT_FOUND) {
-            storage.executeStatement("insert into software_modules(name) values('" + currentModule + "')");
-            storage.waitForEmptyCache();
+            storage.executeStatementPriority("insert into software_modules(name) values('" + currentModule + "')");
             modId = storage.getCachedLabelId("software_modules", "id", "name", currentModule);
         }
 
@@ -148,16 +156,13 @@ namespace kukadu {
 
             stringstream s;
             s << "insert into software_classes(module_id, name) values(" << modId << ", '" << currentClass << "')";
-
-            storage.executeStatement(s.str());
-            storage.waitForEmptyCache();
+            storage.executeStatementPriority(s.str());
             classId = storage.getCachedLabelId("software_classes", "id", "name", currentClass);
 
         }
 
         if(namespaceId == ID_NOT_FOUND) {
-            storage.executeStatement("insert into software_namespaces(name) values('" + currentNamespace + "')");
-            storage.waitForEmptyCache();
+            storage.executeStatementPriority("insert into software_namespaces(name) values('" + currentNamespace + "')");
             namespaceId = storage.getCachedLabelId("software_namespaces", "id", "name", currentNamespace);
         }
 
@@ -206,8 +211,7 @@ namespace kukadu {
             // if program reaches this point, function can be inserted safely
             stringstream s;
             s << "insert into software_functions(id, namespace_id, class_id, name, storage_mode) values(" << currentId << ", " << namespaceId << ", " << classId << ", '" << currentFunction << "', " << currentMode << ")";
-            storage.executeStatement(s.str());
-            storage.waitForEmptyCache();
+            storage.executeStatementPriority(s.str());
 
         }
 
@@ -267,35 +271,43 @@ namespace kukadu {
 
     long long int ModuleUsageSingleton::storeFunctionUsedStart(const int& functionId, const int& mode) {
 
-        static auto notFound = ID_NOT_FOUND;
+        if(statisticsActivated) {
 
-        if(functionId != notFound) {
+            static auto notFound = ID_NOT_FOUND;
 
-            auto currentTime = getCurrentTime();
+            if(functionId != notFound) {
 
-            if(mode == MODE_STD_STORAGE) {
-                stringstream s;
-                s << "insert into software_statistics_mode0(function_id, start_timestamp, end_timestamp) values(" << functionId << ", " << currentTime << ", NULL)";
-                storage.executeStatement(s.str());
-            } else if(mode == MODE_POOL_STORAGE)
-                storePooledStatistics(functionId, currentTime);
+                auto currentTime = getCurrentTime();
 
-            return currentTime;
+                if(mode == MODE_STD_STORAGE) {
+                    stringstream s;
+                    s << "insert into software_statistics_mode0(function_id, start_timestamp, end_timestamp) values(" << functionId << ", " << currentTime << ", NULL)";
+                    storage.executeStatement(s.str());
+                } else if(mode == MODE_POOL_STORAGE)
+                    storePooledStatistics(functionId, currentTime);
+
+                return currentTime;
+
+            }
 
         }
 
-        return 0;
+        return ID_NOT_FOUND;
 
     }
 
     void ModuleUsageSingleton::storeFunctionUsedEnd(const int& functionId, const int& mode, long long& startTimestamp) {
 
-        auto currentTime = getCurrentTime();
+        if(statisticsActivated && startTimestamp != ID_NOT_FOUND) {
 
-        stringstream s;
-        s << "update software_statistics_mode0 set end_timestamp = " << currentTime << " where function_id = " << functionId << " and start_timestamp = " << startTimestamp;
+            auto currentTime = getCurrentTime();
 
-        storage.executeStatement(s.str());
+            stringstream s;
+            s << "update software_statistics_mode0 set end_timestamp = " << currentTime << " where function_id = " << functionId << " and start_timestamp = " << startTimestamp;
+
+            storage.executeStatement(s.str());
+
+        }
 
     }
 

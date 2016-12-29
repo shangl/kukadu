@@ -22,6 +22,10 @@ namespace kukadu {
 
     }
 
+    KUKADU_SHARED_PTR<ControllerResult> Controller::execute() {
+        executeInternal();
+    }
+
     void Controller::initialize() {
 
     }

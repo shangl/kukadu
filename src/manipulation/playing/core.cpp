@@ -144,7 +144,13 @@ namespace kukadu {
         auto complSkill = KUKADU_DYNAMIC_POINTER_CAST<ComplexController>(registeredComplexControllers[skillId]);
 
         // for learning, it has to cleanup afterwards as well
-        auto result = KUKADU_DYNAMIC_POINTER_CAST<HapticControllerResult>(complSkill->performAction(true));
+        auto prevCleanup = complSkill->getCleanup();
+        auto prevGenerateNewGroundTruth = complSkill->getGenerateNewGroundTruth();
+        complSkill->setCleanup(true);
+        complSkill->setGenerateNewGroundTruth(true);
+        auto result = KUKADU_DYNAMIC_POINTER_CAST<HapticControllerResult>(complSkill->execute());
+        complSkill->setCleanup(prevCleanup);
+        complSkill->setGenerateNewGroundTruth(prevGenerateNewGroundTruth);
         if(computeMeanAndVariance) {
             auto meanAndVar = complSkill->computeEntropyMeanAndVariance(meanAndVarianceForSensingIds);
             std::map<std::string, std::vector<double> > entropies;
