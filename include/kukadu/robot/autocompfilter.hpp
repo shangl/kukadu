@@ -59,7 +59,7 @@ namespace kukadu {
         std::vector<std::pair<double,double> > limitsFilterMemory;
 
         int sign(double x);
-        void lowpassFilter(std::vector<double> &filter,std::vector<double> newVal, double forgettingFactor);
+        void lowpassFilter(std::vector<double>& filter,std::vector<double> newVal, double forgettingFactor);
         void limitsFilter(std::vector<std::pair<double,double> >& filter,std::vector<std::vector<double> > newDataSet, double forgettingFactorShrink, double forgettingFactorExpand, double percentageWithinLimits);
         std::vector<double> removeBias(std::vector<double> values,std::vector<double> bias);
         std::vector<double> scaleReadings(std::vector<double> msg, bool coupleLimits=false);

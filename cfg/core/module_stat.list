@@ -63,7 +63,7 @@
 		#generalizeDmp				34	0
 		#operator==					35	0
 	+TrajectoryExecutor
-		performAction				36	0
+		#performAction				36	0
 [learning]
 -kukadu
 	+Clusters
@@ -123,7 +123,93 @@
 	+TrajectoryBasedReward
 		#computeCost				73	0
 [robot]
-
+-kukadu
+	+Calibrator
+		#calibrateTfTransform		74	0
+		#calibrateAffineTransMatrix	75	0
+		#setReadDataFromFile		76	0
+		#startDataCollection		77	0
+		#endDataCollection			78	0
+		#calibrate					79	0
+	+StandardFilter
+		#updateFilter				80	1	1000
+		#getProcessedReading		81	1	1000
+	+AutoCompensatingFilter
+		#updateFilter				82	1	1000
+		#getProcessedReading		83	1	1000
+	+PlottingHand
+		#connectHand				84	0
+		#closeHand					85	0
+		#moveJoints					86	0
+		#disconnectHand				87	0
+		#getTactileSensing			88	1	1000
+	+KukieHand
+		#connectHand				89	0
+		#closeHand					90	0
+		#disconnectHand				91	0
+		#moveJoints					92	0
+		#getTactileSensing			93	1	1000
+	+StandardKinestheticTeacher
+		#startRecording				94	0
+		#stopRecording				95	0
+		#startTeaching				96	0
+		#stopTeaching				97	0
+	+Robot
+		#loadRobotJoints			98	0
+		#reload						99	0
+		#insertJoint				100	0
+		#deleteRobot				101	0
+		#deleteJoint				102	0
+		#loadRobotName				103	0
+		#loadRobotId				104	0
+		#loadDegOfFreedom			105	0
+		#createRobot				106	0
+	+ControlQueue
+		#getRobotId					107	0
+		#startQueue					108	0
+		#setFrcTrqSensorFilter		109	0
+		#getCurrentProcessedCartesianFrcTrq	110	0
+		#setCycleTime				111	0
+		#getAbsoluteCartForce		112	1	1000
+		#getCycleTime				113	0
+		#setNextTrajectory			114	0
+		#move						115	1	1000
+		#switchMode					116	0
+		#stopQueue					117	0
+		#getCurrentCartesianPos		118	1	1000
+		#synchronizeToQueue			119	1	1000
+		#stopCurrentMode			120	1	1000
+		#jointPtpNb					121	0
+		#cartesianPtpNb				122	0
+		#jointPtp					123	0
+		#cartesianPtp				124	0
+		#startRollBackMode			125	0
+		#stopJointRollBackMode		126	0
+		#rollBack					127	0
+	+KukieControlQueue
+		#setKinematics				128	0
+		#setPathPlanner				129	0
+		#moveCartesianRelativeWf	130	1	500
+		#getCurrentCartesianPose	131 1	500
+		#getCurrentMode				132	0
+		#getCurrentCartesianFrcTrq	133	1	500
+		#getCurrentJntFrc			134	1	500
+		#setAdditionalLoad			135	0
+		#setStiffness				136	0
+		#getCurrentJoints			137	1	500
+		#getCurrentCartesianPoseRf	138	1	500
+	+PlottingControlQueue
+		#setKinematics				148	0
+		#setPathPlanner				149	0
+		#moveCartesianRelativeWf	150	1	500
+		#getCurrentCartesianPose	151 1	500
+		#getCurrentMode				152	0
+		#getCurrentCartesianFrcTrq	153	1	500
+		#getCurrentJntFrc			154	1	500
+		#setAdditionalLoad			155	0
+		#setStiffness				156	0
+		#getCurrentJoints			157	1	500
+		#getCurrentCartesianPoseRf	158	1	500
 [statistics]
 
 [storage]

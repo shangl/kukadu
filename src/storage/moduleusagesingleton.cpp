@@ -180,8 +180,7 @@ namespace kukadu {
                 if(resCount == 0)
                     throw KukaduException("(ModuleUsageSingleton) sql problem occurred");
 
-            } else
-                insertNewFunction = false;
+            }
 
         }
         // if it is not in the database --> insert it

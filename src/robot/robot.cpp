@@ -1,6 +1,7 @@
 #include <sstream>
 #include <kukadu/robot/robot.hpp>
 #include <kukadu/utils/utils.hpp>
+#include <kukadu/storage/moduleusagesingleton.hpp>
 
 using namespace std;
 
@@ -31,6 +32,8 @@ namespace kukadu {
     // returns map[joint_id] = joint_name and maximum joint_id
     std::pair<std::map<int, std::string>, int> Robot::loadRobotJoints(StorageSingleton& dbStorage, int& robotId) {
 
+        KUKADU_MODULE_START_USAGE();
+
         int maxJointId = 0;
         map<int, string> jointsMap;
 
@@ -42,11 +45,16 @@ namespace kukadu {
             jointsMap[jointId] = queryRes->getString("joint_name");
             maxJointId = std::max(maxJointId, jointId);
         }
+
+        KUKADU_MODULE_END_USAGE();
+
         return {jointsMap, maxJointId};
 
     }
 
     void Robot::reload() {
+
+        KUKADU_MODULE_START_USAGE();
 
         this->robotId = loadRobotId(dbStorage, robotName);
         this->degOfFreedom = loadDegOfFreedom(dbStorage, robotId);
@@ -54,9 +62,15 @@ namespace kukadu {
         this->robotJoints = loadedJoints.first;
         this->maxJointId = loadedJoints.second;
 
+        KUKADU_MODULE_END_USAGE();
+
     }
 
     bool Robot::insertJoint(std::string jointName) {
+
+        KUKADU_MODULE_START_USAGE();
+
+        bool retVal = false;
 
         if(!mapContainsValue(robotJoints, jointName)) {
 
@@ -74,15 +88,19 @@ namespace kukadu {
 
             reload();
 
-            return true;
+            retVal = true;
 
         }
 
-        return false;
+        KUKADU_MODULE_END_USAGE();
+
+        return retVal;
 
     }
 
     bool Robot::deleteRobot() {
+
+        KUKADU_MODULE_START_USAGE();
 
         for(auto& joints : robotJoints)
             deleteJoint(joints.first);
@@ -91,6 +109,8 @@ namespace kukadu {
         s << "delete from robot where robot_id = " << robotId;
         dbStorage.executeStatement(s.str());
         dbStorage.waitForEmptyCache();
+
+        KUKADU_MODULE_END_USAGE();
 
         return true;
 
@@ -102,6 +122,10 @@ namespace kukadu {
 
     bool Robot::deleteJoint(int jointId) {
 
+        KUKADU_MODULE_START_USAGE();
+
+        bool retVal = false;
+
         if(robotJoints.find(jointId) != robotJoints.end()) {
 
             stringstream s;
@@ -109,15 +133,19 @@ namespace kukadu {
             dbStorage.executeStatement(s.str());
             dbStorage.waitForEmptyCache();
 
-            return true;
+            retVal = true;
 
         }
 
-        return false;
+        KUKADU_MODULE_END_USAGE();
+
+        return retVal;
 
     }
 
     std::string Robot::loadRobotName(StorageSingleton& dbStorage, const int& robotId) {
+
+        KUKADU_MODULE_START_USAGE();
 
         string robotName;
         stringstream s;
@@ -128,11 +156,16 @@ namespace kukadu {
             robotName = idResult->getString("robot_name");
         else
             throw KukaduException("(Robot) cannot find robot id in database");
+
+        KUKADU_MODULE_END_USAGE();
+
         return robotName;
 
     }
 
     int Robot::loadRobotId(StorageSingleton& dbStorage, const std::string& robotName) {
+
+        KUKADU_MODULE_START_USAGE();
 
         int robotId = 0;
         auto idQuery = "select robot_id from robot where robot_name=\"" + robotName + "\"";
@@ -141,6 +174,9 @@ namespace kukadu {
             robotId = idResult->getInt("robot_id");
         else
             throw KukaduException("(Robot) cannot find robot id in database");
+
+        KUKADU_MODULE_END_USAGE();
+
         return robotId;
 
     }
@@ -155,6 +191,8 @@ namespace kukadu {
 
     int Robot::loadDegOfFreedom(StorageSingleton& dbStorage, const int& robotId) {
 
+        KUKADU_MODULE_START_USAGE();
+
         int degOfFreedom = 0;
         stringstream s;
         s << "select deg_of_freedom from robot where robot_id = " << robotId;
@@ -164,6 +202,9 @@ namespace kukadu {
             degOfFreedom = idResult->getInt("deg_of_freedom");
         else
             throw KukaduException("(Robot) cannot find robot degrees of freedom in database");
+
+        KUKADU_MODULE_END_USAGE();
+
         return degOfFreedom;
 
     }
@@ -184,12 +225,20 @@ namespace kukadu {
     }
 
     bool Robot::createRobot(StorageSingleton& dbStorage, std::string robotName) {
+
+        KUKADU_MODULE_START_USAGE();
+
+        bool retVal = false;
         if(!checkRobotExists(dbStorage, robotName)) {
             dbStorage.executeStatement("insert into robot(robot_id, robot_name, deg_of_freedom) values(null, \"" + robotName + "\", 0)");
             dbStorage.waitForEmptyCache();
-            return true;
+            retVal = true;
         }
-        return false;
+
+        KUKADU_MODULE_END_USAGE();
+
+        return retVal;
+
     }
 
 }

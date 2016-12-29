@@ -75,7 +75,6 @@ namespace kukadu {
         virtual void stopTeaching();
         virtual void startRecording();
         virtual void stopRecording();
-        virtual void quit();
 
     };
 }

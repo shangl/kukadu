@@ -9,6 +9,7 @@
 #include <kukadu/types/kukadutypes.hpp>
 #include <iis_robot_dep/FriJointImpedance.h>
 #include <iis_robot_dep/CartesianImpedance.h>
+#include <kukadu/storage/moduleusagesingleton.hpp>
 
 using namespace std;
 using namespace arma;
@@ -18,10 +19,16 @@ namespace kukadu {
 
     int ControlQueue::getRobotId() {
 
+        KUKADU_MODULE_START_USAGE();
+
         if(!robot)
             robot = make_shared<Robot>(dbStorage, getRobotName());
 
-        return robot->getRobotId();
+        auto robotId = robot->getRobotId();
+
+        KUKADU_MODULE_END_USAGE();
+
+        return robotId;
 
     }
 
@@ -63,6 +70,8 @@ namespace kukadu {
 
     KUKADU_SHARED_PTR<kukadu_thread> ControlQueue::startQueue() {
 
+        KUKADU_MODULE_START_USAGE();
+
         setInitValues();
 
         frcTrqFilterUpdateThr = KUKADU_SHARED_PTR<kukadu_thread>(new kukadu_thread(&ControlQueue::frcTrqFilterUpdateHandler, this));
@@ -70,6 +79,8 @@ namespace kukadu {
 
         while(!this->isInitialized());
         startQueueHook();
+
+        KUKADU_MODULE_END_USAGE();
 
         return thr;
 
@@ -92,11 +103,16 @@ namespace kukadu {
     }
 
     void ControlQueue::setFrcTrqSensorFilter(KUKADU_SHARED_PTR<FrcTrqSensorFilter> myFilter) {
-        currentFrcTrqSensorFilter=myFilter;
+        KUKADU_MODULE_START_USAGE();
+        currentFrcTrqSensorFilter = myFilter;
+        KUKADU_MODULE_END_USAGE();
     }
 
     mes_result ControlQueue::getCurrentProcessedCartesianFrcTrq() {
-        return currentFrcTrqSensorFilter->getProcessedReading();
+        KUKADU_MODULE_START_USAGE();
+        auto reading = currentFrcTrqSensorFilter->getProcessedReading();
+        KUKADU_MODULE_END_USAGE();
+        return reading;
     }
 
     void ControlQueue::setDegOfFreedom(int degOfFreedom) {
@@ -108,25 +124,30 @@ namespace kukadu {
     }
 
     void ControlQueue::setCycleTime(double cycleTime) {
+        KUKADU_MODULE_START_USAGE();
         loadCycleTimeMutex.lock();
         this->sleepTime = cycleTime;
         this->desiredCycleTime = cycleTime;
         loadCycleTimeMutex.unlock();
+        KUKADU_MODULE_END_USAGE();
     }
 
     double ControlQueue::getAbsoluteCartForce() {
-
+        KUKADU_MODULE_START_USAGE();
         mes_result m = getCurrentCartesianFrcTrq();
         vec forces = m.joints.subvec(0, 2);
         vec prod = forces.t() * forces;
+        KUKADU_MODULE_END_USAGE();
         return sqrt(prod(0));
 
     }
 
     double ControlQueue::getCycleTime() {
+        KUKADU_MODULE_START_USAGE();
         loadCycleTimeMutex.lock();
         auto cycleTmp = desiredCycleTime;
         loadCycleTimeMutex.unlock();
+        KUKADU_MODULE_END_USAGE();
         return cycleTmp;
     }
 
@@ -151,17 +172,21 @@ namespace kukadu {
     }
 
     void ControlQueue::setNextTrajectory(std::vector<arma::vec> jointTrajectory) {
+        KUKADU_MODULE_START_USAGE();
         for(auto joint : jointTrajectory)
             move(joint);
         synchronizeToQueue(1);
+        KUKADU_MODULE_END_USAGE();
     }
 
     void ControlQueue::move(geometry_msgs::Pose pose) {
+        KUKADU_MODULE_START_USAGE();
         cartesianMovementQueue.push(pose);
+        KUKADU_MODULE_END_USAGE();
     }
 
     void ControlQueue::switchMode(int mode) {
-
+        KUKADU_MODULE_START_USAGE();
         if(ros::ok) {
             if(!isShutUp())
                 ROS_INFO("(ControlQueue) switching control mode");
@@ -171,7 +196,7 @@ namespace kukadu {
         } else
             if(!isShutUp())
                 ROS_INFO("(ControlQueue) ros error");
-
+        KUKADU_MODULE_END_USAGE();
     }
 
     void ControlQueue::setInitValuesInternal() {
@@ -194,8 +219,10 @@ namespace kukadu {
     }
 
     void ControlQueue::stopQueue() {
+        KUKADU_MODULE_START_USAGE();
         finish = 1;
         startingJoints = arma::vec(1);
+        KUKADU_MODULE_END_USAGE();
     }
 
     bool ControlQueue::isInitialized() {
@@ -203,10 +230,14 @@ namespace kukadu {
     }
 
     void ControlQueue::move(arma::vec joints) {
+        KUKADU_MODULE_START_USAGE();
         movementQueue.push(joints);
+        KUKADU_MODULE_END_USAGE();
     }
 
     mes_result ControlQueue::getCurrentCartesianPos() {
+
+        KUKADU_MODULE_START_USAGE();
 
         mes_result ret;
         ret.joints = vec(7);
@@ -218,6 +249,9 @@ namespace kukadu {
         ret.joints(5) = currentCartPose.orientation.z;
         ret.joints(6) = currentCartPose.orientation.w;
         ret.time = getCurrentTime();
+
+        KUKADU_MODULE_END_USAGE();
+
         return ret;
 
     }
@@ -227,6 +261,7 @@ namespace kukadu {
     }
 
     void ControlQueue::synchronizeToQueue(int maxNumJointsInQueue) {
+        KUKADU_MODULE_START_USAGE();
         ros::Rate r(1.0 / sleepTime);
         if(currentControlType == CONTROLQUEUE_JNT_IMP_MODE || currentControlType == CONTROLQUEUE_JNT_POS_MODE) {
             while(movementQueue.size() > maxNumJointsInQueue) {
@@ -237,12 +272,15 @@ namespace kukadu {
                 r.sleep();
             }
         }
+        KUKADU_MODULE_END_USAGE();
     }
 
     void ControlQueue::stopCurrentMode() {
+        KUKADU_MODULE_START_USAGE();
         switchMode(CONTROLQUEUE_STOP_MODE);
         switchMode(CONTROLQUEUE_JNT_POS_MODE);
         switchMode(CONTROLQUEUE_STOP_MODE);
+        KUKADU_MODULE_END_USAGE();
     }
 
     void ControlQueue::internalJointPtpCaller() {
@@ -251,8 +289,13 @@ namespace kukadu {
 
     KUKADU_SHARED_PTR<kukadu_thread> ControlQueue::jointPtpNb(arma::vec joints) {
 
+        KUKADU_MODULE_START_USAGE();
+
         internalJointPasser = joints;
         jointPtpThr = KUKADU_SHARED_PTR<kukadu_thread>(new kukadu_thread(&ControlQueue::internalJointPtpCaller, this));
+
+        KUKADU_MODULE_END_USAGE();
+
         return jointPtpThr;
 
     }
@@ -263,8 +306,13 @@ namespace kukadu {
 
     KUKADU_SHARED_PTR<kukadu_thread> ControlQueue::cartesianPtpNb(geometry_msgs::Pose pos) {
 
+        KUKADU_MODULE_START_USAGE();
+
         internalPosePasser = pos;
         cartPtpThr = KUKADU_SHARED_PTR<kukadu_thread>(new kukadu_thread(&ControlQueue::internalJointPtpCaller, this));
+
+        KUKADU_MODULE_END_USAGE();
+
         return jointPtpThr;
 
     }
@@ -374,6 +422,8 @@ namespace kukadu {
 
     std::vector<mes_result> ControlQueue::jointPtp(arma::vec joints) {
 
+        KUKADU_MODULE_START_USAGE();
+
         jointPtpRunning = true;
 
         if(!continueCollecting) {
@@ -393,11 +443,16 @@ namespace kukadu {
         }
 
         jointPtpRunning = false;
+
+        KUKADU_MODULE_END_USAGE();
+
         return collectedJoints;
 
     }
 
     std::vector<mes_result> ControlQueue::cartesianPtp(geometry_msgs::Pose pos, double maxForce) {
+
+        KUKADU_MODULE_START_USAGE();
 
         cartesianPtpRunning = true;
 
@@ -429,17 +484,28 @@ namespace kukadu {
         }
 
         cartesianPtpRunning = false;
+
+        KUKADU_MODULE_END_USAGE();
+
         return collectedJoints;
 
     }
 
     std::vector<mes_result> ControlQueue::cartesianPtp(geometry_msgs::Pose pos) {
 
-        return cartesianPtp(pos, DBL_MAX);
+        KUKADU_MODULE_START_USAGE();
+
+        auto retVal = cartesianPtp(pos, DBL_MAX);
+
+        KUKADU_MODULE_END_USAGE();
+
+        return retVal;
 
     }
 
     void ControlQueue::startRollBackMode(double possibleTime) {
+
+        KUKADU_MODULE_START_USAGE();
 
         rollBackQueue.clear();
         rollbackMode = true;
@@ -447,16 +513,24 @@ namespace kukadu {
         // buffer of 1.0 more second
         rollBackQueueSize = (int) ((possibleTime + 1.0) / getCycleTime());
 
+        KUKADU_MODULE_END_USAGE();
+
     }
 
     void ControlQueue::stopJointRollBackMode() {
 
+        KUKADU_MODULE_START_USAGE();
+
         rollbackMode = false;
         rollBackQueue.clear();
+
+        KUKADU_MODULE_END_USAGE();
 
     }
 
     void ControlQueue::rollBack(double time) {
+
+        KUKADU_MODULE_START_USAGE();
 
         rollbackMode = false;
         int rollBackCount = (int) (time / getCycleTime());
@@ -489,6 +563,8 @@ namespace kukadu {
         // wait until everything has been executed
         synchronizeToQueue(1);
         rollBackQueue.clear();
+
+        KUKADU_MODULE_END_USAGE();
 
     }
 
@@ -656,6 +732,8 @@ namespace kukadu {
 
     void KukieControlQueue::setKinematics(KUKADU_SHARED_PTR<Kinematics> kin) {
 
+        KUKADU_MODULE_START_USAGE();
+
         planAndKinMutex.lock();
 
         this->kin = kin;
@@ -663,9 +741,13 @@ namespace kukadu {
 
         planAndKinMutex.unlock();
 
+        KUKADU_MODULE_END_USAGE();
+
     }
 
     void KukieControlQueue::setPathPlanner(KUKADU_SHARED_PTR<PathPlanner> planner) {
+
+        KUKADU_MODULE_START_USAGE();
 
         planAndKinMutex.lock();
 
@@ -673,6 +755,8 @@ namespace kukadu {
         plannerInitialized = true;
 
         planAndKinMutex.unlock();
+
+        KUKADU_MODULE_END_USAGE();
 
     }
 
@@ -767,6 +851,8 @@ namespace kukadu {
     }
 
     geometry_msgs::Pose KukieControlQueue::getCurrentCartesianPoseRf() {
+        KUKADU_MODULE_START_USAGE();
+        KUKADU_MODULE_END_USAGE();
         return currentCartPoseRf;
     }
 
@@ -778,6 +864,8 @@ namespace kukadu {
 
     // relative pos in worldframe
     geometry_msgs::Pose KukieControlQueue::moveCartesianRelativeWf(geometry_msgs::Pose basePoseRf, geometry_msgs::Pose offset) {
+
+        KUKADU_MODULE_START_USAGE();
 
         double newTargetWorldPos[4] = {1, 1, 1, 1};
 
@@ -793,6 +881,8 @@ namespace kukadu {
 
         // publish robot frame pose to move
         move(basePoseRf);
+
+        KUKADU_MODULE_END_USAGE();
 
         return basePoseRf;
 
@@ -882,6 +972,9 @@ namespace kukadu {
 
     geometry_msgs::Pose KukieControlQueue::getCurrentCartesianPose() {
 
+        KUKADU_MODULE_START_USAGE();
+        KUKADU_MODULE_END_USAGE();
+
         return currCarts;
 
     }
@@ -907,10 +1000,16 @@ namespace kukadu {
     }
 
     int KukieControlQueue::getCurrentMode() {
+
+        KUKADU_MODULE_START_USAGE();
+        KUKADU_MODULE_END_USAGE();
+
         return impMode;
     }
 
     mes_result KukieControlQueue::getCurrentCartesianFrcTrq() {
+
+        KUKADU_MODULE_START_USAGE();
 
         mes_result ret;
 
@@ -919,6 +1018,8 @@ namespace kukadu {
         cartFrcTrqMutex.unlock();
 
         ret.time = getCurrentTime();
+
+        KUKADU_MODULE_END_USAGE();
 
         return ret;
 
@@ -930,10 +1031,14 @@ namespace kukadu {
 
     mes_result KukieControlQueue::getCurrentJntFrc() {
 
+        KUKADU_MODULE_START_USAGE();
+
         mes_result ret;
 
         ret.joints = currentJntFrqTrq;
         ret.time = getCurrentTime();
+
+        KUKADU_MODULE_END_USAGE();
 
         return ret;
 
@@ -1047,6 +1152,8 @@ namespace kukadu {
 
     void KukieControlQueue::setAdditionalLoad(float loadMass, float loadPos) {
 
+        KUKADU_MODULE_START_USAGE();
+
         if(isRealRobot) {
 
             std_msgs::Float32MultiArray msg;
@@ -1068,9 +1175,13 @@ namespace kukadu {
                 ROS_INFO("(setAdditionalLoad) this functionality is not available in simulator - ignored");
         }
 
+        KUKADU_MODULE_END_USAGE();
+
     }
 
     void KukieControlQueue::setStiffness(float cpstiffnessxyz, float cpstiffnessabc, float cpdamping, float cpmaxdelta, float maxforce, float axismaxdeltatrq) {
+
+        KUKADU_MODULE_START_USAGE();
 
         if(isRealRobot) {
             iis_robot_dep::CartesianImpedance imp;
@@ -1096,16 +1207,25 @@ namespace kukadu {
                 ROS_INFO("(setStiffness) this functionality is not available in simulator - ignored");
         }
 
+        KUKADU_MODULE_END_USAGE();
+
     }
 
     mes_result KukieControlQueue::getCurrentJoints() {
+
+        KUKADU_MODULE_START_USAGE();
+
         mes_result res;
         res.time = getCurrentTime();
         res.joints = currJoints;
+
+        KUKADU_MODULE_END_USAGE();
+
         return res;
     }
 
     void KukieControlQueue::safelyDestroy() {
+
     }
 
     PlottingControlQueue::PlottingControlQueue(StorageSingleton& storage, std::string robotName, std::string referenceFrame, std::string linkName, double timeStep) : ControlQueue(storage, robotName, timeStep) {
@@ -1151,22 +1271,31 @@ namespace kukadu {
     }
 
     void PlottingControlQueue::rollBack(double time) {
+        KUKADU_MODULE_START_USAGE();
+        KUKADU_MODULE_END_USAGE();
     //    throw KukaduException("(PlottingControlQueue) roll back mode not supported");
     }
 
     void PlottingControlQueue::stopJointRollBackMode() {
+        KUKADU_MODULE_START_USAGE();
+        KUKADU_MODULE_END_USAGE();
     //    throw KukaduException("(PlottingControlQueue) roll back mode not supported");
     }
 
     void PlottingControlQueue::startJointRollBackMode(double possibleTime) {
+        KUKADU_MODULE_START_USAGE();
+        KUKADU_MODULE_END_USAGE();
     //    throw KukaduException("(PlottingControlQueue) roll back mode not supported");
     }
 
     void PlottingControlQueue::setJntPtpThresh(double thresh) {
-
+        KUKADU_MODULE_START_USAGE();
+        KUKADU_MODULE_END_USAGE();
     }
 
     mes_result PlottingControlQueue::getCurrentCartesianFrcTrq() {
+
+        KUKADU_MODULE_START_USAGE();
 
         mes_result ret;
         vec frcTrq(6);
@@ -1175,11 +1304,15 @@ namespace kukadu {
         ret.joints = frcTrq;
         ret.time = getCurrentTime();
 
+        KUKADU_MODULE_END_USAGE();
+
         return ret;
 
     }
 
     mes_result PlottingControlQueue::getCurrentJntFrc() {
+
+        KUKADU_MODULE_START_USAGE();
 
         mes_result ret;
         vec frcTrq(getDegreesOfFreedom());
@@ -1187,6 +1320,8 @@ namespace kukadu {
 
         ret.joints = frcTrq;
         ret.time = getCurrentTime();
+
+        KUKADU_MODULE_END_USAGE();
 
         return ret;
 
@@ -1196,25 +1331,23 @@ namespace kukadu {
         return startJoints;
     }
 
-    void PlottingControlQueue::addJointsPosToQueue(arma::vec joints) {
-        currJoints = joints;
-        currTime += (long) (getCycleTime() * 1e3);
-    }
-
     void PlottingControlQueue::addCartesianPosToQueue(geometry_msgs::Pose pose) {
         fakeCurrentPose = pose;
     }
 
     void PlottingControlQueue::switchMode(int mode) {
-
+        KUKADU_MODULE_START_USAGE();
+        KUKADU_MODULE_END_USAGE();
     }
 
     void PlottingControlQueue::submitNextJointMove(arma::vec joints) {
-
+        KUKADU_MODULE_START_USAGE();
+        KUKADU_MODULE_END_USAGE();
     }
 
     void PlottingControlQueue::submitNextCartMove(geometry_msgs::Pose pose) {
-
+        KUKADU_MODULE_START_USAGE();
+        KUKADU_MODULE_END_USAGE();
     }
 
     bool PlottingControlQueue::stopQueueWhilePtp() {
@@ -1226,9 +1359,13 @@ namespace kukadu {
     }
 
     void PlottingControlQueue::stopCurrentMode() {
+        KUKADU_MODULE_START_USAGE();
+        KUKADU_MODULE_END_USAGE();
     }
 
     void PlottingControlQueue::synchronizeToControlQueue(int maxNumJointsInQueue) {
+        KUKADU_MODULE_START_USAGE();
+        KUKADU_MODULE_END_USAGE();
     }
 
     void PlottingControlQueue::setStartingJoints(arma::vec joints) {
@@ -1257,27 +1394,37 @@ namespace kukadu {
     }
 
     void PlottingControlQueue::setAdditionalLoad(float loadMass, float loadPos) {
+        KUKADU_MODULE_START_USAGE();
+        KUKADU_MODULE_END_USAGE();
     }
 
     void PlottingControlQueue::setStiffness(float cpstiffnessxyz, float cpstiffnessabc, float cpdamping, float cpmaxdelta, float maxforce, float axismaxdeltatrq) {
+        KUKADU_MODULE_START_USAGE();
+        KUKADU_MODULE_END_USAGE();
     }
 
     mes_result PlottingControlQueue::getCurrentCartesianPos() {
+        KUKADU_MODULE_START_USAGE();
         mes_result res;
         res.time = 0.0;
         res.joints = stdToArmadilloVec(createJointsVector(7, fakeCurrentPose.position.x, fakeCurrentPose.position.y, fakeCurrentPose.position.z,
                                                           fakeCurrentPose.orientation.x, fakeCurrentPose.orientation.y, fakeCurrentPose.orientation.z, fakeCurrentPose.orientation.w));
+        KUKADU_MODULE_END_USAGE();
         return res;
     }
 
     geometry_msgs::Pose PlottingControlQueue::getCurrentCartesianPose() {
+        KUKADU_MODULE_START_USAGE();
+        KUKADU_MODULE_END_USAGE();
         return fakeCurrentPose;
     }
 
     mes_result PlottingControlQueue::getCurrentJoints() {
+        KUKADU_MODULE_START_USAGE();
         mes_result res;
         res.time = getCurrentTime();
         res.joints = currJoints;
+        KUKADU_MODULE_END_USAGE();
         return res;
     }
 

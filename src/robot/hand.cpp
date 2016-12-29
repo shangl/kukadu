@@ -4,6 +4,7 @@
 #include <kukadu/robot/kukiehand.hpp>
 #include <std_msgs/Float64MultiArray.h>
 #include <iis_robot_dep/TactileMatrix.h>
+#include <kukadu/storage/moduleusagesingleton.hpp>
 
 using namespace std;
 using namespace arma;
@@ -20,15 +21,29 @@ namespace kukadu {
         this->patchDimensions = patchDimensions;
     }
 
-    void PlottingHand::connectHand() { }
+    void PlottingHand::connectHand() {
+        KUKADU_MODULE_START_USAGE();
+        KUKADU_MODULE_END_USAGE();
+    }
 
-    void PlottingHand::closeHand(double percentage, double velocity) { }
+    void PlottingHand::closeHand(double percentage, double velocity) {
+        KUKADU_MODULE_START_USAGE();
+        KUKADU_MODULE_END_USAGE();
+    }
 
-    void PlottingHand::moveJoints(arma::vec joints) { }
+    void PlottingHand::moveJoints(arma::vec joints) {
+        KUKADU_MODULE_START_USAGE();
+        KUKADU_MODULE_END_USAGE();
+    }
 
-    void PlottingHand::disconnectHand() { }
+    void PlottingHand::disconnectHand() {
+        KUKADU_MODULE_START_USAGE();
+        KUKADU_MODULE_END_USAGE();
+    }
 
     std::vector<arma::mat> PlottingHand::getTactileSensing() {
+
+        KUKADU_MODULE_START_USAGE();
 
         std::vector<arma::mat> retSensing;
         for(int i = 0; i < sensingPatchCount; ++i) {
@@ -36,6 +51,9 @@ namespace kukadu {
             dummyPatch.fill(0.0);
             retSensing.push_back(dummyPatch);
         }
+
+        KUKADU_MODULE_END_USAGE();
+
         return retSensing;
 
     }
@@ -241,9 +259,15 @@ namespace kukadu {
 
     void KukieHand::connectHand() {
         // nothing to do when using ros
+
+        KUKADU_MODULE_START_USAGE();
+        KUKADU_MODULE_END_USAGE();
+
     }
 
     void KukieHand::closeHand(double percentage, double velocity) {
+
+        KUKADU_MODULE_START_USAGE();
 
         if(percentage >= 0.0 && percentage <= 1.1) {
 
@@ -277,11 +301,15 @@ namespace kukadu {
             throw KukaduException(msg.c_str());
         }
 
+        KUKADU_MODULE_END_USAGE();
+
     }
 
     void KukieHand::disconnectHand() {
 
         // nothing to do when using ros
+        KUKADU_MODULE_START_USAGE();
+        KUKADU_MODULE_END_USAGE();
 
     }
 
@@ -311,6 +339,8 @@ namespace kukadu {
 
     void KukieHand::moveJoints(arma::vec positions) {
 
+        KUKADU_MODULE_START_USAGE();
+
         auto ignoreJoint = SDH_IGNORE_JOINT;
         std::vector<double> stdPos = armadilloToStdVec(positions);
         std_msgs::Float64MultiArray newJoints;
@@ -339,14 +369,20 @@ namespace kukadu {
 
         }
 
+        KUKADU_MODULE_END_USAGE();
+
     }
 
     std::vector<arma::mat> KukieHand::getTactileSensing() {
+
+        KUKADU_MODULE_START_USAGE();
 
         std::vector<arma::mat> ret;
         tactileMutex.lock();
             ret = currentTactileReadings;
         tactileMutex.unlock();
+
+        KUKADU_MODULE_END_USAGE();
 
         return ret;
 

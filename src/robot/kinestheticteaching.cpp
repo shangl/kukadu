@@ -2,6 +2,7 @@
 #include <kukadu/robot/queue.hpp>
 #include <kukadu/robot/kukiequeue.hpp>
 #include <kukadu/robot/kinestheticteaching.hpp>
+#include <kukadu/storage/moduleusagesingleton.hpp>
 
 using namespace std;
 using namespace arma;
@@ -20,7 +21,6 @@ namespace kukadu {
 
     }
 
-
     void StandardKinestheticTeacher::init() {
 
         qThread = robotinoQueue->startQueue();
@@ -29,33 +29,37 @@ namespace kukadu {
             robotinoQueue->switchMode(KukieControlQueue::KUKA_JNT_POS_MODE);
         }
 
-        moveThread =std::make_shared<std::thread>(&StandardKinestheticTeacher::teachingThreadHandler, this);
-
     }
 
 
     void StandardKinestheticTeacher::generateNextCommand() {
 
-        auto currentJointState=robotinoQueue->getCurrentJoints().joints;
-        auto diff = getNextDifferentialCommand(mvKin->getJacobian(),currentJointState,JACOBIAN);
-        if (isDifferentialCommandSafe(diff,currentJointState))
-            robotinoQueue->move(currentJointState +diff); // cout << "next command: " <<  currentJointState + diff << endl;
-        else
-            cout << "not safe command" << endl;
+        auto currentJointState = robotinoQueue->getCurrentJoints().joints;
+        auto diff = getNextDifferentialCommand(mvKin->getJacobian(), currentJointState, JACOBIAN);
+        if (isDifferentialCommandSafe(diff, currentJointState))
+            robotinoQueue->move(currentJointState + diff);
 
     }
 
     void StandardKinestheticTeacher::startRecording() {
 
+        KUKADU_MODULE_START_USAGE();
+
         store->setExportMode(SensorStorage::STORE_RBT_CART_POS | SensorStorage::STORE_RBT_JNT_POS);
         deleteDirectory(recordingPath);
         store->startDataStorage(recordingPath);
+
+        KUKADU_MODULE_END_USAGE();
 
     }
 
     void StandardKinestheticTeacher::stopRecording() {
 
+        KUKADU_MODULE_START_USAGE();
+
         store->stopDataStorage();
+
+        KUKADU_MODULE_END_USAGE();
 
     }
 
@@ -179,6 +183,7 @@ namespace kukadu {
             myVec.at(i) *= ARM_ALLJOINTS_MOVING_MULTIPLIER;
         return myVec;
     }
+
     Eigen::VectorXd StandardKinestheticTeacher::stdToEigenVec(std::vector<double> myVec) {
         int n = myVec.size();
         Eigen::VectorXd temp(n);
@@ -222,40 +227,37 @@ namespace kukadu {
         return (x >= 0.0) ? 1: -1;
     }
 
-
-
     void StandardKinestheticTeacher::startTeaching() {
+
+        KUKADU_MODULE_START_USAGE();
+
         teacherRunning = true;
+        moveThread = std::make_shared<std::thread>(&StandardKinestheticTeacher::teachingThreadHandler, this);
+
+        KUKADU_MODULE_END_USAGE();
+
     }
 
     void StandardKinestheticTeacher::stopTeaching() {
+
+        KUKADU_MODULE_START_USAGE();
+
         teacherRunning = false;
-    }
-
-    void StandardKinestheticTeacher::teachingThreadHandler() {
-        ros::Rate myRate(50);
-        while(1) {
-            if (teacherRunning)
-                generateNextCommand();
-
-            myRate.sleep();
-
-        }
-
-    }
-
-    void StandardKinestheticTeacher::quit() {
-        teacherRunning = false;
-        robotinoQueue->stopQueue();
-
         if(moveThread && moveThread->joinable())
             moveThread->join();
 
-        if(filterThread && filterThread->joinable())
-            filterThread->join();
+        KUKADU_MODULE_END_USAGE();
 
-        if(qThread && qThread->joinable())
-            qThread->join();
+    }
+
+    void StandardKinestheticTeacher::teachingThreadHandler() {
+
+        ros::Rate myRate(50);
+        while(teacherRunning) {
+            generateNextCommand();
+            myRate.sleep();
+        }
+
     }
 
 }

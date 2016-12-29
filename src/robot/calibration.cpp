@@ -6,6 +6,7 @@
 #include <kukadu/utils/utils.hpp>
 #include <kukadu/robot/calibration.hpp>
 #include <kukadu/utils/kukadutokenizer.hpp>
+#include <kukadu/storage/moduleusagesingleton.hpp>
 
 using namespace std;
 using namespace arma;
@@ -27,12 +28,19 @@ namespace kukadu {
 
     tf::Transform Calibrator::calibrateTfTransform() {
 
+        KUKADU_MODULE_START_USAGE();
+
         tf::Transform retTf = affineTransMatrixToTf(calibrateAffineTransMatrix());
+
+        KUKADU_MODULE_END_USAGE();
+
         return retTf;
 
     }
 
     arma::mat Calibrator::calibrateAffineTransMatrix() {
+
+        KUKADU_MODULE_START_USAGE();
 
         pair<mat, vec> calibration = calibrate();
 
@@ -43,6 +51,8 @@ namespace kukadu {
                 retMat(i, j) = calibration.first(i, j);
         }
         retMat(3, 3) = 1.0;
+
+        KUKADU_MODULE_END_USAGE();
 
         return retMat;
 
@@ -75,10 +85,16 @@ namespace kukadu {
     }
 
     void CameraCalibrator::setReadDataFromFile(std::string file) {
+
+        KUKADU_MODULE_START_USAGE();
+
         if(inStream.is_open())
             inStream.close();
         inStream.open(file.c_str());
         readFromFile = true;
+
+        KUKADU_MODULE_END_USAGE();
+
     }
 
     geometry_msgs::Pose CameraCalibrator::getPoseFromLine(const std::string& line) {
@@ -239,6 +255,8 @@ namespace kukadu {
 
     void CameraCalibrator::startDataCollection() {
 
+        KUKADU_MODULE_START_USAGE();
+
         if(!readFromFile && !queue)
             throw KukaduException("(CameraCalibrator) you must either read the data from a file or provide a valid control queue");
 
@@ -250,9 +268,13 @@ namespace kukadu {
         runDataCollectionThread = true;
         collectionThread = kukadu_thread(&CameraCalibrator::dataCollectionRunner, this);
 
+        KUKADU_MODULE_END_USAGE();
+
     }
 
     void CameraCalibrator::endDataCollection() {
+
+        KUKADU_MODULE_START_USAGE();
 
         runDataCollectionThread = false;
 
@@ -261,6 +283,8 @@ namespace kukadu {
 
         if(storeDataToFile)
             outFile.close();
+
+        KUKADU_MODULE_END_USAGE();
 
     }
 
@@ -294,6 +318,8 @@ namespace kukadu {
 
     std::pair<arma::mat, arma::vec> CameraCalibrator::calibrate() {
 
+        KUKADU_MODULE_START_USAGE();
+
         dataMutex.lock();
 
             auto normalizedCameraCentroid = centroidCamera / (double) dataPointCount;
@@ -318,6 +344,8 @@ namespace kukadu {
             vec t = -r * normalizedCameraCentroid + normalizedRobotCentroid;
 
         dataMutex.unlock();
+
+        KUKADU_MODULE_END_USAGE();
 
         return {r, t};
 
