@@ -39,8 +39,11 @@ namespace kukadu {
         StorageSingleton& storage;
 
         ModuleUsageSingleton();
+        ~ModuleUsageSingleton();
 
         std::string combineIdentifiers(const std::string& currentNamespace, const std::string& currentClass, const std::string& currentFunction);
+
+        void storePooledStatistics(const int& functionId, const long long int& currentTime, const bool finalize = false);
 
         void loadStatisticsProperties(const std::string file);
         void addNewFunction(const std::string& currentModule, const std::string& currentNamespace, const std::string& currentClass, const std::string& currentFunction, const int& currentId, const int& currentMode);

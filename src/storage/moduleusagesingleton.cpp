@@ -12,6 +12,15 @@ namespace kukadu {
         loadStatisticsProperties(resolvePath("$KUKADU_HOME/cfg/core/module_stat.list"));
     }
 
+    ModuleUsageSingleton::~ModuleUsageSingleton() {
+
+        long long int currentFakeTime = 0;
+        for(auto& pooledFunctions : pooledFunctionCount)
+            if(pooledFunctions.second)
+                storePooledStatistics(pooledFunctions.first, currentFakeTime, true);
+
+    }
+
     void ModuleUsageSingleton::loadStatisticsProperties(const std::string file) {
 
         ifstream is;
@@ -223,6 +232,38 @@ namespace kukadu {
 
     }
 
+    void ModuleUsageSingleton::storePooledStatistics(const int& functionId, const long long& currentTime, const bool finalize) {
+
+        // the function functionId is called the first time
+        auto& pooledData = pooledFunctionDuration[functionId];
+        auto& pooledCount = pooledFunctionCount[functionId];
+
+        if(pooledData.first == 0) {
+
+            pooledData.first = currentTime;
+            pooledData.second = currentTime;
+            pooledCount = 0;
+
+        } else if((currentTime - pooledData.first) > poolingWindowSizes[functionId] || finalize) {
+
+            // if the window is already bigger than the window --> store it to the database and make a new window
+            stringstream s;
+            s << "insert into software_statistics_mode1(function_id, start_timestamp, end_timestamp, cnt) values(" << functionId << ", " << pooledData.first << ", " << pooledData.second << ", " << pooledCount << ")";
+            storage.executeStatement(s.str());
+            pooledData.first = currentTime;
+            pooledData.second = currentTime;
+            pooledCount = 0;
+
+        } else {
+
+            // if the window is still open, count more
+            ++pooledCount;
+            pooledData.second = currentTime;
+
+        }
+
+    }
+
     long long int ModuleUsageSingleton::storeFunctionUsedStart(const int& functionId, const int& mode) {
 
         static auto notFound = ID_NOT_FOUND;
@@ -235,38 +276,8 @@ namespace kukadu {
                 stringstream s;
                 s << "insert into software_statistics_mode0(function_id, start_timestamp, end_timestamp) values(" << functionId << ", " << currentTime << ", NULL)";
                 storage.executeStatement(s.str());
-            } else if(mode == MODE_POOL_STORAGE) {
-
-                // the function functionId is called the first time
-                auto& pooledData = pooledFunctionDuration[functionId];
-                auto& pooledCount = pooledFunctionCount[functionId];
-
-                if(pooledData.first == 0) {
-
-                    pooledData.first = currentTime;
-                    pooledData.second = currentTime;
-                    pooledCount = 0;
-
-                } else if((currentTime - pooledData.first) > poolingWindowSizes[functionId]) {
-
-                    // if the window is already bigger than the window --> store it to the database and make a new window
-                    stringstream s;
-                    s << "insert into software_statistics_mode1(function_id, start_timestamp, end_timestamp, cnt) values(" << functionId << ", " << pooledData.first << ", " << pooledData.second << ", " << pooledCount << ")";
-                    storage.executeStatement(s.str());
-                    pooledData.first = currentTime;
-                    pooledData.second = currentTime;
-                    pooledCount = 0;
-
-                } else {
-
-                    // if the window is still open, count more
-                    ++pooledCount;
-                    pooledData.second = currentTime;
-
-                }
-
-
-            }
+            } else if(mode == MODE_POOL_STORAGE)
+                storePooledStatistics(functionId, currentTime);
 
             return currentTime;
 
