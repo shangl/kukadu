@@ -37,8 +37,6 @@
 		#computeFk					20	0
 		#planJointTrajectory		21	0
 		#planCartesianTrajectory	22	0
-[gui]
-
 [control]
 -kukadu
 	+Controller
@@ -251,8 +249,20 @@
 		#computeRewardInternal		192	0
 		#getDimensionality			193	0
 		#copySensingControllers		194	1	2000
+[storage]
+-kukadu
+	+SensorStorage
+		#setExportMode				195	0
+		#startDataStorage			196	0
+		#stopDataStorage			197	0
+		#stopDataStorage			198	0
+		#store						199	0
+		#storeCartInformation		200	1	2000
+		#storeJointInfoToDatabase	201	1	2000
+		#readStorage				202	0
 [statistics]
 
-[storage]
-
 [vision]
+
+[gui]
+

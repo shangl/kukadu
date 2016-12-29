@@ -1,6 +1,7 @@
 #include <sstream>
 #include <kukadu/types/sensordata.hpp>
 #include <kukadu/storage/sensorstorage.hpp>
+#include <kukadu/storage/moduleusagesingleton.hpp>
 
 using namespace std;
 using namespace arma;
@@ -27,6 +28,8 @@ namespace kukadu {
     }
 
     void SensorStorage::setExportMode(int mode) {
+
+        KUKADU_MODULE_START_USAGE();
 
         storeCartAbsFrc = storeTime = storeJntPos = storeCartPos = storeJntFrc = storeCartFrcTrq = storeHndJntPos = storeHndTctle = false;
 
@@ -55,9 +58,13 @@ namespace kukadu {
         if(mode & STORE_CART_ABS_FRC)
             storeCartAbsFrc = true;
 
+        KUKADU_MODULE_END_USAGE();
+
     }
 
     long long int SensorStorage::startDataStorage(std::string folderName) {
+
+        KUKADU_MODULE_START_USAGE();
 
         long long int startTime = 0;
         if(queues.size())
@@ -100,11 +107,15 @@ namespace kukadu {
         } else
             throw KukaduException("(SensorStorage) no queues and hands to store");
 
+        KUKADU_MODULE_END_USAGE();
+
         return startTime;
 
     }
 
     void SensorStorage::stopDataStorage() {
+
+        KUKADU_MODULE_START_USAGE();
 
         stopped = true;
         if(thr && thr->joinable())
@@ -117,6 +128,8 @@ namespace kukadu {
         for(int i = 0; i < handStreams.size(); ++i)
             handStreams.at(i)->close();
         handStreams.clear();
+
+        KUKADU_MODULE_END_USAGE();
 
     }
 
@@ -147,14 +160,24 @@ namespace kukadu {
     }
 
     void SensorStorage::store() {
+
+        KUKADU_MODULE_START_USAGE();
         storeData(true, std::vector<KUKADU_SHARED_PTR<SensorData> >(), queueStreams);
+        KUKADU_MODULE_END_USAGE();
+
     }
 
     void SensorStorage::storeData(bool storeHeader, KUKADU_SHARED_PTR<SensorData> data, std::string file) {
+
+        KUKADU_MODULE_START_USAGE();
         storeData(storeHeader, std::vector<KUKADU_SHARED_PTR<SensorData> >{data}, {file});
+        KUKADU_MODULE_END_USAGE();
+
     }
 
     void SensorStorage::storeData(bool storeHeader, std::vector<KUKADU_SHARED_PTR<SensorData> > data, std::vector<std::string> files) {
+
+        KUKADU_MODULE_START_USAGE();
 
         std::vector<KUKADU_SHARED_PTR<ofstream> > queueStreams;
 
@@ -170,9 +193,13 @@ namespace kukadu {
         }
         storeData(storeHeader, data, queueStreams);
 
+        KUKADU_MODULE_END_USAGE();
+
     }
 
     void SensorStorage::storeData(bool storeHeader, std::vector<KUKADU_SHARED_PTR<SensorData> > data, std::vector<KUKADU_SHARED_PTR<std::ofstream> > queueStreams) {
+
+        KUKADU_MODULE_START_USAGE();
 
         bool storeToFile = (queueStreams.size()) ? true : false;
 
@@ -462,9 +489,13 @@ namespace kukadu {
 
         }
 
+        KUKADU_MODULE_END_USAGE();
+
     }
 
     void SensorStorage::storeCartInformation(const int& robotId, const long long int& timeStamp, const std::string& referenceFrame, const std::string& linkName, geometry_msgs::Pose& cartesianPose, const arma::vec& frcTrq, const double& absFrc, const bool& storePos, const bool& storeFrc, const bool& storeAbsFrc) {
+
+        KUKADU_MODULE_START_USAGE();
 
         if(storePos || storeFrc || storeAbsFrc) {
 
@@ -513,10 +544,14 @@ namespace kukadu {
 
         }
 
+        KUKADU_MODULE_END_USAGE();
+
     }
 
     void SensorStorage::storeJointInfoToDatabase(const int& robotId, const long long int& timeStamp, std::vector<int>& jointIds, arma::vec& jointPositions,
                                                  arma::vec& jointVelocities, arma::vec& jointAccelerations, arma::vec& jointForces) {
+
+        KUKADU_MODULE_START_USAGE();
 
         bool usePos = false;
         if(jointPositions.n_elem > 0)
@@ -552,9 +587,13 @@ namespace kukadu {
 
         dbStorage.executeStatements(statements);
 
+        KUKADU_MODULE_END_USAGE();
+
     }
 
     KUKADU_SHARED_PTR<SensorData> SensorStorage::readStorage(KUKADU_SHARED_PTR<ControlQueue> queue, std::string file) {
+
+        KUKADU_MODULE_START_USAGE();
 
         vector<string> jointNames = queue->getJointNames();
 
@@ -766,6 +805,9 @@ namespace kukadu {
                                                                                          timeInMilliSeconds, jointPos, jointFrcs, cartPos, cartAbsFrcs, cartFrcTrqs));
 
         inFile.close();
+
+        KUKADU_MODULE_END_USAGE();
+
         return dat;
 
     }
