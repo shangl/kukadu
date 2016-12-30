@@ -59,14 +59,15 @@ namespace kukadu {
         Gnuplot* g1 = NULL;
 
         if(isFirstIteration) {
+
             rollout = getInitialRollout();
             isFirstIteration = false;
 
-            DMPExecutor dmpsim(rollout.at(0), movementQueue);
+            DMPExecutor dmpSim(rollout.at(0), movementQueue);
 
             // TODO: switch this to new class scheme (not explicetely use DMPExecutor, but trajectory executor)
-            lastUpdateRes = dmpsim.simulateTrajectory(0, rollout.at(0)->getTmax(), tolAbsErr, tolRelErr);
-
+            dmpSim.setExecutionMode(TrajectoryExecutor::SIMULATE_ROBOT);
+            lastUpdateRes = dmpSim.execute();
 
         }
         else {
@@ -84,7 +85,8 @@ namespace kukadu {
 
             if(doSimulation) {
 
-                KUKADU_SHARED_PTR<ControllerResult> simRes = dmpsim.simulateTrajectory(0, rollout.at(k)->getTmax(), tolAbsErr, tolRelErr);
+                dmpsim.setExecutionMode(TrajectoryExecutor::SIMULATE_ROBOT);
+                KUKADU_SHARED_PTR<ControllerResult> simRes = dmpsim.execute();
                 dmpResult.push_back(simRes);
 
             }
@@ -104,7 +106,8 @@ namespace kukadu {
                     movementQueue->setStiffness(2200, 300, 1.0, 15000, 150, 2.0);
                     KUKADU_SHARED_PTR<kukadu_thread> thr = movementQueue->startQueue();
 
-                    dmpResult.push_back(dmpsim.executeTrajectory(ac, 0, rollout.at(k)->getTmax(), tolAbsErr, tolRelErr));
+                    dmpsim.setExecutionMode(TrajectoryExecutor::EXECUTE_ROBOT);
+                    dmpResult.push_back(dmpsim.execute());
 
                     movementQueue->stopQueue();
 
@@ -122,7 +125,8 @@ namespace kukadu {
 
         lastUpdate = updateStep();
         DMPExecutor dmpsim(lastUpdate, movementQueue);
-        lastUpdateRes = dmpsim.simulateTrajectory(0, lastUpdate->getTmax(), tolAbsErr, tolRelErr);
+        dmpsim.setExecutionMode(TrajectoryExecutor::SIMULATE_ROBOT);
+        lastUpdateRes = dmpsim.execute();
 
         double lastUpdateCost = cost->computeCost(lastUpdateRes);
 
@@ -159,7 +163,8 @@ namespace kukadu {
         KUKADU_SHARED_PTR<JointDMPLearner> dmpLearner = KUKADU_SHARED_PTR<JointDMPLearner>(new JointDMPLearner(az, bz, times, data->getJointPos()));
         KUKADU_SHARED_PTR<Dmp> finalDmp = dmpLearner->fitTrajectories();
         DMPExecutor execDmp(finalDmp, pcq);
-        executionResult = execDmp.executeTrajectory(0, 0, finalDmp->getTmax(), 0.1, 0.1);
+        execDmp.setExecutionMode(TrajectoryExecutor::EXECUTE_ROBOT);
+        executionResult = execDmp.execute();
 
     }
 

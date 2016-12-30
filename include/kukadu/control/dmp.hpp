@@ -46,19 +46,19 @@ namespace kukadu {
         std::vector<DMPBase> dmpBase;
         std::vector<arma::mat> designMatrices;
 
-        double tau;
         double az;
         double bz;
         double ax;
         double ac;
+        double tau;
+        double tmax;
         double tolAbsErr;
         double tolRelErr;
-        double tmax;
 
+        void initializeG();
         void initializeY0();
         void initializeDy0();
         void initializeDdy0();
-        void initializeG();
 
         void construct(std::vector<arma::vec>& fitYs, std::vector<arma::vec>& dmpCoeffs, std::vector<DMPBase>& dmpBase, std::vector<arma::mat>& designMatrices,
             double tau, double az, double bz, double ax, double ac, double dmpStepSize, double tolAbsErr, double tolRelErr);
@@ -415,7 +415,6 @@ namespace kukadu {
         bool executionRunning;
         bool executionStoppingDone;
 
-        int simulate;
         int degofFreedom;
         int suppressMessages;
         int externalErrorUsing;
@@ -483,6 +482,7 @@ namespace kukadu {
         double computeDistance(const arma::vec yDes, arma::vec yCurr);
 
         KUKADU_SHARED_PTR<ControllerResult> executeDMP(double tStart, double tEnd, double tolAbsErr, double tolRelErr);
+        void construct(KUKADU_SHARED_PTR<ControlQueue> execQueue, int suppressMessages);
 
     protected:
 
@@ -491,15 +491,18 @@ namespace kukadu {
 
         virtual double addTerm(double t, const double* currentDesiredYs, int jointNumber, KUKADU_SHARED_PTR<ControlQueue> queue);
 
+        KUKADU_SHARED_PTR<ControllerResult> executeTrajectory();
+        KUKADU_SHARED_PTR<ControllerResult> simulateTrajectory();
+        KUKADU_SHARED_PTR<ControllerResult> simulateTrajectory(double tStart, double tEnd, double tolAbsErr, double tolRelErr);
+        KUKADU_SHARED_PTR<ControllerResult> executeTrajectory(double ac, double tStart, double tEnd, double tolAbsErr, double tolRelErr);
+
     public:
 
         /**
          * \brief constructor
          * \param dmp the dmp that should be executed
          */
-        DMPExecutor(KUKADU_SHARED_PTR<Dmp> dmp, KUKADU_SHARED_PTR<ControlQueue> execQueue);
-        DMPExecutor(KUKADU_SHARED_PTR<Trajectory> dmp, KUKADU_SHARED_PTR<ControlQueue> execQueue);
-        DMPExecutor(KUKADU_SHARED_PTR<Dmp> dmp, KUKADU_SHARED_PTR<ControlQueue> execQueue, int suppressMessages);
+        DMPExecutor(KUKADU_SHARED_PTR<Dmp> dmp, KUKADU_SHARED_PTR<ControlQueue> execQueue, int suppressMessages = 1);
 
         int usesExternalError();
         void destroyIntegration();
@@ -511,7 +514,6 @@ namespace kukadu {
         void doRollBackOnMaxForceEvent(bool doRollback);
         void setTrajectory(KUKADU_SHARED_PTR<Trajectory> traj);
         void initializeIntegration(double tStart, double tolAbsErr, double tolRelErr);
-        void construct(KUKADU_SHARED_PTR<Dmp> dmp, KUKADU_SHARED_PTR<ControlQueue> execQueue, int suppressMessages);
         void  setRollbackTime(double rollbackTime);
 
         virtual bool requiresGrasp();
@@ -520,14 +522,6 @@ namespace kukadu {
         double getExternalError();
 
         arma::vec doIntegrationStep(double ac);
-
-        KUKADU_SHARED_PTR<ControllerResult> executeTrajectory();
-        KUKADU_SHARED_PTR<ControllerResult> simulateTrajectory();
-        KUKADU_SHARED_PTR<ControllerResult> simulateTrajectory(double tStart, double tEnd, double tolAbsErr, double tolRelErr);
-        KUKADU_SHARED_PTR<ControllerResult> executeTrajectory(double ac, double tStart, double tEnd, double tolAbsErr, double tolRelErr);
-
-        static const int SIMULATE_DMP = 1;
-        static const int EXECUTE_ROBOT = 2;
 
         static const int KUKADU_EXEC_JOINT = 1;
         static const int KUKADU_EXEC_CART = 2;

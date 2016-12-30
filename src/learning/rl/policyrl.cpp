@@ -72,7 +72,8 @@ namespace kukadu {
                 simulationQueue->jointPtp(startingJoints);
                 trajEx->setTrajectory(rollout.at(k));
 
-                simRes = trajEx->simulateTrajectory();
+                trajEx->setExecutionMode(TrajectoryExecutor::SIMULATE_ROBOT);
+                simRes = trajEx->execute();
 
                 if(!doExecution) {
 
@@ -95,7 +96,8 @@ namespace kukadu {
                     simulationQueue->jointPtp(startingJoints);
 
                     trajEx->setTrajectory(rollout.at(k));
-                    simRes = trajEx->executeTrajectory();
+                    trajEx->setExecutionMode(TrajectoryExecutor::EXECUTE_ROBOT);
+                    simRes = trajEx->execute();
                     useRollout = true;
 
                 } else {
@@ -144,9 +146,11 @@ namespace kukadu {
 
             KUKADU_SHARED_PTR<ControllerResult> simRes;
             if(doSimulation) {
+
                 cout << "(DMPReinforcer) simulating update" << endl;
                 simulationQueue->jointPtp(startingJoints);
-                simRes = trajEx->simulateTrajectory();
+                trajEx->setExecutionMode(TrajectoryExecutor::SIMULATE_ROBOT);
+                simRes = trajEx->execute();
 
                 if(!doExecution) {
                     lastUpdateRes = simRes;
@@ -163,7 +167,8 @@ namespace kukadu {
                     cout << "(DMPReinforcer) executing update" << endl;
 
                     simulationQueue->jointPtp(startingJoints);
-                    simRes = trajEx->executeTrajectory();
+                    trajEx->setExecutionMode(TrajectoryExecutor::EXECUTE_ROBOT);
+                    simRes = trajEx->execute();
 
                 } else {
                 }

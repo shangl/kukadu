@@ -89,11 +89,49 @@ namespace kukadu {
 
     TrajectoryGenerator::TrajectoryGenerator() { }
 
-    TrajectoryExecutor::TrajectoryExecutor() : Controller("simple trajectory executor", 0.0) { }
+    TrajectoryExecutor::TrajectoryExecutor(KUKADU_SHARED_PTR<Trajectory> trajectory) : Controller("simple trajectory executor", 0.0) {
+        this->trajectory = trajectory;
+        this->tEnd = trajectory->getTmax();
+    }
+
+    KUKADU_SHARED_PTR<Trajectory> TrajectoryExecutor::getTrajectory() {
+        return trajectory;
+    }
+
+    void TrajectoryExecutor::setExecutionMode(enum execution_modes mode) {
+        this->executionMode = mode;
+    }
+
+    void TrajectoryExecutor::setTStart(double tStartInSeconds) {
+        this->tStart = tStartInSeconds;
+    }
+
+    void TrajectoryExecutor::setTEnd(double tEndInSeconds) {
+        this->tEnd = tEndInSeconds;
+    }
+
+    double TrajectoryExecutor::getTEnd() {
+        return tEnd;
+    }
+
+    double TrajectoryExecutor::getTStart() {
+        return tStart;
+    }
+
+    TrajectoryExecutor::execution_modes TrajectoryExecutor::getExecutionMode() {
+        return executionMode;
+    }
 
     KUKADU_SHARED_PTR<ControllerResult> TrajectoryExecutor::executeInternal() {
         KUKADU_MODULE_START_USAGE();
-        auto retVal = executeTrajectory();
+
+        KUKADU_SHARED_PTR<ControllerResult> retVal;
+        if(executionMode == EXECUTE_ROBOT)
+            retVal = executeTrajectory();
+        else if(executionMode == SIMULATE_ROBOT)
+            retVal = simulateTrajectory();
+        else
+            throw KukaduException("(TrajectoryExecutor) execution mode is not supported");
         KUKADU_MODULE_END_USAGE();
         return retVal;
     }

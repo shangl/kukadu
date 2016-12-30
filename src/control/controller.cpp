@@ -23,7 +23,15 @@ namespace kukadu {
     }
 
     KUKADU_SHARED_PTR<ControllerResult> Controller::execute() {
+
+        KUKADU_MODULE_START_USAGE();
+
+        cout << typeid(*this).name() << endl;
+
         executeInternal();
+
+        KUKADU_MODULE_END_USAGE();
+
     }
 
     void Controller::initialize() {

@@ -549,22 +549,9 @@ namespace kukadu {
 
     }
 
-    DMPExecutor::DMPExecutor(KUKADU_SHARED_PTR<Dmp> traj, KUKADU_SHARED_PTR<ControlQueue> execQueue) {
+    DMPExecutor::DMPExecutor(KUKADU_SHARED_PTR<Dmp> traj, KUKADU_SHARED_PTR<ControlQueue> execQueue, int suppressMessages) : TrajectoryExecutor(traj) {
 
-        construct(traj, execQueue, 1);
-
-    }
-
-    DMPExecutor::DMPExecutor(KUKADU_SHARED_PTR<Dmp> traj, KUKADU_SHARED_PTR<ControlQueue> execQueue, int suppressMessages) {
-
-        construct(traj, execQueue, suppressMessages);
-
-    }
-
-    DMPExecutor::DMPExecutor(KUKADU_SHARED_PTR<Trajectory> traj, KUKADU_SHARED_PTR<ControlQueue> execQueue) {
-
-        KUKADU_SHARED_PTR<Dmp> dmp = KUKADU_DYNAMIC_POINTER_CAST<Dmp>(traj);
-        construct(dmp, execQueue, suppressMessages);
+        construct(execQueue, suppressMessages);
 
     }
 
@@ -584,8 +571,11 @@ namespace kukadu {
 
     void DMPExecutor::setTrajectory(KUKADU_SHARED_PTR<Trajectory> traj) {
 
+        if(typeid(*traj).name() != typeid(Dmp).name())
+            throw KukaduException("(DMPExecutor) passed trajectory must be a dmp");
+
         KUKADU_SHARED_PTR<Dmp> dmp = KUKADU_DYNAMIC_POINTER_CAST<Dmp>(traj);
-        construct(dmp, controlQueue, suppressMessages);
+        construct(controlQueue, suppressMessages);
 
         vec_t.clear();
         vec_y.clear();
@@ -615,7 +605,6 @@ namespace kukadu {
         KUKADU_MODULE_START_USAGE();
 
         this->ac = ac;
-        this->simulate = EXECUTE_ROBOT;
         auto retVal = this->executeDMP(tStart, tEnd, tolAbsErr, tolRelErr);
 
         KUKADU_MODULE_END_USAGE();
@@ -627,7 +616,6 @@ namespace kukadu {
 
         KUKADU_MODULE_START_USAGE();
 
-        this->simulate = SIMULATE_DMP;
         KUKADU_SHARED_PTR<ControllerResult> ret = this->executeDMP(tStart, tEnd, tolAbsErr, tolRelErr);
 
         KUKADU_MODULE_END_USAGE();
@@ -668,16 +656,16 @@ namespace kukadu {
         KUKADU_MODULE_END_USAGE();
     }
 
+
+
     KUKADU_SHARED_PTR<ControllerResult> DMPExecutor::simulateTrajectory() {
 
-        this->simulate = SIMULATE_DMP;
         return this->executeDMP(0, dmp->getTmax(), dmp->getTolAbsErr(), dmp->getTolRelErr());
 
     }
 
     KUKADU_SHARED_PTR<ControllerResult> DMPExecutor::executeTrajectory() {
 
-        this->simulate = EXECUTE_ROBOT;
         return this->executeDMP(0, dmp->getTmax(), dmp->getTolAbsErr(), dmp->getTolRelErr());
 
     }
@@ -734,7 +722,7 @@ namespace kukadu {
 
             retY.push_back(nextJoints);
 
-            if(simulate == EXECUTE_ROBOT)
+            if(getExecutionMode() == EXECUTE_ROBOT)
                 controlQueue->synchronizeToQueue(1);
 
             if(!isCartesian)
@@ -1044,7 +1032,9 @@ namespace kukadu {
 
     /****************** private functions ******************************/
 
-    void DMPExecutor::construct(KUKADU_SHARED_PTR<Dmp> traj, KUKADU_SHARED_PTR<ControlQueue> execQueue, int suppressMessages) {
+    void DMPExecutor::construct(KUKADU_SHARED_PTR<ControlQueue> execQueue, int suppressMessages) {
+
+        dmp = KUKADU_DYNAMIC_POINTER_CAST<Dmp>(getTrajectory());
 
         // max force safety is switched of
         doRollback = true;
@@ -1056,24 +1046,22 @@ namespace kukadu {
 
         rollbackTime = 1.0;
 
-        this->isCartesian = traj->isCartesian();
+        this->isCartesian = dmp->isCartesian();
         this->controlQueue = execQueue;
 
-        this->dmp = traj;
         this->ac = 0.0;
         this->vecYs = arma::vec(1);
 
-        this->dmpCoeffs = traj->getDmpCoeffs();
-        this->baseDef = traj->getDmpBase();
+        this->dmpCoeffs = dmp->getDmpCoeffs();
+        this->baseDef = dmp->getDmpBase();
 
-        this->tau = traj->getTau(); this->az = traj->getAz(); this->bz = traj->getBz(); this->ax = traj->getAx(); this->gs = traj->getG();
-        this->y0s = this->currentJoints = traj->getY0(); this->dy0s = traj->getDy0(); this->ddy0s = traj->getDdy0();
+        this->tau = dmp->getTau(); this->az = dmp->getAz(); this->bz = dmp->getBz(); this->ax = dmp->getAx(); this->gs = dmp->getG();
+        this->y0s = this->currentJoints = dmp->getY0(); this->dy0s = dmp->getDy0(); this->ddy0s = dmp->getDdy0();
         this->trajGen = new DMPTrajectoryGenerator(this->baseDef, ax, tau);
 
         this->axDivTau = ax / tau;
         this->oneDivTau = 1 / tau;
 
-        this->simulate = SIMULATE_DMP;
         this->degofFreedom = y0s.n_elem;
         if(isCartesian)
             this->odeSystemSize = 3 * 3 + 1;
@@ -1272,7 +1260,7 @@ namespace kukadu {
 
         }
 
-        if(this->simulate == EXECUTE_ROBOT) {
+        if(getExecutionMode() == EXECUTE_ROBOT) {
 
             if(!isCartesian)
                 currentJoints = controlQueue->getCurrentJoints().joints;
@@ -1300,7 +1288,7 @@ namespace kukadu {
 
             f[odeSystemSizeMinOne] = -axDivTau * y[odeSystemSizeMinOne] / corrector;
 
-        } else if(this->simulate == SIMULATE_DMP) {
+        } else if(getExecutionMode() == SIMULATE_ROBOT) {
 
             // progress as usual
             f[odeSystemSizeMinOne] = - axDivTau * y[odeSystemSizeMinOne];

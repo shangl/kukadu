@@ -203,7 +203,7 @@ namespace kukadu {
 
         bool storeToFile = (queueStreams.size()) ? true : false;
 
-        if(storeToFile && data.size() != queueStreams.size())
+        if(storeToFile && data.size() != queueStreams.size() && data.size())
             throw KukaduException("(SensorStorage) number of files does not match the number of data blocks to store");
 
         stopped = false;

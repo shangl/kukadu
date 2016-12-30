@@ -149,18 +149,37 @@ namespace kukadu {
 
     class TrajectoryExecutor : public Controller {
 
+    public:
+
+        enum execution_modes{SIMULATE_ROBOT, EXECUTE_ROBOT};
+
     private:
+
+        double tEnd;
+        double tStart;
+        enum execution_modes executionMode;
+
+        KUKADU_SHARED_PTR<Trajectory> trajectory;
 
     protected:
 
         virtual KUKADU_SHARED_PTR<ControllerResult> executeInternal();
+        virtual KUKADU_SHARED_PTR<ControllerResult> executeTrajectory() = 0;
+        virtual KUKADU_SHARED_PTR<ControllerResult> simulateTrajectory() = 0;
 
     public:
 
-        TrajectoryExecutor();
+        TrajectoryExecutor(KUKADU_SHARED_PTR<Trajectory> trajectory);
 
-        virtual KUKADU_SHARED_PTR<ControllerResult> executeTrajectory() = 0;
-        virtual KUKADU_SHARED_PTR<ControllerResult> simulateTrajectory() = 0;
+        void setTEnd(double tEndInSeconds);
+        void setTStart(double tStartInSeconds);
+        void setExecutionMode(enum execution_modes mode);
+
+        double getTEnd();
+        double getTStart();
+        TrajectoryExecutor::execution_modes getExecutionMode();
+
+        virtual KUKADU_SHARED_PTR<Trajectory> getTrajectory();
 
         virtual void setTrajectory(KUKADU_SHARED_PTR<Trajectory> traj) = 0;
 
