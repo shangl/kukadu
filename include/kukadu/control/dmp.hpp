@@ -249,12 +249,12 @@ namespace kukadu {
 
         int degFreedom;
 
-        arma::mat timesInSeconds;
+        arma::vec timesInSeconds;
         arma::mat joints;
 
         std::vector<DMPBase> dmpBase;
 
-        void construct(std::vector<DMPBase> dmpBase, double tau, double az, double bz, double ax, arma::mat timesInSeconds, arma::mat joints, int degFreedom);
+        void construct(std::vector<DMPBase> dmpBase, double tau, double az, double bz, double ax, arma::vec timesInSeconds, arma::mat joints, int degFreedom);
         std::vector<trajectory_learner_internal> fitTrajectory(arma::vec time, arma::mat y, arma::mat dy, arma::mat ddy);
 
     protected:
@@ -494,7 +494,6 @@ namespace kukadu {
         KUKADU_SHARED_PTR<ControllerResult> executeTrajectory();
         KUKADU_SHARED_PTR<ControllerResult> simulateTrajectory();
         KUKADU_SHARED_PTR<ControllerResult> simulateTrajectory(double tStart, double tEnd, double tolAbsErr, double tolRelErr);
-        KUKADU_SHARED_PTR<ControllerResult> executeTrajectory(double ac, double tStart, double tEnd, double tolAbsErr, double tolRelErr);
 
     public:
 
@@ -515,6 +514,8 @@ namespace kukadu {
         void setTrajectory(KUKADU_SHARED_PTR<Trajectory> traj);
         void initializeIntegration(double tStart, double tolAbsErr, double tolRelErr);
         void  setRollbackTime(double rollbackTime);
+
+        void setAc(double ac);
 
         virtual bool requiresGrasp();
         virtual bool producesGrasp();

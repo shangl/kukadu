@@ -1,16 +1,8 @@
-#ifndef CONTROLLER_RESULT_H
-#define CONTROLLER_RESULT_H
+#ifndef KUKADU_CONTROLLER_RESULT_H
+#define KUKADU_CONTROLLER_RESULT_H
 
-#include <cstdio>
-#include <iostream>
-#include <fstream>
-#include <string>
 #include <vector>
-#include <wordexp.h>
-#include <memory>
 #include <armadillo>
-#include <map>
-#include <kukadu/types/kukadutypes.hpp>
 
 namespace kukadu {
 
@@ -29,6 +21,8 @@ namespace kukadu {
 
         arma::vec getTimes();
         std::vector<arma::vec> getYs();
+
+        arma::vec getYCol(int colIdx);
 
         void setSuccess(bool success);
 

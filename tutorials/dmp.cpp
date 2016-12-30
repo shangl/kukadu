@@ -112,7 +112,19 @@ int main(int argc, char** args) {
     sampleDmpLearner = make_shared<JointDMPLearner>(az, bz, sampleTimes, sampleData->getJointPos());
     sampleDmp = sampleDmpLearner->fitTrajectories();
     DMPExecutor sampleExec(sampleDmp, simLeftQueue);
-    sampleExec.executeTrajectory(ac, 0, sampleDmp->getTmax(), tolAbsErr, tolRelErr);
+    sampleExec.setExecutionMode(TrajectoryExecutor::EXECUTE_ROBOT);
+    sampleExec.setAc(ac);
+
+    auto executionResult = sampleExec.execute();
+    vec firstColSamples = sampleData->getJointPos().col(0);
+
+    auto timesExecuted = executionResult->getTimes();
+    auto firstColExecuted = executionResult->getYCol(0);
+
+    Gnuplot plot;
+    plot.plot_xy(armadilloToStdVec(sampleTimes), armadilloToStdVec(firstColSamples));
+    plot.plot_xy(armadilloToStdVec(timesExecuted), armadilloToStdVec(firstColExecuted));
+    getchar();
 
     simLeftQueue->stopCurrentMode();
     simLeftQueue->stopQueue();

@@ -92,6 +92,7 @@ namespace kukadu {
     TrajectoryExecutor::TrajectoryExecutor(KUKADU_SHARED_PTR<Trajectory> trajectory) : Controller("simple trajectory executor", 0.0) {
         this->trajectory = trajectory;
         this->tEnd = trajectory->getTmax();
+        this->executionMode = SIMULATE_ROBOT;
     }
 
     KUKADU_SHARED_PTR<Trajectory> TrajectoryExecutor::getTrajectory() {

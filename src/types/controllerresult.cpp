@@ -26,4 +26,13 @@ namespace kukadu {
         return success;
     }
 
+    arma::vec ControllerResult::getYCol(int colIdx) {
+
+        arma::vec retVec(y.size());
+        for(int i = 0; i < y.size(); ++i)
+            retVec(i) = (y.at(i))(colIdx);
+        return retVec;
+
+    }
+
 }

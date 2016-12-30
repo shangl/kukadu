@@ -26,11 +26,11 @@ namespace kukadu {
 
         KUKADU_MODULE_START_USAGE();
 
-        cout << typeid(*this).name() << endl;
-
-        executeInternal();
+        auto retVal = executeInternal();
 
         KUKADU_MODULE_END_USAGE();
+
+        return retVal;
 
     }
 

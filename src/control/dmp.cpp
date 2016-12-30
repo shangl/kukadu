@@ -600,18 +600,6 @@ namespace kukadu {
         return externalError;
     }
 
-    KUKADU_SHARED_PTR<ControllerResult> DMPExecutor::executeTrajectory(double ac, double tStart, double tEnd, double tolAbsErr, double tolRelErr) {
-
-        KUKADU_MODULE_START_USAGE();
-
-        this->ac = ac;
-        auto retVal = this->executeDMP(tStart, tEnd, tolAbsErr, tolRelErr);
-
-        KUKADU_MODULE_END_USAGE();
-        return retVal;
-
-    }
-
     KUKADU_SHARED_PTR<ControllerResult> DMPExecutor::simulateTrajectory(double tStart, double tEnd, double tolAbsErr, double tolRelErr) {
 
         KUKADU_MODULE_START_USAGE();
@@ -922,8 +910,6 @@ namespace kukadu {
     }
 
     GeneralDmpLearner::GeneralDmpLearner(double az, double bz, arma::vec timesInSeconds, arma::mat joints) {
-
-        this->timesInSeconds = timesInSeconds;
 
         vector<double> tmpmys;
         vector<double> tmpsigmas;
@@ -1311,6 +1297,10 @@ namespace kukadu {
 
     }
 
+    void DMPExecutor::setAc(double ac) {
+        this->ac = ac;
+    }
+
     int DMPExecutor::jac(double t, const double* y, double *dfdy, double* dfdt, void* params) {
 
         // not implemented (not required for most of the ode solvers)
@@ -1479,12 +1469,33 @@ namespace kukadu {
 
     }
 
-    void GeneralDmpLearner::construct(std::vector<DMPBase> dmpBase, double tau, double az, double bz, double ax, arma::mat timesInSeconds, mat joints, int degFreedom) {
+    void GeneralDmpLearner::construct(std::vector<DMPBase> dmpBase, double tau, double az, double bz, double ax, arma::vec timesInSeconds, arma::mat joints, int degFreedom) {
+
+        double minTimelyDist = 0.2;
+        double prevStoredTime = timesInSeconds(0);
+        vector<int> filteredIdx{0};
+        for(int i = 1; i < timesInSeconds.n_elem; ++i)
+            if((timesInSeconds(i) - prevStoredTime) >= minTimelyDist) {
+                filteredIdx.push_back(i);
+                prevStoredTime = timesInSeconds(i);
+            }
+
+        vec filteredTimesInSeconds(filteredIdx.size());
+        mat filteredJoints(filteredIdx.size(), joints.n_cols);
+        for(int i = 0; i < filteredTimesInSeconds.size(); ++i) {
+            filteredTimesInSeconds(i) = timesInSeconds(filteredIdx.at(i));
+            for(int j = 0; j < joints.n_cols; ++j)
+                    filteredJoints(i, j) = joints(filteredIdx.at(i), j);
+        }
+
         this->dmpBase = dmpBase;
         this->tau = tau; this->az = az; this->bz = bz; this->ax = ax;
-        this->joints = joints;
+
+        this->joints = filteredJoints;
+        this->timesInSeconds = filteredTimesInSeconds;
+
         this->degFreedom = degFreedom;
-        this->timesInSeconds = timesInSeconds;
+
     }
 
     std::vector<trajectory_learner_internal> GeneralDmpLearner::fitTrajectory(vec time, mat y, mat dy, mat ddy) {

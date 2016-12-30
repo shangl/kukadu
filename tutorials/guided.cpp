@@ -137,7 +137,9 @@ int main(int argc, char** args) {
     simLeftQueue->switchMode(KukieControlQueue::KUKA_JNT_POS_MODE);
     laThr = simLeftQueue->startQueue();
     DMPExecutor execFinalPush(dmpFinalPush, simLeftQueue);
-    execFinalPush.executeTrajectory(ac, 0, dmpFinalPush->getTmax(), tolAbsErr, tolRelErr);
+    execFinalPush.setExecutionMode(TrajectoryExecutor::EXECUTE_ROBOT);
+    execFinalPush.setAc(ac);
+    execFinalPush.execute();
 
     simLeftQueue->stopCurrentMode();
     simLeftQueue->stopQueue();
@@ -156,7 +158,8 @@ int main(int argc, char** args) {
 
     laThr = leftQueue->startQueue();
     DMPExecutor execFinalPush2(dmpFinalPush, leftQueue);
-    execFinalPush2.executeTrajectory(ac, 0, dmpFinalPush->getTmax(), tolAbsErr, tolRelErr);
+    execFinalPush2.setExecutionMode(TrajectoryExecutor::EXECUTE_ROBOT);
+    execFinalPush2.setAc(ac);
 
     leftQueue->stopCurrentMode();
     leftQueue->stopQueue();
