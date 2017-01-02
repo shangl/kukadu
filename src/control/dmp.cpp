@@ -1,3 +1,4 @@
+#include <sstream>
 #include <gsl/gsl_errno.h>
 #include <gsl/gsl_matrix.h>
 #include <kukadu/utils/utils.hpp>
@@ -347,6 +348,22 @@ namespace kukadu {
 
     }
 
+    Dmp::Dmp(std::vector<arma::vec> dmpCoeffs, std::vector<DMPBase> dmpBase, arma::vec y0, arma::vec g, double tMax, double tau, double az, double bz, double ax, double ac, double dmpStepSize, double tolAbsErr, double tolRelErr) {
+        this->dmpCoeffs = dmpCoeffs;
+        this->dmpBase = dmpBase;
+        this->tau = tau;
+        this->az = az;
+        this->bz = bz;
+        this->ax = ax;
+        this->ac = ac;
+        this->dmpStepSize = dmpStepSize;
+        this->tolAbsErr = tolAbsErr;
+        this->tolRelErr = tolRelErr;
+        this->tmax = tMax;
+        this->y0 = y0;
+        this->g = g;
+    }
+
     std::vector<arma::vec> Dmp::getFitYs() {
         return fitYs;
     }
@@ -549,6 +566,64 @@ namespace kukadu {
         construct(execQueue, suppressMessages);
     }
 
+    void DMPExecutor::createSkillFromThisInternal(std::string skillName) {
+
+        // if it is a joint dmp --> skill creation is supported, otherwise not yet
+        if(!isCartesian) {
+
+            if(!storage.checkLabelExists("skills", "label", skillName)) {
+
+                KUKADU_SHARED_PTR<Dmp> jointDmp = KUKADU_DYNAMIC_POINTER_CAST<Dmp>(getTrajectory());
+
+                // dmp specific information
+                auto y0 = jointDmp->getY0();
+                auto g = jointDmp->getG();
+                auto coeff = jointDmp->getCoefficients();
+                auto tau = jointDmp->getTau();
+                auto az = jointDmp->getAz();
+                auto bz = jointDmp->getBz();
+                auto ax = jointDmp->getAx();
+                auto dmpStepSize = jointDmp->getStepSize();
+                auto tolAbsErr= jointDmp->getTolAbsErr();
+                auto tolRelErr = jointDmp->getTolRelErr();
+                auto tMax = jointDmp->getTmax();
+                auto dmpBase = jointDmp->getDmpBase();
+
+                // robot information
+                auto robotId = controlQueue->getRobotId();
+                auto jointIds = controlQueue->getJointIds();
+
+                auto controllerId = getControllerId();
+
+                stringstream s;
+                s << "insert into skills(label, controller_type, robot_id) values('" << skillName << "', " << controllerId << ", " << robotId << ")";
+                storage.executeStatementPriority(s.str());
+
+                auto skillId = storage.getCachedLabelId("skills", "skill_id", "label", skillName);
+                s.str("");
+                s << "insert into skill_dmp(skill_id, tau, az, bz, ax, step_size, tol_abs_err, tol_rel_err, tmax) values(" << skillId << ", " << tau << ", " <<
+                     az << ", " << bz << ", " << ax << ", " << dmpStepSize << ", " << tolAbsErr << ", " << tolRelErr << ", " << tMax << ")";
+                storage.executeStatementPriority(s.str());
+
+                stringstream goalStream;
+                for(int i = 0; i < jointIds.size(); ++i) {
+                    s.str("");
+                    goalStream.str("");
+                    auto& currentJointId = jointIds.at(i);
+                    s << "insert into skill_dmp_y0(skill_id, joint_id, position) values(" << skillId << ", " << currentJointId << ", " << y0(i) << ")";
+                    goalStream << "insert into skill_dmp_g(skill_id, joint_id, position) values(" << skillId << ", " << currentJointId << ", " << g(i) << ")";
+                    storage.executeStatement(s.str());
+                    storage.executeStatement(goalStream.str());
+                }
+
+            } else
+                throw KukaduException("(DMPExecutor) skill with provided name already exists");
+
+        } else
+            throw KukaduException("(DMPExecutor) skill creation only for joint dmps supported");
+
+    }
+
     bool DMPExecutor::requiresGraspInternal() {
         return false;
     }
@@ -558,7 +633,7 @@ namespace kukadu {
     }
 
     std::pair<bool, std::string> DMPExecutor::getAugmentedInfoTableName() {
-        return {true, "dmp_controller_info"};
+        return {true, "skill_dmp"};
     }
 
     void  DMPExecutor::setRollbackTime(double rollbackTime) {

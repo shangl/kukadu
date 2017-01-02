@@ -74,6 +74,7 @@ namespace kukadu {
 
         Dmp(const Dmp& copy);
         Dmp(std::string dmpFile);
+        Dmp(std::vector<arma::vec> dmpCoeffs, std::vector<DMPBase> dmpBase, arma::vec y0, arma::vec g, double tMax, double tau, double az, double bz, double ax, double ac, double dmpStepSize, double tolAbsErr, double tolRelErr);
         Dmp(std::vector<long long int> supervisedTs, std::vector<arma::vec> sampleYs, std::vector<arma::vec> fitYs, std::vector<arma::vec> dmpCoeffs, std::vector<DMPBase> dmpBase, std::vector<arma::mat> designMatrices,
             double tau, double az, double bz, double ax, double ac, double dmpStepSize, double tolAbsErr, double tolRelErr);
 
@@ -497,6 +498,8 @@ namespace kukadu {
 
         virtual bool requiresGraspInternal();
         virtual bool producesGraspInternal();
+
+        virtual void createSkillFromThisInternal(std::string skillName);
 
     public:
 

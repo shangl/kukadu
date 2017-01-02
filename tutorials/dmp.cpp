@@ -92,7 +92,7 @@ int main(int argc, char** args) {
     SensorStorage sensorStorage(storage, queueVectors, std::vector<KUKADU_SHARED_PTR<GenericHand> >(), 1000);
     sensorStorage.setExportMode(SensorStorage::STORE_RBT_CART_POS | SensorStorage::STORE_RBT_JNT_POS);
     sensorStorage.startDataStorage(storeDir);
-    cout << "measurment started" << endl;
+    cout << "measurement started" << endl;
 
     ros::Rate r(2); r.sleep();
     simLeftQueue->jointPtp({-1.5, 1.56, 2.33, -1.74, -1.85, 1.27, 0.71});
@@ -111,9 +111,12 @@ int main(int argc, char** args) {
     sampleTimes = sampleData->getNormalizedTimeInSeconds();
     sampleDmpLearner = make_shared<JointDMPLearner>(az, bz, sampleTimes, sampleData->getJointPos());
     sampleDmp = sampleDmpLearner->fitTrajectories();
+
     DMPExecutor sampleExec(storage, sampleDmp, simLeftQueue);
     sampleExec.setExecutionMode(TrajectoryExecutor::EXECUTE_ROBOT);
     sampleExec.setAc(ac);
+
+    sampleExec.createSkillFromThis("firstdmp");
 
     auto executionResult = sampleExec.execute();
     vec firstColSamples = sampleData->getJointPos().col(0);

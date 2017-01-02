@@ -32,6 +32,8 @@ namespace kukadu {
 
         bool statisticsActivated;
 
+        int maxFunctionId;
+
         std::map<int, int> poolingWindowSizes;
         std::map<int, int> pooledFunctionCount;
         std::map<int, std::string> moduleFunctionMap;

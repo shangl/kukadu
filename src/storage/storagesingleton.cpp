@@ -150,7 +150,18 @@ namespace kukadu {
             return (res->getInt("c")) ? true : false;
         } else
             throw KukaduException("(StorageSingleton) sql problem occured");
+        return false;
+    }
 
+    bool StorageSingleton::checkLabelExists(std::string table, std::string labelCol, std::string val) {
+        stringstream s;
+        s << "select count(*) as c from " << table << " where " << labelCol << " = '" << val << "'";
+        auto res = executeQuery(s.str());
+        if(res->next()) {
+            return (res->getInt("c")) ? true : false;
+        } else
+            throw KukaduException("(StorageSingleton) sql problem occured");
+        return false;
     }
 
     std::vector<int> StorageSingleton::getCachedLabelIds(string table, string labelIdCol, string labelCol, string label, string additionalWhere) {

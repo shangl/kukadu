@@ -1,3 +1,4 @@
+#include <limits>
 #include <fstream>
 #include <algorithm>
 #include <kukadu/utils/utils.hpp>
@@ -9,6 +10,7 @@ using namespace std;
 namespace kukadu {
 
     ModuleUsageSingleton::ModuleUsageSingleton() : storage(StorageSingleton::get()) {
+        maxFunctionId = numeric_limits<int>::min();
         statisticsActivated = true;
         loadStatisticsProperties(resolvePath("$KUKADU_HOME/cfg/core/module_stat.list"));
     }
@@ -97,7 +99,11 @@ namespace kukadu {
                     break;
                 }
 
+                if(currentFunctionStorageId != ID_NOT_FOUND && currentFunctionStorageId > maxFunctionId)
+                    maxFunctionId = currentFunctionStorageId;
+
             }
+
         }
 
         is.close();
@@ -277,11 +283,11 @@ namespace kukadu {
 
             if(functionId != notFound) {
 
-                static long long int prevTime = 0;
+                static vector<long long int> prevUsage(maxFunctionId, 0);
                 auto currentTime = getCurrentTime();
 
                 // prevents duplicate entries with the same id and timestamp
-                if(prevTime != currentTime) {
+                if(prevUsage[functionId - 1] != currentTime) {
 
                     if(mode == MODE_STD_STORAGE) {
                         stringstream s;
@@ -290,7 +296,7 @@ namespace kukadu {
                     } else if(mode == MODE_POOL_STORAGE)
                         storePooledStatistics(functionId, currentTime);
 
-                    prevTime = currentTime;
+                    prevUsage[functionId - 1] = currentTime;
 
                     return currentTime;
 

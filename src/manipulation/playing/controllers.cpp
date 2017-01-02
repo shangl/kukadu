@@ -74,6 +74,10 @@ namespace kukadu {
 
     }
 
+    void ComplexController::createSkillFromThisInternal(std::string skillName) {
+        throw KukaduException("(ComplexController) creating a skill from instance not supported yet");
+    }
+
     bool ComplexController::getCleanup() {
         return cleanup;
     }
@@ -1298,6 +1302,10 @@ namespace kukadu {
         bored = wasBored;
     }
 
+    void ConcatController::createSkillFromThisInternal(std::string skillName) {
+        throw KukaduException("(ConcatController) creating a skill from instance not supported yet");
+    }
+
     std::string ConcatController::generateLabelFromControllers(std::vector<KUKADU_SHARED_PTR<kukadu::Controller> >& controllers) {
 
         string retLabel = "";
@@ -1409,6 +1417,10 @@ namespace kukadu {
 
     }
 
+    void ControllerActionClip::createSkillFromThisInternal(std::string skillName) {
+        throw KukaduException("(ControllerActionClip) creating a skill from instance not supported yet");
+    }
+
     bool ControllerActionClip::requiresGraspInternal() {
         return actionController->requiresGrasp();
     }
@@ -1429,11 +1441,10 @@ namespace kukadu {
             cout << "(ControllerActionClip) selected preparation action is \"" << actionController->getCaption() << "\"; want to execute it? (0 = no / 1 = yes)" << endl;
             cin >> executeIt;
 
-            if(executeIt == 1) {
+            if(executeIt == 1)
                 retVal = actionController->execute();
-            } else {
+            else
                 cout << "(ControllerActionClip) you decided not to perform the action; continue" << endl;
-            }
 
         }
 
@@ -1480,6 +1491,10 @@ namespace kukadu {
 
         Py_Initialize();
 
+    }
+
+    void SensingController::createSkillFromThisInternal(std::string skillName) {
+        throw KukaduException("(SensingController) creating a skill from instance not supported yet");
     }
 
     KUKADU_SHARED_PTR<kukadu_mersenne_twister> SensingController::getGenerator() {

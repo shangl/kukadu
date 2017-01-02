@@ -26,6 +26,16 @@ namespace kukadu {
 
     }
 
+    void Controller::createSkillFromThis(std::string skillName) {
+        createSkillFromThisInternal(skillName);
+    }
+
+    int Controller::getControllerId() {
+        if(!isInstalled)
+            installDb();
+        return controllerId;
+    }
+
     KUKADU_SHARED_PTR<ControllerResult> Controller::execute() {
 
         KUKADU_MODULE_START_USAGE();

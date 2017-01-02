@@ -56,6 +56,7 @@ public:
     long long int getNextIdInTable(std::string table, std::string idCol);
 
     bool checkIdExists(std::string table, std::string idCol, int val);
+    bool checkLabelExists(std::string table, std::string labelCol, std::string val);
 
     int getCachedLabelId(std::string table, std::string labelIdCol, std::string labelCol, std::string label, std::string additionalWhere = "");
     std::vector<int> getCachedLabelIds(std::string table, std::string labelIdCol, std::string labelCol, std::string label, std::string additionalWhere = "");

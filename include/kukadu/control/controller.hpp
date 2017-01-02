@@ -48,6 +48,9 @@ namespace kukadu {
         virtual void installDb();
         bool isControllerInstalled();
 
+        // stores the current controller instance as skill (which solves a specific problem) to the database
+        virtual void createSkillFromThisInternal(std::string skillName) = 0;
+
     public:
 
         Controller(StorageSingleton& dbStorage, std::string caption, double simulationFailingProbability);
@@ -69,9 +72,14 @@ namespace kukadu {
 
         std::string getCaption();
 
+        int getControllerId();
+
         virtual KUKADU_SHARED_PTR<ControllerResult> execute();
 
         virtual std::string getClassName() = 0;
+
+        // stores the current controller instance as skill (which solves a specific problem) to the database
+        virtual void createSkillFromThis(std::string skillName);
 
     };
 

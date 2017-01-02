@@ -120,6 +120,8 @@ namespace kukadu {
 
         virtual KUKADU_SHARED_PTR<ControllerResult> executeInternal();
 
+        virtual void createSkillFromThisInternal(std::string skillName);
+
     public:
 
         SensingController(StorageSingleton& storage, KUKADU_SHARED_PTR<kukadu_mersenne_twister> generator, int hapticMode, std::string caption, std::vector<KUKADU_SHARED_PTR<ControlQueue> > queues, std::vector<KUKADU_SHARED_PTR<GenericHand> > hands,
@@ -171,6 +173,8 @@ namespace kukadu {
         virtual bool requiresGraspInternal();
         virtual bool producesGraspInternal();
 
+        virtual void createSkillFromThisInternal(std::string skillName);
+
     public:
 
         ConcatController(StorageSingleton& dbStorage, std::vector<KUKADU_SHARED_PTR<kukadu::Controller> > controllers);
@@ -197,6 +201,8 @@ namespace kukadu {
 
         virtual bool requiresGraspInternal();
         virtual bool producesGraspInternal();
+
+        virtual void createSkillFromThisInternal(std::string skillName);
 
     public:
 
@@ -338,6 +344,8 @@ namespace kukadu {
                                           KUKADU_SHARED_PTR<kukadu::ControllerActionClip> actionClip);
 
         virtual KUKADU_SHARED_PTR<ControllerResult> executeInternal();
+
+        virtual void createSkillFromThisInternal(std::string skillName);
 
     public:
 
