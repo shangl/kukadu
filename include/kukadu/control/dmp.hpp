@@ -495,13 +495,16 @@ namespace kukadu {
         KUKADU_SHARED_PTR<ControllerResult> simulateTrajectory();
         KUKADU_SHARED_PTR<ControllerResult> simulateTrajectory(double tStart, double tEnd, double tolAbsErr, double tolRelErr);
 
+        virtual bool requiresGraspInternal();
+        virtual bool producesGraspInternal();
+
     public:
 
         /**
          * \brief constructor
          * \param dmp the dmp that should be executed
          */
-        DMPExecutor(KUKADU_SHARED_PTR<Dmp> dmp, KUKADU_SHARED_PTR<ControlQueue> execQueue, int suppressMessages = 1);
+        DMPExecutor(StorageSingleton &dbStorage, KUKADU_SHARED_PTR<Dmp> dmp, KUKADU_SHARED_PTR<ControlQueue> execQueue, int suppressMessages = 1);
 
         int usesExternalError();
         void destroyIntegration();
@@ -517,12 +520,12 @@ namespace kukadu {
 
         void setAc(double ac);
 
-        virtual bool requiresGrasp();
-        virtual bool producesGrasp();
-
         double getExternalError();
 
         arma::vec doIntegrationStep(double ac);
+
+        virtual std::string getClassName() { return "DMPExecutor"; }
+        virtual std::pair<bool, std::string> getAugmentedInfoTableName();
 
         static const int KUKADU_EXEC_JOINT = 1;
         static const int KUKADU_EXEC_CART = 2;

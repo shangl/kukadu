@@ -12,7 +12,7 @@ namespace pf = boost::filesystem;
 
 namespace kukadu {
 
-    ComplexController::ComplexController(std::string caption, std::string storePath,
+    ComplexController::ComplexController(StorageSingleton& dbStorage, std::string caption, std::string storePath,
                                          bool storeReward, double senseStretch, double boredom, KUKADU_SHARED_PTR<kukadu_mersenne_twister> generator,
                                          int stdReward, double punishReward, double gamma, int stdPrepWeight, bool collectPrevRewards,
                                          int simulationFailingProbability,
@@ -20,7 +20,7 @@ namespace kukadu {
                                          int maxEnvPathLength, double pathLengthCost, double stdEnvironmentReward,
                                          double creativityAlpha1, double creativityAlpha2, double creativityBeta, double creativityCthresh,
                                          double nothingStateProbThresh, double creativityMultiplier)
-        : Controller(caption, simulationFailingProbability), Reward(generator, collectPrevRewards) {
+        : Controller(dbStorage, caption, simulationFailingProbability), Reward(generator, collectPrevRewards) {
 
         this->useCreativity = false;
         this->creativityAlpha1 = creativityAlpha1;
@@ -161,16 +161,16 @@ namespace kukadu {
 
                 } else if(level == Clip::CLIP_H_LEVEL_FINAL) {
 
-                    auto ac = KUKADU_SHARED_PTR<ActionClip>(new ControllerActionClip(atoi(tok.next().c_str()), (this->availablePreparatoryControllers)[label], generator));
+                    auto ac = make_shared<ControllerActionClip>(storage, atoi(tok.next().c_str()), (this->availablePreparatoryControllers)[label], generator);
                     return ac;
 
                 } else {
 
                     if(level == 1)
-                        return KUKADU_SHARED_PTR<Clip>(new IntermediateEventClip((this->availableSensingControllers)[label],
-                                                                                        level, generator, idVec, immunity));
+                        return make_shared<IntermediateEventClip>((this->availableSensingControllers)[label],
+                                                                                        level, generator, idVec, immunity);
 
-                    return KUKADU_SHARED_PTR<Clip>(new Clip(level, generator, idVec, immunity));
+                    return make_shared<Clip>(level, generator, idVec, immunity);
 
                 }
 
@@ -194,7 +194,7 @@ namespace kukadu {
             prepActionsCasted = KUKADU_SHARED_PTR<vector<KUKADU_SHARED_PTR<ActionClip> > >(new vector<KUKADU_SHARED_PTR<ActionClip> >());
             for(int i = 0; i < preparationControllers.size(); ++i) {
 
-                auto prepActionClip = KUKADU_SHARED_PTR<ActionClip>(new ControllerActionClip(i, preparationControllers.at(i), generator));
+                auto prepActionClip = make_shared<ControllerActionClip>(storage, i, preparationControllers.at(i), generator);
                 prepActions->push_back(prepActionClip);
                 prepActionsCasted->push_back(prepActionClip);
                 prepWeights.push_back(stdPrepWeight);
@@ -493,7 +493,7 @@ namespace kukadu {
                     vector<KUKADU_SHARED_PTR<kukadu::Controller> > controllerParts;
                     for(auto cont : splits)
                         controllerParts.push_back(availablePreparatoryControllers[cont]);
-                    auto conc = make_shared<ConcatController>(controllerParts);
+                    auto conc = make_shared<ConcatController>(storage, controllerParts);
                     preparationControllers.push_back(conc);
 
                 } else if(controllerMode == 10) {
@@ -771,7 +771,7 @@ namespace kukadu {
                                         auto currentActionClip = KUKADU_DYNAMIC_POINTER_CAST<ControllerActionClip>(clipPath.at(i));
                                         controllerPath.push_back(currentActionClip->getActionController());
                                     }
-                                    auto newConcatController = make_shared<ConcatController>(controllerPath);
+                                    auto newConcatController = make_shared<ConcatController>(storage, controllerPath);
                                     const auto& controllerLabel = newConcatController->getCaption();
 
                                     auto creativeActionClipInEcm = projSim->findClipInLevelByLabel(controllerLabel, Clip::CLIP_H_LEVEL_FINAL);
@@ -783,7 +783,7 @@ namespace kukadu {
                                     else {
 
                                         // first create action clip
-                                        auto newConcatClip = make_shared<ControllerActionClip>(projSim->generateNewActionId(), newConcatController, generator);
+                                        auto newConcatClip = make_shared<ControllerActionClip>(storage, projSim->generateNewActionId(), newConcatController, generator);
 
                                         bool isCorrectSensingClip = false;
                                         auto senseLayer = projSim->getClipLayers()->at(1);
@@ -1321,8 +1321,8 @@ namespace kukadu {
 
     }
 
-    ConcatController::ConcatController(std::vector<KUKADU_SHARED_PTR<kukadu::Controller> > controllers)
-        : Controller(generateLabelFromControllers(controllers), computeSimulationFailingProbability(controllers)) {
+    ConcatController::ConcatController(StorageSingleton& dbStorage, std::vector<KUKADU_SHARED_PTR<kukadu::Controller> > controllers)
+        : Controller(dbStorage, generateLabelFromControllers(controllers), computeSimulationFailingProbability(controllers)) {
         this->controllers = controllers;
     }
 
@@ -1333,13 +1333,13 @@ namespace kukadu {
         return true;
     }
 
-    bool ConcatController::requiresGrasp() {
+    bool ConcatController::requiresGraspInternal() {
 
         return controllers.front()->producesGrasp();
 
     }
 
-    bool ConcatController::producesGrasp() {
+    bool ConcatController::producesGraspInternal() {
 
         return controllers.back()->producesGrasp();
 
@@ -1400,20 +1400,20 @@ namespace kukadu {
         return sensingEvent;
     }
 
-    ControllerActionClip::ControllerActionClip(int actionId, KUKADU_SHARED_PTR<Controller> actionController,
+    ControllerActionClip::ControllerActionClip(StorageSingleton& dbStorage, int actionId, KUKADU_SHARED_PTR<Controller> actionController,
                           KUKADU_SHARED_PTR<kukadu_mersenne_twister> generator) :
         ActionClip(actionId, 1, actionController->getCaption(), generator),
-        Controller(actionController->getCaption(), actionController->getSimFailingProb()) {
+        Controller(dbStorage, actionController->getCaption(), actionController->getSimFailingProb()) {
 
         this->actionController = actionController;
 
     }
 
-    bool ControllerActionClip::requiresGrasp() {
+    bool ControllerActionClip::requiresGraspInternal() {
         return actionController->requiresGrasp();
     }
 
-    bool ControllerActionClip::producesGrasp() {
+    bool ControllerActionClip::producesGraspInternal() {
         return actionController->producesGrasp();
     }
 
@@ -1452,7 +1452,7 @@ namespace kukadu {
     }
 
     SensingController::SensingController(StorageSingleton& storage, KUKADU_SHARED_PTR<kukadu_mersenne_twister> generator, int hapticMode, string caption, std::vector<KUKADU_SHARED_PTR<ControlQueue> > queues, vector<KUKADU_SHARED_PTR<GenericHand> > hands, std::string tmpPath, std::string classifierPath, std::string classifierFile, std::string classifierFunction, int simClassificationPrecision)
-        : Controller(caption, 1), dbStorage(storage) {
+        : Controller(storage, caption, 1), dbStorage(storage) {
 
         currentIterationNum = 0;
         classifierParamsSet = false;

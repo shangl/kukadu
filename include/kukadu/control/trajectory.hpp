@@ -169,7 +169,7 @@ namespace kukadu {
 
     public:
 
-        TrajectoryExecutor(KUKADU_SHARED_PTR<Trajectory> trajectory);
+        TrajectoryExecutor(StorageSingleton& dbStorage, KUKADU_SHARED_PTR<Trajectory> trajectory);
 
         void setTEnd(double tEndInSeconds);
         void setTStart(double tStartInSeconds);
@@ -182,6 +182,8 @@ namespace kukadu {
         virtual KUKADU_SHARED_PTR<Trajectory> getTrajectory();
 
         virtual void setTrajectory(KUKADU_SHARED_PTR<Trajectory> traj) = 0;
+
+        virtual std::string getClassName() { return "TrajectoryExecutor"; }
 
     };
 

@@ -40,6 +40,8 @@ namespace kukadu {
 
     private:
 
+        StorageSingleton& storage;
+
         bool isFirstIteration;
 
         double ac;
@@ -67,7 +69,7 @@ namespace kukadu {
          * \param tolAbsErr absolute tolerated error for numerical approximation
          * \param tolRelErr relative tolerated error for numerical approximation
          */
-        DMPReinforcer(CostComputer* cost, KUKADU_SHARED_PTR<ControlQueue> movementQueue, double ac, double tolAbsErr, double tolRelErr);
+        DMPReinforcer(StorageSingleton& dbStorage, CostComputer* cost, KUKADU_SHARED_PTR<ControlQueue> movementQueue, double ac, double tolAbsErr, double tolRelErr);
 
         void setLastUpdate(KUKADU_SHARED_PTR<Dmp> lastUpdate);
         /**

@@ -4,14 +4,24 @@
 #include <string>
 #include <kukadu/types/kukadutypes.hpp>
 #include <kukadu/types/controllerresult.hpp>
+#include <kukadu/storage/storagesingleton.hpp>
 
 namespace kukadu {
 
-    class Controller {
+    class Controller : private TimedObject {
 
     private:
 
+#ifdef USEBOOST
+        static const int CONTROLLER_ID_NOT_FOUND = -1;
+#else
+        static auto constexpr CONTROLLER_ID_NOT_FOUND = -1;
+#endif
+
         bool simulation;
+        bool isInstalled;
+
+        int controllerId;
 
         double simulationFailingProbability;
 
@@ -21,20 +31,33 @@ namespace kukadu {
 
         bool isShutUp;
 
+        StorageSingleton& storage;
+
         // is called by set simulation mode
         virtual void setSimulationModeInChain(bool simulationMode);
         virtual KUKADU_SHARED_PTR<ControllerResult> executeInternal() = 0;
 
+        virtual bool requiresGraspInternal() = 0;
+        virtual bool producesGraspInternal() = 0;
+
+        // provides information whether or not a separated database table is required to store more information
+        // pair.first = true if an additional table is required
+        // pair.second = name of the required additional table (will be ignored if pair.first == false)
+        virtual std::pair<bool, std::string> getAugmentedInfoTableName();
+
+        virtual void installDb();
+        bool isControllerInstalled();
+
     public:
 
-        Controller(std::string caption, double simulationFailingProbability);
+        Controller(StorageSingleton& dbStorage, std::string caption, double simulationFailingProbability);
 
         void shutUp();
         void startTalking();
         virtual void setSimulationMode(bool simulationMode);
 
-        virtual bool requiresGrasp() = 0;
-        virtual bool producesGrasp() = 0;
+        virtual bool requiresGrasp();
+        virtual bool producesGrasp();
 
         virtual void initialize();
 
@@ -47,6 +70,8 @@ namespace kukadu {
         std::string getCaption();
 
         virtual KUKADU_SHARED_PTR<ControllerResult> execute();
+
+        virtual std::string getClassName() = 0;
 
     };
 

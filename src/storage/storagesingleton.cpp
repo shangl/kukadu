@@ -343,10 +343,16 @@ namespace kukadu {
     }
 
     StorageSingleton::~StorageSingleton() {
+
+        ros::Rate s(10);
+        while(!cachedStatements.empty())
+            s.sleep();
+
         cacheDemonRunning = false;
         if(cacheDemonThread.joinable())
             cacheDemonThread.join();
         delete con;
+
     }
 
 }

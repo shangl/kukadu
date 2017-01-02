@@ -136,7 +136,7 @@ int main(int argc, char** args) {
     // simLeftQueue->setStiffness(KukieControlQueue::KUKA_STD_XYZ_STIFF, KukieControlQueue::KUKA_STD_ABC_STIFF, KukieControlQueue::KUKA_STD_CPDAMPING, 15000, 150, 1500);
     simLeftQueue->switchMode(KukieControlQueue::KUKA_JNT_POS_MODE);
     laThr = simLeftQueue->startQueue();
-    DMPExecutor execFinalPush(dmpFinalPush, simLeftQueue);
+    DMPExecutor execFinalPush(storage, dmpFinalPush, simLeftQueue);
     execFinalPush.setExecutionMode(TrajectoryExecutor::EXECUTE_ROBOT);
     execFinalPush.setAc(ac);
     execFinalPush.execute();
@@ -157,7 +157,7 @@ int main(int argc, char** args) {
     }
 
     laThr = leftQueue->startQueue();
-    DMPExecutor execFinalPush2(dmpFinalPush, leftQueue);
+    DMPExecutor execFinalPush2(storage, dmpFinalPush, leftQueue);
     execFinalPush2.setExecutionMode(TrajectoryExecutor::EXECUTE_ROBOT);
     execFinalPush2.setAc(ac);
 

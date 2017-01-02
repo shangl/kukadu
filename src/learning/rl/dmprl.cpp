@@ -10,7 +10,7 @@ using namespace arma;
 
 namespace kukadu {
 
-    DMPReinforcer::DMPReinforcer(CostComputer* cost, KUKADU_SHARED_PTR<ControlQueue> movementQueue, double ac, double tolAbsErr, double tolRelErr) {
+    DMPReinforcer::DMPReinforcer(StorageSingleton& dbStorage, CostComputer* cost, KUKADU_SHARED_PTR<ControlQueue> movementQueue, double ac, double tolAbsErr, double tolRelErr) : storage(dbStorage) {
 
         this->cost = cost;
         this->movementQueue = movementQueue;
@@ -63,7 +63,7 @@ namespace kukadu {
             rollout = getInitialRollout();
             isFirstIteration = false;
 
-            DMPExecutor dmpSim(rollout.at(0), movementQueue);
+            DMPExecutor dmpSim(storage, rollout.at(0), movementQueue);
 
             // TODO: switch this to new class scheme (not explicetely use DMPExecutor, but trajectory executor)
             dmpSim.setExecutionMode(TrajectoryExecutor::SIMULATE_ROBOT);
@@ -81,7 +81,7 @@ namespace kukadu {
 
         for(int k = 0; k < rollout.size(); ++k) {
 
-            DMPExecutor dmpsim(rollout.at(k), movementQueue);
+            DMPExecutor dmpsim(storage, rollout.at(k), movementQueue);
 
             if(doSimulation) {
 
@@ -124,7 +124,7 @@ namespace kukadu {
         }
 
         lastUpdate = updateStep();
-        DMPExecutor dmpsim(lastUpdate, movementQueue);
+        DMPExecutor dmpsim(storage, lastUpdate, movementQueue);
         dmpsim.setExecutionMode(TrajectoryExecutor::SIMULATE_ROBOT);
         lastUpdateRes = dmpsim.execute();
 
@@ -162,7 +162,7 @@ namespace kukadu {
         auto times = convertAndRemoveOffset(timesInMilliseconds);
         KUKADU_SHARED_PTR<JointDMPLearner> dmpLearner = KUKADU_SHARED_PTR<JointDMPLearner>(new JointDMPLearner(az, bz, times, data->getJointPos()));
         KUKADU_SHARED_PTR<Dmp> finalDmp = dmpLearner->fitTrajectories();
-        DMPExecutor execDmp(finalDmp, pcq);
+        DMPExecutor execDmp(storage, finalDmp, pcq);
         execDmp.setExecutionMode(TrajectoryExecutor::EXECUTE_ROBOT);
         executionResult = execDmp.execute();
 

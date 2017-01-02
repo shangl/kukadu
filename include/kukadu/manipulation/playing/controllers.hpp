@@ -168,13 +168,16 @@ namespace kukadu {
 
         virtual KUKADU_SHARED_PTR<ControllerResult> executeInternal();
 
+        virtual bool requiresGraspInternal();
+        virtual bool producesGraspInternal();
+
     public:
 
-        ConcatController(std::vector<KUKADU_SHARED_PTR<kukadu::Controller> > controllers);
+        ConcatController(StorageSingleton& dbStorage, std::vector<KUKADU_SHARED_PTR<kukadu::Controller> > controllers);
 
-        virtual bool requiresGrasp();
-        virtual bool producesGrasp();
         virtual bool getSimulationMode();
+
+        virtual std::string getClassName() { return "ConcatController"; }
 
         static std::string generateLabelFromControllers(std::vector<KUKADU_SHARED_PTR<kukadu::Controller> >& controllers);
 
@@ -192,17 +195,19 @@ namespace kukadu {
 
         virtual KUKADU_SHARED_PTR<ControllerResult> executeInternal();
 
+        virtual bool requiresGraspInternal();
+        virtual bool producesGraspInternal();
+
     public:
 
-        ControllerActionClip(int actionId, KUKADU_SHARED_PTR<Controller> actionController,
+        ControllerActionClip(StorageSingleton& dbStorage, int actionId, KUKADU_SHARED_PTR<Controller> actionController,
                               KUKADU_SHARED_PTR<kukadu_mersenne_twister> generator);
 
         virtual std::string toString() const;
 
         KUKADU_SHARED_PTR<Controller> getActionController();
 
-        virtual bool requiresGrasp();
-        virtual bool producesGrasp();
+        virtual std::string getClassName() { return "ControllerActionClip"; }
 
     };
 
@@ -228,6 +233,8 @@ namespace kukadu {
         std::pair<int, KUKADU_SHARED_PTR<Clip> > jumpNextRandom();
 
         KUKADU_SHARED_PTR<SensingController> getSensingController();
+
+        virtual std::string getClassName() { return "IntermediateEventClip"; }
 
     };
 
@@ -334,7 +341,7 @@ namespace kukadu {
 
     public:
 
-        ComplexController(std::string caption, std::string storePath,
+        ComplexController(StorageSingleton& dbStorage, std::string caption, std::string storePath,
                           bool storeReward, double senseStretch, double boredom, KUKADU_SHARED_PTR<kukadu_mersenne_twister> generator,
                           int stdReward, double punishReward, double gamma, int stdPrepWeight, bool collectPrevRewards, int simulationFailingProbability,
                           KUKADU_SHARED_PTR<Controller> nothingController,
@@ -397,6 +404,8 @@ namespace kukadu {
         KUKADU_SHARED_PTR<std::vector<KUKADU_SHARED_PTR<PerceptClip> > > generatePerceptClips();
 
         void updateFiles();
+
+        virtual std::string getClassName() { return "ComplexController"; }
 
 #ifdef USEBOOST
         static const std::string FILE_SENSING_PREFIX = "***sensing controllers:";

@@ -521,9 +521,7 @@ namespace kukadu {
     }
 
     KUKADU_SHARED_PTR<Trajectory> JointDmp::copy() {
-
-        return KUKADU_SHARED_PTR<Trajectory>(new JointDmp(*this));
-
+        return make_shared<JointDmp>(*this);
     }
 
     CartesianDMPLearner::CartesianDMPLearner(std::vector<DMPBase> dmpBase, double tau, double az, double bz, double ax, arma::vec timesInSeconds, arma::mat joints) : GeneralDmpLearner(dmpBase, tau, az, bz, ax, timesInSeconds, joints) {
@@ -544,23 +542,23 @@ namespace kukadu {
 
     KUKADU_SHARED_PTR<Dmp> CartesianDMPLearner::createDmpInstance(arma::vec& supervisedTsInSeconds, std::vector<arma::vec> sampleYs, std::vector<arma::vec> fitYs, std::vector<arma::vec> dmpCoeffs, std::vector<DMPBase> dmpBase, std::vector<arma::mat> designMatrices,
                                                                 double tau, double az, double bz, double ax) {
-
         return make_shared<CartesianDMP>(convertTimesInSecondsToTimeInMilliseconds(supervisedTsInSeconds), sampleYs, fitYs, dmpCoeffs, dmpBase, designMatrices, tau, az, bz, ax);
-
     }
 
-    DMPExecutor::DMPExecutor(KUKADU_SHARED_PTR<Dmp> traj, KUKADU_SHARED_PTR<ControlQueue> execQueue, int suppressMessages) : TrajectoryExecutor(traj) {
-
+    DMPExecutor::DMPExecutor(StorageSingleton& dbStorage, KUKADU_SHARED_PTR<Dmp> traj, KUKADU_SHARED_PTR<ControlQueue> execQueue, int suppressMessages) : TrajectoryExecutor(dbStorage, traj) {
         construct(execQueue, suppressMessages);
-
     }
 
-    bool DMPExecutor::requiresGrasp() {
+    bool DMPExecutor::requiresGraspInternal() {
         return false;
     }
 
-    bool DMPExecutor::producesGrasp() {
+    bool DMPExecutor::producesGraspInternal() {
         return true;
+    }
+
+    std::pair<bool, std::string> DMPExecutor::getAugmentedInfoTableName() {
+        return {true, "dmp_controller_info"};
     }
 
     void  DMPExecutor::setRollbackTime(double rollbackTime) {
@@ -570,9 +568,6 @@ namespace kukadu {
     }
 
     void DMPExecutor::setTrajectory(KUKADU_SHARED_PTR<Trajectory> traj) {
-
-        if(typeid(*traj).name() != typeid(Dmp).name())
-            throw KukaduException("(DMPExecutor) passed trajectory must be a dmp");
 
         KUKADU_SHARED_PTR<Dmp> dmp = KUKADU_DYNAMIC_POINTER_CAST<Dmp>(traj);
         construct(controlQueue, suppressMessages);
