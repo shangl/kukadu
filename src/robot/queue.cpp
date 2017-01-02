@@ -88,13 +88,19 @@ namespace kukadu {
 
     ControlQueue::ControlQueue(StorageSingleton& storage, std::string robotName, double desiredCycleTime) : dbStorage(storage) {
 
+        thr = nullptr;
+        frcTrqFilterUpdateThr = nullptr;
+        cartPtpThr = nullptr;
+        jointPtpThr = nullptr;
+        jointsColletorThr = nullptr;
+
         this->robotName = robotName;
         this->desiredCycleTime = desiredCycleTime;
         this->sleepTime = desiredCycleTime;
 
         jointPtpRunning = false;
         cartesianPtpRunning = false;
-        frcTrqFilterRunning=true;
+        frcTrqFilterRunning = true;
         currentTime = getCurrentTime();
         degOfFreedom = loadDegOfFreedom(storage, robotName);
         continueCollecting = false;
@@ -219,10 +225,25 @@ namespace kukadu {
     }
 
     void ControlQueue::stopQueue() {
+
         KUKADU_MODULE_START_USAGE();
+
         finish = 1;
+        continueCollecting = false;
+        frcTrqFilterRunning = false;
         startingJoints = arma::vec(1);
+
+        if(thr && thr->joinable())
+            thr->join();
+
+        if(frcTrqFilterUpdateThr && frcTrqFilterUpdateThr->joinable())
+            frcTrqFilterUpdateThr->join();
+
+        if(jointsColletorThr && jointsColletorThr->joinable())
+            jointsColletorThr->join();
+
         KUKADU_MODULE_END_USAGE();
+
     }
 
     bool ControlQueue::isInitialized() {
@@ -429,7 +450,7 @@ namespace kukadu {
         if(!continueCollecting) {
 
             continueCollecting = true;
-            jointsColletorThr = KUKADU_SHARED_PTR<kukadu_thread>(new kukadu_thread(&ControlQueue::jointsCollector, this));
+            jointsColletorThr = make_shared<kukadu_thread>(&ControlQueue::jointsCollector, this);
             jointPtpInternal(joints);
             continueCollecting = false;
 
@@ -585,6 +606,8 @@ namespace kukadu {
                             KUKADU_SHARED_PTR<Kinematics> kin, KUKADU_SHARED_PTR<PathPlanner> planner,
                             double sleepTime, double maxDistPerCycle
                         ) {
+
+
 
         set_ctrlc_exit_handler();
 

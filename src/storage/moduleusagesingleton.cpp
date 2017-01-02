@@ -277,16 +277,26 @@ namespace kukadu {
 
             if(functionId != notFound) {
 
+                static long long int prevTime = 0;
                 auto currentTime = getCurrentTime();
 
-                if(mode == MODE_STD_STORAGE) {
-                    stringstream s;
-                    s << "insert into software_statistics_mode0(function_id, start_timestamp, end_timestamp) values(" << functionId << ", " << currentTime << ", NULL)";
-                    storage.executeStatement(s.str());
-                } else if(mode == MODE_POOL_STORAGE)
-                    storePooledStatistics(functionId, currentTime);
+                // prevents duplicate entries with the same id and timestamp
+                if(prevTime != currentTime) {
 
-                return currentTime;
+                    if(mode == MODE_STD_STORAGE) {
+                        stringstream s;
+                        s << "insert into software_statistics_mode0(function_id, start_timestamp, end_timestamp) values(" << functionId << ", " << currentTime << ", NULL)";
+                        storage.executeStatement(s.str());
+                    } else if(mode == MODE_POOL_STORAGE)
+                        storePooledStatistics(functionId, currentTime);
+
+                    prevTime = currentTime;
+
+                    return currentTime;
+
+                }
+
+                return ID_NOT_FOUND;
 
             }
 

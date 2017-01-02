@@ -122,6 +122,9 @@ int main(int argc, char** args) {
 
     simLeftQueue->stopCurrentMode();
     simLeftQueue->stopQueue();
-    laThr->join();
+
+    storage.waitForEmptyCache();
+
+    return EXIT_SUCCESS;
 
 }

@@ -8,6 +8,8 @@ int main(int argc, char** args) {
     ros::init(argc, args, "kukadu_controlqueue_demo"); ros::NodeHandle node; sleep(1);
     ros::AsyncSpinner spinner(10); spinner.start();
 
+    auto& storage = StorageSingleton::get();
+
     ArLocalizer arLocal(node, "camera/rgb/image_raw", true);
     ros::Rate r(1);
     while(true) {
@@ -20,6 +22,8 @@ int main(int argc, char** args) {
         }
         r.sleep();
     }
+
+    storage.waitForEmptyCache();
 
     return EXIT_SUCCESS;
 

@@ -84,6 +84,8 @@ int main(int argc, char** args) {
 
     }
 
+    storage.waitForEmptyCache();
+
     return EXIT_SUCCESS;
 
 }

@@ -265,7 +265,8 @@ namespace kukadu {
                     actualExecuteStatements(cacheBulk);
                 } catch(sql::SQLException& ex) {
                     // catch the exception to prevent the thread from breaking down
-                    // cout << ex.what() << endl;
+                } catch(KukaduException& ex) {
+                    // catch the exception to prevent the thread from breaking down
                 }
 
             } else
@@ -282,14 +283,19 @@ namespace kukadu {
 
     void StorageSingleton::actualExecuteStatements(const std::vector<std::string>& statements) {
 
+        string lastEx = "";
+
         connectionMutex.lock();
 
             auto stmt = con->createStatement();
             for(auto& sql : statements)
-                try { stmt->execute(sql); } catch(sql::SQLException& ex) { delete stmt; connectionMutex.unlock(); throw ex; }
+                try { stmt->execute(sql); } catch(sql::SQLException& ex) { lastEx = string(ex.what()); }
             delete stmt;
 
         connectionMutex.unlock();
+
+        if(lastEx != "")
+            KukaduException(lastEx.c_str());
 
     }
 

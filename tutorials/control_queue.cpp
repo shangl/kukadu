@@ -53,7 +53,8 @@ int main(int argc, char** args) {
     // stops the queue
     realLeftQueue->stopQueue();
 
-    // waits until everything has stopped
-    realLqThread->join();
+    storage.waitForEmptyCache();
+
+    return EXIT_SUCCESS;
 
 }

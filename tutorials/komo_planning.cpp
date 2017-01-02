@@ -48,7 +48,8 @@ int main(int argc, char** args) {
     realLeftQueue->stopCurrentMode();
     realLeftQueue->stopQueue();
 
-    if(realLqThread->joinable())
-        realLqThread->join();
+    storage.waitForEmptyCache();
+
+    return EXIT_SUCCESS;
 
 }

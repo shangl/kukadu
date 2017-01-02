@@ -128,6 +128,12 @@ int main(int argc, char** args) {
 
     simLeftQueue->stopCurrentMode();
     simLeftQueue->stopQueue();
-    laThr->join();
+
+    ModuleUsageSingleton::get().stopStatisticsModule();
+
+    // wait until all the information is stored in the database
+    storage.waitForEmptyCache();
+
+    return EXIT_SUCCESS;
 
 }

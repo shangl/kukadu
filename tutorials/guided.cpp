@@ -163,6 +163,9 @@ int main(int argc, char** args) {
 
     leftQueue->stopCurrentMode();
     leftQueue->stopQueue();
-    laThr->join();
+
+    storage.waitForEmptyCache();
+
+    return EXIT_SUCCESS;
 
 }
