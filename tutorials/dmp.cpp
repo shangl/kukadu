@@ -127,15 +127,23 @@ int main(int argc, char** args) {
     Gnuplot plot;
     plot.plot_xy(armadilloToStdVec(sampleTimes), armadilloToStdVec(firstColSamples));
     plot.plot_xy(armadilloToStdVec(timesExecuted), armadilloToStdVec(firstColExecuted));
+
     getchar();
 
+    cout << "stopping queue" << endl;
     simLeftQueue->stopCurrentMode();
     simLeftQueue->stopQueue();
 
+    cout << "stopping statistics module" << endl;
+
     ModuleUsageSingleton::get().stopStatisticsModule();
+
+    cout << "waiting until cache is empty" << endl;
 
     // wait until all the information is stored in the database
     storage.waitForEmptyCache();
+
+    cout << "done - exit" << endl;
 
     return EXIT_SUCCESS;
 

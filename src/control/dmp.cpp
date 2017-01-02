@@ -616,6 +616,30 @@ namespace kukadu {
                     storage.executeStatement(goalStream.str());
                 }
 
+                // the dmp basis functions are the same for all joints --> but this is not fixed forever,
+                // so the database model is such that this can be changed straight forward in the future (for now redundant information is stored)
+                for(int i = 0; i < jointIds.size(); ++i) {
+
+                    auto& currentCoeffs = coeff.at(i);
+                    for(int j = 0; j < dmpBase.size();) {
+
+                        s.str("");
+                        auto& currentBase = dmpBase.at(j);
+                        auto currentSigmas = currentBase.getSigmas();
+
+                        s << "insert into skill_dmp_coeff(skill_id, joint_id, my, sigma, coeff) values(" << skillId << ", " << jointIds.at(i) << ", " << currentBase.getMy();
+                        auto firstPart = s.str();
+                        for(auto& sigma : currentSigmas) {
+                            s.str("");
+                            s << firstPart << ", " << sigma << ", " << currentCoeffs(j) << ")";
+                            storage.executeStatement(s.str());
+                            ++j;
+                        }
+
+                    }
+
+                }
+
             } else
                 throw KukaduException("(DMPExecutor) skill with provided name already exists");
 
