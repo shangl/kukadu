@@ -80,64 +80,75 @@ int main(int argc, char** args) {
     deleteDirectory(storeDir);
 
     simLeftQueue->stopCurrentMode();
-    KUKADU_SHARED_PTR<kukadu_thread> laThr = simLeftQueue->startQueue();
+    simLeftQueue->startQueue();
     simLeftQueue->switchMode(KukieControlQueue::KUKA_JNT_POS_MODE);
 
-    /*
-    simLeftQueue->jointPtp({-0.7, 0.7, 1.5, -1.74, -1.85, 1.27, 0.71});
+    string skillName = "";
+    cout << "insert the desired name of the skill you want to create or load...";
+    cin >> skillName;
+    auto availableSkills = SkillFactory::get().listAvailableSkills();
 
-    cout << "press enter to measure trajectory" << endl;
+    if(std::find(availableSkills.begin(), availableSkills.end(), skillName) == availableSkills.end()) {
+
+        cout << "skill with this name does not exist yet --> creating it" << endl;
+
+        simLeftQueue->jointPtp({-0.7, 0.7, 1.5, -1.74, -1.85, 1.27, 0.71});
+
+        cout << "press enter to measure trajectory" << endl;
+        getchar();
+
+        cout << "starting measurement" << endl;
+        SensorStorage sensorStorage(storage, queueVectors, std::vector<KUKADU_SHARED_PTR<GenericHand> >(), 1000);
+        sensorStorage.setExportMode(SensorStorage::STORE_RBT_CART_POS | SensorStorage::STORE_RBT_JNT_POS);
+        sensorStorage.startDataStorage(storeDir);
+        cout << "measurement started" << endl;
+
+        ros::Rate r(2); r.sleep();
+        simLeftQueue->jointPtp({-1.5, 1.56, 2.33, -1.74, -1.85, 1.27, 0.71});
+
+        sensorStorage.stopDataStorage();
+
+        cout << "press enter to execute in simulation" << endl;
+        getchar();
+
+        KUKADU_SHARED_PTR<Dmp> sampleDmp;
+        KUKADU_SHARED_PTR<SensorData> sampleData;
+        KUKADU_SHARED_PTR<JointDMPLearner> sampleDmpLearner;
+
+        arma::vec sampleTimes;
+        sampleData = SensorStorage::readStorage(simLeftQueue, storeDir + string("/kuka_lwr_") + prefix + string("_left_arm_0"));
+        sampleTimes = sampleData->getNormalizedTimeInSeconds();
+        sampleDmpLearner = make_shared<JointDMPLearner>(az, bz, sampleTimes, sampleData->getJointPos());
+        sampleDmp = sampleDmpLearner->fitTrajectories();
+
+        DMPExecutor sampleExec(storage, sampleDmp, simLeftQueue);
+        sampleExec.setExecutionMode(TrajectoryExecutor::EXECUTE_ROBOT);
+        sampleExec.setAc(ac);
+
+        sampleExec.createSkillFromThis(skillName);
+
+        auto executionResult = sampleExec.execute();
+        vec firstColSamples = sampleData->getJointPos().col(0);
+
+        auto timesExecuted = executionResult->getTimes();
+        auto firstColExecuted = executionResult->getYCol(0);
+
+        Gnuplot plot;
+        plot.plot_xy(armadilloToStdVec(sampleTimes), armadilloToStdVec(firstColSamples));
+        plot.plot_xy(armadilloToStdVec(timesExecuted), armadilloToStdVec(firstColExecuted));
+
+    } else {
+
+        cout << "skill already exists --> loading it from database" << endl;
+
+        auto firstDmp = KUKADU_DYNAMIC_POINTER_CAST<DMPExecutor>(SkillFactory::get().loadSkill(skillName, simLeftQueue));
+        firstDmp->setExecutionMode(TrajectoryExecutor::EXECUTE_ROBOT);
+        firstDmp->setAc(ac);
+        firstDmp->execute();
+
+    }
+
     getchar();
-
-    cout << "starting measurement" << endl;
-    SensorStorage sensorStorage(storage, queueVectors, std::vector<KUKADU_SHARED_PTR<GenericHand> >(), 1000);
-    sensorStorage.setExportMode(SensorStorage::STORE_RBT_CART_POS | SensorStorage::STORE_RBT_JNT_POS);
-    sensorStorage.startDataStorage(storeDir);
-    cout << "measurement started" << endl;
-
-    ros::Rate r(2); r.sleep();
-    simLeftQueue->jointPtp({-1.5, 1.56, 2.33, -1.74, -1.85, 1.27, 0.71});
-
-    sensorStorage.stopDataStorage();
-
-    cout << "press enter to execute in simulation" << endl;
-    getchar();
-
-    KUKADU_SHARED_PTR<Dmp> sampleDmp;
-    KUKADU_SHARED_PTR<SensorData> sampleData;
-    KUKADU_SHARED_PTR<JointDMPLearner> sampleDmpLearner;
-
-    arma::vec sampleTimes;
-    sampleData = SensorStorage::readStorage(simLeftQueue, storeDir + string("/kuka_lwr_") + prefix + string("_left_arm_0"));
-    sampleTimes = sampleData->getNormalizedTimeInSeconds();
-    sampleDmpLearner = make_shared<JointDMPLearner>(az, bz, sampleTimes, sampleData->getJointPos());
-    sampleDmp = sampleDmpLearner->fitTrajectories();
-
-    DMPExecutor sampleExec(storage, sampleDmp, simLeftQueue);
-    sampleExec.setExecutionMode(TrajectoryExecutor::EXECUTE_ROBOT);
-    sampleExec.setAc(ac);
-
-    sampleExec.createSkillFromThis("firstdmp");
-
-    auto executionResult = sampleExec.execute();
-    vec firstColSamples = sampleData->getJointPos().col(0);
-
-    auto timesExecuted = executionResult->getTimes();
-    auto firstColExecuted = executionResult->getYCol(0);
-
-    Gnuplot plot;
-    plot.plot_xy(armadilloToStdVec(sampleTimes), armadilloToStdVec(firstColSamples));
-    plot.plot_xy(armadilloToStdVec(timesExecuted), armadilloToStdVec(firstColExecuted));
-
-    getchar();
-    */
-
-//    /*
-    auto firstDmp = KUKADU_DYNAMIC_POINTER_CAST<DMPExecutor>(SkillFactory::get().loadSkill("firstdmp", simLeftQueue));
-    firstDmp->setExecutionMode(TrajectoryExecutor::EXECUTE_ROBOT);
-    firstDmp->setAc(ac);
-    firstDmp->execute();
-//    */
 
     cout << "stopping queue" << endl;
     simLeftQueue->stopCurrentMode();

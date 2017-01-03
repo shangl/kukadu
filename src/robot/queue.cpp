@@ -727,9 +727,8 @@ namespace kukadu {
         if(!kinematicsInitialized) {
 
             planAndKinMutex.lock();
-            kin = make_shared<Komo>(shared_from_this(), resolvePath("$KUKADU_HOME/external/komo/share/data/kuka/data/iis_robot.kvg"), resolvePath("$KUKADU_HOME/external/komo/share/data/kuka/config/MT.cfg"), getRobotSidePrefix(), acceptCollisions);
-
-            kinematicsInitialized = true;
+                kin = make_shared<Komo>(shared_from_this(), resolvePath("$KUKADU_HOME/external/komo/share/data/kuka/data/iis_robot.kvg"), resolvePath("$KUKADU_HOME/external/komo/share/data/kuka/config/MT.cfg"), getRobotSidePrefix(), acceptCollisions);
+                kinematicsInitialized = true;
             planAndKinMutex.unlock();
 
         }
@@ -743,8 +742,8 @@ namespace kukadu {
         if(!plannerInitialized) {
 
             planAndKinMutex.lock();
-            planner = make_shared<Komo>(shared_from_this(), resolvePath("$KUKADU_HOME/external/komo/share/data/kuka/data/iis_robot.kvg"), resolvePath("$KUKADU_HOME/external/komo/share/data/kuka/config/MT.cfg"), getRobotSidePrefix(), acceptCollisions);
-            plannerInitialized = true;
+                planner = make_shared<Komo>(shared_from_this(), resolvePath("$KUKADU_HOME/external/komo/share/data/kuka/data/iis_robot.kvg"), resolvePath("$KUKADU_HOME/external/komo/share/data/kuka/config/MT.cfg"), getRobotSidePrefix(), acceptCollisions);
+                plannerInitialized = true;
             planAndKinMutex.unlock();
 
         }
@@ -758,10 +757,8 @@ namespace kukadu {
         KUKADU_MODULE_START_USAGE();
 
         planAndKinMutex.lock();
-
-        this->kin = kin;
-        kinematicsInitialized = true;
-
+            this->kin = kin;
+            kinematicsInitialized = true;
         planAndKinMutex.unlock();
 
         KUKADU_MODULE_END_USAGE();
@@ -773,10 +770,8 @@ namespace kukadu {
         KUKADU_MODULE_START_USAGE();
 
         planAndKinMutex.lock();
-
-        this->planner = planner;
-        plannerInitialized = true;
-
+            this->planner = planner;
+            plannerInitialized = true;
         planAndKinMutex.unlock();
 
         KUKADU_MODULE_END_USAGE();
@@ -981,13 +976,11 @@ namespace kukadu {
         ros::Rate myRate(50);
         while(getQueueRunning()) {
 
-            planAndKinMutex.lock();
-
+//            planAndKinMutex.lock();
                 currCarts = kin->computeFk(armadilloToStdVec(getCurrentJoints().joints));
                 firstCartsComputed = true;
-                myRate.sleep();
-
-            planAndKinMutex.unlock();
+//            planAndKinMutex.unlock();
+            myRate.sleep();
 
         }
 
@@ -1095,13 +1088,13 @@ namespace kukadu {
 
         planAndKinMutex.lock();
 
-        vector<vec> desiredJointPlan;
-        try {
-            desiredJointPlan = planner->planCartesianTrajectory(getCurrentJoints().joints, desiredPlan, false, true);
-        } catch(KukaduException& ex) {
-            planAndKinMutex.unlock();
-            throw ex;
-        }
+            vector<vec> desiredJointPlan;
+            try {
+                desiredJointPlan = planner->planCartesianTrajectory(getCurrentJoints().joints, desiredPlan, false, true);
+            } catch(KukaduException& ex) {
+                planAndKinMutex.unlock();
+                throw ex;
+            }
 
         planAndKinMutex.unlock();
 
@@ -1127,7 +1120,6 @@ namespace kukadu {
     void KukieControlQueue::jointPtpInternal(arma::vec joints) {
 
         ptpReached = false;
-
         loadPlanner();
         bool performPtp = false;
         vec currentState = getCurrentJoints().joints;
@@ -1145,7 +1137,7 @@ namespace kukadu {
             desiredPlan.push_back(joints);
 
             planAndKinMutex.lock();
-            desiredJointPlan = planner->planJointTrajectory(desiredPlan);
+                desiredJointPlan = planner->planJointTrajectory(desiredPlan);
             planAndKinMutex.unlock();
 
         }

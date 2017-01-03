@@ -598,7 +598,7 @@ namespace kukadu {
         int prevJointId = -1;
         double firstMy = -1;
         double prevMy = -1;
-        vector<double> allSigmas;
+        vector<double> currentSigmas;
         vector<double> currentCoefficientsPerJoint;
         vector<vec> allCoeffs;
 
@@ -620,15 +620,13 @@ namespace kukadu {
             // if first joint --> construct the base
             if(firstJointId == currentJointId) {
 
-                // if we are in the very first my --> a new sigma was found
-                if(compareDouble(currentMy, firstMy, 6))
-                    allSigmas.push_back(currentSigma);
-
-                // if my changes --> one complete sigma set has been read --> a DMPBase instance can be created
-                if(!compareDouble(prevMy, currentMy, 6)) {
-
-                    DMPBase b(prevMy, allSigmas);
+                if(compareDouble(currentMy, prevMy, 6))
+                    currentSigmas.push_back(currentSigma);
+                else {
+                    DMPBase b(prevMy, currentSigmas);
                     bases.push_back(b);
+                    currentSigmas.clear();
+                    currentSigmas.push_back(currentSigma);
                     prevMy = currentMy;
 
                 }
@@ -636,7 +634,7 @@ namespace kukadu {
             }
             // if it is the first run after the first joint --> we still have to insert the previous my
             else if(firstRunAfterFirstJoint) {
-                DMPBase b(prevMy, allSigmas);
+                DMPBase b(prevMy, currentSigmas);
                 bases.push_back(b);
                 firstRunAfterFirstJoint = false;
             }
@@ -783,20 +781,20 @@ namespace kukadu {
                 for(int i = 0; i < jointIds.size(); ++i) {
 
                     auto& currentCoeffs = coeff.at(i);
-                    for(int j = 0; j < dmpBase.size();) {
+                    for(int j = 0, m = 0; j < dmpBase.size(); ++j) {
 
                         s.str("");
                         auto& currentBase = dmpBase.at(j);
-                        auto currentSigmas = currentBase.getSigmas();
+                        vector<double> currentSigmas = currentBase.getSigmas();
 
                         s << "insert into skill_dmp_coeff(skill_id, joint_id, my, sigma, coeff) values(" << skillId << ", " << jointIds.at(i) << ", " << currentBase.getMy();
                         auto firstPart = s.str();
                         for(int k = 0; k < currentSigmas.size(); ++k) {
-                            auto& sigma = currentSigmas.at(k);
+                            double& sigma = currentSigmas.at(k);
                             s.str("");
-                            s << firstPart << ", " << sigma << ", " << currentCoeffs(j) << ")";
+                            s << firstPart << ", " << sigma << ", " << currentCoeffs(m) << ")";
                             storage.executeStatement(s.str());
-                            ++j;
+                            ++m;
                         }
 
                     }
@@ -1011,10 +1009,10 @@ namespace kukadu {
         myssize = baseDef.size();
         sigmassize = baseDef.at(0).getSigmas().size();
 
-
     }
 
     double DMPTrajectoryGenerator::evaluateByCoefficientsSingle(double x, vec coeff) {
+
         int coeffDegree = this->getBasisFunctionCount();
         double val = 0.0;
 
@@ -1025,10 +1023,11 @@ namespace kukadu {
             }
         }
 
-        for(int i = 0; i < coeffDegree; ++i) {
+        for(int i = 0; i < coeffDegree; ++i)
             val += coeff(i) * prevBasFun(i);
-        }
+
         return val;
+
     }
 
     double DMPTrajectoryGenerator::evaluateByCoefficientsSingleNonExponential(double x, vec coeff) {
@@ -1042,11 +1041,11 @@ namespace kukadu {
                 prevBasFun(i) = evaluateBasisFunctionNonExponential(x, i);
                 previousX = x;
             }
+
         }
 
-        for(int i = 0; i < coeffDegree; ++i) {
+        for(int i = 0; i < coeffDegree; ++i)
             val += coeff(i) * prevBasFun(i);
-        }
 
         return val;
 
@@ -1530,9 +1529,8 @@ namespace kukadu {
 
                 corrector = 1.0 + ac * dist;
 
-            } else {
+            } else
                 corrector = 1.0 + ac * getExternalError();
-            }
 
             f[odeSystemSizeMinOne] = -axDivTau * y[odeSystemSizeMinOne] / corrector;
 
@@ -1636,6 +1634,7 @@ namespace kukadu {
             nextDEta = dEta0;
 
             qG = cartDmp->getQg();
+
         }
 
     }
