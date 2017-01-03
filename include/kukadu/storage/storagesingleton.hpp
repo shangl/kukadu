@@ -16,68 +16,68 @@
 
 namespace kukadu {
 
-class StorageSingleton {
+    class StorageSingleton {
 
-private:
+    private:
 
-    bool useCaching;
-    int maxCacheSize;
-    kukadu_mutex statementsMutex;
-    std::queue<std::string> cachedStatements;
+        bool useCaching;
+        int maxCacheSize;
+        kukadu_mutex statementsMutex;
+        std::queue<std::string> cachedStatements;
 
-    // required because connection is not thread safe
-    kukadu_mutex connectionMutex;
+        // required because connection is not thread safe
+        kukadu_mutex connectionMutex;
 
-    bool cacheDemonRunning;
-    int cacheDemonPollingRate;
-    int cacheBulkSize;
-    kukadu_thread cacheDemonThread;
+        bool cacheDemonRunning;
+        int cacheDemonPollingRate;
+        int cacheBulkSize;
+        kukadu_thread cacheDemonThread;
 
-    sql::Connection* con;
-    sql::Driver* driver;
+        sql::Connection* con;
+        sql::Driver* driver;
 
-    std::string databaseName;
+        std::string databaseName;
 
-    std::map<std::string, long long int> idsMap;
+        std::map<std::string, long long int> idsMap;
 
-    std::map<std::string, std::vector<int> > labelIdsMap;
-    std::map<std::string, std::string> labelsMap;
+        std::map<std::string, std::vector<int> > labelIdsMap;
+        std::map<std::string, std::string> labelsMap;
 
-    StorageSingleton();
+        StorageSingleton();
 
-    void runStatementsDemon();
-    void installDirectory(std::string directory);
-    void actualExecuteStatements(const std::vector<std::string>& statements);
+        void runStatementsDemon();
+        void installDirectory(std::string directory);
+        void actualExecuteStatements(const std::vector<std::string>& statements);
 
-public:
+    public:
 
-    static StorageSingleton& get();
+        static StorageSingleton& get();
 
-    long long int getNextIdInTable(std::string table, std::string idCol);
+        long long int getNextIdInTable(std::string table, std::string idCol);
 
-    bool checkIdExists(std::string table, std::string idCol, int val);
-    bool checkLabelExists(std::string table, std::string labelCol, std::string val);
+        bool checkIdExists(std::string table, std::string idCol, int val);
+        bool checkLabelExists(std::string table, std::string labelCol, std::string val);
 
-    int getCachedLabelId(std::string table, std::string labelIdCol, std::string labelCol, std::string label, std::string additionalWhere = "");
-    std::vector<int> getCachedLabelIds(std::string table, std::string labelIdCol, std::string labelCol, std::string label, std::string additionalWhere = "");
+        int getCachedLabelId(std::string table, std::string labelIdCol, std::string labelCol, std::string label, std::string additionalWhere = "");
+        std::vector<int> getCachedLabelIds(std::string table, std::string labelIdCol, std::string labelCol, std::string label, std::string additionalWhere = "");
 
-    std::string getCachedLabel(std::string table, std::string labelIdCol, std::string labelCol, int labelId);
+        std::string getCachedLabel(std::string table, std::string labelIdCol, std::string labelCol, int labelId);
 
-    void executeStatementPriority(std::string sql);
+        void executeStatementPriority(std::string sql);
 
-    void executeStatement(std::string sql);
-    void executeStatements(std::vector<std::string> sqls);
-    KUKADU_SHARED_PTR<sql::ResultSet> executeQuery(std::string sql);
+        void executeStatement(std::string sql);
+        void executeStatements(std::vector<std::string> sqls);
+        KUKADU_SHARED_PTR<sql::ResultSet> executeQuery(std::string sql);
 
-    void waitForEmptyCache();
+        void waitForEmptyCache();
 
-    void install(std::string directory);
+        void install(std::string directory);
 
-    bool isInstalled(std::string directory);
+        bool isInstalled(std::string directory);
 
-    ~StorageSingleton();
+        ~StorageSingleton();
 
-};
+    };
 
 }
 

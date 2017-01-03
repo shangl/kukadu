@@ -17,8 +17,6 @@ int main(int argc, char** args) {
     ros::AsyncSpinner spinner(10);
     spinner.start();
 
-    ModuleUsageSingleton::get();
-
     StorageSingleton& storage = StorageSingleton::get();
 
     QApplication w(argc, args);

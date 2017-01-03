@@ -348,7 +348,7 @@ namespace kukadu {
 
     }
 
-    Dmp::Dmp(std::vector<arma::vec> dmpCoeffs, std::vector<DMPBase> dmpBase, arma::vec y0, arma::vec g, double tMax, double tau, double az, double bz, double ax, double ac, double dmpStepSize, double tolAbsErr, double tolRelErr) {
+    Dmp::Dmp(std::vector<arma::vec> dmpCoeffs, std::vector<DMPBase> dmpBase, arma::vec y0, arma::vec dy0, arma::vec g, double tMax, double tau, double az, double bz, double ax, double ac, double dmpStepSize, double tolAbsErr, double tolRelErr) {
         this->dmpCoeffs = dmpCoeffs;
         this->dmpBase = dmpBase;
         this->tau = tau;
@@ -362,6 +362,7 @@ namespace kukadu {
         this->tmax = tMax;
         this->y0 = y0;
         this->g = g;
+        this->dy0 = dy0;
     }
 
     std::vector<arma::vec> Dmp::getFitYs() {
@@ -533,6 +534,11 @@ namespace kukadu {
 
     }
 
+    JointDmp::JointDmp(std::vector<arma::vec> dmpCoeffs, std::vector<DMPBase> dmpBase, arma::vec y0, arma::vec dy0, arma::vec g, double tMax, double tau, double az, double bz, double ax, double ac, double dmpStepSize, double tolAbsErr, double tolRelErr)
+        : Dmp(dmpCoeffs, dmpBase, y0, dy0, g, tMax, tau, az, bz, ax, ac, dmpStepSize, tolAbsErr, tolRelErr) {
+
+    }
+
     bool JointDmp::isCartesian() {
         return false;
     }
@@ -566,6 +572,157 @@ namespace kukadu {
         construct(execQueue, suppressMessages);
     }
 
+    DMPExecutor::DMPExecutor(StorageSingleton& dbStorage, int skillId, KUKADU_SHARED_PTR<ControlQueue> execQueue, int suppressMessages) : TrajectoryExecutor(dbStorage, loadDmpFromDb(dbStorage, skillId, execQueue)) {
+        construct(execQueue, suppressMessages);
+    }
+
+    bool compareDouble(double& d1, double& d2, int precision) {
+        double mult = pow(10, precision);
+        return ((int) (d1 * mult) == (int) (d2 * mult));
+    }
+
+    std::pair<vector<DMPBase>, vector<vec> > loadBaseAndCoefficients(StorageSingleton& dbStorage, int skillId, KUKADU_SHARED_PTR<ControlQueue> execQueue, int robotId) {
+
+        stringstream s;
+        // load dmp base from database
+        vector<DMPBase> bases;
+        s << "select co.joint_id as ji, my, sigma, coeff from skill_dmp_coeff as co inner join skills as ski on co.skill_id = ski.skill_id where ski.skill_id = " << skillId
+                << " and ski.robot_id = " << robotId << " order by co.joint_id asc, co.my asc, co.sigma asc";
+
+        auto baseRes = dbStorage.executeQuery(s.str());
+
+        /************ loading base and coefficients ************/
+
+        bool firstRunAfterFirstJoint = true;
+        int firstJointId = -1;
+        int prevJointId = -1;
+        double firstMy = -1;
+        double prevMy = -1;
+        vector<double> allSigmas;
+        vector<double> currentCoefficientsPerJoint;
+        vector<vec> allCoeffs;
+
+        while(baseRes->next()) {
+
+            auto currentJointId = baseRes->getInt("ji");
+            double currentMy = baseRes->getDouble("my");
+            double currentSigma = baseRes->getDouble("sigma");
+            double currentCoeff = baseRes->getDouble("coeff");
+
+            /** start generating the base **/
+
+            // remember first joint id
+            if(firstJointId == -1) {
+                firstJointId = prevJointId = currentJointId;
+                firstMy = prevMy = currentMy;
+            }
+
+            // if first joint --> construct the base
+            if(firstJointId == currentJointId) {
+
+                // if we are in the very first my --> a new sigma was found
+                if(compareDouble(currentMy, firstMy, 6))
+                    allSigmas.push_back(currentSigma);
+
+                // if my changes --> one complete sigma set has been read --> a DMPBase instance can be created
+                if(!compareDouble(prevMy, currentMy, 6)) {
+
+                    DMPBase b(prevMy, allSigmas);
+                    bases.push_back(b);
+                    prevMy = currentMy;
+
+                }
+
+            }
+            // if it is the first run after the first joint --> we still have to insert the previous my
+            else if(firstRunAfterFirstJoint) {
+                DMPBase b(prevMy, allSigmas);
+                bases.push_back(b);
+                firstRunAfterFirstJoint = false;
+            }
+
+            /** end generating the base **/
+
+            // this part loads the coefficients
+
+            // if we are still in the same joint --> insert the coefficient to that joint
+            if(prevJointId == currentJointId) {
+                // do nothing
+            // else --> one joint is complete --> add it and clear the vector
+            } else {
+                allCoeffs.push_back(stdToArmadilloVec(currentCoefficientsPerJoint));
+                currentCoefficientsPerJoint.clear();
+                prevJointId = currentJointId;
+            }
+
+            currentCoefficientsPerJoint.push_back(currentCoeff);
+
+        }
+
+        // add last coefficients as well
+        allCoeffs.push_back(stdToArmadilloVec(currentCoefficientsPerJoint));
+
+        if(allCoeffs.size() != execQueue->getDegreesOfFreedom() || allCoeffs.front().n_elem != (bases.front().getSigmas().size() * bases.size()))
+            throw KukaduException("(DMPExecutor) malformed skill information in database");
+
+        return {bases, allCoeffs};
+
+    }
+
+    arma::vec loadJointsFromTable(StorageSingleton& dbStorage, std::string table, int skillId, KUKADU_SHARED_PTR<ControlQueue> execQueue) {
+
+        stringstream s;
+        s << "select joint_id, position from " << table << " where skill_id = " << skillId << " order by joint_id asc";
+        auto jointsRes = dbStorage.executeQuery(s.str());
+        vector<double> joints;
+
+        int jointCount = 0;
+        while(jointsRes->next()) {
+            joints.push_back(jointsRes->getDouble("position"));
+            ++jointCount;
+        }
+
+        if(jointCount != execQueue->getDegreesOfFreedom())
+            throw KukaduException("(DMPExecutor) malformed skill information in database");
+
+        return stdToArmadilloVec(joints);
+
+    }
+
+    std::vector<double> loadDmpParameters(StorageSingleton& dbStorage, int skillId) {
+
+        stringstream s;
+        s << "select tau, az, bz, ax, step_size, tol_abs_err, tol_rel_err, tmax from skill_dmp where skill_id = " << skillId;
+        auto parameterRes = dbStorage.executeQuery(s.str());
+        if(parameterRes->next())
+            return {(double) parameterRes->getDouble("tau"), (double) parameterRes->getDouble("az"), (double) parameterRes->getDouble("bz"), (double) parameterRes->getDouble("ax"),
+            (double) parameterRes->getDouble("step_size"), (double) parameterRes->getDouble("tol_abs_err"), (double) parameterRes->getDouble("tol_rel_err"),
+            (double) parameterRes->getDouble("tmax")};
+        else
+            throw KukaduException("(DMPExecutor) malformed skill information in database");
+        return {};
+
+    }
+
+    KUKADU_SHARED_PTR<Dmp> DMPExecutor::loadDmpFromDb(StorageSingleton& dbStorage, int skillId, KUKADU_SHARED_PTR<ControlQueue> execQueue) {
+
+        auto robotId = execQueue->getRobotId();
+
+        auto baseAndCoeff = loadBaseAndCoefficients(dbStorage, skillId, execQueue, robotId);
+        auto& base = baseAndCoeff.first;
+        auto& coeff = baseAndCoeff.second;
+
+        auto y0 = loadJointsFromTable(dbStorage, "skill_dmp_y0", skillId, execQueue);
+        auto dy0 = loadJointsFromTable(dbStorage, "skill_dmp_dy0", skillId, execQueue);
+        auto g = loadJointsFromTable(dbStorage, "skill_dmp_g", skillId, execQueue);
+
+        auto dmpParams = loadDmpParameters(dbStorage, skillId);
+
+        return make_shared<JointDmp>(coeff, base, y0, dy0, g, dmpParams.at(7), dmpParams.at(0), dmpParams.at(1), dmpParams.at(2), dmpParams.at(3),
+                                     0.0, dmpParams.at(4), dmpParams.at(5), dmpParams.at(6));
+
+    }
+
     void DMPExecutor::createSkillFromThisInternal(std::string skillName) {
 
         // if it is a joint dmp --> skill creation is supported, otherwise not yet
@@ -577,6 +734,7 @@ namespace kukadu {
 
                 // dmp specific information
                 auto y0 = jointDmp->getY0();
+                auto dy0 = jointDmp->getDy0();
                 auto g = jointDmp->getG();
                 auto coeff = jointDmp->getCoefficients();
                 auto tau = jointDmp->getTau();
@@ -606,14 +764,18 @@ namespace kukadu {
                 storage.executeStatementPriority(s.str());
 
                 stringstream goalStream;
+                stringstream dy0Stream;
                 for(int i = 0; i < jointIds.size(); ++i) {
                     s.str("");
                     goalStream.str("");
+                    dy0Stream.str("");
                     auto& currentJointId = jointIds.at(i);
                     s << "insert into skill_dmp_y0(skill_id, joint_id, position) values(" << skillId << ", " << currentJointId << ", " << y0(i) << ")";
                     goalStream << "insert into skill_dmp_g(skill_id, joint_id, position) values(" << skillId << ", " << currentJointId << ", " << g(i) << ")";
+                    dy0Stream << "insert into skill_dmp_dy0(skill_id, joint_id, position) values(" << skillId << ", " << currentJointId << ", " << dy0(i) << ")";
                     storage.executeStatement(s.str());
                     storage.executeStatement(goalStream.str());
+                    storage.executeStatement(dy0Stream.str());
                 }
 
                 // the dmp basis functions are the same for all joints --> but this is not fixed forever,
@@ -629,7 +791,8 @@ namespace kukadu {
 
                         s << "insert into skill_dmp_coeff(skill_id, joint_id, my, sigma, coeff) values(" << skillId << ", " << jointIds.at(i) << ", " << currentBase.getMy();
                         auto firstPart = s.str();
-                        for(auto& sigma : currentSigmas) {
+                        for(int k = 0; k < currentSigmas.size(); ++k) {
+                            auto& sigma = currentSigmas.at(k);
                             s.str("");
                             s << firstPart << ", " << sigma << ", " << currentCoeffs(j) << ")";
                             storage.executeStatement(s.str());
@@ -1268,7 +1431,6 @@ namespace kukadu {
 
         if(!isCartesian) {
 
-            // TODO: remove equation for z' and merge the first two equations
             // y' = z / tau
             // z' = 1 / tau * ( az * (bz * (g - y) - z) + f);
             // x' = -ax / tau * x
@@ -1282,12 +1444,16 @@ namespace kukadu {
                 arma::vec currentCoeffs = dmpCoeffs.at(currentSystem);
 
                 if(t <= (dmp->getTmax() - 1)) {
+
                     double addTerm = trajGen->evaluateByCoefficientsSingleNonExponential(y[odeSystemSizeMinOne], currentCoeffs);
+
                     double x = this->addTerm(t, y, currentSystem, controlQueue);
+
                     if(!std::isnan(x))
                         f[i + 1] = oneDivTau * (az * (bz * (g - y[i]) - yPlusOne) + addTerm) + x; // + this->addTerm(t, y, currentSystem, controlQueue);
                     else
                         f[i + 1] = oneDivTau * (az * (bz * (g - y[i]) - yPlusOne) + addTerm);
+
                 } else {
                     f[i + 1] = oneDivTau * (az * (bz * (g - y[i]) - yPlusOne));
                 }
@@ -1350,9 +1516,11 @@ namespace kukadu {
                 currentJoints(1) = currentPose.position.y;
                 currentJoints(2) = currentPose.position.x;
                 arma::vec currentOrient = log(tf::Quaternion(currentPose.orientation.x, currentPose.orientation.y, currentPose.orientation.z, currentPose.orientation.w));
-                for (int i = 0; i < 3; i++) currentJoints(i + 3) = currentOrient(i);
+                for (int i = 0; i < 3; i++)
+                    currentJoints(i + 3) = currentOrient(i);
 
             }
+
             double corrector = 0.0;
             if(!usesExternalError()) {
 
@@ -1426,11 +1594,9 @@ namespace kukadu {
             }
         } else {
             for(int i = 0, dim = 0; i < (odeSystemSize - 3); i = i + 3, ++dim) {
-
                 ys[i + 0] = y0s(dim);
                 ys[i + 1] = tau * dy0s(dim);
                 ys[i + 2] = Eta0(dim);
-
             }
         }
 
@@ -1440,9 +1606,9 @@ namespace kukadu {
         sys = tmp_sys;
         d = KUKADU_SHARED_PTR<gsl_odeiv2_driver>(gsl_odeiv2_driver_alloc_y_new(&sys, gsl_odeiv2_step_rkf45, controlQueue->getCycleTime(), tolAbsErr, tolRelErr), gsl_delete_expression());
 
-        for(int i = 0; i < odeSystemSize; ++i) {
+        for(int i = 0; i < odeSystemSize; ++i)
             vecYs(i) = ys[i];
-        }
+
     }
 
     void DMPExecutor::initializeIntegrationQuat() {
@@ -1488,7 +1654,6 @@ namespace kukadu {
 
             int s = gsl_odeiv2_driver_apply_fixed_step(d.get(), &t, controlQueue->getCycleTime(), 1, ys);
 
-
             if (s != GSL_SUCCESS) {
                 cout << "(DMPExecutor) error: driver returned " << s << endl;
                 throw KukaduException(string("(DMPExecutor) error: driver returned " + s).c_str());
@@ -1519,6 +1684,7 @@ namespace kukadu {
             currentEta = nextEta;
 
         }
+
         for(int i = 0; i < odeSystemSize; ++i)
             vecYs(i) = ys[i];
 

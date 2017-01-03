@@ -83,6 +83,7 @@ int main(int argc, char** args) {
     KUKADU_SHARED_PTR<kukadu_thread> laThr = simLeftQueue->startQueue();
     simLeftQueue->switchMode(KukieControlQueue::KUKA_JNT_POS_MODE);
 
+    /*
     simLeftQueue->jointPtp({-0.7, 0.7, 1.5, -1.74, -1.85, 1.27, 0.71});
 
     cout << "press enter to measure trajectory" << endl;
@@ -129,6 +130,14 @@ int main(int argc, char** args) {
     plot.plot_xy(armadilloToStdVec(timesExecuted), armadilloToStdVec(firstColExecuted));
 
     getchar();
+    */
+
+//    /*
+    auto firstDmp = KUKADU_DYNAMIC_POINTER_CAST<DMPExecutor>(SkillFactory::get().loadSkill("firstdmp", simLeftQueue));
+    firstDmp->setExecutionMode(TrajectoryExecutor::EXECUTE_ROBOT);
+    firstDmp->setAc(ac);
+    firstDmp->execute();
+//    */
 
     cout << "stopping queue" << endl;
     simLeftQueue->stopCurrentMode();

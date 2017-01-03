@@ -74,7 +74,7 @@ namespace kukadu {
 
         Dmp(const Dmp& copy);
         Dmp(std::string dmpFile);
-        Dmp(std::vector<arma::vec> dmpCoeffs, std::vector<DMPBase> dmpBase, arma::vec y0, arma::vec g, double tMax, double tau, double az, double bz, double ax, double ac, double dmpStepSize, double tolAbsErr, double tolRelErr);
+        Dmp(std::vector<arma::vec> dmpCoeffs, std::vector<DMPBase> dmpBase, arma::vec y0, arma::vec dy0, arma::vec g, double tMax, double tau, double az, double bz, double ax, double ac, double dmpStepSize, double tolAbsErr, double tolRelErr);
         Dmp(std::vector<long long int> supervisedTs, std::vector<arma::vec> sampleYs, std::vector<arma::vec> fitYs, std::vector<arma::vec> dmpCoeffs, std::vector<DMPBase> dmpBase, std::vector<arma::mat> designMatrices,
             double tau, double az, double bz, double ax, double ac, double dmpStepSize, double tolAbsErr, double tolRelErr);
 
@@ -139,6 +139,8 @@ namespace kukadu {
 
         JointDmp(std::vector<long long int> supervisedTsInMilliseconds, std::vector<arma::vec> sampleYs, std::vector<arma::vec> fitYs, std::vector<arma::vec> dmpCoeffs, std::vector<DMPBase> dmpBase, std::vector<arma::mat> designMatrices,
                  double tau, double az, double bz, double ax);
+
+        JointDmp(std::vector<arma::vec> dmpCoeffs, std::vector<DMPBase> dmpBase, arma::vec y0, arma::vec dy0, arma::vec g, double tMax, double tau, double az, double bz, double ax, double ac, double dmpStepSize, double tolAbsErr, double tolRelErr);
 
         JointDmp(std::string dmpFile);
 
@@ -485,6 +487,8 @@ namespace kukadu {
         KUKADU_SHARED_PTR<ControllerResult> executeDMP(double tStart, double tEnd, double tolAbsErr, double tolRelErr);
         void construct(KUKADU_SHARED_PTR<ControlQueue> execQueue, int suppressMessages);
 
+        KUKADU_SHARED_PTR<Dmp> loadDmpFromDb(StorageSingleton& dbStorage, int skillId, KUKADU_SHARED_PTR<ControlQueue> execQueue);
+
     protected:
 
         virtual int func (double t, const double* y, double* f, void* params);
@@ -508,6 +512,7 @@ namespace kukadu {
          * \param dmp the dmp that should be executed
          */
         DMPExecutor(StorageSingleton &dbStorage, KUKADU_SHARED_PTR<Dmp> dmp, KUKADU_SHARED_PTR<ControlQueue> execQueue, int suppressMessages = 1);
+        DMPExecutor(StorageSingleton &dbStorage, int skillId, KUKADU_SHARED_PTR<ControlQueue> execQueue, int suppressMessages = 1);
 
         int usesExternalError();
         void destroyIntegration();

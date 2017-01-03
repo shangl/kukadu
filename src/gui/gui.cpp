@@ -24,7 +24,6 @@ namespace kukadu {
 
     void KukaduGui::currentChanged(const QModelIndex& current, const QModelIndex& previous) {
         current.row();
-
     }
 
     KukaduGui::KukaduGui(StorageSingleton& dataStorage) : storage(dataStorage) {

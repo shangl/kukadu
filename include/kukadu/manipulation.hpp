@@ -2,6 +2,7 @@
 #define KUKADU_MANIPULATION_H
 
     #ifndef USEBOOST
+        #include <kukadu/manipulation/skillfactory.hpp>
         #include <kukadu/manipulation/playing/core.hpp>
         #include <kukadu/manipulation/playing/controllers.hpp>
     #else
