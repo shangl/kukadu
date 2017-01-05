@@ -649,26 +649,23 @@ namespace kukadu {
         if(jointPositions.n_elem > 0)
             usePos = true;
 
-        bool useForce = false;
-        if(jointForces.n_elem > 0)
-            useForce = true;
-
         // if none is selected, don't store anything (not even timestamp)
-        if(!useForce && !usePos)
+        if(!storeForces && !usePos)
             return;
 
         vector<string> statements(jointIds.size());
         for(int i = 0; i < jointIds.size(); ++i) {
+
             stringstream s;
             s << "insert into joint_mes(robot_id, joint_id, time_stamp, position, velocity, acceleration, frc)" <<
                  " values(" << robotId << ", " << jointIds.at(i) << ", " << timeStamp << ", ";
             if(usePos)
-                s   << jointPositions(i) << ", " <<
+                s << jointPositions(i) << ", " <<
                  jointVelocities(i) << ", " << jointAccelerations(i) << ", ";
             else
                 s << "NULL, NULL, NULL, NULL, ";
 
-            if(useForce)
+            if(storeForces)
                 s << jointForces(i) << ");";
             else
                 s << "NULL);";

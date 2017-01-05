@@ -191,7 +191,6 @@ namespace kukadu {
             stringstream s;
             s << "select distinct(" << labelIdCol << ") from " << table << " where " << labelCol << " = \"" << label << "\"" << ((additionalWhere == "") ? "" : " and ") << additionalWhere << ";";
             auto labelQuery = s.str();
-
             auto labelResSet = executeQuery(labelQuery);
 
             bool firstRun = true;

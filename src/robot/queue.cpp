@@ -77,7 +77,7 @@ namespace kukadu {
         vec acc;
         // if the previous times are the same, it is the first time - acceleration are 0
         if(prevPrevJoints.time == prevJoints.time)
-            acc = zeros(nowJoints.joints.n_elem);
+            acc = arma::zeros(nowJoints.joints.n_elem);
         else {
             auto timeDiffInSec = (double) (prevJoints.time - prevPrevJoints.time) / 1000.0;
             acc = (prevPrevJoints.joints - prevJoints.joints) / timeDiffInSec;
@@ -85,7 +85,7 @@ namespace kukadu {
 
         // same reasoning vor velocity
         if(prevJoints.time == nowJoints.time)
-            vel = zeros(nowJoints.joints.n_elem);
+            vel = arma::zeros(nowJoints.joints.n_elem);
         else {
             auto timeDiffInSec = (double) (nowJoints.time - prevJoints.time) / 1000.0;
             vel = (nowJoints.joints - prevJoints.joints) / timeDiffInSec;

@@ -217,12 +217,14 @@ namespace kukadu {
     std::vector<std::string> KukieHand::getJointNames() {
 
         if(firstJointNamesRetrieval) {
+            jointNames.clear();
             stringstream s;
             for(int i = 0; i < degOfFreedom; ++i) {
                 s.str("");
                 s << getHardwareInstanceName() << "_joint_" << i;
                 jointNames.push_back(s.str());
             }
+            firstJointNamesRetrieval = false;
         }
 
         return jointNames;
