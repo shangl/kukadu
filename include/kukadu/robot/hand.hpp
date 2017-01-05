@@ -5,8 +5,10 @@
 #include <vector>
 #include <ros/ros.h>
 #include <armadillo>
+#include <kukadu/robot/hardware.hpp>
 #include <kukadu/types/kukadutypes.hpp>
 #include <kukadu/utils/destroyableobject.hpp>
+#include <kukadu/storage/storagesingleton.hpp>
 
 namespace kukadu {
 
@@ -19,12 +21,19 @@ namespace kukadu {
      * This class provides very an interface for the very basic functionalities such as "connect to hand" or "close hand"
      * \ingroup Robot
      */
-    class GenericHand : public DestroyableObject, public TimedObject {
+    class GenericHand : public Hardware, public DestroyableObject, public TimedObject {
 
     private:
 
+    protected:
+
+        virtual void installHardwareTypeInternal();
+        virtual void installHardwareInstanceInternal();
 
     public:
+
+        GenericHand(StorageSingleton& dbStorage, std::string handInstanceName);
+        GenericHand(StorageSingleton& dbStorage, int handTypeId, std::string handTypeName, int handInstanceId, std::string handInstanceName);
 
         /** \brief Initializes the connection to the hand
          *
@@ -46,7 +55,7 @@ namespace kukadu {
 
         virtual std::vector<arma::mat> getTactileSensing() = 0;
 
-        virtual std::string getHandName() = 0;
+        virtual std::string getHandName();
 
         virtual void setWaitForReached(bool waitForReached) = 0;
 
@@ -70,7 +79,7 @@ namespace kukadu {
 
     public:
 
-        PlottingHand(int sensingPatchCount, std::pair<int, int> patchDimensions);
+        PlottingHand(StorageSingleton& storage, int sensingPatchCount, std::pair<int, int> patchDimensions);
 
         virtual void connectHand();
 
@@ -81,8 +90,6 @@ namespace kukadu {
         virtual void disconnectHand();
 
         virtual std::vector<arma::mat> getTactileSensing();
-
-        virtual std::string getHandName();
 
         virtual void safelyDestroy() {}
 

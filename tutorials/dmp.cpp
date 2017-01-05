@@ -155,7 +155,6 @@ int main(int argc, char** args) {
     simLeftQueue->stopQueue();
 
     cout << "stopping statistics module" << endl;
-
     ModuleUsageSingleton::get().stopStatisticsModule();
 
     cout << "waiting until cache is empty" << endl;

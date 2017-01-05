@@ -5,7 +5,7 @@ using namespace kukadu;
 
 int main(int argc, char** args) {
 
-    ros::init(argc, args, "kukadu_controlqueue_demo"); ros::NodeHandle node; sleep(1);
+    ros::init(argc, args, "kukadu_artracker_demo"); ros::NodeHandle node; sleep(1);
     ros::AsyncSpinner spinner(10); spinner.start();
 
     auto& storage = StorageSingleton::get();

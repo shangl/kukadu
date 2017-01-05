@@ -79,6 +79,21 @@ namespace kukadu {
 
     };
 
+    // for convenience to avoid duplicate code for all classes that contain a storage singleton
+    // (I want to pass the singleton explicitely just to make the dependency more clear)
+    class StorageHolder {
+
+    private:
+
+        StorageSingleton& storage;
+
+    public:
+
+        StorageHolder(StorageSingleton& dbStorage);
+        StorageSingleton& getStorage();
+
+    };
+
 }
 
 #endif

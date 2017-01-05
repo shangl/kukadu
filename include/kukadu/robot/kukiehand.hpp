@@ -59,13 +59,9 @@ namespace kukadu {
         void stateCallback(const sensor_msgs::JointState& state);
         void tactileCallback(const iis_robot_dep::TactileSensor& state);
 
-    protected:
-
-        KukieHand(std::string type, std::string hand);
-
     public:
 
-        KukieHand(ros::NodeHandle node, std::string type, std::string hand);
+        KukieHand(StorageSingleton& storage, ros::NodeHandle node, std::string simulationType, std::string hand);
 
         virtual void connectHand();
         virtual void safelyDestroy();
@@ -76,8 +72,6 @@ namespace kukadu {
 
         void moveJoints(arma::vec joints);
         void setWaitForReached(bool waitForReached);
-
-        virtual std::string getHandName();
 
         virtual std::vector<arma::mat> getTactileSensing();
 

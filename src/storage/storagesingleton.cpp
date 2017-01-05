@@ -11,6 +11,14 @@ using namespace std;
 
 namespace kukadu {
 
+    StorageHolder::StorageHolder(StorageSingleton& dbStorage) : storage(dbStorage) {
+
+    }
+
+    StorageSingleton& StorageHolder::getStorage() {
+        return storage;
+    }
+
     StorageSingleton::StorageSingleton() {
 
         boost::program_options::options_description desc("kukadu properties");

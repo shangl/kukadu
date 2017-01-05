@@ -1,4 +1,5 @@
 #include <string>
+#include <sstream>
 #include <kukadu/robot/hand.hpp>
 #include <kukadu/utils/utils.hpp>
 #include <kukadu/robot/kukiehand.hpp>
@@ -16,7 +17,25 @@ namespace kukadu {
     KukieHand::SDH_IGNORE_JOINT = DBL_MAX;
 #endif
 
-    PlottingHand::PlottingHand(int sensingPatchCount, std::pair<int, int> patchDimensions) {
+    GenericHand::GenericHand(StorageSingleton& dbStorage, std::string handInstanceName) :
+        Hardware(dbStorage, Hardware::loadTypeIdFromInstanceName(handInstanceName), loadTypeNameFromInstanceName(handInstanceName), Hardware::loadInstanceIdFromName(handInstanceName), handInstanceName) {
+
+    }
+
+    GenericHand::GenericHand(StorageSingleton& dbStorage, int handTypeId, std::string handTypeName, int handInstanceId, std::string handInstanceName) :
+        Hardware(dbStorage, handTypeId, handTypeName, handInstanceId, handInstanceName) {
+
+    }
+
+    void GenericHand::installHardwareTypeInternal() {
+    }
+
+    void GenericHand::installHardwareInstanceInternal() {
+
+    }
+
+    PlottingHand::PlottingHand(StorageSingleton& storage, int sensingPatchCount, std::pair<int, int> patchDimensions) : GenericHand(storage, HARDWARE_PLOTTINGHAND, "PlottingHand",
+                                                                                                                                    loadOrCreateInstanceIdFromName("PlottingHand"), "GenericPlottingHand") {
         this->sensingPatchCount = sensingPatchCount;
         this->patchDimensions = patchDimensions;
     }
@@ -58,18 +77,19 @@ namespace kukadu {
 
     }
 
-    std::string PlottingHand::getHandName() { return "PlottingHand"; }
+    std::string GenericHand::getHandName() { return getHardwareInstanceName(); }
 
-    KukieHand::KukieHand(ros::NodeHandle node, std::string type, std::string hand) {
+    KukieHand::KukieHand(StorageSingleton& storage, ros::NodeHandle node, std::string simulationType, std::string hand) :
+        GenericHand(storage, HARDWARE_KUKIEHAND, "KukieHand", Hardware::loadOrCreateInstanceIdFromName("kukiehand_" + hand), "kukiehand_" + hand) {
 
         this->node = node;
         waitForReached = true;
-        trajPub = node.advertise<std_msgs::Float64MultiArray>(string("/") + type + string("/") + hand + "_sdh/joint_control/move", 1);
+        trajPub = node.advertise<std_msgs::Float64MultiArray>(simulationType + "/" + hand + "_sdh/joint_control/move", 1);
 
         this->hand = hand;
 
-        stateSub = node.subscribe(string("/") + type + string("/") + hand + "_sdh/joint_control/get_state", 1, &KukieHand::stateCallback, this);
-        tactileSub = node.subscribe(string("/") + type + string("/") + hand + "_sdh/sensoring/tactile", 1, &KukieHand::tactileCallback, this);
+        stateSub = node.subscribe(simulationType + "/" + hand + "_sdh/joint_control/get_state", 1, &KukieHand::stateCallback, this);
+        tactileSub = node.subscribe("/" + simulationType + "/" + hand + "_sdh/sensoring/tactile", 1, &KukieHand::tactileCallback, this);
         previousCurrentPosQueueSize = 10;
         isFirstCallback = true;
 
@@ -83,10 +103,6 @@ namespace kukadu {
         currentGraspId = eGID_PARALLEL;
         moveJoints(stdToArmadilloVec(currentPos));
 
-    }
-
-    std::string KukieHand::getHandName() {
-        return string("schunk_") + hand;
     }
 
     void KukieHand::setWaitForReached(bool waitForReached) {
