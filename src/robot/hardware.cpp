@@ -5,9 +5,10 @@ using namespace std;
 
 namespace kukadu {
 
-    Hardware::Hardware(StorageSingleton& dbStorage, int hardwareType, std::string hardwareTypeName, int hardwareInstanceId, std::string hardwareInstanceName) :
+    Hardware::Hardware(StorageSingleton& dbStorage, int hardwareClass, int hardwareType, std::string hardwareTypeName, int hardwareInstanceId, std::string hardwareInstanceName) :
         StorageHolder(dbStorage) {
         this->hardwareType = hardwareType;
+        this->hardwareClass = hardwareClass;
         this->hardwareTypeName = hardwareTypeName;
         this->hardwareInstanceId = hardwareInstanceId;
         this->hardwareInstanceName = hardwareInstanceName;
@@ -44,7 +45,8 @@ namespace kukadu {
         if(!alreadyExists) {
 
             stringstream s;
-            s << "insert into hardware(hardware_id, name) values(" << getHardwareType() << ", '" << getHardwareTypeName() << "')";
+            s << "insert into hardware(hardware_id, hardware_name, hardware_class) values(" << getHardwareType() << ", '"
+              << getHardwareTypeName() << "', " << getHardwareClass() << ")";
             getStorage().executeStatementPriority(s.str());
 
             installHardwareTypeInternal();
@@ -84,6 +86,10 @@ namespace kukadu {
 
     }
 
+    int Hardware::getHardwareClass() {
+        return hardwareClass;
+    }
+
     int Hardware::getHardwareType() {
         return hardwareType;
     }
@@ -102,7 +108,7 @@ namespace kukadu {
 
     int Hardware::loadTypeIdFromName(const std::string& typeName) {
         auto& storage = StorageSingleton::get();
-        return storage.getCachedLabelId("hardware", "hardware_id", "name", typeName);
+        return storage.getCachedLabelId("hardware", "hardware_id", "hardware_name", typeName);
     }
 
     int Hardware::loadInstanceIdFromName(const std::string& instanceName) {
@@ -135,19 +141,28 @@ namespace kukadu {
     std::string Hardware::loadTypeNameFromInstanceName(const std::string& instanceName) {
         auto& storage = StorageSingleton::get();
         stringstream s;
-        s << "select name from hardware_instances as inst inner join hardware as har on inst.hardware_id = har.hardware_id where instance_name = " << instanceName;
+        s << "select hardware_name from hardware_instances as inst inner join hardware as har on inst.hardware_id = har.hardware_id where instance_name = " << instanceName;
         auto typeRes = storage.executeQuery(s.str());
         if(typeRes->next())
-            return typeRes->getString("name");
+            return typeRes->getString("hardware_name");
         else
             throw KukaduException("(Hardware) failed to load hardware type name");
+    }
+
+    int Hardware::loadOrCreateTypeIdFromName(const std::string& typeName) {
+        try {
+            return loadTypeIdFromName(typeName);
+        } catch(KukaduException& ex) {
+            return StorageSingleton::get().getNextIdInTable("hardware", "hardware_id");
+        }
+        return -1;
     }
 
     int Hardware::loadOrCreateInstanceIdFromName(const std::string& instanceName) {
         try {
             return loadInstanceIdFromName(instanceName);
         } catch(KukaduException& ex) {
-            return StorageSingleton::get().getNextIdInTable("hardware_instances", "hardware_id");
+            return StorageSingleton::get().getNextIdInTable("hardware_instances", "instance_id");
         }
         return -1;
     }

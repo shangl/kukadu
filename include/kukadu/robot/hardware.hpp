@@ -6,11 +6,12 @@
 
 namespace kukadu {
 
-    enum hardware_types{HARDWARE_HAND = 100, HARDWARE_PLOTTINGHAND = 101, HARDWARE_KUKIEHAND = 102, HARDWARE_ARM = 200, HARDWARE_CAMERA = 300, HARDWARE_KINECT = 350};
+    enum hardware_classes{HARDWARE_HAND = 100, HARDWARE_ARM = 200, HARDWARE_CAMERA = 300, HARDWARE_DEPTH_CAMERA = 400};
 
     class Hardware : public StorageHolder {
 
         int hardwareType;
+        int hardwareClass;
         int hardwareInstanceId;
 
         std::string hardwareTypeName;
@@ -33,11 +34,12 @@ namespace kukadu {
 
     public:
 
-        Hardware(StorageSingleton& dbStorage, int hardwareType, std::string hardwareTypeName, int hardwareInstanceId, std::string hardwareInstanceName);
+        Hardware(StorageSingleton& dbStorage, int hardwareClass, int hardwareType, std::string hardwareTypeName, int hardwareInstanceId, std::string hardwareInstanceName);
 
         virtual void install() final;
 
         int getHardwareType();
+        int getHardwareClass();
         int getHardwareInstance();
 
         std::string getHardwareTypeName();
@@ -48,9 +50,12 @@ namespace kukadu {
         static int loadTypeIdFromInstanceId(const int& instanceId);
         static int loadTypeIdFromInstanceName(const std::string& instanceName);
 
+        static int loadOrCreateTypeIdFromName(const std::string& typeName);
         static int loadOrCreateInstanceIdFromName(const std::string& instanceName);
 
         static std::string loadTypeNameFromInstanceName(const std::string& instanceName);
+
+        virtual void storeCurrentSensorDataToDatabase() = 0;
 
     };
 

@@ -4,6 +4,7 @@
     #include <kukadu/robot/robot.hpp>
     #include <kukadu/robot/queue.hpp>
     #include <kukadu/robot/filters.hpp>
+    #include <kukadu/robot/hardware.hpp>
     #include <kukadu/robot/kukiehand.hpp>
     #include <kukadu/robot/kukiequeue.hpp>
     #include <kukadu/robot/calibration.hpp>

@@ -48,6 +48,8 @@ namespace kukadu {
 
         virtual void moveJoints(arma::vec joints) = 0;
 
+        virtual arma::vec getCurrentJoints() = 0;
+
         /** \brief Closes connection between host computer and hand
          *
          */
@@ -60,6 +62,8 @@ namespace kukadu {
         virtual void setWaitForReached(bool waitForReached) = 0;
 
         virtual void setGrasp(kukadu_grasps grasp) = 0;
+
+        virtual void storeCurrentSensorDataToDatabase();
 
     };
 
@@ -74,18 +78,23 @@ namespace kukadu {
 
     private:
 
+        int degOfFreedom;
         int sensingPatchCount;
         std::pair<int, int> patchDimensions;
 
+        arma::vec currentJoints;
+
     public:
 
-        PlottingHand(StorageSingleton& storage, int sensingPatchCount, std::pair<int, int> patchDimensions);
+        PlottingHand(StorageSingleton& storage, int degOfFreedom, int sensingPatchCount, std::pair<int, int> patchDimensions);
 
         virtual void connectHand();
 
         virtual void closeHand(double percentage, double velocity);
 
         virtual void moveJoints(arma::vec joints);
+
+        virtual arma::vec getCurrentJoints();
 
         virtual void disconnectHand();
 

@@ -18,26 +18,35 @@ namespace kukadu {
 #endif
 
     GenericHand::GenericHand(StorageSingleton& dbStorage, std::string handInstanceName) :
-        Hardware(dbStorage, Hardware::loadTypeIdFromInstanceName(handInstanceName), loadTypeNameFromInstanceName(handInstanceName), Hardware::loadInstanceIdFromName(handInstanceName), handInstanceName) {
+        Hardware(dbStorage, HARDWARE_HAND, Hardware::loadTypeIdFromInstanceName(handInstanceName), loadTypeNameFromInstanceName(handInstanceName), Hardware::loadInstanceIdFromName(handInstanceName), handInstanceName) {
 
     }
 
     GenericHand::GenericHand(StorageSingleton& dbStorage, int handTypeId, std::string handTypeName, int handInstanceId, std::string handInstanceName) :
-        Hardware(dbStorage, handTypeId, handTypeName, handInstanceId, handInstanceName) {
+        Hardware(dbStorage, HARDWARE_HAND, handTypeId, handTypeName, handInstanceId, handInstanceName) {
 
     }
 
     void GenericHand::installHardwareTypeInternal() {
+        // nothing specific to do
     }
 
     void GenericHand::installHardwareInstanceInternal() {
-
+        // nothing specific to do
     }
 
-    PlottingHand::PlottingHand(StorageSingleton& storage, int sensingPatchCount, std::pair<int, int> patchDimensions) : GenericHand(storage, HARDWARE_PLOTTINGHAND, "PlottingHand",
+    void GenericHand::storeCurrentSensorDataToDatabase() {
+        auto currentTime = getCurrentTime();
+        arma::vec currJoints = getCurrentJoints();
+    }
+
+    PlottingHand::PlottingHand(StorageSingleton& storage, int degOfFreedom, int sensingPatchCount, std::pair<int, int> patchDimensions) : GenericHand(storage, loadOrCreateTypeIdFromName("PlottingHand"), "PlottingHand",
                                                                                                                                     loadOrCreateInstanceIdFromName("PlottingHand"), "GenericPlottingHand") {
         this->sensingPatchCount = sensingPatchCount;
         this->patchDimensions = patchDimensions;
+        this->degOfFreedom = degOfFreedom;
+        currentJoints = zeros(degOfFreedom);
+
     }
 
     void PlottingHand::connectHand() {
@@ -52,12 +61,17 @@ namespace kukadu {
 
     void PlottingHand::moveJoints(arma::vec joints) {
         KUKADU_MODULE_START_USAGE();
+        currentJoints = joints;
         KUKADU_MODULE_END_USAGE();
     }
 
     void PlottingHand::disconnectHand() {
         KUKADU_MODULE_START_USAGE();
         KUKADU_MODULE_END_USAGE();
+    }
+
+    arma::vec PlottingHand::getCurrentJoints() {
+        return currentJoints;
     }
 
     std::vector<arma::mat> PlottingHand::getTactileSensing() {
@@ -80,8 +94,10 @@ namespace kukadu {
     std::string GenericHand::getHandName() { return getHardwareInstanceName(); }
 
     KukieHand::KukieHand(StorageSingleton& storage, ros::NodeHandle node, std::string simulationType, std::string hand) :
-        GenericHand(storage, HARDWARE_KUKIEHAND, "KukieHand", Hardware::loadOrCreateInstanceIdFromName("kukiehand_" + hand), "kukiehand_" + hand) {
+        GenericHand(storage, loadOrCreateTypeIdFromName("KukieHand"), "KukieHand", Hardware::loadOrCreateInstanceIdFromName("kukiehand_" + hand), "kukiehand_" + hand) {
 
+
+        stopCollecting = false;
         this->node = node;
         waitForReached = true;
         trajPub = node.advertise<std_msgs::Float64MultiArray>(simulationType + "/" + hand + "_sdh/joint_control/move", 1);
@@ -99,7 +115,6 @@ namespace kukadu {
             r.sleep();
         }
 
-        currentCommandedPos = currentPos;
         currentGraspId = eGID_PARALLEL;
         moveJoints(stdToArmadilloVec(currentPos));
 
@@ -111,78 +126,71 @@ namespace kukadu {
 
     void KukieHand::tactileCallback(const iis_robot_dep::TactileSensor& state) {
 
-        tactileMutex.lock();
+        if(!stopCollecting) {
 
-            currentTactileReadings.clear();
+            tactileMutex.lock();
 
-            for(int i = 0; i < state.tactile_matrix.size(); ++i) {
+                currentTactileReadings.clear();
 
-                 TactileMatrix tactMat = state.tactile_matrix.at(i);
-                 int xSize = tactMat.cells_x;
-                 int ySize = tactMat.cells_y;
-                 mat currentMat(xSize, ySize);
+                for(int i = 0; i < state.tactile_matrix.size(); ++i) {
 
-                 for(int j = 0, run = 0; j < xSize; ++j)
-                     for(int k = 0; k < ySize; ++k, ++run)
-                         currentMat(j, k) = tactMat.tactile_array.at(run);
+                     TactileMatrix tactMat = state.tactile_matrix.at(i);
+                     int xSize = tactMat.cells_x;
+                     int ySize = tactMat.cells_y;
+                     mat currentMat(xSize, ySize);
 
-                 currentTactileReadings.push_back(currentMat.t());
+                     for(int j = 0, run = 0; j < xSize; ++j)
+                         for(int k = 0; k < ySize; ++k, ++run)
+                             currentMat(j, k) = tactMat.tactile_array.at(run);
 
-            }
+                     currentTactileReadings.push_back(currentMat.t());
 
-        tactileMutex.unlock();
+                }
+
+            tactileMutex.unlock();
+
+        }
 
     }
 
     void KukieHand::stateCallback(const sensor_msgs::JointState& state) {
 
+        if(!stopCollecting) {
+
+            currentPosMutex.lock();
+
+                if(!isFirstCallback) {
+
+                    previousCurrentPosQueue.pop();
+                    previousCurrentPosQueue.push(currentPos);
+                    currentPos = state.position;
+
+                } else {
+
+                    while(!previousCurrentPosQueue.empty())
+                        previousCurrentPosQueue.pop();
+
+                    for(int i = 0; i < previousCurrentPosQueueSize; ++i)
+                        previousCurrentPosQueue.push(state.position);
+
+                    currentPos = state.position;
+                    isFirstCallback = false;
+
+                }
+
+            currentPosMutex.unlock();
+
+        }
+
+    }
+
+    arma::vec KukieHand::getCurrentJoints() {
+
         currentPosMutex.lock();
-
-            if(!isFirstCallback) {
-
-                previousCurrentPosQueue.erase(previousCurrentPosQueue.begin(), previousCurrentPosQueue.begin() + 1);
-                previousCurrentPosQueue.push_back(currentPos);
-                currentPos = state.position;
-
-            } else {
-
-                previousCurrentPosQueue.clear();
-                for(int i = 0; i < previousCurrentPosQueueSize; ++i)
-                    previousCurrentPosQueue.push_back(state.position);
-
-                currentPos = state.position;
-                isFirstCallback = false;
-                currentCommandedPos = state.position;
-
-            }
-
-            vector<double> doubleCommandedPos;
-            for(int i = 0; i < currentCommandedPos.size(); ++i)
-                doubleCommandedPos.push_back(currentCommandedPos.at(i));
-
-            targetReached = !vectorsDeviate(state.position, doubleCommandedPos, 0.03);
-
-            if(!targetReached) {
-
-                bool stillMoving = false;
-                for(int i = 0; i < previousCurrentPosQueue.size(); ++i) {
-                    vector<double> previousCurrentPos = previousCurrentPosQueue.at(i);
-                    bool deviates = vectorsDeviate(previousCurrentPos, currentPos, 0.01);
-                    if(deviates) {
-                        stillMoving = true;
-                        break;
-                    }
-                }
-
-                if(!movementStarted && stillMoving) {
-                    movementStarted = true;
-                } else if(movementStarted && !stillMoving) {
-                    targetReached = true;
-                }
-
-            }
-
+            auto currJoints = currentPos;
         currentPosMutex.unlock();
+
+        return currJoints;
 
     }
 
@@ -335,6 +343,10 @@ namespace kukadu {
 
     }
 
+    KukieHand::~KukieHand() {
+        stopCollecting = true;
+    }
+
     void KukieHand::safelyDestroy() {
 
     }
@@ -343,7 +355,10 @@ namespace kukadu {
 
         vector<double> command;
         auto ignoreJoint = SDH_IGNORE_JOINT;
-        for(int i = 0; i < currentCommandedPos.size(); ++i)
+
+        auto currJoints = getCurrentJoints();
+
+        for(int i = 0; i < currJoints.n_elem; ++i)
             if(i == idx)
                 command.push_back(pos);
             else
@@ -357,20 +372,15 @@ namespace kukadu {
 
         KUKADU_MODULE_START_USAGE();
 
+        auto currJoints = getCurrentJoints();
         auto ignoreJoint = SDH_IGNORE_JOINT;
-        std::vector<double> stdPos = armadilloToStdVec(positions);
         std_msgs::Float64MultiArray newJoints;
-        for(int i = 0; i < stdPos.size(); ++i) {
-            if(stdPos.at(i) != ignoreJoint)
-                newJoints.data.push_back(stdPos.at(i));
+        for(int i = 0; i < positions.n_elem; ++i) {
+            if(currJoints(i) != ignoreJoint)
+                newJoints.data.push_back(positions(i));
             else
-                newJoints.data.push_back(currentCommandedPos.at(i));
+                newJoints.data.push_back(currJoints(i));
         }
-
-        currentCommandedPos = newJoints.data;
-
-        // get current position
-        ros::spinOnce();
 
         targetReached = false;
         movementStarted = false;
@@ -380,8 +390,35 @@ namespace kukadu {
 
         if(waitForReached) {
 
-            while(!targetReached)
-                ros::spinOnce();
+            currJoints = getCurrentJoints();
+            targetReached = !vectorsDeviate(armadilloToStdVec(currJoints), armadilloToStdVec(positions), 0.03);
+
+            while(!targetReached) {
+
+                bool stillMoving = false;
+                // check if the fingers are still moving
+
+                currentPosMutex.lock();
+                    auto posQueueTmp = previousCurrentPosQueue;
+                currentPosMutex.unlock();
+
+                while(!posQueueTmp.empty()) {
+                    auto& previousCurrentPos = posQueueTmp.front();
+                    bool deviates = vectorsDeviate(previousCurrentPos, armadilloToStdVec(getCurrentJoints()), 0.01);
+                    if(deviates) {
+                        stillMoving = true;
+                        break;
+                    }
+                    posQueueTmp.pop();
+                }
+
+                // if not moving anymore but the movement was started --> the target is reached
+                if(!movementStarted && stillMoving)
+                    movementStarted = true;
+                else if(movementStarted && !stillMoving)
+                    targetReached = true;
+
+            }
 
         }
 

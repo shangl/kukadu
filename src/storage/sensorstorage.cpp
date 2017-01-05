@@ -2,11 +2,64 @@
 #include <kukadu/types/sensordata.hpp>
 #include <kukadu/storage/sensorstorage.hpp>
 #include <kukadu/storage/moduleusagesingleton.hpp>
+#include <kukadu/storage/sensorstoragesingleton.hpp>
 
 using namespace std;
 using namespace arma;
 
 namespace kukadu {
+
+    SensorStorageSingleton::SensorStorageSingleton() {
+
+    }
+
+    SensorStorageSingleton& SensorStorageSingleton::get() {
+
+        static SensorStorageSingleton instance;
+        return instance;
+
+    }
+
+    void SensorStorageSingleton::registerHardware(KUKADU_SHARED_PTR<Hardware> hardware) {
+
+        auto hardwareName = hardware->getHardwareInstanceName();
+        bool hardwareAlreadyRegistered = registeredHardware.find(hardwareName) != registeredHardware.end();
+        if(hardwareAlreadyRegistered && registeredHardware[hardware->getHardwareInstanceName()] != hardware)
+            throw KukaduException("(SensorStorageSingleton) different hardware with the same instance name is already registered");
+
+        if(!hardwareAlreadyRegistered) {
+            registeredInstanceNames.push_back(hardwareName);
+            registeredHardware[hardwareName] = hardware;
+        }
+
+    }
+
+    void SensorStorageSingleton::initiateStorageAllRegistered() {
+        initiateStorage(registeredInstanceNames);
+    }
+
+    void SensorStorageSingleton::initiateStorage(std::vector<std::string> instanceNames) {
+        for(auto& requiredInstances : instanceNames)
+            initiateStorage(requiredInstances);
+    }
+
+    void SensorStorageSingleton::initiateStorage(std::string instanceName) {
+
+        bool hardwareAlreadyRegistered = registeredHardware.find(instanceName) != registeredHardware.end();
+        if(hardwareAlreadyRegistered) {
+
+        } else
+            throw KukaduException("(SensorStorageSingleton) storing of sensor data cannot be initiated (instance name is not registered yet)");
+
+    }
+
+    void SensorStorageSingleton::stopStorageAll() {
+
+    }
+
+    void SensorStorageSingleton::stopStorage(std::vector<std::string> instanceNames) {
+
+    }
 
     void SensorStorage::initSensorStorage(std::vector<KUKADU_SHARED_PTR<ControlQueue> > queues, std::vector<KUKADU_SHARED_PTR<GenericHand> > hands, double pollingFrequency) {
 

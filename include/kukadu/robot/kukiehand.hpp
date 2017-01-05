@@ -6,6 +6,7 @@
 #else
 #include <climits>
 #endif
+#include <queue>
 #include <kukadu/robot/hand.hpp>
 #include <sensor_msgs/JointState.h>
 #include <iis_robot_dep/TactileSensor.h>
@@ -26,6 +27,7 @@ namespace kukadu {
         kukadu_grasps currentGraspId;
 
         bool waitForReached;
+        bool stopCollecting;
         int previousCurrentPosQueueSize;
 
         ros::NodeHandle node;
@@ -48,10 +50,9 @@ namespace kukadu {
         bool movementStarted;
 
         bool vectorsDeviate(const std::vector<double> v1, const std::vector<double> v2, double tolerance);
-        std::vector<double> currentCommandedPos;
         std::vector<double> initCurrentPos;
         std::vector<double> currentPos;
-        std::vector<std::vector<double> > previousCurrentPosQueue;
+        std::queue<std::vector<double> > previousCurrentPosQueue;
 
         kukadu_mutex currentPosMutex;
         kukadu_mutex tactileMutex;
@@ -62,6 +63,7 @@ namespace kukadu {
     public:
 
         KukieHand(StorageSingleton& storage, ros::NodeHandle node, std::string simulationType, std::string hand);
+        ~KukieHand();
 
         virtual void connectHand();
         virtual void safelyDestroy();
@@ -72,6 +74,8 @@ namespace kukadu {
 
         void moveJoints(arma::vec joints);
         void setWaitForReached(bool waitForReached);
+
+        virtual arma::vec getCurrentJoints();
 
         virtual std::vector<arma::mat> getTactileSensing();
 
