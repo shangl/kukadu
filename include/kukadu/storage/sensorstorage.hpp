@@ -93,7 +93,9 @@ namespace kukadu {
         static void storeCartInformation(StorageSingleton& dbStorage, const int& robotId, const long long int& timeStamp, const std::string& referenceFrame, const std::string& linkName, geometry_msgs::Pose& cartesianPose,
                                   const arma::vec& frcTrq, const double& absFrc,
                                   const bool& storePos, const bool& storeFrc, const bool& storeAbsFrc);
-        static void storeJointInfoToDatabase(StorageSingleton& dbStorage, const int& robotId, const long long int& timeStamp, std::vector<int>& jointIds, arma::vec& jointVelocities, arma::vec& jointAccelerations, arma::vec& jointPositions, arma::vec& jointForces);
+        static void storeJointInfoToDatabase(StorageSingleton& dbStorage, const int& robotId, const long long int& timeStamp,
+                                             std::vector<int>& jointIds, arma::vec& jointVelocities, arma::vec& jointAccelerations, arma::vec& jointPositions, bool storeForces,
+                                             arma::vec& jointForces);
 
     };
 

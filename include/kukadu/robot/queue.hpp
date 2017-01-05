@@ -449,6 +449,7 @@ namespace kukadu {
         virtual void installHardwareInstanceInternal();
 
         virtual void storeCurrentSensorDataToDatabase();
+        virtual double getPreferredPollingFrequency();
 
         static const int CONTROLQUEUE_STOP_MODE = 0;
         static const int CONTROLQUEUE_JNT_POS_MODE = 10;

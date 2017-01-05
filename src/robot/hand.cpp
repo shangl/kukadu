@@ -4,7 +4,9 @@
 #include <kukadu/utils/utils.hpp>
 #include <kukadu/robot/kukiehand.hpp>
 #include <std_msgs/Float64MultiArray.h>
+#include <kukadu/types/kukadutypes.hpp>
 #include <iis_robot_dep/TactileMatrix.h>
+#include <kukadu/storage/sensorstorage.hpp>
 #include <kukadu/storage/moduleusagesingleton.hpp>
 
 using namespace std;
@@ -19,25 +21,101 @@ namespace kukadu {
 
     GenericHand::GenericHand(StorageSingleton& dbStorage, std::string handInstanceName) :
         Hardware(dbStorage, HARDWARE_HAND, Hardware::loadTypeIdFromInstanceName(handInstanceName), loadTypeNameFromInstanceName(handInstanceName), Hardware::loadInstanceIdFromName(handInstanceName), handInstanceName) {
-
+        isFirstStorage = true;
     }
 
     GenericHand::GenericHand(StorageSingleton& dbStorage, int handTypeId, std::string handTypeName, int handInstanceId, std::string handInstanceName) :
         Hardware(dbStorage, HARDWARE_HAND, handTypeId, handTypeName, handInstanceId, handInstanceName) {
-
+        isFirstStorage = true;
     }
 
     void GenericHand::installHardwareTypeInternal() {
-        // nothing specific to do
+
     }
 
     void GenericHand::installHardwareInstanceInternal() {
-        // nothing specific to do
+
+        // install joint names
+        auto jointNames = getJointNames();
+        auto hardwareInstId = getHardwareInstance();
+
+        stringstream s;
+        for(auto& jointName : jointNames) {
+            s.str("");
+            auto nextJointId = getStorage().getNextIdInTable("hardware_joints", "joint_id");
+            s << "insert into hardware_joints(hardware_instance_id, joint_id, joint_name) values(" << hardwareInstId << ", " << nextJointId << ", '" << jointName << "')";
+            getStorage().executeStatementPriority(s.str());
+        }
+
+    }
+
+    int GenericHand::getJointId(std::string jointName) {
+
+        stringstream s;
+        s << "select joint_id from hardware_joints where hardware_instance_id = " << getHardwareInstance() << " and joint_name = \"" << jointName << "\"";
+        auto idRes = getStorage().executeQuery(s.str());
+        if(idRes->next())
+            return idRes->getInt("joint_id");
+        else
+            throw KukaduException("(ControlQueue) searched joint is not part of the robot");
+
+    }
+
+    std::vector<int> GenericHand::getJointIds() {
+        return getJointIds(getJointNames());
+    }
+
+    std::vector<int> GenericHand::getJointIds(std::vector<std::string> jointNames) {
+        vector<int> jointIds;
+        for(int i = 0; i < jointNames.size(); ++i)
+            jointIds.push_back(getJointId(jointNames.at(i)));
+        return jointIds;
+    }
+
+    double GenericHand::getPreferredPollingFrequency() {
+        return 5.0;
     }
 
     void GenericHand::storeCurrentSensorDataToDatabase() {
-        auto currentTime = getCurrentTime();
-        arma::vec currJoints = getCurrentJoints();
+
+        if(isFirstStorage) {
+            prevPrevJoints = prevJoints = nowJoints = {getCurrentTime(), getCurrentJoints()};
+            isFirstStorage = false;
+        }
+
+        vec jointFrcs = zeros(1);
+
+        auto& storage = getStorage();
+        auto robotId = getHardwareType();
+        auto jointIds = getJointIds();
+
+        prevPrevJoints = prevJoints;
+        prevJoints = nowJoints;
+        nowJoints = {getCurrentTime(), getCurrentJoints()};
+
+        auto time = getCurrentTime();
+
+        vec vel;
+        vec acc;
+        // if the previous times are the same, it is the first time - acceleration are 0
+        if(prevPrevJoints.time == prevJoints.time)
+            acc = zeros(nowJoints.joints.n_elem);
+        else {
+            auto timeDiffInSec = (double) (prevJoints.time - prevPrevJoints.time) / 1000.0;
+            acc = (prevPrevJoints.joints - prevJoints.joints) / timeDiffInSec;
+        }
+
+        // same reasoning vor velocity
+        if(prevJoints.time == nowJoints.time)
+            vel = zeros(nowJoints.joints.n_elem);
+        else {
+            auto timeDiffInSec = (double) (nowJoints.time - prevJoints.time) / 1000.0;
+            vel = (nowJoints.joints - prevJoints.joints) / timeDiffInSec;
+        }
+
+        // store the data in the database
+        SensorStorage::storeJointInfoToDatabase(storage, robotId, time, jointIds, nowJoints.joints, vel, acc, false, jointFrcs);
+
     }
 
     PlottingHand::PlottingHand(StorageSingleton& storage, int degOfFreedom, int sensingPatchCount, std::pair<int, int> patchDimensions) : GenericHand(storage, loadOrCreateTypeIdFromName("PlottingHand"), "PlottingHand",
@@ -46,6 +124,13 @@ namespace kukadu {
         this->patchDimensions = patchDimensions;
         this->degOfFreedom = degOfFreedom;
         currentJoints = zeros(degOfFreedom);
+
+        stringstream s;
+        for(int i = 0; i < degOfFreedom; ++i) {
+            s.str("");
+            s << "plotting_joint_" << i;
+            jointNames.push_back(s.str());
+        }
 
     }
 
@@ -63,6 +148,10 @@ namespace kukadu {
         KUKADU_MODULE_START_USAGE();
         currentJoints = joints;
         KUKADU_MODULE_END_USAGE();
+    }
+
+    std::vector<std::string> PlottingHand::getJointNames() {
+        return jointNames;
     }
 
     void PlottingHand::disconnectHand() {
@@ -96,10 +185,13 @@ namespace kukadu {
     KukieHand::KukieHand(StorageSingleton& storage, ros::NodeHandle node, std::string simulationType, std::string hand) :
         GenericHand(storage, loadOrCreateTypeIdFromName("KukieHand"), "KukieHand", Hardware::loadOrCreateInstanceIdFromName("kukiehand_" + hand), "kukiehand_" + hand) {
 
-
+        firstJointNamesRetrieval = true;
         stopCollecting = false;
         this->node = node;
         waitForReached = true;
+
+        degOfFreedom = -1;
+
         trajPub = node.advertise<std_msgs::Float64MultiArray>(simulationType + "/" + hand + "_sdh/joint_control/move", 1);
 
         this->hand = hand;
@@ -115,8 +207,25 @@ namespace kukadu {
             r.sleep();
         }
 
+        degOfFreedom = getCurrentJoints().n_elem;
+
         currentGraspId = eGID_PARALLEL;
         moveJoints(stdToArmadilloVec(currentPos));
+
+    }
+
+    std::vector<std::string> KukieHand::getJointNames() {
+
+        if(firstJointNamesRetrieval) {
+            stringstream s;
+            for(int i = 0; i < degOfFreedom; ++i) {
+                s.str("");
+                s << getHardwareInstanceName() << "_joint_" << i;
+                jointNames.push_back(s.str());
+            }
+        }
+
+        return jointNames;
 
     }
 

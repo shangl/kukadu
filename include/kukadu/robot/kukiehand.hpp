@@ -28,6 +28,9 @@ namespace kukadu {
 
         bool waitForReached;
         bool stopCollecting;
+        bool firstJointNamesRetrieval;
+
+        int degOfFreedom;
         int previousCurrentPosQueueSize;
 
         ros::NodeHandle node;
@@ -35,7 +38,7 @@ namespace kukadu {
         ros::Subscriber stateSub;
         ros::Subscriber tactileSub;
 
-        std::vector<std::string> joint_names_str;
+        std::vector<std::string> jointNames;
         std::vector<arma::mat> currentTactileReadings;
 
         std::string hand;
@@ -74,6 +77,8 @@ namespace kukadu {
 
         void moveJoints(arma::vec joints);
         void setWaitForReached(bool waitForReached);
+
+        virtual std::vector<std::string> getJointNames();
 
         virtual arma::vec getCurrentJoints();
 

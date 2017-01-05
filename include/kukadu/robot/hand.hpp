@@ -5,8 +5,8 @@
 #include <vector>
 #include <ros/ros.h>
 #include <armadillo>
+#include <kukadu/utils/types.hpp>
 #include <kukadu/robot/hardware.hpp>
-#include <kukadu/types/kukadutypes.hpp>
 #include <kukadu/utils/destroyableobject.hpp>
 #include <kukadu/storage/storagesingleton.hpp>
 
@@ -24,6 +24,12 @@ namespace kukadu {
     class GenericHand : public Hardware, public DestroyableObject, public TimedObject {
 
     private:
+
+        bool isFirstStorage;
+
+        mes_result prevPrevJoints;
+        mes_result prevJoints;
+        mes_result nowJoints;
 
     protected:
 
@@ -47,6 +53,7 @@ namespace kukadu {
         virtual void closeHand(double percentage, double velocity) = 0;
 
         virtual void moveJoints(arma::vec joints) = 0;
+        virtual std::vector<std::string> getJointNames() = 0;
 
         virtual arma::vec getCurrentJoints() = 0;
 
@@ -64,6 +71,11 @@ namespace kukadu {
         virtual void setGrasp(kukadu_grasps grasp) = 0;
 
         virtual void storeCurrentSensorDataToDatabase();
+        virtual double getPreferredPollingFrequency();
+
+        virtual int getJointId(std::string jointName);
+        virtual std::vector<int> getJointIds();
+        virtual std::vector<int> getJointIds(std::vector<std::string> jointNames);
 
     };
 
@@ -82,6 +94,8 @@ namespace kukadu {
         int sensingPatchCount;
         std::pair<int, int> patchDimensions;
 
+        std::vector<std::string> jointNames;
+
         arma::vec currentJoints;
 
     public:
@@ -93,6 +107,8 @@ namespace kukadu {
         virtual void closeHand(double percentage, double velocity);
 
         virtual void moveJoints(arma::vec joints);
+
+        virtual std::vector<std::string> getJointNames();
 
         virtual arma::vec getCurrentJoints();
 

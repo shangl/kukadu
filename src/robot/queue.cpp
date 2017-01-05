@@ -49,6 +49,10 @@ namespace kukadu {
 
     }
 
+    double ControlQueue::getPreferredPollingFrequency() {
+        return 1.0 / getCycleTime();
+    }
+
     void ControlQueue::storeCurrentSensorDataToDatabase() {
 
         auto& storage = getStorage();
@@ -88,7 +92,7 @@ namespace kukadu {
         }
 
         // store the data in the database
-        SensorStorage::storeJointInfoToDatabase(storage, robotId, time, jointIds, nowJoints.joints, vel, acc, jntFrcTrq.joints);
+        SensorStorage::storeJointInfoToDatabase(storage, robotId, time, jointIds, nowJoints.joints, vel, acc, true, jntFrcTrq.joints);
         SensorStorage::storeCartInformation(storage, robotId, time, referenceFrame, linkName, cartPose, cartFrcTrq.joints, absCartFrc, storeCartPos, storeCartFrcTrq, storeCartAbsFrc);
 
     }

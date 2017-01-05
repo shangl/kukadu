@@ -55,9 +55,8 @@ namespace kukadu {
 
             if(!actualThread || (actualThread && !actualThreadPair.first)) {
                 actualThreadPair.first = true;
-                actualThread = make_shared<kukadu_thread>([this, hardware]()
-                {
-                    ros::Rate r(2);
+                actualThread = make_shared<kukadu_thread>([this, hardware]() {
+                    ros::Rate r(hardware->getPreferredPollingFrequency());
                     auto& threadPair = this->startedThreads[hardware->getHardwareInstanceName()];
                     auto& runningFlag = threadPair.first;
                     while(runningFlag) {
@@ -65,11 +64,8 @@ namespace kukadu {
                         r.sleep();
                     }
                     runningFlag = false;
-                }
-
-                            );
+                });
             }
-
 
         } else
             throw KukaduException("(SensorStorageSingleton) storing of sensor data cannot be initiated (instance name is not registered yet)");
@@ -527,7 +523,7 @@ namespace kukadu {
                             }
 
                             // store the data in the database
-                            storeJointInfoToDatabase(dbStorage, robotId, time, jointIdsVec.at(i), joints.joints, vel, acc, jntFrcTrq.joints);
+                            storeJointInfoToDatabase(dbStorage, robotId, time, jointIdsVec.at(i), joints.joints, vel, acc, true, jntFrcTrq.joints);
 
                         }
 
@@ -645,7 +641,7 @@ namespace kukadu {
     }
 
     void SensorStorage::storeJointInfoToDatabase(StorageSingleton& dbStorage, const int& robotId, const long long int& timeStamp, std::vector<int>& jointIds, arma::vec& jointPositions,
-                                                 arma::vec& jointVelocities, arma::vec& jointAccelerations, arma::vec& jointForces) {
+                                                 arma::vec& jointVelocities, arma::vec& jointAccelerations, bool storeForces, arma::vec& jointForces) {
 
         KUKADU_MODULE_START_USAGE();
 

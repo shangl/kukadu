@@ -56,6 +56,7 @@ namespace kukadu {
         static std::string loadTypeNameFromInstanceName(const std::string& instanceName);
 
         virtual void storeCurrentSensorDataToDatabase() = 0;
+        virtual double getPreferredPollingFrequency() = 0;
 
     };
 
