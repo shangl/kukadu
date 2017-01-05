@@ -14,6 +14,8 @@ int main(int argc, char** args) {
 
     cout << "setting up control queue" << endl;
     auto realLeftQueue = make_shared<KukieControlQueue>(storage, "robinn", "simulation", "left_arm", node);
+    realLeftQueue->install();
+
     auto komo = make_shared<Komo>(realLeftQueue, resolvePath("$KUKADU_HOME/external/komo/share/data/kuka/data/iis_robot.kvg"), resolvePath("$KUKADU_HOME/external/komo/share/data/kuka/config/MT.cfg"), realLeftQueue->getRobotSidePrefix());
     realLeftQueue->setPathPlanner(komo);
     realLeftQueue->setKinematics(komo);

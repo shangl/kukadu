@@ -72,6 +72,7 @@ int main(int argc, char** args) {
 
     StorageSingleton& storage = StorageSingleton::get();
     auto simLeftQueue = make_shared<KukieControlQueue>(storage, "robinn", "simulation", arm + string("_arm"), *node);
+    simLeftQueue->install();
 
     vector<KUKADU_SHARED_PTR<ControlQueue> > queueVectors;
     queueVectors.push_back(simLeftQueue);

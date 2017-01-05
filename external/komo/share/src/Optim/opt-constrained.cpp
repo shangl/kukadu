@@ -244,8 +244,6 @@ const char* MethodName[]={ "NoMethod", "SquaredPenalty", "AugmentedLagrangian", 
 
 uint optConstrained(arr& x, arr& dual, ConstrainedProblem& P, OptOptions opt){
 
-  ofstream fil(STRING("z."<<MethodName[opt.constrainedMethod]));
-
   UnconstrainedProblem UCP(P);
 
   uint stopTolInc;
@@ -264,7 +262,6 @@ uint optConstrained(arr& x, arr& dual, ConstrainedProblem& P, OptOptions opt){
   OptNewton newton(x, UCP, opt);
 
   for(uint k=0;;k++){
-    fil <<k <<' ' <<newton.evals <<' ' <<UCP.f_x <<' ' <<sum(elemWiseMax(UCP.g_x,zeros(UCP.g_x.N,1))) <<endl;
 
     if(opt.verbose>0){
       cout <<"***** optConstrained: iteration=" <<k
@@ -314,7 +311,7 @@ uint optConstrained(arr& x, arr& dual, ConstrainedProblem& P, OptOptions opt){
     }
 
   }
-  fil.close();
+  
   if(&dual) dual=UCP.lambda;
 
   return newton.evals;

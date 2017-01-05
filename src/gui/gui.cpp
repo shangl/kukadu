@@ -1,5 +1,4 @@
 #include <kukadu/gui/gui.hpp>
-#include <kukadu/robot/robot.hpp>
 
 #include <sstream>
 #include <iostream>
@@ -111,18 +110,21 @@ namespace kukadu {
         // handler for showing another robot
         connect(robotList->selectionModel(), &QItemSelectionModel::currentChanged,
                 [this, robotListModel, jointListModel, robotNameField](const QModelIndex& current, const QModelIndex& previous) {
+/*
                     auto robotId = robotListModel->getId(current);
                     auto selectedRobot = Robot(storage, robotId);
                     stringstream s;
                     s << "robot_id = " << robotId << endl;
                     jointListModel->setWhereClause(s.str());
                     robotNameField->setText(QString(selectedRobot.getRobotName().c_str()));
+*/
                 }
         );
 
         // handler for adding a new joint
         connect(addJointButton, &QPushButton::clicked,
                 [this, robotNameField, jointNameField, robotList, robotListModel, jointListModel](bool checked) {
+/*
                     auto robotName = robotNameField->text().toStdString();
                     auto jointName = jointNameField->text().toStdString();
                     if(jointName != "") {
@@ -137,25 +139,28 @@ namespace kukadu {
                             } else showInfoBox("Cannot add joint to non-existent robot (" + robotName + "). First create the robot");
                         } else showInfoBox("No robot name defined");
                     } else showInfoBox("No joint name defined");
+*/
                 }
         );
 
         // handler for adding a new robot
         connect(addRobotButton, &QPushButton::clicked,
                 [this, robotNameField, robotListModel, jointListModel](bool checked) {
+/*
                     auto robotName = robotNameField->text().toStdString();
                     if(robotName != "") {
                         if(Robot::createRobot(storage, robotName))
                             robotListModel->reset();
                         else showInfoBox("Could not create robot (maybe a robot with that name already exists?)");
                     } else showInfoBox("No robot name defined");
+*/
                 }
         );
 
         // handler for deleting a robot
         connect(deleteRobotButton, &QPushButton::clicked,
                 [this, robotList, jointList, robotListModel, jointListModel](bool checked) {
-
+/*
                     auto robotIndex = robotList->currentIndex();
 
                     if(robotIndex.row() >= 0) {
@@ -175,14 +180,14 @@ namespace kukadu {
                             jointListModel->reset();
 
                     } else showInfoBox("No robot selected");
-
+*/
                 }
         );
 
         // handler for deleting a joint
         connect(deleteJointButton, &QPushButton::clicked,
                 [this, robotList, jointList, robotListModel, jointListModel](bool checked) {
-
+/*
                     auto robotIndex = robotList->currentIndex();
                     auto jointIndex = jointList->currentIndex();
 
@@ -200,6 +205,7 @@ namespace kukadu {
                         } else showInfoBox("No joint selected");
 
                     } else showInfoBox("No robot selected");
+*/
                 }
         );
 

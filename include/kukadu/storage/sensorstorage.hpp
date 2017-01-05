@@ -67,12 +67,6 @@ namespace kukadu {
         void storeData(bool storeHeader, std::vector<KUKADU_SHARED_PTR<SensorData> > data, std::vector<std::string> files);
         void storeData(bool storeHeader, std::vector<KUKADU_SHARED_PTR<SensorData> > data, std::vector<KUKADU_SHARED_PTR<std::ofstream> > queueStreams);
 
-        void storeCartInformation(const int& robotId, const long long int& timeStamp, const std::string& referenceFrame, const std::string& linkName, geometry_msgs::Pose& cartesianPose,
-                                  const arma::vec& frcTrq, const double& absFrc,
-                                  const bool& storePos, const bool& storeFrc, const bool& storeAbsFrc);
-        void storeJointInfoToDatabase(const int& robotId, const long long int& timeStamp, std::vector<int>& jointIds, arma::vec& jointVelocities, arma::vec& jointAccelerations, arma::vec& jointPositions, arma::vec& jointForces);
-        void storeJointFrcTrqToDatabase(const int& robotId, const long long int& timeStamp, std::string& referenceFrame, std::string& linkName, arma::vec& frcTrq);
-
     public:
 
         SensorStorage(StorageSingleton& storage, std::vector<KUKADU_SHARED_PTR<ControlQueue> > queues, std::vector<KUKADU_SHARED_PTR<GenericHand> > hands, double pollingFrequency);
@@ -95,6 +89,11 @@ namespace kukadu {
         static const int STORE_CART_ABS_FRC = 64;
         static const int STORE_SIM_OBJECT = 128;
         static const int STORE_VIS_OBJECT = 256;
+
+        static void storeCartInformation(StorageSingleton& dbStorage, const int& robotId, const long long int& timeStamp, const std::string& referenceFrame, const std::string& linkName, geometry_msgs::Pose& cartesianPose,
+                                  const arma::vec& frcTrq, const double& absFrc,
+                                  const bool& storePos, const bool& storeFrc, const bool& storeAbsFrc);
+        static void storeJointInfoToDatabase(StorageSingleton& dbStorage, const int& robotId, const long long int& timeStamp, std::vector<int>& jointIds, arma::vec& jointVelocities, arma::vec& jointAccelerations, arma::vec& jointPositions, arma::vec& jointForces);
 
     };
 

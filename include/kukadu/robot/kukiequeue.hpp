@@ -1,6 +1,7 @@
 #ifndef KUKADU_KUKIE_H
 #define KUKADU_KUKIE_H
 
+#include <map>
 #include <queue>
 #include <armadillo>
 #include <ros/ros.h>
@@ -26,6 +27,9 @@ namespace kukadu {
     class KukieControlQueue : public ControlQueue {
 
     private:
+
+        static void degCallback(const ros::MessageEvent<sensor_msgs::JointState>& event);
+        static int loadDegOfFreedom(ros::NodeHandle node, std::string topic);
 
         bool loadCycleTimeFromServer;
         bool loadMaxDistPerCycleFromServer;

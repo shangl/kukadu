@@ -15,12 +15,14 @@ namespace kukadu {
 
         std::vector<std::string> registeredInstanceNames;
         std::map<std::string, KUKADU_SHARED_PTR<Hardware> > registeredHardware;
+        // stores whether a storage thread is still running and the reference to the running thread
+        std::map<std::string, std::pair<bool, KUKADU_SHARED_PTR<kukadu_thread> > > startedThreads;
 
         SensorStorageSingleton();
 
     public:
 
-        SensorStorageSingleton& get();
+        static SensorStorageSingleton& get();
 
         void registerHardware(KUKADU_SHARED_PTR<Hardware> hardware);
 

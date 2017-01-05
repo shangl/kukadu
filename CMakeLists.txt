@@ -71,10 +71,6 @@ qt5_wrap_cpp(kukaduguilib_hdr_moc ${kukaduguilib_hdr})
 pkg_check_modules(GTK2 REQUIRED gtk+-2.0)
 pkg_check_modules(GTK REQUIRED gtkglext-1.0)
 
-generate_dynamic_reconfigure_options(
-  cfg/arlocalizer/ARParam.cfg
-)
-
 catkin_package(
     INCLUDE_DIRS include external/ReflexxesTypeII/include external/komo/share/src ${PYTH_INC}
     LIBRARIES ${PROJECT_NAME} kukaduvision reflexxeslib artoolkitplus kukadugui

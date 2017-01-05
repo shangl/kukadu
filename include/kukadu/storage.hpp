@@ -3,4 +3,5 @@
     #include <kukadu/storage/sensorstorage.hpp>
     #include <kukadu/storage/storagesingleton.hpp>
     #include <kukadu/storage/moduleusagesingleton.hpp>
+    #include <kukadu/storage/sensorstoragesingleton.hpp>
 #endif

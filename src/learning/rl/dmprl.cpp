@@ -154,13 +154,13 @@ namespace kukadu {
         this->az = az;
         this->bz = bz;
         this->timeStep = timeStep;
-        KUKADU_SHARED_PTR<ControlQueue> pcq = KUKADU_SHARED_PTR<ControlQueue>(new PlottingControlQueue(storage, robotName, "origin", "hand_link", timeStep));
+        KUKADU_SHARED_PTR<ControlQueue> pcq = make_shared<PlottingControlQueue>(storage, robotName, degOfFreedom, "origin", "hand_link", timeStep);
 
         cout << "(DmpRewardComputer) starting execution of sample trajectory with timeStep size " << timeStep << endl;
         KUKADU_SHARED_PTR<SensorData> data = SensorStorage::readStorage(pcq, file);
         auto timesInMilliseconds = data->getTimeInMilliSeconds();
         auto times = convertAndRemoveOffset(timesInMilliseconds);
-        KUKADU_SHARED_PTR<JointDMPLearner> dmpLearner = KUKADU_SHARED_PTR<JointDMPLearner>(new JointDMPLearner(az, bz, times, data->getJointPos()));
+        KUKADU_SHARED_PTR<JointDMPLearner> dmpLearner = make_shared<JointDMPLearner>(az, bz, times, data->getJointPos());
         KUKADU_SHARED_PTR<Dmp> finalDmp = dmpLearner->fitTrajectories();
         DMPExecutor execDmp(storage, finalDmp, pcq);
         execDmp.setExecutionMode(TrajectoryExecutor::EXECUTE_ROBOT);

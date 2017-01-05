@@ -20,7 +20,6 @@ int main(int argc, char** args) {
     StorageSingleton& storage = StorageSingleton::get();
 
     QApplication w(argc, args);
-    //w.setStyle(QStyleFactory::create("Windows"));
     w.setStyle(QStyleFactory::create("Fusion"));
 
     KukaduGui g(storage);

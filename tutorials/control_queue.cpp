@@ -13,6 +13,7 @@ int main(int argc, char** args) {
 
     cout << "setting up control queue" << endl;
     auto realLeftQueue = make_shared<KukieControlQueue>(storage, "robinn", "simulation", "left_arm", node);
+    realLeftQueue->install();
 
     cout << "starting queue" << endl;
     auto realLqThread = realLeftQueue->startQueue();

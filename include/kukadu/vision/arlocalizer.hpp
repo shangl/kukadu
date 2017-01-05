@@ -13,7 +13,6 @@
 #include <tf/transform_listener.h>
 #include <image_transport/image_transport.h>
 #include <dynamic_reconfigure/server.h>
-#include <kukadu/ARParamConfig.h>
 #include <tf/transform_datatypes.h>
 #include <kukadu/vision/arlocalizer/ar.h>
 #include <kukadu/vision/arlocalizer/arMulti.h>

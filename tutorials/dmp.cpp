@@ -74,6 +74,8 @@ int main(int argc, char** args) {
     StorageSingleton& storage = StorageSingleton::get();
 
     auto simLeftQueue = make_shared<KukieControlQueue>(storage, "robinn", "simulation", arm + string("_arm"), *node);
+    simLeftQueue->install();
+
     vector<KUKADU_SHARED_PTR<ControlQueue> > queueVectors;
     queueVectors.push_back(simLeftQueue);
 
@@ -82,6 +84,28 @@ int main(int argc, char** args) {
     simLeftQueue->stopCurrentMode();
     simLeftQueue->startQueue();
     simLeftQueue->switchMode(KukieControlQueue::KUKA_JNT_POS_MODE);
+
+    /*
+    // this is how to use the SensorStorageSingleton
+    cout << "creating singleton" << endl;
+    auto& storageSingleton = SensorStorageSingleton::get();
+
+    cout << "registering queue" << endl;
+    storageSingleton.registerHardware(simLeftQueue);
+
+    cout << "initiating the storage" << endl;
+    storageSingleton.initiateStorageAllRegistered();
+
+    cout << "storing data" << endl;
+    ros::Rate r(0.5);
+    r.sleep();
+
+    cout << "stopping the storage" << endl;
+    storageSingleton.stopStorageAll();
+
+    cout << "press key to continue" << endl;
+    getchar();
+    */
 
     string skillName = "";
     cout << "insert the desired name of the skill you want to create or load...";

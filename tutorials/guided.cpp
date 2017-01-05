@@ -75,6 +75,10 @@ int main(int argc, char** args) {
 
     auto leftQueue = make_shared<KukieControlQueue>(storage, "robinn", "real", arm + "_arm", *node);
     auto simLeftQueue = make_shared<KukieControlQueue>(storage, "robinn", "simulation", arm + "_arm", *node);
+
+    leftQueue->install();
+    simLeftQueue->install();
+
     vector<KUKADU_SHARED_PTR<ControlQueue> > queueVectors;
     queueVectors.push_back(leftQueue);
 

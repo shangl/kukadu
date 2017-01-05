@@ -7,6 +7,7 @@
 #include <kukadu/planning/komo.hpp>
 #include <kukadu/robot/kukiequeue.hpp>
 #include <kukadu/types/kukadutypes.hpp>
+#include <kukadu/storage/sensorstorage.hpp>
 #include <iis_robot_dep/FriJointImpedance.h>
 #include <iis_robot_dep/CartesianImpedance.h>
 #include <kukadu/storage/moduleusagesingleton.hpp>
@@ -21,10 +22,7 @@ namespace kukadu {
 
         KUKADU_MODULE_START_USAGE();
 
-        if(!robot)
-            robot = make_shared<Robot>(dbStorage, getRobotName());
-
-        auto robotId = robot->getRobotId();
+        auto robotId = getHardwareInstance();
 
         KUKADU_MODULE_END_USAGE();
 
@@ -32,24 +30,74 @@ namespace kukadu {
 
     }
 
-    int ControlQueue::loadDegOfFreedom(StorageSingleton& storage, std::string robotName) {
+    void ControlQueue::installHardwareTypeInternal() {
+        // nothing special to do here yet
+    }
 
-        if(!robot)
-            robot = make_shared<Robot>(storage, robotName);
+    void ControlQueue::installHardwareInstanceInternal() {
 
-        return robot->getDegOfFreedom();
+        auto jointNames = getJointNames();
+        auto hardwareInstId = getHardwareInstance();
+
+        stringstream s;
+        for(auto& jointName : jointNames) {
+            s.str("");
+            auto nextJointId = getStorage().getNextIdInTable("hardware_joints", "joint_id");
+            s << "insert into hardware_joints(hardware_instance_id, joint_id, joint_name) values(" << hardwareInstId << ", " << nextJointId << ", '" << jointName << "')";
+            getStorage().executeStatementPriority(s.str());
+        }
 
     }
 
-    std::string ControlQueue::getRobotName() {
-        return robotName;
+    void ControlQueue::storeCurrentSensorDataToDatabase() {
+
+        auto& storage = getStorage();
+        auto robotId = getRobotId();
+        auto jointIds = getJointIds();
+        auto referenceFrame = getCartesianReferenceFrame();
+        auto linkName = getCartesianLinkName();
+        prevPrevJoints = prevJoints;
+        prevJoints = nowJoints;
+        nowJoints = getCurrentJoints();
+        auto jntFrcTrq = getCurrentJntFrc();
+        auto cartPose = getCurrentCartesianPose();
+        auto cartFrcTrq = getCurrentCartesianFrcTrq();
+        auto time = getCurrentTime();
+        auto absCartFrc = getAbsoluteCartForce();
+
+        auto storeCartPos = true;
+        auto storeCartFrcTrq = true;
+        auto storeCartAbsFrc = true;
+
+        vec vel;
+        vec acc;
+        // if the previous times are the same, it is the first time - acceleration are 0
+        if(prevPrevJoints.time == prevJoints.time)
+            acc = zeros(nowJoints.joints.n_elem);
+        else {
+            auto timeDiffInSec = (double) (prevJoints.time - prevPrevJoints.time) / 1000.0;
+            acc = (prevPrevJoints.joints - prevJoints.joints) / timeDiffInSec;
+        }
+
+        // same reasoning vor velocity
+        if(prevJoints.time == nowJoints.time)
+            vel = zeros(nowJoints.joints.n_elem);
+        else {
+            auto timeDiffInSec = (double) (nowJoints.time - prevJoints.time) / 1000.0;
+            vel = (nowJoints.joints - prevJoints.joints) / timeDiffInSec;
+        }
+
+        // store the data in the database
+        SensorStorage::storeJointInfoToDatabase(storage, robotId, time, jointIds, nowJoints.joints, vel, acc, jntFrcTrq.joints);
+        SensorStorage::storeCartInformation(storage, robotId, time, referenceFrame, linkName, cartPose, cartFrcTrq.joints, absCartFrc, storeCartPos, storeCartFrcTrq, storeCartAbsFrc);
+
     }
 
     int ControlQueue::getJointId(std::string jointName) {
 
         stringstream s;
-        s << "select joint_id from robot_joints where robot_id=" << getRobotId() << " and joint_name=\"" << jointName << "\"";
-        auto idRes = dbStorage.executeQuery(s.str());
+        s << "select joint_id from hardware_joints where hardware_instance_id = " << getHardwareInstance() << " and joint_name = \"" << jointName << "\"";
+        auto idRes = getStorage().executeQuery(s.str());
         if(idRes->next())
             return idRes->getInt("joint_id");
         else
@@ -74,11 +122,13 @@ namespace kukadu {
 
         setInitValues();
 
-        frcTrqFilterUpdateThr = KUKADU_SHARED_PTR<kukadu_thread>(new kukadu_thread(&ControlQueue::frcTrqFilterUpdateHandler, this));
-        thr = KUKADU_SHARED_PTR<kukadu_thread>(new kukadu_thread(&ControlQueue::run, this));
+        frcTrqFilterUpdateThr = make_shared<kukadu_thread>(&ControlQueue::frcTrqFilterUpdateHandler, this);
+        thr = make_shared<kukadu_thread>(&ControlQueue::run, this);
 
         while(!this->isInitialized());
         startQueueHook();
+
+        nowJoints = prevJoints = prevPrevJoints = getCurrentJoints();
 
         KUKADU_MODULE_END_USAGE();
 
@@ -86,7 +136,8 @@ namespace kukadu {
 
     }
 
-    ControlQueue::ControlQueue(StorageSingleton& storage, std::string robotName, double desiredCycleTime) : dbStorage(storage) {
+    ControlQueue::ControlQueue(StorageSingleton& storage, std::string robotName, int degreesOfFreedom, double desiredCycleTime) :
+        Hardware(storage, HARDWARE_ARM, loadOrCreateTypeIdFromName("ControlQueue"), "ControlQueue", loadOrCreateInstanceIdFromName(robotName), robotName) {
 
         thr = nullptr;
         frcTrqFilterUpdateThr = nullptr;
@@ -102,7 +153,7 @@ namespace kukadu {
         cartesianPtpRunning = false;
         frcTrqFilterRunning = true;
         currentTime = getCurrentTime();
-        degOfFreedom = loadDegOfFreedom(storage, robotName);
+        degOfFreedom = degreesOfFreedom;
         continueCollecting = false;
         currentFrcTrqSensorFilter = make_shared<StandardFilter>();
 
@@ -788,27 +839,28 @@ namespace kukadu {
 
     }
 
-    KukieControlQueue::KukieControlQueue(StorageSingleton& storage, std::string robotName, std::string deviceType, std::string armPrefix, ros::NodeHandle node, bool acceptCollisions, KUKADU_SHARED_PTR<Kinematics> kin, KUKADU_SHARED_PTR<PathPlanner> planner, double sleepTime, double maxDistPerCycle) : ControlQueue(storage, robotName, sleepTime) {
+    KukieControlQueue::KukieControlQueue(StorageSingleton& storage, std::string robotName, std::string deviceType, std::string armPrefix, ros::NodeHandle node, bool acceptCollisions, KUKADU_SHARED_PTR<Kinematics> kin, KUKADU_SHARED_PTR<PathPlanner> planner, double sleepTime, double maxDistPerCycle) :
+        ControlQueue(storage, "kukie_" + robotName + "_" + armPrefix, loadDegOfFreedom(node, "/" + deviceType + "/" + armPrefix + "/joint_control/get_state"), sleepTime) {
 
-        commandTopic = "/" + deviceType + "/" + armPrefix + "/joint_control/move";
-        retJointPosTopic = "/" + deviceType + "/" + armPrefix + "/joint_control/get_state";
-        switchModeTopic = "/" + deviceType + "/" + armPrefix + "/settings/switch_mode";
-        retCartPosTopic = "/" + deviceType + "/" + armPrefix + "/cartesian_control/get_pose_quat_wf";
-        stiffnessTopic = "/" + deviceType + "/" + armPrefix + "/cartesian_control/set_impedance";
-        jntStiffnessTopic = "/" + deviceType + "/" + armPrefix + "/joint_control/set_impedance";
-        ptpTopic = "/" + deviceType + "/" + armPrefix + "/joint_control/ptp";
-        commandStateTopic = "/" + deviceType + "/" + armPrefix + "/settings/get_command_state";
-        ptpReachedTopic = "/" + deviceType + "/" + armPrefix + "/joint_control/ptp_reached";
-        jntFrcTrqTopic = "/" + deviceType + "/" + armPrefix + "/sensoring/est_ext_jnt_trq";
-        cartFrcTrqTopic = "/" + deviceType + "/" + armPrefix + "/sensoring/cartesian_wrench";
-        cartPtpTopic = "/" + deviceType + "/" + armPrefix + "/cartesian_control/ptpQuaternion";
-        cartPtpReachedTopic = "/" + deviceType + "/" + armPrefix + "/cartesian_control/ptp_reached";
-        cartMoveRfQueueTopic = "/" + deviceType + "/" + armPrefix + "/cartesian_control/move_rf";
-        cartMoveWfQueueTopic = "/" + deviceType + "/" + armPrefix + "/cartesian_control/move_wf";
-        cartPoseRfTopic = "/" + deviceType + "/" + armPrefix + "/cartesian_control/get_pose_quat_rf";
-        jntSetPtpThreshTopic = "/" + deviceType + "/" + armPrefix + "/joint_control/set_ptp_thresh";
-        clockCycleTopic = "/" + deviceType + "/" + armPrefix + "/settings/get_clock_cycle";
-        maxDistPerCycleTopic = "/" + deviceType + "/" + armPrefix + "/joint_control/get_max_dist_per_cycle";
+        retJointPosTopic = deviceType + "/" + armPrefix + "/joint_control/get_state";
+        commandTopic = deviceType + "/" + armPrefix + "/joint_control/move";
+        switchModeTopic = deviceType + "/" + armPrefix + "/settings/switch_mode";
+        retCartPosTopic = deviceType + "/" + armPrefix + "/cartesian_control/get_pose_quat_wf";
+        stiffnessTopic = deviceType + "/" + armPrefix + "/cartesian_control/set_impedance";
+        jntStiffnessTopic = deviceType + "/" + armPrefix + "/joint_control/set_impedance";
+        ptpTopic = deviceType + "/" + armPrefix + "/joint_control/ptp";
+        commandStateTopic = deviceType + "/" + armPrefix + "/settings/get_command_state";
+        ptpReachedTopic = deviceType + "/" + armPrefix + "/joint_control/ptp_reached";
+        jntFrcTrqTopic = deviceType + "/" + armPrefix + "/sensoring/est_ext_jnt_trq";
+        cartFrcTrqTopic = deviceType + "/" + armPrefix + "/sensoring/cartesian_wrench";
+        cartPtpTopic = deviceType + "/" + armPrefix + "/cartesian_control/ptpQuaternion";
+        cartPtpReachedTopic = deviceType + "/" + armPrefix + "/cartesian_control/ptp_reached";
+        cartMoveRfQueueTopic = deviceType + "/" + armPrefix + "/cartesian_control/move_rf";
+        cartMoveWfQueueTopic = deviceType + "/" + armPrefix + "/cartesian_control/move_wf";
+        cartPoseRfTopic = deviceType + "/" + armPrefix + "/cartesian_control/get_pose_quat_rf";
+        jntSetPtpThreshTopic = deviceType + "/" + armPrefix + "/joint_control/set_ptp_thresh";
+        clockCycleTopic = deviceType + "/" + armPrefix + "/settings/get_clock_cycle";
+        maxDistPerCycleTopic = deviceType + "/" + armPrefix + "/joint_control/get_max_dist_per_cycle";
         addLoadTopic = "not supported yet";
 
         this->deviceType = deviceType;
@@ -823,6 +875,22 @@ namespace kukadu {
                        sleepTime, maxDistPerCycle);
 
     }
+
+    /******** this is so ugly (but necessary) :( ***********/
+    std::map<std::string, int> degsOfFreedomMap;
+    void KukieControlQueue::degCallback(const ros::MessageEvent<sensor_msgs::JointState>& event) {
+        degsOfFreedomMap[event.getConnectionHeader().at("topic")] = event.getMessage()->position.size();
+    }
+
+    int KukieControlQueue::loadDegOfFreedom(ros::NodeHandle node, std::string topic) {
+        degsOfFreedomMap[topic] = -1;
+        ros::Subscriber jointPos = node.subscribe(topic, 2, KukieControlQueue::degCallback);
+        ros::Rate r(50);
+        while(degsOfFreedomMap[topic] == -1)
+            r.sleep();
+        return degsOfFreedomMap[topic];
+    }
+    /******** ugly part over ***********/
 
     void KukieControlQueue::maxDistPerCycleCallback(const std_msgs::Float64& msg) {
 
@@ -915,9 +983,8 @@ namespace kukadu {
     }
 
     std::vector<std::string> KukieControlQueue::getJointNames() {
-
+        loadKinematics();
         return kin->getJointNames();
-
     }
 
     void KukieControlQueue::jntMoveCallback(const std_msgs::Float64MultiArray& msg) {
@@ -976,10 +1043,8 @@ namespace kukadu {
         ros::Rate myRate(50);
         while(getQueueRunning()) {
 
-//            planAndKinMutex.lock();
-                currCarts = kin->computeFk(armadilloToStdVec(getCurrentJoints().joints));
-                firstCartsComputed = true;
-//            planAndKinMutex.unlock();
+            currCarts = kin->computeFk(armadilloToStdVec(getCurrentJoints().joints));
+            firstCartsComputed = true;
             myRate.sleep();
 
         }
@@ -1243,7 +1308,7 @@ namespace kukadu {
 
     }
 
-    PlottingControlQueue::PlottingControlQueue(StorageSingleton& storage, std::string robotName, std::string referenceFrame, std::string linkName, double timeStep) : ControlQueue(storage, robotName, timeStep) {
+    PlottingControlQueue::PlottingControlQueue(StorageSingleton& storage, std::string robotName, int degOfFreedom, std::string referenceFrame, std::string linkName, double timeStep) : ControlQueue(storage, robotName, degOfFreedom, timeStep) {
 
         this->linkName = linkName;
         this->referenceFrame = referenceFrame;

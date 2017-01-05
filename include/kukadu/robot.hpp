@@ -1,7 +1,6 @@
 #ifndef KUKADU_ROBOT_ALL_H
 #define KUKADU_ROBOT_ALL_H
     #include <kukadu/robot/hand.hpp>
-    #include <kukadu/robot/robot.hpp>
     #include <kukadu/robot/queue.hpp>
     #include <kukadu/robot/filters.hpp>
     #include <kukadu/robot/hardware.hpp>

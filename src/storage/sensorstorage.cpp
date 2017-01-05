@@ -30,6 +30,7 @@ namespace kukadu {
         if(!hardwareAlreadyRegistered) {
             registeredInstanceNames.push_back(hardwareName);
             registeredHardware[hardwareName] = hardware;
+            startedThreads[hardwareName] = {false, nullptr};
         }
 
     }
@@ -48,6 +49,28 @@ namespace kukadu {
         bool hardwareAlreadyRegistered = registeredHardware.find(instanceName) != registeredHardware.end();
         if(hardwareAlreadyRegistered) {
 
+            auto& hardware = registeredHardware[instanceName];
+            auto& actualThreadPair = startedThreads[instanceName];
+            auto& actualThread = actualThreadPair.second;
+
+            if(!actualThread || (actualThread && !actualThreadPair.first)) {
+                actualThreadPair.first = true;
+                actualThread = make_shared<kukadu_thread>([this, hardware]()
+                {
+                    ros::Rate r(2);
+                    auto& threadPair = this->startedThreads[hardware->getHardwareInstanceName()];
+                    auto& runningFlag = threadPair.first;
+                    while(runningFlag) {
+                        hardware->storeCurrentSensorDataToDatabase();
+                        r.sleep();
+                    }
+                    runningFlag = false;
+                }
+
+                            );
+            }
+
+
         } else
             throw KukaduException("(SensorStorageSingleton) storing of sensor data cannot be initiated (instance name is not registered yet)");
 
@@ -55,9 +78,29 @@ namespace kukadu {
 
     void SensorStorageSingleton::stopStorageAll() {
 
+        // first go through all threads and send kill signal
+        for(auto& threadPair : startedThreads)
+            threadPair.second.first = false;
+
+        // then wait until all of them are actually done
+        for(auto& threadPair : startedThreads)
+            if(threadPair.second.second && threadPair.second.second->joinable())
+                threadPair.second.second->join();
+
     }
 
     void SensorStorageSingleton::stopStorage(std::vector<std::string> instanceNames) {
+
+        // first go through all threads and send kill signal
+        for(auto& threadPair : startedThreads)
+            if(std::find(instanceNames.begin(), instanceNames.end(), threadPair.first) != instanceNames.end())
+                threadPair.second.first = false;
+
+        // then wait until all of them are actually done
+        for(auto& threadPair : startedThreads)
+            if(std::find(instanceNames.begin(), instanceNames.end(), threadPair.first) != instanceNames.end())
+                if(threadPair.second.second && threadPair.second.second->joinable())
+                    threadPair.second.second->join();
 
     }
 
@@ -484,12 +527,12 @@ namespace kukadu {
                             }
 
                             // store the data in the database
-                            storeJointInfoToDatabase(robotId, time, jointIdsVec.at(i), joints.joints, vel, acc, jntFrcTrq.joints);
+                            storeJointInfoToDatabase(dbStorage, robotId, time, jointIdsVec.at(i), joints.joints, vel, acc, jntFrcTrq.joints);
 
                         }
 
                         if(storeCartPos || storeCartFrcTrq || storeCartAbsFrc)
-                            storeCartInformation(robotId, time, referenceFrame, linkName, cartPose, cartFrcTrq.joints, absCartFrc, storeCartPos, storeCartFrcTrq, storeCartAbsFrc);
+                            storeCartInformation(dbStorage, robotId, time, referenceFrame, linkName, cartPose, cartFrcTrq.joints, absCartFrc, storeCartPos, storeCartFrcTrq, storeCartAbsFrc);
 
                     }
 
@@ -546,7 +589,7 @@ namespace kukadu {
 
     }
 
-    void SensorStorage::storeCartInformation(const int& robotId, const long long int& timeStamp, const std::string& referenceFrame, const std::string& linkName, geometry_msgs::Pose& cartesianPose, const arma::vec& frcTrq, const double& absFrc, const bool& storePos, const bool& storeFrc, const bool& storeAbsFrc) {
+    void SensorStorage::storeCartInformation(StorageSingleton& dbStorage, const int& robotId, const long long int& timeStamp, const std::string& referenceFrame, const std::string& linkName, geometry_msgs::Pose& cartesianPose, const arma::vec& frcTrq, const double& absFrc, const bool& storePos, const bool& storeFrc, const bool& storeAbsFrc) {
 
         KUKADU_MODULE_START_USAGE();
 
@@ -601,7 +644,7 @@ namespace kukadu {
 
     }
 
-    void SensorStorage::storeJointInfoToDatabase(const int& robotId, const long long int& timeStamp, std::vector<int>& jointIds, arma::vec& jointPositions,
+    void SensorStorage::storeJointInfoToDatabase(StorageSingleton& dbStorage, const int& robotId, const long long int& timeStamp, std::vector<int>& jointIds, arma::vec& jointPositions,
                                                  arma::vec& jointVelocities, arma::vec& jointAccelerations, arma::vec& jointForces) {
 
         KUKADU_MODULE_START_USAGE();

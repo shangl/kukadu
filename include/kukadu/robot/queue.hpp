@@ -13,8 +13,8 @@
 #include <queue>
 #include <armadillo>
 #include <geometry_msgs/Pose.h>
-#include <kukadu/robot/robot.hpp>
 #include <kukadu/robot/filters.hpp>
+#include <kukadu/robot/hardware.hpp>
 #include <kukadu/types/kukadutypes.hpp>
 #include <kukadu/utils/destroyableobject.hpp>
 #include <kukadu/storage/storagesingleton.hpp>
@@ -41,7 +41,7 @@ namespace kukadu {
      * planning or security mechanisms such as maximum force values for execution.
      * \ingroup Robot
      */
-    class ControlQueue : public DestroyableObject, public KUKADU_ENABLE_SHARED_FROM_THIS<ControlQueue>, public TimedObject {
+    class ControlQueue : public Hardware, public DestroyableObject, public KUKADU_ENABLE_SHARED_FROM_THIS<ControlQueue>, public TimedObject {
 
     private:
 
@@ -68,6 +68,11 @@ namespace kukadu {
         std::string robotName;
 
         arma::vec currentJoints;
+
+        mes_result nowJoints;
+        mes_result prevJoints;
+        mes_result prevPrevJoints;
+
         arma::vec startingJoints;
         arma::vec internalJointPasser;
 
@@ -85,15 +90,11 @@ namespace kukadu {
         std::deque<arma::vec> rollBackQueue;
         KUKADU_SHARED_PTR<FrcTrqSensorFilter> currentFrcTrqSensorFilter;
 
-        KUKADU_SHARED_PTR<Robot> robot;
-
         KUKADU_SHARED_PTR<kukadu_thread> thr;
         KUKADU_SHARED_PTR<kukadu_thread> frcTrqFilterUpdateThr;
         KUKADU_SHARED_PTR<kukadu_thread> cartPtpThr;
         KUKADU_SHARED_PTR<kukadu_thread> jointPtpThr;
         KUKADU_SHARED_PTR<kukadu_thread> jointsColletorThr;
-
-        StorageSingleton& dbStorage;
 
         void setInitValuesInternal();
         void internalCartPtpCaller();
@@ -183,7 +184,7 @@ namespace kukadu {
          * \brief Constructor taking the robot dependent degrees of freedom
          * \param degOfFreedom number of robots degrees of freedom
          */
-        ControlQueue(StorageSingleton& storage, std::string robotName, double desiredCycleTime);
+        ControlQueue(StorageSingleton& storage, std::string robotName, int degreesOfFreedom, double desiredCycleTime);
 
         /**
          * \brief Returns number of the robots degrees of freedom
@@ -372,12 +373,6 @@ namespace kukadu {
         virtual bool isInitialized();
 
         /**
-         * \brief Returns the robot name
-         * \return robot name
-         */
-        virtual std::string getRobotName();
-
-        /**
          * \brief Returns the robot name with escaped special characaters (e.g. white spaces)
          * \return robot name
          */
@@ -450,6 +445,11 @@ namespace kukadu {
         std::vector<int> getJointIds();
         std::vector<int> getJointIds(std::vector<std::string> jointNames);
 
+        virtual void installHardwareTypeInternal();
+        virtual void installHardwareInstanceInternal();
+
+        virtual void storeCurrentSensorDataToDatabase();
+
         static const int CONTROLQUEUE_STOP_MODE = 0;
         static const int CONTROLQUEUE_JNT_POS_MODE = 10;
         static const int CONTROLQUEUE_CART_IMP_MODE = 20;
@@ -499,7 +499,7 @@ namespace kukadu {
 
     public:
 
-        PlottingControlQueue(StorageSingleton& storage, std::string robotName, std::string referenceFrame, std::string linkName, double timeStep);
+        PlottingControlQueue(StorageSingleton& storage, std::string robotName, int degOfFreedom, std::string referenceFrame, std::string linkName, double timeStep);
 
         void safelyDestroy();
         void setInitValues();
