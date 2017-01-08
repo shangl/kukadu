@@ -4,6 +4,7 @@
 #include <kukadu/utils/utils.hpp>
 #include <kukadu/control/dmp.hpp>
 #include <tf/transform_datatypes.h>
+#include <kukadu/storage/sensorstorage.hpp>
 #include <kukadu/utils/conversion_utils.hpp>
 #include <kukadu/storage/moduleusagesingleton.hpp>
 
@@ -1258,6 +1259,13 @@ namespace kukadu {
     }
 
     JointDMPLearner::JointDMPLearner(double az, double bz, std::string file) : GeneralDmpLearner(az, bz, file) {
+
+    }
+
+    JointDMPLearner::JointDMPLearner(StorageSingleton& storage, KUKADU_SHARED_PTR<ControlQueue> queue, double az, double bz, long long int startTime, long long int endTime) :
+        GeneralDmpLearner(az, bz,
+                          SensorStorage::loadSampleTimesInRangeFromDb(storage, queue, startTime, endTime),
+                          SensorStorage::loadJointsFromDb(storage, queue, startTime, endTime)) {
 
     }
 

@@ -26,7 +26,7 @@ namespace kukadu {
      *
      * \ingroup Robot
      */
-    class SensorStorage {
+    class SensorStorage : public TimedObject {
 
     private:
 
@@ -90,11 +90,17 @@ namespace kukadu {
         static const int STORE_SIM_OBJECT = 128;
         static const int STORE_VIS_OBJECT = 256;
 
+        // transfers joint information from a file to the database; returns the start and end timestamp of the stored trajectory
+        static std::pair<long long int, long long int> transferArmDataToDb(StorageSingleton& dbStorage, KUKADU_SHARED_PTR<ControlQueue> queue, std::string file);
+
+        static arma::vec loadSampleTimesInRangeFromDb(StorageSingleton& storage, KUKADU_SHARED_PTR<ControlQueue> queue, long long int startTime, long long int endTime);
+        static arma::mat loadJointsFromDb(StorageSingleton& storage, KUKADU_SHARED_PTR<ControlQueue> queue, long long int startTime, long long int endTime);
+
         static void storeCartInformation(StorageSingleton& dbStorage, const int& robotId, const long long int& timeStamp, const std::string& referenceFrame, const std::string& linkName, geometry_msgs::Pose& cartesianPose,
                                   const arma::vec& frcTrq, const double& absFrc,
                                   const bool& storePos, const bool& storeFrc, const bool& storeAbsFrc);
         static void storeJointInfoToDatabase(StorageSingleton& dbStorage, const int& robotId, const long long int& timeStamp,
-                                             std::vector<int>& jointIds, arma::vec& jointVelocities, arma::vec& jointAccelerations, arma::vec& jointPositions, bool storeForces,
+                                             std::vector<int>& jointIds, arma::vec& jointPositions, arma::vec& jointVelocities, arma::vec& jointAccelerations, bool storeForces,
                                              arma::vec& jointForces);
 
     };

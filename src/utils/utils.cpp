@@ -140,6 +140,23 @@ namespace kukadu {
 
     }
 
+    arma::mat computeDiscreteDerivatives(arma::vec t, arma::mat ys) {
+
+        mat derivatives(ys.n_rows, 1);
+
+        for(int i = 0; i < ys.n_cols; ++i) {
+            vec colI = ys.col(i);
+            vec vel = computeDiscreteDerivatives(t, colI);
+            if(!i)
+                derivatives = vel;
+            else
+                derivatives = join_rows(derivatives, vel);
+        }
+
+        return derivatives;
+
+    }
+
     string buildPolynomialEquation(double* w, int paramCount) {
         string ret = "0";
         for(int i = 0; i < paramCount; ++i) {

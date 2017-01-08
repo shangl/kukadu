@@ -352,6 +352,8 @@ namespace kukadu {
 
         JointDMPLearner(double az, double bz, std::string file);
 
+        JointDMPLearner(StorageSingleton& storage, KUKADU_SHARED_PTR<ControlQueue> queue, double az, double bz, long long int startTime, long long int endTime);
+
         JointDMPLearner(double az, double bz, arma::vec& timesInSeconds, arma::mat joints);
 
     };

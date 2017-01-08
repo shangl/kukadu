@@ -84,7 +84,7 @@ namespace kukadu {
          * the current time according to this clock.
          * \return current time
          */
-        virtual long long int getCurrentTime();
+        static long long int getCurrentTime();
 
     };
 

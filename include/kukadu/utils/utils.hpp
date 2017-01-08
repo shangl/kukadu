@@ -72,6 +72,8 @@ namespace kukadu {
     std::vector<double>* createStdVectorFromGslVector(gsl_vector* vec);
 
     arma::vec computeDiscreteDerivatives(arma::vec x, arma::vec y);
+    arma::mat computeDiscreteDerivatives(arma::vec t, arma::mat ys);
+
     gsl_vector* createGslVectorFromStdVector(std::vector<double>* data);
     gsl_matrix* createMatrixFromQueueArray(std::queue<double>** data, int columns);
     gsl_matrix* invertSquareMatrix(gsl_matrix* mat);

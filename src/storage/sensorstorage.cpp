@@ -119,6 +119,130 @@ namespace kukadu {
 
     }
 
+    std::pair<long long int, long long int> SensorStorage::transferArmDataToDb(StorageSingleton& dbStorage, KUKADU_SHARED_PTR<ControlQueue> queue, std::string file) {
+
+        long long int currentTime = getCurrentTime();
+        auto robotId = queue->getRobotId();
+        auto jointIds = queue->getJointIds();
+        vec fakeFrc;
+        auto storeFrc = false;
+
+        auto fileData = readStorage(queue, file);
+
+        fileData->removeDuplicateTimes();
+
+        auto timeMilliSec = fileData->getTimeInMilliSeconds();
+        vec normTimeSec = fileData->getNormalizedTimeInSeconds();
+
+        mat positions = fileData->getJointPos();
+        mat velocities = computeDiscreteDerivatives(normTimeSec, positions);
+        mat accelerations = computeDiscreteDerivatives(normTimeSec, velocities);
+
+        for(int i = 0; i < positions.n_rows; ++i) {
+
+            vec currPos = positions.row(i).t();
+            vec currVel = velocities.row(i).t();
+            vec currAcc = accelerations.row(i).t();
+
+            storeJointInfoToDatabase(dbStorage, robotId, currentTime + timeMilliSec.at(i), jointIds, currPos, currVel, currAcc, storeFrc, fakeFrc);
+
+        }
+
+        return {currentTime + timeMilliSec.front(), currentTime + timeMilliSec.back()};
+
+    }
+
+    arma::vec SensorStorage::loadSampleTimesInRangeFromDb(StorageSingleton& storage, KUKADU_SHARED_PTR<ControlQueue> queue, long long int startTime, long long int endTime) {
+
+        stringstream s;
+        s << "select distinct(time_stamp) from joint_mes where robot_id = " << queue->getRobotId() << " and " <<
+             " time_stamp >= " << startTime << " and time_stamp <= " << endTime <<
+             " order by time_stamp asc";
+
+        vector<long long int> timeStamps;
+        auto timeRes = storage.executeQuery(s.str());
+        while(timeRes->next())
+            timeStamps.push_back(timeRes->getInt64("time_stamp"));
+
+        timeStamps.resize(timeStamps.size() - 1);
+        return convertAndRemoveOffset(timeStamps);
+
+    }
+
+    arma::mat SensorStorage::loadJointsFromDb(StorageSingleton& storage, KUKADU_SHARED_PTR<ControlQueue> queue, long long int startTime, long long int endTime) {
+
+        auto robotId = queue->getRobotId();
+        auto jointIds = queue->getJointIds();
+
+        stringstream s;
+        s << "select joint_id, time_stamp, position from joint_mes where robot_id = " << robotId << " and " <<
+             "time_stamp >= " << startTime << " and time_stamp <= " << endTime << " and joint_id in (";
+        for(int i = 0; i < jointIds.size(); ++i) {
+            if(i)
+                s << ", ";
+            s << jointIds.at(i);
+        }
+        s << ") order by time_stamp asc, joint_id asc";
+
+        auto jointRes = storage.executeQuery(s.str());
+        vector<bool> degOfFreedomRetrieved;
+        for(int i = 0; i < jointIds.size(); ++i)
+            degOfFreedomRetrieved.push_back(false);
+
+        long long int prevTimeStamp = -1;
+        bool firstRun = true;
+
+        mat loadedJoints;
+        vector<long long int> retTimes;
+
+        while(jointRes->next()) {
+
+            vec currJoint(jointIds.size());
+            auto currJointId = jointRes->getInt("joint_id");
+            long long int currTime = jointRes->getInt64("time_stamp");
+            double currPos = jointRes->getDouble("position");
+
+            if(firstRun) {
+                prevTimeStamp = currTime;
+                firstRun = false;
+            }
+
+            // if new timestamp --> store and continue
+            if(prevTimeStamp != currTime) {
+
+                // check if all deg of freedom were retrieved
+                for(int i = 0; i < degOfFreedomRetrieved.size(); ++i) {
+                    auto ret = degOfFreedomRetrieved.at(i);
+
+                    if(ret)
+                        ret = false;
+                    else
+                        throw KukaduException("(SensorStorage) not all requested joints are stored in the database");
+                }
+
+                retTimes.push_back(prevTimeStamp);
+                loadedJoints = join_cols(loadedJoints, currJoint.t());
+
+                prevTimeStamp = currTime;
+
+            }
+
+            auto idIt = find(jointIds.begin(), jointIds.end(), currJointId);
+            if(idIt != jointIds.end()) {
+
+                auto idIdx = (int) (idIt - jointIds.begin());
+                degOfFreedomRetrieved.at(idIdx) = true;
+                currJoint(idIdx) = currPos;
+
+            } else
+                throw KukaduException("(SensorStorage) retrieved something that was not requested");
+
+        }
+
+        return loadedJoints;
+
+    }
+
     void SensorStorage::setExportMode(int mode) {
 
         KUKADU_MODULE_START_USAGE();

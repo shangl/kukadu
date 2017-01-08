@@ -76,6 +76,9 @@ int main(int argc, char** args) {
     auto simLeftQueue = make_shared<KukieControlQueue>(storage, "robinn", "simulation", arm + string("_arm"), *node);
     simLeftQueue->install();
 
+    SensorStorage::transferArmDataToDb(storage, simLeftQueue, resolvePath("$HOME/iis_robot_sw/iis_catkin_ws/src/hangl_2016_tro/experiment/movements/push_fin/kuka_lwr_real_left_arm_0"));
+    getchar();
+
     vector<KUKADU_SHARED_PTR<ControlQueue> > queueVectors;
     queueVectors.push_back(simLeftQueue);
 
