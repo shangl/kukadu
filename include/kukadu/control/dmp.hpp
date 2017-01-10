@@ -444,6 +444,8 @@ namespace kukadu {
         double maxZForce;
         double rollbackTime;
 
+        double executionDuration;
+
         arma::vec gs;
         arma::vec y0s;
         arma::vec dy0s;
@@ -526,7 +528,11 @@ namespace kukadu {
         void doRollBackOnMaxForceEvent(bool doRollback);
         void setTrajectory(KUKADU_SHARED_PTR<Trajectory> traj);
         void initializeIntegration(double tStart, double tolAbsErr, double tolRelErr);
-        void  setRollbackTime(double rollbackTime);
+        void setRollbackTime(double rollbackTime);
+
+        void setExecutionDuration(double tmax);
+
+        KUKADU_SHARED_PTR<Dmp> getDmp();
 
         void setAc(double ac);
 

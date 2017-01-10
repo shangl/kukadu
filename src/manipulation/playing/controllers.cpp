@@ -2,6 +2,7 @@
 #include <armadillo>
 #include <boost/filesystem.hpp>
 #include <kukadu/utils/utils.hpp>
+#include <kukadu/robot/hardware.hpp>
 #include <kukadu/storage/sensorstorage.hpp>
 #include <kukadu/storage/moduleusagesingleton.hpp>
 #include <kukadu/manipulation/playing/controllers.hpp>
@@ -12,7 +13,7 @@ namespace pf = boost::filesystem;
 
 namespace kukadu {
 
-    ComplexController::ComplexController(StorageSingleton& dbStorage, std::string caption, std::string storePath,
+    ComplexController::ComplexController(StorageSingleton& dbStorage, std::string caption, std::vector<KUKADU_SHARED_PTR<Hardware> > usedHardware, std::string storePath,
                                          bool storeReward, double senseStretch, double boredom, KUKADU_SHARED_PTR<kukadu_mersenne_twister> generator,
                                          int stdReward, double punishReward, double gamma, int stdPrepWeight, bool collectPrevRewards,
                                          int simulationFailingProbability,
@@ -20,7 +21,7 @@ namespace kukadu {
                                          int maxEnvPathLength, double pathLengthCost, double stdEnvironmentReward,
                                          double creativityAlpha1, double creativityAlpha2, double creativityBeta, double creativityCthresh,
                                          double nothingStateProbThresh, double creativityMultiplier)
-        : Controller(dbStorage, caption, simulationFailingProbability), Reward(generator, collectPrevRewards) {
+        : Controller(dbStorage, caption, usedHardware, simulationFailingProbability), Reward(generator, collectPrevRewards) {
 
         this->useCreativity = false;
         this->creativityAlpha1 = creativityAlpha1;
@@ -1330,7 +1331,7 @@ namespace kukadu {
     }
 
     ConcatController::ConcatController(StorageSingleton& dbStorage, std::vector<KUKADU_SHARED_PTR<kukadu::Controller> > controllers)
-        : Controller(dbStorage, generateLabelFromControllers(controllers), computeSimulationFailingProbability(controllers)) {
+        : Controller(dbStorage, generateLabelFromControllers(controllers), mergeHardware(controllers), computeSimulationFailingProbability(controllers)) {
         this->controllers = controllers;
     }
 
@@ -1411,7 +1412,7 @@ namespace kukadu {
     ControllerActionClip::ControllerActionClip(StorageSingleton& dbStorage, int actionId, KUKADU_SHARED_PTR<Controller> actionController,
                           KUKADU_SHARED_PTR<kukadu_mersenne_twister> generator) :
         ActionClip(actionId, 1, actionController->getCaption(), generator),
-        Controller(dbStorage, actionController->getCaption(), actionController->getSimFailingProb()) {
+        Controller(dbStorage, actionController->getCaption(), actionController->getUsedHardware(), actionController->getSimFailingProb()) {
 
         this->actionController = actionController;
 
@@ -1462,8 +1463,11 @@ namespace kukadu {
         return actionController->getCaption();
     }
 
-    SensingController::SensingController(StorageSingleton& storage, KUKADU_SHARED_PTR<kukadu_mersenne_twister> generator, int hapticMode, string caption, std::vector<KUKADU_SHARED_PTR<ControlQueue> > queues, vector<KUKADU_SHARED_PTR<GenericHand> > hands, std::string tmpPath, std::string classifierPath, std::string classifierFile, std::string classifierFunction, int simClassificationPrecision)
-        : Controller(storage, caption, 1), dbStorage(storage) {
+    SensingController::SensingController(StorageSingleton& storage, KUKADU_SHARED_PTR<kukadu_mersenne_twister> generator, int hapticMode, string caption,
+                                         std::vector<KUKADU_SHARED_PTR<ControlQueue> > queues, vector<KUKADU_SHARED_PTR<GenericHand> > hands,
+                                         std::string tmpPath, std::string classifierPath, std::string classifierFile,
+                                         std::string classifierFunction, int simClassificationPrecision)
+        : Controller(storage, caption, flatten<KUKADU_SHARED_PTR<Hardware> >({castVector<KUKADU_SHARED_PTR<ControlQueue>, KUKADU_SHARED_PTR<Hardware> >(queues)}), 1), dbStorage(storage) {
 
         currentIterationNum = 0;
         classifierParamsSet = false;

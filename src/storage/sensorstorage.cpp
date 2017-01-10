@@ -31,27 +31,44 @@ namespace kukadu {
             registeredInstanceNames.push_back(hardwareName);
             registeredHardware[hardwareName] = hardware;
             startedThreads[hardwareName] = {false, nullptr};
+            startedCount[hardwareName] = 0;
         }
 
+    }
+
+    void SensorStorageSingleton::registerHardware(std::vector<KUKADU_SHARED_PTR<Hardware> > hardware) {
+        for(auto& hw : hardware)
+            registerHardware(hw);
     }
 
     void SensorStorageSingleton::initiateStorageAllRegistered() {
         initiateStorage(registeredInstanceNames);
     }
 
-    void SensorStorageSingleton::initiateStorage(std::vector<std::string> instanceNames) {
-        for(auto& requiredInstances : instanceNames)
-            initiateStorage(requiredInstances);
+    std::vector<bool> SensorStorageSingleton::initiateStorage(std::vector<KUKADU_SHARED_PTR<Hardware> > hardware) {
+        vector<string> instanceNames;
+        for(auto& hw : hardware)
+            instanceNames.push_back(hw->getHardwareInstanceName());
+        return initiateStorage(instanceNames);
     }
 
-    void SensorStorageSingleton::initiateStorage(std::string instanceName) {
+    std::vector<bool> SensorStorageSingleton::initiateStorage(std::vector<std::string> instanceNames) {
+        vector<bool> initiatedFlags;
+        for(auto& requiredInstances : instanceNames)
+            initiatedFlags.push_back(initiateStorage(requiredInstances));
+    }
+
+    bool SensorStorageSingleton::initiateStorage(std::string instanceName) {
 
         bool hardwareAlreadyRegistered = registeredHardware.find(instanceName) != registeredHardware.end();
         if(hardwareAlreadyRegistered) {
 
             auto& hardware = registeredHardware[instanceName];
             auto& actualThreadPair = startedThreads[instanceName];
+            auto& actualInitiationCount = startedCount[instanceName];
             auto& actualThread = actualThreadPair.second;
+
+            ++actualInitiationCount;
 
             if(!actualThread || (actualThread && !actualThreadPair.first)) {
                 actualThreadPair.first = true;
@@ -67,6 +84,8 @@ namespace kukadu {
                 });
             }
 
+            return !actualThreadPair.first;
+
         } else
             throw KukaduException("(SensorStorageSingleton) storing of sensor data cannot be initiated (instance name is not registered yet)");
 
@@ -78,10 +97,22 @@ namespace kukadu {
         for(auto& threadPair : startedThreads)
             threadPair.second.first = false;
 
+        for(auto& c : startedCount)
+            c.second = 0;
+
         // then wait until all of them are actually done
         for(auto& threadPair : startedThreads)
             if(threadPair.second.second && threadPair.second.second->joinable())
                 threadPair.second.second->join();
+
+    }
+
+    void SensorStorageSingleton::stopStorage(std::vector<KUKADU_SHARED_PTR<Hardware> > hardware) {
+
+        vector<string> hwNames;
+        for(auto& hw : hardware)
+            hwNames.push_back(hw->getHardwareInstanceName());
+        stopStorage(hwNames);
 
     }
 
@@ -90,13 +121,16 @@ namespace kukadu {
         // first go through all threads and send kill signal
         for(auto& threadPair : startedThreads)
             if(std::find(instanceNames.begin(), instanceNames.end(), threadPair.first) != instanceNames.end())
-                threadPair.second.first = false;
+                // only destroy if no other instance is expecting data to be stored
+                if(!startedCount[threadPair.first])
+                    threadPair.second.first = false;
 
         // then wait until all of them are actually done
         for(auto& threadPair : startedThreads)
             if(std::find(instanceNames.begin(), instanceNames.end(), threadPair.first) != instanceNames.end())
-                if(threadPair.second.second && threadPair.second.second->joinable())
-                    threadPair.second.second->join();
+                if(!startedCount[threadPair.first])
+                    if(threadPair.second.second && threadPair.second.second->joinable())
+                        threadPair.second.second->join();
 
     }
 

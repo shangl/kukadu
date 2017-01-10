@@ -2,6 +2,7 @@
 #define KUKADU_TRAJECTORY_H
 
 #include <armadillo>
+#include <kukadu/robot/queue.hpp>
 #include <kukadu/types/kukadutypes.hpp>
 #include <kukadu/control/controller.hpp>
 
@@ -169,7 +170,7 @@ namespace kukadu {
 
     public:
 
-        TrajectoryExecutor(StorageSingleton& dbStorage, KUKADU_SHARED_PTR<Trajectory> trajectory);
+        TrajectoryExecutor(StorageSingleton& dbStorage, KUKADU_SHARED_PTR<ControlQueue> usedQueue, KUKADU_SHARED_PTR<Trajectory> trajectory);
 
         void setTEnd(double tEndInSeconds);
         void setTStart(double tStartInSeconds);

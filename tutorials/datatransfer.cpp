@@ -24,7 +24,7 @@ namespace po = boost::program_options;
 
 int main(int argc, char** args) {
 
-    if(argc <= 1) {
+    if(argc <= 2) {
         cout << "usage: rosrun kukadu datatransfer {left, right} %PATHTOFILE%" << endl;
         return EXIT_FAILURE;
     }
@@ -42,31 +42,40 @@ int main(int argc, char** args) {
     auto simLeftQueue = make_shared<KukieControlQueue>(storage, "robinn", "simulation", string(args[1]) + "_arm", *node);
     simLeftQueue->install();
 
-    /*
-    auto timeStamps = SensorStorage::transferArmDataToDb(storage, simLeftQueue, resolvePath(string(args[2])));
-    cout << "file successfully transferred with within the time stamps " << timeStamps.first << " " << timeStamps.second << endl;
-    */
-    pair<long long int, long long int> timeStamps = {1483728751039, 1483728757997};
-
-    JointDMPLearner dmpLearn(storage, simLeftQueue, az, bz, timeStamps.first, timeStamps.second);
-    auto trainedDmp = dmpLearn.fitTrajectories();
-    DMPExecutor trainedExecutor(storage, trainedDmp, simLeftQueue);
+    simLeftQueue->stopCurrentMode();
+    simLeftQueue->startQueue();
+    simLeftQueue->switchMode(KukieControlQueue::KUKA_JNT_POS_MODE);
 
     string skillName = "";
-    cout << "dmp has been trained. under which name do you want to store the new skill?" << endl;
+    cout << "under which name do you want to store the new skill?" << endl;
     cin >> skillName;
 
     auto availableSkills = SkillFactory::get().listAvailableSkills();
-    if(std::find(availableSkills.begin(), availableSkills.end(), skillName) == availableSkills.end())
+    if(std::find(availableSkills.begin(), availableSkills.end(), skillName) == availableSkills.end()) {
+
+        auto timeStamps = SensorStorage::transferArmDataToDb(storage, simLeftQueue, resolvePath(string(args[2])));
+        cout << "file successfully transferred with within the time stamps " << timeStamps.first << " " << timeStamps.second << endl;
+
+        storage.waitForEmptyCache();
+
+        JointDMPLearner dmpLearn(storage, simLeftQueue, az, bz, timeStamps.first, timeStamps.second);
+        auto trainedDmp = dmpLearn.fitTrajectories();
+        DMPExecutor trainedExecutor(storage, trainedDmp, simLeftQueue);
+
         // create the skill
         trainedExecutor.createSkillFromThis(skillName);
-    else
+
+    } else
         cout << "the skill name already existed. loading the skill from the database" << endl;
 
     // execute the skill now
     auto firstDmp = KUKADU_DYNAMIC_POINTER_CAST<DMPExecutor>(SkillFactory::get().loadSkill(skillName, simLeftQueue));
     firstDmp->setExecutionMode(TrajectoryExecutor::EXECUTE_ROBOT);
     firstDmp->execute();
+
+    cout << "stopping queue" << endl;
+    simLeftQueue->stopCurrentMode();
+    simLeftQueue->stopQueue();
 
     cout << "waiting until cache is empty" << endl;
     storage.waitForEmptyCache();

@@ -1,5 +1,6 @@
 #include <kukadu/control/controller.hpp>
 #include <kukadu/storage/moduleusagesingleton.hpp>
+#include <kukadu/storage/sensorstoragesingleton.hpp>
 
 using namespace std;
 
@@ -7,9 +8,10 @@ namespace kukadu {
 
     /****************** public functions *******************************/
 
-    Controller::Controller(StorageSingleton& dbStorage, std::string caption, double simulationFailingProbability) : storage(dbStorage) {
+    Controller::Controller(StorageSingleton& dbStorage, std::string caption, std::vector<KUKADU_SHARED_PTR<Hardware> > usedHardware, double simulationFailingProbability) : storage(dbStorage) {
 
         isInstalled = false;
+        this->usedHardware = usedHardware;
 
         std::replace(caption.begin(), caption.end(), ' ', '_');
 
@@ -24,6 +26,10 @@ namespace kukadu {
 
         controllerId = CONTROLLER_ID_NOT_FOUND;
 
+    }
+
+    std::vector<KUKADU_SHARED_PTR<Hardware> > Controller::getUsedHardware() {
+        return usedHardware;
     }
 
     void Controller::createSkillFromThis(std::string skillName) {
@@ -43,6 +49,13 @@ namespace kukadu {
         if(!isInstalled)
             installDb();
 
+        auto& stSingleton = SensorStorageSingleton::get();
+
+        auto usedHardware = getUsedHardware();
+        stSingleton.registerHardware(usedHardware);
+
+        stSingleton.initiateStorage(usedHardware);
+
         long long int startTime = getCurrentTime();
 
         stringstream s;
@@ -53,6 +66,8 @@ namespace kukadu {
 
         s.str("");
         s << "update controller_executions set end_timestamp = " << getCurrentTime() << ", successful = true where controller_id = " << controllerId << " and start_timestamp = " << startTime;
+
+        stSingleton.stopStorage(usedHardware);
 
         storage.executeStatement(s.str());
 

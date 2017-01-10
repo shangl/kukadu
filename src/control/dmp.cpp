@@ -569,12 +569,22 @@ namespace kukadu {
         return make_shared<CartesianDMP>(convertTimesInSecondsToTimeInMilliseconds(supervisedTsInSeconds), sampleYs, fitYs, dmpCoeffs, dmpBase, designMatrices, tau, az, bz, ax);
     }
 
-    DMPExecutor::DMPExecutor(StorageSingleton& dbStorage, KUKADU_SHARED_PTR<Dmp> traj, KUKADU_SHARED_PTR<ControlQueue> execQueue, int suppressMessages) : TrajectoryExecutor(dbStorage, traj) {
+    DMPExecutor::DMPExecutor(StorageSingleton& dbStorage, KUKADU_SHARED_PTR<Dmp> traj, KUKADU_SHARED_PTR<ControlQueue> execQueue, int suppressMessages) :
+        TrajectoryExecutor(dbStorage, execQueue, traj) {
         construct(execQueue, suppressMessages);
     }
 
-    DMPExecutor::DMPExecutor(StorageSingleton& dbStorage, int skillId, KUKADU_SHARED_PTR<ControlQueue> execQueue, int suppressMessages) : TrajectoryExecutor(dbStorage, loadDmpFromDb(dbStorage, skillId, execQueue)) {
+    DMPExecutor::DMPExecutor(StorageSingleton& dbStorage, int skillId, KUKADU_SHARED_PTR<ControlQueue> execQueue, int suppressMessages) :
+        TrajectoryExecutor(dbStorage, execQueue, loadDmpFromDb(dbStorage, skillId, execQueue)) {
         construct(execQueue, suppressMessages);
+    }
+
+    void DMPExecutor::setExecutionDuration(double tmax) {
+        executionDuration = tmax;
+    }
+
+    KUKADU_SHARED_PTR<Dmp> DMPExecutor::getDmp() {
+        return dmp;
     }
 
     bool compareDouble(double& d1, double& d2, int precision) {
@@ -662,7 +672,7 @@ namespace kukadu {
         allCoeffs.push_back(stdToArmadilloVec(currentCoefficientsPerJoint));
 
         if(allCoeffs.size() != execQueue->getDegreesOfFreedom() || allCoeffs.front().n_elem != (bases.front().getSigmas().size() * bases.size()))
-            throw KukaduException("(DMPExecutor) malformed skill information in database");
+            throw KukaduException("(DMPExecutor.loadBaseAndCoefficients) malformed skill information in database");
 
         return {bases, allCoeffs};
 
@@ -682,7 +692,7 @@ namespace kukadu {
         }
 
         if(jointCount != execQueue->getDegreesOfFreedom())
-            throw KukaduException("(DMPExecutor) malformed skill information in database");
+            throw KukaduException("(DMPExecutor.loadJointsFromTable) malformed skill information in database");
 
         return stdToArmadilloVec(joints);
 
@@ -698,7 +708,7 @@ namespace kukadu {
             (double) parameterRes->getDouble("step_size"), (double) parameterRes->getDouble("tol_abs_err"), (double) parameterRes->getDouble("tol_rel_err"),
             (double) parameterRes->getDouble("tmax")};
         else
-            throw KukaduException("(DMPExecutor) malformed skill information in database");
+            throw KukaduException("(DMPExecutor.loadDmpParameters) malformed skill information in database");
         return {};
 
     }
@@ -772,9 +782,9 @@ namespace kukadu {
                     s << "insert into skill_dmp_y0(skill_id, joint_id, position) values(" << skillId << ", " << currentJointId << ", " << y0(i) << ")";
                     goalStream << "insert into skill_dmp_g(skill_id, joint_id, position) values(" << skillId << ", " << currentJointId << ", " << g(i) << ")";
                     dy0Stream << "insert into skill_dmp_dy0(skill_id, joint_id, position) values(" << skillId << ", " << currentJointId << ", " << dy0(i) << ")";
-                    storage.executeStatement(s.str());
-                    storage.executeStatement(goalStream.str());
-                    storage.executeStatement(dy0Stream.str());
+                    storage.executeStatementPriority(s.str());
+                    storage.executeStatementPriority(goalStream.str());
+                    storage.executeStatementPriority(dy0Stream.str());
                 }
 
                 // the dmp basis functions are the same for all joints --> but this is not fixed forever,
@@ -794,7 +804,7 @@ namespace kukadu {
                             double& sigma = currentSigmas.at(k);
                             s.str("");
                             s << firstPart << ", " << sigma << ", " << currentCoeffs(m) << ")";
-                            storage.executeStatement(s.str());
+                            storage.executeStatementPriority(s.str());
                             ++m;
                         }
 
@@ -904,13 +914,21 @@ namespace kukadu {
 
     KUKADU_SHARED_PTR<ControllerResult> DMPExecutor::simulateTrajectory() {
 
-        return this->executeDMP(0, dmp->getTmax(), dmp->getTolAbsErr(), dmp->getTolRelErr());
+        double tmax = dmp->getTmax();
+        if(executionDuration > 0)
+            tmax = executionDuration;
+
+        return this->executeDMP(0, tmax, dmp->getTolAbsErr(), dmp->getTolRelErr());
 
     }
 
     KUKADU_SHARED_PTR<ControllerResult> DMPExecutor::executeTrajectory() {
 
-        return this->executeDMP(0, dmp->getTmax(), dmp->getTolAbsErr(), dmp->getTolRelErr());
+        double tmax = dmp->getTmax();
+        if(executionDuration > 0)
+            tmax = executionDuration;
+
+        return this->executeDMP(0, tmax, dmp->getTolAbsErr(), dmp->getTolRelErr());
 
     }
 
@@ -1276,13 +1294,15 @@ namespace kukadu {
     KUKADU_SHARED_PTR<Dmp> JointDMPLearner::createDmpInstance(arma::vec& supervisedTsInSeconds, std::vector<arma::vec> sampleYs, std::vector<arma::vec> fitYs, std::vector<arma::vec> dmpCoeffs, std::vector<DMPBase> dmpBase, std::vector<arma::mat> designMatrices,
                                            double tau, double az, double bz, double ax) {
 
-        return KUKADU_SHARED_PTR<Dmp>(new JointDmp(convertTimesInSecondsToTimeInMilliseconds(supervisedTsInSeconds), sampleYs, fitYs, dmpCoeffs, dmpBase, designMatrices, tau, az, bz, ax));
+        return make_shared<JointDmp>(convertTimesInSecondsToTimeInMilliseconds(supervisedTsInSeconds), sampleYs, fitYs, dmpCoeffs, dmpBase, designMatrices, tau, az, bz, ax);
 
     }
 
     /****************** private functions ******************************/
 
     void DMPExecutor::construct(KUKADU_SHARED_PTR<ControlQueue> execQueue, int suppressMessages) {
+
+        executionDuration = -1;
 
         dmp = KUKADU_DYNAMIC_POINTER_CAST<Dmp>(getTrajectory());
 

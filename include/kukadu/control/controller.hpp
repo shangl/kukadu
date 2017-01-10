@@ -2,6 +2,7 @@
 #define KUKADU_CONTROLLER_H
 
 #include <string>
+#include <kukadu/robot/hardware.hpp>
 #include <kukadu/types/kukadutypes.hpp>
 #include <kukadu/types/controllerresult.hpp>
 #include <kukadu/storage/storagesingleton.hpp>
@@ -26,6 +27,8 @@ namespace kukadu {
         double simulationFailingProbability;
 
         std::string caption;
+
+        std::vector<KUKADU_SHARED_PTR<Hardware> > usedHardware;
 
     protected:
 
@@ -53,11 +56,13 @@ namespace kukadu {
 
     public:
 
-        Controller(StorageSingleton& dbStorage, std::string caption, double simulationFailingProbability);
+        Controller(StorageSingleton& dbStorage, std::string caption, std::vector<KUKADU_SHARED_PTR<Hardware> > usedHardware, double simulationFailingProbability);
 
         void shutUp();
         void startTalking();
         virtual void setSimulationMode(bool simulationMode);
+
+        virtual std::vector<KUKADU_SHARED_PTR<Hardware> > getUsedHardware();
 
         virtual bool requiresGrasp();
         virtual bool producesGrasp();
