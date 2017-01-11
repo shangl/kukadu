@@ -67,6 +67,7 @@ namespace kukadu {
 
         cleanup = true;
         generateNewGroundTruth = true;
+        lastSkillWasSuccessful = false;
 
         vector<int> distributionWeights; distributionWeights.push_back(100 - simulationFailingProbability); distributionWeights.push_back(simulationFailingProbability);
         simSuccDist = KUKADU_DISCRETE_DISTRIBUTION<int>(distributionWeights.begin(), distributionWeights.end());
@@ -293,6 +294,12 @@ namespace kukadu {
             stateClipsPerSensingAction[KUKADU_DYNAMIC_POINTER_CAST<IntermediateEventClip>(sensingClip)->getSensingController()->getCaption()] = *sensingClip->getSubClips();
         }
 
+    }
+
+    bool ComplexController::getLastSkillExecutionSuccessful() {
+        // call base class function for consistency checks
+        Controller::getLastSkillExecutionSuccessful();
+        return lastSkillWasSuccessful;
     }
 
     std::vector<KUKADU_SHARED_PTR<Clip> > ComplexController::getStateClipsForSensingId(KUKADU_SHARED_PTR<SensingController> sensingId) {
@@ -927,6 +934,8 @@ namespace kukadu {
             // after doing everything --> perform the complex action and reward it accordingly
             auto rewRet = projSim->performRewarding();
             reward = get<1>(rewRet);
+
+            lastSkillWasSuccessful = (reward > 0) ? true : false;
 
             // block for determining the "nothing" states is only required if creativity is switched on
             if(useCreativity) {

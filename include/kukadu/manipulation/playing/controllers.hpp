@@ -254,6 +254,7 @@ namespace kukadu {
         bool colPrevRewards;
 
         bool generateNewGroundTruth;
+        bool lastSkillWasSuccessful;
 
         int stdPrepWeight;
         int maxEnvPathLength;
@@ -394,6 +395,8 @@ namespace kukadu {
 
         double getStdReward();
         double getPunishReward();
+
+        virtual bool getLastSkillExecutionSuccessful();
 
         // overwrite this if the ground truth of the sensing classes is known for some sensing actions
         virtual std::string getClassLabel(KUKADU_SHARED_PTR<Clip> sensingClip, KUKADU_SHARED_PTR<Clip> stateClip);

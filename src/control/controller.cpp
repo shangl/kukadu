@@ -8,9 +8,12 @@ namespace kukadu {
 
     /****************** public functions *******************************/
 
-    Controller::Controller(StorageSingleton& dbStorage, std::string caption, std::vector<KUKADU_SHARED_PTR<Hardware> > usedHardware, double simulationFailingProbability) : storage(dbStorage) {
+    Controller::Controller(StorageSingleton& dbStorage, std::string caption, std::vector<KUKADU_SHARED_PTR<Hardware> > usedHardware,
+                           double simulationFailingProbability, bool isSkill, std::string skillName) : storage(dbStorage) {
 
         isInstalled = false;
+        this->isSkill = isSkill;
+        this->skillName = skillName;
         this->usedHardware = usedHardware;
 
         std::replace(caption.begin(), caption.end(), ' ', '_');
@@ -33,6 +36,9 @@ namespace kukadu {
     }
 
     void Controller::createSkillFromThis(std::string skillName) {
+
+        this->isSkill = true;
+        this->skillName = skillName;
 
         if(!storage.checkLabelExists("skills", "label", skillName)) {
 
@@ -82,23 +88,42 @@ namespace kukadu {
 
         auto usedHardware = getUsedHardware();
         stSingleton.registerHardware(usedHardware);
-
         stSingleton.initiateStorage(usedHardware);
 
+        int skillId = CONTROLLER_ID_NOT_FOUND;
         long long int startTime = getCurrentTime();
 
         stringstream s;
         s << "insert into controller_executions(controller_id, start_timestamp, end_timestamp, successful) values(" << controllerId << ", " << startTime << ", null, false)";
-        storage.executeStatement(s.str());
+        storage.executeStatementPriority(s.str());
+
+        if(isSkill) {
+            s.str("");
+            skillId = storage.getCachedLabelId("skills", "skill_id", "label", skillName);
+            s << "insert into skill_executions(skill_id, start_timestamp, end_timestamp, successful) values(" << skillId << ", "
+              << startTime << ", null, false)";
+            storage.executeStatementPriority(s.str());
+        }
 
         auto retVal = executeInternal();
 
         stSingleton.stopStorage(usedHardware);
 
         s.str("");
-        s << "update controller_executions set end_timestamp = " << getCurrentTime() << ", successful = true where controller_id = " << controllerId << " and start_timestamp = " << startTime;
+        s << "update controller_executions set end_timestamp = " << getCurrentTime() << ", successful = true where controller_id = " <<
+             controllerId << " and start_timestamp = " << startTime;
 
-        storage.executeStatement(s.str());
+        if(isSkill) {
+            auto skillSuccessful = getLastSkillExecutionSuccessful();
+            s.str("");
+            s << "update skill_executions set end_timestamp = " << getCurrentTime() <<
+                 ", successful = " << ((skillSuccessful) ? "true" : "false") <<
+                 " where skill_id = " <<
+                 skillId << " and start_timestamp = " << startTime;
+            storage.executeStatementPriority(s.str());
+        }
+
+        storage.executeStatementPriority(s.str());
 
         KUKADU_MODULE_END_USAGE();
 
@@ -182,6 +207,16 @@ namespace kukadu {
 
     double Controller::getSimFailingProb() {
         return simulationFailingProbability;
+    }
+
+    bool Controller::getIsSkill() {
+        return isSkill;
+    }
+
+    bool Controller::getLastSkillExecutionSuccessful() {
+        if(!getIsSkill())
+            throw KukaduException("(Controller) controller does not represent a skill");
+        return true;
     }
 
     /****************** private functions ******************************/

@@ -22,6 +22,9 @@ namespace kukadu {
         bool simulation;
         bool isInstalled;
 
+        bool isSkill;
+        std::string skillName;
+
         int controllerId;
 
         double simulationFailingProbability;
@@ -56,7 +59,8 @@ namespace kukadu {
 
     public:
 
-        Controller(StorageSingleton& dbStorage, std::string caption, std::vector<KUKADU_SHARED_PTR<Hardware> > usedHardware, double simulationFailingProbability);
+        Controller(StorageSingleton& dbStorage, std::string caption, std::vector<KUKADU_SHARED_PTR<Hardware> > usedHardware,
+                   double simulationFailingProbability, bool isSkill = false, std::string skillName = "");
 
         void shutUp();
         void startTalking();
@@ -78,6 +82,9 @@ namespace kukadu {
         std::string getCaption();
 
         int getControllerId();
+
+        bool getIsSkill();
+        virtual bool getLastSkillExecutionSuccessful();
 
         virtual KUKADU_SHARED_PTR<ControllerResult> execute();
 

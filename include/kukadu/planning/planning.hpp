@@ -135,6 +135,9 @@ namespace kukadu {
 #endif
 
     };
+    
+    class CachedPlanner : public PathPlanner {
+    };
 
 }
 
