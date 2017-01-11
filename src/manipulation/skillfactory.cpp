@@ -31,12 +31,14 @@ namespace kukadu {
     KUKADU_SHARED_PTR<Controller> SkillFactory::loadSkill(std::string skillName, KUKADU_SHARED_PTR<ControlQueue> queue) {
 
         stringstream s;
-        s << "select skill_id, controller_type from skills where label = '" << skillName << "' and robot_id = " << queue->getRobotId();
+        s << "select skr.skill_id as skid, controller_type from skills as ski" <<
+             " inner join skills_robot skr on skr.skill_id = ski.skill_id" <<
+             " where label = '" << skillName << "' and skr.hardware_instance_id = " << queue->getRobotId();
         auto skillResult = storage.executeQuery(s.str());
 
         if(skillResult->next()) {
 
-            long long int skillId = skillResult->getInt64("skill_id");
+            long long int skillId = skillResult->getInt64("skid");
             int controllerType = skillResult->getInt("controller_type");
 
             auto controllerClassLabel = storage.getCachedLabel("controller_types", "controller_id", "controller_implementation_class", controllerType);
@@ -58,6 +60,13 @@ namespace kukadu {
         return skills;
     }
 
+    bool SkillFactory::skillExists(std::string skillName) {
+        auto skillsList = listAvailableSkills();
+        if(std::find(skillsList.begin(), skillsList.end(), skillName) != skillsList.end())
+            return true;
+        return false;
+    }
+
     std::string SkillFactory::getSkillController(std::string skillName) {
         auto controllerRes = storage.executeQuery("select controller_implementation_class from skills inner join controller_types on skills.controller_type = controller_types.controller_id where skills.label = '" + skillName + "'");
         if(controllerRes->next())
@@ -67,13 +76,20 @@ namespace kukadu {
     }
 
     std::vector<std::string> SkillFactory::getSupportedRobots(std::string skillName) {
+
+        stringstream s;
+        s << "select skr.instance_name as rname from skills as ski" <<
+             " inner join skills_robot skr on skr.skill_id = ski.skill_id" <<
+             " inner join hardware_instances as hwi on hwi.instance_id = skr.hardware_instance_id "
+             " where label = '" << skillName << "'";
+
         vector<string> supportedRobots;
-        auto robotRes = storage.executeQuery("select robot_name from skills inner join robot on skills.robot_id = robot.robot_id where skills.label = '" + skillName + "'");
+        auto robotRes = storage.executeQuery(s.str());
         bool nothingFound = true;
         while(robotRes->next()) {
             if(nothingFound)
                 nothingFound = false;
-            supportedRobots.push_back(robotRes->getString("robot_name"));
+            supportedRobots.push_back(robotRes->getString("rname"));
         }
         if(nothingFound)
             throw KukaduException("(SkillFactory) no such skill in database or robot is not known anymore");

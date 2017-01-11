@@ -2,6 +2,7 @@
 #define KUKADU_SENSORSTORAGESINGLETON_H
 
 #include <map>
+#include <mutex>
 #include <vector>
 #include <string>
 #include <kukadu/robot/hardware.hpp>
@@ -12,6 +13,8 @@ namespace kukadu {
     class SensorStorageSingleton {
 
     private:
+
+        std::mutex instanceMutex;
 
         std::vector<std::string> registeredInstanceNames;
         std::map<std::string, KUKADU_SHARED_PTR<Hardware> > registeredHardware;

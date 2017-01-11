@@ -597,8 +597,10 @@ namespace kukadu {
         stringstream s;
         // load dmp base from database
         vector<DMPBase> bases;
-        s << "select co.joint_id as ji, my, sigma, coeff from skill_dmp_coeff as co inner join skills as ski on co.skill_id = ski.skill_id where ski.skill_id = " << skillId
-                << " and ski.robot_id = " << robotId << " order by co.joint_id asc, co.my asc, co.sigma asc";
+        s << "select co.joint_id as ji, my, sigma, coeff from skill_dmp_coeff as co inner join skills as ski on co.skill_id = ski.skill_id " <<
+             " inner join skills_robot skr on skr.skill_id = ski.skill_id" <<
+             " where ski.skill_id = " << skillId
+                << " and skr.hardware_instance_id = " << robotId << " order by co.joint_id asc, co.my asc, co.sigma asc";
 
         auto baseRes = dbStorage.executeQuery(s.str());
 
@@ -737,83 +739,73 @@ namespace kukadu {
         // if it is a joint dmp --> skill creation is supported, otherwise not yet
         if(!isCartesian) {
 
-            if(!storage.checkLabelExists("skills", "label", skillName)) {
+            KUKADU_SHARED_PTR<Dmp> jointDmp = KUKADU_DYNAMIC_POINTER_CAST<Dmp>(getTrajectory());
 
-                KUKADU_SHARED_PTR<Dmp> jointDmp = KUKADU_DYNAMIC_POINTER_CAST<Dmp>(getTrajectory());
+            // dmp specific information
+            auto y0 = jointDmp->getY0();
+            auto dy0 = jointDmp->getDy0();
+            auto g = jointDmp->getG();
+            auto coeff = jointDmp->getCoefficients();
+            auto tau = jointDmp->getTau();
+            auto az = jointDmp->getAz();
+            auto bz = jointDmp->getBz();
+            auto ax = jointDmp->getAx();
+            auto dmpStepSize = jointDmp->getStepSize();
+            auto tolAbsErr= jointDmp->getTolAbsErr();
+            auto tolRelErr = jointDmp->getTolRelErr();
+            auto tMax = jointDmp->getTmax();
+            auto dmpBase = jointDmp->getDmpBase();
 
-                // dmp specific information
-                auto y0 = jointDmp->getY0();
-                auto dy0 = jointDmp->getDy0();
-                auto g = jointDmp->getG();
-                auto coeff = jointDmp->getCoefficients();
-                auto tau = jointDmp->getTau();
-                auto az = jointDmp->getAz();
-                auto bz = jointDmp->getBz();
-                auto ax = jointDmp->getAx();
-                auto dmpStepSize = jointDmp->getStepSize();
-                auto tolAbsErr= jointDmp->getTolAbsErr();
-                auto tolRelErr = jointDmp->getTolRelErr();
-                auto tMax = jointDmp->getTmax();
-                auto dmpBase = jointDmp->getDmpBase();
+            // robot information
+            auto jointIds = controlQueue->getJointIds();
 
-                // robot information
-                auto robotId = controlQueue->getRobotId();
-                auto jointIds = controlQueue->getJointIds();
+            auto skillId = storage.getCachedLabelId("skills", "skill_id", "label", skillName);
 
-                auto controllerId = getControllerId();
+            stringstream s;
+            s.str("");
+            s << "insert into skill_dmp(skill_id, tau, az, bz, ax, step_size, tol_abs_err, tol_rel_err, tmax) values(" << skillId << ", " << tau << ", " <<
+                 az << ", " << bz << ", " << ax << ", " << dmpStepSize << ", " << tolAbsErr << ", " << tolRelErr << ", " << tMax << ")";
+            storage.executeStatementPriority(s.str());
 
-                stringstream s;
-                s << "insert into skills(label, controller_type, robot_id) values('" << skillName << "', " << controllerId << ", " << robotId << ")";
-                storage.executeStatementPriority(s.str());
-
-                auto skillId = storage.getCachedLabelId("skills", "skill_id", "label", skillName);
+            stringstream goalStream;
+            stringstream dy0Stream;
+            for(int i = 0; i < jointIds.size(); ++i) {
                 s.str("");
-                s << "insert into skill_dmp(skill_id, tau, az, bz, ax, step_size, tol_abs_err, tol_rel_err, tmax) values(" << skillId << ", " << tau << ", " <<
-                     az << ", " << bz << ", " << ax << ", " << dmpStepSize << ", " << tolAbsErr << ", " << tolRelErr << ", " << tMax << ")";
+                goalStream.str("");
+                dy0Stream.str("");
+                auto& currentJointId = jointIds.at(i);
+                s << "insert into skill_dmp_y0(skill_id, joint_id, position) values(" << skillId << ", " << currentJointId << ", " << y0(i) << ")";
+                goalStream << "insert into skill_dmp_g(skill_id, joint_id, position) values(" << skillId << ", " << currentJointId << ", " << g(i) << ")";
+                dy0Stream << "insert into skill_dmp_dy0(skill_id, joint_id, position) values(" << skillId << ", " << currentJointId << ", " << dy0(i) << ")";
                 storage.executeStatementPriority(s.str());
+                storage.executeStatementPriority(goalStream.str());
+                storage.executeStatementPriority(dy0Stream.str());
+            }
 
-                stringstream goalStream;
-                stringstream dy0Stream;
-                for(int i = 0; i < jointIds.size(); ++i) {
+            // the dmp basis functions are the same for all joints --> but this is not fixed forever,
+            // so the database model is such that this can be changed straight forward in the future (for now redundant information is stored)
+            for(int i = 0; i < jointIds.size(); ++i) {
+
+                auto& currentCoeffs = coeff.at(i);
+                for(int j = 0, m = 0; j < dmpBase.size(); ++j) {
+
                     s.str("");
-                    goalStream.str("");
-                    dy0Stream.str("");
-                    auto& currentJointId = jointIds.at(i);
-                    s << "insert into skill_dmp_y0(skill_id, joint_id, position) values(" << skillId << ", " << currentJointId << ", " << y0(i) << ")";
-                    goalStream << "insert into skill_dmp_g(skill_id, joint_id, position) values(" << skillId << ", " << currentJointId << ", " << g(i) << ")";
-                    dy0Stream << "insert into skill_dmp_dy0(skill_id, joint_id, position) values(" << skillId << ", " << currentJointId << ", " << dy0(i) << ")";
-                    storage.executeStatementPriority(s.str());
-                    storage.executeStatementPriority(goalStream.str());
-                    storage.executeStatementPriority(dy0Stream.str());
-                }
+                    auto& currentBase = dmpBase.at(j);
+                    vector<double> currentSigmas = currentBase.getSigmas();
 
-                // the dmp basis functions are the same for all joints --> but this is not fixed forever,
-                // so the database model is such that this can be changed straight forward in the future (for now redundant information is stored)
-                for(int i = 0; i < jointIds.size(); ++i) {
-
-                    auto& currentCoeffs = coeff.at(i);
-                    for(int j = 0, m = 0; j < dmpBase.size(); ++j) {
-
+                    s << "insert into skill_dmp_coeff(skill_id, joint_id, my, sigma, coeff) values(" << skillId << ", " << jointIds.at(i) << ", " << currentBase.getMy();
+                    auto firstPart = s.str();
+                    for(int k = 0; k < currentSigmas.size(); ++k) {
+                        double& sigma = currentSigmas.at(k);
                         s.str("");
-                        auto& currentBase = dmpBase.at(j);
-                        vector<double> currentSigmas = currentBase.getSigmas();
-
-                        s << "insert into skill_dmp_coeff(skill_id, joint_id, my, sigma, coeff) values(" << skillId << ", " << jointIds.at(i) << ", " << currentBase.getMy();
-                        auto firstPart = s.str();
-                        for(int k = 0; k < currentSigmas.size(); ++k) {
-                            double& sigma = currentSigmas.at(k);
-                            s.str("");
-                            s << firstPart << ", " << sigma << ", " << currentCoeffs(m) << ")";
-                            storage.executeStatementPriority(s.str());
-                            ++m;
-                        }
-
+                        s << firstPart << ", " << sigma << ", " << currentCoeffs(m) << ")";
+                        storage.executeStatementPriority(s.str());
+                        ++m;
                     }
 
                 }
 
-            } else
-                throw KukaduException("(DMPExecutor) skill with provided name already exists");
+            }
 
         } else
             throw KukaduException("(DMPExecutor) skill creation only for joint dmps supported");

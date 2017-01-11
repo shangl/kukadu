@@ -22,10 +22,14 @@ namespace kukadu {
 
     void SensorStorageSingleton::registerHardware(KUKADU_SHARED_PTR<Hardware> hardware) {
 
+        instanceMutex.lock();
+
         auto hardwareName = hardware->getHardwareInstanceName();
         bool hardwareAlreadyRegistered = registeredHardware.find(hardwareName) != registeredHardware.end();
-        if(hardwareAlreadyRegistered && registeredHardware[hardware->getHardwareInstanceName()] != hardware)
+        if(hardwareAlreadyRegistered && registeredHardware[hardware->getHardwareInstanceName()] != hardware) {
+            instanceMutex.unlock();
             throw KukaduException("(SensorStorageSingleton) different hardware with the same instance name is already registered");
+        }
 
         if(!hardwareAlreadyRegistered) {
             registeredInstanceNames.push_back(hardwareName);
@@ -33,6 +37,8 @@ namespace kukadu {
             startedThreads[hardwareName] = {false, nullptr};
             startedCount[hardwareName] = 0;
         }
+
+        instanceMutex.unlock();
 
     }
 
@@ -46,19 +52,28 @@ namespace kukadu {
     }
 
     std::vector<bool> SensorStorageSingleton::initiateStorage(std::vector<KUKADU_SHARED_PTR<Hardware> > hardware) {
+
         vector<string> instanceNames;
         for(auto& hw : hardware)
             instanceNames.push_back(hw->getHardwareInstanceName());
-        return initiateStorage(instanceNames);
+        auto retVal =  initiateStorage(instanceNames);
+
+        return retVal;
     }
 
     std::vector<bool> SensorStorageSingleton::initiateStorage(std::vector<std::string> instanceNames) {
+
         vector<bool> initiatedFlags;
         for(auto& requiredInstances : instanceNames)
             initiatedFlags.push_back(initiateStorage(requiredInstances));
+
+        return initiatedFlags;
+
     }
 
     bool SensorStorageSingleton::initiateStorage(std::string instanceName) {
+
+        instanceMutex.lock();
 
         bool hardwareAlreadyRegistered = registeredHardware.find(instanceName) != registeredHardware.end();
         if(hardwareAlreadyRegistered) {
@@ -72,6 +87,7 @@ namespace kukadu {
 
             if(!actualThread || (actualThread && !actualThreadPair.first)) {
                 actualThreadPair.first = true;
+
                 actualThread = make_shared<kukadu_thread>([this, hardware]() {
                     ros::Rate r(hardware->getPreferredPollingFrequency());
                     auto& threadPair = this->startedThreads[hardware->getHardwareInstanceName()];
@@ -82,16 +98,25 @@ namespace kukadu {
                     }
                     runningFlag = false;
                 });
+
             }
 
+            instanceMutex.unlock();
             return !actualThreadPair.first;
 
-        } else
+        } else {
+            instanceMutex.unlock();
             throw KukaduException("(SensorStorageSingleton) storing of sensor data cannot be initiated (instance name is not registered yet)");
+        }
+
+        instanceMutex.unlock();
+        return true;
 
     }
 
     void SensorStorageSingleton::stopStorageAll() {
+
+        instanceMutex.lock();
 
         // first go through all threads and send kill signal
         for(auto& threadPair : startedThreads)
@@ -102,8 +127,11 @@ namespace kukadu {
 
         // then wait until all of them are actually done
         for(auto& threadPair : startedThreads)
-            if(threadPair.second.second && threadPair.second.second->joinable())
-                threadPair.second.second->join();
+            if(!startedCount[threadPair.first])
+                if(threadPair.second.second && threadPair.second.second->joinable())
+                    threadPair.second.second->join();
+
+        instanceMutex.unlock();
 
     }
 
@@ -118,12 +146,16 @@ namespace kukadu {
 
     void SensorStorageSingleton::stopStorage(std::vector<std::string> instanceNames) {
 
+        instanceMutex.lock();
+
         // first go through all threads and send kill signal
         for(auto& threadPair : startedThreads)
-            if(std::find(instanceNames.begin(), instanceNames.end(), threadPair.first) != instanceNames.end())
+            if(std::find(instanceNames.begin(), instanceNames.end(), threadPair.first) != instanceNames.end()) {
+                startedCount[threadPair.first] = (startedCount[threadPair.first] > 0) ? startedCount[threadPair.first] - 1 : 0;
                 // only destroy if no other instance is expecting data to be stored
                 if(!startedCount[threadPair.first])
                     threadPair.second.first = false;
+            }
 
         // then wait until all of them are actually done
         for(auto& threadPair : startedThreads)
@@ -131,6 +163,8 @@ namespace kukadu {
                 if(!startedCount[threadPair.first])
                     if(threadPair.second.second && threadPair.second.second->joinable())
                         threadPair.second.second->join();
+
+        instanceMutex.unlock();
 
     }
 

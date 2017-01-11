@@ -57,7 +57,7 @@ namespace kukadu {
         if(idRes->next())
             return idRes->getInt("joint_id");
         else
-            throw KukaduException("(ControlQueue) searched joint is not part of the robot");
+            throw KukaduException("(GenericHand) searched joint is not part of the robot");
 
     }
 

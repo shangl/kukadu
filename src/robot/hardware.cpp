@@ -40,7 +40,7 @@ namespace kukadu {
         } catch(KukaduException& ex) { allOk = true; }
 
         if(!allOk)
-            throw KukaduException("(Hardware) ^ hardware type id does not match the stored information");
+            throw KukaduException("(Hardware) hardware type id does not match the stored information");
 
         if(!alreadyExists) {
 

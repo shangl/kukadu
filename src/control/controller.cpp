@@ -33,7 +33,36 @@ namespace kukadu {
     }
 
     void Controller::createSkillFromThis(std::string skillName) {
-        createSkillFromThisInternal(skillName);
+
+        if(!storage.checkLabelExists("skills", "label", skillName)) {
+
+            auto controllerId = getControllerId();
+            auto usedHw = getUsedHardware();
+
+            stringstream s;
+            s << "insert into skills(label, controller_type) values('" << skillName << "', " << controllerId << ")";
+            storage.executeStatementPriority(s.str());
+
+            auto skillId = storage.getCachedLabelId("skills", "skill_id", "label", skillName);
+
+            s.str("");
+            s << "insert into skills_robot(skill_id, hardware_instance_id) values";
+            int insertedCount = 0;
+            for(auto& hw : usedHw) {
+                s << "(" << skillId << ", " << hw->getHardwareInstance() << "),";
+                ++insertedCount;
+            }
+            if(insertedCount) {
+                string skillRobotStr = s.str();
+                skillRobotStr = skillRobotStr.substr(0, skillRobotStr.length() - 1);
+                storage.executeStatementPriority(skillRobotStr);
+            }
+
+            createSkillFromThisInternal(skillName);
+
+        } else
+            throw KukaduException("(Controller) skill with provided name already exists");
+
     }
 
     int Controller::getControllerId() {
@@ -64,10 +93,10 @@ namespace kukadu {
 
         auto retVal = executeInternal();
 
+        stSingleton.stopStorage(usedHardware);
+
         s.str("");
         s << "update controller_executions set end_timestamp = " << getCurrentTime() << ", successful = true where controller_id = " << controllerId << " and start_timestamp = " << startTime;
-
-        stSingleton.stopStorage(usedHardware);
 
         storage.executeStatement(s.str());
 

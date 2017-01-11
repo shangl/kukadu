@@ -31,6 +31,8 @@ namespace kukadu {
         std::string getSkillController(std::string skillName);
         std::vector<std::string> getSupportedRobots(std::string skillName);
 
+        bool skillExists(std::string skillName);
+
     };
 
 }
