@@ -47,7 +47,7 @@ int main(int argc, char** args) {
     simLeftQueue->switchMode(KukieControlQueue::KUKA_JNT_POS_MODE);
 
     CachedPlanner cp(storage, simLeftQueue->getRobotId(), simLeftQueue->getPlanner());
-    cp.computeIk(simLeftQueue->getCurrentJoints, simLeftQueue->getCurrentCartesianPose());
+    cp.computeIk(simLeftQueue->getCurrentJoints().joints, simLeftQueue->getCurrentCartesianPose());
     getchar();
 
     string skillName = "";

@@ -368,12 +368,12 @@ namespace kukadu {
 
     std::vector<arma::vec> CachedPlanner::computeIk(arma::vec currentJointState, const geometry_msgs::Pose& goal) {
 
-        double xPosOffset = 0.02;
-        double yPosOffset = 0.02;
-        double zPosOffset = 0.02;
-        double xOrOffset = 0.02;
-        double yOrOffset = 0.02;
-        double zOrOffset = 0.02;
+        double xPosOffset = 0.2;
+        double yPosOffset = 0.2;
+        double zPosOffset = 0.2;
+        double xOrOffset = 0.3;
+        double yOrOffset = 0.3;
+        double zOrOffset = 0.3;
 
         stringstream s;
         s << " robot_id = " << robotId;
@@ -381,36 +381,54 @@ namespace kukadu {
         auto linkId = getStorage().getCachedLabelId("links", "link_id", "link_name", getCartesianLinkName(), s.str());
 
         s.str("");
-        s << "select cm.time_stamp as t, cart_pos_x, cart_pos_y, cart_pos_z, cart_rot_x, cart_rot_y, cart_rot_z from cart_mes_pos as cmp" <<
-             " inner join cart_mes as cm on cmp.cart_mes_id = cm.cart_mes_id and cmp.time_stamp = cm.time_stamp" <<
+        s << "select cm.time_stamp as t, cart_pos_x, cart_pos_y, cart_pos_z, cart_rot_x, cart_rot_y, cart_rot_z, " <<
+             // approximate distance to improve performance
+             "(abs(cart_pos_x - " << goal.position.x << ") + " <<
+             "abs(cart_pos_y - " << goal.position.y << ") + " <<
+             "abs(cart_pos_z - " << goal.position.z << ") + " <<
+             "abs(cart_rot_x - " << goal.orientation.x << ") + " <<
+             "abs(cart_rot_y - " << goal.orientation.y << ") + " <<
+             "abs(cart_rot_z - " << goal.orientation.z << ")" <<
+             ") as cart_dist" <<
+             " from cart_mes_pos as cmp" <<
+             " inner join cart_mes as cm on cmp.cart_mes_id = cm.cart_mes_id" <<
              " inner join joint_mes as jm on jm.time_stamp = cm.time_stamp and jm.robot_id = cm.robot_id" <<
              " inner join hardware_joints as hwj on hwj.joint_id = jm.joint_id and hwj.hardware_instance_id = cm.robot_id" <<
              " where reference_frame_id = " << frameId <<
              " and link_id = " << linkId <<
              " and cm.robot_id = " << robotId <<
-             " and cart_pos_x >= (" << goal.position.x << " - " << xPosOffset << ") and cart_pos_x <= (" << goal.position.x << " + " << xPosOffset << ")" <<
-             " and cart_pos_y >= (" << goal.position.y << " - " << yPosOffset << ") and cart_pos_y <= (" << goal.position.y << " + " << yPosOffset << ")" <<
-             " and cart_pos_z >= (" << goal.position.z << " - " << zPosOffset << ") and cart_pos_z <= (" << goal.position.z << " + " << zPosOffset << ")" <<
-             " and cart_rot_x >= (" << goal.orientation.x << " - " << xOrOffset << ") and cart_rot_x <= (" << goal.orientation.x << " + " << xOrOffset << ")" <<
-             " and cart_rot_y >= (" << goal.orientation.y << " - " << yOrOffset << ") and cart_rot_y <= (" << goal.orientation.y << " + " << yOrOffset << ")" <<
-             " and cart_rot_z >= (" << goal.orientation.z << " - " << zOrOffset << ") and cart_rot_z <= (" << goal.orientation.z << " + " << zOrOffset << ")" <<
+             " and cart_pos_x >= " << (goal.position.x - xPosOffset) << " and cart_pos_x <= " << (goal.position.x + xPosOffset) <<
+             " and cart_pos_y >= " << (goal.position.y - yPosOffset) << " and cart_pos_y <= " << (goal.position.y + yPosOffset) <<
+             " and cart_pos_z >= " << (goal.position.z - zPosOffset) << " and cart_pos_z <= " << (goal.position.z + zPosOffset) <<
+             " and cart_rot_x >= " << (goal.orientation.x - xOrOffset) << " and cart_rot_x <= " << (goal.orientation.x + xOrOffset) <<
+             " and cart_rot_y >= " << (goal.orientation.y - yOrOffset) << " and cart_rot_y <= " << (goal.orientation.x + yPosOffset) <<
+             " and cart_rot_z >= " << (goal.orientation.z - zOrOffset) << " and cart_rot_z <= " << (goal.orientation.x + zPosOffset) <<
              " and hwj.joint_name in (";
 
         bool first = true;
         auto jointNames = getJointNames();
         for(auto& jointName : jointNames) {
-            if(!first) {
-                first = false;
+
+            if(!first)
                 s << ", ";
-            }
+            else
+                first = false;
+
             s << "'" << jointName << "'";
         }
-        s << ")";
+        s << ") order by cart_dist limit 0, 5";
 
-        cout << s.str() << endl;
-        getchar();
+        long long int resTimeStamp = -1;
+        auto cacheRes = getStorage().executeQuery(s.str());
+        if(cacheRes->next()) {
+            // getting the timestamp of a correct configuration
+            resTimeStamp = cacheRes->getInt64("t");
+            s.str("");
+            throw KukaduException("(CachedPlanner) todo");
+        }
 
         return actualPlanner->computeIk(currentJointState, goal);
+
     }
 
     std::vector<arma::vec> CachedPlanner::computeIk(std::vector<double> currentJointState, const geometry_msgs::Pose& goal) {
