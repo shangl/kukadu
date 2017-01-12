@@ -369,12 +369,16 @@ namespace kukadu {
 
     std::vector<arma::vec> CachedPlanner::computeIk(arma::vec currentJointState, const geometry_msgs::Pose& goal) {
 
-        double xPosOffset = 0.2;
-        double yPosOffset = 0.2;
-        double zPosOffset = 0.2;
-        double xOrOffset = 0.3;
-        double yOrOffset = 0.3;
-        double zOrOffset = 0.3;
+        KUKADU_MODULE_START_USAGE();
+
+        double xPosOffset = 0.02;
+        double yPosOffset = 0.02;
+        double zPosOffset = 0.02;
+        double xOrOffset = 0.02;
+        double yOrOffset = 0.02;
+        double zOrOffset = 0.02;
+
+        vec rpy = quatToRpy(goal.orientation);
 
         stringstream s;
         s << " robot_id = " << robotId;
@@ -387,9 +391,9 @@ namespace kukadu {
              "(abs(cart_pos_x - " << goal.position.x << ") + " <<
              "abs(cart_pos_y - " << goal.position.y << ") + " <<
              "abs(cart_pos_z - " << goal.position.z << ") + " <<
-             "abs(cart_rot_x - " << goal.orientation.x << ") + " <<
-             "abs(cart_rot_y - " << goal.orientation.y << ") + " <<
-             "abs(cart_rot_z - " << goal.orientation.z << ")" <<
+             "abs(cart_rot_x - " << rpy(0) << ") + " <<
+             "abs(cart_rot_y - " << rpy(1) << ") + " <<
+             "abs(cart_rot_z - " << rpy(2) << ")" <<
              ") as cart_dist" <<
              " from cart_mes_pos as cmp" <<
              " inner join cart_mes as cm on cmp.cart_mes_id = cm.cart_mes_id" <<
@@ -401,9 +405,9 @@ namespace kukadu {
              " and cart_pos_x >= " << (goal.position.x - xPosOffset) << " and cart_pos_x <= " << (goal.position.x + xPosOffset) <<
              " and cart_pos_y >= " << (goal.position.y - yPosOffset) << " and cart_pos_y <= " << (goal.position.y + yPosOffset) <<
              " and cart_pos_z >= " << (goal.position.z - zPosOffset) << " and cart_pos_z <= " << (goal.position.z + zPosOffset) <<
-             " and cart_rot_x >= " << (goal.orientation.x - xOrOffset) << " and cart_rot_x <= " << (goal.orientation.x + xOrOffset) <<
-             " and cart_rot_y >= " << (goal.orientation.y - yOrOffset) << " and cart_rot_y <= " << (goal.orientation.x + yPosOffset) <<
-             " and cart_rot_z >= " << (goal.orientation.z - zOrOffset) << " and cart_rot_z <= " << (goal.orientation.x + zPosOffset) <<
+             " and cart_rot_x >= " << (rpy(0) - xOrOffset) << " and cart_rot_x <= " << (rpy(0) + xOrOffset) <<
+             " and cart_rot_y >= " << (rpy(1) - yOrOffset) << " and cart_rot_y <= " << (rpy(1) + yOrOffset) <<
+             " and cart_rot_z >= " << (rpy(2) - zOrOffset) << " and cart_rot_z <= " << (rpy(2) + zOrOffset) <<
              " and hwj.joint_name in (";
 
         bool first = true;
@@ -424,13 +428,15 @@ namespace kukadu {
         auto cacheRes = getStorage().executeQuery(s.str());
         if(cacheRes->next()) {
 
-            cout << "(CachedPlanner) used cache" << endl;
+            cout << "(CachedPlanner) used cache ik" << endl;
 
             // getting the timestamp of a correct configuration
             resTimeStamp = cacheRes->getInt64("t");
             return {loadJointPosByTimestamp(getStorage(), robotId, loadJointIdsFromName(getStorage(), robotId, getJointNames()), resTimeStamp)};
 
         }
+
+        KUKADU_MODULE_END_USAGE();
 
         return actualPlanner->computeIk(currentJointState, goal);
 
@@ -479,35 +485,54 @@ namespace kukadu {
     std::vector<arma::vec> CachedPlanner::planCartesianTrajectory(std::vector<geometry_msgs::Pose> intermediatePoses,
                                                            bool smoothCartesians, bool useCurrentRobotState) {
 
+        KUKADU_MODULE_START_USAGE();
+
+        auto res = planCartesianTrajectory(computeIk(queue->getCurrentJoints().joints, intermediatePoses.front()).front(), intermediatePoses,
+                                       smoothCartesians, useCurrentRobotState);
+
+        KUKADU_MODULE_END_USAGE();
+
+        return res;
+
+    }
+
+    std::vector<arma::vec> CachedPlanner::planCartesianTrajectory(arma::vec startJoints, std::vector<geometry_msgs::Pose> intermediatePoses,
+                                                           bool smoothCartesians, bool useCurrentRobotState) {
+
+        KUKADU_MODULE_START_USAGE();
+
         try {
             if(intermediatePoses.size() > 0) {
                 vector<vec> ikSolutions;
                 vec startingJoints;
                 if(useCurrentRobotState)
-                    startingJoints = queue->getCurrentJoints();
-                else
-                    startingJoints = computeIk(queue->getCurrentJoints(), intermediatePoses.at(0));
+                    startingJoints = queue->getCurrentJoints().joints;
 
                 ikSolutions.push_back(startingJoints);
-                auto prevIkSolution = computeIk(queue->getCurrentJoints(), intermediatePoses.at(0));
-                ikSolutions.push_back(firstIkSolution);
+                ikSolutions.push_back(startJoints);
+
+                auto prevIkSolution = computeIk(queue->getCurrentJoints().joints, intermediatePoses.at(0)).front();
+                ikSolutions.push_back(prevIkSolution);
                 for(int i = 1; i < intermediatePoses.size(); ++i) {
-                    auto currentIkSolution = computeIk(prevIkSolution, intermediatePoses.at(i));
+                    auto currentIkSolution = computeIk(prevIkSolution, intermediatePoses.at(i)).front();
                     ikSolutions.push_back(currentIkSolution);
                     prevIkSolution = currentIkSolution;
                 }
-                return planJointTrajectory(ikSolutions);
+
+                cout << "(CachedPlanner) used cached intermediate points" << endl;
+                return smoothJointPlan(planJointTrajectory(ikSolutions));
+
             }
         } catch(KukaduException& ex) {
-            // caching didnt work
+            // caching didnt work --> roll back to original planner
         }
 
-        return actualPlanner->planCartesianTrajectory(intermediatePoses, smoothCartesians, useCurrentRobotState);
-    }
+        auto res = actualPlanner->planCartesianTrajectory(startJoints, intermediatePoses, smoothCartesians, useCurrentRobotState);
 
-    std::vector<arma::vec> CachedPlanner::planCartesianTrajectory(arma::vec startJoints, std::vector<geometry_msgs::Pose> intermediatePoses,
-                                                           bool smoothCartesians, bool useCurrentRobotState) {
-        return actualPlanner->planCartesianTrajectory(startJoints, intermediatePoses, smoothCartesians, useCurrentRobotState);
+        KUKADU_MODULE_END_USAGE();
+
+        return res;
+
     }
 
     /****************** private functions ******************************/

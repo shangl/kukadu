@@ -150,7 +150,7 @@ namespace kukadu {
 
     public:
 
-        CachedPlanner(StorageSingleton& storage, int robotId, KUKADU_SHARED_PTR<PathPlanner> actualPlanner);
+        CachedPlanner(StorageSingleton& storage, KUKADU_SHARED_PTR<ControlQueue> queue, KUKADU_SHARED_PTR<PathPlanner> actualPlanner);
 
         void addConstraint(KUKADU_SHARED_PTR<Constraint> constraint);
         void removeConstraint(KUKADU_SHARED_PTR<Constraint> constraint);

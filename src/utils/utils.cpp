@@ -1238,6 +1238,7 @@ namespace kukadu {
                 firstJoint = false;
             s << "'" << jointName << "'";
         }
+        s << ")";
 
         vector<bool> jointIdSet(jointNames.size());
         for(int i = 0; i < jointIdSet.size(); ++i)
