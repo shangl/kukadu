@@ -803,7 +803,8 @@ namespace kukadu {
         if(!plannerInitialized) {
 
             planAndKinMutex.lock();
-                planner = make_shared<Komo>(shared_from_this(), resolvePath("$KUKADU_HOME/external/komo/share/data/kuka/data/iis_robot.kvg"), resolvePath("$KUKADU_HOME/external/komo/share/data/kuka/config/MT.cfg"), getRobotSidePrefix(), acceptCollisions);
+                auto actualPlanner = make_shared<Komo>(shared_from_this(), resolvePath("$KUKADU_HOME/external/komo/share/data/kuka/data/iis_robot.kvg"), resolvePath("$KUKADU_HOME/external/komo/share/data/kuka/config/MT.cfg"), getRobotSidePrefix(), acceptCollisions);
+                planner = make_shared<CachedPlanner>(getStorage(), shared_from_this(), actualPlanner);
                 plannerInitialized = true;
             planAndKinMutex.unlock();
 
