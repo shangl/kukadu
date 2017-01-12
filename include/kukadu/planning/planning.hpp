@@ -145,6 +145,7 @@ namespace kukadu {
 
         int robotId;
 
+        KUKADU_SHARED_PTR<ControlQueue> queue;
         KUKADU_SHARED_PTR<PathPlanner> actualPlanner;
 
     public:

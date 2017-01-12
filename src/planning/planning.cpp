@@ -325,11 +325,12 @@ namespace kukadu {
 
     }
 
-    CachedPlanner::CachedPlanner(StorageSingleton& storage, int robotId, KUKADU_SHARED_PTR<PathPlanner> actualPlanner) :
+    CachedPlanner::CachedPlanner(StorageSingleton& storage, KUKADU_SHARED_PTR<ControlQueue> queue, KUKADU_SHARED_PTR<PathPlanner> actualPlanner) :
         StorageHolder(storage),
         PathPlanner(actualPlanner->getJointNames()) {
 
-        this->robotId = robotId;
+        this->queue = queue;
+        this->robotId = queue->getRobotId();
         this->actualPlanner = actualPlanner;
 
     }
@@ -416,15 +417,19 @@ namespace kukadu {
 
             s << "'" << jointName << "'";
         }
-        s << ") order by cart_dist limit 0, 5";
+        s << ")";
+        s << " order by cart_dist limit 0, 5";
 
         long long int resTimeStamp = -1;
         auto cacheRes = getStorage().executeQuery(s.str());
         if(cacheRes->next()) {
+
+            cout << "(CachedPlanner) used cache" << endl;
+
             // getting the timestamp of a correct configuration
             resTimeStamp = cacheRes->getInt64("t");
-            s.str("");
-            throw KukaduException("(CachedPlanner) todo");
+            return {loadJointPosByTimestamp(getStorage(), robotId, loadJointIdsFromName(getStorage(), robotId, getJointNames()), resTimeStamp)};
+
         }
 
         return actualPlanner->computeIk(currentJointState, goal);
@@ -474,8 +479,27 @@ namespace kukadu {
     std::vector<arma::vec> CachedPlanner::planCartesianTrajectory(std::vector<geometry_msgs::Pose> intermediatePoses,
                                                            bool smoothCartesians, bool useCurrentRobotState) {
 
-        for(auto& intermediatePose : intermediatePoses) {
+        try {
+            if(intermediatePoses.size() > 0) {
+                vector<vec> ikSolutions;
+                vec startingJoints;
+                if(useCurrentRobotState)
+                    startingJoints = queue->getCurrentJoints();
+                else
+                    startingJoints = computeIk(queue->getCurrentJoints(), intermediatePoses.at(0));
 
+                ikSolutions.push_back(startingJoints);
+                auto prevIkSolution = computeIk(queue->getCurrentJoints(), intermediatePoses.at(0));
+                ikSolutions.push_back(firstIkSolution);
+                for(int i = 1; i < intermediatePoses.size(); ++i) {
+                    auto currentIkSolution = computeIk(prevIkSolution, intermediatePoses.at(i));
+                    ikSolutions.push_back(currentIkSolution);
+                    prevIkSolution = currentIkSolution;
+                }
+                return planJointTrajectory(ikSolutions);
+            }
+        } catch(KukaduException& ex) {
+            // caching didnt work
         }
 
         return actualPlanner->planCartesianTrajectory(intermediatePoses, smoothCartesians, useCurrentRobotState);

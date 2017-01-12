@@ -188,6 +188,9 @@ namespace kukadu {
 
     }
 
+    std::vector<int> loadJointIdsFromName(StorageSingleton& storage, int robotId, std::vector<std::string> jointNames);
+    arma::vec loadJointPosByTimestamp(StorageSingleton& storage, int robotId, std::vector<int> jointIds, long long int timeStamp);
+
 #ifndef USEBOOST
     template<typename S, typename T> bool mapContainsValue(std::map<S, T> m, T val) {
         for(auto it = m.begin(); it != m.end(); ++it )

@@ -1181,4 +1181,88 @@ namespace kukadu {
 
     }
 
+    arma::vec loadJointPosByTimestamp(StorageSingleton& storage, int robotId, std::vector<int> jointIds, long long int timeStamp) {
+
+        stringstream s;
+        s << "select joint_id, position from joint_mes where robot_id = " << robotId << " and joint_id in (";
+
+        bool firstJoint = true;
+        for(auto& jointId : jointIds) {
+            if(!firstJoint)
+                s << ", ";
+            else
+                firstJoint = false;
+            s << jointId;
+        }
+        s << ")";
+        s << " and time_stamp = " << timeStamp;
+
+        vector<bool> jointIdSet(jointIds.size());
+        for(int i = 0; i < jointIdSet.size(); ++i)
+            jointIdSet.at(i) = false;
+
+        vec retVec(jointIds.size());
+
+        auto jointPosRes = storage.executeQuery(s.str());
+        while(jointPosRes->next()) {
+            auto currentJointId = jointPosRes->getInt("joint_id");
+            auto currentPos = jointPosRes->getDouble("position");
+            auto currentJointIt = std::find(jointIds.begin(), jointIds.end(), currentJointId);
+            if(currentJointIt != jointIds.end()) {
+                int idIdx = currentJointIt - jointIds.begin();
+                jointIdSet.at(idIdx) = true;
+                retVec(idIdx) = currentPos;
+            } else
+                throw KukaduException("(loadJointPosByTimestamp) sql error");
+        }
+
+        for(int i = 0; i < jointIdSet.size(); ++i)
+            if(!jointIdSet.at(i))
+                throw KukaduException("(loadJointPosByTimestamp) not all requested joint positions are in the database for the requested timestamp");
+
+        return retVec;
+
+    }
+
+    std::vector<int> loadJointIdsFromName(StorageSingleton& storage, int robotId, std::vector<std::string> jointNames) {
+
+        vector<int> idVec(jointNames.size());
+
+        stringstream s;
+        s << "select joint_id, joint_name from hardware_joints where hardware_instance_id = " << robotId << " and joint_name in (";
+        bool firstJoint = true;
+        for(auto& jointName : jointNames) {
+            if(!firstJoint)
+                s << ", ";
+            else
+                firstJoint = false;
+            s << "'" << jointName << "'";
+        }
+
+        vector<bool> jointIdSet(jointNames.size());
+        for(int i = 0; i < jointIdSet.size(); ++i)
+            jointIdSet.at(i) = false;
+
+        auto jointRes = storage.executeQuery(s.str());
+        while(jointRes->next()) {
+            auto currentJointName = jointRes->getString("joint_name");
+            auto currentJointId = jointRes->getInt("joint_id");
+            auto currentJointIt = std::find(jointNames.begin(), jointNames.end(), currentJointName);
+            if(currentJointIt != jointNames.end()) {
+                int idIdx = currentJointIt - jointNames.begin();
+                jointIdSet.at(idIdx) = true;
+                idVec.at(idIdx) = currentJointId;
+            } else
+                throw KukaduException("(loadJointIdsFromName) sql error");
+        }
+
+        for(int i = 0; i < jointIdSet.size(); ++i)
+            if(!jointIdSet.at(i))
+                throw KukaduException("(loadJointIdsFromName) robot does not contain all requested joint names");
+
+        return idVec;
+
+
+    }
+
 }
