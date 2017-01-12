@@ -1,3 +1,4 @@
+#include <sstream>
 #include <kukadu/utils/utils.hpp>
 #include <kukadu/planning/simple.hpp>
 #include <kukadu/planning/planning.hpp>
@@ -68,7 +69,9 @@ namespace kukadu {
     }
 
     bool Kinematics::checkAllConstraints(arma::vec currentState, geometry_msgs::Pose pose) {
+
         KUKADU_MODULE_START_USAGE();
+
         bool retVal = true;
         for(int i = 0; i < getConstraintsCount(); ++i) {
 
@@ -77,7 +80,9 @@ namespace kukadu {
                 break;
 
         }
+
         KUKADU_MODULE_END_USAGE();
+
         return retVal;
 
     }
@@ -318,6 +323,149 @@ namespace kukadu {
 
         KUKADU_MODULE_END_USAGE();
 
+    }
+
+    CachedPlanner::CachedPlanner(StorageSingleton& storage, int robotId, KUKADU_SHARED_PTR<PathPlanner> actualPlanner) :
+        StorageHolder(storage),
+        PathPlanner(actualPlanner->getJointNames()) {
+
+        this->robotId = robotId;
+        this->actualPlanner = actualPlanner;
+
+    }
+
+    void CachedPlanner::addConstraint(KUKADU_SHARED_PTR<Constraint> constraint) {
+        actualPlanner->addConstraint(constraint);
+    }
+
+    void CachedPlanner::removeConstraint(KUKADU_SHARED_PTR<Constraint> constraint) {
+        actualPlanner->removeConstraint(constraint);
+    }
+
+    int CachedPlanner::getConstraintsCount() {
+        return actualPlanner->getConstraintsCount();
+    }
+
+    int CachedPlanner::getConstraintIdx(KUKADU_SHARED_PTR<Constraint> constraint) {
+        return actualPlanner->getConstraintIdx(constraint);
+    }
+
+    KUKADU_SHARED_PTR<Constraint> CachedPlanner::getConstraintByIdx(int idx) {
+        return actualPlanner->getConstraintByIdx(idx);
+    }
+
+    bool CachedPlanner::checkAllConstraints(arma::vec currentState, geometry_msgs::Pose pose) {
+        return actualPlanner->checkAllConstraints(currentState, pose);
+    }
+
+    bool CachedPlanner::isColliding(arma::vec jointState, geometry_msgs::Pose pose) {
+        return actualPlanner->isColliding(jointState, pose);
+    }
+
+    Eigen::MatrixXd CachedPlanner::getJacobian(std::vector<double> jointState) {
+        return actualPlanner->getJacobian(jointState);
+    }
+
+    std::vector<arma::vec> CachedPlanner::computeIk(arma::vec currentJointState, const geometry_msgs::Pose& goal) {
+
+        double xPosOffset = 0.02;
+        double yPosOffset = 0.02;
+        double zPosOffset = 0.02;
+        double xOrOffset = 0.02;
+        double yOrOffset = 0.02;
+        double zOrOffset = 0.02;
+
+        stringstream s;
+        s << " robot_id = " << robotId;
+        auto frameId = getStorage().getCachedLabelId("reference_frames", "frame_id", "frame_name", getCartesianReferenceFrame(), s.str());
+        auto linkId = getStorage().getCachedLabelId("links", "link_id", "link_name", getCartesianLinkName(), s.str());
+
+        s.str("");
+        s << "select cm.time_stamp as t, cart_pos_x, cart_pos_y, cart_pos_z, cart_rot_x, cart_rot_y, cart_rot_z from cart_mes_pos as cmp" <<
+             " inner join cart_mes as cm on cmp.cart_mes_id = cm.cart_mes_id and cmp.time_stamp = cm.time_stamp" <<
+             " inner join joint_mes as jm on jm.time_stamp = cm.time_stamp and jm.robot_id = cm.robot_id" <<
+             " inner join hardware_joints as hwj on hwj.joint_id = jm.joint_id and hwj.hardware_instance_id = cm.robot_id" <<
+             " where reference_frame_id = " << frameId <<
+             " and link_id = " << linkId <<
+             " and cm.robot_id = " << robotId <<
+             " and cart_pos_x >= (" << goal.position.x << " - " << xPosOffset << ") and cart_pos_x <= (" << goal.position.x << " + " << xPosOffset << ")" <<
+             " and cart_pos_y >= (" << goal.position.y << " - " << yPosOffset << ") and cart_pos_y <= (" << goal.position.y << " + " << yPosOffset << ")" <<
+             " and cart_pos_z >= (" << goal.position.z << " - " << zPosOffset << ") and cart_pos_z <= (" << goal.position.z << " + " << zPosOffset << ")" <<
+             " and cart_rot_x >= (" << goal.orientation.x << " - " << xOrOffset << ") and cart_rot_x <= (" << goal.orientation.x << " + " << xOrOffset << ")" <<
+             " and cart_rot_y >= (" << goal.orientation.y << " - " << yOrOffset << ") and cart_rot_y <= (" << goal.orientation.y << " + " << yOrOffset << ")" <<
+             " and cart_rot_z >= (" << goal.orientation.z << " - " << zOrOffset << ") and cart_rot_z <= (" << goal.orientation.z << " + " << zOrOffset << ")" <<
+             " and hwj.joint_name in (";
+
+        bool first = true;
+        auto jointNames = getJointNames();
+        for(auto& jointName : jointNames) {
+            if(!first) {
+                first = false;
+                s << ", ";
+            }
+            s << "'" << jointName << "'";
+        }
+        s << ")";
+
+        cout << s.str() << endl;
+        getchar();
+
+        return actualPlanner->computeIk(currentJointState, goal);
+    }
+
+    std::vector<arma::vec> CachedPlanner::computeIk(std::vector<double> currentJointState, const geometry_msgs::Pose& goal) {
+        return actualPlanner->computeIk(currentJointState, goal);
+    }
+
+    geometry_msgs::Pose CachedPlanner::computeFk(std::vector<double> jointState) {
+        return actualPlanner->computeFk(jointState);
+    }
+
+    void CachedPlanner::setJointNames(std::vector<std::string> jointNames) {
+        actualPlanner->setJointNames(jointNames);
+    }
+
+    std::vector<std::string> CachedPlanner::getJointNames() {
+        return actualPlanner->getJointNames();
+    }
+
+    std::string CachedPlanner::getCartesianLinkName() {
+        return actualPlanner->getCartesianLinkName();
+    }
+
+    std::string CachedPlanner::getCartesianReferenceFrame() {
+        return actualPlanner->getCartesianReferenceFrame();
+    }
+
+    void CachedPlanner::setCheckCollisions(bool collision) {
+        actualPlanner->setCheckCollisions(collision);
+    }
+
+    bool CachedPlanner::getCheckCollision() {
+        return actualPlanner->getCheckCollision();
+    }
+
+    std::vector<arma::vec> CachedPlanner::smoothJointPlan(std::vector<arma::vec> jointPlan) {
+        return actualPlanner->smoothJointPlan(jointPlan);
+    }
+
+    std::vector<arma::vec> CachedPlanner::planJointTrajectory(std::vector<arma::vec> intermediateJoints) {
+        return actualPlanner->planJointTrajectory(intermediateJoints);
+    }
+
+    std::vector<arma::vec> CachedPlanner::planCartesianTrajectory(std::vector<geometry_msgs::Pose> intermediatePoses,
+                                                           bool smoothCartesians, bool useCurrentRobotState) {
+
+        for(auto& intermediatePose : intermediatePoses) {
+
+        }
+
+        return actualPlanner->planCartesianTrajectory(intermediatePoses, smoothCartesians, useCurrentRobotState);
+    }
+
+    std::vector<arma::vec> CachedPlanner::planCartesianTrajectory(arma::vec startJoints, std::vector<geometry_msgs::Pose> intermediatePoses,
+                                                           bool smoothCartesians, bool useCurrentRobotState) {
+        return actualPlanner->planCartesianTrajectory(startJoints, intermediatePoses, smoothCartesians, useCurrentRobotState);
     }
 
     /****************** private functions ******************************/

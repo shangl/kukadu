@@ -6,6 +6,7 @@
 #include <Eigen/Core>
 #include <geometry_msgs/Pose.h>
 #include <kukadu/types/kukadutypes.hpp>
+#include <kukadu/storage/storagesingleton.hpp>
 
 namespace kukadu {
 
@@ -72,11 +73,11 @@ namespace kukadu {
 
         Kinematics(std::vector<std::string> jointNames);
 
-        void addConstraint(KUKADU_SHARED_PTR<Constraint> Constraint);
-        void removeConstraint(KUKADU_SHARED_PTR<Constraint> Constraint);
+        void addConstraint(KUKADU_SHARED_PTR<Constraint> constraint);
+        void removeConstraint(KUKADU_SHARED_PTR<Constraint> constraint);
 
         int getConstraintsCount();
-        int  getConstraintIdx(KUKADU_SHARED_PTR<Constraint> Constraint);
+        int  getConstraintIdx(KUKADU_SHARED_PTR<Constraint> constraint);
 
         KUKADU_SHARED_PTR<Constraint> getConstraintByIdx(int idx);
 
@@ -121,8 +122,10 @@ namespace kukadu {
         virtual std::vector<arma::vec> smoothJointPlan(std::vector<arma::vec> jointPlan);
 
         virtual std::vector<arma::vec> planJointTrajectory(std::vector<arma::vec> intermediateJoints) = 0;
-        virtual std::vector<arma::vec> planCartesianTrajectory(std::vector<geometry_msgs::Pose> intermediatePoses, bool smoothCartesians, bool useCurrentRobotState) = 0;
-        virtual std::vector<arma::vec> planCartesianTrajectory(arma::vec startJoints, std::vector<geometry_msgs::Pose> intermediatePoses, bool smoothCartesians = false, bool useCurrentRobotState = true) = 0;
+        virtual std::vector<arma::vec> planCartesianTrajectory(std::vector<geometry_msgs::Pose> intermediatePoses,
+                                                               bool smoothCartesians, bool useCurrentRobotState) = 0;
+        virtual std::vector<arma::vec> planCartesianTrajectory(arma::vec startJoints, std::vector<geometry_msgs::Pose> intermediatePoses,
+                                                               bool smoothCartesians = false, bool useCurrentRobotState = true) = 0;
 
 #ifndef USEBOOST
         static constexpr int RESULT_FAILED = 0;
@@ -136,7 +139,54 @@ namespace kukadu {
 
     };
     
-    class CachedPlanner : public PathPlanner {
+    class CachedPlanner : public PathPlanner, public StorageHolder {
+
+    private:
+
+        int robotId;
+
+        KUKADU_SHARED_PTR<PathPlanner> actualPlanner;
+
+    public:
+
+        CachedPlanner(StorageSingleton& storage, int robotId, KUKADU_SHARED_PTR<PathPlanner> actualPlanner);
+
+        void addConstraint(KUKADU_SHARED_PTR<Constraint> constraint);
+        void removeConstraint(KUKADU_SHARED_PTR<Constraint> constraint);
+
+        int getConstraintsCount();
+        int getConstraintIdx(KUKADU_SHARED_PTR<Constraint> constraint);
+
+        KUKADU_SHARED_PTR<Constraint> getConstraintByIdx(int idx);
+
+        bool checkAllConstraints(arma::vec currentState, geometry_msgs::Pose pose);
+
+        virtual bool isColliding(arma::vec jointState, geometry_msgs::Pose pose);
+        virtual Eigen::MatrixXd getJacobian(std::vector<double> jointState = std::vector<double>());
+
+        virtual std::vector<arma::vec> computeIk(arma::vec currentJointState, const geometry_msgs::Pose& goal);
+        virtual std::vector<arma::vec> computeIk(std::vector<double> currentJointState, const geometry_msgs::Pose& goal);
+
+        virtual geometry_msgs::Pose computeFk(std::vector<double> jointState);
+
+        virtual void setJointNames(std::vector<std::string> jointNames);
+        virtual std::vector<std::string> getJointNames();
+
+        virtual std::string getCartesianLinkName();
+        virtual std::string getCartesianReferenceFrame();
+
+        void setCheckCollisions(bool collision);
+
+        bool getCheckCollision();
+
+        virtual std::vector<arma::vec> smoothJointPlan(std::vector<arma::vec> jointPlan);
+
+        virtual std::vector<arma::vec> planJointTrajectory(std::vector<arma::vec> intermediateJoints);
+        virtual std::vector<arma::vec> planCartesianTrajectory(std::vector<geometry_msgs::Pose> intermediatePoses,
+                                                               bool smoothCartesians, bool useCurrentRobotState);
+        virtual std::vector<arma::vec> planCartesianTrajectory(arma::vec startJoints, std::vector<geometry_msgs::Pose> intermediatePoses,
+                                                               bool smoothCartesians = false, bool useCurrentRobotState = true);
+
     };
 
 }

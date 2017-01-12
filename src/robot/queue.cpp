@@ -774,7 +774,13 @@ namespace kukadu {
     }
 
     KUKADU_SHARED_PTR<Kinematics> KukieControlQueue::getKinematics() {
+        kin = loadKinematics();
         return kin;
+    }
+
+    KUKADU_SHARED_PTR<PathPlanner> KukieControlQueue::getPlanner() {
+        planner = loadPlanner();
+        return planner;
     }
 
     KUKADU_SHARED_PTR<Kinematics> KukieControlQueue::loadKinematics() {

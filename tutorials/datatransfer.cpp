@@ -46,6 +46,10 @@ int main(int argc, char** args) {
     simLeftQueue->startQueue();
     simLeftQueue->switchMode(KukieControlQueue::KUKA_JNT_POS_MODE);
 
+    CachedPlanner cp(storage, simLeftQueue->getRobotId(), simLeftQueue->getPlanner());
+    cp.computeIk(simLeftQueue->getCurrentJoints, simLeftQueue->getCurrentCartesianPose());
+    getchar();
+
     string skillName = "";
     cout << "under which name do you want to store the new skill?" << endl;
     cin >> skillName;

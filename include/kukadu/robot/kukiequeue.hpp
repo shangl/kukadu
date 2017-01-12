@@ -193,6 +193,7 @@ namespace kukadu {
         virtual std::string getCartesianLinkName();
         virtual std::string getCartesianReferenceFrame();
 
+        KUKADU_SHARED_PTR<PathPlanner> getPlanner();
         KUKADU_SHARED_PTR<Kinematics> getKinematics();
 
         static const int KUKA_STOP_MODE = 0;
