@@ -131,31 +131,31 @@ namespace kukadu {
         KUKADU_MODULE_START_USAGE();
 
         vec n = stdToArmadilloVec(createJointsVector(3, 0.0, 0.0, 1.0));
-        vec r0 = stdToArmadilloVec(createJointsVector(3, 0.0, 0.0, center(2)));
+        vec r0 = stdToArmadilloVec(createJointsVector(3, center(0), center(1), center(2)));
         PlanarCutTransformator planarCut(n, r0);
         cloud = planarCut.transformPc(cloud);
 
         // cut right part (from robot view)
         n = stdToArmadilloVec(createJointsVector(3, -1.0, 0.0, 0.0));
-        r0 = stdToArmadilloVec(createJointsVector(3, center(0) + xOffset, 0.0, 0.0));
+        r0 = stdToArmadilloVec(createJointsVector(3, center(0) + xOffset, center(1), center(2)));
         planarCut.setPlane(n, r0);
         cloud = planarCut.transformPc(cloud);
 
         // cut front part (from robot view)
         n = stdToArmadilloVec(createJointsVector(3, 0.0, 1.0, 0.0));
-        r0 = stdToArmadilloVec(createJointsVector(3, 0.0, center(1) - yOffset, 0.0));
+        r0 = stdToArmadilloVec(createJointsVector(3, center(0), center(1) - yOffset, center(2)));
         planarCut.setPlane(n, r0);
         cloud = planarCut.transformPc(cloud);
 
         // cut left part (from robot view)
-        n = stdToArmadilloVec(createJointsVector(3, 1.0, 0, 0.0));
-        r0 = stdToArmadilloVec(createJointsVector(3, center(0) - xOffset, 0.0, 0.0));
+        n = stdToArmadilloVec(createJointsVector(3, 1.0, 0.0, 0.0));
+        r0 = stdToArmadilloVec(createJointsVector(3, center(0) - xOffset, center(1), center(2)));
         planarCut.setPlane(n, r0);
         cloud = planarCut.transformPc(cloud);
 
         // cut back part (from robot view)
         n = stdToArmadilloVec(createJointsVector(3, 0.0, -1.0, 0.0));
-        r0 = stdToArmadilloVec(createJointsVector(3, 0.0, center(1) + yOffset, 0.0));
+        r0 = stdToArmadilloVec(createJointsVector(3, center(0), center(1) + yOffset, center(2)));
         planarCut.setPlane(n, r0);
         cloud = planarCut.transformPc(cloud);
 

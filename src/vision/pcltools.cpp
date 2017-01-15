@@ -278,6 +278,7 @@ namespace kukadu {
     }
 
 	void PCLTools::visDrawBox(std::string id, struct FitCube dim) {
+        viewer->removeShape(id);
 		viewer->addCube(dim.translation, dim.rotation, dim.width, dim.height, dim.depth, id);
 	}
 
