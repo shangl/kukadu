@@ -862,6 +862,7 @@ namespace kukadu {
 
         KUKADU_MODULE_START_USAGE();
 
+        setExecutionMode(SIMULATE_ROBOT);
         KUKADU_SHARED_PTR<ControllerResult> ret = this->executeDMP(tStart, tEnd, tolAbsErr, tolRelErr);
 
         KUKADU_MODULE_END_USAGE();
@@ -910,6 +911,8 @@ namespace kukadu {
         if(executionDuration > 0)
             tmax = executionDuration;
 
+        setExecutionMode(SIMULATE_ROBOT);
+
         return this->executeDMP(0, tmax, dmp->getTolAbsErr(), dmp->getTolRelErr());
 
     }
@@ -920,22 +923,32 @@ namespace kukadu {
         if(executionDuration > 0)
             tmax = executionDuration;
 
+        setExecutionMode(EXECUTE_ROBOT);
+
         return this->executeDMP(0, tmax, dmp->getTolAbsErr(), dmp->getTolRelErr());
 
+    }
+
+    void DMPExecutor::setCycleTime(double cycleTime) {
+        customCycleTime = cycleTime;
     }
 
     KUKADU_SHARED_PTR<ControllerResult> DMPExecutor::executeDMP(double tStart, double tEnd, double tolAbsErr, double tolRelErr) {
 
         KUKADU_MODULE_START_USAGE();
 
+        if(customCycleTime < 0.0)
+            throw KukaduException("(DMPExecutor) neither a control queue nor a cycle time were provided");
+
         // two variables are really required here, because executionRunning is changed by other functions that really need to know
         // whether the exeuction was stopped (this is checked by executionStoppingDone)
         executionRunning = true;
         executionStoppingDone = false;
-        if(!isCartesian) {
-            maxFrcThread = KUKADU_SHARED_PTR<kukadu_thread>(new kukadu_thread(&DMPExecutor::runCheckMaxForces, this));
-            controlQueue->startRollBackMode(3.0);
-        }
+        if(controlQueue)
+            if(!isCartesian) {
+                maxFrcThread = KUKADU_SHARED_PTR<kukadu_thread>(new kukadu_thread(&DMPExecutor::runCheckMaxForces, this));
+                    controlQueue->startRollBackMode(3.0);
+            }
 
         double currentTime = 0.0;
 
@@ -944,17 +957,19 @@ namespace kukadu {
         vector<double> retT;
         geometry_msgs::Pose start;
 
-        if(!isCartesian) {
-            vec currentState = controlQueue->getCurrentJoints().joints;
-            for(int i = 0; i < y0s.n_elem; ++i)
-                if(abs(currentState(i) - y0s(i)) > 0.01) {
-                    controlQueue->jointPtp(y0s);
-                    ros::Rate r(2); r.sleep();
-                    break;
-                }
-        } else {
-            start = controlQueue->getCurrentCartesianPose();
-            controlQueue->cartesianPtp(vectorarma2pose(&y0s));
+        if(controlQueue) {
+            if(!isCartesian) {
+                vec currentState = controlQueue->getCurrentJoints().joints;
+                for(int i = 0; i < y0s.n_elem; ++i)
+                    if(abs(currentState(i) - y0s(i)) > 0.01) {
+                        controlQueue->jointPtp(y0s);
+                        ros::Rate r(2); r.sleep();
+                        break;
+                    }
+            } else {
+                start = controlQueue->getCurrentCartesianPose();
+                controlQueue->cartesianPtp(vectorarma2pose(&y0s));
+            }
         }
 
         initializeIntegration(0, tolAbsErr, tolRelErr);
@@ -963,7 +978,7 @@ namespace kukadu {
         nextJoints.fill(0.0);
 
         // execute dmps and compute linear combination
-        for(int j = 0; currentTime < tEnd && executionRunning; ++j, currentTime += controlQueue->getCycleTime()) {
+        for(int j = 0; currentTime < tEnd && executionRunning; ++j, currentTime += customCycleTime) {
 
             try {
 
@@ -976,15 +991,17 @@ namespace kukadu {
 
             retY.push_back(nextJoints);
 
-            if(getExecutionMode() == EXECUTE_ROBOT)
+            if(controlQueue && getExecutionMode() == EXECUTE_ROBOT) {
+
                 controlQueue->synchronizeToQueue(1);
+                if(!isCartesian)
+                    controlQueue->move(nextJoints);
+                else {
 
-            if(!isCartesian)
-                controlQueue->move(nextJoints);
-            else {
+                    geometry_msgs::Pose newP = vectorarma2pose(&nextJoints);
+                    controlQueue->move(newP);
 
-                geometry_msgs::Pose newP = vectorarma2pose(&nextJoints);
-                controlQueue->move(newP);
+                }
 
             }
 
@@ -1293,6 +1310,9 @@ namespace kukadu {
     /****************** private functions ******************************/
 
     void DMPExecutor::construct(KUKADU_SHARED_PTR<ControlQueue> execQueue, int suppressMessages) {
+
+        if(execQueue)
+            customCycleTime = execQueue->getCycleTime();
 
         executionDuration = -1;
 
@@ -1622,7 +1642,7 @@ namespace kukadu {
 
         gsl_odeiv2_system tmp_sys = {static_func, NULL, odeSystemSize, this};
         sys = tmp_sys;
-        d = KUKADU_SHARED_PTR<gsl_odeiv2_driver>(gsl_odeiv2_driver_alloc_y_new(&sys, gsl_odeiv2_step_rkf45, controlQueue->getCycleTime(), tolAbsErr, tolRelErr), gsl_delete_expression());
+        d = KUKADU_SHARED_PTR<gsl_odeiv2_driver>(gsl_odeiv2_driver_alloc_y_new(&sys, gsl_odeiv2_step_rkf45, customCycleTime, tolAbsErr, tolRelErr), gsl_delete_expression());
 
         for(int i = 0; i < odeSystemSize; ++i)
             vecYs(i) = ys[i];
@@ -1671,7 +1691,7 @@ namespace kukadu {
 
         if(t < dmp->getTmax()) {
 
-            int s = gsl_odeiv2_driver_apply_fixed_step(d.get(), &t, controlQueue->getCycleTime(), 1, ys);
+            int s = gsl_odeiv2_driver_apply_fixed_step(d.get(), &t, customCycleTime, 1, ys);
 
             if (s != GSL_SUCCESS) {
                 cout << "(DMPExecutor) error: driver returned " << s << endl;
@@ -1695,7 +1715,7 @@ namespace kukadu {
 
 
             vec alteredCurrentEta(3);
-            alteredCurrentEta = controlQueue->getCycleTime() / 2.0 * oneDivTau * nextEta;
+            alteredCurrentEta = customCycleTime / 2.0 * oneDivTau * nextEta;
 
             currentQ = vecExp(alteredCurrentEta) * currentQ;
 

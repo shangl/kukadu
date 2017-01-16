@@ -253,7 +253,7 @@ namespace kukadu {
         finalJointPlan = simplePlanner->planJointTrajectory(finalJointPlan);
 
         if(smoothCartesians)
-            finalJointPlan = smoothJointPlan(finalJointPlan);
+            finalJointPlan = smoothJointPlan(finalJointPlan, {0.0}, queue->getCycleTime());
 
         KUKADU_MODULE_END_USAGE();
 

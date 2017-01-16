@@ -119,7 +119,7 @@ namespace kukadu {
 
         bool getCheckCollision();
 
-        virtual std::vector<arma::vec> smoothJointPlan(std::vector<arma::vec> jointPlan);
+        virtual std::vector<arma::vec> smoothJointPlan(std::vector<arma::vec> jointPlan, arma::vec maxVelocities, double cycleTime);
 
         virtual std::vector<arma::vec> planJointTrajectory(std::vector<arma::vec> intermediateJoints) = 0;
         virtual std::vector<arma::vec> planCartesianTrajectory(std::vector<geometry_msgs::Pose> intermediatePoses,
@@ -180,7 +180,7 @@ namespace kukadu {
 
         bool getCheckCollision();
 
-        virtual std::vector<arma::vec> smoothJointPlan(std::vector<arma::vec> jointPlan);
+        virtual std::vector<arma::vec> smoothJointPlan(std::vector<arma::vec> jointPlan, arma::vec maxVelocities, double cycleTime);
 
         virtual std::vector<arma::vec> planJointTrajectory(std::vector<arma::vec> intermediateJoints);
         virtual std::vector<arma::vec> planCartesianTrajectory(std::vector<geometry_msgs::Pose> intermediatePoses,

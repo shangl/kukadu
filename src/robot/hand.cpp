@@ -487,7 +487,7 @@ namespace kukadu {
         auto ignoreJoint = SDH_IGNORE_JOINT;
         std_msgs::Float64MultiArray newJoints;
         for(int i = 0; i < positions.n_elem; ++i) {
-            if(currJoints(i) != ignoreJoint)
+            if(positions(i) != ignoreJoint)
                 newJoints.data.push_back(positions(i));
             else
                 newJoints.data.push_back(currJoints(i));

@@ -444,6 +444,7 @@ namespace kukadu {
         double maxZForce;
         double rollbackTime;
 
+        double customCycleTime;
         double executionDuration;
 
         arma::vec gs;
@@ -537,6 +538,8 @@ namespace kukadu {
         void setAc(double ac);
 
         double getExternalError();
+
+        void setCycleTime(double cycleTime);
 
         arma::vec doIntegrationStep(double ac);
 

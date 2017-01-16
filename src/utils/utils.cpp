@@ -28,14 +28,18 @@ namespace kukadu {
         cout << p.position.x << " " << p.position.y << " " << p.position.z << " " << p.orientation.x << " " << p.orientation.y << " " << p.orientation.z << " " << p.orientation.w << endl;
     }
 
-    double computeMaxJointDistance(arma::vec joints1, arma::vec joints2) {
+    std::pair<int, double> computeMaxJointDistance(arma::vec joints1, arma::vec joints2) {
 
+        int maxIdx = 0;
         double maxDist = 0.0;
         for(int i = 0; i < joints1.n_elem; ++i) {
             double currDist = abs(joints1(i) - joints2(i));
-            maxDist = max(currDist, maxDist);
+            if(currDist > maxDist) {
+                maxDist = currDist;
+                maxIdx = i;
+            }
         }
-        return maxDist;
+        return {maxIdx, maxDist};
 
     }
 

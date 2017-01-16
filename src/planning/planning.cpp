@@ -1,4 +1,5 @@
 #include <sstream>
+#include <kukadu/control/dmp.hpp>
 #include <kukadu/utils/utils.hpp>
 #include <kukadu/planning/simple.hpp>
 #include <kukadu/planning/planning.hpp>
@@ -124,21 +125,34 @@ namespace kukadu {
         return checkCollision;
     }
 
-    std::vector<arma::vec> PathPlanner::smoothJointPlan(std::vector<arma::vec> jointPlan) {
+    std::vector<arma::vec> PathPlanner::smoothJointPlan(std::vector<arma::vec> jointPlan, arma::vec maxVelocities, double cycleTime) {
 
         KUKADU_MODULE_START_USAGE();
 
         vector<vec> smoothedPlan;
 
         if(jointPlan.size()) {
-            vec lastUsedJoints = jointPlan.at(0);
-            smoothedPlan.push_back(lastUsedJoints);
-            for(vec joints : jointPlan) {
-                if(computeMaxJointDistance(lastUsedJoints, joints) > 0.001) {
-                    lastUsedJoints = joints;
-                    smoothedPlan.push_back(lastUsedJoints);
-                }
+
+            double currentTimeInSeconds = 0.0;
+            vec times(jointPlan.size());
+            mat jointValues(jointPlan.size(), jointPlan.front().n_elem);
+            int i = 0;
+            for(auto& jp : jointPlan) {
+                times(i) = currentTimeInSeconds;
+                currentTimeInSeconds += cycleTime;
+                for(int j = 0; j < jp.n_elem; ++j)
+                    jointValues(i, j) = jp(j);
+                ++i;
             }
+
+            JointDMPLearner smoothingDmpLearner(48.0, 11.5, times, jointValues);
+            KUKADU_SHARED_PTR<Dmp> smoothedDmp = smoothingDmpLearner.fitTrajectories();
+            DMPExecutor smoothedExec(StorageSingleton::get(), smoothedDmp, nullptr);
+            smoothedExec.setCycleTime(cycleTime);
+            smoothedExec.setExecutionMode(TrajectoryExecutor::SIMULATE_ROBOT);
+            auto dmpRes = smoothedExec.execute();
+            smoothedPlan = dmpRes->getYs();
+
         }
 
         KUKADU_MODULE_END_USAGE();
@@ -474,8 +488,8 @@ namespace kukadu {
         return actualPlanner->getCheckCollision();
     }
 
-    std::vector<arma::vec> CachedPlanner::smoothJointPlan(std::vector<arma::vec> jointPlan) {
-        return actualPlanner->smoothJointPlan(jointPlan);
+    std::vector<arma::vec> CachedPlanner::smoothJointPlan(std::vector<arma::vec> jointPlan, arma::vec maxVelocities, double cycleTime) {
+        return actualPlanner->smoothJointPlan(jointPlan, maxVelocities, cycleTime);
     }
 
     std::vector<arma::vec> CachedPlanner::planJointTrajectory(std::vector<arma::vec> intermediateJoints) {
@@ -502,7 +516,9 @@ namespace kukadu {
         KUKADU_MODULE_START_USAGE();
 
         try {
+
             if(intermediatePoses.size() > 0) {
+
                 vector<vec> ikSolutions;
                 vec startingJoints;
                 if(useCurrentRobotState)
@@ -520,7 +536,8 @@ namespace kukadu {
                 }
 
                 cout << "(CachedPlanner) used cached intermediate points" << endl;
-                return smoothJointPlan(planJointTrajectory(ikSolutions));
+
+                return smoothJointPlan(planJointTrajectory(ikSolutions), {0.0}, queue->getCycleTime());
 
             }
         } catch(KukaduException& ex) {

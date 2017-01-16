@@ -85,7 +85,7 @@ namespace kukadu {
         virtual std::vector<arma::mat> getTactileSensing();
 
 #ifndef USEBOOST
-        static auto constexpr SDH_IGNORE_JOINT = std::numeric_limits<double>::min();
+        static auto constexpr SDH_IGNORE_JOINT = std::numeric_limits<double>::max();
 #else
         static double const SDH_IGNORE_JOINT;
 #endif

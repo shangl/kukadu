@@ -55,8 +55,10 @@ namespace kukadu {
             s << "insert into skills_robot(skill_id, hardware_instance_id) values";
             int insertedCount = 0;
             for(auto& hw : usedHw) {
-                s << "(" << skillId << ", " << hw->getHardwareInstance() << "),";
-                ++insertedCount;
+                if(hw) {
+                    s << "(" << skillId << ", " << hw->getHardwareInstance() << "),";
+                    ++insertedCount;
+                }
             }
             if(insertedCount) {
                 string skillRobotStr = s.str();

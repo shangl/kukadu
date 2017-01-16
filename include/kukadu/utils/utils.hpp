@@ -163,7 +163,7 @@ namespace kukadu {
 
     void preparePathString(std::string& s);
 
-    double computeMaxJointDistance(arma::vec joints1, arma::vec joints2);
+    std::pair<int, double> computeMaxJointDistance(arma::vec joints1, arma::vec joints2);
 
     arma::vec convertAndRemoveOffset(std::vector<long long int>& supervisedTs);
     arma::vec convertTimesInMillisecondsToTimeInSeconds(std::vector<long long int>& supervisedTs);

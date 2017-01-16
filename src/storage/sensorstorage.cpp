@@ -22,23 +22,27 @@ namespace kukadu {
 
     void SensorStorageSingleton::registerHardware(KUKADU_SHARED_PTR<Hardware> hardware) {
 
-        instanceMutex.lock();
+        if(hardware) {
 
-        auto hardwareName = hardware->getHardwareInstanceName();
-        bool hardwareAlreadyRegistered = registeredHardware.find(hardwareName) != registeredHardware.end();
-        if(hardwareAlreadyRegistered && registeredHardware[hardware->getHardwareInstanceName()] != hardware) {
+            instanceMutex.lock();
+
+            auto hardwareName = hardware->getHardwareInstanceName();
+            bool hardwareAlreadyRegistered = registeredHardware.find(hardwareName) != registeredHardware.end();
+            if(hardwareAlreadyRegistered && registeredHardware[hardware->getHardwareInstanceName()] != hardware) {
+                instanceMutex.unlock();
+                throw KukaduException("(SensorStorageSingleton) different hardware with the same instance name is already registered");
+            }
+
+            if(!hardwareAlreadyRegistered) {
+                registeredInstanceNames.push_back(hardwareName);
+                registeredHardware[hardwareName] = hardware;
+                startedThreads[hardwareName] = {false, nullptr};
+                startedCount[hardwareName] = 0;
+            }
+
             instanceMutex.unlock();
-            throw KukaduException("(SensorStorageSingleton) different hardware with the same instance name is already registered");
-        }
 
-        if(!hardwareAlreadyRegistered) {
-            registeredInstanceNames.push_back(hardwareName);
-            registeredHardware[hardwareName] = hardware;
-            startedThreads[hardwareName] = {false, nullptr};
-            startedCount[hardwareName] = 0;
         }
-
-        instanceMutex.unlock();
 
     }
 
@@ -55,7 +59,8 @@ namespace kukadu {
 
         vector<string> instanceNames;
         for(auto& hw : hardware)
-            instanceNames.push_back(hw->getHardwareInstanceName());
+            if(hw)
+                instanceNames.push_back(hw->getHardwareInstanceName());
         auto retVal =  initiateStorage(instanceNames);
 
         return retVal;
@@ -139,7 +144,8 @@ namespace kukadu {
 
         vector<string> hwNames;
         for(auto& hw : hardware)
-            hwNames.push_back(hw->getHardwareInstanceName());
+            if(hw)
+                hwNames.push_back(hw->getHardwareInstanceName());
         stopStorage(hwNames);
 
     }

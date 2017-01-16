@@ -247,17 +247,23 @@ namespace kukadu {
     }
 
     void ControlQueue::switchMode(int mode) {
+
         KUKADU_MODULE_START_USAGE();
+
         if(ros::ok) {
+
             if(!isShutUp())
                 ROS_INFO("(ControlQueue) switching control mode");
 
             setCurrentControlTypeInternal(mode);
             currentControlType = mode;
+
         } else
             if(!isShutUp())
                 ROS_INFO("(ControlQueue) ros error");
+
         KUKADU_MODULE_END_USAGE();
+
     }
 
     void ControlQueue::setInitValuesInternal() {
@@ -1319,7 +1325,8 @@ namespace kukadu {
 
     }
 
-    PlottingControlQueue::PlottingControlQueue(StorageSingleton& storage, std::string robotName, int degOfFreedom, std::string referenceFrame, std::string linkName, double timeStep) : ControlQueue(storage, robotName, degOfFreedom, timeStep) {
+    PlottingControlQueue::PlottingControlQueue(StorageSingleton& storage, std::string robotName, int degOfFreedom, std::string referenceFrame, std::string linkName, double timeStep) :
+        ControlQueue(storage, robotName, degOfFreedom, timeStep) {
 
         this->linkName = linkName;
         this->referenceFrame = referenceFrame;
