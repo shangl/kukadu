@@ -241,15 +241,15 @@ namespace kukadu {
 
 	}
 
-    void PCLTools::visDrawLine(std::string id, int pointX1, int pointY1, int pointZ1, int pointX2, int pointY2, int pointZ2) {
+    void PCLTools::visDrawLine(std::string id, double pointX1, double pointY1, double pointZ1, double pointX2, double pointY2, double pointZ2) {
         pcl::ModelCoefficients line_coeff;
         line_coeff.values.resize(6);
         line_coeff.values[0] = pointX1;
         line_coeff.values[1] = pointY1;
         line_coeff.values[2] = pointZ1;
-        line_coeff.values[3] = pointX2;
-        line_coeff.values[4] = pointY2;
-        line_coeff.values[5] = pointZ2;
+        line_coeff.values[3] = pointX2 - pointX1;
+        line_coeff.values[4] = pointY2 - pointY1;
+        line_coeff.values[5] = pointZ2 - pointZ1;
         viewer->addLine(line_coeff, id);
     }
 
@@ -278,6 +278,7 @@ namespace kukadu {
     }
 
 	void PCLTools::visDrawBox(std::string id, struct FitCube dim) {
+        viewer->removeShape(id);
 		viewer->addCube(dim.translation, dim.rotation, dim.width, dim.height, dim.depth, id);
 	}
 
