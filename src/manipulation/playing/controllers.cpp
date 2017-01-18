@@ -1502,8 +1502,6 @@ namespace kukadu {
         bestParamParam1 = 0.0;
         bestParamParam2 = 0.0;
 
-        Py_Initialize();
-
     }
 
     void SensingController::createSkillFromThisInternal(std::string skillName) {
@@ -1790,10 +1788,9 @@ namespace kukadu {
 
             labelFile.close();
 
-        } else {
+        } else
             if(!isShutUp)
                 cout << "(SensingController) database for controller " << getCaption() << " exists - no collection required" << endl;
-        }
 
         // if no classifier file exists
         if(!fileExists(path + "classRes")) {
@@ -1867,7 +1864,7 @@ namespace kukadu {
     }
 
     std::vector<double> SensingController::callClassifier(std::string trainedPath, std::string passedFilePath, bool classify, double bestParamC, double bestParamD, double bestParamParam1, double bestParamParam2) {
-
+cout << trainedPath << " " << passedFilePath << " " << classifierPath << " " << classifierFunction << endl;
         vector<double> retVals;
         string mName = classifierFile;
         string fName = classifierFunction;
@@ -1876,11 +1873,18 @@ namespace kukadu {
         PyObject *pName, *pModule, *pFunc;
         PyObject *pArgs, *pValue;
 
-        PyRun_SimpleString("import sys");
-        PyRun_SimpleString(string(string("sys.path.append('") + classifierPath + string("')")).c_str());
-        PyRun_SimpleString("import trajlab_main");
+        Py_Initialize();
 
         pName = PyUnicode_FromString(mName.c_str());
+
+        //PyRun_SimpleString("import sys");
+        //PyRun_SimpleString(string(string("sys.path.append('") + classifierPath + string("')")).c_str());
+        //PyRun_SimpleString("import trajlab_main");
+
+        PyRun_SimpleString("import sys");
+        PyRun_SimpleString("sys.path.append('/home/c7031109/iis_robot_sw/iis_catkin_ws/src/kukadu/scripts/trajectory_classifier/')");
+        PyRun_SimpleString("import trajlab_main");
+
         pModule = PyImport_Import(pName);
         Py_DECREF(pName);
 

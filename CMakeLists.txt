@@ -34,6 +34,7 @@ find_package(catkin REQUIRED COMPONENTS
     tf_conversions
     trajectory_msgs
     cv_bridge
+    hangl_mmr
 )
 
 find_package(PCL REQUIRED)
@@ -44,15 +45,17 @@ find_package(OpenCV REQUIRED)
 
 if($ENV{ROS_DISTRO} STREQUAL "kinetic")
     set(PYTH_INC /usr/include/python3.5m)
-    set(PYTH_LIB python3.5m)
-    set(PYTH_LIB_PATH /usr/lib/python3.5/config-3.5m-x86_64-linux-gnu)
+    set(PYTH_LIB python3.5m pthread dl util m)
+    set(PYTH_LIB_PATH /usr/lib/python3.5/config-3.5m-x86_64-linux-gnu /usr/lib)
     add_definitions(-DROSKINETIC)
 else()
     set(PYTH_INC /usr/include/python3.4m)
-    set(PYTH_LIB python3.4m)
-    set(PYTH_LIB_PATH /usr/lib/python3.4/config-3.4m-x86_64-linux-gnu)
+    set(PYTH_LIB python3.4m pthread dl util m)
+    set(PYTH_LIB_PATH /usr/lib/python3.5/config-3.5m-x86_64-linux-gnu)
     add_definitions(-DUSEOLD)
 endif()
+add_definitions(-Xlinker)
+add_definitions(-export-dynamic)
 
 find_package(Qt5Gui REQUIRED)
 find_package(Qt5Core REQUIRED)
@@ -79,7 +82,7 @@ catkin_package(
         moveit_ros_planning_interface pcl_conversions pcl_ros roscpp sensor_msgs std_msgs
         tf tf2_msgs tf_conversions trajectory_msgs
     DEPENDS gsl gslcblas ncurses
-        stdc++ ${Boost_LIBRARIES} ${PCL_LIBRARIES} ${ARMADILLO_LIBRARIES} ${PYTH_LIB}
+        stdc++ ${Boost_LIBRARIES} ${PCL_LIBRARIES} ${ARMADILLO_LIBRARIES} ${PYTH_LIB} svm
         komo swift algo gui ors rt lapack blas ann glut GLU GL X11 ${GTK_LIBRARIES} ${GTK2_LIBRARIES} gthread-2.0 qhull m mysqlcppconn
 )
 
@@ -89,6 +92,7 @@ include_directories(
     ${PCL_INCLUDE_DIRS}
     ${Boost_INCLUDE_DIRS}
     ${catkin_INCLUDE_DIRS}
+    external/libsvm
     external/komo/share/src
     external/ReflexxesTypeII/include
 )
@@ -202,7 +206,7 @@ target_link_libraries(kukadugui ${catkin_LIBRARIES} Qt5::Widgets kukadu)
 
 target_link_libraries(${PROJECT_NAME} ${catkin_LIBRARIES} ${Boost_LIBRARIES} ${ARMADILLO_LIBRARIES}
     reflexxeslib ncurses gsl gslcblas stdc++ pthread dl util m komo swift algo ann gui ors optim motion rt lapack blas glut GLU GL X11 ${GTK_LIBRARIES} ${GTK2_LIBRARIES}
-    gthread-2.0 qhull ${PYTH_LIB} m mysqlcppconn Qt5::Widgets)
+    gthread-2.0 qhull ${PYTH_LIB} m mysqlcppconn Qt5::Widgets svm)
 
 target_link_libraries(kukaduvision ${catkin_LIBRARIES} ${Boost_LIBRARIES} ${PCL_LIBRARIES} ${ARMADILLO_LIBRARIES} ${OpenCV_LIBRARIES})
 target_link_libraries(artoolkitplus ${catkin_LIBRARIES} ${OpenCV_LIBRARIES})
