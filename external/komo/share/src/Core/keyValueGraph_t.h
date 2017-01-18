@@ -1,3 +1,5 @@
+#ifndef MT_KEYVALUEGRAPH_H
+#define MT_KEYVALUEGRAPH_H
 /*  ---------------------------------------------------------------------
     Copyright 2014 Marc Toussaint
     email: marc.toussaint@informatik.uni-stuttgart.de
@@ -18,6 +20,8 @@
 
 #include "keyValueGraph.h"
 
+namespace MT {
+
 //////////// taken from http://stackoverflow.com/questions/4532281/how-to-test-whether-class-b-is-derived-from-class-a
 typedef char(&yes)[1];
 typedef char(&no)[2];
@@ -31,6 +35,8 @@ template <typename B, typename D> struct is_base_of {
   static no check(B*, int);
   static const bool value = sizeof(check(Host<B,D>(), int())) == sizeof(yes);
 };
+
+}
 ///////////////STOP
 
 //===========================================================================
@@ -82,7 +88,7 @@ struct Item_typed:Item {
   }
   
   virtual bool is_derived_from_RootType() const {
-    return is_base_of<RootType, T>::value;
+    return MT::is_base_of<RootType, T>::value;
   }
   
   virtual Item *newClone() const { return new Item_typed<T>(keys, parents, value); }
@@ -166,3 +172,5 @@ template <class T> ItemL KeyValueGraph::getDerivedItems() {
   }
   return ret;
 }
+
+#endif

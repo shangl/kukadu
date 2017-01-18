@@ -32,7 +32,7 @@ namespace esvm {
   class SVMClassifier {
     public:
       
-      SVMClassifier();
+      SVMClassifier(int svmType = NU_SVC, int kernelType = SIGMOID);
       ~SVMClassifier();
       
       // train the svm

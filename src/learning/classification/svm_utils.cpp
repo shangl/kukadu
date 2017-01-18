@@ -13,12 +13,12 @@ using namespace kukadu;
 
 namespace esvm {
 
-  SVMClassifier::SVMClassifier() {
+  SVMClassifier::SVMClassifier(int svmType, int kernelType) {
     
     // Initialize parameters (defaults taken from libsvm code)
     param_= new svm_parameter();
-    param_->svm_type = C_SVC;
-    param_->kernel_type = LINEAR; //RBF;
+    param_->svm_type = svmType;
+    param_->kernel_type = kernelType; //RBF;
     param_->degree = 3;
     param_->gamma = 0;	// 1/num_features
     param_->coef0 = 0;

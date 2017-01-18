@@ -19,7 +19,9 @@ namespace kukadu {
         std::vector<int> getClasses();
         std::vector<arma::mat> getSamples();
 
-        virtual bool trainClassifier() = 0;
+        int getSampleDimensionality();
+
+        virtual bool train() = 0;
         virtual int classify(arma::vec sample) = 0;
 
     };

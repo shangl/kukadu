@@ -12,12 +12,17 @@ namespace kukadu {
 
         esvm::SVMClassifier internalClassifier;
 
+        vector<double> minDim;
+        vector<double> maxDim;
+
+        std::vector<arma::mat> scaleDimensions(std::vector<arma::mat> samples, bool storeScalingInfo = false);
+
     public:
 
         LibSvm(std::string trainingFile);
         LibSvm(std::vector<int> classes, std::vector<arma::mat> samples);
 
-        virtual bool trainClassifier();
+        virtual bool train();
         virtual int classify(arma::vec sample);
 
     };

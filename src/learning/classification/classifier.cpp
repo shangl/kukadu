@@ -25,6 +25,10 @@ namespace kukadu {
         return samples;
     }
 
+    int Classifier::getSampleDimensionality() {
+        return samples.front().n_cols;
+    }
+
     std::pair<std::vector<int>, std::vector<arma::mat> > loadLibsvmFile(std::string trainingFile) {
 
         ifstream s;
@@ -93,15 +97,53 @@ namespace kukadu {
 
     }
 
-    LibSvm::LibSvm(std::string trainingFile) : Classifier(loadLibsvmFile(trainingFile).first, loadLibsvmFile(trainingFile).second) {
+    LibSvm::LibSvm(std::string trainingFile) : Classifier(loadLibsvmFile(trainingFile).first, scaleDimensions(loadLibsvmFile(trainingFile).second)) {
 
     }
 
-    LibSvm::LibSvm(std::vector<int> classes, std::vector<arma::mat> samples) : Classifier(classes, samples) {
+    LibSvm::LibSvm(std::vector<int> classes, std::vector<arma::mat> samples) : Classifier(classes, scaleDimensions(samples)) {
 
     }
 
-    bool LibSvm::trainClassifier() {
+    std::vector<arma::mat> LibSvm::scaleDimensions(std::vector<arma::mat> samples, bool storeScalingInfo) {
+
+        if(storeScalingInfo) {
+            minDim = vector<double>(samples.front().n_cols);
+            maxDim = vector<double>(samples.front().n_cols);
+        }
+
+        vec minCol(samples.front().n_rows);
+
+        for(mat& sampleMat : samples) {
+
+            for(int i = 0; i < sampleMat.n_cols; ++i) {
+
+                double currentMin;
+                double currentMax;
+
+                if(storeScalingInfo) {
+                    currentMin = sampleMat.col(i).min();
+                    currentMax = sampleMat.col(i).max();
+                    minDim.push_back(currentMin);
+                    maxDim.push_back(currentMax);
+                } else {
+                    currentMin = minDim.at(i);
+                    currentMax = maxDim.at(i);
+                }
+
+                minCol.fill(currentMin);
+
+                sampleMat.col(i) = (sampleMat.col(i) - minCol) / (currentMax - currentMin);
+
+            }
+
+        }
+
+        return samples;
+
+    }
+
+    bool LibSvm::train() {
 
         auto classes = getClasses();
         auto samples = getSamples();
@@ -140,12 +182,15 @@ namespace kukadu {
 
     int LibSvm::classify(arma::vec sample) {
 
+        if(getSampleDimensionality() != sample.n_elem)
+            throw KukaduException("(LibSvm) test sample dimensions does not fit the database dimension");
+
         vector<int> res;
         mat x(1, sample.n_elem);
         for(int i = 0; i < sample.n_elem; ++i)
             x(1, i) = sample(i);
 
-        internalClassifier.test(x, res);
+        internalClassifier.test(scaleDimensions({x}).front(), res);
 
         return res.at(0);
 

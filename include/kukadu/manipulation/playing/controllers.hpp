@@ -10,6 +10,7 @@
 #include <kukadu/types/controllerresult.hpp>
 #include <kukadu/storage/storagesingleton.hpp>
 #include <kukadu/learning/projective_simulation/core.hpp>
+#include <kukadu/learning/classification/libsvmclassifier.hpp>
 
 namespace kukadu {
 
@@ -103,17 +104,19 @@ namespace kukadu {
         void gatherData(std::string completePath);
         void gatherData(std::string dataBasePath, std::string dataName);
 
+        std::vector<double> callClassifier(std::string trainedPath, std::string passedFilePath, bool classify,
+                                           double bestParamC, double bestParamD, double bestParamParam1, double bestParamParam2);
+
     protected:
 
         KUKADU_SHARED_PTR<kukadu_mersenne_twister> getGenerator();
         std::vector<KUKADU_SHARED_PTR<ControlQueue> > getQueues();
         std::vector<KUKADU_SHARED_PTR<GenericHand> > getHands();
         std::string getTmpPath();
-        std::string getClassifierPath();
-        std::string getClassifierFile();
-        std::string getClassifierFunction();
         int getHapticMode();
         int getSimClassificationPrecision();
+
+        KUKADU_SHARED_PTR<Classifier> classifier;
 
         virtual KUKADU_SHARED_PTR<ControllerResult> executeInternal();
 
@@ -122,11 +125,8 @@ namespace kukadu {
     public:
 
         SensingController(StorageSingleton& storage, KUKADU_SHARED_PTR<kukadu_mersenne_twister> generator, int hapticMode, std::string caption, std::vector<KUKADU_SHARED_PTR<ControlQueue> > queues, std::vector<KUKADU_SHARED_PTR<GenericHand> > hands,
-                          std::string tmpPath, std::string classifierPath, std::string classifierFile, std::string classifierFunction,
+                          std::string tmpPath,
                           int simClassificationPrecision);
-
-        std::vector<double> callClassifier(std::string trainedPath, std::string passedFilePath, bool classify,
-                                           double bestParamC, double bestParamD, double bestParamParam1, double bestParamParam2);
 
         void setSimulationGroundTruth(int idx);
         void setSimulationClassificationPrecision(int percent);

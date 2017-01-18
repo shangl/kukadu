@@ -1,8 +1,11 @@
+#include <limits>
+#include <fstream>
 #include <Python.h>
 #include <armadillo>
 #include <boost/filesystem.hpp>
 #include <kukadu/utils/utils.hpp>
 #include <kukadu/robot/hardware.hpp>
+#include <kukadu/utils/kukadutokenizer.hpp>
 #include <kukadu/storage/sensorstorage.hpp>
 #include <kukadu/storage/moduleusagesingleton.hpp>
 #include <kukadu/manipulation/playing/controllers.hpp>
@@ -1474,8 +1477,7 @@ namespace kukadu {
 
     SensingController::SensingController(StorageSingleton& storage, KUKADU_SHARED_PTR<kukadu_mersenne_twister> generator, int hapticMode, string caption,
                                          std::vector<KUKADU_SHARED_PTR<ControlQueue> > queues, vector<KUKADU_SHARED_PTR<GenericHand> > hands,
-                                         std::string tmpPath, std::string classifierPath, std::string classifierFile,
-                                         std::string classifierFunction, int simClassificationPrecision)
+                                         std::string tmpPath, int simClassificationPrecision)
         : Controller(storage, caption, flatten<KUKADU_SHARED_PTR<Hardware> >({castVector<KUKADU_SHARED_PTR<ControlQueue>, KUKADU_SHARED_PTR<Hardware> >(queues)}), 1), dbStorage(storage) {
 
         currentIterationNum = 0;
@@ -1522,18 +1524,6 @@ namespace kukadu {
 
     std::string SensingController::getTmpPath() {
         return tmpPath;
-    }
-
-    std::string SensingController::getClassifierPath() {
-        return classifierPath;
-    }
-
-    std::string SensingController::getClassifierFile() {
-        return classifierFile;
-    }
-
-    std::string SensingController::getClassifierFunction() {
-        return classifierFunction;
     }
 
     int SensingController::getHapticMode() {
@@ -1607,6 +1597,7 @@ namespace kukadu {
             throw KukaduException("(SensingController::callClassifier) database not defined yet");
 
         return callClassifier(databasePath, tmpPath + "hapticTest/" + queues.at(0)->getRobotFileName() + "_0", true, bestParamC, bestParamD, bestParamParam1, bestParamParam2);
+
     }
 
     int SensingController::performClassification() {
@@ -1792,6 +1783,59 @@ namespace kukadu {
             if(!isShutUp)
                 cout << "(SensingController) database for controller " << getCaption() << " exists - no collection required" << endl;
 
+        ifstream labelsFile;
+        labelsFile.open((path + "/labels").c_str());
+
+        string line;
+        vector<int> classIds;
+        vector<mat> sampleVectors;
+
+        // load all the files and concatenated the rows for each file
+        while(getline(labelsFile, line)) {
+            KukaduTokenizer tok(line);
+            auto filePath = tok.next();
+            auto classId = atoi(tok.next().c_str());
+            classIds.push_back(classId);
+            auto sensorData = readDmpData(path + "/" + filePath).second;
+            mat concatenatedData;
+            // not very efficient
+            for(int i = 0; i < sensorData.n_cols; ++i)
+                concatenatedData = join_rows(concatenatedData, sensorData.row(i));
+            sampleVectors.push_back(concatenatedData);
+        }
+
+        // find the minimum length of all files (thats the length we will be able to use
+        int minDim = std::numeric_limits<int>::max();
+        for(auto& sample : sampleVectors)
+            minDim = std::min(minDim, (int) sample.n_cols);
+
+        vector<int> uniqueClassIds;
+        vector<mat> samples;
+        // initialize the data for all classes
+        for(int i = 0; i < classIds.size(); ++i) {
+
+            mat reducedSample = sampleVectors.at(i).cols(0, minDim - 1);
+
+            auto currentClassId = classIds.at(i);
+            auto currentIdIt = std::find(uniqueClassIds.begin(), uniqueClassIds.end(), currentClassId);
+            if(currentIdIt == uniqueClassIds.begin()) {
+                uniqueClassIds.push_back(currentClassId);
+                currentIdIt = uniqueClassIds.end() - 1;
+                samples.push_back(reducedSample);
+            } else {
+                int currentIdIdx = (int) (currentIdIt - uniqueClassIds.begin());
+                samples.at(currentIdIdx) = join_cols(samples.at(currentIdIdx), reducedSample);
+            }
+
+        }
+
+        classifier = make_shared<LibSvm>(uniqueClassIds, samples);
+        classifier->train();
+
+        cerr << "(SensingController) this part still has to be written!!!" << endl;
+
+        /*
+
         // if no classifier file exists
         if(!fileExists(path + "classRes")) {
 
@@ -1801,13 +1845,6 @@ namespace kukadu {
                 cout << res << endl;
 
             double confidence = classRes.at(classRes.size() - 1);
-
-            /*
-            double bestParamC = classRes.at(classRes.size() - 4);
-            double bestParamD = classRes.at(classRes.size() - 3);
-            double bestParamPar1 = classRes.at(classRes.size() - 2);
-            double bestParamPar2 = classRes.at(classRes.size() - 1);
-            */
 
             double bestParamC = 0.0;
             double bestParamD = 0.0;
@@ -1834,10 +1871,12 @@ namespace kukadu {
 
         if(!isShutUp)
             cout << "(SensingController) determined a confidence of " << confidence << endl;
+        */
 
         KUKADU_MODULE_END_USAGE();
 
-        return confidence;
+        //return confidence;
+        return 1.0;
 
     }
 

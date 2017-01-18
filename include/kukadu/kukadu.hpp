@@ -10,4 +10,5 @@
     #include <kukadu/planning.hpp>
     #include <kukadu/learning.hpp>
     #include <kukadu/manipulation.hpp>
+    #include <kukadu/statistics/statistics.hpp>
 #endif
