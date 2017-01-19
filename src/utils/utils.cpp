@@ -373,11 +373,11 @@ namespace kukadu {
      *	char* file:		complete path to input file
      *	int fileColumns:	count of columns to import
     */
-    std::pair<std::vector<long long int>, mat> readDmpData(string file) {
+    std::pair<std::vector<long long int>, mat> readDmpData(string file, bool removeDuplicates) {
 
         ifstream inFile;
         inFile.open(file.c_str(), ios::in | ios::app | ios::binary);
-        auto retMat = readDmpData(inFile);
+        auto retMat = readDmpData(inFile, removeDuplicates);
         inFile.close();
 
         return retMat;
@@ -392,7 +392,7 @@ namespace kukadu {
         return retVal;
     }
 
-    std::pair<std::vector<long long int>, mat> readDmpData(std::ifstream& inFile) {
+    std::pair<std::vector<long long int>, mat> readDmpData(std::ifstream& inFile, bool removeDuplicates) {
 
         mat joints;
         vector<long long int> time;
@@ -434,7 +434,7 @@ namespace kukadu {
                         inFile >> currentTime;
 
                     // only store the new data, if the time has changed
-                    if(i == 0 && prevTime == currentTime) {
+                    if(i == 0 && prevTime == currentTime && removeDuplicates) {
                         ignoreLine = true;
                         // remove the rest of the line from the buffer
                         getline(inFile, line);

@@ -1721,6 +1721,56 @@ namespace kukadu {
         simulationGroundTruth = idx;
     }
 
+    std::pair<std::vector<int>, std::vector<arma::mat> > loadClassificationData(std::vector<int> classIds, std::vector<std::string> fileNames) {
+
+        vector<mat> sampleVectors;
+
+        for(auto& fileName : fileNames) {
+
+            auto sensorData = readDmpData(fileName, false).second;
+
+            mat concatenatedData;
+            // not very efficient
+            for(int i = 0; i < sensorData.n_rows; ++i)
+                concatenatedData = join_rows(concatenatedData, sensorData.row(i));
+            sampleVectors.push_back(concatenatedData);
+
+        }
+        getchar();
+
+        // find the minimum length of all files (thats the length we will be able to use
+        int minDim = std::numeric_limits<int>::max();
+        for(auto& sample : sampleVectors)
+            minDim = std::min(minDim, (int) sample.n_cols);
+
+        vector<int> uniqueClassIds;
+        vector<mat> samples;
+        // initialize the data for all classes
+        for(int i = 0; i < classIds.size(); ++i) {
+
+            mat reducedSample = sampleVectors.at(i).cols(0, minDim - 1);
+            auto currentClassId = classIds.at(i);
+            auto currentIdIt = std::find(uniqueClassIds.begin(), uniqueClassIds.end(), currentClassId);
+
+            if(currentIdIt == uniqueClassIds.end()) {
+
+                uniqueClassIds.push_back(currentClassId);
+                currentIdIt = uniqueClassIds.end() - 1;
+                samples.push_back(reducedSample);
+
+            } else {
+
+                int currentIdIdx = (int) (currentIdIt - uniqueClassIds.begin());
+                samples.at(currentIdIdx) = join_cols(samples.at(currentIdIdx), reducedSample);
+
+            }
+
+        }
+
+        return {uniqueClassIds, samples};
+
+    }
+
     double SensingController::createDataBase() {
 
         KUKADU_MODULE_START_USAGE();
@@ -1788,7 +1838,7 @@ namespace kukadu {
 
         string line;
         vector<int> classIds;
-        vector<mat> sampleVectors;
+        vector<string> fileNames;
 
         // load all the files and concatenated the rows for each file
         while(getline(labelsFile, line)) {
@@ -1796,41 +1846,24 @@ namespace kukadu {
             auto filePath = tok.next();
             auto classId = atoi(tok.next().c_str());
             classIds.push_back(classId);
-            auto sensorData = readDmpData(path + "/" + filePath).second;
-            mat concatenatedData;
-            // not very efficient
-            for(int i = 0; i < sensorData.n_cols; ++i)
-                concatenatedData = join_rows(concatenatedData, sensorData.row(i));
-            sampleVectors.push_back(concatenatedData);
+            fileNames.push_back(path + "/" + filePath);
         }
 
-        // find the minimum length of all files (thats the length we will be able to use
-        int minDim = std::numeric_limits<int>::max();
-        for(auto& sample : sampleVectors)
-            minDim = std::min(minDim, (int) sample.n_cols);
-
-        vector<int> uniqueClassIds;
-        vector<mat> samples;
-        // initialize the data for all classes
-        for(int i = 0; i < classIds.size(); ++i) {
-
-            mat reducedSample = sampleVectors.at(i).cols(0, minDim - 1);
-
-            auto currentClassId = classIds.at(i);
-            auto currentIdIt = std::find(uniqueClassIds.begin(), uniqueClassIds.end(), currentClassId);
-            if(currentIdIt == uniqueClassIds.begin()) {
-                uniqueClassIds.push_back(currentClassId);
-                currentIdIt = uniqueClassIds.end() - 1;
-                samples.push_back(reducedSample);
-            } else {
-                int currentIdIdx = (int) (currentIdIt - uniqueClassIds.begin());
-                samples.at(currentIdIdx) = join_cols(samples.at(currentIdIdx), reducedSample);
-            }
-
-        }
+        auto loadedData = loadClassificationData(classIds, fileNames);
+        auto uniqueClassIds = loadedData.first;
+        auto samples = loadedData.second;
 
         classifier = make_shared<LibSvm>(uniqueClassIds, samples);
         classifier->train();
+
+        cout << 1 << endl;
+        auto toClassify = loadClassificationData({0}, {"/home/c7031109/iis_robot_sw/iis_catkin_ws/src/hangl_2016_tro/experiment/database_real_trained/peel_book/haptics/sliding/class_0_sample_0/kuka_lwr_real_left_arm_0"});
+        cout << 2 << endl;
+        vec toClassifyVec = toClassify.second.front().cols(0, classifier->getSampleDimensionality() - 1).t();
+        cout << 3 << endl;
+        cout << "classification: " << classifier->classify(toClassifyVec);
+        cout << 4 << endl;
+        getchar();
 
         cerr << "(SensingController) this part still has to be written!!!" << endl;
 

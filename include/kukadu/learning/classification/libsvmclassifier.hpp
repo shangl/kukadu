@@ -12,10 +12,10 @@ namespace kukadu {
 
         esvm::SVMClassifier internalClassifier;
 
-        vector<double> minDim;
-        vector<double> maxDim;
+        std::vector<double> minDim;
+        std::vector<double> maxDim;
 
-        std::vector<arma::mat> scaleDimensions(std::vector<arma::mat> samples, bool storeScalingInfo = false);
+        std::pair<std::vector<arma::mat>, std::pair<std::vector<double>, std::vector<double> > > scaleDimensions(std::vector<arma::mat> samples, bool storeScalingInfo = false, bool useStoredScalingInfo = false);
 
     public:
 

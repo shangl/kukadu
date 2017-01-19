@@ -12,7 +12,6 @@ BSD licence
 #include <armadillo>
 #include <libsvm/svm.h>
 
-using namespace std;
 namespace esvm {
   
   /* 
@@ -30,44 +29,51 @@ namespace esvm {
   too unbalanced.
   */
   class SVMClassifier {
-    public:
-      
-      SVMClassifier(int svmType = NU_SVC, int kernelType = SIGMOID);
-      ~SVMClassifier();
-      
-      // train the svm
-      void train(const arma::mat &X, const vector<int> &y);
-      void train(const arma::mat &X, const arma::mat &y);
-      
-      // test on new data 
-      void test(const arma::mat &X, vector<int> &yhat);
-      
-      // libsvm does not directly calculate the w and b, but a set of support
-      // vectors. This function will use them to compute w and b, as currenly
-      // we assume linear kernel only
-      // yhat = sign( X * w + b )
-      void getw(arma::mat &w, float &b);
-      
-      // I/O
-      int saveModel(const char *filename);
-      void loadModel(const char *filename); 
-      
-      // options
-      void setC(double Cnew); //default is 1.0
-      
-      //TODO: add cross validation support
-      //TODO: add probability support?
-      
-    protected:
-    
+
+  private:
+
       svm_model *model_;
       svm_problem *problem_;
       svm_parameter *param_;
       svm_node *x_space_;
-      
-      int D_; //dimension of data
+
+      int D_;
+
+      int classCount;
+
+    public:
+
+        SVMClassifier(int svmType = C_SVC, int kernelType = RBF);
+        ~SVMClassifier();
+
+        // train the svm
+        void train(const arma::mat &X, const std::vector<int> &y);
+        void train(const arma::mat &X, const arma::mat &y);
+
+        // test on new data
+        void test(const arma::mat &X, std::vector<int> &yhat);
+
+        // libsvm does not directly calculate the w and b, but a set of support
+        // vectors. This function will use them to compute w and b, as currenly
+        // we assume linear kernel only
+        // yhat = sign( X * w + b )
+        void getw(arma::mat &w, float &b);
+
+        // I/O
+        int saveModel(const char *filename);
+        void loadModel(const char *filename);
+
+        // options
+        void setC(double Cnew); //default is 1.0
+
+        //TODO: add cross validation support
+        //TODO: add probability support?
+
+
+
   };
-};
+
+}
 
 
 #endif //__EIGEN_SVM_UTILS_H__

@@ -97,49 +97,69 @@ namespace kukadu {
 
     }
 
-    LibSvm::LibSvm(std::string trainingFile) : Classifier(loadLibsvmFile(trainingFile).first, scaleDimensions(loadLibsvmFile(trainingFile).second)) {
+    LibSvm::LibSvm(std::string trainingFile) : Classifier(loadLibsvmFile(trainingFile).first, scaleDimensions(loadLibsvmFile(trainingFile).second).first) {
+        scaleDimensions(loadLibsvmFile(trainingFile).second, true, false);
+    }
+
+    LibSvm::LibSvm(std::vector<int> classes, std::vector<arma::mat> samples) : Classifier(classes, scaleDimensions(samples).first) {
+
+        auto scaled = scaleDimensions(samples, true, false);
+        minDim = scaled.second.first;
+        maxDim = scaled.second.second;
 
     }
 
-    LibSvm::LibSvm(std::vector<int> classes, std::vector<arma::mat> samples) : Classifier(classes, scaleDimensions(samples)) {
+    std::pair<std::vector<arma::mat>, std::pair<std::vector<double>, std::vector<double> > > LibSvm::scaleDimensions(std::vector<arma::mat> samples, bool storeScalingInfo, bool useStoredScalingInfo) {
 
-    }
-
-    std::vector<arma::mat> LibSvm::scaleDimensions(std::vector<arma::mat> samples, bool storeScalingInfo) {
-
-        if(storeScalingInfo) {
-            minDim = vector<double>(samples.front().n_cols);
-            maxDim = vector<double>(samples.front().n_cols);
-        }
-
-        vec minCol(samples.front().n_rows);
+        vector<double> minDimInt;
+        vector<double> maxDimInt;
 
         for(mat& sampleMat : samples) {
 
+            vec minCol(sampleMat.n_rows);
+            vec maxCol(sampleMat.n_rows);
+            vec lowerScale(sampleMat.n_rows);
+            vec upperScale(sampleMat.n_rows);
+            lowerScale.fill(-1.0);
+            upperScale.fill(1.0);
             for(int i = 0; i < sampleMat.n_cols; ++i) {
 
                 double currentMin;
                 double currentMax;
 
-                if(storeScalingInfo) {
+                if(useStoredScalingInfo) {
+                    currentMin = this->minDim.at(i);
+                    currentMax = this->maxDim.at(i);
+                } else {
                     currentMin = sampleMat.col(i).min();
                     currentMax = sampleMat.col(i).max();
-                    minDim.push_back(currentMin);
-                    maxDim.push_back(currentMax);
-                } else {
-                    currentMin = minDim.at(i);
-                    currentMax = maxDim.at(i);
+                }
+
+                if(storeScalingInfo) {
+                    minDimInt.push_back(currentMin);
+                    maxDimInt.push_back(currentMax);
                 }
 
                 minCol.fill(currentMin);
+                maxCol.fill(currentMax);
 
-                sampleMat.col(i) = (sampleMat.col(i) - minCol) / (currentMax - currentMin);
+                // no reason to scale columns where everything is 0
+                if((currentMin != 0.0 || currentMax != 0.0) && (currentMax - currentMin) > 0.0) {
+                    // scaling as it is done in the svmlib scaling tool
+                    sampleMat.col(i) = lowerScale + (upperScale - lowerScale) % (sampleMat.col(i) - minCol) / (maxCol - minCol);
+                    if(sampleMat.col(i).max() > 1.0 || sampleMat.col(i).min() < -1.0)
+                        for(int j = 0; j < sampleMat.n_rows; ++j) {
+                            sampleMat(j, i) = min(sampleMat(j, i), 1.0);
+                            sampleMat(j, i) = max(sampleMat(j, i), -1.0);
+                        }
+
+                }
 
             }
 
         }
 
-        return samples;
+        return {samples, {minDimInt, maxDimInt}};
 
     }
 
@@ -158,7 +178,9 @@ namespace kukadu {
         for(auto& sample : samples) {
             samplesCount += sample.n_rows;
             if(sampleDim != sample.n_cols)
-                throw KukaduException("(libSvm) sample dimensions do not match");
+                throw KukaduException("(LibSvm) sample dimensions do not match");
+            if(sample.has_nan())
+                throw KukaduException("(LibSvm) data contains NaN");
         }
 
         vector<int> labelsVec;
@@ -188,9 +210,9 @@ namespace kukadu {
         vector<int> res;
         mat x(1, sample.n_elem);
         for(int i = 0; i < sample.n_elem; ++i)
-            x(1, i) = sample(i);
+            x(0, i) = sample(i);
 
-        internalClassifier.test(scaleDimensions({x}).front(), res);
+        internalClassifier.test(scaleDimensions({x}, false, true).first.front(), res);
 
         return res.at(0);
 

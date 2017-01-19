@@ -64,8 +64,8 @@ namespace kukadu {
 
     int getch();
 
-    std::pair<std::vector<long long int>, arma::mat> readDmpData(std::string file);
-    std::pair<std::vector<long long int>, arma::mat> readDmpData(std::ifstream& stream);
+    std::pair<std::vector<long long int>, arma::mat> readDmpData(std::string file, bool removeDuplicates = true);
+    std::pair<std::vector<long long int>, arma::mat> readDmpData(std::ifstream& stream, bool removeDuplicates = true);
 
     // returns the labels (first vector) of the data columns, the time vector second vector.first and the concrete measured values second vector.second
     std::pair<std::vector<std::string>, std::pair<std::vector<long long int>, arma::mat> > readSensorStorage(std::string file);
