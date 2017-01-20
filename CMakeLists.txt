@@ -76,14 +76,14 @@ pkg_check_modules(GTK REQUIRED gtkglext-1.0)
 
 catkin_package(
     INCLUDE_DIRS include external/ReflexxesTypeII/include external/komo/share/src ${PYTH_INC}
-    LIBRARIES ${PROJECT_NAME} kukaduvision reflexxeslib artoolkitplus kukadugui kukadulibsvm
+    LIBRARIES ${PROJECT_NAME} kukaduvision reflexxeslib artoolkitplus kukadugui
     CATKIN_DEPENDS cmake_modules actionlib_msgs control_msgs control_msgs eigen_conversions
         geometry_msgs iis_robot_dep message_generation moveit_core moveit_msgs
         moveit_ros_planning_interface pcl_conversions pcl_ros roscpp sensor_msgs std_msgs
         tf tf2_msgs tf_conversions trajectory_msgs
     DEPENDS gsl gslcblas ncurses
         stdc++ ${Boost_LIBRARIES} ${PCL_LIBRARIES} ${ARMADILLO_LIBRARIES} ${PYTH_LIB}
-        komo swift algo gui ors rt lapack blas ann glut GLU GL X11 ${GTK_LIBRARIES} ${GTK2_LIBRARIES} gthread-2.0 qhull m mysqlcppconn
+        komo swift algo gui ors rt lapack blas ann glut GLU GL X11 ${GTK_LIBRARIES} ${GTK2_LIBRARIES} gthread-2.0 qhull m mysqlcppconn svm
 )
 
 include_directories(
@@ -92,7 +92,6 @@ include_directories(
     ${PCL_INCLUDE_DIRS}
     ${Boost_INCLUDE_DIRS}
     ${catkin_INCLUDE_DIRS}
-    external/libsvm/include
     external/komo/share/src
     external/ReflexxesTypeII/include
 )
@@ -134,8 +133,6 @@ AUX_SOURCE_DIRECTORY(src/gui/ KUKADUGUISRC)
 AUX_SOURCE_DIRECTORY(src/vision/ KUKADUVISIONSRC)
 AUX_SOURCE_DIRECTORY(src/vision/arlocalizer ARTOOLKITPLUSSRC)
 
-set(KUKADULIBSVMSRC external/libsvm/svm.cpp)
-
 AUX_SOURCE_DIRECTORY(external/ReflexxesTypeII/src/TypeIIRML/ REFLEXXESSRC)
 
 add_subdirectory(external/komo)
@@ -168,11 +165,6 @@ if(COMPILER_SUPPORTS_CXX11)
         COMPILE_FLAGS "-std=c++11"
     )
     SET_SOURCE_FILES_PROPERTIES(
-        ${KUKADULIBSVMSRC}
-        PROPERTIES
-        COMPILE_FLAGS "-std=c++11"
-    )
-    SET_SOURCE_FILES_PROPERTIES(
         ${kukaduguilib_hdr_moc}
         PROPERTIES
         COMPILE_FLAGS "-std=c++11"
@@ -190,11 +182,6 @@ elseif(COMPILER_SUPPORTS_CXX0X)
         COMPILE_FLAGS "-std=c++0x"
     )
     SET_SOURCE_FILES_PROPERTIES(
-        ${KUKADULIBSVMSRC}
-        PROPERTIES
-        COMPILE_FLAGS "-std=c++0x"
-    )
-    SET_SOURCE_FILES_PROPERTIES(
         ${kukaduguilib_hdr_moc}
         PROPERTIES
         COMPILE_FLAGS "-std=c++0x"
@@ -208,21 +195,20 @@ add_library(kukadugui ${KUKADUGUISRC} ${kukaduguilib_hdr_moc})
 add_library(reflexxeslib ${REFLEXXESSRC})
 add_library(kukaduvision ${KUKADUVISIONSRC})
 add_library(artoolkitplus ${ARTOOLKITPLUSSRC})
-add_library(kukadulibsvm ${KUKADULIBSVMSRC})
 add_library(${PROJECT_NAME} ${KUKADUSRC})
 
-add_dependencies(${PROJECT_NAME} ${catkin_EXPORTED_TARGETS} ${PYTH_LIB} kukadulibsvm)
-add_dependencies(kukaduvision ${catkin_EXPORTED_TARGETS} kukadulibsvm)
-add_dependencies(kukadugui ${catkin_EXPORTED_TARGETS} kukadu kukadulibsvm)
+add_dependencies(${PROJECT_NAME} ${catkin_EXPORTED_TARGETS} ${PYTH_LIB} svm)
+add_dependencies(kukaduvision ${catkin_EXPORTED_TARGETS} svm)
+add_dependencies(kukadugui ${catkin_EXPORTED_TARGETS} kukadu svm)
 
-target_link_libraries(kukadugui ${catkin_LIBRARIES} Qt5::Widgets kukadu kukadulibsvm)
+target_link_libraries(kukadugui ${catkin_LIBRARIES} Qt5::Widgets kukadu svm)
 
 target_link_libraries(${PROJECT_NAME} ${catkin_LIBRARIES} ${Boost_LIBRARIES} ${ARMADILLO_LIBRARIES}
     reflexxeslib ncurses gsl gslcblas stdc++ pthread dl util m komo swift algo ann gui ors optim motion rt lapack blas glut GLU GL X11 ${GTK_LIBRARIES} ${GTK2_LIBRARIES}
-    gthread-2.0 qhull ${PYTH_LIB} m mysqlcppconn Qt5::Widgets kukadulibsvm)
+    gthread-2.0 qhull ${PYTH_LIB} m mysqlcppconn Qt5::Widgets svm)
 
-target_link_libraries(kukaduvision ${catkin_LIBRARIES} ${Boost_LIBRARIES} ${PCL_LIBRARIES} ${ARMADILLO_LIBRARIES} ${OpenCV_LIBRARIES} kukadulibsvm)
-target_link_libraries(artoolkitplus ${catkin_LIBRARIES} ${OpenCV_LIBRARIES} kukadulibsvm)
+target_link_libraries(kukaduvision ${catkin_LIBRARIES} ${Boost_LIBRARIES} ${PCL_LIBRARIES} ${ARMADILLO_LIBRARIES} ${OpenCV_LIBRARIES} svm)
+target_link_libraries(artoolkitplus ${catkin_LIBRARIES} ${OpenCV_LIBRARIES} svm)
 
 if(CATKIN_ENABLE_TESTING)
         catkin_add_gtest(kukadutest test/kukadutest.cpp)

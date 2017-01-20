@@ -82,11 +82,6 @@ namespace kukadu {
 
         KUKADU_DISCRETE_DISTRIBUTION<int> classifierDist;
 
-        double bestParamC;
-        double bestParamD;
-        double bestParamParam1;
-        double bestParamParam2;
-
         std::string tmpPath;
         std::string databasePath;
         std::string classifierPath;
@@ -104,8 +99,7 @@ namespace kukadu {
         void gatherData(std::string completePath);
         void gatherData(std::string dataBasePath, std::string dataName);
 
-        std::vector<double> callClassifier(std::string trainedPath, std::string passedFilePath, bool classify,
-                                           double bestParamC, double bestParamD, double bestParamParam1, double bestParamParam2);
+        int callClassifier(std::string passedFilePath);
 
     protected:
 
@@ -130,7 +124,6 @@ namespace kukadu {
 
         void setSimulationGroundTruth(int idx);
         void setSimulationClassificationPrecision(int percent);
-        void setCLassifierParams(double bestParamC, double bestParamD, double bestParamParam1, double bestParamParam2);
 
         virtual void prepare() = 0;
         virtual void cleanUp() = 0;
@@ -153,7 +146,7 @@ namespace kukadu {
         std::string getDatabasePath();
         std::string getFirstRobotFileName();
 
-        std::vector<double> callClassifier();
+        int callClassifier();
 
         static const int HAPTIC_MODE_TERMINAL = 0;
         static const int HAPTIC_MODE_CLASSIFIER = 1;

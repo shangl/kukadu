@@ -23,6 +23,7 @@ namespace kukadu {
 
         virtual bool train() = 0;
         virtual int classify(arma::vec sample) = 0;
+        virtual double crossValidate() = 0;
 
     };
 

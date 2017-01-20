@@ -10,12 +10,19 @@ namespace kukadu {
 
     private:
 
+        bool wasTrained;
+
+        svmpp::TrainSet trainSet;
+        svmpp::Svm::Params params;
         svmpp::Svm internalClassifier;
 
         std::vector<double> minDim;
         std::vector<double> maxDim;
 
         std::pair<std::vector<arma::mat>, std::pair<std::vector<double>, std::vector<double> > > scaleDimensions(std::vector<arma::mat> samples, bool storeScalingInfo = false, bool useStoredScalingInfo = false);
+
+        void setStdParams();
+        void generateTrainSet();
 
     public:
 
@@ -24,6 +31,8 @@ namespace kukadu {
 
         virtual bool train();
         virtual int classify(arma::vec sample);
+
+        virtual double crossValidate();
 
     };
 

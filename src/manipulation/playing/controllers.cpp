@@ -141,9 +141,6 @@ namespace kukadu {
 
         nothingStateClips.clear();
 
-        // create / load sensing database
-        createSensingDatabase();
-
         psPath = storePath + "ps";
         historyPath = rewardHistoryPath + "history";
 
@@ -1499,11 +1496,6 @@ namespace kukadu {
 
         databaseAlreadySet = false;
 
-        bestParamC = 0.0;
-        bestParamD = 0.0;
-        bestParamParam1 = 0.0;
-        bestParamParam2 = 0.0;
-
     }
 
     void SensingController::createSkillFromThisInternal(std::string skillName) {
@@ -1591,12 +1583,12 @@ namespace kukadu {
         return queues.at(0)->getRobotFileName();
     }
 
-    std::vector<double> SensingController::callClassifier() {
+    int SensingController::callClassifier() {
 
         if(!databaseAlreadySet)
             throw KukaduException("(SensingController::callClassifier) database not defined yet");
 
-        return callClassifier(databasePath, tmpPath + "hapticTest/" + queues.at(0)->getRobotFileName() + "_0", true, bestParamC, bestParamD, bestParamParam1, bestParamParam2);
+        return callClassifier(tmpPath + "hapticTest/" + queues.at(0)->getRobotFileName() + "_0");
 
     }
 
@@ -1630,7 +1622,7 @@ namespace kukadu {
                 gatherData(tmpPath, "hapticTest");
 
                 // start clean up in a separate thread
-                cleanupThread = KUKADU_SHARED_PTR<kukadu_thread>(new kukadu_thread(&SensingController::cleanUp, this));
+                cleanupThread = make_shared<kukadu_thread>(&SensingController::cleanUp, this);
 
                 stringstream s;
                 s << tmpPath << "hapticTest_" << queues.at(0)->getRobotFileName() << "_0_" << currentIterationNum;
@@ -1648,16 +1640,8 @@ namespace kukadu {
                 cout << "(SensingController) what was the haptic result? [0, " << (getStateCount() - 1) << "]" << endl;
                 cin >> classifierRes;
             } else if(temporaryHapticMode == SensingController::HAPTIC_MODE_CLASSIFIER) {
-                vector<double> res = callClassifier(databasePath, tmpPath + "hapticTest/" + queues.at(0)->getRobotFileName() + "_0", true, bestParamC, bestParamD, bestParamParam1, bestParamParam2);
-                int maxIdx = 0;
-                double maxElement = res.at(0);
-                for(int i = 1; i < getStateCount(); ++i) {
-                    if(res.at(i) > maxElement) {
-                        maxElement = res.at(i);
-                        maxIdx = i;
-                    }
-                }
-                classifierRes = maxIdx;
+                auto res = callClassifier(tmpPath + "hapticTest/" + queues.at(0)->getRobotFileName() + "_0");
+                classifierRes = res - 1;
             } else {
                 throw KukaduException("haptic mode not known");
             }
@@ -1852,58 +1836,44 @@ namespace kukadu {
         auto uniqueClassIds = loadedData.first;
         auto samples = loadedData.second;
 
-        classifier = make_shared<LibSvm>(uniqueClassIds, samples);
-        classifier->train();
-
-        auto toClassify = loadClassificationData({0}, {"/home/c7031109/iis_robot_sw/iis_catkin_ws/src/hangl_2016_tro/experiment/database_real_trained/peel_book/haptics/sliding/class_0_sample_0/kuka_lwr_real_left_arm_0"});
-        vec toClassifyVec = toClassify.second.front().cols(0, classifier->getSampleDimensionality() - 1).t();
-        cout << "classification: " << classifier->classify(toClassifyVec) << endl;
-
-        cerr << "(SensingController) this part still has to be written!!!" << endl;
+cout << getDatabasePath() << "      " << getCaption() << endl;
 
         /*
+        auto toClassify = loadClassificationData({0},
+        {"/home/c7031109/iis_robot_sw/iis_catkin_ws/src/hangl_2016_tro/experiment/database_real_trained/peel_book/haptics/sliding/class_0_sample_0/kuka_lwr_real_left_arm_0"});
+        vec toClassifyVec = toClassify.second.front().cols(0, classifier->getSampleDimensionality() - 1).t();
+        cout << "classification: " << classifier->classify(toClassifyVec) << " " << 1 << endl;
+        */
+
+        classifier = make_shared<LibSvm>(uniqueClassIds, samples);
 
         // if no classifier file exists
         if(!fileExists(path + "classRes")) {
 
-            // determine confidence value on database
-            vector<double> classRes = callClassifier(path, "", false, 0.0, 0.0, 0.0, 0.0);
-            for(double res : classRes)
-                cout << res << endl;
-
-            double confidence = classRes.at(classRes.size() - 1);
-
-            double bestParamC = 0.0;
-            double bestParamD = 0.0;
-            double bestParamPar1 = 0.0;
-            double bestParamPar2 = 0.0;
+            cout << "(SensingController) determinining confidence..." << endl;
+            double confidence = classifier->crossValidate();
+            cout << "(SensingController) found a confidence of " << confidence << endl;
 
             ofstream ofile;
             ofile.open((path + "classRes").c_str());
-            ofile << confidence << "\t" << bestParamC << "\t" << bestParamD << "\t" << bestParamPar1 << "\t" << bestParamPar2 << endl;
+            ofile << confidence << endl;
             ofile.close();
 
         }
 
+        classifier->train();
+
         ifstream infile;
         infile.open((path + "classRes").c_str());
         double confidence = 0.0;
-        double bestParamC = 0.0;
-        double bestParamD = 0.0;
-        double bestParamPar1 = 0.0;
-        double bestParamPar2 = 0.0;
-        infile >> confidence >> bestParamC >> bestParamD >> bestParamPar1 >> bestParamPar2;
-
-        setCLassifierParams(bestParamC, bestParamD, bestParamParam1, bestParamParam2);
+        infile >> confidence;
 
         if(!isShutUp)
             cout << "(SensingController) determined a confidence of " << confidence << endl;
-        */
 
         KUKADU_MODULE_END_USAGE();
 
-        //return confidence;
-        return 1.0;
+        return confidence;
 
     }
 
@@ -1921,137 +1891,11 @@ namespace kukadu {
 
     }
 
-    void SensingController::setCLassifierParams(double bestParamC, double bestParamD, double bestParamParam1, double bestParamParam2) {
-        classifierParamsSet = true;
-        this->bestParamC = bestParamC;
-        this->bestParamD = bestParamD;
-        this->bestParamParam1 = bestParamParam1;
-        this->bestParamParam2 = bestParamParam2;
-    }
+    int SensingController::callClassifier(std::string passedFilePath) {
 
-    std::vector<double> SensingController::callClassifier(std::string trainedPath, std::string passedFilePath, bool classify, double bestParamC, double bestParamD, double bestParamParam1, double bestParamParam2) {
-cout << trainedPath << " " << passedFilePath << " " << classifierPath << " " << classifierFunction << endl;
-        vector<double> retVals;
-        string mName = classifierFile;
-        string fName = classifierFunction;
-        string argumentVal = trainedPath;
-
-        PyObject *pName, *pModule, *pFunc;
-        PyObject *pArgs, *pValue;
-
-        Py_Initialize();
-
-        pName = PyUnicode_FromString(mName.c_str());
-
-        //PyRun_SimpleString("import sys");
-        //PyRun_SimpleString(string(string("sys.path.append('") + classifierPath + string("')")).c_str());
-        //PyRun_SimpleString("import trajlab_main");
-
-        PyRun_SimpleString("import sys");
-        PyRun_SimpleString("sys.path.append('/home/c7031109/iis_robot_sw/iis_catkin_ws/src/kukadu/scripts/trajectory_classifier/')");
-        PyRun_SimpleString("import trajlab_main");
-
-        pModule = PyImport_Import(pName);
-        Py_DECREF(pName);
-
-        if (pModule != NULL) {
-
-            pFunc = PyObject_GetAttrString(pModule, fName.c_str());
-
-            if (pFunc && PyCallable_Check(pFunc)) {
-
-                //pArgs = PyTuple_New(7);
-                pArgs = PyTuple_New(3);
-                pValue = PyUnicode_FromString(argumentVal.c_str());
-
-                if (!pValue) {
-
-                    Py_DECREF(pArgs);
-                    Py_DECREF(pModule);
-                    fprintf(stderr, "Cannot convert argument\n");
-                    return retVals;
-
-                }
-
-                PyTuple_SetItem(pArgs, 0, pValue);
-
-                pValue = PyUnicode_FromString(passedFilePath.c_str());
-
-                if (!pValue) {
-
-                    Py_DECREF(pArgs);
-                    Py_DECREF(pModule);
-                    fprintf(stderr, "Cannot convert argument\n");
-
-                }
-
-                PyTuple_SetItem(pArgs, 1, pValue);
-
-                pValue = PyFloat_FromDouble((classify) ? 1.0 : -1.0);
-
-                if (!pValue) {
-
-                    Py_DECREF(pArgs);
-                    Py_DECREF(pModule);
-                    fprintf(stderr, "Cannot convert argument\n");
-
-                }
-
-                PyTuple_SetItem(pArgs, 2, pValue);
-
-                pValue = PyFloat_FromDouble(bestParamC);
-
-                if (!pValue) {
-
-                    Py_DECREF(pArgs);
-                    Py_DECREF(pModule);
-                    fprintf(stderr, "Cannot convert argument\n");
-
-                }
-
-                pValue = PyObject_CallObject(pFunc, pArgs);
-                Py_DECREF(pArgs);
-
-                if (pValue != NULL) {
-
-                    int count = (int) PyList_Size(pValue);
-                    for(int i = 0; i < count; ++i) {
-                        PyObject* ptemp = PyList_GetItem(pValue, i);
-                        retVals.push_back(PyFloat_AsDouble(ptemp));
-                    }
-
-                    // retVal = PyLong_AsLong(pValue);
-                    Py_DECREF(pValue);
-
-                } else {
-
-                    Py_DECREF(pFunc);
-                    Py_DECREF(pModule);
-                    PyErr_Print();
-                    fprintf(stderr,"Call failed\n");
-
-                }
-
-            } else {
-
-                if (PyErr_Occurred())
-                    PyErr_Print();
-                cerr << "Cannot find function " << fName << endl;
-
-            }
-
-            Py_XDECREF(pFunc);
-            Py_DECREF(pModule);
-
-        }
-        else {
-
-            PyErr_Print();
-            cerr << "Failed to load " << mName << endl;
-
-        }
-
-        return retVals;
+        auto toClassify = loadClassificationData({0}, {passedFilePath});
+        vec toClassifyVec = toClassify.second.front().cols(0, classifier->getSampleDimensionality() - 1).t();
+        return classifier->classify(toClassifyVec);
 
     }
 

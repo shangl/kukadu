@@ -119,6 +119,14 @@ namespace svmpp {
 	//-----------------------------------------------------------------------------------------------------------------
 	// Svm class
 	//-----------------------------------------------------------------------------------------------------------------
+
+    void print_null(const char *s) {}
+
+    Svm::Svm() {
+        // force libsvm to shut up ;)
+        svm_set_print_string_function(&print_null);
+    }
+
 	bool Svm::save(std::string _file) const {
 		return svm_save_model(_file.c_str(), mModel) != -1;
 	}

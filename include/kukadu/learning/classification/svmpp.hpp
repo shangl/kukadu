@@ -28,10 +28,9 @@
 #ifndef LIBSVMPP_SVMPP_H_
 #define LIBSVMPP_SVMPP_H_
 
-#include <kukadu/learning/classification/svm.h>
-
 #include <string>
 #include <vector>
+#include <libsvm/svm.h>
 #include <unordered_map>
 
 namespace svmpp {
@@ -89,6 +88,9 @@ namespace svmpp {
 	/// SVM wrapper of libsvm svm implementation.
 	class Svm {
 	public:
+
+                Svm();
+
 		/// Structure that holds SVM params. Renamed svm_params from libsvm
                 typedef svm_parameter Params;
 
@@ -118,6 +120,7 @@ namespace svmpp {
 
 		Params params() const;
 	private:
+
 		double recursiveTrain(const TrainSet &_trainSet, std::vector<ParamGrid> _grids, Params _init, Params &_best);
 		void setParam(Params &_params, ParamGrid::Type _type, double _value);
 	

@@ -101,12 +101,16 @@ namespace kukadu {
     }
 
     LibSvm::LibSvm(std::string trainingFile) : Classifier(loadLibsvmFile(trainingFile).first, scaleDimensions(loadLibsvmFile(trainingFile).second).first) {
-        scaleDimensions(loadLibsvmFile(trainingFile).second, true, false);
+        auto scaled = scaleDimensions(loadLibsvmFile(trainingFile).second, true, false);
+        wasTrained = false;
+        minDim = scaled.second.first;
+        maxDim = scaled.second.second;
     }
 
     LibSvm::LibSvm(std::vector<int> classes, std::vector<arma::mat> samples) : Classifier(classes, scaleDimensions(samples).first) {
 
         auto scaled = scaleDimensions(samples, true, false);
+        wasTrained = false;
         minDim = scaled.second.first;
         maxDim = scaled.second.second;
 
@@ -168,6 +172,20 @@ namespace kukadu {
 
     bool LibSvm::train() {
 
+        generateTrainSet();
+        internalClassifier = svmpp::Svm();
+
+        setStdParams();
+        internalClassifier.train(params, trainSet);
+
+        wasTrained = true;
+
+        return true;
+
+    }
+
+    void LibSvm::generateTrainSet() {
+
         auto classes = getClasses();
         auto samples = getSamples();
         if(classes.size() != samples.size())
@@ -176,17 +194,15 @@ namespace kukadu {
         if(!classes.size())
             throw KukaduException("(LibSvm) no samples provided");
 
-        int samplesCount = 0;
         int sampleDim = samples.front().n_cols;
         for(auto& sample : samples) {
-            samplesCount += sample.n_rows;
             if(sampleDim != sample.n_cols)
                 throw KukaduException("(LibSvm) sample dimensions do not match");
             if(sample.has_nan())
                 throw KukaduException("(LibSvm) data contains NaN");
         }
 
-        TrainSet trainSet;
+        trainSet = svmpp::TrainSet();
 
         for(int i = 0; i < classes.size(); ++i) {
             auto& currentClass = classes.at(i);
@@ -195,28 +211,33 @@ namespace kukadu {
                 trainSet.addEntry(armadilloToStdVec(currentClassSamples.row(j).t()), currentClass);
         }
 
+    }
+
+    void LibSvm::setStdParams() {
+
         // Setting parameters
-        Svm::Params params;
         params.svm_type = C_SVC;
         params.kernel_type = RBF;
-        params.cache_size = 100;
-        params.gamma = 0.01;
-        params.C = 10;
-        params.eps = 1e-5;
-        params.p = 0.1;
-        params.shrinking = 0;
-        params.probability = 0;
+        params.degree = 3;
+        params.gamma = 1.0 / getSampleDimensionality();
+        params.coef0 = 0.0;
+        params.cache_size = 100.0;
+        params.eps = 0.001;
+        params.C = 5.0;
         params.nr_weight = 0;
-        params.weight_label = nullptr;
-        params.weight = nullptr;
-
-        internalClassifier.train(params, trainSet);
-
-        return true;
+        params.weight_label = NULL;
+        params.weight = NULL;
+        params.nu = 0.5;
+        params.p = 0.1;
+        params.shrinking = 1;
+        params.probability = 1;
 
     }
 
     int LibSvm::classify(arma::vec sample) {
+
+        if(!wasTrained)
+            throw KukaduException("(LibSvm) classifier was not trained yet");
 
         if(getSampleDimensionality() != sample.n_elem)
             throw KukaduException("(LibSvm) test sample dimensions does not fit the database dimension");
@@ -225,46 +246,20 @@ namespace kukadu {
         for(int i = 0; i < sample.n_elem; ++i)
             x(0, i) = sample(i);
 
-        vec firstVec = getSamples().at(1).row(0).t();
-        firstVec.fill(0.0);
         vec scaledData = scaleDimensions({x}, false, true).first.front().row(0).t();
-        cout << firstVec.n_elem << " " << scaledData.n_elem << " " << getSampleDimensionality() << endl;
-        //Query query(armadilloToStdVec(scaledData));
 
-        cout << "classification" << endl;
+        Query query(armadilloToStdVec(scaledData));
+        return internalClassifier.predict(query);
 
-        {Query query(armadilloToStdVec(firstVec));
-        cout << internalClassifier.predict(query) << endl;}
+    }
 
-        {Query query(armadilloToStdVec(scaledData));
-        cout << internalClassifier.predict(query) << endl;}
+    double LibSvm::crossValidate() {
 
-        {Query query(armadilloToStdVec(getSamples().at(1).row(0).t()));
-        cout << internalClassifier.predict(query) << endl;}
+        generateTrainSet();
+        internalClassifier = svmpp::Svm();
 
-        {Query query(armadilloToStdVec(getSamples().at(0).row(0).t()));
-        cout << internalClassifier.predict(query) << endl;}
-
-        {Query query(armadilloToStdVec(getSamples().at(0).row(7).t()));
-        cout << internalClassifier.predict(query) << endl;}
-
-        {Query query(armadilloToStdVec(getSamples().at(2).row(0).t()));
-        cout << internalClassifier.predict(query) << endl;}
-
-        {Query query(armadilloToStdVec(getSamples().at(3).row(0).t()));
-        cout << internalClassifier.predict(query) << endl;}
-
-        {Query query(armadilloToStdVec(getSamples().at(3).row(1).t()));
-        cout << internalClassifier.predict(query) << endl;}
-
-        {Query query(armadilloToStdVec(getSamples().at(1).row(9).t()));
-        cout << internalClassifier.predict(query) << endl;}
-
-        {Query query(armadilloToStdVec(getSamples().at(1).row(10).t()));
-        cout << internalClassifier.predict(query) << endl;}
-        getchar();
-
-        return 0;
+        setStdParams();
+        return internalClassifier.crossValidation(params, trainSet);
 
     }
 
