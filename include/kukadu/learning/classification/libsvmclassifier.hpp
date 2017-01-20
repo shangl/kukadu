@@ -1,8 +1,8 @@
 #ifndef KUKADU_LIBSVMCLASSIFIER_H
 #define KUKADU_LIBSVMCLASSIFIER_H
 
+#include <kukadu/learning/classification/svmpp.hpp>
 #include <kukadu/learning/classification/classifier.hpp>
-#include <kukadu/learning/classification/eigenlibsvm/svm_utils.h>
 
 namespace kukadu {
 
@@ -10,7 +10,7 @@ namespace kukadu {
 
     private:
 
-        esvm::SVMClassifier internalClassifier;
+        svmpp::Svm internalClassifier;
 
         std::vector<double> minDim;
         std::vector<double> maxDim;

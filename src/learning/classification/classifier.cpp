@@ -2,6 +2,8 @@
 #include <fstream>
 #include <utility>
 #include <iostream>
+#include <libsvm/svm.h>
+#include <kukadu/utils/utils.hpp>
 #include <kukadu/types/kukadutypes.hpp>
 #include <kukadu/utils/kukadutokenizer.hpp>
 #include <kukadu/learning/classification/classifier.hpp>
@@ -9,6 +11,7 @@
 
 using namespace std;
 using namespace arma;
+using namespace svmpp;
 
 namespace kukadu {
 
@@ -183,22 +186,33 @@ namespace kukadu {
                 throw KukaduException("(LibSvm) data contains NaN");
         }
 
-        vector<int> labelsVec;
-        mat samplesMat(samplesCount, sampleDim);
+        TrainSet trainSet;
 
-        int runningIdx = 0;
         for(int i = 0; i < classes.size(); ++i) {
             auto& currentClass = classes.at(i);
             auto& currentClassSamples = samples.at(i);
-            for(int j = 0; j < currentClassSamples.n_rows; ++j) {
-                labelsVec.push_back(currentClass);
-                for(int k = 0; k < currentClassSamples.n_cols; ++k)
-                    samplesMat(runningIdx, k) = currentClassSamples(j, k);
-                ++runningIdx;
-            }
+            for(int j = 0; j < currentClassSamples.n_rows; ++j)
+                trainSet.addEntry(armadilloToStdVec(currentClassSamples.row(j).t()), currentClass);
         }
 
-        internalClassifier.train(samplesMat, labelsVec);
+        // Setting parameters
+        Svm::Params params;
+        params.svm_type = C_SVC;
+        params.kernel_type = RBF;
+        params.cache_size = 100;
+        params.gamma = 0.01;
+        params.C = 10;
+        params.eps = 1e-5;
+        params.p = 0.1;
+        params.shrinking = 0;
+        params.probability = 0;
+        params.nr_weight = 0;
+        params.weight_label = nullptr;
+        params.weight = nullptr;
+
+        internalClassifier.train(params, trainSet);
+
+        return true;
 
     }
 
@@ -207,14 +221,50 @@ namespace kukadu {
         if(getSampleDimensionality() != sample.n_elem)
             throw KukaduException("(LibSvm) test sample dimensions does not fit the database dimension");
 
-        vector<int> res;
         mat x(1, sample.n_elem);
         for(int i = 0; i < sample.n_elem; ++i)
             x(0, i) = sample(i);
 
-        internalClassifier.test(scaleDimensions({x}, false, true).first.front(), res);
+        vec firstVec = getSamples().at(1).row(0).t();
+        firstVec.fill(0.0);
+        vec scaledData = scaleDimensions({x}, false, true).first.front().row(0).t();
+        cout << firstVec.n_elem << " " << scaledData.n_elem << " " << getSampleDimensionality() << endl;
+        //Query query(armadilloToStdVec(scaledData));
 
-        return res.at(0);
+        cout << "classification" << endl;
+
+        {Query query(armadilloToStdVec(firstVec));
+        cout << internalClassifier.predict(query) << endl;}
+
+        {Query query(armadilloToStdVec(scaledData));
+        cout << internalClassifier.predict(query) << endl;}
+
+        {Query query(armadilloToStdVec(getSamples().at(1).row(0).t()));
+        cout << internalClassifier.predict(query) << endl;}
+
+        {Query query(armadilloToStdVec(getSamples().at(0).row(0).t()));
+        cout << internalClassifier.predict(query) << endl;}
+
+        {Query query(armadilloToStdVec(getSamples().at(0).row(7).t()));
+        cout << internalClassifier.predict(query) << endl;}
+
+        {Query query(armadilloToStdVec(getSamples().at(2).row(0).t()));
+        cout << internalClassifier.predict(query) << endl;}
+
+        {Query query(armadilloToStdVec(getSamples().at(3).row(0).t()));
+        cout << internalClassifier.predict(query) << endl;}
+
+        {Query query(armadilloToStdVec(getSamples().at(3).row(1).t()));
+        cout << internalClassifier.predict(query) << endl;}
+
+        {Query query(armadilloToStdVec(getSamples().at(1).row(9).t()));
+        cout << internalClassifier.predict(query) << endl;}
+
+        {Query query(armadilloToStdVec(getSamples().at(1).row(10).t()));
+        cout << internalClassifier.predict(query) << endl;}
+        getchar();
+
+        return 0;
 
     }
 

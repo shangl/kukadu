@@ -1736,7 +1736,6 @@ namespace kukadu {
             sampleVectors.push_back(concatenatedData);
 
         }
-        getchar();
 
         // find the minimum length of all files (thats the length we will be able to use
         int minDim = std::numeric_limits<int>::max();
@@ -1856,14 +1855,9 @@ namespace kukadu {
         classifier = make_shared<LibSvm>(uniqueClassIds, samples);
         classifier->train();
 
-        cout << 1 << endl;
         auto toClassify = loadClassificationData({0}, {"/home/c7031109/iis_robot_sw/iis_catkin_ws/src/hangl_2016_tro/experiment/database_real_trained/peel_book/haptics/sliding/class_0_sample_0/kuka_lwr_real_left_arm_0"});
-        cout << 2 << endl;
         vec toClassifyVec = toClassify.second.front().cols(0, classifier->getSampleDimensionality() - 1).t();
-        cout << 3 << endl;
-        cout << "classification: " << classifier->classify(toClassifyVec);
-        cout << 4 << endl;
-        getchar();
+        cout << "classification: " << classifier->classify(toClassifyVec) << endl;
 
         cerr << "(SensingController) this part still has to be written!!!" << endl;
 
