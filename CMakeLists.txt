@@ -93,6 +93,7 @@ include_directories(
     ${Boost_INCLUDE_DIRS}
     ${catkin_INCLUDE_DIRS}
     external/komo/share/src
+    external/backward-cpp
     external/ReflexxesTypeII/include
 )
 

@@ -1836,8 +1836,6 @@ namespace kukadu {
         auto uniqueClassIds = loadedData.first;
         auto samples = loadedData.second;
 
-cout << getDatabasePath() << "      " << getCaption() << endl;
-
         classifier = make_shared<LibSvm>(uniqueClassIds, samples);
 
         // if no classifier file exists

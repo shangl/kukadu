@@ -86,6 +86,7 @@ namespace kukadu {
             if(!fileExists(hapticPath))
                 createDirectory(hapticPath);
 
+            cout << "creating controller " << contName << endl;
             std::vector<KUKADU_SHARED_PTR<kukadu::SensingController> > sensingCopy;
             // sensing and complex controllers are assumed to require the same (grasped or not grasped)
             if(castCompCont->requiresGrasp())
@@ -257,7 +258,6 @@ namespace kukadu {
             auto copiedSens = sens->clone();
             copiedSens->setStateCount(parentComplexController->getStateCount(copiedSens->getCaption()));
             copiedSens->setDatabasePath(newBasePath + sens->getCaption() + "/");
-            copiedSens->createDataBase();
             retVec.push_back(copiedSens);
         }
 
