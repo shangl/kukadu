@@ -1838,13 +1838,6 @@ namespace kukadu {
 
 cout << getDatabasePath() << "      " << getCaption() << endl;
 
-        /*
-        auto toClassify = loadClassificationData({0},
-        {"/home/c7031109/iis_robot_sw/iis_catkin_ws/src/hangl_2016_tro/experiment/database_real_trained/peel_book/haptics/sliding/class_0_sample_0/kuka_lwr_real_left_arm_0"});
-        vec toClassifyVec = toClassify.second.front().cols(0, classifier->getSampleDimensionality() - 1).t();
-        cout << "classification: " << classifier->classify(toClassifyVec) << " " << 1 << endl;
-        */
-
         classifier = make_shared<LibSvm>(uniqueClassIds, samples);
 
         // if no classifier file exists
@@ -1862,6 +1855,22 @@ cout << getDatabasePath() << "      " << getCaption() << endl;
         }
 
         classifier->train();
+
+        cout << "1 " << callClassifier("/home/c7031109/iis_robot_sw/iis_catkin_ws/src/hangl_2016_tro/experiment/database_real_trained/peel_book/haptics/sliding/class_0_sample_0/kuka_lwr_real_left_arm_0") << endl;
+        cout << "1 " << callClassifier("/home/c7031109/iis_robot_sw/iis_catkin_ws/src/hangl_2016_tro/experiment/database_real_trained/peel_book/haptics/sliding/class_0_sample_1/kuka_lwr_real_left_arm_0") << endl;
+        cout << "1 " << callClassifier("/home/c7031109/iis_robot_sw/iis_catkin_ws/src/hangl_2016_tro/experiment/database_real_trained/peel_book/haptics/sliding/class_0_sample_2/kuka_lwr_real_left_arm_0") << endl;
+        cout << "1 " << callClassifier("/home/c7031109/iis_robot_sw/iis_catkin_ws/src/hangl_2016_tro/experiment/database_real_trained/peel_book/haptics/sliding/class_0_sample_3/kuka_lwr_real_left_arm_0") << endl;
+        cout << "1 " << callClassifier("/home/c7031109/iis_robot_sw/iis_catkin_ws/src/hangl_2016_tro/experiment/database_real_trained/peel_book/haptics/sliding/class_0_sample_4/kuka_lwr_real_left_arm_0") << endl;
+        cout << "2 " << callClassifier("/home/c7031109/iis_robot_sw/iis_catkin_ws/src/hangl_2016_tro/experiment/database_real_trained/peel_book/haptics/sliding/class_1_sample_0/kuka_lwr_real_left_arm_0") << endl;
+        cout << "2 " << callClassifier("/home/c7031109/iis_robot_sw/iis_catkin_ws/src/hangl_2016_tro/experiment/database_real_trained/peel_book/haptics/sliding/class_1_sample_0/kuka_lwr_real_left_arm_0") << endl;
+        cout << "2 " << callClassifier("/home/c7031109/iis_robot_sw/iis_catkin_ws/src/hangl_2016_tro/experiment/database_real_trained/peel_book/haptics/sliding/class_1_sample_0/kuka_lwr_real_left_arm_0") << endl;
+        cout << "2 " << callClassifier("/home/c7031109/iis_robot_sw/iis_catkin_ws/src/hangl_2016_tro/experiment/database_real_trained/peel_book/haptics/sliding/class_1_sample_0/kuka_lwr_real_left_arm_0") << endl;
+        cout << "3 " << callClassifier("/home/c7031109/iis_robot_sw/iis_catkin_ws/src/hangl_2016_tro/experiment/database_real_trained/peel_book/haptics/sliding/class_2_sample_0/kuka_lwr_real_left_arm_0") << endl;
+        cout << "3 " << callClassifier("/home/c7031109/iis_robot_sw/iis_catkin_ws/src/hangl_2016_tro/experiment/database_real_trained/peel_book/haptics/sliding/class_2_sample_0/kuka_lwr_real_left_arm_0") << endl;
+        cout << "3 " << callClassifier("/home/c7031109/iis_robot_sw/iis_catkin_ws/src/hangl_2016_tro/experiment/database_real_trained/peel_book/haptics/sliding/class_2_sample_0/kuka_lwr_real_left_arm_0") << endl;
+        cout << "4 " << callClassifier("/home/c7031109/iis_robot_sw/iis_catkin_ws/src/hangl_2016_tro/experiment/database_real_trained/peel_book/haptics/sliding/class_3_sample_0/kuka_lwr_real_left_arm_0") << endl;
+        cout << "4 " << callClassifier("/home/c7031109/iis_robot_sw/iis_catkin_ws/src/hangl_2016_tro/experiment/database_real_trained/peel_book/haptics/sliding/class_3_sample_0/kuka_lwr_real_left_arm_0") << endl;
+        cout << "4 " << callClassifier("/home/c7031109/iis_robot_sw/iis_catkin_ws/src/hangl_2016_tro/experiment/database_real_trained/peel_book/haptics/sliding/class_3_sample_0/kuka_lwr_real_left_arm_0") << endl;
 
         ifstream infile;
         infile.open((path + "classRes").c_str());

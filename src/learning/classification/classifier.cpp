@@ -101,7 +101,7 @@ namespace kukadu {
     }
 
     LibSvm::LibSvm(std::string trainingFile) : Classifier(loadLibsvmFile(trainingFile).first, scaleDimensions(loadLibsvmFile(trainingFile).second).first) {
-        auto scaled = scaleDimensions(loadLibsvmFile(trainingFile).second, true, false);
+        auto scaled = scaleDimensions(loadLibsvmFile(trainingFile).second);
         wasTrained = false;
         minDim = scaled.second.first;
         maxDim = scaled.second.second;
@@ -109,18 +109,48 @@ namespace kukadu {
 
     LibSvm::LibSvm(std::vector<int> classes, std::vector<arma::mat> samples) : Classifier(classes, scaleDimensions(samples).first) {
 
-        auto scaled = scaleDimensions(samples, true, false);
+        auto scaled = scaleDimensions(samples);
         wasTrained = false;
         minDim = scaled.second.first;
         maxDim = scaled.second.second;
 
     }
 
-    std::pair<std::vector<arma::mat>, std::pair<std::vector<double>, std::vector<double> > > LibSvm::scaleDimensions(std::vector<arma::mat> samples, bool storeScalingInfo, bool useStoredScalingInfo) {
+    std::pair<std::vector<arma::mat>, std::pair<std::vector<double>, std::vector<double> > > LibSvm::scaleDimensions(std::vector<arma::mat> samples, bool useStoredScalingInfo) {
 
         vector<double> minDimInt;
         vector<double> maxDimInt;
 
+        if(useStoredScalingInfo) {
+
+            // load the limits
+            minDimInt = minDim;
+            maxDimInt = maxDim;
+
+        } else {
+
+            // generate the limis
+            minDimInt = vector<double>(samples.front().n_cols);
+            for(int i = 0; i < minDimInt.size(); ++i)
+                minDimInt.at(i) = std::numeric_limits<int>::max();
+            maxDimInt = vector<double>(samples.front().n_cols);
+            for(int i = 0; i < maxDimInt.size(); ++i)
+                maxDimInt.at(i) = std::numeric_limits<int>::min();
+
+            for(mat& sampleMat : samples) {
+
+                for(int i = 0; i < sampleMat.n_cols; ++i) {
+
+                    minDimInt.at(i) = std::min(minDimInt.at(i), sampleMat.col(i).min());
+                    maxDimInt.at(i) = std::max(maxDimInt.at(i), sampleMat.col(i).max());
+
+                }
+
+            }
+
+        }
+
+        // scale the matrices
         for(mat& sampleMat : samples) {
 
             vec minCol(sampleMat.n_rows);
@@ -129,23 +159,11 @@ namespace kukadu {
             vec upperScale(sampleMat.n_rows);
             lowerScale.fill(-1.0);
             upperScale.fill(1.0);
+
             for(int i = 0; i < sampleMat.n_cols; ++i) {
 
-                double currentMin;
-                double currentMax;
-
-                if(useStoredScalingInfo) {
-                    currentMin = this->minDim.at(i);
-                    currentMax = this->maxDim.at(i);
-                } else {
-                    currentMin = sampleMat.col(i).min();
-                    currentMax = sampleMat.col(i).max();
-                }
-
-                if(storeScalingInfo) {
-                    minDimInt.push_back(currentMin);
-                    maxDimInt.push_back(currentMax);
-                }
+                double currentMin = minDimInt.at(i);
+                double currentMax = maxDimInt.at(i);
 
                 minCol.fill(currentMin);
                 maxCol.fill(currentMax);
@@ -246,9 +264,9 @@ namespace kukadu {
         for(int i = 0; i < sample.n_elem; ++i)
             x(0, i) = sample(i);
 
-        vec scaledData = scaleDimensions({x}, false, true).first.front().row(0).t();
-
+        vec scaledData = scaleDimensions({x}, true).first.front().row(0).t();
         Query query(armadilloToStdVec(scaledData));
+
         return internalClassifier.predict(query);
 
     }
