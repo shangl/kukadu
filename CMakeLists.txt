@@ -105,6 +105,8 @@ link_directories(${PYTH_LIB_PATH})
 
 set(ENABLE_VISUALIZATION 1)
 
+add_subdirectory(external/backward-cpp)
+
 AUX_SOURCE_DIRECTORY(src/robot/ KUKADUSRC)
 AUX_SOURCE_DIRECTORY(src/utils/ KUKADUSRC)
 AUX_SOURCE_DIRECTORY(src/robot/ KUKADUSRC)
@@ -197,9 +199,15 @@ add_library(kukaduvision ${KUKADUVISIONSRC})
 add_library(artoolkitplus ${ARTOOLKITPLUSSRC})
 add_library(${PROJECT_NAME} ${KUKADUSRC})
 
-add_dependencies(${PROJECT_NAME} ${catkin_EXPORTED_TARGETS} ${PYTH_LIB} svm)
-add_dependencies(kukaduvision ${catkin_EXPORTED_TARGETS} svm)
-add_dependencies(kukadugui ${catkin_EXPORTED_TARGETS} kukadu svm)
+add_backward(kukadugui)
+add_backward(reflexxeslib)
+add_backward(kukaduvision)
+add_backward(artoolkitplus)
+add_backward(${PROJECT_NAME})
+
+add_dependencies(${PROJECT_NAME} ${catkin_EXPORTED_TARGETS} ${PYTH_LIB} svm Backward::Backward)
+add_dependencies(kukaduvision ${catkin_EXPORTED_TARGETS} svm Backward::Backward)
+add_dependencies(kukadugui ${catkin_EXPORTED_TARGETS} kukadu svm Backward::Backward)
 
 target_link_libraries(kukadugui ${catkin_LIBRARIES} Qt5::Widgets kukadu svm)
 
