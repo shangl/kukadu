@@ -1478,7 +1478,6 @@ namespace kukadu {
         : Controller(storage, caption, flatten<KUKADU_SHARED_PTR<Hardware> >({castVector<KUKADU_SHARED_PTR<ControlQueue>, KUKADU_SHARED_PTR<Hardware> >(queues)}), 1), dbStorage(storage) {
 
         currentIterationNum = 0;
-        classifierParamsSet = false;
         simulationGroundTruth = 0;
         simulatedClassificationPrecision = simClassificationPrecision;
 
@@ -1611,14 +1610,7 @@ namespace kukadu {
 
             if(executeIt == 1) {
 
-                if(!classifierParamsSet) {
-                    string errorMsg = "(SensingController) classifier parameters not yet set" ;
-                    cerr << errorMsg << endl;
-                    throw KukaduException(errorMsg.c_str());
-                }
-
                 pf::remove_all(tmpPath + "hapticTest");
-
                 gatherData(tmpPath, "hapticTest");
 
                 // start clean up in a separate thread

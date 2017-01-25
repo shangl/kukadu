@@ -72,7 +72,6 @@ namespace kukadu {
     private:
 
         bool databaseAlreadySet;
-        bool classifierParamsSet;
 
         int hapticMode;
         int stateCount;
