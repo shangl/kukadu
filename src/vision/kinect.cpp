@@ -114,7 +114,7 @@ namespace kukadu {
             pcRequested = false;
             firstCloudSet = true;
 
-            kinectFrame = pc->header.frame_id;
+            kinectFrame = currentPc->header.frame_id;
             kinectFrameSet = true;
 
         pcMutex.unlock();
