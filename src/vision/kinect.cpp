@@ -26,6 +26,7 @@ namespace kukadu {
 
     void Kinect::construct(std::string kinectTopic, std::string targetFrame, ros::NodeHandle node, bool doTransform) {
 
+        kinectFrameSet = false;
         this->doTransform = doTransform;
 
         stdVisPubTopic = "/kukadu/rviz";
@@ -56,6 +57,12 @@ namespace kukadu {
 
         this->targetFrame = targetFrame;
 
+    }
+
+    std::string Kinect::getKinectFrame() {
+        if(kinectFrameSet)
+            return kinectFrame;
+        throw KukaduException("(Kinect) no point cloud retrieved yet");
     }
 
     KUKADU_SHARED_PTR<kukadu_thread> Kinect::startSensing() {
@@ -106,6 +113,9 @@ namespace kukadu {
 
             pcRequested = false;
             firstCloudSet = true;
+
+            kinectFrame = pc->header.frame_id;
+            kinectFrameSet = true;
 
         pcMutex.unlock();
 

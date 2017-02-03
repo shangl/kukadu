@@ -33,6 +33,9 @@ namespace kukadu {
         std::string visPubTopic;
         std::string kinectTopic;
 
+        bool kinectFrameSet;
+        std::string kinectFrame;
+
         KUKADU_SHARED_PTR<tf::TransformListener> transformListener;
 
         sensor_msgs::PointCloud2::Ptr currentPc;
@@ -65,6 +68,7 @@ namespace kukadu {
         bool isInitialized();
 
         std::string getVisPubTopic();
+        std::string getKinectFrame();
 
         sensor_msgs::PointCloud2::Ptr getCurrentPointCloud();
         pcl::PointCloud<pcl::PointXYZRGB>::Ptr getCurrentColorPointCloud();

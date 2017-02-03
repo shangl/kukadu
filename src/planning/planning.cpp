@@ -127,6 +127,9 @@ namespace kukadu {
 
     std::vector<arma::vec> PathPlanner::smoothJointPlan(std::vector<arma::vec> jointPlan, arma::vec maxVelocities, double cycleTime) {
 
+        return jointPlan;
+
+        /*
         KUKADU_MODULE_START_USAGE();
 
         vector<vec> smoothedPlan;
@@ -158,6 +161,7 @@ namespace kukadu {
         KUKADU_MODULE_END_USAGE();
 
         return smoothedPlan;
+        */
 
     }
 
