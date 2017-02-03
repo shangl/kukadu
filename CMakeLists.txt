@@ -34,7 +34,6 @@ find_package(catkin REQUIRED COMPONENTS
     tf_conversions
     trajectory_msgs
     cv_bridge
-    hangl_mmr
 )
 
 find_package(PCL REQUIRED)
