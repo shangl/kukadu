@@ -526,7 +526,7 @@ namespace kukadu {
         struct dirent *ent;
         vector<string> ret;
 
-        if((dir = opendir (folderPath.c_str())) != NULL) {
+        if((dir = opendir(folderPath.c_str())) != NULL) {
 
             while((ent = readdir(dir)) != NULL) {
                 string tmp(ent->d_name);

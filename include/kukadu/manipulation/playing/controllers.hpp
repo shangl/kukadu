@@ -138,7 +138,8 @@ namespace kukadu {
         int getStateCount();
         void setStateCount(const int& stateCount);
 
-        double createDataBase();
+        // creates a fresh database if perceptualStateId == -1 and extends the database in case the id is != -1
+        double createDataBase(int perceptualStateId = -1);
 
         void setDatabasePath(std::string databasePath);
 

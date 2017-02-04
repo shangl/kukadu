@@ -1759,40 +1759,82 @@ namespace kukadu {
 
     }
 
-    double SensingController::createDataBase() {
+    double SensingController::createDataBase(int perceptualStateId) {
 
         KUKADU_MODULE_START_USAGE();
 
         if(!databaseAlreadySet)
             throw KukaduException("(SensingController::createDataBase) database not defined yet");
 
-        int numClasses = 0;
+        int numClasses = getStateCount();
         string path = getDatabasePath();
         vector<pair<int, string> > collectedSamples;
         if(!isShutUp)
             cout << "(SensingController) data is stored to " << path << endl;
 
-        if(!fileExists(path)) {
-
+        bool databaseExisted = fileExists(path);
+        if(!databaseExisted) {
             if(!isShutUp)
                 cout << "(SensingController) folder doesn't exist - create" << endl;
             createDirectory(path);
+        }
+
+        vector<int> sampleIds;
+        for(int i = 0; i < numClasses; ++i)
+            sampleIds.push_back(-1);
+        if(databaseExisted) {
+            auto filesList = getFilesInDirectory(path);
+            for(auto file : filesList) {
+                if(file != "." && file != "..") {
+                    KukaduTokenizer tok(file, "_");
+                    // ignore "class"
+                    tok.next();
+                    int currentId = atoi(tok.next().c_str());
+                    // ignore "sample"
+                    tok.next();
+                    int sampleId = atoi(tok.next().c_str());
+                    int currentMaxSampleId = sampleIds.at(currentId);
+                    sampleIds.at(currentId) = max(sampleId, currentMaxSampleId);
+                }
+            }
+        }
+
+        int minSampleCount = 10;
+        for(int i = 0; i < sampleIds.size(); ++i) {
+            if(sampleIds.at(i) == -1) {
+                perceptualStateId = i;
+                break;
+            } else if(sampleIds.at(i) < minSampleCount) {
+                cout << "(SensingController) you have less than " << minSampleCount << " samples for state " << i << " under sensing action " << getCaption() <<
+                        ". do you want to collect more? (0 = no, 1 = yes)" << endl;
+                int answer;
+                cin >> answer;
+                if(answer == 1)
+                    perceptualStateId = i;
+                break;
+            }
+
+        }
+
+        if(!databaseExisted || perceptualStateId != -1) {
 
             // create the database
-            numClasses = getStateCount();
             if(!isShutUp)
                 cout << "(SensingController) " << getCaption() << " offers " << numClasses << " classes" << endl;
 
             ofstream labelFile;
             labelFile.open((path + "labels").c_str(), std::ios_base::app);
 
-            for(int currClass = 0; currClass < numClasses; ++currClass) {
+            if(perceptualStateId == -1)
+                perceptualStateId = 0;
 
-                if(currClass != 0)
+            for(int currClass = perceptualStateId; currClass < numClasses; ++currClass) {
+
+                if(currClass != perceptualStateId)
                     this->prepareNextState();
 
                 int cont = 1;
-                for(int sampleNum = 0; cont == 1; ++sampleNum) {
+                for(int sampleNum = sampleIds.at(currClass) + 1; cont == 1; ++sampleNum) {
 
                     cout << "(SensingController) press key to collect sample number " << sampleNum << " for class " << currClass << " with sensing controller " << this->getCaption() << endl;
                     getchar();
