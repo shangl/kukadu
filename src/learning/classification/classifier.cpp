@@ -6,6 +6,7 @@
 #include <kukadu/utils/utils.hpp>
 #include <kukadu/types/kukadutypes.hpp>
 #include <kukadu/utils/kukadutokenizer.hpp>
+#include <kukadu/storage/moduleusagesingleton.hpp>
 #include <kukadu/learning/classification/classifier.hpp>
 #include <kukadu/learning/classification/libsvmclassifier.hpp>
 
@@ -118,6 +119,8 @@ namespace kukadu {
 
     std::pair<std::vector<arma::mat>, std::pair<std::vector<double>, std::vector<double> > > LibSvm::scaleDimensions(std::vector<arma::mat> samples, bool useStoredScalingInfo) {
 
+        KUKADU_MODULE_START_USAGE();
+
         vector<double> minDimInt;
         vector<double> maxDimInt;
 
@@ -184,11 +187,15 @@ namespace kukadu {
 
         }
 
+        KUKADU_MODULE_END_USAGE();
+
         return {samples, {minDimInt, maxDimInt}};
 
     }
 
     bool LibSvm::train() {
+
+        KUKADU_MODULE_START_USAGE();
 
         generateTrainSet();
         internalClassifier = svmpp::Svm();
@@ -198,11 +205,15 @@ namespace kukadu {
 
         wasTrained = true;
 
+        KUKADU_MODULE_END_USAGE();
+
         return true;
 
     }
 
     void LibSvm::generateTrainSet() {
+
+        KUKADU_MODULE_START_USAGE();
 
         auto classes = getClasses();
         auto samples = getSamples();
@@ -229,9 +240,13 @@ namespace kukadu {
                 trainSet.addEntry(armadilloToStdVec(currentClassSamples.row(j).t()), currentClass);
         }
 
+        KUKADU_MODULE_END_USAGE();
+
     }
 
     void LibSvm::setStdParams() {
+
+        KUKADU_MODULE_START_USAGE();
 
         // Setting parameters
         params.svm_type = C_SVC;
@@ -250,9 +265,13 @@ namespace kukadu {
         params.shrinking = 1;
         params.probability = 1;
 
+        KUKADU_MODULE_END_USAGE();
+
     }
 
     int LibSvm::classify(arma::vec sample) {
+
+        KUKADU_MODULE_START_USAGE();
 
         if(!wasTrained)
             throw KukaduException("(LibSvm) classifier was not trained yet");
@@ -267,17 +286,28 @@ namespace kukadu {
         vec scaledData = scaleDimensions({x}, true).first.front().row(0).t();
         Query query(armadilloToStdVec(scaledData));
 
-        return internalClassifier.predict(query);
+        auto res = internalClassifier.predict(query);
+
+        KUKADU_MODULE_END_USAGE();
+
+        return res;
 
     }
 
     double LibSvm::crossValidate() {
 
+        KUKADU_MODULE_START_USAGE();
+
         generateTrainSet();
         internalClassifier = svmpp::Svm();
 
         setStdParams();
-        return internalClassifier.crossValidation(params, trainSet);
+
+        auto res = internalClassifier.crossValidation(params, trainSet);
+
+        KUKADU_MODULE_END_USAGE();
+
+        return res;
 
     }
 
