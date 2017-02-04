@@ -272,9 +272,13 @@ namespace kukadu {
 
                 if(!isFirstCallback) {
 
-                    previousCurrentPosQueue.pop();
-                    previousCurrentPosQueue.push(currentPos);
-                    currentPos = state.position;
+                    if(!previousCurrentPosQueue.empty()) {
+
+                        previousCurrentPosQueue.pop();
+                        previousCurrentPosQueue.push(currentPos);
+                        currentPos = state.position;
+
+                    }
 
                 } else {
 
