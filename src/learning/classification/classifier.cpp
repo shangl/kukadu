@@ -129,7 +129,7 @@ namespace kukadu {
 
         } else {
 
-            // generate the limis
+            // generate the limits
             minDimInt = vector<double>(samples.front().n_cols);
             for(int i = 0; i < minDimInt.size(); ++i)
                 minDimInt.at(i) = std::numeric_limits<int>::max();

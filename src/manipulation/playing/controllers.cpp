@@ -9,6 +9,7 @@
 #include <kukadu/storage/sensorstorage.hpp>
 #include <kukadu/storage/moduleusagesingleton.hpp>
 #include <kukadu/manipulation/playing/controllers.hpp>
+#include <kukadu/learning/projective_simulation/core.hpp>
 
 using namespace std;
 using namespace arma;
@@ -162,19 +163,30 @@ namespace kukadu {
                 int immunity = atoi(tok.next().c_str());
                 if(level == 0) {
 
-                    auto pc = KUKADU_SHARED_PTR<PerceptClip>(new PerceptClip(atoi(tok.next().c_str()), label, generator, idVec, immunity));
+                    auto pc = make_shared<PerceptClip>(atoi(tok.next().c_str()), label, generator, idVec, immunity);
                     return pc;
 
                 } else if(level == Clip::CLIP_H_LEVEL_FINAL) {
 
-                    auto ac = make_shared<ControllerActionClip>(storage, atoi(tok.next().c_str()), (this->availablePreparatoryControllers)[label], generator);
-                    return ac;
+                    if(this->availablePreparatoryControllers.find(label) != this->availablePreparatoryControllers.end() && (this->availablePreparatoryControllers)[label]) {
+                        auto ac = make_shared<ControllerActionClip>(storage, atoi(tok.next().c_str()), (this->availablePreparatoryControllers)[label], generator);
+                        return ac;
+                    } else
+                        return nullptr;
 
                 } else {
 
-                    if(level == 1)
-                        return make_shared<IntermediateEventClip>((this->availableSensingControllers)[label],
-                                                                                        level, generator, idVec, immunity);
+                    if(level == 1) {
+
+                        if(this->availableSensingControllers.find(label) != this->availableSensingControllers.end() && (this->availableSensingControllers)[label]) {
+
+                            return make_shared<IntermediateEventClip>((this->availableSensingControllers)[label],
+                                                                                            level, generator, idVec, immunity);
+
+                        } else
+                            return nullptr;
+
+                    }
 
                     return make_shared<Clip>(level, generator, idVec, immunity);
 
@@ -182,7 +194,8 @@ namespace kukadu {
 
             };
 
-            projSim = KUKADU_SHARED_PTR<ProjectiveSimulator>(new ProjectiveSimulator(shared_from_this(), generator, psPath, loadLambda));
+            projSim = make_shared<ProjectiveSimulator>(shared_from_this(), generator, psPath, loadLambda);
+
             // ugly syntax - i have to kill these shared pointers some day
             prepActions = (*((*(projSim->getClipLayers()->end() - 1))->begin()))->getSubClips();
             prepActionsCasted = projSim->getActionClips();
@@ -193,11 +206,12 @@ namespace kukadu {
             int currentId = 0;
             KUKADU_SHARED_PTR<vector<int> > clipDimVal = KUKADU_SHARED_PTR<vector<int> >(new vector<int>());
             clipDimVal->push_back(currentId);
-            root = KUKADU_SHARED_PTR<PerceptClip>(new PerceptClip(0, "root", generator, clipDimVal, INT_MAX));
+            root = make_shared<PerceptClip>(0, "root", generator, clipDimVal, INT_MAX);
 
             vector<double> prepWeights;
-            prepActions = KUKADU_SHARED_PTR<vector<KUKADU_SHARED_PTR<Clip> > >(new vector<KUKADU_SHARED_PTR<Clip> >());
-            prepActionsCasted = KUKADU_SHARED_PTR<vector<KUKADU_SHARED_PTR<ActionClip> > >(new vector<KUKADU_SHARED_PTR<ActionClip> >());
+            prepActions = make_shared<vector<KUKADU_SHARED_PTR<Clip> > >();
+            prepActionsCasted = make_shared<vector<KUKADU_SHARED_PTR<ActionClip> > >();
+
             for(int i = 0; i < preparationControllers.size(); ++i) {
 
                 auto prepActionClip = make_shared<ControllerActionClip>(storage, i, preparationControllers.at(i), generator);
@@ -206,22 +220,23 @@ namespace kukadu {
                 prepWeights.push_back(stdPrepWeight);
 
             }
+
             ++currentId;
 
             for(int i = 0; i < sensingControllers.size(); ++i) {
 
                 KUKADU_SHARED_PTR<SensingController> sensCont = sensingControllers.at(i);
 
-                clipDimVal = KUKADU_SHARED_PTR<vector<int> >(new vector<int>());
+                clipDimVal = make_shared<vector<int> >();
                 clipDimVal->push_back(currentId);
 
-                KUKADU_SHARED_PTR<Clip> nextSensClip = KUKADU_SHARED_PTR<Clip>(new IntermediateEventClip(sensCont, 1, generator, clipDimVal, INT_MAX));
+                KUKADU_SHARED_PTR<Clip> nextSensClip = make_shared<IntermediateEventClip>(sensCont, 1, generator, clipDimVal, INT_MAX);
                 ++currentId;
                 for(int j = 0; j < getStateCount(sensCont->getCaption()); ++j, ++currentId) {
 
-                    clipDimVal = KUKADU_SHARED_PTR<vector<int> >(new vector<int>());
+                    clipDimVal = make_shared<vector<int> >();
                     clipDimVal->push_back(currentId);
-                    KUKADU_SHARED_PTR<Clip> nextSubSensClip = KUKADU_SHARED_PTR<Clip>(new Clip(2, generator, clipDimVal, INT_MAX));
+                    KUKADU_SHARED_PTR<Clip> nextSubSensClip = make_shared<Clip>(2, generator, clipDimVal, INT_MAX);
                     // create copy of prepratory actions
                     auto prepActionsCopy = make_shared<vector<KUKADU_SHARED_PTR<Clip> > >(prepActions->begin(), prepActions->end());
                     nextSubSensClip->setChildren(prepActionsCopy, prepWeights);
@@ -237,21 +252,22 @@ namespace kukadu {
 
             }
 
-            KUKADU_SHARED_PTR<vector<KUKADU_SHARED_PTR<PerceptClip> > > rootVec = KUKADU_SHARED_PTR<vector<KUKADU_SHARED_PTR<PerceptClip> > >(new vector<KUKADU_SHARED_PTR<PerceptClip> >());
+            KUKADU_SHARED_PTR<vector<KUKADU_SHARED_PTR<PerceptClip> > > rootVec = make_shared<vector<KUKADU_SHARED_PTR<PerceptClip> > >();
             rootVec->push_back(root);
 
+            int originalMode = ProjectiveSimulator::PS_USE_ORIGINAL;
+
             // skill is used the first time; do initialization
-            projSim = KUKADU_SHARED_PTR<ProjectiveSimulator>(new ProjectiveSimulator(shared_from_this(), generator, rootVec, gamma, ProjectiveSimulator::PS_USE_ORIGINAL, false));
+            projSim = make_shared<ProjectiveSimulator>(shared_from_this(), generator, rootVec, gamma, originalMode, false);
 
         }
 
         environmentModels.clear();
-
         if(fileExists(envModelPath)) {
 
             // load environment model
             for(auto sens : sensingControllers) {
-                auto envModel = KUKADU_SHARED_PTR<ProjectiveSimulator>(new ProjectiveSimulator(envReward, generator, envModelPath + sens->getCaption()));
+                auto envModel = make_shared<ProjectiveSimulator>(envReward, generator, envModelPath + sens->getCaption());
                 environmentModels.insert(std::pair<std::string, KUKADU_SHARED_PTR<kukadu::ProjectiveSimulator> >(sens->getCaption(), envModel));
             }
 
@@ -274,16 +290,13 @@ namespace kukadu {
         projSim->setBoredom(boredom, 2);
 
         if(storeReward) {
-            rewardHistoryStream = KUKADU_SHARED_PTR<std::ofstream>(new std::ofstream());
+            rewardHistoryStream = make_shared<std::ofstream>();
             int overWrite = 0;
             if(fileExists(historyPath)) {
                 cout << "(ComplexController) should reward history file be overwritten? (0 = no / 1 = yes)" << endl;
                 cin >> overWrite;
-                if(overWrite != 1) {
-                    string err = "(ComplexController) reward file already exists. you chose not to overwrite. stopping";
-                    cerr << err << endl;
-                    throw err;
-                }
+                if(overWrite != 1)
+                    throw KukaduException("(ComplexController) reward file already exists. you chose not to overwrite. stopping");
             }
             rewardHistoryStream->open(rewardHistoryPath.c_str(), ios::trunc);
         }
