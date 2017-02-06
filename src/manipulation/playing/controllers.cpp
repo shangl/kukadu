@@ -246,8 +246,10 @@ namespace kukadu {
 
                 double nextWeight = std::exp(senseStretch * max(0.0, sensingWeights.at(i) - 1.0 / getStateCount(sensCont->getCaption())));
                 sensCont->setSimulationClassificationPrecision(min(sensingWeights.at(i) * 100.0, 100.0));
+
                 if(!isShutUp)
                     cout << "(ComplexController) relative weight of sensing action \"" << sensCont->getCaption() << "\" is " << nextWeight << endl;
+
                 root->addSubClip(nextSensClip, nextWeight);
 
             }
@@ -532,6 +534,7 @@ namespace kukadu {
         this->availableSensingControllers = availableSensingControllers;
         this->availablePreparatoryControllers = availablePreparatoryControllers;
 
+        createSensingDatabase();
         initialize();
 
         KUKADU_MODULE_END_USAGE();
@@ -680,8 +683,8 @@ namespace kukadu {
 
         if(!getSimulationMode()) {
 
-            cout << "(ComplexController) do you want to execute complex action now? (0 = no / 1 = yes)" << endl;
-            cin >> executeIt;
+//            cout << "(ComplexController) do you want to execute complex action now? (0 = no / 1 = yes)" << endl;
+//            cin >> executeIt;
 
             if(executeIt)
                 executeComplexAction();
@@ -810,6 +813,8 @@ namespace kukadu {
                                         // first create action clip
                                         auto newConcatClip = make_shared<ControllerActionClip>(storage, projSim->generateNewActionId(), newConcatController, generator);
 
+                                        cout << "creative proposal of " << newConcatClip->toString() << endl;
+
                                         bool isCorrectSensingClip = false;
                                         auto senseLayer = projSim->getClipLayers()->at(1);
                                         for(auto& currentSenseClip : *senseLayer) {
@@ -884,7 +889,8 @@ namespace kukadu {
 
             if(!getSimulationMode()) {
                 auto sensedLabel = getClassLabel(sensingClip, stateClip);
-                cout << "(ComplexController::execute) selected sensing action \"" << *sensingClip << "\" resulted in predicted class " << sensedLabel << " and preparation action \"" << *actionClip << "\"" << endl;
+                cout << "(ComplexController::execute) selected sensing action \"" << *sensingClip << "\" predicted class " << sensedLabel <<
+                        " and selected preparation action \"" << *actionClip << "\"" << endl;
             }
 
             KUKADU_DYNAMIC_POINTER_CAST<ControllerActionClip>(actionClip)->execute();
@@ -943,6 +949,8 @@ namespace kukadu {
                 currentEnvModel->performRewarding();
 
             }
+
+            executeComplexAction();
 
             // after doing everything --> perform the complex action and reward it accordingly
             auto rewRet = projSim->performRewarding();
@@ -1460,9 +1468,9 @@ namespace kukadu {
 
         if(!actionController->getSimulationMode()) {
 
-            int executeIt = 0;
-            cout << "(ControllerActionClip) selected preparation action is \"" << actionController->getCaption() << "\"; want to execute it? (0 = no / 1 = yes)" << endl;
-            cin >> executeIt;
+            int executeIt = 1;
+            cout << "(ControllerActionClip) selected preparation action is \"" << actionController->getCaption() << "\"" << endl;
+//            cin >> executeIt;
 
             if(executeIt == 1)
                 retVal = actionController->execute();
@@ -1558,7 +1566,6 @@ namespace kukadu {
     void SensingController::setDatabasePath(std::string databasePath) {
         this->databasePath = databasePath;
         databaseAlreadySet = true;
-        createDataBase();
     }
 
     void SensingController::gatherData(std::string completePath) {
@@ -1616,10 +1623,10 @@ namespace kukadu {
         KUKADU_SHARED_PTR<kukadu_thread> cleanupThread;
         if(!getSimulationMode()) {
 
-            int executeIt = 0;
+            int executeIt = 1;
             int temporaryHapticMode = hapticMode;
-            cout << "(SensingController) selected sensing action is \"" << getCaption() << "\"; want to execute it? (0 = no / 1 = yes)" << endl;
-            cin >> executeIt;
+            cout << "(SensingController) selected sensing action is \"" << getCaption() << "\"" << endl;
+//            cin >> executeIt;
 
             if(executeIt == 1) {
 
@@ -1646,14 +1653,10 @@ namespace kukadu {
                 cin >> classifierRes;
             } else if(temporaryHapticMode == SensingController::HAPTIC_MODE_CLASSIFIER) {
                 auto res = callClassifier(tmpPath + "hapticTest/" + queues.at(0)->getRobotFileName() + "_0");
-                classifierRes = res - 1;
+                classifierRes = res;
             } else {
                 throw KukaduException("haptic mode not known");
             }
-
-            if(!isShutUp)
-                cout << "(SensinController) press enter to continue" << endl;
-            getchar();
 
             pf::remove_all(tmpPath + "hapticTest");
             ++currentIterationNum;
@@ -1836,8 +1839,7 @@ namespace kukadu {
                 int cont = 1;
                 for(int sampleNum = sampleIds.at(currClass) + 1; cont == 1; ++sampleNum) {
 
-                    cout << "(SensingController) press key to collect sample number " << sampleNum << " for class " << currClass << " with sensing controller " << this->getCaption() << endl;
-                    getchar();
+                    cout << "(SensingController) collecting sample number " << sampleNum << " for class " << currClass << " with sensing controller " << this->getCaption() << endl;
 
                     stringstream s;
                     s << "class_" << currClass << "_sample_" << sampleNum;
@@ -1929,11 +1931,33 @@ namespace kukadu {
 
     }
 
+    arma::vec fitToDim(arma::mat v, int dim) {
+
+        if(v.n_cols > dim)
+            return v.cols(0, dim - 1).t();
+        else {
+            arma::vec retVec(dim);
+            for(int i = 0; i < dim; ++i)
+                if(i < v.n_cols)
+                    retVec(i) = v(i);
+                else
+                    retVec(i) = v(v.n_cols- 1);
+            return retVec;
+        }
+
+    }
+
     int SensingController::callClassifier(std::string passedFilePath) {
 
+        KUKADU_MODULE_START_USAGE();
+
         auto toClassify = loadClassificationData({0}, {passedFilePath});
-        vec toClassifyVec = toClassify.second.front().cols(0, classifier->getSampleDimensionality() - 1).t();
-        return classifier->classify(toClassifyVec);
+        vec toClassifyVec = fitToDim(toClassify.second.front(), classifier->getSampleDimensionality());
+        auto res = classifier->classify(toClassifyVec);
+
+        KUKADU_MODULE_END_USAGE();
+
+        return res;
 
     }
 
