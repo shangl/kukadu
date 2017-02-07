@@ -589,9 +589,11 @@ namespace kukadu {
 
         KUKADU_MODULE_START_USAGE();
 
-        rollBackQueue.clear();
-        rollbackMode = true;
+        rollbackQueueMutex.lock();
+            rollBackQueue.clear();
+        rollbackQueueMutex.unlock();
         rollBackTime = possibleTime;
+        rollbackMode = true;
         // buffer of 1.0 more second
         rollBackQueueSize = (int) ((possibleTime + 1.0) / getCycleTime());
 
@@ -604,7 +606,9 @@ namespace kukadu {
         KUKADU_MODULE_START_USAGE();
 
         rollbackMode = false;
+        rollbackQueueMutex.lock();
         rollBackQueue.clear();
+        rollbackQueueMutex.unlock();
 
         KUKADU_MODULE_END_USAGE();
 
@@ -621,15 +625,25 @@ namespace kukadu {
         stretchFactor = max((double) stretchFactor, 1.0);
 
         vec lastCommand(getDegreesOfFreedom());
+        rollbackQueueMutex.lock();
         if(rollBackQueue.size())
             lastCommand = rollBackQueue.front();
+        rollbackQueueMutex.unlock();
 
         int newRollBackCount = ceil((double) rollBackCount / (double) stretchFactor);
 
         // fill command queue with last commands (backwards)
         for(int i = 0; i < newRollBackCount && rollBackQueue.size(); ++i) {
 
-            vec nextCommand = rollBackQueue.front();
+            rollbackQueueMutex.lock();
+                vec nextCommand;
+                if(rollBackQueue.size())
+                    nextCommand = rollBackQueue.front();
+                else {
+                    rollbackQueueMutex.unlock();
+                    break;
+                }
+            rollbackQueueMutex.unlock();
 
             // interpolate to stretch the trajectory in case there are not enough measured packets (happens in usage with simulator)
             vec diffUnit = (nextCommand - lastCommand) / (double) stretchFactor;
@@ -638,7 +652,10 @@ namespace kukadu {
             }
 
             lastCommand = nextCommand;
-            rollBackQueue.pop_front();
+            rollbackQueueMutex.lock();
+                if(rollBackQueue.size())
+                    rollBackQueue.pop_front();
+            rollbackQueueMutex.unlock();
 
         }
 

@@ -302,6 +302,8 @@ namespace kukadu {
         std::vector<KUKADU_SHARED_PTR<Controller> > preparationControllers;
         std::vector<KUKADU_SHARED_PTR<SensingController> > sensingControllers;
 
+        std::vector<KUKADU_SHARED_PTR<Clip> > sensingClips;
+
         std::map<std::string, KUKADU_SHARED_PTR<kukadu::SensingController> > availableSensingControllers;
         std::map<std::string, KUKADU_SHARED_PTR<kukadu::Controller> > availablePreparatoryControllers;
 
@@ -325,6 +327,8 @@ namespace kukadu {
         std::vector<KUKADU_SHARED_PTR<Clip> > getStateClipsForSensingId(KUKADU_SHARED_PTR<SensingController> sensingId);
 
         bool hasDuplicateStatesInPath(std::vector<KUKADU_SHARED_PTR<Clip> >& path);
+
+        void loadTargetClips(KUKADU_SHARED_PTR<Clip> sensingClip, KUKADU_SHARED_PTR<Clip> sensedState);
 
     protected:
 

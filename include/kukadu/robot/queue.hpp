@@ -78,6 +78,7 @@ namespace kukadu {
 
         kukadu_mutex loadMaxDistMutex;
         kukadu_mutex loadCycleTimeMutex;
+        kukadu_mutex rollbackQueueMutex;
 
         geometry_msgs::Pose currentCartPose;
         geometry_msgs::Pose internalPosePasser;

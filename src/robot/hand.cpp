@@ -3,6 +3,7 @@
 #include <kukadu/robot/hand.hpp>
 #include <kukadu/utils/utils.hpp>
 #include <kukadu/robot/kukiehand.hpp>
+#include <kukadu/types/kukadutypes.hpp>
 #include <std_msgs/Float64MultiArray.h>
 #include <kukadu/types/kukadutypes.hpp>
 #include <iis_robot_dep/TactileMatrix.h>
@@ -488,13 +489,19 @@ namespace kukadu {
         KUKADU_MODULE_START_USAGE();
 
         auto currJoints = getCurrentJoints();
+
+        if(positions.n_elem != currJoints.n_elem)
+            throw KukaduException("(KukieHand) wrong joint dimension");
+
         auto ignoreJoint = SDH_IGNORE_JOINT;
         std_msgs::Float64MultiArray newJoints;
         for(int i = 0; i < positions.n_elem; ++i) {
             if(positions(i) != ignoreJoint)
                 newJoints.data.push_back(positions(i));
-            else
+            else {
                 newJoints.data.push_back(currJoints(i));
+                positions(i) = currJoints(i);
+            }
         }
 
         targetReached = false;
@@ -511,13 +518,14 @@ namespace kukadu {
             while(!targetReached) {
 
                 bool stillMoving = false;
-                // check if the fingers are still moving
 
+                // check if the fingers are still moving
                 currentPosMutex.lock();
                     auto posQueueTmp = previousCurrentPosQueue;
                 currentPosMutex.unlock();
 
                 while(!posQueueTmp.empty()) {
+
                     auto& previousCurrentPos = posQueueTmp.front();
                     bool deviates = vectorsDeviate(previousCurrentPos, armadilloToStdVec(getCurrentJoints()), 0.01);
                     if(deviates) {
@@ -525,6 +533,7 @@ namespace kukadu {
                         break;
                     }
                     posQueueTmp.pop();
+
                 }
 
                 // if not moving anymore but the movement was started --> the target is reached

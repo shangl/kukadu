@@ -309,6 +309,18 @@ namespace kukadu {
             stateClipsPerSensingAction[KUKADU_DYNAMIC_POINTER_CAST<IntermediateEventClip>(sensingClip)->getSensingController()->getCaption()] = *sensingClip->getSubClips();
         }
 
+        // get all sensing clips
+        sensingClips = projSim->getClipsOnLayer(1);
+        for(auto sClip : sensingClips) {
+            auto stateClips = sClip->getSubClips();
+            if(stateClips) {
+                for(auto states : *stateClips)
+                    loadTargetClips(sClip, states);
+            }
+        }
+
+        cout << "(ComplexController) number of target states: " << nothingStateClips.size() << endl;
+
     }
 
     bool ComplexController::getLastSkillExecutionSuccessful() {
@@ -414,7 +426,7 @@ namespace kukadu {
         }
 
         if(!sensingClip)
-            throw KukaduException("(createEnvironmentModel) sensing action not available");
+            throw KukaduException("(ComplexController) sensing action not available");
 
         auto prepClips = sensingClip->getSubClipByIdx(0)->getSubClips();
         int sensingCatCount = sensingClip->getSubClipCount();
@@ -718,6 +730,28 @@ namespace kukadu {
 
     }
 
+    void ComplexController::loadTargetClips(KUKADU_SHARED_PTR<Clip> sensingClip, KUKADU_SHARED_PTR<Clip> sensedState) {
+
+        // pair contains maximal hop probability of clip and the corresponding clip
+        auto maxProbClipPair = sensedState->getMaxProbability();
+        double maxProb = get<0>(maxProbClipPair);
+        int maxWeight = get<1>(maxProbClipPair);
+        auto maxPrepClip = get<2>(maxProbClipPair);
+
+        // if probability of success after using "nothing" action is high enough, the state clip might be considered in future reasoning
+        // e.g. for guided clip creation
+        if(maxWeight > stdPrepWeight) {
+            if(maxProb > nothingStateProbThresh && KUKADU_DYNAMIC_POINTER_CAST<ControllerActionClip>(maxPrepClip)->toString() == nothingController->getCaption() && !nothingStateClips[sensingClip->toString()][sensedState->toString()]) {
+                nothingStateClips[sensingClip->toString()][sensedState->toString()] = sensedState;
+
+            // if there is a state where the strongest action is "nothing" but the probability is below 0.8, remove it (even if it is not in there yet - checking
+            // this would just make it slower)
+            } else if(maxProb <= nothingStateProbThresh && KUKADU_DYNAMIC_POINTER_CAST<ControllerActionClip>(maxPrepClip)->toString() == "nothing")
+                nothingStateClips[sensingClip->toString()][sensedState->toString()] = nullptr;
+        }
+
+    }
+
     KUKADU_SHARED_PTR<ControllerResult> ComplexController::executeInternal() {
 
         KUKADU_MODULE_START_USAGE();
@@ -734,8 +768,12 @@ namespace kukadu {
 
         ++currentIterationNum;
 
+        cout << "nothing state clip count: " << nothingStateClips.size() << endl;
+
         auto walkRet = projSim->performRandomWalk(2);
         auto wasBored = projSim->nextHopIsBored();
+
+        cout << "was bored: " << wasBored << endl;
 
         double reward = 0.0;
         std::tuple<double, KUKADU_SHARED_PTR<Clip>, std::vector<KUKADU_SHARED_PTR<Clip> >, int> selectedPath;
@@ -750,6 +788,8 @@ namespace kukadu {
             auto sensingClip = get<0>(newClips);
             auto stateClip = get<1>(newClips);
             auto stateId = stateClip->getClipDimensions()->at(0);
+
+            cout << "use creativity: " << useCreativity << endl;
 
             // block for creativity mode
             if(useCreativity) {
@@ -951,6 +991,7 @@ namespace kukadu {
             }
 
             executeComplexAction();
+            cleanupAfterAction();
 
             // after doing everything --> perform the complex action and reward it accordingly
             auto rewRet = projSim->performRewarding();
@@ -961,27 +1002,13 @@ namespace kukadu {
             // block for determining the "nothing" states is only required if creativity is switched on
             if(useCreativity) {
 
-                // pair contains maximal hop probability of clip and the corresponding clip
-                auto maxProbClipPair = sensedState->getMaxProbability();
-                double maxProb = get<0>(maxProbClipPair);
-                int maxWeight = get<1>(maxProbClipPair);
-                auto maxPrepClip = get<2>(maxProbClipPair);
-
-                // if probability of success after using "nothing" action is high enough, the state clip might be considered in future reasoning
-                // e.g. for guided clip creation
-                if(maxWeight > stdPrepWeight) {
-                    if(maxProb > nothingStateProbThresh && KUKADU_DYNAMIC_POINTER_CAST<ControllerActionClip>(maxPrepClip)->toString() == nothingController->getCaption() && !nothingStateClips[sensingClip->toString()][sensedState->toString()]) {
-                        nothingStateClips[sensingClip->toString()][sensedState->toString()] = sensedState;
-
-                    // if there is a state where the strongest action is "nothing" but the probability is below 0.8, remove it (even if it is not in there yet - checking
-                    // this would just make it slower)
-                    } else if(maxProb <= nothingStateProbThresh && KUKADU_DYNAMIC_POINTER_CAST<ControllerActionClip>(maxPrepClip)->toString() == "nothing")
-                        nothingStateClips[sensingClip->toString()][sensedState->toString()] = nullptr;
-                }
+                loadTargetClips(sensingClip, sensedState);
 
             }
 
         } else {
+
+            cout << "(ComplexController) i am bored - i will try to produce another perceptual state" << endl;
 
             ++consecutiveBoredomCount;
             walkRet = projSim->performRandomWalk(ProjectiveSimulator::PS_WALK_UNTIL_END, true);

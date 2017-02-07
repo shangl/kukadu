@@ -1118,6 +1118,7 @@ namespace kukadu {
         if(clipLevel != Clip::CLIP_H_LEVEL_FINAL) {
 
             auto boredom = boredomLevels.at(clipLevel);
+            cout << "boredom level: " << boredomLevels.at(clipLevel) << endl;
             if(boredomLevels.at(clipLevel) > 0.0) {
 
                 double entropy = clip->computeSubEntropy();
@@ -1125,6 +1126,8 @@ namespace kukadu {
 
                 // b * (1 - H / H_max) = 1 - b * H / log2(N)
                 double boredomScore = 1.0 - boredom * entropy / log2(numberOfSubclips);
+
+                cout << "boredom score: " << boredomScore << endl;
 
                 vector<double> boredomDistWeights;
                 boredomDistWeights.push_back(boredomScore);
