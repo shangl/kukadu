@@ -1,6 +1,7 @@
 #include <limits>
 #include <sstream>
 #include <kukadu/manipulation/skillexporter.hpp>
+#include <kukadu/storage/sensorstoragesingleton.hpp>
 
 using namespace std;
 
@@ -34,7 +35,9 @@ namespace kukadu {
         auto& st = getStorage();
 
         stringstream s;
-        s << "select hi.instance_name as iname from skills_robot as sr inner join hardware_instances as hi on hi.instance_id = sr.hardware_instance_id where skill_id = " << skillId;
+        s << "select hi.instance_name as iname from skills_robot as sr " <<
+             " inner join hardware_instances as hi on hi.instance_id = sr.hardware_instance_id where skill_id = " << skillId <<
+             " order by hi.instance_name";
 
         auto queryRes = st.executeQuery(s.str());
         while(queryRes->next())
@@ -55,9 +58,9 @@ namespace kukadu {
 
         stringstream s;
         s << "select start_timestamp, end_timestamp, successful from skill_executions where skill_id = " << skillId <<
-             " and start_timestamp >= " << startTime << " and end_timestamp <= " <<
+             " and start_timestamp >= " << startTime << " and (end_timestamp <= " << endTime <<
+             " or (end_timestamp is null and start_timestamp <= " << endTime << "))" <<
              " order by start_timestamp";
-
         auto queryRes = st.executeQuery(s.str());
         while(queryRes->next()) {
             long long int startTime = queryRes->getInt64("start_timestamp");
@@ -70,17 +73,30 @@ namespace kukadu {
 
     }
 
-    void SkillExporter::exportSkillExecutions(int skillId, long long int startTime, long long int endTime,
-                                              std::vector<KUKADU_SHARED_PTR<kukadu::Hardware> > hardwareInstances, std::string folder) {
+    void SkillExporter::exportSkillExecutions(int skillId, long long int startTime, long long int endTime, std::string folder) {
+
+        auto& sensorSingleton = SensorStorageSingleton::get();
 
         auto hardware = getSkillHardware(skillId);
 
+        vector<KUKADU_SHARED_PTR<Hardware> > hardwareInstances;
+        for(auto& hardwareName : hardware)
+            hardwareInstances.push_back(sensorSingleton.getRegisteredHardware(hardwareName));
+
+        int exportedExecutionCount = 0;
         auto executions = getSkillExecutions(skillId, startTime, endTime);
         for(auto& execution : executions) {
+
+            cout << "exporting execution number " << ++exportedExecutionCount << endl;
 
             long long int startTime = get<0>(execution);
             long long int endTime = get<1>(execution);
             bool succ = get<2>(execution);
+
+            for(auto& hw : hardwareInstances) {
+                auto executionData = hw->loadData(startTime, endTime);
+                cout << "data for " << hw->getHardwareInstanceName() << " has " << executionData.size() << " samples" << endl;
+            }
 
         }
 

@@ -2,6 +2,7 @@
 #define KUKADU_HARDWARE_H
 
 #include <string>
+#include <armadillo>
 #include <kukadu/storage/storagesingleton.hpp>
 
 namespace kukadu {
@@ -22,10 +23,10 @@ namespace kukadu {
         void registerHardware();
 
         // performs the general installation (adding the typename and id to the hardware table); calls installHardwareTypeInternal() at the end
-        virtual void installHardwareType() final;
+        virtual void installHardwareType();
 
         // performs the general installation (adding the typename and id to the hardware_instances table); calls installHardwareInstanceInternal() at the end
-        virtual void installHardwareInstance() final;
+        virtual void installHardwareInstance();
 
     protected:
 
@@ -36,7 +37,7 @@ namespace kukadu {
 
         Hardware(StorageSingleton& dbStorage, int hardwareClass, int hardwareType, std::string hardwareTypeName, int hardwareInstanceId, std::string hardwareInstanceName);
 
-        virtual void install() final;
+        virtual void install();
 
         int getHardwareType();
         int getHardwareClass();
@@ -57,6 +58,30 @@ namespace kukadu {
 
         virtual void storeCurrentSensorDataToDatabase() = 0;
         virtual double getPreferredPollingFrequency() = 0;
+
+        /* returns a vector of sensor data of the given hardware and the corresponding time */
+        virtual std::vector<std::pair<long long int, arma::vec> > loadData(long long int startTime, long long int endTime, long long int maxTimeStepDifference = 5000) = 0;
+
+    };
+
+    class JointHardware : public Hardware {
+
+    public:
+
+        JointHardware(StorageSingleton& dbStorage, int hardwareClass, int hardwareType, std::string hardwareTypeName, int hardwareInstanceId, std::string hardwareInstanceName);
+
+        virtual std::vector<std::string> getJointNames() = 0;
+
+        virtual int getJointId(std::string jointName);
+        virtual int getDegreesOfFreedom();
+
+        virtual std::vector<int> getJointIds();
+        virtual std::vector<int> getJointIds(std::vector<std::string> jointNames);
+
+        /* returns the time and a vector consisting of (joint positions, joint velocities, joint accelerations, joint forces);
+         * the order of the joints is given by (order given by getJointIds()) */
+        /* maxTimeStepDifference measures how much time is allowed to be between 2 samples in order to separate skills if endTime is not defined and therefore = 0 */
+        virtual std::vector<std::pair<long long int, arma::vec> > loadData(long long int startTime, long long int endTime, long long maxTimeStepDifference = 5000);
 
     };
 

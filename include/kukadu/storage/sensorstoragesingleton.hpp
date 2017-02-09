@@ -31,6 +31,8 @@ namespace kukadu {
         void registerHardware(KUKADU_SHARED_PTR<Hardware> hardware);
         void registerHardware(std::vector<KUKADU_SHARED_PTR<Hardware> > hardware);
 
+        KUKADU_SHARED_PTR<Hardware> getRegisteredHardware(std::string name);
+
         void initiateStorageAllRegistered();
 
         /* returns whether the storage was started (true) or if it already was running (false) */

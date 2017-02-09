@@ -41,7 +41,7 @@ namespace kukadu {
      * planning or security mechanisms such as maximum force values for execution.
      * \ingroup Robot
      */
-    class ControlQueue : public Hardware, public DestroyableObject, public KUKADU_ENABLE_SHARED_FROM_THIS<ControlQueue>, public TimedObject {
+    class ControlQueue : public JointHardware, public DestroyableObject, public KUKADU_ENABLE_SHARED_FROM_THIS<ControlQueue>, public TimedObject {
 
     private:
 

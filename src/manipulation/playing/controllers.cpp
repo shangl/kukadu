@@ -167,7 +167,7 @@ namespace kukadu {
                     return pc;
 
                 } else if(level == Clip::CLIP_H_LEVEL_FINAL) {
-cout << "loading line: " << line << " " << idVec << endl;
+
                     if(this->availablePreparatoryControllers.find(label) != this->availablePreparatoryControllers.end() && (this->availablePreparatoryControllers)[label]) {
                         auto ac = make_shared<ControllerActionClip>(storage, atoi(tok.next().c_str()), (this->availablePreparatoryControllers)[label], generator);
                         return ac;
@@ -199,11 +199,6 @@ cout << "loading line: " << line << " " << idVec << endl;
             // ugly syntax - i have to kill these shared pointers some day
             prepActions = (*((*(projSim->getClipLayers()->end() - 1))->begin()))->getSubClips();
             prepActionsCasted = projSim->getActionClips();
-
-
-for(auto actions : *prepActionsCasted)
-    cout << actions->getIdVecString() << " " << actions->toString() << endl;
-
 
             root = *(projSim->getPerceptClips()->begin());
 

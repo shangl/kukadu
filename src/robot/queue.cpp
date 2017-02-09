@@ -141,7 +141,7 @@ namespace kukadu {
     }
 
     ControlQueue::ControlQueue(StorageSingleton& storage, std::string robotName, int degreesOfFreedom, double desiredCycleTime) :
-        Hardware(storage, HARDWARE_ARM, loadOrCreateTypeIdFromName("ControlQueue"), "ControlQueue", loadOrCreateInstanceIdFromName(robotName), robotName) {
+        JointHardware(storage, HARDWARE_ARM, loadOrCreateTypeIdFromName("ControlQueue"), "ControlQueue", loadOrCreateInstanceIdFromName(robotName), robotName) {
 
         thr = nullptr;
         frcTrqFilterUpdateThr = nullptr;

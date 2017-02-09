@@ -20,6 +20,15 @@ namespace kukadu {
 
     }
 
+    KUKADU_SHARED_PTR<Hardware> SensorStorageSingleton::getRegisteredHardware(std::string name) {
+
+        if(registeredHardware.find(name) != registeredHardware.end())
+            return registeredHardware[name];
+
+        throw KukaduException("(SensorStorageSingleton) requested hardware not registered yet");
+
+    }
+
     void SensorStorageSingleton::registerHardware(KUKADU_SHARED_PTR<Hardware> hardware) {
 
         if(hardware) {

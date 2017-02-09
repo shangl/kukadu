@@ -21,7 +21,7 @@ namespace kukadu {
      * This class provides very an interface for the very basic functionalities such as "connect to hand" or "close hand"
      * \ingroup Robot
      */
-    class GenericHand : public Hardware, public DestroyableObject, public TimedObject {
+    class GenericHand : public JointHardware, public DestroyableObject, public TimedObject {
 
     private:
 
@@ -72,10 +72,6 @@ namespace kukadu {
 
         virtual void storeCurrentSensorDataToDatabase();
         virtual double getPreferredPollingFrequency();
-
-        virtual int getJointId(std::string jointName);
-        virtual std::vector<int> getJointIds();
-        virtual std::vector<int> getJointIds(std::vector<std::string> jointNames);
 
     };
 

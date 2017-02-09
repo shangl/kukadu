@@ -2,6 +2,7 @@
 #include <kukadu/robot/hardware.hpp>
 
 using namespace std;
+using namespace arma;
 
 namespace kukadu {
 
@@ -165,6 +166,139 @@ namespace kukadu {
             return StorageSingleton::get().getNextIdInTable("hardware_instances", "instance_id");
         }
         return -1;
+    }
+
+    JointHardware::JointHardware(StorageSingleton& dbStorage, int hardwareClass, int hardwareType, std::string hardwareTypeName,
+                                 int hardwareInstanceId, std::string hardwareInstanceName) : Hardware(dbStorage, hardwareClass, hardwareType, hardwareTypeName, hardwareInstanceId, hardwareInstanceName) {
+
+    }
+
+    vector<std::pair<long long int, arma::vec> > JointHardware::loadData(long long int startTime, long long int endTime, long long int maxTimeStepDifference) {
+
+        if(startTime < 0 || endTime < 0 || maxTimeStepDifference < 0)
+            throw KukaduException("(JointHardware) provided time must be positive");
+
+        vector<std::pair<long long int, arma::vec> > loadedData;
+
+        auto& storage = getStorage();
+        auto robotId = getHardwareInstance();
+        auto jointIds = getJointIds();
+
+        stringstream s;
+        s << "select joint_id, time_stamp, position, velocity, acceleration, frc from joint_mes where " <<
+             "robot_id = " << robotId << " and joint_id in (";
+        for(int i = 0; i < jointIds.size(); ++i) {
+            s << jointIds.at(i);
+            if(i < (jointIds.size() - 1))
+                s << ",";
+        }
+        s << ") and time_stamp >= " << startTime << " ";
+
+        if(endTime > 0)
+            s << " and time_stamp <= " << endTime << " ";
+
+        s <<"order by time_stamp asc, joint_id asc";
+
+        auto degOfFreedom = getDegreesOfFreedom();
+
+        vector<bool> posAlreadyLoaded;
+        for(int i = 0; i < degOfFreedom; ++i)
+            posAlreadyLoaded.push_back(false);
+
+        vec nextJointPosVec(degOfFreedom);
+        vec nextJointVelVec(degOfFreedom);
+        vec nextJointAccVec(degOfFreedom);
+        vec nextJointFrcVec(degOfFreedom);
+
+        int currentJointId = -1;
+        long long int currentTimeStamp = -1;
+        double currentPos = 0.0;
+        double currentVel = 0.0;
+        double currentAcc = 0.0;
+        double currentFrc = 0.0;
+
+        long long int prevTimeStamp = -1;
+
+        map<int, int> mapJointIdsToLoadedVec;
+        for(int i = 0; i < jointIds.size(); ++i)
+            mapJointIdsToLoadedVec[jointIds.at(i)] = i;
+
+        auto jointQuery = storage.executeQuery(s.str());
+        while(jointQuery->next()) {
+
+            currentJointId = jointQuery->getInt("joint_id");
+            currentTimeStamp = jointQuery->getInt64("time_stamp");
+            currentPos = jointQuery->getDouble("position");
+            currentVel = jointQuery->getDouble("velocity");
+            currentAcc = jointQuery->getDouble("acceleration");
+            currentFrc = jointQuery->getDouble("frc");
+
+            // if the time distance is too big - its not one connected measurement anymore
+            if(prevTimeStamp != -1 && (currentTimeStamp - startTime) > maxTimeStepDifference)
+                break;
+
+            // if the timestamp changes, a different sample started --> return it
+            if(currentTimeStamp != prevTimeStamp) {
+
+                int allDataLoaded = degOfFreedom;
+                // set back the loaded flags and check, if all joints were loaded in the previous sample
+                for(int i = 0; i < degOfFreedom; ++i) {
+                    if(posAlreadyLoaded.at(i))
+                        --allDataLoaded;
+                    posAlreadyLoaded.at(i) = false;
+                }
+
+                // if not all data points are loaded --> ignore the last data sample
+                if(allDataLoaded) { }
+                // otherwise add it to the return set
+                else {
+
+                    // join all data and add it to the return set
+                    vec sample = join_cols(join_cols(join_cols(nextJointPosVec, nextJointVelVec), nextJointAccVec), nextJointFrcVec);
+                    loadedData.push_back({prevTimeStamp, sample});
+
+                }
+
+                prevTimeStamp = currentTimeStamp;
+
+            }
+
+            // if the stored joint id is really part of the hardware
+            if(mapJointIdsToLoadedVec.find(currentJointId) != mapJointIdsToLoadedVec.end()) {
+
+                auto jointIndex = mapJointIdsToLoadedVec[currentJointId];
+                posAlreadyLoaded.at(jointIndex) = true;
+                nextJointPosVec(jointIndex) = currentPos;
+                nextJointVelVec(jointIndex) = currentVel;
+                nextJointAccVec(jointIndex) = currentAcc;
+                nextJointFrcVec(jointIndex) = currentFrc;
+
+            }
+            // if not --> ignore
+            else {
+
+            }
+
+        }
+
+        return loadedData;
+
+    }
+
+    int JointHardware::getJointId(std::string jointName) {
+
+        stringstream s;
+        s << "select joint_id from hardware_joints where hardware_instance_id = " << getHardwareInstance() << " and joint_name = \"" << jointName << "\"";
+        auto idRes = getStorage().executeQuery(s.str());
+        if(idRes->next())
+            return idRes->getInt("joint_id");
+        else
+            throw KukaduException("(JointHardware) searched joint is not part of the robot");
+
+    }
+
+    int JointHardware::getDegreesOfFreedom() {
+        return getJointIds().size();
     }
 
 }

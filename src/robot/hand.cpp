@@ -21,12 +21,12 @@ namespace kukadu {
 #endif
 
     GenericHand::GenericHand(StorageSingleton& dbStorage, std::string handInstanceName) :
-        Hardware(dbStorage, HARDWARE_HAND, Hardware::loadTypeIdFromInstanceName(handInstanceName), loadTypeNameFromInstanceName(handInstanceName), Hardware::loadInstanceIdFromName(handInstanceName), handInstanceName) {
+        JointHardware(dbStorage, HARDWARE_HAND, Hardware::loadTypeIdFromInstanceName(handInstanceName), loadTypeNameFromInstanceName(handInstanceName), Hardware::loadInstanceIdFromName(handInstanceName), handInstanceName) {
         isFirstStorage = true;
     }
 
     GenericHand::GenericHand(StorageSingleton& dbStorage, int handTypeId, std::string handTypeName, int handInstanceId, std::string handInstanceName) :
-        Hardware(dbStorage, HARDWARE_HAND, handTypeId, handTypeName, handInstanceId, handInstanceName) {
+        JointHardware(dbStorage, HARDWARE_HAND, handTypeId, handTypeName, handInstanceId, handInstanceName) {
         isFirstStorage = true;
     }
 
@@ -50,23 +50,11 @@ namespace kukadu {
 
     }
 
-    int GenericHand::getJointId(std::string jointName) {
-
-        stringstream s;
-        s << "select joint_id from hardware_joints where hardware_instance_id = " << getHardwareInstance() << " and joint_name = \"" << jointName << "\"";
-        auto idRes = getStorage().executeQuery(s.str());
-        if(idRes->next())
-            return idRes->getInt("joint_id");
-        else
-            throw KukaduException("(GenericHand) searched joint is not part of the robot");
-
-    }
-
-    std::vector<int> GenericHand::getJointIds() {
+    std::vector<int> JointHardware::getJointIds() {
         return getJointIds(getJointNames());
     }
 
-    std::vector<int> GenericHand::getJointIds(std::vector<std::string> jointNames) {
+    std::vector<int> JointHardware::getJointIds(std::vector<std::string> jointNames) {
         vector<int> jointIds;
         for(int i = 0; i < jointNames.size(); ++i)
             jointIds.push_back(getJointId(jointNames.at(i)));
@@ -87,7 +75,7 @@ namespace kukadu {
         vec jointFrcs = zeros(1);
 
         auto& storage = getStorage();
-        auto robotId = getHardwareType();
+        auto robotId = getHardwareInstance();
         auto jointIds = getJointIds();
 
         prevPrevJoints = prevJoints;
