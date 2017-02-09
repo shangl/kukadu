@@ -173,7 +173,7 @@ namespace kukadu {
 
     }
 
-    vector<std::pair<long long int, arma::vec> > JointHardware::loadData(long long int startTime, long long int endTime, long long int maxTimeStepDifference) {
+    vector<std::pair<long long int, arma::vec> > JointHardware::loadData(long long int startTime, long long int endTime, long long maxTotalDuration, long long int maxTimeStepDifference) {
 
         if(startTime < 0 || endTime < 0 || maxTimeStepDifference < 0)
             throw KukaduException("(JointHardware) provided time must be positive");
@@ -192,12 +192,14 @@ namespace kukadu {
             if(i < (jointIds.size() - 1))
                 s << ",";
         }
-        s << ") and time_stamp >= " << startTime << " ";
+        s << ") and time_stamp >= " << startTime;
 
         if(endTime > 0)
-            s << " and time_stamp <= " << endTime << " ";
+            s << " and time_stamp <= " << endTime;
+        else
+            s << " and time_stamp <= " << (startTime + maxTotalDuration);
 
-        s <<"order by time_stamp asc, joint_id asc";
+        s << " order by time_stamp asc, joint_id asc";
 
         auto degOfFreedom = getDegreesOfFreedom();
 
@@ -234,7 +236,7 @@ namespace kukadu {
             currentFrc = jointQuery->getDouble("frc");
 
             // if the time distance is too big - its not one connected measurement anymore
-            if(prevTimeStamp != -1 && (currentTimeStamp - startTime) > maxTimeStepDifference)
+            if(endTime <= 0 && prevTimeStamp != -1 && (currentTimeStamp - prevTimeStamp) > maxTimeStepDifference)
                 break;
 
             // if the timestamp changes, a different sample started --> return it

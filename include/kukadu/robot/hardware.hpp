@@ -60,7 +60,10 @@ namespace kukadu {
         virtual double getPreferredPollingFrequency() = 0;
 
         /* returns a vector of sensor data of the given hardware and the corresponding time */
-        virtual std::vector<std::pair<long long int, arma::vec> > loadData(long long int startTime, long long int endTime, long long int maxTimeStepDifference = 5000) = 0;
+        /* the maximum duration of the whole exported series is 1 hour (3600000 ms) */
+        virtual std::vector<std::pair<long long int, arma::vec> > loadData(long long int startTime, long long int endTime,
+                                                                           long long int maxTotalDuration = 3600000,
+                                                                           long long int maxTimeStepDifference = 5000) = 0;
 
     };
 
@@ -81,7 +84,9 @@ namespace kukadu {
         /* returns the time and a vector consisting of (joint positions, joint velocities, joint accelerations, joint forces);
          * the order of the joints is given by (order given by getJointIds()) */
         /* maxTimeStepDifference measures how much time is allowed to be between 2 samples in order to separate skills if endTime is not defined and therefore = 0 */
-        virtual std::vector<std::pair<long long int, arma::vec> > loadData(long long int startTime, long long int endTime, long long maxTimeStepDifference = 5000);
+        virtual std::vector<std::pair<long long int, arma::vec> > loadData(long long int startTime, long long int endTime,
+                                                                           long long int maxTotalDuration = 3600000,
+                                                                           long long maxTimeStepDifference = 5000);
 
     };
 
