@@ -283,7 +283,7 @@ namespace kukadu {
         auto queryRes = storage.executeQuery(functionStream.str());
         map<int, int> mapFunctionIdToIdx;
         for(int i = 0; queryRes->next(); ++i)
-            mapFunctionIdToIdx[queryRes->getInt("id")];
+            mapFunctionIdToIdx[queryRes->getInt("id")] = i;
 
         int functionCount = mapFunctionIdToIdx.size();
 
