@@ -285,6 +285,7 @@ namespace kukadu {
 
                 // store the sample to the current position in the storage grid
                 int currentColIdx = (double) currentTime / minDeltaT;
+
                 for(int j = 0; j < sensorDataLengthPerHardware.at(i); ++j) {
 
                     maxFilledColId.at(dimOffset + j) = currentColIdx;
@@ -301,11 +302,11 @@ namespace kukadu {
                     // if k is smaller than 0, it means that all values before were nan --> no interpolation possible, just fill it up with the current value
                     if(k < 0)
                         for(int l = 0; l < currentColIdx; ++l)
-                            storageGrid(dimOffset + j, currentColIdx) = currentSensorSample(j);
+                            storageGrid(dimOffset + j, l) = currentSensorSample(j);
                     else if(k != currentColIdx) {
                         double deltaX = (double) (storageGrid(dimOffset + j, currentColIdx) - storageGrid(dimOffset + j, k)) / (currentColIdx - k);
                         for(int l = k; l < currentColIdx; ++l)
-                            storageGrid(dimOffset + j, l) = storageGrid(dimOffset + j, k) + l * deltaX;
+                            storageGrid(dimOffset + j, l) = storageGrid(dimOffset + j, k) + (l - k + 1) * deltaX;
                     }
 
                 }

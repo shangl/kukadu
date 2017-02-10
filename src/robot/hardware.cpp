@@ -173,7 +173,8 @@ namespace kukadu {
 
     }
 
-    vector<std::pair<long long int, arma::vec> > JointHardware::loadData(long long int startTime, long long int endTime, long long maxTotalDuration, long long int maxTimeStepDifference) {
+    vector<std::pair<long long int, arma::vec> > JointHardware::loadData(long long int startTime, long long int endTime, long long maxTotalDuration,
+                                                                         long long int maxTimeStepDifference) {
 
         if(startTime < 0 || endTime < 0 || maxTimeStepDifference < 0)
             throw KukaduException("(JointHardware) provided time must be positive");

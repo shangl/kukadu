@@ -11,6 +11,7 @@
  */
 
 #include <queue>
+#include <vector>
 #include <armadillo>
 #include <geometry_msgs/Pose.h>
 #include <kukadu/robot/filters.hpp>
@@ -451,6 +452,9 @@ namespace kukadu {
 
         virtual void storeCurrentSensorDataToDatabase();
         virtual double getPreferredPollingFrequency();
+
+        virtual std::vector<std::pair<long long int, arma::vec> > loadData(long long int startTime, long long int endTime, long long maxTotalDuration = 3600000,
+                                                                           long long int maxTimeStepDifference = 5000);
 
         static const int CONTROLQUEUE_STOP_MODE = 0;
         static const int CONTROLQUEUE_JNT_POS_MODE = 10;
