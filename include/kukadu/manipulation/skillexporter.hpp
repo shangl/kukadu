@@ -25,7 +25,7 @@ namespace kukadu {
         // - bool success
         std::vector<std::tuple<long long int, long long int, bool> > getSkillExecutions(int skillId, long long int startTime = 0, long long int endTime = 0);
 
-        void exportSkillExecutions(int skillId, long long int startTime, long long int endTime, std::string folder);
+        void exportSkillExecutions(int skillId, long long int startTime, long long int endTime, std::string folder, bool exportModuleStatistics = true);
 
     };
 

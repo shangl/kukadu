@@ -11,10 +11,16 @@ using namespace arma;
 namespace kukadu {
 
     void storeExecution(vector<KUKADU_SHARED_PTR<Hardware> >& hardwareInstances,
-                        map<int, vector<vector<std::pair<long long int, arma::vec> > > >& allSamples, int& executionId,
-                        long long int& maxDuration, long long int& minDeltaT,
+                        map<int, vector<vector<std::pair<long long int, arma::vec> > > >& allSamples,
+                        vector<long long int>& unnormalizedStartTimes,
+                        vector<long long int>& unnormalizedEndTimes,
+                        int& executionId,
+                        long long int& maxDuration, long long int minDeltaT,
                         vector<int>& sensorDataLengthPerHardware,
-                        std::string file);
+                        std::string file,
+                        bool exportModuleStatistics);
+
+    void augmentWithFunctionStatistics(long long startTime, long long endTime, arma::mat& currentData, long long int deltaT, ofstream& ostr, int maxFunctionId = -1);
 
     SkillExporter::SkillExporter(StorageSingleton &storage) : StorageHolder(storage) {
 
@@ -112,7 +118,7 @@ namespace kukadu {
 
     }
 
-    void SkillExporter::exportSkillExecutions(int skillId, long long int startTime, long long int endTime, std::string folder) {
+    void SkillExporter::exportSkillExecutions(int skillId, long long int startTime, long long int endTime, std::string folder, bool exportModuleStatistics) {
 
         if(fileExists(folder))
             throw KukaduException("(SkillExporter) target directory already exists");
@@ -137,120 +143,213 @@ namespace kukadu {
 
         int exportedExecutionCount = 0;
         auto executions = getSkillExecutions(skillId, startTime, endTime);
-        for(auto& execution : executions) {
 
-            long long int startTime = get<0>(execution);
-            long long int endTime = get<1>(execution);
-            bool succ = get<2>(execution);
+        if(executions.size()) {
 
-            auto convTime = msToMinSec(endTime - startTime);
-            int totalMins = convTime.first;
-            int restSeconds = convTime.second;
+            // contains the start data before normalization (after normalization all start times are 0)
+            vector<long long int> unnormalizedStartTimes(executions.size(), std::numeric_limits<long long int>::max());
+            vector<long long int> unnormalizedEndTimes(executions.size(), std::numeric_limits<long long int>::min());
 
-            cout << "exporting execution number " << ++exportedExecutionCount;
-            if(endTime > 0)
-                cout << " and duration " << totalMins << "m:" << restSeconds << "s";
-            cout << " which was " << ((succ) ? "successful" : "not successful" ) << endl;
+            for(int i = 0; i < executions.size(); ++i) {
 
-            int hardwareId = 0;
-            // load all the data and estimate the grid time minDeltaT
-            for(auto& hw : hardwareInstances) {
+                auto& execution = executions.at(i);
 
-                // load all the data
-                allSamples[hw->getHardwareInstance()].push_back(hw->loadData(startTime, endTime));
-                auto& executionData = allSamples[hw->getHardwareInstance()].back();
+                long long int startTime = get<0>(execution);
+                long long int endTime = get<1>(execution);
+                bool succ = get<2>(execution);
 
-                if(executionData.size()) {
+                auto convTime = msToMinSec(endTime - startTime);
+                int totalMins = convTime.first;
+                int restSeconds = convTime.second;
 
-                    // store the sensor data length
-                    if(sensorDataLengthPerHardware.at(hardwareId) == -1)
-                        sensorDataLengthPerHardware.at(hardwareId) = executionData.front().second.n_elem;
+                cout << "exporting execution number " << ++exportedExecutionCount;
+                if(endTime > 0)
+                    cout << " and duration " << totalMins << "m:" << restSeconds << "s";
+                cout << " which was " << ((succ) ? "successful" : "not successful" ) << endl;
 
-                    for(auto& dataLine : executionData)
-                        if(sensorDataLengthPerHardware.at(hardwareId) != dataLine.second.n_elem)
-                            throw KukaduException("(SkillExporter) sensor data varies in lenght over time - currently not supported with this implementation");
+                int hardwareId = 0;
+                // load all the data and estimate the grid time minDeltaT
+                for(auto& hw : hardwareInstances) {
 
-                    // shift the time to 0
-                    normalizeTime(executionData);
+                    // load all the data
+                    allSamples[hw->getHardwareInstance()].push_back(hw->loadData(startTime, endTime));
+                    auto& executionData = allSamples[hw->getHardwareInstance()].back();
 
-                    // get the duration of the execution
-                    long long int& executionEndTime = executionData.back().first;
+                    unnormalizedStartTimes.at(i) = startTime;
+                    unnormalizedEndTimes.at(i) = endTime;
 
-                    // find the maximum duration of all samples
-                    maxDuration = (maxDuration > executionEndTime) ? maxDuration : executionEndTime;
+                    if(executionData.size()) {
 
-                    // get the average clock cycle for the hardware
-                    auto avgTime = computeAverageTimeDist(executionData);
+                        // store the sensor data length
+                        if(sensorDataLengthPerHardware.at(hardwareId) == -1)
+                            sensorDataLengthPerHardware.at(hardwareId) = executionData.front().second.n_elem;
 
-                    // get the maximum average clock cycle for all hardware components
-                    minDeltaT = (avgTime < minDeltaT) ? avgTime : minDeltaT;
+                        for(auto& dataLine : executionData)
+                            if(sensorDataLengthPerHardware.at(hardwareId) != dataLine.second.n_elem)
+                                throw KukaduException("(SkillExporter) sensor data varies in lenght over time - currently not supported with this implementation");
 
-                    cout << "data for " << hw->getHardwareInstanceName() << " has " << executionData.size() << " samples with an average delta t = " << avgTime << "ms" << endl;
+                        // shift the time to 0
+                        normalizeTime(executionData);
 
-                } else
-                    cout << "(SkillExporter) no data in the requested time period from " << startTime << " to " << endTime << endl;
+                        // get the duration of the execution
+                        long long int& executionEndTime = executionData.back().first;
 
-                hardwareId++;
+                        // find the maximum duration of all samples
+                        maxDuration = (maxDuration > executionEndTime) ? maxDuration : executionEndTime;
+
+                        // get the average clock cycle for the hardware
+                        auto avgTime = computeAverageTimeDist(executionData);
+
+                        // get the maximum average clock cycle for all hardware components
+                        minDeltaT = (avgTime < minDeltaT) ? avgTime : minDeltaT;
+
+                        cout << "data for " << hw->getHardwareInstanceName() << " has " << executionData.size() << " samples with an average delta t = " << avgTime << "ms" << endl;
+
+                    } else
+                        cout << "(SkillExporter) no data in the requested time period from " << startTime << " to " << endTime << endl;
+
+                    hardwareId++;
+
+                }
 
             }
 
-        }
+            // compute the sum of all dimension
+            int totalDimensionality = 0;
+            for(auto& senorDataLength : sensorDataLengthPerHardware)
+                totalDimensionality += senorDataLength;
 
-        // compute the sum of all dimension
-        int totalDimensionality = 0;
-        for(auto& senorDataLength : sensorDataLengthPerHardware)
-            totalDimensionality += senorDataLength;
+            auto convTime = msToMinSec(maxDuration);
+            int maxMins = convTime.first;
+            int maxRestSeconds = convTime.second;
 
-        auto convTime = msToMinSec(maxDuration);
-        int maxMins = convTime.first;
-        int maxRestSeconds = convTime.second;
+            cout << "statistics on data:" << endl;
+            cout << "\t Maximal duration: " << maxMins << "m:" << maxRestSeconds << "s" << endl;
+            cout << "\t Minimal delta t: " << minDeltaT << "ms" << endl;
+            cout << "\t Total sensor dimensionality: " << totalDimensionality << endl;
 
-        cout << "statistics on data:" << endl;
-        cout << "\t Maximal duration: " << maxMins << "m:" << maxRestSeconds << "s" << endl;
-        cout << "\t Minimal delta t: " << minDeltaT << "ms" << endl;
-        cout << "\t Total sensor dimensionality: " << totalDimensionality << endl;
+            if(*(folder.end()) != '/')
+                folder += "/";
 
-        if(*(folder.end()) != '/')
-            folder += "/";
+            ofstream labelFile;
+            labelFile.open(string(folder + "labels").c_str());
 
-        ofstream labelFile;
-        labelFile.open(string(folder + "labels").c_str());
+            ofstream labelDetailFile;
+            labelDetailFile.open(string(folder + "labels_detail").c_str());
 
-        ofstream labelDetailFile;
-        labelDetailFile.open(string(folder + "labels_detail").c_str());
+            for(int i = 0; i < executions.size(); ++i) {
 
-        for(int i = 0; i < executions.size(); ++i) {
+                auto& execution = executions.at(i);
+                bool succ = get<2>(execution);
+                long long int endTime = get<1>(execution);
 
-            auto& execution = executions.at(i);
-            bool succ = get<2>(execution);
-            long long int endTime = get<1>(execution);
+                int successMode = -1;
 
-            int successMode = -1;
+                if(succ)
+                    successMode = 0;
+                else if(endTime != 0)
+                    successMode = 1;
+                else
+                    successMode = 2;
 
-            if(succ)
-                successMode = 0;
-            else if(endTime != 0)
-                successMode = 1;
-            else
-                successMode = 2;
+                stringstream s;
+                s << "skill_" << i;
+                labelFile << s.str() << "\t" << succ << endl;
+                labelDetailFile << s.str() << "\t" << successMode << endl;
 
-            stringstream s;
-            s << "skill_" << i;
-            labelFile << s.str() << "\t" << succ << endl;
-            labelDetailFile << s.str() << "\t" << successMode << endl;
+                storeExecution(hardwareInstances, allSamples,
+                               unnormalizedStartTimes, unnormalizedEndTimes,
+                               i, maxDuration, minDeltaT, sensorDataLengthPerHardware, folder + s.str(),
+                               exportModuleStatistics);
 
-            storeExecution(hardwareInstances, allSamples, i, maxDuration, minDeltaT, sensorDataLengthPerHardware, folder + s.str());
+            }
 
+        } else {
+            cout << "(SkillExporter) no skills executed in the requested time span" << endl;
         }
 
 
     }
 
+    void augmentWithFunctionStatistics(long long int startTime, long long int endTime, arma::mat& currentData, long long int deltaT, ofstream& ostr, int maxFunctionId) {
+
+        auto& storage = StorageSingleton::get();
+
+        stringstream functionStream;
+        functionStream << "select id from software_functions";
+        if(maxFunctionId >= 0)
+            functionStream << " where id <= " << maxFunctionId;
+        functionStream << " order by id";
+        auto queryRes = storage.executeQuery(functionStream.str());
+        map<int, int> mapFunctionIdToIdx;
+        for(int i = 0; queryRes->next(); ++i)
+            mapFunctionIdToIdx[queryRes->getInt("id")];
+
+        int functionCount = mapFunctionIdToIdx.size();
+
+        stringstream s;
+        s << "select function_id, start_timestamp, end_timestamp, cnt from" <<
+                "(select function_id, start_timestamp, end_timestamp, 1 as cnt from software_statistics_mode0 where start_timestamp >= " << startTime << " and end_timestamp <= " << endTime <<
+                " union " <<
+                "select function_id, start_timestamp, end_timestamp, cnt from software_statistics_mode1 where start_timestamp >= " << startTime << " and end_timestamp <= " << endTime <<
+                ") as union_statistics" <<
+                " where function_id <= " << maxFunctionId <<
+                " order by function_id asc, start_timestamp asc";
+
+        arma::mat statisticsData(functionCount, currentData.n_cols);
+        statisticsData.fill(0.0);
+
+        auto statisticsQuery = storage.executeQuery(s.str());
+        while(statisticsQuery->next()) {
+
+            // load current function call
+            int currentFunctionId = statisticsQuery->getInt("function_id");
+            int currentFunctionIdx;
+            if(mapFunctionIdToIdx.find(currentFunctionId) != mapFunctionIdToIdx.end()) {
+
+                currentFunctionIdx = mapFunctionIdToIdx[currentFunctionId];
+
+                long long int currentStartTime = statisticsQuery->getInt64("start_timestamp");
+                long long int currentEndTime = statisticsQuery->getInt64("end_timestamp");
+                int callCount = statisticsQuery->getInt("cnt");
+                long long int delta = endTime - startTime;
+
+                long long int normalizedStartTime = currentStartTime - startTime;
+                long long int normalizedEndTime = currentEndTime - startTime;
+
+                // another sanity check
+                if(normalizedStartTime > normalizedEndTime)
+                    throw KukaduException("(SkillExporter) database inconsistency --> start time of function call is bigger than end time");
+
+                // compute index where the data belongs to
+                int currentStartIndex = (normalizedEndTime - normalizedStartTime) / deltaT;
+
+                // compute on how many cells the calls are distributed
+                int distributionCount = ceil((double) delta / deltaT);
+                double distributedCount = (double) callCount / distributionCount;
+
+                // add the distributed count of the function call to the cell range (many calls can be there at the same time --> sum them up)
+                for(int currentIndex = currentStartIndex, i = 0; i < distributionCount && currentIndex < statisticsData.n_cols; ++currentIndex)
+                    statisticsData(currentFunctionIdx, currentIndex) += distributedCount;
+
+            } else
+                throw KukaduException("(SkillExporter) precondition violated - bug in code");
+
+        }
+
+        ostr << statisticsData;
+
+    }
+
     void storeExecution(vector<KUKADU_SHARED_PTR<Hardware> >& hardwareInstances,
-                        map<int, vector<vector<std::pair<long long int, arma::vec> > > >& allSamples, int& executionId,
-                        long long int& maxDuration, long long int& minDeltaT,
+                        map<int, vector<vector<std::pair<long long int, arma::vec> > > >& allSamples,
+                        vector<long long int>& unnormalizedStartTimes,
+                        vector<long long int>& unnormalizedEndTimes,
+                        int& executionId,
+                        long long int& maxDuration, long long int minDeltaT,
                         vector<int>& sensorDataLengthPerHardware,
-                        std::string file) {
+                        std::string file,
+                        bool exportModuleStatistics) {
 
         int totalDimensionality = 0;
         for(auto& senorDataLength : sensorDataLengthPerHardware)
@@ -317,6 +416,13 @@ namespace kukadu {
 
         }
 
+        // compute the actual duration of all samples (including the ones that got cut off)
+        long long int executionDuration = 0;
+        for(int i = 0; i < maxFilledColId.size(); ++i) {
+            long long int dimLength = (maxFilledColId.at(i) + 1) * minDeltaT;
+            executionDuration = (executionDuration < dimLength) ? dimLength : executionDuration;
+        }
+
         // at this stage the begin of the grid should be free of nans --> now fill up the back part with dummy data
         for(int i = 0; i < maxFilledColId.size(); ++i) {
             auto& currentMaxColId = maxFilledColId.at(i);
@@ -325,6 +431,16 @@ namespace kukadu {
             for(int j = currentMaxColId + 1; j < storageGrid.n_cols; ++j)
                 storageGrid(i, j) = storageGrid(i, currentMaxColId);
         }
+
+        if(exportModuleStatistics) {
+            cout << "generating function statistics for execution number " << executionId << endl;
+            augmentWithFunctionStatistics(unnormalizedStartTimes.at(executionId),
+                                          unnormalizedStartTimes.at(executionId) + executionDuration, storageGrid, minDeltaT,
+                                          outFile);
+        }
+
+        if(storageGrid.has_nan())
+            throw KukaduException("(SkillExporter) post condition violated - check for bug in code");
 
         outFile << storageGrid << endl;
         outFile.close();
