@@ -2,11 +2,15 @@
 #include <sstream>
 #include <armadillo>
 #include <kukadu/utils.hpp>
+#include <boost/iostreams/copy.hpp>
+#include <boost/iostreams/filter/bzip2.hpp>
 #include <kukadu/manipulation/skillexporter.hpp>
+#include <boost/iostreams/filtering_streambuf.hpp>
 #include <kukadu/storage/sensorstoragesingleton.hpp>
 
 using namespace std;
 using namespace arma;
+using namespace boost::iostreams;
 
 namespace kukadu {
 
@@ -18,9 +22,10 @@ namespace kukadu {
                         long long int& maxDuration, long long int minDeltaT,
                         vector<int>& sensorDataLengthPerHardware,
                         std::string file,
-                        bool exportModuleStatistics);
+                        bool exportModuleStatistics,
+                        bool compress);
 
-    void augmentWithFunctionStatistics(long long startTime, long long endTime, arma::mat& currentData, long long int deltaT, ofstream& ostr, int maxFunctionId = -1);
+    int augmentWithFunctionStatistics(long long startTime, long long endTime, arma::mat& currentData, long long int deltaT, stringstream &ostr, int maxFunctionId = -1);
 
     SkillExporter::SkillExporter(StorageSingleton &storage) : StorageHolder(storage) {
 
@@ -118,7 +123,7 @@ namespace kukadu {
 
     }
 
-    void SkillExporter::exportSkillExecutions(int skillId, long long int startTime, long long int endTime, std::string folder, bool exportModuleStatistics) {
+    void SkillExporter::exportSkillExecutions(int skillId, long long int startTime, long long int endTime, std::string folder, bool exportModuleStatistics, bool compress) {
 
         if(fileExists(folder))
             throw KukaduException("(SkillExporter) target directory already exists");
@@ -254,13 +259,18 @@ namespace kukadu {
 
                 stringstream s;
                 s << "skill_" << i;
+
+                if(compress)
+                    s << ".bz2";
+
                 labelFile << s.str() << "\t" << succ << endl;
                 labelDetailFile << s.str() << "\t" << successMode << endl;
 
                 storeExecution(hardwareInstances, allSamples,
                                unnormalizedStartTimes, unnormalizedEndTimes,
                                i, maxDuration, minDeltaT, sensorDataLengthPerHardware, folder + s.str(),
-                               exportModuleStatistics);
+                               exportModuleStatistics,
+                               compress);
 
             }
 
@@ -271,7 +281,7 @@ namespace kukadu {
 
     }
 
-    void augmentWithFunctionStatistics(long long int startTime, long long int endTime, arma::mat& currentData, long long int deltaT, ofstream& ostr, int maxFunctionId) {
+    int augmentWithFunctionStatistics(long long int startTime, long long int endTime, arma::mat& currentData, long long int deltaT, stringstream& ostr, int maxFunctionId) {
 
         auto& storage = StorageSingleton::get();
 
@@ -339,6 +349,12 @@ namespace kukadu {
 
         ostr << statisticsData;
 
+        int maxUsedFunctionId = 0;
+        for(auto& functionIdPair : mapFunctionIdToIdx)
+            maxUsedFunctionId = max(functionIdPair.first, maxUsedFunctionId);
+
+        return maxUsedFunctionId;
+
     }
 
     void storeExecution(vector<KUKADU_SHARED_PTR<Hardware> >& hardwareInstances,
@@ -349,7 +365,8 @@ namespace kukadu {
                         long long int& maxDuration, long long int minDeltaT,
                         vector<int>& sensorDataLengthPerHardware,
                         std::string file,
-                        bool exportModuleStatistics) {
+                        bool exportModuleStatistics,
+                        bool compress) {
 
         int totalDimensionality = 0;
         for(auto& senorDataLength : sensorDataLengthPerHardware)
@@ -361,8 +378,16 @@ namespace kukadu {
         mat storageGrid(totalDimensionality, maxTimeIdx);
         storageGrid.fill(datum::nan);
 
-        ofstream outFile;
-        outFile.open(file.c_str());
+        stringstream completeFileStream;
+
+        ofstream outFile(file.c_str(), ios_base::out | ios_base::binary);
+
+        filtering_streambuf<output> out;
+
+        if(compress)
+            out.push(bzip2_compressor());
+
+        out.push(outFile);
 
         vector<int> maxFilledColId(totalDimensionality, 0);
 
@@ -433,16 +458,27 @@ namespace kukadu {
         }
 
         if(exportModuleStatistics) {
-            cout << "generating function statistics for execution number " << executionId << endl;
-            augmentWithFunctionStatistics(unnormalizedStartTimes.at(executionId),
+            cout << "generating function statistics for execution number " << executionId;
+            if(compress)
+                cout << " and compress";
+            cout << endl;
+            int maxUsedFunctionId = augmentWithFunctionStatistics(unnormalizedStartTimes.at(executionId),
                                           unnormalizedStartTimes.at(executionId) + executionDuration, storageGrid, minDeltaT,
-                                          outFile);
+                                          completeFileStream);
+            ofstream maxUsedFunctionFile;
+            maxUsedFunctionFile.open(string(file + "_max_used_function").c_str());
+            maxUsedFunctionFile << "maxUsedFunctionId=" << maxUsedFunctionId << endl;
+            maxUsedFunctionFile.close();
+
         }
 
         if(storageGrid.has_nan())
             throw KukaduException("(SkillExporter) post condition violated - check for bug in code");
 
-        outFile << storageGrid << endl;
+        completeFileStream << storageGrid << endl;
+
+        // compressing
+        copy(completeFileStream, out);
         outFile.close();
 
     }

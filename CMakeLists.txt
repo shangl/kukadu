@@ -94,6 +94,7 @@ include_directories(
     external/komo/share/src
     external/backward-cpp
     external/ReflexxesTypeII/include
+    external
 )
 
 set(CURSES_USE_NCURSES TRUE)

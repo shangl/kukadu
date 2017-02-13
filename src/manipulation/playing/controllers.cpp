@@ -28,6 +28,7 @@ namespace kukadu {
         : Controller(dbStorage, caption, usedHardware, simulationFailingProbability), Reward(generator, collectPrevRewards) {
 
         this->useCreativity = false;
+        this->creativeControllerCreated = false;
         this->creativityAlpha1 = creativityAlpha1;
         this->creativityAlpha2 = creativityAlpha2;
         this->creativityBeta = creativityBeta;
@@ -139,6 +140,8 @@ namespace kukadu {
     }
 
     void ComplexController::initialize() {
+
+        creativeControllerCreated = false;
 
         nothingStateClips.clear();
 
@@ -797,28 +800,28 @@ namespace kukadu {
 
             // block for creativity mode
             if(useCreativity) {
-cout << 1 << endl;
+
                 // only add new prep skill if current state is not already a "nothing" skill
                 if(!nothingStateClips[sensingClip->toString()][stateClip->toString()]) {
-cout << 2 << endl;
+
                     // compute all paths with maximum length of 4 and minimal confidence 0.4
                     auto possiblePaths = computeEnvironmentPaths(sensingClip, stateClip, 4, 0.4);
-cout << 3 << endl;
+
                     // find out if there is a transition to a "nothing" state
                     // sort them according to confidence
                     std::sort(possiblePaths.begin(), possiblePaths.end(), [] (std::tuple<double, KUKADU_SHARED_PTR<Clip>, std::vector<KUKADU_SHARED_PTR<Clip> >, int> p1, std::tuple<double, KUKADU_SHARED_PTR<Clip>, std::vector<KUKADU_SHARED_PTR<Clip> >, int> p2) {
                                   return std::get<0>(p1) > std::get<0>(p2);
                               });
-cout << 4 << endl;
+
                     for(auto&  path : possiblePaths) {
-cout << 5 << endl;
+
                         bool pathCanBeChosen = false;
                         double nothingProb = 0.0;
                         auto& resultingState = std::get<1>(path);
                         auto& clipPath = std::get<2>(path);
+
                         // path has to contain more than 1 preparatory action (path here is state -> prep action -> state -> ... -> final state). therefore length
                         // must be at least 4
-cout << 6 << endl;
                         if(clipPath.size() >= 4) {
                             auto& senseNothingStateClips = nothingStateClips[sensingClip->toString()];
                             for(auto& nothingStateClip : senseNothingStateClips) {
@@ -829,7 +832,7 @@ cout << 6 << endl;
                                     break;
                                 }
                             }
-cout << 7 << endl;
+
                             if(pathCanBeChosen) {
 
                                 // compute probability for adding a new clip from clip composition (will be referred as creativity in the paper)
@@ -904,6 +907,8 @@ cout << 7 << endl;
 
                                             }
                                         }
+
+                                        creativeControllerCreated = true;
 
                                     }
 
@@ -1189,70 +1194,60 @@ cout << 7 << endl;
 
     std::vector<std::tuple<double, KUKADU_SHARED_PTR<Clip>, std::vector<KUKADU_SHARED_PTR<Clip> >, int> > ComplexController::computeEnvironmentPaths(
             KUKADU_SHARED_PTR<Clip> sensingClip, KUKADU_SHARED_PTR<Clip> stateClip, int maxPathLength, double confidenceCut) {
-cout << "a" << endl;
+
         KUKADU_MODULE_START_USAGE();
-cout << "b" << endl;
+
         auto sensingId = sensingClip->toString();
         auto stateId = stateClip->getClipDimensions()->at(0);
-cout << "c" << endl;
+
         std::vector<std::tuple<double, KUKADU_SHARED_PTR<Clip>, std::vector<KUKADU_SHARED_PTR<Clip> >, int> > allPaths;
         std::vector<std::tuple<double, KUKADU_SHARED_PTR<Clip>, std::vector<KUKADU_SHARED_PTR<Clip> >, int> > lastIterationPaths;
         std::vector<std::tuple<double, KUKADU_SHARED_PTR<Clip>, std::vector<KUKADU_SHARED_PTR<Clip> >, int> > lastIterationPathsOld;
-cout << "d" << endl;
+
         // initialize with paths of length 0
         std::vector<KUKADU_SHARED_PTR<Clip> > path = {stateClip};
         allPaths.push_back(std::make_tuple(1.0, stateClip, path, INT_MAX));
         lastIterationPaths.push_back(std::make_tuple(1.0, stateClip, path, INT_MAX));
-cout << "e" << endl;
+
         for(int i = 0; i < maxPathLength; ++i) {
-cout << "f" << endl;
+
             lastIterationPathsOld = lastIterationPaths;
             lastIterationPaths.clear();
             // check every path and see how it can be made longer
             for(auto path : lastIterationPathsOld) {
-cout << "g" << endl;
+
                 double currentConfidence = std::get<0>(path);
                 auto currentState = std::get<1>(path);
                 stateId = currentState->getClipDimensions()->at(0);
-cout << "h" << endl;
+
                 // for every possible transition, analyse how confidently another state can be reached
                 auto stateClips =  environmentModels[sensingId]->retrieveClipsOnLayer({stateId, ProjectiveSimulator::IGNORE_ID}, 0);
                 for(auto state : stateClips) {
-cout << "i" << endl;
+
                     // copy old path again
                     auto currentPath = std::get<2>(path);
-cout << "i1" << endl;
                     auto stateTransition = computeEnvironmentTransitionConfidence(state);
-cout << "i2" << endl;
                     double transitionConfidence = std::get<0>(stateTransition);
-cout << "i3" << endl;
                     auto resultingStateId = std::get<1>(stateTransition);
-cout << "i4" << endl;
                     auto resultingStateClip = projSim->retrieveClipsOnLayer({resultingStateId}, 2).at(0);
-cout << "i5" << endl;
                     int actionId = state->getClipDimensions()->at(1);
-cout << "i6: " << actionId << endl;
-for(auto c : projSim->getClipsOnLayer(3))
-    cout << c->getIdVecString() << " " << c->toString() << endl;
+
                     auto usedActionClip = projSim->retrieveClipsOnLayer({actionId}, 3).at(0);
-cout << "i7" << endl;
                     currentPath.push_back(usedActionClip);
-cout << "i8" << endl;
                     currentPath.push_back(resultingStateClip);
-cout << "j" << endl;
                     double nextConfidence = currentConfidence * transitionConfidence;
-cout << "k" << endl;
+
                     if(nextConfidence > confidenceCut) {
                         allPaths.push_back(std::make_tuple(nextConfidence, resultingStateClip, currentPath, std::min(std::get<3>(path), std::get<2>(stateTransition))));
                         lastIterationPaths.push_back(std::make_tuple(nextConfidence, resultingStateClip, currentPath, std::min(std::get<3>(path), std::get<2>(stateTransition))));
                     }
-cout << "l" << endl;
+
                 }
-cout << "m" << endl;
+
             }
-cout << "n" << endl;
+
         }
-cout << "o" << endl;
+
         KUKADU_MODULE_END_USAGE();
 
         return allPaths;

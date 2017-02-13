@@ -152,9 +152,8 @@ namespace kukadu {
 
                     if(streamNum == 0)
                         walkSuccess.push_back(currentWalk);
-                    else if(walkIdx < walkSuccess.size()) {
+                    else if(walkIdx < walkSuccess.size())
                         walkSuccess.at(walkIdx) += currentWalk;
-                    }
 
                     ++walkIdx;
 
@@ -1455,6 +1454,7 @@ namespace kukadu {
 
             KUKADU_SHARED_PTR<set<KUKADU_SHARED_PTR<Clip>, clip_compare> > layer = *it;
             if(layer->size() > 0) {
+
                 int currentLevel = (*layer->begin())->getLevel();
                 outFile << "layer=" << currentLevel << endl;
 
@@ -1470,9 +1470,13 @@ namespace kukadu {
                         KUKADU_SHARED_PTR<ActionClip> cpc = KUKADU_DYNAMIC_POINTER_CAST<ActionClip>(cClip);
                         outFile << ";" << cpc->getActionId();
                     }
+
                     outFile << endl;
+
                 }
+
             }
+
         }
         outFile << endl;
 

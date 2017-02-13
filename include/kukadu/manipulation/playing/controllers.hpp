@@ -249,6 +249,8 @@ namespace kukadu {
         bool generateNewGroundTruth;
         bool lastSkillWasSuccessful;
 
+        bool creativeControllerCreated;
+
         int stdPrepWeight;
         int maxEnvPathLength;
         int currentIterationNum;
