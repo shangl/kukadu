@@ -144,8 +144,9 @@ namespace kukadu {
 
                 for(int i = 0; i < sampleMat.n_cols; ++i) {
 
-                    minDimInt.at(i) = std::min(minDimInt.at(i), sampleMat.col(i).min());
-                    maxDimInt.at(i) = std::max(maxDimInt.at(i), sampleMat.col(i).max());
+                    vec col = sampleMat.col(i);
+                    minDimInt.at(i) = std::min(minDimInt.at(i), armadilloMin(col));
+                    maxDimInt.at(i) = std::max(maxDimInt.at(i), armadilloMax(col));
 
                 }
 
@@ -175,7 +176,8 @@ namespace kukadu {
                 if((currentMin != 0.0 || currentMax != 0.0) && (currentMax - currentMin) > 0.0) {
                     // scaling as it is done in the svmlib scaling tool
                     sampleMat.col(i) = lowerScale + (upperScale - lowerScale) % (sampleMat.col(i) - minCol) / (maxCol - minCol);
-                    if(sampleMat.col(i).max() > 1.0 || sampleMat.col(i).min() < -1.0)
+                    vec col = sampleMat.col(i);
+                    if(armadilloMax(col) > 1.0 || armadilloMin(col) < -1.0)
                         for(int j = 0; j < sampleMat.n_rows; ++j) {
                             sampleMat(j, i) = min(sampleMat(j, i), 1.0);
                             sampleMat(j, i) = max(sampleMat(j, i), -1.0);

@@ -1270,4 +1270,46 @@ namespace kukadu {
 
     }
 
+    double armadilloMin(arma::vec v) {
+
+        double min = std::numeric_limits<int>::max();
+        for(int i = 0; i < v.n_elem; ++i)
+            if(min > v(i))
+                min = v(i);
+        return min;
+
+    }
+
+    double armadilloMax(arma::vec v) {
+
+        double max = std::numeric_limits<int>::min();
+        for(int i = 0; i < v.n_elem; ++i)
+            if(max < v(i))
+                max = v(i);
+        return max;
+
+    }
+
+    double armadilloMin(arma::mat m) {
+
+        double min = std::numeric_limits<int>::max();
+        for(int i = 0; i < m.n_rows; ++i)
+            for(int j = 0; j < m.n_cols; ++j)
+                if(min > m(i, j))
+                    min = m(i, j);
+        return min;
+
+    }
+
+    double armadilloMax(arma::mat m) {
+
+        double max = std::numeric_limits<int>::min();
+        for(int i = 0; i < m.n_rows; ++i)
+            for(int j = 0; j < m.n_cols; ++j)
+                if(max < m(i, j))
+                    max = m(i, j);
+        return max;
+
+    }
+
 }
