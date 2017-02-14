@@ -472,8 +472,11 @@ namespace kukadu {
 
         }
 
-        if(storageGrid.has_nan())
-            throw KukaduException("(SkillExporter) post condition violated - check for bug in code");
+        // check if matrix contains nan
+        for(int i = 0; i < storageGrid.n_rows; ++i)
+            for(int j = 0; j < storageGrid.n_cols; ++j)
+                if(storageGrid(i, j) != storageGrid(i, j))
+                    throw KukaduException("(SkillExporter) post condition violated - check for bug in code");
 
         completeFileStream << storageGrid << endl;
 
