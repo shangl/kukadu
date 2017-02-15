@@ -292,8 +292,12 @@ namespace kukadu {
         functionStream << " order by id";
         auto queryRes = storage.executeQuery(functionStream.str());
         map<int, int> mapFunctionIdToIdx;
-        for(int i = 0; queryRes->next(); ++i)
-            mapFunctionIdToIdx[queryRes->getInt("id")] = i;
+        for(int i = 0; queryRes->next(); ++i) {
+            int currentId = queryRes->getInt("id");
+            mapFunctionIdToIdx[currentId] = i;
+            if(currentId > maxFunctionId)
+                maxFunctionId = currentId;
+        }
 
         int functionCount = mapFunctionIdToIdx.size();
 
@@ -314,7 +318,8 @@ namespace kukadu {
 
             // load current function call
             int currentFunctionId = statisticsQuery->getInt("function_id");
-            int currentFunctionIdx;
+            int currentFunctionIdx = -1;
+
             if(mapFunctionIdToIdx.find(currentFunctionId) != mapFunctionIdToIdx.end()) {
 
                 currentFunctionIdx = mapFunctionIdToIdx[currentFunctionId];
@@ -335,7 +340,7 @@ namespace kukadu {
                 int currentStartIndex = (normalizedEndTime - normalizedStartTime) / deltaT;
 
                 // compute on how many cells the calls are distributed
-                int distributionCount = ceil((double) delta / deltaT);
+                int distributionCount = max(1.0, ceil((double) delta / deltaT));
                 double distributedCount = (double) callCount / distributionCount;
 
                 // add the distributed count of the function call to the cell range (many calls can be there at the same time --> sum them up)
@@ -346,6 +351,9 @@ namespace kukadu {
                 throw KukaduException("(SkillExporter) precondition violated - bug in code");
 
         }
+
+        if(armadilloHasNan(statisticsData))
+            throw KukaduException("(SkillExporter) post condition violated - check for bug in code");
 
         ostr << statisticsData;
 

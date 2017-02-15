@@ -229,7 +229,7 @@ namespace kukadu {
         for(auto& sample : samples) {
             if(sampleDim != sample.n_cols)
                 throw KukaduException("(LibSvm) sample dimensions do not match");
-            if(sample.has_nan())
+            if(armadilloHasNan(sample))
                 throw KukaduException("(LibSvm) data contains NaN");
         }
 
