@@ -333,11 +333,13 @@ namespace kukadu {
                 long long int normalizedEndTime = currentEndTime - startTime;
 
                 // another sanity check
-                if(normalizedStartTime > normalizedEndTime)
+                if(normalizedStartTime > normalizedEndTime && normalizedEndTime >= 0) {
+                    cout << normalizedStartTime << " " << normalizedEndTime << endl;
                     throw KukaduException("(SkillExporter) database inconsistency --> start time of function call is bigger than end time");
+                }
 
                 // compute index where the data belongs to
-                int currentStartIndex = (normalizedEndTime - normalizedStartTime) / deltaT;
+                int currentStartIndex = normalizedStartTime / deltaT;
 
                 // compute on how many cells the calls are distributed
                 int distributionCount = max(1.0, ceil((double) delta / deltaT));
