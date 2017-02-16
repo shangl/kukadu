@@ -11,6 +11,7 @@
  */
 
 #include <queue>
+#include <vector>
 #include <armadillo>
 #include <geometry_msgs/Pose.h>
 #include <kukadu/robot/filters.hpp>
@@ -41,7 +42,7 @@ namespace kukadu {
      * planning or security mechanisms such as maximum force values for execution.
      * \ingroup Robot
      */
-    class ControlQueue : public Hardware, public DestroyableObject, public KUKADU_ENABLE_SHARED_FROM_THIS<ControlQueue>, public TimedObject {
+    class ControlQueue : public JointHardware, public DestroyableObject, public KUKADU_ENABLE_SHARED_FROM_THIS<ControlQueue>, public TimedObject {
 
     private:
 
@@ -78,6 +79,7 @@ namespace kukadu {
 
         kukadu_mutex loadMaxDistMutex;
         kukadu_mutex loadCycleTimeMutex;
+        kukadu_mutex rollbackQueueMutex;
 
         geometry_msgs::Pose currentCartPose;
         geometry_msgs::Pose internalPosePasser;
@@ -450,6 +452,9 @@ namespace kukadu {
 
         virtual void storeCurrentSensorDataToDatabase();
         virtual double getPreferredPollingFrequency();
+
+        virtual std::vector<std::pair<long long int, arma::vec> > loadData(long long int startTime, long long int endTime, long long maxTotalDuration = 3600000,
+                                                                           long long int maxTimeStepDifference = 5000);
 
         static const int CONTROLQUEUE_STOP_MODE = 0;
         static const int CONTROLQUEUE_JNT_POS_MODE = 10;

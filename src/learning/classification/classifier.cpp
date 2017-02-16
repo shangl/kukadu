@@ -6,6 +6,7 @@
 #include <kukadu/utils/utils.hpp>
 #include <kukadu/types/kukadutypes.hpp>
 #include <kukadu/utils/kukadutokenizer.hpp>
+#include <kukadu/storage/moduleusagesingleton.hpp>
 #include <kukadu/learning/classification/classifier.hpp>
 #include <kukadu/learning/classification/libsvmclassifier.hpp>
 
@@ -115,39 +116,10 @@ namespace kukadu {
         maxDim = scaled.second.second;
 
     }
-    
-    double armaMin(arma::vec c) {
-		double currMin = std::numeric_limits<int>::max();
-		for(int i = 0; i < c.n_elem; ++i)
-			currMin = (c(i) < currMin) ? c(i) : currMin;
-		return currMin;
-	}
-	
-	double armaMax(arma::vec c) {
-		double currMax = std::numeric_limits<int>::min();
-		for(int i = 0; i < c.n_elem; ++i)
-			currMax = (c(i) > currMax) ? c(i) : currMax;
-		return currMax;
-	}
-	
-	bool armaHasNan(arma::vec c) {
-		
-		for(int i = 0; i < c.n_elem; ++i)
-			if(c(i) != c(i))
-				return true;
-		return false;
-		
-	}
-	
-	bool armaHasNan(arma::mat c) {
-		for(int i = 0; i < c.n_rows; ++i)
-			for(int j = 0; j < c.n_cols; ++j)
-				if(c(i, j) != c(i, j))
-					return true;
-		return false;
-	}
 
     std::pair<std::vector<arma::mat>, std::pair<std::vector<double>, std::vector<double> > > LibSvm::scaleDimensions(std::vector<arma::mat> samples, bool useStoredScalingInfo) {
+
+        KUKADU_MODULE_START_USAGE();
 
         vector<double> minDimInt;
         vector<double> maxDimInt;
@@ -160,7 +132,7 @@ namespace kukadu {
 
         } else {
 
-            // generate the limis
+            // generate the limits
             minDimInt = vector<double>(samples.front().n_cols);
             for(int i = 0; i < minDimInt.size(); ++i)
                 minDimInt.at(i) = std::numeric_limits<int>::max();
@@ -172,8 +144,9 @@ namespace kukadu {
 
                 for(int i = 0; i < sampleMat.n_cols; ++i) {
 
-                    minDimInt.at(i) = std::min(minDimInt.at(i), armaMin(sampleMat.col(i)));
-                    maxDimInt.at(i) = std::max(maxDimInt.at(i), armaMax(sampleMat.col(i)));
+                    vec col = sampleMat.col(i);
+                    minDimInt.at(i) = std::min(minDimInt.at(i), armadilloMin(col));
+                    maxDimInt.at(i) = std::max(maxDimInt.at(i), armadilloMax(col));
 
                 }
 
@@ -203,7 +176,8 @@ namespace kukadu {
                 if((currentMin != 0.0 || currentMax != 0.0) && (currentMax - currentMin) > 0.0) {
                     // scaling as it is done in the svmlib scaling tool
                     sampleMat.col(i) = lowerScale + (upperScale - lowerScale) % (sampleMat.col(i) - minCol) / (maxCol - minCol);
-                    if(armaMax(sampleMat.col(i)) > 1.0 || armaMin(sampleMat.col(i)) < -1.0)
+                    vec col = sampleMat.col(i);
+                    if(armadilloMax(col) > 1.0 || armadilloMin(col) < -1.0)
                         for(int j = 0; j < sampleMat.n_rows; ++j) {
                             sampleMat(j, i) = min(sampleMat(j, i), 1.0);
                             sampleMat(j, i) = max(sampleMat(j, i), -1.0);
@@ -215,11 +189,15 @@ namespace kukadu {
 
         }
 
+        KUKADU_MODULE_END_USAGE();
+
         return {samples, {minDimInt, maxDimInt}};
 
     }
 
     bool LibSvm::train() {
+
+        KUKADU_MODULE_START_USAGE();
 
         generateTrainSet();
         internalClassifier = svmpp::Svm();
@@ -229,11 +207,15 @@ namespace kukadu {
 
         wasTrained = true;
 
+        KUKADU_MODULE_END_USAGE();
+
         return true;
 
     }
 
     void LibSvm::generateTrainSet() {
+
+        KUKADU_MODULE_START_USAGE();
 
         auto classes = getClasses();
         auto samples = getSamples();
@@ -247,7 +229,7 @@ namespace kukadu {
         for(auto& sample : samples) {
             if(sampleDim != sample.n_cols)
                 throw KukaduException("(LibSvm) sample dimensions do not match");
-            if(armaHasNan(sample))
+            if(armadilloHasNan(sample))
                 throw KukaduException("(LibSvm) data contains NaN");
         }
 
@@ -260,9 +242,13 @@ namespace kukadu {
                 trainSet.addEntry(armadilloToStdVec(currentClassSamples.row(j).t()), currentClass);
         }
 
+        KUKADU_MODULE_END_USAGE();
+
     }
 
     void LibSvm::setStdParams() {
+
+        KUKADU_MODULE_START_USAGE();
 
         // Setting parameters
         params.svm_type = C_SVC;
@@ -281,9 +267,13 @@ namespace kukadu {
         params.shrinking = 1;
         params.probability = 1;
 
+        KUKADU_MODULE_END_USAGE();
+
     }
 
     int LibSvm::classify(arma::vec sample) {
+
+        KUKADU_MODULE_START_USAGE();
 
         if(!wasTrained)
             throw KukaduException("(LibSvm) classifier was not trained yet");
@@ -298,17 +288,28 @@ namespace kukadu {
         vec scaledData = scaleDimensions({x}, true).first.front().row(0).t();
         Query query(armadilloToStdVec(scaledData));
 
-        return internalClassifier.predict(query);
+        auto res = internalClassifier.predict(query);
+
+        KUKADU_MODULE_END_USAGE();
+
+        return res;
 
     }
 
     double LibSvm::crossValidate() {
 
+        KUKADU_MODULE_START_USAGE();
+
         generateTrainSet();
         internalClassifier = svmpp::Svm();
 
         setStdParams();
-        return internalClassifier.crossValidation(params, trainSet);
+
+        auto res = internalClassifier.crossValidation(params, trainSet);
+
+        KUKADU_MODULE_END_USAGE();
+
+        return res;
 
     }
 

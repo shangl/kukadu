@@ -9,6 +9,7 @@
 #include <kukadu/storage/sensorstorage.hpp>
 #include <kukadu/storage/moduleusagesingleton.hpp>
 #include <kukadu/manipulation/playing/controllers.hpp>
+#include <kukadu/learning/projective_simulation/core.hpp>
 
 using namespace std;
 using namespace arma;
@@ -27,6 +28,7 @@ namespace kukadu {
         : Controller(dbStorage, caption, usedHardware, simulationFailingProbability), Reward(generator, collectPrevRewards) {
 
         this->useCreativity = false;
+        this->creativeControllerCreated = false;
         this->creativityAlpha1 = creativityAlpha1;
         this->creativityAlpha2 = creativityAlpha2;
         this->creativityBeta = creativityBeta;
@@ -139,6 +141,8 @@ namespace kukadu {
 
     void ComplexController::initialize() {
 
+        creativeControllerCreated = false;
+
         nothingStateClips.clear();
 
         psPath = storePath + "ps";
@@ -162,19 +166,30 @@ namespace kukadu {
                 int immunity = atoi(tok.next().c_str());
                 if(level == 0) {
 
-                    auto pc = KUKADU_SHARED_PTR<PerceptClip>(new PerceptClip(atoi(tok.next().c_str()), label, generator, idVec, immunity));
+                    auto pc = make_shared<PerceptClip>(atoi(tok.next().c_str()), label, generator, idVec, immunity);
                     return pc;
 
                 } else if(level == Clip::CLIP_H_LEVEL_FINAL) {
 
-                    auto ac = make_shared<ControllerActionClip>(storage, atoi(tok.next().c_str()), (this->availablePreparatoryControllers)[label], generator);
-                    return ac;
+                    if(this->availablePreparatoryControllers.find(label) != this->availablePreparatoryControllers.end() && (this->availablePreparatoryControllers)[label]) {
+                        auto ac = make_shared<ControllerActionClip>(storage, atoi(tok.next().c_str()), (this->availablePreparatoryControllers)[label], generator);
+                        return ac;
+                    } else
+                        return nullptr;
 
                 } else {
 
-                    if(level == 1)
-                        return make_shared<IntermediateEventClip>((this->availableSensingControllers)[label],
-                                                                                        level, generator, idVec, immunity);
+                    if(level == 1) {
+
+                        if(this->availableSensingControllers.find(label) != this->availableSensingControllers.end() && (this->availableSensingControllers)[label]) {
+
+                            return make_shared<IntermediateEventClip>((this->availableSensingControllers)[label],
+                                                                                            level, generator, idVec, immunity);
+
+                        } else
+                            return nullptr;
+
+                    }
 
                     return make_shared<Clip>(level, generator, idVec, immunity);
 
@@ -182,10 +197,12 @@ namespace kukadu {
 
             };
 
-            projSim = KUKADU_SHARED_PTR<ProjectiveSimulator>(new ProjectiveSimulator(shared_from_this(), generator, psPath, loadLambda));
+            projSim = make_shared<ProjectiveSimulator>(shared_from_this(), generator, psPath, loadLambda);
+
             // ugly syntax - i have to kill these shared pointers some day
             prepActions = (*((*(projSim->getClipLayers()->end() - 1))->begin()))->getSubClips();
             prepActionsCasted = projSim->getActionClips();
+
             root = *(projSim->getPerceptClips()->begin());
 
         } else {
@@ -193,11 +210,12 @@ namespace kukadu {
             int currentId = 0;
             KUKADU_SHARED_PTR<vector<int> > clipDimVal = KUKADU_SHARED_PTR<vector<int> >(new vector<int>());
             clipDimVal->push_back(currentId);
-            root = KUKADU_SHARED_PTR<PerceptClip>(new PerceptClip(0, "root", generator, clipDimVal, INT_MAX));
+            root = make_shared<PerceptClip>(0, "root", generator, clipDimVal, INT_MAX);
 
             vector<double> prepWeights;
-            prepActions = KUKADU_SHARED_PTR<vector<KUKADU_SHARED_PTR<Clip> > >(new vector<KUKADU_SHARED_PTR<Clip> >());
-            prepActionsCasted = KUKADU_SHARED_PTR<vector<KUKADU_SHARED_PTR<ActionClip> > >(new vector<KUKADU_SHARED_PTR<ActionClip> >());
+            prepActions = make_shared<vector<KUKADU_SHARED_PTR<Clip> > >();
+            prepActionsCasted = make_shared<vector<KUKADU_SHARED_PTR<ActionClip> > >();
+
             for(int i = 0; i < preparationControllers.size(); ++i) {
 
                 auto prepActionClip = make_shared<ControllerActionClip>(storage, i, preparationControllers.at(i), generator);
@@ -206,22 +224,23 @@ namespace kukadu {
                 prepWeights.push_back(stdPrepWeight);
 
             }
+
             ++currentId;
 
             for(int i = 0; i < sensingControllers.size(); ++i) {
 
                 KUKADU_SHARED_PTR<SensingController> sensCont = sensingControllers.at(i);
 
-                clipDimVal = KUKADU_SHARED_PTR<vector<int> >(new vector<int>());
+                clipDimVal = make_shared<vector<int> >();
                 clipDimVal->push_back(currentId);
 
-                KUKADU_SHARED_PTR<Clip> nextSensClip = KUKADU_SHARED_PTR<Clip>(new IntermediateEventClip(sensCont, 1, generator, clipDimVal, INT_MAX));
+                KUKADU_SHARED_PTR<Clip> nextSensClip = make_shared<IntermediateEventClip>(sensCont, 1, generator, clipDimVal, INT_MAX);
                 ++currentId;
                 for(int j = 0; j < getStateCount(sensCont->getCaption()); ++j, ++currentId) {
 
-                    clipDimVal = KUKADU_SHARED_PTR<vector<int> >(new vector<int>());
+                    clipDimVal = make_shared<vector<int> >();
                     clipDimVal->push_back(currentId);
-                    KUKADU_SHARED_PTR<Clip> nextSubSensClip = KUKADU_SHARED_PTR<Clip>(new Clip(2, generator, clipDimVal, INT_MAX));
+                    KUKADU_SHARED_PTR<Clip> nextSubSensClip = make_shared<Clip>(2, generator, clipDimVal, INT_MAX);
                     // create copy of prepratory actions
                     auto prepActionsCopy = make_shared<vector<KUKADU_SHARED_PTR<Clip> > >(prepActions->begin(), prepActions->end());
                     nextSubSensClip->setChildren(prepActionsCopy, prepWeights);
@@ -231,27 +250,30 @@ namespace kukadu {
 
                 double nextWeight = std::exp(senseStretch * max(0.0, sensingWeights.at(i) - 1.0 / getStateCount(sensCont->getCaption())));
                 sensCont->setSimulationClassificationPrecision(min(sensingWeights.at(i) * 100.0, 100.0));
+
                 if(!isShutUp)
                     cout << "(ComplexController) relative weight of sensing action \"" << sensCont->getCaption() << "\" is " << nextWeight << endl;
+
                 root->addSubClip(nextSensClip, nextWeight);
 
             }
 
-            KUKADU_SHARED_PTR<vector<KUKADU_SHARED_PTR<PerceptClip> > > rootVec = KUKADU_SHARED_PTR<vector<KUKADU_SHARED_PTR<PerceptClip> > >(new vector<KUKADU_SHARED_PTR<PerceptClip> >());
+            KUKADU_SHARED_PTR<vector<KUKADU_SHARED_PTR<PerceptClip> > > rootVec = make_shared<vector<KUKADU_SHARED_PTR<PerceptClip> > >();
             rootVec->push_back(root);
 
+            int originalMode = ProjectiveSimulator::PS_USE_ORIGINAL;
+
             // skill is used the first time; do initialization
-            projSim = KUKADU_SHARED_PTR<ProjectiveSimulator>(new ProjectiveSimulator(shared_from_this(), generator, rootVec, gamma, ProjectiveSimulator::PS_USE_ORIGINAL, false));
+            projSim = make_shared<ProjectiveSimulator>(shared_from_this(), generator, rootVec, gamma, originalMode, false);
 
         }
 
         environmentModels.clear();
-
         if(fileExists(envModelPath)) {
 
             // load environment model
             for(auto sens : sensingControllers) {
-                auto envModel = KUKADU_SHARED_PTR<ProjectiveSimulator>(new ProjectiveSimulator(envReward, generator, envModelPath + sens->getCaption()));
+                auto envModel = make_shared<ProjectiveSimulator>(envReward, generator, envModelPath + sens->getCaption());
                 environmentModels.insert(std::pair<std::string, KUKADU_SHARED_PTR<kukadu::ProjectiveSimulator> >(sens->getCaption(), envModel));
             }
 
@@ -274,16 +296,13 @@ namespace kukadu {
         projSim->setBoredom(boredom, 2);
 
         if(storeReward) {
-            rewardHistoryStream = KUKADU_SHARED_PTR<std::ofstream>(new std::ofstream());
+            rewardHistoryStream = make_shared<std::ofstream>();
             int overWrite = 0;
             if(fileExists(historyPath)) {
                 cout << "(ComplexController) should reward history file be overwritten? (0 = no / 1 = yes)" << endl;
                 cin >> overWrite;
-                if(overWrite != 1) {
-                    string err = "(ComplexController) reward file already exists. you chose not to overwrite. stopping";
-                    cerr << err << endl;
-                    throw err;
-                }
+                if(overWrite != 1)
+                    throw KukaduException("(ComplexController) reward file already exists. you chose not to overwrite. stopping");
             }
             rewardHistoryStream->open(rewardHistoryPath.c_str(), ios::trunc);
         }
@@ -293,6 +312,18 @@ namespace kukadu {
             stateClipsBySensing.push_back(*sensingClip->getSubClips());
             stateClipsPerSensingAction[KUKADU_DYNAMIC_POINTER_CAST<IntermediateEventClip>(sensingClip)->getSensingController()->getCaption()] = *sensingClip->getSubClips();
         }
+
+        // get all sensing clips
+        sensingClips = projSim->getClipsOnLayer(1);
+        for(auto sClip : sensingClips) {
+            auto stateClips = sClip->getSubClips();
+            if(stateClips) {
+                for(auto states : *stateClips)
+                    loadTargetClips(sClip, states);
+            }
+        }
+
+        cout << "(ComplexController) number of target states: " << nothingStateClips.size() << endl;
 
     }
 
@@ -399,7 +430,7 @@ namespace kukadu {
         }
 
         if(!sensingClip)
-            throw KukaduException("(createEnvironmentModel) sensing action not available");
+            throw KukaduException("(ComplexController) sensing action not available");
 
         auto prepClips = sensingClip->getSubClipByIdx(0)->getSubClips();
         int sensingCatCount = sensingClip->getSubClipCount();
@@ -500,17 +531,20 @@ namespace kukadu {
                 else if(controllerMode == 3) {
 
                     // construct composed controllers here
-                    KukaduTokenizer tok(line);
+                    KukaduTokenizer tok(line, "_");
                     auto splits = tok.split();
+
                     vector<KUKADU_SHARED_PTR<kukadu::Controller> > controllerParts;
                     for(auto cont : splits)
                         controllerParts.push_back(availablePreparatoryControllers[cont]);
+
                     auto conc = make_shared<ConcatController>(storage, controllerParts);
                     preparationControllers.push_back(conc);
 
-                } else if(controllerMode == 10) {
+                    availablePreparatoryControllers[line] = conc;
+
+                } else if(controllerMode == 10)
                     break;
-                }
             }
 
         }
@@ -519,6 +553,7 @@ namespace kukadu {
         this->availableSensingControllers = availableSensingControllers;
         this->availablePreparatoryControllers = availablePreparatoryControllers;
 
+        createSensingDatabase();
         initialize();
 
         KUKADU_MODULE_END_USAGE();
@@ -667,8 +702,8 @@ namespace kukadu {
 
         if(!getSimulationMode()) {
 
-            cout << "(ComplexController) do you want to execute complex action now? (0 = no / 1 = yes)" << endl;
-            cin >> executeIt;
+//            cout << "(ComplexController) do you want to execute complex action now? (0 = no / 1 = yes)" << endl;
+//            cin >> executeIt;
 
             if(executeIt)
                 executeComplexAction();
@@ -702,6 +737,28 @@ namespace kukadu {
 
     }
 
+    void ComplexController::loadTargetClips(KUKADU_SHARED_PTR<Clip> sensingClip, KUKADU_SHARED_PTR<Clip> sensedState) {
+
+        // pair contains maximal hop probability of clip and the corresponding clip
+        auto maxProbClipPair = sensedState->getMaxProbability();
+        double maxProb = get<0>(maxProbClipPair);
+        int maxWeight = get<1>(maxProbClipPair);
+        auto maxPrepClip = get<2>(maxProbClipPair);
+
+        // if probability of success after using "nothing" action is high enough, the state clip might be considered in future reasoning
+        // e.g. for guided clip creation
+        if(maxWeight > stdPrepWeight) {
+            if(maxProb > nothingStateProbThresh && KUKADU_DYNAMIC_POINTER_CAST<ControllerActionClip>(maxPrepClip)->toString() == nothingController->getCaption() && !nothingStateClips[sensingClip->toString()][sensedState->toString()]) {
+                nothingStateClips[sensingClip->toString()][sensedState->toString()] = sensedState;
+
+            // if there is a state where the strongest action is "nothing" but the probability is below 0.8, remove it (even if it is not in there yet - checking
+            // this would just make it slower)
+            } else if(maxProb <= nothingStateProbThresh && KUKADU_DYNAMIC_POINTER_CAST<ControllerActionClip>(maxPrepClip)->toString() == "nothing")
+                nothingStateClips[sensingClip->toString()][sensedState->toString()] = nullptr;
+        }
+
+    }
+
     KUKADU_SHARED_PTR<ControllerResult> ComplexController::executeInternal() {
 
         KUKADU_MODULE_START_USAGE();
@@ -718,8 +775,12 @@ namespace kukadu {
 
         ++currentIterationNum;
 
+        cout << "nothing state clip count: " << nothingStateClips.size() << endl;
+
         auto walkRet = projSim->performRandomWalk(2);
         auto wasBored = projSim->nextHopIsBored();
+
+        cout << "was bored: " << wasBored << endl;
 
         double reward = 0.0;
         std::tuple<double, KUKADU_SHARED_PTR<Clip>, std::vector<KUKADU_SHARED_PTR<Clip> >, int> selectedPath;
@@ -735,6 +796,8 @@ namespace kukadu {
             auto stateClip = get<1>(newClips);
             auto stateId = stateClip->getClipDimensions()->at(0);
 
+            cout << "use creativity: " << useCreativity << endl;
+
             // block for creativity mode
             if(useCreativity) {
 
@@ -743,16 +806,20 @@ namespace kukadu {
 
                     // compute all paths with maximum length of 4 and minimal confidence 0.4
                     auto possiblePaths = computeEnvironmentPaths(sensingClip, stateClip, 4, 0.4);
+
                     // find out if there is a transition to a "nothing" state
                     // sort them according to confidence
                     std::sort(possiblePaths.begin(), possiblePaths.end(), [] (std::tuple<double, KUKADU_SHARED_PTR<Clip>, std::vector<KUKADU_SHARED_PTR<Clip> >, int> p1, std::tuple<double, KUKADU_SHARED_PTR<Clip>, std::vector<KUKADU_SHARED_PTR<Clip> >, int> p2) {
                                   return std::get<0>(p1) > std::get<0>(p2);
                               });
+
                     for(auto&  path : possiblePaths) {
+
                         bool pathCanBeChosen = false;
                         double nothingProb = 0.0;
                         auto& resultingState = std::get<1>(path);
                         auto& clipPath = std::get<2>(path);
+
                         // path has to contain more than 1 preparatory action (path here is state -> prep action -> state -> ... -> final state). therefore length
                         // must be at least 4
                         if(clipPath.size() >= 4) {
@@ -797,6 +864,8 @@ namespace kukadu {
                                         // first create action clip
                                         auto newConcatClip = make_shared<ControllerActionClip>(storage, projSim->generateNewActionId(), newConcatController, generator);
 
+                                        cout << "creative proposal of " << newConcatClip->toString() << endl;
+
                                         bool isCorrectSensingClip = false;
                                         auto senseLayer = projSim->getClipLayers()->at(1);
                                         for(auto& currentSenseClip : *senseLayer) {
@@ -839,6 +908,8 @@ namespace kukadu {
                                             }
                                         }
 
+                                        creativeControllerCreated = true;
+
                                     }
 
                                 } else {
@@ -871,7 +942,8 @@ namespace kukadu {
 
             if(!getSimulationMode()) {
                 auto sensedLabel = getClassLabel(sensingClip, stateClip);
-                cout << "(ComplexController::execute) selected sensing action \"" << *sensingClip << "\" resulted in predicted class " << sensedLabel << " and preparation action \"" << *actionClip << "\"" << endl;
+                cout << "(ComplexController::execute) selected sensing action \"" << *sensingClip << "\" predicted class " << sensedLabel <<
+                        " and selected preparation action \"" << *actionClip << "\"" << endl;
             }
 
             KUKADU_DYNAMIC_POINTER_CAST<ControllerActionClip>(actionClip)->execute();
@@ -931,6 +1003,9 @@ namespace kukadu {
 
             }
 
+            executeComplexAction();
+            cleanupAfterAction();
+
             // after doing everything --> perform the complex action and reward it accordingly
             auto rewRet = projSim->performRewarding();
             reward = get<1>(rewRet);
@@ -940,27 +1015,13 @@ namespace kukadu {
             // block for determining the "nothing" states is only required if creativity is switched on
             if(useCreativity) {
 
-                // pair contains maximal hop probability of clip and the corresponding clip
-                auto maxProbClipPair = sensedState->getMaxProbability();
-                double maxProb = get<0>(maxProbClipPair);
-                int maxWeight = get<1>(maxProbClipPair);
-                auto maxPrepClip = get<2>(maxProbClipPair);
-
-                // if probability of success after using "nothing" action is high enough, the state clip might be considered in future reasoning
-                // e.g. for guided clip creation
-                if(maxWeight > stdPrepWeight) {
-                    if(maxProb > nothingStateProbThresh && KUKADU_DYNAMIC_POINTER_CAST<ControllerActionClip>(maxPrepClip)->toString() == nothingController->getCaption() && !nothingStateClips[sensingClip->toString()][sensedState->toString()]) {
-                        nothingStateClips[sensingClip->toString()][sensedState->toString()] = sensedState;
-
-                    // if there is a state where the strongest action is "nothing" but the probability is below 0.8, remove it (even if it is not in there yet - checking
-                    // this would just make it slower)
-                    } else if(maxProb <= nothingStateProbThresh && KUKADU_DYNAMIC_POINTER_CAST<ControllerActionClip>(maxPrepClip)->toString() == "nothing")
-                        nothingStateClips[sensingClip->toString()][sensedState->toString()] = nullptr;
-                }
+                loadTargetClips(sensingClip, sensedState);
 
             }
 
         } else {
+
+            cout << "(ComplexController) i am bored - i will try to produce another perceptual state" << endl;
 
             ++consecutiveBoredomCount;
             walkRet = projSim->performRandomWalk(ProjectiveSimulator::PS_WALK_UNTIL_END, true);
@@ -1170,10 +1231,10 @@ namespace kukadu {
                     auto resultingStateId = std::get<1>(stateTransition);
                     auto resultingStateClip = projSim->retrieveClipsOnLayer({resultingStateId}, 2).at(0);
                     int actionId = state->getClipDimensions()->at(1);
+
                     auto usedActionClip = projSim->retrieveClipsOnLayer({actionId}, 3).at(0);
                     currentPath.push_back(usedActionClip);
                     currentPath.push_back(resultingStateClip);
-
                     double nextConfidence = currentConfidence * transitionConfidence;
 
                     if(nextConfidence > confidenceCut) {
@@ -1447,9 +1508,9 @@ namespace kukadu {
 
         if(!actionController->getSimulationMode()) {
 
-            int executeIt = 0;
-            cout << "(ControllerActionClip) selected preparation action is \"" << actionController->getCaption() << "\"; want to execute it? (0 = no / 1 = yes)" << endl;
-            cin >> executeIt;
+            int executeIt = 1;
+            cout << "(ControllerActionClip) selected preparation action is \"" << actionController->getCaption() << "\"" << endl;
+//            cin >> executeIt;
 
             if(executeIt == 1)
                 retVal = actionController->execute();
@@ -1545,7 +1606,6 @@ namespace kukadu {
     void SensingController::setDatabasePath(std::string databasePath) {
         this->databasePath = databasePath;
         databaseAlreadySet = true;
-        createDataBase();
     }
 
     void SensingController::gatherData(std::string completePath) {
@@ -1603,10 +1663,10 @@ namespace kukadu {
         KUKADU_SHARED_PTR<kukadu_thread> cleanupThread;
         if(!getSimulationMode()) {
 
-            int executeIt = 0;
+            int executeIt = 1;
             int temporaryHapticMode = hapticMode;
-            cout << "(SensingController) selected sensing action is \"" << getCaption() << "\"; want to execute it? (0 = no / 1 = yes)" << endl;
-            cin >> executeIt;
+            cout << "(SensingController) selected sensing action is \"" << getCaption() << "\"" << endl;
+//            cin >> executeIt;
 
             if(executeIt == 1) {
 
@@ -1633,14 +1693,10 @@ namespace kukadu {
                 cin >> classifierRes;
             } else if(temporaryHapticMode == SensingController::HAPTIC_MODE_CLASSIFIER) {
                 auto res = callClassifier(tmpPath + "hapticTest/" + queues.at(0)->getRobotFileName() + "_0");
-                classifierRes = res - 1;
+                classifierRes = res;
             } else {
                 throw KukaduException("haptic mode not known");
             }
-
-            if(!isShutUp)
-                cout << "(SensinController) press enter to continue" << endl;
-            getchar();
 
             pf::remove_all(tmpPath + "hapticTest");
             ++currentIterationNum;
@@ -1746,43 +1802,84 @@ namespace kukadu {
 
     }
 
-    double SensingController::createDataBase() {
+    double SensingController::createDataBase(int perceptualStateId) {
 
         KUKADU_MODULE_START_USAGE();
 
         if(!databaseAlreadySet)
             throw KukaduException("(SensingController::createDataBase) database not defined yet");
 
-        int numClasses = 0;
+        int numClasses = getStateCount();
         string path = getDatabasePath();
         vector<pair<int, string> > collectedSamples;
         if(!isShutUp)
             cout << "(SensingController) data is stored to " << path << endl;
 
-        if(!fileExists(path)) {
-
+        bool databaseExisted = fileExists(path);
+        if(!databaseExisted) {
             if(!isShutUp)
                 cout << "(SensingController) folder doesn't exist - create" << endl;
             createDirectory(path);
+        }
+
+        vector<int> sampleIds;
+        for(int i = 0; i < numClasses; ++i)
+            sampleIds.push_back(-1);
+        if(databaseExisted) {
+            auto filesList = getFilesInDirectory(path);
+            for(auto file : filesList) {
+                if(file != "." && file != "..") {
+                    KukaduTokenizer tok(file, "_");
+                    // ignore "class"
+                    tok.next();
+                    int currentId = atoi(tok.next().c_str());
+                    // ignore "sample"
+                    tok.next();
+                    int sampleId = atoi(tok.next().c_str());
+                    int currentMaxSampleId = sampleIds.at(currentId);
+                    sampleIds.at(currentId) = max(sampleId, currentMaxSampleId);
+                }
+            }
+        }
+
+        int minSampleCount = 10;
+        for(int i = 0; i < sampleIds.size(); ++i) {
+            if(sampleIds.at(i) == -1) {
+                perceptualStateId = i;
+                break;
+            } else if(sampleIds.at(i) < minSampleCount) {
+                cout << "(SensingController) you have less than " << minSampleCount << " samples for state " << i << " under sensing action " << getCaption() <<
+                        ". do you want to collect more? (0 = no, 1 = yes)" << endl;
+                int answer;
+                cin >> answer;
+                if(answer == 1)
+                    perceptualStateId = i;
+                break;
+            }
+
+        }
+
+        if(!databaseExisted || perceptualStateId != -1) {
 
             // create the database
-            numClasses = getStateCount();
             if(!isShutUp)
                 cout << "(SensingController) " << getCaption() << " offers " << numClasses << " classes" << endl;
 
             ofstream labelFile;
             labelFile.open((path + "labels").c_str(), std::ios_base::app);
 
-            for(int currClass = 0; currClass < numClasses; ++currClass) {
+            if(perceptualStateId == -1)
+                perceptualStateId = 0;
 
-                if(currClass != 0)
+            for(int currClass = perceptualStateId; currClass < numClasses; ++currClass) {
+
+                if(currClass != perceptualStateId)
                     this->prepareNextState();
 
                 int cont = 1;
-                for(int sampleNum = 0; cont == 1; ++sampleNum) {
+                for(int sampleNum = sampleIds.at(currClass) + 1; cont == 1; ++sampleNum) {
 
-                    cout << "(SensingController) press key to collect sample number " << sampleNum << " for class " << currClass << " with sensing controller " << this->getCaption() << endl;
-                    getchar();
+                    cout << "(SensingController) collecting sample number " << sampleNum << " for class " << currClass << " with sensing controller " << this->getCaption() << endl;
 
                     stringstream s;
                     s << "class_" << currClass << "_sample_" << sampleNum;
@@ -1874,11 +1971,33 @@ namespace kukadu {
 
     }
 
+    arma::vec fitToDim(arma::mat v, int dim) {
+
+        if(v.n_cols > dim)
+            return v.cols(0, dim - 1).t();
+        else {
+            arma::vec retVec(dim);
+            for(int i = 0; i < dim; ++i)
+                if(i < v.n_cols)
+                    retVec(i) = v(i);
+                else
+                    retVec(i) = v(v.n_cols- 1);
+            return retVec;
+        }
+
+    }
+
     int SensingController::callClassifier(std::string passedFilePath) {
 
+        KUKADU_MODULE_START_USAGE();
+
         auto toClassify = loadClassificationData({0}, {passedFilePath});
-        vec toClassifyVec = toClassify.second.front().cols(0, classifier->getSampleDimensionality() - 1).t();
-        return classifier->classify(toClassifyVec);
+        vec toClassifyVec = fitToDim(toClassify.second.front(), classifier->getSampleDimensionality());
+        auto res = classifier->classify(toClassifyVec);
+
+        KUKADU_MODULE_END_USAGE();
+
+        return res;
 
     }
 

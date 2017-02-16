@@ -152,9 +152,8 @@ namespace kukadu {
 
                     if(streamNum == 0)
                         walkSuccess.push_back(currentWalk);
-                    else if(walkIdx < walkSuccess.size()) {
+                    else if(walkIdx < walkSuccess.size())
                         walkSuccess.at(walkIdx) += currentWalk;
-                    }
 
                     ++walkIdx;
 
@@ -387,40 +386,54 @@ namespace kukadu {
                     // first line is the id vector
                     if(currentLayer == 0) {
 
-                        nextClip = createClipFunc(line, currentLayer, 0, generator);
-                        auto pc = KUKADU_DYNAMIC_POINTER_CAST<PerceptClip>(nextClip);
-                        maxPerceptId = std::max(maxPerceptId, pc->getPerceptId());
+                        if(nextClip = createClipFunc(line, currentLayer, 0, generator)) {
 
-                        if(isFirstPercept) {
+                            auto pc = KUKADU_DYNAMIC_POINTER_CAST<PerceptClip>(nextClip);
+                            maxPerceptId = std::max(maxPerceptId, pc->getPerceptId());
 
-                            isFirstPercept = false;
-                            perceptDimensionality = pc->getDimensionality();
+                            if(isFirstPercept) {
 
+                                isFirstPercept = false;
+                                perceptDimensionality = pc->getDimensionality();
+
+                            }
+
+                            perceptClips->push_back(pc);
+
+                        } else {
+                            cerr << "(ProjectiveSimulator) warning: not all clips were created" << endl;
+                            continue;
                         }
-
-                        perceptClips->push_back(pc);
 
                     } else if(currentLayer == Clip::CLIP_H_LEVEL_FINAL) {
 
                         if(line != "") {
-                            nextClip = createClipFunc(line, currentLayer, perceptDimensionality, generator);
-                            auto nextActionClip = KUKADU_DYNAMIC_POINTER_CAST<ActionClip>(nextClip);
-                            maxActionId = std::max(maxActionId, nextActionClip->getActionId());
-                            actionClips->push_back(nextActionClip);
+
+                            if(nextClip = createClipFunc(line, currentLayer, perceptDimensionality, generator)) {
+
+                                auto nextActionClip = KUKADU_DYNAMIC_POINTER_CAST<ActionClip>(nextClip);
+                                maxActionId = std::max(maxActionId, nextActionClip->getActionId());
+                                actionClips->push_back(nextActionClip);
+
+                            } else {
+                                cerr << "(ProjectiveSimulator) warning: not all clips were created" << endl;
+                                continue;
+                            }
                         } else
                             continue;
 
                     } else {
 
                         if(line != "")
-                            nextClip = createClipFunc(line, currentLayer, perceptDimensionality, generator);
+                            if(nextClip = createClipFunc(line, currentLayer, perceptDimensionality, generator)) {}
+                            else
+                                continue;
                         else
                             continue;
 
                     }
 
                     int clipLevel = currentLayer;
-
                     if(clipLevel != Clip::CLIP_H_LEVEL_FINAL)
                         clipLayers->at(clipLevel)->insert(nextClip);
                     else
@@ -432,7 +445,7 @@ namespace kukadu {
 
             getline(inputFile, line);
 
-            // load the clips
+            // connect the clips
             currentLayer = 0;
             KUKADU_SHARED_PTR<Clip> currentParent;
             std::vector<double> newChildrenWeights;
@@ -452,10 +465,12 @@ namespace kukadu {
                     // a new parent will be provided next
                     if(!line.compare("")) {
 
-                        currentParent->setChildren(newChildren, newChildrenWeights);
+                        if(currentParent)
+                            currentParent->setChildren(newChildren, newChildrenWeights);
+
                         currentParent.reset();
                         newChildrenWeights.clear();
-                        newChildren = KUKADU_SHARED_PTR<std::vector<KUKADU_SHARED_PTR<Clip> > >(new std::vector<KUKADU_SHARED_PTR<Clip> >());
+                        newChildren = make_shared<std::vector<KUKADU_SHARED_PTR<Clip> > >();
 
                     }
                     // its a new parent clip
@@ -470,8 +485,11 @@ namespace kukadu {
                         string idVecString = tok.next();
                         double connectionWeight = atof(tok.next().c_str());
                         KUKADU_SHARED_PTR<Clip> currentChild = findClipByIdVec(Clip::getIdVectorFromString(idVecString));
-                        newChildren->push_back(currentChild);
-                        newChildrenWeights.push_back(connectionWeight);
+
+                        if(currentChild) {
+                            newChildren->push_back(currentChild);
+                            newChildrenWeights.push_back(connectionWeight);
+                        }
 
                     }
 
@@ -480,7 +498,7 @@ namespace kukadu {
             }
 
         } else
-            throw KukaduException("PS file version cannot be handled");
+            throw KukaduException("(ProjectiveSimulator) PS file version cannot be handled");
 
         boredomLevels.clear();
         for(int i = 0; i < clipLayers->size(); ++i)
@@ -630,7 +648,10 @@ namespace kukadu {
 
     KUKADU_SHARED_PTR<Clip> ProjectiveSimulator::findClipByIdVec(KUKADU_SHARED_PTR<std::vector<int> > idVec) {
 
-        if(operationMode == PS_USE_ORIGINAL) {
+        int originalMode = PS_USE_ORIGINAL;
+        int useGenMode = PS_USE_GEN;
+
+        if(operationMode == originalMode) {
 
             for(int level = 0; level < clipLayers->size() - 1; ++level) {
 
@@ -640,7 +661,7 @@ namespace kukadu {
 
             }
 
-        } else if(operationMode == PS_USE_GEN) {
+        } else if(operationMode == useGenMode) {
             // this works only for generalization where the number of wildcards says something about the level
             int level = getIdVecLevel(idVec);
             return findClipInLevelByIdVec(idVec, level);
@@ -654,7 +675,7 @@ namespace kukadu {
             }
         }
 
-        return KUKADU_SHARED_PTR<Clip>();
+        return nullptr;
 
     }
 
@@ -717,17 +738,20 @@ namespace kukadu {
         maxPerceptId = 0;
         this->loadedFromFile = false;
 
+        int originalMode = PS_USE_ORIGINAL;
+        int genMode = PS_USE_GEN;
+
         this->perceptClips = reward->generatePerceptClips();
         this->actionClips = reward->generateActionClips();
 
         levels = 0;
-        if(operationMode == PS_USE_ORIGINAL)
+        if(operationMode == originalMode)
             levels = 1;
-        else if(operationMode == PS_USE_GEN)
+        else if(operationMode == genMode)
             // + 1 for the (#, #, #, ...) layer
             levels = reward->getDimensionality() + 1;
 
-        KUKADU_SHARED_PTR<std::vector<KUKADU_SHARED_PTR<Clip> > > clipActionClips = KUKADU_SHARED_PTR<std::vector<KUKADU_SHARED_PTR<Clip> > >(new std::vector<KUKADU_SHARED_PTR<Clip> >());
+        KUKADU_SHARED_PTR<std::vector<KUKADU_SHARED_PTR<Clip> > > clipActionClips = make_shared<std::vector<KUKADU_SHARED_PTR<Clip> > >();
         for(int i = 0; i < actionClips->size(); ++i) {
             auto t = actionClips->at(i);
             maxActionId = std::max(maxActionId, t->getActionId());
@@ -888,7 +912,9 @@ namespace kukadu {
             parent->removeSubClip(currClip);
         }
 
-        if(level == 0 && operationMode != PS_USE_ORIGINAL)
+        int originalMode = PS_USE_ORIGINAL;
+
+        if(level == 0 && operationMode != originalMode)
             perceptClips->erase(std::find(perceptClips->begin(), perceptClips->end() + 1, currClip));
 
         currClip->removeAllSubClips();
@@ -994,6 +1020,9 @@ namespace kukadu {
         int previousIdx = 0;
         int currentLevel = 0;
 
+        int originalMode = PS_USE_ORIGINAL;
+        int genMode = PS_USE_GEN;
+
         if(!continueLastWalk) {
 
             currentLevel = 0;
@@ -1004,14 +1033,14 @@ namespace kukadu {
             intermediateHops->clear();
 
             if(!predefinedFirstHop) {
-                if(operationMode == PS_USE_GEN) {
+                if(operationMode == genMode) {
                     if(!lastGeneralizedPercept) {
                         cerr << "(ProjectiveSimulator) you have to generalize before you walk" << endl;
                         throw KukaduException("(ProjectiveSimulator) you have to generalize before you walk");
                     } else {
                         currentClip = lastGeneralizedPercept;
                     }
-                } else if(operationMode == PS_USE_ORIGINAL) {
+                } else if(operationMode == originalMode) {
                     currentClip = reward->generateNextPerceptClip(immunityThresh);
                 }
             } else
@@ -1088,6 +1117,7 @@ namespace kukadu {
         if(clipLevel != Clip::CLIP_H_LEVEL_FINAL) {
 
             auto boredom = boredomLevels.at(clipLevel);
+            cout << "boredom level: " << boredomLevels.at(clipLevel) << endl;
             if(boredomLevels.at(clipLevel) > 0.0) {
 
                 double entropy = clip->computeSubEntropy();
@@ -1095,6 +1125,8 @@ namespace kukadu {
 
                 // b * (1 - H / H_max) = 1 - b * H / log2(N)
                 double boredomScore = 1.0 - boredom * entropy / log2(numberOfSubclips);
+
+                cout << "boredom score: " << boredomScore << endl;
 
                 vector<double> boredomDistWeights;
                 boredomDistWeights.push_back(boredomScore);
@@ -1422,6 +1454,7 @@ namespace kukadu {
 
             KUKADU_SHARED_PTR<set<KUKADU_SHARED_PTR<Clip>, clip_compare> > layer = *it;
             if(layer->size() > 0) {
+
                 int currentLevel = (*layer->begin())->getLevel();
                 outFile << "layer=" << currentLevel << endl;
 
@@ -1437,9 +1470,13 @@ namespace kukadu {
                         KUKADU_SHARED_PTR<ActionClip> cpc = KUKADU_DYNAMIC_POINTER_CAST<ActionClip>(cClip);
                         outFile << ";" << cpc->getActionId();
                     }
+
                     outFile << endl;
+
                 }
+
             }
+
         }
         outFile << endl;
 

@@ -89,6 +89,7 @@ namespace kukadu {
             cout << "creating controller " << contName << endl;
             std::vector<KUKADU_SHARED_PTR<kukadu::SensingController> > sensingCopy;
             // sensing and complex controllers are assumed to require the same (grasped or not grasped)
+
             if(castCompCont->requiresGrasp())
                 sensingCopy = copySensingControllers(castCompCont, requiresGraspSensingControllersVec, hapticPath);
             else
@@ -114,6 +115,7 @@ namespace kukadu {
                             castCompCont->addPreparatoryController(cont);
                 }
 
+                castCompCont->createSensingDatabase();
                 castCompCont->initialize();
                 castCompCont->store(complexPath);
 

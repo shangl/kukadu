@@ -3,6 +3,7 @@
 #include <kukadu/robot/hand.hpp>
 #include <kukadu/utils/utils.hpp>
 #include <kukadu/robot/kukiehand.hpp>
+#include <kukadu/types/kukadutypes.hpp>
 #include <std_msgs/Float64MultiArray.h>
 #include <kukadu/types/kukadutypes.hpp>
 #include <iis_robot_dep/TactileMatrix.h>
@@ -20,12 +21,12 @@ namespace kukadu {
 #endif
 
     GenericHand::GenericHand(StorageSingleton& dbStorage, std::string handInstanceName) :
-        Hardware(dbStorage, HARDWARE_HAND, Hardware::loadTypeIdFromInstanceName(handInstanceName), loadTypeNameFromInstanceName(handInstanceName), Hardware::loadInstanceIdFromName(handInstanceName), handInstanceName) {
+        JointHardware(dbStorage, HARDWARE_HAND, Hardware::loadTypeIdFromInstanceName(handInstanceName), loadTypeNameFromInstanceName(handInstanceName), Hardware::loadInstanceIdFromName(handInstanceName), handInstanceName) {
         isFirstStorage = true;
     }
 
     GenericHand::GenericHand(StorageSingleton& dbStorage, int handTypeId, std::string handTypeName, int handInstanceId, std::string handInstanceName) :
-        Hardware(dbStorage, HARDWARE_HAND, handTypeId, handTypeName, handInstanceId, handInstanceName) {
+        JointHardware(dbStorage, HARDWARE_HAND, handTypeId, handTypeName, handInstanceId, handInstanceName) {
         isFirstStorage = true;
     }
 
@@ -49,23 +50,11 @@ namespace kukadu {
 
     }
 
-    int GenericHand::getJointId(std::string jointName) {
-
-        stringstream s;
-        s << "select joint_id from hardware_joints where hardware_instance_id = " << getHardwareInstance() << " and joint_name = \"" << jointName << "\"";
-        auto idRes = getStorage().executeQuery(s.str());
-        if(idRes->next())
-            return idRes->getInt("joint_id");
-        else
-            throw KukaduException("(GenericHand) searched joint is not part of the robot");
-
-    }
-
-    std::vector<int> GenericHand::getJointIds() {
+    std::vector<int> JointHardware::getJointIds() {
         return getJointIds(getJointNames());
     }
 
-    std::vector<int> GenericHand::getJointIds(std::vector<std::string> jointNames) {
+    std::vector<int> JointHardware::getJointIds(std::vector<std::string> jointNames) {
         vector<int> jointIds;
         for(int i = 0; i < jointNames.size(); ++i)
             jointIds.push_back(getJointId(jointNames.at(i)));
@@ -86,7 +75,7 @@ namespace kukadu {
         vec jointFrcs = zeros(1);
 
         auto& storage = getStorage();
-        auto robotId = getHardwareType();
+        auto robotId = getHardwareInstance();
         auto jointIds = getJointIds();
 
         prevPrevJoints = prevJoints;
@@ -272,9 +261,13 @@ namespace kukadu {
 
                 if(!isFirstCallback) {
 
-                    previousCurrentPosQueue.pop();
-                    previousCurrentPosQueue.push(currentPos);
-                    currentPos = state.position;
+                    if(!previousCurrentPosQueue.empty()) {
+
+                        previousCurrentPosQueue.pop();
+                        previousCurrentPosQueue.push(currentPos);
+                        currentPos = state.position;
+
+                    }
 
                 } else {
 
@@ -484,13 +477,19 @@ namespace kukadu {
         KUKADU_MODULE_START_USAGE();
 
         auto currJoints = getCurrentJoints();
+
+        if(positions.n_elem != currJoints.n_elem)
+            throw KukaduException("(KukieHand) wrong joint dimension");
+
         auto ignoreJoint = SDH_IGNORE_JOINT;
         std_msgs::Float64MultiArray newJoints;
         for(int i = 0; i < positions.n_elem; ++i) {
             if(positions(i) != ignoreJoint)
                 newJoints.data.push_back(positions(i));
-            else
+            else {
                 newJoints.data.push_back(currJoints(i));
+                positions(i) = currJoints(i);
+            }
         }
 
         targetReached = false;
@@ -507,13 +506,14 @@ namespace kukadu {
             while(!targetReached) {
 
                 bool stillMoving = false;
-                // check if the fingers are still moving
 
+                // check if the fingers are still moving
                 currentPosMutex.lock();
                     auto posQueueTmp = previousCurrentPosQueue;
                 currentPosMutex.unlock();
 
                 while(!posQueueTmp.empty()) {
+
                     auto& previousCurrentPos = posQueueTmp.front();
                     bool deviates = vectorsDeviate(previousCurrentPos, armadilloToStdVec(getCurrentJoints()), 0.01);
                     if(deviates) {
@@ -521,6 +521,7 @@ namespace kukadu {
                         break;
                     }
                     posQueueTmp.pop();
+
                 }
 
                 // if not moving anymore but the movement was started --> the target is reached

@@ -53,6 +53,82 @@ namespace kukadu {
         return 1.0 / getCycleTime();
     }
 
+    vector<std::pair<long long int, arma::vec> > ControlQueue::loadData(long long int startTime, long long int endTime, long long maxTotalDuration, long long int maxTimeStepDifference) {
+
+        static bool referenceWarningShown = false;
+
+        auto jointData = JointHardware::loadData(startTime, endTime, maxTotalDuration, maxTimeStepDifference);
+
+        auto& storage = getStorage();
+        auto robotId = getHardwareInstance();
+
+        if(!referenceWarningShown) {
+            cerr << "(ControlQueue) warning: reference frame and link name not considered yet" << endl;
+            referenceWarningShown = true;
+        }
+
+        stringstream s;
+        s << "select time_stamp, cart_pos_x, cart_pos_y, cart_pos_z, cart_rot_x, cart_rot_y, cart_rot_z" <<
+             ", cart_frc_x, cart_frc_y, cart_frc_z, cart_trq_x, cart_trq_y, cart_trq_z, cart_abs_frc " <<
+             " from cart_mes as cm inner join cart_mes_pos as cmp on cm.cart_mes_id = cmp.cart_mes_id" <<
+             " inner join cart_mes_frc as cmf on cm.cart_mes_id = cmf.cart_mes_id " <<
+             " where time_stamp >= " << startTime;
+        if(endTime > 0)
+            s << " and time_stamp <= " << endTime;
+        else
+            s << " and time_stamp <= " << (startTime + maxTotalDuration);
+        s << " and robot_id = " << robotId <<
+             " order by time_stamp asc";
+
+        vec lastCartInformation(13);
+        lastCartInformation.fill(0.0);
+        auto queryRes = storage.executeQuery(s.str());
+        int i = 0;
+        while(queryRes->next() && i < jointData.size()) {
+
+            long long int currentTime = queryRes->getInt64("time_stamp");
+
+            auto& jd = jointData.at(i);
+            long long int jointTime = jd.first;
+
+            while(currentTime > jointTime && i < jointData.size()) {
+
+                auto& jd = jointData.at(i);
+                jointTime = jd.first;
+
+                vec cartInformation(13);
+                cartInformation(0) = queryRes->getDouble("cart_pos_x");
+                cartInformation(1) = queryRes->getDouble("cart_pos_y");
+                cartInformation(2) = queryRes->getDouble("cart_pos_z");
+                cartInformation(3) = queryRes->getDouble("cart_rot_x");
+                cartInformation(4) = queryRes->getDouble("cart_rot_y");
+                cartInformation(5) = queryRes->getDouble("cart_rot_z");
+                cartInformation(6) = queryRes->getDouble("cart_frc_x");
+                cartInformation(7) = queryRes->getDouble("cart_frc_y");
+                cartInformation(8) = queryRes->getDouble("cart_frc_z");
+                cartInformation(9) = queryRes->getDouble("cart_trq_x");
+                cartInformation(10) = queryRes->getDouble("cart_trq_y");
+                cartInformation(11) = queryRes->getDouble("cart_trq_z");
+                cartInformation(12) = queryRes->getDouble("cart_abs_frc");
+
+                lastCartInformation = cartInformation;
+
+                jd.second = join_cols(jd.second, cartInformation);
+                ++i;
+
+            }
+
+        }
+
+        for(; i < jointData.size(); ++i) {
+            auto& jd = jointData.at(i);
+            jd.second = join_cols(jd.second, lastCartInformation);
+        }
+
+        return jointData;
+
+    }
+
     void ControlQueue::storeCurrentSensorDataToDatabase() {
 
         auto& storage = getStorage();
@@ -141,7 +217,7 @@ namespace kukadu {
     }
 
     ControlQueue::ControlQueue(StorageSingleton& storage, std::string robotName, int degreesOfFreedom, double desiredCycleTime) :
-        Hardware(storage, HARDWARE_ARM, loadOrCreateTypeIdFromName("ControlQueue"), "ControlQueue", loadOrCreateInstanceIdFromName(robotName), robotName) {
+        JointHardware(storage, HARDWARE_ARM, loadOrCreateTypeIdFromName("ControlQueue"), "ControlQueue", loadOrCreateInstanceIdFromName(robotName), robotName) {
 
         thr = nullptr;
         frcTrqFilterUpdateThr = nullptr;
@@ -589,9 +665,11 @@ namespace kukadu {
 
         KUKADU_MODULE_START_USAGE();
 
-        rollBackQueue.clear();
-        rollbackMode = true;
+        rollbackQueueMutex.lock();
+            rollBackQueue.clear();
+        rollbackQueueMutex.unlock();
         rollBackTime = possibleTime;
+        rollbackMode = true;
         // buffer of 1.0 more second
         rollBackQueueSize = (int) ((possibleTime + 1.0) / getCycleTime());
 
@@ -604,7 +682,9 @@ namespace kukadu {
         KUKADU_MODULE_START_USAGE();
 
         rollbackMode = false;
+        rollbackQueueMutex.lock();
         rollBackQueue.clear();
+        rollbackQueueMutex.unlock();
 
         KUKADU_MODULE_END_USAGE();
 
@@ -621,15 +701,25 @@ namespace kukadu {
         stretchFactor = max((double) stretchFactor, 1.0);
 
         vec lastCommand(getDegreesOfFreedom());
+        rollbackQueueMutex.lock();
         if(rollBackQueue.size())
             lastCommand = rollBackQueue.front();
+        rollbackQueueMutex.unlock();
 
         int newRollBackCount = ceil((double) rollBackCount / (double) stretchFactor);
 
         // fill command queue with last commands (backwards)
         for(int i = 0; i < newRollBackCount && rollBackQueue.size(); ++i) {
 
-            vec nextCommand = rollBackQueue.front();
+            rollbackQueueMutex.lock();
+                vec nextCommand;
+                if(rollBackQueue.size())
+                    nextCommand = rollBackQueue.front();
+                else {
+                    rollbackQueueMutex.unlock();
+                    break;
+                }
+            rollbackQueueMutex.unlock();
 
             // interpolate to stretch the trajectory in case there are not enough measured packets (happens in usage with simulator)
             vec diffUnit = (nextCommand - lastCommand) / (double) stretchFactor;
@@ -638,7 +728,10 @@ namespace kukadu {
             }
 
             lastCommand = nextCommand;
-            rollBackQueue.pop_front();
+            rollbackQueueMutex.lock();
+                if(rollBackQueue.size())
+                    rollBackQueue.pop_front();
+            rollbackQueueMutex.unlock();
 
         }
 

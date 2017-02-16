@@ -3,6 +3,7 @@
 
 #include <map>
 #include <queue>
+#include <limits>
 #include <vector>
 #include <math.h>
 #include <vector>
@@ -190,6 +191,15 @@ namespace kukadu {
 
     std::vector<int> loadJointIdsFromName(StorageSingleton& storage, int robotId, std::vector<std::string> jointNames);
     arma::vec loadJointPosByTimestamp(StorageSingleton& storage, int robotId, std::vector<int> jointIds, long long int timeStamp);
+
+    double armadilloMin(arma::vec& v);
+    double armadilloMax(arma::vec& v);
+
+    double armadilloMin(arma::mat& m);
+    double armadilloMax(arma::mat& m);
+
+    bool armadilloHasNan(arma::vec& v);
+    bool armadilloHasNan(arma::mat& m);
 
 #ifndef USEBOOST
     template<typename S, typename T> bool mapContainsValue(std::map<S, T> m, T val) {

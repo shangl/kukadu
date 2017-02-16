@@ -4,6 +4,8 @@
 #include <vector>
 #include <string>
 #include <geometry_msgs/Pose.h>
+#include <kukadu/vision/kinect.hpp>
+#include <kukadu/types/kukadutypes.hpp>
 
 namespace kukadu {
 
@@ -18,6 +20,33 @@ namespace kukadu {
         virtual geometry_msgs::Pose localizeObject(std::string id) = 0;
         virtual std::map<std::string, geometry_msgs::Pose> localizeObjects() = 0;
         virtual std::vector<geometry_msgs::Pose> localizeObjects(std::vector<std::string> ids) = 0;
+
+    };
+
+    class PCBlobDetector : kukadu::Localizer {
+
+    private:
+
+        std::string targetFrame;
+
+        double xOffset;
+        double yOffset;
+
+        arma::vec center;
+
+        KUKADU_SHARED_PTR<Kinect> kinect;
+
+    public:
+
+        PCBlobDetector(boost::shared_ptr<Kinect> kinect, std::string targetFrame, arma::vec center, double xOffset, double yOffset);
+
+        virtual std::string getLocalizerFrame();
+
+        virtual geometry_msgs::Pose localizeObject(std::string id);
+
+        virtual std::map<std::string, geometry_msgs::Pose> localizeObjects();
+
+        virtual std::vector<geometry_msgs::Pose> localizeObjects(std::vector<std::string> ids);
 
     };
 

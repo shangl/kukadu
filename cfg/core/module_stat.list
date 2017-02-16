@@ -8,6 +8,9 @@
 //			- storage mode:
 //				- 0: store each call of the function (meant for normal functions)
 //				- 1 x: pools the function calls in an approximate time period x (in milliseconds)
+//
+// the id for new functions must be larger than all other id's --> otherwise it might affect other kukadu functionality
+//
 [planning]
 -kukadu
 	+Komo
@@ -123,6 +126,13 @@
 		#computeCost				72	0
 	+TrajectoryBasedReward
 		#computeCost				73	0
+	+LibSvm
+		#scaleDimensions			233	0
+		#train						234	0
+		#generateTrainSet			235	0
+		#setStdParams				236	0
+		#classify					237	0
+		#crossValidate				238	0
 [robot]
 -kukadu
 	+Calibrator
@@ -242,6 +252,7 @@
 		#performClassification		180	0
 		#createDataBase				181	0
 		#executeInternal				182	0
+		#callClassifier				239	0
 	+HapticPlanner
 		#pickAndPerformComplexSkill	183	0
 		#performComplexSkill		184	0

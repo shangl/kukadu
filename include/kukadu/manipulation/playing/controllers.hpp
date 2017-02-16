@@ -138,7 +138,8 @@ namespace kukadu {
         int getStateCount();
         void setStateCount(const int& stateCount);
 
-        double createDataBase();
+        // creates a fresh database if perceptualStateId == -1 and extends the database in case the id is != -1
+        double createDataBase(int perceptualStateId = -1);
 
         void setDatabasePath(std::string databasePath);
 
@@ -248,6 +249,8 @@ namespace kukadu {
         bool generateNewGroundTruth;
         bool lastSkillWasSuccessful;
 
+        bool creativeControllerCreated;
+
         int stdPrepWeight;
         int maxEnvPathLength;
         int currentIterationNum;
@@ -301,6 +304,8 @@ namespace kukadu {
         std::vector<KUKADU_SHARED_PTR<Controller> > preparationControllers;
         std::vector<KUKADU_SHARED_PTR<SensingController> > sensingControllers;
 
+        std::vector<KUKADU_SHARED_PTR<Clip> > sensingClips;
+
         std::map<std::string, KUKADU_SHARED_PTR<kukadu::SensingController> > availableSensingControllers;
         std::map<std::string, KUKADU_SHARED_PTR<kukadu::Controller> > availablePreparatoryControllers;
 
@@ -324,6 +329,8 @@ namespace kukadu {
         std::vector<KUKADU_SHARED_PTR<Clip> > getStateClipsForSensingId(KUKADU_SHARED_PTR<SensingController> sensingId);
 
         bool hasDuplicateStatesInPath(std::vector<KUKADU_SHARED_PTR<Clip> >& path);
+
+        void loadTargetClips(KUKADU_SHARED_PTR<Clip> sensingClip, KUKADU_SHARED_PTR<Clip> sensedState);
 
     protected:
 

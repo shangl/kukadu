@@ -1,5 +1,5 @@
-#ifndef KUKADU_STORAGESINGLETON
-#define KUKADU_STORAGESINGLETON
+#ifndef KUKADU_STORAGESINGLETON_H
+#define KUKADU_STORAGESINGLETON_H
 
 #include <map>
 #include <queue>

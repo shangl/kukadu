@@ -1,3 +1,4 @@
+#include <map>
 #include <kukadu/control/controller.hpp>
 #include <kukadu/storage/moduleusagesingleton.hpp>
 #include <kukadu/storage/sensorstoragesingleton.hpp>
@@ -54,16 +55,30 @@ namespace kukadu {
             s.str("");
             s << "insert into skills_robot(skill_id, hardware_instance_id) values";
             int insertedCount = 0;
-            for(auto& hw : usedHw) {
+
+            map<int, KUKADU_SHARED_PTR<Hardware> > hardwareMap;
+
+            // get rid of the duplicates
+            for(auto& hw : usedHw)
+                if(hw)
+                    hardwareMap[hw->getHardwareInstance()] = hw;
+
+            for(auto& hwPair : hardwareMap) {
+
+                auto& hw = hwPair.first;
                 if(hw) {
-                    s << "(" << skillId << ", " << hw->getHardwareInstance() << "),";
+                    s << "(" << skillId << ", " << hw << "),";
                     ++insertedCount;
                 }
+
             }
+
             if(insertedCount) {
+
                 string skillRobotStr = s.str();
                 skillRobotStr = skillRobotStr.substr(0, skillRobotStr.length() - 1);
                 storage.executeStatementPriority(skillRobotStr);
+
             }
 
             createSkillFromThisInternal(skillName);
