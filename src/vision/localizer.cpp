@@ -2,6 +2,7 @@
 #include <vector>
 #include <kukadu/vision/pcltools.hpp>
 #include <kukadu/vision/localizer.hpp>
+#include <kukadu/storage/moduleusagesingleton.hpp>
 
 using namespace std;
 
@@ -20,6 +21,8 @@ namespace kukadu {
     }
 
     geometry_msgs::Pose PCBlobDetector::localizeObject(std::string id) {
+
+        KUKADU_MODULE_START_USAGE();
 
         geometry_msgs::Pose retPose;
         PCLTools pt;
@@ -45,21 +48,34 @@ namespace kukadu {
         retPose.orientation.z = cube.rotation.z();
         retPose.orientation.w = cube.rotation.w();
 
+        KUKADU_MODULE_END_USAGE();
+
         return retPose;
 
     }
 
     std::map<std::string, geometry_msgs::Pose> PCBlobDetector::localizeObjects() {
 
+        KUKADU_MODULE_START_USAGE();
+
         map<string, geometry_msgs::Pose> retMap;
         retMap["blob"] = localizeObject(0);
+
+        KUKADU_MODULE_END_USAGE();
+
+        return retMap;
 
     }
 
     std::vector<geometry_msgs::Pose> PCBlobDetector::localizeObjects(std::vector<std::string> ids) {
 
+        KUKADU_MODULE_START_USAGE();
+
         vector<geometry_msgs::Pose> retPoses;
         retPoses.push_back(localizeObject(0));
+
+        KUKADU_MODULE_END_USAGE();
+
         return retPoses;
 
     }

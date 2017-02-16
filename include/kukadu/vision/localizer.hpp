@@ -23,7 +23,7 @@ namespace kukadu {
 
     };
 
-    class PCBlobDetector : kukadu::Localizer {
+    class PCBlobDetector : public kukadu::Localizer {
 
     private:
 
