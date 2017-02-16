@@ -115,6 +115,37 @@ namespace kukadu {
         maxDim = scaled.second.second;
 
     }
+    
+    double armaMin(arma::vec c) {
+		double currMin = std::numeric_limits<int>::max();
+		for(int i = 0; i < c.n_elem; ++i)
+			currMin = (c(i) < currMin) ? c(i) : currMin;
+		return currMin;
+	}
+	
+	double armaMax(arma::vec c) {
+		double currMax = std::numeric_limits<int>::min();
+		for(int i = 0; i < c.n_elem; ++i)
+			currMax = (c(i) > currMax) ? c(i) : currMax;
+		return currMax;
+	}
+	
+	bool armaHasNan(arma::vec c) {
+		
+		for(int i = 0; i < c.n_elem; ++i)
+			if(c(i) != c(i))
+				return true;
+		return false;
+		
+	}
+	
+	bool armaHasNan(arma::mat c) {
+		for(int i = 0; i < c.n_rows; ++i)
+			for(int j = 0; j < c.n_cols; ++j)
+				if(c(i, j) != c(i, j))
+					return true;
+		return false;
+	}
 
     std::pair<std::vector<arma::mat>, std::pair<std::vector<double>, std::vector<double> > > LibSvm::scaleDimensions(std::vector<arma::mat> samples, bool useStoredScalingInfo) {
 
@@ -141,8 +172,8 @@ namespace kukadu {
 
                 for(int i = 0; i < sampleMat.n_cols; ++i) {
 
-                    minDimInt.at(i) = std::min(minDimInt.at(i), sampleMat.col(i).min());
-                    maxDimInt.at(i) = std::max(maxDimInt.at(i), sampleMat.col(i).max());
+                    minDimInt.at(i) = std::min(minDimInt.at(i), armaMin(sampleMat.col(i)));
+                    maxDimInt.at(i) = std::max(maxDimInt.at(i), armaMax(sampleMat.col(i)));
 
                 }
 
@@ -172,7 +203,7 @@ namespace kukadu {
                 if((currentMin != 0.0 || currentMax != 0.0) && (currentMax - currentMin) > 0.0) {
                     // scaling as it is done in the svmlib scaling tool
                     sampleMat.col(i) = lowerScale + (upperScale - lowerScale) % (sampleMat.col(i) - minCol) / (maxCol - minCol);
-                    if(sampleMat.col(i).max() > 1.0 || sampleMat.col(i).min() < -1.0)
+                    if(armaMax(sampleMat.col(i)) > 1.0 || armaMin(sampleMat.col(i)) < -1.0)
                         for(int j = 0; j < sampleMat.n_rows; ++j) {
                             sampleMat(j, i) = min(sampleMat(j, i), 1.0);
                             sampleMat(j, i) = max(sampleMat(j, i), -1.0);
@@ -216,7 +247,7 @@ namespace kukadu {
         for(auto& sample : samples) {
             if(sampleDim != sample.n_cols)
                 throw KukaduException("(LibSvm) sample dimensions do not match");
-            if(sample.has_nan())
+            if(armaHasNan(sample))
                 throw KukaduException("(LibSvm) data contains NaN");
         }
 

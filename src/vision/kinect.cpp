@@ -53,7 +53,7 @@ namespace kukadu {
         }
 
         if(doTransform)
-            transformListener->waitForTransform(targetFrame, currentPc->header.frame_id, ros::Time::now(), ros::Duration(5.0));
+            transformListener->waitForTransform(targetFrame, currentPc->header.frame_id, ros::Time(0), ros::Duration(5.0));
 
         this->targetFrame = targetFrame;
 
