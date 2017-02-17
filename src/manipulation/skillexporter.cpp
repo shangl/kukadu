@@ -2,6 +2,7 @@
 #include <sstream>
 #include <armadillo>
 #include <kukadu/utils.hpp>
+#include <boost/progress.hpp>
 #include <boost/iostreams/copy.hpp>
 #include <boost/iostreams/filter/bzip2.hpp>
 #include <kukadu/manipulation/skillexporter.hpp>
@@ -45,6 +46,97 @@ namespace kukadu {
         }
 
         return skillList;
+
+    }
+
+    std::pair<std::vector<int>, std::vector<arma::mat> > SkillExporter::loadExecutions(std::string directory) {
+
+        string detailedLabels = directory + "/labels_detail";
+        ifstream labelsFile;
+        labelsFile.open(detailedLabels.c_str());
+
+        vector<int> successLabels;
+        vector<mat> skillData;
+
+        string labelsLine;
+        vector<string> skillLines;
+        while(getline(labelsFile, labelsLine))
+            skillLines.push_back(labelsLine);
+
+        boost::progress_display show_progress(skillLines.size());
+
+        for(int i = 0; i < skillLines.size(); ++i) {
+
+            string& labelsLine = skillLines.at(i);
+
+            KukaduTokenizer tok(labelsLine);
+            string skillFileName = directory + "/" + tok.next();
+            int successLabel = atoi(tok.next().c_str());
+            ifstream skillFile(skillFileName.c_str(), ios_base::in | ios_base::binary);
+            boost::iostreams::filtering_istreambuf in;
+            in.push(boost::iostreams::bzip2_decompressor());
+            in.push(skillFile);
+
+            stringstream s;
+            boost::iostreams::copy(in, s);
+
+            mat skillMat;
+            skillMat.load(s);
+
+            skillFile.close();
+
+            skillData.push_back(skillMat);
+            successLabels.push_back(successLabel);
+
+            ++show_progress;
+
+        }
+
+        return {successLabels, skillData};
+
+    }
+
+    double SkillExporter::computeDistance(arma::mat& m1, arma::mat& m2) {
+
+        double totalDist = 0.0;
+        for(int i = 0; i < m1.n_cols; ++i) {
+
+            auto c1i = m1.col(i);
+            auto c2i = m2.col(i);
+
+            auto diff = c1i - c2i;
+            vec dist = diff.t() * diff;
+
+            totalDist += dist(0);
+
+        }
+
+        return totalDist;
+
+    }
+
+    arma::mat SkillExporter::computeAllNearestNeighbours(std::vector<arma::mat>& skillData, bool giveFeedback) {
+
+        if(!skillData.size())
+            throw KukaduException("(SkillExporter) no data passed");
+
+        int skillDataSize = skillData.size();
+
+        boost::progress_display show_progress(skillDataSize * skillDataSize);
+
+        mat distMat(skillDataSize, skillDataSize);
+        distMat.fill(0.0);
+        for(int i = 0; i < skillDataSize; ++i) {
+            for(int j = 0; j < skillDataSize; ++j) {
+                if(giveFeedback)
+                    cout << "comparing skills " << i << " and " << j << endl;
+                double distance = computeDistance(skillData.at(i), skillData.at(j));
+                distMat(j, i) = distance;
+                ++show_progress;
+            }
+        }
+
+        return distMat;
 
     }
 
