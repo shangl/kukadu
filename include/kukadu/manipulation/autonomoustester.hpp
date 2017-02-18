@@ -15,11 +15,16 @@ namespace kukadu {
         std::map<std::string, KUKADU_SHARED_PTR<kukadu::Controller> > storedSkills;
         std::map<std::string, std::pair<std::vector<int>, std::vector<arma::mat> > > skillsData;
 
+        double computeBestDistance(std::string skill, arma::mat& execution);
+        double computeBestDistance(std::string skill, int prevEndTimeStep, int desiredEndTimeStep, arma::vec& prevDistances, arma::mat& execution);
+
     public:
 
-        AutonomousTester(KUKADU_SHARED_PTR<kukadu::Controller> skill, std::pair<std::vector<int>, std::vector<arma::mat> >& skillData);
+        AutonomousTester(std::string skill, std::vector<KUKADU_SHARED_PTR<kukadu::Hardware> > availableHardware, std::pair<std::vector<int>, std::vector<arma::mat> >& skillData);
 
         void testSkill(std::string id);
+
+        virtual double computeFailureProb(std::string skill, arma::mat execution);
 
     };
 

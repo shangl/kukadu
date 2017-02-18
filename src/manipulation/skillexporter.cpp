@@ -115,7 +115,7 @@ namespace kukadu {
 
     }
 
-    arma::mat SkillExporter::computeAllNearestNeighbours(std::vector<arma::mat>& skillData, bool giveFeedback) {
+    arma::mat SkillExporter::computeAllDistances(std::vector<arma::mat>& skillData, bool giveFeedback) {
 
         if(!skillData.size())
             throw KukaduException("(SkillExporter) no data passed");

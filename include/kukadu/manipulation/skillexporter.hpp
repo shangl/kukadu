@@ -29,7 +29,7 @@ namespace kukadu {
 
         std::pair<std::vector<int>, std::vector<arma::mat> > loadExecutions(std::string directory);
 
-        arma::mat computeAllNearestNeighbours(std::vector<arma::mat>& skillData, bool giveFeedback = false);
+        arma::mat computeAllDistances(std::vector<arma::mat>& skillData, bool giveFeedback = false);
         double computeDistance(arma::mat& m1, arma::mat& m2);
 
     };

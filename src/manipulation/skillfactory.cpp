@@ -11,10 +11,10 @@ using namespace std;
 
 namespace kukadu {
 
-    std::map<std::string, std::function<KUKADU_SHARED_PTR<Controller>(StorageSingleton&, int, int, KUKADU_SHARED_PTR<ControlQueue>)> > SkillFactory::skillFactories{
+    std::map<std::string, std::function<KUKADU_SHARED_PTR<Controller>(StorageSingleton&, int, int, KUKADU_SHARED_PTR<Hardware>)> > SkillFactory::skillFactories{
         {
-            "DMPExecutor", [](StorageSingleton& storage, int skillId, int controllerType, KUKADU_SHARED_PTR<ControlQueue> queue) {
-                return make_shared<DMPExecutor>(storage, skillId, queue);
+            "DMPExecutor", [](StorageSingleton& storage, int skillId, int controllerType, KUKADU_SHARED_PTR<Hardware> queue) {
+                return make_shared<DMPExecutor>(storage, skillId, KUKADU_DYNAMIC_POINTER_CAST<ControlQueue>(queue));
             }
         }
     };
@@ -28,12 +28,12 @@ namespace kukadu {
         return instance;
     }
 
-    KUKADU_SHARED_PTR<Controller> SkillFactory::loadSkill(std::string skillName, KUKADU_SHARED_PTR<ControlQueue> queue) {
+    KUKADU_SHARED_PTR<Controller> SkillFactory::loadSkill(std::string skillName, KUKADU_SHARED_PTR<Hardware> queue) {
 
         stringstream s;
         s << "select skr.skill_id as skid, controller_type from skills as ski" <<
              " inner join skills_robot skr on skr.skill_id = ski.skill_id" <<
-             " where label = '" << skillName << "' and skr.hardware_instance_id = " << queue->getRobotId();
+             " where label = '" << skillName << "' and skr.hardware_instance_id = " << queue->getHardwareInstance();
         auto skillResult = storage.executeQuery(s.str());
 
         if(skillResult->next()) {
