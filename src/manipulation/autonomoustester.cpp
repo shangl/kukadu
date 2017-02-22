@@ -1,6 +1,8 @@
 #include <limits>
 #include <sstream>
 #include <armadillo>
+#include <boost/progress.hpp>
+#include <kukadu/utils/utils.hpp>
 #include <kukadu/manipulation/skillfactory.hpp>
 #include <kukadu/manipulation/skillexporter.hpp>
 #include <kukadu/manipulation/autonomoustester.hpp>
@@ -35,6 +37,97 @@ namespace kukadu {
         // set sliding window to 4 seconds
         windowTime = 4000;
 
+        SkillExporter exporter(getStorage());
+        auto executionsList = exporter.getSkillExecutions(skill);
+
+        cout << "loading fingerprint for skill " << skill << endl;
+        boost::progress_display show_progress(executionsList.size());
+
+        long long int maxDuration = 0;
+        for(auto& execution : executionsList)
+            if(maxDuration < (get<1>(execution) - get<0>(execution)))
+                maxDuration = get<1>(execution) - get<0>(execution);
+
+        long long int maxTimeCount = ceil((double) maxDuration / timeSteps[skill]);
+
+        bool firstFingerPrint = true;
+        mat skillFingerPrint;
+        for(auto& execution : executionsList) {
+            if(get<2>(execution)) {
+                if(firstFingerPrint)
+                    skillFingerPrint = computeFingerPrint(get<0>(execution), get<1>(execution), maxTimeCount, timeSteps[skill]);
+                else
+                    skillFingerPrint += computeFingerPrint(get<0>(execution), get<1>(execution), maxTimeCount, timeSteps[skill]);
+                firstFingerPrint = false;
+            }
+            ++show_progress;
+        }
+
+    }
+
+    arma::mat AutonomousTester::computeFingerPrint(long long int startTime, long long int endTime, long long int timeCount, long long int deltaT) {
+
+        auto& storage = getStorage();
+        auto runningFunctions = generateFunctionQuery(startTime, endTime, startTime, endTime);
+
+        stringstream functionStream;
+        functionStream << "select id from software_functions order by id";
+        auto queryRes = storage.executeQuery(functionStream.str());
+        map<int, int> mapFunctionIdToIdx;
+        for(int i = 0; queryRes->next(); ++i) {
+            int currentId = queryRes->getInt("id");
+            mapFunctionIdToIdx[currentId] = i;
+        }
+
+        int functionCount = mapFunctionIdToIdx.size();
+
+        arma::mat statisticsData(functionCount, timeCount);
+        statisticsData.fill(0.0);
+
+        auto statisticsQuery = storage.executeQuery(runningFunctions);
+        while(statisticsQuery->next()) {
+
+            // load current function call
+            int currentFunctionId = statisticsQuery->getInt("function_id");
+            int currentFunctionIdx = -1;
+
+            if(mapFunctionIdToIdx.find(currentFunctionId) != mapFunctionIdToIdx.end()) {
+
+                currentFunctionIdx = mapFunctionIdToIdx[currentFunctionId];
+
+                long long int currentStartTime = statisticsQuery->getInt64("start_timestamp");
+                long long int currentEndTime = statisticsQuery->getInt64("end_timestamp");
+                int callCount = statisticsQuery->getInt("cnt");
+                long long int delta = endTime - startTime;
+
+                long long int normalizedStartTime = currentStartTime - startTime;
+                long long int normalizedEndTime = currentEndTime - startTime;
+
+                // another sanity check
+                if(normalizedStartTime > normalizedEndTime && normalizedEndTime >= 0)
+                    throw KukaduException("(AutonomousTester) database inconsistency --> start time of function call is bigger than end time");
+
+                // compute index where the data belongs to
+                int currentStartIndex = normalizedStartTime / deltaT;
+
+                // compute on how many cells the calls are distributed
+                int distributionCount = max(1.0, ceil((double) delta / deltaT));
+                double distributedCount = (double) callCount / distributionCount;
+
+                // add the distributed count of the function call to the cell range (many calls can be there at the same time --> sum them up)
+                for(int currentIndex = currentStartIndex, i = 0; i < distributionCount && currentIndex < statisticsData.n_cols; ++currentIndex)
+                    statisticsData(currentFunctionIdx, currentIndex) += distributedCount;
+
+            } else
+                throw KukaduException("(AutonomousTester) precondition violated - bug in code");
+
+        }
+
+        if(armadilloHasNan(statisticsData))
+            throw KukaduException("(AutonomousTester) post condition violated - check for bug in code");
+
+        return statisticsData;
+
     }
 
     void AutonomousTester::testSkill(std::string id) {
@@ -47,8 +140,6 @@ namespace kukadu {
             // replace it by the real start time
             auto skillStartTime = skillSampleStartTimes[id].at(42);
             auto skillEndTime = skillSampleEndTimes[id].at(42);
-
-cout << skillStartTime << endl;
 
             for(auto& failure : failurePlaces) {
 
@@ -77,31 +168,38 @@ cout << skillStartTime << endl;
 
     }
 
-    std::vector<std::pair<int, int> > AutonomousTester::loadRunningFunctions(long long int startTimeStep, long long int endTimeStep, long long int skillStartTime, long long int skillEndTime) {
+    std::string AutonomousTester::generateFunctionQuery(long long int skillStartTime, long long int skillEndTime, long long int windowStartTimeStamp, long long int windowEndTimeStamp) {
 
         long long int duration = skillEndTime - skillStartTime;
 
-        auto& storage = getStorage();
         stringstream s;
-
         //!!!!!!!!!!!!!!!! add crashed information (when end_timestamp is 0)
         s << "select function_id, start_timestamp, end_timestamp, cnt from" <<
                 "(select function_id, start_timestamp, end_timestamp, 1 as cnt from software_statistics_mode0 where " <<
-             " (end_timestamp >=  " << startTimeStep << " and end_timestamp <= " << endTimeStep << ") or ";
+             " (end_timestamp >=  " << windowStartTimeStamp << " and end_timestamp <= " << windowEndTimeStamp << ") or ";
              if(duration > 0)
                 s << " ((start_timestamp + " << duration << ") >=  " << skillStartTime << " and (start_timestamp + " << duration << ") <= " << skillEndTime << ") or ";
-        s << " (start_timestamp >= " << startTimeStep << " and start_timestamp <= " << endTimeStep << ")" <<
+        s << " (start_timestamp >= " << windowStartTimeStamp << " and start_timestamp <= " << windowEndTimeStamp << ")" <<
                 " union " <<
                 "select function_id, start_timestamp, end_timestamp, cnt from software_statistics_mode1 where ";
             if(duration > 0)
-               s << " ((start_timestamp + " << duration << ") >=  " << startTimeStep << " and (start_timestamp + " << duration << ") <= " << endTimeStep << ") or ";
-        s << " (end_timestamp >=  " << startTimeStep << " and end_timestamp <= " << endTimeStep << ") or " <<
-             " (start_timestamp >= " << startTimeStep << " and start_timestamp <= " << endTimeStep << ")" <<
+               s << " ((start_timestamp + " << duration << ") >=  " << windowStartTimeStamp << " and (start_timestamp + " << duration << ") <= " << windowEndTimeStamp << ") or ";
+        s << " (end_timestamp >=  " << windowStartTimeStamp << " and end_timestamp <= " << windowEndTimeStamp << ") or " <<
+             " (start_timestamp >= " << windowStartTimeStamp << " and start_timestamp <= " << windowEndTimeStamp << ")" <<
                 ") as union_statistics" <<
                 " order by function_id asc, start_timestamp asc";
-cout << s.str() << endl;
+
+        return s.str();
+
+    }
+
+    std::vector<std::pair<int, int> > AutonomousTester::loadRunningFunctions(long long int startTimeStep, long long int endTimeStep, long long int skillStartTime, long long int skillEndTime) {
+
+        auto& storage = getStorage();
+
+        auto functionQuery = generateFunctionQuery(skillStartTime, skillEndTime, startTimeStep, endTimeStep);
         map<int, int> runningFunctions;
-        auto queryRes = storage.executeQuery(s.str());
+        auto queryRes = storage.executeQuery(functionQuery);
         while(queryRes->next()) {
 
             int currentFunctionId = queryRes->getInt("function_id");

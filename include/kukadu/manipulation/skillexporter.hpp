@@ -24,6 +24,7 @@ namespace kukadu {
         // - long long int endTime (endTime is 0, if the skill wasn't completed)
         // - bool success
         std::vector<std::tuple<long long int, long long int, bool> > getSkillExecutions(int skillId, long long int startTime = 0, long long int endTime = 0);
+        std::vector<std::tuple<long long int, long long int, bool> > getSkillExecutions(std::string skillName, long long int startTime = 0, long long int endTime = 0);
 
         void exportSkillExecutions(int skillId, long long int startTime, long long int endTime, std::string folder, bool exportModuleStatistics = true, bool compress = true);
 

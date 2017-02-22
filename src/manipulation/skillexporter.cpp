@@ -180,6 +180,15 @@ namespace kukadu {
 
     }
 
+    std::vector<std::tuple<long long int, long long int, bool> > SkillExporter::getSkillExecutions(std::string skillName, long long int startTime, long long int endTime) {
+
+        auto& storage = getStorage();
+        int skillId = storage.getCachedLabelId("skills", "skill_id", "label", skillName);
+
+        return getSkillExecutions(skillId, startTime, endTime);
+
+    }
+
     std::vector<std::tuple<long long int, long long int, bool> > SkillExporter::getSkillExecutions(int skillId, long long startTime, long long endTime) {
 
         if(endTime == 0)

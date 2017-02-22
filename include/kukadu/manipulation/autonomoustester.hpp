@@ -24,7 +24,11 @@ namespace kukadu {
         double computeBestDistance(std::string skill, arma::mat& execution);
         double computeBestDistance(std::string skill, int prevEndTimeStep, int desiredEndTimeStep, arma::vec& prevDistances, arma::mat& execution);
 
+        std::string generateFunctionQuery(long long int skillStartTime, long long int skillEndTime, long long int windowStartTimeStamp, long long int windowEndTimeStamp);
+
         std::vector<std::pair<int, int> > loadRunningFunctions(long long int startTimeStep, long long int endTimeStep, long long skillStartTime, long long skillEndTime);
+
+        arma::mat computeFingerPrint(long long int startTime, long long int endTime, long long int timeCount, long long int deltaT);
 
     public:
 
