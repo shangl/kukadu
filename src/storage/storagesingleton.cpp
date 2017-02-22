@@ -233,8 +233,9 @@ namespace kukadu {
 
     std::string StorageSingleton::getCachedLabel(std::string table, std::string labelIdCol, std::string labelCol, int labelId) {
 
-        auto key = table + "+++" + labelCol;
-        auto el = labelsMap.find(key);
+        stringstream key;
+        key << table << "+++" << labelCol << "+++" << labelId;
+        auto el = labelsMap.find(key.str());
 
         // check if label is already in map --> increment id and return it
         if(el != labelsMap.end()) {
@@ -254,7 +255,7 @@ namespace kukadu {
             else
                 throw KukaduException("(StorageSingleton) retrieving label failed");
 
-            labelsMap[key] = labelRes;
+            labelsMap[key.str()] = labelRes;
             return labelRes;
 
         }

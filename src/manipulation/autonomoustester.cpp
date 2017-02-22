@@ -1,4 +1,5 @@
 #include <limits>
+#include <sstream>
 #include <armadillo>
 #include <kukadu/manipulation/skillfactory.hpp>
 #include <kukadu/manipulation/skillexporter.hpp>
@@ -9,7 +10,10 @@ using namespace arma;
 
 namespace kukadu {
 
-    AutonomousTester::AutonomousTester(std::string skill, std::vector<KUKADU_SHARED_PTR<kukadu::Hardware> > availableHardware, std::pair<std::vector<int>, std::vector<arma::mat> >& skillData) {
+    AutonomousTester::AutonomousTester(kukadu::StorageSingleton& storage, std::string skill, std::vector<KUKADU_SHARED_PTR<kukadu::Hardware> > availableHardware,
+                                       std::pair<std::vector<int>, std::vector<arma::mat> >& skillData,
+                                       std::vector<long long int> sampleStartTimes, std::vector<long long int> sampleEndTimes, long long int timeStep)
+        : StorageHolder(storage) {
 
         auto& skillFactory = SkillFactory::get();
 
@@ -24,16 +28,105 @@ namespace kukadu {
 
         skillsData[skill] = skillData;
 
+        timeSteps[skill] = timeStep;
+        skillSampleStartTimes[skill] = sampleStartTimes;
+        skillSampleEndTimes[skill] = sampleEndTimes;
+
+        // set sliding window to 4 seconds
+        windowTime = 4000;
+
     }
 
     void AutonomousTester::testSkill(std::string id) {
 
-        if(storedSkills.find(id) != storedSkills.end()) {
+        if(skillsData.find(id) != skillsData.end()) {
 
+            // replace skillsData[id].second.at(5) by actually executed data --> make sure that the timestep is the same
+            auto failurePlaces = computeFailureProb(id, skillsData[id].second.at(5));
+
+            // replace it by the real start time
+            auto skillStartTime = skillSampleStartTimes[id].at(42);
+            auto skillEndTime = skillSampleEndTimes[id].at(42);
+
+cout << skillStartTime << endl;
+
+            for(auto& failure : failurePlaces) {
+
+                int failureTimeIdx = failure.first;
+                double failureProb = 1.0 - failure.second;
+
+                long long int windowStartTime = skillStartTime + timeSteps[id] * (failureTimeIdx + 1) - windowTime;
+                if(windowStartTime < skillStartTime)
+                    windowStartTime = skillStartTime;
+
+                long long int windowEndTime = skillStartTime + timeSteps[id] * (failureTimeIdx + 1);
+
+                auto runningFunctions = loadRunningFunctions(windowStartTime, windowEndTime, skillStartTime, skillEndTime);
+
+                cout << "the following functions might have caused the problem" << endl;
+                for(auto& fun : runningFunctions)
+                    cout << "function (id, name, count): (" << fun.first << ", " <<
+                            getStorage().getCachedLabel("software_functions", "id", "name", fun.first) << ", " <<
+                            fun.second << ")" << endl;
+
+            }
 
 
         } else
             throw KukaduException("(AutonomousTester) skill data not available");
+
+    }
+
+    std::vector<std::pair<int, int> > AutonomousTester::loadRunningFunctions(long long int startTimeStep, long long int endTimeStep, long long int skillStartTime, long long int skillEndTime) {
+
+        long long int duration = skillEndTime - skillStartTime;
+
+        auto& storage = getStorage();
+        stringstream s;
+
+        //!!!!!!!!!!!!!!!! add crashed information (when end_timestamp is 0)
+        s << "select function_id, start_timestamp, end_timestamp, cnt from" <<
+                "(select function_id, start_timestamp, end_timestamp, 1 as cnt from software_statistics_mode0 where " <<
+             " (end_timestamp >=  " << startTimeStep << " and end_timestamp <= " << endTimeStep << ") or ";
+             if(duration > 0)
+                s << " ((start_timestamp + " << duration << ") >=  " << skillStartTime << " and (start_timestamp + " << duration << ") <= " << skillEndTime << ") or ";
+        s << " (start_timestamp >= " << startTimeStep << " and start_timestamp <= " << endTimeStep << ")" <<
+                " union " <<
+                "select function_id, start_timestamp, end_timestamp, cnt from software_statistics_mode1 where ";
+            if(duration > 0)
+               s << " ((start_timestamp + " << duration << ") >=  " << startTimeStep << " and (start_timestamp + " << duration << ") <= " << endTimeStep << ") or ";
+        s << " (end_timestamp >=  " << startTimeStep << " and end_timestamp <= " << endTimeStep << ") or " <<
+             " (start_timestamp >= " << startTimeStep << " and start_timestamp <= " << endTimeStep << ")" <<
+                ") as union_statistics" <<
+                " order by function_id asc, start_timestamp asc";
+cout << s.str() << endl;
+        map<int, int> runningFunctions;
+        auto queryRes = storage.executeQuery(s.str());
+        while(queryRes->next()) {
+
+            int currentFunctionId = queryRes->getInt("function_id");
+            long long int currentStartTime = queryRes->getInt64("start_timestamp");
+            long long int currentEndTime = queryRes->getInt64("end_timestamp");
+            int currentCount = queryRes->getInt("cnt");
+
+            // if function id is already included --> add up the counts
+            if(runningFunctions.find(currentFunctionId) != runningFunctions.end())
+                runningFunctions[currentFunctionId] += currentCount;
+            // else, just set the value
+            else
+                runningFunctions[currentFunctionId] = currentCount;
+
+        }
+
+        // transform to a vector and sort it with the number of calls
+        std::vector<std::pair<int, int> > retVec;
+        for(auto& function : runningFunctions)
+            retVec.push_back(function);
+        std::sort(retVec.begin(), retVec.end(), [](const pair<int, int>& a, const pair<int, int>& b) -> bool {
+            return a.second > b.second;
+        });
+
+        return retVec;
 
     }
 
@@ -43,6 +136,7 @@ namespace kukadu {
 
         double minDist = std::numeric_limits<double>::max();
         for(int i = prevEndTimeStep; i < execution.n_cols && i < desiredEndTimeStep; ++i) {
+
             vec currCol = execution.col(i);
             // compute all distances until the current time step
             for(int j = 0; j < skillData.first.size(); ++j) {
@@ -78,25 +172,17 @@ namespace kukadu {
 
     }
 
-    double AutonomousTester::computeFailureProb(std::string skill, arma::mat execution) {
+    std::vector<std::pair<int, double> > AutonomousTester::computeFailureProb(std::string skill, arma::mat& execution) {
 
         auto& skillData = skillsData[skill];
         vec skillDistances(skillData.first.size());
         skillDistances.fill(0.0);
 
         vector<double> distDevel;
-        for(int i = 0; i < execution.n_cols; ++i) {
-            cout << i << endl;
+        for(int i = 0; i < execution.n_cols; ++i)
             distDevel.push_back(computeBestDistance(skill, i, i + 1, skillDistances, execution));
-        }
 
-        ofstream o;
-        o.open("/tmp/blub.txt");
-
-        for(int i = 0; i < distDevel.size(); ++i)
-            o << distDevel.at(i) << endl;
-
-        o.close();
+        return { {1450, 0.02} };
 
     }
 

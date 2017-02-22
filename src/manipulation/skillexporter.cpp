@@ -49,7 +49,7 @@ namespace kukadu {
 
     }
 
-    std::pair<std::vector<int>, std::vector<arma::mat> > SkillExporter::loadExecutions(std::string directory) {
+    std::pair<std::vector<int>, std::vector<arma::mat> > SkillExporter::loadExecutions(std::string directory, std::vector<long long int>& startTimes, std::vector<long long int>& endTimes, long long int& timeStep) {
 
         string detailedLabels = directory + "/labels_detail";
         ifstream labelsFile;
@@ -57,6 +57,10 @@ namespace kukadu {
 
         vector<int> successLabels;
         vector<mat> skillData;
+
+        startTimes.clear();
+        endTimes.clear();
+        timeStep = -1;
 
         string labelsLine;
         vector<string> skillLines;
@@ -87,6 +91,23 @@ namespace kukadu {
 
             skillData.push_back(skillMat);
             successLabels.push_back(successLabel);
+
+            stringstream timingFileName;
+            timingFileName << skillFileName << "_timing";
+            ifstream timingFile;
+            timingFile.open(timingFileName.str().c_str());
+
+            string timingLine;
+            while(getline(timingFile, timingLine)) {
+                KukaduTokenizer timingTok(timingLine, "=");
+                string identifier = timingTok.next();
+                if(identifier == "startTimeStamp")
+                    startTimes.push_back(atoll(timingTok.next().c_str()));
+                else if(identifier == "endTimeStamp")
+                    endTimes.push_back(atoll(timingTok.next().c_str()));
+                else if(identifier == "timeStep")
+                    timeStep = atoll(timingTok.next().c_str());
+            }
 
             ++show_progress;
 
@@ -504,7 +525,9 @@ namespace kukadu {
             auto& executionPerHardware = dataPerHardware.at(executionId);
 
             // go through all sensor samples for each execution
-            for(auto& dataLine : executionPerHardware) {
+            for(int m = 0; m < executionPerHardware.size(); ++m) {
+
+                auto& dataLine = executionPerHardware.at(m);
 
                 auto& currentTime = dataLine.first;
                 auto& currentSensorSample = dataLine.second;
@@ -560,6 +583,7 @@ namespace kukadu {
         }
 
         if(exportModuleStatistics) {
+
             cout << "generating function statistics for execution number " << executionId;
             if(compress)
                 cout << " and compress";
@@ -570,9 +594,15 @@ namespace kukadu {
             ofstream maxUsedFunctionFile;
             maxUsedFunctionFile.open(string(file + "_max_used_function").c_str());
             maxUsedFunctionFile << "maxUsedFunctionId=" << maxUsedFunctionId << endl;
-            maxUsedFunctionFile.close();
 
         }
+
+        ofstream timingFile;
+        timingFile.open(string(file + "_timing").c_str());
+        timingFile << "startTimeStamp=" << unnormalizedStartTimes.at(executionId) << endl;
+        timingFile << "endTimeStamp=" << unnormalizedEndTimes.at(executionId) << endl;
+        timingFile << "timeStep=" << minDeltaT << endl;
+        timingFile.close();
 
         // check if matrix contains nan
         for(int i = 0; i < storageGrid.n_rows; ++i)

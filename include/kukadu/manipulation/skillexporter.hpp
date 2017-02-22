@@ -27,7 +27,7 @@ namespace kukadu {
 
         void exportSkillExecutions(int skillId, long long int startTime, long long int endTime, std::string folder, bool exportModuleStatistics = true, bool compress = true);
 
-        std::pair<std::vector<int>, std::vector<arma::mat> > loadExecutions(std::string directory);
+        std::pair<std::vector<int>, std::vector<arma::mat> > loadExecutions(std::string directory, std::vector<long long int>& startTimes, std::vector<long long int>& endTimes, long long int& timeStep);
 
         arma::mat computeAllDistances(std::vector<arma::mat>& skillData, bool giveFeedback = false);
         double computeDistance(arma::mat& m1, arma::mat& m2);
