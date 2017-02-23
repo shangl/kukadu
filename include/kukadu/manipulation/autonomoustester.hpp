@@ -14,10 +14,13 @@ namespace kukadu {
 
         long long int windowTime;
 
-        std::map<int, int> functionIds;
+        std::map<int, int> functionIdsToRows;
+        std::map<int, int> functionRowsToIds;
 
         std::map<std::string, long long int> timeSteps;
         std::map<std::string, int> fingerPrintColCounts;
+        std::map<std::string, arma::mat> skillFingerPrints;
+        std::map<std::string, arma::mat> skillFingerPrintStdDeviations;
         std::map<std::string, KUKADU_SHARED_PTR<kukadu::Controller> > storedSkills;
         std::map<std::string, std::pair<std::vector<int>, std::vector<arma::mat> > > skillsData;
 
@@ -31,9 +34,14 @@ namespace kukadu {
 
         std::vector<std::pair<int, int> > loadRunningFunctions(long long int startTimeStep, long long int endTimeStep, long long skillStartTime, long long skillEndTime);
 
+        // returns the integrated fingerprint and the standardDeviation according to the single variances and Gaussian propagation of uncertainty
+        std::pair<arma::vec, arma::vec> integrateFingerPrint(arma::mat& fingerprint, arma::mat& stdDev, int startIdx, int endIdx, bool computeStdDeviation = false);
         arma::mat computeFingerPrint(long long int startTime, long long int endTime, long long skillStartTime, long long skillEndTime, long long int timeCount, long long int deltaT);
 
-        std::map<int, int> mapFunctionIdToFingerPrintRow();
+        std::pair<std::map<int, int>, std::map<int, int> > mapFunctionIdToFingerPrintRow();
+
+        // extracts and sorts the functions that deviate from the execution (returns the deviation in multiples of the standard deviation and the corresponding function id)
+        std::vector<std::pair<int, double> > extractDeviatingFunctions(arma::vec& executedPrint, arma::vec& dataPrint, arma::vec& dataStdDev);
 
     public:
 

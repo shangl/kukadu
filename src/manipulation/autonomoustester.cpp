@@ -34,8 +34,8 @@ namespace kukadu {
         skillSampleStartTimes[skill] = sampleStartTimes;
         skillSampleEndTimes[skill] = sampleEndTimes;
 
-        // set sliding window to 4 seconds
-        windowTime = 4000;
+        // set sliding window to 2 seconds
+        windowTime = 2000;
 
         SkillExporter exporter(getStorage());
         auto executionsList = exporter.getSkillExecutions(skill);
@@ -49,41 +49,62 @@ namespace kukadu {
                 maxDuration = get<1>(execution) - get<0>(execution);
 
         long long int maxTimeCount = ceil((double) maxDuration / timeSteps[skill]);
-        functionIds = mapFunctionIdToFingerPrintRow();
+
+        auto mappings = mapFunctionIdToFingerPrintRow();
+        functionIdsToRows = mappings.first;
+        functionRowsToIds = mappings.second;
 
         bool firstFingerPrint = true;
 
         mat skillFingerPrint;
+        mat skillFingerPrintStdDev;
+        mat varTerm1;
         int successfulExecutionsCount = 0;
         for(auto& execution : executionsList) {
+
+            mat currentFingerPrint = computeFingerPrint(get<0>(execution), get<1>(execution), get<0>(execution), get<1>(execution), maxTimeCount, timeSteps[skill]);
+
             if(get<2>(execution)) {
-                if(firstFingerPrint)
-                    skillFingerPrint = computeFingerPrint(get<0>(execution), get<1>(execution), get<0>(execution), get<1>(execution), maxTimeCount, timeSteps[skill]);
-                else
-                    skillFingerPrint += computeFingerPrint(get<0>(execution), get<1>(execution), get<0>(execution), get<1>(execution), maxTimeCount, timeSteps[skill]);
+                if(firstFingerPrint) {
+                    skillFingerPrint = currentFingerPrint;
+                    varTerm1 = arma::pow(currentFingerPrint, 2.0);
+                } else {
+                    skillFingerPrint += currentFingerPrint;
+                    varTerm1 += arma::pow(currentFingerPrint, 2.0);
+                }
+
                 firstFingerPrint = false;
                 ++successfulExecutionsCount;
-break;
             }
             ++show_progress;
+
         }
 
         fingerPrintColCounts[skill] = skillFingerPrint.n_cols;
 
         skillFingerPrint /= successfulExecutionsCount;
+        skillFingerPrints[skill] = skillFingerPrint;
+
+        skillFingerPrintStdDev = arma::sqrt(varTerm1 / successfulExecutionsCount - arma::pow(skillFingerPrint, 2.0));
+        skillFingerPrintStdDeviations[skill] = skillFingerPrintStdDev;
 
     }
 
-    std::map<int, int> AutonomousTester::mapFunctionIdToFingerPrintRow() {
+    std::pair<std::map<int, int>, std::map<int, int> > AutonomousTester::mapFunctionIdToFingerPrintRow() {
 
-        map<int, int> functionIds;
+        map<int, int> functionIdsToRows;
+        map<int, int> functionRowsToIds;
 
         int rowIdx = 0;
         auto functionIdQuery = getStorage().executeQuery("select distinct(id) from software_functions order by id");
-        while(functionIdQuery->next())
-            functionIds[functionIdQuery->getInt("id")] = rowIdx++;
+        while(functionIdQuery->next()) {
+            int functionId = functionIdQuery->getInt("id");
+            functionIdsToRows[functionId] = rowIdx;
+            functionRowsToIds[rowIdx] = functionId;
+            ++rowIdx;
+        }
 
-        return functionIds;
+        return {functionIdsToRows, functionRowsToIds};
 
     }
 
@@ -91,10 +112,13 @@ break;
                                                    long long int skillStartTime, long long int skillEndTime,
                                                    long long int timeCount, long long int deltaT) {
 
+        // sanity ensurance in case the window is too long
+        endTime = min(endTime, skillEndTime);
+
         auto& storage = getStorage();
         auto runningFunctions = generateFunctionQuery(skillStartTime, skillEndTime, startTime, endTime);
 
-        map<int, int> mapFunctionIdToIdx = mapFunctionIdToFingerPrintRow();
+        map<int, int>& mapFunctionIdToIdx = functionIdsToRows;
         int functionCount = mapFunctionIdToIdx.size();
 
         arma::mat statisticsData(functionCount, timeCount);
@@ -114,7 +138,6 @@ break;
                 long long int currentStartTime = statisticsQuery->getInt64("start_timestamp");
                 long long int currentEndTime = statisticsQuery->getInt64("end_timestamp");
                 int callCount = statisticsQuery->getInt("cnt");
-                long long int delta = endTime - startTime;
 
                 if(!currentEndTime)
                     currentEndTime = skillEndTime;
@@ -122,8 +145,10 @@ break;
                 long long int normalizedStartTime = currentStartTime - skillStartTime;
                 long long int normalizedEndTime = currentEndTime - skillStartTime;
 
+                long long int delta = normalizedEndTime - normalizedStartTime;
+
                 // another sanity check
-                if(normalizedStartTime > normalizedEndTime && normalizedEndTime >= 0)
+                if(normalizedStartTime > normalizedEndTime && normalizedEndTime > 0)
                     throw KukaduException("(AutonomousTester) database inconsistency --> start time of function call is bigger than end time");
 
                 // compute index where the data belongs to
@@ -153,16 +178,42 @@ break;
 
     }
 
+    std::pair<arma::vec, arma::vec> AutonomousTester::integrateFingerPrint(arma::mat& fingerprint, arma::mat& stdDev, int startIdx, int endIdx, bool computeStdDeviation) {
+
+        vec dataPrint;
+        vec standardDeviation;
+        bool firstRun = true;
+        for(int colIdx = startIdx; colIdx <= endIdx; ++colIdx) {
+            if(firstRun) {
+                dataPrint = fingerprint.col(colIdx);
+                if(computeStdDeviation)
+                    standardDeviation = arma::pow(stdDev.col(colIdx), 2.0);
+                else
+                    standardDeviation = vec(dataPrint.n_elem);
+            } else {
+                dataPrint += fingerprint.col(colIdx);
+                if(computeStdDeviation)
+                    standardDeviation += arma::pow(stdDev.col(colIdx), 2.0);
+            }
+            firstRun = false;
+        }
+
+        return {dataPrint, arma::sqrt(standardDeviation)};
+
+    }
+
     void AutonomousTester::testSkill(std::string id) {
 
         if(skillsData.find(id) != skillsData.end()) {
 
+            int simulatedId = 42;
+
             // replace skillsData[id].second.at(5) by actually executed data --> make sure that the timestep is the same
-            auto failurePlaces = computeFailureProb(id, skillsData[id].second.at(5));
+            auto failurePlaces = computeFailureProb(id, skillsData[id].second.at(simulatedId));
 
             // replace it by the real start time
-            auto skillStartTime = skillSampleStartTimes[id].at(42);
-            auto skillEndTime = skillSampleEndTimes[id].at(42);
+            auto skillStartTime = skillSampleStartTimes[id].at(simulatedId);
+            auto skillEndTime = skillSampleEndTimes[id].at(simulatedId);
 
             for(auto& failure : failurePlaces) {
 
@@ -170,6 +221,7 @@ break;
                 double failureProb = 1.0 - failure.second;
 
                 long long int windowStartTime = skillStartTime + timeSteps[id] * (failureTimeIdx + 1) - windowTime;
+
                 if(windowStartTime < skillStartTime)
                     windowStartTime = skillStartTime;
 
@@ -178,42 +230,38 @@ break;
                 auto executionPrint = computeFingerPrint(windowStartTime, windowEndTime, skillStartTime, skillEndTime, fingerPrintColCounts[id], timeSteps[id]);
                 auto runningFunctions = loadRunningFunctions(windowStartTime, windowEndTime, skillStartTime, skillEndTime);
 
+                auto normalizedWindowStartTime = windowStartTime - skillStartTime;
+                auto normalizedWindowEndTime = windowEndTime - skillStartTime;
+
+                int windowStartIdx = floor((double) normalizedWindowStartTime / timeSteps[id]);
+                int windowEndIdx = ceil((double) normalizedWindowEndTime / timeSteps[id]);
+
+                if(windowEndIdx >= executionPrint.n_cols)
+                    throw KukaduException("(AutonomousTester) something is wrong with the window index computeation");
+
+                auto dataFingerPrint = skillFingerPrints[id];
+
                 if(!executionPrint.n_cols)
                     throw KukaduException("(AutonomousTester) desired window is too small");
 
-                vec dataPrint;
-                bool firstRun = true;
+                // integrate the fingerprint of the current execution over the given window
+                mat fakeStdDev;
+                vec integratedExecutionPrint = integrateFingerPrint(executionPrint, fakeStdDev, windowStartIdx, windowEndIdx, false).first;
 
-                int startIdx = 0;
-                int endIdx = executionPrint.n_cols;
+                // integrate the database fingerprint over the given window
+                auto integratedDataPrintWithStdDev = integrateFingerPrint(dataFingerPrint, skillFingerPrintStdDeviations[id], windowStartIdx, windowEndIdx, true);
+                vec& integratedDataPrint = integratedDataPrintWithStdDev.first;
+                vec& integratedDataPrintStdDev = integratedDataPrintWithStdDev.second;
 
-                for(int colIdx = startIdx; colIdx < endIdx; ++colIdx) {
-                    if(firstRun)
-                        dataPrint = executionPrint.col(colIdx);
-                    else
-                        dataPrint += executionPrint.col(colIdx);
-                    firstRun = false;
-                }
+                auto maliciousFunctions = extractDeviatingFunctions(integratedExecutionPrint, integratedDataPrint, integratedDataPrintStdDev);
 
-                vec observedPrint(executionPrint.n_rows);
-                observedPrint.fill(0.0);
                 cout << "the following functions might have caused the problem" << endl;
-                for(auto& fun : runningFunctions) {
-                    observedPrint(functionIds[fun.first]) = fun.second;
-                    cout << "function (id, name, count): (" << fun.first << ", " <<
-                            getStorage().getCachedLabel("software_functions", "id", "name", fun.first) << ", " <<
-                            fun.second << ")" << endl;
+                for(auto& maliciousFunction : maliciousFunctions) {
+                    auto functionName = getStorage().getCachedLabel("software_functions", "id", "name", maliciousFunction.first);
+                    cout << "function (id, name, count): (" << maliciousFunction.first << ", " <<
+                            functionName << ", " <<
+                            maliciousFunction.second << ")" << endl;
                 }
-
-                vec observedDiff = observedPrint - dataPrint;
-
-                mat allTogether = dataPrint;
-                allTogether = join_rows(allTogether, observedPrint);
-                allTogether = join_rows(allTogether, observedDiff);
-                ofstream outStream;
-                outStream.open("/tmp/fingerPrintDiff");
-                outStream << allTogether << endl;
-                outStream.close();
 
             }
 
@@ -222,12 +270,35 @@ break;
 
     }
 
+    std::vector<std::pair<int, double> > AutonomousTester::extractDeviatingFunctions(arma::vec& executedPrint, arma::vec& dataPrint, arma::vec& dataStdDev) {
+
+        vector<pair<int, double> > maliciousFunctions;
+
+        vec diff = (executedPrint - dataPrint);
+        vec fingerPrintDiff = diff / dataStdDev;
+        for(int j = 0; j < fingerPrintDiff.n_elem; ++j) {
+
+            if(abs(fingerPrintDiff(j)) > 0.0) {
+                int& functionId = functionRowsToIds[j];
+                maliciousFunctions.push_back({functionId, fingerPrintDiff(j)});
+            } else if(fingerPrintDiff(j) != fingerPrintDiff(j) && diff(j) > 0.0) {
+                int& functionId = functionRowsToIds[j];
+                maliciousFunctions.push_back({functionId, fingerPrintDiff(j)});
+            }
+
+        }
+
+        std::sort(maliciousFunctions.begin(), maliciousFunctions.end(), [](const pair<int, double>& a, const pair<int, double>& b) -> bool {
+            return abs(a.second) > abs(b.second);
+        });
+
+        return maliciousFunctions;
+
+    }
+
     std::string AutonomousTester::generateFunctionQuery(long long int skillStartTime, long long int skillEndTime, long long int windowStartTimeStamp, long long int windowEndTimeStamp) {
 
-        long long int duration = skillEndTime - skillStartTime;
-
         stringstream whereStr;
-
         whereStr << " where ";
         // function has to overlap with the window (greatest and least required because end_timestamp can be 0)
         whereStr << " ( greatest(start_timestamp, end_timestamp) >= " << windowStartTimeStamp << " and least(start_timestamp, greatest(start_timestamp, end_timestamp)) <= " << windowEndTimeStamp << ") ";
@@ -339,7 +410,8 @@ break;
         for(int i = 0; i < execution.n_cols; ++i)
             distDevel.push_back(computeBestDistance(skill, i, i + 1, skillDistances, execution));
 
-        return { {1450, 0.02} };
+        //return { {1450, 0.02} };
+        return { {500, 0.02} };
 
     }
 
