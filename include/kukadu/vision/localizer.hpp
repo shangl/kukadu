@@ -34,7 +34,7 @@ namespace kukadu {
 
         arma::vec center;
 
-        KUKADU_SHARED_PTR<Kinect> kinect;
+        boost::shared_ptr<Kinect> kinect;
 
     public:
 

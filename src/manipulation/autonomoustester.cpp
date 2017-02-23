@@ -49,36 +49,52 @@ namespace kukadu {
                 maxDuration = get<1>(execution) - get<0>(execution);
 
         long long int maxTimeCount = ceil((double) maxDuration / timeSteps[skill]);
+        functionIds = mapFunctionIdToFingerPrintRow();
 
         bool firstFingerPrint = true;
+
         mat skillFingerPrint;
+        int successfulExecutionsCount = 0;
         for(auto& execution : executionsList) {
             if(get<2>(execution)) {
                 if(firstFingerPrint)
-                    skillFingerPrint = computeFingerPrint(get<0>(execution), get<1>(execution), maxTimeCount, timeSteps[skill]);
+                    skillFingerPrint = computeFingerPrint(get<0>(execution), get<1>(execution), get<0>(execution), get<1>(execution), maxTimeCount, timeSteps[skill]);
                 else
-                    skillFingerPrint += computeFingerPrint(get<0>(execution), get<1>(execution), maxTimeCount, timeSteps[skill]);
+                    skillFingerPrint += computeFingerPrint(get<0>(execution), get<1>(execution), get<0>(execution), get<1>(execution), maxTimeCount, timeSteps[skill]);
                 firstFingerPrint = false;
+                ++successfulExecutionsCount;
+break;
             }
             ++show_progress;
         }
 
+        fingerPrintColCounts[skill] = skillFingerPrint.n_cols;
+
+        skillFingerPrint /= successfulExecutionsCount;
+
     }
 
-    arma::mat AutonomousTester::computeFingerPrint(long long int startTime, long long int endTime, long long int timeCount, long long int deltaT) {
+    std::map<int, int> AutonomousTester::mapFunctionIdToFingerPrintRow() {
+
+        map<int, int> functionIds;
+
+        int rowIdx = 0;
+        auto functionIdQuery = getStorage().executeQuery("select distinct(id) from software_functions order by id");
+        while(functionIdQuery->next())
+            functionIds[functionIdQuery->getInt("id")] = rowIdx++;
+
+        return functionIds;
+
+    }
+
+    arma::mat AutonomousTester::computeFingerPrint(long long int startTime, long long int endTime,
+                                                   long long int skillStartTime, long long int skillEndTime,
+                                                   long long int timeCount, long long int deltaT) {
 
         auto& storage = getStorage();
-        auto runningFunctions = generateFunctionQuery(startTime, endTime, startTime, endTime);
+        auto runningFunctions = generateFunctionQuery(skillStartTime, skillEndTime, startTime, endTime);
 
-        stringstream functionStream;
-        functionStream << "select id from software_functions order by id";
-        auto queryRes = storage.executeQuery(functionStream.str());
-        map<int, int> mapFunctionIdToIdx;
-        for(int i = 0; queryRes->next(); ++i) {
-            int currentId = queryRes->getInt("id");
-            mapFunctionIdToIdx[currentId] = i;
-        }
-
+        map<int, int> mapFunctionIdToIdx = mapFunctionIdToFingerPrintRow();
         int functionCount = mapFunctionIdToIdx.size();
 
         arma::mat statisticsData(functionCount, timeCount);
@@ -100,22 +116,29 @@ namespace kukadu {
                 int callCount = statisticsQuery->getInt("cnt");
                 long long int delta = endTime - startTime;
 
-                long long int normalizedStartTime = currentStartTime - startTime;
-                long long int normalizedEndTime = currentEndTime - startTime;
+                if(!currentEndTime)
+                    currentEndTime = skillEndTime;
+
+                long long int normalizedStartTime = currentStartTime - skillStartTime;
+                long long int normalizedEndTime = currentEndTime - skillStartTime;
 
                 // another sanity check
                 if(normalizedStartTime > normalizedEndTime && normalizedEndTime >= 0)
                     throw KukaduException("(AutonomousTester) database inconsistency --> start time of function call is bigger than end time");
 
                 // compute index where the data belongs to
-                int currentStartIndex = normalizedStartTime / deltaT;
+                int currentStartIndex = (double) normalizedStartTime / deltaT;
+                int correctionIndex = abs(min(0, currentStartIndex));
+                currentStartIndex = max(0, currentStartIndex);
 
                 // compute on how many cells the calls are distributed
                 int distributionCount = max(1.0, ceil((double) delta / deltaT));
-                double distributedCount = (double) callCount / distributionCount;
+
+                // for fingerprinting --> do not distribute them, but just sum them up
+                double distributedCount = callCount;
 
                 // add the distributed count of the function call to the cell range (many calls can be there at the same time --> sum them up)
-                for(int currentIndex = currentStartIndex, i = 0; i < distributionCount && currentIndex < statisticsData.n_cols; ++currentIndex)
+                for(int currentIndex = currentStartIndex, i = correctionIndex; i < distributionCount && currentIndex < statisticsData.n_cols; ++currentIndex, ++i)
                     statisticsData(currentFunctionIdx, currentIndex) += distributedCount;
 
             } else
@@ -152,16 +175,47 @@ namespace kukadu {
 
                 long long int windowEndTime = skillStartTime + timeSteps[id] * (failureTimeIdx + 1);
 
+                auto executionPrint = computeFingerPrint(windowStartTime, windowEndTime, skillStartTime, skillEndTime, fingerPrintColCounts[id], timeSteps[id]);
                 auto runningFunctions = loadRunningFunctions(windowStartTime, windowEndTime, skillStartTime, skillEndTime);
 
+                if(!executionPrint.n_cols)
+                    throw KukaduException("(AutonomousTester) desired window is too small");
+
+                vec dataPrint;
+                bool firstRun = true;
+
+                int startIdx = 0;
+                int endIdx = executionPrint.n_cols;
+
+                for(int colIdx = startIdx; colIdx < endIdx; ++colIdx) {
+                    if(firstRun)
+                        dataPrint = executionPrint.col(colIdx);
+                    else
+                        dataPrint += executionPrint.col(colIdx);
+                    firstRun = false;
+                }
+
+                vec observedPrint(executionPrint.n_rows);
+                observedPrint.fill(0.0);
                 cout << "the following functions might have caused the problem" << endl;
-                for(auto& fun : runningFunctions)
+                for(auto& fun : runningFunctions) {
+                    observedPrint(functionIds[fun.first]) = fun.second;
                     cout << "function (id, name, count): (" << fun.first << ", " <<
                             getStorage().getCachedLabel("software_functions", "id", "name", fun.first) << ", " <<
                             fun.second << ")" << endl;
+                }
+
+                vec observedDiff = observedPrint - dataPrint;
+
+                mat allTogether = dataPrint;
+                allTogether = join_rows(allTogether, observedPrint);
+                allTogether = join_rows(allTogether, observedDiff);
+                ofstream outStream;
+                outStream.open("/tmp/fingerPrintDiff");
+                outStream << allTogether << endl;
+                outStream.close();
 
             }
-
 
         } else
             throw KukaduException("(AutonomousTester) skill data not available");
@@ -172,21 +226,25 @@ namespace kukadu {
 
         long long int duration = skillEndTime - skillStartTime;
 
+        stringstream whereStr;
+
+        whereStr << " where ";
+        // function has to overlap with the window (greatest and least required because end_timestamp can be 0)
+        whereStr << " ( greatest(start_timestamp, end_timestamp) >= " << windowStartTimeStamp << " and least(start_timestamp, greatest(start_timestamp, end_timestamp)) <= " << windowEndTimeStamp << ") ";
+        // or it is started after the skill started and before the window ends and crashed (end_timestamp == 0)
+        whereStr << " or ( start_timestamp >= " << skillStartTime << " and start_timestamp <= " << windowEndTimeStamp << " and (end_timestamp is null or end_timestamp = 0) ) ";
+
         stringstream s;
         //!!!!!!!!!!!!!!!! add crashed information (when end_timestamp is 0)
-        s << "select function_id, start_timestamp, end_timestamp, cnt from" <<
-                "(select function_id, start_timestamp, end_timestamp, 1 as cnt from software_statistics_mode0 where " <<
-             " (end_timestamp >=  " << windowStartTimeStamp << " and end_timestamp <= " << windowEndTimeStamp << ") or ";
-             if(duration > 0)
-                s << " ((start_timestamp + " << duration << ") >=  " << skillStartTime << " and (start_timestamp + " << duration << ") <= " << skillEndTime << ") or ";
-        s << " (start_timestamp >= " << windowStartTimeStamp << " and start_timestamp <= " << windowEndTimeStamp << ")" <<
-                " union " <<
-                "select function_id, start_timestamp, end_timestamp, cnt from software_statistics_mode1 where ";
-            if(duration > 0)
-               s << " ((start_timestamp + " << duration << ") >=  " << windowStartTimeStamp << " and (start_timestamp + " << duration << ") <= " << windowEndTimeStamp << ") or ";
-        s << " (end_timestamp >=  " << windowStartTimeStamp << " and end_timestamp <= " << windowEndTimeStamp << ") or " <<
-             " (start_timestamp >= " << windowStartTimeStamp << " and start_timestamp <= " << windowEndTimeStamp << ")" <<
-                ") as union_statistics" <<
+        s << "select function_id, start_timestamp, end_timestamp, cnt from " <<
+                "(select function_id, start_timestamp, end_timestamp, 1 as cnt from software_statistics_mode0" <<
+             whereStr.str() <<
+              ") as mod1func";
+        s <<
+                " union (" <<
+                "select function_id, start_timestamp, end_timestamp, cnt from software_statistics_mode1" <<
+             whereStr.str() <<
+            ")" <<
                 " order by function_id asc, start_timestamp asc";
 
         return s.str();
@@ -220,8 +278,9 @@ namespace kukadu {
         std::vector<std::pair<int, int> > retVec;
         for(auto& function : runningFunctions)
             retVec.push_back(function);
+
         std::sort(retVec.begin(), retVec.end(), [](const pair<int, int>& a, const pair<int, int>& b) -> bool {
-            return a.second > b.second;
+            return a.first < b.first;
         });
 
         return retVec;

@@ -9,11 +9,17 @@ using namespace std;
 namespace kukadu {
 
     PCBlobDetector::PCBlobDetector(boost::shared_ptr<Kinect> kinect, std::string targetFrame, arma::vec center, double xOffset, double yOffset) {
+cout << 1 << endl;
         this->kinect = kinect;
+cout << 2 << endl;
         this->targetFrame = targetFrame;
+cout << 3 << endl << center << endl;
         this->center = center;
+cout << 4 << endl;
         this->xOffset = xOffset;
+cout << 5 << endl;
         this->yOffset = yOffset;
+cout << 6 << endl;
     }
 
     std::string PCBlobDetector::getLocalizerFrame() {

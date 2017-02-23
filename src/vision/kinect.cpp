@@ -104,18 +104,20 @@ namespace kukadu {
         return isInit;
     }
 
-    void Kinect::callbackKinectPointCloud(const sensor_msgs::PointCloud2& pc) {
+    void Kinect::callbackKinectPointCloud(const sensor_msgs::PointCloud2::Ptr& pc) {
 
         pcMutex.lock();
 
-            if(pcRequested || !firstCloudSet)
-                currentPc = boost::make_shared<sensor_msgs::PointCloud2>(pc);
+            if(pcRequested || !firstCloudSet) {
 
-            pcRequested = false;
-            firstCloudSet = true;
+                currentPc = pc;
+                pcRequested = false;
+                firstCloudSet = true;
 
-            kinectFrame = currentPc->header.frame_id;
-            kinectFrameSet = true;
+                kinectFrame = currentPc->header.frame_id;
+                kinectFrameSet = true;
+
+            }
 
         pcMutex.unlock();
 
@@ -137,10 +139,12 @@ namespace kukadu {
         pcMutex.lock();
 
             bool tfWorked = false;
-
             while(!tfWorked) {
+
                 retCloud = currentPc;
+
                 try {
+
                     tf::StampedTransform trans;
                     retCloud->header.stamp = ros::Time(0);
                     if(doTransform) {
@@ -148,6 +152,7 @@ namespace kukadu {
                         pcl_ros::transformPointCloud(targetFrame, *retCloud, *retCloud, *transformListener);
                     }
                     tfWorked = true;
+
                 } catch(tf::TransformException ex) {
                     cerr << "transformation not found" << endl;
                 }
@@ -164,17 +169,27 @@ namespace kukadu {
     }
 
     pcl::PointCloud<pcl::PointXYZRGB>::Ptr Kinect::getCurrentColorPointCloud() {
+
         KUKADU_MODULE_START_USAGE();
+
         pcl::PointCloud<pcl::PointXYZRGB>::Ptr retCloud = sensorMsgsPcToPclPc<pcl::PointCloud<PointXYZRGB>::Ptr, pcl::PointXYZRGB>(getCurrentPointCloud());
+
         KUKADU_MODULE_END_USAGE();
+
         return retCloud;
+
     }
 
     pcl::PointCloud<pcl::PointXYZI>::Ptr Kinect::getCurrentIntensityPointCloud() {
+
         KUKADU_MODULE_START_USAGE();
+
         pcl::PointCloud<pcl::PointXYZI>::Ptr retCloud = sensorMsgsPcToPclPc<pcl::PointCloud<PointXYZI>::Ptr, pcl::PointXYZI>(getCurrentPointCloud());
+
         KUKADU_MODULE_END_USAGE();
+
         return retCloud;
+
     }
 
     std::string Kinect::getVisPubTopic() {

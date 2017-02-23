@@ -14,7 +14,10 @@ namespace kukadu {
 
         long long int windowTime;
 
+        std::map<int, int> functionIds;
+
         std::map<std::string, long long int> timeSteps;
+        std::map<std::string, int> fingerPrintColCounts;
         std::map<std::string, KUKADU_SHARED_PTR<kukadu::Controller> > storedSkills;
         std::map<std::string, std::pair<std::vector<int>, std::vector<arma::mat> > > skillsData;
 
@@ -28,7 +31,9 @@ namespace kukadu {
 
         std::vector<std::pair<int, int> > loadRunningFunctions(long long int startTimeStep, long long int endTimeStep, long long skillStartTime, long long skillEndTime);
 
-        arma::mat computeFingerPrint(long long int startTime, long long int endTime, long long int timeCount, long long int deltaT);
+        arma::mat computeFingerPrint(long long int startTime, long long int endTime, long long skillStartTime, long long skillEndTime, long long int timeCount, long long int deltaT);
+
+        std::map<int, int> mapFunctionIdToFingerPrintRow();
 
     public:
 
