@@ -12,29 +12,31 @@ using namespace arma;
 
 namespace kukadu {
 
-    AutonomousTester::AutonomousTester(kukadu::StorageSingleton& storage, bool simulate) : StorageHolder(storage) {
+    AutonomousTester::AutonomousTester(kukadu::StorageSingleton& storage, bool simulate, std::vector<int> simulatedFaultyFunctionsGroundTruth) : StorageHolder(storage) {
 
-        construct(simulate);
+        construct(simulate, simulatedFaultyFunctionsGroundTruth);
 
     }
 
     AutonomousTester::AutonomousTester(kukadu::StorageSingleton& storage, std::string skill, std::vector<KUKADU_SHARED_PTR<kukadu::Hardware> > availableHardware,
                                        std::pair<std::vector<int>, std::vector<arma::mat> >& skillData,
-                                       std::vector<long long int> sampleStartTimes, std::vector<long long int> sampleEndTimes, long long int timeStep, bool simulate)
+                                       std::vector<long long int> sampleStartTimes, std::vector<long long int> sampleEndTimes, long long int timeStep, bool simulate, std::vector<int> simulatedFaultyFunctionsGroundTruth)
         : StorageHolder(storage) {
 
-        construct(simulate);
+        construct(simulate, simulatedFaultyFunctionsGroundTruth);
         addSkill(skill, availableHardware, skillData, sampleStartTimes, sampleEndTimes, timeStep);
 
     }
 
-    void AutonomousTester::construct(bool simulate) {
+    void AutonomousTester::construct(bool simulate, std::vector<int> simulatedFaultyFunctionsGroundTruth) {
 
         this->simulate = simulate;
 
         // set sliding window to 2 seconds
         windowTime = 2000;
         simlatedIdxWindow = 100;
+
+        this->simulatedFaultyFunctionsGroundTruth = simulatedFaultyFunctionsGroundTruth;
 
         auto mappings = mapFunctionIdToFingerPrintRow();
         functionIdsToRows = mappings.first;
@@ -49,6 +51,7 @@ namespace kukadu {
     arma::mat AutonomousTester::generateSimulatedSample(std::vector<int> usedFunctionRows, std::vector<double> functionMeans, std::vector<double> functionStdDev, int durationIndexCount) {
 
         mat newSample(functionIdsToRows.size(), durationIndexCount);
+        newSample.fill(0.0);
 
         for(int j = 0; j < usedFunctionRows.size(); ++j) {
 
@@ -62,6 +65,20 @@ namespace kukadu {
         }
 
         return newSample;
+
+    }
+
+    bool AutonomousTester::simulateSuccess(std::string skill) {
+
+        for(auto& groundTruthFunctionIdx : simulatedFaultyFunctionsGroundTruth) {
+
+            // if the ground truth function is executed in the simulated skill --> return failure
+            if(std::find(skillSimulatedFunctionRows[skill].begin(), skillSimulatedFunctionRows[skill].end(), groundTruthFunctionIdx) != skillSimulatedFunctionRows[skill].end())
+                return false;
+
+        }
+
+        return true;
 
     }
 
@@ -281,12 +298,27 @@ namespace kukadu {
 
     }
 
+    vector<int> AutonomousTester::testRobot() {
+
+        testSkill("simple_grasp");
+
+        return {};
+
+    }
+
     void AutonomousTester::testSkill(std::string id) {
 
         if(skillFingerPrints.find(id) != skillFingerPrints.end()) {
 
             int simulatedId = 42;
             bool successful = false;
+
+            if(simulate) {
+                // if the system is simulated --> retrieve if the skill was executed successfully
+                successful = simulateSuccess(id);
+            } else {
+                // TODO: get success for real skill
+            }
 
             // replace skillsData[id].second.at(...) by actually executed data --> make sure that the timestep is the same
             std::vector<std::pair<int, double> > failurePlaces;
@@ -330,8 +362,15 @@ namespace kukadu {
                     auto normalizedWindowStartTime = windowStartTime - skillStartTime;
                     auto normalizedWindowEndTime = windowEndTime - skillStartTime;
 
-                    windowStartIdx = floor((double) normalizedWindowStartTime / timeSteps[id]);
-                    windowEndIdx = ceil((double) normalizedWindowEndTime / timeSteps[id]);
+                    if(!successful) {
+                        // if skill was not successful, check the window before the found failure point
+                        windowStartIdx = floor((double) normalizedWindowStartTime / timeSteps[id]);
+                        windowEndIdx = ceil((double) normalizedWindowEndTime / timeSteps[id]);
+                    } else {
+                        // if the skill was successful --> compute the fingerprint for the whole skill
+                        windowStartIdx = 0;
+                        windowEndIdx = executionPrint.n_cols - 1;
+                    }
 
                     if(windowEndIdx >= executionPrint.n_cols || windowStartIdx < 0)
                         throw KukaduException("(AutonomousTester) something is wrong with the window index computation");
@@ -341,12 +380,18 @@ namespace kukadu {
 
                 } else {
 
-                    // set window idx
-                    windowEndIdx = failureTimeIdx;
-                    windowStartIdx = max(0, windowEndIdx - simlatedIdxWindow);
-
                     // set the execution print
                     executionPrint = generateSimulatedSample(skillSimulatedFunctionRows[id], skillSimulatedFunctionMeans[id], skillSimulatedFunctionStdDevs[id], skillMedianFingerPrints[id].n_cols);
+
+                    if(!successful) {
+                        // if skill was not successful, check the window before the found failure point
+                        windowStartIdx = max(0, windowEndIdx - simlatedIdxWindow);
+                        windowEndIdx = failureTimeIdx;
+                    } else {
+                        // if the skill was successful --> compute the fingerprint for the whole skill
+                        windowStartIdx = 0;
+                        windowEndIdx = executionPrint.n_cols - 1;
+                    }
 
                 }
 
@@ -444,6 +489,7 @@ namespace kukadu {
 
         vec diff = (executedPrint - dataPrint);
         vec fingerPrintDiff = diff / dataStdDev;
+
         for(int j = 0; j < fingerPrintDiff.n_elem; ++j) {
 
             if(abs(fingerPrintDiff(j)) > 0.0) {

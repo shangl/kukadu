@@ -29,6 +29,7 @@ namespace kukadu {
         std::map<std::string, KUKADU_SHARED_PTR<kukadu::Controller> > storedSkills;
         std::map<std::string, std::pair<std::vector<int>, std::vector<arma::mat> > > skillsData;
 
+        std::vector<int> simulatedFaultyFunctionsGroundTruth;
         std::map<std::string, std::vector<int> > skillSimulatedFunctionRows;
         std::map<std::string, std::vector<double> > skillSimulatedFunctionMeans;
         std::map<std::string, std::vector<double> > skillSimulatedFunctionStdDevs;
@@ -58,16 +59,18 @@ namespace kukadu {
 
         void loadSkillFingerPrintDb(std::string skill, std::vector<arma::mat>& fingerPrints);
 
-        void construct(bool simulate);
+        void construct(bool simulate, std::vector<int> simulatedFaultyFunctionsGroundTruth);
 
         arma::mat generateSimulatedSample(std::vector<int> usedFunctionRows, std::vector<double> functionMeans, std::vector<double> functionStdDev, int durationIndexCount);
 
+        bool simulateSuccess(std::string skill);
+
     public:
 
-        AutonomousTester(kukadu::StorageSingleton& storage, bool simulate = false);
+        AutonomousTester(kukadu::StorageSingleton& storage, bool simulate = false, std::vector<int> simulatedFaultyFunctionsGroundTruth = {});
 
         AutonomousTester(kukadu::StorageSingleton& storage, std::string skill, std::vector<KUKADU_SHARED_PTR<kukadu::Hardware> > availableHardware, std::pair<std::vector<int>, std::vector<arma::mat> >& skillData,
-                         std::vector<long long int> sampleStartTimes, std::vector<long long int> sampleEndTimes, long long int timeStep, bool simulate = false);
+                         std::vector<long long int> sampleStartTimes, std::vector<long long int> sampleEndTimes, long long int timeStep, bool simulate = false, std::vector<int> simulatedFaultyFunctionsGroundTruth = {});
 
         void testSkill(std::string id);
 
@@ -79,6 +82,8 @@ namespace kukadu {
                       std::vector<long long int> sampleStartTimes, std::vector<long long int> sampleEndTimes, long long int timeStep);
 
         void addSimulatedSkill(std::string skillName, std::vector<int> usedFunctionRows, std::vector<double> functionMeans, std::vector<double> functionVariances, int numberOfSamples, int durationIndexCount);
+
+        std::vector<int> testRobot();
 
     };
 
