@@ -19,8 +19,9 @@ namespace kukadu {
 
         std::map<std::string, long long int> timeSteps;
         std::map<std::string, int> fingerPrintColCounts;
-        std::map<std::string, arma::mat> skillFingerPrints;
+        std::map<std::string, arma::mat> skillMedianFingerPrints;
         std::map<std::string, arma::mat> skillFingerPrintStdDeviations;
+        std::map<std::string, std::vector<arma::mat> > skillFingerPrints;
         std::map<std::string, KUKADU_SHARED_PTR<kukadu::Controller> > storedSkills;
         std::map<std::string, std::pair<std::vector<int>, std::vector<arma::mat> > > skillsData;
 

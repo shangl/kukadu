@@ -62,9 +62,10 @@ namespace kukadu {
         int successfulExecutionsCount = 0;
         for(auto& execution : executionsList) {
 
-            mat currentFingerPrint = computeFingerPrint(get<0>(execution), get<1>(execution), get<0>(execution), get<1>(execution), maxTimeCount, timeSteps[skill]);
-
             if(get<2>(execution)) {
+
+                mat currentFingerPrint = computeFingerPrint(get<0>(execution), get<1>(execution), get<0>(execution), get<1>(execution), maxTimeCount, timeSteps[skill]);
+
                 if(firstFingerPrint) {
                     skillFingerPrint = currentFingerPrint;
                     varTerm1 = arma::pow(currentFingerPrint, 2.0);
@@ -75,7 +76,11 @@ namespace kukadu {
 
                 firstFingerPrint = false;
                 ++successfulExecutionsCount;
+
+                skillFingerPrints[skill].push_back(currentFingerPrint);
+
             }
+
             ++show_progress;
 
         }
@@ -83,7 +88,7 @@ namespace kukadu {
         fingerPrintColCounts[skill] = skillFingerPrint.n_cols;
 
         skillFingerPrint /= successfulExecutionsCount;
-        skillFingerPrints[skill] = skillFingerPrint;
+        skillMedianFingerPrints[skill] = skillFingerPrint;
 
         skillFingerPrintStdDev = arma::sqrt(varTerm1 / successfulExecutionsCount - arma::pow(skillFingerPrint, 2.0));
         skillFingerPrintStdDeviations[skill] = skillFingerPrintStdDev;
@@ -112,8 +117,6 @@ namespace kukadu {
                                                    long long int skillStartTime, long long int skillEndTime,
                                                    long long int timeCount, long long int deltaT) {
 
-        // sanity ensurance in case the window is too long
-        endTime = min(endTime, skillEndTime);
 
         auto& storage = getStorage();
         auto runningFunctions = generateFunctionQuery(skillStartTime, skillEndTime, startTime, endTime);
@@ -198,7 +201,7 @@ namespace kukadu {
             firstRun = false;
         }
 
-        return {dataPrint, arma::sqrt(standardDeviation)};
+        return {dataPrint / (endIdx - startIdx), arma::sqrt(standardDeviation)};
 
     }
 
@@ -206,7 +209,7 @@ namespace kukadu {
 
         if(skillsData.find(id) != skillsData.end()) {
 
-            int simulatedId = 42;
+            int simulatedId = 30;
 
             // replace skillsData[id].second.at(5) by actually executed data --> make sure that the timestep is the same
             auto failurePlaces = computeFailureProb(id, skillsData[id].second.at(simulatedId));
@@ -227,8 +230,8 @@ namespace kukadu {
 
                 long long int windowEndTime = skillStartTime + timeSteps[id] * (failureTimeIdx + 1);
 
-                auto executionPrint = computeFingerPrint(windowStartTime, windowEndTime, skillStartTime, skillEndTime, fingerPrintColCounts[id], timeSteps[id]);
-                auto runningFunctions = loadRunningFunctions(windowStartTime, windowEndTime, skillStartTime, skillEndTime);
+                auto executionPrint = computeFingerPrint(skillStartTime, skillEndTime, skillStartTime, skillEndTime, fingerPrintColCounts[id], timeSteps[id]);
+                // auto runningFunctions = loadRunningFunctions(windowStartTime, windowEndTime, skillStartTime, skillEndTime);
 
                 auto normalizedWindowStartTime = windowStartTime - skillStartTime;
                 auto normalizedWindowEndTime = windowEndTime - skillStartTime;
@@ -239,7 +242,7 @@ namespace kukadu {
                 if(windowEndIdx >= executionPrint.n_cols)
                     throw KukaduException("(AutonomousTester) something is wrong with the window index computeation");
 
-                auto dataFingerPrint = skillFingerPrints[id];
+                auto dataFingerPrint = skillMedianFingerPrints[id];
 
                 if(!executionPrint.n_cols)
                     throw KukaduException("(AutonomousTester) desired window is too small");
@@ -255,12 +258,38 @@ namespace kukadu {
 
                 auto maliciousFunctions = extractDeviatingFunctions(integratedExecutionPrint, integratedDataPrint, integratedDataPrintStdDev);
 
+/*
+                ofstream o;
+                o.open("/tmp/mostlikelyrow");
+
+                int mostLikelyFunctionRow = functionIdsToRows[maliciousFunctions.front().first];
+                vec dev = skillFingerPrintStdDeviations[id].row(mostLikelyFunctionRow).t();
+                vec print = skillMedianFingerPrints[id].row(mostLikelyFunctionRow).t();
+                vec exec = executionPrint.row(mostLikelyFunctionRow).t();
+
+                mat jointMostLikelyRows = join_rows(join_rows(dev, print), exec);
+                for(int i = 0; i < skillFingerPrints[id].size(); ++i)
+                    jointMostLikelyRows = join_rows(jointMostLikelyRows, skillFingerPrints[id].at(i).row(mostLikelyFunctionRow).t());
+
+                o << jointMostLikelyRows << endl;
+
+//                o << executionPrint << endl;
+                o.close();
+*/
+                bool printDebug = false;
                 cout << "the following functions might have caused the problem" << endl;
                 for(auto& maliciousFunction : maliciousFunctions) {
                     auto functionName = getStorage().getCachedLabel("software_functions", "id", "name", maliciousFunction.first);
-                    cout << "function (id, name, count): (" << maliciousFunction.first << ", " <<
+                    auto& functionRow = functionIdsToRows[maliciousFunction.first];
+                    cout << "function (id, name, dev / stdDev";
+                    if(printDebug)
+                        cout << ", fingerprint_row, average data, stddev data, average execution";
+                    cout << "): (" << maliciousFunction.first << ", " <<
                             functionName << ", " <<
-                            maliciousFunction.second << ")" << endl;
+                            maliciousFunction.second;
+                    if(printDebug)
+                        cout << ", " << functionRow << integratedDataPrint(functionRow) << ", " << integratedDataPrintStdDev(functionRow) << ", " << integratedExecutionPrint(functionRow);
+                    cout << ")" << endl;
                 }
 
             }
