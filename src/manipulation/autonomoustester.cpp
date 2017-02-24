@@ -12,20 +12,126 @@ using namespace arma;
 
 namespace kukadu {
 
+    AutonomousTester::AutonomousTester(kukadu::StorageSingleton& storage, bool simulate) : StorageHolder(storage) {
+
+        construct(simulate);
+
+    }
+
     AutonomousTester::AutonomousTester(kukadu::StorageSingleton& storage, std::string skill, std::vector<KUKADU_SHARED_PTR<kukadu::Hardware> > availableHardware,
                                        std::pair<std::vector<int>, std::vector<arma::mat> >& skillData,
-                                       std::vector<long long int> sampleStartTimes, std::vector<long long int> sampleEndTimes, long long int timeStep)
+                                       std::vector<long long int> sampleStartTimes, std::vector<long long int> sampleEndTimes, long long int timeStep, bool simulate)
         : StorageHolder(storage) {
 
-        auto& skillFactory = SkillFactory::get();
+        construct(simulate);
+        addSkill(skill, availableHardware, skillData, sampleStartTimes, sampleEndTimes, timeStep);
 
-        try {
+    }
+
+    void AutonomousTester::construct(bool simulate) {
+
+        this->simulate = simulate;
+
+        // set sliding window to 2 seconds
+        windowTime = 2000;
+        simlatedIdxWindow = 100;
+
+        auto mappings = mapFunctionIdToFingerPrintRow();
+        functionIdsToRows = mappings.first;
+        functionRowsToIds = mappings.second;
+
+    }
+
+    void AutonomousTester::setSimulate(bool simulate) {
+        this->simulate = simulate;
+    }
+
+    arma::mat AutonomousTester::generateSimulatedSample(std::vector<int> usedFunctionRows, std::vector<double> functionMeans, std::vector<double> functionStdDev, int durationIndexCount) {
+
+        mat newSample(functionIdsToRows.size(), durationIndexCount);
+
+        for(int j = 0; j < usedFunctionRows.size(); ++j) {
+
+            normal_distribution<double> distribution(functionMeans.at(j), functionStdDev.at(j));
+
+            for(int k = 0; k < durationIndexCount; ++k) {
+                double randomVal = distribution(generator);
+                newSample(usedFunctionRows.at(j), k) = randomVal;
+            }
+
+        }
+
+        return newSample;
+
+    }
+
+    void AutonomousTester::addSimulatedSkill(std::string skillName, std::vector<int> usedFunctionRows, std::vector<double> functionMeans, std::vector<double> functionVariances, int numberOfSamples, int durationIndexCount) {
+
+        if(usedFunctionRows.size() != functionMeans.size() || functionMeans.size() != functionVariances.size())
+            throw KukaduException("(AutonomousTester) simulation data not complete");
+
+        vector<mat> skillData;
+        cout << "generating data for simulated skill " << skillName << endl;
+        boost::progress_display show_progress(numberOfSamples);
+        for(int i = 0; i < numberOfSamples; ++i) {
+
+            skillData.push_back(generateSimulatedSample(usedFunctionRows, functionMeans, functionVariances, durationIndexCount));
+            ++show_progress;
+
+        }
+
+        skillSimulatedFunctionRows[skillName] = usedFunctionRows;
+        skillSimulatedFunctionMeans[skillName] = functionMeans;
+        skillSimulatedFunctionStdDevs[skillName] = functionVariances;
+
+        loadSkillFingerPrintDb(skillName, skillData);
+
+    }
+
+    void AutonomousTester::loadSkillFingerPrintDb(std::string skill, std::vector<arma::mat>& fingerPrints) {
+
+        bool firstFingerPrint = true;
+
+        mat skillFingerPrint;
+        mat skillFingerPrintStdDev;
+        mat varTerm1;
+        int successfulExecutionsCount = 0;
+        for(auto& currentFingerPrint : fingerPrints) {
+
+            if(firstFingerPrint) {
+                skillFingerPrint = currentFingerPrint;
+                varTerm1 = arma::pow(currentFingerPrint, 2.0);
+            } else {
+                skillFingerPrint += currentFingerPrint;
+                varTerm1 += arma::pow(currentFingerPrint, 2.0);
+            }
+
+            firstFingerPrint = false;
+            ++successfulExecutionsCount;
+
+            skillFingerPrints[skill].push_back(currentFingerPrint);
+
+        }
+
+        fingerPrintColCounts[skill] = skillFingerPrint.n_cols;
+
+        skillFingerPrint /= successfulExecutionsCount;
+        skillMedianFingerPrints[skill] = skillFingerPrint;
+
+        skillFingerPrintStdDev = arma::sqrt(varTerm1 / successfulExecutionsCount - arma::pow(skillFingerPrint, 2.0));
+        skillFingerPrintStdDeviations[skill] = skillFingerPrintStdDev;
+
+    }
+
+    void AutonomousTester::addSkill(std::string skill, std::vector<KUKADU_SHARED_PTR<kukadu::Hardware> > availableHardware, std::pair<std::vector<int>, std::vector<arma::mat> >& skillData,
+                  std::vector<long long int> sampleStartTimes, std::vector<long long int> sampleEndTimes, long long int timeStep) {
+
+        auto& skillFactory = SkillFactory::get();
+        if(!simulate) {
             if(availableHardware.size())
                 storedSkills[skill] = skillFactory.loadSkill(skill, availableHardware.front());
             else
                 cerr << "(AutonomousTester) no hardware passed" << endl;
-        } catch(KukaduException& ex) {
-            cerr << "(AutonomousTester) skill controller not registered" << endl;
         }
 
         skillsData[skill] = skillData;
@@ -33,9 +139,6 @@ namespace kukadu {
         timeSteps[skill] = timeStep;
         skillSampleStartTimes[skill] = sampleStartTimes;
         skillSampleEndTimes[skill] = sampleEndTimes;
-
-        // set sliding window to 2 seconds
-        windowTime = 2000;
 
         SkillExporter exporter(getStorage());
         auto executionsList = exporter.getSkillExecutions(skill);
@@ -50,34 +153,14 @@ namespace kukadu {
 
         long long int maxTimeCount = ceil((double) maxDuration / timeSteps[skill]);
 
-        auto mappings = mapFunctionIdToFingerPrintRow();
-        functionIdsToRows = mappings.first;
-        functionRowsToIds = mappings.second;
-
-        bool firstFingerPrint = true;
-
-        mat skillFingerPrint;
-        mat skillFingerPrintStdDev;
-        mat varTerm1;
-        int successfulExecutionsCount = 0;
+        skillFingerPrints.clear();
+        vector<mat> prints;
         for(auto& execution : executionsList) {
 
             if(get<2>(execution)) {
 
                 mat currentFingerPrint = computeFingerPrint(get<0>(execution), get<1>(execution), get<0>(execution), get<1>(execution), maxTimeCount, timeSteps[skill]);
-
-                if(firstFingerPrint) {
-                    skillFingerPrint = currentFingerPrint;
-                    varTerm1 = arma::pow(currentFingerPrint, 2.0);
-                } else {
-                    skillFingerPrint += currentFingerPrint;
-                    varTerm1 += arma::pow(currentFingerPrint, 2.0);
-                }
-
-                firstFingerPrint = false;
-                ++successfulExecutionsCount;
-
-                skillFingerPrints[skill].push_back(currentFingerPrint);
+                prints.push_back(currentFingerPrint);
 
             }
 
@@ -85,13 +168,7 @@ namespace kukadu {
 
         }
 
-        fingerPrintColCounts[skill] = skillFingerPrint.n_cols;
-
-        skillFingerPrint /= successfulExecutionsCount;
-        skillMedianFingerPrints[skill] = skillFingerPrint;
-
-        skillFingerPrintStdDev = arma::sqrt(varTerm1 / successfulExecutionsCount - arma::pow(skillFingerPrint, 2.0));
-        skillFingerPrintStdDeviations[skill] = skillFingerPrintStdDev;
+        loadSkillFingerPrintDb(skill, prints);
 
     }
 
@@ -116,7 +193,6 @@ namespace kukadu {
     arma::mat AutonomousTester::computeFingerPrint(long long int startTime, long long int endTime,
                                                    long long int skillStartTime, long long int skillEndTime,
                                                    long long int timeCount, long long int deltaT) {
-
 
         auto& storage = getStorage();
         auto runningFunctions = generateFunctionQuery(skillStartTime, skillEndTime, startTime, endTime);
@@ -207,61 +283,78 @@ namespace kukadu {
 
     void AutonomousTester::testSkill(std::string id) {
 
-        if(skillsData.find(id) != skillsData.end()) {
+        if(skillFingerPrints.find(id) != skillFingerPrints.end()) {
 
-            int simulatedId = 30;
+            int simulatedId = 42;
+            bool successful = false;
 
-            // replace skillsData[id].second.at(5) by actually executed data --> make sure that the timestep is the same
-            auto failurePlaces = computeFailureProb(id, skillsData[id].second.at(simulatedId));
+            // replace skillsData[id].second.at(...) by actually executed data --> make sure that the timestep is the same
+            std::vector<std::pair<int, double> > failurePlaces;
+            mat simulationFakeDataMat;
+            if(!simulate)
+                failurePlaces = computeFailureProb(id, skillsData[id].second.at(simulatedId));
+            else
+                failurePlaces = computeFailureProb(id, simulationFakeDataMat);
 
             // replace it by the real start time
-            auto skillStartTime = skillSampleStartTimes[id].at(simulatedId);
-            auto skillEndTime = skillSampleEndTimes[id].at(simulatedId);
+            long long int skillStartTime = 0;
+            long long int skillEndTime = 0;
+
+            // only required if skill is actually executed
+            if(!simulate) {
+                skillStartTime = skillSampleStartTimes[id].at(simulatedId);
+                skillEndTime = skillSampleEndTimes[id].at(simulatedId);
+            }
+
+            int windowStartIdx = 0;
+            int windowEndIdx = 0;
 
             for(auto& failure : failurePlaces) {
 
                 int failureTimeIdx = failure.first;
                 double failureProb = 1.0 - failure.second;
 
-                long long int windowStartTime = skillStartTime + timeSteps[id] * (failureTimeIdx + 1) - windowTime;
+                mat executionPrint;
+                if(!simulate) {
 
-                if(windowStartTime < skillStartTime)
-                    windowStartTime = skillStartTime;
+                    long long int windowStartTime = skillStartTime + timeSteps[id] * (failureTimeIdx + 1) - windowTime;
 
-                long long int windowEndTime = skillStartTime + timeSteps[id] * (failureTimeIdx + 1);
+                    if(windowStartTime < skillStartTime)
+                        windowStartTime = skillStartTime;
 
-                auto executionPrint = computeFingerPrint(skillStartTime, skillEndTime, skillStartTime, skillEndTime, fingerPrintColCounts[id], timeSteps[id]);
-                // auto runningFunctions = loadRunningFunctions(windowStartTime, windowEndTime, skillStartTime, skillEndTime);
+                    long long int windowEndTime = skillStartTime + timeSteps[id] * (failureTimeIdx + 1);
 
-                auto normalizedWindowStartTime = windowStartTime - skillStartTime;
-                auto normalizedWindowEndTime = windowEndTime - skillStartTime;
+                    executionPrint = computeFingerPrint(skillStartTime, skillEndTime, skillStartTime, skillEndTime, fingerPrintColCounts[id], timeSteps[id]);
+                    // auto runningFunctions = loadRunningFunctions(windowStartTime, windowEndTime, skillStartTime, skillEndTime);
 
-                int windowStartIdx = floor((double) normalizedWindowStartTime / timeSteps[id]);
-                int windowEndIdx = ceil((double) normalizedWindowEndTime / timeSteps[id]);
+                    auto normalizedWindowStartTime = windowStartTime - skillStartTime;
+                    auto normalizedWindowEndTime = windowEndTime - skillStartTime;
 
-                if(windowEndIdx >= executionPrint.n_cols)
-                    throw KukaduException("(AutonomousTester) something is wrong with the window index computeation");
+                    windowStartIdx = floor((double) normalizedWindowStartTime / timeSteps[id]);
+                    windowEndIdx = ceil((double) normalizedWindowEndTime / timeSteps[id]);
 
-                auto dataFingerPrint = skillMedianFingerPrints[id];
+                    if(windowEndIdx >= executionPrint.n_cols || windowStartIdx < 0)
+                        throw KukaduException("(AutonomousTester) something is wrong with the window index computation");
 
-                if(!executionPrint.n_cols)
-                    throw KukaduException("(AutonomousTester) desired window is too small");
+                    if(!executionPrint.n_cols)
+                        throw KukaduException("(AutonomousTester) desired window is too small");
 
-                // integrate the fingerprint of the current execution over the given window
-                mat fakeStdDev;
-                vec integratedExecutionPrint = integrateFingerPrint(executionPrint, fakeStdDev, windowStartIdx, windowEndIdx, false).first;
+                } else {
 
-                // integrate the database fingerprint over the given window
-                auto integratedDataPrintWithStdDev = integrateFingerPrint(dataFingerPrint, skillFingerPrintStdDeviations[id], windowStartIdx, windowEndIdx, true);
-                vec& integratedDataPrint = integratedDataPrintWithStdDev.first;
-                vec& integratedDataPrintStdDev = integratedDataPrintWithStdDev.second;
+                    // set window idx
+                    windowEndIdx = failureTimeIdx;
+                    windowStartIdx = max(0, windowEndIdx - simlatedIdxWindow);
 
-                auto maliciousFunctions = extractDeviatingFunctions(integratedExecutionPrint, integratedDataPrint, integratedDataPrintStdDev);
+                    // set the execution print
+                    executionPrint = generateSimulatedSample(skillSimulatedFunctionRows[id], skillSimulatedFunctionMeans[id], skillSimulatedFunctionStdDevs[id], skillMedianFingerPrints[id].n_cols);
 
-/*
+                }
+
+                vec probObservationGivenFunctionFailure = computeObservationLikelihood(id, successful, executionPrint, windowStartIdx, windowEndIdx);
+
                 ofstream o;
                 o.open("/tmp/mostlikelyrow");
-
+/*
                 int mostLikelyFunctionRow = functionIdsToRows[maliciousFunctions.front().first];
                 vec dev = skillFingerPrintStdDeviations[id].row(mostLikelyFunctionRow).t();
                 vec print = skillMedianFingerPrints[id].row(mostLikelyFunctionRow).t();
@@ -272,30 +365,76 @@ namespace kukadu {
                     jointMostLikelyRows = join_rows(jointMostLikelyRows, skillFingerPrints[id].at(i).row(mostLikelyFunctionRow).t());
 
                 o << jointMostLikelyRows << endl;
-
-//                o << executionPrint << endl;
-                o.close();
 */
-                bool printDebug = false;
-                cout << "the following functions might have caused the problem" << endl;
-                for(auto& maliciousFunction : maliciousFunctions) {
-                    auto functionName = getStorage().getCachedLabel("software_functions", "id", "name", maliciousFunction.first);
-                    auto& functionRow = functionIdsToRows[maliciousFunction.first];
-                    cout << "function (id, name, dev / stdDev";
-                    if(printDebug)
-                        cout << ", fingerprint_row, average data, stddev data, average execution";
-                    cout << "): (" << maliciousFunction.first << ", " <<
-                            functionName << ", " <<
-                            maliciousFunction.second;
-                    if(printDebug)
-                        cout << ", " << functionRow << integratedDataPrint(functionRow) << ", " << integratedDataPrintStdDev(functionRow) << ", " << integratedExecutionPrint(functionRow);
-                    cout << ")" << endl;
-                }
+//                o << executionPrint << endl;
+
+                o << probObservationGivenFunctionFailure << endl;
+                o.close();
 
             }
 
         } else
             throw KukaduException("(AutonomousTester) skill data not available");
+
+    }
+
+    arma::vec AutonomousTester::computeObservationLikelihood(std::string skillId, bool success, arma::mat& executedObservation, int windowStartIdx, int windowEndIdx) {
+
+        double probThresh = 0.5;
+        double minSuccObservationProb = 0.1;
+        double minFailObservationProb = 0.6;
+        double maxMultipleOfStdThresh = 7.0;
+
+        vec likelihoodProbabilities(executedObservation.n_rows);
+
+        // all functions that were not executed within the window yield an observation probability of 1 --> because they can't have anything to do with the observation
+        likelihoodProbabilities.fill(0.5);
+
+        // integrate the fingerprint of the current execution over the given window
+        mat fakeStdDev;
+        vec integratedExecutionPrint = integrateFingerPrint(executedObservation, fakeStdDev, windowStartIdx, windowEndIdx, false).first;
+
+        auto dataFingerPrint = skillMedianFingerPrints[skillId];
+
+        // integrate the database fingerprint over the given window
+        auto integratedDataPrintWithStdDev = integrateFingerPrint(dataFingerPrint, skillFingerPrintStdDeviations[skillId], windowStartIdx, windowEndIdx, true);
+        vec& integratedDataPrint = integratedDataPrintWithStdDev.first;
+        vec& integratedDataPrintStdDev = integratedDataPrintWithStdDev.second;
+
+        auto maliciousFunctions = extractDeviatingFunctions(integratedExecutionPrint, integratedDataPrint, integratedDataPrintStdDev);
+
+        bool printDebug = false;
+        cout << "the following functions might have caused the problem" << endl;
+        for(auto& maliciousFunction : maliciousFunctions) {
+
+            auto functionName = getStorage().getCachedLabel("software_functions", "id", "name", maliciousFunction.first);
+            auto& functionRow = functionIdsToRows[maliciousFunction.first];
+
+            if(success) {
+
+                // if successful - the likelihood of observing the data if the function is malicious should be low
+                likelihoodProbabilities(functionRow) = max(minSuccObservationProb, probThresh * (maliciousFunction.second / maxMultipleOfStdThresh));
+
+            } else {
+
+                // if not successful - the likelihood of observing the data if the function is malicious should be proportional to the deviation of the fingerprint (but at least probThresh)
+                likelihoodProbabilities(functionRow) = min(1.0, max(minFailObservationProb, probThresh * (1.0 + abs(maliciousFunction.second) / maxMultipleOfStdThresh)));
+
+            }
+
+            cout << "function (id, name, dev / stdDev";
+            if(printDebug)
+                cout << ", fingerprint_row, average data, stddev data, average execution";
+            cout << "): (" << maliciousFunction.first << ", " <<
+                    functionName << ", " <<
+                    maliciousFunction.second;
+            if(printDebug)
+                cout << ", " << functionRow << integratedDataPrint(functionRow) << ", " << integratedDataPrintStdDev(functionRow) << ", " << integratedExecutionPrint(functionRow);
+            cout << ")" << endl;
+
+        }
+
+        return likelihoodProbabilities;
 
     }
 
@@ -431,6 +570,7 @@ namespace kukadu {
 
     std::vector<std::pair<int, double> > AutonomousTester::computeFailureProb(std::string skill, arma::mat& execution) {
 
+        /*
         auto& skillData = skillsData[skill];
         vec skillDistances(skillData.first.size());
         skillDistances.fill(0.0);
@@ -438,9 +578,9 @@ namespace kukadu {
         vector<double> distDevel;
         for(int i = 0; i < execution.n_cols; ++i)
             distDevel.push_back(computeBestDistance(skill, i, i + 1, skillDistances, execution));
+        */
 
-        //return { {1450, 0.02} };
-        return { {500, 0.02} };
+        return { {1450, 0.02} };
 
     }
 

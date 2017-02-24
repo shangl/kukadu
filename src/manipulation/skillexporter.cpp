@@ -68,7 +68,6 @@ namespace kukadu {
             skillLines.push_back(labelsLine);
 
         boost::progress_display show_progress(skillLines.size());
-
         for(int i = 0; i < skillLines.size(); ++i) {
 
             string& labelsLine = skillLines.at(i);
