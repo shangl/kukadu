@@ -1,5 +1,8 @@
+#include <cmath>
 #include <kukadu/statistics/statistics.hpp>
 #include <kukadu/storage/moduleusagesingleton.hpp>
+
+using namespace std;
 
 namespace kukadu {
 
@@ -24,6 +27,16 @@ namespace kukadu {
         KUKADU_MODULE_END_USAGE();
 
         return retVal;
+
+    }
+
+    double computeEntropy(arma::vec& probabilities) {
+
+        double entropy = 0.0;
+        for(int i = 0; i < probabilities.n_elem; ++i)
+            entropy -= probabilities(i) * log2(probabilities(i));
+
+        return entropy;
 
     }
 

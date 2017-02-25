@@ -55,7 +55,7 @@ namespace kukadu {
         // extracts and sorts the functions that deviate from the execution (returns the deviation in multiples of the standard deviation and the corresponding function id)
         std::vector<std::pair<int, double> > extractDeviatingFunctions(arma::vec& executedPrint, arma::vec& dataPrint, arma::vec& dataStdDev);
 
-        arma::vec computeObservationLikelihood(std::string skillId, bool success, arma::mat& executedObservation, int windowStartIdx, int windowEndIdx);
+        arma::vec computeObservationLikelihood(std::string skillId, bool success, arma::mat& executedObservation, int windowStartIdx, int windowEndIdx, bool printFeedback = false);
 
         void loadSkillFingerPrintDb(std::string skill, std::vector<arma::mat>& fingerPrints);
 
@@ -65,6 +65,10 @@ namespace kukadu {
 
         bool simulateSuccess(std::string skill);
 
+        arma::vec computeBayesianUpdate(arma::vec likelihood, arma::vec prior);
+
+        double computeInformatioinGain(std::string skill, arma::vec& currentBlameProbability);
+
     public:
 
         AutonomousTester(kukadu::StorageSingleton& storage, bool simulate = false, std::vector<int> simulatedFaultyFunctionsGroundTruth = {});
@@ -72,7 +76,8 @@ namespace kukadu {
         AutonomousTester(kukadu::StorageSingleton& storage, std::string skill, std::vector<KUKADU_SHARED_PTR<kukadu::Hardware> > availableHardware, std::pair<std::vector<int>, std::vector<arma::mat> >& skillData,
                          std::vector<long long int> sampleStartTimes, std::vector<long long int> sampleEndTimes, long long int timeStep, bool simulate = false, std::vector<int> simulatedFaultyFunctionsGroundTruth = {});
 
-        void testSkill(std::string id);
+        // executes (or simulates) on skill and returns the observation likelihood
+        arma::vec testSkill(std::string id);
 
         virtual std::vector<std::pair<int, double> > computeFailureProb(std::string skill, arma::mat& execution);
 

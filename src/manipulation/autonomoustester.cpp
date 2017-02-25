@@ -3,6 +3,7 @@
 #include <armadillo>
 #include <boost/progress.hpp>
 #include <kukadu/utils/utils.hpp>
+#include <kukadu/statistics/statistics.hpp>
 #include <kukadu/manipulation/skillfactory.hpp>
 #include <kukadu/manipulation/skillexporter.hpp>
 #include <kukadu/manipulation/autonomoustester.hpp>
@@ -298,15 +299,84 @@ namespace kukadu {
 
     }
 
+    double AutonomousTester::computeInformatioinGain(std::string skill, arma::vec& currentBlameProbability) {
+
+        auto& collectedFingerPrints = skillFingerPrints[skill];
+
+        double currentEntropy = computeEntropy(currentBlameProbability);
+
+        double expectedEntropy = 0.0;
+        int entropiesCount = 0;
+        for(auto& fingerPrintSample : collectedFingerPrints) {
+
+            // vary over all times and success
+            vec likelihood = computeObservationLikelihood(skill, false, fingerPrintSample, 0, fingerPrintSample.n_cols - 1, false);
+            vec posterior = computeBayesianUpdate(likelihood, currentBlameProbability);
+
+            expectedEntropy += computeEntropy(posterior);
+            ++entropiesCount;
+
+        }
+
+        expectedEntropy /= entropiesCount;
+
+        return currentEntropy - expectedEntropy;
+
+    }
+
+    arma::vec AutonomousTester::computeBayesianUpdate(arma::vec likelihood, arma::vec prior) {
+
+        // Bayesian update
+        prior %= likelihood;
+
+        // renormalize
+        prior /= sum(prior);
+
+        return prior;
+
+    }
+
     vector<int> AutonomousTester::testRobot() {
 
-        testSkill("simple_grasp");
+        vec pBlame(functionIdsToRows.size());
+        pBlame.fill(1.0 / functionIdsToRows.size());
+
+        map<string, double> informationGains;
+
+        ofstream o;
+        o.open("/tmp/entropies");
+
+        int runCount = 100;
+        string selectedSkill = "simple_grasp";
+cout << selectedSkill << ":" << endl;
+        for(int i = 0; i < runCount; ++i) {
+
+            pBlame = computeBayesianUpdate(testSkill(selectedSkill), pBlame);
+
+            for(auto& skillPrint : skillMedianFingerPrints) {
+                informationGains[skillPrint.first] = computeInformatioinGain(skillPrint.first, pBlame);
+                o << informationGains[skillPrint.first] << "\t";
+            }
+            o << endl;
+
+            auto maxGain = std::max_element(informationGains.begin(), informationGains.end(),
+                [](const pair<std::string, double>& p1, const pair<std::string, double>& p2) {
+                    return p1.second < p2.second; });
+
+            selectedSkill = maxGain->first;
+
+cout << pBlame.rows(0, 1).t() << endl;
+cout << selectedSkill << ":" << endl;
+
+        }
+
+        o.close();
 
         return {};
 
     }
 
-    void AutonomousTester::testSkill(std::string id) {
+    arma::vec AutonomousTester::testSkill(std::string id) {
 
         if(skillFingerPrints.find(id) != skillFingerPrints.end()) {
 
@@ -341,12 +411,18 @@ namespace kukadu {
             int windowStartIdx = 0;
             int windowEndIdx = 0;
 
+            mat executionPrint;
+            if(!simulate) {
+                executionPrint = computeFingerPrint(skillStartTime, skillEndTime, skillStartTime, skillEndTime, fingerPrintColCounts[id], timeSteps[id]);
+            } else {
+                executionPrint = generateSimulatedSample(skillSimulatedFunctionRows[id], skillSimulatedFunctionMeans[id], skillSimulatedFunctionStdDevs[id], skillMedianFingerPrints[id].n_cols);
+            }
+
             for(auto& failure : failurePlaces) {
 
                 int failureTimeIdx = failure.first;
                 double failureProb = 1.0 - failure.second;
 
-                mat executionPrint;
                 if(!simulate) {
 
                     long long int windowStartTime = skillStartTime + timeSteps[id] * (failureTimeIdx + 1) - windowTime;
@@ -356,7 +432,6 @@ namespace kukadu {
 
                     long long int windowEndTime = skillStartTime + timeSteps[id] * (failureTimeIdx + 1);
 
-                    executionPrint = computeFingerPrint(skillStartTime, skillEndTime, skillStartTime, skillEndTime, fingerPrintColCounts[id], timeSteps[id]);
                     // auto runningFunctions = loadRunningFunctions(windowStartTime, windowEndTime, skillStartTime, skillEndTime);
 
                     auto normalizedWindowStartTime = windowStartTime - skillStartTime;
@@ -380,9 +455,6 @@ namespace kukadu {
 
                 } else {
 
-                    // set the execution print
-                    executionPrint = generateSimulatedSample(skillSimulatedFunctionRows[id], skillSimulatedFunctionMeans[id], skillSimulatedFunctionStdDevs[id], skillMedianFingerPrints[id].n_cols);
-
                     if(!successful) {
                         // if skill was not successful, check the window before the found failure point
                         windowStartIdx = max(0, windowEndIdx - simlatedIdxWindow);
@@ -395,35 +467,17 @@ namespace kukadu {
 
                 }
 
-                vec probObservationGivenFunctionFailure = computeObservationLikelihood(id, successful, executionPrint, windowStartIdx, windowEndIdx);
-
-                ofstream o;
-                o.open("/tmp/mostlikelyrow");
-/*
-                int mostLikelyFunctionRow = functionIdsToRows[maliciousFunctions.front().first];
-                vec dev = skillFingerPrintStdDeviations[id].row(mostLikelyFunctionRow).t();
-                vec print = skillMedianFingerPrints[id].row(mostLikelyFunctionRow).t();
-                vec exec = executionPrint.row(mostLikelyFunctionRow).t();
-
-                mat jointMostLikelyRows = join_rows(join_rows(dev, print), exec);
-                for(int i = 0; i < skillFingerPrints[id].size(); ++i)
-                    jointMostLikelyRows = join_rows(jointMostLikelyRows, skillFingerPrints[id].at(i).row(mostLikelyFunctionRow).t());
-
-                o << jointMostLikelyRows << endl;
-*/
-//                o << executionPrint << endl;
-
-                o << probObservationGivenFunctionFailure << endl;
-                o.close();
-
             }
+
+            vec probObservationGivenFunctionFailure = computeObservationLikelihood(id, successful, executionPrint, windowStartIdx, windowEndIdx, true);
+            return probObservationGivenFunctionFailure;
 
         } else
             throw KukaduException("(AutonomousTester) skill data not available");
 
     }
 
-    arma::vec AutonomousTester::computeObservationLikelihood(std::string skillId, bool success, arma::mat& executedObservation, int windowStartIdx, int windowEndIdx) {
+    arma::vec AutonomousTester::computeObservationLikelihood(std::string skillId, bool success, arma::mat& executedObservation, int windowStartIdx, int windowEndIdx, bool printFeedback) {
 
         double probThresh = 0.5;
         double minSuccObservationProb = 0.1;
@@ -449,7 +503,8 @@ namespace kukadu {
         auto maliciousFunctions = extractDeviatingFunctions(integratedExecutionPrint, integratedDataPrint, integratedDataPrintStdDev);
 
         bool printDebug = false;
-        cout << "the following functions might have caused the problem" << endl;
+        if(printFeedback)
+            cout << "the following functions might have caused the problem" << endl;
         for(auto& maliciousFunction : maliciousFunctions) {
 
             auto functionName = getStorage().getCachedLabel("software_functions", "id", "name", maliciousFunction.first);
@@ -467,15 +522,17 @@ namespace kukadu {
 
             }
 
-            cout << "function (id, name, dev / stdDev";
-            if(printDebug)
-                cout << ", fingerprint_row, average data, stddev data, average execution";
-            cout << "): (" << maliciousFunction.first << ", " <<
-                    functionName << ", " <<
-                    maliciousFunction.second;
-            if(printDebug)
-                cout << ", " << functionRow << integratedDataPrint(functionRow) << ", " << integratedDataPrintStdDev(functionRow) << ", " << integratedExecutionPrint(functionRow);
-            cout << ")" << endl;
+            if(printFeedback) {
+                cout << "function (id, name, dev / stdDev";
+                if(printDebug)
+                    cout << ", fingerprint_row, average data, stddev data, average execution";
+                cout << "): (" << maliciousFunction.first << ", " <<
+                        functionName << ", " <<
+                        maliciousFunction.second;
+                if(printDebug)
+                    cout << ", " << functionRow << integratedDataPrint(functionRow) << ", " << integratedDataPrintStdDev(functionRow) << ", " << integratedExecutionPrint(functionRow);
+                cout << ")" << endl;
+            }
 
         }
 
