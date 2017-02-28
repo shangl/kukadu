@@ -1,6 +1,9 @@
+#include <list>
 #include <limits>
 #include <sstream>
+#include <json.hpp>
 #include <armadillo>
+#include <curl/curl.h>
 #include <boost/progress.hpp>
 #include <kukadu/utils/utils.hpp>
 #include <kukadu/statistics/statistics.hpp>
@@ -10,6 +13,8 @@
 
 using namespace std;
 using namespace arma;
+
+using json = nlohmann::json;
 
 namespace kukadu {
 
@@ -309,18 +314,63 @@ namespace kukadu {
         int entropiesCount = 0;
         for(auto& fingerPrintSample : collectedFingerPrints) {
 
-            // vary over all times and success
-            vec likelihood = computeObservationLikelihood(skill, false, fingerPrintSample, 0, fingerPrintSample.n_cols - 1, false);
-            vec posterior = computeBayesianUpdate(likelihood, currentBlameProbability);
+            // only run once for all samples (doesn't change anything for simulation)
+            if(simulate) {
 
-            expectedEntropy += computeEntropy(posterior);
-            ++entropiesCount;
+                // compute for unsuccessful
+                vec likelihood = computeObservationLikelihood(skill, false, fingerPrintSample, 0, fingerPrintSample.n_cols - 1, false);
+                vec posterior = computeBayesianUpdate(likelihood, currentBlameProbability);
+
+                expectedEntropy += computeEntropy(posterior);
+                ++entropiesCount;
+/*
+                // compute for successful
+                likelihood = computeObservationLikelihood(skill, true, fingerPrintSample, 0, fingerPrintSample.n_cols - 1, false);
+                posterior = computeBayesianUpdate(likelihood, currentBlameProbability);
+
+                expectedEntropy += computeEntropy(posterior);
+                ++entropiesCount;
+*/
+            } else {
+
+                for(int i = 0; i < fingerPrintSample.n_cols; i += 30) {
+
+                    // vary over all times and success
+                    vec likelihood = computeObservationLikelihood(skill, false, fingerPrintSample, 0, fingerPrintSample.n_cols - 1, false);
+                    vec posterior = computeBayesianUpdate(likelihood, currentBlameProbability);
+
+                    expectedEntropy += computeEntropy(posterior);
+                    ++entropiesCount;
+/*
+                    likelihood = computeObservationLikelihood(skill, true, fingerPrintSample, 0, fingerPrintSample.n_cols - 1, false);
+                    posterior = computeBayesianUpdate(likelihood, currentBlameProbability);
+
+                    expectedEntropy += computeEntropy(posterior);
+                    ++entropiesCount;
+*/
+                }
+
+            }
 
         }
 
         expectedEntropy /= entropiesCount;
 
         return currentEntropy - expectedEntropy;
+
+    }
+
+    std::pair<std::string, std::map<string, double> > AutonomousTester::maximizeInformationGains(arma::vec& currentBlameProbability) {
+
+        map<string, double> informationGains;
+        for(auto& skillPrint : skillMedianFingerPrints)
+            informationGains[skillPrint.first] = computeInformatioinGain(skillPrint.first, currentBlameProbability);
+
+        auto maxGain = std::max_element(informationGains.begin(), informationGains.end(),
+            [](const pair<std::string, double>& p1, const pair<std::string, double>& p2) {
+                return p1.second < p2.second; });
+
+        return {maxGain->first, informationGains};
 
     }
 
@@ -338,21 +388,60 @@ namespace kukadu {
 
     vector<int> AutonomousTester::testRobot() {
 
+        int speedUpBias = 3;
+
         vec pBlame(functionIdsToRows.size());
         pBlame.fill(1.0 / functionIdsToRows.size());
 
-        map<string, double> informationGains;
+        ofstream pBlameStream;
+        pBlameStream.open("/tmp/tester-pblame");
 
-        ofstream o;
-        o.open("/tmp/entropies");
+        ofstream igStream;
+        igStream.open("/tmp/tester-igs");
+
+        ofstream skillStream;
+        skillStream.open("/tmp/tester-skills");
+
+        // get ordered list of all skills (not sure if foreach ensures this for every run)
+        vector<string> orderedSkillsList;
+        cout << "skills used for testing:" << endl;
+        skillStream << "skills used for testing:" << endl;
+        for(auto& s : skillMedianFingerPrints) {
+            orderedSkillsList.push_back(s.first);
+            cout << s.first << endl;
+            skillStream << s.first << endl;
+        }
+
+        auto igs = maximizeInformationGains(pBlame);
+        auto maxGainSkill = igs.first;
+        auto maxGainValue = igs.second[igs.first];
+
+        for(auto& skillName : orderedSkillsList) {
+            auto ig = igs.second[skillName];
+            igStream << ig << "\t";
+        }
+        igStream << endl;
 
         int runCount = 100;
-        string selectedSkill = "simple_grasp";
+        string selectedSkill = maxGainSkill;
 cout << selectedSkill << ":" << endl;
+skillStream << selectedSkill << ":" << endl;
         for(int i = 0; i < runCount; ++i) {
 
-            pBlame = computeBayesianUpdate(testSkill(selectedSkill), pBlame);
+            for(int k = 0; k < speedUpBias; ++k)
+                pBlame = computeBayesianUpdate(testSkill(selectedSkill), pBlame);
 
+            igs = maximizeInformationGains(pBlame);
+            maxGainSkill = igs.first;
+            maxGainValue = igs.second[igs.first];
+
+            for(auto& skillName : orderedSkillsList) {
+                auto ig = igs.second[skillName];
+                igStream << ig << "\t";
+            }
+            igStream << endl;
+
+            /*
             for(auto& skillPrint : skillMedianFingerPrints) {
                 informationGains[skillPrint.first] = computeInformatioinGain(skillPrint.first, pBlame);
                 o << informationGains[skillPrint.first] << "\t";
@@ -362,15 +451,19 @@ cout << selectedSkill << ":" << endl;
             auto maxGain = std::max_element(informationGains.begin(), informationGains.end(),
                 [](const pair<std::string, double>& p1, const pair<std::string, double>& p2) {
                     return p1.second < p2.second; });
+*/
+            selectedSkill = maxGainSkill;
 
-            selectedSkill = maxGain->first;
-
-cout << pBlame.rows(0, 1).t() << endl;
+pBlameStream << pBlame.t();
+pBlameStream.flush();
 cout << selectedSkill << ":" << endl;
+skillStream << selectedSkill << ":" << endl;
 
         }
 
-        o.close();
+pBlameStream.close();
+skillStream.close();
+igStream.close();
 
         return {};
 
@@ -671,6 +764,20 @@ cout << selectedSkill << ":" << endl;
 
     }
 
+    // horrible
+    std::string momJsonResponse;
+    void writefunction(void* ptr, size_t size, size_t nmemb, void *stream) {
+
+        stringstream s;
+        size_t totalSize = size * nmemb;
+        char* castedPtr = (char*) ptr;
+        for(size_t i = 0; i < totalSize; ++i)
+            s << castedPtr[i];
+
+        momJsonResponse = s.str();
+
+    }
+
     std::vector<std::pair<int, double> > AutonomousTester::computeFailureProb(std::string skill, arma::mat& execution) {
 
         /*
@@ -683,7 +790,94 @@ cout << selectedSkill << ":" << endl;
             distDevel.push_back(computeBestDistance(skill, i, i + 1, skillDistances, execution));
         */
 
-        return { {1450, 0.02} };
+        if(simulate) {
+
+            return { {execution.n_cols * 0.75, 0.02} };
+
+        } else {
+
+            momCallerMutex.lock();
+
+            stringstream s;
+            mat firstMom = execution.t();
+
+            for(int i = 0; i < firstMom.n_rows; ++i){
+                for(int j = 0; j < firstMom.n_cols; ++j)
+                    s << firstMom(i, j) << " ";
+                s << endl;
+            }
+
+            json j;
+            j["skillname"] = skill;
+            j["measurement_data"] = s.str();
+            string requestData = j.dump();
+
+            curl_global_init(CURL_GLOBAL_ALL);
+            auto curl = curl_easy_init();
+            if(curl) {
+
+                struct curl_slist* headers = NULL;
+                headers = curl_slist_append(headers, "Content-Type: application/json");
+
+                /* pass our list of custom made headers */
+                curl_easy_setopt(curl, CURLOPT_HTTPHEADER, headers);
+
+                /* set the size of the postfields data */
+                curl_easy_setopt(curl, CURLOPT_POSTFIELDSIZE, requestData.size());
+
+                /* First set the URL that is about to receive our POST. This URL can
+                   just as well be a https:// URL if that is what should receive the
+                   data. */
+                curl_easy_setopt(curl, CURLOPT_URL, "http://138.232.64.154:9000");
+
+                /* Now specify the POST data */
+                curl_easy_setopt(curl, CURLOPT_POSTFIELDS, requestData.c_str());
+
+                curl_easy_setopt(curl, CURLOPT_WRITEFUNCTION, writefunction);
+
+                /* Perform the request, res will get the return code */
+                auto res = curl_easy_perform(curl);
+                /* Check for errors */
+                if(res != CURLE_OK)
+                  cerr << "curl_easy_perform() failed: " << curl_easy_strerror(res) << endl;
+
+                /* always cleanup */
+                curl_easy_cleanup(curl);
+
+                cout << "response received" << endl;
+
+            }
+            curl_global_cleanup();
+
+            string resp = momJsonResponse;
+
+            auto j2 = json::parse(resp);
+
+            vector<int> indexes;
+            if (j2.find("cuttimes") != j2.end()) {
+                list<double> elements = j2["cuttimes"];
+                for(auto& times : elements)
+                    if(times > 100)
+                        indexes.push_back(times);
+                std::sort(indexes.begin(), indexes.end(), [](const int& a, const int& b) -> bool {
+                    return a < b;
+                });
+
+            } else
+                throw KukaduException("(AutnomousTester) something is wrong with keras");
+
+            momCallerMutex.unlock();
+
+            vector<pair<int, double> > finalResponse;
+            for(auto& el : indexes)
+                // no probabilities for now
+                finalResponse.push_back({el, 1.0});
+
+            return finalResponse;
+
+        }
+
+        return {};
 
     }
 

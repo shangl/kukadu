@@ -2,6 +2,7 @@
 #define KUKADU_AUTONOMOUS_TEST_H
 
 #include <map>
+#include <mutex>
 #include <random>
 #include <vector>
 #include <utility>
@@ -17,6 +18,8 @@ namespace kukadu {
 
         int simlatedIdxWindow;
         long long int windowTime;
+
+        std::mutex momCallerMutex;
 
         std::map<int, int> functionIdsToRows;
         std::map<int, int> functionRowsToIds;
@@ -68,6 +71,8 @@ namespace kukadu {
         arma::vec computeBayesianUpdate(arma::vec likelihood, arma::vec prior);
 
         double computeInformatioinGain(std::string skill, arma::vec& currentBlameProbability);
+
+        std::pair<std::string, std::map<std::string, double> > maximizeInformationGains(arma::vec& currentBlameProbability);
 
     public:
 

@@ -60,6 +60,7 @@ find_package(Qt5Gui REQUIRED)
 find_package(Qt5Core REQUIRED)
 find_package(Qt5Widgets REQUIRED)
 find_package(PkgConfig REQUIRED)
+find_package(Curl)
 
 add_definitions(-fPIC)
 add_definitions(-shared)
@@ -83,18 +84,21 @@ catkin_package(
     DEPENDS gsl gslcblas ncurses
         stdc++ ${Boost_LIBRARIES} ${PCL_LIBRARIES} ${ARMADILLO_LIBRARIES} ${PYTH_LIB}
         komo swift algo gui ors rt lapack blas ann glut GLU GL X11 ${GTK_LIBRARIES} ${GTK2_LIBRARIES} gthread-2.0 qhull m mysqlcppconn svm
+        curl nlohmann_json
 )
 
 include_directories(
     include
     ${PYTH_INC}
     ${PCL_INCLUDE_DIRS}
+    ${CURL_INCLUDE_DIR}
     ${Boost_INCLUDE_DIRS}
     ${catkin_INCLUDE_DIRS}
-    external/komo/share/src
-    external/backward-cpp
-    external/ReflexxesTypeII/include
     external
+    external/json/src
+    external/backward-cpp
+    external/komo/share/src
+    external/ReflexxesTypeII/include
 )
 
 set(CURSES_USE_NCURSES TRUE)
@@ -139,6 +143,7 @@ AUX_SOURCE_DIRECTORY(src/vision/arlocalizer ARTOOLKITPLUSSRC)
 AUX_SOURCE_DIRECTORY(external/ReflexxesTypeII/src/TypeIIRML/ REFLEXXESSRC)
 
 add_subdirectory(external/komo)
+add_subdirectory(external/json)
 
 # vision must not use c++11 because PCL crashes in that case
 SET_SOURCE_FILES_PROPERTIES(
@@ -206,18 +211,18 @@ add_backward(kukaduvision)
 add_backward(artoolkitplus)
 add_backward(${PROJECT_NAME})
 
-add_dependencies(${PROJECT_NAME} ${catkin_EXPORTED_TARGETS} ${PYTH_LIB} svm Backward::Backward)
-add_dependencies(kukaduvision ${catkin_EXPORTED_TARGETS} svm Backward::Backward)
-add_dependencies(kukadugui ${catkin_EXPORTED_TARGETS} kukadu svm Backward::Backward)
+add_dependencies(${PROJECT_NAME} ${catkin_EXPORTED_TARGETS} ${PYTH_LIB} svm Backward::Backward curl nlohmann_json)
+add_dependencies(kukaduvision ${catkin_EXPORTED_TARGETS} svm Backward::Backward curl nlohmann_json)
+add_dependencies(kukadugui ${catkin_EXPORTED_TARGETS} kukadu svm Backward::Backward curl nlohmann_json)
 
-target_link_libraries(kukadugui ${catkin_LIBRARIES} Qt5::Widgets kukadu svm)
+target_link_libraries(kukadugui ${catkin_LIBRARIES} Qt5::Widgets kukadu svm curl nlohmann_json)
 
 target_link_libraries(${PROJECT_NAME} ${catkin_LIBRARIES} ${Boost_LIBRARIES} ${ARMADILLO_LIBRARIES}
     reflexxeslib ncurses gsl gslcblas stdc++ pthread dl util m komo swift algo ann gui ors optim motion rt lapack blas glut GLU GL X11 ${GTK_LIBRARIES} ${GTK2_LIBRARIES}
-    gthread-2.0 qhull ${PYTH_LIB} m mysqlcppconn Qt5::Widgets svm)
+    gthread-2.0 qhull ${PYTH_LIB} m mysqlcppconn Qt5::Widgets svm curl nlohmann_json)
 
-target_link_libraries(kukaduvision ${catkin_LIBRARIES} ${Boost_LIBRARIES} ${PCL_LIBRARIES} ${ARMADILLO_LIBRARIES} ${OpenCV_LIBRARIES} svm)
-target_link_libraries(artoolkitplus ${catkin_LIBRARIES} ${OpenCV_LIBRARIES} svm)
+target_link_libraries(kukaduvision ${catkin_LIBRARIES} ${Boost_LIBRARIES} ${PCL_LIBRARIES} ${ARMADILLO_LIBRARIES} ${OpenCV_LIBRARIES} svm nlohmann_json)
+target_link_libraries(artoolkitplus ${catkin_LIBRARIES} ${OpenCV_LIBRARIES} svm curl nlohmann_json)
 
 if(CATKIN_ENABLE_TESTING)
         catkin_add_gtest(kukadutest test/kukadutest.cpp)
