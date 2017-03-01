@@ -102,29 +102,28 @@ namespace kukadu {
         while(pointIt != lastIt) {
 
             pcl::PointXYZRGB currentPoint = *pointIt;
-            std::vector<double> r = createJointsVector(3, currentPoint.x, currentPoint.y, currentPoint.z);
-            std::vector<double> rMinPlainOrigVec;
-            for(int i = 0; i < r.size(); ++i)
-                rMinPlainOrigVec.push_back(r.at(i) - plainOriginVec.at(i));
-            double comp;
-            for(int i = 0; i < r.size(); ++i)
-                comp += normalVec.at(i) * rMinPlainOrigVec.at(i);
+            if(currentPoint.x == currentPoint.x && currentPoint.y == currentPoint.y &&
+                    currentPoint.z == currentPoint.x) {
+                cout << "the point is not nan" << endl;
+                std::vector<double> r = createJointsVector(3, currentPoint.x, currentPoint.y, currentPoint.z);
+                std::vector<double> rMinPlainOrigVec;
+                for(int i = 0; i < r.size(); ++i)
+                    rMinPlainOrigVec.push_back(r.at(i) - plainOriginVec.at(i));
+                double comp;
+                for(int i = 0; i < r.size(); ++i)
+                    comp += normalVec.at(i) * rMinPlainOrigVec.at(i);
 
-            double coordinate = comp;
-            if(coordinate >= 0) {
-                retPc.push_back(*pointIt);
-            } else {
-                // point gets kicked out
+                double coordinate = comp;
+                if(coordinate >= 0) {
+                    retPc.push_back(*pointIt);
+                } else {
+                    // point gets kicked out
+                }
             }
             ++pointIt;
         }
 
         pcl::PointCloud<pcl::PointXYZRGB>::Ptr retCloud = retPc.makeShared();
-
-        KUKADU_SHARED_PTR<PCLTools> pt = KUKADU_SHARED_PTR<PCLTools>(new PCLTools());
-        pt->initializeVisualizationWindow();
-        pt->visualizePointCloud(string("kinect"), retCloud);
-        getchar();
 
         KUKADU_MODULE_END_USAGE();
 

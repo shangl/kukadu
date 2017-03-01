@@ -78,9 +78,6 @@ namespace kukadu {
 
         AutonomousTester(kukadu::StorageSingleton& storage, bool simulate = false, std::vector<int> simulatedFaultyFunctionsGroundTruth = {});
 
-        AutonomousTester(kukadu::StorageSingleton& storage, std::string skill, std::vector<KUKADU_SHARED_PTR<kukadu::Hardware> > availableHardware, std::pair<std::vector<int>, std::vector<arma::mat> >& skillData,
-                         std::vector<long long int> sampleStartTimes, std::vector<long long int> sampleEndTimes, long long int timeStep, bool simulate = false, std::vector<int> simulatedFaultyFunctionsGroundTruth = {});
-
         // executes (or simulates) on skill and returns the observation likelihood
         arma::vec testSkill(std::string id);
 
@@ -88,7 +85,7 @@ namespace kukadu {
 
         void setSimulate(bool simulate);
 
-        void addSkill(std::string skill, std::vector<KUKADU_SHARED_PTR<kukadu::Hardware> > availableHardware, std::pair<std::vector<int>, std::vector<arma::mat> >& skillData,
+        void addSkill(std::string skill, KUKADU_SHARED_PTR<kukadu::Controller> skillController, std::pair<std::vector<int>, std::vector<arma::mat> >& skillData,
                       std::vector<long long int> sampleStartTimes, std::vector<long long int> sampleEndTimes, long long int timeStep);
 
         void addSimulatedSkill(std::string skillName, std::vector<int> usedFunctionRows, std::vector<double> functionMeans, std::vector<double> functionVariances, int numberOfSamples, int durationIndexCount);

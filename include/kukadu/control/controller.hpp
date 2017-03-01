@@ -77,6 +77,8 @@ namespace kukadu {
         // returns false otherwise
         virtual bool getSimulationMode();
 
+        virtual void prepare() { }
+
         double getSimFailingProb();
 
         std::string getCaption();

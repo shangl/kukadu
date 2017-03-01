@@ -24,22 +24,12 @@ namespace kukadu {
 
     }
 
-    AutonomousTester::AutonomousTester(kukadu::StorageSingleton& storage, std::string skill, std::vector<KUKADU_SHARED_PTR<kukadu::Hardware> > availableHardware,
-                                       std::pair<std::vector<int>, std::vector<arma::mat> >& skillData,
-                                       std::vector<long long int> sampleStartTimes, std::vector<long long int> sampleEndTimes, long long int timeStep, bool simulate, std::vector<int> simulatedFaultyFunctionsGroundTruth)
-        : StorageHolder(storage) {
-
-        construct(simulate, simulatedFaultyFunctionsGroundTruth);
-        addSkill(skill, availableHardware, skillData, sampleStartTimes, sampleEndTimes, timeStep);
-
-    }
-
     void AutonomousTester::construct(bool simulate, std::vector<int> simulatedFaultyFunctionsGroundTruth) {
 
         this->simulate = simulate;
 
         // set sliding window to 2 seconds
-        windowTime = 2000;
+        windowTime = 40000;
         simlatedIdxWindow = 100;
 
         this->simulatedFaultyFunctionsGroundTruth = simulatedFaultyFunctionsGroundTruth;
@@ -146,16 +136,15 @@ namespace kukadu {
 
     }
 
-    void AutonomousTester::addSkill(std::string skill, std::vector<KUKADU_SHARED_PTR<kukadu::Hardware> > availableHardware, std::pair<std::vector<int>, std::vector<arma::mat> >& skillData,
+    void AutonomousTester::addSkill(std::string skill, KUKADU_SHARED_PTR<kukadu::Controller> skillController, std::pair<std::vector<int>, std::vector<arma::mat> >& skillData,
                   std::vector<long long int> sampleStartTimes, std::vector<long long int> sampleEndTimes, long long int timeStep) {
 
-        auto& skillFactory = SkillFactory::get();
-        if(!simulate) {
-            if(availableHardware.size())
-                storedSkills[skill] = skillFactory.loadSkill(skill, availableHardware.front());
-            else
-                cerr << "(AutonomousTester) no hardware passed" << endl;
-        }
+        if(sampleStartTimes.size() != sampleEndTimes.size() || sampleStartTimes.size() != skillData.first.size()
+                || sampleStartTimes.size() != skillData.second.size())
+                throw KukaduException("(AutonomousTester) add skill function needs the same dimensions for all samples");
+
+        if(!simulate)
+            storedSkills[skill] = skillController;
 
         skillsData[skill] = skillData;
 
@@ -163,26 +152,18 @@ namespace kukadu {
         skillSampleStartTimes[skill] = sampleStartTimes;
         skillSampleEndTimes[skill] = sampleEndTimes;
 
-        SkillExporter exporter(getStorage());
-        auto executionsList = exporter.getSkillExecutions(skill);
-
         cout << "loading fingerprint for skill " << skill << endl;
-        boost::progress_display show_progress(executionsList.size());
+        boost::progress_display show_progress(skillData.first.size());
 
-        long long int maxDuration = 0;
-        for(auto& execution : executionsList)
-            if(maxDuration < (get<1>(execution) - get<0>(execution)))
-                maxDuration = get<1>(execution) - get<0>(execution);
+        long long int maxTimeCount = skillData.second.front().n_cols;
 
-        long long int maxTimeCount = ceil((double) maxDuration / timeSteps[skill]);
-
-        skillFingerPrints.clear();
         vector<mat> prints;
-        for(auto& execution : executionsList) {
+        mat currentFingerPrint;
+        for(int i = 0; i < sampleStartTimes.size(); ++i) {
 
-            if(get<2>(execution)) {
+            if(sampleEndTimes.at(i)) {
 
-                mat currentFingerPrint = computeFingerPrint(get<0>(execution), get<1>(execution), get<0>(execution), get<1>(execution), maxTimeCount, timeSteps[skill]);
+                currentFingerPrint = computeFingerPrint(sampleStartTimes.at(i), sampleEndTimes.at(i), sampleStartTimes.at(i), sampleEndTimes.at(i), maxTimeCount, timeStep);
                 prints.push_back(currentFingerPrint);
 
             }
@@ -323,17 +304,17 @@ namespace kukadu {
 
                 expectedEntropy += computeEntropy(posterior);
                 ++entropiesCount;
-/*
+
                 // compute for successful
                 likelihood = computeObservationLikelihood(skill, true, fingerPrintSample, 0, fingerPrintSample.n_cols - 1, false);
                 posterior = computeBayesianUpdate(likelihood, currentBlameProbability);
 
                 expectedEntropy += computeEntropy(posterior);
                 ++entropiesCount;
-*/
+
             } else {
 
-                for(int i = 0; i < fingerPrintSample.n_cols; i += 30) {
+                for(int i = 0; i < fingerPrintSample.n_cols; i += 200) {
 
                     // vary over all times and success
                     vec likelihood = computeObservationLikelihood(skill, false, fingerPrintSample, 0, fingerPrintSample.n_cols - 1, false);
@@ -341,13 +322,13 @@ namespace kukadu {
 
                     expectedEntropy += computeEntropy(posterior);
                     ++entropiesCount;
-/*
+
                     likelihood = computeObservationLikelihood(skill, true, fingerPrintSample, 0, fingerPrintSample.n_cols - 1, false);
                     posterior = computeBayesianUpdate(likelihood, currentBlameProbability);
 
                     expectedEntropy += computeEntropy(posterior);
                     ++entropiesCount;
-*/
+
                 }
 
             }
@@ -363,8 +344,12 @@ namespace kukadu {
     std::pair<std::string, std::map<string, double> > AutonomousTester::maximizeInformationGains(arma::vec& currentBlameProbability) {
 
         map<string, double> informationGains;
-        for(auto& skillPrint : skillMedianFingerPrints)
+        cout << "computing expected information gains" << endl;
+        boost::progress_display show_progress(skillMedianFingerPrints.size());
+        for(auto& skillPrint : skillMedianFingerPrints) {
             informationGains[skillPrint.first] = computeInformatioinGain(skillPrint.first, currentBlameProbability);
+            ++show_progress;
+        }
 
         auto maxGain = std::max_element(informationGains.begin(), informationGains.end(),
             [](const pair<std::string, double>& p1, const pair<std::string, double>& p2) {
@@ -388,7 +373,7 @@ namespace kukadu {
 
     vector<int> AutonomousTester::testRobot() {
 
-        int speedUpBias = 3;
+        int speedUpBias = 8;
 
         vec pBlame(functionIdsToRows.size());
         pBlame.fill(1.0 / functionIdsToRows.size());
@@ -424,12 +409,21 @@ namespace kukadu {
 
         int runCount = 100;
         string selectedSkill = maxGainSkill;
-cout << selectedSkill << ":" << endl;
 skillStream << selectedSkill << ":" << endl;
+cout  << selectedSkill << " (" << maxGainValue << "): " << endl;
         for(int i = 0; i < runCount; ++i) {
 
-            for(int k = 0; k < speedUpBias; ++k)
-                pBlame = computeBayesianUpdate(testSkill(selectedSkill), pBlame);
+            auto observationLikelihood = testSkill(selectedSkill);
+            for(int k = 0; k < speedUpBias; ++k) {
+
+                pBlame = computeBayesianUpdate(observationLikelihood, pBlame);
+
+                if(pBlame.has_nan()) {
+                    cout << "schon wieder nan" << endl;
+                    getchar();
+                }
+
+            }
 
             igs = maximizeInformationGains(pBlame);
             maxGainSkill = igs.first;
@@ -441,23 +435,31 @@ skillStream << selectedSkill << ":" << endl;
             }
             igStream << endl;
 
-            /*
-            for(auto& skillPrint : skillMedianFingerPrints) {
-                informationGains[skillPrint.first] = computeInformatioinGain(skillPrint.first, pBlame);
-                o << informationGains[skillPrint.first] << "\t";
-            }
-            o << endl;
-
-            auto maxGain = std::max_element(informationGains.begin(), informationGains.end(),
-                [](const pair<std::string, double>& p1, const pair<std::string, double>& p2) {
-                    return p1.second < p2.second; });
-*/
             selectedSkill = maxGainSkill;
+
+            vector<pair<int, double> > functionRanking;
+            for(int i = 0; i < pBlame.n_elem; ++i)
+                functionRanking.push_back({i, pBlame(i)});
+
+            std::sort(functionRanking.begin(), functionRanking.end(), [](const pair<int, double>& a, const pair<int, double>& b) -> bool {
+                return abs(a.second) > abs(b.second);
+            });
+
+            cout << "i think, the following functions may be broken:" << endl;
+            for(int i = 0; i < 5; ++i) {
+                auto functionName = getStorage().getCachedLabel("software_functions",
+                                                                "id", "name",
+                                                                functionRowsToIds[functionRanking.at(i).first]);
+                cout << functionRowsToIds[functionRanking.at(i).first] << " (row " << functionRanking.at(i).first << ")"
+                                                                       << " - " << functionName <<
+                                                                    " (" << functionRanking.at(i).second <<
+                                                                    ")" << endl;
+            }
 
 pBlameStream << pBlame.t();
 pBlameStream.flush();
-cout << selectedSkill << ":" << endl;
 skillStream << selectedSkill << ":" << endl;
+cout  << selectedSkill << " (" << maxGainValue << "): " << endl;
 
         }
 
@@ -476,22 +478,51 @@ igStream.close();
             int simulatedId = 42;
             bool successful = false;
 
+            long long int executedStartTime = 0;
+            long long int executedEndTime = 0;
             if(simulate) {
                 // if the system is simulated --> retrieve if the skill was executed successfully
                 successful = simulateSuccess(id);
             } else {
-                // TODO: get success for real skill
+
+                cout << "are you ready to execute skill " << id << "?" << endl;
+                string s;
+                cin >> s;
+                storedSkills[id]->prepare();
+
+                TimedObject t;
+                executedStartTime = t.getCurrentTime();
+                storedSkills[id]->execute();
+                executedEndTime = t.getCurrentTime();
+                cout << "was the skill successful? (0 = no, 1 = yes)" << endl;
+                cin >> successful;
+
             }
 
-            // replace skillsData[id].second.at(...) by actually executed data --> make sure that the timestep is the same
             std::vector<std::pair<int, double> > failurePlaces;
-            mat simulationFakeDataMat;
-            if(!simulate)
-                failurePlaces = computeFailureProb(id, skillsData[id].second.at(simulatedId));
-            else
-                failurePlaces = computeFailureProb(id, simulationFakeDataMat);
+            if(successful) {
 
-            // replace it by the real start time
+                // the "failure place is the last index
+                failurePlaces = {{skillsData[id].second.front().n_cols - 1, 1.0}};
+
+            } else {
+
+                mat simulationFakeDataMat;
+                if(!simulate)
+                    failurePlaces = computeFailureProb(id, skillsData[id].second.at(simulatedId));
+                else
+                    failurePlaces = computeFailureProb(id, simulationFakeDataMat);
+
+            }
+
+            // if the mom doesnt see a failure, we assume its the last index
+            if(!failurePlaces.size()) {
+                failurePlaces = {{skillsData[id].second.front().n_cols - 1, 1.0}};
+            }
+
+            cout << "uses failure index " << failurePlaces.front().first << " which corresponds " <<
+                 "time " << failurePlaces.front().first * timeSteps[id] / 1000 << " secnods" << endl;
+
             long long int skillStartTime = 0;
             long long int skillEndTime = 0;
 
@@ -499,6 +530,11 @@ igStream.close();
             if(!simulate) {
                 skillStartTime = skillSampleStartTimes[id].at(simulatedId);
                 skillEndTime = skillSampleEndTimes[id].at(simulatedId);
+            } else {
+
+                skillStartTime = executedStartTime;
+                skillEndTime = executedEndTime;
+
             }
 
             int windowStartIdx = 0;
@@ -511,6 +547,7 @@ igStream.close();
                 executionPrint = generateSimulatedSample(skillSimulatedFunctionRows[id], skillSimulatedFunctionMeans[id], skillSimulatedFunctionStdDevs[id], skillMedianFingerPrints[id].n_cols);
             }
 
+            // only considere the first on - break below
             for(auto& failure : failurePlaces) {
 
                 int failureTimeIdx = failure.first;
@@ -560,9 +597,16 @@ igStream.close();
 
                 }
 
+                break;
+
             }
 
             vec probObservationGivenFunctionFailure = computeObservationLikelihood(id, successful, executionPrint, windowStartIdx, windowEndIdx, true);
+
+            if(probObservationGivenFunctionFailure.has_inf()) {
+                cout << "lala" << endl;
+            }
+
             return probObservationGivenFunctionFailure;
 
         } else
@@ -595,6 +639,10 @@ igStream.close();
 
         auto maliciousFunctions = extractDeviatingFunctions(integratedExecutionPrint, integratedDataPrint, integratedDataPrintStdDev);
 
+        double maxDeviation = -1.0;
+        for(auto& maliciousFunction : maliciousFunctions)
+            maxDeviation = max(abs(maxDeviation), abs(maliciousFunction.second));
+
         bool printDebug = false;
         if(printFeedback)
             cout << "the following functions might have caused the problem" << endl;
@@ -606,7 +654,7 @@ igStream.close();
             if(success) {
 
                 // if successful - the likelihood of observing the data if the function is malicious should be low
-                likelihoodProbabilities(functionRow) = max(minSuccObservationProb, probThresh * (maliciousFunction.second / maxMultipleOfStdThresh));
+                likelihoodProbabilities(functionRow) = min(probThresh, max(minSuccObservationProb, probThresh * (abs(maliciousFunction.second) / maxDeviation)));
 
             } else {
 
@@ -640,7 +688,24 @@ igStream.close();
         vec diff = (executedPrint - dataPrint);
         vec fingerPrintDiff = diff / dataStdDev;
 
+        double maxDev = 5.0;
+
+        for(int i = 0; i < dataStdDev.n_elem; ++i) {
+
+            // if nan
+            if(fingerPrintDiff(i) != fingerPrintDiff(i))
+                fingerPrintDiff(i) = maxDev;
+            else if(fingerPrintDiff(i) < -maxDev)
+                fingerPrintDiff(i) = -maxDev;
+            else if(fingerPrintDiff(i) > maxDev)
+                fingerPrintDiff(i) = maxDev;
+
+        }
+
         for(int j = 0; j < fingerPrintDiff.n_elem; ++j) {
+
+            if(diff(j) == 0.0)
+                fingerPrintDiff(j) = 0.0;
 
             if(abs(fingerPrintDiff(j)) > 0.0) {
                 int& functionId = functionRowsToIds[j];
