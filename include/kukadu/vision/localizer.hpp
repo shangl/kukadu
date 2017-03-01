@@ -32,13 +32,13 @@ namespace kukadu {
         double xOffset;
         double yOffset;
 
-        arma::vec center;
+        std::vector<double> center;
 
         boost::shared_ptr<Kinect> kinect;
 
     public:
 
-        PCBlobDetector(boost::shared_ptr<Kinect> kinect, std::string targetFrame, arma::vec center, double xOffset, double yOffset);
+        PCBlobDetector(boost::shared_ptr<Kinect> kinect, std::string targetFrame, std::vector<double> center, double xOffset, double yOffset);
 
         virtual std::string getLocalizerFrame();
 

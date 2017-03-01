@@ -13,7 +13,6 @@
 
 using namespace pcl;
 using namespace std;
-using namespace arma;
 
 namespace kukadu {
 
@@ -59,7 +58,7 @@ namespace kukadu {
 
     }
 
-    PlanarCutTransformator::PlanarCutTransformator(arma::vec normalVec, arma::vec plainOriginVec) {
+    PlanarCutTransformator::PlanarCutTransformator(std::vector<double> normalVec, std::vector<double> plainOriginVec) {
             setPlane(normalVec, plainOriginVec);
     }
 
@@ -70,11 +69,23 @@ namespace kukadu {
         return retCloud;
     }
 
-    void PlanarCutTransformator::setPlane(arma::vec normalVec, arma::vec plainOriginalVec) {
+    void PlanarCutTransformator::setPlane(std::vector<double> normalVec, std::vector<double> plainOriginalVec) {
+
         KUKADU_MODULE_START_USAGE();
-        this->normalVec = normalise(normalVec);
+
+        double squaredSum = 0.0;
+        for(int i = 0; i < normalVec.size(); ++i)
+            squaredSum += pow(normalVec.at(i), 2.0);
+        double len = sqrt(squaredSum);
+        for(int i = 0; i < normalVec.size(); ++i)
+            normalVec.at(i) /= len;
+
+        this->normalVec = normalVec;
+
         this->plainOriginVec = plainOriginalVec;
+
         KUKADU_MODULE_END_USAGE();
+
     }
 
     pcl::PointCloud<pcl::PointXYZRGB>::Ptr PlanarCutTransformator::transformPc(pcl::PointCloud<pcl::PointXYZRGB>::Ptr pc) {
@@ -88,9 +99,15 @@ namespace kukadu {
 
         while(pointIt != lastIt) {
             pcl::PointXYZRGB currentPoint = *pointIt;
-            vec r = stdToArmadilloVec(createJointsVector(3, currentPoint.x, currentPoint.y, currentPoint.z));
-            vec comp = normalVec.t() * (r - plainOriginVec);
-            double coordinate = comp(0);
+            std::vector<double> r = createJointsVector(3, currentPoint.x, currentPoint.y, currentPoint.z);
+            std::vector<double> rMinPlainOrigVec;
+            for(int i = 0; i < r.size(); ++i)
+                rMinPlainOrigVec.push_back(r.at(i) - plainOriginVec.at(i));
+            double comp;
+            for(int i = 0; i < r.size(); ++i)
+                comp += normalVec.at(i) * rMinPlainOrigVec.at(i);
+
+            double coordinate = comp;
             if(coordinate >= 0) {
                 retPc.push_back(*pointIt);
             } else {
@@ -107,11 +124,11 @@ namespace kukadu {
 
     }
 
-    OpenBoxFilter::OpenBoxFilter(arma::vec center, double xOffset, double yOffset) {
+    OpenBoxFilter::OpenBoxFilter(std::vector<double> center, double xOffset, double yOffset) {
         setBox(center, xOffset, yOffset);
     }
 
-    void OpenBoxFilter::setBox(arma::vec center, double xOffset, double yOffset) {
+    void OpenBoxFilter::setBox(std::vector<double> center, double xOffset, double yOffset) {
         KUKADU_MODULE_START_USAGE();
         this->center = center;
         this->xOffset = xOffset;
@@ -130,32 +147,32 @@ namespace kukadu {
 
         KUKADU_MODULE_START_USAGE();
 
-        vec n = stdToArmadilloVec(createJointsVector(3, 0.0, 0.0, 1.0));
-        vec r0 = stdToArmadilloVec(createJointsVector(3, center(0), center(1), center(2)));
+        std::vector<double> n = createJointsVector(3, 0.0, 0.0, 1.0);
+        std::vector<double> r0 = createJointsVector(3, center.at(0), center.at(1), center.at(2));
         PlanarCutTransformator planarCut(n, r0);
         cloud = planarCut.transformPc(cloud);
 
         // cut right part (from robot view)
-        n = stdToArmadilloVec(createJointsVector(3, -1.0, 0.0, 0.0));
-        r0 = stdToArmadilloVec(createJointsVector(3, center(0) + xOffset, center(1), center(2)));
+        n = createJointsVector(3, -1.0, 0.0, 0.0);
+        r0 = createJointsVector(3, center.at(0) + xOffset, center.at(1), center.at(2));
         planarCut.setPlane(n, r0);
         cloud = planarCut.transformPc(cloud);
 
         // cut front part (from robot view)
-        n = stdToArmadilloVec(createJointsVector(3, 0.0, 1.0, 0.0));
-        r0 = stdToArmadilloVec(createJointsVector(3, center(0), center(1) - yOffset, center(2)));
+        n = createJointsVector(3, 0.0, 1.0, 0.0);
+        r0 = createJointsVector(3, center.at(0), center.at(1) - yOffset, center.at(2));
         planarCut.setPlane(n, r0);
         cloud = planarCut.transformPc(cloud);
 
         // cut left part (from robot view)
-        n = stdToArmadilloVec(createJointsVector(3, 1.0, 0.0, 0.0));
-        r0 = stdToArmadilloVec(createJointsVector(3, center(0) - xOffset, center(1), center(2)));
+        n = createJointsVector(3, 1.0, 0.0, 0.0);
+        r0 = createJointsVector(3, center.at(0) - xOffset, center.at(1), center.at(2));
         planarCut.setPlane(n, r0);
         cloud = planarCut.transformPc(cloud);
 
         // cut back part (from robot view)
-        n = stdToArmadilloVec(createJointsVector(3, 0.0, -1.0, 0.0));
-        r0 = stdToArmadilloVec(createJointsVector(3, center(0), center(1) + yOffset, center(2)));
+        n = createJointsVector(3, 0.0, -1.0, 0.0);
+        r0 = createJointsVector(3, center.at(0), center.at(1) + yOffset, center.at(2));
         planarCut.setPlane(n, r0);
         cloud = planarCut.transformPc(cloud);
 

@@ -1,7 +1,6 @@
 #ifndef PCTRANSFORMATOR_H
 #define PCTRANSFORMATOR_H
 
-#include <armadillo>
 #include <pcl_ros/transforms.h>
 #include <pcl/kdtree/kdtree_flann.h>
 
@@ -27,17 +26,17 @@ namespace kukadu {
 
     private:
 
-        arma::vec normalVec;
-        arma::vec plainOriginVec;
+        std::vector<double> normalVec;
+        std::vector<double> plainOriginVec;
 
     public:
 
-        PlanarCutTransformator(arma::vec normalVec, arma::vec plainOriginVec);
+        PlanarCutTransformator(std::vector<double> normalVec, std::vector<double> plainOriginVec);
 
         virtual pcl::PointCloud<pcl::PointXYZ>::Ptr transformPc(pcl::PointCloud<pcl::PointXYZ>::Ptr pc);
         virtual pcl::PointCloud<pcl::PointXYZRGB>::Ptr transformPc(pcl::PointCloud<pcl::PointXYZRGB>::Ptr pc);
 
-        void setPlane(arma::vec normalVec, arma::vec plainOriginalVec);
+        void setPlane(std::vector<double> normalVec, std::vector<double> plainOriginalVec);
 
     };
 
@@ -48,16 +47,16 @@ namespace kukadu {
         double xOffset;
         double yOffset;
 
-        arma::vec center;
+        std::vector<double> center;
 
     public:
 
-        OpenBoxFilter(arma::vec center, double xOffset, double yOffset);
+        OpenBoxFilter(std::vector<double> center, double xOffset, double yOffset);
 
         virtual pcl::PointCloud<pcl::PointXYZ>::Ptr transformPc(pcl::PointCloud<pcl::PointXYZ>::Ptr cloud);
         virtual pcl::PointCloud<pcl::PointXYZRGB>::Ptr transformPc(pcl::PointCloud<pcl::PointXYZRGB>::Ptr pc);
 
-        void setBox(arma::vec center, double xOffset, double yOffset);
+        void setBox(std::vector<double> center, double xOffset, double yOffset);
 
     };
 
