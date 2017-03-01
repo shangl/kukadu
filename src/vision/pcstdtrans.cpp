@@ -3,6 +3,7 @@
 #include <boost/foreach.hpp>
 #include <boost/foreach_fwd.hpp>
 #include <kukadu/utils/utils.hpp>
+#include <kukadu/vision/pcltools.hpp>
 #include <kukadu/types/kukadutypes.hpp>
 #include <kukadu/vision/pcstdtrans.hpp>
 #include <pcl_conversions/pcl_conversions.h>
@@ -93,11 +94,13 @@ namespace kukadu {
         KUKADU_MODULE_START_USAGE();
 
         pcl::PointCloud<pcl::PointXYZRGB> retPc;
+        pcl::PointCloud<pcl::PointXYZRGB> pcCopy = *pc;
 
-        pcl::PointCloud<pcl::PointXYZRGB>::iterator pointIt = pc->begin();
-        pcl::PointCloud<pcl::PointXYZRGB>::iterator lastIt = pc->end();
+        pcl::PointCloud<pcl::PointXYZRGB>::iterator pointIt = pcCopy.begin();
+        pcl::PointCloud<pcl::PointXYZRGB>::iterator lastIt = pcCopy.end();
 
         while(pointIt != lastIt) {
+
             pcl::PointXYZRGB currentPoint = *pointIt;
             std::vector<double> r = createJointsVector(3, currentPoint.x, currentPoint.y, currentPoint.z);
             std::vector<double> rMinPlainOrigVec;
@@ -117,6 +120,11 @@ namespace kukadu {
         }
 
         pcl::PointCloud<pcl::PointXYZRGB>::Ptr retCloud = retPc.makeShared();
+
+        KUKADU_SHARED_PTR<PCLTools> pt = KUKADU_SHARED_PTR<PCLTools>(new PCLTools());
+        pt->initializeVisualizationWindow();
+        pt->visualizePointCloud(string("kinect"), retCloud);
+        getchar();
 
         KUKADU_MODULE_END_USAGE();
 

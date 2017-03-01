@@ -28,6 +28,7 @@ namespace kukadu {
         KUKADU_MODULE_START_USAGE();
 
         geometry_msgs::Pose retPose;
+
         PCLTools pt;
 
         pcl::PointCloud<pcl::PointXYZRGB>::Ptr cloud = kinect->getCurrentColorPointCloud();

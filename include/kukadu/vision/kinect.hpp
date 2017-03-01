@@ -48,7 +48,7 @@ namespace kukadu {
         ros::Publisher visPublisher;
 
         void runThread();
-        void callbackKinectPointCloud(const sensor_msgs::PointCloud2::Ptr& pc);
+        void callbackKinectPointCloud(const sensor_msgs::PointCloud2& pc);
         void construct(std::string kinectTopic, std::string targetFrame, ros::NodeHandle node, bool doTransform = true);
 
     public:
