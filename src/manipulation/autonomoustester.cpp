@@ -29,7 +29,7 @@ namespace kukadu {
         this->simulate = simulate;
 
         // set sliding window to 2 seconds
-        windowTime = 40000;
+        windowTime = 2000;
         simlatedIdxWindow = 100;
 
         this->simulatedFaultyFunctionsGroundTruth = simulatedFaultyFunctionsGroundTruth;
@@ -373,7 +373,7 @@ namespace kukadu {
 
     vector<int> AutonomousTester::testRobot() {
 
-        int speedUpBias = 8;
+        int speedUpBias = 3;
 
         vec pBlame(functionIdsToRows.size());
         pBlame.fill(1.0 / functionIdsToRows.size());
@@ -654,7 +654,7 @@ igStream.close();
             if(success) {
 
                 // if successful - the likelihood of observing the data if the function is malicious should be low
-                likelihoodProbabilities(functionRow) = min(probThresh, max(minSuccObservationProb, probThresh * (abs(maliciousFunction.second) / maxDeviation)));
+               likelihoodProbabilities(functionRow) = min(probThresh, max(minSuccObservationProb, probThresh * (abs(maliciousFunction.second) / maxDeviation)));
 
             } else {
 

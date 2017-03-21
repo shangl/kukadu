@@ -146,17 +146,17 @@ add_subdirectory(external/komo)
 add_subdirectory(external/json)
 
 # vision must not use c++11 because PCL crashes in that case
-SET_SOURCE_FILES_PROPERTIES(
-    ${KUKADUVISIONSRC}
-    PROPERTIES
-    COMPILE_FLAGS "-DUSEBOOST"
-)
+#SET_SOURCE_FILES_PROPERTIES(
+#    ${KUKADUVISIONSRC}
+#    PROPERTIES
+#    COMPILE_FLAGS "-DUSEBOOST"
+#)
 
-SET_SOURCE_FILES_PROPERTIES(
-    ${ARTOOLKITPLUSSRC}
-    PROPERTIES
-    COMPILE_FLAGS "-DUSEBOOST"
-)
+#SET_SOURCE_FILES_PROPERTIES(
+#    ${ARTOOLKITPLUSSRC}
+#    PROPERTIES
+#    COMPILE_FLAGS "-DUSEBOOST"
+#)
 
 # compile the core kukadu with c++11 if possible (required because the vision part crashes if compiled with c++11 due to PCL)
 CHECK_CXX_COMPILER_FLAG("-std=c++11" COMPILER_SUPPORTS_CXX11)
@@ -164,6 +164,16 @@ CHECK_CXX_COMPILER_FLAG("-std=c++0x" COMPILER_SUPPORTS_CXX0X)
 if(COMPILER_SUPPORTS_CXX11)
     SET_SOURCE_FILES_PROPERTIES(
         ${KUKADUGUISRC}
+        PROPERTIES
+        COMPILE_FLAGS "-std=c++11"
+    )
+    SET_SOURCE_FILES_PROPERTIES(
+        ${KUKADUVISIONSRC}
+        PROPERTIES
+        COMPILE_FLAGS "-std=c++11"
+    )
+    SET_SOURCE_FILES_PROPERTIES(
+        ${ARTOOLKITPLUSSRC}
         PROPERTIES
         COMPILE_FLAGS "-std=c++11"
     )

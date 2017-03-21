@@ -1,8 +1,11 @@
 #ifndef KUKADU_LOCALIZER_H
 #define KUKADU_LOCALIZER_H
 
+#include <memory>
 #include <vector>
 #include <string>
+#include <utility>
+#include <armadillo>
 #include <geometry_msgs/Pose.h>
 #include <kukadu/vision/kinect.hpp>
 #include <kukadu/types/kukadutypes.hpp>
@@ -23,7 +26,13 @@ namespace kukadu {
 
     };
 
-    class PCBlobDetector : public kukadu::Localizer {
+    class PoseEstimator {
+
+        virtual std::pair<geometry_msgs::Pose, arma::vec> estimatePose(std::string id) = 0;
+
+    };
+
+    class PCBlobDetector : public kukadu::Localizer, public kukadu::PoseEstimator {
 
     private:
 
@@ -32,13 +41,13 @@ namespace kukadu {
         double xOffset;
         double yOffset;
 
-        std::vector<double> center;
+        arma::vec center;
 
-        boost::shared_ptr<Kinect> kinect;
+        std::shared_ptr<Kinect> kinect;
 
     public:
 
-        PCBlobDetector(boost::shared_ptr<Kinect> kinect, std::string targetFrame, std::vector<double> center, double xOffset, double yOffset);
+        PCBlobDetector(std::shared_ptr<Kinect> kinect, std::string targetFrame, arma::vec center, double xOffset, double yOffset);
 
         virtual std::string getLocalizerFrame();
 
@@ -47,6 +56,8 @@ namespace kukadu {
         virtual std::map<std::string, geometry_msgs::Pose> localizeObjects();
 
         virtual std::vector<geometry_msgs::Pose> localizeObjects(std::vector<std::string> ids);
+
+        virtual std::pair<geometry_msgs::Pose, arma::vec> estimatePose(std::string id);
 
     };
 

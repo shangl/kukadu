@@ -83,7 +83,7 @@ namespace kukadu {
 
         KUKADU_MODULE_START_USAGE();
 
-		viewer = KUKADU_SHARED_PTR<pcl::visualization::PCLVisualizer>(new pcl::visualization::PCLVisualizer("3D Viewer"));
+        viewer = make_shared<pcl::visualization::PCLVisualizer>("3D Viewer");
 		viewer->setBackgroundColor(0, 0, 0);
 		viewer->initCameraParameters();
 
@@ -108,7 +108,7 @@ namespace kukadu {
 
 		keepShowingVis = true;
 
-		visThread = KUKADU_SHARED_PTR<boost::thread>(new boost::thread(&PCLTools::runVisThread, this));
+        visThread = make_shared<thread>(&PCLTools::runVisThread, this);
 		ros::Rate s(10);
 		while(!isVisInit)
 			s.sleep();

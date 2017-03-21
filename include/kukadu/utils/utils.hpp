@@ -201,6 +201,8 @@ namespace kukadu {
     bool armadilloHasNan(arma::vec& v);
     bool armadilloHasNan(arma::mat& m);
 
+    arma::mat computeRotFromCorrespondences(const std::vector<arma::vec>& cs1, const std::vector<arma::vec>& cs2);
+
 #ifndef USEBOOST
     template<typename S, typename T> bool mapContainsValue(std::map<S, T> m, T val) {
         for(auto it = m.begin(); it != m.end(); ++it )

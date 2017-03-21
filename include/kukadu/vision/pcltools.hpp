@@ -23,8 +23,8 @@ namespace kukadu {
         bool isVisInit;
         bool keepShowingVis;
 
-        KUKADU_SHARED_PTR<kukadu_thread> visThread;
-        KUKADU_SHARED_PTR<pcl::visualization::PCLVisualizer> viewer;
+        std::shared_ptr<kukadu_thread> visThread;
+        std::shared_ptr<pcl::visualization::PCLVisualizer> viewer;
 
         std::vector<std::pair<std::string, pcl::PointCloud<pcl::PointXYZRGB>::Ptr> > visPointClouds;
 

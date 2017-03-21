@@ -1,5 +1,6 @@
 #include <vector>
 #include <iostream>
+#include <armadillo>
 #include <boost/foreach.hpp>
 #include <boost/foreach_fwd.hpp>
 #include <kukadu/utils/utils.hpp>
@@ -14,6 +15,7 @@
 
 using namespace pcl;
 using namespace std;
+using namespace arma;
 
 namespace kukadu {
 
@@ -59,7 +61,7 @@ namespace kukadu {
 
     }
 
-    PlanarCutTransformator::PlanarCutTransformator(std::vector<double> normalVec, std::vector<double> plainOriginVec) {
+    PlanarCutTransformator::PlanarCutTransformator(arma::vec normalVec, arma::vec plainOriginVec) {
             setPlane(normalVec, plainOriginVec);
     }
 
@@ -70,16 +72,16 @@ namespace kukadu {
         return retCloud;
     }
 
-    void PlanarCutTransformator::setPlane(std::vector<double> normalVec, std::vector<double> plainOriginalVec) {
+    void PlanarCutTransformator::setPlane(arma::vec normalVec, arma::vec plainOriginalVec) {
 
         KUKADU_MODULE_START_USAGE();
 
         double squaredSum = 0.0;
-        for(int i = 0; i < normalVec.size(); ++i)
-            squaredSum += pow(normalVec.at(i), 2.0);
+        for(int i = 0; i < normalVec.n_elem; ++i)
+            squaredSum += pow(normalVec(i), 2.0);
         double len = sqrt(squaredSum);
-        for(int i = 0; i < normalVec.size(); ++i)
-            normalVec.at(i) /= len;
+        for(int i = 0; i < normalVec.n_elem; ++i)
+            normalVec(i) /= len;
 
         this->normalVec = normalVec;
 
@@ -103,24 +105,22 @@ namespace kukadu {
 
             pcl::PointXYZRGB currentPoint = *pointIt;
             if(currentPoint.x == currentPoint.x && currentPoint.y == currentPoint.y &&
-                    currentPoint.z == currentPoint.x) {
-                cout << "the point is not nan" << endl;
-                std::vector<double> r = createJointsVector(3, currentPoint.x, currentPoint.y, currentPoint.z);
-                std::vector<double> rMinPlainOrigVec;
-                for(int i = 0; i < r.size(); ++i)
-                    rMinPlainOrigVec.push_back(r.at(i) - plainOriginVec.at(i));
-                double comp;
-                for(int i = 0; i < r.size(); ++i)
-                    comp += normalVec.at(i) * rMinPlainOrigVec.at(i);
+                    currentPoint.z == currentPoint.z) {
 
-                double coordinate = comp;
-                if(coordinate >= 0) {
+                vec r(3); r(0) = currentPoint.x; r(1) = currentPoint.y; r(2) = currentPoint.z;
+                vec rMinPlainOrigVec = r - plainOriginVec;
+
+                vec projVec = normalVec.t() * rMinPlainOrigVec;
+                double projection = projVec(0);
+
+                if(projection >= 0)
                     retPc.push_back(*pointIt);
-                } else {
+                else {
                     // point gets kicked out
                 }
             }
             ++pointIt;
+
         }
 
         pcl::PointCloud<pcl::PointXYZRGB>::Ptr retCloud = retPc.makeShared();
@@ -131,11 +131,11 @@ namespace kukadu {
 
     }
 
-    OpenBoxFilter::OpenBoxFilter(std::vector<double> center, double xOffset, double yOffset) {
+    OpenBoxFilter::OpenBoxFilter(arma::vec center, double xOffset, double yOffset) {
         setBox(center, xOffset, yOffset);
     }
 
-    void OpenBoxFilter::setBox(std::vector<double> center, double xOffset, double yOffset) {
+    void OpenBoxFilter::setBox(arma::vec center, double xOffset, double yOffset) {
         KUKADU_MODULE_START_USAGE();
         this->center = center;
         this->xOffset = xOffset;

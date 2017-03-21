@@ -1329,4 +1329,30 @@ namespace kukadu {
 
     }
 
+    arma::mat computeRotFromCorrespondences(const std::vector<vec>& cs1, const std::vector<vec>& cs2) {
+
+        auto normalizedCameraCentroid = zeros(3);
+        auto normalizedRobotCentroid = zeros(3);
+
+        mat h(3, 3); h.fill(0.0);
+        for(int i = 0; i < cs1.size(); ++i)
+            h += (cs1.at(i) - normalizedCameraCentroid) * (cs2.at(i) - normalizedRobotCentroid).t();
+
+        mat u(3, 3); mat v(3, 3); vec s(3);
+        svd(u, s, v, h);
+
+        if(det(v) < 0.0) {
+
+            // if reflection case --> mirror the 3rd column
+            for(int i = 0; i < v.n_rows; ++i)
+                v(2, i) = -v(2, i);
+
+        }
+
+        mat r = v * u.t();
+
+        return r;
+
+    }
+
 }

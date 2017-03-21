@@ -42,6 +42,7 @@
 #include <math.h>
 #include <map>
 #include <deque>
+#include <utility>
 #include <kukadu/vision/arlocalizer/Tracker.h>
 #include <kukadu/vision/arlocalizer/matrix.h>
 #include <kukadu/vision/arlocalizer/rpp.h>
@@ -62,14 +63,14 @@ AR_TEMPL_TRACKER::rppMultiGetTransMat(ARMarkerInfo *marker_info, int marker_num,
 		if(m_patt_id >= 0)
 		{
 			std::map<int, int>::iterator iter = marker_id_freq.find(m_patt_id);
-			if(iter == marker_id_freq.end()) marker_id_freq.insert(std::make_pair<int,int>(m_patt_id,1));
+                        if(iter == marker_id_freq.end()) marker_id_freq.insert({m_patt_id,1});
 			else ((*iter).second)++;
 		}
 	}
 
 	std::deque<std::pair<int,int> > config_patt_id;
 	for(int j=0; j<config->marker_num; j++)
-		config_patt_id.push_back(std::make_pair<int,int>(j, config->marker[j].patt_id));
+                config_patt_id.push_back({j, config->marker[j].patt_id});
 
 	std::map<int, int> m2c_idx;
 	for(int m=0; m<marker_num; m++)
@@ -86,7 +87,7 @@ AR_TEMPL_TRACKER::rppMultiGetTransMat(ARMarkerInfo *marker_info, int marker_num,
 				const int patt_id = (*c_iter).second;
 				if(marker_info[m].id == patt_id)
 				{
-					m2c_idx.insert(std::make_pair<int,int>(m,(*c_iter).first));
+                                        m2c_idx.insert({m,(*c_iter).first});
 					config_patt_id.erase(c_iter);
 					c_iter = config_patt_id.end();
 					continue;
