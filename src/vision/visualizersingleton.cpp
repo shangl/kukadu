@@ -34,8 +34,20 @@ namespace kukadu {
     void VisualizerSingleton::drawBox(std::string id, geometry_msgs::Pose pose, arma::vec dimensions) {
         vis.removeShape(id);
         Eigen::Vector3f trans; trans << pose.position.x, pose.position.y, pose.position.z;
-        Eigen::Quaternionf rot(pose.orientation.x, pose.orientation.y, pose.orientation.z, pose.orientation.w);
+        Eigen::Quaternionf rot(pose.orientation.w, pose.orientation.x, pose.orientation.y, pose.orientation.z);
         vis.addCube(trans, rot, dimensions(0), dimensions(1), dimensions(2), id);
+    }
+
+    void VisualizerSingleton::drawLine(std::string id, double pointX1, double pointY1, double pointZ1, double pointX2, double pointY2, double pointZ2) {
+        pcl::ModelCoefficients line_coeff;
+        line_coeff.values.resize(6);
+        line_coeff.values[0] = pointX1;
+        line_coeff.values[1] = pointY1;
+        line_coeff.values[2] = pointZ1;
+        line_coeff.values[3] = pointX2 - pointX1;
+        line_coeff.values[4] = pointY2 - pointY1;
+        line_coeff.values[5] = pointZ2 - pointZ1;
+        vis.addLine(line_coeff, id);
     }
 
     void VisualizerSingleton::showPointCloud(std::string id, pcl::PointCloud<pcl::PointXYZRGB>::Ptr cloud) {

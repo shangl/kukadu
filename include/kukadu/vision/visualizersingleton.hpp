@@ -27,8 +27,9 @@ namespace kukadu {
         static VisualizerSingleton& get();
 
         void startWindow();
-        void showPointCloud(std::string id, pcl::PointCloud<pcl::PointXYZRGB>::Ptr cloud);
         void drawBox(std::string id, geometry_msgs::Pose pose, arma::vec dimensions);
+        void showPointCloud(std::string id, pcl::PointCloud<pcl::PointXYZRGB>::Ptr cloud);
+        void drawLine(std::string id, double pointX1, double pointY1, double pointZ1, double pointX2, double pointY2, double pointZ2);
 
     };
 

@@ -198,6 +198,7 @@ namespace kukadu {
         affine_trans.col(2) << (eigenVectors.col(0).cross(eigenVectors.col(1))).normalized();
         affine_trans.col(0) << eigenVectors.col(0);
         affine_trans.col(1) << eigenVectors.col(1);
+
         Eigen::Quaternionf rotation(affine_trans);
         retPose.orientation.x = rotation.x();
         retPose.orientation.y = rotation.y();

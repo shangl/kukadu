@@ -44,7 +44,7 @@ namespace kukadu {
         visPublisher = node.advertise<sensor_msgs::PointCloud2>(visPubTopic, 1);
 
         if(doTransform)
-            transformListener = KUKADU_SHARED_PTR<tf::TransformListener>(new tf::TransformListener());
+            transformListener = make_shared<tf::TransformListener>();
 
         ros::Rate r(10);
         while(!firstCloudSet) {
@@ -142,8 +142,9 @@ namespace kukadu {
                 retCloud = currentPc;
                 try {
                     tf::StampedTransform trans;
-                    retCloud->header.stamp = ros::Time(0);
+                    retCloud->header.stamp = ros::Time::now();
                     if(doTransform) {
+                        transformListener->waitForTransform(targetFrame, retCloud->header.frame_id, retCloud->header.stamp, ros::Duration(5.0));
                         transformListener->lookupTransform(targetFrame, retCloud->header.frame_id, ros::Time(0), trans);
                         pcl_ros::transformPointCloud(targetFrame, *retCloud, *retCloud, *transformListener);
                     }
