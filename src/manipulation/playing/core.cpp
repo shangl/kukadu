@@ -258,6 +258,7 @@ namespace kukadu {
         vector<KUKADU_SHARED_PTR<kukadu::SensingController> > retVec;
         for(auto sens : controllers) {
             auto copiedSens = sens->clone();
+            copiedSens->setParentComplexController(parentComplexController);
             copiedSens->setStateCount(parentComplexController->getStateCount(copiedSens->getCaption()));
             copiedSens->setDatabasePath(newBasePath + sens->getCaption() + "/");
             retVec.push_back(copiedSens);

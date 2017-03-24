@@ -1802,6 +1802,10 @@ namespace kukadu {
 
     }
 
+    void SensingController::setParentComplexController(KUKADU_SHARED_PTR<kukadu::Controller> parent) {
+        parentController = KUKADU_DYNAMIC_POINTER_CAST<ComplexController>(parent);
+    }
+
     double SensingController::createDataBase(int perceptualStateId) {
 
         KUKADU_MODULE_START_USAGE();
@@ -1874,7 +1878,8 @@ namespace kukadu {
             for(int currClass = perceptualStateId; currClass < numClasses; ++currClass) {
 
                 if(currClass != perceptualStateId)
-                    this->prepareNextState();
+                    KUKADU_DYNAMIC_POINTER_CAST<ComplexController>(parentController)->prepareNextState(shared_from_this(), currClass);
+                //    this->prepareNextState();
 
                 int cont = 1;
                 for(int sampleNum = sampleIds.at(currClass) + 1; cont == 1; ++sampleNum) {

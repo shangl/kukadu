@@ -3,6 +3,7 @@
 
 #include <vector>
 #include <string>
+#include <memory>
 #include <kukadu/robot/hand.hpp>
 #include <kukadu/robot/queue.hpp>
 #include <kukadu/types/kukadutypes.hpp>
@@ -67,7 +68,7 @@ namespace kukadu {
 
     };
 
-    class SensingController : public Controller {
+    class SensingController : public Controller, public std::enable_shared_from_this<SensingController> {
 
     private:
 
@@ -80,6 +81,7 @@ namespace kukadu {
         int simulatedClassificationPrecision;
 
         KUKADU_DISCRETE_DISTRIBUTION<int> classifierDist;
+        KUKADU_SHARED_PTR<kukadu::Controller> parentController;
 
         std::string tmpPath;
         std::string databasePath;
@@ -117,7 +119,9 @@ namespace kukadu {
 
     public:
 
-        SensingController(StorageSingleton& storage, KUKADU_SHARED_PTR<kukadu_mersenne_twister> generator, int hapticMode, std::string caption, std::vector<KUKADU_SHARED_PTR<ControlQueue> > queues, std::vector<KUKADU_SHARED_PTR<GenericHand> > hands,
+        SensingController(StorageSingleton& storage, KUKADU_SHARED_PTR<kukadu_mersenne_twister> generator, int hapticMode,
+                          std::string caption,
+                          std::vector<KUKADU_SHARED_PTR<ControlQueue> > queues, std::vector<KUKADU_SHARED_PTR<GenericHand> > hands,
                           std::string tmpPath,
                           int simClassificationPrecision);
 
@@ -127,9 +131,10 @@ namespace kukadu {
         virtual void prepare() = 0;
         virtual void cleanUp() = 0;
         virtual void performCore() = 0;
-        virtual void prepareNextState() = 0;
 
         virtual KUKADU_SHARED_PTR<kukadu::SensingController> clone() = 0;
+
+        void setParentComplexController(KUKADU_SHARED_PTR<kukadu::Controller> parent);
 
         virtual int performClassification();
         int createRandomGroundTruthIdx();
@@ -416,6 +421,8 @@ namespace kukadu {
         void updateFiles();
 
         virtual std::string getClassName() { return "ComplexController"; }
+
+        virtual void prepareNextState(KUKADU_SHARED_PTR<kukadu::SensingController> cont, int currentStateIdx) = 0;
 
 #ifdef USEBOOST
         static const std::string FILE_SENSING_PREFIX = "***sensing controllers:";

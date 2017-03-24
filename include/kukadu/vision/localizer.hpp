@@ -28,6 +28,8 @@ namespace kukadu {
 
     class PoseEstimator {
 
+    public:
+
         virtual std::pair<geometry_msgs::Pose, arma::vec> estimatePose(std::string id) = 0;
 
     };
