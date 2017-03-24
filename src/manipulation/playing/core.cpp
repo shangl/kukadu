@@ -52,6 +52,15 @@ namespace kukadu {
         for(auto prepCont : preparatoryControllers) {
 
             allPrepControllers.insert(std::pair<std::string, KUKADU_SHARED_PTR<kukadu::Controller> >(prepCont->getCaption(), prepCont));
+
+            // this logics has problems --> e.g. in the case of the complex grasp controller (just add all controllers)
+            preparationProducesGraspControllers.insert(std::pair<std::string, KUKADU_SHARED_PTR<kukadu::Controller> >(prepCont->getCaption(), prepCont));
+            preparationProducesGraspControllersVector.push_back(prepCont);
+            preparationProducesNonGraspControllers.insert(std::pair<std::string, KUKADU_SHARED_PTR<kukadu::Controller> >(prepCont->getCaption(), prepCont));
+            preparationProducesNonGraspControllersVector.push_back(prepCont);
+
+            /*
+            // old code
             if(prepCont->producesGrasp()) {
                 preparationProducesGraspControllers.insert(std::pair<std::string, KUKADU_SHARED_PTR<kukadu::Controller> >(prepCont->getCaption(), prepCont));
                 preparationProducesGraspControllersVector.push_back(prepCont);
@@ -59,6 +68,7 @@ namespace kukadu {
                 preparationProducesNonGraspControllers.insert(std::pair<std::string, KUKADU_SHARED_PTR<kukadu::Controller> >(prepCont->getCaption(), prepCont));
                 preparationProducesNonGraspControllersVector.push_back(prepCont);
             }
+            */
 
         }
 
@@ -101,7 +111,15 @@ namespace kukadu {
 
             if(!fileExists(complexPath + "composition")) {
 
+                // this logics has problems --> e.g. in the case of the complex grasp controller (just add all controllers)
                 castCompCont->setSensingControllers(sensingCopy);
+                castCompCont->setPreparatoryControllers(preparationProducesGraspControllersVector);
+                for(auto cont : complexControllers)
+                    if(cont != castCompCont)
+                        castCompCont->addPreparatoryController(cont);
+
+                /*
+                // old code
                 if(castCompCont->requiresGrasp()) {
                     castCompCont->setPreparatoryControllers(preparationProducesGraspControllersVector);
                     // also complex actions that result in a grasp are added now
@@ -114,6 +132,7 @@ namespace kukadu {
                         if(cont != castCompCont && !cont->producesGrasp())
                             castCompCont->addPreparatoryController(cont);
                 }
+                */
 
                 castCompCont->createSensingDatabase();
                 castCompCont->initialize();

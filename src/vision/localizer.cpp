@@ -4,6 +4,7 @@
 #include <pcl/common/pca.h>
 #include <pcl/filters/filter.h>
 #include <kukadu/vision/localizer.hpp>
+#include <kukadu/vision/visualizersingleton.hpp>
 #include <kukadu/storage/moduleusagesingleton.hpp>
 
 #include <pcl/common/pca.h>
@@ -121,13 +122,14 @@ namespace kukadu {
     }
 
     PCBlobDetector::PCBlobDetector(std::shared_ptr<Kinect> kinect, std::string targetFrame,
-                                   arma::vec center, double xOffset, double yOffset) {
+                                   arma::vec center, double xOffset, double yOffset, bool visualizeResult) {
 
         this->kinect = kinect;
         this->targetFrame = targetFrame;
         this->center = center;
         this->xOffset = xOffset;
         this->yOffset = yOffset;
+        this->visualizeResult = visualizeResult;
 
     }
 
@@ -209,6 +211,12 @@ namespace kukadu {
         dimensions(0) = pointMax.x - pointMin.x;
         dimensions(1) = pointMax.y - pointMin.y;
         dimensions(2) = pointMax.z - pointMin.z;
+
+        if(visualizeResult) {
+            auto& vis = VisualizerSingleton::get();
+            vis.showPointCloud("pc", cloud);
+            vis.drawBox("fixbox", retPose, dimensions);
+        }
 
         KUKADU_MODULE_END_USAGE();
 

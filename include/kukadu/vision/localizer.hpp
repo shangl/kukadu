@@ -40,6 +40,8 @@ namespace kukadu {
 
         std::string targetFrame;
 
+        bool visualizeResult;
+
         double xOffset;
         double yOffset;
 
@@ -49,7 +51,7 @@ namespace kukadu {
 
     public:
 
-        PCBlobDetector(std::shared_ptr<Kinect> kinect, std::string targetFrame, arma::vec center, double xOffset, double yOffset);
+        PCBlobDetector(std::shared_ptr<Kinect> kinect, std::string targetFrame, arma::vec center, double xOffset, double yOffset, bool visualizeResult = false);
 
         virtual std::string getLocalizerFrame();
 

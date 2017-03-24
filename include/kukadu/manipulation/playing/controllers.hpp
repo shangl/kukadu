@@ -352,6 +352,9 @@ namespace kukadu {
 
         virtual void createSkillFromThisInternal(std::string skillName);
 
+        virtual bool requiresGraspInternal() = 0;
+        virtual bool producesGraspInternal() = 0;
+
     public:
 
         ComplexController(StorageSingleton& dbStorage, std::string caption, std::vector<KUKADU_SHARED_PTR<Hardware> > usedHardware, std::string storePath,

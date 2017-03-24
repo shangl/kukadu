@@ -946,13 +946,15 @@ namespace kukadu {
                         " and selected preparation action \"" << *actionClip << "\"" << endl;
             }
 
-            KUKADU_DYNAMIC_POINTER_CAST<ControllerActionClip>(actionClip)->execute();
+            auto actionController = KUKADU_DYNAMIC_POINTER_CAST<ControllerActionClip>(actionClip);
+            actionController->execute();
 
             auto sensedState = stateClip;
 
             // no environment model measuring in case the nothing controller was used
             // by definition it does not change the state
-            if(actionClip->toString() != nothingController->getCaption()) {
+            // also don't do environment model update for controller that change the grasp type (would destroy a used grasp again)
+            if(actionClip->toString() != nothingController->getCaption() && actionController->requiresGrasp() == actionController->producesGrasp()) {
 
                 auto sensingController = sensingClip->getSensingController();
 
@@ -1828,22 +1830,23 @@ namespace kukadu {
 
         vector<int> sampleIds;
         for(int i = 0; i < numClasses; ++i)
-            sampleIds.push_back(-1);
+            sampleIds.push_back(0);
+
         if(databaseExisted) {
-            auto filesList = getFilesInDirectory(path);
-            for(auto file : filesList) {
-                if(file != "." && file != "..") {
-                    KukaduTokenizer tok(file, "_");
-                    // ignore "class"
-                    tok.next();
-                    int currentId = atoi(tok.next().c_str());
-                    // ignore "sample"
-                    tok.next();
-                    int sampleId = atoi(tok.next().c_str());
-                    int currentMaxSampleId = sampleIds.at(currentId);
-                    sampleIds.at(currentId) = max(sampleId, currentMaxSampleId);
-                }
+
+            ifstream labelsFile;
+            labelsFile.open((path + "/labels").c_str());
+
+            string line;
+            while(getline(labelsFile, line)) {
+                KukaduTokenizer tok(line);
+                tok.next();
+                int classId = atoi(tok.next().c_str());
+                sampleIds.at(classId)++;
             }
+
+            labelsFile.close();
+
         }
 
         int minSampleCount = 10;
@@ -1879,7 +1882,6 @@ namespace kukadu {
 
                 if(currClass != perceptualStateId)
                     KUKADU_DYNAMIC_POINTER_CAST<ComplexController>(parentController)->prepareNextState(shared_from_this(), currClass);
-                //    this->prepareNextState();
 
                 int cont = 1;
                 for(int sampleNum = sampleIds.at(currClass) + 1; cont == 1; ++sampleNum) {
@@ -1921,9 +1923,11 @@ namespace kukadu {
         while(getline(labelsFile, line)) {
             KukaduTokenizer tok(line);
             auto filePath = tok.next();
-            auto classId = atoi(tok.next().c_str());
-            classIds.push_back(classId);
-            fileNames.push_back(path + "/" + filePath);
+            if(filePath != "") {
+                auto classId = atoi(tok.next().c_str());
+                classIds.push_back(classId);
+                fileNames.push_back(path + "/" + filePath);
+            }
         }
 
         auto loadedData = loadClassificationData(classIds, fileNames);
