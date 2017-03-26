@@ -1696,6 +1696,17 @@ namespace kukadu {
             } else if(temporaryHapticMode == SensingController::HAPTIC_MODE_CLASSIFIER) {
                 auto res = callClassifier(tmpPath + "hapticTest/" + queues.at(0)->getRobotFileName() + "_0");
                 classifierRes = res;
+
+/*
+                cout << "is the result " << classifierRes << " correct? (1 = yes, 0 = no)" << endl;
+                int corr;
+                cin >> corr;
+                if(!corr) {
+                    cout << "what was the correct result?" << endl;
+                    cin >> classifierRes;
+                }
+*/
+
             } else {
                 throw KukaduException("haptic mode not known");
             }
@@ -1812,157 +1823,163 @@ namespace kukadu {
 
         KUKADU_MODULE_START_USAGE();
 
-        if(!databaseAlreadySet)
-            throw KukaduException("(SensingController::createDataBase) database not defined yet");
+        if(requiresDatabase()) {
 
-        int numClasses = getStateCount();
-        string path = getDatabasePath();
-        vector<pair<int, string> > collectedSamples;
-        if(!isShutUp)
-            cout << "(SensingController) data is stored to " << path << endl;
+            if(!databaseAlreadySet)
+                throw KukaduException("(SensingController::createDataBase) database not defined yet");
 
-        bool databaseExisted = fileExists(path);
-        if(!databaseExisted) {
+            int numClasses = getStateCount();
+            string path = getDatabasePath();
+            vector<pair<int, string> > collectedSamples;
             if(!isShutUp)
-                cout << "(SensingController) folder doesn't exist - create" << endl;
-            createDirectory(path);
-        }
+                cout << "(SensingController) data is stored to " << path << endl;
 
-        vector<int> sampleIds;
-        for(int i = 0; i < numClasses; ++i)
-            sampleIds.push_back(0);
+            bool databaseExisted = fileExists(path);
+            if(!databaseExisted) {
+                if(!isShutUp)
+                    cout << "(SensingController) folder doesn't exist - create" << endl;
+                createDirectory(path);
+            }
 
-        if(databaseExisted) {
+            vector<int> sampleIds;
+            for(int i = 0; i < numClasses; ++i)
+                sampleIds.push_back(0);
+
+            if(databaseExisted) {
+
+                ifstream labelsFile;
+                labelsFile.open((path + "/labels").c_str());
+
+                string line;
+                while(getline(labelsFile, line)) {
+                    KukaduTokenizer tok(line);
+                    tok.next();
+                    int classId = atoi(tok.next().c_str());
+                    sampleIds.at(classId)++;
+                }
+
+                labelsFile.close();
+
+            }
+
+            int minSampleCount = 10;
+            for(int i = 0; i < sampleIds.size(); ++i) {
+                if(sampleIds.at(i) == -1) {
+                    perceptualStateId = i;
+                    break;
+                } else if(sampleIds.at(i) < minSampleCount) {
+                    cout << "(SensingController) you have less than " << minSampleCount << " samples for state " << i << " under sensing action " << getCaption() <<
+                            ". do you want to collect more? (0 = no, 1 = yes)" << endl;
+                    int answer;
+                    cin >> answer;
+                    if(answer == 1)
+                        perceptualStateId = i;
+                    break;
+                }
+
+            }
+
+            if(!databaseExisted || perceptualStateId != -1) {
+
+                // create the database
+                if(!isShutUp)
+                    cout << "(SensingController) " << getCaption() << " offers " << numClasses << " classes" << endl;
+
+                ofstream labelFile;
+                labelFile.open((path + "labels").c_str(), std::ios_base::app);
+
+                if(perceptualStateId == -1)
+                    perceptualStateId = 0;
+
+                for(int currClass = perceptualStateId; currClass < numClasses; ++currClass) {
+
+                    if(currClass != perceptualStateId)
+                        KUKADU_DYNAMIC_POINTER_CAST<ComplexController>(parentController)->prepareNextState(shared_from_this(), currClass);
+
+                    int cont = 1;
+                    for(int sampleNum = sampleIds.at(currClass) + 1; cont == 1; ++sampleNum) {
+
+                        cout << "(SensingController) collecting sample number " << sampleNum << " for class " << currClass << " with sensing controller " << this->getCaption() << endl;
+
+                        stringstream s;
+                        s << "class_" << currClass << "_sample_" << sampleNum;
+                        string relativePath = s.str();
+                        string relativeClassifyPath = relativePath + "/" + getFirstRobotFileName() + "_0";
+                        string nextSamplePath = path + relativePath;
+                        gatherData(nextSamplePath);
+                        cleanUp();
+
+                        collectedSamples.push_back(pair<int, string>(currClass, relativeClassifyPath));
+                        labelFile << relativeClassifyPath << " " << currClass << endl;
+
+                        cout << "(SensingController) want to collect another sample for class " << currClass << "? (0 = no / 1 = yes): ";
+                        cin >> cont;
+
+                    }
+
+                }
+
+                labelFile.close();
+
+            } else
+                if(!isShutUp)
+                    cout << "(SensingController) database for controller " << getCaption() << " exists - no collection required" << endl;
 
             ifstream labelsFile;
             labelsFile.open((path + "/labels").c_str());
 
             string line;
+            vector<int> classIds;
+            vector<string> fileNames;
+
+            // load all the files and concatenated the rows for each file
             while(getline(labelsFile, line)) {
                 KukaduTokenizer tok(line);
-                tok.next();
-                int classId = atoi(tok.next().c_str());
-                sampleIds.at(classId)++;
-            }
-
-            labelsFile.close();
-
-        }
-
-        int minSampleCount = 10;
-        for(int i = 0; i < sampleIds.size(); ++i) {
-            if(sampleIds.at(i) == -1) {
-                perceptualStateId = i;
-                break;
-            } else if(sampleIds.at(i) < minSampleCount) {
-                cout << "(SensingController) you have less than " << minSampleCount << " samples for state " << i << " under sensing action " << getCaption() <<
-                        ". do you want to collect more? (0 = no, 1 = yes)" << endl;
-                int answer;
-                cin >> answer;
-                if(answer == 1)
-                    perceptualStateId = i;
-                break;
-            }
-
-        }
-
-        if(!databaseExisted || perceptualStateId != -1) {
-
-            // create the database
-            if(!isShutUp)
-                cout << "(SensingController) " << getCaption() << " offers " << numClasses << " classes" << endl;
-
-            ofstream labelFile;
-            labelFile.open((path + "labels").c_str(), std::ios_base::app);
-
-            if(perceptualStateId == -1)
-                perceptualStateId = 0;
-
-            for(int currClass = perceptualStateId; currClass < numClasses; ++currClass) {
-
-                if(currClass != perceptualStateId)
-                    KUKADU_DYNAMIC_POINTER_CAST<ComplexController>(parentController)->prepareNextState(shared_from_this(), currClass);
-
-                int cont = 1;
-                for(int sampleNum = sampleIds.at(currClass) + 1; cont == 1; ++sampleNum) {
-
-                    cout << "(SensingController) collecting sample number " << sampleNum << " for class " << currClass << " with sensing controller " << this->getCaption() << endl;
-
-                    stringstream s;
-                    s << "class_" << currClass << "_sample_" << sampleNum;
-                    string relativePath = s.str();
-                    string relativeClassifyPath = relativePath + "/" + getFirstRobotFileName() + "_0";
-                    string nextSamplePath = path + relativePath;
-                    gatherData(nextSamplePath);
-                    cleanUp();
-
-                    collectedSamples.push_back(pair<int, string>(currClass, relativeClassifyPath));
-                    labelFile << relativeClassifyPath << " " << currClass << endl;
-
-                    cout << "(SensingController) want to collect another sample for class " << currClass << "? (0 = no / 1 = yes): ";
-                    cin >> cont;
-
+                auto filePath = tok.next();
+                if(filePath != "") {
+                    auto classId = atoi(tok.next().c_str());
+                    classIds.push_back(classId);
+                    fileNames.push_back(path + "/" + filePath);
                 }
+            }
+
+            auto loadedData = loadClassificationData(classIds, fileNames);
+            auto uniqueClassIds = loadedData.first;
+            auto samples = loadedData.second;
+
+            classifier = make_shared<LibSvm>(uniqueClassIds, samples);
+
+            // if no classifier file exists
+            if(!fileExists(path + "classRes")) {
+
+                cout << "(SensingController) determinining confidence..." << endl;
+                double confidence = classifier->crossValidate();
+                cout << "(SensingController) found a confidence of " << confidence << endl;
+
+                ofstream ofile;
+                ofile.open((path + "classRes").c_str());
+                ofile << confidence << endl;
+                ofile.close();
 
             }
 
-            labelFile.close();
+            classifier->train();
 
-        } else
+            ifstream infile;
+            infile.open((path + "classRes").c_str());
+            double confidence = 0.0;
+            infile >> confidence;
+
             if(!isShutUp)
-                cout << "(SensingController) database for controller " << getCaption() << " exists - no collection required" << endl;
+                cout << "(SensingController) determined a confidence of " << confidence << endl;
 
-        ifstream labelsFile;
-        labelsFile.open((path + "/labels").c_str());
-
-        string line;
-        vector<int> classIds;
-        vector<string> fileNames;
-
-        // load all the files and concatenated the rows for each file
-        while(getline(labelsFile, line)) {
-            KukaduTokenizer tok(line);
-            auto filePath = tok.next();
-            if(filePath != "") {
-                auto classId = atoi(tok.next().c_str());
-                classIds.push_back(classId);
-                fileNames.push_back(path + "/" + filePath);
-            }
-        }
-
-        auto loadedData = loadClassificationData(classIds, fileNames);
-        auto uniqueClassIds = loadedData.first;
-        auto samples = loadedData.second;
-
-        classifier = make_shared<LibSvm>(uniqueClassIds, samples);
-
-        // if no classifier file exists
-        if(!fileExists(path + "classRes")) {
-
-            cout << "(SensingController) determinining confidence..." << endl;
-            double confidence = classifier->crossValidate();
-            cout << "(SensingController) found a confidence of " << confidence << endl;
-
-            ofstream ofile;
-            ofile.open((path + "classRes").c_str());
-            ofile << confidence << endl;
-            ofile.close();
+            return confidence;
 
         }
 
-        classifier->train();
-
-        ifstream infile;
-        infile.open((path + "classRes").c_str());
-        double confidence = 0.0;
-        infile >> confidence;
-
-        if(!isShutUp)
-            cout << "(SensingController) determined a confidence of " << confidence << endl;
+        return 1.0;
 
         KUKADU_MODULE_END_USAGE();
-
-        return confidence;
 
     }
 
@@ -1996,13 +2013,23 @@ namespace kukadu {
 
     }
 
+    int SensingController::hardcodedClassification() {
+        throw KukaduException("(SensingController) custom classification procedure has to be written if no database is needed");
+        return 0;
+    }
+
     int SensingController::callClassifier(std::string passedFilePath) {
 
         KUKADU_MODULE_START_USAGE();
 
-        auto toClassify = loadClassificationData({0}, {passedFilePath});
-        vec toClassifyVec = fitToDim(toClassify.second.front(), classifier->getSampleDimensionality());
-        auto res = classifier->classify(toClassifyVec);
+        int res = 0;
+        if(requiresDatabase()) {
+            auto toClassify = loadClassificationData({0}, {passedFilePath});
+            vec toClassifyVec = fitToDim(toClassify.second.front(), classifier->getSampleDimensionality());
+            res = classifier->classify(toClassifyVec);
+        } else {
+            res = hardcodedClassification();
+        }
 
         KUKADU_MODULE_END_USAGE();
 
@@ -2020,6 +2047,11 @@ namespace kukadu {
             outFile << sample.second << " " << sample.first << endl;
         }
 
+    }
+
+    bool SensingController::requiresDatabase() {
+        // by default sensing requires a database
+        return true;
     }
 
 }

@@ -153,6 +153,12 @@ namespace kukadu {
 
         int callClassifier();
 
+        // if a database is not required, but the classficiation is done by some non-data-driven procedure
+        // overwrite requiresDatabase: return false;
+        // overwrite hardcodedClassification to overwrite the classification procedure
+        virtual bool requiresDatabase();
+        virtual int hardcodedClassification();
+
         static const int HAPTIC_MODE_TERMINAL = 0;
         static const int HAPTIC_MODE_CLASSIFIER = 1;
 
