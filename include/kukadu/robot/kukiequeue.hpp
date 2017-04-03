@@ -203,7 +203,10 @@ namespace kukadu {
 
         static const int KUKA_STD_XYZ_STIFF = 250;
         static const int KUKA_STD_ABC_STIFF = 100;
-        static const int KUKA_STD_CPDAMPING = 0.3;
+        static const int KUKA_STD_CPDAMPING = 1.0;
+        static const int KUKA_STD_CPMAXDELTA = 99;
+        static const int KUKA_STD_MAXFRC = 150;
+        static const int KUKA_STD_AXISMAXDELTATRQ = 1500;
 
     };
     

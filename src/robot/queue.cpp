@@ -860,6 +860,8 @@ namespace kukadu {
         currentJntFrqTrq = vec(getDegreesOfFreedom());
         currentJntFrqTrq.fill(0.0);
 
+        setStiffness(KUKA_STD_XYZ_STIFF, KUKA_STD_ABC_STIFF, KUKA_STD_CPDAMPING, KUKA_STD_CPMAXDELTA, KUKA_STD_MAXFRC, KUKA_STD_AXISMAXDELTATRQ);
+
         usleep(1e6);
 
     }
