@@ -117,6 +117,8 @@ namespace kukadu {
         virtual std::string getCartesianLinkName();
         virtual std::string getCartesianReferenceFrame();
 
+        virtual void setSpeed(double speed);
+
 #ifndef USEBOOST
         static constexpr int STD_MAX_ATTEMPTS = 5;
         static constexpr int STD_TIMEOUT = 10;

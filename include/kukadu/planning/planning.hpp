@@ -127,6 +127,9 @@ namespace kukadu {
         virtual std::vector<arma::vec> planCartesianTrajectory(arma::vec startJoints, std::vector<geometry_msgs::Pose> intermediatePoses,
                                                                bool smoothCartesians = false, bool useCurrentRobotState = true) = 0;
 
+        // sets the velocity for all joints, accepts values beteween 0 and 1 (0 = minimal speed, 1 = maximal speed)
+        virtual void setSpeed(double speed) = 0;
+
 #ifndef USEBOOST
         static constexpr int RESULT_FAILED = 0;
         static constexpr int RESULT_SUCCESS = 1;
@@ -179,6 +182,8 @@ namespace kukadu {
         void setCheckCollisions(bool collision);
 
         bool getCheckCollision();
+
+        virtual void setSpeed(double speed);
 
         virtual std::vector<arma::vec> smoothJointPlan(std::vector<arma::vec> jointPlan, arma::vec maxVelocities, double cycleTime);
 

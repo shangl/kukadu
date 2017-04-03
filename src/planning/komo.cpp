@@ -98,6 +98,10 @@ namespace kukadu {
 
     }
 
+    void Komo::setSpeed(double speed) {
+        simplePlanner->setSpeed(speed);
+    }
+
     Komo::~Komo() {
 
         if(_world)

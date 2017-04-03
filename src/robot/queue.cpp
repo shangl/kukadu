@@ -555,8 +555,6 @@ namespace kukadu {
 
             sleepRate.sleep();
 
-            ros::spinOnce();
-
         }
 
         if(!isShutUp())
@@ -1016,7 +1014,8 @@ namespace kukadu {
     void KukieControlQueue::cycleTimeCallback(const std_msgs::Float64& msg) {
 
         if(loadCycleTimeFromServer) {
-            setCycleTime(msg.data);
+            // * 0.5 comes from experience --> jerky movement otherwise; there is too much overhead in the run loop (the cycle time can't be the sleep time as well)
+            setCycleTime(msg.data / 2.0);
             firstControllerCycletimeReceived = true;
         }
 
@@ -1322,9 +1321,10 @@ namespace kukadu {
         if(performPtp) {
             if(desiredJointPlan.size() > 0) {
 
-                for(int i = 0; i < desiredJointPlan.size(); ++i)
+                for(int i = 0; i < desiredJointPlan.size(); ++i) {
                     move(desiredJointPlan.at(i));
-                synchronizeToQueue(1);
+                    synchronizeToQueue(1);
+                }
 
             } else {
                 ROS_ERROR("(KukieControlQueue) Joint plan not reachable");
@@ -1376,6 +1376,10 @@ namespace kukadu {
         KUKADU_MODULE_START_USAGE();
 
         if(isRealRobot) {
+
+            if(cpdamping < 0)
+                cpdamping = KUKA_STD_CPDAMPING;
+
             iis_robot_dep::CartesianImpedance imp;
 
             imp.stiffness.linear.x = imp.stiffness.linear.y = imp.stiffness.linear.z = cpstiffnessxyz;

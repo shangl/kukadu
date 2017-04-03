@@ -101,6 +101,8 @@ namespace kukadu {
         virtual std::string getCartesianLinkName();
         virtual std::string getCartesianReferenceFrame();
 
+        virtual void setSpeed(double speed);
+
     };
 
 }

@@ -353,6 +353,10 @@ namespace kukadu {
 
     }
 
+    void CachedPlanner::setSpeed(double speed) {
+        actualPlanner->setSpeed(speed);
+    }
+
     void CachedPlanner::addConstraint(KUKADU_SHARED_PTR<Constraint> constraint) {
         actualPlanner->addConstraint(constraint);
     }
@@ -578,13 +582,20 @@ namespace kukadu {
         refOutputParams = new RMLPositionOutputParameters(queue->getDegreesOfFreedom());
 
         for(int i = 0; i < degOfFreedom; ++i) {
-            // this seems to be not normal velocity but velocity normalized by time step
-            refInputParams->MaxJerkVector->VecData[i] = 0.003 * cycleTime;
-            refInputParams->MaxAccelerationVector->VecData[i] = 0.004 * cycleTime;
-            refInputParams->MaxVelocityVector->VecData[i] = 0.002 * cycleTime;
+            refInputParams->MaxJerkVector->VecData[i] = 0.001 * cycleTime;
+            refInputParams->MaxAccelerationVector->VecData[i] = 0.001 * cycleTime;
+            refInputParams->MaxVelocityVector->VecData[i] = (MIN_VEL + (MAX_VEL - MIN_VEL) / 2.0) * cycleTime;
             refInputParams->SelectionVector->VecData[i] = true;
         }
 
+        setSpeed(0.5);
+
+    }
+
+    void SimplePlanner::setSpeed(double speed) {
+        currentSpeedFactor = speed;
+        for(int i = 0; i < degOfFreedom; ++i)
+            refInputParams->MaxVelocityVector->VecData[i] = (MIN_VEL + (MAX_VEL - MIN_VEL) * speed) * cycleTime;
     }
 
     bool SimplePlanner::checkRestrictions(const std::vector<arma::vec>& plan) {

@@ -159,6 +159,10 @@ namespace kukadu {
 
     }
 
+    void MoveIt::setSpeed(double speed) {
+        simplePlanner->setSpeed(speed);
+    }
+
     std::vector<arma::vec> MoveIt::planCartesianTrajectory(std::vector<geometry_msgs::Pose> intermediatePoses, bool smoothCartesians, bool useCurrentRobotState) {
 
         KUKADU_MODULE_START_USAGE();
