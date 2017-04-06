@@ -1,6 +1,7 @@
 #ifndef KUKADU_PLAYINGCONTROLLERS_H
 #define KUKADU_PLAYINGCONTROLLERS_H
 
+#include <limits>
 #include <vector>
 #include <string>
 #include <memory>
@@ -433,17 +434,12 @@ namespace kukadu {
 
         virtual void prepareNextState(KUKADU_SHARED_PTR<kukadu::SensingController> cont, int currentStateIdx) = 0;
 
-#ifdef USEBOOST
-        static const std::string FILE_SENSING_PREFIX = "***sensing controllers:";
-        static const std::string FILE_PREP_PREFIX = "***preparatory controllers:";
-        static const std::string FILE_END_PREFIX = "***concatenated controllers:";
-        static const std::string FILE_CONCAT_PREFIX = "***end";
-#else
         static constexpr auto FILE_SENSING_PREFIX = "***sensing controllers:";
         static constexpr auto FILE_PREP_PREFIX = "***preparatory controllers:";
         static constexpr auto FILE_CONCAT_PREFIX = "***concatenated controllers:";
         static constexpr auto FILE_END_PREFIX = "***end";
-#endif
+
+        static constexpr auto STAR_VALUE = std::numeric_limits<int>::max();
 
     };
 
