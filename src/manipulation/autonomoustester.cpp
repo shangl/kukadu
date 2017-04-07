@@ -418,7 +418,7 @@ cout  << selectedSkill << " (" << maxGainValue << "): " << endl;
 
                 pBlame = computeBayesianUpdate(observationLikelihood, pBlame);
 
-                if(pBlame.has_nan()) {
+                if(armadilloHasNan(pBlame)) {
                     cout << "schon wieder nan" << endl;
                     getchar();
                 }
@@ -603,7 +603,7 @@ igStream.close();
 
             vec probObservationGivenFunctionFailure = computeObservationLikelihood(id, successful, executionPrint, windowStartIdx, windowEndIdx, true);
 
-            if(probObservationGivenFunctionFailure.has_inf()) {
+            if(armadilloHasInf(probObservationGivenFunctionFailure)) {
                 cout << "lala" << endl;
             }
 

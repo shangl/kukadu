@@ -1328,6 +1328,21 @@ namespace kukadu {
         return false;
 
     }
+    
+    bool armadilloHasInf(arma::mat& m) {
+        for(int i = 0; i < m.n_rows; ++i)
+            for(int j = 0; j < m.n_cols; ++j)
+                if(std::isinf(m(i, j)))
+                    return true;
+        return false;
+    }
+
+	bool armadilloHasInf(arma::vec& v) {
+		for(int i = 0; i < v.n_elem; ++i)
+            if(std::isinf(v(i)))
+                return true;
+        return false;
+	}
 
     arma::mat computeRotFromCorrespondences(const std::vector<vec>& cs1, const std::vector<vec>& cs2) {
 

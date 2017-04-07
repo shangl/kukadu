@@ -5,7 +5,6 @@
 #include <kukadu/learning/classification/classifier.hpp>
 #include <kukadu/learning/metric_learning/metriclearner.hpp>
 #include <kukadu/learning/classification/libsvmclassifier.hpp>
-#ifndef USEBOOST
 #include <kukadu/learning/projective_simulation/core.hpp>
 #include <kukadu/learning/projective_simulation/clips.hpp>
-#endif
+#include <kukadu/learning/projective_simulation/visualization.hpp>

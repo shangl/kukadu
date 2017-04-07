@@ -200,6 +200,9 @@ namespace kukadu {
 
     bool armadilloHasNan(arma::vec& v);
     bool armadilloHasNan(arma::mat& m);
+    
+    bool armadilloHasInf(arma::vec& v);
+    bool armadilloHasInf(arma::mat& m);
 
     arma::mat computeRotFromCorrespondences(const std::vector<arma::vec>& cs1, const std::vector<arma::vec>& cs2);
 
