@@ -12,6 +12,14 @@
 
 namespace kukadu {
 
+    class GraphDrawer {
+
+    public:
+
+        GraphDrawer();
+
+    };
+
     class TreeDrawer {
 
     private:

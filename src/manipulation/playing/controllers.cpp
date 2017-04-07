@@ -438,16 +438,25 @@ namespace kukadu {
 
         auto stateClips = sensingClip->getSubClips();
         auto environmentPercepts = make_shared<vector<KUKADU_SHARED_PTR<PerceptClip> > >();
-        auto resultingStatePercepts = make_shared<vector<KUKADU_SHARED_PTR<Clip> > >();
+        auto nonGraspedStatePercepts = make_shared<vector<KUKADU_SHARED_PTR<Clip> > >();
+        auto graspedStatePercepts = make_shared<vector<KUKADU_SHARED_PTR<Clip> > >();
 
-        auto idVec = KUKADU_SHARED_PTR< vector<int> >(new vector<int>{0, 0});
+        // 3-dimensional id vector for first layer of the environment model (ng_state, g_state, action):
+        // ng_state: non grasping state - defines the state of a the sensing action (if it is not a sensing action that determines whether something is grasped or not)
+        // g_state: grasping state - defines whether the object is grasped or not
+        // action: defines the used action
+        // 2-dimensional for the second layer: pair of resulting (ng_state, g_state) --> this layer is created here
+        auto idVec = KUKADU_SHARED_PTR< vector<int> >(new vector<int>{0, 0, 0});
         for(auto stateClip : *stateClips) {
             auto stateId = stateClip->getClipDimensions()->at(0);
             stringstream s;
-            s << "E" << stateId;
+            s << "N" << stateId << "," << "G" << 0;
             // have to make it -1 because action clip says internally --> -stateId - 1 (i can't remember the reason anymore)
-            resultingStatePercepts->push_back(make_shared<ActionClip>(stateId - 1, idVec->size(), s.str(), generator));
+            nonGraspedStatePercepts->push_back(make_shared<ActionClip>(stateId - 1, idVec->size(), s.str(), generator));
         }
+
+        auto starValue = STAR_VALUE;
+        graspedStatePercepts->push_back(make_shared<ActionClip>(starValue, idVec->size(), "N*_G1", generator));
 
         bool containsPrepAction = false;
         for(int stateIdx = 0, overallId = sensingCatCount; stateIdx < sensingCatCount; ++stateIdx) {
@@ -457,18 +466,29 @@ namespace kukadu {
 
             for(int actId = 0; actId < prepActionsCount; ++actId, ++overallId) {
 
+                shared_ptr<ControllerActionClip> currentPrepClip = dynamic_pointer_cast<ControllerActionClip>(prepClips->at(actId));
+
                 // ignore the "nothing" controller -> by definition it does nothing and
                 // can't be used to change the environment state
-                if(prepClips->at(actId)->toString() != nothingController->getCaption()) {
+                if(currentPrepClip->toString() != nothingController->getCaption()) {
 
                     containsPrepAction = true;
-                    idVec->at(1) = prepClips->at(actId)->getClipDimensions()->at(0);
+                    bool requiresGrasp = currentPrepClip->getActionController()->requiresGrasp();
+                    bool producesGrasp = currentPrepClip->getActionController()->producesGrasp();
+
+                    idVec->at(1) = (requiresGrasp) ? 2 : 3;
+                    idVec->at(2) = currentPrepClip->getClipDimensions()->at(0);
 
                     stringstream s;
-                    s << "(E" << stateId << ",P" << idVec->at(1) << ")";
+                    s << "(N" << idVec->at(1) << ",G" << idVec->at(1) << ",P" << idVec->at(2) << ")";
                     auto vecCopy = make_shared<vector<int> >(idVec->begin(), idVec->end());
                     auto newPercept = make_shared<PerceptClip>(overallId, s.str(), generator, vecCopy, INT_MAX);
-                    newPercept->setChildren(resultingStatePercepts);
+
+                    if(producesGrasp)
+                        newPercept->setChildren(nonGraspedStatePercepts);
+                    else
+                        newPercept->setChildren(graspedStatePercepts);
+
                     environmentPercepts->push_back(newPercept);
 
                 }
