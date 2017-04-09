@@ -1,6 +1,7 @@
 #ifndef KUKADU_PS_CORE_H
 #define KUKADU_PS_CORE_H
 
+#include <limits>
 #include <string>
 #include <vector>
 #include <kukadu/types/kukadutypes.hpp>
@@ -190,6 +191,8 @@ namespace kukadu {
         void storePS(std::string targetFile);
 
         static constexpr auto IGNORE_ID = INT_MIN;
+
+        static constexpr auto PS_DEFAULT_IMMUNITY = 10000;
 
         static constexpr auto PS_USE_ORIGINAL = 1;
         static constexpr auto PS_USE_GEN = 2;

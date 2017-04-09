@@ -1,6 +1,7 @@
 cmake_minimum_required(VERSION 2.8.3)
 project(kukadu)
 
+set(ENABLE_VISUALIZATION 1)
 set(CMAKE_BUILD_TYPE Debug)
 #set(CMAKE_VERBOSE_MAKEFILE ON)
 
@@ -85,7 +86,7 @@ catkin_package(
     DEPENDS gsl gslcblas ncurses
         stdc++ ${Boost_LIBRARIES} ${PCL_LIBRARIES} ${ARMADILLO_LIBRARIES} ${PYTH_LIB}
         komo swift algo gui ors rt lapack blas ann glut GLU GL X11 ${GTK_LIBRARIES} ${GTK2_LIBRARIES} gthread-2.0 qhull m mysqlcppconn svm
-        curl nlohmann_json
+        curl nlohmann_json allegro allegro_primitives allegro_font allegro_ttf
 )
 
 include_directories(
@@ -100,7 +101,6 @@ include_directories(
     external/backward-cpp
     external/komo/share/src
     external/ReflexxesTypeII/include
-    external/lemon
 )
 
 set(CURSES_USE_NCURSES TRUE)
@@ -110,9 +110,6 @@ add_definitions(-DAR_TRACKER_PARAM=${AR_TRACKER_PARAM})
 
 link_directories(${PYTH_LIB_PATH})
 
-set(ENABLE_VISUALIZATION 1)
-
-add_subdirectory(external/lemon)
 add_subdirectory(external/backward-cpp)
 
 AUX_SOURCE_DIRECTORY(src/robot/ KUKADUSRC)
@@ -224,18 +221,19 @@ add_backward(kukaduvision)
 add_backward(artoolkitplus)
 add_backward(${PROJECT_NAME})
 
-add_dependencies(${PROJECT_NAME} ${catkin_EXPORTED_TARGETS} ${PYTH_LIB} svm Backward::Backward curl nlohmann_json lemon)
-add_dependencies(kukaduvision ${catkin_EXPORTED_TARGETS} svm Backward::Backward curl nlohmann_json lemon)
-add_dependencies(kukadugui ${catkin_EXPORTED_TARGETS} kukadu svm Backward::Backward curl nlohmann_json lemon)
+add_dependencies(${PROJECT_NAME} ${catkin_EXPORTED_TARGETS} ${PYTH_LIB} svm Backward::Backward curl nlohmann_json allegro allegro_primitives allegro_font allegro_ttf)
+add_dependencies(kukaduvision ${catkin_EXPORTED_TARGETS} svm Backward::Backward curl nlohmann_json allegro allegro_primitives allegro_font allegro_ttf)
+add_dependencies(kukadugui ${catkin_EXPORTED_TARGETS} kukadu svm Backward::Backward curl nlohmann_json allegro allegro_primitives allegro_font allegro_ttf)
 
-target_link_libraries(kukadugui ${catkin_LIBRARIES} Qt5::Widgets kukadu svm curl nlohmann_json lemon)
+target_link_libraries(kukadugui ${catkin_LIBRARIES} Qt5::Widgets kukadu svm curl nlohmann_json)
 
 target_link_libraries(${PROJECT_NAME} ${catkin_LIBRARIES} ${Boost_LIBRARIES} ${ARMADILLO_LIBRARIES}
     reflexxeslib ncurses gsl gslcblas stdc++ pthread dl util m komo swift algo ann gui ors optim motion rt lapack blas glut GLU GL X11 ${GTK_LIBRARIES} ${GTK2_LIBRARIES}
-    gthread-2.0 qhull ${PYTH_LIB} m mysqlcppconn Qt5::Widgets svm curl nlohmann_json lemon)
+    gthread-2.0 qhull ${PYTH_LIB} m mysqlcppconn Qt5::Widgets svm curl nlohmann_json
+    allegro allegro_primitives allegro_font allegro_ttf)
 
-target_link_libraries(kukaduvision ${catkin_LIBRARIES} ${Boost_LIBRARIES} ${PCL_LIBRARIES} ${ARMADILLO_LIBRARIES} ${OpenCV_LIBRARIES} svm nlohmann_json lemon)
-target_link_libraries(artoolkitplus ${catkin_LIBRARIES} ${OpenCV_LIBRARIES} svm curl nlohmann_json lemon)
+target_link_libraries(kukaduvision ${catkin_LIBRARIES} ${Boost_LIBRARIES} ${PCL_LIBRARIES} ${ARMADILLO_LIBRARIES} ${OpenCV_LIBRARIES} svm nlohmann_json)
+target_link_libraries(artoolkitplus ${catkin_LIBRARIES} ${OpenCV_LIBRARIES} svm curl nlohmann_json)
 
 if(CATKIN_ENABLE_TESTING)
         catkin_add_gtest(kukadutest test/kukadutest.cpp)

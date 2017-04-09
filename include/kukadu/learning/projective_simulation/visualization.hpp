@@ -12,14 +12,6 @@
 
 namespace kukadu {
 
-    class GraphDrawer {
-
-    public:
-
-        GraphDrawer();
-
-    };
-
     class TreeDrawer {
 
     private:
@@ -43,12 +35,12 @@ namespace kukadu {
 
         static auto constexpr TREEDRAWER_H_NODE_X_OFFS = 50;
         static auto constexpr TREEDRAWER_H_NODE_Y_OFFS = 70;
-        static auto constexpr TREEDRAWER_H_NODE_X_DIST = 100;
+        static auto constexpr TREEDRAWER_H_NODE_X_DIST = 125;
         static auto constexpr TREEDRAWER_H_NODE_Y_DIST = 150;
         static auto constexpr TREEDRAWER_H_EDGE_Y_OFFS = 20;
         static auto constexpr TREEDRAWER_H_WINDOW_X_SIZE = 1024;
         static auto constexpr TREEDRAWER_H_WINDOW_Y_SIZE = 1500;
-        static auto constexpr TREEDRAWER_H_NODE_RADIUS = 45;
+        static auto constexpr TREEDRAWER_H_NODE_RADIUS = 60;
 
     public:
 

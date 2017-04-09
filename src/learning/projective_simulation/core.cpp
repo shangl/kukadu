@@ -1117,7 +1117,6 @@ namespace kukadu {
         if(clipLevel != Clip::CLIP_H_LEVEL_FINAL) {
 
             auto boredom = boredomLevels.at(clipLevel);
-            cout << "boredom level: " << boredomLevels.at(clipLevel) << endl;
             if(boredomLevels.at(clipLevel) > 0.0) {
 
                 double entropy = clip->computeSubEntropy();
