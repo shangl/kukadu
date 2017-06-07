@@ -400,10 +400,12 @@ namespace kukadu {
         KUKADU_MODULE_START_USAGE();
 
         for(auto sensCont : sensingControllers)
-            sensCont->setSimulationMode(simulationMode);
+            if(sensCont && sensCont->getSimulationMode() != simulationMode)
+                sensCont->setSimulationMode(simulationMode);
 
         for(auto prepCont : preparationControllers)
-            prepCont->setSimulationMode(simulationMode);
+            if(prepCont && prepCont->getSimulationMode() != simulationMode)
+                prepCont->setSimulationMode(simulationMode);
 
         KUKADU_MODULE_END_USAGE();
 
@@ -512,9 +514,11 @@ namespace kukadu {
                 // we are reading sensing controllers
                 if(controllerMode == 1)
                     sensingControllers.push_back(availableSensingControllers[line]);
-                else if(controllerMode == 2 )
+                else if(controllerMode == 2 ) {
+                    if(!availablePreparatoryControllers[line])
+                        cout << "(ComplexController::load) the controller " << line << " is null" << endl;
                     preparationControllers.push_back(availablePreparatoryControllers[line]);
-                else if(controllerMode == 3) {
+                } else if(controllerMode == 3) {
 
                     // construct composed controllers here
                     KukaduTokenizer tok(line, "_");
