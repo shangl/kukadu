@@ -3,10 +3,12 @@
 #include <ros/ros.h>
 #include <kukadu/vision/visualizersingleton.hpp>
 
+#include <X11/Xlib.h>
+
 namespace kukadu {
 
     VisualizerSingleton::VisualizerSingleton() {
-
+        XInitThreads();
     }
 
     VisualizerSingleton& VisualizerSingleton::get() {

@@ -947,7 +947,7 @@ namespace kukadu {
         if(controlQueue)
             if(!isCartesian) {
                 maxFrcThread = KUKADU_SHARED_PTR<kukadu_thread>(new kukadu_thread(&DMPExecutor::runCheckMaxForces, this));
-                    controlQueue->startRollBackMode(3.0);
+                controlQueue->startRollBackMode(3.0);
             }
 
         double currentTime = 0.0;

@@ -433,6 +433,10 @@ namespace kukadu {
         KUKADU_MODULE_END_USAGE();
     }
 
+    int ControlQueue::getQueueSize() {
+        return movementQueue.size();
+    }
+
     void ControlQueue::stopCurrentMode() {
         KUKADU_MODULE_START_USAGE();
         switchMode(CONTROLQUEUE_STOP_MODE);
@@ -506,11 +510,13 @@ namespace kukadu {
 
             if(rollbackMode) {
 
-                rollBackQueue.push_front(currentJoints);
+                rollbackQueueMutex.lock();
+                    rollBackQueue.push_front(currentJoints);
 
-                // if queue is full --> go back
-                while(rollBackQueue.size() > rollBackQueueSize)
-                    rollBackQueue.pop_back();
+                    // if queue is full --> go back
+                    while(rollBackQueue.size() > rollBackQueueSize)
+                        rollBackQueue.pop_back();
+                rollbackQueueMutex.unlock();
 
             }
 
@@ -681,7 +687,7 @@ namespace kukadu {
 
         rollbackMode = false;
         rollbackQueueMutex.lock();
-        rollBackQueue.clear();
+            rollBackQueue.clear();
         rollbackQueueMutex.unlock();
 
         KUKADU_MODULE_END_USAGE();
@@ -735,7 +741,10 @@ namespace kukadu {
 
         // wait until everything has been executed
         synchronizeToQueue(1);
-        rollBackQueue.clear();
+
+        rollbackQueueMutex.lock();
+            rollBackQueue.clear();
+        rollbackQueueMutex.unlock();
 
         KUKADU_MODULE_END_USAGE();
 

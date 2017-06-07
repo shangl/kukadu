@@ -188,6 +188,8 @@ namespace kukadu {
          */
         ControlQueue(StorageSingleton& storage, std::string robotName, int degreesOfFreedom, double desiredCycleTime);
 
+        int getQueueSize();
+
         /**
          * \brief Returns number of the robots degrees of freedom
          * @return number of degrees of freedom
