@@ -274,6 +274,7 @@ namespace kukadu {
             // load environment model
             for(auto sens : sensingControllers) {
                 auto envModel = make_shared<ProjectiveSimulator>(envReward, generator, envModelPath + sens->getCaption());
+                envModel->setTrainingMode(true);
                 environmentModels.insert(std::pair<std::string, KUKADU_SHARED_PTR<kukadu::ProjectiveSimulator> >(sens->getCaption(), envModel));
             }
 
@@ -286,6 +287,7 @@ namespace kukadu {
             for(auto sens : sensingControllers) {
 
                 auto envModel = createEnvironmentModelForSensingAction(sens, projSim);
+                envModel->setTrainingMode(true);
                 environmentModels.insert(std::pair<std::string, KUKADU_SHARED_PTR<kukadu::ProjectiveSimulator> >(sens->getCaption(), envModel));
                 envModel->storePS(envModelPath + sens->getCaption());
 
@@ -470,6 +472,8 @@ namespace kukadu {
             throw KukaduException("(ComplexController) No preparatory action without the label of the nothing action provided");
         auto psMode = ProjectiveSimulator::PS_USE_ORIGINAL;
         auto retProjSim = make_shared<ProjectiveSimulator>(envReward, generator, environmentPercepts, 0.0, psMode, false);
+
+        retProjSim->setTrainingMode(true);
 
         KUKADU_MODULE_END_USAGE();
 
@@ -765,12 +769,8 @@ namespace kukadu {
 
         ++currentIterationNum;
 
-        cout << "nothing state clip count: " << nothingStateClips.size() << endl;
-
         auto walkRet = projSim->performRandomWalk(2);
         auto wasBored = projSim->nextHopIsBored();
-
-        cout << "was bored: " << wasBored << endl;
 
         double reward = 0.0;
         std::tuple<double, KUKADU_SHARED_PTR<Clip>, std::vector<KUKADU_SHARED_PTR<Clip> >, int> selectedPath;
@@ -785,8 +785,6 @@ namespace kukadu {
             auto sensingClip = get<0>(newClips);
             auto stateClip = get<1>(newClips);
             auto stateId = stateClip->getClipDimensions()->at(0);
-
-            cout << "use creativity: " << useCreativity << endl;
 
             // block for creativity mode
             if(useCreativity) {
@@ -938,12 +936,14 @@ namespace kukadu {
 
                 cout << "(ComplexController::execute) do you want to execute it? (0 = no, 1 = yes)" << endl;
                 cin >> executeIt;
-            }
+            } else
+                executeIt = 1;
 
             auto sensedState = stateClip;
             if(executeIt == 1) {
 
                 auto actionController = KUKADU_DYNAMIC_POINTER_CAST<ControllerActionClip>(actionClip);
+                cout << actionController->getCaption() << endl;
                 actionController->execute();
 
                 // no environment model measuring in case the nothing controller was used
