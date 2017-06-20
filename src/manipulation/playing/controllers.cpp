@@ -135,6 +135,8 @@ namespace kukadu {
 
         projSim->updatePsFile();
 
+        storeComposition(storePath);
+
         KUKADU_MODULE_END_USAGE();
 
     }
@@ -525,7 +527,7 @@ namespace kukadu {
                 } else if(controllerMode == 3) {
 
                     // construct composed controllers here
-                    KukaduTokenizer tok(line, "_");
+                    KukaduTokenizer tok(line, "$");
                     auto splits = tok.split();
 
                     vector<KUKADU_SHARED_PTR<kukadu::Controller> > controllerParts;
@@ -560,14 +562,9 @@ namespace kukadu {
         KUKADU_MODULE_END_USAGE();
     }
 
-    void ComplexController::store(std::string destination) {
+    void ComplexController::storeComposition(std::string destination) {
 
-        KUKADU_MODULE_START_USAGE();
-
-        preparePathString(destination);
-        string psDestination = destination + "ps";
         string compositionDestination = destination + "composition";
-        projSim->storePS(psDestination);
         ofstream compositionFile;
         compositionFile.open(compositionDestination);
         compositionFile << FILE_SENSING_PREFIX << endl;
@@ -589,6 +586,18 @@ namespace kukadu {
         }
 
         compositionFile.close();
+
+    }
+
+    void ComplexController::store(std::string destination) {
+
+        KUKADU_MODULE_START_USAGE();
+
+        preparePathString(destination);
+        string psDestination = destination + "ps";
+        projSim->storePS(psDestination);
+
+        storeComposition(destination);
 
         KUKADU_MODULE_END_USAGE();
 
@@ -742,9 +751,10 @@ namespace kukadu {
         // if probability of success after using "nothing" action is high enough, the state clip might be considered in future reasoning
         // e.g. for guided clip creation
         if(maxWeight > stdPrepWeight) {
+cout << "potential target state: " << sensedState << " " << *sensedState << endl;
             if(maxProb > nothingStateProbThresh && KUKADU_DYNAMIC_POINTER_CAST<ControllerActionClip>(maxPrepClip)->toString() == nothingController->getCaption() && !nothingStateClips[sensingClip->toString()][sensedState->toString()]) {
                 nothingStateClips[sensingClip->toString()][sensedState->toString()] = sensedState;
-
+cout << "actual target state: " << sensedState << " " << *sensedState << endl;
             // if there is a state where the strongest action is "nothing" but the probability is below 0.8, remove it (even if it is not in there yet - checking
             // this would just make it slower)
             } else if(maxProb <= nothingStateProbThresh && KUKADU_DYNAMIC_POINTER_CAST<ControllerActionClip>(maxPrepClip)->toString() == "nothing")
@@ -758,7 +768,7 @@ namespace kukadu {
         KUKADU_MODULE_START_USAGE();
 
         KUKADU_SHARED_PTR<ControllerResult> ret = nullptr;
-
+cout << "nothing state: " << nothingStateClips["pressing"]["(9)"] << endl;
         // if simulation - set observed state as ground truth for each sensing action (it is not yet know, which sensing action will be selected)
         if(getSimulationMode() && generateNewGroundTruth) {
             for(auto sensCont : sensingControllers) {
@@ -786,8 +796,12 @@ namespace kukadu {
             auto stateClip = get<1>(newClips);
             auto stateId = stateClip->getClipDimensions()->at(0);
 
+            cout << "(ComplexController::executeInternal) creativity activated: " << useCreativity << endl;
+
             // block for creativity mode
             if(useCreativity) {
+
+                cout << "(ComplexController::executeInternal) i may be creative" << endl;
 
                 // only add new prep skill if current state is not already a "nothing" skill
                 if(!nothingStateClips[sensingClip->toString()][stateClip->toString()]) {
@@ -801,12 +815,27 @@ namespace kukadu {
                                   return std::get<0>(p1) > std::get<0>(p2);
                               });
 
+                    cout << "(ComplexController::executeInternal) i enumerated paths" << endl;
+
+
+                    cout << "nothing state clips: " << nothingStateClips.size() << endl;
+                    for(auto& c : nothingStateClips[sensingClip->toString()]) {
+                        if(c.second) {
+                            cout << "nothing state clip: " << c.first << " " << c.second << endl;
+                            cout << *(c.second) << endl;
+                        }
+                    }
+
                     for(auto&  path : possiblePaths) {
 
                         bool pathCanBeChosen = false;
                         double nothingProb = 0.0;
                         auto& resultingState = std::get<1>(path);
                         auto& clipPath = std::get<2>(path);
+
+for(auto& c : clipPath)
+    cout << *c;
+cout << endl;
 
                         // path has to contain more than 1 preparatory action (path here is state -> prep action -> state -> ... -> final state). therefore length
                         // must be at least 4
@@ -821,6 +850,8 @@ namespace kukadu {
                                 }
                             }
 
+                            cout << "(ComplexController::executeInternal) i found a path that may be chosen with prob " << nothingProb << endl;
+
                             if(pathCanBeChosen) {
 
                                 // compute probability for adding a new clip from clip composition (will be referred as creativity in the paper)
@@ -828,6 +859,8 @@ namespace kukadu {
                                 double creativityProb = sigmoid(creativityGamma * pathConfidence * nothingProb + creativityDelta);
                                 KUKADU_DISCRETE_DISTRIBUTION<int> creativityDist({1.0 - creativityProb, creativityProb});
                                 int beCreative = creativityDist(*generator);
+
+                                cout << "(ComplexController::executeInternal) creative: " << beCreative << endl;
 
                                 if(beCreative) {
 
@@ -1379,7 +1412,7 @@ namespace kukadu {
         for(auto cont : controllers) {
             if(first)
                 first = false;
-            else retLabel += " ";
+            else retLabel += "$";
             retLabel += cont->getCaption();
         }
         return retLabel;
@@ -1390,7 +1423,8 @@ namespace kukadu {
 
         int totalSuccProb = 1.0;
         for(auto cont : controllers)
-            totalSuccProb *= 1.0 - cont->getSimFailingProb();
+            if(cont)
+                totalSuccProb *= 1.0 - cont->getSimFailingProb();
         return 1.0 - totalSuccProb;
 
     }

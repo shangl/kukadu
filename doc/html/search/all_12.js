@@ -1,22 +1,14 @@
 var searchData=
 [
-  ['the_20control_20module',['The control module',['../controlpage.html',1,'']]],
-  ['the_20kinematics_20module',['The kinematics module',['../kinematicspage.html',1,'']]],
-  ['the_20machine_20learning_20module',['The machine learning module',['../mlpage.html',1,'']]],
-  ['the_20robot_20module',['The robot module',['../robotpage.html',1,'']]],
-  ['tableconstraint',['TableConstraint',['../classkukadu_1_1TableConstraint.html',1,'kukadu']]],
-  ['terminalcostcomputer',['TerminalCostComputer',['../classkukadu_1_1TerminalCostComputer.html',1,'kukadu']]],
-  ['tictoc',['TicToc',['../classkukadu_1_1TicToc.html',1,'kukadu']]],
-  ['togersonmetriclearner',['TogersonMetricLearner',['../classkukadu_1_1TogersonMetricLearner.html',1,'kukadu']]],
-  ['trafficlightreward',['TrafficLightReward',['../classkukadu_1_1TrafficLightReward.html',1,'kukadu']]],
-  ['trajectory',['Trajectory',['../classkukadu_1_1Trajectory.html',1,'kukadu']]],
-  ['trajectory_5flearner_5finternal',['trajectory_learner_internal',['../structtrajectory__learner__internal.html',1,'']]],
-  ['trajectorybasedreward',['TrajectoryBasedReward',['../classkukadu_1_1TrajectoryBasedReward.html',1,'kukadu']]],
-  ['trajectorycomparator',['TrajectoryComparator',['../classkukadu_1_1TrajectoryComparator.html',1,'kukadu']]],
-  ['trajectoryexecutor',['TrajectoryExecutor',['../classkukadu_1_1TrajectoryExecutor.html',1,'kukadu']]],
-  ['trajectorygenerator',['TrajectoryGenerator',['../classkukadu_1_1TrajectoryGenerator.html',1,'kukadu']]],
-  ['trajectorygenerator',['TrajectoryGenerator',['../classkukadu_1_1TrajectoryGenerator.html#ab8e8192c73d62ba4d5d22151f3c3b1a2',1,'kukadu::TrajectoryGenerator']]],
-  ['treedrawer',['TreeDrawer',['../classkukadu_1_1TreeDrawer.html',1,'kukadu']]],
-  ['tricubekernel',['TricubeKernel',['../classkukadu_1_1TricubeKernel.html#a9b9c6b0452e019ba8f9028e6dce00f64',1,'kukadu::TricubeKernel']]],
-  ['tricubekernel',['TricubeKernel',['../classkukadu_1_1TricubeKernel.html',1,'kukadu']]]
+  ['unset_5fcontour',['unset_contour',['../classkukadu_1_1Gnuplot.html#a6fe8c0d459872698c3531c50cf57be88',1,'kukadu::Gnuplot']]],
+  ['unset_5fgrid',['unset_grid',['../classkukadu_1_1Gnuplot.html#a58316e0929ce39f1a50aefd528ba835e',1,'kukadu::Gnuplot']]],
+  ['unset_5fhidden3d',['unset_hidden3d',['../classkukadu_1_1Gnuplot.html#a4e93a0f9c069b953a70502765d31dc1e',1,'kukadu::Gnuplot']]],
+  ['unset_5flegend',['unset_legend',['../classkukadu_1_1Gnuplot.html#a5c8dab8e316a7d9b316d45f715ff0859',1,'kukadu::Gnuplot']]],
+  ['unset_5fmultiplot',['unset_multiplot',['../classkukadu_1_1Gnuplot.html#a91600bc5fa98295f48440bb211ba89db',1,'kukadu::Gnuplot']]],
+  ['unset_5fsmooth',['unset_smooth',['../classkukadu_1_1Gnuplot.html#abbebd88fffd2654ff192d6222f4d8e65',1,'kukadu::Gnuplot']]],
+  ['unset_5fsurface',['unset_surface',['../classkukadu_1_1Gnuplot.html#a23283eaf224fede9a5a9378f678226a1',1,'kukadu::Gnuplot']]],
+  ['unset_5ftitle',['unset_title',['../classkukadu_1_1Gnuplot.html#a5fc9e87f3c624fbff79a960c66a16bd1',1,'kukadu::Gnuplot']]],
+  ['unset_5fxlogscale',['unset_xlogscale',['../classkukadu_1_1Gnuplot.html#a8d4ff3b840757c7d7e248aa2932dfd9e',1,'kukadu::Gnuplot']]],
+  ['unset_5fylogscale',['unset_ylogscale',['../classkukadu_1_1Gnuplot.html#ab4faf2a5d5572733967ef00b03937a98',1,'kukadu::Gnuplot']]],
+  ['unset_5fzlogscale',['unset_zlogscale',['../classkukadu_1_1Gnuplot.html#a2bccf59dc2f3dc853d45e6f0ebbc33e2',1,'kukadu::Gnuplot']]]
 ];

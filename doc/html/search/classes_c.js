@@ -1,4 +1,4 @@
 var searchData=
 [
-  ['neverendingcolorreward',['NeverendingColorReward',['../classkukadu_1_1NeverendingColorReward.html',1,'kukadu']]]
+  ['openboxfilter',['OpenBoxFilter',['../classkukadu_1_1OpenBoxFilter.html',1,'kukadu']]]
 ];

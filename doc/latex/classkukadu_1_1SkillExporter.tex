@@ -1,0 +1,44 @@
+\hypertarget{classkukadu_1_1SkillExporter}{}\section{kukadu\+:\+:Skill\+Exporter Class Reference}
+\label{classkukadu_1_1SkillExporter}\index{kukadu\+::\+Skill\+Exporter@{kukadu\+::\+Skill\+Exporter}}
+Inheritance diagram for kukadu\+:\+:Skill\+Exporter\+:\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[height=2.000000cm]{classkukadu_1_1SkillExporter}
+\end{center}
+\end{figure}
+\subsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+{\bfseries Skill\+Exporter} (\hyperlink{classkukadu_1_1StorageSingleton}{kukadu\+::\+Storage\+Singleton} \&storage)\hypertarget{classkukadu_1_1SkillExporter_a33f66b1cfaf110b5edc4baf2bb39344f}{}\label{classkukadu_1_1SkillExporter_a33f66b1cfaf110b5edc4baf2bb39344f}
+
+\item 
+std\+::vector$<$ std\+::pair$<$ int, std\+::string $>$ $>$ {\bfseries get\+Skills} ()\hypertarget{classkukadu_1_1SkillExporter_a1b8a9e26dc7e79ee7f1994c3942a316e}{}\label{classkukadu_1_1SkillExporter_a1b8a9e26dc7e79ee7f1994c3942a316e}
+
+\item 
+std\+::vector$<$ std\+::string $>$ {\bfseries get\+Skill\+Hardware} (int skill\+Id)\hypertarget{classkukadu_1_1SkillExporter_a71818361af73be96cc97cdeed8eb235b}{}\label{classkukadu_1_1SkillExporter_a71818361af73be96cc97cdeed8eb235b}
+
+\item 
+std\+::vector$<$ std\+::tuple$<$ long long int, long long int, bool $>$ $>$ {\bfseries get\+Skill\+Executions} (int skill\+Id, long long int start\+Time=0, long long int end\+Time=0)\hypertarget{classkukadu_1_1SkillExporter_a1a6a44d9f015246ffc471aa93cf087a1}{}\label{classkukadu_1_1SkillExporter_a1a6a44d9f015246ffc471aa93cf087a1}
+
+\item 
+std\+::vector$<$ std\+::tuple$<$ long long int, long long int, bool $>$ $>$ {\bfseries get\+Skill\+Executions} (std\+::string skill\+Name, long long int start\+Time=0, long long int end\+Time=0)\hypertarget{classkukadu_1_1SkillExporter_a772cd59c072cf66b604c8b191d6d994d}{}\label{classkukadu_1_1SkillExporter_a772cd59c072cf66b604c8b191d6d994d}
+
+\item 
+void {\bfseries export\+Skill\+Executions} (int skill\+Id, long long int start\+Time, long long int end\+Time, std\+::string folder, bool export\+Module\+Statistics=true, bool compress=true)\hypertarget{classkukadu_1_1SkillExporter_ab77d4a264fb1068b5d5a1428695269bd}{}\label{classkukadu_1_1SkillExporter_ab77d4a264fb1068b5d5a1428695269bd}
+
+\item 
+std\+::pair$<$ std\+::vector$<$ int $>$, std\+::vector$<$ arma\+::mat $>$ $>$ {\bfseries load\+Executions} (std\+::string directory, std\+::vector$<$ long long int $>$ \&start\+Times, std\+::vector$<$ long long int $>$ \&end\+Times, long long int \&time\+Step)\hypertarget{classkukadu_1_1SkillExporter_a6b568f6555511d616aabe230df0d13f8}{}\label{classkukadu_1_1SkillExporter_a6b568f6555511d616aabe230df0d13f8}
+
+\item 
+arma\+::mat {\bfseries compute\+All\+Distances} (std\+::vector$<$ arma\+::mat $>$ \&skill\+Data, bool give\+Feedback=false)\hypertarget{classkukadu_1_1SkillExporter_a342553f038be7360cb60dbd3c2534223}{}\label{classkukadu_1_1SkillExporter_a342553f038be7360cb60dbd3c2534223}
+
+\item 
+double {\bfseries compute\+Distance} (arma\+::mat \&m1, arma\+::mat \&m2)\hypertarget{classkukadu_1_1SkillExporter_a6d1159757fb38d8d69762eddcf2250cb}{}\label{classkukadu_1_1SkillExporter_a6d1159757fb38d8d69762eddcf2250cb}
+
+\end{DoxyCompactItemize}
+
+
+The documentation for this class was generated from the following files\+:\begin{DoxyCompactItemize}
+\item 
+/home/c7031109/iis\+\_\+robot\+\_\+sw/iis\+\_\+catkin\+\_\+ws/src/kukadu/include/kukadu/manipulation/skillexporter.\+hpp\item 
+/home/c7031109/iis\+\_\+robot\+\_\+sw/iis\+\_\+catkin\+\_\+ws/src/kukadu/src/manipulation/skillexporter.\+cpp\end{DoxyCompactItemize}

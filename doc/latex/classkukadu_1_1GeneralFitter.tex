@@ -1,6 +1,5 @@
-\hypertarget{classkukadu_1_1GeneralFitter}{\section{kukadu\-:\-:General\-Fitter Class Reference}
-\label{classkukadu_1_1GeneralFitter}\index{kukadu\-::\-General\-Fitter@{kukadu\-::\-General\-Fitter}}
-}
+\hypertarget{classkukadu_1_1GeneralFitter}{}\section{kukadu\+:\+:General\+Fitter Class Reference}
+\label{classkukadu_1_1GeneralFitter}\index{kukadu\+::\+General\+Fitter@{kukadu\+::\+General\+Fitter}}
 
 
 Provides the generic part of the linear regression methods.  
@@ -8,25 +7,25 @@ Provides the generic part of the linear regression methods.
 
 
 
-{\ttfamily \#include $<$generalfitter.\-hpp$>$}
+{\ttfamily \#include $<$fitting.\+hpp$>$}
 
 \subsection*{Public Member Functions}
 \begin{DoxyCompactItemize}
 \item 
-\hyperlink{classkukadu_1_1GeneralFitter_a6546135463b8ae78e707a5538166d545}{General\-Fitter} (arma\-::vec samples\-X, arma\-::vec samples\-Y, int sample\-Count, \hyperlink{classkukadu_1_1TrajectoryGenerator}{Trajectory\-Generator} $\ast$traj\-Gen)
+\hyperlink{classkukadu_1_1GeneralFitter_a6546135463b8ae78e707a5538166d545}{General\+Fitter} (arma\+::vec samplesX, arma\+::vec samplesY, int sample\+Count, \hyperlink{classkukadu_1_1TrajectoryGenerator}{Trajectory\+Generator} $\ast$traj\+Gen)
 \begin{DoxyCompactList}\small\item\em constructor \end{DoxyCompactList}\item 
-\hypertarget{classkukadu_1_1GeneralFitter_ac87a8f6d6e036c424dd022808876421f}{int \hyperlink{classkukadu_1_1GeneralFitter_ac87a8f6d6e036c424dd022808876421f}{get\-Basis\-Function\-Count} ()}\label{classkukadu_1_1GeneralFitter_ac87a8f6d6e036c424dd022808876421f}
+int \hyperlink{classkukadu_1_1GeneralFitter_ac87a8f6d6e036c424dd022808876421f}{get\+Basis\+Function\+Count} ()\hypertarget{classkukadu_1_1GeneralFitter_ac87a8f6d6e036c424dd022808876421f}{}\label{classkukadu_1_1GeneralFitter_ac87a8f6d6e036c424dd022808876421f}
 
 \begin{DoxyCompactList}\small\item\em returns the number of basis functions \end{DoxyCompactList}\item 
-\hypertarget{classkukadu_1_1GeneralFitter_ab5aad99091bf484941090ce2dcaf9881}{int \hyperlink{classkukadu_1_1GeneralFitter_ab5aad99091bf484941090ce2dcaf9881}{get\-Sample\-Count} ()}\label{classkukadu_1_1GeneralFitter_ab5aad99091bf484941090ce2dcaf9881}
+int \hyperlink{classkukadu_1_1GeneralFitter_ab5aad99091bf484941090ce2dcaf9881}{get\+Sample\+Count} ()\hypertarget{classkukadu_1_1GeneralFitter_ab5aad99091bf484941090ce2dcaf9881}{}\label{classkukadu_1_1GeneralFitter_ab5aad99091bf484941090ce2dcaf9881}
 
 \begin{DoxyCompactList}\small\item\em returns the number of samples \end{DoxyCompactList}\item 
-\hypertarget{classkukadu_1_1GeneralFitter_ad83ff2da0b13813710684596ee4e28df}{arma\-::vec \hyperlink{classkukadu_1_1GeneralFitter_ad83ff2da0b13813710684596ee4e28df}{compute\-Lin\-Fit\-Coefficients} ()}\label{classkukadu_1_1GeneralFitter_ad83ff2da0b13813710684596ee4e28df}
+arma\+::vec \hyperlink{classkukadu_1_1GeneralFitter_ad83ff2da0b13813710684596ee4e28df}{compute\+Lin\+Fit\+Coefficients} ()\hypertarget{classkukadu_1_1GeneralFitter_ad83ff2da0b13813710684596ee4e28df}{}\label{classkukadu_1_1GeneralFitter_ad83ff2da0b13813710684596ee4e28df}
 
 \begin{DoxyCompactList}\small\item\em performs linear regression and returns vector of coefficients corresponding to the basis functions \end{DoxyCompactList}\item 
-arma\-::vec \hyperlink{classkukadu_1_1GeneralFitter_ababdab99ea68030d3fa7b5cd692e4372}{compute\-Lin\-Fit\-Coefficients} (arma\-::mat des\-Mat)
+arma\+::vec \hyperlink{classkukadu_1_1GeneralFitter_ababdab99ea68030d3fa7b5cd692e4372}{compute\+Lin\+Fit\+Coefficients} (arma\+::mat des\+Mat)
 \begin{DoxyCompactList}\small\item\em performs linear regression and returns vector of coefficients corresponding to the basis functions by explicitly taking the design matrix as parameter \end{DoxyCompactList}\item 
-\hypertarget{classkukadu_1_1GeneralFitter_aa1b7d37f59d0c86185425ec550e6c1b0}{arma\-::mat \hyperlink{classkukadu_1_1GeneralFitter_aa1b7d37f59d0c86185425ec550e6c1b0}{compute\-Design\-Matrix} ()}\label{classkukadu_1_1GeneralFitter_aa1b7d37f59d0c86185425ec550e6c1b0}
+arma\+::mat \hyperlink{classkukadu_1_1GeneralFitter_aa1b7d37f59d0c86185425ec550e6c1b0}{compute\+Design\+Matrix} ()\hypertarget{classkukadu_1_1GeneralFitter_aa1b7d37f59d0c86185425ec550e6c1b0}{}\label{classkukadu_1_1GeneralFitter_aa1b7d37f59d0c86185425ec550e6c1b0}
 
 \begin{DoxyCompactList}\small\item\em computes design matrix \end{DoxyCompactList}\end{DoxyCompactItemize}
 
@@ -34,56 +33,56 @@ arma\-::vec \hyperlink{classkukadu_1_1GeneralFitter_ababdab99ea68030d3fa7b5cd692
 \subsection{Detailed Description}
 Provides the generic part of the linear regression methods. 
 
-This class provides implements the generic part of the linear regression method. It is independent of the specific choice of basis functions. These basis functions are defined via the \hyperlink{classkukadu_1_1TrajectoryGenerator}{Trajectory\-Generator} class. 
+This class provides implements the generic part of the linear regression method. It is independent of the specific choice of basis functions. These basis functions are defined via the \hyperlink{classkukadu_1_1TrajectoryGenerator}{Trajectory\+Generator} class. 
 
 \subsection{Constructor \& Destructor Documentation}
-\hypertarget{classkukadu_1_1GeneralFitter_a6546135463b8ae78e707a5538166d545}{\index{kukadu\-::\-General\-Fitter@{kukadu\-::\-General\-Fitter}!General\-Fitter@{General\-Fitter}}
-\index{General\-Fitter@{General\-Fitter}!kukadu::GeneralFitter@{kukadu\-::\-General\-Fitter}}
-\subsubsection[{General\-Fitter}]{\setlength{\rightskip}{0pt plus 5cm}kukadu\-::\-General\-Fitter\-::\-General\-Fitter (
+\index{kukadu\+::\+General\+Fitter@{kukadu\+::\+General\+Fitter}!General\+Fitter@{General\+Fitter}}
+\index{General\+Fitter@{General\+Fitter}!kukadu\+::\+General\+Fitter@{kukadu\+::\+General\+Fitter}}
+\subsubsection[{\texorpdfstring{General\+Fitter(arma\+::vec samples\+X, arma\+::vec samples\+Y, int sample\+Count, Trajectory\+Generator $\ast$traj\+Gen)}{GeneralFitter(arma::vec samplesX, arma::vec samplesY, int sampleCount, TrajectoryGenerator *trajGen)}}]{\setlength{\rightskip}{0pt plus 5cm}kukadu\+::\+General\+Fitter\+::\+General\+Fitter (
 \begin{DoxyParamCaption}
-\item[{arma\-::vec}]{samples\-X, }
-\item[{arma\-::vec}]{samples\-Y, }
-\item[{int}]{sample\-Count, }
-\item[{{\bf Trajectory\-Generator} $\ast$}]{traj\-Gen}
+\item[{arma\+::vec}]{samplesX, }
+\item[{arma\+::vec}]{samplesY, }
+\item[{int}]{sample\+Count, }
+\item[{{\bf Trajectory\+Generator} $\ast$}]{traj\+Gen}
 \end{DoxyParamCaption}
-)}}\label{classkukadu_1_1GeneralFitter_a6546135463b8ae78e707a5538166d545}
+)}\hypertarget{classkukadu_1_1GeneralFitter_a6546135463b8ae78e707a5538166d545}{}\label{classkukadu_1_1GeneralFitter_a6546135463b8ae78e707a5538166d545}
 
 
 constructor 
 
 
 \begin{DoxyParams}{Parameters}
-{\em samples\-X} & vector of samples, where samples\-X specifies the x-\/axis \\
+{\em samplesX} & vector of samples, where samplesX specifies the x-\/axis \\
 \hline
-{\em samples\-Y} & vector of samples, where samples\-Y specifies the y-\/axis \\
+{\em samplesY} & vector of samples, where samplesY specifies the y-\/axis \\
 \hline
-{\em sample\-Count} & number of sample points \\
+{\em sample\+Count} & number of sample points \\
 \hline
-{\em traj\-Gen} & \hyperlink{classkukadu_1_1TrajectoryGenerator}{Trajectory\-Generator} instance defining the basis functions \\
+{\em traj\+Gen} & \hyperlink{classkukadu_1_1TrajectoryGenerator}{Trajectory\+Generator} instance defining the basis functions \\
 \hline
 \end{DoxyParams}
 
 
 \subsection{Member Function Documentation}
-\hypertarget{classkukadu_1_1GeneralFitter_ababdab99ea68030d3fa7b5cd692e4372}{\index{kukadu\-::\-General\-Fitter@{kukadu\-::\-General\-Fitter}!compute\-Lin\-Fit\-Coefficients@{compute\-Lin\-Fit\-Coefficients}}
-\index{compute\-Lin\-Fit\-Coefficients@{compute\-Lin\-Fit\-Coefficients}!kukadu::GeneralFitter@{kukadu\-::\-General\-Fitter}}
-\subsubsection[{compute\-Lin\-Fit\-Coefficients}]{\setlength{\rightskip}{0pt plus 5cm}arma\-::vec kukadu\-::\-General\-Fitter\-::compute\-Lin\-Fit\-Coefficients (
+\index{kukadu\+::\+General\+Fitter@{kukadu\+::\+General\+Fitter}!compute\+Lin\+Fit\+Coefficients@{compute\+Lin\+Fit\+Coefficients}}
+\index{compute\+Lin\+Fit\+Coefficients@{compute\+Lin\+Fit\+Coefficients}!kukadu\+::\+General\+Fitter@{kukadu\+::\+General\+Fitter}}
+\subsubsection[{\texorpdfstring{compute\+Lin\+Fit\+Coefficients(arma\+::mat des\+Mat)}{computeLinFitCoefficients(arma::mat desMat)}}]{\setlength{\rightskip}{0pt plus 5cm}arma\+::vec kukadu\+::\+General\+Fitter\+::compute\+Lin\+Fit\+Coefficients (
 \begin{DoxyParamCaption}
-\item[{arma\-::mat}]{des\-Mat}
+\item[{arma\+::mat}]{des\+Mat}
 \end{DoxyParamCaption}
-)}}\label{classkukadu_1_1GeneralFitter_ababdab99ea68030d3fa7b5cd692e4372}
+)}\hypertarget{classkukadu_1_1GeneralFitter_ababdab99ea68030d3fa7b5cd692e4372}{}\label{classkukadu_1_1GeneralFitter_ababdab99ea68030d3fa7b5cd692e4372}
 
 
 performs linear regression and returns vector of coefficients corresponding to the basis functions by explicitly taking the design matrix as parameter 
 
 
 \begin{DoxyParams}{Parameters}
-{\em des\-Mat} & design matrix needed for linear regression \\
+{\em des\+Mat} & design matrix needed for linear regression \\
 \hline
 \end{DoxyParams}
 
 
-The documentation for this class was generated from the following files\-:\begin{DoxyCompactItemize}
+The documentation for this class was generated from the following files\+:\begin{DoxyCompactItemize}
 \item 
-/home/c7031109/iis\-\_\-robot\-\_\-sw/iis\-\_\-catkin\-\_\-ws/src/kukadu/include/kukadu/learning/regression/generalfitter.\-hpp\item 
-/home/c7031109/iis\-\_\-robot\-\_\-sw/iis\-\_\-catkin\-\_\-ws/src/kukadu/src/learning/generalfitter.\-cpp\end{DoxyCompactItemize}
+/home/c7031109/iis\+\_\+robot\+\_\+sw/iis\+\_\+catkin\+\_\+ws/src/kukadu/include/kukadu/learning/regression/fitting.\+hpp\item 
+/home/c7031109/iis\+\_\+robot\+\_\+sw/iis\+\_\+catkin\+\_\+ws/src/kukadu/src/learning/regression/fitting.\+cpp\end{DoxyCompactItemize}

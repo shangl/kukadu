@@ -1,0 +1,54 @@
+\hypertarget{classkukadu_1_1Komo}{}\section{kukadu\+:\+:Komo Class Reference}
+\label{classkukadu_1_1Komo}\index{kukadu\+::\+Komo@{kukadu\+::\+Komo}}
+Inheritance diagram for kukadu\+:\+:Komo\+:\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[height=2.649842cm]{classkukadu_1_1Komo}
+\end{center}
+\end{figure}
+\subsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+{\bfseries Komo} (K\+U\+K\+A\+D\+U\+\_\+\+S\+H\+A\+R\+E\+D\+\_\+\+P\+TR$<$ \hyperlink{classkukadu_1_1ControlQueue}{Control\+Queue} $>$ queue, std\+::string config\+Path, std\+::string mt\+Config\+Path, std\+::string active\+Joints\+Prefix, bool accept\+Collision=false)\hypertarget{classkukadu_1_1Komo_a9d41f27b5273b018ea246e44b52fcf0a}{}\label{classkukadu_1_1Komo_a9d41f27b5273b018ea246e44b52fcf0a}
+
+\item 
+virtual std\+::vector$<$ arma\+::vec $>$ {\bfseries plan\+Joint\+Trajectory} (std\+::vector$<$ arma\+::vec $>$ intermediate\+Joints)\hypertarget{classkukadu_1_1Komo_a322dfb4859b9f5b40d5ec67af8403a6d}{}\label{classkukadu_1_1Komo_a322dfb4859b9f5b40d5ec67af8403a6d}
+
+\item 
+virtual std\+::vector$<$ arma\+::vec $>$ {\bfseries plan\+Cartesian\+Trajectory} (std\+::vector$<$ geometry\+\_\+msgs\+::\+Pose $>$ intermediate\+Poses, bool smooth\+Cartesians=false, bool use\+Current\+Robot\+State=true)\hypertarget{classkukadu_1_1Komo_a3a01464dfa62117fa2f3164fd9b6d228}{}\label{classkukadu_1_1Komo_a3a01464dfa62117fa2f3164fd9b6d228}
+
+\item 
+virtual std\+::vector$<$ arma\+::vec $>$ {\bfseries plan\+Cartesian\+Trajectory} (arma\+::vec start\+Joints, std\+::vector$<$ geometry\+\_\+msgs\+::\+Pose $>$ intermediate\+Poses, bool smooth\+Cartesians=false, bool use\+Current\+Robot\+State=true)\hypertarget{classkukadu_1_1Komo_a938f5ef40492b0ff82993f06123bdb2b}{}\label{classkukadu_1_1Komo_a938f5ef40492b0ff82993f06123bdb2b}
+
+\item 
+geometry\+\_\+msgs\+::\+Pose {\bfseries compute\+Fk} (arma\+::vec joints)\hypertarget{classkukadu_1_1Komo_a34827d5919ab2c771fab7a53d83006c7}{}\label{classkukadu_1_1Komo_a34827d5919ab2c771fab7a53d83006c7}
+
+\item 
+virtual geometry\+\_\+msgs\+::\+Pose {\bfseries compute\+Fk} (std\+::vector$<$ double $>$ joint\+State)\hypertarget{classkukadu_1_1Komo_a9081baf7213db3e0c6d903d8d5f81d8f}{}\label{classkukadu_1_1Komo_a9081baf7213db3e0c6d903d8d5f81d8f}
+
+\item 
+virtual std\+::vector$<$ arma\+::vec $>$ {\bfseries compute\+Ik} (std\+::vector$<$ double $>$ current\+Joint\+State, const geometry\+\_\+msgs\+::\+Pose \&goal)\hypertarget{classkukadu_1_1Komo_ac5024e3bd49c0a741640e35bf841f0bd}{}\label{classkukadu_1_1Komo_ac5024e3bd49c0a741640e35bf841f0bd}
+
+\item 
+virtual bool {\bfseries is\+Colliding} (arma\+::vec joint\+State, geometry\+\_\+msgs\+::\+Pose pose)\hypertarget{classkukadu_1_1Komo_afd21f2d6c4046379ffd93d8bd228f5a1}{}\label{classkukadu_1_1Komo_afd21f2d6c4046379ffd93d8bd228f5a1}
+
+\item 
+virtual Eigen\+::\+Matrix\+Xd {\bfseries get\+Jacobian} (std\+::vector$<$ double $>$ joint\+State=std\+::vector$<$ double $>$())\hypertarget{classkukadu_1_1Komo_af92fedee721583ea9a44ce147e537991}{}\label{classkukadu_1_1Komo_af92fedee721583ea9a44ce147e537991}
+
+\item 
+virtual std\+::string {\bfseries get\+Cartesian\+Link\+Name} ()\hypertarget{classkukadu_1_1Komo_af0bc25dedd4a41275de5fddc3fb4d7af}{}\label{classkukadu_1_1Komo_af0bc25dedd4a41275de5fddc3fb4d7af}
+
+\item 
+virtual std\+::string {\bfseries get\+Cartesian\+Reference\+Frame} ()\hypertarget{classkukadu_1_1Komo_ac8b1d5695e865adc313937da5eab629a}{}\label{classkukadu_1_1Komo_ac8b1d5695e865adc313937da5eab629a}
+
+\item 
+virtual void {\bfseries set\+Speed} (double speed)\hypertarget{classkukadu_1_1Komo_abb008bb3e79d95c831e8924c53bfe5c9}{}\label{classkukadu_1_1Komo_abb008bb3e79d95c831e8924c53bfe5c9}
+
+\end{DoxyCompactItemize}
+\subsection*{Additional Inherited Members}
+
+
+The documentation for this class was generated from the following files\+:\begin{DoxyCompactItemize}
+\item 
+/home/c7031109/iis\+\_\+robot\+\_\+sw/iis\+\_\+catkin\+\_\+ws/src/kukadu/include/kukadu/planning/komo.\+hpp\item 
+/home/c7031109/iis\+\_\+robot\+\_\+sw/iis\+\_\+catkin\+\_\+ws/src/kukadu/src/planning/komo.\+cpp\end{DoxyCompactItemize}

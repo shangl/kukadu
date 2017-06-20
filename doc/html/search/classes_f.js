@@ -1,5 +1,5 @@
 var searchData=
 [
-  ['quadratickernel',['QuadraticKernel',['../classkukadu_1_1QuadraticKernel.html',1,'kukadu']]],
-  ['querypoint',['QueryPoint',['../classkukadu_1_1QueryPoint.html',1,'kukadu']]]
+  ['reward',['Reward',['../classkukadu_1_1Reward.html',1,'kukadu']]],
+  ['rosschunk',['RosSchunk',['../classRosSchunk.html',1,'']]]
 ];

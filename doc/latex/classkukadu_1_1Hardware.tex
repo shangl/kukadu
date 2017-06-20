@@ -1,0 +1,80 @@
+\hypertarget{classkukadu_1_1Hardware}{}\section{kukadu\+:\+:Hardware Class Reference}
+\label{classkukadu_1_1Hardware}\index{kukadu\+::\+Hardware@{kukadu\+::\+Hardware}}
+Inheritance diagram for kukadu\+:\+:Hardware\+:\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[height=3.763441cm]{classkukadu_1_1Hardware}
+\end{center}
+\end{figure}
+\subsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+{\bfseries Hardware} (\hyperlink{classkukadu_1_1StorageSingleton}{Storage\+Singleton} \&db\+Storage, int hardware\+Class, int hardware\+Type, std\+::string hardware\+Type\+Name, int hardware\+Instance\+Id, std\+::string hardware\+Instance\+Name)\hypertarget{classkukadu_1_1Hardware_af7a1355a6d8c10e68b7bfd783bc9d8a2}{}\label{classkukadu_1_1Hardware_af7a1355a6d8c10e68b7bfd783bc9d8a2}
+
+\item 
+virtual void {\bfseries install} ()\hypertarget{classkukadu_1_1Hardware_a694ca4d7b1cb52b17d2bdb8a4c64d16c}{}\label{classkukadu_1_1Hardware_a694ca4d7b1cb52b17d2bdb8a4c64d16c}
+
+\item 
+int {\bfseries get\+Hardware\+Type} ()\hypertarget{classkukadu_1_1Hardware_a34e793c453fe444d98905f7a64d1720b}{}\label{classkukadu_1_1Hardware_a34e793c453fe444d98905f7a64d1720b}
+
+\item 
+int {\bfseries get\+Hardware\+Class} ()\hypertarget{classkukadu_1_1Hardware_a33e1b7ba05ccb5f7b9f9f7c9455efa4e}{}\label{classkukadu_1_1Hardware_a33e1b7ba05ccb5f7b9f9f7c9455efa4e}
+
+\item 
+int {\bfseries get\+Hardware\+Instance} ()\hypertarget{classkukadu_1_1Hardware_a7739a3df264205b2587f37c1828c8fb6}{}\label{classkukadu_1_1Hardware_a7739a3df264205b2587f37c1828c8fb6}
+
+\item 
+std\+::string {\bfseries get\+Hardware\+Type\+Name} ()\hypertarget{classkukadu_1_1Hardware_a1353994ae509caf0e5c8d5f112d82e66}{}\label{classkukadu_1_1Hardware_a1353994ae509caf0e5c8d5f112d82e66}
+
+\item 
+std\+::string {\bfseries get\+Hardware\+Instance\+Name} ()\hypertarget{classkukadu_1_1Hardware_a994090c6bf74f03a91a44df6eeb41703}{}\label{classkukadu_1_1Hardware_a994090c6bf74f03a91a44df6eeb41703}
+
+\item 
+virtual void {\bfseries store\+Current\+Sensor\+Data\+To\+Database} ()=0\hypertarget{classkukadu_1_1Hardware_aa5f6000a535e8307d78384c6fb1fe2e3}{}\label{classkukadu_1_1Hardware_aa5f6000a535e8307d78384c6fb1fe2e3}
+
+\item 
+virtual double {\bfseries get\+Preferred\+Polling\+Frequency} ()=0\hypertarget{classkukadu_1_1Hardware_ad51f511da20c43db040e0f34e50eba51}{}\label{classkukadu_1_1Hardware_ad51f511da20c43db040e0f34e50eba51}
+
+\item 
+virtual std\+::vector$<$ std\+::pair$<$ long long int, arma\+::vec $>$ $>$ {\bfseries load\+Data} (long long int start\+Time, long long int end\+Time, long long int max\+Total\+Duration=3600000, long long int max\+Time\+Step\+Difference=5000)=0\hypertarget{classkukadu_1_1Hardware_a4ea17ba6cb91d1a5f53e5b2c96c0cd8c}{}\label{classkukadu_1_1Hardware_a4ea17ba6cb91d1a5f53e5b2c96c0cd8c}
+
+\end{DoxyCompactItemize}
+\subsection*{Static Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+static int {\bfseries load\+Type\+Id\+From\+Name} (const std\+::string \&type\+Name)\hypertarget{classkukadu_1_1Hardware_a553cd9394cc78773c0effb7d80f0ee16}{}\label{classkukadu_1_1Hardware_a553cd9394cc78773c0effb7d80f0ee16}
+
+\item 
+static int {\bfseries load\+Instance\+Id\+From\+Name} (const std\+::string \&instance\+Name)\hypertarget{classkukadu_1_1Hardware_ac1f3b6662e4446c2dd67d702fccc8b7e}{}\label{classkukadu_1_1Hardware_ac1f3b6662e4446c2dd67d702fccc8b7e}
+
+\item 
+static int {\bfseries load\+Type\+Id\+From\+Instance\+Id} (const int \&instance\+Id)\hypertarget{classkukadu_1_1Hardware_a305c4f348e988d76e2cae7eb9105fec1}{}\label{classkukadu_1_1Hardware_a305c4f348e988d76e2cae7eb9105fec1}
+
+\item 
+static int {\bfseries load\+Type\+Id\+From\+Instance\+Name} (const std\+::string \&instance\+Name)\hypertarget{classkukadu_1_1Hardware_a6e5a6e1f250a02df3e9766801f82d255}{}\label{classkukadu_1_1Hardware_a6e5a6e1f250a02df3e9766801f82d255}
+
+\item 
+static int {\bfseries load\+Or\+Create\+Type\+Id\+From\+Name} (const std\+::string \&type\+Name)\hypertarget{classkukadu_1_1Hardware_aeb3c6a1ca42389cc341aee61c633daba}{}\label{classkukadu_1_1Hardware_aeb3c6a1ca42389cc341aee61c633daba}
+
+\item 
+static int {\bfseries load\+Or\+Create\+Instance\+Id\+From\+Name} (const std\+::string \&instance\+Name)\hypertarget{classkukadu_1_1Hardware_abfeecedf0a480422ea9d47da4f228c7b}{}\label{classkukadu_1_1Hardware_abfeecedf0a480422ea9d47da4f228c7b}
+
+\item 
+static std\+::string {\bfseries load\+Type\+Name\+From\+Instance\+Name} (const std\+::string \&instance\+Name)\hypertarget{classkukadu_1_1Hardware_a58f76f5117554f7f2613cdb082addf22}{}\label{classkukadu_1_1Hardware_a58f76f5117554f7f2613cdb082addf22}
+
+\end{DoxyCompactItemize}
+\subsection*{Protected Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+virtual void {\bfseries install\+Hardware\+Type\+Internal} ()=0\hypertarget{classkukadu_1_1Hardware_af353cdce2e2bb25ec341374a30b6b85a}{}\label{classkukadu_1_1Hardware_af353cdce2e2bb25ec341374a30b6b85a}
+
+\item 
+virtual void {\bfseries install\+Hardware\+Instance\+Internal} ()=0\hypertarget{classkukadu_1_1Hardware_a2636d7484a9435d8131fcf4ddff36fed}{}\label{classkukadu_1_1Hardware_a2636d7484a9435d8131fcf4ddff36fed}
+
+\end{DoxyCompactItemize}
+
+
+The documentation for this class was generated from the following files\+:\begin{DoxyCompactItemize}
+\item 
+/home/c7031109/iis\+\_\+robot\+\_\+sw/iis\+\_\+catkin\+\_\+ws/src/kukadu/include/kukadu/robot/hardware.\+hpp\item 
+/home/c7031109/iis\+\_\+robot\+\_\+sw/iis\+\_\+catkin\+\_\+ws/src/kukadu/src/robot/hardware.\+cpp\end{DoxyCompactItemize}

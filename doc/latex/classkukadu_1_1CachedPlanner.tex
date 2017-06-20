@@ -1,0 +1,87 @@
+\hypertarget{classkukadu_1_1CachedPlanner}{}\section{kukadu\+:\+:Cached\+Planner Class Reference}
+\label{classkukadu_1_1CachedPlanner}\index{kukadu\+::\+Cached\+Planner@{kukadu\+::\+Cached\+Planner}}
+Inheritance diagram for kukadu\+:\+:Cached\+Planner\+:\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[height=3.000000cm]{classkukadu_1_1CachedPlanner}
+\end{center}
+\end{figure}
+\subsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+{\bfseries Cached\+Planner} (\hyperlink{classkukadu_1_1StorageSingleton}{Storage\+Singleton} \&storage, K\+U\+K\+A\+D\+U\+\_\+\+S\+H\+A\+R\+E\+D\+\_\+\+P\+TR$<$ \hyperlink{classkukadu_1_1ControlQueue}{Control\+Queue} $>$ queue, K\+U\+K\+A\+D\+U\+\_\+\+S\+H\+A\+R\+E\+D\+\_\+\+P\+TR$<$ \hyperlink{classkukadu_1_1PathPlanner}{Path\+Planner} $>$ actual\+Planner)\hypertarget{classkukadu_1_1CachedPlanner_a8bb67cd5a15eb7ee0d6c1b2b3c021d62}{}\label{classkukadu_1_1CachedPlanner_a8bb67cd5a15eb7ee0d6c1b2b3c021d62}
+
+\item 
+void {\bfseries add\+Constraint} (K\+U\+K\+A\+D\+U\+\_\+\+S\+H\+A\+R\+E\+D\+\_\+\+P\+TR$<$ \hyperlink{classkukadu_1_1Constraint}{Constraint} $>$ constraint)\hypertarget{classkukadu_1_1CachedPlanner_a1d120556fae581cd672b092e55c76745}{}\label{classkukadu_1_1CachedPlanner_a1d120556fae581cd672b092e55c76745}
+
+\item 
+void {\bfseries remove\+Constraint} (K\+U\+K\+A\+D\+U\+\_\+\+S\+H\+A\+R\+E\+D\+\_\+\+P\+TR$<$ \hyperlink{classkukadu_1_1Constraint}{Constraint} $>$ constraint)\hypertarget{classkukadu_1_1CachedPlanner_a0eb037de2ecb5faddd9987a343b9eb40}{}\label{classkukadu_1_1CachedPlanner_a0eb037de2ecb5faddd9987a343b9eb40}
+
+\item 
+int {\bfseries get\+Constraints\+Count} ()\hypertarget{classkukadu_1_1CachedPlanner_ac2572fc2dc768b4293a007ffcf08d172}{}\label{classkukadu_1_1CachedPlanner_ac2572fc2dc768b4293a007ffcf08d172}
+
+\item 
+int {\bfseries get\+Constraint\+Idx} (K\+U\+K\+A\+D\+U\+\_\+\+S\+H\+A\+R\+E\+D\+\_\+\+P\+TR$<$ \hyperlink{classkukadu_1_1Constraint}{Constraint} $>$ constraint)\hypertarget{classkukadu_1_1CachedPlanner_af40f75c4480325970354b9865ff1b9f4}{}\label{classkukadu_1_1CachedPlanner_af40f75c4480325970354b9865ff1b9f4}
+
+\item 
+K\+U\+K\+A\+D\+U\+\_\+\+S\+H\+A\+R\+E\+D\+\_\+\+P\+TR$<$ \hyperlink{classkukadu_1_1Constraint}{Constraint} $>$ {\bfseries get\+Constraint\+By\+Idx} (int idx)\hypertarget{classkukadu_1_1CachedPlanner_a82fe109361ba1af2d459fda685899596}{}\label{classkukadu_1_1CachedPlanner_a82fe109361ba1af2d459fda685899596}
+
+\item 
+bool {\bfseries check\+All\+Constraints} (arma\+::vec current\+State, geometry\+\_\+msgs\+::\+Pose pose)\hypertarget{classkukadu_1_1CachedPlanner_a16dabf47c87ffe77ede8301dfec312db}{}\label{classkukadu_1_1CachedPlanner_a16dabf47c87ffe77ede8301dfec312db}
+
+\item 
+virtual bool {\bfseries is\+Colliding} (arma\+::vec joint\+State, geometry\+\_\+msgs\+::\+Pose pose)\hypertarget{classkukadu_1_1CachedPlanner_af6ebcd64b0ff6f4d4f2221e857bf23b3}{}\label{classkukadu_1_1CachedPlanner_af6ebcd64b0ff6f4d4f2221e857bf23b3}
+
+\item 
+virtual Eigen\+::\+Matrix\+Xd {\bfseries get\+Jacobian} (std\+::vector$<$ double $>$ joint\+State=std\+::vector$<$ double $>$())\hypertarget{classkukadu_1_1CachedPlanner_a7aa487c1d8452abb5563584294f9c77c}{}\label{classkukadu_1_1CachedPlanner_a7aa487c1d8452abb5563584294f9c77c}
+
+\item 
+virtual std\+::vector$<$ arma\+::vec $>$ {\bfseries compute\+Ik} (arma\+::vec current\+Joint\+State, const geometry\+\_\+msgs\+::\+Pose \&goal)\hypertarget{classkukadu_1_1CachedPlanner_ac8ba6abe26d404f713affec8e8ebc9e9}{}\label{classkukadu_1_1CachedPlanner_ac8ba6abe26d404f713affec8e8ebc9e9}
+
+\item 
+virtual std\+::vector$<$ arma\+::vec $>$ {\bfseries compute\+Ik} (std\+::vector$<$ double $>$ current\+Joint\+State, const geometry\+\_\+msgs\+::\+Pose \&goal)\hypertarget{classkukadu_1_1CachedPlanner_ab5c0a4e18246ad13eb3ebf776224e65c}{}\label{classkukadu_1_1CachedPlanner_ab5c0a4e18246ad13eb3ebf776224e65c}
+
+\item 
+virtual geometry\+\_\+msgs\+::\+Pose {\bfseries compute\+Fk} (std\+::vector$<$ double $>$ joint\+State)\hypertarget{classkukadu_1_1CachedPlanner_a02e459ee30a7bf208892d330e4f7f09d}{}\label{classkukadu_1_1CachedPlanner_a02e459ee30a7bf208892d330e4f7f09d}
+
+\item 
+virtual void {\bfseries set\+Joint\+Names} (std\+::vector$<$ std\+::string $>$ joint\+Names)\hypertarget{classkukadu_1_1CachedPlanner_a21fb3c3bd2048b68cfc740e764141c62}{}\label{classkukadu_1_1CachedPlanner_a21fb3c3bd2048b68cfc740e764141c62}
+
+\item 
+virtual std\+::vector$<$ std\+::string $>$ {\bfseries get\+Joint\+Names} ()\hypertarget{classkukadu_1_1CachedPlanner_ae9aeaed93ce4de78da002ae9db531043}{}\label{classkukadu_1_1CachedPlanner_ae9aeaed93ce4de78da002ae9db531043}
+
+\item 
+virtual std\+::string {\bfseries get\+Cartesian\+Link\+Name} ()\hypertarget{classkukadu_1_1CachedPlanner_a0e29aaf0705d572a316ba74915f9a186}{}\label{classkukadu_1_1CachedPlanner_a0e29aaf0705d572a316ba74915f9a186}
+
+\item 
+virtual std\+::string {\bfseries get\+Cartesian\+Reference\+Frame} ()\hypertarget{classkukadu_1_1CachedPlanner_a836c9f6f1ab03859e4348243d44e71a2}{}\label{classkukadu_1_1CachedPlanner_a836c9f6f1ab03859e4348243d44e71a2}
+
+\item 
+void {\bfseries set\+Check\+Collisions} (bool collision)\hypertarget{classkukadu_1_1CachedPlanner_a0138d95efdd1741168de95f5cdaace35}{}\label{classkukadu_1_1CachedPlanner_a0138d95efdd1741168de95f5cdaace35}
+
+\item 
+bool {\bfseries get\+Check\+Collision} ()\hypertarget{classkukadu_1_1CachedPlanner_aa26b96b8e0dbd4190c6126aa417e6b73}{}\label{classkukadu_1_1CachedPlanner_aa26b96b8e0dbd4190c6126aa417e6b73}
+
+\item 
+virtual void {\bfseries set\+Speed} (double speed)\hypertarget{classkukadu_1_1CachedPlanner_ad1e90b2f4b34e83a8c04644fa4d676a3}{}\label{classkukadu_1_1CachedPlanner_ad1e90b2f4b34e83a8c04644fa4d676a3}
+
+\item 
+virtual std\+::vector$<$ arma\+::vec $>$ {\bfseries smooth\+Joint\+Plan} (std\+::vector$<$ arma\+::vec $>$ joint\+Plan, arma\+::vec max\+Velocities, double cycle\+Time)\hypertarget{classkukadu_1_1CachedPlanner_ad09864c1ca8950ecc3dbf2170772f074}{}\label{classkukadu_1_1CachedPlanner_ad09864c1ca8950ecc3dbf2170772f074}
+
+\item 
+virtual std\+::vector$<$ arma\+::vec $>$ {\bfseries plan\+Joint\+Trajectory} (std\+::vector$<$ arma\+::vec $>$ intermediate\+Joints)\hypertarget{classkukadu_1_1CachedPlanner_a371489e4e0ff35a1a832aed99dea7f79}{}\label{classkukadu_1_1CachedPlanner_a371489e4e0ff35a1a832aed99dea7f79}
+
+\item 
+virtual std\+::vector$<$ arma\+::vec $>$ {\bfseries plan\+Cartesian\+Trajectory} (std\+::vector$<$ geometry\+\_\+msgs\+::\+Pose $>$ intermediate\+Poses, bool smooth\+Cartesians, bool use\+Current\+Robot\+State)\hypertarget{classkukadu_1_1CachedPlanner_a9f818e9573e71ac96cb057e43c42390e}{}\label{classkukadu_1_1CachedPlanner_a9f818e9573e71ac96cb057e43c42390e}
+
+\item 
+virtual std\+::vector$<$ arma\+::vec $>$ {\bfseries plan\+Cartesian\+Trajectory} (arma\+::vec start\+Joints, std\+::vector$<$ geometry\+\_\+msgs\+::\+Pose $>$ intermediate\+Poses, bool smooth\+Cartesians=false, bool use\+Current\+Robot\+State=true)\hypertarget{classkukadu_1_1CachedPlanner_af918e17fb32fb725d11d8f8083b019d3}{}\label{classkukadu_1_1CachedPlanner_af918e17fb32fb725d11d8f8083b019d3}
+
+\end{DoxyCompactItemize}
+\subsection*{Additional Inherited Members}
+
+
+The documentation for this class was generated from the following files\+:\begin{DoxyCompactItemize}
+\item 
+/home/c7031109/iis\+\_\+robot\+\_\+sw/iis\+\_\+catkin\+\_\+ws/src/kukadu/include/kukadu/planning/planning.\+hpp\item 
+/home/c7031109/iis\+\_\+robot\+\_\+sw/iis\+\_\+catkin\+\_\+ws/src/kukadu/src/planning/planning.\+cpp\end{DoxyCompactItemize}

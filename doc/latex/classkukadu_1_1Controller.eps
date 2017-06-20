@@ -5,7 +5,7 @@
 %%For: 
 %Magnification: 1.00
 %%Orientation: Portrait
-%%BoundingBox: 0 0 500 114.942529
+%%BoundingBox: 0 0 500 88.888889
 %%Pages: 0
 %%BeginSetup
 %%EndSetup
@@ -19,13 +19,13 @@
 /marginwidth 10 def
 /distx 20 def
 /disty 40 def
-/boundaspect 4.350000 def  % aspect ratio of the BoundingBox (width/height)
+/boundaspect 5.625000 def  % aspect ratio of the BoundingBox (width/height)
 /boundx 500 def
 /boundy boundx boundaspect div def
 /xspacing 0 def
 /yspacing 0 def
-/rows 3 def
-/cols 3 def
+/rows 4 def
+/cols 5 def
 /scalefactor 0 def
 /boxfont /Times-Roman findfont fontheight scalefont def
 
@@ -174,7 +174,10 @@
 boxfont setfont
 1 boundaspect scale
 (kukadu::Controller) cw
+(kukadu::TimedObject) cw
 (kukadu::ComplexController) cw
+(kukadu::ConcatController) cw
+(kukadu::ControllerActionClip) cw
 (kukadu::SensingController) cw
 (kukadu::TrajectoryExecutor) cw
 (kukadu::DMPExecutor) cw
@@ -189,18 +192,25 @@ boundx scalefactor div boundy scalefactor div scale
 
 % ----- classes -----
 
- (kukadu::Controller) 1.000000 2.000000 box
+ (kukadu::Controller) 2.000000 2.000000 box
+ (kukadu::TimedObject) 2.000000 3.000000 box
  (kukadu::ComplexController) 0.000000 1.000000 box
- (kukadu::SensingController) 1.000000 1.000000 box
- (kukadu::TrajectoryExecutor) 2.000000 1.000000 box
- (kukadu::DMPExecutor) 2.000000 0.000000 box
+ (kukadu::ConcatController) 1.000000 1.000000 box
+ (kukadu::ControllerActionClip) 2.000000 1.000000 box
+ (kukadu::SensingController) 3.000000 1.000000 box
+ (kukadu::TrajectoryExecutor) 4.000000 1.000000 box
+ (kukadu::DMPExecutor) 4.000000 0.000000 box
 
 % ----- relations -----
 
+dotted
+0 2.000000 2.000000 out
+dotted
+1 2.000000 3.000000 in
 solid
-1 1.000000 1.250000 out
+1 2.000000 1.250000 out
 solid
-0.000000 2.000000 2.000000 conn
+0.000000 4.000000 2.000000 conn
 solid
 0 0.000000 1.750000 in
 solid
@@ -208,6 +218,10 @@ solid
 solid
 0 2.000000 1.750000 in
 solid
-1 2.000000 0.250000 out
+0 3.000000 1.750000 in
 solid
-0 2.000000 0.750000 in
+0 4.000000 1.750000 in
+solid
+1 4.000000 0.250000 out
+solid
+0 4.000000 0.750000 in

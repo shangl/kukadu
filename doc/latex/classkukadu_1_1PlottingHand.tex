@@ -1,128 +1,130 @@
-\hypertarget{classkukadu_1_1PlottingHand}{\section{kukadu\-:\-:Plotting\-Hand Class Reference}
-\label{classkukadu_1_1PlottingHand}\index{kukadu\-::\-Plotting\-Hand@{kukadu\-::\-Plotting\-Hand}}
-}
+\hypertarget{classkukadu_1_1PlottingHand}{}\section{kukadu\+:\+:Plotting\+Hand Class Reference}
+\label{classkukadu_1_1PlottingHand}\index{kukadu\+::\+Plotting\+Hand@{kukadu\+::\+Plotting\+Hand}}
 
 
-Provides control capabilities for the Schunk S\-D\-H robotic hand with R\-O\-S binding Implements the \hyperlink{classkukadu_1_1GenericHand}{Generic\-Hand} interface for the Schunk S\-D\-H robotic hand. Note that using this class the programm has to be executed with root rights.  
+Provides control capabilities for the Schunk S\+DH robotic hand with R\+OS binding Implements the \hyperlink{classkukadu_1_1GenericHand}{Generic\+Hand} interface for the Schunk S\+DH robotic hand. Note that using this class the programm has to be executed with root rights.  
 
 
 
 
-{\ttfamily \#include $<$plottinghand.\-hpp$>$}
+{\ttfamily \#include $<$hand.\+hpp$>$}
 
-Inheritance diagram for kukadu\-:\-:Plotting\-Hand\-:\begin{figure}[H]
+Inheritance diagram for kukadu\+:\+:Plotting\+Hand\+:\begin{figure}[H]
 \begin{center}
 \leavevmode
-\includegraphics[height=4.000000cm]{classkukadu_1_1PlottingHand}
+\includegraphics[height=5.000000cm]{classkukadu_1_1PlottingHand}
 \end{center}
 \end{figure}
 \subsection*{Public Member Functions}
 \begin{DoxyCompactItemize}
 \item 
-\hypertarget{classkukadu_1_1PlottingHand_a2e52a34555c49eb437f98e5e7a29d4af}{{\bfseries Plotting\-Hand} (std\-::string type, std\-::string hand)}\label{classkukadu_1_1PlottingHand_a2e52a34555c49eb437f98e5e7a29d4af}
+{\bfseries Plotting\+Hand} (\hyperlink{classkukadu_1_1StorageSingleton}{Storage\+Singleton} \&storage, int deg\+Of\+Freedom, int sensing\+Patch\+Count, std\+::pair$<$ int, int $>$ patch\+Dimensions)\hypertarget{classkukadu_1_1PlottingHand_a9f4fcd793aac528a1eab0b5ae29d7bbd}{}\label{classkukadu_1_1PlottingHand_a9f4fcd793aac528a1eab0b5ae29d7bbd}
 
 \item 
-void \hyperlink{classkukadu_1_1PlottingHand_ae1f5f384a2e8db0423b2a2ebe889f4f9}{connect\-Hand} ()
+virtual void \hyperlink{classkukadu_1_1PlottingHand_ae1f5f384a2e8db0423b2a2ebe889f4f9}{connect\+Hand} ()
 \begin{DoxyCompactList}\small\item\em Initializes the connection to the hand. \end{DoxyCompactList}\item 
-void \hyperlink{classkukadu_1_1PlottingHand_aa57430413a6c183592debe8c881c8520}{safely\-Destroy} ()
-\begin{DoxyCompactList}\small\item\em Method is called whenever destroy event occurs and ensures safe and clean termination of the programm (e.\-g. stops robot) \end{DoxyCompactList}\item 
-void \hyperlink{classkukadu_1_1PlottingHand_a14fc064b6e159b0d7c7a9ce896bfa7d9}{disconnect\-Hand} ()
-\begin{DoxyCompactList}\small\item\em Closes connection between host computer and hand. \end{DoxyCompactList}\item 
-\hypertarget{classkukadu_1_1PlottingHand_ab87f564a6b136c5ef1036b0307188d94}{void {\bfseries set\-Grasp} (kukadu\-\_\-grasps grasp)}\label{classkukadu_1_1PlottingHand_ab87f564a6b136c5ef1036b0307188d94}
-
-\item 
-\hypertarget{classkukadu_1_1PlottingHand_a3885af8e82c367150bdde351a9fa48a4}{void {\bfseries publish\-Single\-Joint} (int idx, double pos)}\label{classkukadu_1_1PlottingHand_a3885af8e82c367150bdde351a9fa48a4}
-
-\item 
-void \hyperlink{classkukadu_1_1PlottingHand_adcdc57d192c5dfca6ca154a50a904824}{close\-Hand} (double percentage, double velocity)
+virtual void \hyperlink{classkukadu_1_1PlottingHand_adcdc57d192c5dfca6ca154a50a904824}{close\+Hand} (double percentage, double velocity)
 \begin{DoxyCompactList}\small\item\em Opens and closes the hand according to the provided closing percentage and velocity. \end{DoxyCompactList}\item 
-\hypertarget{classkukadu_1_1PlottingHand_ac89f2cddf2c789e0b36048341a4ca3c1}{void {\bfseries publish\-Sdh\-Joints} (std\-::vector$<$ double $>$ positions)}\label{classkukadu_1_1PlottingHand_ac89f2cddf2c789e0b36048341a4ca3c1}
+virtual void {\bfseries move\+Joints} (arma\+::vec joints)\hypertarget{classkukadu_1_1PlottingHand_ad11dc6d53766e716d34b3f1ab04ed208}{}\label{classkukadu_1_1PlottingHand_ad11dc6d53766e716d34b3f1ab04ed208}
 
 \item 
-\hypertarget{classkukadu_1_1PlottingHand_ad11dc6d53766e716d34b3f1ab04ed208}{void {\bfseries move\-Joints} (arma\-::vec joints)}\label{classkukadu_1_1PlottingHand_ad11dc6d53766e716d34b3f1ab04ed208}
+virtual std\+::vector$<$ std\+::string $>$ {\bfseries get\+Joint\+Names} ()\hypertarget{classkukadu_1_1PlottingHand_ac30028206b7a8151340094bd1e9d69a1}{}\label{classkukadu_1_1PlottingHand_ac30028206b7a8151340094bd1e9d69a1}
 
 \item 
-\hypertarget{classkukadu_1_1PlottingHand_a2110c545fc91f47ee9dd59fd1194ec01}{std\-::vector$<$ arma\-::mat $>$ {\bfseries get\-Tactile\-Sensing} ()}\label{classkukadu_1_1PlottingHand_a2110c545fc91f47ee9dd59fd1194ec01}
+virtual arma\+::vec {\bfseries get\+Current\+Joints} ()\hypertarget{classkukadu_1_1PlottingHand_a366830e49be9050137852952bf269564}{}\label{classkukadu_1_1PlottingHand_a366830e49be9050137852952bf269564}
+
+\item 
+virtual void \hyperlink{classkukadu_1_1PlottingHand_a14fc064b6e159b0d7c7a9ce896bfa7d9}{disconnect\+Hand} ()
+\begin{DoxyCompactList}\small\item\em Closes connection between host computer and hand. \end{DoxyCompactList}\item 
+virtual std\+::vector$<$ arma\+::mat $>$ {\bfseries get\+Tactile\+Sensing} ()\hypertarget{classkukadu_1_1PlottingHand_a2110c545fc91f47ee9dd59fd1194ec01}{}\label{classkukadu_1_1PlottingHand_a2110c545fc91f47ee9dd59fd1194ec01}
+
+\item 
+virtual void \hyperlink{classkukadu_1_1PlottingHand_ac6bd32e47c044f6b7ee5dede4eb5941f}{safely\+Destroy} ()
+\begin{DoxyCompactList}\small\item\em Method is called whenever destroy event occurs and ensures safe and clean termination of the programm (e.\+g. stops robot) \end{DoxyCompactList}\item 
+virtual void {\bfseries set\+Wait\+For\+Reached} (bool wait\+For\+Reached)\hypertarget{classkukadu_1_1PlottingHand_a255de915c5b6bf215cf11e3d7abcd9a9}{}\label{classkukadu_1_1PlottingHand_a255de915c5b6bf215cf11e3d7abcd9a9}
+
+\item 
+virtual void {\bfseries set\+Grasp} (kukadu\+\_\+grasps grasp)\hypertarget{classkukadu_1_1PlottingHand_a3abd6d520cf144c8a466935d52a7596e}{}\label{classkukadu_1_1PlottingHand_a3abd6d520cf144c8a466935d52a7596e}
 
 \end{DoxyCompactItemize}
 \subsection*{Additional Inherited Members}
 
 
 \subsection{Detailed Description}
-Provides control capabilities for the Schunk S\-D\-H robotic hand with R\-O\-S binding Implements the \hyperlink{classkukadu_1_1GenericHand}{Generic\-Hand} interface for the Schunk S\-D\-H robotic hand. Note that using this class the programm has to be executed with root rights. 
+Provides control capabilities for the Schunk S\+DH robotic hand with R\+OS binding Implements the \hyperlink{classkukadu_1_1GenericHand}{Generic\+Hand} interface for the Schunk S\+DH robotic hand. Note that using this class the programm has to be executed with root rights. 
 
 \subsection{Member Function Documentation}
-\hypertarget{classkukadu_1_1PlottingHand_adcdc57d192c5dfca6ca154a50a904824}{\index{kukadu\-::\-Plotting\-Hand@{kukadu\-::\-Plotting\-Hand}!close\-Hand@{close\-Hand}}
-\index{close\-Hand@{close\-Hand}!kukadu::PlottingHand@{kukadu\-::\-Plotting\-Hand}}
-\subsubsection[{close\-Hand}]{\setlength{\rightskip}{0pt plus 5cm}void kukadu\-::\-Plotting\-Hand\-::close\-Hand (
+\index{kukadu\+::\+Plotting\+Hand@{kukadu\+::\+Plotting\+Hand}!close\+Hand@{close\+Hand}}
+\index{close\+Hand@{close\+Hand}!kukadu\+::\+Plotting\+Hand@{kukadu\+::\+Plotting\+Hand}}
+\subsubsection[{\texorpdfstring{close\+Hand(double percentage, double velocity)}{closeHand(double percentage, double velocity)}}]{\setlength{\rightskip}{0pt plus 5cm}void kukadu\+::\+Plotting\+Hand\+::close\+Hand (
 \begin{DoxyParamCaption}
 \item[{double}]{percentage, }
 \item[{double}]{velocity}
 \end{DoxyParamCaption}
-)\hspace{0.3cm}{\ttfamily [virtual]}}}\label{classkukadu_1_1PlottingHand_adcdc57d192c5dfca6ca154a50a904824}
+)\hspace{0.3cm}{\ttfamily [virtual]}}\hypertarget{classkukadu_1_1PlottingHand_adcdc57d192c5dfca6ca154a50a904824}{}\label{classkukadu_1_1PlottingHand_adcdc57d192c5dfca6ca154a50a904824}
 
 
 Opens and closes the hand according to the provided closing percentage and velocity. 
 
 
 \begin{DoxyParams}{Parameters}
-{\em percentage} & closing percentage (0.\-0 -\/ hand fully open, 1.\-0 hand fully closed) \\
+{\em percentage} & closing percentage (0.\+0 -\/ hand fully open, 1.\+0 hand fully closed) \\
 \hline
 {\em velocity} & closing velocity in range between 0 and 1 \\
 \hline
 \end{DoxyParams}
 
 
-Reimplemented from \hyperlink{classkukadu_1_1RosSchunk_accae3e1fa1da2b98bfeddf06d3682f81}{kukadu\-::\-Ros\-Schunk}.
+Implements \hyperlink{classkukadu_1_1GenericHand_a000e4d03e93f50d7101c50e6096d28a0}{kukadu\+::\+Generic\+Hand}.
 
-\hypertarget{classkukadu_1_1PlottingHand_ae1f5f384a2e8db0423b2a2ebe889f4f9}{\index{kukadu\-::\-Plotting\-Hand@{kukadu\-::\-Plotting\-Hand}!connect\-Hand@{connect\-Hand}}
-\index{connect\-Hand@{connect\-Hand}!kukadu::PlottingHand@{kukadu\-::\-Plotting\-Hand}}
-\subsubsection[{connect\-Hand}]{\setlength{\rightskip}{0pt plus 5cm}void kukadu\-::\-Plotting\-Hand\-::connect\-Hand (
+\index{kukadu\+::\+Plotting\+Hand@{kukadu\+::\+Plotting\+Hand}!connect\+Hand@{connect\+Hand}}
+\index{connect\+Hand@{connect\+Hand}!kukadu\+::\+Plotting\+Hand@{kukadu\+::\+Plotting\+Hand}}
+\subsubsection[{\texorpdfstring{connect\+Hand()}{connectHand()}}]{\setlength{\rightskip}{0pt plus 5cm}void kukadu\+::\+Plotting\+Hand\+::connect\+Hand (
 \begin{DoxyParamCaption}
 {}
 \end{DoxyParamCaption}
-)\hspace{0.3cm}{\ttfamily [virtual]}}}\label{classkukadu_1_1PlottingHand_ae1f5f384a2e8db0423b2a2ebe889f4f9}
+)\hspace{0.3cm}{\ttfamily [virtual]}}\hypertarget{classkukadu_1_1PlottingHand_ae1f5f384a2e8db0423b2a2ebe889f4f9}{}\label{classkukadu_1_1PlottingHand_ae1f5f384a2e8db0423b2a2ebe889f4f9}
 
 
 Initializes the connection to the hand. 
 
 
 
-Reimplemented from \hyperlink{classkukadu_1_1RosSchunk_a2b263c93cd2afe970121fe0102b5e502}{kukadu\-::\-Ros\-Schunk}.
+Implements \hyperlink{classkukadu_1_1GenericHand_a965ed8a8d225fb36eabf5089fa5d4f32}{kukadu\+::\+Generic\+Hand}.
 
-\hypertarget{classkukadu_1_1PlottingHand_a14fc064b6e159b0d7c7a9ce896bfa7d9}{\index{kukadu\-::\-Plotting\-Hand@{kukadu\-::\-Plotting\-Hand}!disconnect\-Hand@{disconnect\-Hand}}
-\index{disconnect\-Hand@{disconnect\-Hand}!kukadu::PlottingHand@{kukadu\-::\-Plotting\-Hand}}
-\subsubsection[{disconnect\-Hand}]{\setlength{\rightskip}{0pt plus 5cm}void kukadu\-::\-Plotting\-Hand\-::disconnect\-Hand (
+\index{kukadu\+::\+Plotting\+Hand@{kukadu\+::\+Plotting\+Hand}!disconnect\+Hand@{disconnect\+Hand}}
+\index{disconnect\+Hand@{disconnect\+Hand}!kukadu\+::\+Plotting\+Hand@{kukadu\+::\+Plotting\+Hand}}
+\subsubsection[{\texorpdfstring{disconnect\+Hand()}{disconnectHand()}}]{\setlength{\rightskip}{0pt plus 5cm}void kukadu\+::\+Plotting\+Hand\+::disconnect\+Hand (
 \begin{DoxyParamCaption}
 {}
 \end{DoxyParamCaption}
-)\hspace{0.3cm}{\ttfamily [virtual]}}}\label{classkukadu_1_1PlottingHand_a14fc064b6e159b0d7c7a9ce896bfa7d9}
+)\hspace{0.3cm}{\ttfamily [virtual]}}\hypertarget{classkukadu_1_1PlottingHand_a14fc064b6e159b0d7c7a9ce896bfa7d9}{}\label{classkukadu_1_1PlottingHand_a14fc064b6e159b0d7c7a9ce896bfa7d9}
 
 
 Closes connection between host computer and hand. 
 
 
 
-Reimplemented from \hyperlink{classkukadu_1_1RosSchunk_a8b07d0af90c8b1b0827eb9587007a7c0}{kukadu\-::\-Ros\-Schunk}.
+Implements \hyperlink{classkukadu_1_1GenericHand_a94c4a983aae8562bda7711a71baa7502}{kukadu\+::\+Generic\+Hand}.
 
-\hypertarget{classkukadu_1_1PlottingHand_aa57430413a6c183592debe8c881c8520}{\index{kukadu\-::\-Plotting\-Hand@{kukadu\-::\-Plotting\-Hand}!safely\-Destroy@{safely\-Destroy}}
-\index{safely\-Destroy@{safely\-Destroy}!kukadu::PlottingHand@{kukadu\-::\-Plotting\-Hand}}
-\subsubsection[{safely\-Destroy}]{\setlength{\rightskip}{0pt plus 5cm}void kukadu\-::\-Plotting\-Hand\-::safely\-Destroy (
+\index{kukadu\+::\+Plotting\+Hand@{kukadu\+::\+Plotting\+Hand}!safely\+Destroy@{safely\+Destroy}}
+\index{safely\+Destroy@{safely\+Destroy}!kukadu\+::\+Plotting\+Hand@{kukadu\+::\+Plotting\+Hand}}
+\subsubsection[{\texorpdfstring{safely\+Destroy()}{safelyDestroy()}}]{\setlength{\rightskip}{0pt plus 5cm}virtual void kukadu\+::\+Plotting\+Hand\+::safely\+Destroy (
 \begin{DoxyParamCaption}
 {}
 \end{DoxyParamCaption}
-)\hspace{0.3cm}{\ttfamily [virtual]}}}\label{classkukadu_1_1PlottingHand_aa57430413a6c183592debe8c881c8520}
+)\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [virtual]}}\hypertarget{classkukadu_1_1PlottingHand_ac6bd32e47c044f6b7ee5dede4eb5941f}{}\label{classkukadu_1_1PlottingHand_ac6bd32e47c044f6b7ee5dede4eb5941f}
 
 
-Method is called whenever destroy event occurs and ensures safe and clean termination of the programm (e.\-g. stops robot) 
-
-
-
-Reimplemented from \hyperlink{classkukadu_1_1RosSchunk_a3a50fb0908f1fac2151934ba9759825c}{kukadu\-::\-Ros\-Schunk}.
+Method is called whenever destroy event occurs and ensures safe and clean termination of the programm (e.\+g. stops robot) 
 
 
 
-The documentation for this class was generated from the following files\-:\begin{DoxyCompactItemize}
+Implements \hyperlink{classkukadu_1_1DestroyableObject_a9e490cfa46af84690eb5ff0682df986c}{kukadu\+::\+Destroyable\+Object}.
+
+
+
+The documentation for this class was generated from the following files\+:\begin{DoxyCompactItemize}
 \item 
-/home/c7031109/iis\-\_\-robot\-\_\-sw/iis\-\_\-catkin\-\_\-ws/src/kukadu/include/kukadu/robot/gripper/plottinghand.\-hpp\item 
-/home/c7031109/iis\-\_\-robot\-\_\-sw/iis\-\_\-catkin\-\_\-ws/src/kukadu/src/robot/gripper/plottinghand.\-cpp\end{DoxyCompactItemize}
+/home/c7031109/iis\+\_\+robot\+\_\+sw/iis\+\_\+catkin\+\_\+ws/src/kukadu/include/kukadu/robot/hand.\+hpp\item 
+/home/c7031109/iis\+\_\+robot\+\_\+sw/iis\+\_\+catkin\+\_\+ws/src/kukadu/src/robot/hand.\+cpp\end{DoxyCompactItemize}

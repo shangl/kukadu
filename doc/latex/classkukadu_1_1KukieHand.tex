@@ -1,0 +1,127 @@
+\hypertarget{classkukadu_1_1KukieHand}{}\section{kukadu\+:\+:Kukie\+Hand Class Reference}
+\label{classkukadu_1_1KukieHand}\index{kukadu\+::\+Kukie\+Hand@{kukadu\+::\+Kukie\+Hand}}
+Inheritance diagram for kukadu\+:\+:Kukie\+Hand\+:\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[height=5.000000cm]{classkukadu_1_1KukieHand}
+\end{center}
+\end{figure}
+\subsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+{\bfseries Kukie\+Hand} (\hyperlink{classkukadu_1_1StorageSingleton}{Storage\+Singleton} \&storage, ros\+::\+Node\+Handle node, std\+::string simulation\+Type, std\+::string hand)\hypertarget{classkukadu_1_1KukieHand_a4283b3849f083f7469be19eafbb4ff63}{}\label{classkukadu_1_1KukieHand_a4283b3849f083f7469be19eafbb4ff63}
+
+\item 
+virtual void \hyperlink{classkukadu_1_1KukieHand_aaccb81a60e09b915c8fd4b0acfe76d2f}{connect\+Hand} ()
+\begin{DoxyCompactList}\small\item\em Initializes the connection to the hand. \end{DoxyCompactList}\item 
+virtual void \hyperlink{classkukadu_1_1KukieHand_ad4f676de2f32cee7c191e4fbf42cb133}{safely\+Destroy} ()
+\begin{DoxyCompactList}\small\item\em Method is called whenever destroy event occurs and ensures safe and clean termination of the programm (e.\+g. stops robot) \end{DoxyCompactList}\item 
+virtual void \hyperlink{classkukadu_1_1KukieHand_aac5de8a17e7592b4c0c693fe6d06e0e9}{disconnect\+Hand} ()
+\begin{DoxyCompactList}\small\item\em Closes connection between host computer and hand. \end{DoxyCompactList}\item 
+virtual void {\bfseries set\+Grasp} (kukadu\+\_\+grasps grasp)\hypertarget{classkukadu_1_1KukieHand_a7aa80edce6f8b938eea2ca1826bf230a}{}\label{classkukadu_1_1KukieHand_a7aa80edce6f8b938eea2ca1826bf230a}
+
+\item 
+virtual void {\bfseries publish\+Single\+Joint} (int idx, double pos)\hypertarget{classkukadu_1_1KukieHand_a3b11fd1af2a71838a4cb87b96d7d14e6}{}\label{classkukadu_1_1KukieHand_a3b11fd1af2a71838a4cb87b96d7d14e6}
+
+\item 
+virtual void \hyperlink{classkukadu_1_1KukieHand_ace726db985affda8ed5f49464f7aab04}{close\+Hand} (double percentage, double velocity)
+\begin{DoxyCompactList}\small\item\em Opens and closes the hand according to the provided closing percentage and velocity. \end{DoxyCompactList}\item 
+void {\bfseries move\+Joints} (arma\+::vec joints)\hypertarget{classkukadu_1_1KukieHand_a548ed81cee0f111abc4c6b127b075da4}{}\label{classkukadu_1_1KukieHand_a548ed81cee0f111abc4c6b127b075da4}
+
+\item 
+void {\bfseries set\+Wait\+For\+Reached} (bool wait\+For\+Reached)\hypertarget{classkukadu_1_1KukieHand_ae1b5de05777e8364b59a8832057c1e4f}{}\label{classkukadu_1_1KukieHand_ae1b5de05777e8364b59a8832057c1e4f}
+
+\item 
+virtual std\+::vector$<$ std\+::string $>$ {\bfseries get\+Joint\+Names} ()\hypertarget{classkukadu_1_1KukieHand_aa974a0837ed5efb96e0586604d55289e}{}\label{classkukadu_1_1KukieHand_aa974a0837ed5efb96e0586604d55289e}
+
+\item 
+virtual arma\+::vec {\bfseries get\+Current\+Joints} ()\hypertarget{classkukadu_1_1KukieHand_a80b72409f58b8d2b3529633b8381a030}{}\label{classkukadu_1_1KukieHand_a80b72409f58b8d2b3529633b8381a030}
+
+\item 
+virtual std\+::vector$<$ arma\+::mat $>$ {\bfseries get\+Tactile\+Sensing} ()\hypertarget{classkukadu_1_1KukieHand_aace79d111dc83774ed326756466429f6}{}\label{classkukadu_1_1KukieHand_aace79d111dc83774ed326756466429f6}
+
+\end{DoxyCompactItemize}
+\subsection*{Static Public Attributes}
+\begin{DoxyCompactItemize}
+\item 
+static auto constexpr {\bfseries S\+D\+H\+\_\+\+I\+G\+N\+O\+R\+E\+\_\+\+J\+O\+I\+NT} = std\+::numeric\+\_\+limits$<$double$>$\+::max()\hypertarget{classkukadu_1_1KukieHand_a2fd16294d41f30d129b7c6c6251a3a98}{}\label{classkukadu_1_1KukieHand_a2fd16294d41f30d129b7c6c6251a3a98}
+
+\end{DoxyCompactItemize}
+\subsection*{Additional Inherited Members}
+
+
+\subsection{Member Function Documentation}
+\index{kukadu\+::\+Kukie\+Hand@{kukadu\+::\+Kukie\+Hand}!close\+Hand@{close\+Hand}}
+\index{close\+Hand@{close\+Hand}!kukadu\+::\+Kukie\+Hand@{kukadu\+::\+Kukie\+Hand}}
+\subsubsection[{\texorpdfstring{close\+Hand(double percentage, double velocity)}{closeHand(double percentage, double velocity)}}]{\setlength{\rightskip}{0pt plus 5cm}void kukadu\+::\+Kukie\+Hand\+::close\+Hand (
+\begin{DoxyParamCaption}
+\item[{double}]{percentage, }
+\item[{double}]{velocity}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [virtual]}}\hypertarget{classkukadu_1_1KukieHand_ace726db985affda8ed5f49464f7aab04}{}\label{classkukadu_1_1KukieHand_ace726db985affda8ed5f49464f7aab04}
+
+
+Opens and closes the hand according to the provided closing percentage and velocity. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em percentage} & closing percentage (0.\+0 -\/ hand fully open, 1.\+0 hand fully closed) \\
+\hline
+{\em velocity} & closing velocity in range between 0 and 1 \\
+\hline
+\end{DoxyParams}
+
+
+Implements \hyperlink{classkukadu_1_1GenericHand_a000e4d03e93f50d7101c50e6096d28a0}{kukadu\+::\+Generic\+Hand}.
+
+\index{kukadu\+::\+Kukie\+Hand@{kukadu\+::\+Kukie\+Hand}!connect\+Hand@{connect\+Hand}}
+\index{connect\+Hand@{connect\+Hand}!kukadu\+::\+Kukie\+Hand@{kukadu\+::\+Kukie\+Hand}}
+\subsubsection[{\texorpdfstring{connect\+Hand()}{connectHand()}}]{\setlength{\rightskip}{0pt plus 5cm}void kukadu\+::\+Kukie\+Hand\+::connect\+Hand (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [virtual]}}\hypertarget{classkukadu_1_1KukieHand_aaccb81a60e09b915c8fd4b0acfe76d2f}{}\label{classkukadu_1_1KukieHand_aaccb81a60e09b915c8fd4b0acfe76d2f}
+
+
+Initializes the connection to the hand. 
+
+
+
+Implements \hyperlink{classkukadu_1_1GenericHand_a965ed8a8d225fb36eabf5089fa5d4f32}{kukadu\+::\+Generic\+Hand}.
+
+\index{kukadu\+::\+Kukie\+Hand@{kukadu\+::\+Kukie\+Hand}!disconnect\+Hand@{disconnect\+Hand}}
+\index{disconnect\+Hand@{disconnect\+Hand}!kukadu\+::\+Kukie\+Hand@{kukadu\+::\+Kukie\+Hand}}
+\subsubsection[{\texorpdfstring{disconnect\+Hand()}{disconnectHand()}}]{\setlength{\rightskip}{0pt plus 5cm}void kukadu\+::\+Kukie\+Hand\+::disconnect\+Hand (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [virtual]}}\hypertarget{classkukadu_1_1KukieHand_aac5de8a17e7592b4c0c693fe6d06e0e9}{}\label{classkukadu_1_1KukieHand_aac5de8a17e7592b4c0c693fe6d06e0e9}
+
+
+Closes connection between host computer and hand. 
+
+
+
+Implements \hyperlink{classkukadu_1_1GenericHand_a94c4a983aae8562bda7711a71baa7502}{kukadu\+::\+Generic\+Hand}.
+
+\index{kukadu\+::\+Kukie\+Hand@{kukadu\+::\+Kukie\+Hand}!safely\+Destroy@{safely\+Destroy}}
+\index{safely\+Destroy@{safely\+Destroy}!kukadu\+::\+Kukie\+Hand@{kukadu\+::\+Kukie\+Hand}}
+\subsubsection[{\texorpdfstring{safely\+Destroy()}{safelyDestroy()}}]{\setlength{\rightskip}{0pt plus 5cm}void kukadu\+::\+Kukie\+Hand\+::safely\+Destroy (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [virtual]}}\hypertarget{classkukadu_1_1KukieHand_ad4f676de2f32cee7c191e4fbf42cb133}{}\label{classkukadu_1_1KukieHand_ad4f676de2f32cee7c191e4fbf42cb133}
+
+
+Method is called whenever destroy event occurs and ensures safe and clean termination of the programm (e.\+g. stops robot) 
+
+
+
+Implements \hyperlink{classkukadu_1_1DestroyableObject_a9e490cfa46af84690eb5ff0682df986c}{kukadu\+::\+Destroyable\+Object}.
+
+
+
+The documentation for this class was generated from the following files\+:\begin{DoxyCompactItemize}
+\item 
+/home/c7031109/iis\+\_\+robot\+\_\+sw/iis\+\_\+catkin\+\_\+ws/src/kukadu/include/kukadu/robot/kukiehand.\+hpp\item 
+/home/c7031109/iis\+\_\+robot\+\_\+sw/iis\+\_\+catkin\+\_\+ws/src/kukadu/src/robot/hand.\+cpp\end{DoxyCompactItemize}

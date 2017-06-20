@@ -1,0 +1,66 @@
+\hypertarget{classkukadu_1_1MoveIt}{}\section{kukadu\+:\+:Move\+It Class Reference}
+\label{classkukadu_1_1MoveIt}\index{kukadu\+::\+Move\+It@{kukadu\+::\+Move\+It}}
+Inheritance diagram for kukadu\+:\+:Move\+It\+:\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[height=3.000000cm]{classkukadu_1_1MoveIt}
+\end{center}
+\end{figure}
+\subsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+{\bfseries Move\+It} (K\+U\+K\+A\+D\+U\+\_\+\+S\+H\+A\+R\+E\+D\+\_\+\+P\+TR$<$ \hyperlink{classkukadu_1_1ControlQueue}{Control\+Queue} $>$ queue, ros\+::\+Node\+Handle node, const std\+::string \&move\+Group\+Name, std\+::vector$<$ std\+::string $>$ joint\+Names, std\+::string tip\+Link)\hypertarget{classkukadu_1_1MoveIt_af05bbf682a12c575e1d9940f7faf4d07}{}\label{classkukadu_1_1MoveIt_af05bbf682a12c575e1d9940f7faf4d07}
+
+\item 
+{\bfseries Move\+It} (K\+U\+K\+A\+D\+U\+\_\+\+S\+H\+A\+R\+E\+D\+\_\+\+P\+TR$<$ \hyperlink{classkukadu_1_1ControlQueue}{Control\+Queue} $>$ queue, ros\+::\+Node\+Handle node, const std\+::string \&move\+Group\+Name, std\+::vector$<$ std\+::string $>$ joint\+Names, std\+::string tip\+Link, bool avoid\+Collisions, int max\+Attempts, double time\+Out)\hypertarget{classkukadu_1_1MoveIt_a53313988a9ab67257a4718c7e5e26a89}{}\label{classkukadu_1_1MoveIt_a53313988a9ab67257a4718c7e5e26a89}
+
+\item 
+virtual geometry\+\_\+msgs\+::\+Pose {\bfseries compute\+Fk} (std\+::vector$<$ double $>$ joint\+State)\hypertarget{classkukadu_1_1MoveIt_a5c6edaf481c36d8dbf176606b17e3acd}{}\label{classkukadu_1_1MoveIt_a5c6edaf481c36d8dbf176606b17e3acd}
+
+\item 
+virtual std\+::vector$<$ arma\+::vec $>$ {\bfseries compute\+Ik} (std\+::vector$<$ double $>$ current\+Joint\+State, const geometry\+\_\+msgs\+::\+Pose \&goal)\hypertarget{classkukadu_1_1MoveIt_acb2e3c4e704ee64509e0a704cfc4481a}{}\label{classkukadu_1_1MoveIt_acb2e3c4e704ee64509e0a704cfc4481a}
+
+\item 
+virtual std\+::vector$<$ arma\+::vec $>$ {\bfseries plan\+Joint\+Trajectory} (std\+::vector$<$ arma\+::vec $>$ intermediate\+Joints)\hypertarget{classkukadu_1_1MoveIt_a5a0133f49f68c5b0b34dc34b151c6cf6}{}\label{classkukadu_1_1MoveIt_a5a0133f49f68c5b0b34dc34b151c6cf6}
+
+\item 
+virtual std\+::vector$<$ arma\+::vec $>$ {\bfseries plan\+Cartesian\+Trajectory} (std\+::vector$<$ geometry\+\_\+msgs\+::\+Pose $>$ intermediate\+Poses, bool smooth\+Cartesians=false, bool use\+Current\+Robot\+State=true)\hypertarget{classkukadu_1_1MoveIt_a24a11114333b44a8fce67affb7afe07d}{}\label{classkukadu_1_1MoveIt_a24a11114333b44a8fce67affb7afe07d}
+
+\item 
+virtual std\+::vector$<$ arma\+::vec $>$ {\bfseries plan\+Cartesian\+Trajectory} (arma\+::vec start\+Joints, std\+::vector$<$ geometry\+\_\+msgs\+::\+Pose $>$ intermediate\+Poses, bool smooth\+Cartesians=false, bool use\+Current\+Robot\+State=true)\hypertarget{classkukadu_1_1MoveIt_a455bf20309967e7bc288507f92bd4b24}{}\label{classkukadu_1_1MoveIt_a455bf20309967e7bc288507f92bd4b24}
+
+\item 
+virtual Eigen\+::\+Matrix\+Xd {\bfseries get\+Jacobian} (std\+::vector$<$ double $>$ joint\+State=std\+::vector$<$ double $>$())\hypertarget{classkukadu_1_1MoveIt_affc6ab624a10cb091a9ec5b8ad39127b}{}\label{classkukadu_1_1MoveIt_affc6ab624a10cb091a9ec5b8ad39127b}
+
+\item 
+virtual bool {\bfseries is\+Colliding} (arma\+::vec joint\+State, geometry\+\_\+msgs\+::\+Pose pose)\hypertarget{classkukadu_1_1MoveIt_a6280adfe71401d1caad3d61c07cec82f}{}\label{classkukadu_1_1MoveIt_a6280adfe71401d1caad3d61c07cec82f}
+
+\item 
+virtual std\+::string {\bfseries get\+Cartesian\+Link\+Name} ()\hypertarget{classkukadu_1_1MoveIt_aa20e8b9de995a3a50c0b60180c3f9460}{}\label{classkukadu_1_1MoveIt_aa20e8b9de995a3a50c0b60180c3f9460}
+
+\item 
+virtual std\+::string {\bfseries get\+Cartesian\+Reference\+Frame} ()\hypertarget{classkukadu_1_1MoveIt_a2c7997b863e784370dde51eff19515d2}{}\label{classkukadu_1_1MoveIt_a2c7997b863e784370dde51eff19515d2}
+
+\item 
+virtual void {\bfseries set\+Speed} (double speed)\hypertarget{classkukadu_1_1MoveIt_ae7fa8ae6dddb95872109a8c5bf2f011d}{}\label{classkukadu_1_1MoveIt_ae7fa8ae6dddb95872109a8c5bf2f011d}
+
+\end{DoxyCompactItemize}
+\subsection*{Static Public Attributes}
+\begin{DoxyCompactItemize}
+\item 
+static constexpr int {\bfseries S\+T\+D\+\_\+\+M\+A\+X\+\_\+\+A\+T\+T\+E\+M\+P\+TS} = 5\hypertarget{classkukadu_1_1MoveIt_add665929ffeb6ce186119fa47ddbe3cf}{}\label{classkukadu_1_1MoveIt_add665929ffeb6ce186119fa47ddbe3cf}
+
+\item 
+static constexpr int {\bfseries S\+T\+D\+\_\+\+T\+I\+M\+E\+O\+UT} = 10\hypertarget{classkukadu_1_1MoveIt_ac4b2f2756039fa58060eebd87c788c18}{}\label{classkukadu_1_1MoveIt_ac4b2f2756039fa58060eebd87c788c18}
+
+\item 
+static constexpr bool {\bfseries S\+T\+D\+\_\+\+A\+V\+O\+I\+D\+\_\+\+C\+O\+L\+L\+I\+S\+I\+O\+NS} = true\hypertarget{classkukadu_1_1MoveIt_afc4bca8312888ae169bed7dbd16a5cca}{}\label{classkukadu_1_1MoveIt_afc4bca8312888ae169bed7dbd16a5cca}
+
+\end{DoxyCompactItemize}
+\subsection*{Additional Inherited Members}
+
+
+The documentation for this class was generated from the following files\+:\begin{DoxyCompactItemize}
+\item 
+/home/c7031109/iis\+\_\+robot\+\_\+sw/iis\+\_\+catkin\+\_\+ws/src/kukadu/include/kukadu/planning/moveit.\+hpp\item 
+/home/c7031109/iis\+\_\+robot\+\_\+sw/iis\+\_\+catkin\+\_\+ws/src/kukadu/src/planning/moveit.\+cpp\end{DoxyCompactItemize}

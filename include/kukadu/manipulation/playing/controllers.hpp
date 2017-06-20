@@ -344,6 +344,8 @@ namespace kukadu {
 
         void loadTargetClips(KUKADU_SHARED_PTR<Clip> sensingClip, KUKADU_SHARED_PTR<Clip> sensedState);
 
+        void storeComposition(std::string destination);
+
     protected:
 
         virtual void setSimulationModeInChain(bool simulationMode);

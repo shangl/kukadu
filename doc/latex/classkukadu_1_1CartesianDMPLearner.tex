@@ -1,16 +1,15 @@
-\hypertarget{classkukadu_1_1CartesianDMPLearner}{\section{kukadu\-:\-:Cartesian\-D\-M\-P\-Learner Class Reference}
-\label{classkukadu_1_1CartesianDMPLearner}\index{kukadu\-::\-Cartesian\-D\-M\-P\-Learner@{kukadu\-::\-Cartesian\-D\-M\-P\-Learner}}
-}
+\hypertarget{classkukadu_1_1CartesianDMPLearner}{}\section{kukadu\+:\+:Cartesian\+D\+M\+P\+Learner Class Reference}
+\label{classkukadu_1_1CartesianDMPLearner}\index{kukadu\+::\+Cartesian\+D\+M\+P\+Learner@{kukadu\+::\+Cartesian\+D\+M\+P\+Learner}}
 
 
-The Trajectory\-D\-M\-P\-Learner encapsulates the dmp learning process.  
+The Trajectory\+D\+M\+P\+Learner encapsulates the dmp learning process.  
 
 
 
 
-{\ttfamily \#include $<$cartesiandmplearner.\-hpp$>$}
+{\ttfamily \#include $<$dmp.\+hpp$>$}
 
-Inheritance diagram for kukadu\-:\-:Cartesian\-D\-M\-P\-Learner\-:\begin{figure}[H]
+Inheritance diagram for kukadu\+:\+:Cartesian\+D\+M\+P\+Learner\+:\begin{figure}[H]
 \begin{center}
 \leavevmode
 \includegraphics[height=2.000000cm]{classkukadu_1_1CartesianDMPLearner}
@@ -19,53 +18,54 @@ Inheritance diagram for kukadu\-:\-:Cartesian\-D\-M\-P\-Learner\-:\begin{figure}
 \subsection*{Public Member Functions}
 \begin{DoxyCompactItemize}
 \item 
-\hyperlink{classkukadu_1_1CartesianDMPLearner_a5e1f50a8e9ca6279dec1e797539776e3}{Cartesian\-D\-M\-P\-Learner} (std\-::vector$<$ \hyperlink{classkukadu_1_1DMPBase}{D\-M\-P\-Base} $>$ dmp\-Base, double tau, double az, double bz, double ax, arma\-::mat joints)
+\hyperlink{classkukadu_1_1CartesianDMPLearner_a13b6c457b204f3dae0541803ac3f6138}{Cartesian\+D\+M\+P\+Learner} (std\+::vector$<$ \hyperlink{classkukadu_1_1DMPBase}{D\+M\+P\+Base} $>$ dmp\+Base, double tau, double az, double bz, double ax, arma\+::vec times\+In\+Seconds, arma\+::mat joints)
 \begin{DoxyCompactList}\small\item\em constructor \end{DoxyCompactList}\item 
-\hyperlink{classkukadu_1_1CartesianDMPLearner_a827dfdfd4ae5f2052ad67d429a0b10b5}{Cartesian\-D\-M\-P\-Learner} (std\-::vector$<$ double $>$ mys\-Def, std\-::vector$<$ double $>$ sigmas\-Def, double az, double bz, std\-::string file)
+\hyperlink{classkukadu_1_1CartesianDMPLearner_a827dfdfd4ae5f2052ad67d429a0b10b5}{Cartesian\+D\+M\+P\+Learner} (std\+::vector$<$ double $>$ mys\+Def, std\+::vector$<$ double $>$ sigmas\+Def, double az, double bz, std\+::string file)
 \begin{DoxyCompactList}\small\item\em constructor \end{DoxyCompactList}\item 
-\hypertarget{classkukadu_1_1CartesianDMPLearner_a7f6c5dd882679d153af81ec8f87e6126}{{\bfseries Cartesian\-D\-M\-P\-Learner} (double az, double bz, std\-::string file)}\label{classkukadu_1_1CartesianDMPLearner_a7f6c5dd882679d153af81ec8f87e6126}
+{\bfseries Cartesian\+D\+M\+P\+Learner} (double az, double bz, std\+::string file)\hypertarget{classkukadu_1_1CartesianDMPLearner_a7f6c5dd882679d153af81ec8f87e6126}{}\label{classkukadu_1_1CartesianDMPLearner_a7f6c5dd882679d153af81ec8f87e6126}
 
 \item 
-\hypertarget{classkukadu_1_1CartesianDMPLearner_ab44433d67c81960c8b2083b74b383071}{{\bfseries Cartesian\-D\-M\-P\-Learner} (double az, double bz, arma\-::mat joints)}\label{classkukadu_1_1CartesianDMPLearner_ab44433d67c81960c8b2083b74b383071}
+{\bfseries Cartesian\+D\+M\+P\+Learner} (double az, double bz, arma\+::vec times\+In\+Seconds, arma\+::mat joints)\hypertarget{classkukadu_1_1CartesianDMPLearner_a179c825c8c072bd01843103dd4c129f0}{}\label{classkukadu_1_1CartesianDMPLearner_a179c825c8c072bd01843103dd4c129f0}
 
 \end{DoxyCompactItemize}
 \subsection*{Protected Member Functions}
 \begin{DoxyCompactItemize}
 \item 
-\hypertarget{classkukadu_1_1CartesianDMPLearner_a5e4311236c5bafb415d5c2a410050aee}{K\-U\-K\-A\-D\-U\-\_\-\-S\-H\-A\-R\-E\-D\-\_\-\-P\-T\-R$<$ \hyperlink{classkukadu_1_1Dmp}{Dmp} $>$ {\bfseries create\-Dmp\-Instance} (arma\-::vec supervised\-Ts, std\-::vector$<$ arma\-::vec $>$ sample\-Ys, std\-::vector$<$ arma\-::vec $>$ fit\-Ys, std\-::vector$<$ arma\-::vec $>$ dmp\-Coeffs, std\-::vector$<$ \hyperlink{classkukadu_1_1DMPBase}{D\-M\-P\-Base} $>$ dmp\-Base, std\-::vector$<$ arma\-::mat $>$ design\-Matrices, double tau, double az, double bz, double ax)}\label{classkukadu_1_1CartesianDMPLearner_a5e4311236c5bafb415d5c2a410050aee}
+K\+U\+K\+A\+D\+U\+\_\+\+S\+H\+A\+R\+E\+D\+\_\+\+P\+TR$<$ \hyperlink{classkukadu_1_1Dmp}{Dmp} $>$ {\bfseries create\+Dmp\+Instance} (arma\+::vec \&supervised\+Ts\+In\+Seconds, std\+::vector$<$ arma\+::vec $>$ sample\+Ys, std\+::vector$<$ arma\+::vec $>$ fit\+Ys, std\+::vector$<$ arma\+::vec $>$ dmp\+Coeffs, std\+::vector$<$ \hyperlink{classkukadu_1_1DMPBase}{D\+M\+P\+Base} $>$ dmp\+Base, std\+::vector$<$ arma\+::mat $>$ design\+Matrices, double tau, double az, double bz, double ax)\hypertarget{classkukadu_1_1CartesianDMPLearner_ac6060b23f8fbf519e3d9944dab73c8d2}{}\label{classkukadu_1_1CartesianDMPLearner_ac6060b23f8fbf519e3d9944dab73c8d2}
 
 \item 
-\hypertarget{classkukadu_1_1CartesianDMPLearner_a17b09095c1a7e462e34bf5448cb021ab}{arma\-::mat {\bfseries compute\-Fit\-Y} (arma\-::vec \&time, arma\-::mat \&y, arma\-::mat \&dy, arma\-::mat \&ddy, arma\-::vec \&vec\-\_\-g)}\label{classkukadu_1_1CartesianDMPLearner_a17b09095c1a7e462e34bf5448cb021ab}
+arma\+::mat {\bfseries compute\+FitY} (arma\+::vec \&time, arma\+::mat \&y, arma\+::mat \&dy, arma\+::mat \&ddy, arma\+::vec \&vec\+\_\+g)\hypertarget{classkukadu_1_1CartesianDMPLearner_a17b09095c1a7e462e34bf5448cb021ab}{}\label{classkukadu_1_1CartesianDMPLearner_a17b09095c1a7e462e34bf5448cb021ab}
 
 \end{DoxyCompactItemize}
 \subsection*{Additional Inherited Members}
 
 
 \subsection{Detailed Description}
-The Trajectory\-D\-M\-P\-Learner encapsulates the dmp learning process. 
+The Trajectory\+D\+M\+P\+Learner encapsulates the dmp learning process. 
 
-Dynamic movement primitives can be easily learned by using this class and providing the joint data or a file containing this data. Basically this is a helper that enables the programmer to reduce code complexity. 
+Dynamic movement primitives can be easily learned by using this class and providing the cartesian data or a file containing this data. Basically this is a helper that enables the programmer to reduce code complexity. 
 
 \subsection{Constructor \& Destructor Documentation}
-\hypertarget{classkukadu_1_1CartesianDMPLearner_a5e1f50a8e9ca6279dec1e797539776e3}{\index{kukadu\-::\-Cartesian\-D\-M\-P\-Learner@{kukadu\-::\-Cartesian\-D\-M\-P\-Learner}!Cartesian\-D\-M\-P\-Learner@{Cartesian\-D\-M\-P\-Learner}}
-\index{Cartesian\-D\-M\-P\-Learner@{Cartesian\-D\-M\-P\-Learner}!kukadu::CartesianDMPLearner@{kukadu\-::\-Cartesian\-D\-M\-P\-Learner}}
-\subsubsection[{Cartesian\-D\-M\-P\-Learner}]{\setlength{\rightskip}{0pt plus 5cm}kukadu\-::\-Cartesian\-D\-M\-P\-Learner\-::\-Cartesian\-D\-M\-P\-Learner (
+\index{kukadu\+::\+Cartesian\+D\+M\+P\+Learner@{kukadu\+::\+Cartesian\+D\+M\+P\+Learner}!Cartesian\+D\+M\+P\+Learner@{Cartesian\+D\+M\+P\+Learner}}
+\index{Cartesian\+D\+M\+P\+Learner@{Cartesian\+D\+M\+P\+Learner}!kukadu\+::\+Cartesian\+D\+M\+P\+Learner@{kukadu\+::\+Cartesian\+D\+M\+P\+Learner}}
+\subsubsection[{\texorpdfstring{Cartesian\+D\+M\+P\+Learner(std\+::vector$<$ D\+M\+P\+Base $>$ dmp\+Base, double tau, double az, double bz, double ax, arma\+::vec times\+In\+Seconds, arma\+::mat joints)}{CartesianDMPLearner(std::vector< DMPBase > dmpBase, double tau, double az, double bz, double ax, arma::vec timesInSeconds, arma::mat joints)}}]{\setlength{\rightskip}{0pt plus 5cm}kukadu\+::\+Cartesian\+D\+M\+P\+Learner\+::\+Cartesian\+D\+M\+P\+Learner (
 \begin{DoxyParamCaption}
-\item[{std\-::vector$<$ {\bf D\-M\-P\-Base} $>$}]{dmp\-Base, }
+\item[{std\+::vector$<$ {\bf D\+M\+P\+Base} $>$}]{dmp\+Base, }
 \item[{double}]{tau, }
 \item[{double}]{az, }
 \item[{double}]{bz, }
 \item[{double}]{ax, }
-\item[{arma\-::mat}]{joints}
+\item[{arma\+::vec}]{times\+In\+Seconds, }
+\item[{arma\+::mat}]{joints}
 \end{DoxyParamCaption}
-)}}\label{classkukadu_1_1CartesianDMPLearner_a5e1f50a8e9ca6279dec1e797539776e3}
+)}\hypertarget{classkukadu_1_1CartesianDMPLearner_a13b6c457b204f3dae0541803ac3f6138}{}\label{classkukadu_1_1CartesianDMPLearner_a13b6c457b204f3dae0541803ac3f6138}
 
 
 constructor 
 
 
 \begin{DoxyParams}{Parameters}
-{\em dmp\-Base} & dmp basis function definition \\
+{\em dmp\+Base} & dmp basis function definition \\
 \hline
 {\em tau} & dmp timing constant \\
 \hline
@@ -77,27 +77,27 @@ constructor
 \hline
 {\em joints} & measured joints \\
 \hline
-{\em deg\-Freedom} & robots degrees of freedom \\
+{\em deg\+Freedom} & robots degrees of freedom \\
 \hline
 \end{DoxyParams}
-\hypertarget{classkukadu_1_1CartesianDMPLearner_a827dfdfd4ae5f2052ad67d429a0b10b5}{\index{kukadu\-::\-Cartesian\-D\-M\-P\-Learner@{kukadu\-::\-Cartesian\-D\-M\-P\-Learner}!Cartesian\-D\-M\-P\-Learner@{Cartesian\-D\-M\-P\-Learner}}
-\index{Cartesian\-D\-M\-P\-Learner@{Cartesian\-D\-M\-P\-Learner}!kukadu::CartesianDMPLearner@{kukadu\-::\-Cartesian\-D\-M\-P\-Learner}}
-\subsubsection[{Cartesian\-D\-M\-P\-Learner}]{\setlength{\rightskip}{0pt plus 5cm}kukadu\-::\-Cartesian\-D\-M\-P\-Learner\-::\-Cartesian\-D\-M\-P\-Learner (
+\index{kukadu\+::\+Cartesian\+D\+M\+P\+Learner@{kukadu\+::\+Cartesian\+D\+M\+P\+Learner}!Cartesian\+D\+M\+P\+Learner@{Cartesian\+D\+M\+P\+Learner}}
+\index{Cartesian\+D\+M\+P\+Learner@{Cartesian\+D\+M\+P\+Learner}!kukadu\+::\+Cartesian\+D\+M\+P\+Learner@{kukadu\+::\+Cartesian\+D\+M\+P\+Learner}}
+\subsubsection[{\texorpdfstring{Cartesian\+D\+M\+P\+Learner(std\+::vector$<$ double $>$ mys\+Def, std\+::vector$<$ double $>$ sigmas\+Def, double az, double bz, std\+::string file)}{CartesianDMPLearner(std::vector< double > mysDef, std::vector< double > sigmasDef, double az, double bz, std::string file)}}]{\setlength{\rightskip}{0pt plus 5cm}kukadu\+::\+Cartesian\+D\+M\+P\+Learner\+::\+Cartesian\+D\+M\+P\+Learner (
 \begin{DoxyParamCaption}
-\item[{std\-::vector$<$ double $>$}]{mys\-Def, }
-\item[{std\-::vector$<$ double $>$}]{sigmas\-Def, }
+\item[{std\+::vector$<$ double $>$}]{mys\+Def, }
+\item[{std\+::vector$<$ double $>$}]{sigmas\+Def, }
 \item[{double}]{az, }
 \item[{double}]{bz, }
-\item[{std\-::string}]{file}
+\item[{std\+::string}]{file}
 \end{DoxyParamCaption}
-)}}\label{classkukadu_1_1CartesianDMPLearner_a827dfdfd4ae5f2052ad67d429a0b10b5}
+)}\hypertarget{classkukadu_1_1CartesianDMPLearner_a827dfdfd4ae5f2052ad67d429a0b10b5}{}\label{classkukadu_1_1CartesianDMPLearner_a827dfdfd4ae5f2052ad67d429a0b10b5}
 
 
 constructor 
 
 
 \begin{DoxyParams}{Parameters}
-{\em dmp\-Base} & dmp basis function definition \\
+{\em dmp\+Base} & dmp basis function definition \\
 \hline
 {\em tau} & dmp timing constant \\
 \hline
@@ -109,12 +109,12 @@ constructor
 \hline
 {\em file} & file containing the measured joints \\
 \hline
-{\em deg\-Freedom} & robots degrees of freedom \\
+{\em deg\+Freedom} & robots degrees of freedom \\
 \hline
 \end{DoxyParams}
 
 
-The documentation for this class was generated from the following files\-:\begin{DoxyCompactItemize}
+The documentation for this class was generated from the following files\+:\begin{DoxyCompactItemize}
 \item 
-/home/c7031109/iis\-\_\-robot\-\_\-sw/iis\-\_\-catkin\-\_\-ws/src/kukadu/include/kukadu/control/cartesiandmplearner.\-hpp\item 
-/home/c7031109/iis\-\_\-robot\-\_\-sw/iis\-\_\-catkin\-\_\-ws/src/kukadu/src/control/cartesiandmplearner.\-cpp\end{DoxyCompactItemize}
+/home/c7031109/iis\+\_\+robot\+\_\+sw/iis\+\_\+catkin\+\_\+ws/src/kukadu/include/kukadu/control/dmp.\+hpp\item 
+/home/c7031109/iis\+\_\+robot\+\_\+sw/iis\+\_\+catkin\+\_\+ws/src/kukadu/src/control/dmp.\+cpp\end{DoxyCompactItemize}

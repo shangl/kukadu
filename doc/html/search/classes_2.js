@@ -1,5 +1,6 @@
 var searchData=
 [
+  ['databasemodel',['DatabaseModel',['../classkukadu_1_1DatabaseModel.html',1,'kukadu']]],
   ['destroyableobject',['DestroyableObject',['../classkukadu_1_1DestroyableObject.html',1,'kukadu']]],
   ['dictionarytrajectory',['DictionaryTrajectory',['../classkukadu_1_1DictionaryTrajectory.html',1,'kukadu']]],
   ['dmp',['Dmp',['../classkukadu_1_1Dmp.html',1,'kukadu']]],
