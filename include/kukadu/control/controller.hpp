@@ -6,6 +6,7 @@
 #include <kukadu/types/kukadutypes.hpp>
 #include <kukadu/types/controllerresult.hpp>
 #include <kukadu/storage/storagesingleton.hpp>
+#include <kukadu/robot/queue.hpp>
 
 namespace kukadu {
 
@@ -97,6 +98,54 @@ namespace kukadu {
 
     };
 
+    class CartesianPtp : public Controller {
+
+        private:
+
+            KUKADU_SHARED_PTR<ControlQueue> leftQueue;
+
+        protected:
+
+            virtual void createSkillFromThisInternal(std::string skillName);
+
+        public:
+
+            CartesianPtp(StorageSingleton& storage, KUKADU_SHARED_PTR<ControlQueue> leftQueue);
+
+            bool requiresGraspInternal();
+
+            bool producesGraspInternal();
+
+            std::shared_ptr<ControllerResult> executeInternal();
+
+            std::string getClassName();
+
+        };
+
+
+    class JointPtp : public Controller {
+
+        private:
+
+            KUKADU_SHARED_PTR<ControlQueue> leftQueue;
+
+        protected:
+
+            virtual void createSkillFromThisInternal(std::string skillName);
+
+        public:
+
+            JointPtp(StorageSingleton& storage, KUKADU_SHARED_PTR<ControlQueue> leftQueue);
+
+            bool requiresGraspInternal();
+
+            bool producesGraspInternal();
+
+            std::shared_ptr<ControllerResult> executeInternal();
+
+            std::string getClassName();
+
+        };
 }
 
 #endif

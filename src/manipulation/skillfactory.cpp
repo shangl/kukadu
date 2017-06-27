@@ -16,6 +16,16 @@ namespace kukadu {
             "DMPExecutor", [](StorageSingleton& storage, int skillId, int controllerType, KUKADU_SHARED_PTR<Hardware> queue) {
                 return make_shared<DMPExecutor>(storage, skillId, KUKADU_DYNAMIC_POINTER_CAST<ControlQueue>(queue));
             }
+        },
+        {
+            "JointPtp", [](StorageSingleton& storage, int skillId, int controllerType, KUKADU_SHARED_PTR<Hardware> queue) {
+                return make_shared<JointPtp>(storage, KUKADU_DYNAMIC_POINTER_CAST<ControlQueue>(queue));
+            }
+        },
+        {
+            "CartesianPtp", [](StorageSingleton& storage, int skillId, int controllerType, KUKADU_SHARED_PTR<Hardware> queue) {
+                return make_shared<CartesianPtp>(storage, KUKADU_DYNAMIC_POINTER_CAST<ControlQueue>(queue));
+            }
         }
     };
 

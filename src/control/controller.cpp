@@ -244,4 +244,73 @@ namespace kukadu {
 
     /****************** end ********************************************/
 
+
+    /*****************CartesianPtp *************************/
+    CartesianPtp::CartesianPtp(StorageSingleton& storage, KUKADU_SHARED_PTR<ControlQueue> leftQueue)
+                    : Controller(storage, "cartesian_move_skill_wrapper", {leftQueue}, 0.01) {
+
+        this->leftQueue = leftQueue;
+    }
+
+    bool CartesianPtp::requiresGraspInternal() {
+        return false;
+    }
+
+    bool CartesianPtp::producesGraspInternal() {
+        return false;
+    }
+
+    std::shared_ptr<ControllerResult> CartesianPtp::executeInternal() {
+        geometry_msgs::Pose nextPose;
+        nextPose.position.x = 0.5;
+        nextPose.position.y = 1.2;
+        nextPose.position.z = 0.9;
+
+        nextPose.orientation.x = -0.06;
+        nextPose.orientation.y = -0.14;
+        nextPose.orientation.z = -0.29;
+        nextPose.orientation.w = 0.94;
+
+        leftQueue->cartesianPtp(nextPose);
+        return nullptr;
+
+    }
+
+    std::string CartesianPtp::getClassName() {
+        return "CartesianPtp";
+    }
+
+    void CartesianPtp::createSkillFromThisInternal(std::string skillName) {
+        // nothing to do
+    }
+
+    /************************* JointPtp *********************************/
+    JointPtp::JointPtp(StorageSingleton& storage, KUKADU_SHARED_PTR<ControlQueue> leftQueue)
+                    : Controller(storage, "test_skill_wrapper", {leftQueue}, 0.01) {
+
+        this->leftQueue = leftQueue;
+    }
+
+    bool JointPtp::requiresGraspInternal() {
+        return false;
+    }
+
+    bool JointPtp::producesGraspInternal() {
+        return false;
+    }
+
+    std::shared_ptr<ControllerResult> JointPtp::executeInternal() {
+
+        leftQueue->jointPtp({-0.96, 1.11, 1.14, -1.44, -0.28, -0.89, -0.26});
+        return nullptr;
+
+    }
+
+    std::string JointPtp::getClassName() {
+        return "JointPtp";
+    }
+
+    void JointPtp::createSkillFromThisInternal(std::string skillName) {
+        // nothing to do
+    }
 }
