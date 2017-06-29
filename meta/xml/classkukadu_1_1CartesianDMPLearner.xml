@@ -1,0 +1,374 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.8.11">
+  <compounddef id="classkukadu_1_1CartesianDMPLearner" kind="class" language="C++" prot="public">
+    <compoundname>kukadu::CartesianDMPLearner</compoundname>
+    <basecompoundref refid="classkukadu_1_1GeneralDmpLearner" prot="public" virt="non-virtual">kukadu::GeneralDmpLearner</basecompoundref>
+    <includes refid="dmp_8hpp" local="no">dmp.hpp</includes>
+      <sectiondef kind="protected-func">
+      <memberdef kind="function" id="classkukadu_1_1CartesianDMPLearner_1ac6060b23f8fbf519e3d9944dab73c8d2" prot="protected" static="no" const="no" explicit="no" inline="no" virt="virtual">
+        <type>KUKADU_SHARED_PTR&lt; <ref refid="classkukadu_1_1Dmp" kindref="compound">Dmp</ref> &gt;</type>
+        <definition>KUKADU_SHARED_PTR&lt; Dmp &gt; kukadu::CartesianDMPLearner::createDmpInstance</definition>
+        <argsstring>(arma::vec &amp;supervisedTsInSeconds, std::vector&lt; arma::vec &gt; sampleYs, std::vector&lt; arma::vec &gt; fitYs, std::vector&lt; arma::vec &gt; dmpCoeffs, std::vector&lt; DMPBase &gt; dmpBase, std::vector&lt; arma::mat &gt; designMatrices, double tau, double az, double bz, double ax)</argsstring>
+        <name>createDmpInstance</name>
+        <reimplements refid="classkukadu_1_1GeneralDmpLearner_1ac09b61a9d1fc81a4d32b00e8a27c9a37">createDmpInstance</reimplements>
+        <param>
+          <type>arma::vec &amp;</type>
+          <declname>supervisedTsInSeconds</declname>
+        </param>
+        <param>
+          <type>std::vector&lt; arma::vec &gt;</type>
+          <declname>sampleYs</declname>
+        </param>
+        <param>
+          <type>std::vector&lt; arma::vec &gt;</type>
+          <declname>fitYs</declname>
+        </param>
+        <param>
+          <type>std::vector&lt; arma::vec &gt;</type>
+          <declname>dmpCoeffs</declname>
+        </param>
+        <param>
+          <type>std::vector&lt; <ref refid="classkukadu_1_1DMPBase" kindref="compound">DMPBase</ref> &gt;</type>
+          <declname>dmpBase</declname>
+        </param>
+        <param>
+          <type>std::vector&lt; arma::mat &gt;</type>
+          <declname>designMatrices</declname>
+        </param>
+        <param>
+          <type>double</type>
+          <declname>tau</declname>
+        </param>
+        <param>
+          <type>double</type>
+          <declname>az</declname>
+        </param>
+        <param>
+          <type>double</type>
+          <declname>bz</declname>
+        </param>
+        <param>
+          <type>double</type>
+          <declname>ax</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/agyss/iis_robot_sw/iis_catkin_ws/src/kukadu/include/kukadu/control/dmp.hpp" line="371" column="1" bodyfile="/home/agyss/iis_robot_sw/iis_catkin_ws/src/kukadu/src/control/dmp.cpp" bodystart="567" bodyend="570"/>
+      </memberdef>
+      <memberdef kind="function" id="classkukadu_1_1CartesianDMPLearner_1a17b09095c1a7e462e34bf5448cb021ab" prot="protected" static="no" const="no" explicit="no" inline="no" virt="virtual">
+        <type>arma::mat</type>
+        <definition>arma::mat kukadu::CartesianDMPLearner::computeFitY</definition>
+        <argsstring>(arma::vec &amp;time, arma::mat &amp;y, arma::mat &amp;dy, arma::mat &amp;ddy, arma::vec &amp;vec_g)</argsstring>
+        <name>computeFitY</name>
+        <reimplements refid="classkukadu_1_1GeneralDmpLearner_1a5df8ee4640adf585cbce7b04e77ae3a6">computeFitY</reimplements>
+        <param>
+          <type>arma::vec &amp;</type>
+          <declname>time</declname>
+        </param>
+        <param>
+          <type>arma::mat &amp;</type>
+          <declname>y</declname>
+        </param>
+        <param>
+          <type>arma::mat &amp;</type>
+          <declname>dy</declname>
+        </param>
+        <param>
+          <type>arma::mat &amp;</type>
+          <declname>ddy</declname>
+        </param>
+        <param>
+          <type>arma::vec &amp;</type>
+          <declname>vec_g</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/agyss/iis_robot_sw/iis_catkin_ws/src/kukadu/include/kukadu/control/dmp.hpp" line="374" column="1" bodyfile="/home/agyss/iis_robot_sw/iis_catkin_ws/src/kukadu/src/control/dmp.cpp" bodystart="1364" bodyend="1426"/>
+      </memberdef>
+      </sectiondef>
+      <sectiondef kind="public-func">
+      <memberdef kind="function" id="classkukadu_1_1CartesianDMPLearner_1a13b6c457b204f3dae0541803ac3f6138" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type></type>
+        <definition>kukadu::CartesianDMPLearner::CartesianDMPLearner</definition>
+        <argsstring>(std::vector&lt; DMPBase &gt; dmpBase, double tau, double az, double bz, double ax, arma::vec timesInSeconds, arma::mat joints)</argsstring>
+        <name>CartesianDMPLearner</name>
+        <param>
+          <type>std::vector&lt; <ref refid="classkukadu_1_1DMPBase" kindref="compound">DMPBase</ref> &gt;</type>
+          <declname>dmpBase</declname>
+        </param>
+        <param>
+          <type>double</type>
+          <declname>tau</declname>
+        </param>
+        <param>
+          <type>double</type>
+          <declname>az</declname>
+        </param>
+        <param>
+          <type>double</type>
+          <declname>bz</declname>
+        </param>
+        <param>
+          <type>double</type>
+          <declname>ax</declname>
+        </param>
+        <param>
+          <type>arma::vec</type>
+          <declname>timesInSeconds</declname>
+        </param>
+        <param>
+          <type>arma::mat</type>
+          <declname>joints</declname>
+        </param>
+        <briefdescription>
+<para>constructor </para>        </briefdescription>
+        <detaileddescription>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>dmpBase</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>dmp basis function definition </para></parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>tau</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>dmp timing constant </para></parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>az</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>dmp az constant </para></parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>bz</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>dmp bz constant </para></parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>ax</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>dmp ax constant </para></parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>joints</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>measured joints </para></parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>degFreedom</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>robots degrees of freedom </para></parameterdescription>
+</parameteritem>
+</parameterlist>
+</para>        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/agyss/iis_robot_sw/iis_catkin_ws/src/kukadu/include/kukadu/control/dmp.hpp" line="388" column="1" bodyfile="/home/agyss/iis_robot_sw/iis_catkin_ws/src/kukadu/src/control/dmp.cpp" bodystart="551" bodyend="553"/>
+      </memberdef>
+      <memberdef kind="function" id="classkukadu_1_1CartesianDMPLearner_1a827dfdfd4ae5f2052ad67d429a0b10b5" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type></type>
+        <definition>kukadu::CartesianDMPLearner::CartesianDMPLearner</definition>
+        <argsstring>(std::vector&lt; double &gt; mysDef, std::vector&lt; double &gt; sigmasDef, double az, double bz, std::string file)</argsstring>
+        <name>CartesianDMPLearner</name>
+        <param>
+          <type>std::vector&lt; double &gt;</type>
+          <declname>mysDef</declname>
+        </param>
+        <param>
+          <type>std::vector&lt; double &gt;</type>
+          <declname>sigmasDef</declname>
+        </param>
+        <param>
+          <type>double</type>
+          <declname>az</declname>
+        </param>
+        <param>
+          <type>double</type>
+          <declname>bz</declname>
+        </param>
+        <param>
+          <type>std::string</type>
+          <declname>file</declname>
+        </param>
+        <briefdescription>
+<para>constructor </para>        </briefdescription>
+        <detaileddescription>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>dmpBase</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>dmp basis function definition </para></parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>tau</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>dmp timing constant </para></parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>az</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>dmp az constant </para></parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>bz</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>dmp bz constant </para></parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>ax</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>dmp ax constant </para></parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>file</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>file containing the measured joints </para></parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>degFreedom</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>robots degrees of freedom </para></parameterdescription>
+</parameteritem>
+</parameterlist>
+</para>        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/agyss/iis_robot_sw/iis_catkin_ws/src/kukadu/include/kukadu/control/dmp.hpp" line="400" column="1" bodyfile="/home/agyss/iis_robot_sw/iis_catkin_ws/src/kukadu/src/control/dmp.cpp" bodystart="555" bodyend="557"/>
+      </memberdef>
+      <memberdef kind="function" id="classkukadu_1_1CartesianDMPLearner_1a7f6c5dd882679d153af81ec8f87e6126" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type></type>
+        <definition>kukadu::CartesianDMPLearner::CartesianDMPLearner</definition>
+        <argsstring>(double az, double bz, std::string file)</argsstring>
+        <name>CartesianDMPLearner</name>
+        <param>
+          <type>double</type>
+          <declname>az</declname>
+        </param>
+        <param>
+          <type>double</type>
+          <declname>bz</declname>
+        </param>
+        <param>
+          <type>std::string</type>
+          <declname>file</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/agyss/iis_robot_sw/iis_catkin_ws/src/kukadu/include/kukadu/control/dmp.hpp" line="402" column="1" bodyfile="/home/agyss/iis_robot_sw/iis_catkin_ws/src/kukadu/src/control/dmp.cpp" bodystart="559" bodyend="561"/>
+      </memberdef>
+      <memberdef kind="function" id="classkukadu_1_1CartesianDMPLearner_1a179c825c8c072bd01843103dd4c129f0" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type></type>
+        <definition>kukadu::CartesianDMPLearner::CartesianDMPLearner</definition>
+        <argsstring>(double az, double bz, arma::vec timesInSeconds, arma::mat joints)</argsstring>
+        <name>CartesianDMPLearner</name>
+        <param>
+          <type>double</type>
+          <declname>az</declname>
+        </param>
+        <param>
+          <type>double</type>
+          <declname>bz</declname>
+        </param>
+        <param>
+          <type>arma::vec</type>
+          <declname>timesInSeconds</declname>
+        </param>
+        <param>
+          <type>arma::mat</type>
+          <declname>joints</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/agyss/iis_robot_sw/iis_catkin_ws/src/kukadu/include/kukadu/control/dmp.hpp" line="404" column="1" bodyfile="/home/agyss/iis_robot_sw/iis_catkin_ws/src/kukadu/src/control/dmp.cpp" bodystart="563" bodyend="565"/>
+      </memberdef>
+      </sectiondef>
+    <briefdescription>
+<para>The TrajectoryDMPLearner encapsulates the dmp learning process. </para>    </briefdescription>
+    <detaileddescription>
+<para>Dynamic movement primitives can be easily learned by using this class and providing the cartesian data or a file containing this data. Basically this is a helper that enables the programmer to reduce code complexity. </para>    </detaileddescription>
+    <inheritancegraph>
+      <node id="58">
+        <label>kukadu::CartesianDMPLearner</label>
+        <link refid="classkukadu_1_1CartesianDMPLearner"/>
+        <childnode refid="59" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="59">
+        <label>kukadu::GeneralDmpLearner</label>
+        <link refid="classkukadu_1_1GeneralDmpLearner"/>
+      </node>
+    </inheritancegraph>
+    <collaborationgraph>
+      <node id="60">
+        <label>kukadu::CartesianDMPLearner</label>
+        <link refid="classkukadu_1_1CartesianDMPLearner"/>
+        <childnode refid="61" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="61">
+        <label>kukadu::GeneralDmpLearner</label>
+        <link refid="classkukadu_1_1GeneralDmpLearner"/>
+      </node>
+    </collaborationgraph>
+    <location file="/home/agyss/iis_robot_sw/iis_catkin_ws/src/kukadu/include/kukadu/control/dmp.hpp" line="367" column="1" bodyfile="/home/agyss/iis_robot_sw/iis_catkin_ws/src/kukadu/include/kukadu/control/dmp.hpp" bodystart="367" bodyend="406"/>
+    <listofallmembers>
+      <member refid="classkukadu_1_1GeneralDmpLearner_1ab6b6b3fa49ef6c7925dbe34ea5991f48" prot="protected" virt="non-virtual"><scope>kukadu::CartesianDMPLearner</scope><name>ax</name></member>
+      <member refid="classkukadu_1_1GeneralDmpLearner_1abccf72154087561579ce0abe1ff85ff3" prot="protected" virt="non-virtual"><scope>kukadu::CartesianDMPLearner</scope><name>az</name></member>
+      <member refid="classkukadu_1_1GeneralDmpLearner_1ad910f3a86c8551f63c643347ae4f15fe" prot="protected" virt="non-virtual"><scope>kukadu::CartesianDMPLearner</scope><name>bz</name></member>
+      <member refid="classkukadu_1_1CartesianDMPLearner_1a13b6c457b204f3dae0541803ac3f6138" prot="public" virt="non-virtual"><scope>kukadu::CartesianDMPLearner</scope><name>CartesianDMPLearner</name></member>
+      <member refid="classkukadu_1_1CartesianDMPLearner_1a827dfdfd4ae5f2052ad67d429a0b10b5" prot="public" virt="non-virtual"><scope>kukadu::CartesianDMPLearner</scope><name>CartesianDMPLearner</name></member>
+      <member refid="classkukadu_1_1CartesianDMPLearner_1a7f6c5dd882679d153af81ec8f87e6126" prot="public" virt="non-virtual"><scope>kukadu::CartesianDMPLearner</scope><name>CartesianDMPLearner</name></member>
+      <member refid="classkukadu_1_1CartesianDMPLearner_1a179c825c8c072bd01843103dd4c129f0" prot="public" virt="non-virtual"><scope>kukadu::CartesianDMPLearner</scope><name>CartesianDMPLearner</name></member>
+      <member refid="classkukadu_1_1CartesianDMPLearner_1a17b09095c1a7e462e34bf5448cb021ab" prot="protected" virt="virtual"><scope>kukadu::CartesianDMPLearner</scope><name>computeFitY</name></member>
+      <member refid="classkukadu_1_1CartesianDMPLearner_1ac6060b23f8fbf519e3d9944dab73c8d2" prot="protected" virt="virtual"><scope>kukadu::CartesianDMPLearner</scope><name>createDmpInstance</name></member>
+      <member refid="classkukadu_1_1GeneralDmpLearner_1a4f2f314a7bfb0d9ff54fabbb038757c8" prot="public" virt="non-virtual"><scope>kukadu::CartesianDMPLearner</scope><name>fitTrajectories</name></member>
+      <member refid="classkukadu_1_1GeneralDmpLearner_1ac1d5a121adb29527ee7044d1c1394342" prot="public" virt="non-virtual"><scope>kukadu::CartesianDMPLearner</scope><name>GeneralDmpLearner</name></member>
+      <member refid="classkukadu_1_1GeneralDmpLearner_1a317520b316d8d6e75206237f0848b3c1" prot="public" virt="non-virtual"><scope>kukadu::CartesianDMPLearner</scope><name>GeneralDmpLearner</name></member>
+      <member refid="classkukadu_1_1GeneralDmpLearner_1ab9adb95165d0799c1abe7038b088c419" prot="public" virt="non-virtual"><scope>kukadu::CartesianDMPLearner</scope><name>GeneralDmpLearner</name></member>
+      <member refid="classkukadu_1_1GeneralDmpLearner_1ac98e9dc7b0da404a3df4bd7e8bd77ae7" prot="public" virt="non-virtual"><scope>kukadu::CartesianDMPLearner</scope><name>GeneralDmpLearner</name></member>
+      <member refid="classkukadu_1_1GeneralDmpLearner_1af27b307365984e9deae829ca2159ed57" prot="protected" virt="non-virtual"><scope>kukadu::CartesianDMPLearner</scope><name>tau</name></member>
+    </listofallmembers>
+  </compounddef>
+</doxygen>

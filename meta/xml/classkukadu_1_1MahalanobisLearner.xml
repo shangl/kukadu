@@ -1,0 +1,259 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.8.11">
+  <compounddef id="classkukadu_1_1MahalanobisLearner" kind="class" language="C++" prot="public" abstract="yes">
+    <compoundname>kukadu::MahalanobisLearner</compoundname>
+    <derivedcompoundref refid="classkukadu_1_1InfTheoMetricLearner" prot="public" virt="non-virtual">kukadu::InfTheoMetricLearner</derivedcompoundref>
+    <derivedcompoundref refid="classkukadu_1_1TogersonMetricLearner" prot="public" virt="non-virtual">kukadu::TogersonMetricLearner</derivedcompoundref>
+      <sectiondef kind="private-attrib">
+      <memberdef kind="variable" id="classkukadu_1_1MahalanobisLearner_1a358898f8672ba45b06ad11ee2962673e" prot="private" static="no" mutable="no">
+        <type><ref refid="classkukadu_1_1Mahalanobis" kindref="compound">Mahalanobis</ref></type>
+        <definition>Mahalanobis kukadu::MahalanobisLearner::metric</definition>
+        <argsstring></argsstring>
+        <name>metric</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/agyss/iis_robot_sw/iis_catkin_ws/src/kukadu/include/kukadu/learning/metric_learning/metriclearner.hpp" line="37" column="1" bodyfile="/home/agyss/iis_robot_sw/iis_catkin_ws/src/kukadu/include/kukadu/learning/metric_learning/metriclearner.hpp" bodystart="37" bodyend="-1"/>
+      </memberdef>
+      </sectiondef>
+      <sectiondef kind="protected-attrib">
+      <memberdef kind="variable" id="classkukadu_1_1MahalanobisLearner_1a3ea033162dbf7ac4abec5411551893ca" prot="protected" static="no" mutable="no">
+        <type>std::vector&lt; arma::vec &gt;</type>
+        <definition>std::vector&lt;arma::vec&gt; kukadu::MahalanobisLearner::x1s</definition>
+        <argsstring></argsstring>
+        <name>x1s</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/agyss/iis_robot_sw/iis_catkin_ws/src/kukadu/include/kukadu/learning/metric_learning/metriclearner.hpp" line="41" column="1" bodyfile="/home/agyss/iis_robot_sw/iis_catkin_ws/src/kukadu/include/kukadu/learning/metric_learning/metriclearner.hpp" bodystart="41" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classkukadu_1_1MahalanobisLearner_1ae0e587ea27bf3d609707a4eb6f919277" prot="protected" static="no" mutable="no">
+        <type>std::vector&lt; arma::vec &gt;</type>
+        <definition>std::vector&lt;arma::vec&gt; kukadu::MahalanobisLearner::x2s</definition>
+        <argsstring></argsstring>
+        <name>x2s</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/agyss/iis_robot_sw/iis_catkin_ws/src/kukadu/include/kukadu/learning/metric_learning/metriclearner.hpp" line="42" column="1" bodyfile="/home/agyss/iis_robot_sw/iis_catkin_ws/src/kukadu/include/kukadu/learning/metric_learning/metriclearner.hpp" bodystart="42" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classkukadu_1_1MahalanobisLearner_1af587d7f1d1679175071497d4c37ceef9" prot="protected" static="no" mutable="no">
+        <type>std::vector&lt; double &gt;</type>
+        <definition>std::vector&lt;double&gt; kukadu::MahalanobisLearner::distances</definition>
+        <argsstring></argsstring>
+        <name>distances</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/agyss/iis_robot_sw/iis_catkin_ws/src/kukadu/include/kukadu/learning/metric_learning/metriclearner.hpp" line="43" column="1" bodyfile="/home/agyss/iis_robot_sw/iis_catkin_ws/src/kukadu/include/kukadu/learning/metric_learning/metriclearner.hpp" bodystart="43" bodyend="-1"/>
+      </memberdef>
+      </sectiondef>
+      <sectiondef kind="public-func">
+      <memberdef kind="function" id="classkukadu_1_1MahalanobisLearner_1a9f9d3dffef0fad99e19e54e4ce99e9d2" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type></type>
+        <definition>kukadu::MahalanobisLearner::MahalanobisLearner</definition>
+        <argsstring>(std::vector&lt; arma::vec &gt; x1s, std::vector&lt; arma::vec &gt; x2s, std::vector&lt; double &gt; distances)</argsstring>
+        <name>MahalanobisLearner</name>
+        <param>
+          <type>std::vector&lt; arma::vec &gt;</type>
+          <declname>x1s</declname>
+        </param>
+        <param>
+          <type>std::vector&lt; arma::vec &gt;</type>
+          <declname>x2s</declname>
+        </param>
+        <param>
+          <type>std::vector&lt; double &gt;</type>
+          <declname>distances</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/agyss/iis_robot_sw/iis_catkin_ws/src/kukadu/include/kukadu/learning/metric_learning/metriclearner.hpp" line="47" column="1" bodyfile="/home/agyss/iis_robot_sw/iis_catkin_ws/src/kukadu/src/learning/metric_learning/metriclearner.cpp" bodystart="262" bodyend="285"/>
+      </memberdef>
+      <memberdef kind="function" id="classkukadu_1_1MahalanobisLearner_1a4f3b38ac5088b27d34a2bc8200aa8dce" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>void kukadu::MahalanobisLearner::addSample</definition>
+        <argsstring>(arma::vec x1, arma::vec x2, double distance)</argsstring>
+        <name>addSample</name>
+        <param>
+          <type>arma::vec</type>
+          <declname>x1</declname>
+        </param>
+        <param>
+          <type>arma::vec</type>
+          <declname>x2</declname>
+        </param>
+        <param>
+          <type>double</type>
+          <declname>distance</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/agyss/iis_robot_sw/iis_catkin_ws/src/kukadu/include/kukadu/learning/metric_learning/metriclearner.hpp" line="49" column="1" bodyfile="/home/agyss/iis_robot_sw/iis_catkin_ws/src/kukadu/src/learning/metric_learning/metriclearner.cpp" bodystart="287" bodyend="300"/>
+      </memberdef>
+      <memberdef kind="function" id="classkukadu_1_1MahalanobisLearner_1af57c5d3f3876acc201e923a55db342ca" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>int</type>
+        <definition>int kukadu::MahalanobisLearner::getSampleCount</definition>
+        <argsstring>()</argsstring>
+        <name>getSampleCount</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/agyss/iis_robot_sw/iis_catkin_ws/src/kukadu/include/kukadu/learning/metric_learning/metriclearner.hpp" line="51" column="1" bodyfile="/home/agyss/iis_robot_sw/iis_catkin_ws/src/kukadu/src/learning/metric_learning/metriclearner.cpp" bodystart="310" bodyend="312"/>
+      </memberdef>
+      <memberdef kind="function" id="classkukadu_1_1MahalanobisLearner_1a24d0f7f9e43d297454aa316f80019e15" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>int</type>
+        <definition>int kukadu::MahalanobisLearner::getVectorDim</definition>
+        <argsstring>()</argsstring>
+        <name>getVectorDim</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/agyss/iis_robot_sw/iis_catkin_ws/src/kukadu/include/kukadu/learning/metric_learning/metriclearner.hpp" line="52" column="1" bodyfile="/home/agyss/iis_robot_sw/iis_catkin_ws/src/kukadu/src/learning/metric_learning/metriclearner.cpp" bodystart="306" bodyend="308"/>
+      </memberdef>
+      <memberdef kind="function" id="classkukadu_1_1MahalanobisLearner_1aeb08af8a9bbf6d482a7bbdb1c34e933b" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>double</type>
+        <definition>double kukadu::MahalanobisLearner::getSampleDistance</definition>
+        <argsstring>(int idx)</argsstring>
+        <name>getSampleDistance</name>
+        <param>
+          <type>int</type>
+          <declname>idx</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/agyss/iis_robot_sw/iis_catkin_ws/src/kukadu/include/kukadu/learning/metric_learning/metriclearner.hpp" line="54" column="1" bodyfile="/home/agyss/iis_robot_sw/iis_catkin_ws/src/kukadu/src/learning/metric_learning/metriclearner.cpp" bodystart="314" bodyend="316"/>
+      </memberdef>
+      <memberdef kind="function" id="classkukadu_1_1MahalanobisLearner_1ac552c824300edabfc56f097f8adfea4a" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>arma::vec</type>
+        <definition>arma::vec kukadu::MahalanobisLearner::getX1</definition>
+        <argsstring>(int idx)</argsstring>
+        <name>getX1</name>
+        <param>
+          <type>int</type>
+          <declname>idx</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/agyss/iis_robot_sw/iis_catkin_ws/src/kukadu/include/kukadu/learning/metric_learning/metriclearner.hpp" line="55" column="1" bodyfile="/home/agyss/iis_robot_sw/iis_catkin_ws/src/kukadu/src/learning/metric_learning/metriclearner.cpp" bodystart="318" bodyend="320"/>
+      </memberdef>
+      <memberdef kind="function" id="classkukadu_1_1MahalanobisLearner_1a43027e86750acf224b07edbe63514a2b" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>arma::vec</type>
+        <definition>arma::vec kukadu::MahalanobisLearner::getX2</definition>
+        <argsstring>(int idx)</argsstring>
+        <name>getX2</name>
+        <param>
+          <type>int</type>
+          <declname>idx</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/agyss/iis_robot_sw/iis_catkin_ws/src/kukadu/include/kukadu/learning/metric_learning/metriclearner.hpp" line="56" column="1" bodyfile="/home/agyss/iis_robot_sw/iis_catkin_ws/src/kukadu/src/learning/metric_learning/metriclearner.cpp" bodystart="322" bodyend="324"/>
+      </memberdef>
+      <memberdef kind="function" id="classkukadu_1_1MahalanobisLearner_1a66f0a4fbe1aef2a2eb8434552fe6a556" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type><ref refid="classkukadu_1_1Mahalanobis" kindref="compound">Mahalanobis</ref></type>
+        <definition>Mahalanobis kukadu::MahalanobisLearner::getMetric</definition>
+        <argsstring>()</argsstring>
+        <name>getMetric</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/agyss/iis_robot_sw/iis_catkin_ws/src/kukadu/include/kukadu/learning/metric_learning/metriclearner.hpp" line="58" column="1" bodyfile="/home/agyss/iis_robot_sw/iis_catkin_ws/src/kukadu/src/learning/metric_learning/metriclearner.cpp" bodystart="302" bodyend="304"/>
+      </memberdef>
+      <memberdef kind="function" id="classkukadu_1_1MahalanobisLearner_1a05b61576c302b5484bc1a482968c01a0" prot="public" static="no" const="no" explicit="no" inline="no" virt="pure-virtual">
+        <type><ref refid="classkukadu_1_1Mahalanobis" kindref="compound">Mahalanobis</ref></type>
+        <definition>virtual Mahalanobis kukadu::MahalanobisLearner::learnMetric</definition>
+        <argsstring>()=0</argsstring>
+        <name>learnMetric</name>
+        <reimplementedby refid="classkukadu_1_1InfTheoMetricLearner_1ada74ff5d257bf64a5c3e1a4ba910148d">learnMetric</reimplementedby>
+        <reimplementedby refid="classkukadu_1_1TogersonMetricLearner_1a09e573f9cab3c7cb9d0164dd5568875b">learnMetric</reimplementedby>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/agyss/iis_robot_sw/iis_catkin_ws/src/kukadu/include/kukadu/learning/metric_learning/metriclearner.hpp" line="60" column="1"/>
+      </memberdef>
+      </sectiondef>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <inheritancegraph>
+      <node id="442">
+        <label>kukadu::TogersonMetricLearner</label>
+        <link refid="classkukadu_1_1TogersonMetricLearner"/>
+        <childnode refid="440" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="440">
+        <label>kukadu::MahalanobisLearner</label>
+        <link refid="classkukadu_1_1MahalanobisLearner"/>
+      </node>
+      <node id="441">
+        <label>kukadu::InfTheoMetricLearner</label>
+        <link refid="classkukadu_1_1InfTheoMetricLearner"/>
+        <childnode refid="440" relation="public-inheritance">
+        </childnode>
+      </node>
+    </inheritancegraph>
+    <location file="/home/agyss/iis_robot_sw/iis_catkin_ws/src/kukadu/include/kukadu/learning/metric_learning/metriclearner.hpp" line="33" column="1" bodyfile="/home/agyss/iis_robot_sw/iis_catkin_ws/src/kukadu/include/kukadu/learning/metric_learning/metriclearner.hpp" bodystart="33" bodyend="62"/>
+    <listofallmembers>
+      <member refid="classkukadu_1_1MahalanobisLearner_1a4f3b38ac5088b27d34a2bc8200aa8dce" prot="public" virt="non-virtual"><scope>kukadu::MahalanobisLearner</scope><name>addSample</name></member>
+      <member refid="classkukadu_1_1MahalanobisLearner_1af587d7f1d1679175071497d4c37ceef9" prot="protected" virt="non-virtual"><scope>kukadu::MahalanobisLearner</scope><name>distances</name></member>
+      <member refid="classkukadu_1_1MahalanobisLearner_1a66f0a4fbe1aef2a2eb8434552fe6a556" prot="public" virt="non-virtual"><scope>kukadu::MahalanobisLearner</scope><name>getMetric</name></member>
+      <member refid="classkukadu_1_1MahalanobisLearner_1af57c5d3f3876acc201e923a55db342ca" prot="public" virt="non-virtual"><scope>kukadu::MahalanobisLearner</scope><name>getSampleCount</name></member>
+      <member refid="classkukadu_1_1MahalanobisLearner_1aeb08af8a9bbf6d482a7bbdb1c34e933b" prot="public" virt="non-virtual"><scope>kukadu::MahalanobisLearner</scope><name>getSampleDistance</name></member>
+      <member refid="classkukadu_1_1MahalanobisLearner_1a24d0f7f9e43d297454aa316f80019e15" prot="public" virt="non-virtual"><scope>kukadu::MahalanobisLearner</scope><name>getVectorDim</name></member>
+      <member refid="classkukadu_1_1MahalanobisLearner_1ac552c824300edabfc56f097f8adfea4a" prot="public" virt="non-virtual"><scope>kukadu::MahalanobisLearner</scope><name>getX1</name></member>
+      <member refid="classkukadu_1_1MahalanobisLearner_1a43027e86750acf224b07edbe63514a2b" prot="public" virt="non-virtual"><scope>kukadu::MahalanobisLearner</scope><name>getX2</name></member>
+      <member refid="classkukadu_1_1MahalanobisLearner_1a05b61576c302b5484bc1a482968c01a0" prot="public" virt="pure-virtual"><scope>kukadu::MahalanobisLearner</scope><name>learnMetric</name></member>
+      <member refid="classkukadu_1_1MahalanobisLearner_1a9f9d3dffef0fad99e19e54e4ce99e9d2" prot="public" virt="non-virtual"><scope>kukadu::MahalanobisLearner</scope><name>MahalanobisLearner</name></member>
+      <member refid="classkukadu_1_1MahalanobisLearner_1a358898f8672ba45b06ad11ee2962673e" prot="private" virt="non-virtual"><scope>kukadu::MahalanobisLearner</scope><name>metric</name></member>
+      <member refid="classkukadu_1_1MahalanobisLearner_1a3ea033162dbf7ac4abec5411551893ca" prot="protected" virt="non-virtual"><scope>kukadu::MahalanobisLearner</scope><name>x1s</name></member>
+      <member refid="classkukadu_1_1MahalanobisLearner_1ae0e587ea27bf3d609707a4eb6f919277" prot="protected" virt="non-virtual"><scope>kukadu::MahalanobisLearner</scope><name>x2s</name></member>
+    </listofallmembers>
+  </compounddef>
+</doxygen>

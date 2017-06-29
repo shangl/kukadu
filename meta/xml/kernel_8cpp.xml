@@ -1,0 +1,569 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.8.11">
+  <compounddef id="kernel_8cpp" kind="file" language="C++">
+    <compoundname>kernel.cpp</compoundname>
+    <includes refid="kernel_8hpp" local="no">kukadu/learning/regression/kernel.hpp</includes>
+    <includes refid="moduleusagesingleton_8hpp" local="no">kukadu/storage/moduleusagesingleton.hpp</includes>
+    <incdepgraph>
+      <node id="3424">
+        <label>sys/stat.h</label>
+      </node>
+      <node id="3443">
+        <label>list</label>
+      </node>
+      <node id="3427">
+        <label>gsl/gsl_vector.h</label>
+      </node>
+      <node id="3423">
+        <label>wordexp.h</label>
+      </node>
+      <node id="3422">
+        <label>stdbool.h</label>
+      </node>
+      <node id="3417">
+        <label>stdarg.h</label>
+      </node>
+      <node id="3455">
+        <label>cppconn/resultset.h</label>
+      </node>
+      <node id="3436">
+        <label>sensor_msgs/PointCloud2.h</label>
+      </node>
+      <node id="3408">
+        <label>queue</label>
+      </node>
+      <node id="3434">
+        <label>pcl/PCLPointCloud2.h</label>
+      </node>
+      <node id="3409">
+        <label>limits</label>
+      </node>
+      <node id="3459">
+        <label>kukadu/robot/queue.hpp</label>
+        <link refid="queue_8hpp"/>
+        <childnode refid="3408" relation="include">
+        </childnode>
+        <childnode refid="3410" relation="include">
+        </childnode>
+        <childnode refid="3402" relation="include">
+        </childnode>
+        <childnode refid="3460" relation="include">
+        </childnode>
+        <childnode refid="3461" relation="include">
+        </childnode>
+        <childnode refid="3444" relation="include">
+        </childnode>
+        <childnode refid="3446" relation="include">
+        </childnode>
+        <childnode refid="3462" relation="include">
+        </childnode>
+        <childnode refid="3445" relation="include">
+        </childnode>
+      </node>
+      <node id="3431">
+        <label>pcl/point_types.h</label>
+      </node>
+      <node id="3403">
+        <label>kukadu/storage/moduleusagesingleton.hpp</label>
+        <link refid="moduleusagesingleton_8hpp_source"/>
+        <childnode refid="3404" relation="include">
+        </childnode>
+        <childnode refid="3405" relation="include">
+        </childnode>
+        <childnode refid="3406" relation="include">
+        </childnode>
+        <childnode refid="3407" relation="include">
+        </childnode>
+        <childnode refid="3446" relation="include">
+        </childnode>
+        <childnode refid="3445" relation="include">
+        </childnode>
+      </node>
+      <node id="3445">
+        <label>kukadu/storage/storagesingleton.hpp</label>
+        <link refid="storagesingleton_8hpp_source"/>
+        <childnode refid="3404" relation="include">
+        </childnode>
+        <childnode refid="3408" relation="include">
+        </childnode>
+        <childnode refid="3405" relation="include">
+        </childnode>
+        <childnode refid="3410" relation="include">
+        </childnode>
+        <childnode refid="3418" relation="include">
+        </childnode>
+        <childnode refid="3446" relation="include">
+        </childnode>
+        <childnode refid="3452" relation="include">
+        </childnode>
+        <childnode refid="3453" relation="include">
+        </childnode>
+        <childnode refid="3454" relation="include">
+        </childnode>
+        <childnode refid="3455" relation="include">
+        </childnode>
+        <childnode refid="3456" relation="include">
+        </childnode>
+      </node>
+      <node id="3430">
+        <label>pcl/point_cloud.h</label>
+      </node>
+      <node id="3446">
+        <label>kukadu/types/kukadutypes.hpp</label>
+        <link refid="kukadutypes_8hpp_source"/>
+        <childnode refid="3447" relation="include">
+        </childnode>
+        <childnode refid="3448" relation="include">
+        </childnode>
+        <childnode refid="3449" relation="include">
+        </childnode>
+        <childnode refid="3450" relation="include">
+        </childnode>
+        <childnode refid="3451" relation="include">
+        </childnode>
+      </node>
+      <node id="3440">
+        <label>stdexcept</label>
+      </node>
+      <node id="3421">
+        <label>termios.h</label>
+      </node>
+      <node id="3433">
+        <label>eigen3/Eigen/Dense</label>
+      </node>
+      <node id="3444">
+        <label>kukadu/robot/hardware.hpp</label>
+        <link refid="hardware_8hpp_source"/>
+        <childnode refid="3405" relation="include">
+        </childnode>
+        <childnode refid="3402" relation="include">
+        </childnode>
+        <childnode refid="3445" relation="include">
+        </childnode>
+      </node>
+      <node id="3426">
+        <label>gsl/gsl_poly.h</label>
+      </node>
+      <node id="3405">
+        <label>string</label>
+      </node>
+      <node id="3404">
+        <label>map</label>
+      </node>
+      <node id="3439">
+        <label>kukadu/utils/gnuplot.hpp</label>
+        <link refid="gnuplot_8hpp_source"/>
+        <childnode refid="3418" relation="include">
+        </childnode>
+        <childnode refid="3405" relation="include">
+        </childnode>
+        <childnode refid="3410" relation="include">
+        </childnode>
+        <childnode refid="3415" relation="include">
+        </childnode>
+        <childnode refid="3413" relation="include">
+        </childnode>
+        <childnode refid="3440" relation="include">
+        </childnode>
+        <childnode refid="3441" relation="include">
+        </childnode>
+        <childnode refid="3442" relation="include">
+        </childnode>
+        <childnode refid="3443" relation="include">
+        </childnode>
+      </node>
+      <node id="3402">
+        <label>armadillo</label>
+      </node>
+      <node id="3447">
+        <label>exception</label>
+      </node>
+      <node id="3415">
+        <label>fstream</label>
+      </node>
+      <node id="3463">
+        <label>kukadu/utils/kukadutokenizer.hpp</label>
+        <link refid="kukadutokenizer_8hpp_source"/>
+        <childnode refid="3405" relation="include">
+        </childnode>
+        <childnode refid="3410" relation="include">
+        </childnode>
+      </node>
+      <node id="3456">
+        <label>cppconn/statement.h</label>
+      </node>
+      <node id="3451">
+        <label>random</label>
+      </node>
+      <node id="3425">
+        <label>sys/types.h</label>
+      </node>
+      <node id="3438">
+        <label>kukadu/utils/types.hpp</label>
+        <link refid="utils_2types_8hpp_source"/>
+        <childnode refid="3410" relation="include">
+        </childnode>
+        <childnode refid="3402" relation="include">
+        </childnode>
+        <childnode refid="3428" relation="include">
+        </childnode>
+      </node>
+      <node id="3435">
+        <label>tf/transform_datatypes.h</label>
+      </node>
+      <node id="3441">
+        <label>cstdio</label>
+      </node>
+      <node id="3407">
+        <label>kukadu/utils/utils.hpp</label>
+        <link refid="utils_2utils_8hpp_source"/>
+        <childnode refid="3404" relation="include">
+        </childnode>
+        <childnode refid="3408" relation="include">
+        </childnode>
+        <childnode refid="3409" relation="include">
+        </childnode>
+        <childnode refid="3410" relation="include">
+        </childnode>
+        <childnode refid="3411" relation="include">
+        </childnode>
+        <childnode refid="3405" relation="include">
+        </childnode>
+        <childnode refid="3412" relation="include">
+        </childnode>
+        <childnode refid="3413" relation="include">
+        </childnode>
+        <childnode refid="3414" relation="include">
+        </childnode>
+        <childnode refid="3415" relation="include">
+        </childnode>
+        <childnode refid="3406" relation="include">
+        </childnode>
+        <childnode refid="3416" relation="include">
+        </childnode>
+        <childnode refid="3417" relation="include">
+        </childnode>
+        <childnode refid="3418" relation="include">
+        </childnode>
+        <childnode refid="3419" relation="include">
+        </childnode>
+        <childnode refid="3420" relation="include">
+        </childnode>
+        <childnode refid="3421" relation="include">
+        </childnode>
+        <childnode refid="3422" relation="include">
+        </childnode>
+        <childnode refid="3402" relation="include">
+        </childnode>
+        <childnode refid="3423" relation="include">
+        </childnode>
+        <childnode refid="3424" relation="include">
+        </childnode>
+        <childnode refid="3425" relation="include">
+        </childnode>
+        <childnode refid="3426" relation="include">
+        </childnode>
+        <childnode refid="3427" relation="include">
+        </childnode>
+        <childnode refid="3428" relation="include">
+        </childnode>
+        <childnode refid="3429" relation="include">
+        </childnode>
+        <childnode refid="3430" relation="include">
+        </childnode>
+        <childnode refid="3431" relation="include">
+        </childnode>
+        <childnode refid="3432" relation="include">
+        </childnode>
+        <childnode refid="3433" relation="include">
+        </childnode>
+        <childnode refid="3434" relation="include">
+        </childnode>
+        <childnode refid="3435" relation="include">
+        </childnode>
+        <childnode refid="3436" relation="include">
+        </childnode>
+        <childnode refid="3437" relation="include">
+        </childnode>
+        <childnode refid="3438" relation="include">
+        </childnode>
+        <childnode refid="3439" relation="include">
+        </childnode>
+        <childnode refid="3444" relation="include">
+        </childnode>
+        <childnode refid="3457" relation="include">
+        </childnode>
+        <childnode refid="3463" relation="include">
+        </childnode>
+      </node>
+      <node id="3457">
+        <label>kukadu/control/controller.hpp</label>
+        <link refid="controller_8hpp_source"/>
+        <childnode refid="3405" relation="include">
+        </childnode>
+        <childnode refid="3444" relation="include">
+        </childnode>
+        <childnode refid="3446" relation="include">
+        </childnode>
+        <childnode refid="3458" relation="include">
+        </childnode>
+        <childnode refid="3445" relation="include">
+        </childnode>
+        <childnode refid="3459" relation="include">
+        </childnode>
+      </node>
+      <node id="3416">
+        <label>unistd.h</label>
+      </node>
+      <node id="3410">
+        <label>vector</label>
+      </node>
+      <node id="3461">
+        <label>kukadu/robot/filters.hpp</label>
+        <link refid="filters_8hpp_source"/>
+        <childnode refid="3438" relation="include">
+        </childnode>
+        <childnode refid="3446" relation="include">
+        </childnode>
+      </node>
+      <node id="3419">
+        <label>signal.h</label>
+      </node>
+      <node id="3406">
+        <label>utility</label>
+      </node>
+      <node id="3413">
+        <label>sstream</label>
+      </node>
+      <node id="3453">
+        <label>cppconn/driver.h</label>
+      </node>
+      <node id="3454">
+        <label>cppconn/exception.h</label>
+      </node>
+      <node id="3460">
+        <label>geometry_msgs/Pose.h</label>
+      </node>
+      <node id="3411">
+        <label>math.h</label>
+      </node>
+      <node id="3400">
+        <label>/home/agyss/iis_robot_sw/iis_catkin_ws/src/kukadu/src/learning/regression/kernel.cpp</label>
+        <link refid="kernel.cpp"/>
+        <childnode refid="3401" relation="include">
+        </childnode>
+        <childnode refid="3403" relation="include">
+        </childnode>
+      </node>
+      <node id="3442">
+        <label>cstdlib</label>
+      </node>
+      <node id="3418">
+        <label>iostream</label>
+      </node>
+      <node id="3452">
+        <label>mysql_connection.h</label>
+      </node>
+      <node id="3462">
+        <label>kukadu/utils/destroyableobject.hpp</label>
+        <link refid="destroyableobject_8hpp_source"/>
+      </node>
+      <node id="3450">
+        <label>mutex</label>
+      </node>
+      <node id="3432">
+        <label>gsl/gsl_multifit.h</label>
+      </node>
+      <node id="3401">
+        <label>kukadu/learning/regression/kernel.hpp</label>
+        <link refid="kernel_8hpp_source"/>
+        <childnode refid="3402" relation="include">
+        </childnode>
+      </node>
+      <node id="3437">
+        <label>geometry_msgs/Quaternion.h</label>
+      </node>
+      <node id="3449">
+        <label>thread</label>
+      </node>
+      <node id="3429">
+        <label>gsl/gsl_linalg.h</label>
+      </node>
+      <node id="3414">
+        <label>stdio.h</label>
+      </node>
+      <node id="3412">
+        <label>cstring</label>
+      </node>
+      <node id="3428">
+        <label>gsl/gsl_matrix.h</label>
+      </node>
+      <node id="3448">
+        <label>memory</label>
+      </node>
+      <node id="3458">
+        <label>kukadu/types/controllerresult.hpp</label>
+        <link refid="controllerresult_8hpp_source"/>
+        <childnode refid="3410" relation="include">
+        </childnode>
+        <childnode refid="3402" relation="include">
+        </childnode>
+      </node>
+      <node id="3420">
+        <label>dirent.h</label>
+      </node>
+    </incdepgraph>
+    <innernamespace refid="namespacekukadu">kukadu</innernamespace>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <programlisting>
+<codeline lineno="1"><highlight class="preprocessor">#include<sp/>&lt;kukadu/learning/regression/kernel.hpp&gt;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="2"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&lt;kukadu/storage/moduleusagesingleton.hpp&gt;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="3"><highlight class="normal"></highlight></codeline>
+<codeline lineno="4"><highlight class="normal"></highlight><highlight class="keyword">using<sp/>namespace<sp/></highlight><highlight class="normal"><ref refid="namespacestd" kindref="compound">std</ref>;</highlight></codeline>
+<codeline lineno="5"><highlight class="normal"></highlight><highlight class="keyword">using<sp/>namespace<sp/></highlight><highlight class="normal"><ref refid="namespacearma" kindref="compound">arma</ref>;</highlight></codeline>
+<codeline lineno="6"><highlight class="normal"></highlight></codeline>
+<codeline lineno="7"><highlight class="normal"></highlight><highlight class="keyword">namespace<sp/></highlight><highlight class="normal"><ref refid="namespacekukadu" kindref="compound">kukadu</ref><sp/>{</highlight></codeline>
+<codeline lineno="8"><highlight class="normal"></highlight></codeline>
+<codeline lineno="9"><highlight class="normal"><sp/><sp/><sp/><sp/>GaussianKernel::GaussianKernel(</highlight><highlight class="keywordtype">double</highlight><highlight class="normal"><sp/>theta0,<sp/></highlight><highlight class="keywordtype">double</highlight><highlight class="normal"><sp/>theta1)<sp/>{</highlight></codeline>
+<codeline lineno="10"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>this-&gt;theta0<sp/>=<sp/>theta0;</highlight></codeline>
+<codeline lineno="11"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>this-&gt;theta1<sp/>=<sp/>theta1;</highlight></codeline>
+<codeline lineno="12"><highlight class="normal"><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline lineno="13"><highlight class="normal"></highlight></codeline>
+<codeline lineno="14"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">double</highlight><highlight class="normal"><sp/>GaussianKernel::evaluateKernel(vec<sp/>q1,<sp/>vec<sp/>q2,<sp/></highlight><highlight class="keywordtype">void</highlight><highlight class="normal">*<sp/>kernelParam)<sp/>{</highlight></codeline>
+<codeline lineno="15"><highlight class="normal"></highlight></codeline>
+<codeline lineno="16"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>KUKADU_MODULE_START_USAGE();</highlight></codeline>
+<codeline lineno="17"><highlight class="normal"></highlight></codeline>
+<codeline lineno="18"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">double</highlight><highlight class="normal"><sp/>ret<sp/>=<sp/>0.0;</highlight></codeline>
+<codeline lineno="19"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">double</highlight><highlight class="normal"><sp/>dist<sp/>=<sp/>0.0;</highlight></codeline>
+<codeline lineno="20"><highlight class="normal"></highlight></codeline>
+<codeline lineno="21"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>vec<sp/>sub<sp/>=<sp/>(q1<sp/>-<sp/>q2);</highlight></codeline>
+<codeline lineno="22"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>dist<sp/>=<sp/>norm(sub,<sp/>2);</highlight></codeline>
+<codeline lineno="23"><highlight class="normal"></highlight></codeline>
+<codeline lineno="24"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>ret<sp/>=<sp/>theta0<sp/>*<sp/>pow(M_E,<sp/>-<sp/>theta1<sp/>/<sp/>2.0<sp/>*<sp/>pow(dist,<sp/>2));</highlight></codeline>
+<codeline lineno="25"><highlight class="normal"></highlight></codeline>
+<codeline lineno="26"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>KUKADU_MODULE_END_USAGE();</highlight></codeline>
+<codeline lineno="27"><highlight class="normal"></highlight></codeline>
+<codeline lineno="28"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal"><sp/>ret;</highlight></codeline>
+<codeline lineno="29"><highlight class="normal"></highlight></codeline>
+<codeline lineno="30"><highlight class="normal"><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline lineno="31"><highlight class="normal"></highlight></codeline>
+<codeline lineno="32"><highlight class="normal"><sp/><sp/><sp/><sp/>TricubeKernel::TricubeKernel()<sp/>{<sp/>}</highlight></codeline>
+<codeline lineno="33"><highlight class="normal"></highlight></codeline>
+<codeline lineno="34"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">double</highlight><highlight class="normal"><sp/>TricubeKernel::evaluateKernel(vec<sp/>q1,<sp/>vec<sp/>q2,<sp/></highlight><highlight class="keywordtype">void</highlight><highlight class="normal">*<sp/>kernelParam)<sp/>{</highlight></codeline>
+<codeline lineno="35"><highlight class="normal"></highlight></codeline>
+<codeline lineno="36"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>KUKADU_MODULE_START_USAGE();</highlight></codeline>
+<codeline lineno="37"><highlight class="normal"></highlight></codeline>
+<codeline lineno="38"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">double</highlight><highlight class="normal"><sp/>ret<sp/>=<sp/>0.0;</highlight></codeline>
+<codeline lineno="39"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">double</highlight><highlight class="normal"><sp/>dist<sp/>=<sp/>0.0;</highlight></codeline>
+<codeline lineno="40"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">double</highlight><highlight class="normal"><sp/>normal<sp/>=<sp/>*(<sp/>(</highlight><highlight class="keywordtype">double</highlight><highlight class="normal">*)<sp/>kernelParam<sp/>);</highlight></codeline>
+<codeline lineno="41"><highlight class="normal"></highlight></codeline>
+<codeline lineno="42"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>vec<sp/>sub<sp/>=<sp/>1/normal<sp/>*<sp/>(q1<sp/>-<sp/>q2);</highlight></codeline>
+<codeline lineno="43"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>dist<sp/>=<sp/>norm(sub,<sp/>2);</highlight></codeline>
+<codeline lineno="44"><highlight class="normal"></highlight></codeline>
+<codeline lineno="45"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">if</highlight><highlight class="normal">(dist<sp/>&gt;=<sp/>1.0)<sp/>dist<sp/>=<sp/>1.0;</highlight></codeline>
+<codeline lineno="46"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>ret<sp/>=<sp/>70.0/81.0<sp/>*<sp/>pow(1<sp/>-<sp/>pow(dist,<sp/>3),<sp/>3);</highlight></codeline>
+<codeline lineno="47"><highlight class="normal"></highlight></codeline>
+<codeline lineno="48"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>KUKADU_MODULE_END_USAGE();</highlight></codeline>
+<codeline lineno="49"><highlight class="normal"></highlight></codeline>
+<codeline lineno="50"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal"><sp/>ret;</highlight></codeline>
+<codeline lineno="51"><highlight class="normal"></highlight></codeline>
+<codeline lineno="52"><highlight class="normal"><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline lineno="53"><highlight class="normal"></highlight></codeline>
+<codeline lineno="54"><highlight class="normal"><sp/><sp/><sp/><sp/>QuadraticKernel::QuadraticKernel()<sp/>{<sp/>}</highlight></codeline>
+<codeline lineno="55"><highlight class="normal"></highlight></codeline>
+<codeline lineno="56"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="comment">//<sp/>K(u)<sp/>=<sp/>15/16<sp/>(1<sp/>-<sp/>|u|^2)^2</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="57"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">double</highlight><highlight class="normal"><sp/>QuadraticKernel::evaluateKernel(vec<sp/>q1,<sp/>vec<sp/>q2,<sp/></highlight><highlight class="keywordtype">void</highlight><highlight class="normal">*<sp/>kernelParam)<sp/>{</highlight></codeline>
+<codeline lineno="58"><highlight class="normal"></highlight></codeline>
+<codeline lineno="59"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>KUKADU_MODULE_START_USAGE();</highlight></codeline>
+<codeline lineno="60"><highlight class="normal"></highlight></codeline>
+<codeline lineno="61"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">double</highlight><highlight class="normal"><sp/>ret<sp/>=<sp/>0.0;</highlight></codeline>
+<codeline lineno="62"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">double</highlight><highlight class="normal"><sp/>dist<sp/>=<sp/>0.0;</highlight></codeline>
+<codeline lineno="63"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">double</highlight><highlight class="normal"><sp/>normal<sp/>=<sp/>*(<sp/>(</highlight><highlight class="keywordtype">double</highlight><highlight class="normal">*)<sp/>kernelParam<sp/>);</highlight></codeline>
+<codeline lineno="64"><highlight class="normal"></highlight></codeline>
+<codeline lineno="65"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>vec<sp/>sub<sp/>=<sp/>1/normal<sp/>*<sp/>(q1<sp/>-<sp/>q2);</highlight></codeline>
+<codeline lineno="66"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>dist<sp/>=<sp/>norm(sub,<sp/>2);</highlight></codeline>
+<codeline lineno="67"><highlight class="normal"></highlight></codeline>
+<codeline lineno="68"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">if</highlight><highlight class="normal">(dist<sp/>&gt;=<sp/>1.0)<sp/>dist<sp/>=<sp/>1.0;</highlight></codeline>
+<codeline lineno="69"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>ret<sp/>=<sp/>15.0/16.0<sp/>*<sp/>pow(1<sp/>-<sp/>pow(dist,<sp/>2),<sp/>2);</highlight></codeline>
+<codeline lineno="70"><highlight class="normal"></highlight></codeline>
+<codeline lineno="71"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>KUKADU_MODULE_END_USAGE();</highlight></codeline>
+<codeline lineno="72"><highlight class="normal"></highlight></codeline>
+<codeline lineno="73"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal"><sp/>ret;</highlight></codeline>
+<codeline lineno="74"><highlight class="normal"></highlight></codeline>
+<codeline lineno="75"><highlight class="normal"><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline lineno="76"><highlight class="normal"></highlight></codeline>
+<codeline lineno="77"><highlight class="normal"><sp/><sp/><sp/><sp/>KernelRegressor::KernelRegressor()<sp/>{<sp/>}</highlight></codeline>
+<codeline lineno="78"><highlight class="normal"></highlight></codeline>
+<codeline lineno="79"><highlight class="normal"><sp/><sp/><sp/><sp/>GenericKernel::GenericKernel()<sp/>{<sp/>}</highlight></codeline>
+<codeline lineno="80"><highlight class="normal"></highlight></codeline>
+<codeline lineno="81"><highlight class="normal"><sp/><sp/><sp/><sp/>GaussianProcessRegressor::GaussianProcessRegressor(vector&lt;vec&gt;<sp/>sampleXs,<sp/>vec<sp/>sampleTs,<sp/>GenericKernel*<sp/>kernel,<sp/></highlight><highlight class="keywordtype">double</highlight><highlight class="normal"><sp/>beta)<sp/>{</highlight></codeline>
+<codeline lineno="82"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>this-&gt;sampleXs<sp/>=<sp/>sampleXs;</highlight></codeline>
+<codeline lineno="83"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>this-&gt;sampleTs<sp/>=<sp/>sampleTs;</highlight></codeline>
+<codeline lineno="84"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>this-&gt;kernel<sp/>=<sp/>kernel;</highlight></codeline>
+<codeline lineno="85"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>coVarMatrix<sp/>=<sp/>computeCovarianceMatrix(kernel,<sp/>beta);</highlight></codeline>
+<codeline lineno="86"><highlight class="normal"><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline lineno="87"><highlight class="normal"></highlight></codeline>
+<codeline lineno="88"><highlight class="normal"><sp/><sp/><sp/><sp/>vec<sp/>GaussianProcessRegressor::fitAtPosition(vec<sp/>pos)<sp/>{</highlight></codeline>
+<codeline lineno="89"><highlight class="normal"></highlight></codeline>
+<codeline lineno="90"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>KUKADU_MODULE_START_USAGE();</highlight></codeline>
+<codeline lineno="91"><highlight class="normal"></highlight></codeline>
+<codeline lineno="92"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>vec<sp/>retVector(1);</highlight></codeline>
+<codeline lineno="93"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">double</highlight><highlight class="normal"><sp/>normVal<sp/>=<sp/>computeKernelNormValue();</highlight></codeline>
+<codeline lineno="94"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/>sampleSize<sp/>=<sp/>sampleXs.size();</highlight></codeline>
+<codeline lineno="95"><highlight class="normal"></highlight></codeline>
+<codeline lineno="96"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>vec<sp/>k(sampleSize);</highlight></codeline>
+<codeline lineno="97"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>vec<sp/>t(sampleSize);</highlight></codeline>
+<codeline lineno="98"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">for</highlight><highlight class="normal">(</highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/>i<sp/>=<sp/>0;<sp/>i<sp/>&lt;<sp/>sampleSize;<sp/>++i)<sp/>{</highlight></codeline>
+<codeline lineno="99"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>vec<sp/>currentItem<sp/>=<sp/>sampleXs.at(i);</highlight></codeline>
+<codeline lineno="100"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>k(i)<sp/>=<sp/>kernel-&gt;evaluateKernel(currentItem,<sp/>pos,<sp/>&amp;normVal);</highlight></codeline>
+<codeline lineno="101"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline lineno="102"><highlight class="normal"></highlight></codeline>
+<codeline lineno="103"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>mat<sp/>ret<sp/>=<sp/>k.t()<sp/>*<sp/>inv(coVarMatrix)<sp/>*<sp/>sampleTs;</highlight></codeline>
+<codeline lineno="104"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>retVector(0)<sp/>=<sp/>ret(0,0);</highlight></codeline>
+<codeline lineno="105"><highlight class="normal"></highlight></codeline>
+<codeline lineno="106"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>KUKADU_MODULE_END_USAGE();</highlight></codeline>
+<codeline lineno="107"><highlight class="normal"></highlight></codeline>
+<codeline lineno="108"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal"><sp/>retVector;</highlight></codeline>
+<codeline lineno="109"><highlight class="normal"></highlight></codeline>
+<codeline lineno="110"><highlight class="normal"><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline lineno="111"><highlight class="normal"></highlight></codeline>
+<codeline lineno="112"><highlight class="normal"><sp/><sp/><sp/><sp/>mat<sp/>GaussianProcessRegressor::computeCovarianceMatrix(GenericKernel*<sp/>kernel,<sp/></highlight><highlight class="keywordtype">double</highlight><highlight class="normal"><sp/>beta)<sp/>{</highlight></codeline>
+<codeline lineno="113"><highlight class="normal"></highlight></codeline>
+<codeline lineno="114"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/>retDim<sp/>=<sp/>sampleXs.size();</highlight></codeline>
+<codeline lineno="115"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">double</highlight><highlight class="normal"><sp/>normVal<sp/>=<sp/>computeKernelNormValue();</highlight></codeline>
+<codeline lineno="116"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>mat<sp/>ret(retDim,<sp/>retDim);</highlight></codeline>
+<codeline lineno="117"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">for</highlight><highlight class="normal">(</highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/>i<sp/>=<sp/>0;<sp/>i<sp/>&lt;<sp/>retDim;<sp/>++i)<sp/>{</highlight></codeline>
+<codeline lineno="118"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">for</highlight><highlight class="normal">(</highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/>j<sp/>=<sp/>0;<sp/>j<sp/>&lt;<sp/>retDim;<sp/>++j)<sp/>{</highlight></codeline>
+<codeline lineno="119"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>vec<sp/>iItem<sp/>=<sp/>sampleXs.at(i);</highlight></codeline>
+<codeline lineno="120"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>vec<sp/>jItem<sp/>=<sp/>sampleXs.at(j);</highlight></codeline>
+<codeline lineno="121"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">double</highlight><highlight class="normal"><sp/>k<sp/>=<sp/>kernel-&gt;evaluateKernel(iItem,<sp/>jItem,<sp/>&amp;normVal);</highlight></codeline>
+<codeline lineno="122"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">if</highlight><highlight class="normal">(i<sp/>!=<sp/>j)<sp/>ret(i,<sp/>j)<sp/>=<sp/>k;</highlight></codeline>
+<codeline lineno="123"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">else</highlight><highlight class="normal"><sp/>ret(i,<sp/>j)<sp/>=<sp/>k<sp/>+<sp/>1/beta;</highlight></codeline>
+<codeline lineno="124"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline lineno="125"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline lineno="126"><highlight class="normal"></highlight></codeline>
+<codeline lineno="127"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal"><sp/>ret;</highlight></codeline>
+<codeline lineno="128"><highlight class="normal"></highlight></codeline>
+<codeline lineno="129"><highlight class="normal"><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline lineno="130"><highlight class="normal"></highlight></codeline>
+<codeline lineno="131"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">double</highlight><highlight class="normal"><sp/>GaussianProcessRegressor::computeKernelNormValue()<sp/>{</highlight></codeline>
+<codeline lineno="132"><highlight class="normal"></highlight></codeline>
+<codeline lineno="133"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">double</highlight><highlight class="normal"><sp/>ret<sp/>=<sp/>0.0;</highlight></codeline>
+<codeline lineno="134"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">for</highlight><highlight class="normal">(</highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/>i<sp/>=<sp/>0;<sp/>i<sp/>&lt;<sp/>sampleXs.size();<sp/>++i)<sp/>{</highlight></codeline>
+<codeline lineno="135"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>vec<sp/>currentItem<sp/>=<sp/>sampleXs.at(i);</highlight></codeline>
+<codeline lineno="136"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>ret<sp/>+=<sp/>norm(currentItem,<sp/>2);</highlight></codeline>
+<codeline lineno="137"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline lineno="138"><highlight class="normal"></highlight></codeline>
+<codeline lineno="139"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal"><sp/>ret<sp/>/<sp/>sampleXs.size();</highlight></codeline>
+<codeline lineno="140"><highlight class="normal"></highlight></codeline>
+<codeline lineno="141"><highlight class="normal"><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline lineno="142"><highlight class="normal"></highlight></codeline>
+<codeline lineno="143"><highlight class="normal">}</highlight></codeline>
+<codeline lineno="144"><highlight class="normal"></highlight></codeline>
+    </programlisting>
+    <location file="/home/agyss/iis_robot_sw/iis_catkin_ws/src/kukadu/src/learning/regression/kernel.cpp"/>
+  </compounddef>
+</doxygen>

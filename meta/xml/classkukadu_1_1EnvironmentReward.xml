@@ -1,0 +1,171 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.8.11">
+  <compounddef id="classkukadu_1_1EnvironmentReward" kind="class" language="C++" prot="public">
+    <compoundname>kukadu::EnvironmentReward</compoundname>
+    <basecompoundref refid="classkukadu_1_1Reward" prot="public" virt="non-virtual">kukadu::Reward</basecompoundref>
+      <sectiondef kind="private-attrib">
+      <memberdef kind="variable" id="classkukadu_1_1EnvironmentReward_1a696ea4faf4d109a9ce8167e9ff8411b1" prot="private" static="no" mutable="no">
+        <type>double</type>
+        <definition>double kukadu::EnvironmentReward::reward</definition>
+        <argsstring></argsstring>
+        <name>reward</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/agyss/iis_robot_sw/iis_catkin_ws/src/kukadu/include/kukadu/manipulation/playing/controllers.hpp" line="55" column="1" bodyfile="/home/agyss/iis_robot_sw/iis_catkin_ws/src/kukadu/include/kukadu/manipulation/playing/controllers.hpp" bodystart="55" bodyend="-1"/>
+      </memberdef>
+      </sectiondef>
+      <sectiondef kind="protected-func">
+      <memberdef kind="function" id="classkukadu_1_1EnvironmentReward_1acf8690283667b4f799edbf2c9ec3b2a9" prot="protected" static="no" const="no" explicit="no" inline="no" virt="virtual">
+        <type>double</type>
+        <definition>double kukadu::EnvironmentReward::computeRewardInternal</definition>
+        <argsstring>(KUKADU_SHARED_PTR&lt; PerceptClip &gt; providedPercept, KUKADU_SHARED_PTR&lt; ActionClip &gt; takenAction)</argsstring>
+        <name>computeRewardInternal</name>
+        <reimplements refid="classkukadu_1_1Reward_1ac7893507bd165f368019bbbdfed9db9a">computeRewardInternal</reimplements>
+        <param>
+          <type>KUKADU_SHARED_PTR&lt; <ref refid="classkukadu_1_1PerceptClip" kindref="compound">PerceptClip</ref> &gt;</type>
+          <declname>providedPercept</declname>
+        </param>
+        <param>
+          <type>KUKADU_SHARED_PTR&lt; <ref refid="classkukadu_1_1ActionClip" kindref="compound">ActionClip</ref> &gt;</type>
+          <declname>takenAction</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/agyss/iis_robot_sw/iis_catkin_ws/src/kukadu/include/kukadu/manipulation/playing/controllers.hpp" line="59" column="1" bodyfile="/home/agyss/iis_robot_sw/iis_catkin_ws/src/kukadu/src/manipulation/playing/controllers.cpp" bodystart="1341" bodyend="1344"/>
+      </memberdef>
+      </sectiondef>
+      <sectiondef kind="public-func">
+      <memberdef kind="function" id="classkukadu_1_1EnvironmentReward_1a9b7aafdf7759916c3424c39e2e3fbded" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type></type>
+        <definition>kukadu::EnvironmentReward::EnvironmentReward</definition>
+        <argsstring>(KUKADU_SHARED_PTR&lt; kukadu_mersenne_twister &gt; generator, double stdReward)</argsstring>
+        <name>EnvironmentReward</name>
+        <param>
+          <type>KUKADU_SHARED_PTR&lt; kukadu_mersenne_twister &gt;</type>
+          <declname>generator</declname>
+        </param>
+        <param>
+          <type>double</type>
+          <declname>stdReward</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/agyss/iis_robot_sw/iis_catkin_ws/src/kukadu/include/kukadu/manipulation/playing/controllers.hpp" line="63" column="1" bodyfile="/home/agyss/iis_robot_sw/iis_catkin_ws/src/kukadu/src/manipulation/playing/controllers.cpp" bodystart="1337" bodyend="1339"/>
+      </memberdef>
+      <memberdef kind="function" id="classkukadu_1_1EnvironmentReward_1a012d8e19992dc4df7a337769559fe076" prot="public" static="no" const="no" explicit="no" inline="no" virt="virtual">
+        <type>int</type>
+        <definition>int kukadu::EnvironmentReward::getDimensionality</definition>
+        <argsstring>()</argsstring>
+        <name>getDimensionality</name>
+        <reimplements refid="classkukadu_1_1Reward_1ab3207c5a18655541d4db592219d67595">getDimensionality</reimplements>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/agyss/iis_robot_sw/iis_catkin_ws/src/kukadu/include/kukadu/manipulation/playing/controllers.hpp" line="65" column="1" bodyfile="/home/agyss/iis_robot_sw/iis_catkin_ws/src/kukadu/src/manipulation/playing/controllers.cpp" bodystart="1346" bodyend="1348"/>
+      </memberdef>
+      <memberdef kind="function" id="classkukadu_1_1EnvironmentReward_1aaadb183b0eb97036e6b74e419ac20dd7" prot="public" static="no" const="no" explicit="no" inline="no" virt="virtual">
+        <type>KUKADU_SHARED_PTR&lt; <ref refid="classkukadu_1_1PerceptClip" kindref="compound">PerceptClip</ref> &gt;</type>
+        <definition>KUKADU_SHARED_PTR&lt; PerceptClip &gt; kukadu::EnvironmentReward::generateNextPerceptClip</definition>
+        <argsstring>(int immunity)</argsstring>
+        <name>generateNextPerceptClip</name>
+        <reimplements refid="classkukadu_1_1Reward_1a308ddd203d220b4715ed4cb4268ac9ab">generateNextPerceptClip</reimplements>
+        <param>
+          <type>int</type>
+          <declname>immunity</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/agyss/iis_robot_sw/iis_catkin_ws/src/kukadu/include/kukadu/manipulation/playing/controllers.hpp" line="66" column="1" bodyfile="/home/agyss/iis_robot_sw/iis_catkin_ws/src/kukadu/src/manipulation/playing/controllers.cpp" bodystart="1350" bodyend="1352"/>
+      </memberdef>
+      <memberdef kind="function" id="classkukadu_1_1EnvironmentReward_1a3c5755ac7a22761f1c54231fea56fde2" prot="public" static="no" const="no" explicit="no" inline="no" virt="virtual">
+        <type>KUKADU_SHARED_PTR&lt; std::vector&lt; KUKADU_SHARED_PTR&lt; <ref refid="classkukadu_1_1ActionClip" kindref="compound">ActionClip</ref> &gt; &gt; &gt;</type>
+        <definition>KUKADU_SHARED_PTR&lt; std::vector&lt; KUKADU_SHARED_PTR&lt; ActionClip &gt; &gt; &gt; kukadu::EnvironmentReward::generateActionClips</definition>
+        <argsstring>()</argsstring>
+        <name>generateActionClips</name>
+        <reimplements refid="classkukadu_1_1Reward_1ac569bee7aac35ae3f762d5769d254fc8">generateActionClips</reimplements>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/agyss/iis_robot_sw/iis_catkin_ws/src/kukadu/include/kukadu/manipulation/playing/controllers.hpp" line="67" column="1" bodyfile="/home/agyss/iis_robot_sw/iis_catkin_ws/src/kukadu/src/manipulation/playing/controllers.cpp" bodystart="1354" bodyend="1356"/>
+      </memberdef>
+      <memberdef kind="function" id="classkukadu_1_1EnvironmentReward_1a83b02e92b0809adf9d4717460163e61e" prot="public" static="no" const="no" explicit="no" inline="no" virt="virtual">
+        <type>KUKADU_SHARED_PTR&lt; std::vector&lt; KUKADU_SHARED_PTR&lt; <ref refid="classkukadu_1_1PerceptClip" kindref="compound">PerceptClip</ref> &gt; &gt; &gt;</type>
+        <definition>KUKADU_SHARED_PTR&lt; std::vector&lt; KUKADU_SHARED_PTR&lt; PerceptClip &gt; &gt; &gt; kukadu::EnvironmentReward::generatePerceptClips</definition>
+        <argsstring>()</argsstring>
+        <name>generatePerceptClips</name>
+        <reimplements refid="classkukadu_1_1Reward_1a0d1addb6e9e93326d66ff7b4613cf0a0">generatePerceptClips</reimplements>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/agyss/iis_robot_sw/iis_catkin_ws/src/kukadu/include/kukadu/manipulation/playing/controllers.hpp" line="68" column="1" bodyfile="/home/agyss/iis_robot_sw/iis_catkin_ws/src/kukadu/src/manipulation/playing/controllers.cpp" bodystart="1358" bodyend="1360"/>
+      </memberdef>
+      </sectiondef>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <inheritancegraph>
+      <node id="226">
+        <label>kukadu::EnvironmentReward</label>
+        <link refid="classkukadu_1_1EnvironmentReward"/>
+        <childnode refid="227" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="227">
+        <label>kukadu::Reward</label>
+        <link refid="classkukadu_1_1Reward"/>
+      </node>
+    </inheritancegraph>
+    <collaborationgraph>
+      <node id="228">
+        <label>kukadu::EnvironmentReward</label>
+        <link refid="classkukadu_1_1EnvironmentReward"/>
+        <childnode refid="229" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="229">
+        <label>kukadu::Reward</label>
+        <link refid="classkukadu_1_1Reward"/>
+      </node>
+    </collaborationgraph>
+    <location file="/home/agyss/iis_robot_sw/iis_catkin_ws/src/kukadu/include/kukadu/manipulation/playing/controllers.hpp" line="51" column="1" bodyfile="/home/agyss/iis_robot_sw/iis_catkin_ws/src/kukadu/include/kukadu/manipulation/playing/controllers.hpp" bodystart="51" bodyend="70"/>
+    <listofallmembers>
+      <member refid="classkukadu_1_1Reward_1a989f7e9a5dd36fc4ee786147870e6af3" prot="public" virt="non-virtual"><scope>kukadu::EnvironmentReward</scope><name>computeReward</name></member>
+      <member refid="classkukadu_1_1EnvironmentReward_1acf8690283667b4f799edbf2c9ec3b2a9" prot="protected" virt="virtual"><scope>kukadu::EnvironmentReward</scope><name>computeRewardInternal</name></member>
+      <member refid="classkukadu_1_1EnvironmentReward_1a9b7aafdf7759916c3424c39e2e3fbded" prot="public" virt="non-virtual"><scope>kukadu::EnvironmentReward</scope><name>EnvironmentReward</name></member>
+      <member refid="classkukadu_1_1EnvironmentReward_1a3c5755ac7a22761f1c54231fea56fde2" prot="public" virt="virtual"><scope>kukadu::EnvironmentReward</scope><name>generateActionClips</name></member>
+      <member refid="classkukadu_1_1EnvironmentReward_1aaadb183b0eb97036e6b74e419ac20dd7" prot="public" virt="virtual"><scope>kukadu::EnvironmentReward</scope><name>generateNextPerceptClip</name></member>
+      <member refid="classkukadu_1_1EnvironmentReward_1a83b02e92b0809adf9d4717460163e61e" prot="public" virt="virtual"><scope>kukadu::EnvironmentReward</scope><name>generatePerceptClips</name></member>
+      <member refid="classkukadu_1_1Reward_1a028df6b3a9af9353a40c0fe7394d9b50" prot="protected" virt="non-virtual"><scope>kukadu::EnvironmentReward</scope><name>generator</name></member>
+      <member refid="classkukadu_1_1EnvironmentReward_1a012d8e19992dc4df7a337769559fe076" prot="public" virt="virtual"><scope>kukadu::EnvironmentReward</scope><name>getDimensionality</name></member>
+      <member refid="classkukadu_1_1Reward_1af54aac1737849f765ed82e6ee052f486" prot="public" virt="non-virtual"><scope>kukadu::EnvironmentReward</scope><name>getPreviousRewards</name></member>
+      <member refid="classkukadu_1_1Reward_1a2eeceb6c818e6964cb88c9e524d2045c" prot="public" virt="non-virtual"><scope>kukadu::EnvironmentReward</scope><name>Reward</name></member>
+      <member refid="classkukadu_1_1EnvironmentReward_1a696ea4faf4d109a9ce8167e9ff8411b1" prot="private" virt="non-virtual"><scope>kukadu::EnvironmentReward</scope><name>reward</name></member>
+    </listofallmembers>
+  </compounddef>
+</doxygen>

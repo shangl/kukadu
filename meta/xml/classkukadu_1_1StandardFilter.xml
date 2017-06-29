@@ -1,0 +1,90 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.8.11">
+  <compounddef id="classkukadu_1_1StandardFilter" kind="class" language="C++" prot="public">
+    <compoundname>kukadu::StandardFilter</compoundname>
+    <basecompoundref refid="classkukadu_1_1FrcTrqSensorFilter" prot="public" virt="non-virtual">kukadu::FrcTrqSensorFilter</basecompoundref>
+      <sectiondef kind="private-attrib">
+      <memberdef kind="variable" id="classkukadu_1_1StandardFilter_1a262998728548935e92ec2174b29b3941" prot="private" static="no" mutable="no">
+        <type><ref refid="structmes__result" kindref="compound">mes_result</ref></type>
+        <definition>mes_result kukadu::StandardFilter::processedReadings</definition>
+        <argsstring></argsstring>
+        <name>processedReadings</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/agyss/iis_robot_sw/iis_catkin_ws/src/kukadu/include/kukadu/robot/filters.hpp" line="22" column="1" bodyfile="/home/agyss/iis_robot_sw/iis_catkin_ws/src/kukadu/include/kukadu/robot/filters.hpp" bodystart="22" bodyend="-1"/>
+      </memberdef>
+      </sectiondef>
+      <sectiondef kind="public-func">
+      <memberdef kind="function" id="classkukadu_1_1StandardFilter_1aa504d18b6959a02c9e3ff5edf665c948" prot="public" static="no" const="no" explicit="no" inline="no" virt="virtual">
+        <type>void</type>
+        <definition>void kukadu::StandardFilter::updateFilter</definition>
+        <argsstring>(mes_result newReadings)</argsstring>
+        <name>updateFilter</name>
+        <reimplements refid="classkukadu_1_1FrcTrqSensorFilter_1a55b3ece9d9397c8faa9e0314ad330d5c">updateFilter</reimplements>
+        <param>
+          <type><ref refid="structmes__result" kindref="compound">mes_result</ref></type>
+          <declname>newReadings</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/agyss/iis_robot_sw/iis_catkin_ws/src/kukadu/include/kukadu/robot/filters.hpp" line="26" column="1" bodyfile="/home/agyss/iis_robot_sw/iis_catkin_ws/src/kukadu/src/robot/filters.cpp" bodystart="10" bodyend="14"/>
+      </memberdef>
+      <memberdef kind="function" id="classkukadu_1_1StandardFilter_1a7b1a8652c357a610f2800a61b190377e" prot="public" static="no" const="no" explicit="no" inline="no" virt="virtual">
+        <type><ref refid="structmes__result" kindref="compound">mes_result</ref></type>
+        <definition>mes_result kukadu::StandardFilter::getProcessedReading</definition>
+        <argsstring>()</argsstring>
+        <name>getProcessedReading</name>
+        <reimplements refid="classkukadu_1_1FrcTrqSensorFilter_1a05b9db35f4c8abf83372637dc84b1368">getProcessedReading</reimplements>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/agyss/iis_robot_sw/iis_catkin_ws/src/kukadu/include/kukadu/robot/filters.hpp" line="28" column="1" bodyfile="/home/agyss/iis_robot_sw/iis_catkin_ws/src/kukadu/src/robot/filters.cpp" bodystart="16" bodyend="20"/>
+      </memberdef>
+      </sectiondef>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <inheritancegraph>
+      <node id="612">
+        <label>kukadu::FrcTrqSensorFilter</label>
+        <link refid="classkukadu_1_1FrcTrqSensorFilter"/>
+      </node>
+      <node id="611">
+        <label>kukadu::StandardFilter</label>
+        <link refid="classkukadu_1_1StandardFilter"/>
+        <childnode refid="612" relation="public-inheritance">
+        </childnode>
+      </node>
+    </inheritancegraph>
+    <collaborationgraph>
+      <node id="614">
+        <label>kukadu::FrcTrqSensorFilter</label>
+        <link refid="classkukadu_1_1FrcTrqSensorFilter"/>
+      </node>
+      <node id="613">
+        <label>kukadu::StandardFilter</label>
+        <link refid="classkukadu_1_1StandardFilter"/>
+        <childnode refid="614" relation="public-inheritance">
+        </childnode>
+      </node>
+    </collaborationgraph>
+    <location file="/home/agyss/iis_robot_sw/iis_catkin_ws/src/kukadu/include/kukadu/robot/filters.hpp" line="18" column="1" bodyfile="/home/agyss/iis_robot_sw/iis_catkin_ws/src/kukadu/include/kukadu/robot/filters.hpp" bodystart="18" bodyend="30"/>
+    <listofallmembers>
+      <member refid="classkukadu_1_1StandardFilter_1a7b1a8652c357a610f2800a61b190377e" prot="public" virt="virtual"><scope>kukadu::StandardFilter</scope><name>getProcessedReading</name></member>
+      <member refid="classkukadu_1_1StandardFilter_1a262998728548935e92ec2174b29b3941" prot="private" virt="non-virtual"><scope>kukadu::StandardFilter</scope><name>processedReadings</name></member>
+      <member refid="classkukadu_1_1StandardFilter_1aa504d18b6959a02c9e3ff5edf665c948" prot="public" virt="virtual"><scope>kukadu::StandardFilter</scope><name>updateFilter</name></member>
+    </listofallmembers>
+  </compounddef>
+</doxygen>

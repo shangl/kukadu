@@ -1,0 +1,2141 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.8.11">
+  <compounddef id="classkukadu_1_1ControlQueue" kind="class" language="C++" prot="public" abstract="yes">
+    <compoundname>kukadu::ControlQueue</compoundname>
+    <basecompoundref refid="classkukadu_1_1JointHardware" prot="public" virt="non-virtual">kukadu::JointHardware</basecompoundref>
+    <basecompoundref refid="classkukadu_1_1DestroyableObject" prot="public" virt="non-virtual">kukadu::DestroyableObject</basecompoundref>
+    <basecompoundref prot="public" virt="non-virtual">KUKADU_ENABLE_SHARED_FROM_THIS&lt; ControlQueue &gt;</basecompoundref>
+    <basecompoundref refid="classkukadu_1_1TimedObject" prot="public" virt="non-virtual">kukadu::TimedObject</basecompoundref>
+    <derivedcompoundref refid="classkukadu_1_1KukieControlQueue" prot="public" virt="non-virtual">kukadu::KukieControlQueue</derivedcompoundref>
+    <derivedcompoundref refid="classkukadu_1_1PlottingControlQueue" prot="public" virt="non-virtual">kukadu::PlottingControlQueue</derivedcompoundref>
+    <includes refid="queue_8hpp" local="no">queue.hpp</includes>
+      <sectiondef kind="private-attrib">
+      <memberdef kind="variable" id="classkukadu_1_1ControlQueue_1a409e45fc0309b4c4e2485daa24a4c15c" prot="private" static="no" mutable="no">
+        <type>bool</type>
+        <definition>bool kukadu::ControlQueue::isInit</definition>
+        <argsstring></argsstring>
+        <name>isInit</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/agyss/iis_robot_sw/iis_catkin_ws/src/kukadu/include/kukadu/robot/queue.hpp" line="49" column="1" bodyfile="/home/agyss/iis_robot_sw/iis_catkin_ws/src/kukadu/include/kukadu/robot/queue.hpp" bodystart="49" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classkukadu_1_1ControlQueue_1a747fb44c3e8dc7bf8922aab62122cd99" prot="private" static="no" mutable="no">
+        <type>bool</type>
+        <definition>bool kukadu::ControlQueue::finish</definition>
+        <argsstring></argsstring>
+        <name>finish</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/agyss/iis_robot_sw/iis_catkin_ws/src/kukadu/include/kukadu/robot/queue.hpp" line="50" column="1" bodyfile="/home/agyss/iis_robot_sw/iis_catkin_ws/src/kukadu/include/kukadu/robot/queue.hpp" bodystart="50" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classkukadu_1_1ControlQueue_1aab655546199f0bb0a268cbc8fdfcb32d" prot="private" static="no" mutable="no">
+        <type>bool</type>
+        <definition>bool kukadu::ControlQueue::isShutUpFlag</definition>
+        <argsstring></argsstring>
+        <name>isShutUpFlag</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/agyss/iis_robot_sw/iis_catkin_ws/src/kukadu/include/kukadu/robot/queue.hpp" line="51" column="1" bodyfile="/home/agyss/iis_robot_sw/iis_catkin_ws/src/kukadu/include/kukadu/robot/queue.hpp" bodystart="51" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classkukadu_1_1ControlQueue_1aef96ad93f2d4b5010fdba108fd021e30" prot="private" static="no" mutable="no">
+        <type>bool</type>
+        <definition>bool kukadu::ControlQueue::rollbackMode</definition>
+        <argsstring></argsstring>
+        <name>rollbackMode</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/agyss/iis_robot_sw/iis_catkin_ws/src/kukadu/include/kukadu/robot/queue.hpp" line="52" column="1" bodyfile="/home/agyss/iis_robot_sw/iis_catkin_ws/src/kukadu/include/kukadu/robot/queue.hpp" bodystart="52" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classkukadu_1_1ControlQueue_1a5d33f45fd14a16ada6e7f716c571cbfe" prot="private" static="no" mutable="no">
+        <type>bool</type>
+        <definition>bool kukadu::ControlQueue::continueCollecting</definition>
+        <argsstring></argsstring>
+        <name>continueCollecting</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/agyss/iis_robot_sw/iis_catkin_ws/src/kukadu/include/kukadu/robot/queue.hpp" line="54" column="1" bodyfile="/home/agyss/iis_robot_sw/iis_catkin_ws/src/kukadu/include/kukadu/robot/queue.hpp" bodystart="54" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classkukadu_1_1ControlQueue_1a2a09888eb67a39dbb7a599af66cd2300" prot="private" static="no" mutable="no">
+        <type>bool</type>
+        <definition>bool kukadu::ControlQueue::jointPtpRunning</definition>
+        <argsstring></argsstring>
+        <name>jointPtpRunning</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/agyss/iis_robot_sw/iis_catkin_ws/src/kukadu/include/kukadu/robot/queue.hpp" line="56" column="1" bodyfile="/home/agyss/iis_robot_sw/iis_catkin_ws/src/kukadu/include/kukadu/robot/queue.hpp" bodystart="56" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classkukadu_1_1ControlQueue_1a1ae85e37c9d8914b4e78b9559bdae6a5" prot="private" static="no" mutable="no">
+        <type>bool</type>
+        <definition>bool kukadu::ControlQueue::cartesianPtpRunning</definition>
+        <argsstring></argsstring>
+        <name>cartesianPtpRunning</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/agyss/iis_robot_sw/iis_catkin_ws/src/kukadu/include/kukadu/robot/queue.hpp" line="57" column="1" bodyfile="/home/agyss/iis_robot_sw/iis_catkin_ws/src/kukadu/include/kukadu/robot/queue.hpp" bodystart="57" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classkukadu_1_1ControlQueue_1a7ee41979d3571949465dc730a0bfc999" prot="private" static="no" mutable="no">
+        <type>bool</type>
+        <definition>bool kukadu::ControlQueue::frcTrqFilterRunning</definition>
+        <argsstring></argsstring>
+        <name>frcTrqFilterRunning</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/agyss/iis_robot_sw/iis_catkin_ws/src/kukadu/include/kukadu/robot/queue.hpp" line="58" column="1" bodyfile="/home/agyss/iis_robot_sw/iis_catkin_ws/src/kukadu/include/kukadu/robot/queue.hpp" bodystart="58" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classkukadu_1_1ControlQueue_1abd39905fb284dc6c388ee7029714211d" prot="private" static="no" mutable="no">
+        <type>int</type>
+        <definition>int kukadu::ControlQueue::degOfFreedom</definition>
+        <argsstring></argsstring>
+        <name>degOfFreedom</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/agyss/iis_robot_sw/iis_catkin_ws/src/kukadu/include/kukadu/robot/queue.hpp" line="59" column="1" bodyfile="/home/agyss/iis_robot_sw/iis_catkin_ws/src/kukadu/include/kukadu/robot/queue.hpp" bodystart="59" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classkukadu_1_1ControlQueue_1a62fd840f05af7db731aa10a42e95b3e7" prot="private" static="no" mutable="no">
+        <type>int</type>
+        <definition>int kukadu::ControlQueue::rollBackQueueSize</definition>
+        <argsstring></argsstring>
+        <name>rollBackQueueSize</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/agyss/iis_robot_sw/iis_catkin_ws/src/kukadu/include/kukadu/robot/queue.hpp" line="60" column="1" bodyfile="/home/agyss/iis_robot_sw/iis_catkin_ws/src/kukadu/include/kukadu/robot/queue.hpp" bodystart="60" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classkukadu_1_1ControlQueue_1a772caa40c0ca1e3f8d820985eedf3f22" prot="private" static="no" mutable="no">
+        <type>double</type>
+        <definition>double kukadu::ControlQueue::sleepTime</definition>
+        <argsstring></argsstring>
+        <name>sleepTime</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/agyss/iis_robot_sw/iis_catkin_ws/src/kukadu/include/kukadu/robot/queue.hpp" line="62" column="1" bodyfile="/home/agyss/iis_robot_sw/iis_catkin_ws/src/kukadu/include/kukadu/robot/queue.hpp" bodystart="62" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classkukadu_1_1ControlQueue_1aefc482f43650a3e4675de08dcb547a17" prot="private" static="no" mutable="no">
+        <type>double</type>
+        <definition>double kukadu::ControlQueue::rollBackTime</definition>
+        <argsstring></argsstring>
+        <name>rollBackTime</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/agyss/iis_robot_sw/iis_catkin_ws/src/kukadu/include/kukadu/robot/queue.hpp" line="63" column="1" bodyfile="/home/agyss/iis_robot_sw/iis_catkin_ws/src/kukadu/include/kukadu/robot/queue.hpp" bodystart="63" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classkukadu_1_1ControlQueue_1a20594aa683a4965b57e4f8e57a8c32d0" prot="private" static="no" mutable="no">
+        <type>double</type>
+        <definition>double kukadu::ControlQueue::lastDuration</definition>
+        <argsstring></argsstring>
+        <name>lastDuration</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/agyss/iis_robot_sw/iis_catkin_ws/src/kukadu/include/kukadu/robot/queue.hpp" line="64" column="1" bodyfile="/home/agyss/iis_robot_sw/iis_catkin_ws/src/kukadu/include/kukadu/robot/queue.hpp" bodystart="64" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classkukadu_1_1ControlQueue_1aa6423ea41eb2b2ac85c2b848518868bd" prot="private" static="no" mutable="no">
+        <type>double</type>
+        <definition>double kukadu::ControlQueue::desiredCycleTime</definition>
+        <argsstring></argsstring>
+        <name>desiredCycleTime</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/agyss/iis_robot_sw/iis_catkin_ws/src/kukadu/include/kukadu/robot/queue.hpp" line="65" column="1" bodyfile="/home/agyss/iis_robot_sw/iis_catkin_ws/src/kukadu/include/kukadu/robot/queue.hpp" bodystart="65" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classkukadu_1_1ControlQueue_1ad8a3e6eaac60b27cce87c178fb158ebf" prot="private" static="no" mutable="no">
+        <type>long long int</type>
+        <definition>long long int kukadu::ControlQueue::currentTime</definition>
+        <argsstring></argsstring>
+        <name>currentTime</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/agyss/iis_robot_sw/iis_catkin_ws/src/kukadu/include/kukadu/robot/queue.hpp" line="67" column="1" bodyfile="/home/agyss/iis_robot_sw/iis_catkin_ws/src/kukadu/include/kukadu/robot/queue.hpp" bodystart="67" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classkukadu_1_1ControlQueue_1a1ec7cb9fa0df72a0ecb9dc5095cab0de" prot="private" static="no" mutable="no">
+        <type>std::string</type>
+        <definition>std::string kukadu::ControlQueue::robotName</definition>
+        <argsstring></argsstring>
+        <name>robotName</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/agyss/iis_robot_sw/iis_catkin_ws/src/kukadu/include/kukadu/robot/queue.hpp" line="69" column="1" bodyfile="/home/agyss/iis_robot_sw/iis_catkin_ws/src/kukadu/include/kukadu/robot/queue.hpp" bodystart="69" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classkukadu_1_1ControlQueue_1af730fb04fae9420eb203acab8c4dab21" prot="private" static="no" mutable="no">
+        <type>arma::vec</type>
+        <definition>arma::vec kukadu::ControlQueue::currentJoints</definition>
+        <argsstring></argsstring>
+        <name>currentJoints</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/agyss/iis_robot_sw/iis_catkin_ws/src/kukadu/include/kukadu/robot/queue.hpp" line="71" column="1" bodyfile="/home/agyss/iis_robot_sw/iis_catkin_ws/src/kukadu/include/kukadu/robot/queue.hpp" bodystart="71" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classkukadu_1_1ControlQueue_1ac14b0a1cae1b9fa45376981262818eec" prot="private" static="no" mutable="no">
+        <type><ref refid="structmes__result" kindref="compound">mes_result</ref></type>
+        <definition>mes_result kukadu::ControlQueue::nowJoints</definition>
+        <argsstring></argsstring>
+        <name>nowJoints</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/agyss/iis_robot_sw/iis_catkin_ws/src/kukadu/include/kukadu/robot/queue.hpp" line="73" column="1" bodyfile="/home/agyss/iis_robot_sw/iis_catkin_ws/src/kukadu/include/kukadu/robot/queue.hpp" bodystart="73" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classkukadu_1_1ControlQueue_1af95aa23fb9d0b7dd5ad1989a511abd73" prot="private" static="no" mutable="no">
+        <type><ref refid="structmes__result" kindref="compound">mes_result</ref></type>
+        <definition>mes_result kukadu::ControlQueue::prevJoints</definition>
+        <argsstring></argsstring>
+        <name>prevJoints</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/agyss/iis_robot_sw/iis_catkin_ws/src/kukadu/include/kukadu/robot/queue.hpp" line="74" column="1" bodyfile="/home/agyss/iis_robot_sw/iis_catkin_ws/src/kukadu/include/kukadu/robot/queue.hpp" bodystart="74" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classkukadu_1_1ControlQueue_1aefa958aeff6f1c67fadb3c29756b4ebf" prot="private" static="no" mutable="no">
+        <type><ref refid="structmes__result" kindref="compound">mes_result</ref></type>
+        <definition>mes_result kukadu::ControlQueue::prevPrevJoints</definition>
+        <argsstring></argsstring>
+        <name>prevPrevJoints</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/agyss/iis_robot_sw/iis_catkin_ws/src/kukadu/include/kukadu/robot/queue.hpp" line="75" column="1" bodyfile="/home/agyss/iis_robot_sw/iis_catkin_ws/src/kukadu/include/kukadu/robot/queue.hpp" bodystart="75" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classkukadu_1_1ControlQueue_1a6eafe84f55c6aec174210dc3accaede0" prot="private" static="no" mutable="no">
+        <type>arma::vec</type>
+        <definition>arma::vec kukadu::ControlQueue::startingJoints</definition>
+        <argsstring></argsstring>
+        <name>startingJoints</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/agyss/iis_robot_sw/iis_catkin_ws/src/kukadu/include/kukadu/robot/queue.hpp" line="77" column="1" bodyfile="/home/agyss/iis_robot_sw/iis_catkin_ws/src/kukadu/include/kukadu/robot/queue.hpp" bodystart="77" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classkukadu_1_1ControlQueue_1a70972c777f87a6d6d274063eaa9c69a1" prot="private" static="no" mutable="no">
+        <type>arma::vec</type>
+        <definition>arma::vec kukadu::ControlQueue::internalJointPasser</definition>
+        <argsstring></argsstring>
+        <name>internalJointPasser</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/agyss/iis_robot_sw/iis_catkin_ws/src/kukadu/include/kukadu/robot/queue.hpp" line="78" column="1" bodyfile="/home/agyss/iis_robot_sw/iis_catkin_ws/src/kukadu/include/kukadu/robot/queue.hpp" bodystart="78" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classkukadu_1_1ControlQueue_1acfe8bbb1bc7defd6d09b344d8997ec52" prot="private" static="no" mutable="no">
+        <type>kukadu_mutex</type>
+        <definition>kukadu_mutex kukadu::ControlQueue::loadMaxDistMutex</definition>
+        <argsstring></argsstring>
+        <name>loadMaxDistMutex</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/agyss/iis_robot_sw/iis_catkin_ws/src/kukadu/include/kukadu/robot/queue.hpp" line="80" column="1" bodyfile="/home/agyss/iis_robot_sw/iis_catkin_ws/src/kukadu/include/kukadu/robot/queue.hpp" bodystart="80" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classkukadu_1_1ControlQueue_1abab997d78bfb8121fe13990b5e9cc6c0" prot="private" static="no" mutable="no">
+        <type>kukadu_mutex</type>
+        <definition>kukadu_mutex kukadu::ControlQueue::loadCycleTimeMutex</definition>
+        <argsstring></argsstring>
+        <name>loadCycleTimeMutex</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/agyss/iis_robot_sw/iis_catkin_ws/src/kukadu/include/kukadu/robot/queue.hpp" line="81" column="1" bodyfile="/home/agyss/iis_robot_sw/iis_catkin_ws/src/kukadu/include/kukadu/robot/queue.hpp" bodystart="81" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classkukadu_1_1ControlQueue_1a6f99522b6610d9c080f1b9895d35d04d" prot="private" static="no" mutable="no">
+        <type>kukadu_mutex</type>
+        <definition>kukadu_mutex kukadu::ControlQueue::rollbackQueueMutex</definition>
+        <argsstring></argsstring>
+        <name>rollbackQueueMutex</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/agyss/iis_robot_sw/iis_catkin_ws/src/kukadu/include/kukadu/robot/queue.hpp" line="82" column="1" bodyfile="/home/agyss/iis_robot_sw/iis_catkin_ws/src/kukadu/include/kukadu/robot/queue.hpp" bodystart="82" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classkukadu_1_1ControlQueue_1adc16817257a549ecf61e0e44abb30ce7" prot="private" static="no" mutable="no">
+        <type>geometry_msgs::Pose</type>
+        <definition>geometry_msgs::Pose kukadu::ControlQueue::currentCartPose</definition>
+        <argsstring></argsstring>
+        <name>currentCartPose</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/agyss/iis_robot_sw/iis_catkin_ws/src/kukadu/include/kukadu/robot/queue.hpp" line="84" column="1" bodyfile="/home/agyss/iis_robot_sw/iis_catkin_ws/src/kukadu/include/kukadu/robot/queue.hpp" bodystart="84" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classkukadu_1_1ControlQueue_1a3b9b5f8d3c968928e99840ebd8facef0" prot="private" static="no" mutable="no">
+        <type>geometry_msgs::Pose</type>
+        <definition>geometry_msgs::Pose kukadu::ControlQueue::internalPosePasser</definition>
+        <argsstring></argsstring>
+        <name>internalPosePasser</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/agyss/iis_robot_sw/iis_catkin_ws/src/kukadu/include/kukadu/robot/queue.hpp" line="85" column="1" bodyfile="/home/agyss/iis_robot_sw/iis_catkin_ws/src/kukadu/include/kukadu/robot/queue.hpp" bodystart="85" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classkukadu_1_1ControlQueue_1a5cc3b16e5b4b23792c1723544bab2973" prot="private" static="no" mutable="no">
+        <type>std::vector&lt; <ref refid="structmes__result" kindref="compound">mes_result</ref> &gt;</type>
+        <definition>std::vector&lt;mes_result&gt; kukadu::ControlQueue::collectedJoints</definition>
+        <argsstring></argsstring>
+        <name>collectedJoints</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/agyss/iis_robot_sw/iis_catkin_ws/src/kukadu/include/kukadu/robot/queue.hpp" line="87" column="1" bodyfile="/home/agyss/iis_robot_sw/iis_catkin_ws/src/kukadu/include/kukadu/robot/queue.hpp" bodystart="87" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classkukadu_1_1ControlQueue_1ae57e6225ae4b76d822f2a74384aa9ccb" prot="private" static="no" mutable="no">
+        <type>std::queue&lt; arma::vec &gt;</type>
+        <definition>std::queue&lt;arma::vec&gt; kukadu::ControlQueue::movementQueue</definition>
+        <argsstring></argsstring>
+        <name>movementQueue</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/agyss/iis_robot_sw/iis_catkin_ws/src/kukadu/include/kukadu/robot/queue.hpp" line="89" column="1" bodyfile="/home/agyss/iis_robot_sw/iis_catkin_ws/src/kukadu/include/kukadu/robot/queue.hpp" bodystart="89" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classkukadu_1_1ControlQueue_1a06a9541dd3101904c26864c9516cf139" prot="private" static="no" mutable="no">
+        <type>std::queue&lt; geometry_msgs::Pose &gt;</type>
+        <definition>std::queue&lt;geometry_msgs::Pose&gt; kukadu::ControlQueue::cartesianMovementQueue</definition>
+        <argsstring></argsstring>
+        <name>cartesianMovementQueue</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/agyss/iis_robot_sw/iis_catkin_ws/src/kukadu/include/kukadu/robot/queue.hpp" line="90" column="1" bodyfile="/home/agyss/iis_robot_sw/iis_catkin_ws/src/kukadu/include/kukadu/robot/queue.hpp" bodystart="90" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classkukadu_1_1ControlQueue_1ad84f1dc90c18b44b9d57471a39500c7a" prot="private" static="no" mutable="no">
+        <type>std::deque&lt; arma::vec &gt;</type>
+        <definition>std::deque&lt;arma::vec&gt; kukadu::ControlQueue::rollBackQueue</definition>
+        <argsstring></argsstring>
+        <name>rollBackQueue</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/agyss/iis_robot_sw/iis_catkin_ws/src/kukadu/include/kukadu/robot/queue.hpp" line="92" column="1" bodyfile="/home/agyss/iis_robot_sw/iis_catkin_ws/src/kukadu/include/kukadu/robot/queue.hpp" bodystart="92" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classkukadu_1_1ControlQueue_1a5c472c88b43d9b99ee11ab2c2ddfa4e1" prot="private" static="no" mutable="no">
+        <type>KUKADU_SHARED_PTR&lt; <ref refid="classkukadu_1_1FrcTrqSensorFilter" kindref="compound">FrcTrqSensorFilter</ref> &gt;</type>
+        <definition>KUKADU_SHARED_PTR&lt;FrcTrqSensorFilter&gt; kukadu::ControlQueue::currentFrcTrqSensorFilter</definition>
+        <argsstring></argsstring>
+        <name>currentFrcTrqSensorFilter</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/agyss/iis_robot_sw/iis_catkin_ws/src/kukadu/include/kukadu/robot/queue.hpp" line="93" column="1" bodyfile="/home/agyss/iis_robot_sw/iis_catkin_ws/src/kukadu/include/kukadu/robot/queue.hpp" bodystart="93" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classkukadu_1_1ControlQueue_1a62f159706cc676374de6c40dcc69e11f" prot="private" static="no" mutable="no">
+        <type>KUKADU_SHARED_PTR&lt; kukadu_thread &gt;</type>
+        <definition>KUKADU_SHARED_PTR&lt;kukadu_thread&gt; kukadu::ControlQueue::thr</definition>
+        <argsstring></argsstring>
+        <name>thr</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/agyss/iis_robot_sw/iis_catkin_ws/src/kukadu/include/kukadu/robot/queue.hpp" line="95" column="1" bodyfile="/home/agyss/iis_robot_sw/iis_catkin_ws/src/kukadu/include/kukadu/robot/queue.hpp" bodystart="95" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classkukadu_1_1ControlQueue_1a622587e2efdb1eeee66f659f443ba7f8" prot="private" static="no" mutable="no">
+        <type>KUKADU_SHARED_PTR&lt; kukadu_thread &gt;</type>
+        <definition>KUKADU_SHARED_PTR&lt;kukadu_thread&gt; kukadu::ControlQueue::frcTrqFilterUpdateThr</definition>
+        <argsstring></argsstring>
+        <name>frcTrqFilterUpdateThr</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/agyss/iis_robot_sw/iis_catkin_ws/src/kukadu/include/kukadu/robot/queue.hpp" line="96" column="1" bodyfile="/home/agyss/iis_robot_sw/iis_catkin_ws/src/kukadu/include/kukadu/robot/queue.hpp" bodystart="96" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classkukadu_1_1ControlQueue_1ae0b359a78de8d3c9741a7f603c3e3d08" prot="private" static="no" mutable="no">
+        <type>KUKADU_SHARED_PTR&lt; kukadu_thread &gt;</type>
+        <definition>KUKADU_SHARED_PTR&lt;kukadu_thread&gt; kukadu::ControlQueue::cartPtpThr</definition>
+        <argsstring></argsstring>
+        <name>cartPtpThr</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/agyss/iis_robot_sw/iis_catkin_ws/src/kukadu/include/kukadu/robot/queue.hpp" line="97" column="1" bodyfile="/home/agyss/iis_robot_sw/iis_catkin_ws/src/kukadu/include/kukadu/robot/queue.hpp" bodystart="97" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classkukadu_1_1ControlQueue_1adafb46399d4855b3c6d6cf85e6290ed8" prot="private" static="no" mutable="no">
+        <type>KUKADU_SHARED_PTR&lt; kukadu_thread &gt;</type>
+        <definition>KUKADU_SHARED_PTR&lt;kukadu_thread&gt; kukadu::ControlQueue::jointPtpThr</definition>
+        <argsstring></argsstring>
+        <name>jointPtpThr</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/agyss/iis_robot_sw/iis_catkin_ws/src/kukadu/include/kukadu/robot/queue.hpp" line="98" column="1" bodyfile="/home/agyss/iis_robot_sw/iis_catkin_ws/src/kukadu/include/kukadu/robot/queue.hpp" bodystart="98" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classkukadu_1_1ControlQueue_1a6fc05fe344079914b929d8cfa2d58664" prot="private" static="no" mutable="no">
+        <type>KUKADU_SHARED_PTR&lt; kukadu_thread &gt;</type>
+        <definition>KUKADU_SHARED_PTR&lt;kukadu_thread&gt; kukadu::ControlQueue::jointsColletorThr</definition>
+        <argsstring></argsstring>
+        <name>jointsColletorThr</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/agyss/iis_robot_sw/iis_catkin_ws/src/kukadu/include/kukadu/robot/queue.hpp" line="99" column="1" bodyfile="/home/agyss/iis_robot_sw/iis_catkin_ws/src/kukadu/include/kukadu/robot/queue.hpp" bodystart="99" bodyend="-1"/>
+      </memberdef>
+      </sectiondef>
+      <sectiondef kind="protected-attrib">
+      <memberdef kind="variable" id="classkukadu_1_1ControlQueue_1aadba228efd6e34095ce7d52bc94a4d29" prot="protected" static="no" mutable="no">
+        <type>int</type>
+        <definition>int kukadu::ControlQueue::currentControlType</definition>
+        <argsstring></argsstring>
+        <name>currentControlType</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/agyss/iis_robot_sw/iis_catkin_ws/src/kukadu/include/kukadu/robot/queue.hpp" line="116" column="1" bodyfile="/home/agyss/iis_robot_sw/iis_catkin_ws/src/kukadu/include/kukadu/robot/queue.hpp" bodystart="116" bodyend="-1"/>
+      </memberdef>
+      </sectiondef>
+      <sectiondef kind="public-static-attrib">
+      <memberdef kind="variable" id="classkukadu_1_1ControlQueue_1a1a207e4332a8b1ac5a8bf425d697570f" prot="public" static="yes" mutable="no">
+        <type>const int</type>
+        <definition>const int kukadu::ControlQueue::CONTROLQUEUE_STOP_MODE</definition>
+        <argsstring></argsstring>
+        <name>CONTROLQUEUE_STOP_MODE</name>
+        <initializer>= 0</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/agyss/iis_robot_sw/iis_catkin_ws/src/kukadu/include/kukadu/robot/queue.hpp" line="461" column="1" bodyfile="/home/agyss/iis_robot_sw/iis_catkin_ws/src/kukadu/include/kukadu/robot/queue.hpp" bodystart="461" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classkukadu_1_1ControlQueue_1a9c8511060b437868de842e7456f18018" prot="public" static="yes" mutable="no">
+        <type>const int</type>
+        <definition>const int kukadu::ControlQueue::CONTROLQUEUE_JNT_POS_MODE</definition>
+        <argsstring></argsstring>
+        <name>CONTROLQUEUE_JNT_POS_MODE</name>
+        <initializer>= 10</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/agyss/iis_robot_sw/iis_catkin_ws/src/kukadu/include/kukadu/robot/queue.hpp" line="462" column="1" bodyfile="/home/agyss/iis_robot_sw/iis_catkin_ws/src/kukadu/include/kukadu/robot/queue.hpp" bodystart="462" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classkukadu_1_1ControlQueue_1a664a52e365e9185a0aef587e331fe94f" prot="public" static="yes" mutable="no">
+        <type>const int</type>
+        <definition>const int kukadu::ControlQueue::CONTROLQUEUE_CART_IMP_MODE</definition>
+        <argsstring></argsstring>
+        <name>CONTROLQUEUE_CART_IMP_MODE</name>
+        <initializer>= 20</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/agyss/iis_robot_sw/iis_catkin_ws/src/kukadu/include/kukadu/robot/queue.hpp" line="463" column="1" bodyfile="/home/agyss/iis_robot_sw/iis_catkin_ws/src/kukadu/include/kukadu/robot/queue.hpp" bodystart="463" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classkukadu_1_1ControlQueue_1a8372490df9e7fbfa75afb9cfe1c0e6b4" prot="public" static="yes" mutable="no">
+        <type>const int</type>
+        <definition>const int kukadu::ControlQueue::CONTROLQUEUE_JNT_IMP_MODE</definition>
+        <argsstring></argsstring>
+        <name>CONTROLQUEUE_JNT_IMP_MODE</name>
+        <initializer>= 30</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/agyss/iis_robot_sw/iis_catkin_ws/src/kukadu/include/kukadu/robot/queue.hpp" line="464" column="1" bodyfile="/home/agyss/iis_robot_sw/iis_catkin_ws/src/kukadu/include/kukadu/robot/queue.hpp" bodystart="464" bodyend="-1"/>
+      </memberdef>
+      </sectiondef>
+      <sectiondef kind="private-func">
+      <memberdef kind="function" id="classkukadu_1_1ControlQueue_1a647c4a1ae663844068a51fbd2ea24c22" prot="private" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>void kukadu::ControlQueue::setInitValuesInternal</definition>
+        <argsstring>()</argsstring>
+        <name>setInitValuesInternal</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/agyss/iis_robot_sw/iis_catkin_ws/src/kukadu/include/kukadu/robot/queue.hpp" line="101" column="1" bodyfile="/home/agyss/iis_robot_sw/iis_catkin_ws/src/kukadu/src/robot/queue.cpp" bodystart="345" bodyend="362"/>
+      </memberdef>
+      <memberdef kind="function" id="classkukadu_1_1ControlQueue_1a64cbdfbf86e5d4aba03e4f5a2832b442" prot="private" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>void kukadu::ControlQueue::internalCartPtpCaller</definition>
+        <argsstring>()</argsstring>
+        <name>internalCartPtpCaller</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/agyss/iis_robot_sw/iis_catkin_ws/src/kukadu/include/kukadu/robot/queue.hpp" line="102" column="1" bodyfile="/home/agyss/iis_robot_sw/iis_catkin_ws/src/kukadu/src/robot/queue.cpp" bodystart="465" bodyend="467"/>
+      </memberdef>
+      <memberdef kind="function" id="classkukadu_1_1ControlQueue_1a970d47c760758782d07e5e5f55469ead" prot="private" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>void kukadu::ControlQueue::internalJointPtpCaller</definition>
+        <argsstring>()</argsstring>
+        <name>internalJointPtpCaller</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/agyss/iis_robot_sw/iis_catkin_ws/src/kukadu/include/kukadu/robot/queue.hpp" line="103" column="1" bodyfile="/home/agyss/iis_robot_sw/iis_catkin_ws/src/kukadu/src/robot/queue.cpp" bodystart="448" bodyend="450"/>
+      </memberdef>
+      <memberdef kind="function" id="classkukadu_1_1ControlQueue_1a15edefd75b411cc2c0d286e21b75fc2e" prot="private" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>void kukadu::ControlQueue::jointsCollector</definition>
+        <argsstring>()</argsstring>
+        <name>jointsCollector</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/agyss/iis_robot_sw/iis_catkin_ws/src/kukadu/include/kukadu/robot/queue.hpp" line="105" column="1" bodyfile="/home/agyss/iis_robot_sw/iis_catkin_ws/src/kukadu/src/robot/queue.cpp" bodystart="571" bodyend="583"/>
+      </memberdef>
+      <memberdef kind="function" id="classkukadu_1_1ControlQueue_1a07b7070ab29a985dd7d7f41b1e20335d" prot="private" static="no" const="no" explicit="no" inline="no" virt="virtual">
+        <type>void</type>
+        <definition>void kukadu::ControlQueue::run</definition>
+        <argsstring>()</argsstring>
+        <name>run</name>
+        <briefdescription>
+<para>run() is started by <ref refid="classkukadu_1_1ControlQueue_1a35d6a6e4e7c8467691c11567fe21f340" kindref="member">startQueue()</ref> in a separate thread and takes care of the queue execution (submits and collects data packets to and from the robot per cycle) </para>        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/agyss/iis_robot_sw/iis_catkin_ws/src/kukadu/include/kukadu/robot/queue.hpp" line="112" column="1" bodyfile="/home/agyss/iis_robot_sw/iis_catkin_ws/src/kukadu/src/robot/queue.cpp" bodystart="482" bodyend="569"/>
+      </memberdef>
+      </sectiondef>
+      <sectiondef kind="protected-func">
+      <memberdef kind="function" id="classkukadu_1_1ControlQueue_1ac38a2bac4927cf5d424e735af703f199" prot="protected" static="no" const="no" explicit="no" inline="no" virt="virtual">
+        <type>void</type>
+        <definition>void kukadu::ControlQueue::setDegOfFreedom</definition>
+        <argsstring>(int degOfFreedom)</argsstring>
+        <name>setDegOfFreedom</name>
+        <param>
+          <type>int</type>
+          <declname>degOfFreedom</declname>
+        </param>
+        <briefdescription>
+<para>Can be used to set the number of degrees of freedom. </para>        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/agyss/iis_robot_sw/iis_catkin_ws/src/kukadu/include/kukadu/robot/queue.hpp" line="121" column="1" bodyfile="/home/agyss/iis_robot_sw/iis_catkin_ws/src/kukadu/src/robot/queue.cpp" bodystart="255" bodyend="257"/>
+      </memberdef>
+      <memberdef kind="function" id="classkukadu_1_1ControlQueue_1a743fbc08007b777393a6f14d66ed2e8a" prot="protected" static="no" const="no" explicit="no" inline="no" virt="pure-virtual">
+        <type>void</type>
+        <definition>virtual void kukadu::ControlQueue::setInitValues</definition>
+        <argsstring>()=0</argsstring>
+        <name>setInitValues</name>
+        <reimplementedby refid="classkukadu_1_1KukieControlQueue_1ab828e3291b59e05855efd323a0124ac4">setInitValues</reimplementedby>
+        <reimplementedby refid="classkukadu_1_1PlottingControlQueue_1a6404b4ad14c35eaaf8d5afdf5ca271bb">setInitValues</reimplementedby>
+        <briefdescription>
+<para>This method can be used to initialize custom parts of the <ref refid="classkukadu_1_1ControlQueue" kindref="compound">ControlQueue</ref> implementation before the queue is started by <ref refid="classkukadu_1_1ControlQueue_1a35d6a6e4e7c8467691c11567fe21f340" kindref="member">startQueue()</ref>. </para>        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/agyss/iis_robot_sw/iis_catkin_ws/src/kukadu/include/kukadu/robot/queue.hpp" line="128" column="1"/>
+      </memberdef>
+      <memberdef kind="function" id="classkukadu_1_1ControlQueue_1a89a7b21307ccd0759a9e8b8e483cb919" prot="protected" static="no" const="no" explicit="no" inline="no" virt="pure-virtual">
+        <type>void</type>
+        <definition>virtual void kukadu::ControlQueue::jointPtpInternal</definition>
+        <argsstring>(arma::vec joints)=0</argsstring>
+        <name>jointPtpInternal</name>
+        <reimplementedby refid="classkukadu_1_1KukieControlQueue_1a73687ba516b2cfb5f9124ae9f165fc57">jointPtpInternal</reimplementedby>
+        <reimplementedby refid="classkukadu_1_1PlottingControlQueue_1aa7ce40e835eeccff82acafea0f069c83">jointPtpInternal</reimplementedby>
+        <param>
+          <type>arma::vec</type>
+          <declname>joints</declname>
+        </param>
+        <briefdescription>
+<para>The control queue collects the data about the actually executed trajectory during a point to point movement. This is automatically done by <ref refid="classkukadu_1_1ControlQueue_1ad11059100321b24a1af8ef7de8314353" kindref="member">jointPtp()</ref>. <ref refid="classkukadu_1_1ControlQueue_1ad11059100321b24a1af8ef7de8314353" kindref="member">jointPtp()</ref> calls the <ref refid="classkukadu_1_1ControlQueue_1a89a7b21307ccd0759a9e8b8e483cb919" kindref="member">jointPtpInternal()</ref> function that actually plans the movement in joint space and executes it. </para>        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/agyss/iis_robot_sw/iis_catkin_ws/src/kukadu/include/kukadu/robot/queue.hpp" line="136" column="1"/>
+      </memberdef>
+      <memberdef kind="function" id="classkukadu_1_1ControlQueue_1a12166afa17d758aa6b43362fc999e146" prot="protected" static="no" const="no" explicit="no" inline="no" virt="pure-virtual">
+        <type>void</type>
+        <definition>virtual void kukadu::ControlQueue::submitNextJointMove</definition>
+        <argsstring>(arma::vec joints)=0</argsstring>
+        <name>submitNextJointMove</name>
+        <reimplementedby refid="classkukadu_1_1KukieControlQueue_1a801f4d00e4eed9c11a53cb1521db42f0">submitNextJointMove</reimplementedby>
+        <reimplementedby refid="classkukadu_1_1PlottingControlQueue_1abcdd49af491df3aed56aada370df1b78">submitNextJointMove</reimplementedby>
+        <param>
+          <type>arma::vec</type>
+          <declname>joints</declname>
+        </param>
+        <briefdescription>
+<para>This method is called by the run() method once per clock cycle and actually submits the command about the next desired joint pose to the robot. </para>        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/agyss/iis_robot_sw/iis_catkin_ws/src/kukadu/include/kukadu/robot/queue.hpp" line="143" column="1"/>
+      </memberdef>
+      <memberdef kind="function" id="classkukadu_1_1ControlQueue_1a910db788a6da11006d358a84197bff23" prot="protected" static="no" const="no" explicit="no" inline="no" virt="pure-virtual">
+        <type>void</type>
+        <definition>virtual void kukadu::ControlQueue::submitNextCartMove</definition>
+        <argsstring>(geometry_msgs::Pose pose)=0</argsstring>
+        <name>submitNextCartMove</name>
+        <reimplementedby refid="classkukadu_1_1KukieControlQueue_1a7976aea7ef93fe9c96d017309e11e2c1">submitNextCartMove</reimplementedby>
+        <reimplementedby refid="classkukadu_1_1PlottingControlQueue_1a3447e691e812c0ca8390a05c00fe6621">submitNextCartMove</reimplementedby>
+        <param>
+          <type>geometry_msgs::Pose</type>
+          <declname>pose</declname>
+        </param>
+        <briefdescription>
+<para>This method is called by the run() method once per clock cycle and actually submits the command about the next desired Cartesian pose to the robot. </para>        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/agyss/iis_robot_sw/iis_catkin_ws/src/kukadu/include/kukadu/robot/queue.hpp" line="150" column="1"/>
+      </memberdef>
+      <memberdef kind="function" id="classkukadu_1_1ControlQueue_1a76e7bf30b8e694c0db9bec92e06529a0" prot="protected" static="no" const="no" explicit="no" inline="no" virt="pure-virtual">
+        <type>void</type>
+        <definition>virtual void kukadu::ControlQueue::setCurrentControlTypeInternal</definition>
+        <argsstring>(int controlType)=0</argsstring>
+        <name>setCurrentControlTypeInternal</name>
+        <reimplementedby refid="classkukadu_1_1KukieControlQueue_1ade8c63d5fad6dedbbd89b1f1a8915191">setCurrentControlTypeInternal</reimplementedby>
+        <reimplementedby refid="classkukadu_1_1PlottingControlQueue_1ad57f6b029d1acd9160702973b74c87de">setCurrentControlTypeInternal</reimplementedby>
+        <param>
+          <type>int</type>
+          <declname>controlType</declname>
+        </param>
+        <briefdescription>
+<para>This method is called by <ref refid="classkukadu_1_1ControlQueue_1a5defe63d9f1b9829676f9a31a4683911" kindref="member">switchMode()</ref> and actually sends the control mode command to the robot. </para>        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/agyss/iis_robot_sw/iis_catkin_ws/src/kukadu/include/kukadu/robot/queue.hpp" line="156" column="1"/>
+      </memberdef>
+      <memberdef kind="function" id="classkukadu_1_1ControlQueue_1a13059c37abe4846a356e0cfcf10958b9" prot="protected" static="no" const="no" explicit="no" inline="no" virt="pure-virtual">
+        <type>void</type>
+        <definition>virtual void kukadu::ControlQueue::cartPtpInternal</definition>
+        <argsstring>(geometry_msgs::Pose pose, double maxForce)=0</argsstring>
+        <name>cartPtpInternal</name>
+        <reimplementedby refid="classkukadu_1_1KukieControlQueue_1af5ae9a7107d58e35f340f24fcb3785db">cartPtpInternal</reimplementedby>
+        <reimplementedby refid="classkukadu_1_1PlottingControlQueue_1afb803b02a1c0f0d7270910583c3d839b">cartPtpInternal</reimplementedby>
+        <param>
+          <type>geometry_msgs::Pose</type>
+          <declname>pose</declname>
+        </param>
+        <param>
+          <type>double</type>
+          <declname>maxForce</declname>
+        </param>
+        <briefdescription>
+<para>The control queue collects the data about the actually executed trajectory during a point to point movement. This is automatically done by <ref refid="classkukadu_1_1ControlQueue_1a1bfa23a8ce6319f6ef0ed9208e896054" kindref="member">cartesianPtp()</ref>. <ref refid="classkukadu_1_1ControlQueue_1a1bfa23a8ce6319f6ef0ed9208e896054" kindref="member">cartesianPtp()</ref> calls the <ref refid="classkukadu_1_1ControlQueue_1a13059c37abe4846a356e0cfcf10958b9" kindref="member">cartPtpInternal()</ref> function that actually plans the movement in Cartesian space and executes it. </para>        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/agyss/iis_robot_sw/iis_catkin_ws/src/kukadu/include/kukadu/robot/queue.hpp" line="164" column="1"/>
+      </memberdef>
+      <memberdef kind="function" id="classkukadu_1_1ControlQueue_1a87d7c2d918d0ca720eeae609959d4d78" prot="protected" static="no" const="no" explicit="no" inline="no" virt="pure-virtual">
+        <type>void</type>
+        <definition>virtual void kukadu::ControlQueue::startQueueHook</definition>
+        <argsstring>()=0</argsstring>
+        <name>startQueueHook</name>
+        <reimplementedby refid="classkukadu_1_1KukieControlQueue_1ab86936efc30e3b3584fdaf98ef006540">startQueueHook</reimplementedby>
+        <reimplementedby refid="classkukadu_1_1PlottingControlQueue_1ae43df8bbe8df49fc3a20a134f0cb84c2">startQueueHook</reimplementedby>
+        <briefdescription>
+<para>This method can be used to add some additional initialization behavior when the queue is started. If no additional initialization is required, the method can be left empty. </para>        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/agyss/iis_robot_sw/iis_catkin_ws/src/kukadu/include/kukadu/robot/queue.hpp" line="171" column="1"/>
+      </memberdef>
+      <memberdef kind="function" id="classkukadu_1_1ControlQueue_1a6ebb66d1bd2188e1fca3ee1440b8c0fe" prot="protected" static="no" const="no" explicit="no" inline="no" virt="pure-virtual">
+        <type>bool</type>
+        <definition>virtual bool kukadu::ControlQueue::stopQueueWhilePtp</definition>
+        <argsstring>()=0</argsstring>
+        <name>stopQueueWhilePtp</name>
+        <reimplementedby refid="classkukadu_1_1KukieControlQueue_1abb6d8763fada53c6583b2a1ef58274ed">stopQueueWhilePtp</reimplementedby>
+        <reimplementedby refid="classkukadu_1_1PlottingControlQueue_1a8e686e1dadfb0039e2510270c9a3d330">stopQueueWhilePtp</reimplementedby>
+        <briefdescription>
+<para>This method determines, if the queue execetion should be stopped while ptp commands are executed (this is typically the case when ptp is done outside of the control queue implementation). If two different controls interfere it can result in dangerous behaviour. </para>        </briefdescription>
+        <detaileddescription>
+<para><simplesect kind="return"><para>true if the queue should be stopped during ptp, false otherwise </para></simplesect>
+</para>        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/agyss/iis_robot_sw/iis_catkin_ws/src/kukadu/include/kukadu/robot/queue.hpp" line="179" column="1"/>
+      </memberdef>
+      <memberdef kind="function" id="classkukadu_1_1ControlQueue_1a3b67b32a4724ad089741b51377c98054" prot="protected" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>int</type>
+        <definition>int kukadu::ControlQueue::loadDegOfFreedom</definition>
+        <argsstring>(StorageSingleton &amp;storage, std::string robotName)</argsstring>
+        <name>loadDegOfFreedom</name>
+        <param>
+          <type><ref refid="classkukadu_1_1StorageSingleton" kindref="compound">StorageSingleton</ref> &amp;</type>
+          <declname>storage</declname>
+        </param>
+        <param>
+          <type>std::string</type>
+          <declname>robotName</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/agyss/iis_robot_sw/iis_catkin_ws/src/kukadu/include/kukadu/robot/queue.hpp" line="181" column="1"/>
+      </memberdef>
+      </sectiondef>
+      <sectiondef kind="public-func">
+      <memberdef kind="function" id="classkukadu_1_1ControlQueue_1ae9c6ce0ac682b36829f892d8c3e44977" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type></type>
+        <definition>kukadu::ControlQueue::ControlQueue</definition>
+        <argsstring>(StorageSingleton &amp;storage, std::string robotName, int degreesOfFreedom, double desiredCycleTime)</argsstring>
+        <name>ControlQueue</name>
+        <param>
+          <type><ref refid="classkukadu_1_1StorageSingleton" kindref="compound">StorageSingleton</ref> &amp;</type>
+          <declname>storage</declname>
+        </param>
+        <param>
+          <type>std::string</type>
+          <declname>robotName</declname>
+        </param>
+        <param>
+          <type>int</type>
+          <declname>degreesOfFreedom</declname>
+        </param>
+        <param>
+          <type>double</type>
+          <declname>desiredCycleTime</declname>
+        </param>
+        <briefdescription>
+<para>Constructor taking the robot dependent degrees of freedom. </para>        </briefdescription>
+        <detaileddescription>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>degOfFreedom</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>number of robots degrees of freedom </para></parameterdescription>
+</parameteritem>
+</parameterlist>
+</para>        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/agyss/iis_robot_sw/iis_catkin_ws/src/kukadu/include/kukadu/robot/queue.hpp" line="189" column="1" bodyfile="/home/agyss/iis_robot_sw/iis_catkin_ws/src/kukadu/src/robot/queue.cpp" bodystart="219" bodyend="240"/>
+      </memberdef>
+      <memberdef kind="function" id="classkukadu_1_1ControlQueue_1a90e78528f686215996715d225c6c4804" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>int</type>
+        <definition>int kukadu::ControlQueue::getQueueSize</definition>
+        <argsstring>()</argsstring>
+        <name>getQueueSize</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/agyss/iis_robot_sw/iis_catkin_ws/src/kukadu/include/kukadu/robot/queue.hpp" line="191" column="1" bodyfile="/home/agyss/iis_robot_sw/iis_catkin_ws/src/kukadu/src/robot/queue.cpp" bodystart="436" bodyend="438"/>
+      </memberdef>
+      <memberdef kind="function" id="classkukadu_1_1ControlQueue_1a809f7cfd97038949139e3b13218738ad" prot="public" static="no" const="no" explicit="no" inline="no" virt="virtual">
+        <type>int</type>
+        <definition>int kukadu::ControlQueue::getDegreesOfFreedom</definition>
+        <argsstring>()</argsstring>
+        <name>getDegreesOfFreedom</name>
+        <reimplements refid="classkukadu_1_1JointHardware_1a6e1bbab3cb82d94f3154060d5a8ee62a">getDegreesOfFreedom</reimplements>
+        <briefdescription>
+<para>Returns number of the robots degrees of freedom. </para>        </briefdescription>
+        <detaileddescription>
+<para><simplesect kind="return"><para>number of degrees of freedom </para></simplesect>
+</para>        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/agyss/iis_robot_sw/iis_catkin_ws/src/kukadu/include/kukadu/robot/queue.hpp" line="197" column="1" bodyfile="/home/agyss/iis_robot_sw/iis_catkin_ws/src/kukadu/src/robot/queue.cpp" bodystart="259" bodyend="261"/>
+      </memberdef>
+      <memberdef kind="function" id="classkukadu_1_1ControlQueue_1a5245ff31c7dea26070743d1f6560801c" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>void kukadu::ControlQueue::setCycleTime</definition>
+        <argsstring>(double cycleTime)</argsstring>
+        <name>setCycleTime</name>
+        <param>
+          <type>double</type>
+          <declname>cycleTime</declname>
+        </param>
+        <briefdescription>
+<para>Sets the queue cycle time. </para>        </briefdescription>
+        <detaileddescription>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>cycleTime</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>time to wait between two cycles </para></parameterdescription>
+</parameteritem>
+</parameterlist>
+</para>        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/agyss/iis_robot_sw/iis_catkin_ws/src/kukadu/include/kukadu/robot/queue.hpp" line="203" column="1" bodyfile="/home/agyss/iis_robot_sw/iis_catkin_ws/src/kukadu/src/robot/queue.cpp" bodystart="263" bodyend="270"/>
+      </memberdef>
+      <memberdef kind="function" id="classkukadu_1_1ControlQueue_1a35d6a6e4e7c8467691c11567fe21f340" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>KUKADU_SHARED_PTR&lt; kukadu_thread &gt;</type>
+        <definition>KUKADU_SHARED_PTR&lt; kukadu_thread &gt; kukadu::ControlQueue::startQueue</definition>
+        <argsstring>()</argsstring>
+        <name>startQueue</name>
+        <briefdescription>
+<para>Starts new thread to control the robot with real time capability. </para>        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/agyss/iis_robot_sw/iis_catkin_ws/src/kukadu/include/kukadu/robot/queue.hpp" line="208" column="1" bodyfile="/home/agyss/iis_robot_sw/iis_catkin_ws/src/kukadu/src/robot/queue.cpp" bodystart="199" bodyend="217"/>
+      </memberdef>
+      <memberdef kind="function" id="classkukadu_1_1ControlQueue_1a82349f67c4ea6f2dc2689e765717d8e2" prot="public" static="no" const="no" explicit="no" inline="no" virt="virtual">
+        <type>double</type>
+        <definition>double kukadu::ControlQueue::getCycleTime</definition>
+        <argsstring>()</argsstring>
+        <name>getCycleTime</name>
+        <briefdescription>
+<para>Returns the time between two cycles. </para>        </briefdescription>
+        <detaileddescription>
+<para><simplesect kind="return"><para>cycle time </para></simplesect>
+</para>        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/agyss/iis_robot_sw/iis_catkin_ws/src/kukadu/include/kukadu/robot/queue.hpp" line="214" column="1" bodyfile="/home/agyss/iis_robot_sw/iis_catkin_ws/src/kukadu/src/robot/queue.cpp" bodystart="282" bodyend="289"/>
+      </memberdef>
+      <memberdef kind="function" id="classkukadu_1_1ControlQueue_1aa02fcb2c8cd2c1c8ca553ae636000beb" prot="public" static="no" const="no" explicit="no" inline="no" virt="virtual">
+        <type>bool</type>
+        <definition>bool kukadu::ControlQueue::getQueueRunning</definition>
+        <argsstring>()</argsstring>
+        <name>getQueueRunning</name>
+        <briefdescription>
+<para>Returns whether or not the queue is currently running. </para>        </briefdescription>
+        <detaileddescription>
+<para><simplesect kind="return"><para>true if the queue is started, false otherwise </para></simplesect>
+</para>        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/agyss/iis_robot_sw/iis_catkin_ws/src/kukadu/include/kukadu/robot/queue.hpp" line="220" column="1" bodyfile="/home/agyss/iis_robot_sw/iis_catkin_ws/src/kukadu/src/robot/queue.cpp" bodystart="417" bodyend="419"/>
+      </memberdef>
+      <memberdef kind="function" id="classkukadu_1_1ControlQueue_1a8d413404960c7597032876396777e38f" prot="public" static="no" const="no" explicit="no" inline="no" virt="virtual">
+        <type>void</type>
+        <definition>void kukadu::ControlQueue::stopQueue</definition>
+        <argsstring>()</argsstring>
+        <name>stopQueue</name>
+        <briefdescription>
+<para>Stops the queue. </para>        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/agyss/iis_robot_sw/iis_catkin_ws/src/kukadu/include/kukadu/robot/queue.hpp" line="225" column="1" bodyfile="/home/agyss/iis_robot_sw/iis_catkin_ws/src/kukadu/src/robot/queue.cpp" bodystart="364" bodyend="384"/>
+      </memberdef>
+      <memberdef kind="function" id="classkukadu_1_1ControlQueue_1a0025c5c010a1b33d637e52fb24f767b2" prot="public" static="no" const="no" explicit="no" inline="no" virt="virtual">
+        <type>void</type>
+        <definition>void kukadu::ControlQueue::setNextTrajectory</definition>
+        <argsstring>(std::vector&lt; arma::vec &gt; jointTrajectory)</argsstring>
+        <name>setNextTrajectory</name>
+        <param>
+          <type>std::vector&lt; arma::vec &gt;</type>
+          <declname>jointTrajectory</declname>
+        </param>
+        <briefdescription>
+<para>With <ref refid="classkukadu_1_1ControlQueue_1a0025c5c010a1b33d637e52fb24f767b2" kindref="member">setNextTrajectory()</ref> a complete trajectory can be added to the queue. The trajectory will be executed after all other added commands (already contained in the queue) were executed. </para>        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/agyss/iis_robot_sw/iis_catkin_ws/src/kukadu/include/kukadu/robot/queue.hpp" line="232" column="1" bodyfile="/home/agyss/iis_robot_sw/iis_catkin_ws/src/kukadu/src/robot/queue.cpp" bodystart="311" bodyend="317"/>
+      </memberdef>
+      <memberdef kind="function" id="classkukadu_1_1ControlQueue_1aca70a978b2950d7c9ab99d55c5977eec" prot="public" static="no" const="no" explicit="no" inline="no" virt="virtual">
+        <type>void</type>
+        <definition>void kukadu::ControlQueue::move</definition>
+        <argsstring>(arma::vec joints)</argsstring>
+        <name>move</name>
+        <param>
+          <type>arma::vec</type>
+          <declname>joints</declname>
+        </param>
+        <briefdescription>
+<para>Adds next joint position to the end of the queue (can be used for trajectory following) </para>        </briefdescription>
+        <detaileddescription>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>joints</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>joints to add </para></parameterdescription>
+</parameteritem>
+</parameterlist>
+</para>        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/agyss/iis_robot_sw/iis_catkin_ws/src/kukadu/include/kukadu/robot/queue.hpp" line="238" column="1" bodyfile="/home/agyss/iis_robot_sw/iis_catkin_ws/src/kukadu/src/robot/queue.cpp" bodystart="390" bodyend="394"/>
+      </memberdef>
+      <memberdef kind="function" id="classkukadu_1_1ControlQueue_1a62b3e0c02b1937b09ae538a71ee0e855" prot="public" static="no" const="no" explicit="no" inline="no" virt="virtual">
+        <type>void</type>
+        <definition>void kukadu::ControlQueue::move</definition>
+        <argsstring>(geometry_msgs::Pose pose)</argsstring>
+        <name>move</name>
+        <param>
+          <type>geometry_msgs::Pose</type>
+          <declname>pose</declname>
+        </param>
+        <briefdescription>
+<para>Adds next cartesian position to the end of the queue (can be used for trajectory following) </para>        </briefdescription>
+        <detaileddescription>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>pose</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>end-effector pose to add </para></parameterdescription>
+</parameteritem>
+</parameterlist>
+</para>        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/agyss/iis_robot_sw/iis_catkin_ws/src/kukadu/include/kukadu/robot/queue.hpp" line="244" column="1" bodyfile="/home/agyss/iis_robot_sw/iis_catkin_ws/src/kukadu/src/robot/queue.cpp" bodystart="319" bodyend="323"/>
+      </memberdef>
+      <memberdef kind="function" id="classkukadu_1_1ControlQueue_1a5defe63d9f1b9829676f9a31a4683911" prot="public" static="no" const="no" explicit="no" inline="no" virt="virtual">
+        <type>void</type>
+        <definition>void kukadu::ControlQueue::switchMode</definition>
+        <argsstring>(int mode)</argsstring>
+        <name>switchMode</name>
+        <reimplementedby refid="classkukadu_1_1PlottingControlQueue_1ace69c9adaff27b5d98a42e70f7bc64ff">switchMode</reimplementedby>
+        <param>
+          <type>int</type>
+          <declname>mode</declname>
+        </param>
+        <briefdescription>
+<para>Switches robot modes. A state might be a real time command mode or monitoring mode. </para>        </briefdescription>
+        <detaileddescription>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>mode</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>mode id </para></parameterdescription>
+</parameteritem>
+</parameterlist>
+</para>        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/agyss/iis_robot_sw/iis_catkin_ws/src/kukadu/include/kukadu/robot/queue.hpp" line="250" column="1" bodyfile="/home/agyss/iis_robot_sw/iis_catkin_ws/src/kukadu/src/robot/queue.cpp" bodystart="325" bodyend="343"/>
+      </memberdef>
+      <memberdef kind="function" id="classkukadu_1_1ControlQueue_1ae4236dc4c31aff57d2295dd11dbf453b" prot="public" static="no" const="no" explicit="no" inline="no" virt="virtual">
+        <type>void</type>
+        <definition>void kukadu::ControlQueue::stopCurrentMode</definition>
+        <argsstring>()</argsstring>
+        <name>stopCurrentMode</name>
+        <reimplementedby refid="classkukadu_1_1PlottingControlQueue_1aa15ad1445f3b35e0d86a0e3f8b945ecb">stopCurrentMode</reimplementedby>
+        <briefdescription>
+<para>Stops current mode and switches back to default mode (e.g. monitoring mode) </para>        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/agyss/iis_robot_sw/iis_catkin_ws/src/kukadu/include/kukadu/robot/queue.hpp" line="255" column="1" bodyfile="/home/agyss/iis_robot_sw/iis_catkin_ws/src/kukadu/src/robot/queue.cpp" bodystart="440" bodyend="446"/>
+      </memberdef>
+      <memberdef kind="function" id="classkukadu_1_1ControlQueue_1a324484e79a5505656a32d9f32054e5d0" prot="public" static="no" const="no" explicit="no" inline="no" virt="virtual">
+        <type>void</type>
+        <definition>void kukadu::ControlQueue::synchronizeToQueue</definition>
+        <argsstring>(int maxNumJointsInQueue)</argsstring>
+        <name>synchronizeToQueue</name>
+        <param>
+          <type>int</type>
+          <declname>maxNumJointsInQueue</declname>
+        </param>
+        <briefdescription>
+<para>Blocks, if more than the defined maximum element count is in the queue. </para>        </briefdescription>
+        <detaileddescription>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>maxNumJointsInQueue</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>maximum number of joints in queue </para></parameterdescription>
+</parameteritem>
+</parameterlist>
+</para>        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/agyss/iis_robot_sw/iis_catkin_ws/src/kukadu/include/kukadu/robot/queue.hpp" line="261" column="1" bodyfile="/home/agyss/iis_robot_sw/iis_catkin_ws/src/kukadu/src/robot/queue.cpp" bodystart="421" bodyend="434"/>
+      </memberdef>
+      <memberdef kind="function" id="classkukadu_1_1ControlQueue_1a225130ca0fa4a22e98cc0e5679917841" prot="public" static="no" const="no" explicit="no" inline="no" virt="virtual">
+        <type>void</type>
+        <definition>void kukadu::ControlQueue::setStartingJoints</definition>
+        <argsstring>(arma::vec joints)</argsstring>
+        <name>setStartingJoints</name>
+        <reimplementedby refid="classkukadu_1_1PlottingControlQueue_1a16154678068808ba8989012f044f4a5e">setStartingJoints</reimplementedby>
+        <param>
+          <type>arma::vec</type>
+          <declname>joints</declname>
+        </param>
+        <briefdescription>
+<para>If this is set, the robot moves to the desired position by <ref refid="classkukadu_1_1ControlQueue_1ad11059100321b24a1af8ef7de8314353" kindref="member">jointPtp()</ref> before the queue is started. </para>        </briefdescription>
+        <detaileddescription>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>joints</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>array of joint positions </para></parameterdescription>
+</parameteritem>
+</parameterlist>
+</para>        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/agyss/iis_robot_sw/iis_catkin_ws/src/kukadu/include/kukadu/robot/queue.hpp" line="268" column="1" bodyfile="/home/agyss/iis_robot_sw/iis_catkin_ws/src/kukadu/src/robot/queue.cpp" bodystart="295" bodyend="297"/>
+      </memberdef>
+      <memberdef kind="function" id="classkukadu_1_1ControlQueue_1ad11059100321b24a1af8ef7de8314353" prot="public" static="no" const="no" explicit="no" inline="no" virt="virtual">
+        <type>std::vector&lt; <ref refid="structmes__result" kindref="compound">mes_result</ref> &gt;</type>
+        <definition>std::vector&lt; mes_result &gt; kukadu::ControlQueue::jointPtp</definition>
+        <argsstring>(arma::vec joints)</argsstring>
+        <name>jointPtp</name>
+        <param>
+          <type>arma::vec</type>
+          <declname>joints</declname>
+        </param>
+        <briefdescription>
+<para>Implements simple point to point movement in joint space (blocks until target reached) </para>        </briefdescription>
+        <detaileddescription>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>joints</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>array of joint positions </para></parameterdescription>
+</parameteritem>
+</parameterlist>
+</para>        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/agyss/iis_robot_sw/iis_catkin_ws/src/kukadu/include/kukadu/robot/queue.hpp" line="274" column="1" bodyfile="/home/agyss/iis_robot_sw/iis_catkin_ws/src/kukadu/src/robot/queue.cpp" bodystart="585" bodyend="613"/>
+      </memberdef>
+      <memberdef kind="function" id="classkukadu_1_1ControlQueue_1aaf35ae626b08ac53508acdc84ab58c8f" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>KUKADU_SHARED_PTR&lt; kukadu_thread &gt;</type>
+        <definition>KUKADU_SHARED_PTR&lt; kukadu_thread &gt; kukadu::ControlQueue::jointPtpNb</definition>
+        <argsstring>(arma::vec joints)</argsstring>
+        <name>jointPtpNb</name>
+        <param>
+          <type>arma::vec</type>
+          <declname>joints</declname>
+        </param>
+        <briefdescription>
+<para>Implements simple point to point movement in joint space (not blocking) </para>        </briefdescription>
+        <detaileddescription>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>joints</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>array of joint positions </para></parameterdescription>
+</parameteritem>
+</parameterlist>
+</para>        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/agyss/iis_robot_sw/iis_catkin_ws/src/kukadu/include/kukadu/robot/queue.hpp" line="280" column="1" bodyfile="/home/agyss/iis_robot_sw/iis_catkin_ws/src/kukadu/src/robot/queue.cpp" bodystart="452" bodyend="463"/>
+      </memberdef>
+      <memberdef kind="function" id="classkukadu_1_1ControlQueue_1a1bfa23a8ce6319f6ef0ed9208e896054" prot="public" static="no" const="no" explicit="no" inline="no" virt="virtual">
+        <type>std::vector&lt; <ref refid="structmes__result" kindref="compound">mes_result</ref> &gt;</type>
+        <definition>std::vector&lt; mes_result &gt; kukadu::ControlQueue::cartesianPtp</definition>
+        <argsstring>(geometry_msgs::Pose pos)</argsstring>
+        <name>cartesianPtp</name>
+        <param>
+          <type>geometry_msgs::Pose</type>
+          <declname>pos</declname>
+        </param>
+        <briefdescription>
+<para>Implements simple point to point movement in cartesian space. </para>        </briefdescription>
+        <detaileddescription>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>pose</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>of end-effector </para></parameterdescription>
+</parameteritem>
+</parameterlist>
+</para>        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/agyss/iis_robot_sw/iis_catkin_ws/src/kukadu/include/kukadu/robot/queue.hpp" line="286" column="1" bodyfile="/home/agyss/iis_robot_sw/iis_catkin_ws/src/kukadu/src/robot/queue.cpp" bodystart="656" bodyend="666"/>
+      </memberdef>
+      <memberdef kind="function" id="classkukadu_1_1ControlQueue_1a58518838c503e7eaa9c220bdf34ddd33" prot="public" static="no" const="no" explicit="no" inline="no" virt="virtual">
+        <type>std::vector&lt; <ref refid="structmes__result" kindref="compound">mes_result</ref> &gt;</type>
+        <definition>std::vector&lt; mes_result &gt; kukadu::ControlQueue::cartesianPtp</definition>
+        <argsstring>(geometry_msgs::Pose pos, double maxForce)</argsstring>
+        <name>cartesianPtp</name>
+        <param>
+          <type>geometry_msgs::Pose</type>
+          <declname>pos</declname>
+        </param>
+        <param>
+          <type>double</type>
+          <declname>maxForce</declname>
+        </param>
+        <briefdescription>
+<para>Implements simple point to point movement in cartesian space. </para>        </briefdescription>
+        <detaileddescription>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>pose</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>of end-effector </para></parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>maxForce</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>the point to point movement is stopped if the observed force exceeds this value (in Newton) </para></parameterdescription>
+</parameteritem>
+</parameterlist>
+</para>        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/agyss/iis_robot_sw/iis_catkin_ws/src/kukadu/include/kukadu/robot/queue.hpp" line="294" column="1" bodyfile="/home/agyss/iis_robot_sw/iis_catkin_ws/src/kukadu/src/robot/queue.cpp" bodystart="615" bodyend="654"/>
+      </memberdef>
+      <memberdef kind="function" id="classkukadu_1_1ControlQueue_1a1c0ad5ad4d3af98f26d0c633181df010" prot="public" static="no" const="no" explicit="no" inline="no" virt="virtual">
+        <type>KUKADU_SHARED_PTR&lt; kukadu_thread &gt;</type>
+        <definition>KUKADU_SHARED_PTR&lt; kukadu_thread &gt; kukadu::ControlQueue::cartesianPtpNb</definition>
+        <argsstring>(geometry_msgs::Pose pos)</argsstring>
+        <name>cartesianPtpNb</name>
+        <param>
+          <type>geometry_msgs::Pose</type>
+          <declname>pos</declname>
+        </param>
+        <briefdescription>
+<para>Implements simple point to point movement in cartesian space (does not block until the position is reached) </para>        </briefdescription>
+        <detaileddescription>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>pose</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>of end-effector </para></parameterdescription>
+</parameteritem>
+</parameterlist>
+</para>        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/agyss/iis_robot_sw/iis_catkin_ws/src/kukadu/include/kukadu/robot/queue.hpp" line="300" column="1" bodyfile="/home/agyss/iis_robot_sw/iis_catkin_ws/src/kukadu/src/robot/queue.cpp" bodystart="469" bodyend="480"/>
+      </memberdef>
+      <memberdef kind="function" id="classkukadu_1_1ControlQueue_1a18e628686b8c86abfdbd097b60aa5768" prot="public" static="no" const="no" explicit="no" inline="no" virt="pure-virtual">
+        <type>void</type>
+        <definition>virtual void kukadu::ControlQueue::setAdditionalLoad</definition>
+        <argsstring>(float loadMass, float loadPos)=0</argsstring>
+        <name>setAdditionalLoad</name>
+        <reimplementedby refid="classkukadu_1_1KukieControlQueue_1a0fef688170ac5a3e21df426a30ef0e77">setAdditionalLoad</reimplementedby>
+        <reimplementedby refid="classkukadu_1_1PlottingControlQueue_1ab6dc63e59f83a1c0ae9fa5b608eb25a4">setAdditionalLoad</reimplementedby>
+        <param>
+          <type>float</type>
+          <declname>loadMass</declname>
+        </param>
+        <param>
+          <type>float</type>
+          <declname>loadPos</declname>
+        </param>
+        <briefdescription>
+<para>Changes the expected load data of the robot (e.g. can be used whenever robot picks up an object). Some robots might require this information in order to avoid control problems. </para>        </briefdescription>
+        <detaileddescription>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>loadMass</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>mass of the picked up object </para></parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>loadPos</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>position of the objects center of gravity relative to the manipulator </para></parameterdescription>
+</parameteritem>
+</parameterlist>
+</para>        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/agyss/iis_robot_sw/iis_catkin_ws/src/kukadu/include/kukadu/robot/queue.hpp" line="308" column="1"/>
+      </memberdef>
+      <memberdef kind="function" id="classkukadu_1_1ControlQueue_1aee25e6410909af34d740edbece98d677" prot="public" static="no" const="no" explicit="no" inline="no" virt="pure-virtual">
+        <type>void</type>
+        <definition>virtual void kukadu::ControlQueue::setStiffness</definition>
+        <argsstring>(float cpstiffnessxyz, float cpstiffnessabc, float cpdamping, float cpmaxdelta, float maxforce, float axismaxdeltatrq)=0</argsstring>
+        <name>setStiffness</name>
+        <reimplementedby refid="classkukadu_1_1KukieControlQueue_1a3145cfcb1dc4879e2e3f16ad4829ce09">setStiffness</reimplementedby>
+        <reimplementedby refid="classkukadu_1_1PlottingControlQueue_1a676d19be17f169e3e411fd8f673b5d3d">setStiffness</reimplementedby>
+        <param>
+          <type>float</type>
+          <declname>cpstiffnessxyz</declname>
+        </param>
+        <param>
+          <type>float</type>
+          <declname>cpstiffnessabc</declname>
+        </param>
+        <param>
+          <type>float</type>
+          <declname>cpdamping</declname>
+        </param>
+        <param>
+          <type>float</type>
+          <declname>cpmaxdelta</declname>
+        </param>
+        <param>
+          <type>float</type>
+          <declname>maxforce</declname>
+        </param>
+        <param>
+          <type>float</type>
+          <declname>axismaxdeltatrq</declname>
+        </param>
+        <briefdescription>
+<para>Sets certain stiffness parameters in cartesian space (if the robot supports this) according to a mass spring damper system model. </para>        </briefdescription>
+        <detaileddescription>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>cpstiffnessxyz</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>stiffness of the robot in the cartesian space </para></parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>cpstiffnessabc</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>stiffness of the rotational axis of the tool mounting point in cartesian space </para></parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>cpdamping</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>damping of the robots axis in cartesian space </para></parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>cpmaxdelta</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>maximum allows deviation in cartesian space </para></parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>maxforce</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>maximum allowed applied force </para></parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>axismaxdeltatrq</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>maximum allowed applied torque </para></parameterdescription>
+</parameteritem>
+</parameterlist>
+</para>        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/agyss/iis_robot_sw/iis_catkin_ws/src/kukadu/include/kukadu/robot/queue.hpp" line="319" column="1"/>
+      </memberdef>
+      <memberdef kind="function" id="classkukadu_1_1ControlQueue_1abddacca2f9bf2db7a42a80d347843cec" prot="public" static="no" const="no" explicit="no" inline="no" virt="virtual">
+        <type><ref refid="structmes__result" kindref="compound">mes_result</ref></type>
+        <definition>mes_result kukadu::ControlQueue::getCurrentCartesianPos</definition>
+        <argsstring>()</argsstring>
+        <name>getCurrentCartesianPos</name>
+        <reimplementedby refid="classkukadu_1_1PlottingControlQueue_1a876ce6f03b1ab92384e282a55fd83cf0">getCurrentCartesianPos</reimplementedby>
+        <briefdescription>
+<para>Returns the current robot position in cartesian space. </para>        </briefdescription>
+        <detaileddescription>
+<para><simplesect kind="return"><para>current pose of the robot in Cartesian space </para></simplesect>
+</para>        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/agyss/iis_robot_sw/iis_catkin_ws/src/kukadu/include/kukadu/robot/queue.hpp" line="325" column="1" bodyfile="/home/agyss/iis_robot_sw/iis_catkin_ws/src/kukadu/src/robot/queue.cpp" bodystart="396" bodyend="415"/>
+      </memberdef>
+      <memberdef kind="function" id="classkukadu_1_1ControlQueue_1a9e79e1d0d9697bbf146d66a2d01fea9e" prot="public" static="no" const="no" explicit="no" inline="no" virt="pure-virtual">
+        <type>geometry_msgs::Pose</type>
+        <definition>virtual geometry_msgs::Pose kukadu::ControlQueue::getCurrentCartesianPose</definition>
+        <argsstring>()=0</argsstring>
+        <name>getCurrentCartesianPose</name>
+        <reimplementedby refid="classkukadu_1_1KukieControlQueue_1ab13290e3512b3a1ab10660b0f60e6961">getCurrentCartesianPose</reimplementedby>
+        <reimplementedby refid="classkukadu_1_1PlottingControlQueue_1ac7f7c811fab06667e75a4da5c8364cc8">getCurrentCartesianPose</reimplementedby>
+        <briefdescription>
+<para>Returns current robot position in cartesian space. </para>        </briefdescription>
+        <detaileddescription>
+<para><simplesect kind="return"><para>current pose of the robot in Cartesian space </para></simplesect>
+</para>        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/agyss/iis_robot_sw/iis_catkin_ws/src/kukadu/include/kukadu/robot/queue.hpp" line="331" column="1"/>
+      </memberdef>
+      <memberdef kind="function" id="classkukadu_1_1ControlQueue_1a53b2ecff4ae71b1e01d18793f63645ce" prot="public" static="no" const="no" explicit="no" inline="no" virt="virtual">
+        <type>arma::vec</type>
+        <definition>arma::vec kukadu::ControlQueue::getStartingJoints</definition>
+        <argsstring>()</argsstring>
+        <name>getStartingJoints</name>
+        <reimplementedby refid="classkukadu_1_1PlottingControlQueue_1aa45636924606a9f4cf09ff2b65108bad">getStartingJoints</reimplementedby>
+        <briefdescription>
+<para>Returns the robot joints the robot has been directly before starting command mode. </para>        </briefdescription>
+        <detaileddescription>
+<para><simplesect kind="return"><para>The starting joints set int <ref refid="classkukadu_1_1ControlQueue_1a225130ca0fa4a22e98cc0e5679917841" kindref="member">setStartingJoints()</ref> </para></simplesect>
+</para>        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/agyss/iis_robot_sw/iis_catkin_ws/src/kukadu/include/kukadu/robot/queue.hpp" line="337" column="1" bodyfile="/home/agyss/iis_robot_sw/iis_catkin_ws/src/kukadu/src/robot/queue.cpp" bodystart="291" bodyend="293"/>
+      </memberdef>
+      <memberdef kind="function" id="classkukadu_1_1ControlQueue_1a6ba7b6db5099073eadd7bc04792bc643" prot="public" static="no" const="no" explicit="no" inline="no" virt="pure-virtual">
+        <type><ref refid="structmes__result" kindref="compound">mes_result</ref></type>
+        <definition>virtual mes_result kukadu::ControlQueue::getCurrentJoints</definition>
+        <argsstring>()=0</argsstring>
+        <name>getCurrentJoints</name>
+        <reimplementedby refid="classkukadu_1_1KukieControlQueue_1aecf704318e729f49999d3be51262f068">getCurrentJoints</reimplementedby>
+        <reimplementedby refid="classkukadu_1_1PlottingControlQueue_1ab0cb15c4ab4759bb313ea935149870cf">getCurrentJoints</reimplementedby>
+        <briefdescription>
+<para>Returns joints if the robot is in command mode. </para>        </briefdescription>
+        <detaileddescription>
+<para><simplesect kind="return"><para>The current joint pose of the robot </para></simplesect>
+</para>        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/agyss/iis_robot_sw/iis_catkin_ws/src/kukadu/include/kukadu/robot/queue.hpp" line="343" column="1"/>
+      </memberdef>
+      <memberdef kind="function" id="classkukadu_1_1ControlQueue_1a1468c1771ea7dfd1ee3b0a7279407241" prot="public" static="no" const="no" explicit="no" inline="no" virt="pure-virtual">
+        <type><ref refid="structmes__result" kindref="compound">mes_result</ref></type>
+        <definition>virtual mes_result kukadu::ControlQueue::getCurrentJntFrc</definition>
+        <argsstring>()=0</argsstring>
+        <name>getCurrentJntFrc</name>
+        <reimplementedby refid="classkukadu_1_1KukieControlQueue_1a947d5f2d42060bdd6d7271d80ac40e7a">getCurrentJntFrc</reimplementedby>
+        <reimplementedby refid="classkukadu_1_1PlottingControlQueue_1a6934e9ae7b6824b0fc01308dccdfd0e8">getCurrentJntFrc</reimplementedby>
+        <briefdescription>
+<para>Returns the forces measured for the robot joints. </para>        </briefdescription>
+        <detaileddescription>
+<para><simplesect kind="return"><para>The current forces measured at the robot joints (in Newton) </para></simplesect>
+</para>        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/agyss/iis_robot_sw/iis_catkin_ws/src/kukadu/include/kukadu/robot/queue.hpp" line="349" column="1"/>
+      </memberdef>
+      <memberdef kind="function" id="classkukadu_1_1ControlQueue_1aa557f386f03cfb4986ed7cd9997212ab" prot="public" static="no" const="no" explicit="no" inline="no" virt="pure-virtual">
+        <type><ref refid="structmes__result" kindref="compound">mes_result</ref></type>
+        <definition>virtual mes_result kukadu::ControlQueue::getCurrentCartesianFrcTrq</definition>
+        <argsstring>()=0</argsstring>
+        <name>getCurrentCartesianFrcTrq</name>
+        <reimplementedby refid="classkukadu_1_1KukieControlQueue_1af9999c0af6059520452f0d42a8db4527">getCurrentCartesianFrcTrq</reimplementedby>
+        <reimplementedby refid="classkukadu_1_1PlottingControlQueue_1a86ac37d03a159b54981d40d25486ca26">getCurrentCartesianFrcTrq</reimplementedby>
+        <briefdescription>
+<para>Returns the forces and torques measured at the robot end-effector. </para>        </briefdescription>
+        <detaileddescription>
+<para><simplesect kind="return"><para>The current forces and torques (in Newton and Newton / meter) </para></simplesect>
+</para>        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/agyss/iis_robot_sw/iis_catkin_ws/src/kukadu/include/kukadu/robot/queue.hpp" line="355" column="1"/>
+      </memberdef>
+      <memberdef kind="function" id="classkukadu_1_1ControlQueue_1a628e24bfc98b784259f77c231dee6e69" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type><ref refid="structmes__result" kindref="compound">mes_result</ref></type>
+        <definition>mes_result kukadu::ControlQueue::getCurrentProcessedCartesianFrcTrq</definition>
+        <argsstring>()</argsstring>
+        <name>getCurrentProcessedCartesianFrcTrq</name>
+        <briefdescription>
+<para>Returns the forces and torques measured at the robot end-effector. </para>        </briefdescription>
+        <detaileddescription>
+<para><simplesect kind="return"><para>The current forces and torques (in Newton and Newton / meter) </para></simplesect>
+</para>        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/agyss/iis_robot_sw/iis_catkin_ws/src/kukadu/include/kukadu/robot/queue.hpp" line="362" column="1" bodyfile="/home/agyss/iis_robot_sw/iis_catkin_ws/src/kukadu/src/robot/queue.cpp" bodystart="248" bodyend="253"/>
+      </memberdef>
+      <memberdef kind="function" id="classkukadu_1_1ControlQueue_1a4d468cb85f69c7c6dfd345f72d5b1473" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>void kukadu::ControlQueue::setFrcTrqSensorFilter</definition>
+        <argsstring>(KUKADU_SHARED_PTR&lt; FrcTrqSensorFilter &gt; myFilter)</argsstring>
+        <name>setFrcTrqSensorFilter</name>
+        <param>
+          <type>KUKADU_SHARED_PTR&lt; <ref refid="classkukadu_1_1FrcTrqSensorFilter" kindref="compound">FrcTrqSensorFilter</ref> &gt;</type>
+          <declname>myFilter</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/agyss/iis_robot_sw/iis_catkin_ws/src/kukadu/include/kukadu/robot/queue.hpp" line="364" column="1" bodyfile="/home/agyss/iis_robot_sw/iis_catkin_ws/src/kukadu/src/robot/queue.cpp" bodystart="242" bodyend="246"/>
+      </memberdef>
+      <memberdef kind="function" id="classkukadu_1_1ControlQueue_1aea0b90d04380aab043194e964231690a" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>void kukadu::ControlQueue::frcTrqFilterUpdateHandler</definition>
+        <argsstring>()</argsstring>
+        <name>frcTrqFilterUpdateHandler</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/agyss/iis_robot_sw/iis_catkin_ws/src/kukadu/include/kukadu/robot/queue.hpp" line="365" column="1" bodyfile="/home/agyss/iis_robot_sw/iis_catkin_ws/src/kukadu/src/robot/queue.cpp" bodystart="753" bodyend="759"/>
+      </memberdef>
+      <memberdef kind="function" id="classkukadu_1_1ControlQueue_1a5af587fff906cf978225a317e701d41f" prot="public" static="no" const="no" explicit="no" inline="no" virt="pure-virtual">
+        <type>void</type>
+        <definition>virtual void kukadu::ControlQueue::setJntPtpThresh</definition>
+        <argsstring>(double thresh)=0</argsstring>
+        <name>setJntPtpThresh</name>
+        <reimplementedby refid="classkukadu_1_1KukieControlQueue_1ac6653c3a050bb338702294776b4a8065">setJntPtpThresh</reimplementedby>
+        <reimplementedby refid="classkukadu_1_1PlottingControlQueue_1a32b42bcaf1a674c41449ddec692a2dfa">setJntPtpThresh</reimplementedby>
+        <param>
+          <type>double</type>
+          <declname>thresh</declname>
+        </param>
+        <briefdescription>
+<para>Sets the maximum deviation in joint space that is tolerated for a point to point movement. </para>        </briefdescription>
+        <detaileddescription>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>thresh</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>joint space threshold </para></parameterdescription>
+</parameteritem>
+</parameterlist>
+</para>        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/agyss/iis_robot_sw/iis_catkin_ws/src/kukadu/include/kukadu/robot/queue.hpp" line="371" column="1"/>
+      </memberdef>
+      <memberdef kind="function" id="classkukadu_1_1ControlQueue_1ac6e06776a9e03107aabc111ef5ce2b6d" prot="public" static="no" const="no" explicit="no" inline="no" virt="virtual">
+        <type>bool</type>
+        <definition>bool kukadu::ControlQueue::isInitialized</definition>
+        <argsstring>()</argsstring>
+        <name>isInitialized</name>
+        <briefdescription>
+<para>Returns true if the command mode initialization is done. </para>        </briefdescription>
+        <detaileddescription>
+<para><simplesect kind="return"><para>Initialization status </para></simplesect>
+</para>        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/agyss/iis_robot_sw/iis_catkin_ws/src/kukadu/include/kukadu/robot/queue.hpp" line="377" column="1" bodyfile="/home/agyss/iis_robot_sw/iis_catkin_ws/src/kukadu/src/robot/queue.cpp" bodystart="386" bodyend="388"/>
+      </memberdef>
+      <memberdef kind="function" id="classkukadu_1_1ControlQueue_1aab7dbf0d07b829b9612cfe7141c801a1" prot="public" static="no" const="no" explicit="no" inline="no" virt="pure-virtual">
+        <type>std::string</type>
+        <definition>virtual std::string kukadu::ControlQueue::getRobotFileName</definition>
+        <argsstring>()=0</argsstring>
+        <name>getRobotFileName</name>
+        <reimplementedby refid="classkukadu_1_1KukieControlQueue_1a390da7a21b5c9f42ceff914155499b76">getRobotFileName</reimplementedby>
+        <reimplementedby refid="classkukadu_1_1PlottingControlQueue_1a1369090faea626819b1c43acf3ce08d1">getRobotFileName</reimplementedby>
+        <briefdescription>
+<para>Returns the robot name with escaped special characaters (e.g. white spaces) </para>        </briefdescription>
+        <detaileddescription>
+<para><simplesect kind="return"><para>robot name </para></simplesect>
+</para>        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/agyss/iis_robot_sw/iis_catkin_ws/src/kukadu/include/kukadu/robot/queue.hpp" line="383" column="1"/>
+      </memberdef>
+      <memberdef kind="function" id="classkukadu_1_1ControlQueue_1a85702573cb64f7f3dd9c3d2eac95a6ea" prot="public" static="no" const="no" explicit="no" inline="no" virt="pure-virtual">
+        <type>std::vector&lt; std::string &gt;</type>
+        <definition>virtual std::vector&lt;std::string&gt; kukadu::ControlQueue::getJointNames</definition>
+        <argsstring>()=0</argsstring>
+        <name>getJointNames</name>
+        <reimplements refid="classkukadu_1_1JointHardware_1a8fe0e6ef38735e335070d206b798ad26">getJointNames</reimplements>
+        <reimplementedby refid="classkukadu_1_1KukieControlQueue_1af3c7ff340cd44a44233c209eeed9d929">getJointNames</reimplementedby>
+        <reimplementedby refid="classkukadu_1_1PlottingControlQueue_1aaf706cd0d7c11787dff3e95a422f38c5">getJointNames</reimplementedby>
+        <briefdescription>
+<para>Returns the robot joint names. </para>        </briefdescription>
+        <detaileddescription>
+<para><simplesect kind="return"><para>robot joint names </para></simplesect>
+</para>        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/agyss/iis_robot_sw/iis_catkin_ws/src/kukadu/include/kukadu/robot/queue.hpp" line="389" column="1"/>
+      </memberdef>
+      <memberdef kind="function" id="classkukadu_1_1ControlQueue_1a550f23320f1b124b1cd587605317e37c" prot="public" static="no" const="no" explicit="no" inline="no" virt="virtual">
+        <type>double</type>
+        <definition>double kukadu::ControlQueue::getAbsoluteCartForce</definition>
+        <argsstring>()</argsstring>
+        <name>getAbsoluteCartForce</name>
+        <briefdescription>
+<para>Returns currently measured absolute force on the end-effector. </para>        </briefdescription>
+        <detaileddescription>
+<para><simplesect kind="return"><para>absolute end-effector force </para></simplesect>
+</para>        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/agyss/iis_robot_sw/iis_catkin_ws/src/kukadu/include/kukadu/robot/queue.hpp" line="395" column="1" bodyfile="/home/agyss/iis_robot_sw/iis_catkin_ws/src/kukadu/src/robot/queue.cpp" bodystart="272" bodyend="280"/>
+      </memberdef>
+      <memberdef kind="function" id="classkukadu_1_1ControlQueue_1a8e76e19772053274046193436b0cae1c" prot="public" static="no" const="no" explicit="no" inline="no" virt="virtual">
+        <type>void</type>
+        <definition>void kukadu::ControlQueue::shutUp</definition>
+        <argsstring>()</argsstring>
+        <name>shutUp</name>
+        <briefdescription>
+<para>Prevents the queue from printing debug information to the terminal. </para>        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/agyss/iis_robot_sw/iis_catkin_ws/src/kukadu/include/kukadu/robot/queue.hpp" line="400" column="1" bodyfile="/home/agyss/iis_robot_sw/iis_catkin_ws/src/kukadu/src/robot/queue.cpp" bodystart="299" bodyend="301"/>
+      </memberdef>
+      <memberdef kind="function" id="classkukadu_1_1ControlQueue_1ac9042952868522099628074d22d61742" prot="public" static="no" const="no" explicit="no" inline="no" virt="virtual">
+        <type>void</type>
+        <definition>void kukadu::ControlQueue::startTalking</definition>
+        <argsstring>()</argsstring>
+        <name>startTalking</name>
+        <briefdescription>
+<para>Makes the queue printing debug information to the terminal. </para>        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/agyss/iis_robot_sw/iis_catkin_ws/src/kukadu/include/kukadu/robot/queue.hpp" line="405" column="1" bodyfile="/home/agyss/iis_robot_sw/iis_catkin_ws/src/kukadu/src/robot/queue.cpp" bodystart="303" bodyend="305"/>
+      </memberdef>
+      <memberdef kind="function" id="classkukadu_1_1ControlQueue_1a2939df4d9c60670b369bc435e5a255be" prot="public" static="no" const="no" explicit="no" inline="no" virt="pure-virtual">
+        <type>std::string</type>
+        <definition>virtual std::string kukadu::ControlQueue::getCartesianLinkName</definition>
+        <argsstring>()=0</argsstring>
+        <name>getCartesianLinkName</name>
+        <reimplementedby refid="classkukadu_1_1KukieControlQueue_1a0aa7d4a0ea5f73f4de129ca79dfbec2a">getCartesianLinkName</reimplementedby>
+        <reimplementedby refid="classkukadu_1_1PlottingControlQueue_1ace31af60df8f18defb78c1412fc7f400">getCartesianLinkName</reimplementedby>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/agyss/iis_robot_sw/iis_catkin_ws/src/kukadu/include/kukadu/robot/queue.hpp" line="407" column="1"/>
+      </memberdef>
+      <memberdef kind="function" id="classkukadu_1_1ControlQueue_1ab3c95f38ed8c6821191f6877d464e515" prot="public" static="no" const="no" explicit="no" inline="no" virt="pure-virtual">
+        <type>std::string</type>
+        <definition>virtual std::string kukadu::ControlQueue::getCartesianReferenceFrame</definition>
+        <argsstring>()=0</argsstring>
+        <name>getCartesianReferenceFrame</name>
+        <reimplementedby refid="classkukadu_1_1KukieControlQueue_1a92e3abdf0c3fba047d9f7fe32ccd6097">getCartesianReferenceFrame</reimplementedby>
+        <reimplementedby refid="classkukadu_1_1PlottingControlQueue_1ac80bd9d14352d784a020f45eeeccec38">getCartesianReferenceFrame</reimplementedby>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/agyss/iis_robot_sw/iis_catkin_ws/src/kukadu/include/kukadu/robot/queue.hpp" line="408" column="1"/>
+      </memberdef>
+      <memberdef kind="function" id="classkukadu_1_1ControlQueue_1a650c486b9f78d3dec1db8741b575a0ab" prot="public" static="no" const="no" explicit="no" inline="no" virt="virtual">
+        <type>void</type>
+        <definition>void kukadu::ControlQueue::rollBack</definition>
+        <argsstring>(double time)</argsstring>
+        <name>rollBack</name>
+        <reimplementedby refid="classkukadu_1_1PlottingControlQueue_1a85c659edfd047f21763825b14776e723">rollBack</reimplementedby>
+        <param>
+          <type>double</type>
+          <declname>time</declname>
+        </param>
+        <briefdescription>
+<para>If the rollback mode is started by <ref refid="classkukadu_1_1ControlQueue_1acb6ba5c61e9c26dcaa8e4073946e3791" kindref="member">startRollBackMode()</ref> the robot can stop the current execution and move backwards the same trajectory it came. Therefore it can move back in time for a given time (in seconds) </para>        </briefdescription>
+        <detaileddescription>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>time</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>Time to move back </para></parameterdescription>
+</parameteritem>
+</parameterlist>
+</para>        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/agyss/iis_robot_sw/iis_catkin_ws/src/kukadu/include/kukadu/robot/queue.hpp" line="417" column="1" bodyfile="/home/agyss/iis_robot_sw/iis_catkin_ws/src/kukadu/src/robot/queue.cpp" bodystart="697" bodyend="751"/>
+      </memberdef>
+      <memberdef kind="function" id="classkukadu_1_1ControlQueue_1a38ba0b9fffb0fff6d39d742b1a2eb76b" prot="public" static="no" const="no" explicit="no" inline="no" virt="virtual">
+        <type>void</type>
+        <definition>void kukadu::ControlQueue::stopJointRollBackMode</definition>
+        <argsstring>()</argsstring>
+        <name>stopJointRollBackMode</name>
+        <reimplementedby refid="classkukadu_1_1PlottingControlQueue_1acc0ddc988115f5904764cd223941f1f5">stopJointRollBackMode</reimplementedby>
+        <briefdescription>
+<para>Stops the rollback mode (see <ref refid="classkukadu_1_1ControlQueue_1acb6ba5c61e9c26dcaa8e4073946e3791" kindref="member">startRollBackMode()</ref>) </para>        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/agyss/iis_robot_sw/iis_catkin_ws/src/kukadu/include/kukadu/robot/queue.hpp" line="422" column="1" bodyfile="/home/agyss/iis_robot_sw/iis_catkin_ws/src/kukadu/src/robot/queue.cpp" bodystart="684" bodyend="695"/>
+      </memberdef>
+      <memberdef kind="function" id="classkukadu_1_1ControlQueue_1acb6ba5c61e9c26dcaa8e4073946e3791" prot="public" static="no" const="no" explicit="no" inline="no" virt="virtual">
+        <type>void</type>
+        <definition>void kukadu::ControlQueue::startRollBackMode</definition>
+        <argsstring>(double possibleTimeReach)</argsstring>
+        <name>startRollBackMode</name>
+        <param>
+          <type>double</type>
+          <declname>possibleTimeReach</declname>
+        </param>
+        <briefdescription>
+<para>Starts the rollback mode. When the function <ref refid="classkukadu_1_1ControlQueue_1a650c486b9f78d3dec1db8741b575a0ab" kindref="member">rollBack()</ref> is called the robot can roll back the current trajectory for at most a the given time (in seconds). This mode is only available in joint space execution. </para>        </briefdescription>
+        <detaileddescription>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>possibleTimeReach</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>Maximum rollback time </para></parameterdescription>
+</parameteritem>
+</parameterlist>
+</para>        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/agyss/iis_robot_sw/iis_catkin_ws/src/kukadu/include/kukadu/robot/queue.hpp" line="430" column="1" bodyfile="/home/agyss/iis_robot_sw/iis_catkin_ws/src/kukadu/src/robot/queue.cpp" bodystart="668" bodyend="682"/>
+      </memberdef>
+      <memberdef kind="function" id="classkukadu_1_1ControlQueue_1af8d1c646ba20dc854675b6af5fcb6701" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>bool</type>
+        <definition>bool kukadu::ControlQueue::isShutUp</definition>
+        <argsstring>()</argsstring>
+        <name>isShutUp</name>
+        <briefdescription>
+<para>Indicates whether or not the queue is printing debug information to the terminal (see <ref refid="classkukadu_1_1ControlQueue_1a8e76e19772053274046193436b0cae1c" kindref="member">shutUp()</ref>). </para>        </briefdescription>
+        <detaileddescription>
+<para><simplesect kind="return"><para>false if the queue is printing debug information to the terminal, true otherwise </para></simplesect>
+</para>        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/agyss/iis_robot_sw/iis_catkin_ws/src/kukadu/include/kukadu/robot/queue.hpp" line="437" column="1" bodyfile="/home/agyss/iis_robot_sw/iis_catkin_ws/src/kukadu/src/robot/queue.cpp" bodystart="307" bodyend="309"/>
+      </memberdef>
+      <memberdef kind="function" id="classkukadu_1_1ControlQueue_1afce92074c674d8a1b0127190fd0603cf" prot="public" static="no" const="no" explicit="no" inline="no" virt="pure-virtual">
+        <type>int</type>
+        <definition>virtual int kukadu::ControlQueue::getCurrentMode</definition>
+        <argsstring>()=0</argsstring>
+        <name>getCurrentMode</name>
+        <reimplementedby refid="classkukadu_1_1KukieControlQueue_1aecd7cca5bf0b7dd990d061acdee56ce3">getCurrentMode</reimplementedby>
+        <reimplementedby refid="classkukadu_1_1PlottingControlQueue_1a1cac1433bdc6072e4de8be13b113a6c4">getCurrentMode</reimplementedby>
+        <briefdescription>
+<para>Returns the current robot control mode (see <ref refid="classkukadu_1_1ControlQueue_1a5defe63d9f1b9829676f9a31a4683911" kindref="member">switchMode()</ref>) </para>        </briefdescription>
+        <detaileddescription>
+<para><simplesect kind="return"><para>Current robot control mode </para></simplesect>
+</para>        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/agyss/iis_robot_sw/iis_catkin_ws/src/kukadu/include/kukadu/robot/queue.hpp" line="443" column="1"/>
+      </memberdef>
+      <memberdef kind="function" id="classkukadu_1_1ControlQueue_1ad6dd9fb5cc05f50b2dc4dcf9f646f1bf" prot="public" static="no" const="no" explicit="no" inline="no" virt="virtual">
+        <type>int</type>
+        <definition>int kukadu::ControlQueue::getRobotId</definition>
+        <argsstring>()</argsstring>
+        <name>getRobotId</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/agyss/iis_robot_sw/iis_catkin_ws/src/kukadu/include/kukadu/robot/queue.hpp" line="445" column="1" bodyfile="/home/agyss/iis_robot_sw/iis_catkin_ws/src/kukadu/src/robot/queue.cpp" bodystart="21" bodyend="31"/>
+      </memberdef>
+      <memberdef kind="function" id="classkukadu_1_1ControlQueue_1aff80ecc4803860d32864dad5cc137cf0" prot="public" static="no" const="no" explicit="no" inline="no" virt="virtual">
+        <type>int</type>
+        <definition>int kukadu::ControlQueue::getJointId</definition>
+        <argsstring>(std::string jointName)</argsstring>
+        <name>getJointId</name>
+        <reimplements refid="classkukadu_1_1JointHardware_1a6f2a9128511dcc626932bee6850cd833">getJointId</reimplements>
+        <param>
+          <type>std::string</type>
+          <declname>jointName</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/agyss/iis_robot_sw/iis_catkin_ws/src/kukadu/include/kukadu/robot/queue.hpp" line="447" column="1" bodyfile="/home/agyss/iis_robot_sw/iis_catkin_ws/src/kukadu/src/robot/queue.cpp" bodystart="176" bodyend="186"/>
+      </memberdef>
+      <memberdef kind="function" id="classkukadu_1_1ControlQueue_1a28d0f8cf6fe5f330eef5900c7c66d45c" prot="public" static="no" const="no" explicit="no" inline="no" virt="virtual">
+        <type>std::vector&lt; int &gt;</type>
+        <definition>std::vector&lt; int &gt; kukadu::ControlQueue::getJointIds</definition>
+        <argsstring>()</argsstring>
+        <name>getJointIds</name>
+        <reimplements refid="classkukadu_1_1JointHardware_1a556b26ac4e21479009fb661cb2a9b943">getJointIds</reimplements>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/agyss/iis_robot_sw/iis_catkin_ws/src/kukadu/include/kukadu/robot/queue.hpp" line="449" column="1" bodyfile="/home/agyss/iis_robot_sw/iis_catkin_ws/src/kukadu/src/robot/queue.cpp" bodystart="188" bodyend="190"/>
+      </memberdef>
+      <memberdef kind="function" id="classkukadu_1_1ControlQueue_1a0b4d383e644b9f96bcd820ce5de4ede0" prot="public" static="no" const="no" explicit="no" inline="no" virt="virtual">
+        <type>std::vector&lt; int &gt;</type>
+        <definition>std::vector&lt; int &gt; kukadu::ControlQueue::getJointIds</definition>
+        <argsstring>(std::vector&lt; std::string &gt; jointNames)</argsstring>
+        <name>getJointIds</name>
+        <reimplements refid="classkukadu_1_1JointHardware_1a5629c63268491477ace5210e8ed1721d">getJointIds</reimplements>
+        <param>
+          <type>std::vector&lt; std::string &gt;</type>
+          <declname>jointNames</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/agyss/iis_robot_sw/iis_catkin_ws/src/kukadu/include/kukadu/robot/queue.hpp" line="450" column="1" bodyfile="/home/agyss/iis_robot_sw/iis_catkin_ws/src/kukadu/src/robot/queue.cpp" bodystart="192" bodyend="197"/>
+      </memberdef>
+      <memberdef kind="function" id="classkukadu_1_1ControlQueue_1a268ab9493f8825784c4765002990fef1" prot="public" static="no" const="no" explicit="no" inline="no" virt="virtual">
+        <type>void</type>
+        <definition>void kukadu::ControlQueue::installHardwareTypeInternal</definition>
+        <argsstring>()</argsstring>
+        <name>installHardwareTypeInternal</name>
+        <reimplements refid="classkukadu_1_1Hardware_1af353cdce2e2bb25ec341374a30b6b85a">installHardwareTypeInternal</reimplements>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/agyss/iis_robot_sw/iis_catkin_ws/src/kukadu/include/kukadu/robot/queue.hpp" line="452" column="1" bodyfile="/home/agyss/iis_robot_sw/iis_catkin_ws/src/kukadu/src/robot/queue.cpp" bodystart="33" bodyend="35"/>
+      </memberdef>
+      <memberdef kind="function" id="classkukadu_1_1ControlQueue_1ab8c2ae10f57d7589c96006ae881f449e" prot="public" static="no" const="no" explicit="no" inline="no" virt="virtual">
+        <type>void</type>
+        <definition>void kukadu::ControlQueue::installHardwareInstanceInternal</definition>
+        <argsstring>()</argsstring>
+        <name>installHardwareInstanceInternal</name>
+        <reimplements refid="classkukadu_1_1Hardware_1a2636d7484a9435d8131fcf4ddff36fed">installHardwareInstanceInternal</reimplements>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/agyss/iis_robot_sw/iis_catkin_ws/src/kukadu/include/kukadu/robot/queue.hpp" line="453" column="1" bodyfile="/home/agyss/iis_robot_sw/iis_catkin_ws/src/kukadu/src/robot/queue.cpp" bodystart="37" bodyend="50"/>
+      </memberdef>
+      <memberdef kind="function" id="classkukadu_1_1ControlQueue_1a53eb51dd1ae778d7a449ae0b6752305e" prot="public" static="no" const="no" explicit="no" inline="no" virt="virtual">
+        <type>void</type>
+        <definition>void kukadu::ControlQueue::storeCurrentSensorDataToDatabase</definition>
+        <argsstring>()</argsstring>
+        <name>storeCurrentSensorDataToDatabase</name>
+        <reimplements refid="classkukadu_1_1Hardware_1aa5f6000a535e8307d78384c6fb1fe2e3">storeCurrentSensorDataToDatabase</reimplements>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/agyss/iis_robot_sw/iis_catkin_ws/src/kukadu/include/kukadu/robot/queue.hpp" line="455" column="1" bodyfile="/home/agyss/iis_robot_sw/iis_catkin_ws/src/kukadu/src/robot/queue.cpp" bodystart="132" bodyend="174"/>
+      </memberdef>
+      <memberdef kind="function" id="classkukadu_1_1ControlQueue_1a989bba841246f198e64176d2adad8127" prot="public" static="no" const="no" explicit="no" inline="no" virt="virtual">
+        <type>double</type>
+        <definition>double kukadu::ControlQueue::getPreferredPollingFrequency</definition>
+        <argsstring>()</argsstring>
+        <name>getPreferredPollingFrequency</name>
+        <reimplements refid="classkukadu_1_1Hardware_1ad51f511da20c43db040e0f34e50eba51">getPreferredPollingFrequency</reimplements>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/agyss/iis_robot_sw/iis_catkin_ws/src/kukadu/include/kukadu/robot/queue.hpp" line="456" column="1" bodyfile="/home/agyss/iis_robot_sw/iis_catkin_ws/src/kukadu/src/robot/queue.cpp" bodystart="52" bodyend="54"/>
+      </memberdef>
+      <memberdef kind="function" id="classkukadu_1_1ControlQueue_1a9bab2ac4a6a35f7ee728a8e126e2689c" prot="public" static="no" const="no" explicit="no" inline="no" virt="virtual">
+        <type>std::vector&lt; std::pair&lt; long long int, arma::vec &gt; &gt;</type>
+        <definition>vector&lt; std::pair&lt; long long int, arma::vec &gt; &gt; kukadu::ControlQueue::loadData</definition>
+        <argsstring>(long long int startTime, long long int endTime, long long maxTotalDuration=3600000, long long int maxTimeStepDifference=5000)</argsstring>
+        <name>loadData</name>
+        <param>
+          <type>long long int</type>
+          <declname>startTime</declname>
+        </param>
+        <param>
+          <type>long long int</type>
+          <declname>endTime</declname>
+        </param>
+        <param>
+          <type>long long</type>
+          <declname>maxTotalDuration</declname>
+          <defval>3600000</defval>
+        </param>
+        <param>
+          <type>long long int</type>
+          <declname>maxTimeStepDifference</declname>
+          <defval>5000</defval>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/agyss/iis_robot_sw/iis_catkin_ws/src/kukadu/include/kukadu/robot/queue.hpp" line="458" column="1" bodyfile="/home/agyss/iis_robot_sw/iis_catkin_ws/src/kukadu/src/robot/queue.cpp" bodystart="56" bodyend="130"/>
+      </memberdef>
+      </sectiondef>
+    <briefdescription>
+<para>Interface between the kukadu software stack and the robot hardware. If kukadu shall support another robot, the abstract methods need to be implemented according to the documentation. Then the kukadu software stack is available for usage with the robot. </para>    </briefdescription>
+    <detaileddescription>
+<para>The <ref refid="classkukadu_1_1ControlQueue" kindref="compound">ControlQueue</ref> interface is the bridge between all implemented control methods (DMPs, ...) and the robot hardware. It supports functionlity such as trajectory following, simple point to point planning or security mechanisms such as maximum force values for execution. </para>    </detaileddescription>
+    <inheritancegraph>
+      <node id="139">
+        <label>kukadu::ControlQueue</label>
+        <link refid="classkukadu_1_1ControlQueue"/>
+        <childnode refid="140" relation="public-inheritance">
+        </childnode>
+        <childnode refid="143" relation="public-inheritance">
+        </childnode>
+        <childnode refid="144" relation="public-inheritance">
+        </childnode>
+        <childnode refid="145" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="145">
+        <label>kukadu::TimedObject</label>
+        <link refid="classkukadu_1_1TimedObject"/>
+      </node>
+      <node id="146">
+        <label>kukadu::KukieControlQueue</label>
+        <link refid="classkukadu_1_1KukieControlQueue"/>
+        <childnode refid="139" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="144">
+        <label>KUKADU_ENABLE_SHARED_FROM_THIS&lt; ControlQueue &gt;</label>
+      </node>
+      <node id="140">
+        <label>kukadu::JointHardware</label>
+        <link refid="classkukadu_1_1JointHardware"/>
+        <childnode refid="141" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="142">
+        <label>kukadu::StorageHolder</label>
+        <link refid="classkukadu_1_1StorageHolder"/>
+      </node>
+      <node id="141">
+        <label>kukadu::Hardware</label>
+        <link refid="classkukadu_1_1Hardware"/>
+        <childnode refid="142" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="143">
+        <label>kukadu::DestroyableObject</label>
+        <link refid="classkukadu_1_1DestroyableObject"/>
+      </node>
+      <node id="147">
+        <label>kukadu::PlottingControlQueue</label>
+        <link refid="classkukadu_1_1PlottingControlQueue"/>
+        <childnode refid="139" relation="public-inheritance">
+        </childnode>
+      </node>
+    </inheritancegraph>
+    <collaborationgraph>
+      <node id="148">
+        <label>kukadu::ControlQueue</label>
+        <link refid="classkukadu_1_1ControlQueue"/>
+        <childnode refid="149" relation="public-inheritance">
+        </childnode>
+        <childnode refid="152" relation="public-inheritance">
+        </childnode>
+        <childnode refid="153" relation="public-inheritance">
+        </childnode>
+        <childnode refid="154" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="154">
+        <label>kukadu::TimedObject</label>
+        <link refid="classkukadu_1_1TimedObject"/>
+      </node>
+      <node id="153">
+        <label>KUKADU_ENABLE_SHARED_FROM_THIS&lt; ControlQueue &gt;</label>
+      </node>
+      <node id="149">
+        <label>kukadu::JointHardware</label>
+        <link refid="classkukadu_1_1JointHardware"/>
+        <childnode refid="150" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="151">
+        <label>kukadu::StorageHolder</label>
+        <link refid="classkukadu_1_1StorageHolder"/>
+      </node>
+      <node id="150">
+        <label>kukadu::Hardware</label>
+        <link refid="classkukadu_1_1Hardware"/>
+        <childnode refid="151" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="152">
+        <label>kukadu::DestroyableObject</label>
+        <link refid="classkukadu_1_1DestroyableObject"/>
+      </node>
+    </collaborationgraph>
+    <location file="/home/agyss/iis_robot_sw/iis_catkin_ws/src/kukadu/include/kukadu/robot/queue.hpp" line="45" column="1" bodyfile="/home/agyss/iis_robot_sw/iis_catkin_ws/src/kukadu/include/kukadu/robot/queue.hpp" bodystart="45" bodyend="466"/>
+    <listofallmembers>
+      <member refid="classkukadu_1_1ControlQueue_1a06a9541dd3101904c26864c9516cf139" prot="private" virt="non-virtual"><scope>kukadu::ControlQueue</scope><name>cartesianMovementQueue</name></member>
+      <member refid="classkukadu_1_1ControlQueue_1a1bfa23a8ce6319f6ef0ed9208e896054" prot="public" virt="virtual"><scope>kukadu::ControlQueue</scope><name>cartesianPtp</name></member>
+      <member refid="classkukadu_1_1ControlQueue_1a58518838c503e7eaa9c220bdf34ddd33" prot="public" virt="virtual"><scope>kukadu::ControlQueue</scope><name>cartesianPtp</name></member>
+      <member refid="classkukadu_1_1ControlQueue_1a1c0ad5ad4d3af98f26d0c633181df010" prot="public" virt="virtual"><scope>kukadu::ControlQueue</scope><name>cartesianPtpNb</name></member>
+      <member refid="classkukadu_1_1ControlQueue_1a1ae85e37c9d8914b4e78b9559bdae6a5" prot="private" virt="non-virtual"><scope>kukadu::ControlQueue</scope><name>cartesianPtpRunning</name></member>
+      <member refid="classkukadu_1_1ControlQueue_1a13059c37abe4846a356e0cfcf10958b9" prot="protected" virt="pure-virtual"><scope>kukadu::ControlQueue</scope><name>cartPtpInternal</name></member>
+      <member refid="classkukadu_1_1ControlQueue_1ae0b359a78de8d3c9741a7f603c3e3d08" prot="private" virt="non-virtual"><scope>kukadu::ControlQueue</scope><name>cartPtpThr</name></member>
+      <member refid="classkukadu_1_1ControlQueue_1a5cc3b16e5b4b23792c1723544bab2973" prot="private" virt="non-virtual"><scope>kukadu::ControlQueue</scope><name>collectedJoints</name></member>
+      <member refid="classkukadu_1_1ControlQueue_1a5d33f45fd14a16ada6e7f716c571cbfe" prot="private" virt="non-virtual"><scope>kukadu::ControlQueue</scope><name>continueCollecting</name></member>
+      <member refid="classkukadu_1_1ControlQueue_1ae9c6ce0ac682b36829f892d8c3e44977" prot="public" virt="non-virtual"><scope>kukadu::ControlQueue</scope><name>ControlQueue</name></member>
+      <member refid="classkukadu_1_1ControlQueue_1a664a52e365e9185a0aef587e331fe94f" prot="public" virt="non-virtual"><scope>kukadu::ControlQueue</scope><name>CONTROLQUEUE_CART_IMP_MODE</name></member>
+      <member refid="classkukadu_1_1ControlQueue_1a8372490df9e7fbfa75afb9cfe1c0e6b4" prot="public" virt="non-virtual"><scope>kukadu::ControlQueue</scope><name>CONTROLQUEUE_JNT_IMP_MODE</name></member>
+      <member refid="classkukadu_1_1ControlQueue_1a9c8511060b437868de842e7456f18018" prot="public" virt="non-virtual"><scope>kukadu::ControlQueue</scope><name>CONTROLQUEUE_JNT_POS_MODE</name></member>
+      <member refid="classkukadu_1_1ControlQueue_1a1a207e4332a8b1ac5a8bf425d697570f" prot="public" virt="non-virtual"><scope>kukadu::ControlQueue</scope><name>CONTROLQUEUE_STOP_MODE</name></member>
+      <member refid="classkukadu_1_1ControlQueue_1adc16817257a549ecf61e0e44abb30ce7" prot="private" virt="non-virtual"><scope>kukadu::ControlQueue</scope><name>currentCartPose</name></member>
+      <member refid="classkukadu_1_1ControlQueue_1aadba228efd6e34095ce7d52bc94a4d29" prot="protected" virt="non-virtual"><scope>kukadu::ControlQueue</scope><name>currentControlType</name></member>
+      <member refid="classkukadu_1_1ControlQueue_1a5c472c88b43d9b99ee11ab2c2ddfa4e1" prot="private" virt="non-virtual"><scope>kukadu::ControlQueue</scope><name>currentFrcTrqSensorFilter</name></member>
+      <member refid="classkukadu_1_1ControlQueue_1af730fb04fae9420eb203acab8c4dab21" prot="private" virt="non-virtual"><scope>kukadu::ControlQueue</scope><name>currentJoints</name></member>
+      <member refid="classkukadu_1_1ControlQueue_1ad8a3e6eaac60b27cce87c178fb158ebf" prot="private" virt="non-virtual"><scope>kukadu::ControlQueue</scope><name>currentTime</name></member>
+      <member refid="classkukadu_1_1ControlQueue_1abd39905fb284dc6c388ee7029714211d" prot="private" virt="non-virtual"><scope>kukadu::ControlQueue</scope><name>degOfFreedom</name></member>
+      <member refid="classkukadu_1_1ControlQueue_1aa6423ea41eb2b2ac85c2b848518868bd" prot="private" virt="non-virtual"><scope>kukadu::ControlQueue</scope><name>desiredCycleTime</name></member>
+      <member refid="classkukadu_1_1ControlQueue_1a747fb44c3e8dc7bf8922aab62122cd99" prot="private" virt="non-virtual"><scope>kukadu::ControlQueue</scope><name>finish</name></member>
+      <member refid="classkukadu_1_1ControlQueue_1a7ee41979d3571949465dc730a0bfc999" prot="private" virt="non-virtual"><scope>kukadu::ControlQueue</scope><name>frcTrqFilterRunning</name></member>
+      <member refid="classkukadu_1_1ControlQueue_1aea0b90d04380aab043194e964231690a" prot="public" virt="non-virtual"><scope>kukadu::ControlQueue</scope><name>frcTrqFilterUpdateHandler</name></member>
+      <member refid="classkukadu_1_1ControlQueue_1a622587e2efdb1eeee66f659f443ba7f8" prot="private" virt="non-virtual"><scope>kukadu::ControlQueue</scope><name>frcTrqFilterUpdateThr</name></member>
+      <member refid="classkukadu_1_1ControlQueue_1a550f23320f1b124b1cd587605317e37c" prot="public" virt="virtual"><scope>kukadu::ControlQueue</scope><name>getAbsoluteCartForce</name></member>
+      <member refid="classkukadu_1_1ControlQueue_1a2939df4d9c60670b369bc435e5a255be" prot="public" virt="pure-virtual"><scope>kukadu::ControlQueue</scope><name>getCartesianLinkName</name></member>
+      <member refid="classkukadu_1_1ControlQueue_1ab3c95f38ed8c6821191f6877d464e515" prot="public" virt="pure-virtual"><scope>kukadu::ControlQueue</scope><name>getCartesianReferenceFrame</name></member>
+      <member refid="classkukadu_1_1ControlQueue_1aa557f386f03cfb4986ed7cd9997212ab" prot="public" virt="pure-virtual"><scope>kukadu::ControlQueue</scope><name>getCurrentCartesianFrcTrq</name></member>
+      <member refid="classkukadu_1_1ControlQueue_1abddacca2f9bf2db7a42a80d347843cec" prot="public" virt="virtual"><scope>kukadu::ControlQueue</scope><name>getCurrentCartesianPos</name></member>
+      <member refid="classkukadu_1_1ControlQueue_1a9e79e1d0d9697bbf146d66a2d01fea9e" prot="public" virt="pure-virtual"><scope>kukadu::ControlQueue</scope><name>getCurrentCartesianPose</name></member>
+      <member refid="classkukadu_1_1ControlQueue_1a1468c1771ea7dfd1ee3b0a7279407241" prot="public" virt="pure-virtual"><scope>kukadu::ControlQueue</scope><name>getCurrentJntFrc</name></member>
+      <member refid="classkukadu_1_1ControlQueue_1a6ba7b6db5099073eadd7bc04792bc643" prot="public" virt="pure-virtual"><scope>kukadu::ControlQueue</scope><name>getCurrentJoints</name></member>
+      <member refid="classkukadu_1_1ControlQueue_1afce92074c674d8a1b0127190fd0603cf" prot="public" virt="pure-virtual"><scope>kukadu::ControlQueue</scope><name>getCurrentMode</name></member>
+      <member refid="classkukadu_1_1ControlQueue_1a628e24bfc98b784259f77c231dee6e69" prot="public" virt="non-virtual"><scope>kukadu::ControlQueue</scope><name>getCurrentProcessedCartesianFrcTrq</name></member>
+      <member refid="classkukadu_1_1TimedObject_1a9c4db6e3f71d4bbddecd12b43e586691" prot="public" virt="non-virtual"><scope>kukadu::ControlQueue</scope><name>getCurrentTime</name></member>
+      <member refid="classkukadu_1_1ControlQueue_1a82349f67c4ea6f2dc2689e765717d8e2" prot="public" virt="virtual"><scope>kukadu::ControlQueue</scope><name>getCycleTime</name></member>
+      <member refid="classkukadu_1_1ControlQueue_1a809f7cfd97038949139e3b13218738ad" prot="public" virt="virtual"><scope>kukadu::ControlQueue</scope><name>getDegreesOfFreedom</name></member>
+      <member refid="classkukadu_1_1Hardware_1a33e1b7ba05ccb5f7b9f9f7c9455efa4e" prot="public" virt="non-virtual"><scope>kukadu::ControlQueue</scope><name>getHardwareClass</name></member>
+      <member refid="classkukadu_1_1Hardware_1a7739a3df264205b2587f37c1828c8fb6" prot="public" virt="non-virtual"><scope>kukadu::ControlQueue</scope><name>getHardwareInstance</name></member>
+      <member refid="classkukadu_1_1Hardware_1a994090c6bf74f03a91a44df6eeb41703" prot="public" virt="non-virtual"><scope>kukadu::ControlQueue</scope><name>getHardwareInstanceName</name></member>
+      <member refid="classkukadu_1_1Hardware_1a34e793c453fe444d98905f7a64d1720b" prot="public" virt="non-virtual"><scope>kukadu::ControlQueue</scope><name>getHardwareType</name></member>
+      <member refid="classkukadu_1_1Hardware_1a1353994ae509caf0e5c8d5f112d82e66" prot="public" virt="non-virtual"><scope>kukadu::ControlQueue</scope><name>getHardwareTypeName</name></member>
+      <member refid="classkukadu_1_1ControlQueue_1aff80ecc4803860d32864dad5cc137cf0" prot="public" virt="virtual"><scope>kukadu::ControlQueue</scope><name>getJointId</name></member>
+      <member refid="classkukadu_1_1ControlQueue_1a28d0f8cf6fe5f330eef5900c7c66d45c" prot="public" virt="virtual"><scope>kukadu::ControlQueue</scope><name>getJointIds</name></member>
+      <member refid="classkukadu_1_1ControlQueue_1a0b4d383e644b9f96bcd820ce5de4ede0" prot="public" virt="virtual"><scope>kukadu::ControlQueue</scope><name>getJointIds</name></member>
+      <member refid="classkukadu_1_1ControlQueue_1a85702573cb64f7f3dd9c3d2eac95a6ea" prot="public" virt="pure-virtual"><scope>kukadu::ControlQueue</scope><name>getJointNames</name></member>
+      <member refid="classkukadu_1_1ControlQueue_1a989bba841246f198e64176d2adad8127" prot="public" virt="virtual"><scope>kukadu::ControlQueue</scope><name>getPreferredPollingFrequency</name></member>
+      <member refid="classkukadu_1_1ControlQueue_1aa02fcb2c8cd2c1c8ca553ae636000beb" prot="public" virt="virtual"><scope>kukadu::ControlQueue</scope><name>getQueueRunning</name></member>
+      <member refid="classkukadu_1_1ControlQueue_1a90e78528f686215996715d225c6c4804" prot="public" virt="non-virtual"><scope>kukadu::ControlQueue</scope><name>getQueueSize</name></member>
+      <member refid="classkukadu_1_1ControlQueue_1aab7dbf0d07b829b9612cfe7141c801a1" prot="public" virt="pure-virtual"><scope>kukadu::ControlQueue</scope><name>getRobotFileName</name></member>
+      <member refid="classkukadu_1_1ControlQueue_1ad6dd9fb5cc05f50b2dc4dcf9f646f1bf" prot="public" virt="virtual"><scope>kukadu::ControlQueue</scope><name>getRobotId</name></member>
+      <member refid="classkukadu_1_1ControlQueue_1a53b2ecff4ae71b1e01d18793f63645ce" prot="public" virt="virtual"><scope>kukadu::ControlQueue</scope><name>getStartingJoints</name></member>
+      <member refid="classkukadu_1_1StorageHolder_1ab960ded0b470890c8ca94741b61c8d2e" prot="public" virt="non-virtual"><scope>kukadu::ControlQueue</scope><name>getStorage</name></member>
+      <member refid="classkukadu_1_1Hardware_1af7a1355a6d8c10e68b7bfd783bc9d8a2" prot="public" virt="non-virtual"><scope>kukadu::ControlQueue</scope><name>Hardware</name></member>
+      <member refid="classkukadu_1_1Hardware_1a694ca4d7b1cb52b17d2bdb8a4c64d16c" prot="public" virt="virtual"><scope>kukadu::ControlQueue</scope><name>install</name></member>
+      <member refid="classkukadu_1_1ControlQueue_1ab8c2ae10f57d7589c96006ae881f449e" prot="public" virt="virtual"><scope>kukadu::ControlQueue</scope><name>installHardwareInstanceInternal</name></member>
+      <member refid="classkukadu_1_1ControlQueue_1a268ab9493f8825784c4765002990fef1" prot="public" virt="virtual"><scope>kukadu::ControlQueue</scope><name>installHardwareTypeInternal</name></member>
+      <member refid="classkukadu_1_1ControlQueue_1a64cbdfbf86e5d4aba03e4f5a2832b442" prot="private" virt="non-virtual"><scope>kukadu::ControlQueue</scope><name>internalCartPtpCaller</name></member>
+      <member refid="classkukadu_1_1ControlQueue_1a70972c777f87a6d6d274063eaa9c69a1" prot="private" virt="non-virtual"><scope>kukadu::ControlQueue</scope><name>internalJointPasser</name></member>
+      <member refid="classkukadu_1_1ControlQueue_1a970d47c760758782d07e5e5f55469ead" prot="private" virt="non-virtual"><scope>kukadu::ControlQueue</scope><name>internalJointPtpCaller</name></member>
+      <member refid="classkukadu_1_1ControlQueue_1a3b9b5f8d3c968928e99840ebd8facef0" prot="private" virt="non-virtual"><scope>kukadu::ControlQueue</scope><name>internalPosePasser</name></member>
+      <member refid="classkukadu_1_1ControlQueue_1a409e45fc0309b4c4e2485daa24a4c15c" prot="private" virt="non-virtual"><scope>kukadu::ControlQueue</scope><name>isInit</name></member>
+      <member refid="classkukadu_1_1ControlQueue_1ac6e06776a9e03107aabc111ef5ce2b6d" prot="public" virt="virtual"><scope>kukadu::ControlQueue</scope><name>isInitialized</name></member>
+      <member refid="classkukadu_1_1ControlQueue_1af8d1c646ba20dc854675b6af5fcb6701" prot="public" virt="non-virtual"><scope>kukadu::ControlQueue</scope><name>isShutUp</name></member>
+      <member refid="classkukadu_1_1ControlQueue_1aab655546199f0bb0a268cbc8fdfcb32d" prot="private" virt="non-virtual"><scope>kukadu::ControlQueue</scope><name>isShutUpFlag</name></member>
+      <member refid="classkukadu_1_1JointHardware_1a0514e200c960e5246107dff0dbee11da" prot="public" virt="non-virtual"><scope>kukadu::ControlQueue</scope><name>JointHardware</name></member>
+      <member refid="classkukadu_1_1ControlQueue_1ad11059100321b24a1af8ef7de8314353" prot="public" virt="virtual"><scope>kukadu::ControlQueue</scope><name>jointPtp</name></member>
+      <member refid="classkukadu_1_1ControlQueue_1a89a7b21307ccd0759a9e8b8e483cb919" prot="protected" virt="pure-virtual"><scope>kukadu::ControlQueue</scope><name>jointPtpInternal</name></member>
+      <member refid="classkukadu_1_1ControlQueue_1aaf35ae626b08ac53508acdc84ab58c8f" prot="public" virt="non-virtual"><scope>kukadu::ControlQueue</scope><name>jointPtpNb</name></member>
+      <member refid="classkukadu_1_1ControlQueue_1a2a09888eb67a39dbb7a599af66cd2300" prot="private" virt="non-virtual"><scope>kukadu::ControlQueue</scope><name>jointPtpRunning</name></member>
+      <member refid="classkukadu_1_1ControlQueue_1adafb46399d4855b3c6d6cf85e6290ed8" prot="private" virt="non-virtual"><scope>kukadu::ControlQueue</scope><name>jointPtpThr</name></member>
+      <member refid="classkukadu_1_1ControlQueue_1a15edefd75b411cc2c0d286e21b75fc2e" prot="private" virt="non-virtual"><scope>kukadu::ControlQueue</scope><name>jointsCollector</name></member>
+      <member refid="classkukadu_1_1ControlQueue_1a6fc05fe344079914b929d8cfa2d58664" prot="private" virt="non-virtual"><scope>kukadu::ControlQueue</scope><name>jointsColletorThr</name></member>
+      <member refid="classkukadu_1_1ControlQueue_1a20594aa683a4965b57e4f8e57a8c32d0" prot="private" virt="non-virtual"><scope>kukadu::ControlQueue</scope><name>lastDuration</name></member>
+      <member refid="classkukadu_1_1ControlQueue_1abab997d78bfb8121fe13990b5e9cc6c0" prot="private" virt="non-virtual"><scope>kukadu::ControlQueue</scope><name>loadCycleTimeMutex</name></member>
+      <member refid="classkukadu_1_1ControlQueue_1a9bab2ac4a6a35f7ee728a8e126e2689c" prot="public" virt="virtual"><scope>kukadu::ControlQueue</scope><name>loadData</name></member>
+      <member refid="classkukadu_1_1JointHardware_1a8145b779bc5fbda910d4c412e18dabe8" prot="public" virt="virtual" ambiguityscope="kukadu::JointHardware::"><scope>kukadu::ControlQueue</scope><name>loadData</name></member>
+      <member refid="classkukadu_1_1Hardware_1a4ea17ba6cb91d1a5f53e5b2c96c0cd8c" prot="public" virt="pure-virtual" ambiguityscope="kukadu::Hardware::"><scope>kukadu::ControlQueue</scope><name>loadData</name></member>
+      <member refid="classkukadu_1_1ControlQueue_1a3b67b32a4724ad089741b51377c98054" prot="protected" virt="non-virtual"><scope>kukadu::ControlQueue</scope><name>loadDegOfFreedom</name></member>
+      <member refid="classkukadu_1_1Hardware_1ac1f3b6662e4446c2dd67d702fccc8b7e" prot="public" virt="non-virtual"><scope>kukadu::ControlQueue</scope><name>loadInstanceIdFromName</name></member>
+      <member refid="classkukadu_1_1ControlQueue_1acfe8bbb1bc7defd6d09b344d8997ec52" prot="private" virt="non-virtual"><scope>kukadu::ControlQueue</scope><name>loadMaxDistMutex</name></member>
+      <member refid="classkukadu_1_1Hardware_1abfeecedf0a480422ea9d47da4f228c7b" prot="public" virt="non-virtual"><scope>kukadu::ControlQueue</scope><name>loadOrCreateInstanceIdFromName</name></member>
+      <member refid="classkukadu_1_1Hardware_1aeb3c6a1ca42389cc341aee61c633daba" prot="public" virt="non-virtual"><scope>kukadu::ControlQueue</scope><name>loadOrCreateTypeIdFromName</name></member>
+      <member refid="classkukadu_1_1Hardware_1a305c4f348e988d76e2cae7eb9105fec1" prot="public" virt="non-virtual"><scope>kukadu::ControlQueue</scope><name>loadTypeIdFromInstanceId</name></member>
+      <member refid="classkukadu_1_1Hardware_1a6e5a6e1f250a02df3e9766801f82d255" prot="public" virt="non-virtual"><scope>kukadu::ControlQueue</scope><name>loadTypeIdFromInstanceName</name></member>
+      <member refid="classkukadu_1_1Hardware_1a553cd9394cc78773c0effb7d80f0ee16" prot="public" virt="non-virtual"><scope>kukadu::ControlQueue</scope><name>loadTypeIdFromName</name></member>
+      <member refid="classkukadu_1_1Hardware_1a58f76f5117554f7f2613cdb082addf22" prot="public" virt="non-virtual"><scope>kukadu::ControlQueue</scope><name>loadTypeNameFromInstanceName</name></member>
+      <member refid="classkukadu_1_1ControlQueue_1aca70a978b2950d7c9ab99d55c5977eec" prot="public" virt="virtual"><scope>kukadu::ControlQueue</scope><name>move</name></member>
+      <member refid="classkukadu_1_1ControlQueue_1a62b3e0c02b1937b09ae538a71ee0e855" prot="public" virt="virtual"><scope>kukadu::ControlQueue</scope><name>move</name></member>
+      <member refid="classkukadu_1_1ControlQueue_1ae57e6225ae4b76d822f2a74384aa9ccb" prot="private" virt="non-virtual"><scope>kukadu::ControlQueue</scope><name>movementQueue</name></member>
+      <member refid="classkukadu_1_1ControlQueue_1ac14b0a1cae1b9fa45376981262818eec" prot="private" virt="non-virtual"><scope>kukadu::ControlQueue</scope><name>nowJoints</name></member>
+      <member refid="classkukadu_1_1ControlQueue_1af95aa23fb9d0b7dd5ad1989a511abd73" prot="private" virt="non-virtual"><scope>kukadu::ControlQueue</scope><name>prevJoints</name></member>
+      <member refid="classkukadu_1_1ControlQueue_1aefa958aeff6f1c67fadb3c29756b4ebf" prot="private" virt="non-virtual"><scope>kukadu::ControlQueue</scope><name>prevPrevJoints</name></member>
+      <member refid="classkukadu_1_1ControlQueue_1a1ec7cb9fa0df72a0ecb9dc5095cab0de" prot="private" virt="non-virtual"><scope>kukadu::ControlQueue</scope><name>robotName</name></member>
+      <member refid="classkukadu_1_1ControlQueue_1a650c486b9f78d3dec1db8741b575a0ab" prot="public" virt="virtual"><scope>kukadu::ControlQueue</scope><name>rollBack</name></member>
+      <member refid="classkukadu_1_1ControlQueue_1aef96ad93f2d4b5010fdba108fd021e30" prot="private" virt="non-virtual"><scope>kukadu::ControlQueue</scope><name>rollbackMode</name></member>
+      <member refid="classkukadu_1_1ControlQueue_1ad84f1dc90c18b44b9d57471a39500c7a" prot="private" virt="non-virtual"><scope>kukadu::ControlQueue</scope><name>rollBackQueue</name></member>
+      <member refid="classkukadu_1_1ControlQueue_1a6f99522b6610d9c080f1b9895d35d04d" prot="private" virt="non-virtual"><scope>kukadu::ControlQueue</scope><name>rollbackQueueMutex</name></member>
+      <member refid="classkukadu_1_1ControlQueue_1a62fd840f05af7db731aa10a42e95b3e7" prot="private" virt="non-virtual"><scope>kukadu::ControlQueue</scope><name>rollBackQueueSize</name></member>
+      <member refid="classkukadu_1_1ControlQueue_1aefc482f43650a3e4675de08dcb547a17" prot="private" virt="non-virtual"><scope>kukadu::ControlQueue</scope><name>rollBackTime</name></member>
+      <member refid="classkukadu_1_1ControlQueue_1a07b7070ab29a985dd7d7f41b1e20335d" prot="private" virt="virtual"><scope>kukadu::ControlQueue</scope><name>run</name></member>
+      <member refid="classkukadu_1_1DestroyableObject_1a9e490cfa46af84690eb5ff0682df986c" prot="public" virt="pure-virtual"><scope>kukadu::ControlQueue</scope><name>safelyDestroy</name></member>
+      <member refid="classkukadu_1_1ControlQueue_1a18e628686b8c86abfdbd097b60aa5768" prot="public" virt="pure-virtual"><scope>kukadu::ControlQueue</scope><name>setAdditionalLoad</name></member>
+      <member refid="classkukadu_1_1ControlQueue_1a76e7bf30b8e694c0db9bec92e06529a0" prot="protected" virt="pure-virtual"><scope>kukadu::ControlQueue</scope><name>setCurrentControlTypeInternal</name></member>
+      <member refid="classkukadu_1_1ControlQueue_1a5245ff31c7dea26070743d1f6560801c" prot="public" virt="non-virtual"><scope>kukadu::ControlQueue</scope><name>setCycleTime</name></member>
+      <member refid="classkukadu_1_1ControlQueue_1ac38a2bac4927cf5d424e735af703f199" prot="protected" virt="virtual"><scope>kukadu::ControlQueue</scope><name>setDegOfFreedom</name></member>
+      <member refid="classkukadu_1_1ControlQueue_1a4d468cb85f69c7c6dfd345f72d5b1473" prot="public" virt="non-virtual"><scope>kukadu::ControlQueue</scope><name>setFrcTrqSensorFilter</name></member>
+      <member refid="classkukadu_1_1ControlQueue_1a743fbc08007b777393a6f14d66ed2e8a" prot="protected" virt="pure-virtual"><scope>kukadu::ControlQueue</scope><name>setInitValues</name></member>
+      <member refid="classkukadu_1_1ControlQueue_1a647c4a1ae663844068a51fbd2ea24c22" prot="private" virt="non-virtual"><scope>kukadu::ControlQueue</scope><name>setInitValuesInternal</name></member>
+      <member refid="classkukadu_1_1ControlQueue_1a5af587fff906cf978225a317e701d41f" prot="public" virt="pure-virtual"><scope>kukadu::ControlQueue</scope><name>setJntPtpThresh</name></member>
+      <member refid="classkukadu_1_1ControlQueue_1a0025c5c010a1b33d637e52fb24f767b2" prot="public" virt="virtual"><scope>kukadu::ControlQueue</scope><name>setNextTrajectory</name></member>
+      <member refid="classkukadu_1_1ControlQueue_1a225130ca0fa4a22e98cc0e5679917841" prot="public" virt="virtual"><scope>kukadu::ControlQueue</scope><name>setStartingJoints</name></member>
+      <member refid="classkukadu_1_1ControlQueue_1aee25e6410909af34d740edbece98d677" prot="public" virt="pure-virtual"><scope>kukadu::ControlQueue</scope><name>setStiffness</name></member>
+      <member refid="classkukadu_1_1ControlQueue_1a8e76e19772053274046193436b0cae1c" prot="public" virt="virtual"><scope>kukadu::ControlQueue</scope><name>shutUp</name></member>
+      <member refid="classkukadu_1_1ControlQueue_1a772caa40c0ca1e3f8d820985eedf3f22" prot="private" virt="non-virtual"><scope>kukadu::ControlQueue</scope><name>sleepTime</name></member>
+      <member refid="classkukadu_1_1ControlQueue_1a6eafe84f55c6aec174210dc3accaede0" prot="private" virt="non-virtual"><scope>kukadu::ControlQueue</scope><name>startingJoints</name></member>
+      <member refid="classkukadu_1_1ControlQueue_1a35d6a6e4e7c8467691c11567fe21f340" prot="public" virt="non-virtual"><scope>kukadu::ControlQueue</scope><name>startQueue</name></member>
+      <member refid="classkukadu_1_1ControlQueue_1a87d7c2d918d0ca720eeae609959d4d78" prot="protected" virt="pure-virtual"><scope>kukadu::ControlQueue</scope><name>startQueueHook</name></member>
+      <member refid="classkukadu_1_1ControlQueue_1acb6ba5c61e9c26dcaa8e4073946e3791" prot="public" virt="virtual"><scope>kukadu::ControlQueue</scope><name>startRollBackMode</name></member>
+      <member refid="classkukadu_1_1ControlQueue_1ac9042952868522099628074d22d61742" prot="public" virt="virtual"><scope>kukadu::ControlQueue</scope><name>startTalking</name></member>
+      <member refid="classkukadu_1_1ControlQueue_1ae4236dc4c31aff57d2295dd11dbf453b" prot="public" virt="virtual"><scope>kukadu::ControlQueue</scope><name>stopCurrentMode</name></member>
+      <member refid="classkukadu_1_1ControlQueue_1a38ba0b9fffb0fff6d39d742b1a2eb76b" prot="public" virt="virtual"><scope>kukadu::ControlQueue</scope><name>stopJointRollBackMode</name></member>
+      <member refid="classkukadu_1_1ControlQueue_1a8d413404960c7597032876396777e38f" prot="public" virt="virtual"><scope>kukadu::ControlQueue</scope><name>stopQueue</name></member>
+      <member refid="classkukadu_1_1ControlQueue_1a6ebb66d1bd2188e1fca3ee1440b8c0fe" prot="protected" virt="pure-virtual"><scope>kukadu::ControlQueue</scope><name>stopQueueWhilePtp</name></member>
+      <member refid="classkukadu_1_1StorageHolder_1a1c64f1528f3243ace2ec3932d69d9704" prot="public" virt="non-virtual"><scope>kukadu::ControlQueue</scope><name>StorageHolder</name></member>
+      <member refid="classkukadu_1_1ControlQueue_1a53eb51dd1ae778d7a449ae0b6752305e" prot="public" virt="virtual"><scope>kukadu::ControlQueue</scope><name>storeCurrentSensorDataToDatabase</name></member>
+      <member refid="classkukadu_1_1ControlQueue_1a910db788a6da11006d358a84197bff23" prot="protected" virt="pure-virtual"><scope>kukadu::ControlQueue</scope><name>submitNextCartMove</name></member>
+      <member refid="classkukadu_1_1ControlQueue_1a12166afa17d758aa6b43362fc999e146" prot="protected" virt="pure-virtual"><scope>kukadu::ControlQueue</scope><name>submitNextJointMove</name></member>
+      <member refid="classkukadu_1_1ControlQueue_1a5defe63d9f1b9829676f9a31a4683911" prot="public" virt="virtual"><scope>kukadu::ControlQueue</scope><name>switchMode</name></member>
+      <member refid="classkukadu_1_1ControlQueue_1a324484e79a5505656a32d9f32054e5d0" prot="public" virt="virtual"><scope>kukadu::ControlQueue</scope><name>synchronizeToQueue</name></member>
+      <member refid="classkukadu_1_1ControlQueue_1a62f159706cc676374de6c40dcc69e11f" prot="private" virt="non-virtual"><scope>kukadu::ControlQueue</scope><name>thr</name></member>
+    </listofallmembers>
+  </compounddef>
+</doxygen>

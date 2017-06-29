@@ -1,0 +1,177 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.8.11">
+  <compounddef id="classkukadu_1_1OpenBoxFilter" kind="class" language="C++" prot="public">
+    <compoundname>kukadu::OpenBoxFilter</compoundname>
+    <basecompoundref refid="classkukadu_1_1PCTransformator" prot="public" virt="non-virtual">kukadu::PCTransformator</basecompoundref>
+      <sectiondef kind="private-attrib">
+      <memberdef kind="variable" id="classkukadu_1_1OpenBoxFilter_1a9b596ef8855d300301c00265f3e89151" prot="private" static="no" mutable="no">
+        <type>double</type>
+        <definition>double kukadu::OpenBoxFilter::xOffset</definition>
+        <argsstring></argsstring>
+        <name>xOffset</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/agyss/iis_robot_sw/iis_catkin_ws/src/kukadu/include/kukadu/vision/pcstdtrans.hpp" line="48" column="1" bodyfile="/home/agyss/iis_robot_sw/iis_catkin_ws/src/kukadu/include/kukadu/vision/pcstdtrans.hpp" bodystart="48" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classkukadu_1_1OpenBoxFilter_1a166402605423e0ada2a3bd49c0492da7" prot="private" static="no" mutable="no">
+        <type>double</type>
+        <definition>double kukadu::OpenBoxFilter::yOffset</definition>
+        <argsstring></argsstring>
+        <name>yOffset</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/agyss/iis_robot_sw/iis_catkin_ws/src/kukadu/include/kukadu/vision/pcstdtrans.hpp" line="49" column="1" bodyfile="/home/agyss/iis_robot_sw/iis_catkin_ws/src/kukadu/include/kukadu/vision/pcstdtrans.hpp" bodystart="49" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classkukadu_1_1OpenBoxFilter_1a49f0b0333278ee73367c97ec3374641c" prot="private" static="no" mutable="no">
+        <type>arma::vec</type>
+        <definition>arma::vec kukadu::OpenBoxFilter::center</definition>
+        <argsstring></argsstring>
+        <name>center</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/agyss/iis_robot_sw/iis_catkin_ws/src/kukadu/include/kukadu/vision/pcstdtrans.hpp" line="51" column="1" bodyfile="/home/agyss/iis_robot_sw/iis_catkin_ws/src/kukadu/include/kukadu/vision/pcstdtrans.hpp" bodystart="51" bodyend="-1"/>
+      </memberdef>
+      </sectiondef>
+      <sectiondef kind="public-func">
+      <memberdef kind="function" id="classkukadu_1_1OpenBoxFilter_1a6e0307a97b104f1a14305502f6d16c18" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type></type>
+        <definition>kukadu::OpenBoxFilter::OpenBoxFilter</definition>
+        <argsstring>(arma::vec center, double xOffset, double yOffset)</argsstring>
+        <name>OpenBoxFilter</name>
+        <param>
+          <type>arma::vec</type>
+          <declname>center</declname>
+        </param>
+        <param>
+          <type>double</type>
+          <declname>xOffset</declname>
+        </param>
+        <param>
+          <type>double</type>
+          <declname>yOffset</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/agyss/iis_robot_sw/iis_catkin_ws/src/kukadu/include/kukadu/vision/pcstdtrans.hpp" line="55" column="1" bodyfile="/home/agyss/iis_robot_sw/iis_catkin_ws/src/kukadu/src/vision/pcstdtrans.cpp" bodystart="134" bodyend="136"/>
+      </memberdef>
+      <memberdef kind="function" id="classkukadu_1_1OpenBoxFilter_1ab50cb129fdd531fa3033aa5de741a64c" prot="public" static="no" const="no" explicit="no" inline="no" virt="virtual">
+        <type>pcl::PointCloud&lt; pcl::PointXYZ &gt;::Ptr</type>
+        <definition>pcl::PointCloud&lt; pcl::PointXYZ &gt;::Ptr kukadu::OpenBoxFilter::transformPc</definition>
+        <argsstring>(pcl::PointCloud&lt; pcl::PointXYZ &gt;::Ptr cloud)</argsstring>
+        <name>transformPc</name>
+        <reimplements refid="classkukadu_1_1PCTransformator_1a00b1b5ca897b6a7a3590340c19a53435">transformPc</reimplements>
+        <param>
+          <type>pcl::PointCloud&lt; pcl::PointXYZ &gt;::Ptr</type>
+          <declname>cloud</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/agyss/iis_robot_sw/iis_catkin_ws/src/kukadu/include/kukadu/vision/pcstdtrans.hpp" line="57" column="1" bodyfile="/home/agyss/iis_robot_sw/iis_catkin_ws/src/kukadu/src/vision/pcstdtrans.cpp" bodystart="146" bodyend="151"/>
+      </memberdef>
+      <memberdef kind="function" id="classkukadu_1_1OpenBoxFilter_1a90a18e56f06d06f992e4825164b1844c" prot="public" static="no" const="no" explicit="no" inline="no" virt="virtual">
+        <type>pcl::PointCloud&lt; pcl::PointXYZRGB &gt;::Ptr</type>
+        <definition>pcl::PointCloud&lt; pcl::PointXYZRGB &gt;::Ptr kukadu::OpenBoxFilter::transformPc</definition>
+        <argsstring>(pcl::PointCloud&lt; pcl::PointXYZRGB &gt;::Ptr pc)</argsstring>
+        <name>transformPc</name>
+        <reimplements refid="classkukadu_1_1PCTransformator_1af5b8457c380316080cdcde4e2919e1a7">transformPc</reimplements>
+        <param>
+          <type>pcl::PointCloud&lt; pcl::PointXYZRGB &gt;::Ptr</type>
+          <declname>pc</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/agyss/iis_robot_sw/iis_catkin_ws/src/kukadu/include/kukadu/vision/pcstdtrans.hpp" line="58" column="1" bodyfile="/home/agyss/iis_robot_sw/iis_catkin_ws/src/kukadu/src/vision/pcstdtrans.cpp" bodystart="153" bodyend="190"/>
+      </memberdef>
+      <memberdef kind="function" id="classkukadu_1_1OpenBoxFilter_1a755530c495d178e1c4ec5a46df718aac" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>void kukadu::OpenBoxFilter::setBox</definition>
+        <argsstring>(arma::vec center, double xOffset, double yOffset)</argsstring>
+        <name>setBox</name>
+        <param>
+          <type>arma::vec</type>
+          <declname>center</declname>
+        </param>
+        <param>
+          <type>double</type>
+          <declname>xOffset</declname>
+        </param>
+        <param>
+          <type>double</type>
+          <declname>yOffset</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/agyss/iis_robot_sw/iis_catkin_ws/src/kukadu/include/kukadu/vision/pcstdtrans.hpp" line="60" column="1" bodyfile="/home/agyss/iis_robot_sw/iis_catkin_ws/src/kukadu/src/vision/pcstdtrans.cpp" bodystart="138" bodyend="144"/>
+      </memberdef>
+      </sectiondef>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <inheritancegraph>
+      <node id="467">
+        <label>kukadu::PCTransformator</label>
+        <link refid="classkukadu_1_1PCTransformator"/>
+      </node>
+      <node id="466">
+        <label>kukadu::OpenBoxFilter</label>
+        <link refid="classkukadu_1_1OpenBoxFilter"/>
+        <childnode refid="467" relation="public-inheritance">
+        </childnode>
+      </node>
+    </inheritancegraph>
+    <collaborationgraph>
+      <node id="469">
+        <label>kukadu::PCTransformator</label>
+        <link refid="classkukadu_1_1PCTransformator"/>
+      </node>
+      <node id="468">
+        <label>kukadu::OpenBoxFilter</label>
+        <link refid="classkukadu_1_1OpenBoxFilter"/>
+        <childnode refid="469" relation="public-inheritance">
+        </childnode>
+      </node>
+    </collaborationgraph>
+    <location file="/home/agyss/iis_robot_sw/iis_catkin_ws/src/kukadu/include/kukadu/vision/pcstdtrans.hpp" line="44" column="1" bodyfile="/home/agyss/iis_robot_sw/iis_catkin_ws/src/kukadu/include/kukadu/vision/pcstdtrans.hpp" bodystart="44" bodyend="62"/>
+    <listofallmembers>
+      <member refid="classkukadu_1_1OpenBoxFilter_1a49f0b0333278ee73367c97ec3374641c" prot="private" virt="non-virtual"><scope>kukadu::OpenBoxFilter</scope><name>center</name></member>
+      <member refid="classkukadu_1_1PCTransformator_1a9e37df3d586aa7991c13f70394ca6ab8" prot="public" virt="non-virtual"><scope>kukadu::OpenBoxFilter</scope><name>fakeRgb</name></member>
+      <member refid="classkukadu_1_1OpenBoxFilter_1a6e0307a97b104f1a14305502f6d16c18" prot="public" virt="non-virtual"><scope>kukadu::OpenBoxFilter</scope><name>OpenBoxFilter</name></member>
+      <member refid="classkukadu_1_1PCTransformator_1aec33a492661e428643b680b3ea2455f0" prot="public" virt="non-virtual"><scope>kukadu::OpenBoxFilter</scope><name>removeIntensity</name></member>
+      <member refid="classkukadu_1_1PCTransformator_1a0c533cd3559a1d2959ff315f0d2efc17" prot="public" virt="non-virtual"><scope>kukadu::OpenBoxFilter</scope><name>removeRgb</name></member>
+      <member refid="classkukadu_1_1OpenBoxFilter_1a755530c495d178e1c4ec5a46df718aac" prot="public" virt="non-virtual"><scope>kukadu::OpenBoxFilter</scope><name>setBox</name></member>
+      <member refid="classkukadu_1_1OpenBoxFilter_1ab50cb129fdd531fa3033aa5de741a64c" prot="public" virt="virtual"><scope>kukadu::OpenBoxFilter</scope><name>transformPc</name></member>
+      <member refid="classkukadu_1_1OpenBoxFilter_1a90a18e56f06d06f992e4825164b1844c" prot="public" virt="virtual"><scope>kukadu::OpenBoxFilter</scope><name>transformPc</name></member>
+      <member refid="classkukadu_1_1OpenBoxFilter_1a9b596ef8855d300301c00265f3e89151" prot="private" virt="non-virtual"><scope>kukadu::OpenBoxFilter</scope><name>xOffset</name></member>
+      <member refid="classkukadu_1_1OpenBoxFilter_1a166402605423e0ada2a3bd49c0492da7" prot="private" virt="non-virtual"><scope>kukadu::OpenBoxFilter</scope><name>yOffset</name></member>
+    </listofallmembers>
+  </compounddef>
+</doxygen>

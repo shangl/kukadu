@@ -1,0 +1,923 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.8.11">
+  <compounddef id="classkukadu_1_1SensingController" kind="class" language="C++" prot="public" abstract="yes">
+    <compoundname>kukadu::SensingController</compoundname>
+    <basecompoundref refid="classkukadu_1_1Controller" prot="public" virt="non-virtual">kukadu::Controller</basecompoundref>
+    <basecompoundref prot="public" virt="non-virtual">std::enable_shared_from_this&lt; SensingController &gt;</basecompoundref>
+      <sectiondef kind="private-attrib">
+      <memberdef kind="variable" id="classkukadu_1_1SensingController_1afe2478c2a51f983a10d3f08da57ac3a8" prot="private" static="no" mutable="no">
+        <type>bool</type>
+        <definition>bool kukadu::SensingController::databaseAlreadySet</definition>
+        <argsstring></argsstring>
+        <name>databaseAlreadySet</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/agyss/iis_robot_sw/iis_catkin_ws/src/kukadu/include/kukadu/manipulation/playing/controllers.hpp" line="76" column="1" bodyfile="/home/agyss/iis_robot_sw/iis_catkin_ws/src/kukadu/include/kukadu/manipulation/playing/controllers.hpp" bodystart="76" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classkukadu_1_1SensingController_1a11bcbc000104e8b41ff83fbe23fa9822" prot="private" static="no" mutable="no">
+        <type>int</type>
+        <definition>int kukadu::SensingController::hapticMode</definition>
+        <argsstring></argsstring>
+        <name>hapticMode</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/agyss/iis_robot_sw/iis_catkin_ws/src/kukadu/include/kukadu/manipulation/playing/controllers.hpp" line="78" column="1" bodyfile="/home/agyss/iis_robot_sw/iis_catkin_ws/src/kukadu/include/kukadu/manipulation/playing/controllers.hpp" bodystart="78" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classkukadu_1_1SensingController_1aa7c2afc5a197d73bc42111bc08c3a0b8" prot="private" static="no" mutable="no">
+        <type>int</type>
+        <definition>int kukadu::SensingController::stateCount</definition>
+        <argsstring></argsstring>
+        <name>stateCount</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/agyss/iis_robot_sw/iis_catkin_ws/src/kukadu/include/kukadu/manipulation/playing/controllers.hpp" line="79" column="1" bodyfile="/home/agyss/iis_robot_sw/iis_catkin_ws/src/kukadu/include/kukadu/manipulation/playing/controllers.hpp" bodystart="79" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classkukadu_1_1SensingController_1ad033378a2b2a203778d7ac408191877c" prot="private" static="no" mutable="no">
+        <type>int</type>
+        <definition>int kukadu::SensingController::currentIterationNum</definition>
+        <argsstring></argsstring>
+        <name>currentIterationNum</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/agyss/iis_robot_sw/iis_catkin_ws/src/kukadu/include/kukadu/manipulation/playing/controllers.hpp" line="80" column="1" bodyfile="/home/agyss/iis_robot_sw/iis_catkin_ws/src/kukadu/include/kukadu/manipulation/playing/controllers.hpp" bodystart="80" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classkukadu_1_1SensingController_1a6b5b3a95aaa5990d64fecd2e61a3d17f" prot="private" static="no" mutable="no">
+        <type>int</type>
+        <definition>int kukadu::SensingController::simulationGroundTruth</definition>
+        <argsstring></argsstring>
+        <name>simulationGroundTruth</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/agyss/iis_robot_sw/iis_catkin_ws/src/kukadu/include/kukadu/manipulation/playing/controllers.hpp" line="81" column="1" bodyfile="/home/agyss/iis_robot_sw/iis_catkin_ws/src/kukadu/include/kukadu/manipulation/playing/controllers.hpp" bodystart="81" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classkukadu_1_1SensingController_1a167f8ea02137cf693716fe5d88e4d354" prot="private" static="no" mutable="no">
+        <type>int</type>
+        <definition>int kukadu::SensingController::simulatedClassificationPrecision</definition>
+        <argsstring></argsstring>
+        <name>simulatedClassificationPrecision</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/agyss/iis_robot_sw/iis_catkin_ws/src/kukadu/include/kukadu/manipulation/playing/controllers.hpp" line="82" column="1" bodyfile="/home/agyss/iis_robot_sw/iis_catkin_ws/src/kukadu/include/kukadu/manipulation/playing/controllers.hpp" bodystart="82" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classkukadu_1_1SensingController_1a2e7c28c1e6d7cbcdb7c4e76c8eb1920a" prot="private" static="no" mutable="no">
+        <type>KUKADU_DISCRETE_DISTRIBUTION&lt; int &gt;</type>
+        <definition>KUKADU_DISCRETE_DISTRIBUTION&lt;int&gt; kukadu::SensingController::classifierDist</definition>
+        <argsstring></argsstring>
+        <name>classifierDist</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/agyss/iis_robot_sw/iis_catkin_ws/src/kukadu/include/kukadu/manipulation/playing/controllers.hpp" line="84" column="1" bodyfile="/home/agyss/iis_robot_sw/iis_catkin_ws/src/kukadu/include/kukadu/manipulation/playing/controllers.hpp" bodystart="84" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classkukadu_1_1SensingController_1a32ef60fd227e7f372a9884503a0718e9" prot="private" static="no" mutable="no">
+        <type>KUKADU_SHARED_PTR&lt; <ref refid="classkukadu_1_1Controller" kindref="compound">kukadu::Controller</ref> &gt;</type>
+        <definition>KUKADU_SHARED_PTR&lt;kukadu::Controller&gt; kukadu::SensingController::parentController</definition>
+        <argsstring></argsstring>
+        <name>parentController</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/agyss/iis_robot_sw/iis_catkin_ws/src/kukadu/include/kukadu/manipulation/playing/controllers.hpp" line="85" column="1" bodyfile="/home/agyss/iis_robot_sw/iis_catkin_ws/src/kukadu/include/kukadu/manipulation/playing/controllers.hpp" bodystart="85" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classkukadu_1_1SensingController_1ace506b5595a83d3e7b0563170b46e1e5" prot="private" static="no" mutable="no">
+        <type>std::string</type>
+        <definition>std::string kukadu::SensingController::tmpPath</definition>
+        <argsstring></argsstring>
+        <name>tmpPath</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/agyss/iis_robot_sw/iis_catkin_ws/src/kukadu/include/kukadu/manipulation/playing/controllers.hpp" line="87" column="1" bodyfile="/home/agyss/iis_robot_sw/iis_catkin_ws/src/kukadu/include/kukadu/manipulation/playing/controllers.hpp" bodystart="87" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classkukadu_1_1SensingController_1a941c5e6570b23e0a12a5d987ebc27ce0" prot="private" static="no" mutable="no">
+        <type>std::string</type>
+        <definition>std::string kukadu::SensingController::databasePath</definition>
+        <argsstring></argsstring>
+        <name>databasePath</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/agyss/iis_robot_sw/iis_catkin_ws/src/kukadu/include/kukadu/manipulation/playing/controllers.hpp" line="88" column="1" bodyfile="/home/agyss/iis_robot_sw/iis_catkin_ws/src/kukadu/include/kukadu/manipulation/playing/controllers.hpp" bodystart="88" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classkukadu_1_1SensingController_1a85ebb5deaf29683830811780756b04ce" prot="private" static="no" mutable="no">
+        <type>std::string</type>
+        <definition>std::string kukadu::SensingController::classifierPath</definition>
+        <argsstring></argsstring>
+        <name>classifierPath</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/agyss/iis_robot_sw/iis_catkin_ws/src/kukadu/include/kukadu/manipulation/playing/controllers.hpp" line="89" column="1" bodyfile="/home/agyss/iis_robot_sw/iis_catkin_ws/src/kukadu/include/kukadu/manipulation/playing/controllers.hpp" bodystart="89" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classkukadu_1_1SensingController_1aa20b0a3b1a92d5436a692eb3354f47ff" prot="private" static="no" mutable="no">
+        <type>std::string</type>
+        <definition>std::string kukadu::SensingController::classifierFile</definition>
+        <argsstring></argsstring>
+        <name>classifierFile</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/agyss/iis_robot_sw/iis_catkin_ws/src/kukadu/include/kukadu/manipulation/playing/controllers.hpp" line="90" column="1" bodyfile="/home/agyss/iis_robot_sw/iis_catkin_ws/src/kukadu/include/kukadu/manipulation/playing/controllers.hpp" bodystart="90" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classkukadu_1_1SensingController_1ac9b43f94115cd8d0d72d1b6898ead8ab" prot="private" static="no" mutable="no">
+        <type>std::string</type>
+        <definition>std::string kukadu::SensingController::classifierFunction</definition>
+        <argsstring></argsstring>
+        <name>classifierFunction</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/agyss/iis_robot_sw/iis_catkin_ws/src/kukadu/include/kukadu/manipulation/playing/controllers.hpp" line="91" column="1" bodyfile="/home/agyss/iis_robot_sw/iis_catkin_ws/src/kukadu/include/kukadu/manipulation/playing/controllers.hpp" bodystart="91" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classkukadu_1_1SensingController_1a1776de4cde4d8df6b8cd1bf441133c77" prot="private" static="no" mutable="no">
+        <type><ref refid="classkukadu_1_1StorageSingleton" kindref="compound">StorageSingleton</ref> &amp;</type>
+        <definition>StorageSingleton&amp; kukadu::SensingController::dbStorage</definition>
+        <argsstring></argsstring>
+        <name>dbStorage</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/agyss/iis_robot_sw/iis_catkin_ws/src/kukadu/include/kukadu/manipulation/playing/controllers.hpp" line="93" column="1" bodyfile="/home/agyss/iis_robot_sw/iis_catkin_ws/src/kukadu/include/kukadu/manipulation/playing/controllers.hpp" bodystart="93" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classkukadu_1_1SensingController_1aaf14449a0d6b99bee6260487accd4477" prot="private" static="no" mutable="no">
+        <type>KUKADU_SHARED_PTR&lt; kukadu_mersenne_twister &gt;</type>
+        <definition>KUKADU_SHARED_PTR&lt;kukadu_mersenne_twister&gt; kukadu::SensingController::generator</definition>
+        <argsstring></argsstring>
+        <name>generator</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/agyss/iis_robot_sw/iis_catkin_ws/src/kukadu/include/kukadu/manipulation/playing/controllers.hpp" line="94" column="1" bodyfile="/home/agyss/iis_robot_sw/iis_catkin_ws/src/kukadu/include/kukadu/manipulation/playing/controllers.hpp" bodystart="94" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classkukadu_1_1SensingController_1ac14e0e62cb3ed2a23d36272bec77b9a1" prot="private" static="no" mutable="no">
+        <type>std::vector&lt; KUKADU_SHARED_PTR&lt; <ref refid="classkukadu_1_1GenericHand" kindref="compound">GenericHand</ref> &gt; &gt;</type>
+        <definition>std::vector&lt;KUKADU_SHARED_PTR&lt;GenericHand&gt; &gt; kukadu::SensingController::hands</definition>
+        <argsstring></argsstring>
+        <name>hands</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/agyss/iis_robot_sw/iis_catkin_ws/src/kukadu/include/kukadu/manipulation/playing/controllers.hpp" line="96" column="1" bodyfile="/home/agyss/iis_robot_sw/iis_catkin_ws/src/kukadu/include/kukadu/manipulation/playing/controllers.hpp" bodystart="96" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classkukadu_1_1SensingController_1a774f276e5bf80fc122932c8f826fa4a2" prot="private" static="no" mutable="no">
+        <type>std::vector&lt; KUKADU_SHARED_PTR&lt; <ref refid="classkukadu_1_1ControlQueue" kindref="compound">ControlQueue</ref> &gt; &gt;</type>
+        <definition>std::vector&lt;KUKADU_SHARED_PTR&lt;ControlQueue&gt; &gt; kukadu::SensingController::queues</definition>
+        <argsstring></argsstring>
+        <name>queues</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/agyss/iis_robot_sw/iis_catkin_ws/src/kukadu/include/kukadu/manipulation/playing/controllers.hpp" line="97" column="1" bodyfile="/home/agyss/iis_robot_sw/iis_catkin_ws/src/kukadu/include/kukadu/manipulation/playing/controllers.hpp" bodystart="97" bodyend="-1"/>
+      </memberdef>
+      </sectiondef>
+      <sectiondef kind="protected-attrib">
+      <memberdef kind="variable" id="classkukadu_1_1SensingController_1ab3a87da7df73c1d62799af66492bf5d7" prot="protected" static="no" mutable="no">
+        <type>KUKADU_SHARED_PTR&lt; <ref refid="classkukadu_1_1Classifier" kindref="compound">Classifier</ref> &gt;</type>
+        <definition>KUKADU_SHARED_PTR&lt;Classifier&gt; kukadu::SensingController::classifier</definition>
+        <argsstring></argsstring>
+        <name>classifier</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/agyss/iis_robot_sw/iis_catkin_ws/src/kukadu/include/kukadu/manipulation/playing/controllers.hpp" line="115" column="1" bodyfile="/home/agyss/iis_robot_sw/iis_catkin_ws/src/kukadu/include/kukadu/manipulation/playing/controllers.hpp" bodystart="115" bodyend="-1"/>
+      </memberdef>
+      </sectiondef>
+      <sectiondef kind="public-static-attrib">
+      <memberdef kind="variable" id="classkukadu_1_1SensingController_1acad6c7b0b6090e0cfe9e00bbfbb50703" prot="public" static="yes" mutable="no">
+        <type>const int</type>
+        <definition>const int kukadu::SensingController::HAPTIC_MODE_TERMINAL</definition>
+        <argsstring></argsstring>
+        <name>HAPTIC_MODE_TERMINAL</name>
+        <initializer>= 0</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/agyss/iis_robot_sw/iis_catkin_ws/src/kukadu/include/kukadu/manipulation/playing/controllers.hpp" line="163" column="1" bodyfile="/home/agyss/iis_robot_sw/iis_catkin_ws/src/kukadu/include/kukadu/manipulation/playing/controllers.hpp" bodystart="163" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classkukadu_1_1SensingController_1a147d51f3bbf9f4db6ba670a294075fef" prot="public" static="yes" mutable="no">
+        <type>const int</type>
+        <definition>const int kukadu::SensingController::HAPTIC_MODE_CLASSIFIER</definition>
+        <argsstring></argsstring>
+        <name>HAPTIC_MODE_CLASSIFIER</name>
+        <initializer>= 1</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/agyss/iis_robot_sw/iis_catkin_ws/src/kukadu/include/kukadu/manipulation/playing/controllers.hpp" line="164" column="1" bodyfile="/home/agyss/iis_robot_sw/iis_catkin_ws/src/kukadu/include/kukadu/manipulation/playing/controllers.hpp" bodystart="164" bodyend="-1"/>
+      </memberdef>
+      </sectiondef>
+      <sectiondef kind="private-func">
+      <memberdef kind="function" id="classkukadu_1_1SensingController_1a802c3fa6905410a1e7ba0e4c2bdf5417" prot="private" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>void kukadu::SensingController::writeLabelFile</definition>
+        <argsstring>(std::string baseFolderPath, std::vector&lt; std::pair&lt; int, std::string &gt; &gt; collectedSamples)</argsstring>
+        <name>writeLabelFile</name>
+        <param>
+          <type>std::string</type>
+          <declname>baseFolderPath</declname>
+        </param>
+        <param>
+          <type>std::vector&lt; std::pair&lt; int, std::string &gt; &gt;</type>
+          <declname>collectedSamples</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/agyss/iis_robot_sw/iis_catkin_ws/src/kukadu/include/kukadu/manipulation/playing/controllers.hpp" line="99" column="1" bodyfile="/home/agyss/iis_robot_sw/iis_catkin_ws/src/kukadu/src/manipulation/playing/controllers.cpp" bodystart="2067" bodyend="2077"/>
+      </memberdef>
+      <memberdef kind="function" id="classkukadu_1_1SensingController_1ab6d21393f65cf8f1c62eb6424599eba9" prot="private" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>void kukadu::SensingController::gatherData</definition>
+        <argsstring>(std::string completePath)</argsstring>
+        <name>gatherData</name>
+        <param>
+          <type>std::string</type>
+          <declname>completePath</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/agyss/iis_robot_sw/iis_catkin_ws/src/kukadu/include/kukadu/manipulation/playing/controllers.hpp" line="101" column="1" bodyfile="/home/agyss/iis_robot_sw/iis_catkin_ws/src/kukadu/src/manipulation/playing/controllers.cpp" bodystart="1640" bodyend="1660"/>
+      </memberdef>
+      <memberdef kind="function" id="classkukadu_1_1SensingController_1a4c3e8bbb222639f2fc1ee94d97dbd642" prot="private" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>void kukadu::SensingController::gatherData</definition>
+        <argsstring>(std::string dataBasePath, std::string dataName)</argsstring>
+        <name>gatherData</name>
+        <param>
+          <type>std::string</type>
+          <declname>dataBasePath</declname>
+        </param>
+        <param>
+          <type>std::string</type>
+          <declname>dataName</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/agyss/iis_robot_sw/iis_catkin_ws/src/kukadu/include/kukadu/manipulation/playing/controllers.hpp" line="102" column="1" bodyfile="/home/agyss/iis_robot_sw/iis_catkin_ws/src/kukadu/src/manipulation/playing/controllers.cpp" bodystart="1618" bodyend="1629"/>
+      </memberdef>
+      <memberdef kind="function" id="classkukadu_1_1SensingController_1a1a24682eaf8a3b010db425725256ba5e" prot="private" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>int</type>
+        <definition>int kukadu::SensingController::callClassifier</definition>
+        <argsstring>(std::string passedFilePath)</argsstring>
+        <name>callClassifier</name>
+        <param>
+          <type>std::string</type>
+          <declname>passedFilePath</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/agyss/iis_robot_sw/iis_catkin_ws/src/kukadu/include/kukadu/manipulation/playing/controllers.hpp" line="104" column="1" bodyfile="/home/agyss/iis_robot_sw/iis_catkin_ws/src/kukadu/src/manipulation/playing/controllers.cpp" bodystart="2048" bodyend="2065"/>
+      </memberdef>
+      </sectiondef>
+      <sectiondef kind="protected-func">
+      <memberdef kind="function" id="classkukadu_1_1SensingController_1afc0c30cc64d0683094e53856463a5a14" prot="protected" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>KUKADU_SHARED_PTR&lt; kukadu_mersenne_twister &gt;</type>
+        <definition>KUKADU_SHARED_PTR&lt; kukadu_mersenne_twister &gt; kukadu::SensingController::getGenerator</definition>
+        <argsstring>()</argsstring>
+        <name>getGenerator</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/agyss/iis_robot_sw/iis_catkin_ws/src/kukadu/include/kukadu/manipulation/playing/controllers.hpp" line="108" column="1" bodyfile="/home/agyss/iis_robot_sw/iis_catkin_ws/src/kukadu/src/manipulation/playing/controllers.cpp" bodystart="1594" bodyend="1596"/>
+      </memberdef>
+      <memberdef kind="function" id="classkukadu_1_1SensingController_1aebfb6e5ec327fd8731ad244ef22864f6" prot="protected" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>std::vector&lt; KUKADU_SHARED_PTR&lt; <ref refid="classkukadu_1_1ControlQueue" kindref="compound">ControlQueue</ref> &gt; &gt;</type>
+        <definition>std::vector&lt; KUKADU_SHARED_PTR&lt; ControlQueue &gt; &gt; kukadu::SensingController::getQueues</definition>
+        <argsstring>()</argsstring>
+        <name>getQueues</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/agyss/iis_robot_sw/iis_catkin_ws/src/kukadu/include/kukadu/manipulation/playing/controllers.hpp" line="109" column="1" bodyfile="/home/agyss/iis_robot_sw/iis_catkin_ws/src/kukadu/src/manipulation/playing/controllers.cpp" bodystart="1598" bodyend="1600"/>
+      </memberdef>
+      <memberdef kind="function" id="classkukadu_1_1SensingController_1a325861fdc90c26fb03b92ebb16fcb469" prot="protected" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>std::vector&lt; KUKADU_SHARED_PTR&lt; <ref refid="classkukadu_1_1GenericHand" kindref="compound">GenericHand</ref> &gt; &gt;</type>
+        <definition>std::vector&lt; KUKADU_SHARED_PTR&lt; GenericHand &gt; &gt; kukadu::SensingController::getHands</definition>
+        <argsstring>()</argsstring>
+        <name>getHands</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/agyss/iis_robot_sw/iis_catkin_ws/src/kukadu/include/kukadu/manipulation/playing/controllers.hpp" line="110" column="1" bodyfile="/home/agyss/iis_robot_sw/iis_catkin_ws/src/kukadu/src/manipulation/playing/controllers.cpp" bodystart="1602" bodyend="1604"/>
+      </memberdef>
+      <memberdef kind="function" id="classkukadu_1_1SensingController_1aa20053f2266322fbbd327f1bbed658dd" prot="protected" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>std::string</type>
+        <definition>std::string kukadu::SensingController::getTmpPath</definition>
+        <argsstring>()</argsstring>
+        <name>getTmpPath</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/agyss/iis_robot_sw/iis_catkin_ws/src/kukadu/include/kukadu/manipulation/playing/controllers.hpp" line="111" column="1" bodyfile="/home/agyss/iis_robot_sw/iis_catkin_ws/src/kukadu/src/manipulation/playing/controllers.cpp" bodystart="1606" bodyend="1608"/>
+      </memberdef>
+      <memberdef kind="function" id="classkukadu_1_1SensingController_1a351901d07d4a17d855a4c63b24788af6" prot="protected" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>int</type>
+        <definition>int kukadu::SensingController::getHapticMode</definition>
+        <argsstring>()</argsstring>
+        <name>getHapticMode</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/agyss/iis_robot_sw/iis_catkin_ws/src/kukadu/include/kukadu/manipulation/playing/controllers.hpp" line="112" column="1" bodyfile="/home/agyss/iis_robot_sw/iis_catkin_ws/src/kukadu/src/manipulation/playing/controllers.cpp" bodystart="1610" bodyend="1612"/>
+      </memberdef>
+      <memberdef kind="function" id="classkukadu_1_1SensingController_1acd94396772ba64fbfd14d7fcc3c581e9" prot="protected" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>int</type>
+        <definition>int kukadu::SensingController::getSimClassificationPrecision</definition>
+        <argsstring>()</argsstring>
+        <name>getSimClassificationPrecision</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/agyss/iis_robot_sw/iis_catkin_ws/src/kukadu/include/kukadu/manipulation/playing/controllers.hpp" line="113" column="1" bodyfile="/home/agyss/iis_robot_sw/iis_catkin_ws/src/kukadu/src/manipulation/playing/controllers.cpp" bodystart="1614" bodyend="1616"/>
+      </memberdef>
+      <memberdef kind="function" id="classkukadu_1_1SensingController_1afe31e275dcc4178bd05cfb962e05941a" prot="protected" static="no" const="no" explicit="no" inline="no" virt="virtual">
+        <type>KUKADU_SHARED_PTR&lt; <ref refid="classkukadu_1_1ControllerResult" kindref="compound">ControllerResult</ref> &gt;</type>
+        <definition>KUKADU_SHARED_PTR&lt; ControllerResult &gt; kukadu::SensingController::executeInternal</definition>
+        <argsstring>()</argsstring>
+        <name>executeInternal</name>
+        <reimplements refid="classkukadu_1_1Controller_1ad32ce108f7ab90d8631e7262239433ac">executeInternal</reimplements>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/agyss/iis_robot_sw/iis_catkin_ws/src/kukadu/include/kukadu/manipulation/playing/controllers.hpp" line="117" column="1" bodyfile="/home/agyss/iis_robot_sw/iis_catkin_ws/src/kukadu/src/manipulation/playing/controllers.cpp" bodystart="2013" bodyend="2025"/>
+      </memberdef>
+      <memberdef kind="function" id="classkukadu_1_1SensingController_1a50c7f9b186b6ef90661d27820fc9040c" prot="protected" static="no" const="no" explicit="no" inline="no" virt="virtual">
+        <type>void</type>
+        <definition>void kukadu::SensingController::createSkillFromThisInternal</definition>
+        <argsstring>(std::string skillName)</argsstring>
+        <name>createSkillFromThisInternal</name>
+        <reimplements refid="classkukadu_1_1Controller_1a83ec6ad1794980392e897edc2916c9ce">createSkillFromThisInternal</reimplements>
+        <param>
+          <type>std::string</type>
+          <declname>skillName</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/agyss/iis_robot_sw/iis_catkin_ws/src/kukadu/include/kukadu/manipulation/playing/controllers.hpp" line="119" column="1" bodyfile="/home/agyss/iis_robot_sw/iis_catkin_ws/src/kukadu/src/manipulation/playing/controllers.cpp" bodystart="1590" bodyend="1592"/>
+      </memberdef>
+      </sectiondef>
+      <sectiondef kind="public-func">
+      <memberdef kind="function" id="classkukadu_1_1SensingController_1a146867a6eba3859920f9fadb2daa6535" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type></type>
+        <definition>kukadu::SensingController::SensingController</definition>
+        <argsstring>(StorageSingleton &amp;storage, KUKADU_SHARED_PTR&lt; kukadu_mersenne_twister &gt; generator, int hapticMode, std::string caption, std::vector&lt; KUKADU_SHARED_PTR&lt; ControlQueue &gt; &gt; queues, std::vector&lt; KUKADU_SHARED_PTR&lt; GenericHand &gt; &gt; hands, std::string tmpPath, int simClassificationPrecision)</argsstring>
+        <name>SensingController</name>
+        <param>
+          <type><ref refid="classkukadu_1_1StorageSingleton" kindref="compound">StorageSingleton</ref> &amp;</type>
+          <declname>storage</declname>
+        </param>
+        <param>
+          <type>KUKADU_SHARED_PTR&lt; kukadu_mersenne_twister &gt;</type>
+          <declname>generator</declname>
+        </param>
+        <param>
+          <type>int</type>
+          <declname>hapticMode</declname>
+        </param>
+        <param>
+          <type>std::string</type>
+          <declname>caption</declname>
+        </param>
+        <param>
+          <type>std::vector&lt; KUKADU_SHARED_PTR&lt; <ref refid="classkukadu_1_1ControlQueue" kindref="compound">ControlQueue</ref> &gt; &gt;</type>
+          <declname>queues</declname>
+        </param>
+        <param>
+          <type>std::vector&lt; KUKADU_SHARED_PTR&lt; <ref refid="classkukadu_1_1GenericHand" kindref="compound">GenericHand</ref> &gt; &gt;</type>
+          <declname>hands</declname>
+        </param>
+        <param>
+          <type>std::string</type>
+          <declname>tmpPath</declname>
+        </param>
+        <param>
+          <type>int</type>
+          <declname>simClassificationPrecision</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/agyss/iis_robot_sw/iis_catkin_ws/src/kukadu/include/kukadu/manipulation/playing/controllers.hpp" line="123" column="1" bodyfile="/home/agyss/iis_robot_sw/iis_catkin_ws/src/kukadu/src/manipulation/playing/controllers.cpp" bodystart="1565" bodyend="1588"/>
+      </memberdef>
+      <memberdef kind="function" id="classkukadu_1_1SensingController_1ae8428df9d71c638898ce1d6dfcb15ce0" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>void kukadu::SensingController::setSimulationGroundTruth</definition>
+        <argsstring>(int idx)</argsstring>
+        <name>setSimulationGroundTruth</name>
+        <param>
+          <type>int</type>
+          <declname>idx</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/agyss/iis_robot_sw/iis_catkin_ws/src/kukadu/include/kukadu/manipulation/playing/controllers.hpp" line="129" column="1" bodyfile="/home/agyss/iis_robot_sw/iis_catkin_ws/src/kukadu/src/manipulation/playing/controllers.cpp" bodystart="1792" bodyend="1794"/>
+      </memberdef>
+      <memberdef kind="function" id="classkukadu_1_1SensingController_1a315e5f755a250c6c870f23cb804b5302" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>void kukadu::SensingController::setSimulationClassificationPrecision</definition>
+        <argsstring>(int percent)</argsstring>
+        <name>setSimulationClassificationPrecision</name>
+        <param>
+          <type>int</type>
+          <declname>percent</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/agyss/iis_robot_sw/iis_catkin_ws/src/kukadu/include/kukadu/manipulation/playing/controllers.hpp" line="130" column="1" bodyfile="/home/agyss/iis_robot_sw/iis_catkin_ws/src/kukadu/src/manipulation/playing/controllers.cpp" bodystart="1788" bodyend="1790"/>
+      </memberdef>
+      <memberdef kind="function" id="classkukadu_1_1SensingController_1afca2a16b9b8d131da2d6f5bc1a978008" prot="public" static="no" const="no" explicit="no" inline="no" virt="pure-virtual">
+        <type>void</type>
+        <definition>virtual void kukadu::SensingController::prepare</definition>
+        <argsstring>()=0</argsstring>
+        <name>prepare</name>
+        <reimplements refid="classkukadu_1_1Controller_1a12aafcec427d197314434f04f5ae438c">prepare</reimplements>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/agyss/iis_robot_sw/iis_catkin_ws/src/kukadu/include/kukadu/manipulation/playing/controllers.hpp" line="132" column="1"/>
+      </memberdef>
+      <memberdef kind="function" id="classkukadu_1_1SensingController_1a0b17a753858f594083f885586fa9b600" prot="public" static="no" const="no" explicit="no" inline="no" virt="pure-virtual">
+        <type>void</type>
+        <definition>virtual void kukadu::SensingController::cleanUp</definition>
+        <argsstring>()=0</argsstring>
+        <name>cleanUp</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/agyss/iis_robot_sw/iis_catkin_ws/src/kukadu/include/kukadu/manipulation/playing/controllers.hpp" line="133" column="1"/>
+      </memberdef>
+      <memberdef kind="function" id="classkukadu_1_1SensingController_1ac7d95ce5d7cdda1db1e00221266361ea" prot="public" static="no" const="no" explicit="no" inline="no" virt="pure-virtual">
+        <type>void</type>
+        <definition>virtual void kukadu::SensingController::performCore</definition>
+        <argsstring>()=0</argsstring>
+        <name>performCore</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/agyss/iis_robot_sw/iis_catkin_ws/src/kukadu/include/kukadu/manipulation/playing/controllers.hpp" line="134" column="1"/>
+      </memberdef>
+      <memberdef kind="function" id="classkukadu_1_1SensingController_1af52a9da852d4274f2ca3fb2e3b8615bc" prot="public" static="no" const="no" explicit="no" inline="no" virt="pure-virtual">
+        <type>KUKADU_SHARED_PTR&lt; <ref refid="classkukadu_1_1SensingController" kindref="compound">kukadu::SensingController</ref> &gt;</type>
+        <definition>virtual KUKADU_SHARED_PTR&lt;kukadu::SensingController&gt; kukadu::SensingController::clone</definition>
+        <argsstring>()=0</argsstring>
+        <name>clone</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/agyss/iis_robot_sw/iis_catkin_ws/src/kukadu/include/kukadu/manipulation/playing/controllers.hpp" line="136" column="1"/>
+      </memberdef>
+      <memberdef kind="function" id="classkukadu_1_1SensingController_1ad35c01b00c990a21835c6a3f091c69a8" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>void kukadu::SensingController::setParentComplexController</definition>
+        <argsstring>(KUKADU_SHARED_PTR&lt; kukadu::Controller &gt; parent)</argsstring>
+        <name>setParentComplexController</name>
+        <param>
+          <type>KUKADU_SHARED_PTR&lt; <ref refid="classkukadu_1_1Controller" kindref="compound">kukadu::Controller</ref> &gt;</type>
+          <declname>parent</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/agyss/iis_robot_sw/iis_catkin_ws/src/kukadu/include/kukadu/manipulation/playing/controllers.hpp" line="138" column="1" bodyfile="/home/agyss/iis_robot_sw/iis_catkin_ws/src/kukadu/src/manipulation/playing/controllers.cpp" bodystart="1845" bodyend="1847"/>
+      </memberdef>
+      <memberdef kind="function" id="classkukadu_1_1SensingController_1a468b1f5eaa22b3e39fdc7a037814f826" prot="public" static="no" const="no" explicit="no" inline="no" virt="virtual">
+        <type>int</type>
+        <definition>int kukadu::SensingController::performClassification</definition>
+        <argsstring>()</argsstring>
+        <name>performClassification</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/agyss/iis_robot_sw/iis_catkin_ws/src/kukadu/include/kukadu/manipulation/playing/controllers.hpp" line="140" column="1" bodyfile="/home/agyss/iis_robot_sw/iis_catkin_ws/src/kukadu/src/manipulation/playing/controllers.cpp" bodystart="1683" bodyend="1774"/>
+      </memberdef>
+      <memberdef kind="function" id="classkukadu_1_1SensingController_1a815c20754da20f64b88d64e5871a1c3d" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>int</type>
+        <definition>int kukadu::SensingController::createRandomGroundTruthIdx</definition>
+        <argsstring>()</argsstring>
+        <name>createRandomGroundTruthIdx</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/agyss/iis_robot_sw/iis_catkin_ws/src/kukadu/include/kukadu/manipulation/playing/controllers.hpp" line="141" column="1" bodyfile="/home/agyss/iis_robot_sw/iis_catkin_ws/src/kukadu/src/manipulation/playing/controllers.cpp" bodystart="1780" bodyend="1786"/>
+      </memberdef>
+      <memberdef kind="function" id="classkukadu_1_1SensingController_1ace961740476ac430a6ba0dd023f5e4d2" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>int</type>
+        <definition>int kukadu::SensingController::getSimulationGroundTruthIdx</definition>
+        <argsstring>()</argsstring>
+        <name>getSimulationGroundTruthIdx</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/agyss/iis_robot_sw/iis_catkin_ws/src/kukadu/include/kukadu/manipulation/playing/controllers.hpp" line="142" column="1" bodyfile="/home/agyss/iis_robot_sw/iis_catkin_ws/src/kukadu/src/manipulation/playing/controllers.cpp" bodystart="1776" bodyend="1778"/>
+      </memberdef>
+      <memberdef kind="function" id="classkukadu_1_1SensingController_1afa3b29d5bd12159319d1f0e268aa8087" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>int</type>
+        <definition>int kukadu::SensingController::getStateCount</definition>
+        <argsstring>()</argsstring>
+        <name>getStateCount</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/agyss/iis_robot_sw/iis_catkin_ws/src/kukadu/include/kukadu/manipulation/playing/controllers.hpp" line="144" column="1" bodyfile="/home/agyss/iis_robot_sw/iis_catkin_ws/src/kukadu/src/manipulation/playing/controllers.cpp" bodystart="1662" bodyend="1664"/>
+      </memberdef>
+      <memberdef kind="function" id="classkukadu_1_1SensingController_1aad3d56f68ad45580451bba7a55bb3046" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>void kukadu::SensingController::setStateCount</definition>
+        <argsstring>(const int &amp;stateCount)</argsstring>
+        <name>setStateCount</name>
+        <param>
+          <type>const int &amp;</type>
+          <declname>stateCount</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/agyss/iis_robot_sw/iis_catkin_ws/src/kukadu/include/kukadu/manipulation/playing/controllers.hpp" line="145" column="1" bodyfile="/home/agyss/iis_robot_sw/iis_catkin_ws/src/kukadu/src/manipulation/playing/controllers.cpp" bodystart="1666" bodyend="1668"/>
+      </memberdef>
+      <memberdef kind="function" id="classkukadu_1_1SensingController_1ac77a1ea9ec80cbdfb3ed327f81974f0a" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>double</type>
+        <definition>double kukadu::SensingController::createDataBase</definition>
+        <argsstring>(int perceptualStateId=-1)</argsstring>
+        <name>createDataBase</name>
+        <param>
+          <type>int</type>
+          <declname>perceptualStateId</declname>
+          <defval>-1</defval>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/agyss/iis_robot_sw/iis_catkin_ws/src/kukadu/include/kukadu/manipulation/playing/controllers.hpp" line="148" column="1" bodyfile="/home/agyss/iis_robot_sw/iis_catkin_ws/src/kukadu/src/manipulation/playing/controllers.cpp" bodystart="1849" bodyend="2011"/>
+      </memberdef>
+      <memberdef kind="function" id="classkukadu_1_1SensingController_1a933ad063e837843893cf67a983c22365" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>void kukadu::SensingController::setDatabasePath</definition>
+        <argsstring>(std::string databasePath)</argsstring>
+        <name>setDatabasePath</name>
+        <param>
+          <type>std::string</type>
+          <declname>databasePath</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/agyss/iis_robot_sw/iis_catkin_ws/src/kukadu/include/kukadu/manipulation/playing/controllers.hpp" line="150" column="1" bodyfile="/home/agyss/iis_robot_sw/iis_catkin_ws/src/kukadu/src/manipulation/playing/controllers.cpp" bodystart="1635" bodyend="1638"/>
+      </memberdef>
+      <memberdef kind="function" id="classkukadu_1_1SensingController_1abe59136d736a9fafdd6b8281982a4e0c" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>std::string</type>
+        <definition>std::string kukadu::SensingController::getDatabasePath</definition>
+        <argsstring>()</argsstring>
+        <name>getDatabasePath</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/agyss/iis_robot_sw/iis_catkin_ws/src/kukadu/include/kukadu/manipulation/playing/controllers.hpp" line="152" column="1" bodyfile="/home/agyss/iis_robot_sw/iis_catkin_ws/src/kukadu/src/manipulation/playing/controllers.cpp" bodystart="1631" bodyend="1633"/>
+      </memberdef>
+      <memberdef kind="function" id="classkukadu_1_1SensingController_1a9d11ad0c9456cb4a619fea2fa4b2f8ee" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>std::string</type>
+        <definition>std::string kukadu::SensingController::getFirstRobotFileName</definition>
+        <argsstring>()</argsstring>
+        <name>getFirstRobotFileName</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/agyss/iis_robot_sw/iis_catkin_ws/src/kukadu/include/kukadu/manipulation/playing/controllers.hpp" line="153" column="1" bodyfile="/home/agyss/iis_robot_sw/iis_catkin_ws/src/kukadu/src/manipulation/playing/controllers.cpp" bodystart="1670" bodyend="1672"/>
+      </memberdef>
+      <memberdef kind="function" id="classkukadu_1_1SensingController_1ab41923ec33e5fa45d114b20b3ac7775d" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>int</type>
+        <definition>int kukadu::SensingController::callClassifier</definition>
+        <argsstring>()</argsstring>
+        <name>callClassifier</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/agyss/iis_robot_sw/iis_catkin_ws/src/kukadu/include/kukadu/manipulation/playing/controllers.hpp" line="155" column="1" bodyfile="/home/agyss/iis_robot_sw/iis_catkin_ws/src/kukadu/src/manipulation/playing/controllers.cpp" bodystart="1674" bodyend="1681"/>
+      </memberdef>
+      <memberdef kind="function" id="classkukadu_1_1SensingController_1ac56bd8951624f28961e69af2728f501a" prot="public" static="no" const="no" explicit="no" inline="no" virt="virtual">
+        <type>bool</type>
+        <definition>bool kukadu::SensingController::requiresDatabase</definition>
+        <argsstring>()</argsstring>
+        <name>requiresDatabase</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/agyss/iis_robot_sw/iis_catkin_ws/src/kukadu/include/kukadu/manipulation/playing/controllers.hpp" line="160" column="1" bodyfile="/home/agyss/iis_robot_sw/iis_catkin_ws/src/kukadu/src/manipulation/playing/controllers.cpp" bodystart="2079" bodyend="2082"/>
+      </memberdef>
+      <memberdef kind="function" id="classkukadu_1_1SensingController_1a03eb70278986941270316a4eb59bffa6" prot="public" static="no" const="no" explicit="no" inline="no" virt="virtual">
+        <type>int</type>
+        <definition>int kukadu::SensingController::hardcodedClassification</definition>
+        <argsstring>()</argsstring>
+        <name>hardcodedClassification</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/agyss/iis_robot_sw/iis_catkin_ws/src/kukadu/include/kukadu/manipulation/playing/controllers.hpp" line="161" column="1" bodyfile="/home/agyss/iis_robot_sw/iis_catkin_ws/src/kukadu/src/manipulation/playing/controllers.cpp" bodystart="2043" bodyend="2046"/>
+      </memberdef>
+      </sectiondef>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <inheritancegraph>
+      <node id="575">
+        <label>kukadu::SensingController</label>
+        <link refid="classkukadu_1_1SensingController"/>
+        <childnode refid="576" relation="public-inheritance">
+        </childnode>
+        <childnode refid="578" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="577">
+        <label>kukadu::TimedObject</label>
+        <link refid="classkukadu_1_1TimedObject"/>
+      </node>
+      <node id="576">
+        <label>kukadu::Controller</label>
+        <link refid="classkukadu_1_1Controller"/>
+        <childnode refid="577" relation="private-inheritance">
+        </childnode>
+      </node>
+      <node id="578">
+        <label>std::enable_shared_from_this&lt; SensingController &gt;</label>
+      </node>
+    </inheritancegraph>
+    <collaborationgraph>
+      <node id="579">
+        <label>kukadu::SensingController</label>
+        <link refid="classkukadu_1_1SensingController"/>
+        <childnode refid="580" relation="public-inheritance">
+        </childnode>
+        <childnode refid="583" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="581">
+        <label>kukadu::TimedObject</label>
+        <link refid="classkukadu_1_1TimedObject"/>
+      </node>
+      <node id="580">
+        <label>kukadu::Controller</label>
+        <link refid="classkukadu_1_1Controller"/>
+        <childnode refid="581" relation="private-inheritance">
+        </childnode>
+        <childnode refid="582" relation="usage">
+          <edgelabel>storage</edgelabel>
+        </childnode>
+      </node>
+      <node id="582">
+        <label>kukadu::StorageSingleton</label>
+        <link refid="classkukadu_1_1StorageSingleton"/>
+      </node>
+      <node id="583">
+        <label>std::enable_shared_from_this&lt; SensingController &gt;</label>
+      </node>
+    </collaborationgraph>
+    <location file="/home/agyss/iis_robot_sw/iis_catkin_ws/src/kukadu/include/kukadu/manipulation/playing/controllers.hpp" line="72" column="1" bodyfile="/home/agyss/iis_robot_sw/iis_catkin_ws/src/kukadu/include/kukadu/manipulation/playing/controllers.hpp" bodystart="72" bodyend="166"/>
+    <listofallmembers>
+      <member refid="classkukadu_1_1SensingController_1a1a24682eaf8a3b010db425725256ba5e" prot="private" virt="non-virtual"><scope>kukadu::SensingController</scope><name>callClassifier</name></member>
+      <member refid="classkukadu_1_1SensingController_1ab41923ec33e5fa45d114b20b3ac7775d" prot="public" virt="non-virtual"><scope>kukadu::SensingController</scope><name>callClassifier</name></member>
+      <member refid="classkukadu_1_1SensingController_1ab3a87da7df73c1d62799af66492bf5d7" prot="protected" virt="non-virtual"><scope>kukadu::SensingController</scope><name>classifier</name></member>
+      <member refid="classkukadu_1_1SensingController_1a2e7c28c1e6d7cbcdb7c4e76c8eb1920a" prot="private" virt="non-virtual"><scope>kukadu::SensingController</scope><name>classifierDist</name></member>
+      <member refid="classkukadu_1_1SensingController_1aa20b0a3b1a92d5436a692eb3354f47ff" prot="private" virt="non-virtual"><scope>kukadu::SensingController</scope><name>classifierFile</name></member>
+      <member refid="classkukadu_1_1SensingController_1ac9b43f94115cd8d0d72d1b6898ead8ab" prot="private" virt="non-virtual"><scope>kukadu::SensingController</scope><name>classifierFunction</name></member>
+      <member refid="classkukadu_1_1SensingController_1a85ebb5deaf29683830811780756b04ce" prot="private" virt="non-virtual"><scope>kukadu::SensingController</scope><name>classifierPath</name></member>
+      <member refid="classkukadu_1_1SensingController_1a0b17a753858f594083f885586fa9b600" prot="public" virt="pure-virtual"><scope>kukadu::SensingController</scope><name>cleanUp</name></member>
+      <member refid="classkukadu_1_1SensingController_1af52a9da852d4274f2ca3fb2e3b8615bc" prot="public" virt="pure-virtual"><scope>kukadu::SensingController</scope><name>clone</name></member>
+      <member refid="classkukadu_1_1Controller_1af6f6a6174bbce460a82570b3d1f18f3c" prot="public" virt="non-virtual"><scope>kukadu::SensingController</scope><name>Controller</name></member>
+      <member refid="classkukadu_1_1SensingController_1ac77a1ea9ec80cbdfb3ed327f81974f0a" prot="public" virt="non-virtual"><scope>kukadu::SensingController</scope><name>createDataBase</name></member>
+      <member refid="classkukadu_1_1SensingController_1a815c20754da20f64b88d64e5871a1c3d" prot="public" virt="non-virtual"><scope>kukadu::SensingController</scope><name>createRandomGroundTruthIdx</name></member>
+      <member refid="classkukadu_1_1Controller_1a7925a80f7f1a69302633606ba6a73c34" prot="public" virt="virtual"><scope>kukadu::SensingController</scope><name>createSkillFromThis</name></member>
+      <member refid="classkukadu_1_1SensingController_1a50c7f9b186b6ef90661d27820fc9040c" prot="protected" virt="virtual"><scope>kukadu::SensingController</scope><name>createSkillFromThisInternal</name></member>
+      <member refid="classkukadu_1_1SensingController_1ad033378a2b2a203778d7ac408191877c" prot="private" virt="non-virtual"><scope>kukadu::SensingController</scope><name>currentIterationNum</name></member>
+      <member refid="classkukadu_1_1SensingController_1afe2478c2a51f983a10d3f08da57ac3a8" prot="private" virt="non-virtual"><scope>kukadu::SensingController</scope><name>databaseAlreadySet</name></member>
+      <member refid="classkukadu_1_1SensingController_1a941c5e6570b23e0a12a5d987ebc27ce0" prot="private" virt="non-virtual"><scope>kukadu::SensingController</scope><name>databasePath</name></member>
+      <member refid="classkukadu_1_1SensingController_1a1776de4cde4d8df6b8cd1bf441133c77" prot="private" virt="non-virtual"><scope>kukadu::SensingController</scope><name>dbStorage</name></member>
+      <member refid="classkukadu_1_1Controller_1a07b38b6146b380471de2c0e0706e9260" prot="public" virt="virtual"><scope>kukadu::SensingController</scope><name>execute</name></member>
+      <member refid="classkukadu_1_1SensingController_1afe31e275dcc4178bd05cfb962e05941a" prot="protected" virt="virtual"><scope>kukadu::SensingController</scope><name>executeInternal</name></member>
+      <member refid="classkukadu_1_1SensingController_1ab6d21393f65cf8f1c62eb6424599eba9" prot="private" virt="non-virtual"><scope>kukadu::SensingController</scope><name>gatherData</name></member>
+      <member refid="classkukadu_1_1SensingController_1a4c3e8bbb222639f2fc1ee94d97dbd642" prot="private" virt="non-virtual"><scope>kukadu::SensingController</scope><name>gatherData</name></member>
+      <member refid="classkukadu_1_1SensingController_1aaf14449a0d6b99bee6260487accd4477" prot="private" virt="non-virtual"><scope>kukadu::SensingController</scope><name>generator</name></member>
+      <member refid="classkukadu_1_1Controller_1a253f0cdc788a49d3d7ff325bbdbd2252" prot="protected" virt="virtual"><scope>kukadu::SensingController</scope><name>getAugmentedInfoTableName</name></member>
+      <member refid="classkukadu_1_1Controller_1aae1903e89a3af93030bd85cb6baac366" prot="public" virt="non-virtual"><scope>kukadu::SensingController</scope><name>getCaption</name></member>
+      <member refid="classkukadu_1_1Controller_1aaad4258aa03d4f941cdf8e5d9400212b" prot="public" virt="pure-virtual"><scope>kukadu::SensingController</scope><name>getClassName</name></member>
+      <member refid="classkukadu_1_1Controller_1a72d9fb0bcdfd41faf8b1277802df4a1d" prot="public" virt="non-virtual"><scope>kukadu::SensingController</scope><name>getControllerId</name></member>
+      <member refid="classkukadu_1_1SensingController_1abe59136d736a9fafdd6b8281982a4e0c" prot="public" virt="non-virtual"><scope>kukadu::SensingController</scope><name>getDatabasePath</name></member>
+      <member refid="classkukadu_1_1SensingController_1a9d11ad0c9456cb4a619fea2fa4b2f8ee" prot="public" virt="non-virtual"><scope>kukadu::SensingController</scope><name>getFirstRobotFileName</name></member>
+      <member refid="classkukadu_1_1SensingController_1afc0c30cc64d0683094e53856463a5a14" prot="protected" virt="non-virtual"><scope>kukadu::SensingController</scope><name>getGenerator</name></member>
+      <member refid="classkukadu_1_1SensingController_1a325861fdc90c26fb03b92ebb16fcb469" prot="protected" virt="non-virtual"><scope>kukadu::SensingController</scope><name>getHands</name></member>
+      <member refid="classkukadu_1_1SensingController_1a351901d07d4a17d855a4c63b24788af6" prot="protected" virt="non-virtual"><scope>kukadu::SensingController</scope><name>getHapticMode</name></member>
+      <member refid="classkukadu_1_1Controller_1a6a78436c180e48afbf6887fcd07d3173" prot="public" virt="non-virtual"><scope>kukadu::SensingController</scope><name>getIsSkill</name></member>
+      <member refid="classkukadu_1_1Controller_1aeb403995b4bfc9f279594ff339027cbf" prot="public" virt="virtual"><scope>kukadu::SensingController</scope><name>getLastSkillExecutionSuccessful</name></member>
+      <member refid="classkukadu_1_1SensingController_1aebfb6e5ec327fd8731ad244ef22864f6" prot="protected" virt="non-virtual"><scope>kukadu::SensingController</scope><name>getQueues</name></member>
+      <member refid="classkukadu_1_1SensingController_1acd94396772ba64fbfd14d7fcc3c581e9" prot="protected" virt="non-virtual"><scope>kukadu::SensingController</scope><name>getSimClassificationPrecision</name></member>
+      <member refid="classkukadu_1_1Controller_1a97ffde82f967a920ddc5efb1c5700b2a" prot="public" virt="non-virtual"><scope>kukadu::SensingController</scope><name>getSimFailingProb</name></member>
+      <member refid="classkukadu_1_1SensingController_1ace961740476ac430a6ba0dd023f5e4d2" prot="public" virt="non-virtual"><scope>kukadu::SensingController</scope><name>getSimulationGroundTruthIdx</name></member>
+      <member refid="classkukadu_1_1Controller_1a868b762c6bf33afe14c27dd12806972d" prot="public" virt="virtual"><scope>kukadu::SensingController</scope><name>getSimulationMode</name></member>
+      <member refid="classkukadu_1_1SensingController_1afa3b29d5bd12159319d1f0e268aa8087" prot="public" virt="non-virtual"><scope>kukadu::SensingController</scope><name>getStateCount</name></member>
+      <member refid="classkukadu_1_1SensingController_1aa20053f2266322fbbd327f1bbed658dd" prot="protected" virt="non-virtual"><scope>kukadu::SensingController</scope><name>getTmpPath</name></member>
+      <member refid="classkukadu_1_1Controller_1a1dbcbec07e0189e26275f1db57f4baf3" prot="public" virt="virtual"><scope>kukadu::SensingController</scope><name>getUsedHardware</name></member>
+      <member refid="classkukadu_1_1SensingController_1ac14e0e62cb3ed2a23d36272bec77b9a1" prot="private" virt="non-virtual"><scope>kukadu::SensingController</scope><name>hands</name></member>
+      <member refid="classkukadu_1_1SensingController_1a147d51f3bbf9f4db6ba670a294075fef" prot="public" virt="non-virtual"><scope>kukadu::SensingController</scope><name>HAPTIC_MODE_CLASSIFIER</name></member>
+      <member refid="classkukadu_1_1SensingController_1acad6c7b0b6090e0cfe9e00bbfbb50703" prot="public" virt="non-virtual"><scope>kukadu::SensingController</scope><name>HAPTIC_MODE_TERMINAL</name></member>
+      <member refid="classkukadu_1_1SensingController_1a11bcbc000104e8b41ff83fbe23fa9822" prot="private" virt="non-virtual"><scope>kukadu::SensingController</scope><name>hapticMode</name></member>
+      <member refid="classkukadu_1_1SensingController_1a03eb70278986941270316a4eb59bffa6" prot="public" virt="virtual"><scope>kukadu::SensingController</scope><name>hardcodedClassification</name></member>
+      <member refid="classkukadu_1_1Controller_1a74a2a16a16104b1bf16ad5eae443e968" prot="public" virt="virtual"><scope>kukadu::SensingController</scope><name>initialize</name></member>
+      <member refid="classkukadu_1_1Controller_1a57e89bfd0fdf2fd1c9991dce2a0a9196" prot="protected" virt="virtual"><scope>kukadu::SensingController</scope><name>installDb</name></member>
+      <member refid="classkukadu_1_1Controller_1a8ae66f58c5dcd2e548e933b3d1bf395e" prot="protected" virt="non-virtual"><scope>kukadu::SensingController</scope><name>isControllerInstalled</name></member>
+      <member refid="classkukadu_1_1Controller_1abeb3dd890d6f8d50306b1b8f9d6b5512" prot="protected" virt="non-virtual"><scope>kukadu::SensingController</scope><name>isShutUp</name></member>
+      <member refid="classkukadu_1_1SensingController_1a32ef60fd227e7f372a9884503a0718e9" prot="private" virt="non-virtual"><scope>kukadu::SensingController</scope><name>parentController</name></member>
+      <member refid="classkukadu_1_1SensingController_1a468b1f5eaa22b3e39fdc7a037814f826" prot="public" virt="virtual"><scope>kukadu::SensingController</scope><name>performClassification</name></member>
+      <member refid="classkukadu_1_1SensingController_1ac7d95ce5d7cdda1db1e00221266361ea" prot="public" virt="pure-virtual"><scope>kukadu::SensingController</scope><name>performCore</name></member>
+      <member refid="classkukadu_1_1SensingController_1afca2a16b9b8d131da2d6f5bc1a978008" prot="public" virt="pure-virtual"><scope>kukadu::SensingController</scope><name>prepare</name></member>
+      <member refid="classkukadu_1_1Controller_1ad28145aa06ce1cfe4bccddff42459019" prot="public" virt="virtual"><scope>kukadu::SensingController</scope><name>producesGrasp</name></member>
+      <member refid="classkukadu_1_1Controller_1a5566a7cf711318f1bf4dcd939ba7fe76" prot="protected" virt="pure-virtual"><scope>kukadu::SensingController</scope><name>producesGraspInternal</name></member>
+      <member refid="classkukadu_1_1SensingController_1a774f276e5bf80fc122932c8f826fa4a2" prot="private" virt="non-virtual"><scope>kukadu::SensingController</scope><name>queues</name></member>
+      <member refid="classkukadu_1_1SensingController_1ac56bd8951624f28961e69af2728f501a" prot="public" virt="virtual"><scope>kukadu::SensingController</scope><name>requiresDatabase</name></member>
+      <member refid="classkukadu_1_1Controller_1a20240ff89fb6a2582024140d388fd335" prot="public" virt="virtual"><scope>kukadu::SensingController</scope><name>requiresGrasp</name></member>
+      <member refid="classkukadu_1_1Controller_1ae67659a3a55cef09b2a5575107d88145" prot="protected" virt="pure-virtual"><scope>kukadu::SensingController</scope><name>requiresGraspInternal</name></member>
+      <member refid="classkukadu_1_1SensingController_1a146867a6eba3859920f9fadb2daa6535" prot="public" virt="non-virtual"><scope>kukadu::SensingController</scope><name>SensingController</name></member>
+      <member refid="classkukadu_1_1SensingController_1a933ad063e837843893cf67a983c22365" prot="public" virt="non-virtual"><scope>kukadu::SensingController</scope><name>setDatabasePath</name></member>
+      <member refid="classkukadu_1_1SensingController_1ad35c01b00c990a21835c6a3f091c69a8" prot="public" virt="non-virtual"><scope>kukadu::SensingController</scope><name>setParentComplexController</name></member>
+      <member refid="classkukadu_1_1SensingController_1a315e5f755a250c6c870f23cb804b5302" prot="public" virt="non-virtual"><scope>kukadu::SensingController</scope><name>setSimulationClassificationPrecision</name></member>
+      <member refid="classkukadu_1_1SensingController_1ae8428df9d71c638898ce1d6dfcb15ce0" prot="public" virt="non-virtual"><scope>kukadu::SensingController</scope><name>setSimulationGroundTruth</name></member>
+      <member refid="classkukadu_1_1Controller_1a888ebe1be866cb19e4c8f50eaded5bb9" prot="public" virt="virtual"><scope>kukadu::SensingController</scope><name>setSimulationMode</name></member>
+      <member refid="classkukadu_1_1Controller_1a07c70a71d6028cb711567d55e2010430" prot="protected" virt="virtual"><scope>kukadu::SensingController</scope><name>setSimulationModeInChain</name></member>
+      <member refid="classkukadu_1_1SensingController_1aad3d56f68ad45580451bba7a55bb3046" prot="public" virt="non-virtual"><scope>kukadu::SensingController</scope><name>setStateCount</name></member>
+      <member refid="classkukadu_1_1Controller_1aa27eb73a93a2d59bc0ebe15baf28bea0" prot="public" virt="non-virtual"><scope>kukadu::SensingController</scope><name>shutUp</name></member>
+      <member refid="classkukadu_1_1SensingController_1a167f8ea02137cf693716fe5d88e4d354" prot="private" virt="non-virtual"><scope>kukadu::SensingController</scope><name>simulatedClassificationPrecision</name></member>
+      <member refid="classkukadu_1_1SensingController_1a6b5b3a95aaa5990d64fecd2e61a3d17f" prot="private" virt="non-virtual"><scope>kukadu::SensingController</scope><name>simulationGroundTruth</name></member>
+      <member refid="classkukadu_1_1Controller_1a1973596dea74a0706e275f044ca190b0" prot="public" virt="non-virtual"><scope>kukadu::SensingController</scope><name>startTalking</name></member>
+      <member refid="classkukadu_1_1SensingController_1aa7c2afc5a197d73bc42111bc08c3a0b8" prot="private" virt="non-virtual"><scope>kukadu::SensingController</scope><name>stateCount</name></member>
+      <member refid="classkukadu_1_1Controller_1a15f9c5940d6584ccea9832de54525f27" prot="protected" virt="non-virtual"><scope>kukadu::SensingController</scope><name>storage</name></member>
+      <member refid="classkukadu_1_1SensingController_1ace506b5595a83d3e7b0563170b46e1e5" prot="private" virt="non-virtual"><scope>kukadu::SensingController</scope><name>tmpPath</name></member>
+      <member refid="classkukadu_1_1SensingController_1a802c3fa6905410a1e7ba0e4c2bdf5417" prot="private" virt="non-virtual"><scope>kukadu::SensingController</scope><name>writeLabelFile</name></member>
+    </listofallmembers>
+  </compounddef>
+</doxygen>

@@ -1,0 +1,183 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.8.11">
+  <compounddef id="visualization_8hpp" kind="file" language="C++">
+    <compoundname>visualization.hpp</compoundname>
+    <includes local="no">vector</includes>
+    <includes local="no">iostream</includes>
+    <includes refid="learning_2projective__simulation_2core_8hpp" local="no">kukadu/learning/projective_simulation/core.hpp</includes>
+    <includedby refid="treedrawer_8cpp" local="no">/home/agyss/iis_robot_sw/iis_catkin_ws/src/kukadu/src/learning/projective_simulation/treedrawer.cpp</includedby>
+    <includedby refid="learning_8hpp" local="no">/home/agyss/iis_robot_sw/iis_catkin_ws/src/kukadu/include/kukadu/learning.hpp</includedby>
+    <incdepgraph>
+      <node id="611">
+        <label>limits</label>
+      </node>
+      <node id="610">
+        <label>kukadu/learning/projective_simulation/core.hpp</label>
+        <link refid="learning_2projective__simulation_2core_8hpp_source"/>
+        <childnode refid="611" relation="include">
+        </childnode>
+        <childnode refid="612" relation="include">
+        </childnode>
+        <childnode refid="608" relation="include">
+        </childnode>
+        <childnode refid="613" relation="include">
+        </childnode>
+        <childnode refid="619" relation="include">
+        </childnode>
+      </node>
+      <node id="607">
+        <label>/home/agyss/iis_robot_sw/iis_catkin_ws/src/kukadu/include/kukadu/learning/projective_simulation/visualization.hpp</label>
+        <link refid="visualization.hpp"/>
+        <childnode refid="608" relation="include">
+        </childnode>
+        <childnode refid="609" relation="include">
+        </childnode>
+        <childnode refid="610" relation="include">
+        </childnode>
+      </node>
+      <node id="613">
+        <label>kukadu/types/kukadutypes.hpp</label>
+        <link refid="kukadutypes_8hpp_source"/>
+        <childnode refid="614" relation="include">
+        </childnode>
+        <childnode refid="615" relation="include">
+        </childnode>
+        <childnode refid="616" relation="include">
+        </childnode>
+        <childnode refid="617" relation="include">
+        </childnode>
+        <childnode refid="618" relation="include">
+        </childnode>
+      </node>
+      <node id="612">
+        <label>string</label>
+      </node>
+      <node id="619">
+        <label>kukadu/learning/projective_simulation/clips.hpp</label>
+        <link refid="clips_8hpp_source"/>
+        <childnode refid="620" relation="include">
+        </childnode>
+        <childnode refid="612" relation="include">
+        </childnode>
+        <childnode refid="608" relation="include">
+        </childnode>
+        <childnode refid="621" relation="include">
+        </childnode>
+        <childnode refid="613" relation="include">
+        </childnode>
+      </node>
+      <node id="614">
+        <label>exception</label>
+      </node>
+      <node id="618">
+        <label>random</label>
+      </node>
+      <node id="608">
+        <label>vector</label>
+      </node>
+      <node id="609">
+        <label>iostream</label>
+      </node>
+      <node id="621">
+        <label>climits</label>
+      </node>
+      <node id="617">
+        <label>mutex</label>
+      </node>
+      <node id="616">
+        <label>thread</label>
+      </node>
+      <node id="620">
+        <label>set</label>
+      </node>
+      <node id="615">
+        <label>memory</label>
+      </node>
+    </incdepgraph>
+    <invincdepgraph>
+      <node id="623">
+        <label>/home/agyss/iis_robot_sw/iis_catkin_ws/src/kukadu/include/kukadu/learning.hpp</label>
+        <link refid="learning_8hpp_source"/>
+        <childnode refid="624" relation="include">
+        </childnode>
+      </node>
+      <node id="622">
+        <label>/home/agyss/iis_robot_sw/iis_catkin_ws/src/kukadu/include/kukadu/learning/projective_simulation/visualization.hpp</label>
+        <link refid="visualization.hpp"/>
+        <childnode refid="623" relation="include">
+        </childnode>
+      </node>
+      <node id="624">
+        <label>/home/agyss/iis_robot_sw/iis_catkin_ws/src/kukadu/include/kukadu/kukadu.hpp</label>
+        <link refid="kukadu_8hpp_source"/>
+      </node>
+    </invincdepgraph>
+    <innerclass refid="classkukadu_1_1TreeDrawer" prot="public">kukadu::TreeDrawer</innerclass>
+    <innernamespace refid="namespacekukadu">kukadu</innernamespace>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <programlisting>
+<codeline lineno="1"><highlight class="preprocessor">#ifndef<sp/>KUKADU_TREEDRAWER_H</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="2"><highlight class="normal"></highlight><highlight class="preprocessor">#define<sp/>KUKADU_TREEDRAWER_H</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="3"><highlight class="normal"></highlight></codeline>
+<codeline lineno="4"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&lt;vector&gt;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="5"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&lt;iostream&gt;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="6"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&lt;kukadu/learning/projective_simulation/core.hpp&gt;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="7"><highlight class="normal"></highlight></codeline>
+<codeline lineno="8"><highlight class="normal"></highlight><highlight class="preprocessor">#if<sp/>VISUALIZATION<sp/>==<sp/>1</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="9"><highlight class="normal"></highlight><highlight class="preprocessor"><sp/><sp/><sp/><sp/>#include<sp/>&lt;allegro5/allegro.h&gt;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="10"><highlight class="normal"></highlight><highlight class="preprocessor"><sp/><sp/><sp/><sp/>#include<sp/>&lt;allegro5/allegro_font.h&gt;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="11"><highlight class="normal"></highlight><highlight class="preprocessor">#endif</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="12"><highlight class="normal"></highlight></codeline>
+<codeline lineno="13"><highlight class="normal"></highlight><highlight class="keyword">namespace<sp/></highlight><highlight class="normal"><ref refid="namespacekukadu" kindref="compound">kukadu</ref><sp/>{</highlight></codeline>
+<codeline lineno="14"><highlight class="normal"></highlight></codeline>
+<codeline lineno="15" refid="classkukadu_1_1TreeDrawer" refkind="compound"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">class<sp/></highlight><highlight class="normal"><ref refid="classkukadu_1_1TreeDrawer" kindref="compound">TreeDrawer</ref><sp/>{</highlight></codeline>
+<codeline lineno="16"><highlight class="normal"></highlight></codeline>
+<codeline lineno="17"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">private</highlight><highlight class="normal">:</highlight></codeline>
+<codeline lineno="18"><highlight class="normal"></highlight></codeline>
+<codeline lineno="19"><highlight class="normal"></highlight><highlight class="preprocessor"><sp/><sp/><sp/><sp/>#if<sp/>VISUALIZATION<sp/>==<sp/>1</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="20"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>ALLEGRO_FONT*<sp/>font;</highlight></codeline>
+<codeline lineno="21"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>ALLEGRO_DISPLAY*<sp/>display;</highlight></codeline>
+<codeline lineno="22"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>ALLEGRO_EVENT_QUEUE*<sp/>event_queue;</highlight></codeline>
+<codeline lineno="23"><highlight class="normal"></highlight></codeline>
+<codeline lineno="24"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>ALLEGRO_COLOR<sp/>textColor;</highlight></codeline>
+<codeline lineno="25"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>ALLEGRO_COLOR<sp/>circleColor;</highlight></codeline>
+<codeline lineno="26"><highlight class="normal"></highlight><highlight class="preprocessor"><sp/><sp/><sp/><sp/>#endif</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="27"><highlight class="normal"></highlight></codeline>
+<codeline lineno="28"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/>windowXSize;</highlight></codeline>
+<codeline lineno="29"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/>windowYSize;</highlight></codeline>
+<codeline lineno="30"><highlight class="normal"></highlight></codeline>
+<codeline lineno="31"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/>construct();</highlight></codeline>
+<codeline lineno="32"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/>drawNode(</highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/>x,<sp/></highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/>y,<sp/>std::string<sp/>text,<sp/></highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/>level);</highlight></codeline>
+<codeline lineno="33"><highlight class="normal"></highlight></codeline>
+<codeline lineno="34"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/>compteXOffset(KUKADU_SHARED_PTR&lt;std::set&lt;KUKADU_SHARED_PTR&lt;Clip&gt;,<sp/><ref refid="structkukadu_1_1clip__compare" kindref="compound">clip_compare</ref>&gt;<sp/>&gt;<sp/>level);</highlight></codeline>
+<codeline lineno="35"><highlight class="normal"></highlight></codeline>
+<codeline lineno="36"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">static</highlight><highlight class="normal"><sp/></highlight><highlight class="keyword">auto</highlight><highlight class="normal"><sp/>constexpr<sp/>TREEDRAWER_H_NODE_X_OFFS<sp/>=<sp/>50;</highlight></codeline>
+<codeline lineno="37"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">static</highlight><highlight class="normal"><sp/></highlight><highlight class="keyword">auto</highlight><highlight class="normal"><sp/>constexpr<sp/>TREEDRAWER_H_NODE_Y_OFFS<sp/>=<sp/>70;</highlight></codeline>
+<codeline lineno="38"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">static</highlight><highlight class="normal"><sp/></highlight><highlight class="keyword">auto</highlight><highlight class="normal"><sp/>constexpr<sp/>TREEDRAWER_H_NODE_X_DIST<sp/>=<sp/>125;</highlight></codeline>
+<codeline lineno="39"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">static</highlight><highlight class="normal"><sp/></highlight><highlight class="keyword">auto</highlight><highlight class="normal"><sp/>constexpr<sp/>TREEDRAWER_H_NODE_Y_DIST<sp/>=<sp/>150;</highlight></codeline>
+<codeline lineno="40"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">static</highlight><highlight class="normal"><sp/></highlight><highlight class="keyword">auto</highlight><highlight class="normal"><sp/>constexpr<sp/>TREEDRAWER_H_EDGE_Y_OFFS<sp/>=<sp/>20;</highlight></codeline>
+<codeline lineno="41"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">static</highlight><highlight class="normal"><sp/></highlight><highlight class="keyword">auto</highlight><highlight class="normal"><sp/>constexpr<sp/>TREEDRAWER_H_WINDOW_X_SIZE<sp/>=<sp/>1024;</highlight></codeline>
+<codeline lineno="42"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">static</highlight><highlight class="normal"><sp/></highlight><highlight class="keyword">auto</highlight><highlight class="normal"><sp/>constexpr<sp/>TREEDRAWER_H_WINDOW_Y_SIZE<sp/>=<sp/>1500;</highlight></codeline>
+<codeline lineno="43"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">static</highlight><highlight class="normal"><sp/></highlight><highlight class="keyword">auto</highlight><highlight class="normal"><sp/>constexpr<sp/>TREEDRAWER_H_NODE_RADIUS<sp/>=<sp/>60;</highlight></codeline>
+<codeline lineno="44"><highlight class="normal"></highlight></codeline>
+<codeline lineno="45"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">public</highlight><highlight class="normal">:</highlight></codeline>
+<codeline lineno="46"><highlight class="normal"></highlight></codeline>
+<codeline lineno="47"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><ref refid="classkukadu_1_1TreeDrawer" kindref="compound">TreeDrawer</ref>();</highlight></codeline>
+<codeline lineno="48"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><ref refid="classkukadu_1_1TreeDrawer" kindref="compound">TreeDrawer</ref>(</highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/>windowXSize,<sp/></highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/>windowYSize);</highlight></codeline>
+<codeline lineno="49"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>~<ref refid="classkukadu_1_1TreeDrawer" kindref="compound">TreeDrawer</ref>();</highlight></codeline>
+<codeline lineno="50"><highlight class="normal"></highlight></codeline>
+<codeline lineno="51"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/>waitForEnter();</highlight></codeline>
+<codeline lineno="52"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/>drawTree(KUKADU_SHARED_PTR&lt;ProjectiveSimulator&gt;<sp/>projSim);</highlight></codeline>
+<codeline lineno="53"><highlight class="normal"></highlight></codeline>
+<codeline lineno="54"><highlight class="normal"><sp/><sp/><sp/><sp/>};</highlight></codeline>
+<codeline lineno="55"><highlight class="normal"></highlight></codeline>
+<codeline lineno="56"><highlight class="normal">}</highlight></codeline>
+<codeline lineno="57"><highlight class="normal"></highlight></codeline>
+<codeline lineno="58"><highlight class="normal"></highlight><highlight class="preprocessor">#endif</highlight></codeline>
+    </programlisting>
+    <location file="/home/agyss/iis_robot_sw/iis_catkin_ws/src/kukadu/include/kukadu/learning/projective_simulation/visualization.hpp"/>
+  </compounddef>
+</doxygen>

@@ -1,0 +1,133 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.8.11">
+  <compounddef id="classkukadu_1_1ColorFilter" kind="class" language="C++" prot="public">
+    <compoundname>kukadu::ColorFilter</compoundname>
+    <basecompoundref refid="classkukadu_1_1PCTransformator" prot="public" virt="non-virtual">kukadu::PCTransformator</basecompoundref>
+      <sectiondef kind="private-attrib">
+      <memberdef kind="variable" id="classkukadu_1_1ColorFilter_1a85b065875ac0303d83c72a1f4b3162ed" prot="private" static="no" mutable="no">
+        <type>std::vector&lt; int &gt;</type>
+        <definition>std::vector&lt;int&gt; kukadu::ColorFilter::rgbRangeStart</definition>
+        <argsstring></argsstring>
+        <name>rgbRangeStart</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/agyss/iis_robot_sw/iis_catkin_ws/src/kukadu/include/kukadu/vision/pcstdtrans.hpp" line="68" column="1" bodyfile="/home/agyss/iis_robot_sw/iis_catkin_ws/src/kukadu/include/kukadu/vision/pcstdtrans.hpp" bodystart="68" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classkukadu_1_1ColorFilter_1acd268f18793868f51a835cfcd23e18f6" prot="private" static="no" mutable="no">
+        <type>std::vector&lt; int &gt;</type>
+        <definition>std::vector&lt;int&gt; kukadu::ColorFilter::rgbRangeEnd</definition>
+        <argsstring></argsstring>
+        <name>rgbRangeEnd</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/agyss/iis_robot_sw/iis_catkin_ws/src/kukadu/include/kukadu/vision/pcstdtrans.hpp" line="69" column="1" bodyfile="/home/agyss/iis_robot_sw/iis_catkin_ws/src/kukadu/include/kukadu/vision/pcstdtrans.hpp" bodystart="69" bodyend="-1"/>
+      </memberdef>
+      </sectiondef>
+      <sectiondef kind="public-func">
+      <memberdef kind="function" id="classkukadu_1_1ColorFilter_1a7f7cb60b465a87b54ff190278b765313" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type></type>
+        <definition>kukadu::ColorFilter::ColorFilter</definition>
+        <argsstring>(std::vector&lt; int &gt; rgbRangeStart, std::vector&lt; int &gt; rgbRangeEnd)</argsstring>
+        <name>ColorFilter</name>
+        <param>
+          <type>std::vector&lt; int &gt;</type>
+          <declname>rgbRangeStart</declname>
+        </param>
+        <param>
+          <type>std::vector&lt; int &gt;</type>
+          <declname>rgbRangeEnd</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/agyss/iis_robot_sw/iis_catkin_ws/src/kukadu/include/kukadu/vision/pcstdtrans.hpp" line="73" column="1" bodyfile="/home/agyss/iis_robot_sw/iis_catkin_ws/src/kukadu/src/vision/pcstdtrans.cpp" bodystart="192" bodyend="195"/>
+      </memberdef>
+      <memberdef kind="function" id="classkukadu_1_1ColorFilter_1a578b211becef1320def3cac4d54c7cab" prot="public" static="no" const="no" explicit="no" inline="no" virt="virtual">
+        <type>pcl::PointCloud&lt; pcl::PointXYZ &gt;::Ptr</type>
+        <definition>pcl::PointCloud&lt; pcl::PointXYZ &gt;::Ptr kukadu::ColorFilter::transformPc</definition>
+        <argsstring>(pcl::PointCloud&lt; pcl::PointXYZ &gt;::Ptr cloud)</argsstring>
+        <name>transformPc</name>
+        <reimplements refid="classkukadu_1_1PCTransformator_1a00b1b5ca897b6a7a3590340c19a53435">transformPc</reimplements>
+        <param>
+          <type>pcl::PointCloud&lt; pcl::PointXYZ &gt;::Ptr</type>
+          <declname>cloud</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/agyss/iis_robot_sw/iis_catkin_ws/src/kukadu/include/kukadu/vision/pcstdtrans.hpp" line="75" column="1" bodyfile="/home/agyss/iis_robot_sw/iis_catkin_ws/src/kukadu/src/vision/pcstdtrans.cpp" bodystart="233" bodyend="235"/>
+      </memberdef>
+      <memberdef kind="function" id="classkukadu_1_1ColorFilter_1a97fb6daa64417747bd262f86fbe275d7" prot="public" static="no" const="no" explicit="no" inline="no" virt="virtual">
+        <type>pcl::PointCloud&lt; pcl::PointXYZRGB &gt;::Ptr</type>
+        <definition>pcl::PointCloud&lt; pcl::PointXYZRGB &gt;::Ptr kukadu::ColorFilter::transformPc</definition>
+        <argsstring>(pcl::PointCloud&lt; pcl::PointXYZRGB &gt;::Ptr pc)</argsstring>
+        <name>transformPc</name>
+        <reimplements refid="classkukadu_1_1PCTransformator_1af5b8457c380316080cdcde4e2919e1a7">transformPc</reimplements>
+        <param>
+          <type>pcl::PointCloud&lt; pcl::PointXYZRGB &gt;::Ptr</type>
+          <declname>pc</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/agyss/iis_robot_sw/iis_catkin_ws/src/kukadu/include/kukadu/vision/pcstdtrans.hpp" line="76" column="1" bodyfile="/home/agyss/iis_robot_sw/iis_catkin_ws/src/kukadu/src/vision/pcstdtrans.cpp" bodystart="197" bodyend="231"/>
+      </memberdef>
+      </sectiondef>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <inheritancegraph>
+      <node id="85">
+        <label>kukadu::PCTransformator</label>
+        <link refid="classkukadu_1_1PCTransformator"/>
+      </node>
+      <node id="84">
+        <label>kukadu::ColorFilter</label>
+        <link refid="classkukadu_1_1ColorFilter"/>
+        <childnode refid="85" relation="public-inheritance">
+        </childnode>
+      </node>
+    </inheritancegraph>
+    <collaborationgraph>
+      <node id="87">
+        <label>kukadu::PCTransformator</label>
+        <link refid="classkukadu_1_1PCTransformator"/>
+      </node>
+      <node id="86">
+        <label>kukadu::ColorFilter</label>
+        <link refid="classkukadu_1_1ColorFilter"/>
+        <childnode refid="87" relation="public-inheritance">
+        </childnode>
+      </node>
+    </collaborationgraph>
+    <location file="/home/agyss/iis_robot_sw/iis_catkin_ws/src/kukadu/include/kukadu/vision/pcstdtrans.hpp" line="64" column="1" bodyfile="/home/agyss/iis_robot_sw/iis_catkin_ws/src/kukadu/include/kukadu/vision/pcstdtrans.hpp" bodystart="64" bodyend="78"/>
+    <listofallmembers>
+      <member refid="classkukadu_1_1ColorFilter_1a7f7cb60b465a87b54ff190278b765313" prot="public" virt="non-virtual"><scope>kukadu::ColorFilter</scope><name>ColorFilter</name></member>
+      <member refid="classkukadu_1_1PCTransformator_1a9e37df3d586aa7991c13f70394ca6ab8" prot="public" virt="non-virtual"><scope>kukadu::ColorFilter</scope><name>fakeRgb</name></member>
+      <member refid="classkukadu_1_1PCTransformator_1aec33a492661e428643b680b3ea2455f0" prot="public" virt="non-virtual"><scope>kukadu::ColorFilter</scope><name>removeIntensity</name></member>
+      <member refid="classkukadu_1_1PCTransformator_1a0c533cd3559a1d2959ff315f0d2efc17" prot="public" virt="non-virtual"><scope>kukadu::ColorFilter</scope><name>removeRgb</name></member>
+      <member refid="classkukadu_1_1ColorFilter_1acd268f18793868f51a835cfcd23e18f6" prot="private" virt="non-virtual"><scope>kukadu::ColorFilter</scope><name>rgbRangeEnd</name></member>
+      <member refid="classkukadu_1_1ColorFilter_1a85b065875ac0303d83c72a1f4b3162ed" prot="private" virt="non-virtual"><scope>kukadu::ColorFilter</scope><name>rgbRangeStart</name></member>
+      <member refid="classkukadu_1_1ColorFilter_1a578b211becef1320def3cac4d54c7cab" prot="public" virt="virtual"><scope>kukadu::ColorFilter</scope><name>transformPc</name></member>
+      <member refid="classkukadu_1_1ColorFilter_1a97fb6daa64417747bd262f86fbe275d7" prot="public" virt="virtual"><scope>kukadu::ColorFilter</scope><name>transformPc</name></member>
+    </listofallmembers>
+  </compounddef>
+</doxygen>

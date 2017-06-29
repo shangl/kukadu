@@ -1,0 +1,257 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.8.11">
+  <compounddef id="classkukadu_1_1InfTheoConstraints" kind="class" language="C++" prot="public">
+    <compoundname>kukadu::InfTheoConstraints</compoundname>
+      <sectiondef kind="private-attrib">
+      <memberdef kind="variable" id="classkukadu_1_1InfTheoConstraints_1aaf255dd0b67bf5552b926a368f95cae7" prot="private" static="no" mutable="no">
+        <type>std::vector&lt; arma::vec &gt;</type>
+        <definition>std::vector&lt;arma::vec&gt; kukadu::InfTheoConstraints::x1s</definition>
+        <argsstring></argsstring>
+        <name>x1s</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/agyss/iis_robot_sw/iis_catkin_ws/src/kukadu/include/kukadu/learning/metric_learning/metriclearner.hpp" line="68" column="1" bodyfile="/home/agyss/iis_robot_sw/iis_catkin_ws/src/kukadu/include/kukadu/learning/metric_learning/metriclearner.hpp" bodystart="68" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classkukadu_1_1InfTheoConstraints_1af18fbac314068ffc8c47b0502df0c5c1" prot="private" static="no" mutable="no">
+        <type>std::vector&lt; arma::vec &gt;</type>
+        <definition>std::vector&lt;arma::vec&gt; kukadu::InfTheoConstraints::x2s</definition>
+        <argsstring></argsstring>
+        <name>x2s</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/agyss/iis_robot_sw/iis_catkin_ws/src/kukadu/include/kukadu/learning/metric_learning/metriclearner.hpp" line="69" column="1" bodyfile="/home/agyss/iis_robot_sw/iis_catkin_ws/src/kukadu/include/kukadu/learning/metric_learning/metriclearner.hpp" bodystart="69" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classkukadu_1_1InfTheoConstraints_1a3806fbb3a001216bd50521f9d14832f9" prot="private" static="no" mutable="no">
+        <type>std::vector&lt; double &gt;</type>
+        <definition>std::vector&lt;double&gt; kukadu::InfTheoConstraints::slacks</definition>
+        <argsstring></argsstring>
+        <name>slacks</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/agyss/iis_robot_sw/iis_catkin_ws/src/kukadu/include/kukadu/learning/metric_learning/metriclearner.hpp" line="70" column="1" bodyfile="/home/agyss/iis_robot_sw/iis_catkin_ws/src/kukadu/include/kukadu/learning/metric_learning/metriclearner.hpp" bodystart="70" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classkukadu_1_1InfTheoConstraints_1ac612f9321f4c068d826b7a427b5b550c" prot="private" static="no" mutable="no">
+        <type>std::vector&lt; double &gt;</type>
+        <definition>std::vector&lt;double&gt; kukadu::InfTheoConstraints::lambdas</definition>
+        <argsstring></argsstring>
+        <name>lambdas</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/agyss/iis_robot_sw/iis_catkin_ws/src/kukadu/include/kukadu/learning/metric_learning/metriclearner.hpp" line="71" column="1" bodyfile="/home/agyss/iis_robot_sw/iis_catkin_ws/src/kukadu/include/kukadu/learning/metric_learning/metriclearner.hpp" bodystart="71" bodyend="-1"/>
+      </memberdef>
+      </sectiondef>
+      <sectiondef kind="public-func">
+      <memberdef kind="function" id="classkukadu_1_1InfTheoConstraints_1a5e6dcd229a24f1d05407a0d3d2cced13" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type></type>
+        <definition>kukadu::InfTheoConstraints::InfTheoConstraints</definition>
+        <argsstring>()</argsstring>
+        <name>InfTheoConstraints</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/agyss/iis_robot_sw/iis_catkin_ws/src/kukadu/include/kukadu/learning/metric_learning/metriclearner.hpp" line="75" column="1" bodyfile="/home/agyss/iis_robot_sw/iis_catkin_ws/src/kukadu/src/learning/metric_learning/metriclearner.cpp" bodystart="101" bodyend="102"/>
+      </memberdef>
+      <memberdef kind="function" id="classkukadu_1_1InfTheoConstraints_1aa25c31a3ac239b93ca899d5c0dab9f49" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>void kukadu::InfTheoConstraints::addConstraint</definition>
+        <argsstring>(arma::vec x1, arma::vec x2, double slack)</argsstring>
+        <name>addConstraint</name>
+        <param>
+          <type>arma::vec</type>
+          <declname>x1</declname>
+        </param>
+        <param>
+          <type>arma::vec</type>
+          <declname>x2</declname>
+        </param>
+        <param>
+          <type>double</type>
+          <declname>slack</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/agyss/iis_robot_sw/iis_catkin_ws/src/kukadu/include/kukadu/learning/metric_learning/metriclearner.hpp" line="77" column="1" bodyfile="/home/agyss/iis_robot_sw/iis_catkin_ws/src/kukadu/src/learning/metric_learning/metriclearner.cpp" bodystart="104" bodyend="112"/>
+      </memberdef>
+      <memberdef kind="function" id="classkukadu_1_1InfTheoConstraints_1ac1d85733f326e20e6900ad3debafda0f" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>void kukadu::InfTheoConstraints::flush</definition>
+        <argsstring>()</argsstring>
+        <name>flush</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/agyss/iis_robot_sw/iis_catkin_ws/src/kukadu/include/kukadu/learning/metric_learning/metriclearner.hpp" line="78" column="1" bodyfile="/home/agyss/iis_robot_sw/iis_catkin_ws/src/kukadu/src/learning/metric_learning/metriclearner.cpp" bodystart="114" bodyend="119"/>
+      </memberdef>
+      <memberdef kind="function" id="classkukadu_1_1InfTheoConstraints_1a722ffde92b39ab76c9fde6629acbebf6" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>int</type>
+        <definition>int kukadu::InfTheoConstraints::getConstraintCount</definition>
+        <argsstring>()</argsstring>
+        <name>getConstraintCount</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/agyss/iis_robot_sw/iis_catkin_ws/src/kukadu/include/kukadu/learning/metric_learning/metriclearner.hpp" line="80" column="1" bodyfile="/home/agyss/iis_robot_sw/iis_catkin_ws/src/kukadu/src/learning/metric_learning/metriclearner.cpp" bodystart="121" bodyend="123"/>
+      </memberdef>
+      <memberdef kind="function" id="classkukadu_1_1InfTheoConstraints_1a085b65427f852bad0414f758cd21821e" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>arma::vec</type>
+        <definition>arma::vec kukadu::InfTheoConstraints::getX1</definition>
+        <argsstring>(int idx)</argsstring>
+        <name>getX1</name>
+        <param>
+          <type>int</type>
+          <declname>idx</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/agyss/iis_robot_sw/iis_catkin_ws/src/kukadu/include/kukadu/learning/metric_learning/metriclearner.hpp" line="82" column="1" bodyfile="/home/agyss/iis_robot_sw/iis_catkin_ws/src/kukadu/src/learning/metric_learning/metriclearner.cpp" bodystart="125" bodyend="127"/>
+      </memberdef>
+      <memberdef kind="function" id="classkukadu_1_1InfTheoConstraints_1aea03b865c1285775b57fcf88f1d7104c" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>arma::vec</type>
+        <definition>arma::vec kukadu::InfTheoConstraints::getX2</definition>
+        <argsstring>(int idx)</argsstring>
+        <name>getX2</name>
+        <param>
+          <type>int</type>
+          <declname>idx</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/agyss/iis_robot_sw/iis_catkin_ws/src/kukadu/include/kukadu/learning/metric_learning/metriclearner.hpp" line="83" column="1" bodyfile="/home/agyss/iis_robot_sw/iis_catkin_ws/src/kukadu/src/learning/metric_learning/metriclearner.cpp" bodystart="129" bodyend="131"/>
+      </memberdef>
+      <memberdef kind="function" id="classkukadu_1_1InfTheoConstraints_1ac006e5b1d58e8fbea8985786766d6596" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>double</type>
+        <definition>double kukadu::InfTheoConstraints::getSlack</definition>
+        <argsstring>(int idx)</argsstring>
+        <name>getSlack</name>
+        <param>
+          <type>int</type>
+          <declname>idx</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/agyss/iis_robot_sw/iis_catkin_ws/src/kukadu/include/kukadu/learning/metric_learning/metriclearner.hpp" line="84" column="1" bodyfile="/home/agyss/iis_robot_sw/iis_catkin_ws/src/kukadu/src/learning/metric_learning/metriclearner.cpp" bodystart="133" bodyend="135"/>
+      </memberdef>
+      <memberdef kind="function" id="classkukadu_1_1InfTheoConstraints_1a164b756056c091f61414275c05617b01" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>double</type>
+        <definition>double kukadu::InfTheoConstraints::getLambda</definition>
+        <argsstring>(int idx)</argsstring>
+        <name>getLambda</name>
+        <param>
+          <type>int</type>
+          <declname>idx</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/agyss/iis_robot_sw/iis_catkin_ws/src/kukadu/include/kukadu/learning/metric_learning/metriclearner.hpp" line="85" column="1" bodyfile="/home/agyss/iis_robot_sw/iis_catkin_ws/src/kukadu/src/learning/metric_learning/metriclearner.cpp" bodystart="137" bodyend="139"/>
+      </memberdef>
+      <memberdef kind="function" id="classkukadu_1_1InfTheoConstraints_1adb17a3786b877a8001051697131349c4" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>void kukadu::InfTheoConstraints::setSlack</definition>
+        <argsstring>(int idx, double slack)</argsstring>
+        <name>setSlack</name>
+        <param>
+          <type>int</type>
+          <declname>idx</declname>
+        </param>
+        <param>
+          <type>double</type>
+          <declname>slack</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/agyss/iis_robot_sw/iis_catkin_ws/src/kukadu/include/kukadu/learning/metric_learning/metriclearner.hpp" line="87" column="1" bodyfile="/home/agyss/iis_robot_sw/iis_catkin_ws/src/kukadu/src/learning/metric_learning/metriclearner.cpp" bodystart="141" bodyend="143"/>
+      </memberdef>
+      <memberdef kind="function" id="classkukadu_1_1InfTheoConstraints_1ac418da12a5d931c5acee6dc724123f3a" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>void kukadu::InfTheoConstraints::setLambda</definition>
+        <argsstring>(int idx, double lambda)</argsstring>
+        <name>setLambda</name>
+        <param>
+          <type>int</type>
+          <declname>idx</declname>
+        </param>
+        <param>
+          <type>double</type>
+          <declname>lambda</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/agyss/iis_robot_sw/iis_catkin_ws/src/kukadu/include/kukadu/learning/metric_learning/metriclearner.hpp" line="88" column="1" bodyfile="/home/agyss/iis_robot_sw/iis_catkin_ws/src/kukadu/src/learning/metric_learning/metriclearner.cpp" bodystart="145" bodyend="147"/>
+      </memberdef>
+      </sectiondef>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <location file="/home/agyss/iis_robot_sw/iis_catkin_ws/src/kukadu/include/kukadu/learning/metric_learning/metriclearner.hpp" line="64" column="1" bodyfile="/home/agyss/iis_robot_sw/iis_catkin_ws/src/kukadu/include/kukadu/learning/metric_learning/metriclearner.hpp" bodystart="64" bodyend="89"/>
+    <listofallmembers>
+      <member refid="classkukadu_1_1InfTheoConstraints_1aa25c31a3ac239b93ca899d5c0dab9f49" prot="public" virt="non-virtual"><scope>kukadu::InfTheoConstraints</scope><name>addConstraint</name></member>
+      <member refid="classkukadu_1_1InfTheoConstraints_1ac1d85733f326e20e6900ad3debafda0f" prot="public" virt="non-virtual"><scope>kukadu::InfTheoConstraints</scope><name>flush</name></member>
+      <member refid="classkukadu_1_1InfTheoConstraints_1a722ffde92b39ab76c9fde6629acbebf6" prot="public" virt="non-virtual"><scope>kukadu::InfTheoConstraints</scope><name>getConstraintCount</name></member>
+      <member refid="classkukadu_1_1InfTheoConstraints_1a164b756056c091f61414275c05617b01" prot="public" virt="non-virtual"><scope>kukadu::InfTheoConstraints</scope><name>getLambda</name></member>
+      <member refid="classkukadu_1_1InfTheoConstraints_1ac006e5b1d58e8fbea8985786766d6596" prot="public" virt="non-virtual"><scope>kukadu::InfTheoConstraints</scope><name>getSlack</name></member>
+      <member refid="classkukadu_1_1InfTheoConstraints_1a085b65427f852bad0414f758cd21821e" prot="public" virt="non-virtual"><scope>kukadu::InfTheoConstraints</scope><name>getX1</name></member>
+      <member refid="classkukadu_1_1InfTheoConstraints_1aea03b865c1285775b57fcf88f1d7104c" prot="public" virt="non-virtual"><scope>kukadu::InfTheoConstraints</scope><name>getX2</name></member>
+      <member refid="classkukadu_1_1InfTheoConstraints_1a5e6dcd229a24f1d05407a0d3d2cced13" prot="public" virt="non-virtual"><scope>kukadu::InfTheoConstraints</scope><name>InfTheoConstraints</name></member>
+      <member refid="classkukadu_1_1InfTheoConstraints_1ac612f9321f4c068d826b7a427b5b550c" prot="private" virt="non-virtual"><scope>kukadu::InfTheoConstraints</scope><name>lambdas</name></member>
+      <member refid="classkukadu_1_1InfTheoConstraints_1ac418da12a5d931c5acee6dc724123f3a" prot="public" virt="non-virtual"><scope>kukadu::InfTheoConstraints</scope><name>setLambda</name></member>
+      <member refid="classkukadu_1_1InfTheoConstraints_1adb17a3786b877a8001051697131349c4" prot="public" virt="non-virtual"><scope>kukadu::InfTheoConstraints</scope><name>setSlack</name></member>
+      <member refid="classkukadu_1_1InfTheoConstraints_1a3806fbb3a001216bd50521f9d14832f9" prot="private" virt="non-virtual"><scope>kukadu::InfTheoConstraints</scope><name>slacks</name></member>
+      <member refid="classkukadu_1_1InfTheoConstraints_1aaf255dd0b67bf5552b926a368f95cae7" prot="private" virt="non-virtual"><scope>kukadu::InfTheoConstraints</scope><name>x1s</name></member>
+      <member refid="classkukadu_1_1InfTheoConstraints_1af18fbac314068ffc8c47b0502df0c5c1" prot="private" virt="non-virtual"><scope>kukadu::InfTheoConstraints</scope><name>x2s</name></member>
+    </listofallmembers>
+  </compounddef>
+</doxygen>

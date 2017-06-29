@@ -1,0 +1,625 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.8.11">
+  <compounddef id="trajectory_8cpp" kind="file" language="C++">
+    <compoundname>trajectory.cpp</compoundname>
+    <includes refid="trajectory_8hpp" local="no">kukadu/control/trajectory.hpp</includes>
+    <includes refid="conversion__utils_8hpp" local="no">kukadu/utils/conversion_utils.hpp</includes>
+    <includes refid="moduleusagesingleton_8hpp" local="no">kukadu/storage/moduleusagesingleton.hpp</includes>
+    <incdepgraph>
+      <node id="2789">
+        <label>sys/stat.h</label>
+      </node>
+      <node id="2806">
+        <label>list</label>
+      </node>
+      <node id="2792">
+        <label>gsl/gsl_vector.h</label>
+      </node>
+      <node id="2788">
+        <label>wordexp.h</label>
+      </node>
+      <node id="2787">
+        <label>stdbool.h</label>
+      </node>
+      <node id="2783">
+        <label>stdarg.h</label>
+      </node>
+      <node id="2766">
+        <label>cppconn/resultset.h</label>
+      </node>
+      <node id="2800">
+        <label>sensor_msgs/PointCloud2.h</label>
+      </node>
+      <node id="2743">
+        <label>kukadu/control/trajectory.hpp</label>
+        <link refid="trajectory_8hpp_source"/>
+        <childnode refid="2744" relation="include">
+        </childnode>
+        <childnode refid="2745" relation="include">
+        </childnode>
+        <childnode refid="2752" relation="include">
+        </childnode>
+        <childnode refid="2769" relation="include">
+        </childnode>
+      </node>
+      <node id="2746">
+        <label>queue</label>
+      </node>
+      <node id="2798">
+        <label>pcl/PCLPointCloud2.h</label>
+      </node>
+      <node id="2777">
+        <label>limits</label>
+      </node>
+      <node id="2745">
+        <label>kukadu/robot/queue.hpp</label>
+        <link refid="queue_8hpp"/>
+        <childnode refid="2746" relation="include">
+        </childnode>
+        <childnode refid="2747" relation="include">
+        </childnode>
+        <childnode refid="2744" relation="include">
+        </childnode>
+        <childnode refid="2748" relation="include">
+        </childnode>
+        <childnode refid="2749" relation="include">
+        </childnode>
+        <childnode refid="2758" relation="include">
+        </childnode>
+        <childnode refid="2752" relation="include">
+        </childnode>
+        <childnode refid="2768" relation="include">
+        </childnode>
+        <childnode refid="2760" relation="include">
+        </childnode>
+      </node>
+      <node id="2795">
+        <label>pcl/point_types.h</label>
+      </node>
+      <node id="2771">
+        <label>kukadu/utils/conversion_utils.hpp</label>
+        <link refid="conversion__utils_8hpp_source"/>
+        <childnode refid="2747" relation="include">
+        </childnode>
+        <childnode refid="2772" relation="include">
+        </childnode>
+        <childnode refid="2762" relation="include">
+        </childnode>
+        <childnode refid="2744" relation="include">
+        </childnode>
+        <childnode refid="2773" relation="include">
+        </childnode>
+      </node>
+      <node id="2774">
+        <label>kukadu/storage/moduleusagesingleton.hpp</label>
+        <link refid="moduleusagesingleton_8hpp_source"/>
+        <childnode refid="2761" relation="include">
+        </childnode>
+        <childnode refid="2759" relation="include">
+        </childnode>
+        <childnode refid="2775" relation="include">
+        </childnode>
+        <childnode refid="2776" relation="include">
+        </childnode>
+        <childnode refid="2752" relation="include">
+        </childnode>
+        <childnode refid="2760" relation="include">
+        </childnode>
+      </node>
+      <node id="2760">
+        <label>kukadu/storage/storagesingleton.hpp</label>
+        <link refid="storagesingleton_8hpp_source"/>
+        <childnode refid="2761" relation="include">
+        </childnode>
+        <childnode refid="2746" relation="include">
+        </childnode>
+        <childnode refid="2759" relation="include">
+        </childnode>
+        <childnode refid="2747" relation="include">
+        </childnode>
+        <childnode refid="2762" relation="include">
+        </childnode>
+        <childnode refid="2752" relation="include">
+        </childnode>
+        <childnode refid="2763" relation="include">
+        </childnode>
+        <childnode refid="2764" relation="include">
+        </childnode>
+        <childnode refid="2765" relation="include">
+        </childnode>
+        <childnode refid="2766" relation="include">
+        </childnode>
+        <childnode refid="2767" relation="include">
+        </childnode>
+      </node>
+      <node id="2794">
+        <label>pcl/point_cloud.h</label>
+      </node>
+      <node id="2752">
+        <label>kukadu/types/kukadutypes.hpp</label>
+        <link refid="kukadutypes_8hpp_source"/>
+        <childnode refid="2753" relation="include">
+        </childnode>
+        <childnode refid="2754" relation="include">
+        </childnode>
+        <childnode refid="2755" relation="include">
+        </childnode>
+        <childnode refid="2756" relation="include">
+        </childnode>
+        <childnode refid="2757" relation="include">
+        </childnode>
+      </node>
+      <node id="2803">
+        <label>stdexcept</label>
+      </node>
+      <node id="2786">
+        <label>termios.h</label>
+      </node>
+      <node id="2797">
+        <label>eigen3/Eigen/Dense</label>
+      </node>
+      <node id="2758">
+        <label>kukadu/robot/hardware.hpp</label>
+        <link refid="hardware_8hpp_source"/>
+        <childnode refid="2759" relation="include">
+        </childnode>
+        <childnode refid="2744" relation="include">
+        </childnode>
+        <childnode refid="2760" relation="include">
+        </childnode>
+      </node>
+      <node id="2791">
+        <label>gsl/gsl_poly.h</label>
+      </node>
+      <node id="2759">
+        <label>string</label>
+      </node>
+      <node id="2761">
+        <label>map</label>
+      </node>
+      <node id="2802">
+        <label>kukadu/utils/gnuplot.hpp</label>
+        <link refid="gnuplot_8hpp_source"/>
+        <childnode refid="2762" relation="include">
+        </childnode>
+        <childnode refid="2759" relation="include">
+        </childnode>
+        <childnode refid="2747" relation="include">
+        </childnode>
+        <childnode refid="2772" relation="include">
+        </childnode>
+        <childnode refid="2780" relation="include">
+        </childnode>
+        <childnode refid="2803" relation="include">
+        </childnode>
+        <childnode refid="2804" relation="include">
+        </childnode>
+        <childnode refid="2805" relation="include">
+        </childnode>
+        <childnode refid="2806" relation="include">
+        </childnode>
+      </node>
+      <node id="2744">
+        <label>armadillo</label>
+      </node>
+      <node id="2753">
+        <label>exception</label>
+      </node>
+      <node id="2772">
+        <label>fstream</label>
+      </node>
+      <node id="2773">
+        <label>../utils/kukadutokenizer.hpp</label>
+        <link refid="kukadutokenizer_8hpp_source"/>
+        <childnode refid="2759" relation="include">
+        </childnode>
+        <childnode refid="2747" relation="include">
+        </childnode>
+      </node>
+      <node id="2767">
+        <label>cppconn/statement.h</label>
+      </node>
+      <node id="2757">
+        <label>random</label>
+      </node>
+      <node id="2790">
+        <label>sys/types.h</label>
+      </node>
+      <node id="2750">
+        <label>kukadu/utils/types.hpp</label>
+        <link refid="utils_2types_8hpp_source"/>
+        <childnode refid="2747" relation="include">
+        </childnode>
+        <childnode refid="2744" relation="include">
+        </childnode>
+        <childnode refid="2751" relation="include">
+        </childnode>
+      </node>
+      <node id="2799">
+        <label>tf/transform_datatypes.h</label>
+      </node>
+      <node id="2804">
+        <label>cstdio</label>
+      </node>
+      <node id="2776">
+        <label>kukadu/utils/utils.hpp</label>
+        <link refid="utils_2utils_8hpp_source"/>
+        <childnode refid="2761" relation="include">
+        </childnode>
+        <childnode refid="2746" relation="include">
+        </childnode>
+        <childnode refid="2777" relation="include">
+        </childnode>
+        <childnode refid="2747" relation="include">
+        </childnode>
+        <childnode refid="2778" relation="include">
+        </childnode>
+        <childnode refid="2759" relation="include">
+        </childnode>
+        <childnode refid="2779" relation="include">
+        </childnode>
+        <childnode refid="2780" relation="include">
+        </childnode>
+        <childnode refid="2781" relation="include">
+        </childnode>
+        <childnode refid="2772" relation="include">
+        </childnode>
+        <childnode refid="2775" relation="include">
+        </childnode>
+        <childnode refid="2782" relation="include">
+        </childnode>
+        <childnode refid="2783" relation="include">
+        </childnode>
+        <childnode refid="2762" relation="include">
+        </childnode>
+        <childnode refid="2784" relation="include">
+        </childnode>
+        <childnode refid="2785" relation="include">
+        </childnode>
+        <childnode refid="2786" relation="include">
+        </childnode>
+        <childnode refid="2787" relation="include">
+        </childnode>
+        <childnode refid="2744" relation="include">
+        </childnode>
+        <childnode refid="2788" relation="include">
+        </childnode>
+        <childnode refid="2789" relation="include">
+        </childnode>
+        <childnode refid="2790" relation="include">
+        </childnode>
+        <childnode refid="2791" relation="include">
+        </childnode>
+        <childnode refid="2792" relation="include">
+        </childnode>
+        <childnode refid="2751" relation="include">
+        </childnode>
+        <childnode refid="2793" relation="include">
+        </childnode>
+        <childnode refid="2794" relation="include">
+        </childnode>
+        <childnode refid="2795" relation="include">
+        </childnode>
+        <childnode refid="2796" relation="include">
+        </childnode>
+        <childnode refid="2797" relation="include">
+        </childnode>
+        <childnode refid="2798" relation="include">
+        </childnode>
+        <childnode refid="2799" relation="include">
+        </childnode>
+        <childnode refid="2800" relation="include">
+        </childnode>
+        <childnode refid="2801" relation="include">
+        </childnode>
+        <childnode refid="2750" relation="include">
+        </childnode>
+        <childnode refid="2802" relation="include">
+        </childnode>
+        <childnode refid="2758" relation="include">
+        </childnode>
+        <childnode refid="2769" relation="include">
+        </childnode>
+        <childnode refid="2773" relation="include">
+        </childnode>
+      </node>
+      <node id="2769">
+        <label>kukadu/control/controller.hpp</label>
+        <link refid="controller_8hpp_source"/>
+        <childnode refid="2759" relation="include">
+        </childnode>
+        <childnode refid="2758" relation="include">
+        </childnode>
+        <childnode refid="2752" relation="include">
+        </childnode>
+        <childnode refid="2770" relation="include">
+        </childnode>
+        <childnode refid="2760" relation="include">
+        </childnode>
+        <childnode refid="2745" relation="include">
+        </childnode>
+      </node>
+      <node id="2782">
+        <label>unistd.h</label>
+      </node>
+      <node id="2747">
+        <label>vector</label>
+      </node>
+      <node id="2749">
+        <label>kukadu/robot/filters.hpp</label>
+        <link refid="filters_8hpp_source"/>
+        <childnode refid="2750" relation="include">
+        </childnode>
+        <childnode refid="2752" relation="include">
+        </childnode>
+      </node>
+      <node id="2784">
+        <label>signal.h</label>
+      </node>
+      <node id="2775">
+        <label>utility</label>
+      </node>
+      <node id="2780">
+        <label>sstream</label>
+      </node>
+      <node id="2764">
+        <label>cppconn/driver.h</label>
+      </node>
+      <node id="2765">
+        <label>cppconn/exception.h</label>
+      </node>
+      <node id="2748">
+        <label>geometry_msgs/Pose.h</label>
+      </node>
+      <node id="2778">
+        <label>math.h</label>
+      </node>
+      <node id="2805">
+        <label>cstdlib</label>
+      </node>
+      <node id="2762">
+        <label>iostream</label>
+      </node>
+      <node id="2763">
+        <label>mysql_connection.h</label>
+      </node>
+      <node id="2768">
+        <label>kukadu/utils/destroyableobject.hpp</label>
+        <link refid="destroyableobject_8hpp_source"/>
+      </node>
+      <node id="2756">
+        <label>mutex</label>
+      </node>
+      <node id="2796">
+        <label>gsl/gsl_multifit.h</label>
+      </node>
+      <node id="2801">
+        <label>geometry_msgs/Quaternion.h</label>
+      </node>
+      <node id="2755">
+        <label>thread</label>
+      </node>
+      <node id="2742">
+        <label>/home/agyss/iis_robot_sw/iis_catkin_ws/src/kukadu/src/control/trajectory.cpp</label>
+        <link refid="trajectory.cpp"/>
+        <childnode refid="2743" relation="include">
+        </childnode>
+        <childnode refid="2771" relation="include">
+        </childnode>
+        <childnode refid="2774" relation="include">
+        </childnode>
+      </node>
+      <node id="2793">
+        <label>gsl/gsl_linalg.h</label>
+      </node>
+      <node id="2781">
+        <label>stdio.h</label>
+      </node>
+      <node id="2779">
+        <label>cstring</label>
+      </node>
+      <node id="2751">
+        <label>gsl/gsl_matrix.h</label>
+      </node>
+      <node id="2754">
+        <label>memory</label>
+      </node>
+      <node id="2770">
+        <label>kukadu/types/controllerresult.hpp</label>
+        <link refid="controllerresult_8hpp_source"/>
+        <childnode refid="2747" relation="include">
+        </childnode>
+        <childnode refid="2744" relation="include">
+        </childnode>
+      </node>
+      <node id="2785">
+        <label>dirent.h</label>
+      </node>
+    </incdepgraph>
+    <innernamespace refid="namespacekukadu">kukadu</innernamespace>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <programlisting>
+<codeline lineno="1"><highlight class="preprocessor">#include<sp/>&lt;kukadu/control/trajectory.hpp&gt;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="2"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&lt;kukadu/utils/conversion_utils.hpp&gt;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="3"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&lt;kukadu/storage/moduleusagesingleton.hpp&gt;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="4"><highlight class="normal"></highlight></codeline>
+<codeline lineno="5"><highlight class="normal"></highlight><highlight class="keyword">using<sp/>namespace<sp/></highlight><highlight class="normal"><ref refid="namespacestd" kindref="compound">std</ref>;</highlight></codeline>
+<codeline lineno="6"><highlight class="normal"></highlight><highlight class="keyword">using<sp/>namespace<sp/></highlight><highlight class="normal"><ref refid="namespacearma" kindref="compound">arma</ref>;</highlight></codeline>
+<codeline lineno="7"><highlight class="normal"></highlight></codeline>
+<codeline lineno="8"><highlight class="normal"></highlight><highlight class="keyword">namespace<sp/></highlight><highlight class="normal"><ref refid="namespacekukadu" kindref="compound">kukadu</ref><sp/>{</highlight></codeline>
+<codeline lineno="9"><highlight class="normal"></highlight></codeline>
+<codeline lineno="10"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="comment">/******************<sp/>public<sp/>functions<sp/>*******************************/</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="11"><highlight class="normal"></highlight></codeline>
+<codeline lineno="12"><highlight class="normal"><sp/><sp/><sp/><sp/>Trajectory::Trajectory(</highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/>Trajectory&amp;<sp/>copy)<sp/>{</highlight></codeline>
+<codeline lineno="13"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">throw</highlight><highlight class="normal"><sp/>KukaduException(</highlight><highlight class="stringliteral">&quot;(Trajectory)<sp/>copy<sp/>constructor<sp/>not<sp/>supported<sp/>yet&quot;</highlight><highlight class="normal">);</highlight></codeline>
+<codeline lineno="14"><highlight class="normal"><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline lineno="15"><highlight class="normal"></highlight></codeline>
+<codeline lineno="16"><highlight class="normal"><sp/><sp/><sp/><sp/>Trajectory::Trajectory()<sp/>{<sp/>}</highlight></codeline>
+<codeline lineno="17"><highlight class="normal"></highlight></codeline>
+<codeline lineno="18"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/>Trajectory::operator==(Trajectory<sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal">&amp;<sp/>comp)</highlight><highlight class="keyword"><sp/>const<sp/></highlight><highlight class="normal">{</highlight></codeline>
+<codeline lineno="19"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">throw</highlight><highlight class="normal"><sp/>KukaduException(</highlight><highlight class="stringliteral">&quot;(Trajectory)<sp/>==<sp/>operator<sp/>not<sp/>supported<sp/>yet&quot;</highlight><highlight class="normal">);</highlight></codeline>
+<codeline lineno="20"><highlight class="normal"><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline lineno="21"><highlight class="normal"></highlight></codeline>
+<codeline lineno="22"><highlight class="normal"><sp/><sp/><sp/><sp/>SingleSampleTrajectory::SingleSampleTrajectory(arma::vec<sp/>supervisedTs,<sp/>std::vector&lt;arma::vec&gt;<sp/>sampleYs)<sp/>{</highlight></codeline>
+<codeline lineno="23"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>this-&gt;supervisedTs<sp/>=<sp/>supervisedTs;</highlight></codeline>
+<codeline lineno="24"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>this-&gt;sampleYs<sp/>=<sp/>sampleYs;</highlight></codeline>
+<codeline lineno="25"><highlight class="normal"><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline lineno="26"><highlight class="normal"></highlight></codeline>
+<codeline lineno="27"><highlight class="normal"><sp/><sp/><sp/><sp/>SingleSampleTrajectory::SingleSampleTrajectory(</highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/>SingleSampleTrajectory&amp;<sp/>copy)<sp/>{</highlight></codeline>
+<codeline lineno="28"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>this-&gt;supervisedTs<sp/>=<sp/>copy.supervisedTs;</highlight></codeline>
+<codeline lineno="29"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>this-&gt;sampleYs<sp/>=<sp/>copy.sampleYs;</highlight></codeline>
+<codeline lineno="30"><highlight class="normal"><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline lineno="31"><highlight class="normal"></highlight></codeline>
+<codeline lineno="32"><highlight class="normal"><sp/><sp/><sp/><sp/>SingleSampleTrajectory::SingleSampleTrajectory()<sp/>{</highlight></codeline>
+<codeline lineno="33"><highlight class="normal"><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline lineno="34"><highlight class="normal"></highlight></codeline>
+<codeline lineno="35"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/>SingleSampleTrajectory::getDegreesOfFreedom()</highlight><highlight class="keyword"><sp/>const<sp/></highlight><highlight class="normal">{</highlight></codeline>
+<codeline lineno="36"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal"><sp/>sampleYs.size();</highlight></codeline>
+<codeline lineno="37"><highlight class="normal"><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline lineno="38"><highlight class="normal"></highlight></codeline>
+<codeline lineno="39"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/>SingleSampleTrajectory::getDataPointsNum()<sp/>{</highlight></codeline>
+<codeline lineno="40"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal"><sp/>supervisedTs.n_elem;</highlight></codeline>
+<codeline lineno="41"><highlight class="normal"><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline lineno="42"><highlight class="normal"></highlight></codeline>
+<codeline lineno="43"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">double</highlight><highlight class="normal"><sp/>SingleSampleTrajectory::getDataPoint(</highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/>freedomIdx,<sp/></highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/>ptIdx)<sp/>{</highlight></codeline>
+<codeline lineno="44"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>arma::vec<sp/>sample<sp/>=<sp/><sp/>getSampleYByIndex(freedomIdx);</highlight></codeline>
+<codeline lineno="45"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal"><sp/>sample(ptIdx);</highlight></codeline>
+<codeline lineno="46"><highlight class="normal"><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline lineno="47"><highlight class="normal"></highlight></codeline>
+<codeline lineno="48"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">double</highlight><highlight class="normal"><sp/>SingleSampleTrajectory::getT(</highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/>ptIdx)<sp/>{</highlight></codeline>
+<codeline lineno="49"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal"><sp/>supervisedTs(ptIdx);</highlight></codeline>
+<codeline lineno="50"><highlight class="normal"><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline lineno="51"><highlight class="normal"></highlight></codeline>
+<codeline lineno="52"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/>SingleSampleTrajectory::setSupervisedTs(arma::vec<sp/>supervisedTs)<sp/>{</highlight></codeline>
+<codeline lineno="53"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>this-&gt;supervisedTs<sp/>=<sp/>supervisedTs;</highlight></codeline>
+<codeline lineno="54"><highlight class="normal"><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline lineno="55"><highlight class="normal"></highlight></codeline>
+<codeline lineno="56"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/>SingleSampleTrajectory::setSampleYs(std::vector&lt;arma::vec&gt;<sp/>sampleYs)<sp/>{</highlight></codeline>
+<codeline lineno="57"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>this-&gt;sampleYs<sp/>=<sp/>sampleYs;</highlight></codeline>
+<codeline lineno="58"><highlight class="normal"><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline lineno="59"><highlight class="normal"></highlight></codeline>
+<codeline lineno="60"><highlight class="normal"><sp/><sp/><sp/><sp/>arma::vec<sp/>SingleSampleTrajectory::getSupervisedTs()<sp/>{</highlight></codeline>
+<codeline lineno="61"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal"><sp/>supervisedTs;</highlight></codeline>
+<codeline lineno="62"><highlight class="normal"><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline lineno="63"><highlight class="normal"></highlight></codeline>
+<codeline lineno="64"><highlight class="normal"><sp/><sp/><sp/><sp/>arma::vec<sp/>SingleSampleTrajectory::getSampleYByIndex(</highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/>idx)<sp/>{</highlight></codeline>
+<codeline lineno="65"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal"><sp/>sampleYs.at(idx);</highlight></codeline>
+<codeline lineno="66"><highlight class="normal"><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline lineno="67"><highlight class="normal"></highlight></codeline>
+<codeline lineno="68"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/>SingleSampleTrajectory::operator==(SingleSampleTrajectory<sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal">&amp;<sp/>comp)</highlight><highlight class="keyword"><sp/>const<sp/></highlight><highlight class="normal">{</highlight></codeline>
+<codeline lineno="69"><highlight class="normal"></highlight></codeline>
+<codeline lineno="70"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal"><sp/>compareArmadilloVec(supervisedTs,<sp/>comp.supervisedTs)<sp/>&amp;&amp;<sp/>compareVectorOfArmadillos(sampleYs,<sp/>comp.sampleYs);</highlight></codeline>
+<codeline lineno="71"><highlight class="normal"></highlight></codeline>
+<codeline lineno="72"><highlight class="normal"><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline lineno="73"><highlight class="normal"></highlight></codeline>
+<codeline lineno="74"><highlight class="normal"><sp/><sp/><sp/><sp/>arma::vec<sp/>SingleSampleTrajectory::getStartingPos()<sp/>{</highlight></codeline>
+<codeline lineno="75"><highlight class="normal"></highlight></codeline>
+<codeline lineno="76"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>vec<sp/>ret(getDegreesOfFreedom());</highlight></codeline>
+<codeline lineno="77"><highlight class="normal"></highlight></codeline>
+<codeline lineno="78"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">for</highlight><highlight class="normal">(</highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/>i<sp/>=<sp/>0;<sp/>i<sp/>&lt;<sp/>getDegreesOfFreedom();<sp/>++i)<sp/>{</highlight></codeline>
+<codeline lineno="79"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>ret(i)<sp/>=<sp/>getDataPoint(i,<sp/>0);</highlight></codeline>
+<codeline lineno="80"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline lineno="81"><highlight class="normal"></highlight></codeline>
+<codeline lineno="82"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal"><sp/>ret;</highlight></codeline>
+<codeline lineno="83"><highlight class="normal"></highlight></codeline>
+<codeline lineno="84"><highlight class="normal"><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline lineno="85"><highlight class="normal"></highlight></codeline>
+<codeline lineno="86"><highlight class="normal"><sp/><sp/><sp/><sp/>std::vector&lt;arma::vec&gt;<sp/>SingleSampleTrajectory::getSampleYs()<sp/>{</highlight></codeline>
+<codeline lineno="87"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal"><sp/>sampleYs;</highlight></codeline>
+<codeline lineno="88"><highlight class="normal"><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline lineno="89"><highlight class="normal"></highlight></codeline>
+<codeline lineno="90"><highlight class="normal"><sp/><sp/><sp/><sp/>TrajectoryGenerator::TrajectoryGenerator()<sp/>{<sp/>}</highlight></codeline>
+<codeline lineno="91"><highlight class="normal"></highlight></codeline>
+<codeline lineno="92"><highlight class="normal"><sp/><sp/><sp/><sp/>TrajectoryExecutor::TrajectoryExecutor(StorageSingleton&amp;<sp/>dbStorage,<sp/>KUKADU_SHARED_PTR&lt;ControlQueue&gt;<sp/>usedQueue,<sp/>KUKADU_SHARED_PTR&lt;Trajectory&gt;<sp/>trajectory)<sp/>:</highlight></codeline>
+<codeline lineno="93"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>Controller(dbStorage,<sp/></highlight><highlight class="stringliteral">&quot;TrajectoryExecutor&quot;</highlight><highlight class="normal">,<sp/>{usedQueue},<sp/><sp/>0.0)<sp/>{</highlight></codeline>
+<codeline lineno="94"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>this-&gt;trajectory<sp/>=<sp/>trajectory;</highlight></codeline>
+<codeline lineno="95"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>this-&gt;tEnd<sp/>=<sp/>trajectory-&gt;getTmax();</highlight></codeline>
+<codeline lineno="96"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>this-&gt;executionMode<sp/>=<sp/>SIMULATE_ROBOT;</highlight></codeline>
+<codeline lineno="97"><highlight class="normal"><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline lineno="98"><highlight class="normal"></highlight></codeline>
+<codeline lineno="99"><highlight class="normal"><sp/><sp/><sp/><sp/>KUKADU_SHARED_PTR&lt;Trajectory&gt;<sp/>TrajectoryExecutor::getTrajectory()<sp/>{</highlight></codeline>
+<codeline lineno="100"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal"><sp/>trajectory;</highlight></codeline>
+<codeline lineno="101"><highlight class="normal"><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline lineno="102"><highlight class="normal"></highlight></codeline>
+<codeline lineno="103"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/>TrajectoryExecutor::setExecutionMode(</highlight><highlight class="keyword">enum</highlight><highlight class="normal"><sp/>execution_modes<sp/>mode)<sp/>{</highlight></codeline>
+<codeline lineno="104"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>this-&gt;executionMode<sp/>=<sp/>mode;</highlight></codeline>
+<codeline lineno="105"><highlight class="normal"><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline lineno="106"><highlight class="normal"></highlight></codeline>
+<codeline lineno="107"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/>TrajectoryExecutor::setTStart(</highlight><highlight class="keywordtype">double</highlight><highlight class="normal"><sp/>tStartInSeconds)<sp/>{</highlight></codeline>
+<codeline lineno="108"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>this-&gt;tStart<sp/>=<sp/>tStartInSeconds;</highlight></codeline>
+<codeline lineno="109"><highlight class="normal"><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline lineno="110"><highlight class="normal"></highlight></codeline>
+<codeline lineno="111"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/>TrajectoryExecutor::setTEnd(</highlight><highlight class="keywordtype">double</highlight><highlight class="normal"><sp/>tEndInSeconds)<sp/>{</highlight></codeline>
+<codeline lineno="112"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>this-&gt;tEnd<sp/>=<sp/>tEndInSeconds;</highlight></codeline>
+<codeline lineno="113"><highlight class="normal"><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline lineno="114"><highlight class="normal"></highlight></codeline>
+<codeline lineno="115"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">double</highlight><highlight class="normal"><sp/>TrajectoryExecutor::getTEnd()<sp/>{</highlight></codeline>
+<codeline lineno="116"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal"><sp/>tEnd;</highlight></codeline>
+<codeline lineno="117"><highlight class="normal"><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline lineno="118"><highlight class="normal"></highlight></codeline>
+<codeline lineno="119"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">double</highlight><highlight class="normal"><sp/>TrajectoryExecutor::getTStart()<sp/>{</highlight></codeline>
+<codeline lineno="120"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal"><sp/>tStart;</highlight></codeline>
+<codeline lineno="121"><highlight class="normal"><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline lineno="122"><highlight class="normal"></highlight></codeline>
+<codeline lineno="123"><highlight class="normal"><sp/><sp/><sp/><sp/>TrajectoryExecutor::execution_modes<sp/>TrajectoryExecutor::getExecutionMode()<sp/>{</highlight></codeline>
+<codeline lineno="124"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal"><sp/>executionMode;</highlight></codeline>
+<codeline lineno="125"><highlight class="normal"><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline lineno="126"><highlight class="normal"></highlight></codeline>
+<codeline lineno="127"><highlight class="normal"><sp/><sp/><sp/><sp/>KUKADU_SHARED_PTR&lt;ControllerResult&gt;<sp/>TrajectoryExecutor::executeInternal()<sp/>{</highlight></codeline>
+<codeline lineno="128"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>KUKADU_MODULE_START_USAGE();</highlight></codeline>
+<codeline lineno="129"><highlight class="normal"></highlight></codeline>
+<codeline lineno="130"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>KUKADU_SHARED_PTR&lt;ControllerResult&gt;<sp/>retVal;</highlight></codeline>
+<codeline lineno="131"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">if</highlight><highlight class="normal">(executionMode<sp/>==<sp/>EXECUTE_ROBOT)</highlight></codeline>
+<codeline lineno="132"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>retVal<sp/>=<sp/>executeTrajectory();</highlight></codeline>
+<codeline lineno="133"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">else</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordflow">if</highlight><highlight class="normal">(executionMode<sp/>==<sp/>SIMULATE_ROBOT)</highlight></codeline>
+<codeline lineno="134"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>retVal<sp/>=<sp/>simulateTrajectory();</highlight></codeline>
+<codeline lineno="135"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">else</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="136"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">throw</highlight><highlight class="normal"><sp/>KukaduException(</highlight><highlight class="stringliteral">&quot;(TrajectoryExecutor)<sp/>execution<sp/>mode<sp/>is<sp/>not<sp/>supported&quot;</highlight><highlight class="normal">);</highlight></codeline>
+<codeline lineno="137"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>KUKADU_MODULE_END_USAGE();</highlight></codeline>
+<codeline lineno="138"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal"><sp/>retVal;</highlight></codeline>
+<codeline lineno="139"><highlight class="normal"><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline lineno="140"><highlight class="normal"></highlight></codeline>
+<codeline lineno="141"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="classkukadu_1_1PolyTrajectoryGenerator_1aaae3f21fde5c8bef81f3cc9eb365fcfb" kindref="member">PolyTrajectoryGenerator::PolyTrajectoryGenerator</ref>(</highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/>basisFunctionCount)<sp/>{</highlight></codeline>
+<codeline lineno="142"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>this-&gt;basisFunctionCount<sp/>=<sp/>basisFunctionCount;</highlight></codeline>
+<codeline lineno="143"><highlight class="normal"><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline lineno="144"><highlight class="normal"></highlight></codeline>
+<codeline lineno="145"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">double</highlight><highlight class="normal"><sp/><ref refid="classkukadu_1_1PolyTrajectoryGenerator_1aaad5efdc0b4a8a4e55db0ffcfd7939f7" kindref="member">PolyTrajectoryGenerator::evaluateBasisFunction</ref>(</highlight><highlight class="keywordtype">double</highlight><highlight class="normal"><sp/>x,<sp/></highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/>fun)<sp/>{</highlight></codeline>
+<codeline lineno="146"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal"><sp/>pow(x,<sp/>fun);</highlight></codeline>
+<codeline lineno="147"><highlight class="normal"><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline lineno="148"><highlight class="normal"></highlight></codeline>
+<codeline lineno="149"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">double</highlight><highlight class="normal"><sp/><ref refid="classkukadu_1_1PolyTrajectoryGenerator_1a3ce8a84b6a838a73708414baf2a688ba" kindref="member">PolyTrajectoryGenerator::evaluateByCoefficientsSingle</ref>(</highlight><highlight class="keywordtype">double</highlight><highlight class="normal"><sp/>x,<sp/>vec<sp/>coeff)<sp/>{</highlight></codeline>
+<codeline lineno="150"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">double</highlight><highlight class="normal"><sp/>ret<sp/>=<sp/>0.0;</highlight></codeline>
+<codeline lineno="151"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/>coeffDegree<sp/>=<sp/>this-&gt;getBasisFunctionCount();</highlight></codeline>
+<codeline lineno="152"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">for</highlight><highlight class="normal">(</highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/>i<sp/>=<sp/>0;<sp/>i<sp/>&lt;<sp/>coeffDegree;<sp/>++i)<sp/>ret<sp/>+=<sp/>coeff(i)<sp/>*<sp/>pow(x,<sp/>i<sp/>+<sp/>1);</highlight></codeline>
+<codeline lineno="153"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal"><sp/>ret;</highlight></codeline>
+<codeline lineno="154"><highlight class="normal"><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline lineno="155"><highlight class="normal"></highlight></codeline>
+<codeline lineno="156"><highlight class="normal"><sp/><sp/><sp/><sp/>vec<sp/><ref refid="classkukadu_1_1PolyTrajectoryGenerator_1a00a575cf44a1b0061131227baae4f593" kindref="member">PolyTrajectoryGenerator::evaluateByCoefficientsMultiple</ref>(vec<sp/>x,<sp/></highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/>sampleCount,<sp/>vec<sp/>coeff)<sp/>{</highlight></codeline>
+<codeline lineno="157"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/>coeffDegree<sp/>=<sp/>this-&gt;getBasisFunctionCount();</highlight></codeline>
+<codeline lineno="158"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>vec<sp/>evals(sampleCount);</highlight></codeline>
+<codeline lineno="159"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">for</highlight><highlight class="normal">(</highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/>i<sp/>=<sp/>0;<sp/>i<sp/>&lt;<sp/>sampleCount;<sp/>++i)<sp/>{</highlight></codeline>
+<codeline lineno="160"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>evals(i)<sp/>=<sp/>evaluateByCoefficientsSingle(x(i),<sp/>coeff);</highlight></codeline>
+<codeline lineno="161"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline lineno="162"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal"><sp/>evals;</highlight></codeline>
+<codeline lineno="163"><highlight class="normal"><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline lineno="164"><highlight class="normal"></highlight></codeline>
+<codeline lineno="165"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/><ref refid="classkukadu_1_1PolyTrajectoryGenerator_1ae8578365c5ae221c8cf14208b74c8975" kindref="member">PolyTrajectoryGenerator::getBasisFunctionCount</ref>()<sp/>{</highlight></codeline>
+<codeline lineno="166"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal"><sp/>basisFunctionCount;</highlight></codeline>
+<codeline lineno="167"><highlight class="normal"><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline lineno="168"><highlight class="normal"></highlight></codeline>
+<codeline lineno="169"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">string</highlight><highlight class="normal"><sp/><ref refid="classkukadu_1_1PolyTrajectoryGenerator_1adb937d18031924c54829977211e1d250" kindref="member">PolyTrajectoryGenerator::getTrajectoryType</ref>()<sp/>{</highlight></codeline>
+<codeline lineno="170"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal"><sp/></highlight><highlight class="stringliteral">&quot;polynomial&quot;</highlight><highlight class="normal">;</highlight></codeline>
+<codeline lineno="171"><highlight class="normal"><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline lineno="172"><highlight class="normal"></highlight></codeline>
+<codeline lineno="173"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="comment">/******************<sp/>private<sp/>functions<sp/>******************************/</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="174"><highlight class="normal"></highlight></codeline>
+<codeline lineno="175"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="comment">/******************<sp/>end<sp/>********************************************/</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="176"><highlight class="normal"></highlight></codeline>
+<codeline lineno="177"><highlight class="normal">}</highlight></codeline>
+    </programlisting>
+    <location file="/home/agyss/iis_robot_sw/iis_catkin_ws/src/kukadu/src/control/trajectory.cpp"/>
+  </compounddef>
+</doxygen>

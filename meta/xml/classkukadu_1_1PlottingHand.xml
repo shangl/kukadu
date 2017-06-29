@@ -1,0 +1,419 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.8.11">
+  <compounddef id="classkukadu_1_1PlottingHand" kind="class" language="C++" prot="public">
+    <compoundname>kukadu::PlottingHand</compoundname>
+    <basecompoundref refid="classkukadu_1_1GenericHand" prot="public" virt="non-virtual">kukadu::GenericHand</basecompoundref>
+    <includes refid="hand_8hpp" local="no">hand.hpp</includes>
+      <sectiondef kind="private-attrib">
+      <memberdef kind="variable" id="classkukadu_1_1PlottingHand_1a42fe43db634bddfae6aa21289b4f52b8" prot="private" static="no" mutable="no">
+        <type>int</type>
+        <definition>int kukadu::PlottingHand::degOfFreedom</definition>
+        <argsstring></argsstring>
+        <name>degOfFreedom</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/agyss/iis_robot_sw/iis_catkin_ws/src/kukadu/include/kukadu/robot/hand.hpp" line="89" column="1" bodyfile="/home/agyss/iis_robot_sw/iis_catkin_ws/src/kukadu/include/kukadu/robot/hand.hpp" bodystart="89" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classkukadu_1_1PlottingHand_1a7986ffc593ba5b23ef41ddc15ff526a0" prot="private" static="no" mutable="no">
+        <type>int</type>
+        <definition>int kukadu::PlottingHand::sensingPatchCount</definition>
+        <argsstring></argsstring>
+        <name>sensingPatchCount</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/agyss/iis_robot_sw/iis_catkin_ws/src/kukadu/include/kukadu/robot/hand.hpp" line="90" column="1" bodyfile="/home/agyss/iis_robot_sw/iis_catkin_ws/src/kukadu/include/kukadu/robot/hand.hpp" bodystart="90" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classkukadu_1_1PlottingHand_1a44611a63991704f42b98f04f2b944fc2" prot="private" static="no" mutable="no">
+        <type>std::pair&lt; int, int &gt;</type>
+        <definition>std::pair&lt;int, int&gt; kukadu::PlottingHand::patchDimensions</definition>
+        <argsstring></argsstring>
+        <name>patchDimensions</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/agyss/iis_robot_sw/iis_catkin_ws/src/kukadu/include/kukadu/robot/hand.hpp" line="91" column="1" bodyfile="/home/agyss/iis_robot_sw/iis_catkin_ws/src/kukadu/include/kukadu/robot/hand.hpp" bodystart="91" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classkukadu_1_1PlottingHand_1a256cb9a114a65e863c01166745c3c9e3" prot="private" static="no" mutable="no">
+        <type>std::vector&lt; std::string &gt;</type>
+        <definition>std::vector&lt;std::string&gt; kukadu::PlottingHand::jointNames</definition>
+        <argsstring></argsstring>
+        <name>jointNames</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/agyss/iis_robot_sw/iis_catkin_ws/src/kukadu/include/kukadu/robot/hand.hpp" line="93" column="1" bodyfile="/home/agyss/iis_robot_sw/iis_catkin_ws/src/kukadu/include/kukadu/robot/hand.hpp" bodystart="93" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classkukadu_1_1PlottingHand_1a328e0b2526713ef2debb0779347364a6" prot="private" static="no" mutable="no">
+        <type>arma::vec</type>
+        <definition>arma::vec kukadu::PlottingHand::currentJoints</definition>
+        <argsstring></argsstring>
+        <name>currentJoints</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/agyss/iis_robot_sw/iis_catkin_ws/src/kukadu/include/kukadu/robot/hand.hpp" line="95" column="1" bodyfile="/home/agyss/iis_robot_sw/iis_catkin_ws/src/kukadu/include/kukadu/robot/hand.hpp" bodystart="95" bodyend="-1"/>
+      </memberdef>
+      </sectiondef>
+      <sectiondef kind="public-func">
+      <memberdef kind="function" id="classkukadu_1_1PlottingHand_1a9f4fcd793aac528a1eab0b5ae29d7bbd" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type></type>
+        <definition>kukadu::PlottingHand::PlottingHand</definition>
+        <argsstring>(StorageSingleton &amp;storage, int degOfFreedom, int sensingPatchCount, std::pair&lt; int, int &gt; patchDimensions)</argsstring>
+        <name>PlottingHand</name>
+        <param>
+          <type><ref refid="classkukadu_1_1StorageSingleton" kindref="compound">StorageSingleton</ref> &amp;</type>
+          <declname>storage</declname>
+        </param>
+        <param>
+          <type>int</type>
+          <declname>degOfFreedom</declname>
+        </param>
+        <param>
+          <type>int</type>
+          <declname>sensingPatchCount</declname>
+        </param>
+        <param>
+          <type>std::pair&lt; int, int &gt;</type>
+          <declname>patchDimensions</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/agyss/iis_robot_sw/iis_catkin_ws/src/kukadu/include/kukadu/robot/hand.hpp" line="99" column="1" bodyfile="/home/agyss/iis_robot_sw/iis_catkin_ws/src/kukadu/src/robot/hand.cpp" bodystart="110" bodyend="124"/>
+      </memberdef>
+      <memberdef kind="function" id="classkukadu_1_1PlottingHand_1ae1f5f384a2e8db0423b2a2ebe889f4f9" prot="public" static="no" const="no" explicit="no" inline="no" virt="virtual">
+        <type>void</type>
+        <definition>void kukadu::PlottingHand::connectHand</definition>
+        <argsstring>()</argsstring>
+        <name>connectHand</name>
+        <reimplements refid="classkukadu_1_1GenericHand_1a965ed8a8d225fb36eabf5089fa5d4f32">connectHand</reimplements>
+        <briefdescription>
+<para>Initializes the connection to the hand. </para>        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/agyss/iis_robot_sw/iis_catkin_ws/src/kukadu/include/kukadu/robot/hand.hpp" line="101" column="1" bodyfile="/home/agyss/iis_robot_sw/iis_catkin_ws/src/kukadu/src/robot/hand.cpp" bodystart="126" bodyend="129"/>
+      </memberdef>
+      <memberdef kind="function" id="classkukadu_1_1PlottingHand_1adcdc57d192c5dfca6ca154a50a904824" prot="public" static="no" const="no" explicit="no" inline="no" virt="virtual">
+        <type>void</type>
+        <definition>void kukadu::PlottingHand::closeHand</definition>
+        <argsstring>(double percentage, double velocity)</argsstring>
+        <name>closeHand</name>
+        <reimplements refid="classkukadu_1_1GenericHand_1a000e4d03e93f50d7101c50e6096d28a0">closeHand</reimplements>
+        <param>
+          <type>double</type>
+          <declname>percentage</declname>
+        </param>
+        <param>
+          <type>double</type>
+          <declname>velocity</declname>
+        </param>
+        <briefdescription>
+<para>Opens and closes the hand according to the provided closing percentage and velocity. </para>        </briefdescription>
+        <detaileddescription>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>percentage</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>closing percentage (0.0 - hand fully open, 1.0 hand fully closed) </para></parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>velocity</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>closing velocity in range between 0 and 1 </para></parameterdescription>
+</parameteritem>
+</parameterlist>
+</para>        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/agyss/iis_robot_sw/iis_catkin_ws/src/kukadu/include/kukadu/robot/hand.hpp" line="103" column="1" bodyfile="/home/agyss/iis_robot_sw/iis_catkin_ws/src/kukadu/src/robot/hand.cpp" bodystart="131" bodyend="134"/>
+      </memberdef>
+      <memberdef kind="function" id="classkukadu_1_1PlottingHand_1ad11dc6d53766e716d34b3f1ab04ed208" prot="public" static="no" const="no" explicit="no" inline="no" virt="virtual">
+        <type>void</type>
+        <definition>void kukadu::PlottingHand::moveJoints</definition>
+        <argsstring>(arma::vec joints)</argsstring>
+        <name>moveJoints</name>
+        <reimplements refid="classkukadu_1_1GenericHand_1a7662305094e40833ef22e6675e41c5fd">moveJoints</reimplements>
+        <param>
+          <type>arma::vec</type>
+          <declname>joints</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/agyss/iis_robot_sw/iis_catkin_ws/src/kukadu/include/kukadu/robot/hand.hpp" line="105" column="1" bodyfile="/home/agyss/iis_robot_sw/iis_catkin_ws/src/kukadu/src/robot/hand.cpp" bodystart="136" bodyend="140"/>
+      </memberdef>
+      <memberdef kind="function" id="classkukadu_1_1PlottingHand_1ac30028206b7a8151340094bd1e9d69a1" prot="public" static="no" const="no" explicit="no" inline="no" virt="virtual">
+        <type>std::vector&lt; std::string &gt;</type>
+        <definition>std::vector&lt; std::string &gt; kukadu::PlottingHand::getJointNames</definition>
+        <argsstring>()</argsstring>
+        <name>getJointNames</name>
+        <reimplements refid="classkukadu_1_1GenericHand_1aa562dea13207e605ee489e774e061fbb">getJointNames</reimplements>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/agyss/iis_robot_sw/iis_catkin_ws/src/kukadu/include/kukadu/robot/hand.hpp" line="107" column="1" bodyfile="/home/agyss/iis_robot_sw/iis_catkin_ws/src/kukadu/src/robot/hand.cpp" bodystart="142" bodyend="144"/>
+      </memberdef>
+      <memberdef kind="function" id="classkukadu_1_1PlottingHand_1a366830e49be9050137852952bf269564" prot="public" static="no" const="no" explicit="no" inline="no" virt="virtual">
+        <type>arma::vec</type>
+        <definition>arma::vec kukadu::PlottingHand::getCurrentJoints</definition>
+        <argsstring>()</argsstring>
+        <name>getCurrentJoints</name>
+        <reimplements refid="classkukadu_1_1GenericHand_1a3e18d7bfb6e3b19fde791d245d589a11">getCurrentJoints</reimplements>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/agyss/iis_robot_sw/iis_catkin_ws/src/kukadu/include/kukadu/robot/hand.hpp" line="109" column="1" bodyfile="/home/agyss/iis_robot_sw/iis_catkin_ws/src/kukadu/src/robot/hand.cpp" bodystart="151" bodyend="153"/>
+      </memberdef>
+      <memberdef kind="function" id="classkukadu_1_1PlottingHand_1a14fc064b6e159b0d7c7a9ce896bfa7d9" prot="public" static="no" const="no" explicit="no" inline="no" virt="virtual">
+        <type>void</type>
+        <definition>void kukadu::PlottingHand::disconnectHand</definition>
+        <argsstring>()</argsstring>
+        <name>disconnectHand</name>
+        <reimplements refid="classkukadu_1_1GenericHand_1a94c4a983aae8562bda7711a71baa7502">disconnectHand</reimplements>
+        <briefdescription>
+<para>Closes connection between host computer and hand. </para>        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/agyss/iis_robot_sw/iis_catkin_ws/src/kukadu/include/kukadu/robot/hand.hpp" line="111" column="1" bodyfile="/home/agyss/iis_robot_sw/iis_catkin_ws/src/kukadu/src/robot/hand.cpp" bodystart="146" bodyend="149"/>
+      </memberdef>
+      <memberdef kind="function" id="classkukadu_1_1PlottingHand_1a2110c545fc91f47ee9dd59fd1194ec01" prot="public" static="no" const="no" explicit="no" inline="no" virt="virtual">
+        <type>std::vector&lt; arma::mat &gt;</type>
+        <definition>std::vector&lt; arma::mat &gt; kukadu::PlottingHand::getTactileSensing</definition>
+        <argsstring>()</argsstring>
+        <name>getTactileSensing</name>
+        <reimplements refid="classkukadu_1_1GenericHand_1a85b4263bc45c19fb64fd167d58ca7e43">getTactileSensing</reimplements>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/agyss/iis_robot_sw/iis_catkin_ws/src/kukadu/include/kukadu/robot/hand.hpp" line="113" column="1" bodyfile="/home/agyss/iis_robot_sw/iis_catkin_ws/src/kukadu/src/robot/hand.cpp" bodystart="155" bodyend="170"/>
+      </memberdef>
+      <memberdef kind="function" id="classkukadu_1_1PlottingHand_1ac6bd32e47c044f6b7ee5dede4eb5941f" prot="public" static="no" const="no" explicit="no" inline="yes" virt="virtual">
+        <type>void</type>
+        <definition>virtual void kukadu::PlottingHand::safelyDestroy</definition>
+        <argsstring>()</argsstring>
+        <name>safelyDestroy</name>
+        <reimplements refid="classkukadu_1_1DestroyableObject_1a9e490cfa46af84690eb5ff0682df986c">safelyDestroy</reimplements>
+        <briefdescription>
+<para>Method is called whenever destroy event occurs and ensures safe and clean termination of the programm (e.g. stops robot) </para>        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/agyss/iis_robot_sw/iis_catkin_ws/src/kukadu/include/kukadu/robot/hand.hpp" line="115" column="1" bodyfile="/home/agyss/iis_robot_sw/iis_catkin_ws/src/kukadu/include/kukadu/robot/hand.hpp" bodystart="115" bodyend="115"/>
+      </memberdef>
+      <memberdef kind="function" id="classkukadu_1_1PlottingHand_1a255de915c5b6bf215cf11e3d7abcd9a9" prot="public" static="no" const="no" explicit="no" inline="yes" virt="virtual">
+        <type>void</type>
+        <definition>virtual void kukadu::PlottingHand::setWaitForReached</definition>
+        <argsstring>(bool waitForReached)</argsstring>
+        <name>setWaitForReached</name>
+        <reimplements refid="classkukadu_1_1GenericHand_1ad2a3163741664b6777e148343d22879a">setWaitForReached</reimplements>
+        <param>
+          <type>bool</type>
+          <declname>waitForReached</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/agyss/iis_robot_sw/iis_catkin_ws/src/kukadu/include/kukadu/robot/hand.hpp" line="117" column="1" bodyfile="/home/agyss/iis_robot_sw/iis_catkin_ws/src/kukadu/include/kukadu/robot/hand.hpp" bodystart="117" bodyend="117"/>
+      </memberdef>
+      <memberdef kind="function" id="classkukadu_1_1PlottingHand_1a3abd6d520cf144c8a466935d52a7596e" prot="public" static="no" const="no" explicit="no" inline="yes" virt="virtual">
+        <type>void</type>
+        <definition>virtual void kukadu::PlottingHand::setGrasp</definition>
+        <argsstring>(kukadu_grasps grasp)</argsstring>
+        <name>setGrasp</name>
+        <reimplements refid="classkukadu_1_1GenericHand_1ad64a2319fec86b037f7383d2657ed601">setGrasp</reimplements>
+        <param>
+          <type>kukadu_grasps</type>
+          <declname>grasp</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/agyss/iis_robot_sw/iis_catkin_ws/src/kukadu/include/kukadu/robot/hand.hpp" line="119" column="1" bodyfile="/home/agyss/iis_robot_sw/iis_catkin_ws/src/kukadu/include/kukadu/robot/hand.hpp" bodystart="119" bodyend="119"/>
+      </memberdef>
+      </sectiondef>
+    <briefdescription>
+<para>Provides control capabilities for the Schunk SDH robotic hand with ROS binding Implements the <ref refid="classkukadu_1_1GenericHand" kindref="compound">GenericHand</ref> interface for the Schunk SDH robotic hand. Note that using this class the programm has to be executed with root rights. </para>    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <inheritancegraph>
+      <node id="528">
+        <label>kukadu::TimedObject</label>
+        <link refid="classkukadu_1_1TimedObject"/>
+      </node>
+      <node id="524">
+        <label>kukadu::JointHardware</label>
+        <link refid="classkukadu_1_1JointHardware"/>
+        <childnode refid="525" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="522">
+        <label>kukadu::PlottingHand</label>
+        <link refid="classkukadu_1_1PlottingHand"/>
+        <childnode refid="523" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="526">
+        <label>kukadu::StorageHolder</label>
+        <link refid="classkukadu_1_1StorageHolder"/>
+      </node>
+      <node id="525">
+        <label>kukadu::Hardware</label>
+        <link refid="classkukadu_1_1Hardware"/>
+        <childnode refid="526" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="527">
+        <label>kukadu::DestroyableObject</label>
+        <link refid="classkukadu_1_1DestroyableObject"/>
+      </node>
+      <node id="523">
+        <label>kukadu::GenericHand</label>
+        <link refid="classkukadu_1_1GenericHand"/>
+        <childnode refid="524" relation="public-inheritance">
+        </childnode>
+        <childnode refid="527" relation="public-inheritance">
+        </childnode>
+        <childnode refid="528" relation="public-inheritance">
+        </childnode>
+      </node>
+    </inheritancegraph>
+    <collaborationgraph>
+      <node id="535">
+        <label>kukadu::TimedObject</label>
+        <link refid="classkukadu_1_1TimedObject"/>
+      </node>
+      <node id="531">
+        <label>kukadu::JointHardware</label>
+        <link refid="classkukadu_1_1JointHardware"/>
+        <childnode refid="532" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="529">
+        <label>kukadu::PlottingHand</label>
+        <link refid="classkukadu_1_1PlottingHand"/>
+        <childnode refid="530" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="533">
+        <label>kukadu::StorageHolder</label>
+        <link refid="classkukadu_1_1StorageHolder"/>
+      </node>
+      <node id="532">
+        <label>kukadu::Hardware</label>
+        <link refid="classkukadu_1_1Hardware"/>
+        <childnode refid="533" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="534">
+        <label>kukadu::DestroyableObject</label>
+        <link refid="classkukadu_1_1DestroyableObject"/>
+      </node>
+      <node id="530">
+        <label>kukadu::GenericHand</label>
+        <link refid="classkukadu_1_1GenericHand"/>
+        <childnode refid="531" relation="public-inheritance">
+        </childnode>
+        <childnode refid="534" relation="public-inheritance">
+        </childnode>
+        <childnode refid="535" relation="public-inheritance">
+        </childnode>
+      </node>
+    </collaborationgraph>
+    <location file="/home/agyss/iis_robot_sw/iis_catkin_ws/src/kukadu/include/kukadu/robot/hand.hpp" line="85" column="1" bodyfile="/home/agyss/iis_robot_sw/iis_catkin_ws/src/kukadu/include/kukadu/robot/hand.hpp" bodystart="85" bodyend="121"/>
+    <listofallmembers>
+      <member refid="classkukadu_1_1PlottingHand_1adcdc57d192c5dfca6ca154a50a904824" prot="public" virt="virtual"><scope>kukadu::PlottingHand</scope><name>closeHand</name></member>
+      <member refid="classkukadu_1_1PlottingHand_1ae1f5f384a2e8db0423b2a2ebe889f4f9" prot="public" virt="virtual"><scope>kukadu::PlottingHand</scope><name>connectHand</name></member>
+      <member refid="classkukadu_1_1PlottingHand_1a328e0b2526713ef2debb0779347364a6" prot="private" virt="non-virtual"><scope>kukadu::PlottingHand</scope><name>currentJoints</name></member>
+      <member refid="classkukadu_1_1PlottingHand_1a42fe43db634bddfae6aa21289b4f52b8" prot="private" virt="non-virtual"><scope>kukadu::PlottingHand</scope><name>degOfFreedom</name></member>
+      <member refid="classkukadu_1_1PlottingHand_1a14fc064b6e159b0d7c7a9ce896bfa7d9" prot="public" virt="virtual"><scope>kukadu::PlottingHand</scope><name>disconnectHand</name></member>
+      <member refid="classkukadu_1_1GenericHand_1aa249fecba3926e7c8e2d313b68be37e1" prot="public" virt="non-virtual"><scope>kukadu::PlottingHand</scope><name>GenericHand</name></member>
+      <member refid="classkukadu_1_1GenericHand_1acc1027f8a563e38c6b8dee0163b3ae66" prot="public" virt="non-virtual"><scope>kukadu::PlottingHand</scope><name>GenericHand</name></member>
+      <member refid="classkukadu_1_1PlottingHand_1a366830e49be9050137852952bf269564" prot="public" virt="virtual"><scope>kukadu::PlottingHand</scope><name>getCurrentJoints</name></member>
+      <member refid="classkukadu_1_1TimedObject_1a9c4db6e3f71d4bbddecd12b43e586691" prot="public" virt="non-virtual"><scope>kukadu::PlottingHand</scope><name>getCurrentTime</name></member>
+      <member refid="classkukadu_1_1JointHardware_1a6e1bbab3cb82d94f3154060d5a8ee62a" prot="public" virt="virtual"><scope>kukadu::PlottingHand</scope><name>getDegreesOfFreedom</name></member>
+      <member refid="classkukadu_1_1GenericHand_1adcb32c8131d597cd67671c44265b56df" prot="public" virt="virtual"><scope>kukadu::PlottingHand</scope><name>getHandName</name></member>
+      <member refid="classkukadu_1_1Hardware_1a33e1b7ba05ccb5f7b9f9f7c9455efa4e" prot="public" virt="non-virtual"><scope>kukadu::PlottingHand</scope><name>getHardwareClass</name></member>
+      <member refid="classkukadu_1_1Hardware_1a7739a3df264205b2587f37c1828c8fb6" prot="public" virt="non-virtual"><scope>kukadu::PlottingHand</scope><name>getHardwareInstance</name></member>
+      <member refid="classkukadu_1_1Hardware_1a994090c6bf74f03a91a44df6eeb41703" prot="public" virt="non-virtual"><scope>kukadu::PlottingHand</scope><name>getHardwareInstanceName</name></member>
+      <member refid="classkukadu_1_1Hardware_1a34e793c453fe444d98905f7a64d1720b" prot="public" virt="non-virtual"><scope>kukadu::PlottingHand</scope><name>getHardwareType</name></member>
+      <member refid="classkukadu_1_1Hardware_1a1353994ae509caf0e5c8d5f112d82e66" prot="public" virt="non-virtual"><scope>kukadu::PlottingHand</scope><name>getHardwareTypeName</name></member>
+      <member refid="classkukadu_1_1JointHardware_1a6f2a9128511dcc626932bee6850cd833" prot="public" virt="virtual"><scope>kukadu::PlottingHand</scope><name>getJointId</name></member>
+      <member refid="classkukadu_1_1JointHardware_1a556b26ac4e21479009fb661cb2a9b943" prot="public" virt="virtual"><scope>kukadu::PlottingHand</scope><name>getJointIds</name></member>
+      <member refid="classkukadu_1_1JointHardware_1a5629c63268491477ace5210e8ed1721d" prot="public" virt="virtual"><scope>kukadu::PlottingHand</scope><name>getJointIds</name></member>
+      <member refid="classkukadu_1_1PlottingHand_1ac30028206b7a8151340094bd1e9d69a1" prot="public" virt="virtual"><scope>kukadu::PlottingHand</scope><name>getJointNames</name></member>
+      <member refid="classkukadu_1_1GenericHand_1ada5ce87f83585abeb39709e50388e60f" prot="public" virt="virtual"><scope>kukadu::PlottingHand</scope><name>getPreferredPollingFrequency</name></member>
+      <member refid="classkukadu_1_1StorageHolder_1ab960ded0b470890c8ca94741b61c8d2e" prot="public" virt="non-virtual"><scope>kukadu::PlottingHand</scope><name>getStorage</name></member>
+      <member refid="classkukadu_1_1PlottingHand_1a2110c545fc91f47ee9dd59fd1194ec01" prot="public" virt="virtual"><scope>kukadu::PlottingHand</scope><name>getTactileSensing</name></member>
+      <member refid="classkukadu_1_1Hardware_1af7a1355a6d8c10e68b7bfd783bc9d8a2" prot="public" virt="non-virtual"><scope>kukadu::PlottingHand</scope><name>Hardware</name></member>
+      <member refid="classkukadu_1_1Hardware_1a694ca4d7b1cb52b17d2bdb8a4c64d16c" prot="public" virt="virtual"><scope>kukadu::PlottingHand</scope><name>install</name></member>
+      <member refid="classkukadu_1_1GenericHand_1ac13a2cd5234361b3483f0cc88467cbd7" prot="protected" virt="virtual"><scope>kukadu::PlottingHand</scope><name>installHardwareInstanceInternal</name></member>
+      <member refid="classkukadu_1_1GenericHand_1ac784c881aaa1f6db378bff64407384a4" prot="protected" virt="virtual"><scope>kukadu::PlottingHand</scope><name>installHardwareTypeInternal</name></member>
+      <member refid="classkukadu_1_1JointHardware_1a0514e200c960e5246107dff0dbee11da" prot="public" virt="non-virtual"><scope>kukadu::PlottingHand</scope><name>JointHardware</name></member>
+      <member refid="classkukadu_1_1PlottingHand_1a256cb9a114a65e863c01166745c3c9e3" prot="private" virt="non-virtual"><scope>kukadu::PlottingHand</scope><name>jointNames</name></member>
+      <member refid="classkukadu_1_1JointHardware_1a8145b779bc5fbda910d4c412e18dabe8" prot="public" virt="virtual"><scope>kukadu::PlottingHand</scope><name>loadData</name></member>
+      <member refid="classkukadu_1_1Hardware_1a4ea17ba6cb91d1a5f53e5b2c96c0cd8c" prot="public" virt="pure-virtual" ambiguityscope="kukadu::Hardware::"><scope>kukadu::PlottingHand</scope><name>loadData</name></member>
+      <member refid="classkukadu_1_1Hardware_1ac1f3b6662e4446c2dd67d702fccc8b7e" prot="public" virt="non-virtual"><scope>kukadu::PlottingHand</scope><name>loadInstanceIdFromName</name></member>
+      <member refid="classkukadu_1_1Hardware_1abfeecedf0a480422ea9d47da4f228c7b" prot="public" virt="non-virtual"><scope>kukadu::PlottingHand</scope><name>loadOrCreateInstanceIdFromName</name></member>
+      <member refid="classkukadu_1_1Hardware_1aeb3c6a1ca42389cc341aee61c633daba" prot="public" virt="non-virtual"><scope>kukadu::PlottingHand</scope><name>loadOrCreateTypeIdFromName</name></member>
+      <member refid="classkukadu_1_1Hardware_1a305c4f348e988d76e2cae7eb9105fec1" prot="public" virt="non-virtual"><scope>kukadu::PlottingHand</scope><name>loadTypeIdFromInstanceId</name></member>
+      <member refid="classkukadu_1_1Hardware_1a6e5a6e1f250a02df3e9766801f82d255" prot="public" virt="non-virtual"><scope>kukadu::PlottingHand</scope><name>loadTypeIdFromInstanceName</name></member>
+      <member refid="classkukadu_1_1Hardware_1a553cd9394cc78773c0effb7d80f0ee16" prot="public" virt="non-virtual"><scope>kukadu::PlottingHand</scope><name>loadTypeIdFromName</name></member>
+      <member refid="classkukadu_1_1Hardware_1a58f76f5117554f7f2613cdb082addf22" prot="public" virt="non-virtual"><scope>kukadu::PlottingHand</scope><name>loadTypeNameFromInstanceName</name></member>
+      <member refid="classkukadu_1_1PlottingHand_1ad11dc6d53766e716d34b3f1ab04ed208" prot="public" virt="virtual"><scope>kukadu::PlottingHand</scope><name>moveJoints</name></member>
+      <member refid="classkukadu_1_1PlottingHand_1a44611a63991704f42b98f04f2b944fc2" prot="private" virt="non-virtual"><scope>kukadu::PlottingHand</scope><name>patchDimensions</name></member>
+      <member refid="classkukadu_1_1PlottingHand_1a9f4fcd793aac528a1eab0b5ae29d7bbd" prot="public" virt="non-virtual"><scope>kukadu::PlottingHand</scope><name>PlottingHand</name></member>
+      <member refid="classkukadu_1_1PlottingHand_1ac6bd32e47c044f6b7ee5dede4eb5941f" prot="public" virt="virtual"><scope>kukadu::PlottingHand</scope><name>safelyDestroy</name></member>
+      <member refid="classkukadu_1_1PlottingHand_1a7986ffc593ba5b23ef41ddc15ff526a0" prot="private" virt="non-virtual"><scope>kukadu::PlottingHand</scope><name>sensingPatchCount</name></member>
+      <member refid="classkukadu_1_1PlottingHand_1a3abd6d520cf144c8a466935d52a7596e" prot="public" virt="virtual"><scope>kukadu::PlottingHand</scope><name>setGrasp</name></member>
+      <member refid="classkukadu_1_1PlottingHand_1a255de915c5b6bf215cf11e3d7abcd9a9" prot="public" virt="virtual"><scope>kukadu::PlottingHand</scope><name>setWaitForReached</name></member>
+      <member refid="classkukadu_1_1StorageHolder_1a1c64f1528f3243ace2ec3932d69d9704" prot="public" virt="non-virtual"><scope>kukadu::PlottingHand</scope><name>StorageHolder</name></member>
+      <member refid="classkukadu_1_1GenericHand_1ab1d138bbbf8575eb6e981c5f5fd91376" prot="public" virt="virtual"><scope>kukadu::PlottingHand</scope><name>storeCurrentSensorDataToDatabase</name></member>
+    </listofallmembers>
+  </compounddef>
+</doxygen>

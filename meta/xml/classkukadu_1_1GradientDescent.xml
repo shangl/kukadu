@@ -1,0 +1,421 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.8.11">
+  <compounddef id="classkukadu_1_1GradientDescent" kind="class" language="C++" prot="public">
+    <compoundname>kukadu::GradientDescent</compoundname>
+    <basecompoundref refid="classkukadu_1_1GeneralReinforcer" prot="public" virt="non-virtual">kukadu::GeneralReinforcer</basecompoundref>
+      <sectiondef kind="private-attrib">
+      <memberdef kind="variable" id="classkukadu_1_1GradientDescent_1aa89e1c98cb24528b9d03f61c4264542b" prot="private" static="no" mutable="no">
+        <type>int</type>
+        <definition>int kukadu::GradientDescent::updateNum</definition>
+        <argsstring></argsstring>
+        <name>updateNum</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/agyss/iis_robot_sw/iis_catkin_ws/src/kukadu/include/kukadu/learning/rl/policyrl.hpp" line="211" column="1" bodyfile="/home/agyss/iis_robot_sw/iis_catkin_ws/src/kukadu/include/kukadu/learning/rl/policyrl.hpp" bodystart="211" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classkukadu_1_1GradientDescent_1afdb7afb5514253ab67d125fbc962f93e" prot="private" static="no" mutable="no">
+        <type>int</type>
+        <definition>int kukadu::GradientDescent::updatesPerRollout</definition>
+        <argsstring></argsstring>
+        <name>updatesPerRollout</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/agyss/iis_robot_sw/iis_catkin_ws/src/kukadu/include/kukadu/learning/rl/policyrl.hpp" line="212" column="1" bodyfile="/home/agyss/iis_robot_sw/iis_catkin_ws/src/kukadu/include/kukadu/learning/rl/policyrl.hpp" bodystart="212" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classkukadu_1_1GradientDescent_1a5cfd73d0518cb894a48e43ec5ce1dc38" prot="private" static="no" mutable="no">
+        <type>int</type>
+        <definition>int kukadu::GradientDescent::importanceSamplingCount</definition>
+        <argsstring></argsstring>
+        <name>importanceSamplingCount</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/agyss/iis_robot_sw/iis_catkin_ws/src/kukadu/include/kukadu/learning/rl/policyrl.hpp" line="213" column="1" bodyfile="/home/agyss/iis_robot_sw/iis_catkin_ws/src/kukadu/include/kukadu/learning/rl/policyrl.hpp" bodystart="213" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classkukadu_1_1GradientDescent_1ab0d6f4ffa64f2c238dddf758817f4b1c" prot="private" static="no" mutable="no">
+        <type>double</type>
+        <definition>double kukadu::GradientDescent::explorationSigma</definition>
+        <argsstring></argsstring>
+        <name>explorationSigma</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/agyss/iis_robot_sw/iis_catkin_ws/src/kukadu/include/kukadu/learning/rl/policyrl.hpp" line="215" column="1" bodyfile="/home/agyss/iis_robot_sw/iis_catkin_ws/src/kukadu/include/kukadu/learning/rl/policyrl.hpp" bodystart="215" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classkukadu_1_1GradientDescent_1a5fc740f0cd4f09c3e0fac1f99f91ffd6" prot="private" static="no" mutable="no">
+        <type><ref refid="classkukadu_1_1TrajectoryExecutor" kindref="compound">TrajectoryExecutor</ref> *</type>
+        <definition>TrajectoryExecutor* kukadu::GradientDescent::trajEx</definition>
+        <argsstring></argsstring>
+        <name>trajEx</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/agyss/iis_robot_sw/iis_catkin_ws/src/kukadu/include/kukadu/learning/rl/policyrl.hpp" line="217" column="1" bodyfile="/home/agyss/iis_robot_sw/iis_catkin_ws/src/kukadu/include/kukadu/learning/rl/policyrl.hpp" bodystart="217" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classkukadu_1_1GradientDescent_1a4cc706080d5616a2d2954bd3520b11ec" prot="private" static="no" mutable="no">
+        <type>kukadu_mersenne_twister</type>
+        <definition>kukadu_mersenne_twister kukadu::GradientDescent::generator</definition>
+        <argsstring></argsstring>
+        <name>generator</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/agyss/iis_robot_sw/iis_catkin_ws/src/kukadu/include/kukadu/learning/rl/policyrl.hpp" line="219" column="1" bodyfile="/home/agyss/iis_robot_sw/iis_catkin_ws/src/kukadu/include/kukadu/learning/rl/policyrl.hpp" bodystart="219" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classkukadu_1_1GradientDescent_1a9ce8dffaac712518d26ad97aa59a44a5" prot="private" static="no" mutable="no">
+        <type>std::vector&lt; double &gt;</type>
+        <definition>std::vector&lt;double&gt; kukadu::GradientDescent::sigmas</definition>
+        <argsstring></argsstring>
+        <name>sigmas</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/agyss/iis_robot_sw/iis_catkin_ws/src/kukadu/include/kukadu/learning/rl/policyrl.hpp" line="221" column="1" bodyfile="/home/agyss/iis_robot_sw/iis_catkin_ws/src/kukadu/include/kukadu/learning/rl/policyrl.hpp" bodystart="221" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classkukadu_1_1GradientDescent_1add1659f15c7d1157d93195a8c22926d6" prot="private" static="no" mutable="no">
+        <type>std::vector&lt; kukadu_normal_distribution &gt;</type>
+        <definition>std::vector&lt;kukadu_normal_distribution&gt; kukadu::GradientDescent::normals</definition>
+        <argsstring></argsstring>
+        <name>normals</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/agyss/iis_robot_sw/iis_catkin_ws/src/kukadu/include/kukadu/learning/rl/policyrl.hpp" line="222" column="1" bodyfile="/home/agyss/iis_robot_sw/iis_catkin_ws/src/kukadu/include/kukadu/learning/rl/policyrl.hpp" bodystart="222" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classkukadu_1_1GradientDescent_1a49936615d1f8c80aa100c97f8a1955ca" prot="private" static="no" mutable="no">
+        <type>std::vector&lt; KUKADU_SHARED_PTR&lt; <ref refid="classkukadu_1_1Trajectory" kindref="compound">Trajectory</ref> &gt; &gt;</type>
+        <definition>std::vector&lt;KUKADU_SHARED_PTR&lt;Trajectory&gt; &gt; kukadu::GradientDescent::initDmp</definition>
+        <argsstring></argsstring>
+        <name>initDmp</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/agyss/iis_robot_sw/iis_catkin_ws/src/kukadu/include/kukadu/learning/rl/policyrl.hpp" line="223" column="1" bodyfile="/home/agyss/iis_robot_sw/iis_catkin_ws/src/kukadu/include/kukadu/learning/rl/policyrl.hpp" bodystart="223" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classkukadu_1_1GradientDescent_1afa569a6f8846446d3ccecdc0f147f274" prot="private" static="no" mutable="no">
+        <type>std::vector&lt; std::pair&lt; double, KUKADU_SHARED_PTR&lt; <ref refid="classkukadu_1_1Trajectory" kindref="compound">Trajectory</ref> &gt; &gt; &gt;</type>
+        <definition>std::vector&lt;std::pair &lt;double, KUKADU_SHARED_PTR&lt;Trajectory&gt; &gt; &gt; kukadu::GradientDescent::sampleHistory</definition>
+        <argsstring></argsstring>
+        <name>sampleHistory</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/agyss/iis_robot_sw/iis_catkin_ws/src/kukadu/include/kukadu/learning/rl/policyrl.hpp" line="224" column="1" bodyfile="/home/agyss/iis_robot_sw/iis_catkin_ws/src/kukadu/include/kukadu/learning/rl/policyrl.hpp" bodystart="224" bodyend="-1"/>
+      </memberdef>
+      </sectiondef>
+      <sectiondef kind="private-func">
+      <memberdef kind="function" id="classkukadu_1_1GradientDescent_1a21d2778afb3e9201fe6415f5b3efd0f0" prot="private" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>void kukadu::GradientDescent::construct</definition>
+        <argsstring>(std::vector&lt; KUKADU_SHARED_PTR&lt; Trajectory &gt; &gt; initDmp, std::vector&lt; double &gt; explorationSigmas, int updatesPerRollout, int importanceSamplingCount, KUKADU_SHARED_PTR&lt; CostComputer &gt; cost, KUKADU_SHARED_PTR&lt; ControlQueue &gt; simulationQueue, KUKADU_SHARED_PTR&lt; ControlQueue &gt; executionQueue, double ac, double dmpStepSize, double tolAbsErr, double tolRelErr)</argsstring>
+        <name>construct</name>
+        <param>
+          <type>std::vector&lt; KUKADU_SHARED_PTR&lt; <ref refid="classkukadu_1_1Trajectory" kindref="compound">Trajectory</ref> &gt; &gt;</type>
+          <declname>initDmp</declname>
+        </param>
+        <param>
+          <type>std::vector&lt; double &gt;</type>
+          <declname>explorationSigmas</declname>
+        </param>
+        <param>
+          <type>int</type>
+          <declname>updatesPerRollout</declname>
+        </param>
+        <param>
+          <type>int</type>
+          <declname>importanceSamplingCount</declname>
+        </param>
+        <param>
+          <type>KUKADU_SHARED_PTR&lt; <ref refid="classkukadu_1_1CostComputer" kindref="compound">CostComputer</ref> &gt;</type>
+          <declname>cost</declname>
+        </param>
+        <param>
+          <type>KUKADU_SHARED_PTR&lt; <ref refid="classkukadu_1_1ControlQueue" kindref="compound">ControlQueue</ref> &gt;</type>
+          <declname>simulationQueue</declname>
+        </param>
+        <param>
+          <type>KUKADU_SHARED_PTR&lt; <ref refid="classkukadu_1_1ControlQueue" kindref="compound">ControlQueue</ref> &gt;</type>
+          <declname>executionQueue</declname>
+        </param>
+        <param>
+          <type>double</type>
+          <declname>ac</declname>
+        </param>
+        <param>
+          <type>double</type>
+          <declname>dmpStepSize</declname>
+        </param>
+        <param>
+          <type>double</type>
+          <declname>tolAbsErr</declname>
+        </param>
+        <param>
+          <type>double</type>
+          <declname>tolRelErr</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/agyss/iis_robot_sw/iis_catkin_ws/src/kukadu/include/kukadu/learning/rl/policyrl.hpp" line="226" column="1" bodyfile="/home/agyss/iis_robot_sw/iis_catkin_ws/src/kukadu/src/learning/rl/policyrl.cpp" bodystart="261" bodyend="272"/>
+      </memberdef>
+      </sectiondef>
+      <sectiondef kind="public-func">
+      <memberdef kind="function" id="classkukadu_1_1GradientDescent_1a8d139ea3df9ad0f8d3db34a4f8d96ff0" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type></type>
+        <definition>kukadu::GradientDescent::GradientDescent</definition>
+        <argsstring>(KUKADU_SHARED_PTR&lt; TrajectoryExecutor &gt; trajEx, std::vector&lt; KUKADU_SHARED_PTR&lt; Trajectory &gt; &gt; initDmp, double explorationSigma, int updatesPerRollout, int importanceSamplingCount, KUKADU_SHARED_PTR&lt; CostComputer &gt; cost, KUKADU_SHARED_PTR&lt; ControlQueue &gt; simulationQueue, KUKADU_SHARED_PTR&lt; ControlQueue &gt; executionQueue, double ac, double dmpStepSize, double tolAbsErr, double tolRelErr)</argsstring>
+        <name>GradientDescent</name>
+        <param>
+          <type>KUKADU_SHARED_PTR&lt; <ref refid="classkukadu_1_1TrajectoryExecutor" kindref="compound">TrajectoryExecutor</ref> &gt;</type>
+          <declname>trajEx</declname>
+        </param>
+        <param>
+          <type>std::vector&lt; KUKADU_SHARED_PTR&lt; <ref refid="classkukadu_1_1Trajectory" kindref="compound">Trajectory</ref> &gt; &gt;</type>
+          <declname>initDmp</declname>
+        </param>
+        <param>
+          <type>double</type>
+          <declname>explorationSigma</declname>
+        </param>
+        <param>
+          <type>int</type>
+          <declname>updatesPerRollout</declname>
+        </param>
+        <param>
+          <type>int</type>
+          <declname>importanceSamplingCount</declname>
+        </param>
+        <param>
+          <type>KUKADU_SHARED_PTR&lt; <ref refid="classkukadu_1_1CostComputer" kindref="compound">CostComputer</ref> &gt;</type>
+          <declname>cost</declname>
+        </param>
+        <param>
+          <type>KUKADU_SHARED_PTR&lt; <ref refid="classkukadu_1_1ControlQueue" kindref="compound">ControlQueue</ref> &gt;</type>
+          <declname>simulationQueue</declname>
+        </param>
+        <param>
+          <type>KUKADU_SHARED_PTR&lt; <ref refid="classkukadu_1_1ControlQueue" kindref="compound">ControlQueue</ref> &gt;</type>
+          <declname>executionQueue</declname>
+        </param>
+        <param>
+          <type>double</type>
+          <declname>ac</declname>
+        </param>
+        <param>
+          <type>double</type>
+          <declname>dmpStepSize</declname>
+        </param>
+        <param>
+          <type>double</type>
+          <declname>tolAbsErr</declname>
+        </param>
+        <param>
+          <type>double</type>
+          <declname>tolRelErr</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/agyss/iis_robot_sw/iis_catkin_ws/src/kukadu/include/kukadu/learning/rl/policyrl.hpp" line="230" column="1" bodyfile="/home/agyss/iis_robot_sw/iis_catkin_ws/src/kukadu/src/learning/rl/policyrl.cpp" bodystart="226" bodyend="242"/>
+      </memberdef>
+      <memberdef kind="function" id="classkukadu_1_1GradientDescent_1aff09fe5b91da1579522a19b859173d1e" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type></type>
+        <definition>kukadu::GradientDescent::GradientDescent</definition>
+        <argsstring>(KUKADU_SHARED_PTR&lt; TrajectoryExecutor &gt; trajEx, std::vector&lt; KUKADU_SHARED_PTR&lt; Trajectory &gt; &gt; initDmp, std::vector&lt; double &gt; explorationSigmas, int updatesPerRollout, int importanceSamplingCount, KUKADU_SHARED_PTR&lt; CostComputer &gt; cost, KUKADU_SHARED_PTR&lt; ControlQueue &gt; simulationQueue, KUKADU_SHARED_PTR&lt; ControlQueue &gt; executionQueue, double ac, double dmpStepSize, double tolAbsErr, double tolRelErr)</argsstring>
+        <name>GradientDescent</name>
+        <param>
+          <type>KUKADU_SHARED_PTR&lt; <ref refid="classkukadu_1_1TrajectoryExecutor" kindref="compound">TrajectoryExecutor</ref> &gt;</type>
+          <declname>trajEx</declname>
+        </param>
+        <param>
+          <type>std::vector&lt; KUKADU_SHARED_PTR&lt; <ref refid="classkukadu_1_1Trajectory" kindref="compound">Trajectory</ref> &gt; &gt;</type>
+          <declname>initDmp</declname>
+        </param>
+        <param>
+          <type>std::vector&lt; double &gt;</type>
+          <declname>explorationSigmas</declname>
+        </param>
+        <param>
+          <type>int</type>
+          <declname>updatesPerRollout</declname>
+        </param>
+        <param>
+          <type>int</type>
+          <declname>importanceSamplingCount</declname>
+        </param>
+        <param>
+          <type>KUKADU_SHARED_PTR&lt; <ref refid="classkukadu_1_1CostComputer" kindref="compound">CostComputer</ref> &gt;</type>
+          <declname>cost</declname>
+        </param>
+        <param>
+          <type>KUKADU_SHARED_PTR&lt; <ref refid="classkukadu_1_1ControlQueue" kindref="compound">ControlQueue</ref> &gt;</type>
+          <declname>simulationQueue</declname>
+        </param>
+        <param>
+          <type>KUKADU_SHARED_PTR&lt; <ref refid="classkukadu_1_1ControlQueue" kindref="compound">ControlQueue</ref> &gt;</type>
+          <declname>executionQueue</declname>
+        </param>
+        <param>
+          <type>double</type>
+          <declname>ac</declname>
+        </param>
+        <param>
+          <type>double</type>
+          <declname>dmpStepSize</declname>
+        </param>
+        <param>
+          <type>double</type>
+          <declname>tolAbsErr</declname>
+        </param>
+        <param>
+          <type>double</type>
+          <declname>tolRelErr</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/agyss/iis_robot_sw/iis_catkin_ws/src/kukadu/include/kukadu/learning/rl/policyrl.hpp" line="231" column="1" bodyfile="/home/agyss/iis_robot_sw/iis_catkin_ws/src/kukadu/src/learning/rl/policyrl.cpp" bodystart="244" bodyend="259"/>
+      </memberdef>
+      <memberdef kind="function" id="classkukadu_1_1GradientDescent_1aa7238397f55b06abb5255afd327c8402" prot="public" static="no" const="no" explicit="no" inline="no" virt="virtual">
+        <type>KUKADU_SHARED_PTR&lt; <ref refid="classkukadu_1_1Trajectory" kindref="compound">Trajectory</ref> &gt;</type>
+        <definition>KUKADU_SHARED_PTR&lt; Trajectory &gt; kukadu::GradientDescent::updateStep</definition>
+        <argsstring>()</argsstring>
+        <name>updateStep</name>
+        <reimplements refid="classkukadu_1_1GeneralReinforcer_1a2925052d641e845dba068fa03d567b20">updateStep</reimplements>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/agyss/iis_robot_sw/iis_catkin_ws/src/kukadu/include/kukadu/learning/rl/policyrl.hpp" line="233" column="1" bodyfile="/home/agyss/iis_robot_sw/iis_catkin_ws/src/kukadu/src/learning/rl/policyrl.cpp" bodystart="320" bodyend="372"/>
+      </memberdef>
+      <memberdef kind="function" id="classkukadu_1_1GradientDescent_1a9a8a9b125c490b1eb93a1f604219fbd6" prot="public" static="no" const="no" explicit="no" inline="no" virt="virtual">
+        <type>std::vector&lt; KUKADU_SHARED_PTR&lt; <ref refid="classkukadu_1_1Trajectory" kindref="compound">Trajectory</ref> &gt; &gt;</type>
+        <definition>std::vector&lt; KUKADU_SHARED_PTR&lt; Trajectory &gt; &gt; kukadu::GradientDescent::getInitialRollout</definition>
+        <argsstring>()</argsstring>
+        <name>getInitialRollout</name>
+        <reimplements refid="classkukadu_1_1GeneralReinforcer_1aa7e72994ca8c009d1331129480d2e49f">getInitialRollout</reimplements>
+        <briefdescription>
+<para>returns the first rollout of the reinforcement learning algorithm </para>        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/agyss/iis_robot_sw/iis_catkin_ws/src/kukadu/include/kukadu/learning/rl/policyrl.hpp" line="235" column="1" bodyfile="/home/agyss/iis_robot_sw/iis_catkin_ws/src/kukadu/src/learning/rl/policyrl.cpp" bodystart="274" bodyend="278"/>
+      </memberdef>
+      <memberdef kind="function" id="classkukadu_1_1GradientDescent_1abd9d198e248e55a54a346f97a5cce987" prot="public" static="no" const="no" explicit="no" inline="no" virt="virtual">
+        <type>std::vector&lt; KUKADU_SHARED_PTR&lt; <ref refid="classkukadu_1_1Trajectory" kindref="compound">Trajectory</ref> &gt; &gt;</type>
+        <definition>std::vector&lt; KUKADU_SHARED_PTR&lt; Trajectory &gt; &gt; kukadu::GradientDescent::computeRolloutParamters</definition>
+        <argsstring>()</argsstring>
+        <name>computeRolloutParamters</name>
+        <reimplements refid="classkukadu_1_1GeneralReinforcer_1aec3cde390852d93c52a01926bbc6feb3">computeRolloutParamters</reimplements>
+        <briefdescription>
+<para>computes the dmp parameters for the next rollout </para>        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/agyss/iis_robot_sw/iis_catkin_ws/src/kukadu/include/kukadu/learning/rl/policyrl.hpp" line="236" column="1" bodyfile="/home/agyss/iis_robot_sw/iis_catkin_ws/src/kukadu/src/learning/rl/policyrl.cpp" bodystart="280" bodyend="318"/>
+      </memberdef>
+      </sectiondef>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <inheritancegraph>
+      <node id="282">
+        <label>kukadu::GradientDescent</label>
+        <link refid="classkukadu_1_1GradientDescent"/>
+        <childnode refid="283" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="283">
+        <label>kukadu::GeneralReinforcer</label>
+        <link refid="classkukadu_1_1GeneralReinforcer"/>
+      </node>
+    </inheritancegraph>
+    <collaborationgraph>
+      <node id="284">
+        <label>kukadu::GradientDescent</label>
+        <link refid="classkukadu_1_1GradientDescent"/>
+        <childnode refid="285" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="285">
+        <label>kukadu::GeneralReinforcer</label>
+        <link refid="classkukadu_1_1GeneralReinforcer"/>
+      </node>
+    </collaborationgraph>
+    <location file="/home/agyss/iis_robot_sw/iis_catkin_ws/src/kukadu/include/kukadu/learning/rl/policyrl.hpp" line="207" column="1" bodyfile="/home/agyss/iis_robot_sw/iis_catkin_ws/src/kukadu/include/kukadu/learning/rl/policyrl.hpp" bodystart="207" bodyend="238"/>
+    <listofallmembers>
+      <member refid="classkukadu_1_1GradientDescent_1abd9d198e248e55a54a346f97a5cce987" prot="public" virt="virtual"><scope>kukadu::GradientDescent</scope><name>computeRolloutParamters</name></member>
+      <member refid="classkukadu_1_1GradientDescent_1a21d2778afb3e9201fe6415f5b3efd0f0" prot="private" virt="non-virtual"><scope>kukadu::GradientDescent</scope><name>construct</name></member>
+      <member refid="classkukadu_1_1GradientDescent_1ab0d6f4ffa64f2c238dddf758817f4b1c" prot="private" virt="non-virtual"><scope>kukadu::GradientDescent</scope><name>explorationSigma</name></member>
+      <member refid="classkukadu_1_1GeneralReinforcer_1a1de3f2b46e82b37454f8095701992c8d" prot="public" virt="non-virtual"><scope>kukadu::GradientDescent</scope><name>GeneralReinforcer</name></member>
+      <member refid="classkukadu_1_1GradientDescent_1a4cc706080d5616a2d2954bd3520b11ec" prot="private" virt="non-virtual"><scope>kukadu::GradientDescent</scope><name>generator</name></member>
+      <member refid="classkukadu_1_1GradientDescent_1a9a8a9b125c490b1eb93a1f604219fbd6" prot="public" virt="virtual"><scope>kukadu::GradientDescent</scope><name>getInitialRollout</name></member>
+      <member refid="classkukadu_1_1GeneralReinforcer_1aa384f66bcf7487b449dc67c768e86f5e" prot="public" virt="non-virtual"><scope>kukadu::GradientDescent</scope><name>getIsFirstIteration</name></member>
+      <member refid="classkukadu_1_1GeneralReinforcer_1a1ed63236a3d31d26152ffb9f01f5363a" prot="public" virt="non-virtual"><scope>kukadu::GradientDescent</scope><name>getLastExecutionResults</name></member>
+      <member refid="classkukadu_1_1GeneralReinforcer_1a5c26cdef91f856f34c528547eee94472" prot="public" virt="non-virtual"><scope>kukadu::GradientDescent</scope><name>getLastRolloutCost</name></member>
+      <member refid="classkukadu_1_1GeneralReinforcer_1a4223bf864a5fe99bd42fe92c7e453869" prot="public" virt="non-virtual"><scope>kukadu::GradientDescent</scope><name>getLastRolloutParameters</name></member>
+      <member refid="classkukadu_1_1GeneralReinforcer_1a19213b562d0a5a0320347e51ae108f9e" prot="public" virt="non-virtual"><scope>kukadu::GradientDescent</scope><name>getLastUpdate</name></member>
+      <member refid="classkukadu_1_1GeneralReinforcer_1a7aa17bfed379c5673d81eb17db4b4932" prot="public" virt="non-virtual"><scope>kukadu::GradientDescent</scope><name>getLastUpdateRes</name></member>
+      <member refid="classkukadu_1_1GeneralReinforcer_1aa65904e99bffab1272d49b01d515a670" prot="public" virt="non-virtual"><scope>kukadu::GradientDescent</scope><name>getLastUpdateReward</name></member>
+      <member refid="classkukadu_1_1GradientDescent_1a8d139ea3df9ad0f8d3db34a4f8d96ff0" prot="public" virt="non-virtual"><scope>kukadu::GradientDescent</scope><name>GradientDescent</name></member>
+      <member refid="classkukadu_1_1GradientDescent_1aff09fe5b91da1579522a19b859173d1e" prot="public" virt="non-virtual"><scope>kukadu::GradientDescent</scope><name>GradientDescent</name></member>
+      <member refid="classkukadu_1_1GradientDescent_1a5cfd73d0518cb894a48e43ec5ce1dc38" prot="private" virt="non-virtual"><scope>kukadu::GradientDescent</scope><name>importanceSamplingCount</name></member>
+      <member refid="classkukadu_1_1GradientDescent_1a49936615d1f8c80aa100c97f8a1955ca" prot="private" virt="non-virtual"><scope>kukadu::GradientDescent</scope><name>initDmp</name></member>
+      <member refid="classkukadu_1_1GradientDescent_1add1659f15c7d1157d93195a8c22926d6" prot="private" virt="non-virtual"><scope>kukadu::GradientDescent</scope><name>normals</name></member>
+      <member refid="classkukadu_1_1GeneralReinforcer_1aee9cbeaac91379e1926088150f9c5063" prot="public" virt="non-virtual"><scope>kukadu::GradientDescent</scope><name>performRollout</name></member>
+      <member refid="classkukadu_1_1GradientDescent_1afa569a6f8846446d3ccecdc0f147f274" prot="private" virt="non-virtual"><scope>kukadu::GradientDescent</scope><name>sampleHistory</name></member>
+      <member refid="classkukadu_1_1GeneralReinforcer_1a0fe9f486ada94bb1eeeb6e460da5579f" prot="public" virt="non-virtual"><scope>kukadu::GradientDescent</scope><name>setLastUpdate</name></member>
+      <member refid="classkukadu_1_1GradientDescent_1a9ce8dffaac712518d26ad97aa59a44a5" prot="private" virt="non-virtual"><scope>kukadu::GradientDescent</scope><name>sigmas</name></member>
+      <member refid="classkukadu_1_1GradientDescent_1a5fc740f0cd4f09c3e0fac1f99f91ffd6" prot="private" virt="non-virtual"><scope>kukadu::GradientDescent</scope><name>trajEx</name></member>
+      <member refid="classkukadu_1_1GradientDescent_1aa89e1c98cb24528b9d03f61c4264542b" prot="private" virt="non-virtual"><scope>kukadu::GradientDescent</scope><name>updateNum</name></member>
+      <member refid="classkukadu_1_1GradientDescent_1afdb7afb5514253ab67d125fbc962f93e" prot="private" virt="non-virtual"><scope>kukadu::GradientDescent</scope><name>updatesPerRollout</name></member>
+      <member refid="classkukadu_1_1GradientDescent_1aa7238397f55b06abb5255afd327c8402" prot="public" virt="virtual"><scope>kukadu::GradientDescent</scope><name>updateStep</name></member>
+    </listofallmembers>
+  </compounddef>
+</doxygen>

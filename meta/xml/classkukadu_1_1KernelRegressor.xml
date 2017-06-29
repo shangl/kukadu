@@ -1,0 +1,78 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.8.11">
+  <compounddef id="classkukadu_1_1KernelRegressor" kind="class" language="C++" prot="public" abstract="yes">
+    <compoundname>kukadu::KernelRegressor</compoundname>
+    <derivedcompoundref refid="classkukadu_1_1GaussianProcessRegressor" prot="public" virt="non-virtual">kukadu::GaussianProcessRegressor</derivedcompoundref>
+    <derivedcompoundref refid="classkukadu_1_1LWRRegressor" prot="public" virt="non-virtual">kukadu::LWRRegressor</derivedcompoundref>
+    <includes refid="kernel_8hpp" local="no">kernel.hpp</includes>
+      <sectiondef kind="public-func">
+      <memberdef kind="function" id="classkukadu_1_1KernelRegressor_1a9b1048e4eb0cbc70797e27909f886e1a" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type></type>
+        <definition>kukadu::KernelRegressor::KernelRegressor</definition>
+        <argsstring>()</argsstring>
+        <name>KernelRegressor</name>
+        <briefdescription>
+<para>constructor </para>        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/agyss/iis_robot_sw/iis_catkin_ws/src/kukadu/include/kukadu/learning/regression/kernel.hpp" line="109" column="1" bodyfile="/home/agyss/iis_robot_sw/iis_catkin_ws/src/kukadu/src/learning/regression/kernel.cpp" bodystart="77" bodyend="77"/>
+      </memberdef>
+      <memberdef kind="function" id="classkukadu_1_1KernelRegressor_1afd1489310e11cff4bd88390ba76c38e1" prot="public" static="no" const="no" explicit="no" inline="no" virt="pure-virtual">
+        <type>arma::vec</type>
+        <definition>virtual arma::vec kukadu::KernelRegressor::fitAtPosition</definition>
+        <argsstring>(arma::vec pos)=0</argsstring>
+        <name>fitAtPosition</name>
+        <reimplementedby refid="classkukadu_1_1LWRRegressor_1ae1b1aeb272526f396b603ff0328b8898">fitAtPosition</reimplementedby>
+        <reimplementedby refid="classkukadu_1_1GaussianProcessRegressor_1a397a1d055761ae22ec9edc3d311949ec">fitAtPosition</reimplementedby>
+        <param>
+          <type>arma::vec</type>
+          <declname>pos</declname>
+        </param>
+        <briefdescription>
+<para>performs the kernel method for predicting the functin value at a given position </para>        </briefdescription>
+        <detaileddescription>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>pos</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>vector defining the required position </para></parameterdescription>
+</parameteritem>
+</parameterlist>
+</para>        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/agyss/iis_robot_sw/iis_catkin_ws/src/kukadu/include/kukadu/learning/regression/kernel.hpp" line="115" column="1"/>
+      </memberdef>
+      </sectiondef>
+    <briefdescription>
+<para>Provides arbitrary interface for kernel methods. </para>    </briefdescription>
+    <detaileddescription>
+<para>This class provides the interface for kernel machine learning methods such as Gaussian process regression or locally weighted regression </para>    </detaileddescription>
+    <inheritancegraph>
+      <node id="362">
+        <label>kukadu::LWRRegressor</label>
+        <link refid="classkukadu_1_1LWRRegressor"/>
+        <childnode refid="360" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="361">
+        <label>kukadu::GaussianProcessRegressor</label>
+        <link refid="classkukadu_1_1GaussianProcessRegressor"/>
+        <childnode refid="360" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="360">
+        <label>kukadu::KernelRegressor</label>
+        <link refid="classkukadu_1_1KernelRegressor"/>
+      </node>
+    </inheritancegraph>
+    <location file="/home/agyss/iis_robot_sw/iis_catkin_ws/src/kukadu/include/kukadu/learning/regression/kernel.hpp" line="99" column="1" bodyfile="/home/agyss/iis_robot_sw/iis_catkin_ws/src/kukadu/include/kukadu/learning/regression/kernel.hpp" bodystart="99" bodyend="117"/>
+    <listofallmembers>
+      <member refid="classkukadu_1_1KernelRegressor_1afd1489310e11cff4bd88390ba76c38e1" prot="public" virt="pure-virtual"><scope>kukadu::KernelRegressor</scope><name>fitAtPosition</name></member>
+      <member refid="classkukadu_1_1KernelRegressor_1a9b1048e4eb0cbc70797e27909f886e1a" prot="public" virt="non-virtual"><scope>kukadu::KernelRegressor</scope><name>KernelRegressor</name></member>
+    </listofallmembers>
+  </compounddef>
+</doxygen>

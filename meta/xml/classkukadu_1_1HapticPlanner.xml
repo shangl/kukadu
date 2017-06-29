@@ -1,0 +1,518 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.8.11">
+  <compounddef id="classkukadu_1_1HapticPlanner" kind="class" language="C++" prot="public">
+    <compoundname>kukadu::HapticPlanner</compoundname>
+    <basecompoundref refid="classkukadu_1_1Reward" prot="public" virt="non-virtual">kukadu::Reward</basecompoundref>
+    <basecompoundref prot="public" virt="non-virtual">KUKADU_ENABLE_SHARED_FROM_THIS&lt; HapticPlanner &gt;</basecompoundref>
+      <sectiondef kind="private-attrib">
+      <memberdef kind="variable" id="classkukadu_1_1HapticPlanner_1a0b0b350c7b73da600b14c984352e48c3" prot="private" static="no" mutable="no">
+        <type>bool</type>
+        <definition>bool kukadu::HapticPlanner::computeMeanAndVariance</definition>
+        <argsstring></argsstring>
+        <name>computeMeanAndVariance</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/agyss/iis_robot_sw/iis_catkin_ws/src/kukadu/include/kukadu/manipulation/playing/core.hpp" line="17" column="1" bodyfile="/home/agyss/iis_robot_sw/iis_catkin_ws/src/kukadu/include/kukadu/manipulation/playing/core.hpp" bodystart="17" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classkukadu_1_1HapticPlanner_1a8077a2ace9210c6c4417ada204f709c0" prot="private" static="no" mutable="no">
+        <type>std::vector&lt; KUKADU_SHARED_PTR&lt; <ref refid="classkukadu_1_1SensingController" kindref="compound">SensingController</ref> &gt; &gt;</type>
+        <definition>std::vector&lt;KUKADU_SHARED_PTR&lt;SensingController&gt; &gt; kukadu::HapticPlanner::meanAndVarianceForSensingIds</definition>
+        <argsstring></argsstring>
+        <name>meanAndVarianceForSensingIds</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/agyss/iis_robot_sw/iis_catkin_ws/src/kukadu/include/kukadu/manipulation/playing/core.hpp" line="18" column="1" bodyfile="/home/agyss/iis_robot_sw/iis_catkin_ws/src/kukadu/include/kukadu/manipulation/playing/core.hpp" bodystart="18" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classkukadu_1_1HapticPlanner_1a577705ab65cc4b2689cef102251c64cd" prot="private" static="no" mutable="no">
+        <type>std::string</type>
+        <definition>std::string kukadu::HapticPlanner::skillDatabase</definition>
+        <argsstring></argsstring>
+        <name>skillDatabase</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/agyss/iis_robot_sw/iis_catkin_ws/src/kukadu/include/kukadu/manipulation/playing/core.hpp" line="20" column="1" bodyfile="/home/agyss/iis_robot_sw/iis_catkin_ws/src/kukadu/include/kukadu/manipulation/playing/core.hpp" bodystart="20" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classkukadu_1_1HapticPlanner_1a75b4dfcaaa0406dfb84af1b2b0018e06" prot="private" static="no" mutable="no">
+        <type>std::map&lt; std::string, KUKADU_SHARED_PTR&lt; <ref refid="classkukadu_1_1Controller" kindref="compound">kukadu::Controller</ref> &gt; &gt;</type>
+        <definition>std::map&lt;std::string, KUKADU_SHARED_PTR&lt;kukadu::Controller&gt; &gt; kukadu::HapticPlanner::registeredComplexControllers</definition>
+        <argsstring></argsstring>
+        <name>registeredComplexControllers</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/agyss/iis_robot_sw/iis_catkin_ws/src/kukadu/include/kukadu/manipulation/playing/core.hpp" line="22" column="1" bodyfile="/home/agyss/iis_robot_sw/iis_catkin_ws/src/kukadu/include/kukadu/manipulation/playing/core.hpp" bodystart="22" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classkukadu_1_1HapticPlanner_1aede9d72ac73bfd6c02216fd87168fd88" prot="private" static="no" mutable="no">
+        <type>std::vector&lt; KUKADU_SHARED_PTR&lt; <ref refid="classkukadu_1_1SensingController" kindref="compound">kukadu::SensingController</ref> &gt; &gt;</type>
+        <definition>std::vector&lt;KUKADU_SHARED_PTR&lt;kukadu::SensingController&gt; &gt; kukadu::HapticPlanner::requiresGraspSensingControllersVec</definition>
+        <argsstring></argsstring>
+        <name>requiresGraspSensingControllersVec</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/agyss/iis_robot_sw/iis_catkin_ws/src/kukadu/include/kukadu/manipulation/playing/core.hpp" line="24" column="1" bodyfile="/home/agyss/iis_robot_sw/iis_catkin_ws/src/kukadu/include/kukadu/manipulation/playing/core.hpp" bodystart="24" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classkukadu_1_1HapticPlanner_1a23aa692a6609fc8726dcabe4eef65e35" prot="private" static="no" mutable="no">
+        <type>std::vector&lt; KUKADU_SHARED_PTR&lt; <ref refid="classkukadu_1_1SensingController" kindref="compound">kukadu::SensingController</ref> &gt; &gt;</type>
+        <definition>std::vector&lt;KUKADU_SHARED_PTR&lt;kukadu::SensingController&gt; &gt; kukadu::HapticPlanner::nonRequiresGraspSensingControllersVec</definition>
+        <argsstring></argsstring>
+        <name>nonRequiresGraspSensingControllersVec</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/agyss/iis_robot_sw/iis_catkin_ws/src/kukadu/include/kukadu/manipulation/playing/core.hpp" line="25" column="1" bodyfile="/home/agyss/iis_robot_sw/iis_catkin_ws/src/kukadu/include/kukadu/manipulation/playing/core.hpp" bodystart="25" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classkukadu_1_1HapticPlanner_1a31efa21dfcc18bb280f7c97e34d79650" prot="private" static="no" mutable="no">
+        <type>std::map&lt; std::string, KUKADU_SHARED_PTR&lt; <ref refid="classkukadu_1_1SensingController" kindref="compound">kukadu::SensingController</ref> &gt; &gt;</type>
+        <definition>std::map&lt;std::string, KUKADU_SHARED_PTR&lt;kukadu::SensingController&gt; &gt; kukadu::HapticPlanner::requiresGraspSensingControllers</definition>
+        <argsstring></argsstring>
+        <name>requiresGraspSensingControllers</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/agyss/iis_robot_sw/iis_catkin_ws/src/kukadu/include/kukadu/manipulation/playing/core.hpp" line="27" column="1" bodyfile="/home/agyss/iis_robot_sw/iis_catkin_ws/src/kukadu/include/kukadu/manipulation/playing/core.hpp" bodystart="27" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classkukadu_1_1HapticPlanner_1ad3f0d693e2e05647eddab4e0f7cce4f0" prot="private" static="no" mutable="no">
+        <type>std::map&lt; std::string, KUKADU_SHARED_PTR&lt; <ref refid="classkukadu_1_1SensingController" kindref="compound">kukadu::SensingController</ref> &gt; &gt;</type>
+        <definition>std::map&lt;std::string, KUKADU_SHARED_PTR&lt;kukadu::SensingController&gt; &gt; kukadu::HapticPlanner::nonRequiresGraspSensingControllers</definition>
+        <argsstring></argsstring>
+        <name>nonRequiresGraspSensingControllers</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/agyss/iis_robot_sw/iis_catkin_ws/src/kukadu/include/kukadu/manipulation/playing/core.hpp" line="28" column="1" bodyfile="/home/agyss/iis_robot_sw/iis_catkin_ws/src/kukadu/include/kukadu/manipulation/playing/core.hpp" bodystart="28" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classkukadu_1_1HapticPlanner_1ad76316643a82d1c1edcdd6159993beeb" prot="private" static="no" mutable="no">
+        <type>std::map&lt; std::string, KUKADU_SHARED_PTR&lt; <ref refid="classkukadu_1_1Controller" kindref="compound">kukadu::Controller</ref> &gt; &gt;</type>
+        <definition>std::map&lt;std::string, KUKADU_SHARED_PTR&lt;kukadu::Controller&gt; &gt; kukadu::HapticPlanner::allPrepControllers</definition>
+        <argsstring></argsstring>
+        <name>allPrepControllers</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/agyss/iis_robot_sw/iis_catkin_ws/src/kukadu/include/kukadu/manipulation/playing/core.hpp" line="30" column="1" bodyfile="/home/agyss/iis_robot_sw/iis_catkin_ws/src/kukadu/include/kukadu/manipulation/playing/core.hpp" bodystart="30" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classkukadu_1_1HapticPlanner_1a3d07fa01392ad801df8b17c4f2efea6f" prot="private" static="no" mutable="no">
+        <type>std::map&lt; std::string, KUKADU_SHARED_PTR&lt; <ref refid="classkukadu_1_1Controller" kindref="compound">kukadu::Controller</ref> &gt; &gt;</type>
+        <definition>std::map&lt;std::string, KUKADU_SHARED_PTR&lt;kukadu::Controller&gt; &gt; kukadu::HapticPlanner::preparationProducesGraspControllers</definition>
+        <argsstring></argsstring>
+        <name>preparationProducesGraspControllers</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/agyss/iis_robot_sw/iis_catkin_ws/src/kukadu/include/kukadu/manipulation/playing/core.hpp" line="31" column="1" bodyfile="/home/agyss/iis_robot_sw/iis_catkin_ws/src/kukadu/include/kukadu/manipulation/playing/core.hpp" bodystart="31" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classkukadu_1_1HapticPlanner_1a991b7d76a244024ea61bc1eae750a423" prot="private" static="no" mutable="no">
+        <type>std::map&lt; std::string, KUKADU_SHARED_PTR&lt; <ref refid="classkukadu_1_1Controller" kindref="compound">kukadu::Controller</ref> &gt; &gt;</type>
+        <definition>std::map&lt;std::string, KUKADU_SHARED_PTR&lt;kukadu::Controller&gt; &gt; kukadu::HapticPlanner::preparationProducesNonGraspControllers</definition>
+        <argsstring></argsstring>
+        <name>preparationProducesNonGraspControllers</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/agyss/iis_robot_sw/iis_catkin_ws/src/kukadu/include/kukadu/manipulation/playing/core.hpp" line="32" column="1" bodyfile="/home/agyss/iis_robot_sw/iis_catkin_ws/src/kukadu/include/kukadu/manipulation/playing/core.hpp" bodystart="32" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classkukadu_1_1HapticPlanner_1ac3f591198297f4b2c039c2ae61b20e3e" prot="private" static="no" mutable="no">
+        <type>std::vector&lt; KUKADU_SHARED_PTR&lt; <ref refid="classkukadu_1_1Controller" kindref="compound">kukadu::Controller</ref> &gt; &gt;</type>
+        <definition>std::vector&lt;KUKADU_SHARED_PTR&lt;kukadu::Controller&gt; &gt; kukadu::HapticPlanner::preparationProducesGraspControllersVector</definition>
+        <argsstring></argsstring>
+        <name>preparationProducesGraspControllersVector</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/agyss/iis_robot_sw/iis_catkin_ws/src/kukadu/include/kukadu/manipulation/playing/core.hpp" line="34" column="1" bodyfile="/home/agyss/iis_robot_sw/iis_catkin_ws/src/kukadu/include/kukadu/manipulation/playing/core.hpp" bodystart="34" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classkukadu_1_1HapticPlanner_1a6b790e4f1e03804280a43fdea389800a" prot="private" static="no" mutable="no">
+        <type>std::vector&lt; KUKADU_SHARED_PTR&lt; <ref refid="classkukadu_1_1Controller" kindref="compound">kukadu::Controller</ref> &gt; &gt;</type>
+        <definition>std::vector&lt;KUKADU_SHARED_PTR&lt;kukadu::Controller&gt; &gt; kukadu::HapticPlanner::preparationProducesNonGraspControllersVector</definition>
+        <argsstring></argsstring>
+        <name>preparationProducesNonGraspControllersVector</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/agyss/iis_robot_sw/iis_catkin_ws/src/kukadu/include/kukadu/manipulation/playing/core.hpp" line="35" column="1" bodyfile="/home/agyss/iis_robot_sw/iis_catkin_ws/src/kukadu/include/kukadu/manipulation/playing/core.hpp" bodystart="35" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classkukadu_1_1HapticPlanner_1a3632b6b80104b099205df078ca0f2741" prot="private" static="no" mutable="no">
+        <type>KUKADU_SHARED_PTR&lt; kukadu_mersenne_twister &gt;</type>
+        <definition>KUKADU_SHARED_PTR&lt;kukadu_mersenne_twister&gt; kukadu::HapticPlanner::generator</definition>
+        <argsstring></argsstring>
+        <name>generator</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/agyss/iis_robot_sw/iis_catkin_ws/src/kukadu/include/kukadu/manipulation/playing/core.hpp" line="37" column="1" bodyfile="/home/agyss/iis_robot_sw/iis_catkin_ws/src/kukadu/include/kukadu/manipulation/playing/core.hpp" bodystart="37" bodyend="-1"/>
+      </memberdef>
+      </sectiondef>
+      <sectiondef kind="private-func">
+      <memberdef kind="function" id="classkukadu_1_1HapticPlanner_1ab88bfffd6e2b545940595c497c4ea902" prot="private" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>void kukadu::HapticPlanner::printNamedVector</definition>
+        <argsstring>(std::vector&lt; std::string &gt; names)</argsstring>
+        <name>printNamedVector</name>
+        <param>
+          <type>std::vector&lt; std::string &gt;</type>
+          <declname>names</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/agyss/iis_robot_sw/iis_catkin_ws/src/kukadu/include/kukadu/manipulation/playing/core.hpp" line="39" column="1"/>
+      </memberdef>
+      <memberdef kind="function" id="classkukadu_1_1HapticPlanner_1ab2ebf5e2baf991c3b5508e40e87c4fef" prot="private" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>std::vector&lt; KUKADU_SHARED_PTR&lt; <ref refid="classkukadu_1_1SensingController" kindref="compound">kukadu::SensingController</ref> &gt; &gt;</type>
+        <definition>std::vector&lt; KUKADU_SHARED_PTR&lt; kukadu::SensingController &gt; &gt; kukadu::HapticPlanner::copySensingControllers</definition>
+        <argsstring>(KUKADU_SHARED_PTR&lt; kukadu::ComplexController &gt; parentComplexController, std::vector&lt; KUKADU_SHARED_PTR&lt; kukadu::SensingController &gt; &gt; controllers, std::string newBasePath)</argsstring>
+        <name>copySensingControllers</name>
+        <param>
+          <type>KUKADU_SHARED_PTR&lt; <ref refid="classkukadu_1_1ComplexController" kindref="compound">kukadu::ComplexController</ref> &gt;</type>
+          <declname>parentComplexController</declname>
+        </param>
+        <param>
+          <type>std::vector&lt; KUKADU_SHARED_PTR&lt; <ref refid="classkukadu_1_1SensingController" kindref="compound">kukadu::SensingController</ref> &gt; &gt;</type>
+          <declname>controllers</declname>
+        </param>
+        <param>
+          <type>std::string</type>
+          <declname>newBasePath</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/agyss/iis_robot_sw/iis_catkin_ws/src/kukadu/include/kukadu/manipulation/playing/core.hpp" line="41" column="1" bodyfile="/home/agyss/iis_robot_sw/iis_catkin_ws/src/kukadu/src/manipulation/playing/core.cpp" bodystart="272" bodyend="290"/>
+      </memberdef>
+      </sectiondef>
+      <sectiondef kind="protected-func">
+      <memberdef kind="function" id="classkukadu_1_1HapticPlanner_1a8d73a2aa0ca782970a1885a7b8970e5f" prot="protected" static="no" const="no" explicit="no" inline="no" virt="virtual">
+        <type>double</type>
+        <definition>double kukadu::HapticPlanner::computeRewardInternal</definition>
+        <argsstring>(KUKADU_SHARED_PTR&lt; PerceptClip &gt; providedPercept, KUKADU_SHARED_PTR&lt; ActionClip &gt; takenAction)</argsstring>
+        <name>computeRewardInternal</name>
+        <reimplements refid="classkukadu_1_1Reward_1ac7893507bd165f368019bbbdfed9db9a">computeRewardInternal</reimplements>
+        <param>
+          <type>KUKADU_SHARED_PTR&lt; <ref refid="classkukadu_1_1PerceptClip" kindref="compound">PerceptClip</ref> &gt;</type>
+          <declname>providedPercept</declname>
+        </param>
+        <param>
+          <type>KUKADU_SHARED_PTR&lt; <ref refid="classkukadu_1_1ActionClip" kindref="compound">ActionClip</ref> &gt;</type>
+          <declname>takenAction</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/agyss/iis_robot_sw/iis_catkin_ws/src/kukadu/include/kukadu/manipulation/playing/core.hpp" line="47" column="1" bodyfile="/home/agyss/iis_robot_sw/iis_catkin_ws/src/kukadu/src/manipulation/playing/core.cpp" bodystart="260" bodyend="264"/>
+      </memberdef>
+      </sectiondef>
+      <sectiondef kind="public-func">
+      <memberdef kind="function" id="classkukadu_1_1HapticPlanner_1a9294aa4114b972120debbd923a9615af" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type></type>
+        <definition>kukadu::HapticPlanner::HapticPlanner</definition>
+        <argsstring>(std::string skillDatabase, std::vector&lt; KUKADU_SHARED_PTR&lt; kukadu::SensingController &gt; &gt; sensingControllers, std::vector&lt; KUKADU_SHARED_PTR&lt; kukadu::Controller &gt; &gt; preparatoryControllers, std::vector&lt; KUKADU_SHARED_PTR&lt; kukadu::Controller &gt; &gt; complexControllers, KUKADU_SHARED_PTR&lt; kukadu::Controller &gt; nothingController, KUKADU_SHARED_PTR&lt; kukadu_mersenne_twister &gt; generator, std::vector&lt; KUKADU_SHARED_PTR&lt; SensingController &gt; &gt; meanAndVarianceForSensingIds={})</argsstring>
+        <name>HapticPlanner</name>
+        <param>
+          <type>std::string</type>
+          <declname>skillDatabase</declname>
+        </param>
+        <param>
+          <type>std::vector&lt; KUKADU_SHARED_PTR&lt; <ref refid="classkukadu_1_1SensingController" kindref="compound">kukadu::SensingController</ref> &gt; &gt;</type>
+          <declname>sensingControllers</declname>
+        </param>
+        <param>
+          <type>std::vector&lt; KUKADU_SHARED_PTR&lt; <ref refid="classkukadu_1_1Controller" kindref="compound">kukadu::Controller</ref> &gt; &gt;</type>
+          <declname>preparatoryControllers</declname>
+        </param>
+        <param>
+          <type>std::vector&lt; KUKADU_SHARED_PTR&lt; <ref refid="classkukadu_1_1Controller" kindref="compound">kukadu::Controller</ref> &gt; &gt;</type>
+          <declname>complexControllers</declname>
+        </param>
+        <param>
+          <type>KUKADU_SHARED_PTR&lt; <ref refid="classkukadu_1_1Controller" kindref="compound">kukadu::Controller</ref> &gt;</type>
+          <declname>nothingController</declname>
+        </param>
+        <param>
+          <type>KUKADU_SHARED_PTR&lt; kukadu_mersenne_twister &gt;</type>
+          <declname>generator</declname>
+        </param>
+        <param>
+          <type>std::vector&lt; KUKADU_SHARED_PTR&lt; <ref refid="classkukadu_1_1SensingController" kindref="compound">SensingController</ref> &gt; &gt;</type>
+          <declname>meanAndVarianceForSensingIds</declname>
+          <defval>{}</defval>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/agyss/iis_robot_sw/iis_catkin_ws/src/kukadu/include/kukadu/manipulation/playing/core.hpp" line="51" column="1" bodyfile="/home/agyss/iis_robot_sw/iis_catkin_ws/src/kukadu/src/manipulation/playing/core.cpp" bodystart="11" bodyend="149"/>
+      </memberdef>
+      <memberdef kind="function" id="classkukadu_1_1HapticPlanner_1a8e5fe565402949ff974a32bd1a895883" prot="public" static="no" const="no" explicit="no" inline="no" virt="virtual">
+        <type>int</type>
+        <definition>int kukadu::HapticPlanner::getDimensionality</definition>
+        <argsstring>()</argsstring>
+        <name>getDimensionality</name>
+        <reimplements refid="classkukadu_1_1Reward_1ab3207c5a18655541d4db592219d67595">getDimensionality</reimplements>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/agyss/iis_robot_sw/iis_catkin_ws/src/kukadu/include/kukadu/manipulation/playing/core.hpp" line="59" column="1" bodyfile="/home/agyss/iis_robot_sw/iis_catkin_ws/src/kukadu/src/manipulation/playing/core.cpp" bodystart="266" bodyend="270"/>
+      </memberdef>
+      <memberdef kind="function" id="classkukadu_1_1HapticPlanner_1a588f0364647cff1401ce4eae9d819f47" prot="public" static="no" const="no" explicit="no" inline="no" virt="virtual">
+        <type>KUKADU_SHARED_PTR&lt; <ref refid="classkukadu_1_1PerceptClip" kindref="compound">PerceptClip</ref> &gt;</type>
+        <definition>KUKADU_SHARED_PTR&lt; PerceptClip &gt; kukadu::HapticPlanner::generateNextPerceptClip</definition>
+        <argsstring>(int immunity)</argsstring>
+        <name>generateNextPerceptClip</name>
+        <reimplements refid="classkukadu_1_1Reward_1a308ddd203d220b4715ed4cb4268ac9ab">generateNextPerceptClip</reimplements>
+        <param>
+          <type>int</type>
+          <declname>immunity</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/agyss/iis_robot_sw/iis_catkin_ws/src/kukadu/include/kukadu/manipulation/playing/core.hpp" line="61" column="1" bodyfile="/home/agyss/iis_robot_sw/iis_catkin_ws/src/kukadu/src/manipulation/playing/core.cpp" bodystart="242" bodyend="246"/>
+      </memberdef>
+      <memberdef kind="function" id="classkukadu_1_1HapticPlanner_1aa386d3e94482e5181626c1eddebffd7b" prot="public" static="no" const="no" explicit="no" inline="no" virt="virtual">
+        <type>KUKADU_SHARED_PTR&lt; std::vector&lt; KUKADU_SHARED_PTR&lt; <ref refid="classkukadu_1_1ActionClip" kindref="compound">ActionClip</ref> &gt; &gt; &gt;</type>
+        <definition>KUKADU_SHARED_PTR&lt; std::vector&lt; KUKADU_SHARED_PTR&lt; ActionClip &gt; &gt; &gt; kukadu::HapticPlanner::generateActionClips</definition>
+        <argsstring>()</argsstring>
+        <name>generateActionClips</name>
+        <reimplements refid="classkukadu_1_1Reward_1ac569bee7aac35ae3f762d5769d254fc8">generateActionClips</reimplements>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/agyss/iis_robot_sw/iis_catkin_ws/src/kukadu/include/kukadu/manipulation/playing/core.hpp" line="62" column="1" bodyfile="/home/agyss/iis_robot_sw/iis_catkin_ws/src/kukadu/src/manipulation/playing/core.cpp" bodystart="248" bodyend="252"/>
+      </memberdef>
+      <memberdef kind="function" id="classkukadu_1_1HapticPlanner_1a9748d448f421504336013c4aa98e243d" prot="public" static="no" const="no" explicit="no" inline="no" virt="virtual">
+        <type>KUKADU_SHARED_PTR&lt; std::vector&lt; KUKADU_SHARED_PTR&lt; <ref refid="classkukadu_1_1PerceptClip" kindref="compound">PerceptClip</ref> &gt; &gt; &gt;</type>
+        <definition>KUKADU_SHARED_PTR&lt; std::vector&lt; KUKADU_SHARED_PTR&lt; PerceptClip &gt; &gt; &gt; kukadu::HapticPlanner::generatePerceptClips</definition>
+        <argsstring>()</argsstring>
+        <name>generatePerceptClips</name>
+        <reimplements refid="classkukadu_1_1Reward_1a0d1addb6e9e93326d66ff7b4613cf0a0">generatePerceptClips</reimplements>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/agyss/iis_robot_sw/iis_catkin_ws/src/kukadu/include/kukadu/manipulation/playing/core.hpp" line="63" column="1" bodyfile="/home/agyss/iis_robot_sw/iis_catkin_ws/src/kukadu/src/manipulation/playing/core.cpp" bodystart="254" bodyend="258"/>
+      </memberdef>
+      <memberdef kind="function" id="classkukadu_1_1HapticPlanner_1a267e6afa41919c58b1a37bd0e460dfb9" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>void kukadu::HapticPlanner::pickAndPerformComplexSkill</definition>
+        <argsstring>(bool updateModels=true)</argsstring>
+        <name>pickAndPerformComplexSkill</name>
+        <param>
+          <type>bool</type>
+          <declname>updateModels</declname>
+          <defval>true</defval>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/agyss/iis_robot_sw/iis_catkin_ws/src/kukadu/include/kukadu/manipulation/playing/core.hpp" line="65" column="1" bodyfile="/home/agyss/iis_robot_sw/iis_catkin_ws/src/kukadu/src/manipulation/playing/core.cpp" bodystart="151" bodyend="160"/>
+      </memberdef>
+      <memberdef kind="function" id="classkukadu_1_1HapticPlanner_1ac8eb5e6c2b41dc7766c1503b50541302" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>KUKADU_SHARED_PTR&lt; <ref refid="classkukadu_1_1HapticControllerResult" kindref="compound">kukadu::HapticControllerResult</ref> &gt;</type>
+        <definition>KUKADU_SHARED_PTR&lt; kukadu::HapticControllerResult &gt; kukadu::HapticPlanner::performComplexSkill</definition>
+        <argsstring>(std::string skillId, bool updateModels=true)</argsstring>
+        <name>performComplexSkill</name>
+        <param>
+          <type>std::string</type>
+          <declname>skillId</declname>
+        </param>
+        <param>
+          <type>bool</type>
+          <declname>updateModels</declname>
+          <defval>true</defval>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/agyss/iis_robot_sw/iis_catkin_ws/src/kukadu/include/kukadu/manipulation/playing/core.hpp" line="66" column="1" bodyfile="/home/agyss/iis_robot_sw/iis_catkin_ws/src/kukadu/src/manipulation/playing/core.cpp" bodystart="162" bodyend="196"/>
+      </memberdef>
+      <memberdef kind="function" id="classkukadu_1_1HapticPlanner_1a2ed1772fee9f9b2dc4930b66896cb5ff" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>void kukadu::HapticPlanner::updateModels</definition>
+        <argsstring>()</argsstring>
+        <name>updateModels</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/agyss/iis_robot_sw/iis_catkin_ws/src/kukadu/include/kukadu/manipulation/playing/core.hpp" line="68" column="1" bodyfile="/home/agyss/iis_robot_sw/iis_catkin_ws/src/kukadu/src/manipulation/playing/core.cpp" bodystart="198" bodyend="207"/>
+      </memberdef>
+      <memberdef kind="function" id="classkukadu_1_1HapticPlanner_1a87764109bd04a93c93f91a37de9dd214" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>std::string</type>
+        <definition>std::string kukadu::HapticPlanner::pickComplexSkill</definition>
+        <argsstring>()</argsstring>
+        <name>pickComplexSkill</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/agyss/iis_robot_sw/iis_catkin_ws/src/kukadu/include/kukadu/manipulation/playing/core.hpp" line="70" column="1" bodyfile="/home/agyss/iis_robot_sw/iis_catkin_ws/src/kukadu/src/manipulation/playing/core.cpp" bodystart="220" bodyend="240"/>
+      </memberdef>
+      <memberdef kind="function" id="classkukadu_1_1HapticPlanner_1afc97d78845cd9675993f352845c5c02e" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>void kukadu::HapticPlanner::setSimulationMode</definition>
+        <argsstring>(bool simulationMode)</argsstring>
+        <name>setSimulationMode</name>
+        <param>
+          <type>bool</type>
+          <declname>simulationMode</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/agyss/iis_robot_sw/iis_catkin_ws/src/kukadu/include/kukadu/manipulation/playing/core.hpp" line="72" column="1" bodyfile="/home/agyss/iis_robot_sw/iis_catkin_ws/src/kukadu/src/manipulation/playing/core.cpp" bodystart="209" bodyend="218"/>
+      </memberdef>
+      </sectiondef>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <inheritancegraph>
+      <node id="296">
+        <label>kukadu::HapticPlanner</label>
+        <link refid="classkukadu_1_1HapticPlanner"/>
+        <childnode refid="297" relation="public-inheritance">
+        </childnode>
+        <childnode refid="298" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="297">
+        <label>kukadu::Reward</label>
+        <link refid="classkukadu_1_1Reward"/>
+      </node>
+      <node id="298">
+        <label>KUKADU_ENABLE_SHARED_FROM_THIS&lt; HapticPlanner &gt;</label>
+      </node>
+    </inheritancegraph>
+    <collaborationgraph>
+      <node id="299">
+        <label>kukadu::HapticPlanner</label>
+        <link refid="classkukadu_1_1HapticPlanner"/>
+        <childnode refid="300" relation="public-inheritance">
+        </childnode>
+        <childnode refid="301" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="300">
+        <label>kukadu::Reward</label>
+        <link refid="classkukadu_1_1Reward"/>
+      </node>
+      <node id="301">
+        <label>KUKADU_ENABLE_SHARED_FROM_THIS&lt; HapticPlanner &gt;</label>
+      </node>
+    </collaborationgraph>
+    <location file="/home/agyss/iis_robot_sw/iis_catkin_ws/src/kukadu/include/kukadu/manipulation/playing/core.hpp" line="13" column="1" bodyfile="/home/agyss/iis_robot_sw/iis_catkin_ws/src/kukadu/include/kukadu/manipulation/playing/core.hpp" bodystart="13" bodyend="74"/>
+    <listofallmembers>
+      <member refid="classkukadu_1_1HapticPlanner_1ad76316643a82d1c1edcdd6159993beeb" prot="private" virt="non-virtual"><scope>kukadu::HapticPlanner</scope><name>allPrepControllers</name></member>
+      <member refid="classkukadu_1_1HapticPlanner_1a0b0b350c7b73da600b14c984352e48c3" prot="private" virt="non-virtual"><scope>kukadu::HapticPlanner</scope><name>computeMeanAndVariance</name></member>
+      <member refid="classkukadu_1_1Reward_1a989f7e9a5dd36fc4ee786147870e6af3" prot="public" virt="non-virtual"><scope>kukadu::HapticPlanner</scope><name>computeReward</name></member>
+      <member refid="classkukadu_1_1HapticPlanner_1a8d73a2aa0ca782970a1885a7b8970e5f" prot="protected" virt="virtual"><scope>kukadu::HapticPlanner</scope><name>computeRewardInternal</name></member>
+      <member refid="classkukadu_1_1HapticPlanner_1ab2ebf5e2baf991c3b5508e40e87c4fef" prot="private" virt="non-virtual"><scope>kukadu::HapticPlanner</scope><name>copySensingControllers</name></member>
+      <member refid="classkukadu_1_1HapticPlanner_1aa386d3e94482e5181626c1eddebffd7b" prot="public" virt="virtual"><scope>kukadu::HapticPlanner</scope><name>generateActionClips</name></member>
+      <member refid="classkukadu_1_1HapticPlanner_1a588f0364647cff1401ce4eae9d819f47" prot="public" virt="virtual"><scope>kukadu::HapticPlanner</scope><name>generateNextPerceptClip</name></member>
+      <member refid="classkukadu_1_1HapticPlanner_1a9748d448f421504336013c4aa98e243d" prot="public" virt="virtual"><scope>kukadu::HapticPlanner</scope><name>generatePerceptClips</name></member>
+      <member refid="classkukadu_1_1HapticPlanner_1a3632b6b80104b099205df078ca0f2741" prot="private" virt="non-virtual"><scope>kukadu::HapticPlanner</scope><name>generator</name></member>
+      <member refid="classkukadu_1_1HapticPlanner_1a8e5fe565402949ff974a32bd1a895883" prot="public" virt="virtual"><scope>kukadu::HapticPlanner</scope><name>getDimensionality</name></member>
+      <member refid="classkukadu_1_1Reward_1af54aac1737849f765ed82e6ee052f486" prot="public" virt="non-virtual"><scope>kukadu::HapticPlanner</scope><name>getPreviousRewards</name></member>
+      <member refid="classkukadu_1_1HapticPlanner_1a9294aa4114b972120debbd923a9615af" prot="public" virt="non-virtual"><scope>kukadu::HapticPlanner</scope><name>HapticPlanner</name></member>
+      <member refid="classkukadu_1_1HapticPlanner_1a8077a2ace9210c6c4417ada204f709c0" prot="private" virt="non-virtual"><scope>kukadu::HapticPlanner</scope><name>meanAndVarianceForSensingIds</name></member>
+      <member refid="classkukadu_1_1HapticPlanner_1ad3f0d693e2e05647eddab4e0f7cce4f0" prot="private" virt="non-virtual"><scope>kukadu::HapticPlanner</scope><name>nonRequiresGraspSensingControllers</name></member>
+      <member refid="classkukadu_1_1HapticPlanner_1a23aa692a6609fc8726dcabe4eef65e35" prot="private" virt="non-virtual"><scope>kukadu::HapticPlanner</scope><name>nonRequiresGraspSensingControllersVec</name></member>
+      <member refid="classkukadu_1_1HapticPlanner_1ac8eb5e6c2b41dc7766c1503b50541302" prot="public" virt="non-virtual"><scope>kukadu::HapticPlanner</scope><name>performComplexSkill</name></member>
+      <member refid="classkukadu_1_1HapticPlanner_1a267e6afa41919c58b1a37bd0e460dfb9" prot="public" virt="non-virtual"><scope>kukadu::HapticPlanner</scope><name>pickAndPerformComplexSkill</name></member>
+      <member refid="classkukadu_1_1HapticPlanner_1a87764109bd04a93c93f91a37de9dd214" prot="public" virt="non-virtual"><scope>kukadu::HapticPlanner</scope><name>pickComplexSkill</name></member>
+      <member refid="classkukadu_1_1HapticPlanner_1a3d07fa01392ad801df8b17c4f2efea6f" prot="private" virt="non-virtual"><scope>kukadu::HapticPlanner</scope><name>preparationProducesGraspControllers</name></member>
+      <member refid="classkukadu_1_1HapticPlanner_1ac3f591198297f4b2c039c2ae61b20e3e" prot="private" virt="non-virtual"><scope>kukadu::HapticPlanner</scope><name>preparationProducesGraspControllersVector</name></member>
+      <member refid="classkukadu_1_1HapticPlanner_1a991b7d76a244024ea61bc1eae750a423" prot="private" virt="non-virtual"><scope>kukadu::HapticPlanner</scope><name>preparationProducesNonGraspControllers</name></member>
+      <member refid="classkukadu_1_1HapticPlanner_1a6b790e4f1e03804280a43fdea389800a" prot="private" virt="non-virtual"><scope>kukadu::HapticPlanner</scope><name>preparationProducesNonGraspControllersVector</name></member>
+      <member refid="classkukadu_1_1HapticPlanner_1ab88bfffd6e2b545940595c497c4ea902" prot="private" virt="non-virtual"><scope>kukadu::HapticPlanner</scope><name>printNamedVector</name></member>
+      <member refid="classkukadu_1_1HapticPlanner_1a75b4dfcaaa0406dfb84af1b2b0018e06" prot="private" virt="non-virtual"><scope>kukadu::HapticPlanner</scope><name>registeredComplexControllers</name></member>
+      <member refid="classkukadu_1_1HapticPlanner_1a31efa21dfcc18bb280f7c97e34d79650" prot="private" virt="non-virtual"><scope>kukadu::HapticPlanner</scope><name>requiresGraspSensingControllers</name></member>
+      <member refid="classkukadu_1_1HapticPlanner_1aede9d72ac73bfd6c02216fd87168fd88" prot="private" virt="non-virtual"><scope>kukadu::HapticPlanner</scope><name>requiresGraspSensingControllersVec</name></member>
+      <member refid="classkukadu_1_1Reward_1a2eeceb6c818e6964cb88c9e524d2045c" prot="public" virt="non-virtual"><scope>kukadu::HapticPlanner</scope><name>Reward</name></member>
+      <member refid="classkukadu_1_1HapticPlanner_1afc97d78845cd9675993f352845c5c02e" prot="public" virt="non-virtual"><scope>kukadu::HapticPlanner</scope><name>setSimulationMode</name></member>
+      <member refid="classkukadu_1_1HapticPlanner_1a577705ab65cc4b2689cef102251c64cd" prot="private" virt="non-virtual"><scope>kukadu::HapticPlanner</scope><name>skillDatabase</name></member>
+      <member refid="classkukadu_1_1HapticPlanner_1a2ed1772fee9f9b2dc4930b66896cb5ff" prot="public" virt="non-virtual"><scope>kukadu::HapticPlanner</scope><name>updateModels</name></member>
+    </listofallmembers>
+  </compounddef>
+</doxygen>

@@ -1,0 +1,522 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.8.11">
+  <compounddef id="classkukadu_1_1GeneralReinforcer" kind="class" language="C++" prot="public" abstract="yes">
+    <compoundname>kukadu::GeneralReinforcer</compoundname>
+    <derivedcompoundref refid="classkukadu_1_1GradientDescent" prot="public" virt="non-virtual">kukadu::GradientDescent</derivedcompoundref>
+    <derivedcompoundref refid="classkukadu_1_1PoWER" prot="public" virt="non-virtual">kukadu::PoWER</derivedcompoundref>
+    <includes refid="policyrl_8hpp" local="no">policyrl.hpp</includes>
+      <sectiondef kind="private-attrib">
+      <memberdef kind="variable" id="classkukadu_1_1GeneralReinforcer_1ac4b4a5a5ce01158585dbd90b3a8d56c7" prot="private" static="no" mutable="no">
+        <type>bool</type>
+        <definition>bool kukadu::GeneralReinforcer::isFirstIteration</definition>
+        <argsstring></argsstring>
+        <name>isFirstIteration</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/agyss/iis_robot_sw/iis_catkin_ws/src/kukadu/include/kukadu/learning/rl/policyrl.hpp" line="104" column="1" bodyfile="/home/agyss/iis_robot_sw/iis_catkin_ws/src/kukadu/include/kukadu/learning/rl/policyrl.hpp" bodystart="104" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classkukadu_1_1GeneralReinforcer_1a819a0f494e4d6e5ce14506ddef057126" prot="private" static="no" mutable="no">
+        <type>double</type>
+        <definition>double kukadu::GeneralReinforcer::ac</definition>
+        <argsstring></argsstring>
+        <name>ac</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/agyss/iis_robot_sw/iis_catkin_ws/src/kukadu/include/kukadu/learning/rl/policyrl.hpp" line="106" column="1" bodyfile="/home/agyss/iis_robot_sw/iis_catkin_ws/src/kukadu/include/kukadu/learning/rl/policyrl.hpp" bodystart="106" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classkukadu_1_1GeneralReinforcer_1a629c620ed9de11ed58259c35b404617c" prot="private" static="no" mutable="no">
+        <type>double</type>
+        <definition>double kukadu::GeneralReinforcer::tolAbsErr</definition>
+        <argsstring></argsstring>
+        <name>tolAbsErr</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/agyss/iis_robot_sw/iis_catkin_ws/src/kukadu/include/kukadu/learning/rl/policyrl.hpp" line="107" column="1" bodyfile="/home/agyss/iis_robot_sw/iis_catkin_ws/src/kukadu/include/kukadu/learning/rl/policyrl.hpp" bodystart="107" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classkukadu_1_1GeneralReinforcer_1a7e2c5876079f9741eedbfe7372ad6101" prot="private" static="no" mutable="no">
+        <type>double</type>
+        <definition>double kukadu::GeneralReinforcer::tolRelErr</definition>
+        <argsstring></argsstring>
+        <name>tolRelErr</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/agyss/iis_robot_sw/iis_catkin_ws/src/kukadu/include/kukadu/learning/rl/policyrl.hpp" line="108" column="1" bodyfile="/home/agyss/iis_robot_sw/iis_catkin_ws/src/kukadu/include/kukadu/learning/rl/policyrl.hpp" bodystart="108" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classkukadu_1_1GeneralReinforcer_1a979294d832ff2cd2e5bb84dac61f7ff0" prot="private" static="no" mutable="no">
+        <type>double</type>
+        <definition>double kukadu::GeneralReinforcer::dmpStepSize</definition>
+        <argsstring></argsstring>
+        <name>dmpStepSize</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/agyss/iis_robot_sw/iis_catkin_ws/src/kukadu/include/kukadu/learning/rl/policyrl.hpp" line="109" column="1" bodyfile="/home/agyss/iis_robot_sw/iis_catkin_ws/src/kukadu/include/kukadu/learning/rl/policyrl.hpp" bodystart="109" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classkukadu_1_1GeneralReinforcer_1acc08394910e2a07c0b730f2aa226fd92" prot="private" static="no" mutable="no">
+        <type>double</type>
+        <definition>double kukadu::GeneralReinforcer::lastUpdateCost</definition>
+        <argsstring></argsstring>
+        <name>lastUpdateCost</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/agyss/iis_robot_sw/iis_catkin_ws/src/kukadu/include/kukadu/learning/rl/policyrl.hpp" line="110" column="1" bodyfile="/home/agyss/iis_robot_sw/iis_catkin_ws/src/kukadu/include/kukadu/learning/rl/policyrl.hpp" bodystart="110" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classkukadu_1_1GeneralReinforcer_1a0c97ab882483458d2b7c95f72fd65cad" prot="private" static="no" mutable="no">
+        <type>KUKADU_SHARED_PTR&lt; <ref refid="classkukadu_1_1CostComputer" kindref="compound">CostComputer</ref> &gt;</type>
+        <definition>KUKADU_SHARED_PTR&lt;CostComputer&gt; kukadu::GeneralReinforcer::cost</definition>
+        <argsstring></argsstring>
+        <name>cost</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/agyss/iis_robot_sw/iis_catkin_ws/src/kukadu/include/kukadu/learning/rl/policyrl.hpp" line="112" column="1" bodyfile="/home/agyss/iis_robot_sw/iis_catkin_ws/src/kukadu/include/kukadu/learning/rl/policyrl.hpp" bodystart="112" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classkukadu_1_1GeneralReinforcer_1a848fd19a513d59095d7c6bd6e2a6bf08" prot="private" static="no" mutable="no">
+        <type>KUKADU_SHARED_PTR&lt; <ref refid="classkukadu_1_1Trajectory" kindref="compound">Trajectory</ref> &gt;</type>
+        <definition>KUKADU_SHARED_PTR&lt;Trajectory&gt; kukadu::GeneralReinforcer::lastUpdate</definition>
+        <argsstring></argsstring>
+        <name>lastUpdate</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/agyss/iis_robot_sw/iis_catkin_ws/src/kukadu/include/kukadu/learning/rl/policyrl.hpp" line="113" column="1" bodyfile="/home/agyss/iis_robot_sw/iis_catkin_ws/src/kukadu/include/kukadu/learning/rl/policyrl.hpp" bodystart="113" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classkukadu_1_1GeneralReinforcer_1a91f6bd85e9726e8fbe2c7c8d79d7d45b" prot="private" static="no" mutable="no">
+        <type>KUKADU_SHARED_PTR&lt; <ref refid="classkukadu_1_1TrajectoryExecutor" kindref="compound">TrajectoryExecutor</ref> &gt;</type>
+        <definition>KUKADU_SHARED_PTR&lt;TrajectoryExecutor&gt; kukadu::GeneralReinforcer::trajEx</definition>
+        <argsstring></argsstring>
+        <name>trajEx</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/agyss/iis_robot_sw/iis_catkin_ws/src/kukadu/include/kukadu/learning/rl/policyrl.hpp" line="114" column="1" bodyfile="/home/agyss/iis_robot_sw/iis_catkin_ws/src/kukadu/include/kukadu/learning/rl/policyrl.hpp" bodystart="114" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classkukadu_1_1GeneralReinforcer_1af8ffbc0669c94f1d4e2a66a19b8b2097" prot="private" static="no" mutable="no">
+        <type>KUKADU_SHARED_PTR&lt; <ref refid="classkukadu_1_1ControlQueue" kindref="compound">ControlQueue</ref> &gt;</type>
+        <definition>KUKADU_SHARED_PTR&lt;ControlQueue&gt; kukadu::GeneralReinforcer::executionQueue</definition>
+        <argsstring></argsstring>
+        <name>executionQueue</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/agyss/iis_robot_sw/iis_catkin_ws/src/kukadu/include/kukadu/learning/rl/policyrl.hpp" line="115" column="1" bodyfile="/home/agyss/iis_robot_sw/iis_catkin_ws/src/kukadu/include/kukadu/learning/rl/policyrl.hpp" bodystart="115" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classkukadu_1_1GeneralReinforcer_1adf54296b63be1f5714523ae1b5e2e1c4" prot="private" static="no" mutable="no">
+        <type>KUKADU_SHARED_PTR&lt; <ref refid="classkukadu_1_1ControlQueue" kindref="compound">ControlQueue</ref> &gt;</type>
+        <definition>KUKADU_SHARED_PTR&lt;ControlQueue&gt; kukadu::GeneralReinforcer::simulationQueue</definition>
+        <argsstring></argsstring>
+        <name>simulationQueue</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/agyss/iis_robot_sw/iis_catkin_ws/src/kukadu/include/kukadu/learning/rl/policyrl.hpp" line="116" column="1" bodyfile="/home/agyss/iis_robot_sw/iis_catkin_ws/src/kukadu/include/kukadu/learning/rl/policyrl.hpp" bodystart="116" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classkukadu_1_1GeneralReinforcer_1a76509e54114747abba15125ec85be2af" prot="private" static="no" mutable="no">
+        <type>KUKADU_SHARED_PTR&lt; <ref refid="classkukadu_1_1ControllerResult" kindref="compound">ControllerResult</ref> &gt;</type>
+        <definition>KUKADU_SHARED_PTR&lt;ControllerResult&gt; kukadu::GeneralReinforcer::lastUpdateRes</definition>
+        <argsstring></argsstring>
+        <name>lastUpdateRes</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/agyss/iis_robot_sw/iis_catkin_ws/src/kukadu/include/kukadu/learning/rl/policyrl.hpp" line="117" column="1" bodyfile="/home/agyss/iis_robot_sw/iis_catkin_ws/src/kukadu/include/kukadu/learning/rl/policyrl.hpp" bodystart="117" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classkukadu_1_1GeneralReinforcer_1aa0d5dd8cd24a0176cf1632ead1ae6fc3" prot="private" static="no" mutable="no">
+        <type>std::vector&lt; double &gt;</type>
+        <definition>std::vector&lt;double&gt; kukadu::GeneralReinforcer::lastCost</definition>
+        <argsstring></argsstring>
+        <name>lastCost</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/agyss/iis_robot_sw/iis_catkin_ws/src/kukadu/include/kukadu/learning/rl/policyrl.hpp" line="119" column="1" bodyfile="/home/agyss/iis_robot_sw/iis_catkin_ws/src/kukadu/include/kukadu/learning/rl/policyrl.hpp" bodystart="119" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classkukadu_1_1GeneralReinforcer_1a3a6e9fab1d4c95a3382c5cfb9ecf9f16" prot="private" static="no" mutable="no">
+        <type>std::vector&lt; KUKADU_SHARED_PTR&lt; <ref refid="classkukadu_1_1Trajectory" kindref="compound">Trajectory</ref> &gt; &gt;</type>
+        <definition>std::vector&lt;KUKADU_SHARED_PTR&lt;Trajectory&gt; &gt; kukadu::GeneralReinforcer::rollout</definition>
+        <argsstring></argsstring>
+        <name>rollout</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/agyss/iis_robot_sw/iis_catkin_ws/src/kukadu/include/kukadu/learning/rl/policyrl.hpp" line="120" column="1" bodyfile="/home/agyss/iis_robot_sw/iis_catkin_ws/src/kukadu/include/kukadu/learning/rl/policyrl.hpp" bodystart="120" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classkukadu_1_1GeneralReinforcer_1a3c3cb0b578d32a5f79257214aff85100" prot="private" static="no" mutable="no">
+        <type>std::vector&lt; KUKADU_SHARED_PTR&lt; <ref refid="classkukadu_1_1ControllerResult" kindref="compound">ControllerResult</ref> &gt; &gt;</type>
+        <definition>std::vector&lt;KUKADU_SHARED_PTR&lt;ControllerResult&gt; &gt; kukadu::GeneralReinforcer::dmpResult</definition>
+        <argsstring></argsstring>
+        <name>dmpResult</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/agyss/iis_robot_sw/iis_catkin_ws/src/kukadu/include/kukadu/learning/rl/policyrl.hpp" line="121" column="1" bodyfile="/home/agyss/iis_robot_sw/iis_catkin_ws/src/kukadu/include/kukadu/learning/rl/policyrl.hpp" bodystart="121" bodyend="-1"/>
+      </memberdef>
+      </sectiondef>
+      <sectiondef kind="public-func">
+      <memberdef kind="function" id="classkukadu_1_1GeneralReinforcer_1a1de3f2b46e82b37454f8095701992c8d" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type></type>
+        <definition>kukadu::GeneralReinforcer::GeneralReinforcer</definition>
+        <argsstring>(KUKADU_SHARED_PTR&lt; TrajectoryExecutor &gt; trajEx, KUKADU_SHARED_PTR&lt; CostComputer &gt; cost, KUKADU_SHARED_PTR&lt; ControlQueue &gt; simulationQueue, KUKADU_SHARED_PTR&lt; ControlQueue &gt; executionQueue)</argsstring>
+        <name>GeneralReinforcer</name>
+        <param>
+          <type>KUKADU_SHARED_PTR&lt; <ref refid="classkukadu_1_1TrajectoryExecutor" kindref="compound">TrajectoryExecutor</ref> &gt;</type>
+          <declname>trajEx</declname>
+        </param>
+        <param>
+          <type>KUKADU_SHARED_PTR&lt; <ref refid="classkukadu_1_1CostComputer" kindref="compound">CostComputer</ref> &gt;</type>
+          <declname>cost</declname>
+        </param>
+        <param>
+          <type>KUKADU_SHARED_PTR&lt; <ref refid="classkukadu_1_1ControlQueue" kindref="compound">ControlQueue</ref> &gt;</type>
+          <declname>simulationQueue</declname>
+        </param>
+        <param>
+          <type>KUKADU_SHARED_PTR&lt; <ref refid="classkukadu_1_1ControlQueue" kindref="compound">ControlQueue</ref> &gt;</type>
+          <declname>executionQueue</declname>
+        </param>
+        <briefdescription>
+<para>constructor </para>        </briefdescription>
+        <detaileddescription>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>cost</parametername>
+</parameternamelist>
+<parameterdescription>
+<para><ref refid="classkukadu_1_1CostComputer" kindref="compound">CostComputer</ref> instance that computes the cost of a given rollout </para></parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>movementQueue</parametername>
+</parameternamelist>
+<parameterdescription>
+<para><ref refid="classkukadu_1_1ControlQueue" kindref="compound">ControlQueue</ref> instance for robot execution </para></parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>ac</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>dmp phase stopping parameter </para></parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>dmpStepSize</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>step size for dmp execution </para></parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>tolAbsErr</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>absolute tolerated error for numerical approximation </para></parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>tolRelErr</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>relative tolerated error for numerical approximation </para></parameterdescription>
+</parameteritem>
+</parameterlist>
+</para>        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/agyss/iis_robot_sw/iis_catkin_ws/src/kukadu/include/kukadu/learning/rl/policyrl.hpp" line="134" column="1" bodyfile="/home/agyss/iis_robot_sw/iis_catkin_ws/src/kukadu/src/learning/rl/policyrl.cpp" bodystart="9" bodyend="19"/>
+      </memberdef>
+      <memberdef kind="function" id="classkukadu_1_1GeneralReinforcer_1aa384f66bcf7487b449dc67c768e86f5e" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>bool</type>
+        <definition>bool kukadu::GeneralReinforcer::getIsFirstIteration</definition>
+        <argsstring>()</argsstring>
+        <name>getIsFirstIteration</name>
+        <briefdescription>
+<para>returns true if the first iteration has not been performed yet </para>        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/agyss/iis_robot_sw/iis_catkin_ws/src/kukadu/include/kukadu/learning/rl/policyrl.hpp" line="139" column="1" bodyfile="/home/agyss/iis_robot_sw/iis_catkin_ws/src/kukadu/src/learning/rl/policyrl.cpp" bodystart="21" bodyend="23"/>
+      </memberdef>
+      <memberdef kind="function" id="classkukadu_1_1GeneralReinforcer_1aee9cbeaac91379e1926088150f9c5063" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>void kukadu::GeneralReinforcer::performRollout</definition>
+        <argsstring>(int doSimulation, int doExecution)</argsstring>
+        <name>performRollout</name>
+        <param>
+          <type>int</type>
+          <declname>doSimulation</declname>
+        </param>
+        <param>
+          <type>int</type>
+          <declname>doExecution</declname>
+        </param>
+        <briefdescription>
+<para>executes rollout. first, the trajectory is simulated and the user is asked, whether the trajectory really should be executed </para>        </briefdescription>
+        <detaileddescription>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>doSimulation</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>flag whether trajectory should be simulated </para></parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>doExecution</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>flag whether trajectory should be executed at robot </para></parameterdescription>
+</parameteritem>
+</parameterlist>
+</para>        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/agyss/iis_robot_sw/iis_catkin_ws/src/kukadu/include/kukadu/learning/rl/policyrl.hpp" line="146" column="1" bodyfile="/home/agyss/iis_robot_sw/iis_catkin_ws/src/kukadu/src/learning/rl/policyrl.cpp" bodystart="41" bodyend="210"/>
+      </memberdef>
+      <memberdef kind="function" id="classkukadu_1_1GeneralReinforcer_1a0fe9f486ada94bb1eeeb6e460da5579f" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>void kukadu::GeneralReinforcer::setLastUpdate</definition>
+        <argsstring>(KUKADU_SHARED_PTR&lt; Trajectory &gt; lastUpdate)</argsstring>
+        <name>setLastUpdate</name>
+        <param>
+          <type>KUKADU_SHARED_PTR&lt; <ref refid="classkukadu_1_1Trajectory" kindref="compound">Trajectory</ref> &gt;</type>
+          <declname>lastUpdate</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/agyss/iis_robot_sw/iis_catkin_ws/src/kukadu/include/kukadu/learning/rl/policyrl.hpp" line="147" column="1" bodyfile="/home/agyss/iis_robot_sw/iis_catkin_ws/src/kukadu/src/learning/rl/policyrl.cpp" bodystart="222" bodyend="224"/>
+      </memberdef>
+      <memberdef kind="function" id="classkukadu_1_1GeneralReinforcer_1aa65904e99bffab1272d49b01d515a670" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>double</type>
+        <definition>double kukadu::GeneralReinforcer::getLastUpdateReward</definition>
+        <argsstring>()</argsstring>
+        <name>getLastUpdateReward</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/agyss/iis_robot_sw/iis_catkin_ws/src/kukadu/include/kukadu/learning/rl/policyrl.hpp" line="149" column="1" bodyfile="/home/agyss/iis_robot_sw/iis_catkin_ws/src/kukadu/src/learning/rl/policyrl.cpp" bodystart="212" bodyend="214"/>
+      </memberdef>
+      <memberdef kind="function" id="classkukadu_1_1GeneralReinforcer_1a19213b562d0a5a0320347e51ae108f9e" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>KUKADU_SHARED_PTR&lt; <ref refid="classkukadu_1_1Trajectory" kindref="compound">Trajectory</ref> &gt;</type>
+        <definition>KUKADU_SHARED_PTR&lt; Trajectory &gt; kukadu::GeneralReinforcer::getLastUpdate</definition>
+        <argsstring>()</argsstring>
+        <name>getLastUpdate</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/agyss/iis_robot_sw/iis_catkin_ws/src/kukadu/include/kukadu/learning/rl/policyrl.hpp" line="151" column="1" bodyfile="/home/agyss/iis_robot_sw/iis_catkin_ws/src/kukadu/src/learning/rl/policyrl.cpp" bodystart="216" bodyend="220"/>
+      </memberdef>
+      <memberdef kind="function" id="classkukadu_1_1GeneralReinforcer_1a7aa17bfed379c5673d81eb17db4b4932" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>KUKADU_SHARED_PTR&lt; <ref refid="classkukadu_1_1ControllerResult" kindref="compound">ControllerResult</ref> &gt;</type>
+        <definition>KUKADU_SHARED_PTR&lt; ControllerResult &gt; kukadu::GeneralReinforcer::getLastUpdateRes</definition>
+        <argsstring>()</argsstring>
+        <name>getLastUpdateRes</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/agyss/iis_robot_sw/iis_catkin_ws/src/kukadu/include/kukadu/learning/rl/policyrl.hpp" line="152" column="1" bodyfile="/home/agyss/iis_robot_sw/iis_catkin_ws/src/kukadu/src/learning/rl/policyrl.cpp" bodystart="37" bodyend="39"/>
+      </memberdef>
+      <memberdef kind="function" id="classkukadu_1_1GeneralReinforcer_1a5c26cdef91f856f34c528547eee94472" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>std::vector&lt; double &gt;</type>
+        <definition>std::vector&lt; double &gt; kukadu::GeneralReinforcer::getLastRolloutCost</definition>
+        <argsstring>()</argsstring>
+        <name>getLastRolloutCost</name>
+        <briefdescription>
+<para>returns cost for the last executed rollout </para>        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/agyss/iis_robot_sw/iis_catkin_ws/src/kukadu/include/kukadu/learning/rl/policyrl.hpp" line="157" column="1" bodyfile="/home/agyss/iis_robot_sw/iis_catkin_ws/src/kukadu/src/learning/rl/policyrl.cpp" bodystart="25" bodyend="27"/>
+      </memberdef>
+      <memberdef kind="function" id="classkukadu_1_1GeneralReinforcer_1a4223bf864a5fe99bd42fe92c7e453869" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>std::vector&lt; KUKADU_SHARED_PTR&lt; <ref refid="classkukadu_1_1Trajectory" kindref="compound">Trajectory</ref> &gt; &gt;</type>
+        <definition>std::vector&lt; KUKADU_SHARED_PTR&lt; Trajectory &gt; &gt; kukadu::GeneralReinforcer::getLastRolloutParameters</definition>
+        <argsstring>()</argsstring>
+        <name>getLastRolloutParameters</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/agyss/iis_robot_sw/iis_catkin_ws/src/kukadu/include/kukadu/learning/rl/policyrl.hpp" line="158" column="1" bodyfile="/home/agyss/iis_robot_sw/iis_catkin_ws/src/kukadu/src/learning/rl/policyrl.cpp" bodystart="29" bodyend="31"/>
+      </memberdef>
+      <memberdef kind="function" id="classkukadu_1_1GeneralReinforcer_1a1ed63236a3d31d26152ffb9f01f5363a" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>std::vector&lt; KUKADU_SHARED_PTR&lt; <ref refid="classkukadu_1_1ControllerResult" kindref="compound">ControllerResult</ref> &gt; &gt;</type>
+        <definition>std::vector&lt; KUKADU_SHARED_PTR&lt; ControllerResult &gt; &gt; kukadu::GeneralReinforcer::getLastExecutionResults</definition>
+        <argsstring>()</argsstring>
+        <name>getLastExecutionResults</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/agyss/iis_robot_sw/iis_catkin_ws/src/kukadu/include/kukadu/learning/rl/policyrl.hpp" line="159" column="1" bodyfile="/home/agyss/iis_robot_sw/iis_catkin_ws/src/kukadu/src/learning/rl/policyrl.cpp" bodystart="33" bodyend="35"/>
+      </memberdef>
+      <memberdef kind="function" id="classkukadu_1_1GeneralReinforcer_1a2925052d641e845dba068fa03d567b20" prot="public" static="no" const="no" explicit="no" inline="no" virt="pure-virtual">
+        <type>KUKADU_SHARED_PTR&lt; <ref refid="classkukadu_1_1Trajectory" kindref="compound">Trajectory</ref> &gt;</type>
+        <definition>virtual KUKADU_SHARED_PTR&lt;Trajectory&gt; kukadu::GeneralReinforcer::updateStep</definition>
+        <argsstring>()=0</argsstring>
+        <name>updateStep</name>
+        <reimplementedby refid="classkukadu_1_1PoWER_1a1742695dab4e560cf0256b1a26555990">updateStep</reimplementedby>
+        <reimplementedby refid="classkukadu_1_1GradientDescent_1aa7238397f55b06abb5255afd327c8402">updateStep</reimplementedby>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/agyss/iis_robot_sw/iis_catkin_ws/src/kukadu/include/kukadu/learning/rl/policyrl.hpp" line="161" column="1"/>
+      </memberdef>
+      <memberdef kind="function" id="classkukadu_1_1GeneralReinforcer_1aa7e72994ca8c009d1331129480d2e49f" prot="public" static="no" const="no" explicit="no" inline="no" virt="pure-virtual">
+        <type>std::vector&lt; KUKADU_SHARED_PTR&lt; <ref refid="classkukadu_1_1Trajectory" kindref="compound">Trajectory</ref> &gt; &gt;</type>
+        <definition>virtual std::vector&lt;KUKADU_SHARED_PTR&lt;Trajectory&gt; &gt; kukadu::GeneralReinforcer::getInitialRollout</definition>
+        <argsstring>()=0</argsstring>
+        <name>getInitialRollout</name>
+        <reimplementedby refid="classkukadu_1_1PoWER_1a944ac3c9811932c00eb085481baa53f8">getInitialRollout</reimplementedby>
+        <reimplementedby refid="classkukadu_1_1GradientDescent_1a9a8a9b125c490b1eb93a1f604219fbd6">getInitialRollout</reimplementedby>
+        <briefdescription>
+<para>returns the first rollout of the reinforcement learning algorithm </para>        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/agyss/iis_robot_sw/iis_catkin_ws/src/kukadu/include/kukadu/learning/rl/policyrl.hpp" line="166" column="1"/>
+      </memberdef>
+      <memberdef kind="function" id="classkukadu_1_1GeneralReinforcer_1aec3cde390852d93c52a01926bbc6feb3" prot="public" static="no" const="no" explicit="no" inline="no" virt="pure-virtual">
+        <type>std::vector&lt; KUKADU_SHARED_PTR&lt; <ref refid="classkukadu_1_1Trajectory" kindref="compound">Trajectory</ref> &gt; &gt;</type>
+        <definition>virtual std::vector&lt;KUKADU_SHARED_PTR&lt;Trajectory&gt; &gt; kukadu::GeneralReinforcer::computeRolloutParamters</definition>
+        <argsstring>()=0</argsstring>
+        <name>computeRolloutParamters</name>
+        <reimplementedby refid="classkukadu_1_1PoWER_1aae0e23c81c88faa2bbd49f4f9a99dd28">computeRolloutParamters</reimplementedby>
+        <reimplementedby refid="classkukadu_1_1GradientDescent_1abd9d198e248e55a54a346f97a5cce987">computeRolloutParamters</reimplementedby>
+        <briefdescription>
+<para>computes the dmp parameters for the next rollout </para>        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/agyss/iis_robot_sw/iis_catkin_ws/src/kukadu/include/kukadu/learning/rl/policyrl.hpp" line="171" column="1"/>
+      </memberdef>
+      </sectiondef>
+    <briefdescription>
+<para>The <ref refid="classkukadu_1_1GeneralReinforcer" kindref="compound">GeneralReinforcer</ref> provides a general framework for reinforcement learning. </para>    </briefdescription>
+    <detaileddescription>
+<para>It is an abstract class that implements elementary functionality that should be in common for all reinforcement learning methods (such as rollout execution). A concrete implementation of the <ref refid="classkukadu_1_1DMPReinforcer" kindref="compound">DMPReinforcer</ref> has to implement the missing parts such as the methods getInitialRollout and computeRolloutParamters. </para>    </detaileddescription>
+    <inheritancegraph>
+      <node id="252">
+        <label>kukadu::PoWER</label>
+        <link refid="classkukadu_1_1PoWER"/>
+        <childnode refid="250" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="251">
+        <label>kukadu::GradientDescent</label>
+        <link refid="classkukadu_1_1GradientDescent"/>
+        <childnode refid="250" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="250">
+        <label>kukadu::GeneralReinforcer</label>
+        <link refid="classkukadu_1_1GeneralReinforcer"/>
+      </node>
+    </inheritancegraph>
+    <location file="/home/agyss/iis_robot_sw/iis_catkin_ws/src/kukadu/include/kukadu/learning/rl/policyrl.hpp" line="100" column="1" bodyfile="/home/agyss/iis_robot_sw/iis_catkin_ws/src/kukadu/include/kukadu/learning/rl/policyrl.hpp" bodystart="100" bodyend="173"/>
+    <listofallmembers>
+      <member refid="classkukadu_1_1GeneralReinforcer_1a819a0f494e4d6e5ce14506ddef057126" prot="private" virt="non-virtual"><scope>kukadu::GeneralReinforcer</scope><name>ac</name></member>
+      <member refid="classkukadu_1_1GeneralReinforcer_1aec3cde390852d93c52a01926bbc6feb3" prot="public" virt="pure-virtual"><scope>kukadu::GeneralReinforcer</scope><name>computeRolloutParamters</name></member>
+      <member refid="classkukadu_1_1GeneralReinforcer_1a0c97ab882483458d2b7c95f72fd65cad" prot="private" virt="non-virtual"><scope>kukadu::GeneralReinforcer</scope><name>cost</name></member>
+      <member refid="classkukadu_1_1GeneralReinforcer_1a3c3cb0b578d32a5f79257214aff85100" prot="private" virt="non-virtual"><scope>kukadu::GeneralReinforcer</scope><name>dmpResult</name></member>
+      <member refid="classkukadu_1_1GeneralReinforcer_1a979294d832ff2cd2e5bb84dac61f7ff0" prot="private" virt="non-virtual"><scope>kukadu::GeneralReinforcer</scope><name>dmpStepSize</name></member>
+      <member refid="classkukadu_1_1GeneralReinforcer_1af8ffbc0669c94f1d4e2a66a19b8b2097" prot="private" virt="non-virtual"><scope>kukadu::GeneralReinforcer</scope><name>executionQueue</name></member>
+      <member refid="classkukadu_1_1GeneralReinforcer_1a1de3f2b46e82b37454f8095701992c8d" prot="public" virt="non-virtual"><scope>kukadu::GeneralReinforcer</scope><name>GeneralReinforcer</name></member>
+      <member refid="classkukadu_1_1GeneralReinforcer_1aa7e72994ca8c009d1331129480d2e49f" prot="public" virt="pure-virtual"><scope>kukadu::GeneralReinforcer</scope><name>getInitialRollout</name></member>
+      <member refid="classkukadu_1_1GeneralReinforcer_1aa384f66bcf7487b449dc67c768e86f5e" prot="public" virt="non-virtual"><scope>kukadu::GeneralReinforcer</scope><name>getIsFirstIteration</name></member>
+      <member refid="classkukadu_1_1GeneralReinforcer_1a1ed63236a3d31d26152ffb9f01f5363a" prot="public" virt="non-virtual"><scope>kukadu::GeneralReinforcer</scope><name>getLastExecutionResults</name></member>
+      <member refid="classkukadu_1_1GeneralReinforcer_1a5c26cdef91f856f34c528547eee94472" prot="public" virt="non-virtual"><scope>kukadu::GeneralReinforcer</scope><name>getLastRolloutCost</name></member>
+      <member refid="classkukadu_1_1GeneralReinforcer_1a4223bf864a5fe99bd42fe92c7e453869" prot="public" virt="non-virtual"><scope>kukadu::GeneralReinforcer</scope><name>getLastRolloutParameters</name></member>
+      <member refid="classkukadu_1_1GeneralReinforcer_1a19213b562d0a5a0320347e51ae108f9e" prot="public" virt="non-virtual"><scope>kukadu::GeneralReinforcer</scope><name>getLastUpdate</name></member>
+      <member refid="classkukadu_1_1GeneralReinforcer_1a7aa17bfed379c5673d81eb17db4b4932" prot="public" virt="non-virtual"><scope>kukadu::GeneralReinforcer</scope><name>getLastUpdateRes</name></member>
+      <member refid="classkukadu_1_1GeneralReinforcer_1aa65904e99bffab1272d49b01d515a670" prot="public" virt="non-virtual"><scope>kukadu::GeneralReinforcer</scope><name>getLastUpdateReward</name></member>
+      <member refid="classkukadu_1_1GeneralReinforcer_1ac4b4a5a5ce01158585dbd90b3a8d56c7" prot="private" virt="non-virtual"><scope>kukadu::GeneralReinforcer</scope><name>isFirstIteration</name></member>
+      <member refid="classkukadu_1_1GeneralReinforcer_1aa0d5dd8cd24a0176cf1632ead1ae6fc3" prot="private" virt="non-virtual"><scope>kukadu::GeneralReinforcer</scope><name>lastCost</name></member>
+      <member refid="classkukadu_1_1GeneralReinforcer_1a848fd19a513d59095d7c6bd6e2a6bf08" prot="private" virt="non-virtual"><scope>kukadu::GeneralReinforcer</scope><name>lastUpdate</name></member>
+      <member refid="classkukadu_1_1GeneralReinforcer_1acc08394910e2a07c0b730f2aa226fd92" prot="private" virt="non-virtual"><scope>kukadu::GeneralReinforcer</scope><name>lastUpdateCost</name></member>
+      <member refid="classkukadu_1_1GeneralReinforcer_1a76509e54114747abba15125ec85be2af" prot="private" virt="non-virtual"><scope>kukadu::GeneralReinforcer</scope><name>lastUpdateRes</name></member>
+      <member refid="classkukadu_1_1GeneralReinforcer_1aee9cbeaac91379e1926088150f9c5063" prot="public" virt="non-virtual"><scope>kukadu::GeneralReinforcer</scope><name>performRollout</name></member>
+      <member refid="classkukadu_1_1GeneralReinforcer_1a3a6e9fab1d4c95a3382c5cfb9ecf9f16" prot="private" virt="non-virtual"><scope>kukadu::GeneralReinforcer</scope><name>rollout</name></member>
+      <member refid="classkukadu_1_1GeneralReinforcer_1a0fe9f486ada94bb1eeeb6e460da5579f" prot="public" virt="non-virtual"><scope>kukadu::GeneralReinforcer</scope><name>setLastUpdate</name></member>
+      <member refid="classkukadu_1_1GeneralReinforcer_1adf54296b63be1f5714523ae1b5e2e1c4" prot="private" virt="non-virtual"><scope>kukadu::GeneralReinforcer</scope><name>simulationQueue</name></member>
+      <member refid="classkukadu_1_1GeneralReinforcer_1a629c620ed9de11ed58259c35b404617c" prot="private" virt="non-virtual"><scope>kukadu::GeneralReinforcer</scope><name>tolAbsErr</name></member>
+      <member refid="classkukadu_1_1GeneralReinforcer_1a7e2c5876079f9741eedbfe7372ad6101" prot="private" virt="non-virtual"><scope>kukadu::GeneralReinforcer</scope><name>tolRelErr</name></member>
+      <member refid="classkukadu_1_1GeneralReinforcer_1a91f6bd85e9726e8fbe2c7c8d79d7d45b" prot="private" virt="non-virtual"><scope>kukadu::GeneralReinforcer</scope><name>trajEx</name></member>
+      <member refid="classkukadu_1_1GeneralReinforcer_1a2925052d641e845dba068fa03d567b20" prot="public" virt="pure-virtual"><scope>kukadu::GeneralReinforcer</scope><name>updateStep</name></member>
+    </listofallmembers>
+  </compounddef>
+</doxygen>

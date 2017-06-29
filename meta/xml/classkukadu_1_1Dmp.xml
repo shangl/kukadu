@@ -1,0 +1,1205 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.8.11">
+  <compounddef id="classkukadu_1_1Dmp" kind="class" language="C++" prot="public" abstract="yes">
+    <compoundname>kukadu::Dmp</compoundname>
+    <basecompoundref refid="classkukadu_1_1SingleSampleTrajectory" prot="public" virt="non-virtual">kukadu::SingleSampleTrajectory</basecompoundref>
+    <derivedcompoundref refid="classkukadu_1_1CartesianDMP" prot="public" virt="non-virtual">kukadu::CartesianDMP</derivedcompoundref>
+    <derivedcompoundref refid="classkukadu_1_1JointDmp" prot="public" virt="non-virtual">kukadu::JointDmp</derivedcompoundref>
+      <sectiondef kind="private-attrib">
+      <memberdef kind="variable" id="classkukadu_1_1Dmp_1aab3096b94d8db1699aec14b56698ca38" prot="private" static="no" mutable="no">
+        <type>std::vector&lt; arma::vec &gt;</type>
+        <definition>std::vector&lt;arma::vec&gt; kukadu::Dmp::dmpCoeffs</definition>
+        <argsstring></argsstring>
+        <name>dmpCoeffs</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/agyss/iis_robot_sw/iis_catkin_ws/src/kukadu/include/kukadu/control/dmp.hpp" line="40" column="1" bodyfile="/home/agyss/iis_robot_sw/iis_catkin_ws/src/kukadu/include/kukadu/control/dmp.hpp" bodystart="40" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classkukadu_1_1Dmp_1a8b9aa882f42740131e27d86deaaff799" prot="private" static="no" mutable="no">
+        <type>arma::vec</type>
+        <definition>arma::vec kukadu::Dmp::y0</definition>
+        <argsstring></argsstring>
+        <name>y0</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/agyss/iis_robot_sw/iis_catkin_ws/src/kukadu/include/kukadu/control/dmp.hpp" line="41" column="1" bodyfile="/home/agyss/iis_robot_sw/iis_catkin_ws/src/kukadu/include/kukadu/control/dmp.hpp" bodystart="41" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classkukadu_1_1Dmp_1a1807562f7d5c87900da967498e55a24f" prot="private" static="no" mutable="no">
+        <type>arma::vec</type>
+        <definition>arma::vec kukadu::Dmp::dy0</definition>
+        <argsstring></argsstring>
+        <name>dy0</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/agyss/iis_robot_sw/iis_catkin_ws/src/kukadu/include/kukadu/control/dmp.hpp" line="42" column="1" bodyfile="/home/agyss/iis_robot_sw/iis_catkin_ws/src/kukadu/include/kukadu/control/dmp.hpp" bodystart="42" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classkukadu_1_1Dmp_1a8cd86435710a5f31bd2f70ef5acf298e" prot="private" static="no" mutable="no">
+        <type>arma::vec</type>
+        <definition>arma::vec kukadu::Dmp::ddy0</definition>
+        <argsstring></argsstring>
+        <name>ddy0</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/agyss/iis_robot_sw/iis_catkin_ws/src/kukadu/include/kukadu/control/dmp.hpp" line="43" column="1" bodyfile="/home/agyss/iis_robot_sw/iis_catkin_ws/src/kukadu/include/kukadu/control/dmp.hpp" bodystart="43" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classkukadu_1_1Dmp_1a209065bfd8a60351140ff3654b82935c" prot="private" static="no" mutable="no">
+        <type>arma::vec</type>
+        <definition>arma::vec kukadu::Dmp::g</definition>
+        <argsstring></argsstring>
+        <name>g</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/agyss/iis_robot_sw/iis_catkin_ws/src/kukadu/include/kukadu/control/dmp.hpp" line="44" column="1" bodyfile="/home/agyss/iis_robot_sw/iis_catkin_ws/src/kukadu/include/kukadu/control/dmp.hpp" bodystart="44" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classkukadu_1_1Dmp_1a88ac2abad1a15e10b48debec769cb5d1" prot="private" static="no" mutable="no">
+        <type>std::vector&lt; <ref refid="classkukadu_1_1DMPBase" kindref="compound">DMPBase</ref> &gt;</type>
+        <definition>std::vector&lt;DMPBase&gt; kukadu::Dmp::dmpBase</definition>
+        <argsstring></argsstring>
+        <name>dmpBase</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/agyss/iis_robot_sw/iis_catkin_ws/src/kukadu/include/kukadu/control/dmp.hpp" line="46" column="1" bodyfile="/home/agyss/iis_robot_sw/iis_catkin_ws/src/kukadu/include/kukadu/control/dmp.hpp" bodystart="46" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classkukadu_1_1Dmp_1ac83ff851a5f7011097e2289a64d693ce" prot="private" static="no" mutable="no">
+        <type>std::vector&lt; arma::mat &gt;</type>
+        <definition>std::vector&lt;arma::mat&gt; kukadu::Dmp::designMatrices</definition>
+        <argsstring></argsstring>
+        <name>designMatrices</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/agyss/iis_robot_sw/iis_catkin_ws/src/kukadu/include/kukadu/control/dmp.hpp" line="47" column="1" bodyfile="/home/agyss/iis_robot_sw/iis_catkin_ws/src/kukadu/include/kukadu/control/dmp.hpp" bodystart="47" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classkukadu_1_1Dmp_1a361de75bc2cddbbd6199f497409730d8" prot="private" static="no" mutable="no">
+        <type>double</type>
+        <definition>double kukadu::Dmp::az</definition>
+        <argsstring></argsstring>
+        <name>az</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/agyss/iis_robot_sw/iis_catkin_ws/src/kukadu/include/kukadu/control/dmp.hpp" line="49" column="1" bodyfile="/home/agyss/iis_robot_sw/iis_catkin_ws/src/kukadu/include/kukadu/control/dmp.hpp" bodystart="49" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classkukadu_1_1Dmp_1aa0243a897d3020bb94a13852d0393682" prot="private" static="no" mutable="no">
+        <type>double</type>
+        <definition>double kukadu::Dmp::bz</definition>
+        <argsstring></argsstring>
+        <name>bz</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/agyss/iis_robot_sw/iis_catkin_ws/src/kukadu/include/kukadu/control/dmp.hpp" line="50" column="1" bodyfile="/home/agyss/iis_robot_sw/iis_catkin_ws/src/kukadu/include/kukadu/control/dmp.hpp" bodystart="50" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classkukadu_1_1Dmp_1a4a06160d38a9303a82cdc7c839d90141" prot="private" static="no" mutable="no">
+        <type>double</type>
+        <definition>double kukadu::Dmp::ax</definition>
+        <argsstring></argsstring>
+        <name>ax</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/agyss/iis_robot_sw/iis_catkin_ws/src/kukadu/include/kukadu/control/dmp.hpp" line="51" column="1" bodyfile="/home/agyss/iis_robot_sw/iis_catkin_ws/src/kukadu/include/kukadu/control/dmp.hpp" bodystart="51" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classkukadu_1_1Dmp_1a085d61d5fd978778b71c71b9f34c10eb" prot="private" static="no" mutable="no">
+        <type>double</type>
+        <definition>double kukadu::Dmp::ac</definition>
+        <argsstring></argsstring>
+        <name>ac</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/agyss/iis_robot_sw/iis_catkin_ws/src/kukadu/include/kukadu/control/dmp.hpp" line="52" column="1" bodyfile="/home/agyss/iis_robot_sw/iis_catkin_ws/src/kukadu/include/kukadu/control/dmp.hpp" bodystart="52" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classkukadu_1_1Dmp_1ac84189a49cb41ffe6dd6cd1ae8ad4a6e" prot="private" static="no" mutable="no">
+        <type>double</type>
+        <definition>double kukadu::Dmp::tau</definition>
+        <argsstring></argsstring>
+        <name>tau</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/agyss/iis_robot_sw/iis_catkin_ws/src/kukadu/include/kukadu/control/dmp.hpp" line="53" column="1" bodyfile="/home/agyss/iis_robot_sw/iis_catkin_ws/src/kukadu/include/kukadu/control/dmp.hpp" bodystart="53" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classkukadu_1_1Dmp_1a55deb62d31a8dd996408775afbf5b2c1" prot="private" static="no" mutable="no">
+        <type>double</type>
+        <definition>double kukadu::Dmp::tmax</definition>
+        <argsstring></argsstring>
+        <name>tmax</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/agyss/iis_robot_sw/iis_catkin_ws/src/kukadu/include/kukadu/control/dmp.hpp" line="54" column="1" bodyfile="/home/agyss/iis_robot_sw/iis_catkin_ws/src/kukadu/include/kukadu/control/dmp.hpp" bodystart="54" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classkukadu_1_1Dmp_1ac6a75e4d94fcb9965e02b2c205632302" prot="private" static="no" mutable="no">
+        <type>double</type>
+        <definition>double kukadu::Dmp::tolAbsErr</definition>
+        <argsstring></argsstring>
+        <name>tolAbsErr</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/agyss/iis_robot_sw/iis_catkin_ws/src/kukadu/include/kukadu/control/dmp.hpp" line="55" column="1" bodyfile="/home/agyss/iis_robot_sw/iis_catkin_ws/src/kukadu/include/kukadu/control/dmp.hpp" bodystart="55" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classkukadu_1_1Dmp_1aa2fdd2dcf4e962c3e3c277c44f473b91" prot="private" static="no" mutable="no">
+        <type>double</type>
+        <definition>double kukadu::Dmp::tolRelErr</definition>
+        <argsstring></argsstring>
+        <name>tolRelErr</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/agyss/iis_robot_sw/iis_catkin_ws/src/kukadu/include/kukadu/control/dmp.hpp" line="56" column="1" bodyfile="/home/agyss/iis_robot_sw/iis_catkin_ws/src/kukadu/include/kukadu/control/dmp.hpp" bodystart="56" bodyend="-1"/>
+      </memberdef>
+      </sectiondef>
+      <sectiondef kind="protected-attrib">
+      <memberdef kind="variable" id="classkukadu_1_1Dmp_1af0966b32d5f703b6c59a24332f994715" prot="protected" static="no" mutable="no">
+        <type>double</type>
+        <definition>double kukadu::Dmp::dmpStepSize</definition>
+        <argsstring></argsstring>
+        <name>dmpStepSize</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/agyss/iis_robot_sw/iis_catkin_ws/src/kukadu/include/kukadu/control/dmp.hpp" line="68" column="1" bodyfile="/home/agyss/iis_robot_sw/iis_catkin_ws/src/kukadu/include/kukadu/control/dmp.hpp" bodystart="68" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classkukadu_1_1Dmp_1a1f5e7194bf55d600d9eb1e7447ed552d" prot="protected" static="no" mutable="no">
+        <type>std::vector&lt; arma::vec &gt;</type>
+        <definition>std::vector&lt;arma::vec&gt; kukadu::Dmp::fitYs</definition>
+        <argsstring></argsstring>
+        <name>fitYs</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/agyss/iis_robot_sw/iis_catkin_ws/src/kukadu/include/kukadu/control/dmp.hpp" line="69" column="1" bodyfile="/home/agyss/iis_robot_sw/iis_catkin_ws/src/kukadu/include/kukadu/control/dmp.hpp" bodystart="69" bodyend="-1"/>
+      </memberdef>
+      </sectiondef>
+      <sectiondef kind="private-func">
+      <memberdef kind="function" id="classkukadu_1_1Dmp_1a311ed788060186ae04a6f1534dfd1573" prot="private" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>void kukadu::Dmp::initializeG</definition>
+        <argsstring>()</argsstring>
+        <name>initializeG</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/agyss/iis_robot_sw/iis_catkin_ws/src/kukadu/include/kukadu/control/dmp.hpp" line="58" column="1" bodyfile="/home/agyss/iis_robot_sw/iis_catkin_ws/src/kukadu/src/control/dmp.cpp" bodystart="501" bodyend="509"/>
+      </memberdef>
+      <memberdef kind="function" id="classkukadu_1_1Dmp_1ac1ddbbab50e9388558a0ab5c6378ae31" prot="private" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>void kukadu::Dmp::initializeY0</definition>
+        <argsstring>()</argsstring>
+        <name>initializeY0</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/agyss/iis_robot_sw/iis_catkin_ws/src/kukadu/include/kukadu/control/dmp.hpp" line="59" column="1" bodyfile="/home/agyss/iis_robot_sw/iis_catkin_ws/src/kukadu/src/control/dmp.cpp" bodystart="471" bodyend="479"/>
+      </memberdef>
+      <memberdef kind="function" id="classkukadu_1_1Dmp_1acb09b8b138db72e6699263d5be5aa92e" prot="private" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>void kukadu::Dmp::initializeDy0</definition>
+        <argsstring>()</argsstring>
+        <name>initializeDy0</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/agyss/iis_robot_sw/iis_catkin_ws/src/kukadu/include/kukadu/control/dmp.hpp" line="60" column="1" bodyfile="/home/agyss/iis_robot_sw/iis_catkin_ws/src/kukadu/src/control/dmp.cpp" bodystart="481" bodyend="488"/>
+      </memberdef>
+      <memberdef kind="function" id="classkukadu_1_1Dmp_1a5675e1e77946111eb50f8fd7c5d018a6" prot="private" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>void kukadu::Dmp::initializeDdy0</definition>
+        <argsstring>()</argsstring>
+        <name>initializeDdy0</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/agyss/iis_robot_sw/iis_catkin_ws/src/kukadu/include/kukadu/control/dmp.hpp" line="61" column="1" bodyfile="/home/agyss/iis_robot_sw/iis_catkin_ws/src/kukadu/src/control/dmp.cpp" bodystart="490" bodyend="499"/>
+      </memberdef>
+      <memberdef kind="function" id="classkukadu_1_1Dmp_1ad73155500248a5b8a6408dbcda465585" prot="private" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>void kukadu::Dmp::construct</definition>
+        <argsstring>(std::vector&lt; arma::vec &gt; &amp;fitYs, std::vector&lt; arma::vec &gt; &amp;dmpCoeffs, std::vector&lt; DMPBase &gt; &amp;dmpBase, std::vector&lt; arma::mat &gt; &amp;designMatrices, double tau, double az, double bz, double ax, double ac, double dmpStepSize, double tolAbsErr, double tolRelErr)</argsstring>
+        <name>construct</name>
+        <param>
+          <type>std::vector&lt; arma::vec &gt; &amp;</type>
+          <declname>fitYs</declname>
+        </param>
+        <param>
+          <type>std::vector&lt; arma::vec &gt; &amp;</type>
+          <declname>dmpCoeffs</declname>
+        </param>
+        <param>
+          <type>std::vector&lt; <ref refid="classkukadu_1_1DMPBase" kindref="compound">DMPBase</ref> &gt; &amp;</type>
+          <declname>dmpBase</declname>
+        </param>
+        <param>
+          <type>std::vector&lt; arma::mat &gt; &amp;</type>
+          <declname>designMatrices</declname>
+        </param>
+        <param>
+          <type>double</type>
+          <declname>tau</declname>
+        </param>
+        <param>
+          <type>double</type>
+          <declname>az</declname>
+        </param>
+        <param>
+          <type>double</type>
+          <declname>bz</declname>
+        </param>
+        <param>
+          <type>double</type>
+          <declname>ax</declname>
+        </param>
+        <param>
+          <type>double</type>
+          <declname>ac</declname>
+        </param>
+        <param>
+          <type>double</type>
+          <declname>dmpStepSize</declname>
+        </param>
+        <param>
+          <type>double</type>
+          <declname>tolAbsErr</declname>
+        </param>
+        <param>
+          <type>double</type>
+          <declname>tolRelErr</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/agyss/iis_robot_sw/iis_catkin_ws/src/kukadu/include/kukadu/control/dmp.hpp" line="63" column="1" bodyfile="/home/agyss/iis_robot_sw/iis_catkin_ws/src/kukadu/src/control/dmp.cpp" bodystart="295" bodyend="323"/>
+      </memberdef>
+      </sectiondef>
+      <sectiondef kind="protected-func">
+      <memberdef kind="function" id="classkukadu_1_1Dmp_1af287978ae659dee595e22415854060a4" prot="protected" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type></type>
+        <definition>kukadu::Dmp::Dmp</definition>
+        <argsstring>()</argsstring>
+        <name>Dmp</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/agyss/iis_robot_sw/iis_catkin_ws/src/kukadu/include/kukadu/control/dmp.hpp" line="71" column="1" bodyfile="/home/agyss/iis_robot_sw/iis_catkin_ws/src/kukadu/src/control/dmp.cpp" bodystart="161" bodyend="163"/>
+      </memberdef>
+      </sectiondef>
+      <sectiondef kind="public-func">
+      <memberdef kind="function" id="classkukadu_1_1Dmp_1a780c7d0ea48cc2dfaac10dbc8db9ecc6" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type></type>
+        <definition>kukadu::Dmp::Dmp</definition>
+        <argsstring>(const Dmp &amp;copy)</argsstring>
+        <name>Dmp</name>
+        <param>
+          <type>const <ref refid="classkukadu_1_1Dmp" kindref="compound">Dmp</ref> &amp;</type>
+          <declname>copy</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/agyss/iis_robot_sw/iis_catkin_ws/src/kukadu/include/kukadu/control/dmp.hpp" line="75" column="1" bodyfile="/home/agyss/iis_robot_sw/iis_catkin_ws/src/kukadu/src/control/dmp.cpp" bodystart="329" bodyend="350"/>
+      </memberdef>
+      <memberdef kind="function" id="classkukadu_1_1Dmp_1a087cd38d5201e57f7404c6971bef1884" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type></type>
+        <definition>kukadu::Dmp::Dmp</definition>
+        <argsstring>(std::string dmpFile)</argsstring>
+        <name>Dmp</name>
+        <param>
+          <type>std::string</type>
+          <declname>dmpFile</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/agyss/iis_robot_sw/iis_catkin_ws/src/kukadu/include/kukadu/control/dmp.hpp" line="76" column="1" bodyfile="/home/agyss/iis_robot_sw/iis_catkin_ws/src/kukadu/src/control/dmp.cpp" bodystart="165" bodyend="225"/>
+      </memberdef>
+      <memberdef kind="function" id="classkukadu_1_1Dmp_1afa67e953e05532cd7954b1e6a9c33636" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type></type>
+        <definition>kukadu::Dmp::Dmp</definition>
+        <argsstring>(std::vector&lt; arma::vec &gt; dmpCoeffs, std::vector&lt; DMPBase &gt; dmpBase, arma::vec y0, arma::vec dy0, arma::vec g, double tMax, double tau, double az, double bz, double ax, double ac, double dmpStepSize, double tolAbsErr, double tolRelErr)</argsstring>
+        <name>Dmp</name>
+        <param>
+          <type>std::vector&lt; arma::vec &gt;</type>
+          <declname>dmpCoeffs</declname>
+        </param>
+        <param>
+          <type>std::vector&lt; <ref refid="classkukadu_1_1DMPBase" kindref="compound">DMPBase</ref> &gt;</type>
+          <declname>dmpBase</declname>
+        </param>
+        <param>
+          <type>arma::vec</type>
+          <declname>y0</declname>
+        </param>
+        <param>
+          <type>arma::vec</type>
+          <declname>dy0</declname>
+        </param>
+        <param>
+          <type>arma::vec</type>
+          <declname>g</declname>
+        </param>
+        <param>
+          <type>double</type>
+          <declname>tMax</declname>
+        </param>
+        <param>
+          <type>double</type>
+          <declname>tau</declname>
+        </param>
+        <param>
+          <type>double</type>
+          <declname>az</declname>
+        </param>
+        <param>
+          <type>double</type>
+          <declname>bz</declname>
+        </param>
+        <param>
+          <type>double</type>
+          <declname>ax</declname>
+        </param>
+        <param>
+          <type>double</type>
+          <declname>ac</declname>
+        </param>
+        <param>
+          <type>double</type>
+          <declname>dmpStepSize</declname>
+        </param>
+        <param>
+          <type>double</type>
+          <declname>tolAbsErr</declname>
+        </param>
+        <param>
+          <type>double</type>
+          <declname>tolRelErr</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/agyss/iis_robot_sw/iis_catkin_ws/src/kukadu/include/kukadu/control/dmp.hpp" line="77" column="1" bodyfile="/home/agyss/iis_robot_sw/iis_catkin_ws/src/kukadu/src/control/dmp.cpp" bodystart="352" bodyend="367"/>
+      </memberdef>
+      <memberdef kind="function" id="classkukadu_1_1Dmp_1a8e557703472bb8c5c1714823766f5782" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type></type>
+        <definition>kukadu::Dmp::Dmp</definition>
+        <argsstring>(std::vector&lt; long long int &gt; supervisedTs, std::vector&lt; arma::vec &gt; sampleYs, std::vector&lt; arma::vec &gt; fitYs, std::vector&lt; arma::vec &gt; dmpCoeffs, std::vector&lt; DMPBase &gt; dmpBase, std::vector&lt; arma::mat &gt; designMatrices, double tau, double az, double bz, double ax, double ac, double dmpStepSize, double tolAbsErr, double tolRelErr)</argsstring>
+        <name>Dmp</name>
+        <param>
+          <type>std::vector&lt; long long int &gt;</type>
+          <declname>supervisedTs</declname>
+        </param>
+        <param>
+          <type>std::vector&lt; arma::vec &gt;</type>
+          <declname>sampleYs</declname>
+        </param>
+        <param>
+          <type>std::vector&lt; arma::vec &gt;</type>
+          <declname>fitYs</declname>
+        </param>
+        <param>
+          <type>std::vector&lt; arma::vec &gt;</type>
+          <declname>dmpCoeffs</declname>
+        </param>
+        <param>
+          <type>std::vector&lt; <ref refid="classkukadu_1_1DMPBase" kindref="compound">DMPBase</ref> &gt;</type>
+          <declname>dmpBase</declname>
+        </param>
+        <param>
+          <type>std::vector&lt; arma::mat &gt;</type>
+          <declname>designMatrices</declname>
+        </param>
+        <param>
+          <type>double</type>
+          <declname>tau</declname>
+        </param>
+        <param>
+          <type>double</type>
+          <declname>az</declname>
+        </param>
+        <param>
+          <type>double</type>
+          <declname>bz</declname>
+        </param>
+        <param>
+          <type>double</type>
+          <declname>ax</declname>
+        </param>
+        <param>
+          <type>double</type>
+          <declname>ac</declname>
+        </param>
+        <param>
+          <type>double</type>
+          <declname>dmpStepSize</declname>
+        </param>
+        <param>
+          <type>double</type>
+          <declname>tolAbsErr</declname>
+        </param>
+        <param>
+          <type>double</type>
+          <declname>tolRelErr</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/agyss/iis_robot_sw/iis_catkin_ws/src/kukadu/include/kukadu/control/dmp.hpp" line="78" column="1" bodyfile="/home/agyss/iis_robot_sw/iis_catkin_ws/src/kukadu/src/control/dmp.cpp" bodystart="146" bodyend="152"/>
+      </memberdef>
+      <memberdef kind="function" id="classkukadu_1_1Dmp_1a5734d44a7bb7b3cd124664bcaa2ce85d" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type></type>
+        <definition>kukadu::Dmp::Dmp</definition>
+        <argsstring>(std::vector&lt; long long int &gt; supervisedTs, std::vector&lt; arma::vec &gt; sampleYs, std::vector&lt; arma::vec &gt; fitYs, std::vector&lt; arma::vec &gt; dmpCoeffs, std::vector&lt; DMPBase &gt; dmpBase, std::vector&lt; arma::mat &gt; designMatrices, double tau, double az, double bz, double ax)</argsstring>
+        <name>Dmp</name>
+        <param>
+          <type>std::vector&lt; long long int &gt;</type>
+          <declname>supervisedTs</declname>
+        </param>
+        <param>
+          <type>std::vector&lt; arma::vec &gt;</type>
+          <declname>sampleYs</declname>
+        </param>
+        <param>
+          <type>std::vector&lt; arma::vec &gt;</type>
+          <declname>fitYs</declname>
+        </param>
+        <param>
+          <type>std::vector&lt; arma::vec &gt;</type>
+          <declname>dmpCoeffs</declname>
+        </param>
+        <param>
+          <type>std::vector&lt; <ref refid="classkukadu_1_1DMPBase" kindref="compound">DMPBase</ref> &gt;</type>
+          <declname>dmpBase</declname>
+        </param>
+        <param>
+          <type>std::vector&lt; arma::mat &gt;</type>
+          <declname>designMatrices</declname>
+        </param>
+        <param>
+          <type>double</type>
+          <declname>tau</declname>
+        </param>
+        <param>
+          <type>double</type>
+          <declname>az</declname>
+        </param>
+        <param>
+          <type>double</type>
+          <declname>bz</declname>
+        </param>
+        <param>
+          <type>double</type>
+          <declname>ax</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/agyss/iis_robot_sw/iis_catkin_ws/src/kukadu/include/kukadu/control/dmp.hpp" line="81" column="1" bodyfile="/home/agyss/iis_robot_sw/iis_catkin_ws/src/kukadu/src/control/dmp.cpp" bodystart="154" bodyend="159"/>
+      </memberdef>
+      <memberdef kind="function" id="classkukadu_1_1Dmp_1a4fd82cb0c5f82cb7509565897fc79a73" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>void kukadu::Dmp::storeDatabase</definition>
+        <argsstring>(std::string skillLabel, bool overwriteIfExists=false)</argsstring>
+        <name>storeDatabase</name>
+        <param>
+          <type>std::string</type>
+          <declname>skillLabel</declname>
+        </param>
+        <param>
+          <type>bool</type>
+          <declname>overwriteIfExists</declname>
+          <defval>false</defval>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/agyss/iis_robot_sw/iis_catkin_ws/src/kukadu/include/kukadu/control/dmp.hpp" line="84" column="1" bodyfile="/home/agyss/iis_robot_sw/iis_catkin_ws/src/kukadu/src/control/dmp.cpp" bodystart="227" bodyend="229"/>
+      </memberdef>
+      <memberdef kind="function" id="classkukadu_1_1Dmp_1a67645036f7e1dfb7ff833b8149716c2d" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>void kukadu::Dmp::serialize</definition>
+        <argsstring>(std::string dmpFile)</argsstring>
+        <name>serialize</name>
+        <param>
+          <type>std::string</type>
+          <declname>dmpFile</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/agyss/iis_robot_sw/iis_catkin_ws/src/kukadu/include/kukadu/control/dmp.hpp" line="86" column="1" bodyfile="/home/agyss/iis_robot_sw/iis_catkin_ws/src/kukadu/src/control/dmp.cpp" bodystart="231" bodyend="285"/>
+      </memberdef>
+      <memberdef kind="function" id="classkukadu_1_1Dmp_1ab81d2e2b6f51744caff8714824afb940" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>int</type>
+        <definition>int kukadu::Dmp::getSampleCount</definition>
+        <argsstring>()</argsstring>
+        <name>getSampleCount</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/agyss/iis_robot_sw/iis_catkin_ws/src/kukadu/include/kukadu/control/dmp.hpp" line="88" column="1" bodyfile="/home/agyss/iis_robot_sw/iis_catkin_ws/src/kukadu/src/control/dmp.cpp" bodystart="287" bodyend="289"/>
+      </memberdef>
+      <memberdef kind="function" id="classkukadu_1_1Dmp_1ab5256cb887386b5fd48a88e60a14e1d6" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>double</type>
+        <definition>double kukadu::Dmp::getY0</definition>
+        <argsstring>(int freedomIdx)</argsstring>
+        <name>getY0</name>
+        <param>
+          <type>int</type>
+          <declname>freedomIdx</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/agyss/iis_robot_sw/iis_catkin_ws/src/kukadu/include/kukadu/control/dmp.hpp" line="90" column="1" bodyfile="/home/agyss/iis_robot_sw/iis_catkin_ws/src/kukadu/src/control/dmp.cpp" bodystart="405" bodyend="407"/>
+      </memberdef>
+      <memberdef kind="function" id="classkukadu_1_1Dmp_1a1a552adfe0f620b5c34e05ecf56fd55f" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>double</type>
+        <definition>double kukadu::Dmp::getDy0</definition>
+        <argsstring>(int freedomIdx)</argsstring>
+        <name>getDy0</name>
+        <param>
+          <type>int</type>
+          <declname>freedomIdx</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/agyss/iis_robot_sw/iis_catkin_ws/src/kukadu/include/kukadu/control/dmp.hpp" line="91" column="1" bodyfile="/home/agyss/iis_robot_sw/iis_catkin_ws/src/kukadu/src/control/dmp.cpp" bodystart="409" bodyend="411"/>
+      </memberdef>
+      <memberdef kind="function" id="classkukadu_1_1Dmp_1a7d16db0cc1e7aadb52e88b9ce88ed013" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>double</type>
+        <definition>double kukadu::Dmp::getDdy0</definition>
+        <argsstring>(int freedomIdx)</argsstring>
+        <name>getDdy0</name>
+        <param>
+          <type>int</type>
+          <declname>freedomIdx</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/agyss/iis_robot_sw/iis_catkin_ws/src/kukadu/include/kukadu/control/dmp.hpp" line="92" column="1" bodyfile="/home/agyss/iis_robot_sw/iis_catkin_ws/src/kukadu/src/control/dmp.cpp" bodystart="413" bodyend="415"/>
+      </memberdef>
+      <memberdef kind="function" id="classkukadu_1_1Dmp_1a1b7816ff8f66155afad0a50f9cf40ab0" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>double</type>
+        <definition>double kukadu::Dmp::getG</definition>
+        <argsstring>(int freedomIdx)</argsstring>
+        <name>getG</name>
+        <param>
+          <type>int</type>
+          <declname>freedomIdx</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/agyss/iis_robot_sw/iis_catkin_ws/src/kukadu/include/kukadu/control/dmp.hpp" line="93" column="1" bodyfile="/home/agyss/iis_robot_sw/iis_catkin_ws/src/kukadu/src/control/dmp.cpp" bodystart="417" bodyend="419"/>
+      </memberdef>
+      <memberdef kind="function" id="classkukadu_1_1Dmp_1ae2c58371b5c9846a8d4e5a6145a5b4a8" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>arma::vec</type>
+        <definition>arma::vec kukadu::Dmp::getY0</definition>
+        <argsstring>()</argsstring>
+        <name>getY0</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/agyss/iis_robot_sw/iis_catkin_ws/src/kukadu/include/kukadu/control/dmp.hpp" line="95" column="1" bodyfile="/home/agyss/iis_robot_sw/iis_catkin_ws/src/kukadu/src/control/dmp.cpp" bodystart="373" bodyend="375"/>
+      </memberdef>
+      <memberdef kind="function" id="classkukadu_1_1Dmp_1a507c50bd598249260b23368ed5ea88c8" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>arma::vec</type>
+        <definition>arma::vec kukadu::Dmp::getDy0</definition>
+        <argsstring>()</argsstring>
+        <name>getDy0</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/agyss/iis_robot_sw/iis_catkin_ws/src/kukadu/include/kukadu/control/dmp.hpp" line="96" column="1" bodyfile="/home/agyss/iis_robot_sw/iis_catkin_ws/src/kukadu/src/control/dmp.cpp" bodystart="377" bodyend="379"/>
+      </memberdef>
+      <memberdef kind="function" id="classkukadu_1_1Dmp_1a625b8794d3e59632412f76d447ccc430" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>arma::vec</type>
+        <definition>arma::vec kukadu::Dmp::getDdy0</definition>
+        <argsstring>()</argsstring>
+        <name>getDdy0</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/agyss/iis_robot_sw/iis_catkin_ws/src/kukadu/include/kukadu/control/dmp.hpp" line="97" column="1" bodyfile="/home/agyss/iis_robot_sw/iis_catkin_ws/src/kukadu/src/control/dmp.cpp" bodystart="381" bodyend="383"/>
+      </memberdef>
+      <memberdef kind="function" id="classkukadu_1_1Dmp_1ac8c841b12e4eb2678424d96c6dbbb5bc" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>arma::vec</type>
+        <definition>arma::vec kukadu::Dmp::getG</definition>
+        <argsstring>()</argsstring>
+        <name>getG</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/agyss/iis_robot_sw/iis_catkin_ws/src/kukadu/include/kukadu/control/dmp.hpp" line="98" column="1" bodyfile="/home/agyss/iis_robot_sw/iis_catkin_ws/src/kukadu/src/control/dmp.cpp" bodystart="385" bodyend="387"/>
+      </memberdef>
+      <memberdef kind="function" id="classkukadu_1_1Dmp_1a4b477fea8132d45d50617d9027f55634" prot="public" static="no" const="no" explicit="no" inline="no" virt="virtual">
+        <type>std::vector&lt; arma::vec &gt;</type>
+        <definition>std::vector&lt; arma::vec &gt; kukadu::Dmp::getCoefficients</definition>
+        <argsstring>()</argsstring>
+        <name>getCoefficients</name>
+        <reimplements refid="classkukadu_1_1SingleSampleTrajectory_1a3dfb670c00d9034c5a867be3801845fa">getCoefficients</reimplements>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/agyss/iis_robot_sw/iis_catkin_ws/src/kukadu/include/kukadu/control/dmp.hpp" line="100" column="1" bodyfile="/home/agyss/iis_robot_sw/iis_catkin_ws/src/kukadu/src/control/dmp.cpp" bodystart="401" bodyend="403"/>
+      </memberdef>
+      <memberdef kind="function" id="classkukadu_1_1Dmp_1ace27ff809c779f83daf1fd903636a332" prot="public" static="no" const="no" explicit="no" inline="no" virt="virtual">
+        <type>void</type>
+        <definition>void kukadu::Dmp::setCoefficients</definition>
+        <argsstring>(std::vector&lt; arma::vec &gt; coeffs)</argsstring>
+        <name>setCoefficients</name>
+        <reimplements refid="classkukadu_1_1SingleSampleTrajectory_1a02d1a2cc8835c05d0d882bf82c0cd409">setCoefficients</reimplements>
+        <param>
+          <type>std::vector&lt; arma::vec &gt;</type>
+          <declname>coeffs</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/agyss/iis_robot_sw/iis_catkin_ws/src/kukadu/include/kukadu/control/dmp.hpp" line="101" column="1" bodyfile="/home/agyss/iis_robot_sw/iis_catkin_ws/src/kukadu/src/control/dmp.cpp" bodystart="425" bodyend="427"/>
+      </memberdef>
+      <memberdef kind="function" id="classkukadu_1_1Dmp_1aec1043e1b9eda2418848eca83e3b7ae1" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>std::vector&lt; arma::vec &gt;</type>
+        <definition>std::vector&lt; arma::vec &gt; kukadu::Dmp::getDmpCoeffs</definition>
+        <argsstring>()</argsstring>
+        <name>getDmpCoeffs</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/agyss/iis_robot_sw/iis_catkin_ws/src/kukadu/include/kukadu/control/dmp.hpp" line="103" column="1" bodyfile="/home/agyss/iis_robot_sw/iis_catkin_ws/src/kukadu/src/control/dmp.cpp" bodystart="397" bodyend="399"/>
+      </memberdef>
+      <memberdef kind="function" id="classkukadu_1_1Dmp_1aa9074177aa8d7272d83456cf9aafde4c" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>std::vector&lt; arma::vec &gt;</type>
+        <definition>std::vector&lt; arma::vec &gt; kukadu::Dmp::getFitYs</definition>
+        <argsstring>()</argsstring>
+        <name>getFitYs</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/agyss/iis_robot_sw/iis_catkin_ws/src/kukadu/include/kukadu/control/dmp.hpp" line="104" column="1" bodyfile="/home/agyss/iis_robot_sw/iis_catkin_ws/src/kukadu/src/control/dmp.cpp" bodystart="369" bodyend="371"/>
+      </memberdef>
+      <memberdef kind="function" id="classkukadu_1_1Dmp_1a6feb8dc33dc6b8b6cd032fa3b234dec0" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>void kukadu::Dmp::setDmpCoeffs</definition>
+        <argsstring>(std::vector&lt; arma::vec &gt; coeffs)</argsstring>
+        <name>setDmpCoeffs</name>
+        <param>
+          <type>std::vector&lt; arma::vec &gt;</type>
+          <declname>coeffs</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/agyss/iis_robot_sw/iis_catkin_ws/src/kukadu/include/kukadu/control/dmp.hpp" line="106" column="1" bodyfile="/home/agyss/iis_robot_sw/iis_catkin_ws/src/kukadu/src/control/dmp.cpp" bodystart="325" bodyend="327"/>
+      </memberdef>
+      <memberdef kind="function" id="classkukadu_1_1Dmp_1acf8b80c2993b1588d5aeab638480222d" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>arma::vec</type>
+        <definition>arma::vec kukadu::Dmp::getDmpCoeffs</definition>
+        <argsstring>(int freedomIdx)</argsstring>
+        <name>getDmpCoeffs</name>
+        <param>
+          <type>int</type>
+          <declname>freedomIdx</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/agyss/iis_robot_sw/iis_catkin_ws/src/kukadu/include/kukadu/control/dmp.hpp" line="108" column="1" bodyfile="/home/agyss/iis_robot_sw/iis_catkin_ws/src/kukadu/src/control/dmp.cpp" bodystart="421" bodyend="423"/>
+      </memberdef>
+      <memberdef kind="function" id="classkukadu_1_1Dmp_1ad8cbaf545f773e2b347521c4d4f81972" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>arma::mat</type>
+        <definition>arma::mat kukadu::Dmp::getDesignMatrix</definition>
+        <argsstring>(int freedomIdx)</argsstring>
+        <name>getDesignMatrix</name>
+        <param>
+          <type>int</type>
+          <declname>freedomIdx</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/agyss/iis_robot_sw/iis_catkin_ws/src/kukadu/include/kukadu/control/dmp.hpp" line="109" column="1" bodyfile="/home/agyss/iis_robot_sw/iis_catkin_ws/src/kukadu/src/control/dmp.cpp" bodystart="393" bodyend="395"/>
+      </memberdef>
+      <memberdef kind="function" id="classkukadu_1_1Dmp_1aaa2bbfc5b9683d38c7dc3cae4fd66d35" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>int</type>
+        <definition>int kukadu::Dmp::getDesignMatrixCount</definition>
+        <argsstring>()</argsstring>
+        <name>getDesignMatrixCount</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/agyss/iis_robot_sw/iis_catkin_ws/src/kukadu/include/kukadu/control/dmp.hpp" line="110" column="1" bodyfile="/home/agyss/iis_robot_sw/iis_catkin_ws/src/kukadu/src/control/dmp.cpp" bodystart="389" bodyend="391"/>
+      </memberdef>
+      <memberdef kind="function" id="classkukadu_1_1Dmp_1a22ef512c5a0fb56808212c18eeabb4f6" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>std::vector&lt; <ref refid="classkukadu_1_1DMPBase" kindref="compound">DMPBase</ref> &gt;</type>
+        <definition>std::vector&lt; DMPBase &gt; kukadu::Dmp::getDmpBase</definition>
+        <argsstring>()</argsstring>
+        <name>getDmpBase</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/agyss/iis_robot_sw/iis_catkin_ws/src/kukadu/include/kukadu/control/dmp.hpp" line="111" column="1" bodyfile="/home/agyss/iis_robot_sw/iis_catkin_ws/src/kukadu/src/control/dmp.cpp" bodystart="429" bodyend="431"/>
+      </memberdef>
+      <memberdef kind="function" id="classkukadu_1_1Dmp_1a1ec31b0b369dac93fe7b4913ab8863db" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>double</type>
+        <definition>double kukadu::Dmp::getDeltaTByIdx</definition>
+        <argsstring>(int idx)</argsstring>
+        <name>getDeltaTByIdx</name>
+        <param>
+          <type>int</type>
+          <declname>idx</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/agyss/iis_robot_sw/iis_catkin_ws/src/kukadu/include/kukadu/control/dmp.hpp" line="113" column="1" bodyfile="/home/agyss/iis_robot_sw/iis_catkin_ws/src/kukadu/src/control/dmp.cpp" bodystart="291" bodyend="293"/>
+      </memberdef>
+      <memberdef kind="function" id="classkukadu_1_1Dmp_1a787076c787e247bc14c07e738617e5f6" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>double</type>
+        <definition>double kukadu::Dmp::getTau</definition>
+        <argsstring>()</argsstring>
+        <name>getTau</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/agyss/iis_robot_sw/iis_catkin_ws/src/kukadu/include/kukadu/control/dmp.hpp" line="115" column="1" bodyfile="/home/agyss/iis_robot_sw/iis_catkin_ws/src/kukadu/src/control/dmp.cpp" bodystart="433" bodyend="435"/>
+      </memberdef>
+      <memberdef kind="function" id="classkukadu_1_1Dmp_1aaec08d60cac323f41ffdad60c0218ea9" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>double</type>
+        <definition>double kukadu::Dmp::getAz</definition>
+        <argsstring>()</argsstring>
+        <name>getAz</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/agyss/iis_robot_sw/iis_catkin_ws/src/kukadu/include/kukadu/control/dmp.hpp" line="116" column="1" bodyfile="/home/agyss/iis_robot_sw/iis_catkin_ws/src/kukadu/src/control/dmp.cpp" bodystart="437" bodyend="439"/>
+      </memberdef>
+      <memberdef kind="function" id="classkukadu_1_1Dmp_1a25805f30ba5af184d2cb3f228d74bc47" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>double</type>
+        <definition>double kukadu::Dmp::getBz</definition>
+        <argsstring>()</argsstring>
+        <name>getBz</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/agyss/iis_robot_sw/iis_catkin_ws/src/kukadu/include/kukadu/control/dmp.hpp" line="117" column="1" bodyfile="/home/agyss/iis_robot_sw/iis_catkin_ws/src/kukadu/src/control/dmp.cpp" bodystart="441" bodyend="443"/>
+      </memberdef>
+      <memberdef kind="function" id="classkukadu_1_1Dmp_1afecc2e30b16281ae8e46fbd0797ba9da" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>double</type>
+        <definition>double kukadu::Dmp::getAx</definition>
+        <argsstring>()</argsstring>
+        <name>getAx</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/agyss/iis_robot_sw/iis_catkin_ws/src/kukadu/include/kukadu/control/dmp.hpp" line="118" column="1" bodyfile="/home/agyss/iis_robot_sw/iis_catkin_ws/src/kukadu/src/control/dmp.cpp" bodystart="445" bodyend="447"/>
+      </memberdef>
+      <memberdef kind="function" id="classkukadu_1_1Dmp_1aa88cf46b01a29848c307ab8c66cd3c1e" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>double</type>
+        <definition>double kukadu::Dmp::getStepSize</definition>
+        <argsstring>()</argsstring>
+        <name>getStepSize</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/agyss/iis_robot_sw/iis_catkin_ws/src/kukadu/include/kukadu/control/dmp.hpp" line="120" column="1" bodyfile="/home/agyss/iis_robot_sw/iis_catkin_ws/src/kukadu/src/control/dmp.cpp" bodystart="449" bodyend="451"/>
+      </memberdef>
+      <memberdef kind="function" id="classkukadu_1_1Dmp_1ae72973627e7443f6b98b07891fba2705" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>double</type>
+        <definition>double kukadu::Dmp::getTolAbsErr</definition>
+        <argsstring>()</argsstring>
+        <name>getTolAbsErr</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/agyss/iis_robot_sw/iis_catkin_ws/src/kukadu/include/kukadu/control/dmp.hpp" line="121" column="1" bodyfile="/home/agyss/iis_robot_sw/iis_catkin_ws/src/kukadu/src/control/dmp.cpp" bodystart="453" bodyend="455"/>
+      </memberdef>
+      <memberdef kind="function" id="classkukadu_1_1Dmp_1a8a90b4bf9c8acf5a3aeaeb2c82671929" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>double</type>
+        <definition>double kukadu::Dmp::getTolRelErr</definition>
+        <argsstring>()</argsstring>
+        <name>getTolRelErr</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/agyss/iis_robot_sw/iis_catkin_ws/src/kukadu/include/kukadu/control/dmp.hpp" line="122" column="1" bodyfile="/home/agyss/iis_robot_sw/iis_catkin_ws/src/kukadu/src/control/dmp.cpp" bodystart="457" bodyend="459"/>
+      </memberdef>
+      <memberdef kind="function" id="classkukadu_1_1Dmp_1aa7423b1cd8096790cc6162e7ecfb604b" prot="public" static="no" const="no" explicit="no" inline="no" virt="virtual">
+        <type>double</type>
+        <definition>double kukadu::Dmp::getTmax</definition>
+        <argsstring>()</argsstring>
+        <name>getTmax</name>
+        <reimplements refid="classkukadu_1_1Trajectory_1a6204d020bea77db78f1ea15bdd6c00e3">getTmax</reimplements>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/agyss/iis_robot_sw/iis_catkin_ws/src/kukadu/include/kukadu/control/dmp.hpp" line="124" column="1" bodyfile="/home/agyss/iis_robot_sw/iis_catkin_ws/src/kukadu/src/control/dmp.cpp" bodystart="461" bodyend="465"/>
+      </memberdef>
+      <memberdef kind="function" id="classkukadu_1_1Dmp_1a90ba745176c444fb74bfd24722ee8f60" prot="public" static="no" const="no" explicit="no" inline="no" virt="virtual">
+        <type>void</type>
+        <definition>void kukadu::Dmp::setTmax</definition>
+        <argsstring>(double tmax)</argsstring>
+        <name>setTmax</name>
+        <reimplements refid="classkukadu_1_1Trajectory_1a88078ae380944edb6256976a9b7c31e3">setTmax</reimplements>
+        <param>
+          <type>double</type>
+          <declname>tmax</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/agyss/iis_robot_sw/iis_catkin_ws/src/kukadu/include/kukadu/control/dmp.hpp" line="125" column="1" bodyfile="/home/agyss/iis_robot_sw/iis_catkin_ws/src/kukadu/src/control/dmp.cpp" bodystart="467" bodyend="469"/>
+      </memberdef>
+      <memberdef kind="function" id="classkukadu_1_1Dmp_1ac64f37f77911ba0d6e67ea4041601dd8" prot="public" static="no" const="no" explicit="no" inline="no" virt="pure-virtual">
+        <type>bool</type>
+        <definition>virtual bool kukadu::Dmp::isCartesian</definition>
+        <argsstring>()=0</argsstring>
+        <name>isCartesian</name>
+        <reimplementedby refid="classkukadu_1_1JointDmp_1a12d8909497b9d4f38c1cac86a1ad6601">isCartesian</reimplementedby>
+        <reimplementedby refid="classkukadu_1_1CartesianDMP_1a5a34b24a6adb33e88d5850e6d3eaac0d">isCartesian</reimplementedby>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/agyss/iis_robot_sw/iis_catkin_ws/src/kukadu/include/kukadu/control/dmp.hpp" line="127" column="1"/>
+      </memberdef>
+      <memberdef kind="function" id="classkukadu_1_1Dmp_1ad944a1f4b2e1857c390f3ab42d64d59b" prot="public" static="no" const="yes" explicit="no" inline="no" virt="non-virtual">
+        <type>int</type>
+        <definition>int kukadu::Dmp::operator==</definition>
+        <argsstring>(KUKADU_SHARED_PTR&lt; Dmp &gt; const &amp;comp) const </argsstring>
+        <name>operator==</name>
+        <param>
+          <type>KUKADU_SHARED_PTR&lt; <ref refid="classkukadu_1_1Dmp" kindref="compound">Dmp</ref> &gt; const &amp;</type>
+          <declname>comp</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/agyss/iis_robot_sw/iis_catkin_ws/src/kukadu/include/kukadu/control/dmp.hpp" line="129" column="1" bodyfile="/home/agyss/iis_robot_sw/iis_catkin_ws/src/kukadu/src/control/dmp.cpp" bodystart="511" bodyend="518"/>
+      </memberdef>
+      </sectiondef>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <inheritancegraph>
+      <node id="189">
+        <label>kukadu::Dmp</label>
+        <link refid="classkukadu_1_1Dmp"/>
+        <childnode refid="190" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="190">
+        <label>kukadu::SingleSampleTrajectory</label>
+        <link refid="classkukadu_1_1SingleSampleTrajectory"/>
+        <childnode refid="191" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="191">
+        <label>kukadu::Trajectory</label>
+        <link refid="classkukadu_1_1Trajectory"/>
+      </node>
+      <node id="193">
+        <label>kukadu::JointDmp</label>
+        <link refid="classkukadu_1_1JointDmp"/>
+        <childnode refid="189" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="192">
+        <label>kukadu::CartesianDMP</label>
+        <link refid="classkukadu_1_1CartesianDMP"/>
+        <childnode refid="189" relation="public-inheritance">
+        </childnode>
+      </node>
+    </inheritancegraph>
+    <collaborationgraph>
+      <node id="194">
+        <label>kukadu::Dmp</label>
+        <link refid="classkukadu_1_1Dmp"/>
+        <childnode refid="195" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="195">
+        <label>kukadu::SingleSampleTrajectory</label>
+        <link refid="classkukadu_1_1SingleSampleTrajectory"/>
+        <childnode refid="196" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="196">
+        <label>kukadu::Trajectory</label>
+        <link refid="classkukadu_1_1Trajectory"/>
+      </node>
+    </collaborationgraph>
+    <location file="/home/agyss/iis_robot_sw/iis_catkin_ws/src/kukadu/include/kukadu/control/dmp.hpp" line="36" column="1" bodyfile="/home/agyss/iis_robot_sw/iis_catkin_ws/src/kukadu/include/kukadu/control/dmp.hpp" bodystart="36" bodyend="131"/>
+    <listofallmembers>
+      <member refid="classkukadu_1_1Dmp_1a085d61d5fd978778b71c71b9f34c10eb" prot="private" virt="non-virtual"><scope>kukadu::Dmp</scope><name>ac</name></member>
+      <member refid="classkukadu_1_1Dmp_1a4a06160d38a9303a82cdc7c839d90141" prot="private" virt="non-virtual"><scope>kukadu::Dmp</scope><name>ax</name></member>
+      <member refid="classkukadu_1_1Dmp_1a361de75bc2cddbbd6199f497409730d8" prot="private" virt="non-virtual"><scope>kukadu::Dmp</scope><name>az</name></member>
+      <member refid="classkukadu_1_1Dmp_1aa0243a897d3020bb94a13852d0393682" prot="private" virt="non-virtual"><scope>kukadu::Dmp</scope><name>bz</name></member>
+      <member refid="classkukadu_1_1Dmp_1ad73155500248a5b8a6408dbcda465585" prot="private" virt="non-virtual"><scope>kukadu::Dmp</scope><name>construct</name></member>
+      <member refid="classkukadu_1_1Trajectory_1ac90ea1213d1888c4f7d7f9b41e9eb386" prot="public" virt="pure-virtual"><scope>kukadu::Dmp</scope><name>copy</name></member>
+      <member refid="classkukadu_1_1Dmp_1a8cd86435710a5f31bd2f70ef5acf298e" prot="private" virt="non-virtual"><scope>kukadu::Dmp</scope><name>ddy0</name></member>
+      <member refid="classkukadu_1_1Dmp_1ac83ff851a5f7011097e2289a64d693ce" prot="private" virt="non-virtual"><scope>kukadu::Dmp</scope><name>designMatrices</name></member>
+      <member refid="classkukadu_1_1Dmp_1af287978ae659dee595e22415854060a4" prot="protected" virt="non-virtual"><scope>kukadu::Dmp</scope><name>Dmp</name></member>
+      <member refid="classkukadu_1_1Dmp_1a780c7d0ea48cc2dfaac10dbc8db9ecc6" prot="public" virt="non-virtual"><scope>kukadu::Dmp</scope><name>Dmp</name></member>
+      <member refid="classkukadu_1_1Dmp_1a087cd38d5201e57f7404c6971bef1884" prot="public" virt="non-virtual"><scope>kukadu::Dmp</scope><name>Dmp</name></member>
+      <member refid="classkukadu_1_1Dmp_1afa67e953e05532cd7954b1e6a9c33636" prot="public" virt="non-virtual"><scope>kukadu::Dmp</scope><name>Dmp</name></member>
+      <member refid="classkukadu_1_1Dmp_1a8e557703472bb8c5c1714823766f5782" prot="public" virt="non-virtual"><scope>kukadu::Dmp</scope><name>Dmp</name></member>
+      <member refid="classkukadu_1_1Dmp_1a5734d44a7bb7b3cd124664bcaa2ce85d" prot="public" virt="non-virtual"><scope>kukadu::Dmp</scope><name>Dmp</name></member>
+      <member refid="classkukadu_1_1Dmp_1a88ac2abad1a15e10b48debec769cb5d1" prot="private" virt="non-virtual"><scope>kukadu::Dmp</scope><name>dmpBase</name></member>
+      <member refid="classkukadu_1_1Dmp_1aab3096b94d8db1699aec14b56698ca38" prot="private" virt="non-virtual"><scope>kukadu::Dmp</scope><name>dmpCoeffs</name></member>
+      <member refid="classkukadu_1_1Dmp_1af0966b32d5f703b6c59a24332f994715" prot="protected" virt="non-virtual"><scope>kukadu::Dmp</scope><name>dmpStepSize</name></member>
+      <member refid="classkukadu_1_1Dmp_1a1807562f7d5c87900da967498e55a24f" prot="private" virt="non-virtual"><scope>kukadu::Dmp</scope><name>dy0</name></member>
+      <member refid="classkukadu_1_1Dmp_1a1f5e7194bf55d600d9eb1e7447ed552d" prot="protected" virt="non-virtual"><scope>kukadu::Dmp</scope><name>fitYs</name></member>
+      <member refid="classkukadu_1_1Dmp_1a209065bfd8a60351140ff3654b82935c" prot="private" virt="non-virtual"><scope>kukadu::Dmp</scope><name>g</name></member>
+      <member refid="classkukadu_1_1Dmp_1afecc2e30b16281ae8e46fbd0797ba9da" prot="public" virt="non-virtual"><scope>kukadu::Dmp</scope><name>getAx</name></member>
+      <member refid="classkukadu_1_1Dmp_1aaec08d60cac323f41ffdad60c0218ea9" prot="public" virt="non-virtual"><scope>kukadu::Dmp</scope><name>getAz</name></member>
+      <member refid="classkukadu_1_1Dmp_1a25805f30ba5af184d2cb3f228d74bc47" prot="public" virt="non-virtual"><scope>kukadu::Dmp</scope><name>getBz</name></member>
+      <member refid="classkukadu_1_1Dmp_1a4b477fea8132d45d50617d9027f55634" prot="public" virt="virtual"><scope>kukadu::Dmp</scope><name>getCoefficients</name></member>
+      <member refid="classkukadu_1_1SingleSampleTrajectory_1af9da2ca21bfb86dec37b3983bc4f42ec" prot="public" virt="non-virtual"><scope>kukadu::Dmp</scope><name>getDataPoint</name></member>
+      <member refid="classkukadu_1_1SingleSampleTrajectory_1a54d07b45ee0b240d78c44bebb6b8818c" prot="public" virt="non-virtual"><scope>kukadu::Dmp</scope><name>getDataPointsNum</name></member>
+      <member refid="classkukadu_1_1Dmp_1a7d16db0cc1e7aadb52e88b9ce88ed013" prot="public" virt="non-virtual"><scope>kukadu::Dmp</scope><name>getDdy0</name></member>
+      <member refid="classkukadu_1_1Dmp_1a625b8794d3e59632412f76d447ccc430" prot="public" virt="non-virtual"><scope>kukadu::Dmp</scope><name>getDdy0</name></member>
+      <member refid="classkukadu_1_1SingleSampleTrajectory_1acafc41e33a17cd3e2178460b04535f85" prot="public" virt="virtual"><scope>kukadu::Dmp</scope><name>getDegreesOfFreedom</name></member>
+      <member refid="classkukadu_1_1Dmp_1a1ec31b0b369dac93fe7b4913ab8863db" prot="public" virt="non-virtual"><scope>kukadu::Dmp</scope><name>getDeltaTByIdx</name></member>
+      <member refid="classkukadu_1_1Dmp_1ad8cbaf545f773e2b347521c4d4f81972" prot="public" virt="non-virtual"><scope>kukadu::Dmp</scope><name>getDesignMatrix</name></member>
+      <member refid="classkukadu_1_1Dmp_1aaa2bbfc5b9683d38c7dc3cae4fd66d35" prot="public" virt="non-virtual"><scope>kukadu::Dmp</scope><name>getDesignMatrixCount</name></member>
+      <member refid="classkukadu_1_1Dmp_1a22ef512c5a0fb56808212c18eeabb4f6" prot="public" virt="non-virtual"><scope>kukadu::Dmp</scope><name>getDmpBase</name></member>
+      <member refid="classkukadu_1_1Dmp_1aec1043e1b9eda2418848eca83e3b7ae1" prot="public" virt="non-virtual"><scope>kukadu::Dmp</scope><name>getDmpCoeffs</name></member>
+      <member refid="classkukadu_1_1Dmp_1acf8b80c2993b1588d5aeab638480222d" prot="public" virt="non-virtual"><scope>kukadu::Dmp</scope><name>getDmpCoeffs</name></member>
+      <member refid="classkukadu_1_1Dmp_1a1a552adfe0f620b5c34e05ecf56fd55f" prot="public" virt="non-virtual"><scope>kukadu::Dmp</scope><name>getDy0</name></member>
+      <member refid="classkukadu_1_1Dmp_1a507c50bd598249260b23368ed5ea88c8" prot="public" virt="non-virtual"><scope>kukadu::Dmp</scope><name>getDy0</name></member>
+      <member refid="classkukadu_1_1Dmp_1aa9074177aa8d7272d83456cf9aafde4c" prot="public" virt="non-virtual"><scope>kukadu::Dmp</scope><name>getFitYs</name></member>
+      <member refid="classkukadu_1_1Dmp_1a1b7816ff8f66155afad0a50f9cf40ab0" prot="public" virt="non-virtual"><scope>kukadu::Dmp</scope><name>getG</name></member>
+      <member refid="classkukadu_1_1Dmp_1ac8c841b12e4eb2678424d96c6dbbb5bc" prot="public" virt="non-virtual"><scope>kukadu::Dmp</scope><name>getG</name></member>
+      <member refid="classkukadu_1_1Dmp_1ab81d2e2b6f51744caff8714824afb940" prot="public" virt="non-virtual"><scope>kukadu::Dmp</scope><name>getSampleCount</name></member>
+      <member refid="classkukadu_1_1SingleSampleTrajectory_1a1c6479b4988152cbc061e2bcbfc7280c" prot="public" virt="non-virtual"><scope>kukadu::Dmp</scope><name>getSampleYByIndex</name></member>
+      <member refid="classkukadu_1_1SingleSampleTrajectory_1ae36a0fe9502a898edc8bab4427b9ce6d" prot="public" virt="non-virtual"><scope>kukadu::Dmp</scope><name>getSampleYs</name></member>
+      <member refid="classkukadu_1_1SingleSampleTrajectory_1afac3c5f483c8d603c695b9d393b77c38" prot="public" virt="virtual"><scope>kukadu::Dmp</scope><name>getStartingPos</name></member>
+      <member refid="classkukadu_1_1Dmp_1aa88cf46b01a29848c307ab8c66cd3c1e" prot="public" virt="non-virtual"><scope>kukadu::Dmp</scope><name>getStepSize</name></member>
+      <member refid="classkukadu_1_1SingleSampleTrajectory_1a545217d83c817424ce99d81698c16e04" prot="public" virt="non-virtual"><scope>kukadu::Dmp</scope><name>getSupervisedTs</name></member>
+      <member refid="classkukadu_1_1SingleSampleTrajectory_1a96c8f92caeaa68108d16f99dd6cc190f" prot="public" virt="non-virtual"><scope>kukadu::Dmp</scope><name>getT</name></member>
+      <member refid="classkukadu_1_1Dmp_1a787076c787e247bc14c07e738617e5f6" prot="public" virt="non-virtual"><scope>kukadu::Dmp</scope><name>getTau</name></member>
+      <member refid="classkukadu_1_1Dmp_1aa7423b1cd8096790cc6162e7ecfb604b" prot="public" virt="virtual"><scope>kukadu::Dmp</scope><name>getTmax</name></member>
+      <member refid="classkukadu_1_1Dmp_1ae72973627e7443f6b98b07891fba2705" prot="public" virt="non-virtual"><scope>kukadu::Dmp</scope><name>getTolAbsErr</name></member>
+      <member refid="classkukadu_1_1Dmp_1a8a90b4bf9c8acf5a3aeaeb2c82671929" prot="public" virt="non-virtual"><scope>kukadu::Dmp</scope><name>getTolRelErr</name></member>
+      <member refid="classkukadu_1_1Dmp_1ab5256cb887386b5fd48a88e60a14e1d6" prot="public" virt="non-virtual"><scope>kukadu::Dmp</scope><name>getY0</name></member>
+      <member refid="classkukadu_1_1Dmp_1ae2c58371b5c9846a8d4e5a6145a5b4a8" prot="public" virt="non-virtual"><scope>kukadu::Dmp</scope><name>getY0</name></member>
+      <member refid="classkukadu_1_1Dmp_1a5675e1e77946111eb50f8fd7c5d018a6" prot="private" virt="non-virtual"><scope>kukadu::Dmp</scope><name>initializeDdy0</name></member>
+      <member refid="classkukadu_1_1Dmp_1acb09b8b138db72e6699263d5be5aa92e" prot="private" virt="non-virtual"><scope>kukadu::Dmp</scope><name>initializeDy0</name></member>
+      <member refid="classkukadu_1_1Dmp_1a311ed788060186ae04a6f1534dfd1573" prot="private" virt="non-virtual"><scope>kukadu::Dmp</scope><name>initializeG</name></member>
+      <member refid="classkukadu_1_1Dmp_1ac1ddbbab50e9388558a0ab5c6378ae31" prot="private" virt="non-virtual"><scope>kukadu::Dmp</scope><name>initializeY0</name></member>
+      <member refid="classkukadu_1_1Dmp_1ac64f37f77911ba0d6e67ea4041601dd8" prot="public" virt="pure-virtual"><scope>kukadu::Dmp</scope><name>isCartesian</name></member>
+      <member refid="classkukadu_1_1Dmp_1ad944a1f4b2e1857c390f3ab42d64d59b" prot="public" virt="non-virtual"><scope>kukadu::Dmp</scope><name>operator==</name></member>
+      <member refid="classkukadu_1_1SingleSampleTrajectory_1acb02e8fec6bd44e65e9eaae3974a3f55" prot="public" virt="non-virtual" ambiguityscope="kukadu::SingleSampleTrajectory::"><scope>kukadu::Dmp</scope><name>operator==</name></member>
+      <member refid="classkukadu_1_1Trajectory_1a19baa2586084c301987a940a3d8bbf10" prot="public" virt="non-virtual" ambiguityscope="kukadu::Trajectory::"><scope>kukadu::Dmp</scope><name>operator==</name></member>
+      <member refid="classkukadu_1_1SingleSampleTrajectory_1aab36dde449f47b0fa528bc823abef1aa" prot="protected" virt="non-virtual"><scope>kukadu::Dmp</scope><name>sampleYs</name></member>
+      <member refid="classkukadu_1_1Dmp_1a67645036f7e1dfb7ff833b8149716c2d" prot="public" virt="non-virtual"><scope>kukadu::Dmp</scope><name>serialize</name></member>
+      <member refid="classkukadu_1_1Dmp_1ace27ff809c779f83daf1fd903636a332" prot="public" virt="virtual"><scope>kukadu::Dmp</scope><name>setCoefficients</name></member>
+      <member refid="classkukadu_1_1Dmp_1a6feb8dc33dc6b8b6cd032fa3b234dec0" prot="public" virt="non-virtual"><scope>kukadu::Dmp</scope><name>setDmpCoeffs</name></member>
+      <member refid="classkukadu_1_1SingleSampleTrajectory_1abd2bcbdb8cb5bf73c1618b8304553923" prot="public" virt="non-virtual"><scope>kukadu::Dmp</scope><name>setSampleYs</name></member>
+      <member refid="classkukadu_1_1SingleSampleTrajectory_1abdf363f6319cec5daa413ae03872652c" prot="public" virt="non-virtual"><scope>kukadu::Dmp</scope><name>setSupervisedTs</name></member>
+      <member refid="classkukadu_1_1Dmp_1a90ba745176c444fb74bfd24722ee8f60" prot="public" virt="virtual"><scope>kukadu::Dmp</scope><name>setTmax</name></member>
+      <member refid="classkukadu_1_1SingleSampleTrajectory_1a1b926fb1a17e46259c12cb26133c330a" prot="public" virt="non-virtual"><scope>kukadu::Dmp</scope><name>SingleSampleTrajectory</name></member>
+      <member refid="classkukadu_1_1SingleSampleTrajectory_1af814c665fa3fe6bdbaace8ca1abc66ac" prot="public" virt="non-virtual"><scope>kukadu::Dmp</scope><name>SingleSampleTrajectory</name></member>
+      <member refid="classkukadu_1_1SingleSampleTrajectory_1a1e3e9066b01957663bc0381a3685e102" prot="public" virt="non-virtual"><scope>kukadu::Dmp</scope><name>SingleSampleTrajectory</name></member>
+      <member refid="classkukadu_1_1Dmp_1a4fd82cb0c5f82cb7509565897fc79a73" prot="public" virt="non-virtual"><scope>kukadu::Dmp</scope><name>storeDatabase</name></member>
+      <member refid="classkukadu_1_1SingleSampleTrajectory_1a645432edcf7f9e23571710ba0f96cfb2" prot="protected" virt="non-virtual"><scope>kukadu::Dmp</scope><name>supervisedTs</name></member>
+      <member refid="classkukadu_1_1Dmp_1ac84189a49cb41ffe6dd6cd1ae8ad4a6e" prot="private" virt="non-virtual"><scope>kukadu::Dmp</scope><name>tau</name></member>
+      <member refid="classkukadu_1_1Dmp_1a55deb62d31a8dd996408775afbf5b2c1" prot="private" virt="non-virtual"><scope>kukadu::Dmp</scope><name>tmax</name></member>
+      <member refid="classkukadu_1_1Dmp_1ac6a75e4d94fcb9965e02b2c205632302" prot="private" virt="non-virtual"><scope>kukadu::Dmp</scope><name>tolAbsErr</name></member>
+      <member refid="classkukadu_1_1Dmp_1aa2fdd2dcf4e962c3e3c277c44f473b91" prot="private" virt="non-virtual"><scope>kukadu::Dmp</scope><name>tolRelErr</name></member>
+      <member refid="classkukadu_1_1Trajectory_1ac01f5b8794309be3f359df2d7e1eafa7" prot="public" virt="non-virtual"><scope>kukadu::Dmp</scope><name>Trajectory</name></member>
+      <member refid="classkukadu_1_1Trajectory_1a9546cb13ba9d3e4731af50033c54caf7" prot="public" virt="non-virtual"><scope>kukadu::Dmp</scope><name>Trajectory</name></member>
+      <member refid="classkukadu_1_1Dmp_1a8b9aa882f42740131e27d86deaaff799" prot="private" virt="non-virtual"><scope>kukadu::Dmp</scope><name>y0</name></member>
+    </listofallmembers>
+  </compounddef>
+</doxygen>

@@ -1,0 +1,291 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.8.11">
+  <compounddef id="classkukadu_1_1SensorStorageSingleton" kind="class" language="C++" prot="public">
+    <compoundname>kukadu::SensorStorageSingleton</compoundname>
+      <sectiondef kind="private-attrib">
+      <memberdef kind="variable" id="classkukadu_1_1SensorStorageSingleton_1a789678e6893449a5f271c3c695f61d1c" prot="private" static="no" mutable="no">
+        <type>std::mutex</type>
+        <definition>std::mutex kukadu::SensorStorageSingleton::instanceMutex</definition>
+        <argsstring></argsstring>
+        <name>instanceMutex</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/agyss/iis_robot_sw/iis_catkin_ws/src/kukadu/include/kukadu/storage/sensorstoragesingleton.hpp" line="17" column="1" bodyfile="/home/agyss/iis_robot_sw/iis_catkin_ws/src/kukadu/include/kukadu/storage/sensorstoragesingleton.hpp" bodystart="17" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classkukadu_1_1SensorStorageSingleton_1ac741a74932f2cd054a18d1d9caef2555" prot="private" static="no" mutable="no">
+        <type>std::vector&lt; std::string &gt;</type>
+        <definition>std::vector&lt;std::string&gt; kukadu::SensorStorageSingleton::registeredInstanceNames</definition>
+        <argsstring></argsstring>
+        <name>registeredInstanceNames</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/agyss/iis_robot_sw/iis_catkin_ws/src/kukadu/include/kukadu/storage/sensorstoragesingleton.hpp" line="19" column="1" bodyfile="/home/agyss/iis_robot_sw/iis_catkin_ws/src/kukadu/include/kukadu/storage/sensorstoragesingleton.hpp" bodystart="19" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classkukadu_1_1SensorStorageSingleton_1a38fa1649b3addb9c6098968218ed7e3b" prot="private" static="no" mutable="no">
+        <type>std::map&lt; std::string, KUKADU_SHARED_PTR&lt; <ref refid="classkukadu_1_1Hardware" kindref="compound">Hardware</ref> &gt; &gt;</type>
+        <definition>std::map&lt;std::string, KUKADU_SHARED_PTR&lt;Hardware&gt; &gt; kukadu::SensorStorageSingleton::registeredHardware</definition>
+        <argsstring></argsstring>
+        <name>registeredHardware</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/agyss/iis_robot_sw/iis_catkin_ws/src/kukadu/include/kukadu/storage/sensorstoragesingleton.hpp" line="20" column="1" bodyfile="/home/agyss/iis_robot_sw/iis_catkin_ws/src/kukadu/include/kukadu/storage/sensorstoragesingleton.hpp" bodystart="20" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classkukadu_1_1SensorStorageSingleton_1afae4bbf2f6a09de489500a387c0876af" prot="private" static="no" mutable="no">
+        <type>std::map&lt; std::string, std::pair&lt; bool, KUKADU_SHARED_PTR&lt; kukadu_thread &gt; &gt; &gt;</type>
+        <definition>std::map&lt;std::string, std::pair&lt;bool, KUKADU_SHARED_PTR&lt;kukadu_thread&gt; &gt; &gt; kukadu::SensorStorageSingleton::startedThreads</definition>
+        <argsstring></argsstring>
+        <name>startedThreads</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/agyss/iis_robot_sw/iis_catkin_ws/src/kukadu/include/kukadu/storage/sensorstoragesingleton.hpp" line="22" column="1" bodyfile="/home/agyss/iis_robot_sw/iis_catkin_ws/src/kukadu/include/kukadu/storage/sensorstoragesingleton.hpp" bodystart="22" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classkukadu_1_1SensorStorageSingleton_1a7cca189eff3976e618e2a6a98c3064d8" prot="private" static="no" mutable="no">
+        <type>std::map&lt; std::string, int &gt;</type>
+        <definition>std::map&lt;std::string, int&gt; kukadu::SensorStorageSingleton::startedCount</definition>
+        <argsstring></argsstring>
+        <name>startedCount</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/agyss/iis_robot_sw/iis_catkin_ws/src/kukadu/include/kukadu/storage/sensorstoragesingleton.hpp" line="23" column="1" bodyfile="/home/agyss/iis_robot_sw/iis_catkin_ws/src/kukadu/include/kukadu/storage/sensorstoragesingleton.hpp" bodystart="23" bodyend="-1"/>
+      </memberdef>
+      </sectiondef>
+      <sectiondef kind="private-func">
+      <memberdef kind="function" id="classkukadu_1_1SensorStorageSingleton_1a81c87ca1b7a6793fdc4b502d1d7c3ba2" prot="private" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type></type>
+        <definition>kukadu::SensorStorageSingleton::SensorStorageSingleton</definition>
+        <argsstring>()</argsstring>
+        <name>SensorStorageSingleton</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/agyss/iis_robot_sw/iis_catkin_ws/src/kukadu/include/kukadu/storage/sensorstoragesingleton.hpp" line="25" column="1" bodyfile="/home/agyss/iis_robot_sw/iis_catkin_ws/src/kukadu/src/storage/sensorstorage.cpp" bodystart="12" bodyend="14"/>
+      </memberdef>
+      </sectiondef>
+      <sectiondef kind="public-static-func">
+      <memberdef kind="function" id="classkukadu_1_1SensorStorageSingleton_1a5642b288924a1083d58ce3ebbc08c6ec" prot="public" static="yes" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type><ref refid="classkukadu_1_1SensorStorageSingleton" kindref="compound">SensorStorageSingleton</ref> &amp;</type>
+        <definition>SensorStorageSingleton &amp; kukadu::SensorStorageSingleton::get</definition>
+        <argsstring>()</argsstring>
+        <name>get</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/agyss/iis_robot_sw/iis_catkin_ws/src/kukadu/include/kukadu/storage/sensorstoragesingleton.hpp" line="29" column="1" bodyfile="/home/agyss/iis_robot_sw/iis_catkin_ws/src/kukadu/src/storage/sensorstorage.cpp" bodystart="16" bodyend="21"/>
+      </memberdef>
+      </sectiondef>
+      <sectiondef kind="public-func">
+      <memberdef kind="function" id="classkukadu_1_1SensorStorageSingleton_1a76d3245bb252c67f1c28894de094b439" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>void kukadu::SensorStorageSingleton::registerHardware</definition>
+        <argsstring>(KUKADU_SHARED_PTR&lt; Hardware &gt; hardware)</argsstring>
+        <name>registerHardware</name>
+        <param>
+          <type>KUKADU_SHARED_PTR&lt; <ref refid="classkukadu_1_1Hardware" kindref="compound">Hardware</ref> &gt;</type>
+          <declname>hardware</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/agyss/iis_robot_sw/iis_catkin_ws/src/kukadu/include/kukadu/storage/sensorstoragesingleton.hpp" line="31" column="1" bodyfile="/home/agyss/iis_robot_sw/iis_catkin_ws/src/kukadu/src/storage/sensorstorage.cpp" bodystart="32" bodyend="56"/>
+      </memberdef>
+      <memberdef kind="function" id="classkukadu_1_1SensorStorageSingleton_1a6e2f2f5ec7eb134b005f97f935855e98" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>void kukadu::SensorStorageSingleton::registerHardware</definition>
+        <argsstring>(std::vector&lt; KUKADU_SHARED_PTR&lt; Hardware &gt; &gt; hardware)</argsstring>
+        <name>registerHardware</name>
+        <param>
+          <type>std::vector&lt; KUKADU_SHARED_PTR&lt; <ref refid="classkukadu_1_1Hardware" kindref="compound">Hardware</ref> &gt; &gt;</type>
+          <declname>hardware</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/agyss/iis_robot_sw/iis_catkin_ws/src/kukadu/include/kukadu/storage/sensorstoragesingleton.hpp" line="32" column="1" bodyfile="/home/agyss/iis_robot_sw/iis_catkin_ws/src/kukadu/src/storage/sensorstorage.cpp" bodystart="58" bodyend="61"/>
+      </memberdef>
+      <memberdef kind="function" id="classkukadu_1_1SensorStorageSingleton_1a094a828348e3b8c44059f0213fbc5cfa" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>KUKADU_SHARED_PTR&lt; <ref refid="classkukadu_1_1Hardware" kindref="compound">Hardware</ref> &gt;</type>
+        <definition>KUKADU_SHARED_PTR&lt; Hardware &gt; kukadu::SensorStorageSingleton::getRegisteredHardware</definition>
+        <argsstring>(std::string name)</argsstring>
+        <name>getRegisteredHardware</name>
+        <param>
+          <type>std::string</type>
+          <declname>name</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/agyss/iis_robot_sw/iis_catkin_ws/src/kukadu/include/kukadu/storage/sensorstoragesingleton.hpp" line="34" column="1" bodyfile="/home/agyss/iis_robot_sw/iis_catkin_ws/src/kukadu/src/storage/sensorstorage.cpp" bodystart="23" bodyend="30"/>
+      </memberdef>
+      <memberdef kind="function" id="classkukadu_1_1SensorStorageSingleton_1a5c9331e0050e7b78a768e01ab3187ffc" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>void kukadu::SensorStorageSingleton::initiateStorageAllRegistered</definition>
+        <argsstring>()</argsstring>
+        <name>initiateStorageAllRegistered</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/agyss/iis_robot_sw/iis_catkin_ws/src/kukadu/include/kukadu/storage/sensorstoragesingleton.hpp" line="36" column="1" bodyfile="/home/agyss/iis_robot_sw/iis_catkin_ws/src/kukadu/src/storage/sensorstorage.cpp" bodystart="63" bodyend="65"/>
+      </memberdef>
+      <memberdef kind="function" id="classkukadu_1_1SensorStorageSingleton_1acd5e5b5fef96cf73dd961116900d1aba" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>bool</type>
+        <definition>bool kukadu::SensorStorageSingleton::initiateStorage</definition>
+        <argsstring>(std::string instanceName)</argsstring>
+        <name>initiateStorage</name>
+        <param>
+          <type>std::string</type>
+          <declname>instanceName</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/agyss/iis_robot_sw/iis_catkin_ws/src/kukadu/include/kukadu/storage/sensorstoragesingleton.hpp" line="39" column="1" bodyfile="/home/agyss/iis_robot_sw/iis_catkin_ws/src/kukadu/src/storage/sensorstorage.cpp" bodystart="88" bodyend="129"/>
+      </memberdef>
+      <memberdef kind="function" id="classkukadu_1_1SensorStorageSingleton_1ac4051b3f4f3e148ba7ab58a80a0c855f" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>std::vector&lt; bool &gt;</type>
+        <definition>std::vector&lt; bool &gt; kukadu::SensorStorageSingleton::initiateStorage</definition>
+        <argsstring>(std::vector&lt; std::string &gt; instanceNames)</argsstring>
+        <name>initiateStorage</name>
+        <param>
+          <type>std::vector&lt; std::string &gt;</type>
+          <declname>instanceNames</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/agyss/iis_robot_sw/iis_catkin_ws/src/kukadu/include/kukadu/storage/sensorstoragesingleton.hpp" line="42" column="1" bodyfile="/home/agyss/iis_robot_sw/iis_catkin_ws/src/kukadu/src/storage/sensorstorage.cpp" bodystart="78" bodyend="86"/>
+      </memberdef>
+      <memberdef kind="function" id="classkukadu_1_1SensorStorageSingleton_1ad19fbc756b50b527869be6ddca355eec" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>std::vector&lt; bool &gt;</type>
+        <definition>std::vector&lt; bool &gt; kukadu::SensorStorageSingleton::initiateStorage</definition>
+        <argsstring>(std::vector&lt; KUKADU_SHARED_PTR&lt; Hardware &gt; &gt; hardware)</argsstring>
+        <name>initiateStorage</name>
+        <param>
+          <type>std::vector&lt; KUKADU_SHARED_PTR&lt; <ref refid="classkukadu_1_1Hardware" kindref="compound">Hardware</ref> &gt; &gt;</type>
+          <declname>hardware</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/agyss/iis_robot_sw/iis_catkin_ws/src/kukadu/include/kukadu/storage/sensorstoragesingleton.hpp" line="43" column="1" bodyfile="/home/agyss/iis_robot_sw/iis_catkin_ws/src/kukadu/src/storage/sensorstorage.cpp" bodystart="67" bodyend="76"/>
+      </memberdef>
+      <memberdef kind="function" id="classkukadu_1_1SensorStorageSingleton_1a9c7a5f2c7bfe56911995a19b849ee9f9" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>void kukadu::SensorStorageSingleton::stopStorageAll</definition>
+        <argsstring>()</argsstring>
+        <name>stopStorageAll</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/agyss/iis_robot_sw/iis_catkin_ws/src/kukadu/include/kukadu/storage/sensorstoragesingleton.hpp" line="46" column="1" bodyfile="/home/agyss/iis_robot_sw/iis_catkin_ws/src/kukadu/src/storage/sensorstorage.cpp" bodystart="131" bodyend="150"/>
+      </memberdef>
+      <memberdef kind="function" id="classkukadu_1_1SensorStorageSingleton_1a090d1b7167f9581ee2080b475049b05e" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>void kukadu::SensorStorageSingleton::stopStorage</definition>
+        <argsstring>(std::vector&lt; std::string &gt; instanceNames)</argsstring>
+        <name>stopStorage</name>
+        <param>
+          <type>std::vector&lt; std::string &gt;</type>
+          <declname>instanceNames</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/agyss/iis_robot_sw/iis_catkin_ws/src/kukadu/include/kukadu/storage/sensorstoragesingleton.hpp" line="49" column="1" bodyfile="/home/agyss/iis_robot_sw/iis_catkin_ws/src/kukadu/src/storage/sensorstorage.cpp" bodystart="162" bodyend="184"/>
+      </memberdef>
+      <memberdef kind="function" id="classkukadu_1_1SensorStorageSingleton_1a4ad27da5f31700493a1506ce694d0a2f" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>void kukadu::SensorStorageSingleton::stopStorage</definition>
+        <argsstring>(std::vector&lt; KUKADU_SHARED_PTR&lt; Hardware &gt; &gt; hardware)</argsstring>
+        <name>stopStorage</name>
+        <param>
+          <type>std::vector&lt; KUKADU_SHARED_PTR&lt; <ref refid="classkukadu_1_1Hardware" kindref="compound">Hardware</ref> &gt; &gt;</type>
+          <declname>hardware</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/agyss/iis_robot_sw/iis_catkin_ws/src/kukadu/include/kukadu/storage/sensorstoragesingleton.hpp" line="50" column="1" bodyfile="/home/agyss/iis_robot_sw/iis_catkin_ws/src/kukadu/src/storage/sensorstorage.cpp" bodystart="152" bodyend="160"/>
+      </memberdef>
+      </sectiondef>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <location file="/home/agyss/iis_robot_sw/iis_catkin_ws/src/kukadu/include/kukadu/storage/sensorstoragesingleton.hpp" line="13" column="1" bodyfile="/home/agyss/iis_robot_sw/iis_catkin_ws/src/kukadu/include/kukadu/storage/sensorstoragesingleton.hpp" bodystart="13" bodyend="52"/>
+    <listofallmembers>
+      <member refid="classkukadu_1_1SensorStorageSingleton_1a5642b288924a1083d58ce3ebbc08c6ec" prot="public" virt="non-virtual"><scope>kukadu::SensorStorageSingleton</scope><name>get</name></member>
+      <member refid="classkukadu_1_1SensorStorageSingleton_1a094a828348e3b8c44059f0213fbc5cfa" prot="public" virt="non-virtual"><scope>kukadu::SensorStorageSingleton</scope><name>getRegisteredHardware</name></member>
+      <member refid="classkukadu_1_1SensorStorageSingleton_1acd5e5b5fef96cf73dd961116900d1aba" prot="public" virt="non-virtual"><scope>kukadu::SensorStorageSingleton</scope><name>initiateStorage</name></member>
+      <member refid="classkukadu_1_1SensorStorageSingleton_1ac4051b3f4f3e148ba7ab58a80a0c855f" prot="public" virt="non-virtual"><scope>kukadu::SensorStorageSingleton</scope><name>initiateStorage</name></member>
+      <member refid="classkukadu_1_1SensorStorageSingleton_1ad19fbc756b50b527869be6ddca355eec" prot="public" virt="non-virtual"><scope>kukadu::SensorStorageSingleton</scope><name>initiateStorage</name></member>
+      <member refid="classkukadu_1_1SensorStorageSingleton_1a5c9331e0050e7b78a768e01ab3187ffc" prot="public" virt="non-virtual"><scope>kukadu::SensorStorageSingleton</scope><name>initiateStorageAllRegistered</name></member>
+      <member refid="classkukadu_1_1SensorStorageSingleton_1a789678e6893449a5f271c3c695f61d1c" prot="private" virt="non-virtual"><scope>kukadu::SensorStorageSingleton</scope><name>instanceMutex</name></member>
+      <member refid="classkukadu_1_1SensorStorageSingleton_1a38fa1649b3addb9c6098968218ed7e3b" prot="private" virt="non-virtual"><scope>kukadu::SensorStorageSingleton</scope><name>registeredHardware</name></member>
+      <member refid="classkukadu_1_1SensorStorageSingleton_1ac741a74932f2cd054a18d1d9caef2555" prot="private" virt="non-virtual"><scope>kukadu::SensorStorageSingleton</scope><name>registeredInstanceNames</name></member>
+      <member refid="classkukadu_1_1SensorStorageSingleton_1a76d3245bb252c67f1c28894de094b439" prot="public" virt="non-virtual"><scope>kukadu::SensorStorageSingleton</scope><name>registerHardware</name></member>
+      <member refid="classkukadu_1_1SensorStorageSingleton_1a6e2f2f5ec7eb134b005f97f935855e98" prot="public" virt="non-virtual"><scope>kukadu::SensorStorageSingleton</scope><name>registerHardware</name></member>
+      <member refid="classkukadu_1_1SensorStorageSingleton_1a81c87ca1b7a6793fdc4b502d1d7c3ba2" prot="private" virt="non-virtual"><scope>kukadu::SensorStorageSingleton</scope><name>SensorStorageSingleton</name></member>
+      <member refid="classkukadu_1_1SensorStorageSingleton_1a7cca189eff3976e618e2a6a98c3064d8" prot="private" virt="non-virtual"><scope>kukadu::SensorStorageSingleton</scope><name>startedCount</name></member>
+      <member refid="classkukadu_1_1SensorStorageSingleton_1afae4bbf2f6a09de489500a387c0876af" prot="private" virt="non-virtual"><scope>kukadu::SensorStorageSingleton</scope><name>startedThreads</name></member>
+      <member refid="classkukadu_1_1SensorStorageSingleton_1a090d1b7167f9581ee2080b475049b05e" prot="public" virt="non-virtual"><scope>kukadu::SensorStorageSingleton</scope><name>stopStorage</name></member>
+      <member refid="classkukadu_1_1SensorStorageSingleton_1a4ad27da5f31700493a1506ce694d0a2f" prot="public" virt="non-virtual"><scope>kukadu::SensorStorageSingleton</scope><name>stopStorage</name></member>
+      <member refid="classkukadu_1_1SensorStorageSingleton_1a9c7a5f2c7bfe56911995a19b849ee9f9" prot="public" virt="non-virtual"><scope>kukadu::SensorStorageSingleton</scope><name>stopStorageAll</name></member>
+    </listofallmembers>
+  </compounddef>
+</doxygen>

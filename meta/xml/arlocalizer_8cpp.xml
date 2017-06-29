@@ -1,0 +1,1174 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.8.11">
+  <compounddef id="arlocalizer_8cpp" kind="file" language="C++">
+    <compoundname>arlocalizer.cpp</compoundname>
+    <includes local="no">iostream</includes>
+    <includes local="no">opencv/cv.hpp</includes>
+    <includes local="no">opencv/highgui.h</includes>
+    <includes local="no">cv_bridge/cv_bridge.h</includes>
+    <includes refid="utils_2utils_8hpp" local="no">kukadu/utils/utils.hpp</includes>
+    <includes local="no">sensor_msgs/image_encodings.h</includes>
+    <includes refid="arlocalizer_8hpp" local="no">kukadu/vision/arlocalizer.hpp</includes>
+    <includes refid="moduleusagesingleton_8hpp" local="no">kukadu/storage/moduleusagesingleton.hpp</includes>
+    <includes local="no">kukadu/vision/arlocalizer/TrackerMultiMarkerImpl.h</includes>
+    <includes local="no">kukadu/vision/arlocalizer/TrackerSingleMarkerImpl.h</includes>
+    <incdepgraph>
+      <node id="4998">
+        <label>sys/stat.h</label>
+      </node>
+      <node id="5017">
+        <label>list</label>
+      </node>
+      <node id="5001">
+        <label>gsl/gsl_vector.h</label>
+      </node>
+      <node id="4997">
+        <label>wordexp.h</label>
+      </node>
+      <node id="5048">
+        <label>boost/thread/mutex.hpp</label>
+      </node>
+      <node id="5054">
+        <label>kukadu/vision/arlocalizer/arMulti.h</label>
+      </node>
+      <node id="4995">
+        <label>stdbool.h</label>
+      </node>
+      <node id="4991">
+        <label>stdarg.h</label>
+      </node>
+      <node id="5029">
+        <label>cppconn/resultset.h</label>
+      </node>
+      <node id="5010">
+        <label>sensor_msgs/PointCloud2.h</label>
+      </node>
+      <node id="4980">
+        <label>queue</label>
+      </node>
+      <node id="5008">
+        <label>pcl/PCLPointCloud2.h</label>
+      </node>
+      <node id="4981">
+        <label>limits</label>
+      </node>
+      <node id="5033">
+        <label>kukadu/robot/queue.hpp</label>
+        <link refid="queue_8hpp"/>
+        <childnode refid="4980" relation="include">
+        </childnode>
+        <childnode refid="4982" relation="include">
+        </childnode>
+        <childnode refid="4996" relation="include">
+        </childnode>
+        <childnode refid="5034" relation="include">
+        </childnode>
+        <childnode refid="5035" relation="include">
+        </childnode>
+        <childnode refid="5018" relation="include">
+        </childnode>
+        <childnode refid="5020" relation="include">
+        </childnode>
+        <childnode refid="5036" relation="include">
+        </childnode>
+        <childnode refid="5019" relation="include">
+        </childnode>
+      </node>
+      <node id="5005">
+        <label>pcl/point_types.h</label>
+      </node>
+      <node id="5047">
+        <label>opencv/cv.h</label>
+      </node>
+      <node id="5050">
+        <label>tf/transform_listener.h</label>
+      </node>
+      <node id="5049">
+        <label>tf/transform_broadcaster.h</label>
+      </node>
+      <node id="5057">
+        <label>kukadu/storage/moduleusagesingleton.hpp</label>
+        <link refid="moduleusagesingleton_8hpp_source"/>
+        <childnode refid="4979" relation="include">
+        </childnode>
+        <childnode refid="4984" relation="include">
+        </childnode>
+        <childnode refid="4989" relation="include">
+        </childnode>
+        <childnode refid="4978" relation="include">
+        </childnode>
+        <childnode refid="5020" relation="include">
+        </childnode>
+        <childnode refid="5019" relation="include">
+        </childnode>
+      </node>
+      <node id="4976">
+        <label>opencv/highgui.h</label>
+      </node>
+      <node id="5019">
+        <label>kukadu/storage/storagesingleton.hpp</label>
+        <link refid="storagesingleton_8hpp_source"/>
+        <childnode refid="4979" relation="include">
+        </childnode>
+        <childnode refid="4980" relation="include">
+        </childnode>
+        <childnode refid="4984" relation="include">
+        </childnode>
+        <childnode refid="4982" relation="include">
+        </childnode>
+        <childnode refid="4974" relation="include">
+        </childnode>
+        <childnode refid="5020" relation="include">
+        </childnode>
+        <childnode refid="5026" relation="include">
+        </childnode>
+        <childnode refid="5027" relation="include">
+        </childnode>
+        <childnode refid="5028" relation="include">
+        </childnode>
+        <childnode refid="5029" relation="include">
+        </childnode>
+        <childnode refid="5030" relation="include">
+        </childnode>
+      </node>
+      <node id="5004">
+        <label>pcl/point_cloud.h</label>
+      </node>
+      <node id="5020">
+        <label>kukadu/types/kukadutypes.hpp</label>
+        <link refid="kukadutypes_8hpp_source"/>
+        <childnode refid="5021" relation="include">
+        </childnode>
+        <childnode refid="5022" relation="include">
+        </childnode>
+        <childnode refid="5023" relation="include">
+        </childnode>
+        <childnode refid="5024" relation="include">
+        </childnode>
+        <childnode refid="5025" relation="include">
+        </childnode>
+      </node>
+      <node id="5042">
+        <label>kukadu/vision/pcstdtrans.hpp</label>
+        <link refid="pcstdtrans_8hpp_source"/>
+        <childnode refid="4996" relation="include">
+        </childnode>
+        <childnode refid="5043" relation="include">
+        </childnode>
+        <childnode refid="5044" relation="include">
+        </childnode>
+      </node>
+      <node id="5014">
+        <label>stdexcept</label>
+      </node>
+      <node id="5051">
+        <label>image_transport/image_transport.h</label>
+      </node>
+      <node id="4994">
+        <label>termios.h</label>
+      </node>
+      <node id="5007">
+        <label>eigen3/Eigen/Dense</label>
+      </node>
+      <node id="4975">
+        <label>opencv/cv.hpp</label>
+      </node>
+      <node id="5018">
+        <label>kukadu/robot/hardware.hpp</label>
+        <link refid="hardware_8hpp_source"/>
+        <childnode refid="4984" relation="include">
+        </childnode>
+        <childnode refid="4996" relation="include">
+        </childnode>
+        <childnode refid="5019" relation="include">
+        </childnode>
+      </node>
+      <node id="5000">
+        <label>gsl/gsl_poly.h</label>
+      </node>
+      <node id="4984">
+        <label>string</label>
+      </node>
+      <node id="4979">
+        <label>map</label>
+      </node>
+      <node id="4973">
+        <label>/home/agyss/iis_robot_sw/iis_catkin_ws/src/kukadu/src/vision/arlocalizer/arlocalizer.cpp</label>
+        <link refid="arlocalizer.cpp"/>
+        <childnode refid="4974" relation="include">
+        </childnode>
+        <childnode refid="4975" relation="include">
+        </childnode>
+        <childnode refid="4976" relation="include">
+        </childnode>
+        <childnode refid="4977" relation="include">
+        </childnode>
+        <childnode refid="4978" relation="include">
+        </childnode>
+        <childnode refid="5038" relation="include">
+        </childnode>
+        <childnode refid="5039" relation="include">
+        </childnode>
+        <childnode refid="5057" relation="include">
+        </childnode>
+        <childnode refid="5058" relation="include">
+        </childnode>
+        <childnode refid="5059" relation="include">
+        </childnode>
+      </node>
+      <node id="4977">
+        <label>cv_bridge/cv_bridge.h</label>
+      </node>
+      <node id="5013">
+        <label>kukadu/utils/gnuplot.hpp</label>
+        <link refid="gnuplot_8hpp_source"/>
+        <childnode refid="4974" relation="include">
+        </childnode>
+        <childnode refid="4984" relation="include">
+        </childnode>
+        <childnode refid="4982" relation="include">
+        </childnode>
+        <childnode refid="4988" relation="include">
+        </childnode>
+        <childnode refid="4986" relation="include">
+        </childnode>
+        <childnode refid="5014" relation="include">
+        </childnode>
+        <childnode refid="5015" relation="include">
+        </childnode>
+        <childnode refid="5016" relation="include">
+        </childnode>
+        <childnode refid="5017" relation="include">
+        </childnode>
+      </node>
+      <node id="4996">
+        <label>armadillo</label>
+      </node>
+      <node id="5021">
+        <label>exception</label>
+      </node>
+      <node id="4988">
+        <label>fstream</label>
+      </node>
+      <node id="5037">
+        <label>kukadu/utils/kukadutokenizer.hpp</label>
+        <link refid="kukadutokenizer_8hpp_source"/>
+        <childnode refid="4984" relation="include">
+        </childnode>
+        <childnode refid="4982" relation="include">
+        </childnode>
+      </node>
+      <node id="5052">
+        <label>dynamic_reconfigure/server.h</label>
+      </node>
+      <node id="5030">
+        <label>cppconn/statement.h</label>
+      </node>
+      <node id="5055">
+        <label>kukadu/vision/arlocalizer/CameraAdvImpl.h</label>
+      </node>
+      <node id="5025">
+        <label>random</label>
+      </node>
+      <node id="5053">
+        <label>kukadu/vision/arlocalizer/ar.h</label>
+      </node>
+      <node id="4999">
+        <label>sys/types.h</label>
+      </node>
+      <node id="5038">
+        <label>sensor_msgs/image_encodings.h</label>
+      </node>
+      <node id="5012">
+        <label>kukadu/utils/types.hpp</label>
+        <link refid="utils_2types_8hpp_source"/>
+        <childnode refid="4982" relation="include">
+        </childnode>
+        <childnode refid="4996" relation="include">
+        </childnode>
+        <childnode refid="5002" relation="include">
+        </childnode>
+      </node>
+      <node id="5009">
+        <label>tf/transform_datatypes.h</label>
+      </node>
+      <node id="5015">
+        <label>cstdio</label>
+      </node>
+      <node id="4978">
+        <label>kukadu/utils/utils.hpp</label>
+        <link refid="utils_2utils_8hpp_source"/>
+        <childnode refid="4979" relation="include">
+        </childnode>
+        <childnode refid="4980" relation="include">
+        </childnode>
+        <childnode refid="4981" relation="include">
+        </childnode>
+        <childnode refid="4982" relation="include">
+        </childnode>
+        <childnode refid="4983" relation="include">
+        </childnode>
+        <childnode refid="4984" relation="include">
+        </childnode>
+        <childnode refid="4985" relation="include">
+        </childnode>
+        <childnode refid="4986" relation="include">
+        </childnode>
+        <childnode refid="4987" relation="include">
+        </childnode>
+        <childnode refid="4988" relation="include">
+        </childnode>
+        <childnode refid="4989" relation="include">
+        </childnode>
+        <childnode refid="4990" relation="include">
+        </childnode>
+        <childnode refid="4991" relation="include">
+        </childnode>
+        <childnode refid="4974" relation="include">
+        </childnode>
+        <childnode refid="4992" relation="include">
+        </childnode>
+        <childnode refid="4993" relation="include">
+        </childnode>
+        <childnode refid="4994" relation="include">
+        </childnode>
+        <childnode refid="4995" relation="include">
+        </childnode>
+        <childnode refid="4996" relation="include">
+        </childnode>
+        <childnode refid="4997" relation="include">
+        </childnode>
+        <childnode refid="4998" relation="include">
+        </childnode>
+        <childnode refid="4999" relation="include">
+        </childnode>
+        <childnode refid="5000" relation="include">
+        </childnode>
+        <childnode refid="5001" relation="include">
+        </childnode>
+        <childnode refid="5002" relation="include">
+        </childnode>
+        <childnode refid="5003" relation="include">
+        </childnode>
+        <childnode refid="5004" relation="include">
+        </childnode>
+        <childnode refid="5005" relation="include">
+        </childnode>
+        <childnode refid="5006" relation="include">
+        </childnode>
+        <childnode refid="5007" relation="include">
+        </childnode>
+        <childnode refid="5008" relation="include">
+        </childnode>
+        <childnode refid="5009" relation="include">
+        </childnode>
+        <childnode refid="5010" relation="include">
+        </childnode>
+        <childnode refid="5011" relation="include">
+        </childnode>
+        <childnode refid="5012" relation="include">
+        </childnode>
+        <childnode refid="5013" relation="include">
+        </childnode>
+        <childnode refid="5018" relation="include">
+        </childnode>
+        <childnode refid="5031" relation="include">
+        </childnode>
+        <childnode refid="5037" relation="include">
+        </childnode>
+      </node>
+      <node id="5031">
+        <label>kukadu/control/controller.hpp</label>
+        <link refid="controller_8hpp_source"/>
+        <childnode refid="4984" relation="include">
+        </childnode>
+        <childnode refid="5018" relation="include">
+        </childnode>
+        <childnode refid="5020" relation="include">
+        </childnode>
+        <childnode refid="5032" relation="include">
+        </childnode>
+        <childnode refid="5019" relation="include">
+        </childnode>
+        <childnode refid="5033" relation="include">
+        </childnode>
+      </node>
+      <node id="4990">
+        <label>unistd.h</label>
+      </node>
+      <node id="4982">
+        <label>vector</label>
+      </node>
+      <node id="5035">
+        <label>kukadu/robot/filters.hpp</label>
+        <link refid="filters_8hpp_source"/>
+        <childnode refid="5012" relation="include">
+        </childnode>
+        <childnode refid="5020" relation="include">
+        </childnode>
+      </node>
+      <node id="4992">
+        <label>signal.h</label>
+      </node>
+      <node id="4989">
+        <label>utility</label>
+      </node>
+      <node id="4986">
+        <label>sstream</label>
+      </node>
+      <node id="5027">
+        <label>cppconn/driver.h</label>
+      </node>
+      <node id="5058">
+        <label>kukadu/vision/arlocalizer/TrackerMultiMarkerImpl.h</label>
+      </node>
+      <node id="5028">
+        <label>cppconn/exception.h</label>
+      </node>
+      <node id="5034">
+        <label>geometry_msgs/Pose.h</label>
+      </node>
+      <node id="5046">
+        <label>ros/ros.h</label>
+      </node>
+      <node id="4983">
+        <label>math.h</label>
+      </node>
+      <node id="5016">
+        <label>cstdlib</label>
+      </node>
+      <node id="4974">
+        <label>iostream</label>
+      </node>
+      <node id="5026">
+        <label>mysql_connection.h</label>
+      </node>
+      <node id="5044">
+        <label>pcl/kdtree/kdtree_flann.h</label>
+      </node>
+      <node id="5036">
+        <label>kukadu/utils/destroyableobject.hpp</label>
+        <link refid="destroyableobject_8hpp_source"/>
+      </node>
+      <node id="5024">
+        <label>mutex</label>
+      </node>
+      <node id="5006">
+        <label>gsl/gsl_multifit.h</label>
+      </node>
+      <node id="5039">
+        <label>kukadu/vision/arlocalizer.hpp</label>
+        <link refid="arlocalizer_8hpp_source"/>
+        <childnode refid="5040" relation="include">
+        </childnode>
+        <childnode refid="5020" relation="include">
+        </childnode>
+        <childnode refid="4979" relation="include">
+        </childnode>
+        <childnode refid="5017" relation="include">
+        </childnode>
+        <childnode refid="5046" relation="include">
+        </childnode>
+        <childnode refid="5047" relation="include">
+        </childnode>
+        <childnode refid="5048" relation="include">
+        </childnode>
+        <childnode refid="5049" relation="include">
+        </childnode>
+        <childnode refid="5050" relation="include">
+        </childnode>
+        <childnode refid="5051" relation="include">
+        </childnode>
+        <childnode refid="5052" relation="include">
+        </childnode>
+        <childnode refid="5009" relation="include">
+        </childnode>
+        <childnode refid="5053" relation="include">
+        </childnode>
+        <childnode refid="5054" relation="include">
+        </childnode>
+        <childnode refid="5055" relation="include">
+        </childnode>
+        <childnode refid="5056" relation="include">
+        </childnode>
+      </node>
+      <node id="5011">
+        <label>geometry_msgs/Quaternion.h</label>
+      </node>
+      <node id="5056">
+        <label>kukadu/vision/arlocalizer/ARToolKitPlus.h</label>
+      </node>
+      <node id="5023">
+        <label>thread</label>
+      </node>
+      <node id="5043">
+        <label>pcl_ros/transforms.h</label>
+      </node>
+      <node id="5003">
+        <label>gsl/gsl_linalg.h</label>
+      </node>
+      <node id="5040">
+        <label>kukadu/vision/localizer.hpp</label>
+        <link refid="localizer_8hpp_source"/>
+        <childnode refid="5022" relation="include">
+        </childnode>
+        <childnode refid="4982" relation="include">
+        </childnode>
+        <childnode refid="4984" relation="include">
+        </childnode>
+        <childnode refid="4989" relation="include">
+        </childnode>
+        <childnode refid="4996" relation="include">
+        </childnode>
+        <childnode refid="5034" relation="include">
+        </childnode>
+        <childnode refid="5041" relation="include">
+        </childnode>
+        <childnode refid="5020" relation="include">
+        </childnode>
+      </node>
+      <node id="5041">
+        <label>kukadu/vision/kinect.hpp</label>
+        <link refid="kinect_8hpp_source"/>
+        <childnode refid="4982" relation="include">
+        </childnode>
+        <childnode refid="4984" relation="include">
+        </childnode>
+        <childnode refid="5004" relation="include">
+        </childnode>
+        <childnode refid="5005" relation="include">
+        </childnode>
+        <childnode refid="5010" relation="include">
+        </childnode>
+        <childnode refid="5020" relation="include">
+        </childnode>
+        <childnode refid="5042" relation="include">
+        </childnode>
+        <childnode refid="5045" relation="include">
+        </childnode>
+      </node>
+      <node id="5045">
+        <label>pcl_conversions/pcl_conversions.h</label>
+      </node>
+      <node id="5059">
+        <label>kukadu/vision/arlocalizer/TrackerSingleMarkerImpl.h</label>
+      </node>
+      <node id="4987">
+        <label>stdio.h</label>
+      </node>
+      <node id="4985">
+        <label>cstring</label>
+      </node>
+      <node id="5002">
+        <label>gsl/gsl_matrix.h</label>
+      </node>
+      <node id="5022">
+        <label>memory</label>
+      </node>
+      <node id="5032">
+        <label>kukadu/types/controllerresult.hpp</label>
+        <link refid="controllerresult_8hpp_source"/>
+        <childnode refid="4982" relation="include">
+        </childnode>
+        <childnode refid="4996" relation="include">
+        </childnode>
+      </node>
+      <node id="4993">
+        <label>dirent.h</label>
+      </node>
+    </incdepgraph>
+    <innerclass refid="classkukadu_1_1ArLogger" prot="public">kukadu::ArLogger</innerclass>
+    <innerclass refid="classkukadu_1_1ARCamera" prot="public">kukadu::ARCamera</innerclass>
+    <innernamespace refid="namespacekukadu">kukadu</innernamespace>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <programlisting>
+<codeline lineno="1"><highlight class="preprocessor">#include<sp/>&lt;iostream&gt;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="2"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&lt;opencv/cv.hpp&gt;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="3"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&lt;opencv/highgui.h&gt;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="4"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&lt;cv_bridge/cv_bridge.h&gt;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="5"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&lt;kukadu/utils/utils.hpp&gt;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="6"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&lt;sensor_msgs/image_encodings.h&gt;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="7"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&lt;kukadu/vision/arlocalizer.hpp&gt;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="8"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&lt;kukadu/storage/moduleusagesingleton.hpp&gt;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="9"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&lt;kukadu/vision/arlocalizer/TrackerMultiMarkerImpl.h&gt;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="10"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&lt;kukadu/vision/arlocalizer/TrackerSingleMarkerImpl.h&gt;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="11"><highlight class="normal"></highlight></codeline>
+<codeline lineno="12"><highlight class="normal"></highlight><highlight class="keyword">using<sp/>namespace<sp/></highlight><highlight class="normal"><ref refid="namespacestd" kindref="compound">std</ref>;</highlight></codeline>
+<codeline lineno="13"><highlight class="normal"></highlight></codeline>
+<codeline lineno="14"><highlight class="normal"></highlight><highlight class="keyword">namespace<sp/></highlight><highlight class="normal"><ref refid="namespacekukadu" kindref="compound">kukadu</ref><sp/>{</highlight></codeline>
+<codeline lineno="15"><highlight class="normal"></highlight></codeline>
+<codeline lineno="16"><highlight class="normal"><sp/><sp/><sp/><sp/>std::string<sp/>ArLocalizer::getLocalizerFrame()<sp/>{</highlight></codeline>
+<codeline lineno="17"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal"><sp/>toolkit-&gt;getDetectionFrameName();</highlight></codeline>
+<codeline lineno="18"><highlight class="normal"><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline lineno="19"><highlight class="normal"></highlight></codeline>
+<codeline lineno="20"><highlight class="normal"><sp/><sp/><sp/><sp/>ArLocalizer::ArLocalizer(ros::NodeHandle&amp;<sp/>n,<sp/>std::string<sp/>imageTopic,<sp/></highlight><highlight class="keywordtype">bool</highlight><highlight class="normal"><sp/>show_camera_image)<sp/>{</highlight></codeline>
+<codeline lineno="21"><highlight class="normal"></highlight></codeline>
+<codeline lineno="22"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>toolkit<sp/>=<sp/>KUKADU_SHARED_PTR&lt;ARToolKitPlusNode&gt;(</highlight><highlight class="keyword">new</highlight><highlight class="normal"><sp/>ARToolKitPlusNode(n,<sp/>imageTopic,<sp/>show_camera_image));</highlight></codeline>
+<codeline lineno="23"><highlight class="normal"></highlight></codeline>
+<codeline lineno="24"><highlight class="normal"><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline lineno="25"><highlight class="normal"></highlight></codeline>
+<codeline lineno="26"><highlight class="normal"><sp/><sp/><sp/><sp/>std::map&lt;std::string,<sp/>geometry_msgs::Pose&gt;<sp/>ArLocalizer::localizeObjects()<sp/>{</highlight></codeline>
+<codeline lineno="27"><highlight class="normal"></highlight></codeline>
+<codeline lineno="28"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>KUKADU_MODULE_START_USAGE();</highlight></codeline>
+<codeline lineno="29"><highlight class="normal"></highlight></codeline>
+<codeline lineno="30"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>std::map&lt;std::string,<sp/>geometry_msgs::Pose&gt;<sp/>retVal<sp/>=<sp/>toolkit-&gt;getDetectedPoses();</highlight></codeline>
+<codeline lineno="31"><highlight class="normal"></highlight></codeline>
+<codeline lineno="32"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>KUKADU_MODULE_END_USAGE();</highlight></codeline>
+<codeline lineno="33"><highlight class="normal"></highlight></codeline>
+<codeline lineno="34"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal"><sp/>retVal;</highlight></codeline>
+<codeline lineno="35"><highlight class="normal"><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline lineno="36"><highlight class="normal"></highlight></codeline>
+<codeline lineno="37"><highlight class="normal"><sp/><sp/><sp/><sp/>geometry_msgs::Pose<sp/>ArLocalizer::localizeObject(std::string<sp/></highlight><highlight class="keywordtype">id</highlight><highlight class="normal">)<sp/>{</highlight></codeline>
+<codeline lineno="38"><highlight class="normal"></highlight></codeline>
+<codeline lineno="39"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>KUKADU_MODULE_START_USAGE();</highlight></codeline>
+<codeline lineno="40"><highlight class="normal"></highlight></codeline>
+<codeline lineno="41"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>std::map&lt;std::string,<sp/>geometry_msgs::Pose&gt;<sp/>detectedPoses<sp/>=<sp/>toolkit-&gt;getDetectedPoses();</highlight></codeline>
+<codeline lineno="42"><highlight class="normal"></highlight></codeline>
+<codeline lineno="43"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>KUKADU_MODULE_END_USAGE();</highlight></codeline>
+<codeline lineno="44"><highlight class="normal"></highlight></codeline>
+<codeline lineno="45"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal"><sp/>detectedPoses[id];</highlight></codeline>
+<codeline lineno="46"><highlight class="normal"></highlight></codeline>
+<codeline lineno="47"><highlight class="normal"><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline lineno="48"><highlight class="normal"></highlight></codeline>
+<codeline lineno="49"><highlight class="normal"><sp/><sp/><sp/><sp/>std::vector&lt;geometry_msgs::Pose&gt;<sp/>ArLocalizer::localizeObjects(std::vector&lt;std::string&gt;<sp/>ids)<sp/>{</highlight></codeline>
+<codeline lineno="50"><highlight class="normal"></highlight></codeline>
+<codeline lineno="51"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>KUKADU_MODULE_START_USAGE();</highlight></codeline>
+<codeline lineno="52"><highlight class="normal"></highlight></codeline>
+<codeline lineno="53"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>std::vector&lt;geometry_msgs::Pose&gt;<sp/>retPoses;</highlight></codeline>
+<codeline lineno="54"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>std::map&lt;std::string,<sp/>geometry_msgs::Pose&gt;<sp/>detectedPoses<sp/>=<sp/>toolkit-&gt;getDetectedPoses();</highlight></codeline>
+<codeline lineno="55"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">for</highlight><highlight class="normal">(</highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/>i<sp/>=<sp/>0;<sp/>i<sp/>&lt;<sp/>ids.size();<sp/>++i)</highlight></codeline>
+<codeline lineno="56"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>retPoses.push_back(detectedPoses[ids.at(i)]);</highlight></codeline>
+<codeline lineno="57"><highlight class="normal"></highlight></codeline>
+<codeline lineno="58"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>KUKADU_MODULE_END_USAGE();</highlight></codeline>
+<codeline lineno="59"><highlight class="normal"></highlight></codeline>
+<codeline lineno="60"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal"><sp/>retPoses;</highlight></codeline>
+<codeline lineno="61"><highlight class="normal"></highlight></codeline>
+<codeline lineno="62"><highlight class="normal"><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline lineno="63"><highlight class="normal"></highlight></codeline>
+<codeline lineno="64" refid="classkukadu_1_1ArLogger" refkind="compound"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">class<sp/></highlight><highlight class="normal"><ref refid="classkukadu_1_1ArLogger" kindref="compound">ArLogger</ref><sp/>:<sp/></highlight><highlight class="keyword">public</highlight><highlight class="normal"><sp/>Logger<sp/>{</highlight></codeline>
+<codeline lineno="65"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/>artLog(</highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">char</highlight><highlight class="normal">*<sp/>nStr)<sp/>{</highlight></codeline>
+<codeline lineno="66"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>printf(</highlight><highlight class="stringliteral">&quot;%s&quot;</highlight><highlight class="normal">,<sp/>nStr);</highlight></codeline>
+<codeline lineno="67"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline lineno="68"><highlight class="normal"><sp/><sp/><sp/><sp/>};</highlight></codeline>
+<codeline lineno="69"><highlight class="normal"></highlight></codeline>
+<codeline lineno="70"><highlight class="normal"><sp/><sp/><sp/><sp/>ARToolKitPlusNode::ARToolKitPlusNode(ros::NodeHandle&amp;<sp/>n)<sp/>:<sp/>n_(n),<sp/>n_param_(</highlight><highlight class="stringliteral">&quot;~&quot;</highlight><highlight class="normal">),<sp/>callback_counter_(0),<sp/>imageTransport_(n_)<sp/>{</highlight></codeline>
+<codeline lineno="71"><highlight class="normal"></highlight></codeline>
+<codeline lineno="72"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>firstImageRetrieved<sp/>=<sp/></highlight><highlight class="keyword">false</highlight><highlight class="normal">;</highlight></codeline>
+<codeline lineno="73"><highlight class="normal"></highlight></codeline>
+<codeline lineno="74"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>skip_frames<sp/>=<sp/>0;</highlight></codeline>
+<codeline lineno="75"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>show_camera_image<sp/>=<sp/></highlight><highlight class="keyword">true</highlight><highlight class="normal">;</highlight></codeline>
+<codeline lineno="76"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>tf_prefix<sp/>=<sp/></highlight><highlight class="stringliteral">&quot;&quot;</highlight><highlight class="normal">;</highlight></codeline>
+<codeline lineno="77"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>tracker_single_marker<sp/>=<sp/></highlight><highlight class="keyword">false</highlight><highlight class="normal">;</highlight></codeline>
+<codeline lineno="78"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>tracker_multi_marker<sp/>=<sp/></highlight><highlight class="keyword">true</highlight><highlight class="normal">;</highlight></codeline>
+<codeline lineno="79"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>pattern_frame<sp/>=<sp/></highlight><highlight class="stringliteral">&quot;pattern&quot;</highlight><highlight class="normal">;</highlight></codeline>
+<codeline lineno="80"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>pattern_file<sp/>=<sp/>resolvePath(</highlight><highlight class="stringliteral">&quot;$KUKADU_HOME/cfg/arlocalizer/markerboard_0000-0011.cfg&quot;</highlight><highlight class="normal">);</highlight></codeline>
+<codeline lineno="81"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>marker_mode<sp/>=<sp/>MARKER_ID_BCH;</highlight></codeline>
+<codeline lineno="82"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>pattern_width<sp/>=<sp/>0.1;</highlight></codeline>
+<codeline lineno="83"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>threshold<sp/>=<sp/>0;</highlight></codeline>
+<codeline lineno="84"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>border_width<sp/>=<sp/>0.125;</highlight></codeline>
+<codeline lineno="85"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>undist_iterations<sp/>=<sp/>10;</highlight></codeline>
+<codeline lineno="86"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>distorted_input<sp/>=<sp/></highlight><highlight class="keyword">true</highlight><highlight class="normal">;</highlight></codeline>
+<codeline lineno="87"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>undist_mode<sp/>=<sp/>UNDIST_STD;</highlight></codeline>
+<codeline lineno="88"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>pose_estimation_mode<sp/>=<sp/>POSE_ESTIMATOR_RPP;</highlight></codeline>
+<codeline lineno="89"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>imageTopic<sp/>=<sp/></highlight><highlight class="stringliteral">&quot;camera/rgb/image_raw&quot;</highlight><highlight class="normal">;</highlight></codeline>
+<codeline lineno="90"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>use_multi_marker_lite_detection<sp/>=<sp/></highlight><highlight class="keyword">true</highlight><highlight class="normal">;</highlight></codeline>
+<codeline lineno="91"><highlight class="normal"></highlight></codeline>
+<codeline lineno="92"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>init();</highlight></codeline>
+<codeline lineno="93"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>cameraSubscriber_<sp/>=<sp/>imageTransport_.subscribeCamera(ARTOOLKITPLUS_IMAGE_SRC,<sp/>1,<sp/>&amp;ARToolKitPlusNode::imageCallback,<sp/></highlight><highlight class="keyword">this</highlight><highlight class="normal">);</highlight></codeline>
+<codeline lineno="94"><highlight class="normal"></highlight></codeline>
+<codeline lineno="95"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>ros::Rate<sp/>waitRate(10);</highlight></codeline>
+<codeline lineno="96"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">while</highlight><highlight class="normal">(!firstImageRetrieved)</highlight></codeline>
+<codeline lineno="97"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>waitRate.sleep();</highlight></codeline>
+<codeline lineno="98"><highlight class="normal"></highlight></codeline>
+<codeline lineno="99"><highlight class="normal"><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline lineno="100"><highlight class="normal"></highlight></codeline>
+<codeline lineno="101"><highlight class="normal"><sp/><sp/><sp/><sp/>ARToolKitPlusNode::ARToolKitPlusNode(ros::NodeHandle&amp;<sp/>n,<sp/>std::string<sp/>imageTopic,<sp/></highlight><highlight class="keywordtype">bool</highlight><highlight class="normal"><sp/>show_camera_image)<sp/>:<sp/>n_(n),<sp/>n_param_(</highlight><highlight class="stringliteral">&quot;~&quot;</highlight><highlight class="normal">),<sp/>callback_counter_(0),<sp/>imageTransport_(n_)<sp/>{</highlight></codeline>
+<codeline lineno="102"><highlight class="normal"></highlight></codeline>
+<codeline lineno="103"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>firstImageRetrieved<sp/>=<sp/></highlight><highlight class="keyword">false</highlight><highlight class="normal">;</highlight></codeline>
+<codeline lineno="104"><highlight class="normal"></highlight></codeline>
+<codeline lineno="105"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>skip_frames<sp/>=<sp/>0;</highlight></codeline>
+<codeline lineno="106"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>this-&gt;show_camera_image<sp/>=<sp/>show_camera_image;</highlight></codeline>
+<codeline lineno="107"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>tf_prefix<sp/>=<sp/></highlight><highlight class="stringliteral">&quot;&quot;</highlight><highlight class="normal">;</highlight></codeline>
+<codeline lineno="108"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>tracker_single_marker<sp/>=<sp/></highlight><highlight class="keyword">false</highlight><highlight class="normal">;</highlight></codeline>
+<codeline lineno="109"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>tracker_multi_marker<sp/>=<sp/></highlight><highlight class="keyword">true</highlight><highlight class="normal">;</highlight></codeline>
+<codeline lineno="110"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>pattern_frame<sp/>=<sp/></highlight><highlight class="stringliteral">&quot;pattern&quot;</highlight><highlight class="normal">;</highlight></codeline>
+<codeline lineno="111"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>pattern_file<sp/>=<sp/>resolvePath(</highlight><highlight class="stringliteral">&quot;$KUKADU_HOME/cfg/arlocalizer/markerboard_0000-0011.cfg&quot;</highlight><highlight class="normal">);</highlight></codeline>
+<codeline lineno="112"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>marker_mode<sp/>=<sp/>MARKER_ID_BCH;</highlight></codeline>
+<codeline lineno="113"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>pattern_width<sp/>=<sp/>0.1;</highlight></codeline>
+<codeline lineno="114"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>threshold<sp/>=<sp/>0;</highlight></codeline>
+<codeline lineno="115"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>border_width<sp/>=<sp/>0.125;</highlight></codeline>
+<codeline lineno="116"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>undist_iterations<sp/>=<sp/>10;</highlight></codeline>
+<codeline lineno="117"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>distorted_input<sp/>=<sp/></highlight><highlight class="keyword">true</highlight><highlight class="normal">;</highlight></codeline>
+<codeline lineno="118"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>undist_mode<sp/>=<sp/>UNDIST_STD;</highlight></codeline>
+<codeline lineno="119"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>pose_estimation_mode<sp/>=<sp/>POSE_ESTIMATOR_RPP;</highlight></codeline>
+<codeline lineno="120"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>this-&gt;imageTopic<sp/>=<sp/>imageTopic;</highlight></codeline>
+<codeline lineno="121"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>use_multi_marker_lite_detection<sp/>=<sp/></highlight><highlight class="keyword">true</highlight><highlight class="normal">;</highlight></codeline>
+<codeline lineno="122"><highlight class="normal"></highlight></codeline>
+<codeline lineno="123"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>init();</highlight></codeline>
+<codeline lineno="124"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>cameraSubscriber_<sp/>=<sp/>imageTransport_.subscribeCamera(ARTOOLKITPLUS_IMAGE_SRC,<sp/>1,<sp/>&amp;ARToolKitPlusNode::imageCallback,<sp/></highlight><highlight class="keyword">this</highlight><highlight class="normal">);</highlight></codeline>
+<codeline lineno="125"><highlight class="normal"></highlight></codeline>
+<codeline lineno="126"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>ros::Rate<sp/>waitRate(10);</highlight></codeline>
+<codeline lineno="127"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">while</highlight><highlight class="normal">(!firstImageRetrieved)</highlight></codeline>
+<codeline lineno="128"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>waitRate.sleep();</highlight></codeline>
+<codeline lineno="129"><highlight class="normal"></highlight></codeline>
+<codeline lineno="130"><highlight class="normal"></highlight></codeline>
+<codeline lineno="131"><highlight class="normal"><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline lineno="132"><highlight class="normal"></highlight></codeline>
+<codeline lineno="133"><highlight class="normal"><sp/><sp/><sp/><sp/>ARToolKitPlusNode::ARToolKitPlusNode(ros::NodeHandle&amp;<sp/>n,</highlight></codeline>
+<codeline lineno="134"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/>skip_frames,</highlight></codeline>
+<codeline lineno="135"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">bool</highlight><highlight class="normal"><sp/>show_camera_image,</highlight></codeline>
+<codeline lineno="136"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>std::string<sp/>tf_prefix,</highlight></codeline>
+<codeline lineno="137"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">bool</highlight><highlight class="normal"><sp/>tracker_single_marker,</highlight></codeline>
+<codeline lineno="138"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">bool</highlight><highlight class="normal"><sp/>tracker_multi_marker,</highlight></codeline>
+<codeline lineno="139"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>std::string<sp/>pattern_frame,</highlight></codeline>
+<codeline lineno="140"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>std::string<sp/>pattern_file,</highlight></codeline>
+<codeline lineno="141"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>MARKER_MODE<sp/>marker_mode,</highlight></codeline>
+<codeline lineno="142"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">double</highlight><highlight class="normal"><sp/>pattern_width,</highlight></codeline>
+<codeline lineno="143"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">double</highlight><highlight class="normal"><sp/>threshold,</highlight></codeline>
+<codeline lineno="144"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">double</highlight><highlight class="normal"><sp/>border_width,</highlight></codeline>
+<codeline lineno="145"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/>undist_iterations,</highlight></codeline>
+<codeline lineno="146"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">bool</highlight><highlight class="normal"><sp/>distorted_input,</highlight></codeline>
+<codeline lineno="147"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>UNDIST_MODE<sp/>undist_mode,</highlight></codeline>
+<codeline lineno="148"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>POSE_ESTIMATOR<sp/>pose_estimation_mode,</highlight></codeline>
+<codeline lineno="149"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>std::string<sp/>imageTopic,</highlight></codeline>
+<codeline lineno="150"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">bool</highlight><highlight class="normal"><sp/>use_multi_marker_lite_detection)<sp/>:<sp/>n_(n),<sp/>n_param_(</highlight><highlight class="stringliteral">&quot;~&quot;</highlight><highlight class="normal">),<sp/>callback_counter_(0),<sp/>imageTransport_(n_)<sp/>{</highlight></codeline>
+<codeline lineno="151"><highlight class="normal"></highlight></codeline>
+<codeline lineno="152"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>firstImageRetrieved<sp/>=<sp/></highlight><highlight class="keyword">false</highlight><highlight class="normal">;</highlight></codeline>
+<codeline lineno="153"><highlight class="normal"></highlight></codeline>
+<codeline lineno="154"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>this-&gt;skip_frames<sp/>=<sp/>skip_frames;</highlight></codeline>
+<codeline lineno="155"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>this-&gt;show_camera_image<sp/>=<sp/>show_camera_image;</highlight></codeline>
+<codeline lineno="156"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>this-&gt;tf_prefix<sp/>=<sp/>tf_prefix;</highlight></codeline>
+<codeline lineno="157"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>this-&gt;tracker_single_marker<sp/>=<sp/>tracker_single_marker;</highlight></codeline>
+<codeline lineno="158"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>this-&gt;tracker_multi_marker<sp/>=<sp/>tracker_multi_marker;</highlight></codeline>
+<codeline lineno="159"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>this-&gt;pattern_frame<sp/>=<sp/>pattern_frame;</highlight></codeline>
+<codeline lineno="160"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>this-&gt;pattern_file<sp/>=<sp/>pattern_file;</highlight></codeline>
+<codeline lineno="161"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>this-&gt;marker_mode<sp/>=<sp/>marker_mode;</highlight></codeline>
+<codeline lineno="162"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>this-&gt;pattern_width<sp/>=<sp/>pattern_width;</highlight></codeline>
+<codeline lineno="163"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>this-&gt;threshold<sp/>=<sp/>threshold;</highlight></codeline>
+<codeline lineno="164"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>this-&gt;border_width<sp/>=<sp/>border_width;</highlight></codeline>
+<codeline lineno="165"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>this-&gt;undist_iterations<sp/>=<sp/>undist_iterations;</highlight></codeline>
+<codeline lineno="166"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>this-&gt;distorted_input<sp/>=<sp/>distorted_input;</highlight></codeline>
+<codeline lineno="167"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>this-&gt;undist_mode<sp/>=<sp/>undist_mode;</highlight></codeline>
+<codeline lineno="168"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>this-&gt;pose_estimation_mode<sp/>=<sp/>pose_estimation_mode;</highlight></codeline>
+<codeline lineno="169"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>this-&gt;imageTopic<sp/>=<sp/>imageTopic;</highlight></codeline>
+<codeline lineno="170"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>this-&gt;use_multi_marker_lite_detection<sp/>=<sp/>use_multi_marker_lite_detection;</highlight></codeline>
+<codeline lineno="171"><highlight class="normal"></highlight></codeline>
+<codeline lineno="172"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>init();</highlight></codeline>
+<codeline lineno="173"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>cameraSubscriber_<sp/>=<sp/>imageTransport_.subscribeCamera(ARTOOLKITPLUS_IMAGE_SRC,<sp/>1,<sp/>&amp;ARToolKitPlusNode::imageCallback,<sp/></highlight><highlight class="keyword">this</highlight><highlight class="normal">);</highlight></codeline>
+<codeline lineno="174"><highlight class="normal"></highlight></codeline>
+<codeline lineno="175"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>ros::Rate<sp/>waitRate(10);</highlight></codeline>
+<codeline lineno="176"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">while</highlight><highlight class="normal">(!firstImageRetrieved)</highlight></codeline>
+<codeline lineno="177"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>waitRate.sleep();</highlight></codeline>
+<codeline lineno="178"><highlight class="normal"></highlight></codeline>
+<codeline lineno="179"><highlight class="normal"><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline lineno="180"><highlight class="normal"></highlight></codeline>
+<codeline lineno="181" refid="classkukadu_1_1ARCamera" refkind="compound"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">class<sp/></highlight><highlight class="normal"><ref refid="classkukadu_1_1ARCamera" kindref="compound">ARCamera</ref>:<sp/></highlight><highlight class="keyword">public</highlight><highlight class="normal"><sp/>kukadu::CameraAdvImpl<sp/>{</highlight></codeline>
+<codeline lineno="182"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">public</highlight><highlight class="normal">:</highlight></codeline>
+<codeline lineno="183"><highlight class="normal"></highlight></codeline>
+<codeline lineno="184"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">virtual</highlight><highlight class="normal"><sp/>~<ref refid="classkukadu_1_1ARCamera" kindref="compound">ARCamera</ref>()<sp/>{</highlight></codeline>
+<codeline lineno="185"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>};</highlight></codeline>
+<codeline lineno="186"><highlight class="normal"></highlight></codeline>
+<codeline lineno="187"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">bool</highlight><highlight class="normal"><sp/>isInputDistorted()<sp/>{</highlight></codeline>
+<codeline lineno="188"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">if</highlight><highlight class="normal"><sp/>(undist_iterations<sp/>==<sp/>1)<sp/>{</highlight></codeline>
+<codeline lineno="189"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal"><sp/></highlight><highlight class="keyword">false</highlight><highlight class="normal">;</highlight></codeline>
+<codeline lineno="190"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>}<sp/></highlight><highlight class="keywordflow">else</highlight><highlight class="normal"><sp/>{</highlight></codeline>
+<codeline lineno="191"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal"><sp/></highlight><highlight class="keyword">true</highlight><highlight class="normal">;</highlight></codeline>
+<codeline lineno="192"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline lineno="193"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline lineno="194"><highlight class="normal"></highlight></codeline>
+<codeline lineno="195"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><ref refid="classkukadu_1_1ARCamera" kindref="compound">ARCamera</ref>(</highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/>sensor_msgs::CameraInfoConstPtr&amp;<sp/>_camer_info,<sp/></highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/>_undist_iterations,<sp/></highlight><highlight class="keywordtype">bool</highlight><highlight class="normal"><sp/>_input_distorted)<sp/>{</highlight></codeline>
+<codeline lineno="196"><highlight class="normal"></highlight></codeline>
+<codeline lineno="197"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="comment">//<sp/>kukadu::CameraAdvImpl<sp/>Parameter</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="198"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">if</highlight><highlight class="normal"><sp/>(_input_distorted)<sp/>{</highlight></codeline>
+<codeline lineno="199"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="comment">//<sp/>using<sp/>the<sp/>ros<sp/>Intrinsic<sp/>camera<sp/>matrix<sp/>for<sp/>the<sp/>raw<sp/>(distorted)<sp/>images.</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="200"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>this-&gt;fc[0]<sp/>=<sp/>(ARFloat)<sp/>_camer_info-&gt;K[0];</highlight></codeline>
+<codeline lineno="201"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>this-&gt;fc[1]<sp/>=<sp/>(ARFloat)<sp/>_camer_info-&gt;K[4];</highlight></codeline>
+<codeline lineno="202"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>this-&gt;cc[0]<sp/>=<sp/>(ARFloat)<sp/>_camer_info-&gt;K[2];</highlight></codeline>
+<codeline lineno="203"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>this-&gt;cc[1]<sp/>=<sp/>(ARFloat)<sp/>_camer_info-&gt;K[5];</highlight></codeline>
+<codeline lineno="204"><highlight class="normal"></highlight></codeline>
+<codeline lineno="205"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>undist_iterations<sp/>=<sp/>_undist_iterations;</highlight></codeline>
+<codeline lineno="206"><highlight class="normal"></highlight></codeline>
+<codeline lineno="207"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>this-&gt;kc[0]<sp/>=<sp/>(ARFloat)<sp/>_camer_info-&gt;D[0];</highlight></codeline>
+<codeline lineno="208"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>this-&gt;kc[1]<sp/>=<sp/>(ARFloat)<sp/>_camer_info-&gt;D[1];</highlight></codeline>
+<codeline lineno="209"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>this-&gt;kc[2]<sp/>=<sp/>(ARFloat)<sp/>_camer_info-&gt;D[2];</highlight></codeline>
+<codeline lineno="210"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>this-&gt;kc[3]<sp/>=<sp/>(ARFloat)<sp/>_camer_info-&gt;D[3];</highlight></codeline>
+<codeline lineno="211"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>this-&gt;kc[4]<sp/>=<sp/>(ARFloat)<sp/>_camer_info-&gt;D[4];</highlight></codeline>
+<codeline lineno="212"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>this-&gt;kc[5]<sp/>=<sp/>(ARFloat)<sp/>0.;</highlight></codeline>
+<codeline lineno="213"><highlight class="normal"></highlight></codeline>
+<codeline lineno="214"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>}<sp/></highlight><highlight class="keywordflow">else</highlight><highlight class="normal"><sp/>{</highlight></codeline>
+<codeline lineno="215"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="comment">//<sp/>using<sp/>the<sp/>ros<sp/>Projection/camera<sp/>matrix</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="216"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>this-&gt;fc[0]<sp/>=<sp/>(ARFloat)<sp/>_camer_info-&gt;P[0];</highlight></codeline>
+<codeline lineno="217"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>this-&gt;fc[1]<sp/>=<sp/>(ARFloat)<sp/>_camer_info-&gt;P[5];</highlight></codeline>
+<codeline lineno="218"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>this-&gt;cc[0]<sp/>=<sp/>(ARFloat)<sp/>_camer_info-&gt;P[2];</highlight></codeline>
+<codeline lineno="219"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>this-&gt;cc[1]<sp/>=<sp/>(ARFloat)<sp/>_camer_info-&gt;P[6];</highlight></codeline>
+<codeline lineno="220"><highlight class="normal"></highlight></codeline>
+<codeline lineno="221"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>undist_iterations<sp/>=<sp/>1;</highlight></codeline>
+<codeline lineno="222"><highlight class="normal"></highlight></codeline>
+<codeline lineno="223"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">for</highlight><highlight class="normal"><sp/>(</highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/>i<sp/>=<sp/>0;<sp/>i<sp/>&lt;<sp/>6;<sp/>i++)</highlight></codeline>
+<codeline lineno="224"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>this-&gt;kc[i]<sp/>=<sp/>(ARFloat)<sp/>0.;</highlight></codeline>
+<codeline lineno="225"><highlight class="normal"></highlight></codeline>
+<codeline lineno="226"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline lineno="227"><highlight class="normal"></highlight></codeline>
+<codeline lineno="228"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="comment">//<sp/>kukadu::Camera<sp/>Parameter</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="229"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="comment">//<sp/>fileName</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="230"><highlight class="normal"></highlight></codeline>
+<codeline lineno="231"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="comment">//<sp/>ARToolKit::ARParam<sp/>Parameter</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="232"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>xsize<sp/>=<sp/>_camer_info-&gt;width;</highlight></codeline>
+<codeline lineno="233"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>ysize<sp/>=<sp/>_camer_info-&gt;height;</highlight></codeline>
+<codeline lineno="234"><highlight class="normal"></highlight></codeline>
+<codeline lineno="235"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">for</highlight><highlight class="normal"><sp/>(</highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/>i<sp/>=<sp/>0;<sp/>i<sp/>&lt;<sp/>3;<sp/>i++)</highlight></codeline>
+<codeline lineno="236"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">for</highlight><highlight class="normal"><sp/>(</highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/>j<sp/>=<sp/>0;<sp/>j<sp/>&lt;<sp/>4;<sp/>j++)</highlight></codeline>
+<codeline lineno="237"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>this-&gt;mat[i][j]<sp/>=<sp/>(ARFloat)<sp/>0.;</highlight></codeline>
+<codeline lineno="238"><highlight class="normal"></highlight></codeline>
+<codeline lineno="239"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>mat[0][0]<sp/>=<sp/>fc[0];<sp/></highlight><highlight class="comment">//<sp/>fc_x</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="240"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>mat[1][1]<sp/>=<sp/>fc[1];<sp/></highlight><highlight class="comment">//<sp/>fc_y</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="241"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>mat[0][2]<sp/>=<sp/>cc[0];<sp/></highlight><highlight class="comment">//<sp/>cc_x</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="242"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>mat[1][2]<sp/>=<sp/>cc[1];<sp/></highlight><highlight class="comment">//<sp/>cc_y</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="243"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>mat[2][2]<sp/>=<sp/>1.0;</highlight></codeline>
+<codeline lineno="244"><highlight class="normal"></highlight></codeline>
+<codeline lineno="245"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">if</highlight><highlight class="normal"><sp/>(_input_distorted<sp/>==<sp/></highlight><highlight class="keyword">false</highlight><highlight class="normal">)<sp/>{</highlight></codeline>
+<codeline lineno="246"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="comment">//<sp/>using<sp/>the<sp/>ros<sp/>Projection/camera<sp/>matrix</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="247"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>mat[0][3]<sp/>=<sp/>(ARFloat)<sp/>_camer_info-&gt;P[3];</highlight></codeline>
+<codeline lineno="248"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>mat[1][3]<sp/>=<sp/>(ARFloat)<sp/>_camer_info-&gt;P[7];</highlight></codeline>
+<codeline lineno="249"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline lineno="250"><highlight class="normal"></highlight></codeline>
+<codeline lineno="251"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">for</highlight><highlight class="normal"><sp/>(</highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/>i<sp/>=<sp/>0;<sp/>i<sp/>&lt;<sp/>4;<sp/>i++)</highlight></codeline>
+<codeline lineno="252"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>this-&gt;dist_factor[i]<sp/>=<sp/>this-&gt;kc[i];</highlight></codeline>
+<codeline lineno="253"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline lineno="254"><highlight class="normal"><sp/><sp/><sp/><sp/>};</highlight></codeline>
+<codeline lineno="255"><highlight class="normal"></highlight></codeline>
+<codeline lineno="256"><highlight class="normal"><sp/><sp/><sp/><sp/>std::string<sp/>ARToolKitPlusNode::getDetectionFrameName()<sp/>{</highlight></codeline>
+<codeline lineno="257"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal"><sp/>detectionFrameName;</highlight></codeline>
+<codeline lineno="258"><highlight class="normal"><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline lineno="259"><highlight class="normal"></highlight></codeline>
+<codeline lineno="260"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/>ARToolKitPlusNode::initTrackerMultiMarker(</highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/>sensor_msgs::CameraInfoConstPtr&amp;<sp/>camer_info)<sp/>{</highlight></codeline>
+<codeline lineno="261"><highlight class="normal"></highlight></codeline>
+<codeline lineno="262"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>trackerMultiMarker_<sp/>=<sp/>boost::shared_ptr&lt;kukadu::TrackerMultiMarker&gt;(</highlight><highlight class="keyword">new</highlight><highlight class="normal"><sp/>kukadu::TrackerMultiMarkerImpl&lt;AR_TRACKER_PARAM&gt;(camer_info-&gt;width,<sp/>camer_info-&gt;height));</highlight></codeline>
+<codeline lineno="263"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">char</highlight><highlight class="normal">*<sp/>description<sp/>=<sp/>trackerMultiMarker_-&gt;getDescription();</highlight></codeline>
+<codeline lineno="264"><highlight class="normal"></highlight></codeline>
+<codeline lineno="265"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">if</highlight><highlight class="normal">(logger_<sp/>==<sp/>NULL)<sp/>logger_<sp/>=<sp/></highlight><highlight class="keyword">new</highlight><highlight class="normal"><sp/><ref refid="classkukadu_1_1ArLogger" kindref="compound">ArLogger</ref>();</highlight></codeline>
+<codeline lineno="266"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>trackerMultiMarker_-&gt;setLogger(logger_);</highlight></codeline>
+<codeline lineno="267"><highlight class="normal"></highlight></codeline>
+<codeline lineno="268"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="comment">//<sp/>set<sp/>a<sp/>logger<sp/>so<sp/>we<sp/>can<sp/>output<sp/>error<sp/>messages</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="269"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>trackerMultiMarker_-&gt;setLogger(logger_);</highlight></codeline>
+<codeline lineno="270"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>trackerMultiMarker_-&gt;setPixelFormat(kukadu::PIXEL_FORMAT_LUM);</highlight></codeline>
+<codeline lineno="271"><highlight class="normal"></highlight></codeline>
+<codeline lineno="272"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>camera<sp/>=<sp/></highlight><highlight class="keyword">new</highlight><highlight class="normal"><sp/><ref refid="classkukadu_1_1ARCamera" kindref="compound">ARCamera</ref>(camer_info,<sp/>undist_iterations,<sp/>distorted_input);</highlight></codeline>
+<codeline lineno="273"><highlight class="normal"></highlight></codeline>
+<codeline lineno="274"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">if</highlight><highlight class="normal">(!fileExists(pattern_file))</highlight></codeline>
+<codeline lineno="275"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">throw</highlight><highlight class="normal"><sp/><ref refid="classkukadu_1_1KukaduException" kindref="compound">KukaduException</ref>(</highlight><highlight class="stringliteral">&quot;(ArLocalizer)<sp/>pattern<sp/>file<sp/>does<sp/>not<sp/>exist&quot;</highlight><highlight class="normal">);</highlight></codeline>
+<codeline lineno="276"><highlight class="normal"></highlight></codeline>
+<codeline lineno="277"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">if</highlight><highlight class="normal"><sp/>(!trackerMultiMarker_-&gt;init(camera,<sp/>pattern_file.c_str(),<sp/>1.0f,<sp/>1000.0f))<sp/>{</highlight></codeline>
+<codeline lineno="278"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>ROS_ERROR(</highlight><highlight class="stringliteral">&quot;ERROR:<sp/>init()<sp/>failed&quot;</highlight><highlight class="normal">);</highlight></codeline>
+<codeline lineno="279"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline lineno="280"><highlight class="normal"></highlight></codeline>
+<codeline lineno="281"><highlight class="normal"><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline lineno="282"><highlight class="normal"></highlight></codeline>
+<codeline lineno="283"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/>ARToolKitPlusNode::initTrackerSingleMarker(</highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/>sensor_msgs::CameraInfoConstPtr&amp;<sp/>camer_info)<sp/>{</highlight></codeline>
+<codeline lineno="284"><highlight class="normal"></highlight></codeline>
+<codeline lineno="285"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>trackerSingleMarker_<sp/>=<sp/>boost::shared_ptr&lt;kukadu::TrackerSingleMarker&gt;(</highlight><highlight class="keyword">new</highlight><highlight class="normal"><sp/>kukadu::TrackerSingleMarkerImpl&lt;AR_TRACKER_PARAM&gt;(camer_info-&gt;width,<sp/>camer_info-&gt;height));</highlight></codeline>
+<codeline lineno="286"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">char</highlight><highlight class="normal">*<sp/>description<sp/>=<sp/>trackerSingleMarker_-&gt;getDescription();</highlight></codeline>
+<codeline lineno="287"><highlight class="normal"></highlight></codeline>
+<codeline lineno="288"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="comment">//<sp/>set<sp/>a<sp/>logger<sp/>so<sp/>we<sp/>can<sp/>output<sp/>error<sp/>messages</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="289"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>trackerSingleMarker_-&gt;setLogger(logger_);</highlight></codeline>
+<codeline lineno="290"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>trackerSingleMarker_-&gt;setPixelFormat(kukadu::PIXEL_FORMAT_LUM);</highlight></codeline>
+<codeline lineno="291"><highlight class="normal"></highlight></codeline>
+<codeline lineno="292"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><ref refid="classkukadu_1_1ARCamera" kindref="compound">ARCamera</ref><sp/>*camera<sp/>=<sp/></highlight><highlight class="keyword">new</highlight><highlight class="normal"><sp/><ref refid="classkukadu_1_1ARCamera" kindref="compound">ARCamera</ref>(camer_info,<sp/>undist_iterations,<sp/>distorted_input);</highlight></codeline>
+<codeline lineno="293"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">if</highlight><highlight class="normal"><sp/>(!trackerSingleMarker_-&gt;init(camera,<sp/>1.0f,<sp/>1000.0f))<sp/>{</highlight></codeline>
+<codeline lineno="294"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>ROS_ERROR(</highlight><highlight class="stringliteral">&quot;ERROR:<sp/>init()<sp/>failed&quot;</highlight><highlight class="normal">);</highlight></codeline>
+<codeline lineno="295"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline lineno="296"><highlight class="normal"></highlight></codeline>
+<codeline lineno="297"><highlight class="normal"><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline lineno="298"><highlight class="normal"></highlight></codeline>
+<codeline lineno="299"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/>ARToolKitPlusNode::updateParameterTrackerSingleMarker(</highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/>sensor_msgs::CameraInfoConstPtr&amp;<sp/>camer_info)<sp/>{</highlight></codeline>
+<codeline lineno="300"><highlight class="normal"></highlight></codeline>
+<codeline lineno="301"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><ref refid="classkukadu_1_1ARCamera" kindref="compound">ARCamera</ref><sp/>*<sp/>camera<sp/>=<sp/>(<ref refid="classkukadu_1_1ARCamera" kindref="compound">ARCamera</ref><sp/>*)<sp/>trackerSingleMarker_-&gt;getCamera();</highlight></codeline>
+<codeline lineno="302"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">if</highlight><highlight class="normal"><sp/>(camera-&gt;isInputDistorted()<sp/>!=<sp/>distorted_input)<sp/>{</highlight></codeline>
+<codeline lineno="303"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">delete</highlight><highlight class="normal"><sp/>camera;</highlight></codeline>
+<codeline lineno="304"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>camera<sp/>=<sp/></highlight><highlight class="keyword">new</highlight><highlight class="normal"><sp/><ref refid="classkukadu_1_1ARCamera" kindref="compound">ARCamera</ref>(camer_info,<sp/>undist_iterations,<sp/>distorted_input);</highlight></codeline>
+<codeline lineno="305"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>trackerSingleMarker_-&gt;setCamera(camera);</highlight></codeline>
+<codeline lineno="306"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline lineno="307"><highlight class="normal"></highlight></codeline>
+<codeline lineno="308"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="comment">//<sp/>define<sp/>size<sp/>of<sp/>the<sp/>marker</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="309"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>trackerSingleMarker_-&gt;setPatternWidth(pattern_width);</highlight></codeline>
+<codeline lineno="310"><highlight class="normal"></highlight></codeline>
+<codeline lineno="311"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="comment">//<sp/>the<sp/>marker<sp/>in<sp/>the<sp/>BCH<sp/>test<sp/>image<sp/>has<sp/>a<sp/>thin<sp/>border...</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="312"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">if</highlight><highlight class="normal"><sp/>(border_width<sp/>&gt;<sp/>0)<sp/>{</highlight></codeline>
+<codeline lineno="313"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>trackerSingleMarker_-&gt;setBorderWidth(border_width);</highlight></codeline>
+<codeline lineno="314"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>}<sp/></highlight><highlight class="keywordflow">else</highlight><highlight class="normal"><sp/>{</highlight></codeline>
+<codeline lineno="315"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>trackerSingleMarker_-&gt;setBorderWidth((marker_mode<sp/>==<sp/>MARKER_ID_BCH)<sp/>?<sp/>0.125f<sp/>:<sp/>0.250f);</highlight></codeline>
+<codeline lineno="316"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline lineno="317"><highlight class="normal"></highlight></codeline>
+<codeline lineno="318"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="comment">//<sp/>set<sp/>a<sp/>threshold.<sp/>alternatively<sp/>we<sp/>could<sp/>also<sp/>activate<sp/>automatic<sp/>thresholding</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="319"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">if</highlight><highlight class="normal"><sp/>(threshold<sp/>&gt;<sp/>0)<sp/>{</highlight></codeline>
+<codeline lineno="320"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>trackerSingleMarker_-&gt;activateAutoThreshold(</highlight><highlight class="keyword">false</highlight><highlight class="normal">);</highlight></codeline>
+<codeline lineno="321"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>trackerSingleMarker_-&gt;setThreshold(threshold);</highlight></codeline>
+<codeline lineno="322"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>}<sp/></highlight><highlight class="keywordflow">else</highlight><highlight class="normal"><sp/>{</highlight></codeline>
+<codeline lineno="323"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>trackerSingleMarker_-&gt;activateAutoThreshold(</highlight><highlight class="keyword">true</highlight><highlight class="normal">);</highlight></codeline>
+<codeline lineno="324"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline lineno="325"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="comment">//<sp/>let&apos;s<sp/>use<sp/>lookup-table<sp/>undistortion<sp/>for<sp/>high-speed</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="326"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="comment">//<sp/>note:<sp/>LUT<sp/>only<sp/>works<sp/>with<sp/>images<sp/>up<sp/>to<sp/>1024x1024</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="327"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>trackerSingleMarker_-&gt;setUndistortionMode((kukadu::UNDIST_MODE)<sp/>undist_mode);</highlight></codeline>
+<codeline lineno="328"><highlight class="normal"></highlight></codeline>
+<codeline lineno="329"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="comment">//<sp/>RPP<sp/>is<sp/>more<sp/>robust<sp/>than<sp/>ARToolKit&apos;s<sp/>standard<sp/>pose<sp/>estimator</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="330"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>trackerSingleMarker_-&gt;setPoseEstimator((kukadu::POSE_ESTIMATOR)<sp/>pose_estimation_mode);</highlight></codeline>
+<codeline lineno="331"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>trackerSingleMarker_-&gt;setMarkerMode(marker_mode);</highlight></codeline>
+<codeline lineno="332"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline lineno="333"><highlight class="normal"></highlight></codeline>
+<codeline lineno="334"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/>ARToolKitPlusNode::updateParameterTrackerMultiMarker(</highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/>sensor_msgs::CameraInfoConstPtr&amp;<sp/>camer_info)<sp/>{</highlight></codeline>
+<codeline lineno="335"><highlight class="normal"></highlight></codeline>
+<codeline lineno="336"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><ref refid="classkukadu_1_1ARCamera" kindref="compound">ARCamera</ref><sp/>*<sp/>camera<sp/>=<sp/>(<ref refid="classkukadu_1_1ARCamera" kindref="compound">ARCamera</ref><sp/>*)<sp/>trackerMultiMarker_-&gt;getCamera();</highlight></codeline>
+<codeline lineno="337"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">if</highlight><highlight class="normal"><sp/>(camera-&gt;isInputDistorted()<sp/>!=<sp/>distorted_input)<sp/>{</highlight></codeline>
+<codeline lineno="338"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">delete</highlight><highlight class="normal"><sp/>camera;</highlight></codeline>
+<codeline lineno="339"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>camera<sp/>=<sp/></highlight><highlight class="keyword">new</highlight><highlight class="normal"><sp/><ref refid="classkukadu_1_1ARCamera" kindref="compound">ARCamera</ref>(camer_info,<sp/>undist_iterations,<sp/>distorted_input);</highlight></codeline>
+<codeline lineno="340"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>trackerMultiMarker_-&gt;setCamera(camera);</highlight></codeline>
+<codeline lineno="341"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline lineno="342"><highlight class="normal"></highlight></codeline>
+<codeline lineno="343"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>trackerMultiMarker_-&gt;setUseDetectLite(use_multi_marker_lite_detection);</highlight></codeline>
+<codeline lineno="344"><highlight class="normal"></highlight></codeline>
+<codeline lineno="345"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="comment">//<sp/>the<sp/>marker<sp/>in<sp/>the<sp/>BCH<sp/>test<sp/>image<sp/>has<sp/>a<sp/>thin<sp/>border...</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="346"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">if</highlight><highlight class="normal"><sp/>(border_width<sp/>&gt;<sp/>0)<sp/>{</highlight></codeline>
+<codeline lineno="347"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>trackerMultiMarker_-&gt;setBorderWidth(border_width);</highlight></codeline>
+<codeline lineno="348"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>}<sp/></highlight><highlight class="keywordflow">else</highlight><highlight class="normal"><sp/>{</highlight></codeline>
+<codeline lineno="349"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>trackerMultiMarker_-&gt;setBorderWidth((marker_mode<sp/>==<sp/>MARKER_ID_BCH)<sp/>?<sp/>0.125f<sp/>:<sp/>0.250f);</highlight></codeline>
+<codeline lineno="350"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline lineno="351"><highlight class="normal"></highlight></codeline>
+<codeline lineno="352"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="comment">//<sp/>set<sp/>a<sp/>threshold.<sp/>alternatively<sp/>we<sp/>could<sp/>also<sp/>activate<sp/>automatic<sp/>thresholding</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="353"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">if</highlight><highlight class="normal"><sp/>(threshold<sp/>&gt;<sp/>0)<sp/>{</highlight></codeline>
+<codeline lineno="354"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>trackerMultiMarker_-&gt;activateAutoThreshold(</highlight><highlight class="keyword">false</highlight><highlight class="normal">);</highlight></codeline>
+<codeline lineno="355"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>trackerMultiMarker_-&gt;setThreshold(threshold);</highlight></codeline>
+<codeline lineno="356"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>}<sp/></highlight><highlight class="keywordflow">else</highlight><highlight class="normal"><sp/>{</highlight></codeline>
+<codeline lineno="357"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>trackerMultiMarker_-&gt;activateAutoThreshold(</highlight><highlight class="keyword">true</highlight><highlight class="normal">);</highlight></codeline>
+<codeline lineno="358"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline lineno="359"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="comment">//<sp/>let&apos;s<sp/>use<sp/>lookup-table<sp/>undistortion<sp/>for<sp/>high-speed</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="360"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="comment">//<sp/>note:<sp/>LUT<sp/>only<sp/>works<sp/>with<sp/>images<sp/>up<sp/>to<sp/>1024x1024</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="361"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>trackerMultiMarker_-&gt;setUndistortionMode((kukadu::UNDIST_MODE)<sp/>undist_mode);</highlight></codeline>
+<codeline lineno="362"><highlight class="normal"></highlight></codeline>
+<codeline lineno="363"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="comment">//<sp/>RPP<sp/>is<sp/>more<sp/>robust<sp/>than<sp/>ARToolKit&apos;s<sp/>standard<sp/>pose<sp/>estimator</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="364"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>trackerMultiMarker_-&gt;setPoseEstimator((kukadu::POSE_ESTIMATOR)<sp/>pose_estimation_mode);</highlight></codeline>
+<codeline lineno="365"><highlight class="normal"></highlight></codeline>
+<codeline lineno="366"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="comment">//<sp/>switch<sp/>to<sp/>simple<sp/>ID<sp/>based<sp/>markers</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="367"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="comment">//<sp/>use<sp/>the<sp/>tool<sp/>in<sp/>tools/IdPatGen<sp/>to<sp/>generate<sp/>markers</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="368"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>trackerMultiMarker_-&gt;setMarkerMode(marker_mode);</highlight></codeline>
+<codeline lineno="369"><highlight class="normal"></highlight></codeline>
+<codeline lineno="370"><highlight class="normal"><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline lineno="371"><highlight class="normal"></highlight></codeline>
+<codeline lineno="372"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/>ARToolKitPlusNode::imageCallback(</highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/>sensor_msgs::ImageConstPtr&amp;<sp/>image_msg,<sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/>sensor_msgs::CameraInfoConstPtr&amp;<sp/>camer_info_)<sp/>{</highlight></codeline>
+<codeline lineno="373"><highlight class="normal"></highlight></codeline>
+<codeline lineno="374"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>detectionFrameName<sp/>=<sp/>camer_info_-&gt;header.frame_id;</highlight></codeline>
+<codeline lineno="375"><highlight class="normal"></highlight></codeline>
+<codeline lineno="376"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>callback_counter_++;</highlight></codeline>
+<codeline lineno="377"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">if</highlight><highlight class="normal">((callback_counter_<sp/>%<sp/>(skip_frames+1)<sp/>)<sp/>!=<sp/>0)<sp/>{</highlight></codeline>
+<codeline lineno="378"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal">;</highlight></codeline>
+<codeline lineno="379"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline lineno="380"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>cv_bridge::CvImagePtr<sp/>img;</highlight></codeline>
+<codeline lineno="381"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">try</highlight><highlight class="normal"><sp/>{</highlight></codeline>
+<codeline lineno="382"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>img<sp/>=<sp/>cv_bridge::toCvCopy(image_msg,<sp/>sensor_msgs::image_encodings::MONO8);</highlight></codeline>
+<codeline lineno="383"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>}<sp/></highlight><highlight class="keywordflow">catch</highlight><highlight class="normal"><sp/>(cv_bridge::Exception&amp;<sp/>e)<sp/>{</highlight></codeline>
+<codeline lineno="384"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>ROS_ERROR(</highlight><highlight class="stringliteral">&quot;cv_bridge<sp/>exception:<sp/>%s&quot;</highlight><highlight class="normal">,<sp/>e.what());</highlight></codeline>
+<codeline lineno="385"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal">;</highlight></codeline>
+<codeline lineno="386"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline lineno="387"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">if</highlight><highlight class="normal"><sp/>(tracker_single_marker)<sp/>{</highlight></codeline>
+<codeline lineno="388"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">if</highlight><highlight class="normal">(trackerSingleMarker_<sp/>==<sp/>NULL)<sp/>initTrackerSingleMarker(camer_info_);</highlight></codeline>
+<codeline lineno="389"><highlight class="normal"></highlight></codeline>
+<codeline lineno="390"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>updateParameterTrackerSingleMarker(camer_info_);</highlight></codeline>
+<codeline lineno="391"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>kukadu::ARMarkerInfo*<sp/>arMarkerInfo;</highlight></codeline>
+<codeline lineno="392"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/>nNumMarkers;</highlight></codeline>
+<codeline lineno="393"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/>markerId<sp/>=<sp/>trackerSingleMarker_-&gt;calc(img-&gt;image.data,<sp/>-1,<sp/></highlight><highlight class="keyword">true</highlight><highlight class="normal">,<sp/>&amp;arMarkerInfo,<sp/>&amp;nNumMarkers);</highlight></codeline>
+<codeline lineno="394"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">float</highlight><highlight class="normal"><sp/>conf<sp/>=<sp/>(float)<sp/>trackerSingleMarker_-&gt;getConfidence();</highlight></codeline>
+<codeline lineno="395"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>arTags2D_.resize(nNumMarkers);</highlight></codeline>
+<codeline lineno="396"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">for</highlight><highlight class="normal">(</highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/>i<sp/>=<sp/>0;<sp/>i<sp/>&lt;<sp/>arTags2D_.size();<sp/>i++)<sp/>{</highlight></codeline>
+<codeline lineno="397"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>arTags2D_[i]<sp/>=<sp/>arMarkerInfo[i];</highlight></codeline>
+<codeline lineno="398"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline lineno="399"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline lineno="400"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">if</highlight><highlight class="normal"><sp/>(tracker_multi_marker)<sp/>{</highlight></codeline>
+<codeline lineno="401"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">if</highlight><highlight class="normal">(trackerMultiMarker_<sp/>==<sp/>NULL)<sp/>initTrackerMultiMarker(camer_info_);</highlight></codeline>
+<codeline lineno="402"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>updateParameterTrackerMultiMarker(camer_info_);</highlight></codeline>
+<codeline lineno="403"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/>nNumMarkers<sp/>=<sp/>trackerMultiMarker_-&gt;calc(img-&gt;image.data);</highlight></codeline>
+<codeline lineno="404"><highlight class="normal"></highlight></codeline>
+<codeline lineno="405"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>arMultiMarkerInfo_<sp/>=<sp/>trackerMultiMarker_-&gt;getMultiMarkerConfig();</highlight></codeline>
+<codeline lineno="406"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>arTags2D_.clear();</highlight></codeline>
+<codeline lineno="407"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>arTags2D_.reserve(trackerMultiMarker_-&gt;getNumDetectedMarkers());</highlight></codeline>
+<codeline lineno="409"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">for</highlight><highlight class="normal">(</highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/>i<sp/>=<sp/>0;<sp/>i<sp/>&lt;<sp/>trackerMultiMarker_-&gt;getNumDetectedMarkers();<sp/>i++)<sp/>{</highlight></codeline>
+<codeline lineno="410"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/>kukadu::ARMarkerInfo<sp/>&amp;singleMarker<sp/>=<sp/>trackerMultiMarker_-&gt;getDetectedMarker(i);</highlight></codeline>
+<codeline lineno="411"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>arTags2D_.push_back(singleMarker);</highlight></codeline>
+<codeline lineno="412"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>arTags2D_.back().belongsToPattern<sp/>=<sp/>kukadu::ARTag2D::NO_PATTERN;</highlight></codeline>
+<codeline lineno="413"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">for</highlight><highlight class="normal">(</highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/>j<sp/>=<sp/>0;<sp/>(j<sp/>&lt;<sp/>arMultiMarkerInfo_-&gt;marker_num);<sp/>j++)<sp/>{</highlight></codeline>
+<codeline lineno="414"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/>kukadu::ARMultiEachMarkerInfoT<sp/>&amp;multiMarker<sp/>=<sp/>arMultiMarkerInfo_-&gt;marker[j];</highlight></codeline>
+<codeline lineno="415"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">if</highlight><highlight class="normal">(singleMarker.id<sp/>==<sp/>multiMarker.patt_id)<sp/>{</highlight></codeline>
+<codeline lineno="416"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>arTags2D_.back().belongsToPattern<sp/>=<sp/>kukadu::ARTag2D::PATTERN;</highlight></codeline>
+<codeline lineno="417"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">break</highlight><highlight class="normal">;</highlight></codeline>
+<codeline lineno="418"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline lineno="419"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline lineno="420"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline lineno="421"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline lineno="422"><highlight class="normal"></highlight></codeline>
+<codeline lineno="423"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>estimatePoses(image_msg-&gt;header);</highlight></codeline>
+<codeline lineno="424"><highlight class="normal"></highlight></codeline>
+<codeline lineno="425"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>publishTf();</highlight></codeline>
+<codeline lineno="426"><highlight class="normal"></highlight></codeline>
+<codeline lineno="427"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">if</highlight><highlight class="normal"><sp/>(show_camera_image)<sp/>{</highlight></codeline>
+<codeline lineno="428"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>cv::Mat<sp/>img_debug;</highlight></codeline>
+<codeline lineno="429"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>cvtColor(img-&gt;image,<sp/>img_debug,<sp/>CV_GRAY2BGR);</highlight></codeline>
+<codeline lineno="430"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>generateDebugImage(img_debug);</highlight></codeline>
+<codeline lineno="431"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>cv::imshow(</highlight><highlight class="stringliteral">&quot;artracker&quot;</highlight><highlight class="normal"><sp/>+<sp/>std::string(</highlight><highlight class="stringliteral">&quot;<sp/>-<sp/>debug&quot;</highlight><highlight class="normal">),<sp/>img_debug);</highlight></codeline>
+<codeline lineno="432"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>cv::waitKey(5);</highlight></codeline>
+<codeline lineno="433"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline lineno="434"><highlight class="normal"></highlight></codeline>
+<codeline lineno="435"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>firstImageRetrieved<sp/>=<sp/></highlight><highlight class="keyword">true</highlight><highlight class="normal">;</highlight></codeline>
+<codeline lineno="436"><highlight class="normal"></highlight></codeline>
+<codeline lineno="437"><highlight class="normal"><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline lineno="438"><highlight class="normal"></highlight></codeline>
+<codeline lineno="439"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/>ARToolKitPlusNode::estimatePoses(</highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/>std_msgs::Header<sp/>&amp;header)<sp/>{</highlight></codeline>
+<codeline lineno="440"><highlight class="normal"></highlight></codeline>
+<codeline lineno="441"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>ARFloat<sp/>center[2];</highlight></codeline>
+<codeline lineno="442"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>center[0]<sp/>=<sp/>0;</highlight></codeline>
+<codeline lineno="443"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>center[1]<sp/>=<sp/>0;</highlight></codeline>
+<codeline lineno="444"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>ARFloat<sp/>pose[3][4];</highlight></codeline>
+<codeline lineno="445"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>tf::Transform<sp/>trans;</highlight></codeline>
+<codeline lineno="446"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>tf::StampedTransform<sp/>st;</highlight></codeline>
+<codeline lineno="447"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">char</highlight><highlight class="normal"><sp/>frame[0xFF];</highlight></codeline>
+<codeline lineno="448"><highlight class="normal"></highlight></codeline>
+<codeline lineno="449"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>tfMutex.lock();</highlight></codeline>
+<codeline lineno="450"><highlight class="normal"></highlight></codeline>
+<codeline lineno="451"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>markerTransforms_.clear();</highlight></codeline>
+<codeline lineno="452"><highlight class="normal"></highlight></codeline>
+<codeline lineno="453"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">if</highlight><highlight class="normal">(trackerMultiMarker_)<sp/>{</highlight></codeline>
+<codeline lineno="454"><highlight class="normal"></highlight></codeline>
+<codeline lineno="455"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">if</highlight><highlight class="normal">(<sp/>arMultiMarkerInfo_-&gt;marker_num<sp/>&gt;<sp/>0)<sp/>{</highlight></codeline>
+<codeline lineno="456"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/>ARFloat<sp/>*p<sp/>=<sp/>trackerMultiMarker_-&gt;getModelViewMatrix();</highlight></codeline>
+<codeline lineno="457"><highlight class="normal"></highlight></codeline>
+<codeline lineno="458"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">for</highlight><highlight class="normal">(</highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/>r<sp/>=<sp/>0;<sp/>r<sp/>&lt;<sp/>3;<sp/>r++)<sp/>{</highlight></codeline>
+<codeline lineno="459"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>pose[r][0]<sp/>=<sp/>p[r+0];</highlight></codeline>
+<codeline lineno="460"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>pose[r][1]<sp/>=<sp/>p[r+4];</highlight></codeline>
+<codeline lineno="461"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>pose[r][2]<sp/>=<sp/>p[r+8];</highlight></codeline>
+<codeline lineno="462"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>pose[r][3]<sp/>=<sp/>p[r+12];</highlight></codeline>
+<codeline lineno="463"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline lineno="464"><highlight class="normal"></highlight></codeline>
+<codeline lineno="465"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>matrix2Tf(pose,<sp/>trans);</highlight></codeline>
+<codeline lineno="466"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>std::string<sp/>child_frame<sp/>=<sp/>tf::resolve(tf_prefix,<sp/>pattern_frame);</highlight></codeline>
+<codeline lineno="467"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>st<sp/>=<sp/>tf::StampedTransform(trans,<sp/>header.stamp,<sp/>header.frame_id,<sp/>child_frame);</highlight></codeline>
+<codeline lineno="468"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>markerTransforms_.push_back(st);</highlight></codeline>
+<codeline lineno="469"><highlight class="normal"></highlight></codeline>
+<codeline lineno="470"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline lineno="471"><highlight class="normal"></highlight></codeline>
+<codeline lineno="472"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline lineno="473"><highlight class="normal"></highlight></codeline>
+<codeline lineno="474"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">for</highlight><highlight class="normal">(std::vector&lt;kukadu::ARTag2D&gt;::iterator<sp/>arTag<sp/>=<sp/><sp/>arTags2D_.begin();<sp/>arTag<sp/>!=<sp/>arTags2D_.end();<sp/>arTag++)<sp/>{</highlight></codeline>
+<codeline lineno="475"><highlight class="normal"></highlight></codeline>
+<codeline lineno="476"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">if</highlight><highlight class="normal"><sp/>(arTag-&gt;id<sp/>&lt;<sp/>0)</highlight></codeline>
+<codeline lineno="477"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">continue</highlight><highlight class="normal">;</highlight></codeline>
+<codeline lineno="478"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">if</highlight><highlight class="normal"><sp/>(arTag-&gt;belongsToPattern<sp/>!=<sp/>kukadu::ARTag2D::NO_PATTERN)</highlight></codeline>
+<codeline lineno="479"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">continue</highlight><highlight class="normal">;</highlight></codeline>
+<codeline lineno="480"><highlight class="normal"></highlight></codeline>
+<codeline lineno="481"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>sprintf(frame,<sp/></highlight><highlight class="stringliteral">&quot;t%i&quot;</highlight><highlight class="normal">,<sp/>arTag-&gt;id);</highlight></codeline>
+<codeline lineno="482"><highlight class="normal"></highlight></codeline>
+<codeline lineno="483"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">if</highlight><highlight class="normal">(trackerMultiMarker_)</highlight></codeline>
+<codeline lineno="484"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>trackerMultiMarker_-&gt;executeSingleMarkerPoseEstimator(&amp;(*arTag),<sp/>center,<sp/>pattern_width,<sp/>pose);</highlight></codeline>
+<codeline lineno="485"><highlight class="normal"></highlight></codeline>
+<codeline lineno="486"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">if</highlight><highlight class="normal">(trackerSingleMarker_)</highlight></codeline>
+<codeline lineno="487"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>trackerSingleMarker_-&gt;executeSingleMarkerPoseEstimator(&amp;(*arTag),<sp/>center,<sp/>pattern_width,<sp/>pose);</highlight></codeline>
+<codeline lineno="488"><highlight class="normal"></highlight></codeline>
+<codeline lineno="489"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>matrix2Tf(pose,<sp/>trans);</highlight></codeline>
+<codeline lineno="490"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>std::string<sp/>child_frame<sp/>=<sp/>tf::resolve(tf_prefix,<sp/>frame);</highlight></codeline>
+<codeline lineno="491"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>st<sp/>=<sp/>tf::StampedTransform(trans,<sp/>header.stamp,<sp/>header.frame_id,<sp/>child_frame);</highlight></codeline>
+<codeline lineno="492"><highlight class="normal"></highlight></codeline>
+<codeline lineno="493"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>markerTransforms_.push_back(st);</highlight></codeline>
+<codeline lineno="494"><highlight class="normal"></highlight></codeline>
+<codeline lineno="495"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline lineno="496"><highlight class="normal"></highlight></codeline>
+<codeline lineno="497"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>tfMutex.unlock();</highlight></codeline>
+<codeline lineno="498"><highlight class="normal"></highlight></codeline>
+<codeline lineno="499"><highlight class="normal"><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline lineno="500"><highlight class="normal"></highlight></codeline>
+<codeline lineno="501"><highlight class="normal"><sp/><sp/><sp/><sp/>std::map&lt;std::string,<sp/>geometry_msgs::Pose&gt;<sp/>ARToolKitPlusNode::getDetectedPoses()<sp/>{</highlight></codeline>
+<codeline lineno="502"><highlight class="normal"></highlight></codeline>
+<codeline lineno="503"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>std::map&lt;std::string,<sp/>geometry_msgs::Pose&gt;<sp/>posesMap;</highlight></codeline>
+<codeline lineno="504"><highlight class="normal"></highlight></codeline>
+<codeline lineno="505"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>tfMutex.lock();</highlight></codeline>
+<codeline lineno="506"><highlight class="normal"></highlight></codeline>
+<codeline lineno="507"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">for</highlight><highlight class="normal">(list&lt;tf::StampedTransform&gt;::iterator<sp/>it<sp/>=<sp/>markerTransforms_.begin();<sp/>it<sp/>!=<sp/>markerTransforms_.end();<sp/>++it)<sp/>{</highlight></codeline>
+<codeline lineno="508"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>tf::StampedTransform&amp;<sp/>currentTransform<sp/>=<sp/>*it;</highlight></codeline>
+<codeline lineno="509"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>tf::Quaternion<sp/>currentRot<sp/>=<sp/>currentTransform.getRotation();</highlight></codeline>
+<codeline lineno="510"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>tf::Vector3<sp/>currentTranslation<sp/>=<sp/>currentTransform.getOrigin();</highlight></codeline>
+<codeline lineno="511"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>geometry_msgs::Pose<sp/>currentPose;</highlight></codeline>
+<codeline lineno="512"><highlight class="normal"></highlight></codeline>
+<codeline lineno="513"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>currentPose.position.x<sp/>=<sp/>currentTranslation.getX();</highlight></codeline>
+<codeline lineno="514"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>currentPose.position.y<sp/>=<sp/>currentTranslation.getY();</highlight></codeline>
+<codeline lineno="515"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>currentPose.position.z<sp/>=<sp/>currentTranslation.getZ();</highlight></codeline>
+<codeline lineno="516"><highlight class="normal"></highlight></codeline>
+<codeline lineno="517"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>currentPose.orientation.x<sp/>=<sp/>currentRot.getX();</highlight></codeline>
+<codeline lineno="518"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>currentPose.orientation.y<sp/>=<sp/>currentRot.getY();</highlight></codeline>
+<codeline lineno="519"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>currentPose.orientation.z<sp/>=<sp/>currentRot.getZ();</highlight></codeline>
+<codeline lineno="520"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>currentPose.orientation.w<sp/>=<sp/>currentRot.getW();</highlight></codeline>
+<codeline lineno="521"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>posesMap[string(currentTransform.child_frame_id_)]<sp/>=<sp/>currentPose;</highlight></codeline>
+<codeline lineno="522"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline lineno="523"><highlight class="normal"></highlight></codeline>
+<codeline lineno="524"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>tfMutex.unlock();</highlight></codeline>
+<codeline lineno="525"><highlight class="normal"></highlight></codeline>
+<codeline lineno="526"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal"><sp/>posesMap;</highlight></codeline>
+<codeline lineno="527"><highlight class="normal"></highlight></codeline>
+<codeline lineno="528"><highlight class="normal"><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline lineno="529"><highlight class="normal"></highlight></codeline>
+<codeline lineno="530"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/>ARToolKitPlusNode::init()<sp/>{</highlight></codeline>
+<codeline lineno="531"><highlight class="normal"></highlight></codeline>
+<codeline lineno="532"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">if</highlight><highlight class="normal"><sp/>(show_camera_image)<sp/>{</highlight></codeline>
+<codeline lineno="533"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>cv::namedWindow(</highlight><highlight class="stringliteral">&quot;artracker&quot;</highlight><highlight class="normal"><sp/>+<sp/>std::string(</highlight><highlight class="stringliteral">&quot;<sp/>-<sp/>debug&quot;</highlight><highlight class="normal">),<sp/>1);</highlight></codeline>
+<codeline lineno="534"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline lineno="535"><highlight class="normal"></highlight></codeline>
+<codeline lineno="536"><highlight class="normal"><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline lineno="537"><highlight class="normal"></highlight></codeline>
+<codeline lineno="538"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/>ARToolKitPlusNode::generateDebugImage(cv::Mat<sp/>&amp;img)<sp/>{</highlight></codeline>
+<codeline lineno="539"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">char</highlight><highlight class="normal"><sp/>text[0xFF];</highlight></codeline>
+<codeline lineno="540"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>cv::Point<sp/>a,<sp/>b,<sp/>c;</highlight></codeline>
+<codeline lineno="541"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>cv::Scalar<sp/>green(0,<sp/>255,<sp/>0);</highlight></codeline>
+<codeline lineno="542"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>cv::Scalar<sp/>green2(0,<sp/>200,<sp/>0);</highlight></codeline>
+<codeline lineno="543"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>cv::Scalar<sp/>red(0,<sp/>0,<sp/>255);</highlight></codeline>
+<codeline lineno="544"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>cv::Scalar<sp/>blue(255,<sp/>0,<sp/>0);</highlight></codeline>
+<codeline lineno="545"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/>fondFace<sp/>=<sp/>cv::FONT_HERSHEY_SCRIPT_SIMPLEX;</highlight></codeline>
+<codeline lineno="546"><highlight class="normal"></highlight></codeline>
+<codeline lineno="547"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>std::vector&lt;kukadu::ARTag2D&gt;::const_iterator<sp/>artag;</highlight></codeline>
+<codeline lineno="548"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">for</highlight><highlight class="normal"><sp/>(artag<sp/>=<sp/>arTags2D_.begin();<sp/>artag<sp/>!=<sp/>arTags2D_.end();<sp/>artag++)<sp/>{</highlight></codeline>
+<codeline lineno="549"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>cv::Scalar<sp/>lineColour<sp/>=<sp/>green;</highlight></codeline>
+<codeline lineno="550"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">if</highlight><highlight class="normal"><sp/>(artag-&gt;id<sp/>&lt;<sp/>0)<sp/>lineColour<sp/>=<sp/>red;</highlight></codeline>
+<codeline lineno="551"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>a<sp/>=<sp/>cv::Point(artag-&gt;vertex[3][0],<sp/>artag-&gt;vertex[3][1]);</highlight></codeline>
+<codeline lineno="552"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">if</highlight><highlight class="normal"><sp/>(artag-&gt;belongsToPattern<sp/>!=<sp/>kukadu::ARTag2D::NO_PATTERN)<sp/>{</highlight></codeline>
+<codeline lineno="553"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>a<sp/>=<sp/>cv::Point(artag-&gt;vertex[0][0],<sp/>artag-&gt;vertex[0][1]);</highlight></codeline>
+<codeline lineno="554"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>b<sp/>=<sp/>cv::Point(artag-&gt;vertex[2][0],<sp/>artag-&gt;vertex[2][1]);</highlight></codeline>
+<codeline lineno="555"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>cv::line(img,<sp/>a,<sp/>b,<sp/>lineColour,<sp/>1);</highlight></codeline>
+<codeline lineno="556"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>a<sp/>=<sp/>cv::Point(artag-&gt;vertex[1][0],<sp/>artag-&gt;vertex[1][1]);</highlight></codeline>
+<codeline lineno="557"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>b<sp/>=<sp/>cv::Point(artag-&gt;vertex[3][0],<sp/>artag-&gt;vertex[3][1]);</highlight></codeline>
+<codeline lineno="558"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>cv::line(img,<sp/>a,<sp/>b,<sp/>lineColour,<sp/>1);</highlight></codeline>
+<codeline lineno="559"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>}<sp/></highlight><highlight class="keywordflow">else</highlight><highlight class="normal"><sp/>{</highlight></codeline>
+<codeline lineno="560"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">for</highlight><highlight class="normal"><sp/>(</highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/>v<sp/>=<sp/>0;<sp/>v<sp/>&lt;<sp/>4;<sp/>v++)<sp/>{</highlight></codeline>
+<codeline lineno="561"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>b<sp/>=<sp/>cv::Point(artag-&gt;vertex[v][0],<sp/>artag-&gt;vertex[v][1]);</highlight></codeline>
+<codeline lineno="562"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>cv::line(img,<sp/>a,<sp/>b,<sp/>lineColour,<sp/>1);</highlight></codeline>
+<codeline lineno="563"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>a<sp/>=<sp/>b;</highlight></codeline>
+<codeline lineno="564"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline lineno="565"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline lineno="566"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>sprintf(text,<sp/></highlight><highlight class="stringliteral">&quot;%i&quot;</highlight><highlight class="normal">,<sp/>artag-&gt;id);</highlight></codeline>
+<codeline lineno="567"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>cv::putText(img,<sp/>text,<sp/>cv::Point(artag-&gt;pos[0],<sp/>artag-&gt;pos[1]),<sp/>fondFace,<sp/>0.2,<sp/>green);</highlight></codeline>
+<codeline lineno="568"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline lineno="569"><highlight class="normal"><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline lineno="570"><highlight class="normal"></highlight></codeline>
+<codeline lineno="571"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/>ARToolKitPlusNode::matrix2Tf(</highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/>ARFloat<sp/>M[3][4],<sp/>tf::Transform<sp/>&amp;transform)<sp/>{</highlight></codeline>
+<codeline lineno="572"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>tf::Matrix3x3<sp/>R(M[0][0],<sp/>M[0][1],<sp/>M[0][2],<sp/>M[1][0],<sp/>M[1][1],<sp/>M[1][2],<sp/>M[2][0],<sp/>M[2][1],<sp/>M[2][2]);</highlight></codeline>
+<codeline lineno="573"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>tf::Vector3<sp/>T(M[0][3],<sp/>M[1][3],<sp/>M[2][3]);</highlight></codeline>
+<codeline lineno="574"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="comment">//transform<sp/>=<sp/>tf::Transform(R,<sp/>T);<sp/>//<sp/>this<sp/>causes<sp/>a<sp/>TF<sp/>to<sp/>MSG:<sp/>Quaternion<sp/>Not<sp/>Properly<sp/>Normalized<sp/>message</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="575"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>tf::Quaternion<sp/>quat;</highlight></codeline>
+<codeline lineno="576"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>R.getRotation(quat);</highlight></codeline>
+<codeline lineno="577"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>transform<sp/>=<sp/>tf::Transform(quat,<sp/>T);</highlight></codeline>
+<codeline lineno="578"><highlight class="normal"><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline lineno="579"><highlight class="normal"></highlight></codeline>
+<codeline lineno="580"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/>ARToolKitPlusNode::publishTf()<sp/>{</highlight></codeline>
+<codeline lineno="581"><highlight class="normal"></highlight></codeline>
+<codeline lineno="582"><highlight class="normal"><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline lineno="583"><highlight class="normal"></highlight></codeline>
+<codeline lineno="584"><highlight class="normal">}</highlight></codeline>
+    </programlisting>
+    <location file="/home/agyss/iis_robot_sw/iis_catkin_ws/src/kukadu/src/vision/arlocalizer/arlocalizer.cpp"/>
+  </compounddef>
+</doxygen>

@@ -1,0 +1,619 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.8.11">
+  <compounddef id="classkukadu_1_1StorageSingleton" kind="class" language="C++" prot="public">
+    <compoundname>kukadu::StorageSingleton</compoundname>
+      <sectiondef kind="private-attrib">
+      <memberdef kind="variable" id="classkukadu_1_1StorageSingleton_1ae5b52c163af8b3804a8230efde9576a1" prot="private" static="no" mutable="no">
+        <type>bool</type>
+        <definition>bool kukadu::StorageSingleton::useCaching</definition>
+        <argsstring></argsstring>
+        <name>useCaching</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/agyss/iis_robot_sw/iis_catkin_ws/src/kukadu/include/kukadu/storage/storagesingleton.hpp" line="23" column="1" bodyfile="/home/agyss/iis_robot_sw/iis_catkin_ws/src/kukadu/include/kukadu/storage/storagesingleton.hpp" bodystart="23" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classkukadu_1_1StorageSingleton_1ab5be7224ee154bada6f8d5f1723b52b5" prot="private" static="no" mutable="no">
+        <type>int</type>
+        <definition>int kukadu::StorageSingleton::maxCacheSize</definition>
+        <argsstring></argsstring>
+        <name>maxCacheSize</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/agyss/iis_robot_sw/iis_catkin_ws/src/kukadu/include/kukadu/storage/storagesingleton.hpp" line="24" column="1" bodyfile="/home/agyss/iis_robot_sw/iis_catkin_ws/src/kukadu/include/kukadu/storage/storagesingleton.hpp" bodystart="24" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classkukadu_1_1StorageSingleton_1a29f087cb7efb2c920f2d232459636cd7" prot="private" static="no" mutable="no">
+        <type>kukadu_mutex</type>
+        <definition>kukadu_mutex kukadu::StorageSingleton::statementsMutex</definition>
+        <argsstring></argsstring>
+        <name>statementsMutex</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/agyss/iis_robot_sw/iis_catkin_ws/src/kukadu/include/kukadu/storage/storagesingleton.hpp" line="25" column="1" bodyfile="/home/agyss/iis_robot_sw/iis_catkin_ws/src/kukadu/include/kukadu/storage/storagesingleton.hpp" bodystart="25" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classkukadu_1_1StorageSingleton_1a3292a2d75d0bc576f7b723d822dc1bab" prot="private" static="no" mutable="no">
+        <type>std::queue&lt; std::string &gt;</type>
+        <definition>std::queue&lt;std::string&gt; kukadu::StorageSingleton::cachedStatements</definition>
+        <argsstring></argsstring>
+        <name>cachedStatements</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/agyss/iis_robot_sw/iis_catkin_ws/src/kukadu/include/kukadu/storage/storagesingleton.hpp" line="26" column="1" bodyfile="/home/agyss/iis_robot_sw/iis_catkin_ws/src/kukadu/include/kukadu/storage/storagesingleton.hpp" bodystart="26" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classkukadu_1_1StorageSingleton_1af3539034d0035d655158f5aae01da85f" prot="private" static="no" mutable="no">
+        <type>kukadu_mutex</type>
+        <definition>kukadu_mutex kukadu::StorageSingleton::connectionMutex</definition>
+        <argsstring></argsstring>
+        <name>connectionMutex</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/agyss/iis_robot_sw/iis_catkin_ws/src/kukadu/include/kukadu/storage/storagesingleton.hpp" line="29" column="1" bodyfile="/home/agyss/iis_robot_sw/iis_catkin_ws/src/kukadu/include/kukadu/storage/storagesingleton.hpp" bodystart="29" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classkukadu_1_1StorageSingleton_1a5a977ac83f2c2cdbf74172a71de8a988" prot="private" static="no" mutable="no">
+        <type>bool</type>
+        <definition>bool kukadu::StorageSingleton::cacheDemonRunning</definition>
+        <argsstring></argsstring>
+        <name>cacheDemonRunning</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/agyss/iis_robot_sw/iis_catkin_ws/src/kukadu/include/kukadu/storage/storagesingleton.hpp" line="31" column="1" bodyfile="/home/agyss/iis_robot_sw/iis_catkin_ws/src/kukadu/include/kukadu/storage/storagesingleton.hpp" bodystart="31" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classkukadu_1_1StorageSingleton_1a285d3e734d61ae40688ba43bb0bfc824" prot="private" static="no" mutable="no">
+        <type>int</type>
+        <definition>int kukadu::StorageSingleton::cacheDemonPollingRate</definition>
+        <argsstring></argsstring>
+        <name>cacheDemonPollingRate</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/agyss/iis_robot_sw/iis_catkin_ws/src/kukadu/include/kukadu/storage/storagesingleton.hpp" line="32" column="1" bodyfile="/home/agyss/iis_robot_sw/iis_catkin_ws/src/kukadu/include/kukadu/storage/storagesingleton.hpp" bodystart="32" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classkukadu_1_1StorageSingleton_1a0c6711077fc398eb608f88e86cfe79a0" prot="private" static="no" mutable="no">
+        <type>int</type>
+        <definition>int kukadu::StorageSingleton::cacheBulkSize</definition>
+        <argsstring></argsstring>
+        <name>cacheBulkSize</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/agyss/iis_robot_sw/iis_catkin_ws/src/kukadu/include/kukadu/storage/storagesingleton.hpp" line="33" column="1" bodyfile="/home/agyss/iis_robot_sw/iis_catkin_ws/src/kukadu/include/kukadu/storage/storagesingleton.hpp" bodystart="33" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classkukadu_1_1StorageSingleton_1a94bdc46548110d6a7cbed69be5996f92" prot="private" static="no" mutable="no">
+        <type>kukadu_thread</type>
+        <definition>kukadu_thread kukadu::StorageSingleton::cacheDemonThread</definition>
+        <argsstring></argsstring>
+        <name>cacheDemonThread</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/agyss/iis_robot_sw/iis_catkin_ws/src/kukadu/include/kukadu/storage/storagesingleton.hpp" line="34" column="1" bodyfile="/home/agyss/iis_robot_sw/iis_catkin_ws/src/kukadu/include/kukadu/storage/storagesingleton.hpp" bodystart="34" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classkukadu_1_1StorageSingleton_1af48637fa078737dd3fe405913c013185" prot="private" static="no" mutable="no">
+        <type>sql::Connection *</type>
+        <definition>sql::Connection* kukadu::StorageSingleton::con</definition>
+        <argsstring></argsstring>
+        <name>con</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/agyss/iis_robot_sw/iis_catkin_ws/src/kukadu/include/kukadu/storage/storagesingleton.hpp" line="36" column="1" bodyfile="/home/agyss/iis_robot_sw/iis_catkin_ws/src/kukadu/include/kukadu/storage/storagesingleton.hpp" bodystart="36" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classkukadu_1_1StorageSingleton_1af891358e40a864ccd72855ef9c984985" prot="private" static="no" mutable="no">
+        <type>sql::Driver *</type>
+        <definition>sql::Driver* kukadu::StorageSingleton::driver</definition>
+        <argsstring></argsstring>
+        <name>driver</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/agyss/iis_robot_sw/iis_catkin_ws/src/kukadu/include/kukadu/storage/storagesingleton.hpp" line="37" column="1" bodyfile="/home/agyss/iis_robot_sw/iis_catkin_ws/src/kukadu/include/kukadu/storage/storagesingleton.hpp" bodystart="37" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classkukadu_1_1StorageSingleton_1aa4d336c6e3d9fef7a67eb70225b266ab" prot="private" static="no" mutable="no">
+        <type>std::string</type>
+        <definition>std::string kukadu::StorageSingleton::databaseName</definition>
+        <argsstring></argsstring>
+        <name>databaseName</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/agyss/iis_robot_sw/iis_catkin_ws/src/kukadu/include/kukadu/storage/storagesingleton.hpp" line="39" column="1" bodyfile="/home/agyss/iis_robot_sw/iis_catkin_ws/src/kukadu/include/kukadu/storage/storagesingleton.hpp" bodystart="39" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classkukadu_1_1StorageSingleton_1a8818949f6fdc92a41c6a466a9f395f44" prot="private" static="no" mutable="no">
+        <type>std::map&lt; std::string, long long int &gt;</type>
+        <definition>std::map&lt;std::string, long long int&gt; kukadu::StorageSingleton::idsMap</definition>
+        <argsstring></argsstring>
+        <name>idsMap</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/agyss/iis_robot_sw/iis_catkin_ws/src/kukadu/include/kukadu/storage/storagesingleton.hpp" line="41" column="1" bodyfile="/home/agyss/iis_robot_sw/iis_catkin_ws/src/kukadu/include/kukadu/storage/storagesingleton.hpp" bodystart="41" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classkukadu_1_1StorageSingleton_1af6466048f4dfa3a2dc9bf703e88c07e0" prot="private" static="no" mutable="no">
+        <type>std::map&lt; std::string, std::vector&lt; int &gt; &gt;</type>
+        <definition>std::map&lt;std::string, std::vector&lt;int&gt; &gt; kukadu::StorageSingleton::labelIdsMap</definition>
+        <argsstring></argsstring>
+        <name>labelIdsMap</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/agyss/iis_robot_sw/iis_catkin_ws/src/kukadu/include/kukadu/storage/storagesingleton.hpp" line="43" column="1" bodyfile="/home/agyss/iis_robot_sw/iis_catkin_ws/src/kukadu/include/kukadu/storage/storagesingleton.hpp" bodystart="43" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classkukadu_1_1StorageSingleton_1a6a38bdc4888fef3ec5d0dfc0683aca24" prot="private" static="no" mutable="no">
+        <type>std::map&lt; std::string, std::string &gt;</type>
+        <definition>std::map&lt;std::string, std::string&gt; kukadu::StorageSingleton::labelsMap</definition>
+        <argsstring></argsstring>
+        <name>labelsMap</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/agyss/iis_robot_sw/iis_catkin_ws/src/kukadu/include/kukadu/storage/storagesingleton.hpp" line="44" column="1" bodyfile="/home/agyss/iis_robot_sw/iis_catkin_ws/src/kukadu/include/kukadu/storage/storagesingleton.hpp" bodystart="44" bodyend="-1"/>
+      </memberdef>
+      </sectiondef>
+      <sectiondef kind="private-func">
+      <memberdef kind="function" id="classkukadu_1_1StorageSingleton_1a435d12a2a188e8723b79cffd20ab3cb6" prot="private" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type></type>
+        <definition>kukadu::StorageSingleton::StorageSingleton</definition>
+        <argsstring>()</argsstring>
+        <name>StorageSingleton</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/agyss/iis_robot_sw/iis_catkin_ws/src/kukadu/include/kukadu/storage/storagesingleton.hpp" line="46" column="1" bodyfile="/home/agyss/iis_robot_sw/iis_catkin_ws/src/kukadu/src/storage/storagesingleton.cpp" bodystart="22" bodyend="62"/>
+      </memberdef>
+      <memberdef kind="function" id="classkukadu_1_1StorageSingleton_1afb7c2d707bc053d53e7216a1fbc67078" prot="private" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>void kukadu::StorageSingleton::runStatementsDemon</definition>
+        <argsstring>()</argsstring>
+        <name>runStatementsDemon</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/agyss/iis_robot_sw/iis_catkin_ws/src/kukadu/include/kukadu/storage/storagesingleton.hpp" line="48" column="1" bodyfile="/home/agyss/iis_robot_sw/iis_catkin_ws/src/kukadu/src/storage/storagesingleton.cpp" bodystart="265" bodyend="297"/>
+      </memberdef>
+      <memberdef kind="function" id="classkukadu_1_1StorageSingleton_1a5399d47abb9943aff47dcaca5face4fe" prot="private" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>void kukadu::StorageSingleton::installDirectory</definition>
+        <argsstring>(std::string directory)</argsstring>
+        <name>installDirectory</name>
+        <param>
+          <type>std::string</type>
+          <declname>directory</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/agyss/iis_robot_sw/iis_catkin_ws/src/kukadu/include/kukadu/storage/storagesingleton.hpp" line="49" column="1" bodyfile="/home/agyss/iis_robot_sw/iis_catkin_ws/src/kukadu/src/storage/storagesingleton.cpp" bodystart="64" bodyend="80"/>
+      </memberdef>
+      <memberdef kind="function" id="classkukadu_1_1StorageSingleton_1ae47d06a466f7bf9a9746931ff7e784d4" prot="private" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>void kukadu::StorageSingleton::actualExecuteStatements</definition>
+        <argsstring>(const std::vector&lt; std::string &gt; &amp;statements)</argsstring>
+        <name>actualExecuteStatements</name>
+        <param>
+          <type>const std::vector&lt; std::string &gt; &amp;</type>
+          <declname>statements</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/agyss/iis_robot_sw/iis_catkin_ws/src/kukadu/include/kukadu/storage/storagesingleton.hpp" line="50" column="1" bodyfile="/home/agyss/iis_robot_sw/iis_catkin_ws/src/kukadu/src/storage/storagesingleton.cpp" bodystart="303" bodyend="319"/>
+      </memberdef>
+      </sectiondef>
+      <sectiondef kind="public-static-func">
+      <memberdef kind="function" id="classkukadu_1_1StorageSingleton_1a435bc0e9780ca98ddf89e84cea52b902" prot="public" static="yes" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type><ref refid="classkukadu_1_1StorageSingleton" kindref="compound">StorageSingleton</ref> &amp;</type>
+        <definition>StorageSingleton &amp; kukadu::StorageSingleton::get</definition>
+        <argsstring>()</argsstring>
+        <name>get</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/agyss/iis_robot_sw/iis_catkin_ws/src/kukadu/include/kukadu/storage/storagesingleton.hpp" line="54" column="1" bodyfile="/home/agyss/iis_robot_sw/iis_catkin_ws/src/kukadu/src/storage/storagesingleton.cpp" bodystart="119" bodyend="122"/>
+      </memberdef>
+      </sectiondef>
+      <sectiondef kind="public-func">
+      <memberdef kind="function" id="classkukadu_1_1StorageSingleton_1a068ece291aaa8c67e2968ca2ce888c77" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>long long int</type>
+        <definition>long long int kukadu::StorageSingleton::getNextIdInTable</definition>
+        <argsstring>(std::string table, std::string idCol)</argsstring>
+        <name>getNextIdInTable</name>
+        <param>
+          <type>std::string</type>
+          <declname>table</declname>
+        </param>
+        <param>
+          <type>std::string</type>
+          <declname>idCol</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/agyss/iis_robot_sw/iis_catkin_ws/src/kukadu/include/kukadu/storage/storagesingleton.hpp" line="56" column="1" bodyfile="/home/agyss/iis_robot_sw/iis_catkin_ws/src/kukadu/src/storage/storagesingleton.cpp" bodystart="124" bodyend="150"/>
+      </memberdef>
+      <memberdef kind="function" id="classkukadu_1_1StorageSingleton_1ae616e1bb376f3b91e94c243d3447b67e" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>bool</type>
+        <definition>bool kukadu::StorageSingleton::checkIdExists</definition>
+        <argsstring>(std::string table, std::string idCol, int val)</argsstring>
+        <name>checkIdExists</name>
+        <param>
+          <type>std::string</type>
+          <declname>table</declname>
+        </param>
+        <param>
+          <type>std::string</type>
+          <declname>idCol</declname>
+        </param>
+        <param>
+          <type>int</type>
+          <declname>val</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/agyss/iis_robot_sw/iis_catkin_ws/src/kukadu/include/kukadu/storage/storagesingleton.hpp" line="58" column="1" bodyfile="/home/agyss/iis_robot_sw/iis_catkin_ws/src/kukadu/src/storage/storagesingleton.cpp" bodystart="152" bodyend="162"/>
+      </memberdef>
+      <memberdef kind="function" id="classkukadu_1_1StorageSingleton_1aa325126c11d32b06c2c1ff389e350cdf" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>bool</type>
+        <definition>bool kukadu::StorageSingleton::checkLabelExists</definition>
+        <argsstring>(std::string table, std::string labelCol, std::string val)</argsstring>
+        <name>checkLabelExists</name>
+        <param>
+          <type>std::string</type>
+          <declname>table</declname>
+        </param>
+        <param>
+          <type>std::string</type>
+          <declname>labelCol</declname>
+        </param>
+        <param>
+          <type>std::string</type>
+          <declname>val</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/agyss/iis_robot_sw/iis_catkin_ws/src/kukadu/include/kukadu/storage/storagesingleton.hpp" line="59" column="1" bodyfile="/home/agyss/iis_robot_sw/iis_catkin_ws/src/kukadu/src/storage/storagesingleton.cpp" bodystart="164" bodyend="173"/>
+      </memberdef>
+      <memberdef kind="function" id="classkukadu_1_1StorageSingleton_1a1019fc7b58c697e70469b05cb81f16e5" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>int</type>
+        <definition>int kukadu::StorageSingleton::getCachedLabelId</definition>
+        <argsstring>(std::string table, std::string labelIdCol, std::string labelCol, std::string label, std::string additionalWhere=&quot;&quot;)</argsstring>
+        <name>getCachedLabelId</name>
+        <param>
+          <type>std::string</type>
+          <declname>table</declname>
+        </param>
+        <param>
+          <type>std::string</type>
+          <declname>labelIdCol</declname>
+        </param>
+        <param>
+          <type>std::string</type>
+          <declname>labelCol</declname>
+        </param>
+        <param>
+          <type>std::string</type>
+          <declname>label</declname>
+        </param>
+        <param>
+          <type>std::string</type>
+          <declname>additionalWhere</declname>
+          <defval>&quot;&quot;</defval>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/agyss/iis_robot_sw/iis_catkin_ws/src/kukadu/include/kukadu/storage/storagesingleton.hpp" line="61" column="1" bodyfile="/home/agyss/iis_robot_sw/iis_catkin_ws/src/kukadu/src/storage/storagesingleton.cpp" bodystart="222" bodyend="224"/>
+      </memberdef>
+      <memberdef kind="function" id="classkukadu_1_1StorageSingleton_1afb2d38c5549116777f30ca6c9b6833ed" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>std::vector&lt; int &gt;</type>
+        <definition>std::vector&lt; int &gt; kukadu::StorageSingleton::getCachedLabelIds</definition>
+        <argsstring>(std::string table, std::string labelIdCol, std::string labelCol, std::string label, std::string additionalWhere=&quot;&quot;)</argsstring>
+        <name>getCachedLabelIds</name>
+        <param>
+          <type>std::string</type>
+          <declname>table</declname>
+        </param>
+        <param>
+          <type>std::string</type>
+          <declname>labelIdCol</declname>
+        </param>
+        <param>
+          <type>std::string</type>
+          <declname>labelCol</declname>
+        </param>
+        <param>
+          <type>std::string</type>
+          <declname>label</declname>
+        </param>
+        <param>
+          <type>std::string</type>
+          <declname>additionalWhere</declname>
+          <defval>&quot;&quot;</defval>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/agyss/iis_robot_sw/iis_catkin_ws/src/kukadu/include/kukadu/storage/storagesingleton.hpp" line="62" column="1" bodyfile="/home/agyss/iis_robot_sw/iis_catkin_ws/src/kukadu/src/storage/storagesingleton.cpp" bodystart="175" bodyend="220"/>
+      </memberdef>
+      <memberdef kind="function" id="classkukadu_1_1StorageSingleton_1af9bf79f62f37e863d025e0bcc9f45353" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>std::string</type>
+        <definition>std::string kukadu::StorageSingleton::getCachedLabel</definition>
+        <argsstring>(std::string table, std::string labelIdCol, std::string labelCol, int labelId)</argsstring>
+        <name>getCachedLabel</name>
+        <param>
+          <type>std::string</type>
+          <declname>table</declname>
+        </param>
+        <param>
+          <type>std::string</type>
+          <declname>labelIdCol</declname>
+        </param>
+        <param>
+          <type>std::string</type>
+          <declname>labelCol</declname>
+        </param>
+        <param>
+          <type>int</type>
+          <declname>labelId</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/agyss/iis_robot_sw/iis_catkin_ws/src/kukadu/include/kukadu/storage/storagesingleton.hpp" line="64" column="1" bodyfile="/home/agyss/iis_robot_sw/iis_catkin_ws/src/kukadu/src/storage/storagesingleton.cpp" bodystart="234" bodyend="263"/>
+      </memberdef>
+      <memberdef kind="function" id="classkukadu_1_1StorageSingleton_1a840b0dc1ead0171c9af2a47b20327574" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>void kukadu::StorageSingleton::executeStatementPriority</definition>
+        <argsstring>(std::string sql)</argsstring>
+        <name>executeStatementPriority</name>
+        <param>
+          <type>std::string</type>
+          <declname>sql</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/agyss/iis_robot_sw/iis_catkin_ws/src/kukadu/include/kukadu/storage/storagesingleton.hpp" line="66" column="1" bodyfile="/home/agyss/iis_robot_sw/iis_catkin_ws/src/kukadu/src/storage/storagesingleton.cpp" bodystart="299" bodyend="301"/>
+      </memberdef>
+      <memberdef kind="function" id="classkukadu_1_1StorageSingleton_1aed66b98743013f5c4bd975c34091ba3a" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>void kukadu::StorageSingleton::executeStatement</definition>
+        <argsstring>(std::string sql)</argsstring>
+        <name>executeStatement</name>
+        <param>
+          <type>std::string</type>
+          <declname>sql</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/agyss/iis_robot_sw/iis_catkin_ws/src/kukadu/include/kukadu/storage/storagesingleton.hpp" line="68" column="1" bodyfile="/home/agyss/iis_robot_sw/iis_catkin_ws/src/kukadu/src/storage/storagesingleton.cpp" bodystart="321" bodyend="337"/>
+      </memberdef>
+      <memberdef kind="function" id="classkukadu_1_1StorageSingleton_1a7d2119095f40b13faf2170ad89c0ca80" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>void kukadu::StorageSingleton::executeStatements</definition>
+        <argsstring>(std::vector&lt; std::string &gt; sqls)</argsstring>
+        <name>executeStatements</name>
+        <param>
+          <type>std::vector&lt; std::string &gt;</type>
+          <declname>sqls</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/agyss/iis_robot_sw/iis_catkin_ws/src/kukadu/include/kukadu/storage/storagesingleton.hpp" line="69" column="1" bodyfile="/home/agyss/iis_robot_sw/iis_catkin_ws/src/kukadu/src/storage/storagesingleton.cpp" bodystart="339" bodyend="356"/>
+      </memberdef>
+      <memberdef kind="function" id="classkukadu_1_1StorageSingleton_1ad15276eb4de19d4229c5a1d6a0696ea8" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>KUKADU_SHARED_PTR&lt; sql::ResultSet &gt;</type>
+        <definition>KUKADU_SHARED_PTR&lt; sql::ResultSet &gt; kukadu::StorageSingleton::executeQuery</definition>
+        <argsstring>(std::string sql)</argsstring>
+        <name>executeQuery</name>
+        <param>
+          <type>std::string</type>
+          <declname>sql</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/agyss/iis_robot_sw/iis_catkin_ws/src/kukadu/include/kukadu/storage/storagesingleton.hpp" line="70" column="1" bodyfile="/home/agyss/iis_robot_sw/iis_catkin_ws/src/kukadu/src/storage/storagesingleton.cpp" bodystart="358" bodyend="368"/>
+      </memberdef>
+      <memberdef kind="function" id="classkukadu_1_1StorageSingleton_1addd1cbee36e28f5a9be5814722472dd1" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>void kukadu::StorageSingleton::waitForEmptyCache</definition>
+        <argsstring>()</argsstring>
+        <name>waitForEmptyCache</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/agyss/iis_robot_sw/iis_catkin_ws/src/kukadu/include/kukadu/storage/storagesingleton.hpp" line="72" column="1" bodyfile="/home/agyss/iis_robot_sw/iis_catkin_ws/src/kukadu/src/storage/storagesingleton.cpp" bodystart="226" bodyend="232"/>
+      </memberdef>
+      <memberdef kind="function" id="classkukadu_1_1StorageSingleton_1a0b2506d50b58ec0af137d2d4ddb62e9c" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>void kukadu::StorageSingleton::install</definition>
+        <argsstring>(std::string directory)</argsstring>
+        <name>install</name>
+        <param>
+          <type>std::string</type>
+          <declname>directory</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/agyss/iis_robot_sw/iis_catkin_ws/src/kukadu/include/kukadu/storage/storagesingleton.hpp" line="74" column="1" bodyfile="/home/agyss/iis_robot_sw/iis_catkin_ws/src/kukadu/src/storage/storagesingleton.cpp" bodystart="82" bodyend="87"/>
+      </memberdef>
+      <memberdef kind="function" id="classkukadu_1_1StorageSingleton_1a31bf253bcfb731cf0acff86c8e38537b" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>bool</type>
+        <definition>bool kukadu::StorageSingleton::isInstalled</definition>
+        <argsstring>(std::string directory)</argsstring>
+        <name>isInstalled</name>
+        <param>
+          <type>std::string</type>
+          <declname>directory</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/agyss/iis_robot_sw/iis_catkin_ws/src/kukadu/include/kukadu/storage/storagesingleton.hpp" line="76" column="1" bodyfile="/home/agyss/iis_robot_sw/iis_catkin_ws/src/kukadu/src/storage/storagesingleton.cpp" bodystart="89" bodyend="117"/>
+      </memberdef>
+      <memberdef kind="function" id="classkukadu_1_1StorageSingleton_1a4c69a5cb8edd35dac5ea22f427db72a4" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type></type>
+        <definition>kukadu::StorageSingleton::~StorageSingleton</definition>
+        <argsstring>()</argsstring>
+        <name>~StorageSingleton</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/agyss/iis_robot_sw/iis_catkin_ws/src/kukadu/include/kukadu/storage/storagesingleton.hpp" line="78" column="1" bodyfile="/home/agyss/iis_robot_sw/iis_catkin_ws/src/kukadu/src/storage/storagesingleton.cpp" bodystart="370" bodyend="381"/>
+      </memberdef>
+      </sectiondef>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <location file="/home/agyss/iis_robot_sw/iis_catkin_ws/src/kukadu/include/kukadu/storage/storagesingleton.hpp" line="19" column="1" bodyfile="/home/agyss/iis_robot_sw/iis_catkin_ws/src/kukadu/include/kukadu/storage/storagesingleton.hpp" bodystart="19" bodyend="80"/>
+    <listofallmembers>
+      <member refid="classkukadu_1_1StorageSingleton_1ae47d06a466f7bf9a9746931ff7e784d4" prot="private" virt="non-virtual"><scope>kukadu::StorageSingleton</scope><name>actualExecuteStatements</name></member>
+      <member refid="classkukadu_1_1StorageSingleton_1a0c6711077fc398eb608f88e86cfe79a0" prot="private" virt="non-virtual"><scope>kukadu::StorageSingleton</scope><name>cacheBulkSize</name></member>
+      <member refid="classkukadu_1_1StorageSingleton_1a285d3e734d61ae40688ba43bb0bfc824" prot="private" virt="non-virtual"><scope>kukadu::StorageSingleton</scope><name>cacheDemonPollingRate</name></member>
+      <member refid="classkukadu_1_1StorageSingleton_1a5a977ac83f2c2cdbf74172a71de8a988" prot="private" virt="non-virtual"><scope>kukadu::StorageSingleton</scope><name>cacheDemonRunning</name></member>
+      <member refid="classkukadu_1_1StorageSingleton_1a94bdc46548110d6a7cbed69be5996f92" prot="private" virt="non-virtual"><scope>kukadu::StorageSingleton</scope><name>cacheDemonThread</name></member>
+      <member refid="classkukadu_1_1StorageSingleton_1a3292a2d75d0bc576f7b723d822dc1bab" prot="private" virt="non-virtual"><scope>kukadu::StorageSingleton</scope><name>cachedStatements</name></member>
+      <member refid="classkukadu_1_1StorageSingleton_1ae616e1bb376f3b91e94c243d3447b67e" prot="public" virt="non-virtual"><scope>kukadu::StorageSingleton</scope><name>checkIdExists</name></member>
+      <member refid="classkukadu_1_1StorageSingleton_1aa325126c11d32b06c2c1ff389e350cdf" prot="public" virt="non-virtual"><scope>kukadu::StorageSingleton</scope><name>checkLabelExists</name></member>
+      <member refid="classkukadu_1_1StorageSingleton_1af48637fa078737dd3fe405913c013185" prot="private" virt="non-virtual"><scope>kukadu::StorageSingleton</scope><name>con</name></member>
+      <member refid="classkukadu_1_1StorageSingleton_1af3539034d0035d655158f5aae01da85f" prot="private" virt="non-virtual"><scope>kukadu::StorageSingleton</scope><name>connectionMutex</name></member>
+      <member refid="classkukadu_1_1StorageSingleton_1aa4d336c6e3d9fef7a67eb70225b266ab" prot="private" virt="non-virtual"><scope>kukadu::StorageSingleton</scope><name>databaseName</name></member>
+      <member refid="classkukadu_1_1StorageSingleton_1af891358e40a864ccd72855ef9c984985" prot="private" virt="non-virtual"><scope>kukadu::StorageSingleton</scope><name>driver</name></member>
+      <member refid="classkukadu_1_1StorageSingleton_1ad15276eb4de19d4229c5a1d6a0696ea8" prot="public" virt="non-virtual"><scope>kukadu::StorageSingleton</scope><name>executeQuery</name></member>
+      <member refid="classkukadu_1_1StorageSingleton_1aed66b98743013f5c4bd975c34091ba3a" prot="public" virt="non-virtual"><scope>kukadu::StorageSingleton</scope><name>executeStatement</name></member>
+      <member refid="classkukadu_1_1StorageSingleton_1a840b0dc1ead0171c9af2a47b20327574" prot="public" virt="non-virtual"><scope>kukadu::StorageSingleton</scope><name>executeStatementPriority</name></member>
+      <member refid="classkukadu_1_1StorageSingleton_1a7d2119095f40b13faf2170ad89c0ca80" prot="public" virt="non-virtual"><scope>kukadu::StorageSingleton</scope><name>executeStatements</name></member>
+      <member refid="classkukadu_1_1StorageSingleton_1a435bc0e9780ca98ddf89e84cea52b902" prot="public" virt="non-virtual"><scope>kukadu::StorageSingleton</scope><name>get</name></member>
+      <member refid="classkukadu_1_1StorageSingleton_1af9bf79f62f37e863d025e0bcc9f45353" prot="public" virt="non-virtual"><scope>kukadu::StorageSingleton</scope><name>getCachedLabel</name></member>
+      <member refid="classkukadu_1_1StorageSingleton_1a1019fc7b58c697e70469b05cb81f16e5" prot="public" virt="non-virtual"><scope>kukadu::StorageSingleton</scope><name>getCachedLabelId</name></member>
+      <member refid="classkukadu_1_1StorageSingleton_1afb2d38c5549116777f30ca6c9b6833ed" prot="public" virt="non-virtual"><scope>kukadu::StorageSingleton</scope><name>getCachedLabelIds</name></member>
+      <member refid="classkukadu_1_1StorageSingleton_1a068ece291aaa8c67e2968ca2ce888c77" prot="public" virt="non-virtual"><scope>kukadu::StorageSingleton</scope><name>getNextIdInTable</name></member>
+      <member refid="classkukadu_1_1StorageSingleton_1a8818949f6fdc92a41c6a466a9f395f44" prot="private" virt="non-virtual"><scope>kukadu::StorageSingleton</scope><name>idsMap</name></member>
+      <member refid="classkukadu_1_1StorageSingleton_1a0b2506d50b58ec0af137d2d4ddb62e9c" prot="public" virt="non-virtual"><scope>kukadu::StorageSingleton</scope><name>install</name></member>
+      <member refid="classkukadu_1_1StorageSingleton_1a5399d47abb9943aff47dcaca5face4fe" prot="private" virt="non-virtual"><scope>kukadu::StorageSingleton</scope><name>installDirectory</name></member>
+      <member refid="classkukadu_1_1StorageSingleton_1a31bf253bcfb731cf0acff86c8e38537b" prot="public" virt="non-virtual"><scope>kukadu::StorageSingleton</scope><name>isInstalled</name></member>
+      <member refid="classkukadu_1_1StorageSingleton_1af6466048f4dfa3a2dc9bf703e88c07e0" prot="private" virt="non-virtual"><scope>kukadu::StorageSingleton</scope><name>labelIdsMap</name></member>
+      <member refid="classkukadu_1_1StorageSingleton_1a6a38bdc4888fef3ec5d0dfc0683aca24" prot="private" virt="non-virtual"><scope>kukadu::StorageSingleton</scope><name>labelsMap</name></member>
+      <member refid="classkukadu_1_1StorageSingleton_1ab5be7224ee154bada6f8d5f1723b52b5" prot="private" virt="non-virtual"><scope>kukadu::StorageSingleton</scope><name>maxCacheSize</name></member>
+      <member refid="classkukadu_1_1StorageSingleton_1afb7c2d707bc053d53e7216a1fbc67078" prot="private" virt="non-virtual"><scope>kukadu::StorageSingleton</scope><name>runStatementsDemon</name></member>
+      <member refid="classkukadu_1_1StorageSingleton_1a29f087cb7efb2c920f2d232459636cd7" prot="private" virt="non-virtual"><scope>kukadu::StorageSingleton</scope><name>statementsMutex</name></member>
+      <member refid="classkukadu_1_1StorageSingleton_1a435d12a2a188e8723b79cffd20ab3cb6" prot="private" virt="non-virtual"><scope>kukadu::StorageSingleton</scope><name>StorageSingleton</name></member>
+      <member refid="classkukadu_1_1StorageSingleton_1ae5b52c163af8b3804a8230efde9576a1" prot="private" virt="non-virtual"><scope>kukadu::StorageSingleton</scope><name>useCaching</name></member>
+      <member refid="classkukadu_1_1StorageSingleton_1addd1cbee36e28f5a9be5814722472dd1" prot="public" virt="non-virtual"><scope>kukadu::StorageSingleton</scope><name>waitForEmptyCache</name></member>
+      <member refid="classkukadu_1_1StorageSingleton_1a4c69a5cb8edd35dac5ea22f427db72a4" prot="public" virt="non-virtual"><scope>kukadu::StorageSingleton</scope><name>~StorageSingleton</name></member>
+    </listofallmembers>
+  </compounddef>
+</doxygen>

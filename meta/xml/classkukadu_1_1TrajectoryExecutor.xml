@@ -1,0 +1,397 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.8.11">
+  <compounddef id="classkukadu_1_1TrajectoryExecutor" kind="class" language="C++" prot="public" abstract="yes">
+    <compoundname>kukadu::TrajectoryExecutor</compoundname>
+    <basecompoundref refid="classkukadu_1_1Controller" prot="public" virt="non-virtual">kukadu::Controller</basecompoundref>
+    <derivedcompoundref refid="classkukadu_1_1DMPExecutor" prot="public" virt="non-virtual">kukadu::DMPExecutor</derivedcompoundref>
+      <sectiondef kind="public-type">
+      <memberdef kind="enum" id="classkukadu_1_1TrajectoryExecutor_1a93c2342293e3db8552ba5056e0a5d3e4" prot="public" static="no">
+        <name>execution_modes</name>
+        <enumvalue id="classkukadu_1_1TrajectoryExecutor_1a93c2342293e3db8552ba5056e0a5d3e4aa5aec9d1eeb1101a769083bd5581d2b3" prot="public">
+          <name>SIMULATE_ROBOT</name>
+          <briefdescription>
+          </briefdescription>
+          <detaileddescription>
+          </detaileddescription>
+        </enumvalue>
+        <enumvalue id="classkukadu_1_1TrajectoryExecutor_1a93c2342293e3db8552ba5056e0a5d3e4a758b89d1cd01a841191619e34b12cd4c" prot="public">
+          <name>EXECUTE_ROBOT</name>
+          <briefdescription>
+          </briefdescription>
+          <detaileddescription>
+          </detaileddescription>
+        </enumvalue>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/agyss/iis_robot_sw/iis_catkin_ws/src/kukadu/include/kukadu/control/trajectory.hpp" line="155" column="1" bodyfile="/home/agyss/iis_robot_sw/iis_catkin_ws/src/kukadu/include/kukadu/control/trajectory.hpp" bodystart="155" bodyend="155"/>
+      </memberdef>
+      </sectiondef>
+      <sectiondef kind="private-attrib">
+      <memberdef kind="variable" id="classkukadu_1_1TrajectoryExecutor_1a57be314975ad8ae5e35b22e74ff0cdd0" prot="private" static="no" mutable="no">
+        <type>double</type>
+        <definition>double kukadu::TrajectoryExecutor::tEnd</definition>
+        <argsstring></argsstring>
+        <name>tEnd</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/agyss/iis_robot_sw/iis_catkin_ws/src/kukadu/include/kukadu/control/trajectory.hpp" line="159" column="1" bodyfile="/home/agyss/iis_robot_sw/iis_catkin_ws/src/kukadu/include/kukadu/control/trajectory.hpp" bodystart="159" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classkukadu_1_1TrajectoryExecutor_1a9e6221737dea2336fa649b5f5462de32" prot="private" static="no" mutable="no">
+        <type>double</type>
+        <definition>double kukadu::TrajectoryExecutor::tStart</definition>
+        <argsstring></argsstring>
+        <name>tStart</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/agyss/iis_robot_sw/iis_catkin_ws/src/kukadu/include/kukadu/control/trajectory.hpp" line="160" column="1" bodyfile="/home/agyss/iis_robot_sw/iis_catkin_ws/src/kukadu/include/kukadu/control/trajectory.hpp" bodystart="160" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classkukadu_1_1TrajectoryExecutor_1a1161760d9e96efeab535bd98366230d7" prot="private" static="no" mutable="no">
+        <type>enum execution_modes</type>
+        <definition>enum execution_modes kukadu::TrajectoryExecutor::executionMode</definition>
+        <argsstring></argsstring>
+        <name>executionMode</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/agyss/iis_robot_sw/iis_catkin_ws/src/kukadu/include/kukadu/control/trajectory.hpp" line="160" column="1" bodyfile="/home/agyss/iis_robot_sw/iis_catkin_ws/src/kukadu/include/kukadu/control/trajectory.hpp" bodystart="161" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classkukadu_1_1TrajectoryExecutor_1ac071749f9bf4c00aa66405faad6d51ae" prot="private" static="no" mutable="no">
+        <type>KUKADU_SHARED_PTR&lt; <ref refid="classkukadu_1_1Trajectory" kindref="compound">Trajectory</ref> &gt;</type>
+        <definition>KUKADU_SHARED_PTR&lt;Trajectory&gt; kukadu::TrajectoryExecutor::trajectory</definition>
+        <argsstring></argsstring>
+        <name>trajectory</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/agyss/iis_robot_sw/iis_catkin_ws/src/kukadu/include/kukadu/control/trajectory.hpp" line="163" column="1" bodyfile="/home/agyss/iis_robot_sw/iis_catkin_ws/src/kukadu/include/kukadu/control/trajectory.hpp" bodystart="163" bodyend="-1"/>
+      </memberdef>
+      </sectiondef>
+      <sectiondef kind="protected-func">
+      <memberdef kind="function" id="classkukadu_1_1TrajectoryExecutor_1a1ece75ed447f4161e15ab1995360db32" prot="protected" static="no" const="no" explicit="no" inline="no" virt="virtual">
+        <type>KUKADU_SHARED_PTR&lt; <ref refid="classkukadu_1_1ControllerResult" kindref="compound">ControllerResult</ref> &gt;</type>
+        <definition>KUKADU_SHARED_PTR&lt; ControllerResult &gt; kukadu::TrajectoryExecutor::executeInternal</definition>
+        <argsstring>()</argsstring>
+        <name>executeInternal</name>
+        <reimplements refid="classkukadu_1_1Controller_1ad32ce108f7ab90d8631e7262239433ac">executeInternal</reimplements>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/agyss/iis_robot_sw/iis_catkin_ws/src/kukadu/include/kukadu/control/trajectory.hpp" line="167" column="1" bodyfile="/home/agyss/iis_robot_sw/iis_catkin_ws/src/kukadu/src/control/trajectory.cpp" bodystart="127" bodyend="139"/>
+      </memberdef>
+      <memberdef kind="function" id="classkukadu_1_1TrajectoryExecutor_1a1b2a048b979663d8ed21a3b5652528a4" prot="protected" static="no" const="no" explicit="no" inline="no" virt="pure-virtual">
+        <type>KUKADU_SHARED_PTR&lt; <ref refid="classkukadu_1_1ControllerResult" kindref="compound">ControllerResult</ref> &gt;</type>
+        <definition>virtual KUKADU_SHARED_PTR&lt;ControllerResult&gt; kukadu::TrajectoryExecutor::executeTrajectory</definition>
+        <argsstring>()=0</argsstring>
+        <name>executeTrajectory</name>
+        <reimplementedby refid="classkukadu_1_1DMPExecutor_1a6f33217d4d3af41fbb58c2d2a394d397">executeTrajectory</reimplementedby>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/agyss/iis_robot_sw/iis_catkin_ws/src/kukadu/include/kukadu/control/trajectory.hpp" line="168" column="1"/>
+      </memberdef>
+      <memberdef kind="function" id="classkukadu_1_1TrajectoryExecutor_1a684f7dda54b842e91f969f8a7385350d" prot="protected" static="no" const="no" explicit="no" inline="no" virt="pure-virtual">
+        <type>KUKADU_SHARED_PTR&lt; <ref refid="classkukadu_1_1ControllerResult" kindref="compound">ControllerResult</ref> &gt;</type>
+        <definition>virtual KUKADU_SHARED_PTR&lt;ControllerResult&gt; kukadu::TrajectoryExecutor::simulateTrajectory</definition>
+        <argsstring>()=0</argsstring>
+        <name>simulateTrajectory</name>
+        <reimplementedby refid="classkukadu_1_1DMPExecutor_1a7e0a8b15b047b3781e3185ceb9922e0e">simulateTrajectory</reimplementedby>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/agyss/iis_robot_sw/iis_catkin_ws/src/kukadu/include/kukadu/control/trajectory.hpp" line="169" column="1"/>
+      </memberdef>
+      </sectiondef>
+      <sectiondef kind="public-func">
+      <memberdef kind="function" id="classkukadu_1_1TrajectoryExecutor_1a267a4d1e82669681b73d7e88d083bece" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type></type>
+        <definition>kukadu::TrajectoryExecutor::TrajectoryExecutor</definition>
+        <argsstring>(StorageSingleton &amp;dbStorage, KUKADU_SHARED_PTR&lt; ControlQueue &gt; usedQueue, KUKADU_SHARED_PTR&lt; Trajectory &gt; trajectory)</argsstring>
+        <name>TrajectoryExecutor</name>
+        <param>
+          <type><ref refid="classkukadu_1_1StorageSingleton" kindref="compound">StorageSingleton</ref> &amp;</type>
+          <declname>dbStorage</declname>
+        </param>
+        <param>
+          <type>KUKADU_SHARED_PTR&lt; <ref refid="classkukadu_1_1ControlQueue" kindref="compound">ControlQueue</ref> &gt;</type>
+          <declname>usedQueue</declname>
+        </param>
+        <param>
+          <type>KUKADU_SHARED_PTR&lt; <ref refid="classkukadu_1_1Trajectory" kindref="compound">Trajectory</ref> &gt;</type>
+          <declname>trajectory</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/agyss/iis_robot_sw/iis_catkin_ws/src/kukadu/include/kukadu/control/trajectory.hpp" line="173" column="1" bodyfile="/home/agyss/iis_robot_sw/iis_catkin_ws/src/kukadu/src/control/trajectory.cpp" bodystart="92" bodyend="97"/>
+      </memberdef>
+      <memberdef kind="function" id="classkukadu_1_1TrajectoryExecutor_1a13be43e9daf3c6ce2b65f1677da1f1ac" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>void kukadu::TrajectoryExecutor::setTEnd</definition>
+        <argsstring>(double tEndInSeconds)</argsstring>
+        <name>setTEnd</name>
+        <param>
+          <type>double</type>
+          <declname>tEndInSeconds</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/agyss/iis_robot_sw/iis_catkin_ws/src/kukadu/include/kukadu/control/trajectory.hpp" line="175" column="1" bodyfile="/home/agyss/iis_robot_sw/iis_catkin_ws/src/kukadu/src/control/trajectory.cpp" bodystart="111" bodyend="113"/>
+      </memberdef>
+      <memberdef kind="function" id="classkukadu_1_1TrajectoryExecutor_1a5f52adf07c8297df76e5d799608c59eb" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>void kukadu::TrajectoryExecutor::setTStart</definition>
+        <argsstring>(double tStartInSeconds)</argsstring>
+        <name>setTStart</name>
+        <param>
+          <type>double</type>
+          <declname>tStartInSeconds</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/agyss/iis_robot_sw/iis_catkin_ws/src/kukadu/include/kukadu/control/trajectory.hpp" line="176" column="1" bodyfile="/home/agyss/iis_robot_sw/iis_catkin_ws/src/kukadu/src/control/trajectory.cpp" bodystart="107" bodyend="109"/>
+      </memberdef>
+      <memberdef kind="function" id="classkukadu_1_1TrajectoryExecutor_1aee812f3907721b1227e2576528ec883c" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>void kukadu::TrajectoryExecutor::setExecutionMode</definition>
+        <argsstring>(enum execution_modes mode)</argsstring>
+        <name>setExecutionMode</name>
+        <param>
+          <type>enum execution_modes</type>
+          <declname>mode</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/agyss/iis_robot_sw/iis_catkin_ws/src/kukadu/include/kukadu/control/trajectory.hpp" line="177" column="1" bodyfile="/home/agyss/iis_robot_sw/iis_catkin_ws/src/kukadu/src/control/trajectory.cpp" bodystart="103" bodyend="105"/>
+      </memberdef>
+      <memberdef kind="function" id="classkukadu_1_1TrajectoryExecutor_1af515075d2bfe6763bfbe2c92ee9feead" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>double</type>
+        <definition>double kukadu::TrajectoryExecutor::getTEnd</definition>
+        <argsstring>()</argsstring>
+        <name>getTEnd</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/agyss/iis_robot_sw/iis_catkin_ws/src/kukadu/include/kukadu/control/trajectory.hpp" line="179" column="1" bodyfile="/home/agyss/iis_robot_sw/iis_catkin_ws/src/kukadu/src/control/trajectory.cpp" bodystart="115" bodyend="117"/>
+      </memberdef>
+      <memberdef kind="function" id="classkukadu_1_1TrajectoryExecutor_1a6ae8cb9b9fbcf660a18f4904bc99f910" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>double</type>
+        <definition>double kukadu::TrajectoryExecutor::getTStart</definition>
+        <argsstring>()</argsstring>
+        <name>getTStart</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/agyss/iis_robot_sw/iis_catkin_ws/src/kukadu/include/kukadu/control/trajectory.hpp" line="180" column="1" bodyfile="/home/agyss/iis_robot_sw/iis_catkin_ws/src/kukadu/src/control/trajectory.cpp" bodystart="119" bodyend="121"/>
+      </memberdef>
+      <memberdef kind="function" id="classkukadu_1_1TrajectoryExecutor_1aca52eb9064bc0ec42f579dc7bf296a40" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>TrajectoryExecutor::execution_modes</type>
+        <definition>TrajectoryExecutor::execution_modes kukadu::TrajectoryExecutor::getExecutionMode</definition>
+        <argsstring>()</argsstring>
+        <name>getExecutionMode</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/agyss/iis_robot_sw/iis_catkin_ws/src/kukadu/include/kukadu/control/trajectory.hpp" line="181" column="1" bodyfile="/home/agyss/iis_robot_sw/iis_catkin_ws/src/kukadu/src/control/trajectory.cpp" bodystart="123" bodyend="125"/>
+      </memberdef>
+      <memberdef kind="function" id="classkukadu_1_1TrajectoryExecutor_1a8e33775469d04f297810254dc2a11ae5" prot="public" static="no" const="no" explicit="no" inline="no" virt="virtual">
+        <type>KUKADU_SHARED_PTR&lt; <ref refid="classkukadu_1_1Trajectory" kindref="compound">Trajectory</ref> &gt;</type>
+        <definition>KUKADU_SHARED_PTR&lt; Trajectory &gt; kukadu::TrajectoryExecutor::getTrajectory</definition>
+        <argsstring>()</argsstring>
+        <name>getTrajectory</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/agyss/iis_robot_sw/iis_catkin_ws/src/kukadu/include/kukadu/control/trajectory.hpp" line="183" column="1" bodyfile="/home/agyss/iis_robot_sw/iis_catkin_ws/src/kukadu/src/control/trajectory.cpp" bodystart="99" bodyend="101"/>
+      </memberdef>
+      <memberdef kind="function" id="classkukadu_1_1TrajectoryExecutor_1ac349c2570306fc32731f34ee05e92741" prot="public" static="no" const="no" explicit="no" inline="no" virt="pure-virtual">
+        <type>void</type>
+        <definition>virtual void kukadu::TrajectoryExecutor::setTrajectory</definition>
+        <argsstring>(KUKADU_SHARED_PTR&lt; Trajectory &gt; traj)=0</argsstring>
+        <name>setTrajectory</name>
+        <reimplementedby refid="classkukadu_1_1DMPExecutor_1a05c30d4373ffdedf10711d66ca7e979e">setTrajectory</reimplementedby>
+        <param>
+          <type>KUKADU_SHARED_PTR&lt; <ref refid="classkukadu_1_1Trajectory" kindref="compound">Trajectory</ref> &gt;</type>
+          <declname>traj</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/agyss/iis_robot_sw/iis_catkin_ws/src/kukadu/include/kukadu/control/trajectory.hpp" line="185" column="1"/>
+      </memberdef>
+      <memberdef kind="function" id="classkukadu_1_1TrajectoryExecutor_1a7466b6793fb5e1467e554f56c6b0fbf4" prot="public" static="no" const="no" explicit="no" inline="yes" virt="virtual">
+        <type>std::string</type>
+        <definition>virtual std::string kukadu::TrajectoryExecutor::getClassName</definition>
+        <argsstring>()</argsstring>
+        <name>getClassName</name>
+        <reimplements refid="classkukadu_1_1Controller_1aaad4258aa03d4f941cdf8e5d9400212b">getClassName</reimplements>
+        <reimplementedby refid="classkukadu_1_1DMPExecutor_1a06c74ebf985d895023e50c857a9e1fb8">getClassName</reimplementedby>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/agyss/iis_robot_sw/iis_catkin_ws/src/kukadu/include/kukadu/control/trajectory.hpp" line="187" column="1" bodyfile="/home/agyss/iis_robot_sw/iis_catkin_ws/src/kukadu/include/kukadu/control/trajectory.hpp" bodystart="187" bodyend="187"/>
+      </memberdef>
+      </sectiondef>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <inheritancegraph>
+      <node id="688">
+        <label>kukadu::TrajectoryExecutor</label>
+        <link refid="classkukadu_1_1TrajectoryExecutor"/>
+        <childnode refid="689" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="690">
+        <label>kukadu::TimedObject</label>
+        <link refid="classkukadu_1_1TimedObject"/>
+      </node>
+      <node id="689">
+        <label>kukadu::Controller</label>
+        <link refid="classkukadu_1_1Controller"/>
+        <childnode refid="690" relation="private-inheritance">
+        </childnode>
+      </node>
+      <node id="691">
+        <label>kukadu::DMPExecutor</label>
+        <link refid="classkukadu_1_1DMPExecutor"/>
+        <childnode refid="688" relation="public-inheritance">
+        </childnode>
+      </node>
+    </inheritancegraph>
+    <collaborationgraph>
+      <node id="692">
+        <label>kukadu::TrajectoryExecutor</label>
+        <link refid="classkukadu_1_1TrajectoryExecutor"/>
+        <childnode refid="693" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="694">
+        <label>kukadu::TimedObject</label>
+        <link refid="classkukadu_1_1TimedObject"/>
+      </node>
+      <node id="693">
+        <label>kukadu::Controller</label>
+        <link refid="classkukadu_1_1Controller"/>
+        <childnode refid="694" relation="private-inheritance">
+        </childnode>
+        <childnode refid="695" relation="usage">
+          <edgelabel>storage</edgelabel>
+        </childnode>
+      </node>
+      <node id="695">
+        <label>kukadu::StorageSingleton</label>
+        <link refid="classkukadu_1_1StorageSingleton"/>
+      </node>
+    </collaborationgraph>
+    <location file="/home/agyss/iis_robot_sw/iis_catkin_ws/src/kukadu/include/kukadu/control/trajectory.hpp" line="151" column="1" bodyfile="/home/agyss/iis_robot_sw/iis_catkin_ws/src/kukadu/include/kukadu/control/trajectory.hpp" bodystart="151" bodyend="189"/>
+    <listofallmembers>
+      <member refid="classkukadu_1_1Controller_1af6f6a6174bbce460a82570b3d1f18f3c" prot="public" virt="non-virtual"><scope>kukadu::TrajectoryExecutor</scope><name>Controller</name></member>
+      <member refid="classkukadu_1_1Controller_1a7925a80f7f1a69302633606ba6a73c34" prot="public" virt="virtual"><scope>kukadu::TrajectoryExecutor</scope><name>createSkillFromThis</name></member>
+      <member refid="classkukadu_1_1Controller_1a83ec6ad1794980392e897edc2916c9ce" prot="protected" virt="pure-virtual"><scope>kukadu::TrajectoryExecutor</scope><name>createSkillFromThisInternal</name></member>
+      <member refid="classkukadu_1_1Controller_1a07b38b6146b380471de2c0e0706e9260" prot="public" virt="virtual"><scope>kukadu::TrajectoryExecutor</scope><name>execute</name></member>
+      <member refid="classkukadu_1_1TrajectoryExecutor_1a93c2342293e3db8552ba5056e0a5d3e4a758b89d1cd01a841191619e34b12cd4c" prot="public" virt="non-virtual"><scope>kukadu::TrajectoryExecutor</scope><name>EXECUTE_ROBOT</name></member>
+      <member refid="classkukadu_1_1TrajectoryExecutor_1a1ece75ed447f4161e15ab1995360db32" prot="protected" virt="virtual"><scope>kukadu::TrajectoryExecutor</scope><name>executeInternal</name></member>
+      <member refid="classkukadu_1_1TrajectoryExecutor_1a1b2a048b979663d8ed21a3b5652528a4" prot="protected" virt="pure-virtual"><scope>kukadu::TrajectoryExecutor</scope><name>executeTrajectory</name></member>
+      <member refid="classkukadu_1_1TrajectoryExecutor_1a93c2342293e3db8552ba5056e0a5d3e4" prot="public" virt="non-virtual"><scope>kukadu::TrajectoryExecutor</scope><name>execution_modes</name></member>
+      <member refid="classkukadu_1_1TrajectoryExecutor_1a1161760d9e96efeab535bd98366230d7" prot="private" virt="non-virtual"><scope>kukadu::TrajectoryExecutor</scope><name>executionMode</name></member>
+      <member refid="classkukadu_1_1Controller_1a253f0cdc788a49d3d7ff325bbdbd2252" prot="protected" virt="virtual"><scope>kukadu::TrajectoryExecutor</scope><name>getAugmentedInfoTableName</name></member>
+      <member refid="classkukadu_1_1Controller_1aae1903e89a3af93030bd85cb6baac366" prot="public" virt="non-virtual"><scope>kukadu::TrajectoryExecutor</scope><name>getCaption</name></member>
+      <member refid="classkukadu_1_1TrajectoryExecutor_1a7466b6793fb5e1467e554f56c6b0fbf4" prot="public" virt="virtual"><scope>kukadu::TrajectoryExecutor</scope><name>getClassName</name></member>
+      <member refid="classkukadu_1_1Controller_1a72d9fb0bcdfd41faf8b1277802df4a1d" prot="public" virt="non-virtual"><scope>kukadu::TrajectoryExecutor</scope><name>getControllerId</name></member>
+      <member refid="classkukadu_1_1TrajectoryExecutor_1aca52eb9064bc0ec42f579dc7bf296a40" prot="public" virt="non-virtual"><scope>kukadu::TrajectoryExecutor</scope><name>getExecutionMode</name></member>
+      <member refid="classkukadu_1_1Controller_1a6a78436c180e48afbf6887fcd07d3173" prot="public" virt="non-virtual"><scope>kukadu::TrajectoryExecutor</scope><name>getIsSkill</name></member>
+      <member refid="classkukadu_1_1Controller_1aeb403995b4bfc9f279594ff339027cbf" prot="public" virt="virtual"><scope>kukadu::TrajectoryExecutor</scope><name>getLastSkillExecutionSuccessful</name></member>
+      <member refid="classkukadu_1_1Controller_1a97ffde82f967a920ddc5efb1c5700b2a" prot="public" virt="non-virtual"><scope>kukadu::TrajectoryExecutor</scope><name>getSimFailingProb</name></member>
+      <member refid="classkukadu_1_1Controller_1a868b762c6bf33afe14c27dd12806972d" prot="public" virt="virtual"><scope>kukadu::TrajectoryExecutor</scope><name>getSimulationMode</name></member>
+      <member refid="classkukadu_1_1TrajectoryExecutor_1af515075d2bfe6763bfbe2c92ee9feead" prot="public" virt="non-virtual"><scope>kukadu::TrajectoryExecutor</scope><name>getTEnd</name></member>
+      <member refid="classkukadu_1_1TrajectoryExecutor_1a8e33775469d04f297810254dc2a11ae5" prot="public" virt="virtual"><scope>kukadu::TrajectoryExecutor</scope><name>getTrajectory</name></member>
+      <member refid="classkukadu_1_1TrajectoryExecutor_1a6ae8cb9b9fbcf660a18f4904bc99f910" prot="public" virt="non-virtual"><scope>kukadu::TrajectoryExecutor</scope><name>getTStart</name></member>
+      <member refid="classkukadu_1_1Controller_1a1dbcbec07e0189e26275f1db57f4baf3" prot="public" virt="virtual"><scope>kukadu::TrajectoryExecutor</scope><name>getUsedHardware</name></member>
+      <member refid="classkukadu_1_1Controller_1a74a2a16a16104b1bf16ad5eae443e968" prot="public" virt="virtual"><scope>kukadu::TrajectoryExecutor</scope><name>initialize</name></member>
+      <member refid="classkukadu_1_1Controller_1a57e89bfd0fdf2fd1c9991dce2a0a9196" prot="protected" virt="virtual"><scope>kukadu::TrajectoryExecutor</scope><name>installDb</name></member>
+      <member refid="classkukadu_1_1Controller_1a8ae66f58c5dcd2e548e933b3d1bf395e" prot="protected" virt="non-virtual"><scope>kukadu::TrajectoryExecutor</scope><name>isControllerInstalled</name></member>
+      <member refid="classkukadu_1_1Controller_1abeb3dd890d6f8d50306b1b8f9d6b5512" prot="protected" virt="non-virtual"><scope>kukadu::TrajectoryExecutor</scope><name>isShutUp</name></member>
+      <member refid="classkukadu_1_1Controller_1a12aafcec427d197314434f04f5ae438c" prot="public" virt="virtual"><scope>kukadu::TrajectoryExecutor</scope><name>prepare</name></member>
+      <member refid="classkukadu_1_1Controller_1ad28145aa06ce1cfe4bccddff42459019" prot="public" virt="virtual"><scope>kukadu::TrajectoryExecutor</scope><name>producesGrasp</name></member>
+      <member refid="classkukadu_1_1Controller_1a5566a7cf711318f1bf4dcd939ba7fe76" prot="protected" virt="pure-virtual"><scope>kukadu::TrajectoryExecutor</scope><name>producesGraspInternal</name></member>
+      <member refid="classkukadu_1_1Controller_1a20240ff89fb6a2582024140d388fd335" prot="public" virt="virtual"><scope>kukadu::TrajectoryExecutor</scope><name>requiresGrasp</name></member>
+      <member refid="classkukadu_1_1Controller_1ae67659a3a55cef09b2a5575107d88145" prot="protected" virt="pure-virtual"><scope>kukadu::TrajectoryExecutor</scope><name>requiresGraspInternal</name></member>
+      <member refid="classkukadu_1_1TrajectoryExecutor_1aee812f3907721b1227e2576528ec883c" prot="public" virt="non-virtual"><scope>kukadu::TrajectoryExecutor</scope><name>setExecutionMode</name></member>
+      <member refid="classkukadu_1_1Controller_1a888ebe1be866cb19e4c8f50eaded5bb9" prot="public" virt="virtual"><scope>kukadu::TrajectoryExecutor</scope><name>setSimulationMode</name></member>
+      <member refid="classkukadu_1_1Controller_1a07c70a71d6028cb711567d55e2010430" prot="protected" virt="virtual"><scope>kukadu::TrajectoryExecutor</scope><name>setSimulationModeInChain</name></member>
+      <member refid="classkukadu_1_1TrajectoryExecutor_1a13be43e9daf3c6ce2b65f1677da1f1ac" prot="public" virt="non-virtual"><scope>kukadu::TrajectoryExecutor</scope><name>setTEnd</name></member>
+      <member refid="classkukadu_1_1TrajectoryExecutor_1ac349c2570306fc32731f34ee05e92741" prot="public" virt="pure-virtual"><scope>kukadu::TrajectoryExecutor</scope><name>setTrajectory</name></member>
+      <member refid="classkukadu_1_1TrajectoryExecutor_1a5f52adf07c8297df76e5d799608c59eb" prot="public" virt="non-virtual"><scope>kukadu::TrajectoryExecutor</scope><name>setTStart</name></member>
+      <member refid="classkukadu_1_1Controller_1aa27eb73a93a2d59bc0ebe15baf28bea0" prot="public" virt="non-virtual"><scope>kukadu::TrajectoryExecutor</scope><name>shutUp</name></member>
+      <member refid="classkukadu_1_1TrajectoryExecutor_1a93c2342293e3db8552ba5056e0a5d3e4aa5aec9d1eeb1101a769083bd5581d2b3" prot="public" virt="non-virtual"><scope>kukadu::TrajectoryExecutor</scope><name>SIMULATE_ROBOT</name></member>
+      <member refid="classkukadu_1_1TrajectoryExecutor_1a684f7dda54b842e91f969f8a7385350d" prot="protected" virt="pure-virtual"><scope>kukadu::TrajectoryExecutor</scope><name>simulateTrajectory</name></member>
+      <member refid="classkukadu_1_1Controller_1a1973596dea74a0706e275f044ca190b0" prot="public" virt="non-virtual"><scope>kukadu::TrajectoryExecutor</scope><name>startTalking</name></member>
+      <member refid="classkukadu_1_1Controller_1a15f9c5940d6584ccea9832de54525f27" prot="protected" virt="non-virtual"><scope>kukadu::TrajectoryExecutor</scope><name>storage</name></member>
+      <member refid="classkukadu_1_1TrajectoryExecutor_1a57be314975ad8ae5e35b22e74ff0cdd0" prot="private" virt="non-virtual"><scope>kukadu::TrajectoryExecutor</scope><name>tEnd</name></member>
+      <member refid="classkukadu_1_1TrajectoryExecutor_1ac071749f9bf4c00aa66405faad6d51ae" prot="private" virt="non-virtual"><scope>kukadu::TrajectoryExecutor</scope><name>trajectory</name></member>
+      <member refid="classkukadu_1_1TrajectoryExecutor_1a267a4d1e82669681b73d7e88d083bece" prot="public" virt="non-virtual"><scope>kukadu::TrajectoryExecutor</scope><name>TrajectoryExecutor</name></member>
+      <member refid="classkukadu_1_1TrajectoryExecutor_1a9e6221737dea2336fa649b5f5462de32" prot="private" virt="non-virtual"><scope>kukadu::TrajectoryExecutor</scope><name>tStart</name></member>
+    </listofallmembers>
+  </compounddef>
+</doxygen>

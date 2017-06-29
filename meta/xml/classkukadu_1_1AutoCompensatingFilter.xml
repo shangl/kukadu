@@ -1,0 +1,635 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.8.11">
+  <compounddef id="classkukadu_1_1AutoCompensatingFilter" kind="class" language="C++" prot="public">
+    <compoundname>kukadu::AutoCompensatingFilter</compoundname>
+    <basecompoundref refid="classkukadu_1_1FrcTrqSensorFilter" prot="public" virt="non-virtual">kukadu::FrcTrqSensorFilter</basecompoundref>
+      <sectiondef kind="private-static-attrib">
+      <memberdef kind="variable" id="classkukadu_1_1AutoCompensatingFilter_1a1b1d08ed7d7db4d8db4b8f88cf8167dc" prot="private" static="yes" mutable="no">
+        <type>auto constexpr</type>
+        <definition>auto constexpr kukadu::AutoCompensatingFilter::SENSOR_MISS_ALIGNMENT_COMPARED_TO_END_EFFECTOR</definition>
+        <argsstring></argsstring>
+        <name>SENSOR_MISS_ALIGNMENT_COMPARED_TO_END_EFFECTOR</name>
+        <initializer>= -2.27</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/agyss/iis_robot_sw/iis_catkin_ws/src/kukadu/include/kukadu/robot/autocompfilter.hpp" line="14" column="1" bodyfile="/home/agyss/iis_robot_sw/iis_catkin_ws/src/kukadu/include/kukadu/robot/autocompfilter.hpp" bodystart="14" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classkukadu_1_1AutoCompensatingFilter_1a52a97296d1c91a33fc56ee001e4cd556" prot="private" static="yes" mutable="no">
+        <type>auto constexpr</type>
+        <definition>auto constexpr kukadu::AutoCompensatingFilter::FORCE_MIN_LIMIT</definition>
+        <argsstring></argsstring>
+        <name>FORCE_MIN_LIMIT</name>
+        <initializer>= 0.3</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/agyss/iis_robot_sw/iis_catkin_ws/src/kukadu/include/kukadu/robot/autocompfilter.hpp" line="16" column="1" bodyfile="/home/agyss/iis_robot_sw/iis_catkin_ws/src/kukadu/include/kukadu/robot/autocompfilter.hpp" bodystart="16" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classkukadu_1_1AutoCompensatingFilter_1a60a31abe113131fd6a786c24d66879bf" prot="private" static="yes" mutable="no">
+        <type>auto constexpr</type>
+        <definition>auto constexpr kukadu::AutoCompensatingFilter::TORQUE_MIN_LIMIT</definition>
+        <argsstring></argsstring>
+        <name>TORQUE_MIN_LIMIT</name>
+        <initializer>= 0.02</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/agyss/iis_robot_sw/iis_catkin_ws/src/kukadu/include/kukadu/robot/autocompfilter.hpp" line="17" column="1" bodyfile="/home/agyss/iis_robot_sw/iis_catkin_ws/src/kukadu/include/kukadu/robot/autocompfilter.hpp" bodystart="17" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classkukadu_1_1AutoCompensatingFilter_1a57a8845345e34216db52668782fe2ff8" prot="private" static="yes" mutable="no">
+        <type>auto constexpr</type>
+        <definition>auto constexpr kukadu::AutoCompensatingFilter::MIN_THRESHOLD</definition>
+        <argsstring></argsstring>
+        <name>MIN_THRESHOLD</name>
+        <initializer>= 0.1</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/agyss/iis_robot_sw/iis_catkin_ws/src/kukadu/include/kukadu/robot/autocompfilter.hpp" line="19" column="1" bodyfile="/home/agyss/iis_robot_sw/iis_catkin_ws/src/kukadu/include/kukadu/robot/autocompfilter.hpp" bodystart="19" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classkukadu_1_1AutoCompensatingFilter_1a637c831ae2522675dcac38759209c399" prot="private" static="yes" mutable="no">
+        <type>auto constexpr</type>
+        <definition>auto constexpr kukadu::AutoCompensatingFilter::SMOOTHING</definition>
+        <argsstring></argsstring>
+        <name>SMOOTHING</name>
+        <initializer>= 0.9</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/agyss/iis_robot_sw/iis_catkin_ws/src/kukadu/include/kukadu/robot/autocompfilter.hpp" line="21" column="1" bodyfile="/home/agyss/iis_robot_sw/iis_catkin_ws/src/kukadu/include/kukadu/robot/autocompfilter.hpp" bodystart="21" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classkukadu_1_1AutoCompensatingFilter_1a1b6af78a75300de1a5aae0a2334f262e" prot="private" static="yes" mutable="no">
+        <type>auto constexpr</type>
+        <definition>auto constexpr kukadu::AutoCompensatingFilter::DC_FILTER1</definition>
+        <argsstring></argsstring>
+        <name>DC_FILTER1</name>
+        <initializer>= 0.99999</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/agyss/iis_robot_sw/iis_catkin_ws/src/kukadu/include/kukadu/robot/autocompfilter.hpp" line="22" column="1" bodyfile="/home/agyss/iis_robot_sw/iis_catkin_ws/src/kukadu/include/kukadu/robot/autocompfilter.hpp" bodystart="22" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classkukadu_1_1AutoCompensatingFilter_1ab8ea57ba2e2e7381e53e00b170a88158" prot="private" static="yes" mutable="no">
+        <type>auto constexpr</type>
+        <definition>auto constexpr kukadu::AutoCompensatingFilter::DC_FILTER2</definition>
+        <argsstring></argsstring>
+        <name>DC_FILTER2</name>
+        <initializer>= 0.99999</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/agyss/iis_robot_sw/iis_catkin_ws/src/kukadu/include/kukadu/robot/autocompfilter.hpp" line="23" column="1" bodyfile="/home/agyss/iis_robot_sw/iis_catkin_ws/src/kukadu/include/kukadu/robot/autocompfilter.hpp" bodystart="23" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classkukadu_1_1AutoCompensatingFilter_1a68633287b6d9041ee9b22688fada0462" prot="private" static="yes" mutable="no">
+        <type>auto constexpr</type>
+        <definition>auto constexpr kukadu::AutoCompensatingFilter::FORGET_SHRINK</definition>
+        <argsstring></argsstring>
+        <name>FORGET_SHRINK</name>
+        <initializer>= 0.99</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/agyss/iis_robot_sw/iis_catkin_ws/src/kukadu/include/kukadu/robot/autocompfilter.hpp" line="25" column="1" bodyfile="/home/agyss/iis_robot_sw/iis_catkin_ws/src/kukadu/include/kukadu/robot/autocompfilter.hpp" bodystart="25" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classkukadu_1_1AutoCompensatingFilter_1a06c55a4f58b44776ab0f5d9b9651f8e1" prot="private" static="yes" mutable="no">
+        <type>auto constexpr</type>
+        <definition>auto constexpr kukadu::AutoCompensatingFilter::FORGET_EXPAND</definition>
+        <argsstring></argsstring>
+        <name>FORGET_EXPAND</name>
+        <initializer>= 0.05</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/agyss/iis_robot_sw/iis_catkin_ws/src/kukadu/include/kukadu/robot/autocompfilter.hpp" line="26" column="1" bodyfile="/home/agyss/iis_robot_sw/iis_catkin_ws/src/kukadu/include/kukadu/robot/autocompfilter.hpp" bodystart="26" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classkukadu_1_1AutoCompensatingFilter_1a93aae29ac8bef8344b5cb8910dc794fc" prot="private" static="yes" mutable="no">
+        <type>auto constexpr</type>
+        <definition>auto constexpr kukadu::AutoCompensatingFilter::ACCEPTANCE_INTERVAL</definition>
+        <argsstring></argsstring>
+        <name>ACCEPTANCE_INTERVAL</name>
+        <initializer>= 0.90</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/agyss/iis_robot_sw/iis_catkin_ws/src/kukadu/include/kukadu/robot/autocompfilter.hpp" line="27" column="1" bodyfile="/home/agyss/iis_robot_sw/iis_catkin_ws/src/kukadu/include/kukadu/robot/autocompfilter.hpp" bodystart="27" bodyend="-1"/>
+      </memberdef>
+      </sectiondef>
+      <sectiondef kind="private-attrib">
+      <memberdef kind="variable" id="classkukadu_1_1AutoCompensatingFilter_1adf1b3eb70f09c9e8086c8ac6750ef18e" prot="private" static="no" mutable="no">
+        <type>bool</type>
+        <definition>bool kukadu::AutoCompensatingFilter::firstReading</definition>
+        <argsstring></argsstring>
+        <name>firstReading</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/agyss/iis_robot_sw/iis_catkin_ws/src/kukadu/include/kukadu/robot/autocompfilter.hpp" line="45" column="1" bodyfile="/home/agyss/iis_robot_sw/iis_catkin_ws/src/kukadu/include/kukadu/robot/autocompfilter.hpp" bodystart="45" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classkukadu_1_1AutoCompensatingFilter_1a4e0ab1ce7bd6fe1050ed2bb793bf255d" prot="private" static="no" mutable="no">
+        <type>int</type>
+        <definition>int kukadu::AutoCompensatingFilter::cnt</definition>
+        <argsstring></argsstring>
+        <name>cnt</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/agyss/iis_robot_sw/iis_catkin_ws/src/kukadu/include/kukadu/robot/autocompfilter.hpp" line="47" column="1" bodyfile="/home/agyss/iis_robot_sw/iis_catkin_ws/src/kukadu/include/kukadu/robot/autocompfilter.hpp" bodystart="47" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classkukadu_1_1AutoCompensatingFilter_1aebcd9094fe11cad22bd44d423e333fc7" prot="private" static="no" mutable="no">
+        <type>double</type>
+        <definition>double kukadu::AutoCompensatingFilter::currentTime</definition>
+        <argsstring></argsstring>
+        <name>currentTime</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/agyss/iis_robot_sw/iis_catkin_ws/src/kukadu/include/kukadu/robot/autocompfilter.hpp" line="48" column="1" bodyfile="/home/agyss/iis_robot_sw/iis_catkin_ws/src/kukadu/include/kukadu/robot/autocompfilter.hpp" bodystart="48" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classkukadu_1_1AutoCompensatingFilter_1aab9d03c5a1ba0987d0c983cf74f20bd7" prot="private" static="no" mutable="no">
+        <type>kukadu_mutex</type>
+        <definition>kukadu_mutex kukadu::AutoCompensatingFilter::readingMutex</definition>
+        <argsstring></argsstring>
+        <name>readingMutex</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/agyss/iis_robot_sw/iis_catkin_ws/src/kukadu/include/kukadu/robot/autocompfilter.hpp" line="49" column="1" bodyfile="/home/agyss/iis_robot_sw/iis_catkin_ws/src/kukadu/include/kukadu/robot/autocompfilter.hpp" bodystart="49" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classkukadu_1_1AutoCompensatingFilter_1ae8f9db72de509da6bbaea9e69507a10c" prot="private" static="no" mutable="no">
+        <type>KUKADU_SHARED_PTR&lt; <ref refid="classkukadu_1_1ControlQueue" kindref="compound">kukadu::ControlQueue</ref> &gt;</type>
+        <definition>KUKADU_SHARED_PTR&lt;kukadu::ControlQueue&gt; kukadu::AutoCompensatingFilter::robotinoQueue</definition>
+        <argsstring></argsstring>
+        <name>robotinoQueue</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/agyss/iis_robot_sw/iis_catkin_ws/src/kukadu/include/kukadu/robot/autocompfilter.hpp" line="51" column="1" bodyfile="/home/agyss/iis_robot_sw/iis_catkin_ws/src/kukadu/include/kukadu/robot/autocompfilter.hpp" bodystart="51" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classkukadu_1_1AutoCompensatingFilter_1ae08ac0efd1af944df6499c511ccc2470" prot="private" static="no" mutable="no">
+        <type>KUKADU_SHARED_PTR&lt; <ref refid="classkukadu_1_1Kinematics" kindref="compound">kukadu::Kinematics</ref> &gt;</type>
+        <definition>KUKADU_SHARED_PTR&lt;kukadu::Kinematics&gt; kukadu::AutoCompensatingFilter::mvKin</definition>
+        <argsstring></argsstring>
+        <name>mvKin</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/agyss/iis_robot_sw/iis_catkin_ws/src/kukadu/include/kukadu/robot/autocompfilter.hpp" line="52" column="1" bodyfile="/home/agyss/iis_robot_sw/iis_catkin_ws/src/kukadu/include/kukadu/robot/autocompfilter.hpp" bodystart="52" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classkukadu_1_1AutoCompensatingFilter_1a737a2f023652659ce04d60828a35142e" prot="private" static="no" mutable="no">
+        <type>std::vector&lt; std::vector&lt; double &gt; &gt;</type>
+        <definition>std::vector&lt;std::vector&lt;double&gt; &gt; kukadu::AutoCompensatingFilter::newDataSet</definition>
+        <argsstring></argsstring>
+        <name>newDataSet</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/agyss/iis_robot_sw/iis_catkin_ws/src/kukadu/include/kukadu/robot/autocompfilter.hpp" line="54" column="1" bodyfile="/home/agyss/iis_robot_sw/iis_catkin_ws/src/kukadu/include/kukadu/robot/autocompfilter.hpp" bodystart="54" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classkukadu_1_1AutoCompensatingFilter_1a57c706a692d87098b85804e5c7422093" prot="private" static="no" mutable="no">
+        <type>std::vector&lt; double &gt;</type>
+        <definition>std::vector&lt;double&gt; kukadu::AutoCompensatingFilter::processedFilterReadings</definition>
+        <argsstring></argsstring>
+        <name>processedFilterReadings</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/agyss/iis_robot_sw/iis_catkin_ws/src/kukadu/include/kukadu/robot/autocompfilter.hpp" line="55" column="1" bodyfile="/home/agyss/iis_robot_sw/iis_catkin_ws/src/kukadu/include/kukadu/robot/autocompfilter.hpp" bodystart="55" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classkukadu_1_1AutoCompensatingFilter_1a2dba73713fcdabe8631c693385a656f3" prot="private" static="no" mutable="no">
+        <type>std::vector&lt; double &gt;</type>
+        <definition>std::vector&lt;double&gt; kukadu::AutoCompensatingFilter::smoothingFilterMemory</definition>
+        <argsstring></argsstring>
+        <name>smoothingFilterMemory</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/agyss/iis_robot_sw/iis_catkin_ws/src/kukadu/include/kukadu/robot/autocompfilter.hpp" line="56" column="1" bodyfile="/home/agyss/iis_robot_sw/iis_catkin_ws/src/kukadu/include/kukadu/robot/autocompfilter.hpp" bodystart="56" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classkukadu_1_1AutoCompensatingFilter_1ac00421483a158c146c44238e5886e4bc" prot="private" static="no" mutable="no">
+        <type>std::vector&lt; double &gt;</type>
+        <definition>std::vector&lt;double&gt; kukadu::AutoCompensatingFilter::DCFilter1Memory</definition>
+        <argsstring></argsstring>
+        <name>DCFilter1Memory</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/agyss/iis_robot_sw/iis_catkin_ws/src/kukadu/include/kukadu/robot/autocompfilter.hpp" line="57" column="1" bodyfile="/home/agyss/iis_robot_sw/iis_catkin_ws/src/kukadu/include/kukadu/robot/autocompfilter.hpp" bodystart="57" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classkukadu_1_1AutoCompensatingFilter_1a7dc0d2a3fb9c726d3ee09a136e09bf67" prot="private" static="no" mutable="no">
+        <type>std::vector&lt; double &gt;</type>
+        <definition>std::vector&lt;double&gt; kukadu::AutoCompensatingFilter::DCFilter2Memory</definition>
+        <argsstring></argsstring>
+        <name>DCFilter2Memory</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/agyss/iis_robot_sw/iis_catkin_ws/src/kukadu/include/kukadu/robot/autocompfilter.hpp" line="58" column="1" bodyfile="/home/agyss/iis_robot_sw/iis_catkin_ws/src/kukadu/include/kukadu/robot/autocompfilter.hpp" bodystart="58" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classkukadu_1_1AutoCompensatingFilter_1a4baa83ac4a5dc758d9a5ce0b1cdb0b6b" prot="private" static="no" mutable="no">
+        <type>std::vector&lt; std::pair&lt; double, double &gt; &gt;</type>
+        <definition>std::vector&lt;std::pair&lt;double,double&gt; &gt; kukadu::AutoCompensatingFilter::limitsFilterMemory</definition>
+        <argsstring></argsstring>
+        <name>limitsFilterMemory</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/agyss/iis_robot_sw/iis_catkin_ws/src/kukadu/include/kukadu/robot/autocompfilter.hpp" line="59" column="1" bodyfile="/home/agyss/iis_robot_sw/iis_catkin_ws/src/kukadu/include/kukadu/robot/autocompfilter.hpp" bodystart="59" bodyend="-1"/>
+      </memberdef>
+      </sectiondef>
+      <sectiondef kind="private-func">
+      <memberdef kind="function" id="classkukadu_1_1AutoCompensatingFilter_1a7e2bbc9af75cc809b8c7cf96616a259a" prot="private" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>int</type>
+        <definition>int kukadu::AutoCompensatingFilter::sign</definition>
+        <argsstring>(double x)</argsstring>
+        <name>sign</name>
+        <param>
+          <type>double</type>
+          <declname>x</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/agyss/iis_robot_sw/iis_catkin_ws/src/kukadu/include/kukadu/robot/autocompfilter.hpp" line="61" column="1" bodyfile="/home/agyss/iis_robot_sw/iis_catkin_ws/src/kukadu/src/robot/filters.cpp" bodystart="160" bodyend="162"/>
+      </memberdef>
+      <memberdef kind="function" id="classkukadu_1_1AutoCompensatingFilter_1a7b2da29b5bb84a29b68871daccef6e9b" prot="private" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>void kukadu::AutoCompensatingFilter::lowpassFilter</definition>
+        <argsstring>(std::vector&lt; double &gt; &amp;filter, std::vector&lt; double &gt; newVal, double forgettingFactor)</argsstring>
+        <name>lowpassFilter</name>
+        <param>
+          <type>std::vector&lt; double &gt; &amp;</type>
+          <declname>filter</declname>
+        </param>
+        <param>
+          <type>std::vector&lt; double &gt;</type>
+          <declname>newVal</declname>
+        </param>
+        <param>
+          <type>double</type>
+          <declname>forgettingFactor</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/agyss/iis_robot_sw/iis_catkin_ws/src/kukadu/include/kukadu/robot/autocompfilter.hpp" line="62" column="1" bodyfile="/home/agyss/iis_robot_sw/iis_catkin_ws/src/kukadu/src/robot/filters.cpp" bodystart="164" bodyend="167"/>
+      </memberdef>
+      <memberdef kind="function" id="classkukadu_1_1AutoCompensatingFilter_1a1fc2b33a883bcb6c95894debafbdcc32" prot="private" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>void kukadu::AutoCompensatingFilter::limitsFilter</definition>
+        <argsstring>(std::vector&lt; std::pair&lt; double, double &gt; &gt; &amp;filter, std::vector&lt; std::vector&lt; double &gt; &gt; newDataSet, double forgettingFactorShrink, double forgettingFactorExpand, double percentageWithinLimits)</argsstring>
+        <name>limitsFilter</name>
+        <param>
+          <type>std::vector&lt; std::pair&lt; double, double &gt; &gt; &amp;</type>
+          <declname>filter</declname>
+        </param>
+        <param>
+          <type>std::vector&lt; std::vector&lt; double &gt; &gt;</type>
+          <declname>newDataSet</declname>
+        </param>
+        <param>
+          <type>double</type>
+          <declname>forgettingFactorShrink</declname>
+        </param>
+        <param>
+          <type>double</type>
+          <declname>forgettingFactorExpand</declname>
+        </param>
+        <param>
+          <type>double</type>
+          <declname>percentageWithinLimits</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/agyss/iis_robot_sw/iis_catkin_ws/src/kukadu/include/kukadu/robot/autocompfilter.hpp" line="63" column="1" bodyfile="/home/agyss/iis_robot_sw/iis_catkin_ws/src/kukadu/src/robot/filters.cpp" bodystart="169" bodyend="182"/>
+      </memberdef>
+      <memberdef kind="function" id="classkukadu_1_1AutoCompensatingFilter_1ab40935424608b03d90dcf3a6a77b3b0d" prot="private" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>std::vector&lt; double &gt;</type>
+        <definition>std::vector&lt; double &gt; kukadu::AutoCompensatingFilter::removeBias</definition>
+        <argsstring>(std::vector&lt; double &gt; values, std::vector&lt; double &gt; bias)</argsstring>
+        <name>removeBias</name>
+        <param>
+          <type>std::vector&lt; double &gt;</type>
+          <declname>values</declname>
+        </param>
+        <param>
+          <type>std::vector&lt; double &gt;</type>
+          <declname>bias</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/agyss/iis_robot_sw/iis_catkin_ws/src/kukadu/include/kukadu/robot/autocompfilter.hpp" line="64" column="1" bodyfile="/home/agyss/iis_robot_sw/iis_catkin_ws/src/kukadu/src/robot/filters.cpp" bodystart="152" bodyend="158"/>
+      </memberdef>
+      <memberdef kind="function" id="classkukadu_1_1AutoCompensatingFilter_1aa94498d8bdb3d3bfc41b007b89c6db13" prot="private" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>std::vector&lt; double &gt;</type>
+        <definition>std::vector&lt; double &gt; kukadu::AutoCompensatingFilter::scaleReadings</definition>
+        <argsstring>(std::vector&lt; double &gt; msg, bool coupleLimits=false)</argsstring>
+        <name>scaleReadings</name>
+        <param>
+          <type>std::vector&lt; double &gt;</type>
+          <declname>msg</declname>
+        </param>
+        <param>
+          <type>bool</type>
+          <declname>coupleLimits</declname>
+          <defval>false</defval>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/agyss/iis_robot_sw/iis_catkin_ws/src/kukadu/include/kukadu/robot/autocompfilter.hpp" line="65" column="1" bodyfile="/home/agyss/iis_robot_sw/iis_catkin_ws/src/kukadu/src/robot/filters.cpp" bodystart="116" bodyend="141"/>
+      </memberdef>
+      <memberdef kind="function" id="classkukadu_1_1AutoCompensatingFilter_1aa90c8017031a64d900f5a1271e13fcc8" prot="private" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>std::vector&lt; double &gt;</type>
+        <definition>std::vector&lt; double &gt; kukadu::AutoCompensatingFilter::limitandThresholdReadings</definition>
+        <argsstring>(std::vector&lt; double &gt; msg)</argsstring>
+        <name>limitandThresholdReadings</name>
+        <param>
+          <type>std::vector&lt; double &gt;</type>
+          <declname>msg</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/agyss/iis_robot_sw/iis_catkin_ws/src/kukadu/include/kukadu/robot/autocompfilter.hpp" line="66" column="1" bodyfile="/home/agyss/iis_robot_sw/iis_catkin_ws/src/kukadu/src/robot/filters.cpp" bodystart="143" bodyend="150"/>
+      </memberdef>
+      <memberdef kind="function" id="classkukadu_1_1AutoCompensatingFilter_1ae97e573a19cb04b3977ee2ec75d105e9" prot="private" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>std::vector&lt; double &gt;</type>
+        <definition>vector&lt; double &gt; kukadu::AutoCompensatingFilter::projectVectors</definition>
+        <argsstring>(double vecX, double vecY, double vecZ, double alpha, double beta, double gamma)</argsstring>
+        <name>projectVectors</name>
+        <param>
+          <type>double</type>
+          <declname>vecX</declname>
+        </param>
+        <param>
+          <type>double</type>
+          <declname>vecY</declname>
+        </param>
+        <param>
+          <type>double</type>
+          <declname>vecZ</declname>
+        </param>
+        <param>
+          <type>double</type>
+          <declname>alpha</declname>
+        </param>
+        <param>
+          <type>double</type>
+          <declname>beta</declname>
+        </param>
+        <param>
+          <type>double</type>
+          <declname>gamma</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/agyss/iis_robot_sw/iis_catkin_ws/src/kukadu/include/kukadu/robot/autocompfilter.hpp" line="67" column="1" bodyfile="/home/agyss/iis_robot_sw/iis_catkin_ws/src/kukadu/src/robot/filters.cpp" bodystart="204" bodyend="216"/>
+      </memberdef>
+      <memberdef kind="function" id="classkukadu_1_1AutoCompensatingFilter_1a8f8fb996a2a8f3d04c70cbd12bbfdf4e" prot="private" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>std::vector&lt; double &gt;</type>
+        <definition>std::vector&lt; double &gt; kukadu::AutoCompensatingFilter::projectReadings</definition>
+        <argsstring>(std::vector&lt; double &gt; readings, geometry_msgs::Pose currentPose)</argsstring>
+        <name>projectReadings</name>
+        <param>
+          <type>std::vector&lt; double &gt;</type>
+          <declname>readings</declname>
+        </param>
+        <param>
+          <type>geometry_msgs::Pose</type>
+          <declname>currentPose</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/agyss/iis_robot_sw/iis_catkin_ws/src/kukadu/include/kukadu/robot/autocompfilter.hpp" line="68" column="1" bodyfile="/home/agyss/iis_robot_sw/iis_catkin_ws/src/kukadu/src/robot/filters.cpp" bodystart="184" bodyend="202"/>
+      </memberdef>
+      </sectiondef>
+      <sectiondef kind="public-func">
+      <memberdef kind="function" id="classkukadu_1_1AutoCompensatingFilter_1a01768f4abbd6ff474ed71307bfd95aa9" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type></type>
+        <definition>kukadu::AutoCompensatingFilter::AutoCompensatingFilter</definition>
+        <argsstring>(KUKADU_SHARED_PTR&lt; kukadu::ControlQueue &gt; myQueue, KUKADU_SHARED_PTR&lt; kukadu::Kinematics &gt; myKin)</argsstring>
+        <name>AutoCompensatingFilter</name>
+        <param>
+          <type>KUKADU_SHARED_PTR&lt; <ref refid="classkukadu_1_1ControlQueue" kindref="compound">kukadu::ControlQueue</ref> &gt;</type>
+          <declname>myQueue</declname>
+        </param>
+        <param>
+          <type>KUKADU_SHARED_PTR&lt; <ref refid="classkukadu_1_1Kinematics" kindref="compound">kukadu::Kinematics</ref> &gt;</type>
+          <declname>myKin</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/agyss/iis_robot_sw/iis_catkin_ws/src/kukadu/include/kukadu/robot/autocompfilter.hpp" line="72" column="1" bodyfile="/home/agyss/iis_robot_sw/iis_catkin_ws/src/kukadu/src/robot/filters.cpp" bodystart="22" bodyend="40"/>
+      </memberdef>
+      <memberdef kind="function" id="classkukadu_1_1AutoCompensatingFilter_1a50faa83aaf46c6c66367c235b2722ae1" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>void kukadu::AutoCompensatingFilter::printFilteredSensorVal</definition>
+        <argsstring>()</argsstring>
+        <name>printFilteredSensorVal</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/agyss/iis_robot_sw/iis_catkin_ws/src/kukadu/include/kukadu/robot/autocompfilter.hpp" line="74" column="1" bodyfile="/home/agyss/iis_robot_sw/iis_catkin_ws/src/kukadu/src/robot/filters.cpp" bodystart="105" bodyend="114"/>
+      </memberdef>
+      <memberdef kind="function" id="classkukadu_1_1AutoCompensatingFilter_1a24bd8990108581f5e3e94561b3d6626a" prot="public" static="no" const="no" explicit="no" inline="no" virt="virtual">
+        <type>void</type>
+        <definition>void kukadu::AutoCompensatingFilter::updateFilter</definition>
+        <argsstring>(mes_result newReadings)</argsstring>
+        <name>updateFilter</name>
+        <reimplements refid="classkukadu_1_1FrcTrqSensorFilter_1a55b3ece9d9397c8faa9e0314ad330d5c">updateFilter</reimplements>
+        <param>
+          <type><ref refid="structmes__result" kindref="compound">mes_result</ref></type>
+          <declname>newReadings</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/agyss/iis_robot_sw/iis_catkin_ws/src/kukadu/include/kukadu/robot/autocompfilter.hpp" line="75" column="1" bodyfile="/home/agyss/iis_robot_sw/iis_catkin_ws/src/kukadu/src/robot/filters.cpp" bodystart="42" bodyend="86"/>
+      </memberdef>
+      <memberdef kind="function" id="classkukadu_1_1AutoCompensatingFilter_1a0597e9f433ef9cf564820018dc2e4f33" prot="public" static="no" const="no" explicit="no" inline="no" virt="virtual">
+        <type><ref refid="structmes__result" kindref="compound">mes_result</ref></type>
+        <definition>mes_result kukadu::AutoCompensatingFilter::getProcessedReading</definition>
+        <argsstring>()</argsstring>
+        <name>getProcessedReading</name>
+        <reimplements refid="classkukadu_1_1FrcTrqSensorFilter_1a05b9db35f4c8abf83372637dc84b1368">getProcessedReading</reimplements>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/agyss/iis_robot_sw/iis_catkin_ws/src/kukadu/include/kukadu/robot/autocompfilter.hpp" line="77" column="1" bodyfile="/home/agyss/iis_robot_sw/iis_catkin_ws/src/kukadu/src/robot/filters.cpp" bodystart="88" bodyend="103"/>
+      </memberdef>
+      </sectiondef>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <inheritancegraph>
+      <node id="28">
+        <label>kukadu::FrcTrqSensorFilter</label>
+        <link refid="classkukadu_1_1FrcTrqSensorFilter"/>
+      </node>
+      <node id="27">
+        <label>kukadu::AutoCompensatingFilter</label>
+        <link refid="classkukadu_1_1AutoCompensatingFilter"/>
+        <childnode refid="28" relation="public-inheritance">
+        </childnode>
+      </node>
+    </inheritancegraph>
+    <collaborationgraph>
+      <node id="30">
+        <label>kukadu::FrcTrqSensorFilter</label>
+        <link refid="classkukadu_1_1FrcTrqSensorFilter"/>
+      </node>
+      <node id="29">
+        <label>kukadu::AutoCompensatingFilter</label>
+        <link refid="classkukadu_1_1AutoCompensatingFilter"/>
+        <childnode refid="30" relation="public-inheritance">
+        </childnode>
+      </node>
+    </collaborationgraph>
+    <location file="/home/agyss/iis_robot_sw/iis_catkin_ws/src/kukadu/include/kukadu/robot/autocompfilter.hpp" line="11" column="1" bodyfile="/home/agyss/iis_robot_sw/iis_catkin_ws/src/kukadu/include/kukadu/robot/autocompfilter.hpp" bodystart="11" bodyend="79"/>
+    <listofallmembers>
+      <member refid="classkukadu_1_1AutoCompensatingFilter_1a93aae29ac8bef8344b5cb8910dc794fc" prot="private" virt="non-virtual"><scope>kukadu::AutoCompensatingFilter</scope><name>ACCEPTANCE_INTERVAL</name></member>
+      <member refid="classkukadu_1_1AutoCompensatingFilter_1a01768f4abbd6ff474ed71307bfd95aa9" prot="public" virt="non-virtual"><scope>kukadu::AutoCompensatingFilter</scope><name>AutoCompensatingFilter</name></member>
+      <member refid="classkukadu_1_1AutoCompensatingFilter_1a4e0ab1ce7bd6fe1050ed2bb793bf255d" prot="private" virt="non-virtual"><scope>kukadu::AutoCompensatingFilter</scope><name>cnt</name></member>
+      <member refid="classkukadu_1_1AutoCompensatingFilter_1aebcd9094fe11cad22bd44d423e333fc7" prot="private" virt="non-virtual"><scope>kukadu::AutoCompensatingFilter</scope><name>currentTime</name></member>
+      <member refid="classkukadu_1_1AutoCompensatingFilter_1a1b6af78a75300de1a5aae0a2334f262e" prot="private" virt="non-virtual"><scope>kukadu::AutoCompensatingFilter</scope><name>DC_FILTER1</name></member>
+      <member refid="classkukadu_1_1AutoCompensatingFilter_1ab8ea57ba2e2e7381e53e00b170a88158" prot="private" virt="non-virtual"><scope>kukadu::AutoCompensatingFilter</scope><name>DC_FILTER2</name></member>
+      <member refid="classkukadu_1_1AutoCompensatingFilter_1ac00421483a158c146c44238e5886e4bc" prot="private" virt="non-virtual"><scope>kukadu::AutoCompensatingFilter</scope><name>DCFilter1Memory</name></member>
+      <member refid="classkukadu_1_1AutoCompensatingFilter_1a7dc0d2a3fb9c726d3ee09a136e09bf67" prot="private" virt="non-virtual"><scope>kukadu::AutoCompensatingFilter</scope><name>DCFilter2Memory</name></member>
+      <member refid="classkukadu_1_1AutoCompensatingFilter_1adf1b3eb70f09c9e8086c8ac6750ef18e" prot="private" virt="non-virtual"><scope>kukadu::AutoCompensatingFilter</scope><name>firstReading</name></member>
+      <member refid="classkukadu_1_1AutoCompensatingFilter_1a52a97296d1c91a33fc56ee001e4cd556" prot="private" virt="non-virtual"><scope>kukadu::AutoCompensatingFilter</scope><name>FORCE_MIN_LIMIT</name></member>
+      <member refid="classkukadu_1_1AutoCompensatingFilter_1a06c55a4f58b44776ab0f5d9b9651f8e1" prot="private" virt="non-virtual"><scope>kukadu::AutoCompensatingFilter</scope><name>FORGET_EXPAND</name></member>
+      <member refid="classkukadu_1_1AutoCompensatingFilter_1a68633287b6d9041ee9b22688fada0462" prot="private" virt="non-virtual"><scope>kukadu::AutoCompensatingFilter</scope><name>FORGET_SHRINK</name></member>
+      <member refid="classkukadu_1_1AutoCompensatingFilter_1a0597e9f433ef9cf564820018dc2e4f33" prot="public" virt="virtual"><scope>kukadu::AutoCompensatingFilter</scope><name>getProcessedReading</name></member>
+      <member refid="classkukadu_1_1AutoCompensatingFilter_1aa90c8017031a64d900f5a1271e13fcc8" prot="private" virt="non-virtual"><scope>kukadu::AutoCompensatingFilter</scope><name>limitandThresholdReadings</name></member>
+      <member refid="classkukadu_1_1AutoCompensatingFilter_1a1fc2b33a883bcb6c95894debafbdcc32" prot="private" virt="non-virtual"><scope>kukadu::AutoCompensatingFilter</scope><name>limitsFilter</name></member>
+      <member refid="classkukadu_1_1AutoCompensatingFilter_1a4baa83ac4a5dc758d9a5ce0b1cdb0b6b" prot="private" virt="non-virtual"><scope>kukadu::AutoCompensatingFilter</scope><name>limitsFilterMemory</name></member>
+      <member refid="classkukadu_1_1AutoCompensatingFilter_1a7b2da29b5bb84a29b68871daccef6e9b" prot="private" virt="non-virtual"><scope>kukadu::AutoCompensatingFilter</scope><name>lowpassFilter</name></member>
+      <member refid="classkukadu_1_1AutoCompensatingFilter_1a57a8845345e34216db52668782fe2ff8" prot="private" virt="non-virtual"><scope>kukadu::AutoCompensatingFilter</scope><name>MIN_THRESHOLD</name></member>
+      <member refid="classkukadu_1_1AutoCompensatingFilter_1ae08ac0efd1af944df6499c511ccc2470" prot="private" virt="non-virtual"><scope>kukadu::AutoCompensatingFilter</scope><name>mvKin</name></member>
+      <member refid="classkukadu_1_1AutoCompensatingFilter_1a737a2f023652659ce04d60828a35142e" prot="private" virt="non-virtual"><scope>kukadu::AutoCompensatingFilter</scope><name>newDataSet</name></member>
+      <member refid="classkukadu_1_1AutoCompensatingFilter_1a50faa83aaf46c6c66367c235b2722ae1" prot="public" virt="non-virtual"><scope>kukadu::AutoCompensatingFilter</scope><name>printFilteredSensorVal</name></member>
+      <member refid="classkukadu_1_1AutoCompensatingFilter_1a57c706a692d87098b85804e5c7422093" prot="private" virt="non-virtual"><scope>kukadu::AutoCompensatingFilter</scope><name>processedFilterReadings</name></member>
+      <member refid="classkukadu_1_1AutoCompensatingFilter_1a8f8fb996a2a8f3d04c70cbd12bbfdf4e" prot="private" virt="non-virtual"><scope>kukadu::AutoCompensatingFilter</scope><name>projectReadings</name></member>
+      <member refid="classkukadu_1_1AutoCompensatingFilter_1ae97e573a19cb04b3977ee2ec75d105e9" prot="private" virt="non-virtual"><scope>kukadu::AutoCompensatingFilter</scope><name>projectVectors</name></member>
+      <member refid="classkukadu_1_1AutoCompensatingFilter_1aab9d03c5a1ba0987d0c983cf74f20bd7" prot="private" virt="non-virtual"><scope>kukadu::AutoCompensatingFilter</scope><name>readingMutex</name></member>
+      <member refid="classkukadu_1_1AutoCompensatingFilter_1ab40935424608b03d90dcf3a6a77b3b0d" prot="private" virt="non-virtual"><scope>kukadu::AutoCompensatingFilter</scope><name>removeBias</name></member>
+      <member refid="classkukadu_1_1AutoCompensatingFilter_1ae8f9db72de509da6bbaea9e69507a10c" prot="private" virt="non-virtual"><scope>kukadu::AutoCompensatingFilter</scope><name>robotinoQueue</name></member>
+      <member refid="classkukadu_1_1AutoCompensatingFilter_1aa94498d8bdb3d3bfc41b007b89c6db13" prot="private" virt="non-virtual"><scope>kukadu::AutoCompensatingFilter</scope><name>scaleReadings</name></member>
+      <member refid="classkukadu_1_1AutoCompensatingFilter_1a1b1d08ed7d7db4d8db4b8f88cf8167dc" prot="private" virt="non-virtual"><scope>kukadu::AutoCompensatingFilter</scope><name>SENSOR_MISS_ALIGNMENT_COMPARED_TO_END_EFFECTOR</name></member>
+      <member refid="classkukadu_1_1AutoCompensatingFilter_1a7e2bbc9af75cc809b8c7cf96616a259a" prot="private" virt="non-virtual"><scope>kukadu::AutoCompensatingFilter</scope><name>sign</name></member>
+      <member refid="classkukadu_1_1AutoCompensatingFilter_1a637c831ae2522675dcac38759209c399" prot="private" virt="non-virtual"><scope>kukadu::AutoCompensatingFilter</scope><name>SMOOTHING</name></member>
+      <member refid="classkukadu_1_1AutoCompensatingFilter_1a2dba73713fcdabe8631c693385a656f3" prot="private" virt="non-virtual"><scope>kukadu::AutoCompensatingFilter</scope><name>smoothingFilterMemory</name></member>
+      <member refid="classkukadu_1_1AutoCompensatingFilter_1a60a31abe113131fd6a786c24d66879bf" prot="private" virt="non-virtual"><scope>kukadu::AutoCompensatingFilter</scope><name>TORQUE_MIN_LIMIT</name></member>
+      <member refid="classkukadu_1_1AutoCompensatingFilter_1a24bd8990108581f5e3e94561b3d6626a" prot="public" virt="virtual"><scope>kukadu::AutoCompensatingFilter</scope><name>updateFilter</name></member>
+    </listofallmembers>
+  </compounddef>
+</doxygen>

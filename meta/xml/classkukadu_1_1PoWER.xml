@@ -1,0 +1,415 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.8.11">
+  <compounddef id="classkukadu_1_1PoWER" kind="class" language="C++" prot="public">
+    <compoundname>kukadu::PoWER</compoundname>
+    <basecompoundref refid="classkukadu_1_1GeneralReinforcer" prot="public" virt="non-virtual">kukadu::GeneralReinforcer</basecompoundref>
+      <sectiondef kind="private-attrib">
+      <memberdef kind="variable" id="classkukadu_1_1PoWER_1a8adead3b9a843c39ab68e3b6c922ec02" prot="private" static="no" mutable="no">
+        <type>int</type>
+        <definition>int kukadu::PoWER::updatesPerRollout</definition>
+        <argsstring></argsstring>
+        <name>updatesPerRollout</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/agyss/iis_robot_sw/iis_catkin_ws/src/kukadu/include/kukadu/learning/rl/policyrl.hpp" line="179" column="1" bodyfile="/home/agyss/iis_robot_sw/iis_catkin_ws/src/kukadu/include/kukadu/learning/rl/policyrl.hpp" bodystart="179" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classkukadu_1_1PoWER_1a0e8b1d4e9ef9370f214ef4d5d15b3246" prot="private" static="no" mutable="no">
+        <type>int</type>
+        <definition>int kukadu::PoWER::importanceSamplingCount</definition>
+        <argsstring></argsstring>
+        <name>importanceSamplingCount</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/agyss/iis_robot_sw/iis_catkin_ws/src/kukadu/include/kukadu/learning/rl/policyrl.hpp" line="180" column="1" bodyfile="/home/agyss/iis_robot_sw/iis_catkin_ws/src/kukadu/include/kukadu/learning/rl/policyrl.hpp" bodystart="180" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classkukadu_1_1PoWER_1a5d2d3427e4396d5a7efb6188dbc4912b" prot="private" static="no" mutable="no">
+        <type>double</type>
+        <definition>double kukadu::PoWER::explorationSigma</definition>
+        <argsstring></argsstring>
+        <name>explorationSigma</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/agyss/iis_robot_sw/iis_catkin_ws/src/kukadu/include/kukadu/learning/rl/policyrl.hpp" line="182" column="1" bodyfile="/home/agyss/iis_robot_sw/iis_catkin_ws/src/kukadu/include/kukadu/learning/rl/policyrl.hpp" bodystart="182" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classkukadu_1_1PoWER_1a73650e16f494a8033f187666a1706787" prot="private" static="no" mutable="no">
+        <type>KUKADU_SHARED_PTR&lt; <ref refid="classkukadu_1_1TrajectoryExecutor" kindref="compound">TrajectoryExecutor</ref> &gt;</type>
+        <definition>KUKADU_SHARED_PTR&lt;TrajectoryExecutor&gt; kukadu::PoWER::trajEx</definition>
+        <argsstring></argsstring>
+        <name>trajEx</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/agyss/iis_robot_sw/iis_catkin_ws/src/kukadu/include/kukadu/learning/rl/policyrl.hpp" line="184" column="1" bodyfile="/home/agyss/iis_robot_sw/iis_catkin_ws/src/kukadu/include/kukadu/learning/rl/policyrl.hpp" bodystart="184" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classkukadu_1_1PoWER_1a312f69d30d07c5343c7f9ff15e20a393" prot="private" static="no" mutable="no">
+        <type>std::vector&lt; double &gt;</type>
+        <definition>std::vector&lt;double&gt; kukadu::PoWER::sigmas</definition>
+        <argsstring></argsstring>
+        <name>sigmas</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/agyss/iis_robot_sw/iis_catkin_ws/src/kukadu/include/kukadu/learning/rl/policyrl.hpp" line="186" column="1" bodyfile="/home/agyss/iis_robot_sw/iis_catkin_ws/src/kukadu/include/kukadu/learning/rl/policyrl.hpp" bodystart="186" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classkukadu_1_1PoWER_1a56c98cf7aaaaa3165e453138558bb013" prot="private" static="no" mutable="no">
+        <type>std::vector&lt; kukadu_normal_distribution &gt;</type>
+        <definition>std::vector&lt;kukadu_normal_distribution&gt; kukadu::PoWER::normals</definition>
+        <argsstring></argsstring>
+        <name>normals</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/agyss/iis_robot_sw/iis_catkin_ws/src/kukadu/include/kukadu/learning/rl/policyrl.hpp" line="187" column="1" bodyfile="/home/agyss/iis_robot_sw/iis_catkin_ws/src/kukadu/include/kukadu/learning/rl/policyrl.hpp" bodystart="187" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classkukadu_1_1PoWER_1a44e13320032d5532baa7606755cdbef9" prot="private" static="no" mutable="no">
+        <type>std::vector&lt; KUKADU_SHARED_PTR&lt; <ref refid="classkukadu_1_1Trajectory" kindref="compound">Trajectory</ref> &gt; &gt;</type>
+        <definition>std::vector&lt;KUKADU_SHARED_PTR&lt;Trajectory&gt; &gt; kukadu::PoWER::initDmp</definition>
+        <argsstring></argsstring>
+        <name>initDmp</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/agyss/iis_robot_sw/iis_catkin_ws/src/kukadu/include/kukadu/learning/rl/policyrl.hpp" line="188" column="1" bodyfile="/home/agyss/iis_robot_sw/iis_catkin_ws/src/kukadu/include/kukadu/learning/rl/policyrl.hpp" bodystart="188" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classkukadu_1_1PoWER_1a66965ff9741679e178f487d9a232539e" prot="private" static="no" mutable="no">
+        <type>std::vector&lt; std::pair&lt; double, KUKADU_SHARED_PTR&lt; <ref refid="classkukadu_1_1Trajectory" kindref="compound">Trajectory</ref> &gt; &gt; &gt;</type>
+        <definition>std::vector&lt;std::pair &lt;double, KUKADU_SHARED_PTR&lt;Trajectory&gt; &gt; &gt; kukadu::PoWER::sampleHistory</definition>
+        <argsstring></argsstring>
+        <name>sampleHistory</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/agyss/iis_robot_sw/iis_catkin_ws/src/kukadu/include/kukadu/learning/rl/policyrl.hpp" line="189" column="1" bodyfile="/home/agyss/iis_robot_sw/iis_catkin_ws/src/kukadu/include/kukadu/learning/rl/policyrl.hpp" bodystart="189" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classkukadu_1_1PoWER_1a080d1479a2ed0462ee10388142435241" prot="private" static="no" mutable="no">
+        <type>kukadu_mersenne_twister</type>
+        <definition>kukadu_mersenne_twister kukadu::PoWER::generator</definition>
+        <argsstring></argsstring>
+        <name>generator</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/agyss/iis_robot_sw/iis_catkin_ws/src/kukadu/include/kukadu/learning/rl/policyrl.hpp" line="191" column="1" bodyfile="/home/agyss/iis_robot_sw/iis_catkin_ws/src/kukadu/include/kukadu/learning/rl/policyrl.hpp" bodystart="191" bodyend="-1"/>
+      </memberdef>
+      </sectiondef>
+      <sectiondef kind="private-func">
+      <memberdef kind="function" id="classkukadu_1_1PoWER_1a9fa1748da40abebd54bb84fe007b9864" prot="private" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>void kukadu::PoWER::construct</definition>
+        <argsstring>(std::vector&lt; KUKADU_SHARED_PTR&lt; Trajectory &gt; &gt; initDmp, std::vector&lt; double &gt; explorationSigmas, int updatesPerRollout, int importanceSamplingCount, KUKADU_SHARED_PTR&lt; CostComputer &gt; cost, KUKADU_SHARED_PTR&lt; ControlQueue &gt; simulationQueue, KUKADU_SHARED_PTR&lt; ControlQueue &gt; executionQueue, double ac, double dmpStepSize, double tolAbsErr, double tolRelErr)</argsstring>
+        <name>construct</name>
+        <param>
+          <type>std::vector&lt; KUKADU_SHARED_PTR&lt; <ref refid="classkukadu_1_1Trajectory" kindref="compound">Trajectory</ref> &gt; &gt;</type>
+          <declname>initDmp</declname>
+        </param>
+        <param>
+          <type>std::vector&lt; double &gt;</type>
+          <declname>explorationSigmas</declname>
+        </param>
+        <param>
+          <type>int</type>
+          <declname>updatesPerRollout</declname>
+        </param>
+        <param>
+          <type>int</type>
+          <declname>importanceSamplingCount</declname>
+        </param>
+        <param>
+          <type>KUKADU_SHARED_PTR&lt; <ref refid="classkukadu_1_1CostComputer" kindref="compound">CostComputer</ref> &gt;</type>
+          <declname>cost</declname>
+        </param>
+        <param>
+          <type>KUKADU_SHARED_PTR&lt; <ref refid="classkukadu_1_1ControlQueue" kindref="compound">ControlQueue</ref> &gt;</type>
+          <declname>simulationQueue</declname>
+        </param>
+        <param>
+          <type>KUKADU_SHARED_PTR&lt; <ref refid="classkukadu_1_1ControlQueue" kindref="compound">ControlQueue</ref> &gt;</type>
+          <declname>executionQueue</declname>
+        </param>
+        <param>
+          <type>double</type>
+          <declname>ac</declname>
+        </param>
+        <param>
+          <type>double</type>
+          <declname>dmpStepSize</declname>
+        </param>
+        <param>
+          <type>double</type>
+          <declname>tolAbsErr</declname>
+        </param>
+        <param>
+          <type>double</type>
+          <declname>tolRelErr</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/agyss/iis_robot_sw/iis_catkin_ws/src/kukadu/include/kukadu/learning/rl/policyrl.hpp" line="193" column="1"/>
+      </memberdef>
+      </sectiondef>
+      <sectiondef kind="public-func">
+      <memberdef kind="function" id="classkukadu_1_1PoWER_1a6bd26a1f03ccde92332cd7689f7cd4c7" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type></type>
+        <definition>kukadu::PoWER::PoWER</definition>
+        <argsstring>(KUKADU_SHARED_PTR&lt; TrajectoryExecutor &gt; trajEx, std::vector&lt; KUKADU_SHARED_PTR&lt; Trajectory &gt; &gt; initDmp, double explorationSigma, int updatesPerRollout, int importanceSamplingCount, KUKADU_SHARED_PTR&lt; CostComputer &gt; cost, KUKADU_SHARED_PTR&lt; ControlQueue &gt; simulationQueue, KUKADU_SHARED_PTR&lt; ControlQueue &gt; executionQueue, double ac, double dmpStepSize, double tolAbsErr, double tolRelErr, unsigned seed)</argsstring>
+        <name>PoWER</name>
+        <param>
+          <type>KUKADU_SHARED_PTR&lt; <ref refid="classkukadu_1_1TrajectoryExecutor" kindref="compound">TrajectoryExecutor</ref> &gt;</type>
+          <declname>trajEx</declname>
+        </param>
+        <param>
+          <type>std::vector&lt; KUKADU_SHARED_PTR&lt; <ref refid="classkukadu_1_1Trajectory" kindref="compound">Trajectory</ref> &gt; &gt;</type>
+          <declname>initDmp</declname>
+        </param>
+        <param>
+          <type>double</type>
+          <declname>explorationSigma</declname>
+        </param>
+        <param>
+          <type>int</type>
+          <declname>updatesPerRollout</declname>
+        </param>
+        <param>
+          <type>int</type>
+          <declname>importanceSamplingCount</declname>
+        </param>
+        <param>
+          <type>KUKADU_SHARED_PTR&lt; <ref refid="classkukadu_1_1CostComputer" kindref="compound">CostComputer</ref> &gt;</type>
+          <declname>cost</declname>
+        </param>
+        <param>
+          <type>KUKADU_SHARED_PTR&lt; <ref refid="classkukadu_1_1ControlQueue" kindref="compound">ControlQueue</ref> &gt;</type>
+          <declname>simulationQueue</declname>
+        </param>
+        <param>
+          <type>KUKADU_SHARED_PTR&lt; <ref refid="classkukadu_1_1ControlQueue" kindref="compound">ControlQueue</ref> &gt;</type>
+          <declname>executionQueue</declname>
+        </param>
+        <param>
+          <type>double</type>
+          <declname>ac</declname>
+        </param>
+        <param>
+          <type>double</type>
+          <declname>dmpStepSize</declname>
+        </param>
+        <param>
+          <type>double</type>
+          <declname>tolAbsErr</declname>
+        </param>
+        <param>
+          <type>double</type>
+          <declname>tolRelErr</declname>
+        </param>
+        <param>
+          <type>unsigned</type>
+          <declname>seed</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/agyss/iis_robot_sw/iis_catkin_ws/src/kukadu/include/kukadu/learning/rl/policyrl.hpp" line="197" column="1"/>
+      </memberdef>
+      <memberdef kind="function" id="classkukadu_1_1PoWER_1a3dcbc71bbb24b6364f0b9adea0c6a3d8" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type></type>
+        <definition>kukadu::PoWER::PoWER</definition>
+        <argsstring>(KUKADU_SHARED_PTR&lt; TrajectoryExecutor &gt; trajEx, std::vector&lt; KUKADU_SHARED_PTR&lt; Trajectory &gt; &gt; initDmp, std::vector&lt; double &gt; explorationSigmas, int updatesPerRollout, int importanceSamplingCount, KUKADU_SHARED_PTR&lt; CostComputer &gt; cost, KUKADU_SHARED_PTR&lt; ControlQueue &gt; simulationQueue, KUKADU_SHARED_PTR&lt; ControlQueue &gt; executionQueue, double ac, double dmpStepSize, double tolAbsErr, double tolRelErr, unsigned seed)</argsstring>
+        <name>PoWER</name>
+        <param>
+          <type>KUKADU_SHARED_PTR&lt; <ref refid="classkukadu_1_1TrajectoryExecutor" kindref="compound">TrajectoryExecutor</ref> &gt;</type>
+          <declname>trajEx</declname>
+        </param>
+        <param>
+          <type>std::vector&lt; KUKADU_SHARED_PTR&lt; <ref refid="classkukadu_1_1Trajectory" kindref="compound">Trajectory</ref> &gt; &gt;</type>
+          <declname>initDmp</declname>
+        </param>
+        <param>
+          <type>std::vector&lt; double &gt;</type>
+          <declname>explorationSigmas</declname>
+        </param>
+        <param>
+          <type>int</type>
+          <declname>updatesPerRollout</declname>
+        </param>
+        <param>
+          <type>int</type>
+          <declname>importanceSamplingCount</declname>
+        </param>
+        <param>
+          <type>KUKADU_SHARED_PTR&lt; <ref refid="classkukadu_1_1CostComputer" kindref="compound">CostComputer</ref> &gt;</type>
+          <declname>cost</declname>
+        </param>
+        <param>
+          <type>KUKADU_SHARED_PTR&lt; <ref refid="classkukadu_1_1ControlQueue" kindref="compound">ControlQueue</ref> &gt;</type>
+          <declname>simulationQueue</declname>
+        </param>
+        <param>
+          <type>KUKADU_SHARED_PTR&lt; <ref refid="classkukadu_1_1ControlQueue" kindref="compound">ControlQueue</ref> &gt;</type>
+          <declname>executionQueue</declname>
+        </param>
+        <param>
+          <type>double</type>
+          <declname>ac</declname>
+        </param>
+        <param>
+          <type>double</type>
+          <declname>dmpStepSize</declname>
+        </param>
+        <param>
+          <type>double</type>
+          <declname>tolAbsErr</declname>
+        </param>
+        <param>
+          <type>double</type>
+          <declname>tolRelErr</declname>
+        </param>
+        <param>
+          <type>unsigned</type>
+          <declname>seed</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/agyss/iis_robot_sw/iis_catkin_ws/src/kukadu/include/kukadu/learning/rl/policyrl.hpp" line="198" column="1"/>
+      </memberdef>
+      <memberdef kind="function" id="classkukadu_1_1PoWER_1a1742695dab4e560cf0256b1a26555990" prot="public" static="no" const="no" explicit="no" inline="no" virt="virtual">
+        <type>KUKADU_SHARED_PTR&lt; <ref refid="classkukadu_1_1Trajectory" kindref="compound">Trajectory</ref> &gt;</type>
+        <definition>KUKADU_SHARED_PTR&lt;Trajectory&gt; kukadu::PoWER::updateStep</definition>
+        <argsstring>()</argsstring>
+        <name>updateStep</name>
+        <reimplements refid="classkukadu_1_1GeneralReinforcer_1a2925052d641e845dba068fa03d567b20">updateStep</reimplements>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/agyss/iis_robot_sw/iis_catkin_ws/src/kukadu/include/kukadu/learning/rl/policyrl.hpp" line="200" column="1"/>
+      </memberdef>
+      <memberdef kind="function" id="classkukadu_1_1PoWER_1a944ac3c9811932c00eb085481baa53f8" prot="public" static="no" const="no" explicit="no" inline="no" virt="virtual">
+        <type>std::vector&lt; KUKADU_SHARED_PTR&lt; <ref refid="classkukadu_1_1Trajectory" kindref="compound">Trajectory</ref> &gt; &gt;</type>
+        <definition>std::vector&lt;KUKADU_SHARED_PTR&lt;Trajectory&gt; &gt; kukadu::PoWER::getInitialRollout</definition>
+        <argsstring>()</argsstring>
+        <name>getInitialRollout</name>
+        <reimplements refid="classkukadu_1_1GeneralReinforcer_1aa7e72994ca8c009d1331129480d2e49f">getInitialRollout</reimplements>
+        <briefdescription>
+<para>returns the first rollout of the reinforcement learning algorithm </para>        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/agyss/iis_robot_sw/iis_catkin_ws/src/kukadu/include/kukadu/learning/rl/policyrl.hpp" line="202" column="1"/>
+      </memberdef>
+      <memberdef kind="function" id="classkukadu_1_1PoWER_1aae0e23c81c88faa2bbd49f4f9a99dd28" prot="public" static="no" const="no" explicit="no" inline="no" virt="virtual">
+        <type>std::vector&lt; KUKADU_SHARED_PTR&lt; <ref refid="classkukadu_1_1Trajectory" kindref="compound">Trajectory</ref> &gt; &gt;</type>
+        <definition>std::vector&lt;KUKADU_SHARED_PTR&lt;Trajectory&gt; &gt; kukadu::PoWER::computeRolloutParamters</definition>
+        <argsstring>()</argsstring>
+        <name>computeRolloutParamters</name>
+        <reimplements refid="classkukadu_1_1GeneralReinforcer_1aec3cde390852d93c52a01926bbc6feb3">computeRolloutParamters</reimplements>
+        <briefdescription>
+<para>computes the dmp parameters for the next rollout </para>        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/agyss/iis_robot_sw/iis_catkin_ws/src/kukadu/include/kukadu/learning/rl/policyrl.hpp" line="203" column="1"/>
+      </memberdef>
+      </sectiondef>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <inheritancegraph>
+      <node id="545">
+        <label>kukadu::PoWER</label>
+        <link refid="classkukadu_1_1PoWER"/>
+        <childnode refid="546" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="546">
+        <label>kukadu::GeneralReinforcer</label>
+        <link refid="classkukadu_1_1GeneralReinforcer"/>
+      </node>
+    </inheritancegraph>
+    <collaborationgraph>
+      <node id="547">
+        <label>kukadu::PoWER</label>
+        <link refid="classkukadu_1_1PoWER"/>
+        <childnode refid="548" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="548">
+        <label>kukadu::GeneralReinforcer</label>
+        <link refid="classkukadu_1_1GeneralReinforcer"/>
+      </node>
+    </collaborationgraph>
+    <location file="/home/agyss/iis_robot_sw/iis_catkin_ws/src/kukadu/include/kukadu/learning/rl/policyrl.hpp" line="175" column="1" bodyfile="/home/agyss/iis_robot_sw/iis_catkin_ws/src/kukadu/include/kukadu/learning/rl/policyrl.hpp" bodystart="175" bodyend="205"/>
+    <listofallmembers>
+      <member refid="classkukadu_1_1PoWER_1aae0e23c81c88faa2bbd49f4f9a99dd28" prot="public" virt="virtual"><scope>kukadu::PoWER</scope><name>computeRolloutParamters</name></member>
+      <member refid="classkukadu_1_1PoWER_1a9fa1748da40abebd54bb84fe007b9864" prot="private" virt="non-virtual"><scope>kukadu::PoWER</scope><name>construct</name></member>
+      <member refid="classkukadu_1_1PoWER_1a5d2d3427e4396d5a7efb6188dbc4912b" prot="private" virt="non-virtual"><scope>kukadu::PoWER</scope><name>explorationSigma</name></member>
+      <member refid="classkukadu_1_1GeneralReinforcer_1a1de3f2b46e82b37454f8095701992c8d" prot="public" virt="non-virtual"><scope>kukadu::PoWER</scope><name>GeneralReinforcer</name></member>
+      <member refid="classkukadu_1_1PoWER_1a080d1479a2ed0462ee10388142435241" prot="private" virt="non-virtual"><scope>kukadu::PoWER</scope><name>generator</name></member>
+      <member refid="classkukadu_1_1PoWER_1a944ac3c9811932c00eb085481baa53f8" prot="public" virt="virtual"><scope>kukadu::PoWER</scope><name>getInitialRollout</name></member>
+      <member refid="classkukadu_1_1GeneralReinforcer_1aa384f66bcf7487b449dc67c768e86f5e" prot="public" virt="non-virtual"><scope>kukadu::PoWER</scope><name>getIsFirstIteration</name></member>
+      <member refid="classkukadu_1_1GeneralReinforcer_1a1ed63236a3d31d26152ffb9f01f5363a" prot="public" virt="non-virtual"><scope>kukadu::PoWER</scope><name>getLastExecutionResults</name></member>
+      <member refid="classkukadu_1_1GeneralReinforcer_1a5c26cdef91f856f34c528547eee94472" prot="public" virt="non-virtual"><scope>kukadu::PoWER</scope><name>getLastRolloutCost</name></member>
+      <member refid="classkukadu_1_1GeneralReinforcer_1a4223bf864a5fe99bd42fe92c7e453869" prot="public" virt="non-virtual"><scope>kukadu::PoWER</scope><name>getLastRolloutParameters</name></member>
+      <member refid="classkukadu_1_1GeneralReinforcer_1a19213b562d0a5a0320347e51ae108f9e" prot="public" virt="non-virtual"><scope>kukadu::PoWER</scope><name>getLastUpdate</name></member>
+      <member refid="classkukadu_1_1GeneralReinforcer_1a7aa17bfed379c5673d81eb17db4b4932" prot="public" virt="non-virtual"><scope>kukadu::PoWER</scope><name>getLastUpdateRes</name></member>
+      <member refid="classkukadu_1_1GeneralReinforcer_1aa65904e99bffab1272d49b01d515a670" prot="public" virt="non-virtual"><scope>kukadu::PoWER</scope><name>getLastUpdateReward</name></member>
+      <member refid="classkukadu_1_1PoWER_1a0e8b1d4e9ef9370f214ef4d5d15b3246" prot="private" virt="non-virtual"><scope>kukadu::PoWER</scope><name>importanceSamplingCount</name></member>
+      <member refid="classkukadu_1_1PoWER_1a44e13320032d5532baa7606755cdbef9" prot="private" virt="non-virtual"><scope>kukadu::PoWER</scope><name>initDmp</name></member>
+      <member refid="classkukadu_1_1PoWER_1a56c98cf7aaaaa3165e453138558bb013" prot="private" virt="non-virtual"><scope>kukadu::PoWER</scope><name>normals</name></member>
+      <member refid="classkukadu_1_1GeneralReinforcer_1aee9cbeaac91379e1926088150f9c5063" prot="public" virt="non-virtual"><scope>kukadu::PoWER</scope><name>performRollout</name></member>
+      <member refid="classkukadu_1_1PoWER_1a6bd26a1f03ccde92332cd7689f7cd4c7" prot="public" virt="non-virtual"><scope>kukadu::PoWER</scope><name>PoWER</name></member>
+      <member refid="classkukadu_1_1PoWER_1a3dcbc71bbb24b6364f0b9adea0c6a3d8" prot="public" virt="non-virtual"><scope>kukadu::PoWER</scope><name>PoWER</name></member>
+      <member refid="classkukadu_1_1PoWER_1a66965ff9741679e178f487d9a232539e" prot="private" virt="non-virtual"><scope>kukadu::PoWER</scope><name>sampleHistory</name></member>
+      <member refid="classkukadu_1_1GeneralReinforcer_1a0fe9f486ada94bb1eeeb6e460da5579f" prot="public" virt="non-virtual"><scope>kukadu::PoWER</scope><name>setLastUpdate</name></member>
+      <member refid="classkukadu_1_1PoWER_1a312f69d30d07c5343c7f9ff15e20a393" prot="private" virt="non-virtual"><scope>kukadu::PoWER</scope><name>sigmas</name></member>
+      <member refid="classkukadu_1_1PoWER_1a73650e16f494a8033f187666a1706787" prot="private" virt="non-virtual"><scope>kukadu::PoWER</scope><name>trajEx</name></member>
+      <member refid="classkukadu_1_1PoWER_1a8adead3b9a843c39ab68e3b6c922ec02" prot="private" virt="non-virtual"><scope>kukadu::PoWER</scope><name>updatesPerRollout</name></member>
+      <member refid="classkukadu_1_1PoWER_1a1742695dab4e560cf0256b1a26555990" prot="public" virt="virtual"><scope>kukadu::PoWER</scope><name>updateStep</name></member>
+    </listofallmembers>
+  </compounddef>
+</doxygen>

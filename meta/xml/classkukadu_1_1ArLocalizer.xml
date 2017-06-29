@@ -1,0 +1,150 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.8.11">
+  <compounddef id="classkukadu_1_1ArLocalizer" kind="class" language="C++" prot="public">
+    <compoundname>kukadu::ArLocalizer</compoundname>
+    <basecompoundref refid="classkukadu_1_1Localizer" prot="public" virt="non-virtual">kukadu::Localizer</basecompoundref>
+      <sectiondef kind="private-attrib">
+      <memberdef kind="variable" id="classkukadu_1_1ArLocalizer_1a0f5b87d961eeb0b06ed283beef85fddc" prot="private" static="no" mutable="no">
+        <type>KUKADU_SHARED_PTR&lt; <ref refid="classkukadu_1_1ARToolKitPlusNode" kindref="compound">ARToolKitPlusNode</ref> &gt;</type>
+        <definition>KUKADU_SHARED_PTR&lt;ARToolKitPlusNode&gt; kukadu::ArLocalizer::toolkit</definition>
+        <argsstring></argsstring>
+        <name>toolkit</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/agyss/iis_robot_sw/iis_catkin_ws/src/kukadu/include/kukadu/vision/arlocalizer.hpp" line="173" column="1" bodyfile="/home/agyss/iis_robot_sw/iis_catkin_ws/src/kukadu/include/kukadu/vision/arlocalizer.hpp" bodystart="173" bodyend="-1"/>
+      </memberdef>
+      </sectiondef>
+      <sectiondef kind="public-func">
+      <memberdef kind="function" id="classkukadu_1_1ArLocalizer_1a574c1c72558f13c1c6e08aaacb08f354" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type></type>
+        <definition>kukadu::ArLocalizer::ArLocalizer</definition>
+        <argsstring>(ros::NodeHandle &amp;n, std::string imageTopic, bool show_camera_image)</argsstring>
+        <name>ArLocalizer</name>
+        <param>
+          <type>ros::NodeHandle &amp;</type>
+          <declname>n</declname>
+        </param>
+        <param>
+          <type>std::string</type>
+          <declname>imageTopic</declname>
+        </param>
+        <param>
+          <type>bool</type>
+          <declname>show_camera_image</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/agyss/iis_robot_sw/iis_catkin_ws/src/kukadu/include/kukadu/vision/arlocalizer.hpp" line="177" column="1" bodyfile="/home/agyss/iis_robot_sw/iis_catkin_ws/src/kukadu/src/vision/arlocalizer/arlocalizer.cpp" bodystart="20" bodyend="24"/>
+      </memberdef>
+      <memberdef kind="function" id="classkukadu_1_1ArLocalizer_1a26a773f96d6830ac9548511eea10b8a6" prot="public" static="no" const="no" explicit="no" inline="no" virt="virtual">
+        <type>std::string</type>
+        <definition>std::string kukadu::ArLocalizer::getLocalizerFrame</definition>
+        <argsstring>()</argsstring>
+        <name>getLocalizerFrame</name>
+        <reimplements refid="classkukadu_1_1Localizer_1a5cfada2ce8027cdde1389e851e21aa77">getLocalizerFrame</reimplements>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/agyss/iis_robot_sw/iis_catkin_ws/src/kukadu/include/kukadu/vision/arlocalizer.hpp" line="179" column="1" bodyfile="/home/agyss/iis_robot_sw/iis_catkin_ws/src/kukadu/src/vision/arlocalizer/arlocalizer.cpp" bodystart="16" bodyend="18"/>
+      </memberdef>
+      <memberdef kind="function" id="classkukadu_1_1ArLocalizer_1a0fee8cfc4287ad04099429d42a813188" prot="public" static="no" const="no" explicit="no" inline="no" virt="virtual">
+        <type>geometry_msgs::Pose</type>
+        <definition>geometry_msgs::Pose kukadu::ArLocalizer::localizeObject</definition>
+        <argsstring>(std::string id)</argsstring>
+        <name>localizeObject</name>
+        <reimplements refid="classkukadu_1_1Localizer_1a93434e46ef64f12a86f9778992d56b1f">localizeObject</reimplements>
+        <param>
+          <type>std::string</type>
+          <declname>id</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/agyss/iis_robot_sw/iis_catkin_ws/src/kukadu/include/kukadu/vision/arlocalizer.hpp" line="181" column="1" bodyfile="/home/agyss/iis_robot_sw/iis_catkin_ws/src/kukadu/src/vision/arlocalizer/arlocalizer.cpp" bodystart="37" bodyend="47"/>
+      </memberdef>
+      <memberdef kind="function" id="classkukadu_1_1ArLocalizer_1aea54ef55a71ed15a2c548183e57bdc7b" prot="public" static="no" const="no" explicit="no" inline="no" virt="virtual">
+        <type>std::map&lt; std::string, geometry_msgs::Pose &gt;</type>
+        <definition>std::map&lt; std::string, geometry_msgs::Pose &gt; kukadu::ArLocalizer::localizeObjects</definition>
+        <argsstring>()</argsstring>
+        <name>localizeObjects</name>
+        <reimplements refid="classkukadu_1_1Localizer_1a1d272cadb42a4b13f730742d1a002e25">localizeObjects</reimplements>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/agyss/iis_robot_sw/iis_catkin_ws/src/kukadu/include/kukadu/vision/arlocalizer.hpp" line="182" column="1" bodyfile="/home/agyss/iis_robot_sw/iis_catkin_ws/src/kukadu/src/vision/arlocalizer/arlocalizer.cpp" bodystart="26" bodyend="35"/>
+      </memberdef>
+      <memberdef kind="function" id="classkukadu_1_1ArLocalizer_1a61dbac32d29e851d7d6b425642bf638f" prot="public" static="no" const="no" explicit="no" inline="no" virt="virtual">
+        <type>std::vector&lt; geometry_msgs::Pose &gt;</type>
+        <definition>std::vector&lt; geometry_msgs::Pose &gt; kukadu::ArLocalizer::localizeObjects</definition>
+        <argsstring>(std::vector&lt; std::string &gt; ids)</argsstring>
+        <name>localizeObjects</name>
+        <reimplements refid="classkukadu_1_1Localizer_1a78c8587b231e25122771597fbcfbdd52">localizeObjects</reimplements>
+        <param>
+          <type>std::vector&lt; std::string &gt;</type>
+          <declname>ids</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/agyss/iis_robot_sw/iis_catkin_ws/src/kukadu/include/kukadu/vision/arlocalizer.hpp" line="183" column="1" bodyfile="/home/agyss/iis_robot_sw/iis_catkin_ws/src/kukadu/src/vision/arlocalizer/arlocalizer.cpp" bodystart="49" bodyend="62"/>
+      </memberdef>
+      </sectiondef>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <inheritancegraph>
+      <node id="12">
+        <label>kukadu::Localizer</label>
+        <link refid="classkukadu_1_1Localizer"/>
+      </node>
+      <node id="11">
+        <label>kukadu::ArLocalizer</label>
+        <link refid="classkukadu_1_1ArLocalizer"/>
+        <childnode refid="12" relation="public-inheritance">
+        </childnode>
+      </node>
+    </inheritancegraph>
+    <collaborationgraph>
+      <node id="14">
+        <label>kukadu::Localizer</label>
+        <link refid="classkukadu_1_1Localizer"/>
+      </node>
+      <node id="13">
+        <label>kukadu::ArLocalizer</label>
+        <link refid="classkukadu_1_1ArLocalizer"/>
+        <childnode refid="14" relation="public-inheritance">
+        </childnode>
+      </node>
+    </collaborationgraph>
+    <location file="/home/agyss/iis_robot_sw/iis_catkin_ws/src/kukadu/include/kukadu/vision/arlocalizer.hpp" line="169" column="1" bodyfile="/home/agyss/iis_robot_sw/iis_catkin_ws/src/kukadu/include/kukadu/vision/arlocalizer.hpp" bodystart="169" bodyend="185"/>
+    <listofallmembers>
+      <member refid="classkukadu_1_1ArLocalizer_1a574c1c72558f13c1c6e08aaacb08f354" prot="public" virt="non-virtual"><scope>kukadu::ArLocalizer</scope><name>ArLocalizer</name></member>
+      <member refid="classkukadu_1_1ArLocalizer_1a26a773f96d6830ac9548511eea10b8a6" prot="public" virt="virtual"><scope>kukadu::ArLocalizer</scope><name>getLocalizerFrame</name></member>
+      <member refid="classkukadu_1_1ArLocalizer_1a0fee8cfc4287ad04099429d42a813188" prot="public" virt="virtual"><scope>kukadu::ArLocalizer</scope><name>localizeObject</name></member>
+      <member refid="classkukadu_1_1ArLocalizer_1aea54ef55a71ed15a2c548183e57bdc7b" prot="public" virt="virtual"><scope>kukadu::ArLocalizer</scope><name>localizeObjects</name></member>
+      <member refid="classkukadu_1_1ArLocalizer_1a61dbac32d29e851d7d6b425642bf638f" prot="public" virt="virtual"><scope>kukadu::ArLocalizer</scope><name>localizeObjects</name></member>
+      <member refid="classkukadu_1_1ArLocalizer_1a0f5b87d961eeb0b06ed283beef85fddc" prot="private" virt="non-virtual"><scope>kukadu::ArLocalizer</scope><name>toolkit</name></member>
+    </listofallmembers>
+  </compounddef>
+</doxygen>

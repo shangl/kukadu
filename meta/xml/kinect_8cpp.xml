@@ -1,0 +1,696 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.8.11">
+  <compounddef id="kinect_8cpp" kind="file" language="C++">
+    <compoundname>kinect.cpp</compoundname>
+    <includes local="no">pcl/io/pcd_io.h</includes>
+    <includes local="no">tf2_msgs/TFMessage.h</includes>
+    <includes local="no">pcl_ros/transforms.h</includes>
+    <includes refid="utils_2utils_8hpp" local="no">kukadu/utils/utils.hpp</includes>
+    <includes local="no">tf/transform_listener.h</includes>
+    <includes refid="kinect_8hpp" local="no">kukadu/vision/kinect.hpp</includes>
+    <includes local="no">pcl_conversions/pcl_conversions.h</includes>
+    <includes refid="moduleusagesingleton_8hpp" local="no">kukadu/storage/moduleusagesingleton.hpp</includes>
+    <incdepgraph>
+      <node id="5157">
+        <label>sys/stat.h</label>
+      </node>
+      <node id="5176">
+        <label>list</label>
+      </node>
+      <node id="5160">
+        <label>gsl/gsl_vector.h</label>
+      </node>
+      <node id="5156">
+        <label>wordexp.h</label>
+      </node>
+      <node id="5154">
+        <label>stdbool.h</label>
+      </node>
+      <node id="5149">
+        <label>stdarg.h</label>
+      </node>
+      <node id="5188">
+        <label>cppconn/resultset.h</label>
+      </node>
+      <node id="5169">
+        <label>sensor_msgs/PointCloud2.h</label>
+      </node>
+      <node id="5138">
+        <label>queue</label>
+      </node>
+      <node id="5167">
+        <label>pcl/PCLPointCloud2.h</label>
+      </node>
+      <node id="5139">
+        <label>limits</label>
+      </node>
+      <node id="5192">
+        <label>kukadu/robot/queue.hpp</label>
+        <link refid="queue_8hpp"/>
+        <childnode refid="5138" relation="include">
+        </childnode>
+        <childnode refid="5140" relation="include">
+        </childnode>
+        <childnode refid="5155" relation="include">
+        </childnode>
+        <childnode refid="5193" relation="include">
+        </childnode>
+        <childnode refid="5194" relation="include">
+        </childnode>
+        <childnode refid="5177" relation="include">
+        </childnode>
+        <childnode refid="5179" relation="include">
+        </childnode>
+        <childnode refid="5195" relation="include">
+        </childnode>
+        <childnode refid="5178" relation="include">
+        </childnode>
+      </node>
+      <node id="5164">
+        <label>pcl/point_types.h</label>
+      </node>
+      <node id="5197">
+        <label>tf/transform_listener.h</label>
+      </node>
+      <node id="5202">
+        <label>kukadu/storage/moduleusagesingleton.hpp</label>
+        <link refid="moduleusagesingleton_8hpp_source"/>
+        <childnode refid="5137" relation="include">
+        </childnode>
+        <childnode refid="5142" relation="include">
+        </childnode>
+        <childnode refid="5147" relation="include">
+        </childnode>
+        <childnode refid="5136" relation="include">
+        </childnode>
+        <childnode refid="5179" relation="include">
+        </childnode>
+        <childnode refid="5178" relation="include">
+        </childnode>
+      </node>
+      <node id="5178">
+        <label>kukadu/storage/storagesingleton.hpp</label>
+        <link refid="storagesingleton_8hpp_source"/>
+        <childnode refid="5137" relation="include">
+        </childnode>
+        <childnode refid="5138" relation="include">
+        </childnode>
+        <childnode refid="5142" relation="include">
+        </childnode>
+        <childnode refid="5140" relation="include">
+        </childnode>
+        <childnode refid="5150" relation="include">
+        </childnode>
+        <childnode refid="5179" relation="include">
+        </childnode>
+        <childnode refid="5185" relation="include">
+        </childnode>
+        <childnode refid="5186" relation="include">
+        </childnode>
+        <childnode refid="5187" relation="include">
+        </childnode>
+        <childnode refid="5188" relation="include">
+        </childnode>
+        <childnode refid="5189" relation="include">
+        </childnode>
+      </node>
+      <node id="5163">
+        <label>pcl/point_cloud.h</label>
+      </node>
+      <node id="5179">
+        <label>kukadu/types/kukadutypes.hpp</label>
+        <link refid="kukadutypes_8hpp_source"/>
+        <childnode refid="5180" relation="include">
+        </childnode>
+        <childnode refid="5181" relation="include">
+        </childnode>
+        <childnode refid="5182" relation="include">
+        </childnode>
+        <childnode refid="5183" relation="include">
+        </childnode>
+        <childnode refid="5184" relation="include">
+        </childnode>
+      </node>
+      <node id="5199">
+        <label>kukadu/vision/pcstdtrans.hpp</label>
+        <link refid="pcstdtrans_8hpp_source"/>
+        <childnode refid="5155" relation="include">
+        </childnode>
+        <childnode refid="5135" relation="include">
+        </childnode>
+        <childnode refid="5200" relation="include">
+        </childnode>
+      </node>
+      <node id="5173">
+        <label>stdexcept</label>
+      </node>
+      <node id="5153">
+        <label>termios.h</label>
+      </node>
+      <node id="5166">
+        <label>eigen3/Eigen/Dense</label>
+      </node>
+      <node id="5177">
+        <label>kukadu/robot/hardware.hpp</label>
+        <link refid="hardware_8hpp_source"/>
+        <childnode refid="5142" relation="include">
+        </childnode>
+        <childnode refid="5155" relation="include">
+        </childnode>
+        <childnode refid="5178" relation="include">
+        </childnode>
+      </node>
+      <node id="5159">
+        <label>gsl/gsl_poly.h</label>
+      </node>
+      <node id="5142">
+        <label>string</label>
+      </node>
+      <node id="5137">
+        <label>map</label>
+      </node>
+      <node id="5172">
+        <label>kukadu/utils/gnuplot.hpp</label>
+        <link refid="gnuplot_8hpp_source"/>
+        <childnode refid="5150" relation="include">
+        </childnode>
+        <childnode refid="5142" relation="include">
+        </childnode>
+        <childnode refid="5140" relation="include">
+        </childnode>
+        <childnode refid="5146" relation="include">
+        </childnode>
+        <childnode refid="5144" relation="include">
+        </childnode>
+        <childnode refid="5173" relation="include">
+        </childnode>
+        <childnode refid="5174" relation="include">
+        </childnode>
+        <childnode refid="5175" relation="include">
+        </childnode>
+        <childnode refid="5176" relation="include">
+        </childnode>
+      </node>
+      <node id="5155">
+        <label>armadillo</label>
+      </node>
+      <node id="5180">
+        <label>exception</label>
+      </node>
+      <node id="5146">
+        <label>fstream</label>
+      </node>
+      <node id="5196">
+        <label>kukadu/utils/kukadutokenizer.hpp</label>
+        <link refid="kukadutokenizer_8hpp_source"/>
+        <childnode refid="5142" relation="include">
+        </childnode>
+        <childnode refid="5140" relation="include">
+        </childnode>
+      </node>
+      <node id="5189">
+        <label>cppconn/statement.h</label>
+      </node>
+      <node id="5132">
+        <label>/home/agyss/iis_robot_sw/iis_catkin_ws/src/kukadu/src/vision/kinect.cpp</label>
+        <link refid="kinect.cpp"/>
+        <childnode refid="5133" relation="include">
+        </childnode>
+        <childnode refid="5134" relation="include">
+        </childnode>
+        <childnode refid="5135" relation="include">
+        </childnode>
+        <childnode refid="5136" relation="include">
+        </childnode>
+        <childnode refid="5197" relation="include">
+        </childnode>
+        <childnode refid="5198" relation="include">
+        </childnode>
+        <childnode refid="5201" relation="include">
+        </childnode>
+        <childnode refid="5202" relation="include">
+        </childnode>
+      </node>
+      <node id="5184">
+        <label>random</label>
+      </node>
+      <node id="5158">
+        <label>sys/types.h</label>
+      </node>
+      <node id="5171">
+        <label>kukadu/utils/types.hpp</label>
+        <link refid="utils_2types_8hpp_source"/>
+        <childnode refid="5140" relation="include">
+        </childnode>
+        <childnode refid="5155" relation="include">
+        </childnode>
+        <childnode refid="5161" relation="include">
+        </childnode>
+      </node>
+      <node id="5168">
+        <label>tf/transform_datatypes.h</label>
+      </node>
+      <node id="5174">
+        <label>cstdio</label>
+      </node>
+      <node id="5136">
+        <label>kukadu/utils/utils.hpp</label>
+        <link refid="utils_2utils_8hpp_source"/>
+        <childnode refid="5137" relation="include">
+        </childnode>
+        <childnode refid="5138" relation="include">
+        </childnode>
+        <childnode refid="5139" relation="include">
+        </childnode>
+        <childnode refid="5140" relation="include">
+        </childnode>
+        <childnode refid="5141" relation="include">
+        </childnode>
+        <childnode refid="5142" relation="include">
+        </childnode>
+        <childnode refid="5143" relation="include">
+        </childnode>
+        <childnode refid="5144" relation="include">
+        </childnode>
+        <childnode refid="5145" relation="include">
+        </childnode>
+        <childnode refid="5146" relation="include">
+        </childnode>
+        <childnode refid="5147" relation="include">
+        </childnode>
+        <childnode refid="5148" relation="include">
+        </childnode>
+        <childnode refid="5149" relation="include">
+        </childnode>
+        <childnode refid="5150" relation="include">
+        </childnode>
+        <childnode refid="5151" relation="include">
+        </childnode>
+        <childnode refid="5152" relation="include">
+        </childnode>
+        <childnode refid="5153" relation="include">
+        </childnode>
+        <childnode refid="5154" relation="include">
+        </childnode>
+        <childnode refid="5155" relation="include">
+        </childnode>
+        <childnode refid="5156" relation="include">
+        </childnode>
+        <childnode refid="5157" relation="include">
+        </childnode>
+        <childnode refid="5158" relation="include">
+        </childnode>
+        <childnode refid="5159" relation="include">
+        </childnode>
+        <childnode refid="5160" relation="include">
+        </childnode>
+        <childnode refid="5161" relation="include">
+        </childnode>
+        <childnode refid="5162" relation="include">
+        </childnode>
+        <childnode refid="5163" relation="include">
+        </childnode>
+        <childnode refid="5164" relation="include">
+        </childnode>
+        <childnode refid="5165" relation="include">
+        </childnode>
+        <childnode refid="5166" relation="include">
+        </childnode>
+        <childnode refid="5167" relation="include">
+        </childnode>
+        <childnode refid="5168" relation="include">
+        </childnode>
+        <childnode refid="5169" relation="include">
+        </childnode>
+        <childnode refid="5170" relation="include">
+        </childnode>
+        <childnode refid="5171" relation="include">
+        </childnode>
+        <childnode refid="5172" relation="include">
+        </childnode>
+        <childnode refid="5177" relation="include">
+        </childnode>
+        <childnode refid="5190" relation="include">
+        </childnode>
+        <childnode refid="5196" relation="include">
+        </childnode>
+      </node>
+      <node id="5190">
+        <label>kukadu/control/controller.hpp</label>
+        <link refid="controller_8hpp_source"/>
+        <childnode refid="5142" relation="include">
+        </childnode>
+        <childnode refid="5177" relation="include">
+        </childnode>
+        <childnode refid="5179" relation="include">
+        </childnode>
+        <childnode refid="5191" relation="include">
+        </childnode>
+        <childnode refid="5178" relation="include">
+        </childnode>
+        <childnode refid="5192" relation="include">
+        </childnode>
+      </node>
+      <node id="5148">
+        <label>unistd.h</label>
+      </node>
+      <node id="5140">
+        <label>vector</label>
+      </node>
+      <node id="5194">
+        <label>kukadu/robot/filters.hpp</label>
+        <link refid="filters_8hpp_source"/>
+        <childnode refid="5171" relation="include">
+        </childnode>
+        <childnode refid="5179" relation="include">
+        </childnode>
+      </node>
+      <node id="5151">
+        <label>signal.h</label>
+      </node>
+      <node id="5147">
+        <label>utility</label>
+      </node>
+      <node id="5144">
+        <label>sstream</label>
+      </node>
+      <node id="5186">
+        <label>cppconn/driver.h</label>
+      </node>
+      <node id="5187">
+        <label>cppconn/exception.h</label>
+      </node>
+      <node id="5193">
+        <label>geometry_msgs/Pose.h</label>
+      </node>
+      <node id="5141">
+        <label>math.h</label>
+      </node>
+      <node id="5175">
+        <label>cstdlib</label>
+      </node>
+      <node id="5150">
+        <label>iostream</label>
+      </node>
+      <node id="5134">
+        <label>tf2_msgs/TFMessage.h</label>
+      </node>
+      <node id="5185">
+        <label>mysql_connection.h</label>
+      </node>
+      <node id="5200">
+        <label>pcl/kdtree/kdtree_flann.h</label>
+      </node>
+      <node id="5195">
+        <label>kukadu/utils/destroyableobject.hpp</label>
+        <link refid="destroyableobject_8hpp_source"/>
+      </node>
+      <node id="5183">
+        <label>mutex</label>
+      </node>
+      <node id="5165">
+        <label>gsl/gsl_multifit.h</label>
+      </node>
+      <node id="5170">
+        <label>geometry_msgs/Quaternion.h</label>
+      </node>
+      <node id="5182">
+        <label>thread</label>
+      </node>
+      <node id="5135">
+        <label>pcl_ros/transforms.h</label>
+      </node>
+      <node id="5162">
+        <label>gsl/gsl_linalg.h</label>
+      </node>
+      <node id="5198">
+        <label>kukadu/vision/kinect.hpp</label>
+        <link refid="kinect_8hpp_source"/>
+        <childnode refid="5140" relation="include">
+        </childnode>
+        <childnode refid="5142" relation="include">
+        </childnode>
+        <childnode refid="5163" relation="include">
+        </childnode>
+        <childnode refid="5164" relation="include">
+        </childnode>
+        <childnode refid="5169" relation="include">
+        </childnode>
+        <childnode refid="5179" relation="include">
+        </childnode>
+        <childnode refid="5199" relation="include">
+        </childnode>
+        <childnode refid="5201" relation="include">
+        </childnode>
+      </node>
+      <node id="5201">
+        <label>pcl_conversions/pcl_conversions.h</label>
+      </node>
+      <node id="5145">
+        <label>stdio.h</label>
+      </node>
+      <node id="5143">
+        <label>cstring</label>
+      </node>
+      <node id="5161">
+        <label>gsl/gsl_matrix.h</label>
+      </node>
+      <node id="5133">
+        <label>pcl/io/pcd_io.h</label>
+      </node>
+      <node id="5181">
+        <label>memory</label>
+      </node>
+      <node id="5191">
+        <label>kukadu/types/controllerresult.hpp</label>
+        <link refid="controllerresult_8hpp_source"/>
+        <childnode refid="5140" relation="include">
+        </childnode>
+        <childnode refid="5155" relation="include">
+        </childnode>
+      </node>
+      <node id="5152">
+        <label>dirent.h</label>
+      </node>
+    </incdepgraph>
+    <innernamespace refid="namespacekukadu">kukadu</innernamespace>
+    <innernamespace refid="namespacepcl">pcl</innernamespace>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <programlisting>
+<codeline lineno="1"><highlight class="preprocessor">#include<sp/>&lt;pcl/io/pcd_io.h&gt;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="2"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&lt;tf2_msgs/TFMessage.h&gt;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="3"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&lt;pcl_ros/transforms.h&gt;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="4"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&lt;kukadu/utils/utils.hpp&gt;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="5"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&lt;tf/transform_listener.h&gt;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="6"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&lt;kukadu/vision/kinect.hpp&gt;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="7"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&lt;pcl_conversions/pcl_conversions.h&gt;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="8"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&lt;kukadu/storage/moduleusagesingleton.hpp&gt;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="9"><highlight class="normal"></highlight></codeline>
+<codeline lineno="10"><highlight class="normal"></highlight><highlight class="keyword">using<sp/>namespace<sp/></highlight><highlight class="normal"><ref refid="namespacestd" kindref="compound">std</ref>;</highlight></codeline>
+<codeline lineno="11"><highlight class="normal"></highlight><highlight class="keyword">using<sp/>namespace<sp/></highlight><highlight class="normal"><ref refid="namespacepcl" kindref="compound">pcl</ref>;</highlight></codeline>
+<codeline lineno="12"><highlight class="normal"></highlight></codeline>
+<codeline lineno="13"><highlight class="normal"></highlight><highlight class="keyword">namespace<sp/></highlight><highlight class="normal"><ref refid="namespacekukadu" kindref="compound">kukadu</ref><sp/>{</highlight></codeline>
+<codeline lineno="14"><highlight class="normal"></highlight></codeline>
+<codeline lineno="15"><highlight class="normal"><sp/><sp/><sp/><sp/>Kinect::Kinect(ros::NodeHandle<sp/>node,<sp/></highlight><highlight class="keywordtype">bool</highlight><highlight class="normal"><sp/>doTransform)<sp/>{</highlight></codeline>
+<codeline lineno="16"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>construct(</highlight><highlight class="stringliteral">&quot;camera/depth_registered/points&quot;</highlight><highlight class="normal">,<sp/></highlight><highlight class="stringliteral">&quot;world_link&quot;</highlight><highlight class="normal">,<sp/>node,<sp/>doTransform);</highlight></codeline>
+<codeline lineno="17"><highlight class="normal"><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline lineno="18"><highlight class="normal"></highlight></codeline>
+<codeline lineno="19"><highlight class="normal"><sp/><sp/><sp/><sp/>Kinect::Kinect(std::string<sp/>kinectTopic,<sp/>ros::NodeHandle<sp/>node,<sp/></highlight><highlight class="keywordtype">bool</highlight><highlight class="normal"><sp/>doTransform)<sp/>{</highlight></codeline>
+<codeline lineno="20"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>construct(kinectTopic,<sp/></highlight><highlight class="stringliteral">&quot;world_link&quot;</highlight><highlight class="normal">,<sp/>node,<sp/>doTransform);</highlight></codeline>
+<codeline lineno="21"><highlight class="normal"><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline lineno="22"><highlight class="normal"></highlight></codeline>
+<codeline lineno="23"><highlight class="normal"><sp/><sp/><sp/><sp/>Kinect::Kinect(std::string<sp/>kinectTopic,<sp/>std::string<sp/>targetFrame,<sp/>ros::NodeHandle<sp/>node,<sp/></highlight><highlight class="keywordtype">bool</highlight><highlight class="normal"><sp/>doTransform)<sp/>{</highlight></codeline>
+<codeline lineno="24"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>construct(kinectTopic,<sp/>targetFrame,<sp/>node,<sp/>doTransform);</highlight></codeline>
+<codeline lineno="25"><highlight class="normal"><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline lineno="26"><highlight class="normal"></highlight></codeline>
+<codeline lineno="27"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/>Kinect::construct(std::string<sp/>kinectTopic,<sp/>std::string<sp/>targetFrame,<sp/>ros::NodeHandle<sp/>node,<sp/></highlight><highlight class="keywordtype">bool</highlight><highlight class="normal"><sp/>doTransform)<sp/>{</highlight></codeline>
+<codeline lineno="28"><highlight class="normal"></highlight></codeline>
+<codeline lineno="29"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>kinectFrameSet<sp/>=<sp/></highlight><highlight class="keyword">false</highlight><highlight class="normal">;</highlight></codeline>
+<codeline lineno="30"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>this-&gt;doTransform<sp/>=<sp/>doTransform;</highlight></codeline>
+<codeline lineno="31"><highlight class="normal"></highlight></codeline>
+<codeline lineno="32"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>stdVisPubTopic<sp/>=<sp/></highlight><highlight class="stringliteral">&quot;/kukadu/rviz&quot;</highlight><highlight class="normal">;</highlight></codeline>
+<codeline lineno="33"><highlight class="normal"></highlight></codeline>
+<codeline lineno="34"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>isInit<sp/>=<sp/></highlight><highlight class="keyword">false</highlight><highlight class="normal">;</highlight></codeline>
+<codeline lineno="35"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>keepRunning<sp/>=<sp/></highlight><highlight class="keyword">false</highlight><highlight class="normal">;</highlight></codeline>
+<codeline lineno="36"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>pcRequested<sp/>=<sp/></highlight><highlight class="keyword">false</highlight><highlight class="normal">;</highlight></codeline>
+<codeline lineno="37"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>firstCloudSet<sp/>=<sp/></highlight><highlight class="keyword">false</highlight><highlight class="normal">;</highlight></codeline>
+<codeline lineno="38"><highlight class="normal"></highlight></codeline>
+<codeline lineno="39"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>this-&gt;node<sp/>=<sp/>node;</highlight></codeline>
+<codeline lineno="40"><highlight class="normal"></highlight></codeline>
+<codeline lineno="41"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>subKinect<sp/>=<sp/>node.subscribe(kinectTopic,<sp/>1,<sp/>&amp;Kinect::callbackKinectPointCloud,<sp/></highlight><highlight class="keyword">this</highlight><highlight class="normal">);</highlight></codeline>
+<codeline lineno="42"><highlight class="normal"></highlight></codeline>
+<codeline lineno="43"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>this-&gt;visPubTopic<sp/>=<sp/>stdVisPubTopic;</highlight></codeline>
+<codeline lineno="44"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>visPublisher<sp/>=<sp/>node.advertise&lt;sensor_msgs::PointCloud2&gt;(visPubTopic,<sp/>1);</highlight></codeline>
+<codeline lineno="45"><highlight class="normal"></highlight></codeline>
+<codeline lineno="46"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">if</highlight><highlight class="normal">(doTransform)</highlight></codeline>
+<codeline lineno="47"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>transformListener<sp/>=<sp/>make_shared&lt;tf::TransformListener&gt;();</highlight></codeline>
+<codeline lineno="48"><highlight class="normal"></highlight></codeline>
+<codeline lineno="49"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>ros::Rate<sp/>r(10);</highlight></codeline>
+<codeline lineno="50"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">while</highlight><highlight class="normal">(!firstCloudSet)<sp/>{</highlight></codeline>
+<codeline lineno="51"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>r.sleep();</highlight></codeline>
+<codeline lineno="52"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>ros::spinOnce();</highlight></codeline>
+<codeline lineno="53"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline lineno="54"><highlight class="normal"></highlight></codeline>
+<codeline lineno="55"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">if</highlight><highlight class="normal">(doTransform)</highlight></codeline>
+<codeline lineno="56"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>transformListener-&gt;waitForTransform(targetFrame,<sp/>currentPc-&gt;header.frame_id,<sp/>ros::Time(0),<sp/>ros::Duration(5.0));</highlight></codeline>
+<codeline lineno="57"><highlight class="normal"></highlight></codeline>
+<codeline lineno="58"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>this-&gt;targetFrame<sp/>=<sp/>targetFrame;</highlight></codeline>
+<codeline lineno="59"><highlight class="normal"></highlight></codeline>
+<codeline lineno="60"><highlight class="normal"><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline lineno="61"><highlight class="normal"></highlight></codeline>
+<codeline lineno="62"><highlight class="normal"><sp/><sp/><sp/><sp/>std::string<sp/>Kinect::getKinectFrame()<sp/>{</highlight></codeline>
+<codeline lineno="63"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">if</highlight><highlight class="normal">(kinectFrameSet)</highlight></codeline>
+<codeline lineno="64"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal"><sp/>kinectFrame;</highlight></codeline>
+<codeline lineno="65"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">throw</highlight><highlight class="normal"><sp/>KukaduException(</highlight><highlight class="stringliteral">&quot;(Kinect)<sp/>no<sp/>point<sp/>cloud<sp/>retrieved<sp/>yet&quot;</highlight><highlight class="normal">);</highlight></codeline>
+<codeline lineno="66"><highlight class="normal"><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline lineno="67"><highlight class="normal"></highlight></codeline>
+<codeline lineno="68"><highlight class="normal"><sp/><sp/><sp/><sp/>KUKADU_SHARED_PTR&lt;kukadu_thread&gt;<sp/>Kinect::startSensing()<sp/>{</highlight></codeline>
+<codeline lineno="69"><highlight class="normal"></highlight></codeline>
+<codeline lineno="70"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>KUKADU_MODULE_START_USAGE();</highlight></codeline>
+<codeline lineno="71"><highlight class="normal"></highlight></codeline>
+<codeline lineno="72"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>keepRunning<sp/>=<sp/></highlight><highlight class="keyword">true</highlight><highlight class="normal">;</highlight></codeline>
+<codeline lineno="73"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>thr<sp/>=<sp/>KUKADU_SHARED_PTR&lt;kukadu_thread&gt;(</highlight><highlight class="keyword">new</highlight><highlight class="normal"><sp/>kukadu_thread(&amp;Kinect::runThread,<sp/></highlight><highlight class="keyword">this</highlight><highlight class="normal">));</highlight></codeline>
+<codeline lineno="74"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">while</highlight><highlight class="normal">(!this-&gt;isInitialized());</highlight></codeline>
+<codeline lineno="75"><highlight class="normal"></highlight></codeline>
+<codeline lineno="76"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>KUKADU_MODULE_END_USAGE();</highlight></codeline>
+<codeline lineno="77"><highlight class="normal"></highlight></codeline>
+<codeline lineno="78"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal"><sp/>thr;</highlight></codeline>
+<codeline lineno="79"><highlight class="normal"><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline lineno="80"><highlight class="normal"></highlight></codeline>
+<codeline lineno="81"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/>Kinect::stopSensing()<sp/>{</highlight></codeline>
+<codeline lineno="82"><highlight class="normal"></highlight></codeline>
+<codeline lineno="83"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>KUKADU_MODULE_START_USAGE();</highlight></codeline>
+<codeline lineno="84"><highlight class="normal"></highlight></codeline>
+<codeline lineno="85"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>keepRunning<sp/>=<sp/></highlight><highlight class="keyword">false</highlight><highlight class="normal">;</highlight></codeline>
+<codeline lineno="86"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">if</highlight><highlight class="normal">(thr<sp/>&amp;&amp;<sp/>thr-&gt;joinable())</highlight></codeline>
+<codeline lineno="87"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>thr-&gt;join();</highlight></codeline>
+<codeline lineno="88"><highlight class="normal"></highlight></codeline>
+<codeline lineno="89"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>KUKADU_MODULE_END_USAGE();</highlight></codeline>
+<codeline lineno="90"><highlight class="normal"></highlight></codeline>
+<codeline lineno="91"><highlight class="normal"><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline lineno="92"><highlight class="normal"></highlight></codeline>
+<codeline lineno="93"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="comment">//<sp/>question<sp/>to<sp/>myself:<sp/>why<sp/>is<sp/>this<sp/>here???</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="94"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/>Kinect::runThread()<sp/>{</highlight></codeline>
+<codeline lineno="95"><highlight class="normal"></highlight></codeline>
+<codeline lineno="96"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>isInit<sp/>=<sp/></highlight><highlight class="keyword">true</highlight><highlight class="normal">;</highlight></codeline>
+<codeline lineno="97"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>ros::Rate<sp/>r(10);</highlight></codeline>
+<codeline lineno="98"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">while</highlight><highlight class="normal">(keepRunning)</highlight></codeline>
+<codeline lineno="99"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>r.sleep();</highlight></codeline>
+<codeline lineno="100"><highlight class="normal"></highlight></codeline>
+<codeline lineno="101"><highlight class="normal"><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline lineno="102"><highlight class="normal"></highlight></codeline>
+<codeline lineno="103"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">bool</highlight><highlight class="normal"><sp/>Kinect::isInitialized()<sp/>{</highlight></codeline>
+<codeline lineno="104"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal"><sp/>isInit;</highlight></codeline>
+<codeline lineno="105"><highlight class="normal"><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline lineno="106"><highlight class="normal"></highlight></codeline>
+<codeline lineno="107"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/>Kinect::callbackKinectPointCloud(</highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/>sensor_msgs::PointCloud2&amp;<sp/>pc)<sp/>{</highlight></codeline>
+<codeline lineno="108"><highlight class="normal"></highlight></codeline>
+<codeline lineno="109"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>pcMutex.lock();</highlight></codeline>
+<codeline lineno="110"><highlight class="normal"></highlight></codeline>
+<codeline lineno="111"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">if</highlight><highlight class="normal">(pcRequested<sp/>||<sp/>!firstCloudSet)</highlight></codeline>
+<codeline lineno="112"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>currentPc<sp/>=<sp/>boost::make_shared&lt;sensor_msgs::PointCloud2&gt;(pc);</highlight></codeline>
+<codeline lineno="113"><highlight class="normal"></highlight></codeline>
+<codeline lineno="114"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>pcRequested<sp/>=<sp/></highlight><highlight class="keyword">false</highlight><highlight class="normal">;</highlight></codeline>
+<codeline lineno="115"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>firstCloudSet<sp/>=<sp/></highlight><highlight class="keyword">true</highlight><highlight class="normal">;</highlight></codeline>
+<codeline lineno="116"><highlight class="normal"></highlight></codeline>
+<codeline lineno="117"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>kinectFrame<sp/>=<sp/>currentPc-&gt;header.frame_id;</highlight></codeline>
+<codeline lineno="118"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>kinectFrameSet<sp/>=<sp/></highlight><highlight class="keyword">true</highlight><highlight class="normal">;</highlight></codeline>
+<codeline lineno="119"><highlight class="normal"></highlight></codeline>
+<codeline lineno="120"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>pcMutex.unlock();</highlight></codeline>
+<codeline lineno="121"><highlight class="normal"></highlight></codeline>
+<codeline lineno="122"><highlight class="normal"></highlight></codeline>
+<codeline lineno="123"><highlight class="normal"><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline lineno="124"><highlight class="normal"></highlight></codeline>
+<codeline lineno="125"><highlight class="normal"><sp/><sp/><sp/><sp/>sensor_msgs::PointCloud2::Ptr<sp/>Kinect::getCurrentPointCloud()<sp/>{</highlight></codeline>
+<codeline lineno="126"><highlight class="normal"></highlight></codeline>
+<codeline lineno="127"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>KUKADU_MODULE_START_USAGE();</highlight></codeline>
+<codeline lineno="128"><highlight class="normal"></highlight></codeline>
+<codeline lineno="129"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>pcRequested<sp/>=<sp/></highlight><highlight class="keyword">true</highlight><highlight class="normal">;</highlight></codeline>
+<codeline lineno="130"><highlight class="normal"></highlight></codeline>
+<codeline lineno="131"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>ros::Rate<sp/>kinectRate(10);</highlight></codeline>
+<codeline lineno="132"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">while</highlight><highlight class="normal">(pcRequested)</highlight></codeline>
+<codeline lineno="133"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>kinectRate.sleep();</highlight></codeline>
+<codeline lineno="134"><highlight class="normal"></highlight></codeline>
+<codeline lineno="135"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>sensor_msgs::PointCloud2::Ptr<sp/>retCloud;</highlight></codeline>
+<codeline lineno="136"><highlight class="normal"></highlight></codeline>
+<codeline lineno="137"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>pcMutex.lock();</highlight></codeline>
+<codeline lineno="138"><highlight class="normal"></highlight></codeline>
+<codeline lineno="139"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">bool</highlight><highlight class="normal"><sp/>tfWorked<sp/>=<sp/></highlight><highlight class="keyword">false</highlight><highlight class="normal">;</highlight></codeline>
+<codeline lineno="140"><highlight class="normal"></highlight></codeline>
+<codeline lineno="141"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">while</highlight><highlight class="normal">(!tfWorked)<sp/>{</highlight></codeline>
+<codeline lineno="142"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>retCloud<sp/>=<sp/>currentPc;</highlight></codeline>
+<codeline lineno="143"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">try</highlight><highlight class="normal"><sp/>{</highlight></codeline>
+<codeline lineno="144"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>tf::StampedTransform<sp/>trans;</highlight></codeline>
+<codeline lineno="145"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>retCloud-&gt;header.stamp<sp/>=<sp/>ros::Time::now();</highlight></codeline>
+<codeline lineno="146"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">if</highlight><highlight class="normal">(doTransform)<sp/>{</highlight></codeline>
+<codeline lineno="147"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>transformListener-&gt;waitForTransform(targetFrame,<sp/>retCloud-&gt;header.frame_id,<sp/>retCloud-&gt;header.stamp,<sp/>ros::Duration(5.0));</highlight></codeline>
+<codeline lineno="148"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>transformListener-&gt;lookupTransform(targetFrame,<sp/>retCloud-&gt;header.frame_id,<sp/>ros::Time(0),<sp/>trans);</highlight></codeline>
+<codeline lineno="149"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>pcl_ros::transformPointCloud(targetFrame,<sp/>*retCloud,<sp/>*retCloud,<sp/>*transformListener);</highlight></codeline>
+<codeline lineno="150"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline lineno="151"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>tfWorked<sp/>=<sp/></highlight><highlight class="keyword">true</highlight><highlight class="normal">;</highlight></codeline>
+<codeline lineno="152"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>}<sp/></highlight><highlight class="keywordflow">catch</highlight><highlight class="normal">(tf::TransformException<sp/>ex)<sp/>{</highlight></codeline>
+<codeline lineno="153"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>cerr<sp/>&lt;&lt;<sp/></highlight><highlight class="stringliteral">&quot;transformation<sp/>not<sp/>found&quot;</highlight><highlight class="normal"><sp/>&lt;&lt;<sp/>endl;</highlight></codeline>
+<codeline lineno="154"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline lineno="155"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline lineno="156"><highlight class="normal"></highlight></codeline>
+<codeline lineno="157"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>firstCloudSet<sp/>=<sp/></highlight><highlight class="keyword">false</highlight><highlight class="normal">;</highlight></codeline>
+<codeline lineno="158"><highlight class="normal"></highlight></codeline>
+<codeline lineno="159"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>pcMutex.unlock();</highlight></codeline>
+<codeline lineno="160"><highlight class="normal"></highlight></codeline>
+<codeline lineno="161"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>KUKADU_MODULE_END_USAGE();</highlight></codeline>
+<codeline lineno="162"><highlight class="normal"></highlight></codeline>
+<codeline lineno="163"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal"><sp/>retCloud;</highlight></codeline>
+<codeline lineno="164"><highlight class="normal"></highlight></codeline>
+<codeline lineno="165"><highlight class="normal"><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline lineno="166"><highlight class="normal"></highlight></codeline>
+<codeline lineno="167"><highlight class="normal"><sp/><sp/><sp/><sp/>pcl::PointCloud&lt;pcl::PointXYZRGB&gt;::Ptr<sp/>Kinect::getCurrentColorPointCloud()<sp/>{</highlight></codeline>
+<codeline lineno="168"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>KUKADU_MODULE_START_USAGE();</highlight></codeline>
+<codeline lineno="169"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>pcl::PointCloud&lt;pcl::PointXYZRGB&gt;::Ptr<sp/>retCloud<sp/>=<sp/>sensorMsgsPcToPclPc&lt;pcl::PointCloud&lt;PointXYZRGB&gt;::Ptr,<sp/>pcl::PointXYZRGB&gt;(getCurrentPointCloud());</highlight></codeline>
+<codeline lineno="170"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>KUKADU_MODULE_END_USAGE();</highlight></codeline>
+<codeline lineno="171"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal"><sp/>retCloud;</highlight></codeline>
+<codeline lineno="172"><highlight class="normal"><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline lineno="173"><highlight class="normal"></highlight></codeline>
+<codeline lineno="174"><highlight class="normal"><sp/><sp/><sp/><sp/>pcl::PointCloud&lt;pcl::PointXYZI&gt;::Ptr<sp/>Kinect::getCurrentIntensityPointCloud()<sp/>{</highlight></codeline>
+<codeline lineno="175"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>KUKADU_MODULE_START_USAGE();</highlight></codeline>
+<codeline lineno="176"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>pcl::PointCloud&lt;pcl::PointXYZI&gt;::Ptr<sp/>retCloud<sp/>=<sp/>sensorMsgsPcToPclPc&lt;pcl::PointCloud&lt;PointXYZI&gt;::Ptr,<sp/>pcl::PointXYZI&gt;(getCurrentPointCloud());</highlight></codeline>
+<codeline lineno="177"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>KUKADU_MODULE_END_USAGE();</highlight></codeline>
+<codeline lineno="178"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal"><sp/>retCloud;</highlight></codeline>
+<codeline lineno="179"><highlight class="normal"><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline lineno="180"><highlight class="normal"></highlight></codeline>
+<codeline lineno="181"><highlight class="normal"><sp/><sp/><sp/><sp/>std::string<sp/>Kinect::getVisPubTopic()<sp/>{</highlight></codeline>
+<codeline lineno="182"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal"><sp/>visPubTopic;</highlight></codeline>
+<codeline lineno="183"><highlight class="normal"><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline lineno="184"><highlight class="normal"></highlight></codeline>
+<codeline lineno="185"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/>Kinect::setVisPubTopic(std::string<sp/>visPubTopic)<sp/>{</highlight></codeline>
+<codeline lineno="186"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>this-&gt;visPubTopic<sp/>=<sp/>visPubTopic;</highlight></codeline>
+<codeline lineno="187"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>visPublisher<sp/>=<sp/>node.advertise&lt;sensor_msgs::PointCloud2&gt;(this-&gt;visPubTopic,<sp/>1);</highlight></codeline>
+<codeline lineno="188"><highlight class="normal"><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline lineno="189"><highlight class="normal"></highlight></codeline>
+<codeline lineno="190"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/>Kinect::visualizeCurrentPc()<sp/>{</highlight></codeline>
+<codeline lineno="191"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>KUKADU_MODULE_START_USAGE();</highlight></codeline>
+<codeline lineno="192"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>visPublisher.publish(getCurrentPointCloud());</highlight></codeline>
+<codeline lineno="193"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>KUKADU_MODULE_END_USAGE();</highlight></codeline>
+<codeline lineno="194"><highlight class="normal"><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline lineno="195"><highlight class="normal"></highlight></codeline>
+<codeline lineno="196"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/>Kinect::visualizeCurrentTransformedPc(KUKADU_SHARED_PTR&lt;PCTransformator&gt;<sp/>transformator)<sp/>{</highlight></codeline>
+<codeline lineno="197"><highlight class="normal"></highlight></codeline>
+<codeline lineno="198"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>pcl::PointCloud&lt;pcl::PointXYZRGB&gt;::Ptr<sp/>currentPc<sp/>=<sp/>sensorMsgsPcToPclPc&lt;pcl::PointCloud&lt;PointXYZRGB&gt;::Ptr,<sp/>pcl::PointXYZRGB&gt;(getCurrentPointCloud());</highlight></codeline>
+<codeline lineno="199"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>pcl::PointCloud&lt;pcl::PointXYZRGB&gt;::Ptr<sp/>transformed<sp/>=<sp/>transformator-&gt;transformPc(currentPc);</highlight></codeline>
+<codeline lineno="200"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>visPublisher.publish(pclPcToSensorMsgsPc(transformed));</highlight></codeline>
+<codeline lineno="201"><highlight class="normal"></highlight></codeline>
+<codeline lineno="202"><highlight class="normal"><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline lineno="203"><highlight class="normal"></highlight></codeline>
+<codeline lineno="204"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/>Kinect::storeCurrentPc(std::string<sp/>fileName)<sp/>{</highlight></codeline>
+<codeline lineno="205"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>KUKADU_MODULE_START_USAGE();</highlight></codeline>
+<codeline lineno="206"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>pcl::io::savePCDFile(fileName,<sp/>sensorMsgsPcToPclPc2(*getCurrentPointCloud()),<sp/>Eigen::Vector4f::Zero(),<sp/>Eigen::Quaternionf::Identity(),<sp/></highlight><highlight class="keyword">true</highlight><highlight class="normal">);</highlight></codeline>
+<codeline lineno="207"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>KUKADU_MODULE_END_USAGE();</highlight></codeline>
+<codeline lineno="208"><highlight class="normal"><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline lineno="209"><highlight class="normal"></highlight></codeline>
+<codeline lineno="210"><highlight class="normal">}</highlight></codeline>
+    </programlisting>
+    <location file="/home/agyss/iis_robot_sw/iis_catkin_ws/src/kukadu/src/vision/kinect.cpp"/>
+  </compounddef>
+</doxygen>

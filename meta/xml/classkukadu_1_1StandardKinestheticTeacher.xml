@@ -1,0 +1,696 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.8.11">
+  <compounddef id="classkukadu_1_1StandardKinestheticTeacher" kind="class" language="C++" prot="public">
+    <compoundname>kukadu::StandardKinestheticTeacher</compoundname>
+    <basecompoundref refid="classkukadu_1_1KinestheticTeacher" prot="private" virt="non-virtual">kukadu::KinestheticTeacher</basecompoundref>
+      <sectiondef kind="private-type">
+      <memberdef kind="enum" id="classkukadu_1_1StandardKinestheticTeacher_1aa82e7839d5d95add34493a9895dab435" prot="private" static="no">
+        <name>ControllerType</name>
+        <enumvalue id="classkukadu_1_1StandardKinestheticTeacher_1aa82e7839d5d95add34493a9895dab435aeb47fe7c1302e744610986bb8f571838" prot="private">
+          <name>JACOBIAN</name>
+          <briefdescription>
+          </briefdescription>
+          <detaileddescription>
+          </detaileddescription>
+        </enumvalue>
+        <enumvalue id="classkukadu_1_1StandardKinestheticTeacher_1aa82e7839d5d95add34493a9895dab435ac0bcec7be71ca5b979097329383ceaa6" prot="private">
+          <name>INVERSE</name>
+          <briefdescription>
+          </briefdescription>
+          <detaileddescription>
+          </detaileddescription>
+        </enumvalue>
+        <enumvalue id="classkukadu_1_1StandardKinestheticTeacher_1aa82e7839d5d95add34493a9895dab435abe43f5ff721ccc436dd8a198d4001547" prot="private">
+          <name>IK</name>
+          <briefdescription>
+          </briefdescription>
+          <detaileddescription>
+          </detaileddescription>
+        </enumvalue>
+        <enumvalue id="classkukadu_1_1StandardKinestheticTeacher_1aa82e7839d5d95add34493a9895dab435ab18417200410b873182f81b01cdc4eae" prot="private">
+          <name>HYBRID</name>
+          <briefdescription>
+          </briefdescription>
+          <detaileddescription>
+          </detaileddescription>
+        </enumvalue>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/agyss/iis_robot_sw/iis_catkin_ws/src/kukadu/include/kukadu/robot/kinestheticteaching.hpp" line="53" column="1" bodyfile="/home/agyss/iis_robot_sw/iis_catkin_ws/src/kukadu/include/kukadu/robot/kinestheticteaching.hpp" bodystart="53" bodyend="53"/>
+      </memberdef>
+      </sectiondef>
+      <sectiondef kind="private-static-attrib">
+      <memberdef kind="variable" id="classkukadu_1_1StandardKinestheticTeacher_1abc7889ea9c173ee4407cd6f3850fcffc" prot="private" static="yes" mutable="no">
+        <type>auto constexpr</type>
+        <definition>auto constexpr kukadu::StandardKinestheticTeacher::FILTER_FREQ</definition>
+        <argsstring></argsstring>
+        <name>FILTER_FREQ</name>
+        <initializer>= 50.0</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/agyss/iis_robot_sw/iis_catkin_ws/src/kukadu/include/kukadu/robot/kinestheticteaching.hpp" line="16" column="1" bodyfile="/home/agyss/iis_robot_sw/iis_catkin_ws/src/kukadu/include/kukadu/robot/kinestheticteaching.hpp" bodystart="16" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classkukadu_1_1StandardKinestheticTeacher_1a9c86f5f0a58a22b7457e228d197cc6b0" prot="private" static="yes" mutable="no">
+        <type>auto constexpr</type>
+        <definition>auto constexpr kukadu::StandardKinestheticTeacher::FORCES_MOVING_MULTIPLIER</definition>
+        <argsstring></argsstring>
+        <name>FORCES_MOVING_MULTIPLIER</name>
+        <initializer>= 0.14</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/agyss/iis_robot_sw/iis_catkin_ws/src/kukadu/include/kukadu/robot/kinestheticteaching.hpp" line="17" column="1" bodyfile="/home/agyss/iis_robot_sw/iis_catkin_ws/src/kukadu/include/kukadu/robot/kinestheticteaching.hpp" bodystart="17" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classkukadu_1_1StandardKinestheticTeacher_1af1b5b4790616a76bf2ea2dbefd19463c" prot="private" static="yes" mutable="no">
+        <type>auto constexpr</type>
+        <definition>auto constexpr kukadu::StandardKinestheticTeacher::TORQUES_MOVING_MULTIPLIER</definition>
+        <argsstring></argsstring>
+        <name>TORQUES_MOVING_MULTIPLIER</name>
+        <initializer>= 0.21</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/agyss/iis_robot_sw/iis_catkin_ws/src/kukadu/include/kukadu/robot/kinestheticteaching.hpp" line="18" column="1" bodyfile="/home/agyss/iis_robot_sw/iis_catkin_ws/src/kukadu/include/kukadu/robot/kinestheticteaching.hpp" bodystart="18" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classkukadu_1_1StandardKinestheticTeacher_1ae36e50b14e0e5725d5604ae364fcfc23" prot="private" static="yes" mutable="no">
+        <type>auto constexpr</type>
+        <definition>auto constexpr kukadu::StandardKinestheticTeacher::BASE_XY_MOVING_MULTIPLIER</definition>
+        <argsstring></argsstring>
+        <name>BASE_XY_MOVING_MULTIPLIER</name>
+        <initializer>= 0.17</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/agyss/iis_robot_sw/iis_catkin_ws/src/kukadu/include/kukadu/robot/kinestheticteaching.hpp" line="20" column="1" bodyfile="/home/agyss/iis_robot_sw/iis_catkin_ws/src/kukadu/include/kukadu/robot/kinestheticteaching.hpp" bodystart="20" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classkukadu_1_1StandardKinestheticTeacher_1a39cf3c29a2846af3aa2c2c1db370e016" prot="private" static="yes" mutable="no">
+        <type>auto constexpr</type>
+        <definition>auto constexpr kukadu::StandardKinestheticTeacher::BASE_Z_MOVING_MULTIPLIER</definition>
+        <argsstring></argsstring>
+        <name>BASE_Z_MOVING_MULTIPLIER</name>
+        <initializer>= 0.6</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/agyss/iis_robot_sw/iis_catkin_ws/src/kukadu/include/kukadu/robot/kinestheticteaching.hpp" line="21" column="1" bodyfile="/home/agyss/iis_robot_sw/iis_catkin_ws/src/kukadu/include/kukadu/robot/kinestheticteaching.hpp" bodystart="21" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classkukadu_1_1StandardKinestheticTeacher_1aef040d595b6aabd848138249d0c3d230" prot="private" static="yes" mutable="no">
+        <type>auto constexpr</type>
+        <definition>auto constexpr kukadu::StandardKinestheticTeacher::ARM_ALLJOINTS_MOVING_MULTIPLIER</definition>
+        <argsstring></argsstring>
+        <name>ARM_ALLJOINTS_MOVING_MULTIPLIER</name>
+        <initializer>= 0.22</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/agyss/iis_robot_sw/iis_catkin_ws/src/kukadu/include/kukadu/robot/kinestheticteaching.hpp" line="22" column="1" bodyfile="/home/agyss/iis_robot_sw/iis_catkin_ws/src/kukadu/include/kukadu/robot/kinestheticteaching.hpp" bodystart="22" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classkukadu_1_1StandardKinestheticTeacher_1a78130cc6d67e475769601a1fcee79efb" prot="private" static="yes" mutable="no">
+        <type>auto constexpr</type>
+        <definition>auto constexpr kukadu::StandardKinestheticTeacher::MAXIMUM_JOINT_STEP</definition>
+        <argsstring></argsstring>
+        <name>MAXIMUM_JOINT_STEP</name>
+        <initializer>= 0.1</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/agyss/iis_robot_sw/iis_catkin_ws/src/kukadu/include/kukadu/robot/kinestheticteaching.hpp" line="24" column="1" bodyfile="/home/agyss/iis_robot_sw/iis_catkin_ws/src/kukadu/include/kukadu/robot/kinestheticteaching.hpp" bodystart="24" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classkukadu_1_1StandardKinestheticTeacher_1aac423532e6868e949645a4a5611aab83" prot="private" static="yes" mutable="no">
+        <type>auto constexpr</type>
+        <definition>auto constexpr kukadu::StandardKinestheticTeacher::MAX_JOINT_MOVEMENT_ALLOWED_FOR_IK</definition>
+        <argsstring></argsstring>
+        <name>MAX_JOINT_MOVEMENT_ALLOWED_FOR_IK</name>
+        <initializer>= 0.25</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/agyss/iis_robot_sw/iis_catkin_ws/src/kukadu/include/kukadu/robot/kinestheticteaching.hpp" line="25" column="1" bodyfile="/home/agyss/iis_robot_sw/iis_catkin_ws/src/kukadu/include/kukadu/robot/kinestheticteaching.hpp" bodystart="25" bodyend="-1"/>
+      </memberdef>
+      </sectiondef>
+      <sectiondef kind="private-attrib">
+      <memberdef kind="variable" id="classkukadu_1_1StandardKinestheticTeacher_1a7aac42be67eff68db205158b7e3f8309" prot="private" static="no" mutable="no">
+        <type>bool</type>
+        <definition>bool kukadu::StandardKinestheticTeacher::teacherRunning</definition>
+        <argsstring></argsstring>
+        <name>teacherRunning</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/agyss/iis_robot_sw/iis_catkin_ws/src/kukadu/include/kukadu/robot/kinestheticteaching.hpp" line="39" column="1" bodyfile="/home/agyss/iis_robot_sw/iis_catkin_ws/src/kukadu/include/kukadu/robot/kinestheticteaching.hpp" bodystart="39" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classkukadu_1_1StandardKinestheticTeacher_1aaa0aa72c8105828d700be57a4215d236" prot="private" static="no" mutable="no">
+        <type>bool</type>
+        <definition>bool kukadu::StandardKinestheticTeacher::filterRunning</definition>
+        <argsstring></argsstring>
+        <name>filterRunning</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/agyss/iis_robot_sw/iis_catkin_ws/src/kukadu/include/kukadu/robot/kinestheticteaching.hpp" line="40" column="1" bodyfile="/home/agyss/iis_robot_sw/iis_catkin_ws/src/kukadu/include/kukadu/robot/kinestheticteaching.hpp" bodystart="40" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classkukadu_1_1StandardKinestheticTeacher_1ac20dc19b0f6024000fc3f01b99735bbc" prot="private" static="no" mutable="no">
+        <type>bool</type>
+        <definition>bool kukadu::StandardKinestheticTeacher::firstReading</definition>
+        <argsstring></argsstring>
+        <name>firstReading</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/agyss/iis_robot_sw/iis_catkin_ws/src/kukadu/include/kukadu/robot/kinestheticteaching.hpp" line="41" column="1" bodyfile="/home/agyss/iis_robot_sw/iis_catkin_ws/src/kukadu/include/kukadu/robot/kinestheticteaching.hpp" bodystart="41" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classkukadu_1_1StandardKinestheticTeacher_1a96b3225df842c8d7e4adf511219a5b1b" prot="private" static="no" mutable="no">
+        <type>std::string</type>
+        <definition>std::string kukadu::StandardKinestheticTeacher::recordingPath</definition>
+        <argsstring></argsstring>
+        <name>recordingPath</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/agyss/iis_robot_sw/iis_catkin_ws/src/kukadu/include/kukadu/robot/kinestheticteaching.hpp" line="43" column="1" bodyfile="/home/agyss/iis_robot_sw/iis_catkin_ws/src/kukadu/include/kukadu/robot/kinestheticteaching.hpp" bodystart="43" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classkukadu_1_1StandardKinestheticTeacher_1a1869858cd10debd5f3d5733b7bac2d46" prot="private" static="no" mutable="no">
+        <type>std::vector&lt; double &gt;</type>
+        <definition>std::vector&lt;double&gt; kukadu::StandardKinestheticTeacher::sensorVal</definition>
+        <argsstring></argsstring>
+        <name>sensorVal</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/agyss/iis_robot_sw/iis_catkin_ws/src/kukadu/include/kukadu/robot/kinestheticteaching.hpp" line="44" column="1" bodyfile="/home/agyss/iis_robot_sw/iis_catkin_ws/src/kukadu/include/kukadu/robot/kinestheticteaching.hpp" bodystart="44" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classkukadu_1_1StandardKinestheticTeacher_1ae51211cd72873a1807e0597d78565608" prot="private" static="no" mutable="no">
+        <type>KUKADU_SHARED_PTR&lt; <ref refid="classkukadu_1_1ControlQueue" kindref="compound">kukadu::ControlQueue</ref> &gt;</type>
+        <definition>KUKADU_SHARED_PTR&lt;kukadu::ControlQueue&gt; kukadu::StandardKinestheticTeacher::robotinoQueue</definition>
+        <argsstring></argsstring>
+        <name>robotinoQueue</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/agyss/iis_robot_sw/iis_catkin_ws/src/kukadu/include/kukadu/robot/kinestheticteaching.hpp" line="46" column="1" bodyfile="/home/agyss/iis_robot_sw/iis_catkin_ws/src/kukadu/include/kukadu/robot/kinestheticteaching.hpp" bodystart="46" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classkukadu_1_1StandardKinestheticTeacher_1a1799674da18c6b420a1a2f65b583453b" prot="private" static="no" mutable="no">
+        <type>KUKADU_SHARED_PTR&lt; <ref refid="classkukadu_1_1Kinematics" kindref="compound">kukadu::Kinematics</ref> &gt;</type>
+        <definition>KUKADU_SHARED_PTR&lt;kukadu::Kinematics&gt; kukadu::StandardKinestheticTeacher::mvKin</definition>
+        <argsstring></argsstring>
+        <name>mvKin</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/agyss/iis_robot_sw/iis_catkin_ws/src/kukadu/include/kukadu/robot/kinestheticteaching.hpp" line="47" column="1" bodyfile="/home/agyss/iis_robot_sw/iis_catkin_ws/src/kukadu/include/kukadu/robot/kinestheticteaching.hpp" bodystart="47" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classkukadu_1_1StandardKinestheticTeacher_1aa97150d51c3b0df0156c5ff633cebe83" prot="private" static="no" mutable="no">
+        <type>KUKADU_SHARED_PTR&lt; kukadu_thread &gt;</type>
+        <definition>KUKADU_SHARED_PTR&lt;kukadu_thread&gt; kukadu::StandardKinestheticTeacher::qThread</definition>
+        <argsstring></argsstring>
+        <name>qThread</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/agyss/iis_robot_sw/iis_catkin_ws/src/kukadu/include/kukadu/robot/kinestheticteaching.hpp" line="48" column="1" bodyfile="/home/agyss/iis_robot_sw/iis_catkin_ws/src/kukadu/include/kukadu/robot/kinestheticteaching.hpp" bodystart="48" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classkukadu_1_1StandardKinestheticTeacher_1ab01e71bd482c56e7f57ebf86f9cfb13d" prot="private" static="no" mutable="no">
+        <type>KUKADU_SHARED_PTR&lt; kukadu_thread &gt;</type>
+        <definition>KUKADU_SHARED_PTR&lt;kukadu_thread&gt; kukadu::StandardKinestheticTeacher::moveThread</definition>
+        <argsstring></argsstring>
+        <name>moveThread</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/agyss/iis_robot_sw/iis_catkin_ws/src/kukadu/include/kukadu/robot/kinestheticteaching.hpp" line="49" column="1" bodyfile="/home/agyss/iis_robot_sw/iis_catkin_ws/src/kukadu/include/kukadu/robot/kinestheticteaching.hpp" bodystart="49" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classkukadu_1_1StandardKinestheticTeacher_1a0dfadc3a64b04787ec3165cfd7afe7bc" prot="private" static="no" mutable="no">
+        <type>KUKADU_SHARED_PTR&lt; kukadu_thread &gt;</type>
+        <definition>KUKADU_SHARED_PTR&lt;kukadu_thread&gt; kukadu::StandardKinestheticTeacher::filterThread</definition>
+        <argsstring></argsstring>
+        <name>filterThread</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/agyss/iis_robot_sw/iis_catkin_ws/src/kukadu/include/kukadu/robot/kinestheticteaching.hpp" line="50" column="1" bodyfile="/home/agyss/iis_robot_sw/iis_catkin_ws/src/kukadu/include/kukadu/robot/kinestheticteaching.hpp" bodystart="50" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classkukadu_1_1StandardKinestheticTeacher_1a8b0fec2352dd4a81f3f8a081d8bcd50c" prot="private" static="no" mutable="no">
+        <type>KUKADU_SHARED_PTR&lt; <ref refid="classkukadu_1_1SensorStorage" kindref="compound">kukadu::SensorStorage</ref> &gt;</type>
+        <definition>KUKADU_SHARED_PTR&lt;kukadu::SensorStorage&gt; kukadu::StandardKinestheticTeacher::store</definition>
+        <argsstring></argsstring>
+        <name>store</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/agyss/iis_robot_sw/iis_catkin_ws/src/kukadu/include/kukadu/robot/kinestheticteaching.hpp" line="51" column="1" bodyfile="/home/agyss/iis_robot_sw/iis_catkin_ws/src/kukadu/include/kukadu/robot/kinestheticteaching.hpp" bodystart="51" bodyend="-1"/>
+      </memberdef>
+      </sectiondef>
+      <sectiondef kind="private-func">
+      <memberdef kind="function" id="classkukadu_1_1StandardKinestheticTeacher_1a0c80739d9de21627e03ccb2fcf2535eb" prot="private" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>Eigen::VectorXd</type>
+        <definition>Eigen::VectorXd kukadu::StandardKinestheticTeacher::stdToEigenVec</definition>
+        <argsstring>(std::vector&lt; double &gt; myVec)</argsstring>
+        <name>stdToEigenVec</name>
+        <param>
+          <type>std::vector&lt; double &gt;</type>
+          <declname>myVec</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/agyss/iis_robot_sw/iis_catkin_ws/src/kukadu/include/kukadu/robot/kinestheticteaching.hpp" line="55" column="1" bodyfile="/home/agyss/iis_robot_sw/iis_catkin_ws/src/kukadu/src/robot/kinestheticteaching.cpp" bodystart="187" bodyend="193"/>
+      </memberdef>
+      <memberdef kind="function" id="classkukadu_1_1StandardKinestheticTeacher_1a1a48295f3cdb83442802eeada2eeb052" prot="private" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>std::vector&lt; double &gt;</type>
+        <definition>std::vector&lt; double &gt; kukadu::StandardKinestheticTeacher::eigenToStdVec</definition>
+        <argsstring>(Eigen::VectorXd myVec)</argsstring>
+        <name>eigenToStdVec</name>
+        <param>
+          <type>Eigen::VectorXd</type>
+          <declname>myVec</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/agyss/iis_robot_sw/iis_catkin_ws/src/kukadu/include/kukadu/robot/kinestheticteaching.hpp" line="56" column="1" bodyfile="/home/agyss/iis_robot_sw/iis_catkin_ws/src/kukadu/src/robot/kinestheticteaching.cpp" bodystart="195" bodyend="202"/>
+      </memberdef>
+      <memberdef kind="function" id="classkukadu_1_1StandardKinestheticTeacher_1add1c27d434d4bba7d5a206d4787badaf" prot="private" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>std::vector&lt; double &gt;</type>
+        <definition>std::vector&lt; double &gt; kukadu::StandardKinestheticTeacher::scaleForcesTorques</definition>
+        <argsstring>(std::vector&lt; double &gt; myVec)</argsstring>
+        <name>scaleForcesTorques</name>
+        <param>
+          <type>std::vector&lt; double &gt;</type>
+          <declname>myVec</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/agyss/iis_robot_sw/iis_catkin_ws/src/kukadu/include/kukadu/robot/kinestheticteaching.hpp" line="58" column="1" bodyfile="/home/agyss/iis_robot_sw/iis_catkin_ws/src/kukadu/src/robot/kinestheticteaching.cpp" bodystart="167" bodyend="175"/>
+      </memberdef>
+      <memberdef kind="function" id="classkukadu_1_1StandardKinestheticTeacher_1a7750d8823703c8bf6c35b8b0b422a82d" prot="private" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>std::vector&lt; double &gt;</type>
+        <definition>std::vector&lt; double &gt; kukadu::StandardKinestheticTeacher::scaleJointCommands</definition>
+        <argsstring>(std::vector&lt; double &gt; myVec)</argsstring>
+        <name>scaleJointCommands</name>
+        <param>
+          <type>std::vector&lt; double &gt;</type>
+          <declname>myVec</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/agyss/iis_robot_sw/iis_catkin_ws/src/kukadu/include/kukadu/robot/kinestheticteaching.hpp" line="59" column="1" bodyfile="/home/agyss/iis_robot_sw/iis_catkin_ws/src/kukadu/src/robot/kinestheticteaching.cpp" bodystart="177" bodyend="185"/>
+      </memberdef>
+      <memberdef kind="function" id="classkukadu_1_1StandardKinestheticTeacher_1a514ecf2a73227ebe95a258c5fbbb648c" prot="private" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>int</type>
+        <definition>int kukadu::StandardKinestheticTeacher::sign</definition>
+        <argsstring>(double x)</argsstring>
+        <name>sign</name>
+        <param>
+          <type>double</type>
+          <declname>x</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/agyss/iis_robot_sw/iis_catkin_ws/src/kukadu/include/kukadu/robot/kinestheticteaching.hpp" line="60" column="1" bodyfile="/home/agyss/iis_robot_sw/iis_catkin_ws/src/kukadu/src/robot/kinestheticteaching.cpp" bodystart="226" bodyend="228"/>
+      </memberdef>
+      <memberdef kind="function" id="classkukadu_1_1StandardKinestheticTeacher_1a68ac85250711ce70b0d0bbc586198936" prot="private" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>bool</type>
+        <definition>bool kukadu::StandardKinestheticTeacher::isBigJump</definition>
+        <argsstring>(std::vector&lt; double &gt; myVec)</argsstring>
+        <name>isBigJump</name>
+        <param>
+          <type>std::vector&lt; double &gt;</type>
+          <declname>myVec</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/agyss/iis_robot_sw/iis_catkin_ws/src/kukadu/include/kukadu/robot/kinestheticteaching.hpp" line="61" column="1" bodyfile="/home/agyss/iis_robot_sw/iis_catkin_ws/src/kukadu/src/robot/kinestheticteaching.cpp" bodystart="159" bodyend="165"/>
+      </memberdef>
+      <memberdef kind="function" id="classkukadu_1_1StandardKinestheticTeacher_1aeb480aec79fa63ec60f8fc2c046ca63b" prot="private" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>std::vector&lt; double &gt;</type>
+        <definition>std::vector&lt; double &gt; kukadu::StandardKinestheticTeacher::capVec</definition>
+        <argsstring>(std::vector&lt; double &gt; input, double maxCap)</argsstring>
+        <name>capVec</name>
+        <param>
+          <type>std::vector&lt; double &gt;</type>
+          <declname>input</declname>
+        </param>
+        <param>
+          <type>double</type>
+          <declname>maxCap</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/agyss/iis_robot_sw/iis_catkin_ws/src/kukadu/include/kukadu/robot/kinestheticteaching.hpp" line="62" column="1" bodyfile="/home/agyss/iis_robot_sw/iis_catkin_ws/src/kukadu/src/robot/kinestheticteaching.cpp" bodystart="218" bodyend="224"/>
+      </memberdef>
+      <memberdef kind="function" id="classkukadu_1_1StandardKinestheticTeacher_1a963a4360b1ac742bc5b671883daca19f" prot="private" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>bool</type>
+        <definition>bool kukadu::StandardKinestheticTeacher::isColliding</definition>
+        <argsstring>(std::vector&lt; double &gt; jointStates)</argsstring>
+        <name>isColliding</name>
+        <param>
+          <type>std::vector&lt; double &gt;</type>
+          <declname>jointStates</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/agyss/iis_robot_sw/iis_catkin_ws/src/kukadu/include/kukadu/robot/kinestheticteaching.hpp" line="63" column="1" bodyfile="/home/agyss/iis_robot_sw/iis_catkin_ws/src/kukadu/src/robot/kinestheticteaching.cpp" bodystart="212" bodyend="215"/>
+      </memberdef>
+      <memberdef kind="function" id="classkukadu_1_1StandardKinestheticTeacher_1a9a1c4194808b5fbf866d19fc068217a1" prot="private" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>bool</type>
+        <definition>bool kukadu::StandardKinestheticTeacher::isDifferentialCommandSafe</definition>
+        <argsstring>(arma::vec diffCommand, arma::vec currentJointStates)</argsstring>
+        <name>isDifferentialCommandSafe</name>
+        <param>
+          <type>arma::vec</type>
+          <declname>diffCommand</declname>
+        </param>
+        <param>
+          <type>arma::vec</type>
+          <declname>currentJointStates</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/agyss/iis_robot_sw/iis_catkin_ws/src/kukadu/include/kukadu/robot/kinestheticteaching.hpp" line="64" column="1" bodyfile="/home/agyss/iis_robot_sw/iis_catkin_ws/src/kukadu/src/robot/kinestheticteaching.cpp" bodystart="203" bodyend="210"/>
+      </memberdef>
+      <memberdef kind="function" id="classkukadu_1_1StandardKinestheticTeacher_1a335be776651cfc7195d7b0c1747fc3a9" prot="private" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>arma::vec</type>
+        <definition>arma::vec kukadu::StandardKinestheticTeacher::getNextDifferentialCommand</definition>
+        <argsstring>(Eigen::MatrixXd jacobian, arma::vec currentJointState, ControllerType myType)</argsstring>
+        <name>getNextDifferentialCommand</name>
+        <param>
+          <type>Eigen::MatrixXd</type>
+          <declname>jacobian</declname>
+        </param>
+        <param>
+          <type>arma::vec</type>
+          <declname>currentJointState</declname>
+        </param>
+        <param>
+          <type>ControllerType</type>
+          <declname>myType</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/agyss/iis_robot_sw/iis_catkin_ws/src/kukadu/include/kukadu/robot/kinestheticteaching.hpp" line="65" column="1" bodyfile="/home/agyss/iis_robot_sw/iis_catkin_ws/src/kukadu/src/robot/kinestheticteaching.cpp" bodystart="67" bodyend="157"/>
+      </memberdef>
+      <memberdef kind="function" id="classkukadu_1_1StandardKinestheticTeacher_1ae7e617f148c5d638e6c389b599784fc3" prot="private" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>void kukadu::StandardKinestheticTeacher::generateNextCommand</definition>
+        <argsstring>()</argsstring>
+        <name>generateNextCommand</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/agyss/iis_robot_sw/iis_catkin_ws/src/kukadu/include/kukadu/robot/kinestheticteaching.hpp" line="66" column="1" bodyfile="/home/agyss/iis_robot_sw/iis_catkin_ws/src/kukadu/src/robot/kinestheticteaching.cpp" bodystart="35" bodyend="42"/>
+      </memberdef>
+      <memberdef kind="function" id="classkukadu_1_1StandardKinestheticTeacher_1ad4eb812008ad78810c6a275b813f174f" prot="private" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>void kukadu::StandardKinestheticTeacher::teachingThreadHandler</definition>
+        <argsstring>()</argsstring>
+        <name>teachingThreadHandler</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/agyss/iis_robot_sw/iis_catkin_ws/src/kukadu/include/kukadu/robot/kinestheticteaching.hpp" line="67" column="1" bodyfile="/home/agyss/iis_robot_sw/iis_catkin_ws/src/kukadu/src/robot/kinestheticteaching.cpp" bodystart="253" bodyend="261"/>
+      </memberdef>
+      </sectiondef>
+      <sectiondef kind="public-func">
+      <memberdef kind="function" id="classkukadu_1_1StandardKinestheticTeacher_1ad85d12e02c707e09229d9c48cbd73f06" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type></type>
+        <definition>kukadu::StandardKinestheticTeacher::StandardKinestheticTeacher</definition>
+        <argsstring>(KUKADU_SHARED_PTR&lt; kukadu::ControlQueue &gt; myQueue, KUKADU_SHARED_PTR&lt; kukadu::Kinematics &gt; myKin, KUKADU_SHARED_PTR&lt; kukadu::SensorStorage &gt; myStore, std::string targetPath=&quot;~/kinteachsample&quot;)</argsstring>
+        <name>StandardKinestheticTeacher</name>
+        <param>
+          <type>KUKADU_SHARED_PTR&lt; <ref refid="classkukadu_1_1ControlQueue" kindref="compound">kukadu::ControlQueue</ref> &gt;</type>
+          <declname>myQueue</declname>
+        </param>
+        <param>
+          <type>KUKADU_SHARED_PTR&lt; <ref refid="classkukadu_1_1Kinematics" kindref="compound">kukadu::Kinematics</ref> &gt;</type>
+          <declname>myKin</declname>
+        </param>
+        <param>
+          <type>KUKADU_SHARED_PTR&lt; <ref refid="classkukadu_1_1SensorStorage" kindref="compound">kukadu::SensorStorage</ref> &gt;</type>
+          <declname>myStore</declname>
+        </param>
+        <param>
+          <type>std::string</type>
+          <declname>targetPath</declname>
+          <defval>&quot;~/kinteachsample&quot;</defval>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/agyss/iis_robot_sw/iis_catkin_ws/src/kukadu/include/kukadu/robot/kinestheticteaching.hpp" line="71" column="1" bodyfile="/home/agyss/iis_robot_sw/iis_catkin_ws/src/kukadu/src/robot/kinestheticteaching.cpp" bodystart="12" bodyend="22"/>
+      </memberdef>
+      <memberdef kind="function" id="classkukadu_1_1StandardKinestheticTeacher_1aaeb801b4065d9b25a913249bb6551a04" prot="public" static="no" const="no" explicit="no" inline="no" virt="virtual">
+        <type>void</type>
+        <definition>void kukadu::StandardKinestheticTeacher::init</definition>
+        <argsstring>()</argsstring>
+        <name>init</name>
+        <reimplements refid="classkukadu_1_1KinestheticTeacher_1ab9cd09c67b98d5c91dca8fe385cb7113">init</reimplements>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/agyss/iis_robot_sw/iis_catkin_ws/src/kukadu/include/kukadu/robot/kinestheticteaching.hpp" line="73" column="1" bodyfile="/home/agyss/iis_robot_sw/iis_catkin_ws/src/kukadu/src/robot/kinestheticteaching.cpp" bodystart="24" bodyend="32"/>
+      </memberdef>
+      <memberdef kind="function" id="classkukadu_1_1StandardKinestheticTeacher_1afc77ea3d464cff8001d240d6aca7dd4f" prot="public" static="no" const="no" explicit="no" inline="no" virt="virtual">
+        <type>void</type>
+        <definition>void kukadu::StandardKinestheticTeacher::startTeaching</definition>
+        <argsstring>()</argsstring>
+        <name>startTeaching</name>
+        <reimplements refid="classkukadu_1_1KinestheticTeacher_1a4073316240e39020c96bed7f59ce75c8">startTeaching</reimplements>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/agyss/iis_robot_sw/iis_catkin_ws/src/kukadu/include/kukadu/robot/kinestheticteaching.hpp" line="74" column="1" bodyfile="/home/agyss/iis_robot_sw/iis_catkin_ws/src/kukadu/src/robot/kinestheticteaching.cpp" bodystart="230" bodyend="239"/>
+      </memberdef>
+      <memberdef kind="function" id="classkukadu_1_1StandardKinestheticTeacher_1a1148b0689681b5418bc74fa5af730840" prot="public" static="no" const="no" explicit="no" inline="no" virt="virtual">
+        <type>void</type>
+        <definition>void kukadu::StandardKinestheticTeacher::stopTeaching</definition>
+        <argsstring>()</argsstring>
+        <name>stopTeaching</name>
+        <reimplements refid="classkukadu_1_1KinestheticTeacher_1ac25a86a91dffeb0f07b38f7964cc926d">stopTeaching</reimplements>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/agyss/iis_robot_sw/iis_catkin_ws/src/kukadu/include/kukadu/robot/kinestheticteaching.hpp" line="75" column="1" bodyfile="/home/agyss/iis_robot_sw/iis_catkin_ws/src/kukadu/src/robot/kinestheticteaching.cpp" bodystart="241" bodyend="251"/>
+      </memberdef>
+      <memberdef kind="function" id="classkukadu_1_1StandardKinestheticTeacher_1a43899c6af44e5e88ae46d0ad5e314e30" prot="public" static="no" const="no" explicit="no" inline="no" virt="virtual">
+        <type>void</type>
+        <definition>void kukadu::StandardKinestheticTeacher::startRecording</definition>
+        <argsstring>()</argsstring>
+        <name>startRecording</name>
+        <reimplements refid="classkukadu_1_1KinestheticTeacher_1ac8a52a845a0bc0ca43769f1681c775e9">startRecording</reimplements>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/agyss/iis_robot_sw/iis_catkin_ws/src/kukadu/include/kukadu/robot/kinestheticteaching.hpp" line="76" column="1" bodyfile="/home/agyss/iis_robot_sw/iis_catkin_ws/src/kukadu/src/robot/kinestheticteaching.cpp" bodystart="44" bodyend="54"/>
+      </memberdef>
+      <memberdef kind="function" id="classkukadu_1_1StandardKinestheticTeacher_1a44465b867c658db78827baf54b537eef" prot="public" static="no" const="no" explicit="no" inline="no" virt="virtual">
+        <type>void</type>
+        <definition>void kukadu::StandardKinestheticTeacher::stopRecording</definition>
+        <argsstring>()</argsstring>
+        <name>stopRecording</name>
+        <reimplements refid="classkukadu_1_1KinestheticTeacher_1a39c920dbf87df91176eda98bd9f3d08f">stopRecording</reimplements>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/agyss/iis_robot_sw/iis_catkin_ws/src/kukadu/include/kukadu/robot/kinestheticteaching.hpp" line="77" column="1" bodyfile="/home/agyss/iis_robot_sw/iis_catkin_ws/src/kukadu/src/robot/kinestheticteaching.cpp" bodystart="56" bodyend="64"/>
+      </memberdef>
+      </sectiondef>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <inheritancegraph>
+      <node id="615">
+        <label>kukadu::StandardKinestheticTeacher</label>
+        <link refid="classkukadu_1_1StandardKinestheticTeacher"/>
+        <childnode refid="616" relation="private-inheritance">
+        </childnode>
+      </node>
+      <node id="616">
+        <label>kukadu::KinestheticTeacher</label>
+        <link refid="classkukadu_1_1KinestheticTeacher"/>
+      </node>
+    </inheritancegraph>
+    <collaborationgraph>
+      <node id="617">
+        <label>kukadu::StandardKinestheticTeacher</label>
+        <link refid="classkukadu_1_1StandardKinestheticTeacher"/>
+        <childnode refid="618" relation="private-inheritance">
+        </childnode>
+      </node>
+      <node id="618">
+        <label>kukadu::KinestheticTeacher</label>
+        <link refid="classkukadu_1_1KinestheticTeacher"/>
+      </node>
+    </collaborationgraph>
+    <location file="/home/agyss/iis_robot_sw/iis_catkin_ws/src/kukadu/include/kukadu/robot/kinestheticteaching.hpp" line="13" column="1" bodyfile="/home/agyss/iis_robot_sw/iis_catkin_ws/src/kukadu/include/kukadu/robot/kinestheticteaching.hpp" bodystart="13" bodyend="79"/>
+    <listofallmembers>
+      <member refid="classkukadu_1_1StandardKinestheticTeacher_1aef040d595b6aabd848138249d0c3d230" prot="private" virt="non-virtual"><scope>kukadu::StandardKinestheticTeacher</scope><name>ARM_ALLJOINTS_MOVING_MULTIPLIER</name></member>
+      <member refid="classkukadu_1_1StandardKinestheticTeacher_1ae36e50b14e0e5725d5604ae364fcfc23" prot="private" virt="non-virtual"><scope>kukadu::StandardKinestheticTeacher</scope><name>BASE_XY_MOVING_MULTIPLIER</name></member>
+      <member refid="classkukadu_1_1StandardKinestheticTeacher_1a39cf3c29a2846af3aa2c2c1db370e016" prot="private" virt="non-virtual"><scope>kukadu::StandardKinestheticTeacher</scope><name>BASE_Z_MOVING_MULTIPLIER</name></member>
+      <member refid="classkukadu_1_1StandardKinestheticTeacher_1aeb480aec79fa63ec60f8fc2c046ca63b" prot="private" virt="non-virtual"><scope>kukadu::StandardKinestheticTeacher</scope><name>capVec</name></member>
+      <member refid="classkukadu_1_1StandardKinestheticTeacher_1aa82e7839d5d95add34493a9895dab435" prot="private" virt="non-virtual"><scope>kukadu::StandardKinestheticTeacher</scope><name>ControllerType</name></member>
+      <member refid="classkukadu_1_1StandardKinestheticTeacher_1a1a48295f3cdb83442802eeada2eeb052" prot="private" virt="non-virtual"><scope>kukadu::StandardKinestheticTeacher</scope><name>eigenToStdVec</name></member>
+      <member refid="classkukadu_1_1StandardKinestheticTeacher_1abc7889ea9c173ee4407cd6f3850fcffc" prot="private" virt="non-virtual"><scope>kukadu::StandardKinestheticTeacher</scope><name>FILTER_FREQ</name></member>
+      <member refid="classkukadu_1_1StandardKinestheticTeacher_1aaa0aa72c8105828d700be57a4215d236" prot="private" virt="non-virtual"><scope>kukadu::StandardKinestheticTeacher</scope><name>filterRunning</name></member>
+      <member refid="classkukadu_1_1StandardKinestheticTeacher_1a0dfadc3a64b04787ec3165cfd7afe7bc" prot="private" virt="non-virtual"><scope>kukadu::StandardKinestheticTeacher</scope><name>filterThread</name></member>
+      <member refid="classkukadu_1_1StandardKinestheticTeacher_1ac20dc19b0f6024000fc3f01b99735bbc" prot="private" virt="non-virtual"><scope>kukadu::StandardKinestheticTeacher</scope><name>firstReading</name></member>
+      <member refid="classkukadu_1_1StandardKinestheticTeacher_1a9c86f5f0a58a22b7457e228d197cc6b0" prot="private" virt="non-virtual"><scope>kukadu::StandardKinestheticTeacher</scope><name>FORCES_MOVING_MULTIPLIER</name></member>
+      <member refid="classkukadu_1_1StandardKinestheticTeacher_1ae7e617f148c5d638e6c389b599784fc3" prot="private" virt="non-virtual"><scope>kukadu::StandardKinestheticTeacher</scope><name>generateNextCommand</name></member>
+      <member refid="classkukadu_1_1StandardKinestheticTeacher_1a335be776651cfc7195d7b0c1747fc3a9" prot="private" virt="non-virtual"><scope>kukadu::StandardKinestheticTeacher</scope><name>getNextDifferentialCommand</name></member>
+      <member refid="classkukadu_1_1StandardKinestheticTeacher_1aa82e7839d5d95add34493a9895dab435ab18417200410b873182f81b01cdc4eae" prot="private" virt="non-virtual"><scope>kukadu::StandardKinestheticTeacher</scope><name>HYBRID</name></member>
+      <member refid="classkukadu_1_1StandardKinestheticTeacher_1aa82e7839d5d95add34493a9895dab435abe43f5ff721ccc436dd8a198d4001547" prot="private" virt="non-virtual"><scope>kukadu::StandardKinestheticTeacher</scope><name>IK</name></member>
+      <member refid="classkukadu_1_1StandardKinestheticTeacher_1aaeb801b4065d9b25a913249bb6551a04" prot="public" virt="virtual"><scope>kukadu::StandardKinestheticTeacher</scope><name>init</name></member>
+      <member refid="classkukadu_1_1StandardKinestheticTeacher_1aa82e7839d5d95add34493a9895dab435ac0bcec7be71ca5b979097329383ceaa6" prot="private" virt="non-virtual"><scope>kukadu::StandardKinestheticTeacher</scope><name>INVERSE</name></member>
+      <member refid="classkukadu_1_1StandardKinestheticTeacher_1a68ac85250711ce70b0d0bbc586198936" prot="private" virt="non-virtual"><scope>kukadu::StandardKinestheticTeacher</scope><name>isBigJump</name></member>
+      <member refid="classkukadu_1_1StandardKinestheticTeacher_1a963a4360b1ac742bc5b671883daca19f" prot="private" virt="non-virtual"><scope>kukadu::StandardKinestheticTeacher</scope><name>isColliding</name></member>
+      <member refid="classkukadu_1_1StandardKinestheticTeacher_1a9a1c4194808b5fbf866d19fc068217a1" prot="private" virt="non-virtual"><scope>kukadu::StandardKinestheticTeacher</scope><name>isDifferentialCommandSafe</name></member>
+      <member refid="classkukadu_1_1StandardKinestheticTeacher_1aa82e7839d5d95add34493a9895dab435aeb47fe7c1302e744610986bb8f571838" prot="private" virt="non-virtual"><scope>kukadu::StandardKinestheticTeacher</scope><name>JACOBIAN</name></member>
+      <member refid="classkukadu_1_1StandardKinestheticTeacher_1aac423532e6868e949645a4a5611aab83" prot="private" virt="non-virtual"><scope>kukadu::StandardKinestheticTeacher</scope><name>MAX_JOINT_MOVEMENT_ALLOWED_FOR_IK</name></member>
+      <member refid="classkukadu_1_1StandardKinestheticTeacher_1a78130cc6d67e475769601a1fcee79efb" prot="private" virt="non-virtual"><scope>kukadu::StandardKinestheticTeacher</scope><name>MAXIMUM_JOINT_STEP</name></member>
+      <member refid="classkukadu_1_1StandardKinestheticTeacher_1ab01e71bd482c56e7f57ebf86f9cfb13d" prot="private" virt="non-virtual"><scope>kukadu::StandardKinestheticTeacher</scope><name>moveThread</name></member>
+      <member refid="classkukadu_1_1StandardKinestheticTeacher_1a1799674da18c6b420a1a2f65b583453b" prot="private" virt="non-virtual"><scope>kukadu::StandardKinestheticTeacher</scope><name>mvKin</name></member>
+      <member refid="classkukadu_1_1StandardKinestheticTeacher_1aa97150d51c3b0df0156c5ff633cebe83" prot="private" virt="non-virtual"><scope>kukadu::StandardKinestheticTeacher</scope><name>qThread</name></member>
+      <member refid="classkukadu_1_1KinestheticTeacher_1a8e46e752559e33cffc3da7bae204d595" prot="private" virt="pure-virtual"><scope>kukadu::StandardKinestheticTeacher</scope><name>quit</name></member>
+      <member refid="classkukadu_1_1StandardKinestheticTeacher_1a96b3225df842c8d7e4adf511219a5b1b" prot="private" virt="non-virtual"><scope>kukadu::StandardKinestheticTeacher</scope><name>recordingPath</name></member>
+      <member refid="classkukadu_1_1StandardKinestheticTeacher_1ae51211cd72873a1807e0597d78565608" prot="private" virt="non-virtual"><scope>kukadu::StandardKinestheticTeacher</scope><name>robotinoQueue</name></member>
+      <member refid="classkukadu_1_1StandardKinestheticTeacher_1add1c27d434d4bba7d5a206d4787badaf" prot="private" virt="non-virtual"><scope>kukadu::StandardKinestheticTeacher</scope><name>scaleForcesTorques</name></member>
+      <member refid="classkukadu_1_1StandardKinestheticTeacher_1a7750d8823703c8bf6c35b8b0b422a82d" prot="private" virt="non-virtual"><scope>kukadu::StandardKinestheticTeacher</scope><name>scaleJointCommands</name></member>
+      <member refid="classkukadu_1_1StandardKinestheticTeacher_1a1869858cd10debd5f3d5733b7bac2d46" prot="private" virt="non-virtual"><scope>kukadu::StandardKinestheticTeacher</scope><name>sensorVal</name></member>
+      <member refid="classkukadu_1_1StandardKinestheticTeacher_1a514ecf2a73227ebe95a258c5fbbb648c" prot="private" virt="non-virtual"><scope>kukadu::StandardKinestheticTeacher</scope><name>sign</name></member>
+      <member refid="classkukadu_1_1StandardKinestheticTeacher_1ad85d12e02c707e09229d9c48cbd73f06" prot="public" virt="non-virtual"><scope>kukadu::StandardKinestheticTeacher</scope><name>StandardKinestheticTeacher</name></member>
+      <member refid="classkukadu_1_1StandardKinestheticTeacher_1a43899c6af44e5e88ae46d0ad5e314e30" prot="public" virt="virtual"><scope>kukadu::StandardKinestheticTeacher</scope><name>startRecording</name></member>
+      <member refid="classkukadu_1_1StandardKinestheticTeacher_1afc77ea3d464cff8001d240d6aca7dd4f" prot="public" virt="virtual"><scope>kukadu::StandardKinestheticTeacher</scope><name>startTeaching</name></member>
+      <member refid="classkukadu_1_1StandardKinestheticTeacher_1a0c80739d9de21627e03ccb2fcf2535eb" prot="private" virt="non-virtual"><scope>kukadu::StandardKinestheticTeacher</scope><name>stdToEigenVec</name></member>
+      <member refid="classkukadu_1_1StandardKinestheticTeacher_1a44465b867c658db78827baf54b537eef" prot="public" virt="virtual"><scope>kukadu::StandardKinestheticTeacher</scope><name>stopRecording</name></member>
+      <member refid="classkukadu_1_1StandardKinestheticTeacher_1a1148b0689681b5418bc74fa5af730840" prot="public" virt="virtual"><scope>kukadu::StandardKinestheticTeacher</scope><name>stopTeaching</name></member>
+      <member refid="classkukadu_1_1StandardKinestheticTeacher_1a8b0fec2352dd4a81f3f8a081d8bcd50c" prot="private" virt="non-virtual"><scope>kukadu::StandardKinestheticTeacher</scope><name>store</name></member>
+      <member refid="classkukadu_1_1StandardKinestheticTeacher_1a7aac42be67eff68db205158b7e3f8309" prot="private" virt="non-virtual"><scope>kukadu::StandardKinestheticTeacher</scope><name>teacherRunning</name></member>
+      <member refid="classkukadu_1_1StandardKinestheticTeacher_1ad4eb812008ad78810c6a275b813f174f" prot="private" virt="non-virtual"><scope>kukadu::StandardKinestheticTeacher</scope><name>teachingThreadHandler</name></member>
+      <member refid="classkukadu_1_1StandardKinestheticTeacher_1af1b5b4790616a76bf2ea2dbefd19463c" prot="private" virt="non-virtual"><scope>kukadu::StandardKinestheticTeacher</scope><name>TORQUES_MOVING_MULTIPLIER</name></member>
+    </listofallmembers>
+  </compounddef>
+</doxygen>

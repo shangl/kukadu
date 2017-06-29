@@ -1,0 +1,924 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.8.11">
+  <compounddef id="classkukadu_1_1AutonomousTester" kind="class" language="C++" prot="public">
+    <compoundname>kukadu::AutonomousTester</compoundname>
+    <basecompoundref refid="classkukadu_1_1StorageHolder" prot="public" virt="non-virtual">kukadu::StorageHolder</basecompoundref>
+      <sectiondef kind="private-attrib">
+      <memberdef kind="variable" id="classkukadu_1_1AutonomousTester_1aaeb2f5324f69993a3ade809a0e3a504e" prot="private" static="no" mutable="no">
+        <type>bool</type>
+        <definition>bool kukadu::AutonomousTester::simulate</definition>
+        <argsstring></argsstring>
+        <name>simulate</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/agyss/iis_robot_sw/iis_catkin_ws/src/kukadu/include/kukadu/manipulation/autonomoustester.hpp" line="17" column="1" bodyfile="/home/agyss/iis_robot_sw/iis_catkin_ws/src/kukadu/include/kukadu/manipulation/autonomoustester.hpp" bodystart="17" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classkukadu_1_1AutonomousTester_1a46e19c56e82e885d89b6d3da07c56b21" prot="private" static="no" mutable="no">
+        <type>int</type>
+        <definition>int kukadu::AutonomousTester::simlatedIdxWindow</definition>
+        <argsstring></argsstring>
+        <name>simlatedIdxWindow</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/agyss/iis_robot_sw/iis_catkin_ws/src/kukadu/include/kukadu/manipulation/autonomoustester.hpp" line="19" column="1" bodyfile="/home/agyss/iis_robot_sw/iis_catkin_ws/src/kukadu/include/kukadu/manipulation/autonomoustester.hpp" bodystart="19" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classkukadu_1_1AutonomousTester_1a1b620eea7b406d294d308a380b0fda1f" prot="private" static="no" mutable="no">
+        <type>long long int</type>
+        <definition>long long int kukadu::AutonomousTester::windowTime</definition>
+        <argsstring></argsstring>
+        <name>windowTime</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/agyss/iis_robot_sw/iis_catkin_ws/src/kukadu/include/kukadu/manipulation/autonomoustester.hpp" line="20" column="1" bodyfile="/home/agyss/iis_robot_sw/iis_catkin_ws/src/kukadu/include/kukadu/manipulation/autonomoustester.hpp" bodystart="20" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classkukadu_1_1AutonomousTester_1a6b0bf857e7bb0c8036687d36e9704aa4" prot="private" static="no" mutable="no">
+        <type>std::mutex</type>
+        <definition>std::mutex kukadu::AutonomousTester::momCallerMutex</definition>
+        <argsstring></argsstring>
+        <name>momCallerMutex</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/agyss/iis_robot_sw/iis_catkin_ws/src/kukadu/include/kukadu/manipulation/autonomoustester.hpp" line="22" column="1" bodyfile="/home/agyss/iis_robot_sw/iis_catkin_ws/src/kukadu/include/kukadu/manipulation/autonomoustester.hpp" bodystart="22" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classkukadu_1_1AutonomousTester_1a159455a8b59e512d3e0e29720fabd98f" prot="private" static="no" mutable="no">
+        <type>std::map&lt; int, int &gt;</type>
+        <definition>std::map&lt;int, int&gt; kukadu::AutonomousTester::functionIdsToRows</definition>
+        <argsstring></argsstring>
+        <name>functionIdsToRows</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/agyss/iis_robot_sw/iis_catkin_ws/src/kukadu/include/kukadu/manipulation/autonomoustester.hpp" line="24" column="1" bodyfile="/home/agyss/iis_robot_sw/iis_catkin_ws/src/kukadu/include/kukadu/manipulation/autonomoustester.hpp" bodystart="24" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classkukadu_1_1AutonomousTester_1a16c7a8f78deaec31167fec89e3817f2f" prot="private" static="no" mutable="no">
+        <type>std::map&lt; int, int &gt;</type>
+        <definition>std::map&lt;int, int&gt; kukadu::AutonomousTester::functionRowsToIds</definition>
+        <argsstring></argsstring>
+        <name>functionRowsToIds</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/agyss/iis_robot_sw/iis_catkin_ws/src/kukadu/include/kukadu/manipulation/autonomoustester.hpp" line="25" column="1" bodyfile="/home/agyss/iis_robot_sw/iis_catkin_ws/src/kukadu/include/kukadu/manipulation/autonomoustester.hpp" bodystart="25" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classkukadu_1_1AutonomousTester_1acb385e633af20e9c371a537823e32961" prot="private" static="no" mutable="no">
+        <type>std::map&lt; std::string, long long int &gt;</type>
+        <definition>std::map&lt;std::string, long long int&gt; kukadu::AutonomousTester::timeSteps</definition>
+        <argsstring></argsstring>
+        <name>timeSteps</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/agyss/iis_robot_sw/iis_catkin_ws/src/kukadu/include/kukadu/manipulation/autonomoustester.hpp" line="27" column="1" bodyfile="/home/agyss/iis_robot_sw/iis_catkin_ws/src/kukadu/include/kukadu/manipulation/autonomoustester.hpp" bodystart="27" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classkukadu_1_1AutonomousTester_1a39777b30d06b14f75b6b914354ad391b" prot="private" static="no" mutable="no">
+        <type>std::map&lt; std::string, int &gt;</type>
+        <definition>std::map&lt;std::string, int&gt; kukadu::AutonomousTester::fingerPrintColCounts</definition>
+        <argsstring></argsstring>
+        <name>fingerPrintColCounts</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/agyss/iis_robot_sw/iis_catkin_ws/src/kukadu/include/kukadu/manipulation/autonomoustester.hpp" line="28" column="1" bodyfile="/home/agyss/iis_robot_sw/iis_catkin_ws/src/kukadu/include/kukadu/manipulation/autonomoustester.hpp" bodystart="28" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classkukadu_1_1AutonomousTester_1a3786baaf99439c945a3c7a99a43bb217" prot="private" static="no" mutable="no">
+        <type>std::map&lt; std::string, arma::mat &gt;</type>
+        <definition>std::map&lt;std::string, arma::mat&gt; kukadu::AutonomousTester::skillMedianFingerPrints</definition>
+        <argsstring></argsstring>
+        <name>skillMedianFingerPrints</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/agyss/iis_robot_sw/iis_catkin_ws/src/kukadu/include/kukadu/manipulation/autonomoustester.hpp" line="29" column="1" bodyfile="/home/agyss/iis_robot_sw/iis_catkin_ws/src/kukadu/include/kukadu/manipulation/autonomoustester.hpp" bodystart="29" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classkukadu_1_1AutonomousTester_1a26fc44b9dee4b84d41373d7586cc8390" prot="private" static="no" mutable="no">
+        <type>std::map&lt; std::string, arma::mat &gt;</type>
+        <definition>std::map&lt;std::string, arma::mat&gt; kukadu::AutonomousTester::skillFingerPrintStdDeviations</definition>
+        <argsstring></argsstring>
+        <name>skillFingerPrintStdDeviations</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/agyss/iis_robot_sw/iis_catkin_ws/src/kukadu/include/kukadu/manipulation/autonomoustester.hpp" line="30" column="1" bodyfile="/home/agyss/iis_robot_sw/iis_catkin_ws/src/kukadu/include/kukadu/manipulation/autonomoustester.hpp" bodystart="30" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classkukadu_1_1AutonomousTester_1ac1bc3f4e09f4e0df1a60c491525403b9" prot="private" static="no" mutable="no">
+        <type>std::map&lt; std::string, std::vector&lt; arma::mat &gt; &gt;</type>
+        <definition>std::map&lt;std::string, std::vector&lt;arma::mat&gt; &gt; kukadu::AutonomousTester::skillFingerPrints</definition>
+        <argsstring></argsstring>
+        <name>skillFingerPrints</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/agyss/iis_robot_sw/iis_catkin_ws/src/kukadu/include/kukadu/manipulation/autonomoustester.hpp" line="31" column="1" bodyfile="/home/agyss/iis_robot_sw/iis_catkin_ws/src/kukadu/include/kukadu/manipulation/autonomoustester.hpp" bodystart="31" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classkukadu_1_1AutonomousTester_1ac3eb07c2700f40ed8a47e51e37a33592" prot="private" static="no" mutable="no">
+        <type>std::map&lt; std::string, KUKADU_SHARED_PTR&lt; <ref refid="classkukadu_1_1Controller" kindref="compound">kukadu::Controller</ref> &gt; &gt;</type>
+        <definition>std::map&lt;std::string, KUKADU_SHARED_PTR&lt;kukadu::Controller&gt; &gt; kukadu::AutonomousTester::storedSkills</definition>
+        <argsstring></argsstring>
+        <name>storedSkills</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/agyss/iis_robot_sw/iis_catkin_ws/src/kukadu/include/kukadu/manipulation/autonomoustester.hpp" line="32" column="1" bodyfile="/home/agyss/iis_robot_sw/iis_catkin_ws/src/kukadu/include/kukadu/manipulation/autonomoustester.hpp" bodystart="32" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classkukadu_1_1AutonomousTester_1a01effe7e01d3d9df43d9007142fbb2fd" prot="private" static="no" mutable="no">
+        <type>std::map&lt; std::string, std::pair&lt; std::vector&lt; int &gt;, std::vector&lt; arma::mat &gt; &gt; &gt;</type>
+        <definition>std::map&lt;std::string, std::pair&lt;std::vector&lt;int&gt;, std::vector&lt;arma::mat&gt; &gt; &gt; kukadu::AutonomousTester::skillsData</definition>
+        <argsstring></argsstring>
+        <name>skillsData</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/agyss/iis_robot_sw/iis_catkin_ws/src/kukadu/include/kukadu/manipulation/autonomoustester.hpp" line="33" column="1" bodyfile="/home/agyss/iis_robot_sw/iis_catkin_ws/src/kukadu/include/kukadu/manipulation/autonomoustester.hpp" bodystart="33" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classkukadu_1_1AutonomousTester_1a75c0119a4fd3b643951b925b7ad46bcd" prot="private" static="no" mutable="no">
+        <type>std::vector&lt; int &gt;</type>
+        <definition>std::vector&lt;int&gt; kukadu::AutonomousTester::simulatedFaultyFunctionsGroundTruth</definition>
+        <argsstring></argsstring>
+        <name>simulatedFaultyFunctionsGroundTruth</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/agyss/iis_robot_sw/iis_catkin_ws/src/kukadu/include/kukadu/manipulation/autonomoustester.hpp" line="35" column="1" bodyfile="/home/agyss/iis_robot_sw/iis_catkin_ws/src/kukadu/include/kukadu/manipulation/autonomoustester.hpp" bodystart="35" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classkukadu_1_1AutonomousTester_1a7c892fc2baa871a5afcf8988811d2e79" prot="private" static="no" mutable="no">
+        <type>std::map&lt; std::string, std::vector&lt; int &gt; &gt;</type>
+        <definition>std::map&lt;std::string, std::vector&lt;int&gt; &gt; kukadu::AutonomousTester::skillSimulatedFunctionRows</definition>
+        <argsstring></argsstring>
+        <name>skillSimulatedFunctionRows</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/agyss/iis_robot_sw/iis_catkin_ws/src/kukadu/include/kukadu/manipulation/autonomoustester.hpp" line="36" column="1" bodyfile="/home/agyss/iis_robot_sw/iis_catkin_ws/src/kukadu/include/kukadu/manipulation/autonomoustester.hpp" bodystart="36" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classkukadu_1_1AutonomousTester_1ad44a186a0d4d60af0fd95acc87d5e654" prot="private" static="no" mutable="no">
+        <type>std::map&lt; std::string, std::vector&lt; double &gt; &gt;</type>
+        <definition>std::map&lt;std::string, std::vector&lt;double&gt; &gt; kukadu::AutonomousTester::skillSimulatedFunctionMeans</definition>
+        <argsstring></argsstring>
+        <name>skillSimulatedFunctionMeans</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/agyss/iis_robot_sw/iis_catkin_ws/src/kukadu/include/kukadu/manipulation/autonomoustester.hpp" line="37" column="1" bodyfile="/home/agyss/iis_robot_sw/iis_catkin_ws/src/kukadu/include/kukadu/manipulation/autonomoustester.hpp" bodystart="37" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classkukadu_1_1AutonomousTester_1af0002aa9614865495ae8686beeeb0b5e" prot="private" static="no" mutable="no">
+        <type>std::map&lt; std::string, std::vector&lt; double &gt; &gt;</type>
+        <definition>std::map&lt;std::string, std::vector&lt;double&gt; &gt; kukadu::AutonomousTester::skillSimulatedFunctionStdDevs</definition>
+        <argsstring></argsstring>
+        <name>skillSimulatedFunctionStdDevs</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/agyss/iis_robot_sw/iis_catkin_ws/src/kukadu/include/kukadu/manipulation/autonomoustester.hpp" line="38" column="1" bodyfile="/home/agyss/iis_robot_sw/iis_catkin_ws/src/kukadu/include/kukadu/manipulation/autonomoustester.hpp" bodystart="38" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classkukadu_1_1AutonomousTester_1aa78033a30873575b0c6250391d1293c0" prot="private" static="no" mutable="no">
+        <type>std::default_random_engine</type>
+        <definition>std::default_random_engine kukadu::AutonomousTester::generator</definition>
+        <argsstring></argsstring>
+        <name>generator</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/agyss/iis_robot_sw/iis_catkin_ws/src/kukadu/include/kukadu/manipulation/autonomoustester.hpp" line="40" column="1" bodyfile="/home/agyss/iis_robot_sw/iis_catkin_ws/src/kukadu/include/kukadu/manipulation/autonomoustester.hpp" bodystart="40" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classkukadu_1_1AutonomousTester_1add91be958fefdb7f677732acea215fbd" prot="private" static="no" mutable="no">
+        <type>std::map&lt; std::string, std::vector&lt; long long int &gt; &gt;</type>
+        <definition>std::map&lt;std::string, std::vector&lt;long long int&gt; &gt; kukadu::AutonomousTester::skillSampleStartTimes</definition>
+        <argsstring></argsstring>
+        <name>skillSampleStartTimes</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/agyss/iis_robot_sw/iis_catkin_ws/src/kukadu/include/kukadu/manipulation/autonomoustester.hpp" line="42" column="1" bodyfile="/home/agyss/iis_robot_sw/iis_catkin_ws/src/kukadu/include/kukadu/manipulation/autonomoustester.hpp" bodystart="42" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classkukadu_1_1AutonomousTester_1a82623751675b3d9a9d429de40e985d3d" prot="private" static="no" mutable="no">
+        <type>std::map&lt; std::string, std::vector&lt; long long int &gt; &gt;</type>
+        <definition>std::map&lt;std::string, std::vector&lt;long long int&gt; &gt; kukadu::AutonomousTester::skillSampleEndTimes</definition>
+        <argsstring></argsstring>
+        <name>skillSampleEndTimes</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/agyss/iis_robot_sw/iis_catkin_ws/src/kukadu/include/kukadu/manipulation/autonomoustester.hpp" line="43" column="1" bodyfile="/home/agyss/iis_robot_sw/iis_catkin_ws/src/kukadu/include/kukadu/manipulation/autonomoustester.hpp" bodystart="43" bodyend="-1"/>
+      </memberdef>
+      </sectiondef>
+      <sectiondef kind="private-func">
+      <memberdef kind="function" id="classkukadu_1_1AutonomousTester_1a58561172776267b8eaafbf8caf18eb19" prot="private" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>double</type>
+        <definition>double kukadu::AutonomousTester::computeBestDistance</definition>
+        <argsstring>(std::string skill, arma::mat &amp;execution)</argsstring>
+        <name>computeBestDistance</name>
+        <param>
+          <type>std::string</type>
+          <declname>skill</declname>
+        </param>
+        <param>
+          <type>arma::mat &amp;</type>
+          <declname>execution</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/agyss/iis_robot_sw/iis_catkin_ws/src/kukadu/include/kukadu/manipulation/autonomoustester.hpp" line="45" column="1" bodyfile="/home/agyss/iis_robot_sw/iis_catkin_ws/src/kukadu/src/manipulation/autonomoustester.cpp" bodystart="818" bodyend="830"/>
+      </memberdef>
+      <memberdef kind="function" id="classkukadu_1_1AutonomousTester_1abc3765d4a5af7dd9517add7db962b611" prot="private" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>double</type>
+        <definition>double kukadu::AutonomousTester::computeBestDistance</definition>
+        <argsstring>(std::string skill, int prevEndTimeStep, int desiredEndTimeStep, arma::vec &amp;prevDistances, arma::mat &amp;execution)</argsstring>
+        <name>computeBestDistance</name>
+        <param>
+          <type>std::string</type>
+          <declname>skill</declname>
+        </param>
+        <param>
+          <type>int</type>
+          <declname>prevEndTimeStep</declname>
+        </param>
+        <param>
+          <type>int</type>
+          <declname>desiredEndTimeStep</declname>
+        </param>
+        <param>
+          <type>arma::vec &amp;</type>
+          <declname>prevDistances</declname>
+        </param>
+        <param>
+          <type>arma::mat &amp;</type>
+          <declname>execution</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/agyss/iis_robot_sw/iis_catkin_ws/src/kukadu/include/kukadu/manipulation/autonomoustester.hpp" line="46" column="1" bodyfile="/home/agyss/iis_robot_sw/iis_catkin_ws/src/kukadu/src/manipulation/autonomoustester.cpp" bodystart="790" bodyend="816"/>
+      </memberdef>
+      <memberdef kind="function" id="classkukadu_1_1AutonomousTester_1a338259b9f412eea558bc125ee28e979e" prot="private" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>std::string</type>
+        <definition>std::string kukadu::AutonomousTester::generateFunctionQuery</definition>
+        <argsstring>(long long int skillStartTime, long long int skillEndTime, long long int windowStartTimeStamp, long long int windowEndTimeStamp)</argsstring>
+        <name>generateFunctionQuery</name>
+        <param>
+          <type>long long int</type>
+          <declname>skillStartTime</declname>
+        </param>
+        <param>
+          <type>long long int</type>
+          <declname>skillEndTime</declname>
+        </param>
+        <param>
+          <type>long long int</type>
+          <declname>windowStartTimeStamp</declname>
+        </param>
+        <param>
+          <type>long long int</type>
+          <declname>windowEndTimeStamp</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+<para>!!!!!!!!!!!!!!! add crashed information (when end_timestamp is 0) </para>        </inbodydescription>
+        <location file="/home/agyss/iis_robot_sw/iis_catkin_ws/src/kukadu/include/kukadu/manipulation/autonomoustester.hpp" line="48" column="1" bodyfile="/home/agyss/iis_robot_sw/iis_catkin_ws/src/kukadu/src/manipulation/autonomoustester.cpp" bodystart="728" bodyend="752"/>
+      </memberdef>
+      <memberdef kind="function" id="classkukadu_1_1AutonomousTester_1a647f4219a30a92056065ebfef03e4a65" prot="private" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>std::vector&lt; std::pair&lt; int, int &gt; &gt;</type>
+        <definition>std::vector&lt; std::pair&lt; int, int &gt; &gt; kukadu::AutonomousTester::loadRunningFunctions</definition>
+        <argsstring>(long long int startTimeStep, long long int endTimeStep, long long skillStartTime, long long skillEndTime)</argsstring>
+        <name>loadRunningFunctions</name>
+        <param>
+          <type>long long int</type>
+          <declname>startTimeStep</declname>
+        </param>
+        <param>
+          <type>long long int</type>
+          <declname>endTimeStep</declname>
+        </param>
+        <param>
+          <type>long long</type>
+          <declname>skillStartTime</declname>
+        </param>
+        <param>
+          <type>long long</type>
+          <declname>skillEndTime</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/agyss/iis_robot_sw/iis_catkin_ws/src/kukadu/include/kukadu/manipulation/autonomoustester.hpp" line="50" column="1" bodyfile="/home/agyss/iis_robot_sw/iis_catkin_ws/src/kukadu/src/manipulation/autonomoustester.cpp" bodystart="754" bodyend="788"/>
+      </memberdef>
+      <memberdef kind="function" id="classkukadu_1_1AutonomousTester_1a0260e4a83c7e476a3e722c854631564e" prot="private" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>std::pair&lt; arma::vec, arma::vec &gt;</type>
+        <definition>std::pair&lt; arma::vec, arma::vec &gt; kukadu::AutonomousTester::integrateFingerPrint</definition>
+        <argsstring>(arma::mat &amp;fingerprint, arma::mat &amp;stdDev, int startIdx, int endIdx, bool computeStdDeviation=false)</argsstring>
+        <name>integrateFingerPrint</name>
+        <param>
+          <type>arma::mat &amp;</type>
+          <declname>fingerprint</declname>
+        </param>
+        <param>
+          <type>arma::mat &amp;</type>
+          <declname>stdDev</declname>
+        </param>
+        <param>
+          <type>int</type>
+          <declname>startIdx</declname>
+        </param>
+        <param>
+          <type>int</type>
+          <declname>endIdx</declname>
+        </param>
+        <param>
+          <type>bool</type>
+          <declname>computeStdDeviation</declname>
+          <defval>false</defval>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/agyss/iis_robot_sw/iis_catkin_ws/src/kukadu/include/kukadu/manipulation/autonomoustester.hpp" line="53" column="1" bodyfile="/home/agyss/iis_robot_sw/iis_catkin_ws/src/kukadu/src/manipulation/autonomoustester.cpp" bodystart="264" bodyend="286"/>
+      </memberdef>
+      <memberdef kind="function" id="classkukadu_1_1AutonomousTester_1ad09ad35ccd00f9d9cf0ba70f4f65e718" prot="private" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>arma::mat</type>
+        <definition>arma::mat kukadu::AutonomousTester::computeFingerPrint</definition>
+        <argsstring>(long long int startTime, long long int endTime, long long skillStartTime, long long skillEndTime, long long int timeCount, long long int deltaT)</argsstring>
+        <name>computeFingerPrint</name>
+        <param>
+          <type>long long int</type>
+          <declname>startTime</declname>
+        </param>
+        <param>
+          <type>long long int</type>
+          <declname>endTime</declname>
+        </param>
+        <param>
+          <type>long long</type>
+          <declname>skillStartTime</declname>
+        </param>
+        <param>
+          <type>long long</type>
+          <declname>skillEndTime</declname>
+        </param>
+        <param>
+          <type>long long int</type>
+          <declname>timeCount</declname>
+        </param>
+        <param>
+          <type>long long int</type>
+          <declname>deltaT</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/agyss/iis_robot_sw/iis_catkin_ws/src/kukadu/include/kukadu/manipulation/autonomoustester.hpp" line="54" column="1" bodyfile="/home/agyss/iis_robot_sw/iis_catkin_ws/src/kukadu/src/manipulation/autonomoustester.cpp" bodystart="197" bodyend="262"/>
+      </memberdef>
+      <memberdef kind="function" id="classkukadu_1_1AutonomousTester_1a42ff296522a10329ada0ad541762316f" prot="private" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>std::pair&lt; std::map&lt; int, int &gt;, std::map&lt; int, int &gt; &gt;</type>
+        <definition>std::pair&lt; std::map&lt; int, int &gt;, std::map&lt; int, int &gt; &gt; kukadu::AutonomousTester::mapFunctionIdToFingerPrintRow</definition>
+        <argsstring>()</argsstring>
+        <name>mapFunctionIdToFingerPrintRow</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/agyss/iis_robot_sw/iis_catkin_ws/src/kukadu/include/kukadu/manipulation/autonomoustester.hpp" line="56" column="1" bodyfile="/home/agyss/iis_robot_sw/iis_catkin_ws/src/kukadu/src/manipulation/autonomoustester.cpp" bodystart="179" bodyend="195"/>
+      </memberdef>
+      <memberdef kind="function" id="classkukadu_1_1AutonomousTester_1a68a171517dbf90dd8c2670a0857af85c" prot="private" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>std::vector&lt; std::pair&lt; int, double &gt; &gt;</type>
+        <definition>std::vector&lt; std::pair&lt; int, double &gt; &gt; kukadu::AutonomousTester::extractDeviatingFunctions</definition>
+        <argsstring>(arma::vec &amp;executedPrint, arma::vec &amp;dataPrint, arma::vec &amp;dataStdDev)</argsstring>
+        <name>extractDeviatingFunctions</name>
+        <param>
+          <type>arma::vec &amp;</type>
+          <declname>executedPrint</declname>
+        </param>
+        <param>
+          <type>arma::vec &amp;</type>
+          <declname>dataPrint</declname>
+        </param>
+        <param>
+          <type>arma::vec &amp;</type>
+          <declname>dataStdDev</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/agyss/iis_robot_sw/iis_catkin_ws/src/kukadu/include/kukadu/manipulation/autonomoustester.hpp" line="59" column="1" bodyfile="/home/agyss/iis_robot_sw/iis_catkin_ws/src/kukadu/src/manipulation/autonomoustester.cpp" bodystart="684" bodyend="726"/>
+      </memberdef>
+      <memberdef kind="function" id="classkukadu_1_1AutonomousTester_1a950b8a7b34608bdc0daf4a4a10d9329a" prot="private" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>arma::vec</type>
+        <definition>arma::vec kukadu::AutonomousTester::computeObservationLikelihood</definition>
+        <argsstring>(std::string skillId, bool success, arma::mat &amp;executedObservation, int windowStartIdx, int windowEndIdx, bool printFeedback=false)</argsstring>
+        <name>computeObservationLikelihood</name>
+        <param>
+          <type>std::string</type>
+          <declname>skillId</declname>
+        </param>
+        <param>
+          <type>bool</type>
+          <declname>success</declname>
+        </param>
+        <param>
+          <type>arma::mat &amp;</type>
+          <declname>executedObservation</declname>
+        </param>
+        <param>
+          <type>int</type>
+          <declname>windowStartIdx</declname>
+        </param>
+        <param>
+          <type>int</type>
+          <declname>windowEndIdx</declname>
+        </param>
+        <param>
+          <type>bool</type>
+          <declname>printFeedback</declname>
+          <defval>false</defval>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/agyss/iis_robot_sw/iis_catkin_ws/src/kukadu/include/kukadu/manipulation/autonomoustester.hpp" line="61" column="1" bodyfile="/home/agyss/iis_robot_sw/iis_catkin_ws/src/kukadu/src/manipulation/autonomoustester.cpp" bodystart="617" bodyend="682"/>
+      </memberdef>
+      <memberdef kind="function" id="classkukadu_1_1AutonomousTester_1acf9f5bc85bd1ccd2fa2578ae9dd81c32" prot="private" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>void kukadu::AutonomousTester::loadSkillFingerPrintDb</definition>
+        <argsstring>(std::string skill, std::vector&lt; arma::mat &gt; &amp;fingerPrints)</argsstring>
+        <name>loadSkillFingerPrintDb</name>
+        <param>
+          <type>std::string</type>
+          <declname>skill</declname>
+        </param>
+        <param>
+          <type>std::vector&lt; arma::mat &gt; &amp;</type>
+          <declname>fingerPrints</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/agyss/iis_robot_sw/iis_catkin_ws/src/kukadu/include/kukadu/manipulation/autonomoustester.hpp" line="63" column="1" bodyfile="/home/agyss/iis_robot_sw/iis_catkin_ws/src/kukadu/src/manipulation/autonomoustester.cpp" bodystart="104" bodyend="137"/>
+      </memberdef>
+      <memberdef kind="function" id="classkukadu_1_1AutonomousTester_1aa8190a44e29e253428ffb39952204baf" prot="private" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>void kukadu::AutonomousTester::construct</definition>
+        <argsstring>(bool simulate, std::vector&lt; int &gt; simulatedFaultyFunctionsGroundTruth)</argsstring>
+        <name>construct</name>
+        <param>
+          <type>bool</type>
+          <declname>simulate</declname>
+        </param>
+        <param>
+          <type>std::vector&lt; int &gt;</type>
+          <declname>simulatedFaultyFunctionsGroundTruth</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/agyss/iis_robot_sw/iis_catkin_ws/src/kukadu/include/kukadu/manipulation/autonomoustester.hpp" line="65" column="1" bodyfile="/home/agyss/iis_robot_sw/iis_catkin_ws/src/kukadu/src/manipulation/autonomoustester.cpp" bodystart="27" bodyend="41"/>
+      </memberdef>
+      <memberdef kind="function" id="classkukadu_1_1AutonomousTester_1a9329482107eac3a56b5c08d254609b9e" prot="private" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>arma::mat</type>
+        <definition>arma::mat kukadu::AutonomousTester::generateSimulatedSample</definition>
+        <argsstring>(std::vector&lt; int &gt; usedFunctionRows, std::vector&lt; double &gt; functionMeans, std::vector&lt; double &gt; functionStdDev, int durationIndexCount)</argsstring>
+        <name>generateSimulatedSample</name>
+        <param>
+          <type>std::vector&lt; int &gt;</type>
+          <declname>usedFunctionRows</declname>
+        </param>
+        <param>
+          <type>std::vector&lt; double &gt;</type>
+          <declname>functionMeans</declname>
+        </param>
+        <param>
+          <type>std::vector&lt; double &gt;</type>
+          <declname>functionStdDev</declname>
+        </param>
+        <param>
+          <type>int</type>
+          <declname>durationIndexCount</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/agyss/iis_robot_sw/iis_catkin_ws/src/kukadu/include/kukadu/manipulation/autonomoustester.hpp" line="67" column="1" bodyfile="/home/agyss/iis_robot_sw/iis_catkin_ws/src/kukadu/src/manipulation/autonomoustester.cpp" bodystart="47" bodyend="65"/>
+      </memberdef>
+      <memberdef kind="function" id="classkukadu_1_1AutonomousTester_1ac552ae790e836d6c4a99d71d5e51aa52" prot="private" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>bool</type>
+        <definition>bool kukadu::AutonomousTester::simulateSuccess</definition>
+        <argsstring>(std::string skill)</argsstring>
+        <name>simulateSuccess</name>
+        <param>
+          <type>std::string</type>
+          <declname>skill</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/agyss/iis_robot_sw/iis_catkin_ws/src/kukadu/include/kukadu/manipulation/autonomoustester.hpp" line="69" column="1" bodyfile="/home/agyss/iis_robot_sw/iis_catkin_ws/src/kukadu/src/manipulation/autonomoustester.cpp" bodystart="67" bodyend="79"/>
+      </memberdef>
+      <memberdef kind="function" id="classkukadu_1_1AutonomousTester_1a71132c667bab0936b05d305894ba85dc" prot="private" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>arma::vec</type>
+        <definition>arma::vec kukadu::AutonomousTester::computeBayesianUpdate</definition>
+        <argsstring>(arma::vec likelihood, arma::vec prior)</argsstring>
+        <name>computeBayesianUpdate</name>
+        <param>
+          <type>arma::vec</type>
+          <declname>likelihood</declname>
+        </param>
+        <param>
+          <type>arma::vec</type>
+          <declname>prior</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/agyss/iis_robot_sw/iis_catkin_ws/src/kukadu/include/kukadu/manipulation/autonomoustester.hpp" line="71" column="1" bodyfile="/home/agyss/iis_robot_sw/iis_catkin_ws/src/kukadu/src/manipulation/autonomoustester.cpp" bodystart="362" bodyend="372"/>
+      </memberdef>
+      <memberdef kind="function" id="classkukadu_1_1AutonomousTester_1abf587c449a6387fd463204f07b48f668" prot="private" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>double</type>
+        <definition>double kukadu::AutonomousTester::computeInformatioinGain</definition>
+        <argsstring>(std::string skill, arma::vec &amp;currentBlameProbability)</argsstring>
+        <name>computeInformatioinGain</name>
+        <param>
+          <type>std::string</type>
+          <declname>skill</declname>
+        </param>
+        <param>
+          <type>arma::vec &amp;</type>
+          <declname>currentBlameProbability</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/agyss/iis_robot_sw/iis_catkin_ws/src/kukadu/include/kukadu/manipulation/autonomoustester.hpp" line="73" column="1" bodyfile="/home/agyss/iis_robot_sw/iis_catkin_ws/src/kukadu/src/manipulation/autonomoustester.cpp" bodystart="288" bodyend="342"/>
+      </memberdef>
+      <memberdef kind="function" id="classkukadu_1_1AutonomousTester_1a99abc5625b3c5fd5bf3b541c6c2fad82" prot="private" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>std::pair&lt; std::string, std::map&lt; std::string, double &gt; &gt;</type>
+        <definition>std::pair&lt; std::string, std::map&lt; string, double &gt; &gt; kukadu::AutonomousTester::maximizeInformationGains</definition>
+        <argsstring>(arma::vec &amp;currentBlameProbability)</argsstring>
+        <name>maximizeInformationGains</name>
+        <param>
+          <type>arma::vec &amp;</type>
+          <declname>currentBlameProbability</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/agyss/iis_robot_sw/iis_catkin_ws/src/kukadu/include/kukadu/manipulation/autonomoustester.hpp" line="75" column="1" bodyfile="/home/agyss/iis_robot_sw/iis_catkin_ws/src/kukadu/src/manipulation/autonomoustester.cpp" bodystart="344" bodyend="360"/>
+      </memberdef>
+      </sectiondef>
+      <sectiondef kind="public-func">
+      <memberdef kind="function" id="classkukadu_1_1AutonomousTester_1af24195b356026f7dd1d815f5810a4bb8" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type></type>
+        <definition>kukadu::AutonomousTester::AutonomousTester</definition>
+        <argsstring>(kukadu::StorageSingleton &amp;storage, bool simulate=false, std::vector&lt; int &gt; simulatedFaultyFunctionsGroundTruth={})</argsstring>
+        <name>AutonomousTester</name>
+        <param>
+          <type><ref refid="classkukadu_1_1StorageSingleton" kindref="compound">kukadu::StorageSingleton</ref> &amp;</type>
+          <declname>storage</declname>
+        </param>
+        <param>
+          <type>bool</type>
+          <declname>simulate</declname>
+          <defval>false</defval>
+        </param>
+        <param>
+          <type>std::vector&lt; int &gt;</type>
+          <declname>simulatedFaultyFunctionsGroundTruth</declname>
+          <defval>{}</defval>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/agyss/iis_robot_sw/iis_catkin_ws/src/kukadu/include/kukadu/manipulation/autonomoustester.hpp" line="79" column="1" bodyfile="/home/agyss/iis_robot_sw/iis_catkin_ws/src/kukadu/src/manipulation/autonomoustester.cpp" bodystart="21" bodyend="25"/>
+      </memberdef>
+      <memberdef kind="function" id="classkukadu_1_1AutonomousTester_1a7303cffd19cf8000780af34feb5c507f" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>arma::vec</type>
+        <definition>arma::vec kukadu::AutonomousTester::testSkill</definition>
+        <argsstring>(std::string id)</argsstring>
+        <name>testSkill</name>
+        <param>
+          <type>std::string</type>
+          <declname>id</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/agyss/iis_robot_sw/iis_catkin_ws/src/kukadu/include/kukadu/manipulation/autonomoustester.hpp" line="82" column="1" bodyfile="/home/agyss/iis_robot_sw/iis_catkin_ws/src/kukadu/src/manipulation/autonomoustester.cpp" bodystart="474" bodyend="615"/>
+      </memberdef>
+      <memberdef kind="function" id="classkukadu_1_1AutonomousTester_1a06eefdb2f465d50edb534cbdb5444a61" prot="public" static="no" const="no" explicit="no" inline="no" virt="virtual">
+        <type>std::vector&lt; std::pair&lt; int, double &gt; &gt;</type>
+        <definition>std::vector&lt; std::pair&lt; int, double &gt; &gt; kukadu::AutonomousTester::computeFailureProb</definition>
+        <argsstring>(std::string skill, arma::mat &amp;execution)</argsstring>
+        <name>computeFailureProb</name>
+        <param>
+          <type>std::string</type>
+          <declname>skill</declname>
+        </param>
+        <param>
+          <type>arma::mat &amp;</type>
+          <declname>execution</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/agyss/iis_robot_sw/iis_catkin_ws/src/kukadu/include/kukadu/manipulation/autonomoustester.hpp" line="84" column="1" bodyfile="/home/agyss/iis_robot_sw/iis_catkin_ws/src/kukadu/src/manipulation/autonomoustester.cpp" bodystart="846" bodyend="947"/>
+      </memberdef>
+      <memberdef kind="function" id="classkukadu_1_1AutonomousTester_1a9aecdf9210317b4831cfa1a218c517b2" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>void kukadu::AutonomousTester::setSimulate</definition>
+        <argsstring>(bool simulate)</argsstring>
+        <name>setSimulate</name>
+        <param>
+          <type>bool</type>
+          <declname>simulate</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/agyss/iis_robot_sw/iis_catkin_ws/src/kukadu/include/kukadu/manipulation/autonomoustester.hpp" line="86" column="1" bodyfile="/home/agyss/iis_robot_sw/iis_catkin_ws/src/kukadu/src/manipulation/autonomoustester.cpp" bodystart="43" bodyend="45"/>
+      </memberdef>
+      <memberdef kind="function" id="classkukadu_1_1AutonomousTester_1a64448f5e619edb379ce4b757018b2db1" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>void kukadu::AutonomousTester::addSkill</definition>
+        <argsstring>(std::string skill, KUKADU_SHARED_PTR&lt; kukadu::Controller &gt; skillController, std::pair&lt; std::vector&lt; int &gt;, std::vector&lt; arma::mat &gt; &gt; &amp;skillData, std::vector&lt; long long int &gt; sampleStartTimes, std::vector&lt; long long int &gt; sampleEndTimes, long long int timeStep)</argsstring>
+        <name>addSkill</name>
+        <param>
+          <type>std::string</type>
+          <declname>skill</declname>
+        </param>
+        <param>
+          <type>KUKADU_SHARED_PTR&lt; <ref refid="classkukadu_1_1Controller" kindref="compound">kukadu::Controller</ref> &gt;</type>
+          <declname>skillController</declname>
+        </param>
+        <param>
+          <type>std::pair&lt; std::vector&lt; int &gt;, std::vector&lt; arma::mat &gt; &gt; &amp;</type>
+          <declname>skillData</declname>
+        </param>
+        <param>
+          <type>std::vector&lt; long long int &gt;</type>
+          <declname>sampleStartTimes</declname>
+        </param>
+        <param>
+          <type>std::vector&lt; long long int &gt;</type>
+          <declname>sampleEndTimes</declname>
+        </param>
+        <param>
+          <type>long long int</type>
+          <declname>timeStep</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/agyss/iis_robot_sw/iis_catkin_ws/src/kukadu/include/kukadu/manipulation/autonomoustester.hpp" line="88" column="1" bodyfile="/home/agyss/iis_robot_sw/iis_catkin_ws/src/kukadu/src/manipulation/autonomoustester.cpp" bodystart="139" bodyend="177"/>
+      </memberdef>
+      <memberdef kind="function" id="classkukadu_1_1AutonomousTester_1afc97b992b4db8d85284088d1e5fe5215" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>void kukadu::AutonomousTester::addSimulatedSkill</definition>
+        <argsstring>(std::string skillName, std::vector&lt; int &gt; usedFunctionRows, std::vector&lt; double &gt; functionMeans, std::vector&lt; double &gt; functionVariances, int numberOfSamples, int durationIndexCount)</argsstring>
+        <name>addSimulatedSkill</name>
+        <param>
+          <type>std::string</type>
+          <declname>skillName</declname>
+        </param>
+        <param>
+          <type>std::vector&lt; int &gt;</type>
+          <declname>usedFunctionRows</declname>
+        </param>
+        <param>
+          <type>std::vector&lt; double &gt;</type>
+          <declname>functionMeans</declname>
+        </param>
+        <param>
+          <type>std::vector&lt; double &gt;</type>
+          <declname>functionVariances</declname>
+        </param>
+        <param>
+          <type>int</type>
+          <declname>numberOfSamples</declname>
+        </param>
+        <param>
+          <type>int</type>
+          <declname>durationIndexCount</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/agyss/iis_robot_sw/iis_catkin_ws/src/kukadu/include/kukadu/manipulation/autonomoustester.hpp" line="91" column="1" bodyfile="/home/agyss/iis_robot_sw/iis_catkin_ws/src/kukadu/src/manipulation/autonomoustester.cpp" bodystart="81" bodyend="102"/>
+      </memberdef>
+      <memberdef kind="function" id="classkukadu_1_1AutonomousTester_1a9ae896125cd8782d66fcf6056b30814d" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>std::vector&lt; int &gt;</type>
+        <definition>vector&lt; int &gt; kukadu::AutonomousTester::testRobot</definition>
+        <argsstring>()</argsstring>
+        <name>testRobot</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/agyss/iis_robot_sw/iis_catkin_ws/src/kukadu/include/kukadu/manipulation/autonomoustester.hpp" line="93" column="1" bodyfile="/home/agyss/iis_robot_sw/iis_catkin_ws/src/kukadu/src/manipulation/autonomoustester.cpp" bodystart="374" bodyend="472"/>
+      </memberdef>
+      </sectiondef>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <inheritancegraph>
+      <node id="31">
+        <label>kukadu::AutonomousTester</label>
+        <link refid="classkukadu_1_1AutonomousTester"/>
+        <childnode refid="32" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="32">
+        <label>kukadu::StorageHolder</label>
+        <link refid="classkukadu_1_1StorageHolder"/>
+      </node>
+    </inheritancegraph>
+    <collaborationgraph>
+      <node id="33">
+        <label>kukadu::AutonomousTester</label>
+        <link refid="classkukadu_1_1AutonomousTester"/>
+        <childnode refid="34" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="34">
+        <label>kukadu::StorageHolder</label>
+        <link refid="classkukadu_1_1StorageHolder"/>
+      </node>
+    </collaborationgraph>
+    <location file="/home/agyss/iis_robot_sw/iis_catkin_ws/src/kukadu/include/kukadu/manipulation/autonomoustester.hpp" line="15" column="1" bodyfile="/home/agyss/iis_robot_sw/iis_catkin_ws/src/kukadu/include/kukadu/manipulation/autonomoustester.hpp" bodystart="15" bodyend="95"/>
+    <listofallmembers>
+      <member refid="classkukadu_1_1AutonomousTester_1afc97b992b4db8d85284088d1e5fe5215" prot="public" virt="non-virtual"><scope>kukadu::AutonomousTester</scope><name>addSimulatedSkill</name></member>
+      <member refid="classkukadu_1_1AutonomousTester_1a64448f5e619edb379ce4b757018b2db1" prot="public" virt="non-virtual"><scope>kukadu::AutonomousTester</scope><name>addSkill</name></member>
+      <member refid="classkukadu_1_1AutonomousTester_1af24195b356026f7dd1d815f5810a4bb8" prot="public" virt="non-virtual"><scope>kukadu::AutonomousTester</scope><name>AutonomousTester</name></member>
+      <member refid="classkukadu_1_1AutonomousTester_1a71132c667bab0936b05d305894ba85dc" prot="private" virt="non-virtual"><scope>kukadu::AutonomousTester</scope><name>computeBayesianUpdate</name></member>
+      <member refid="classkukadu_1_1AutonomousTester_1a58561172776267b8eaafbf8caf18eb19" prot="private" virt="non-virtual"><scope>kukadu::AutonomousTester</scope><name>computeBestDistance</name></member>
+      <member refid="classkukadu_1_1AutonomousTester_1abc3765d4a5af7dd9517add7db962b611" prot="private" virt="non-virtual"><scope>kukadu::AutonomousTester</scope><name>computeBestDistance</name></member>
+      <member refid="classkukadu_1_1AutonomousTester_1a06eefdb2f465d50edb534cbdb5444a61" prot="public" virt="virtual"><scope>kukadu::AutonomousTester</scope><name>computeFailureProb</name></member>
+      <member refid="classkukadu_1_1AutonomousTester_1ad09ad35ccd00f9d9cf0ba70f4f65e718" prot="private" virt="non-virtual"><scope>kukadu::AutonomousTester</scope><name>computeFingerPrint</name></member>
+      <member refid="classkukadu_1_1AutonomousTester_1abf587c449a6387fd463204f07b48f668" prot="private" virt="non-virtual"><scope>kukadu::AutonomousTester</scope><name>computeInformatioinGain</name></member>
+      <member refid="classkukadu_1_1AutonomousTester_1a950b8a7b34608bdc0daf4a4a10d9329a" prot="private" virt="non-virtual"><scope>kukadu::AutonomousTester</scope><name>computeObservationLikelihood</name></member>
+      <member refid="classkukadu_1_1AutonomousTester_1aa8190a44e29e253428ffb39952204baf" prot="private" virt="non-virtual"><scope>kukadu::AutonomousTester</scope><name>construct</name></member>
+      <member refid="classkukadu_1_1AutonomousTester_1a68a171517dbf90dd8c2670a0857af85c" prot="private" virt="non-virtual"><scope>kukadu::AutonomousTester</scope><name>extractDeviatingFunctions</name></member>
+      <member refid="classkukadu_1_1AutonomousTester_1a39777b30d06b14f75b6b914354ad391b" prot="private" virt="non-virtual"><scope>kukadu::AutonomousTester</scope><name>fingerPrintColCounts</name></member>
+      <member refid="classkukadu_1_1AutonomousTester_1a159455a8b59e512d3e0e29720fabd98f" prot="private" virt="non-virtual"><scope>kukadu::AutonomousTester</scope><name>functionIdsToRows</name></member>
+      <member refid="classkukadu_1_1AutonomousTester_1a16c7a8f78deaec31167fec89e3817f2f" prot="private" virt="non-virtual"><scope>kukadu::AutonomousTester</scope><name>functionRowsToIds</name></member>
+      <member refid="classkukadu_1_1AutonomousTester_1a338259b9f412eea558bc125ee28e979e" prot="private" virt="non-virtual"><scope>kukadu::AutonomousTester</scope><name>generateFunctionQuery</name></member>
+      <member refid="classkukadu_1_1AutonomousTester_1a9329482107eac3a56b5c08d254609b9e" prot="private" virt="non-virtual"><scope>kukadu::AutonomousTester</scope><name>generateSimulatedSample</name></member>
+      <member refid="classkukadu_1_1AutonomousTester_1aa78033a30873575b0c6250391d1293c0" prot="private" virt="non-virtual"><scope>kukadu::AutonomousTester</scope><name>generator</name></member>
+      <member refid="classkukadu_1_1StorageHolder_1ab960ded0b470890c8ca94741b61c8d2e" prot="public" virt="non-virtual"><scope>kukadu::AutonomousTester</scope><name>getStorage</name></member>
+      <member refid="classkukadu_1_1AutonomousTester_1a0260e4a83c7e476a3e722c854631564e" prot="private" virt="non-virtual"><scope>kukadu::AutonomousTester</scope><name>integrateFingerPrint</name></member>
+      <member refid="classkukadu_1_1AutonomousTester_1a647f4219a30a92056065ebfef03e4a65" prot="private" virt="non-virtual"><scope>kukadu::AutonomousTester</scope><name>loadRunningFunctions</name></member>
+      <member refid="classkukadu_1_1AutonomousTester_1acf9f5bc85bd1ccd2fa2578ae9dd81c32" prot="private" virt="non-virtual"><scope>kukadu::AutonomousTester</scope><name>loadSkillFingerPrintDb</name></member>
+      <member refid="classkukadu_1_1AutonomousTester_1a42ff296522a10329ada0ad541762316f" prot="private" virt="non-virtual"><scope>kukadu::AutonomousTester</scope><name>mapFunctionIdToFingerPrintRow</name></member>
+      <member refid="classkukadu_1_1AutonomousTester_1a99abc5625b3c5fd5bf3b541c6c2fad82" prot="private" virt="non-virtual"><scope>kukadu::AutonomousTester</scope><name>maximizeInformationGains</name></member>
+      <member refid="classkukadu_1_1AutonomousTester_1a6b0bf857e7bb0c8036687d36e9704aa4" prot="private" virt="non-virtual"><scope>kukadu::AutonomousTester</scope><name>momCallerMutex</name></member>
+      <member refid="classkukadu_1_1AutonomousTester_1a9aecdf9210317b4831cfa1a218c517b2" prot="public" virt="non-virtual"><scope>kukadu::AutonomousTester</scope><name>setSimulate</name></member>
+      <member refid="classkukadu_1_1AutonomousTester_1a46e19c56e82e885d89b6d3da07c56b21" prot="private" virt="non-virtual"><scope>kukadu::AutonomousTester</scope><name>simlatedIdxWindow</name></member>
+      <member refid="classkukadu_1_1AutonomousTester_1aaeb2f5324f69993a3ade809a0e3a504e" prot="private" virt="non-virtual"><scope>kukadu::AutonomousTester</scope><name>simulate</name></member>
+      <member refid="classkukadu_1_1AutonomousTester_1a75c0119a4fd3b643951b925b7ad46bcd" prot="private" virt="non-virtual"><scope>kukadu::AutonomousTester</scope><name>simulatedFaultyFunctionsGroundTruth</name></member>
+      <member refid="classkukadu_1_1AutonomousTester_1ac552ae790e836d6c4a99d71d5e51aa52" prot="private" virt="non-virtual"><scope>kukadu::AutonomousTester</scope><name>simulateSuccess</name></member>
+      <member refid="classkukadu_1_1AutonomousTester_1ac1bc3f4e09f4e0df1a60c491525403b9" prot="private" virt="non-virtual"><scope>kukadu::AutonomousTester</scope><name>skillFingerPrints</name></member>
+      <member refid="classkukadu_1_1AutonomousTester_1a26fc44b9dee4b84d41373d7586cc8390" prot="private" virt="non-virtual"><scope>kukadu::AutonomousTester</scope><name>skillFingerPrintStdDeviations</name></member>
+      <member refid="classkukadu_1_1AutonomousTester_1a3786baaf99439c945a3c7a99a43bb217" prot="private" virt="non-virtual"><scope>kukadu::AutonomousTester</scope><name>skillMedianFingerPrints</name></member>
+      <member refid="classkukadu_1_1AutonomousTester_1a82623751675b3d9a9d429de40e985d3d" prot="private" virt="non-virtual"><scope>kukadu::AutonomousTester</scope><name>skillSampleEndTimes</name></member>
+      <member refid="classkukadu_1_1AutonomousTester_1add91be958fefdb7f677732acea215fbd" prot="private" virt="non-virtual"><scope>kukadu::AutonomousTester</scope><name>skillSampleStartTimes</name></member>
+      <member refid="classkukadu_1_1AutonomousTester_1a01effe7e01d3d9df43d9007142fbb2fd" prot="private" virt="non-virtual"><scope>kukadu::AutonomousTester</scope><name>skillsData</name></member>
+      <member refid="classkukadu_1_1AutonomousTester_1ad44a186a0d4d60af0fd95acc87d5e654" prot="private" virt="non-virtual"><scope>kukadu::AutonomousTester</scope><name>skillSimulatedFunctionMeans</name></member>
+      <member refid="classkukadu_1_1AutonomousTester_1a7c892fc2baa871a5afcf8988811d2e79" prot="private" virt="non-virtual"><scope>kukadu::AutonomousTester</scope><name>skillSimulatedFunctionRows</name></member>
+      <member refid="classkukadu_1_1AutonomousTester_1af0002aa9614865495ae8686beeeb0b5e" prot="private" virt="non-virtual"><scope>kukadu::AutonomousTester</scope><name>skillSimulatedFunctionStdDevs</name></member>
+      <member refid="classkukadu_1_1StorageHolder_1a1c64f1528f3243ace2ec3932d69d9704" prot="public" virt="non-virtual"><scope>kukadu::AutonomousTester</scope><name>StorageHolder</name></member>
+      <member refid="classkukadu_1_1AutonomousTester_1ac3eb07c2700f40ed8a47e51e37a33592" prot="private" virt="non-virtual"><scope>kukadu::AutonomousTester</scope><name>storedSkills</name></member>
+      <member refid="classkukadu_1_1AutonomousTester_1a9ae896125cd8782d66fcf6056b30814d" prot="public" virt="non-virtual"><scope>kukadu::AutonomousTester</scope><name>testRobot</name></member>
+      <member refid="classkukadu_1_1AutonomousTester_1a7303cffd19cf8000780af34feb5c507f" prot="public" virt="non-virtual"><scope>kukadu::AutonomousTester</scope><name>testSkill</name></member>
+      <member refid="classkukadu_1_1AutonomousTester_1acb385e633af20e9c371a537823e32961" prot="private" virt="non-virtual"><scope>kukadu::AutonomousTester</scope><name>timeSteps</name></member>
+      <member refid="classkukadu_1_1AutonomousTester_1a1b620eea7b406d294d308a380b0fda1f" prot="private" virt="non-virtual"><scope>kukadu::AutonomousTester</scope><name>windowTime</name></member>
+    </listofallmembers>
+  </compounddef>
+</doxygen>

@@ -1,0 +1,315 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.8.11">
+  <compounddef id="classkukadu_1_1KukaduTokenizer" kind="class" language="C++" prot="public">
+    <compoundname>kukadu::KukaduTokenizer</compoundname>
+      <sectiondef kind="private-attrib">
+      <memberdef kind="variable" id="classkukadu_1_1KukaduTokenizer_1a33d325fb27bd5c29117992354f700d54" prot="private" static="no" mutable="no">
+        <type>std::string</type>
+        <definition>std::string kukadu::KukaduTokenizer::buffer</definition>
+        <argsstring></argsstring>
+        <name>buffer</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/agyss/iis_robot_sw/iis_catkin_ws/src/kukadu/include/kukadu/utils/kukadutokenizer.hpp" line="53" column="1" bodyfile="/home/agyss/iis_robot_sw/iis_catkin_ws/src/kukadu/include/kukadu/utils/kukadutokenizer.hpp" bodystart="53" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classkukadu_1_1KukaduTokenizer_1a24dcb362cb7219fbde62cc34116c96fe" prot="private" static="no" mutable="no">
+        <type>std::string</type>
+        <definition>std::string kukadu::KukaduTokenizer::token</definition>
+        <argsstring></argsstring>
+        <name>token</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/agyss/iis_robot_sw/iis_catkin_ws/src/kukadu/include/kukadu/utils/kukadutokenizer.hpp" line="54" column="1" bodyfile="/home/agyss/iis_robot_sw/iis_catkin_ws/src/kukadu/include/kukadu/utils/kukadutokenizer.hpp" bodystart="54" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classkukadu_1_1KukaduTokenizer_1ae5e9e3f82db5ae47b54548fc4e1d98fc" prot="private" static="no" mutable="no">
+        <type>std::string</type>
+        <definition>std::string kukadu::KukaduTokenizer::delimiter</definition>
+        <argsstring></argsstring>
+        <name>delimiter</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/agyss/iis_robot_sw/iis_catkin_ws/src/kukadu/include/kukadu/utils/kukadutokenizer.hpp" line="55" column="1" bodyfile="/home/agyss/iis_robot_sw/iis_catkin_ws/src/kukadu/include/kukadu/utils/kukadutokenizer.hpp" bodystart="55" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classkukadu_1_1KukaduTokenizer_1a635c4e0a8d359f7bd68b5ed8b396f8e4" prot="private" static="no" mutable="no">
+        <type>std::string</type>
+        <definition>std::string kukadu::KukaduTokenizer::lastToken</definition>
+        <argsstring></argsstring>
+        <name>lastToken</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/agyss/iis_robot_sw/iis_catkin_ws/src/kukadu/include/kukadu/utils/kukadutokenizer.hpp" line="56" column="1" bodyfile="/home/agyss/iis_robot_sw/iis_catkin_ws/src/kukadu/include/kukadu/utils/kukadutokenizer.hpp" bodystart="56" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classkukadu_1_1KukaduTokenizer_1a949515ffe4af657dfc748cc961d16364" prot="private" static="no" mutable="no">
+        <type>int</type>
+        <definition>int kukadu::KukaduTokenizer::currPos</definition>
+        <argsstring></argsstring>
+        <name>currPos</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/agyss/iis_robot_sw/iis_catkin_ws/src/kukadu/include/kukadu/utils/kukadutokenizer.hpp" line="58" column="1" bodyfile="/home/agyss/iis_robot_sw/iis_catkin_ws/src/kukadu/include/kukadu/utils/kukadutokenizer.hpp" bodystart="58" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classkukadu_1_1KukaduTokenizer_1a03631f902a1d83c87f30528543ad2a95" prot="private" static="no" mutable="no">
+        <type>int</type>
+        <definition>int kukadu::KukaduTokenizer::tokenIdx</definition>
+        <argsstring></argsstring>
+        <name>tokenIdx</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/agyss/iis_robot_sw/iis_catkin_ws/src/kukadu/include/kukadu/utils/kukadutokenizer.hpp" line="59" column="1" bodyfile="/home/agyss/iis_robot_sw/iis_catkin_ws/src/kukadu/include/kukadu/utils/kukadutokenizer.hpp" bodystart="59" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classkukadu_1_1KukaduTokenizer_1a0979e99f196fc7060e25b893cfefb905" prot="private" static="no" mutable="no">
+        <type>bool</type>
+        <definition>bool kukadu::KukaduTokenizer::useLastToken</definition>
+        <argsstring></argsstring>
+        <name>useLastToken</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/agyss/iis_robot_sw/iis_catkin_ws/src/kukadu/include/kukadu/utils/kukadutokenizer.hpp" line="60" column="1" bodyfile="/home/agyss/iis_robot_sw/iis_catkin_ws/src/kukadu/include/kukadu/utils/kukadutokenizer.hpp" bodystart="60" bodyend="-1"/>
+      </memberdef>
+      </sectiondef>
+      <sectiondef kind="public-func">
+      <memberdef kind="function" id="classkukadu_1_1KukaduTokenizer_1adac547831a69634be6d1622b8db59162" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type></type>
+        <definition>kukadu::KukaduTokenizer::KukaduTokenizer</definition>
+        <argsstring>()</argsstring>
+        <name>KukaduTokenizer</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/agyss/iis_robot_sw/iis_catkin_ws/src/kukadu/include/kukadu/utils/kukadutokenizer.hpp" line="30" column="1" bodyfile="/home/agyss/iis_robot_sw/iis_catkin_ws/src/kukadu/src/utils/kukadutokenizer.cpp" bodystart="26" bodyend="31"/>
+      </memberdef>
+      <memberdef kind="function" id="classkukadu_1_1KukaduTokenizer_1aae8ae3c9b1fa4cf3b2e1d7aacce89042" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type></type>
+        <definition>kukadu::KukaduTokenizer::KukaduTokenizer</definition>
+        <argsstring>(const std::string &amp;str, const std::string &amp;delimiter=DEFAULT_DELIMITER)</argsstring>
+        <name>KukaduTokenizer</name>
+        <param>
+          <type>const std::string &amp;</type>
+          <declname>str</declname>
+        </param>
+        <param>
+          <type>const std::string &amp;</type>
+          <declname>delimiter</declname>
+          <defval>DEFAULT_DELIMITER</defval>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/agyss/iis_robot_sw/iis_catkin_ws/src/kukadu/include/kukadu/utils/kukadutokenizer.hpp" line="31" column="1" bodyfile="/home/agyss/iis_robot_sw/iis_catkin_ws/src/kukadu/src/utils/kukadutokenizer.cpp" bodystart="33" bodyend="38"/>
+      </memberdef>
+      <memberdef kind="function" id="classkukadu_1_1KukaduTokenizer_1ab10036baf18ec6de0189d993c4ccabc3" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type></type>
+        <definition>kukadu::KukaduTokenizer::~KukaduTokenizer</definition>
+        <argsstring>()</argsstring>
+        <name>~KukaduTokenizer</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/agyss/iis_robot_sw/iis_catkin_ws/src/kukadu/include/kukadu/utils/kukadutokenizer.hpp" line="32" column="1" bodyfile="/home/agyss/iis_robot_sw/iis_catkin_ws/src/kukadu/src/utils/kukadutokenizer.cpp" bodystart="45" bodyend="46"/>
+      </memberdef>
+      <memberdef kind="function" id="classkukadu_1_1KukaduTokenizer_1a0bf607b688bdb8a21371335ac4415a1e" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>void kukadu::KukaduTokenizer::set</definition>
+        <argsstring>(const std::string &amp;str, const std::string &amp;delimiter=DEFAULT_DELIMITER)</argsstring>
+        <name>set</name>
+        <param>
+          <type>const std::string &amp;</type>
+          <declname>str</declname>
+        </param>
+        <param>
+          <type>const std::string &amp;</type>
+          <declname>delimiter</declname>
+          <defval>DEFAULT_DELIMITER</defval>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/agyss/iis_robot_sw/iis_catkin_ws/src/kukadu/include/kukadu/utils/kukadutokenizer.hpp" line="35" column="1" bodyfile="/home/agyss/iis_robot_sw/iis_catkin_ws/src/kukadu/src/utils/kukadutokenizer.cpp" bodystart="53" bodyend="57"/>
+      </memberdef>
+      <memberdef kind="function" id="classkukadu_1_1KukaduTokenizer_1a0d3d6891c51dff67d9b9b367f9ffc930" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>void kukadu::KukaduTokenizer::setString</definition>
+        <argsstring>(const std::string &amp;str)</argsstring>
+        <name>setString</name>
+        <param>
+          <type>const std::string &amp;</type>
+          <declname>str</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/agyss/iis_robot_sw/iis_catkin_ws/src/kukadu/include/kukadu/utils/kukadutokenizer.hpp" line="36" column="1" bodyfile="/home/agyss/iis_robot_sw/iis_catkin_ws/src/kukadu/src/utils/kukadutokenizer.cpp" bodystart="59" bodyend="62"/>
+      </memberdef>
+      <memberdef kind="function" id="classkukadu_1_1KukaduTokenizer_1a6ca4375a16e6be13c2b425345c324811" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>void kukadu::KukaduTokenizer::setDelimiter</definition>
+        <argsstring>(const std::string &amp;delimiter)</argsstring>
+        <name>setDelimiter</name>
+        <param>
+          <type>const std::string &amp;</type>
+          <declname>delimiter</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/agyss/iis_robot_sw/iis_catkin_ws/src/kukadu/include/kukadu/utils/kukadutokenizer.hpp" line="37" column="1" bodyfile="/home/agyss/iis_robot_sw/iis_catkin_ws/src/kukadu/src/utils/kukadutokenizer.cpp" bodystart="64" bodyend="67"/>
+      </memberdef>
+      <memberdef kind="function" id="classkukadu_1_1KukaduTokenizer_1a1276cdd662e68254f9f7f277e534603d" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>std::string</type>
+        <definition>std::string kukadu::KukaduTokenizer::next</definition>
+        <argsstring>()</argsstring>
+        <name>next</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/agyss/iis_robot_sw/iis_catkin_ws/src/kukadu/include/kukadu/utils/kukadutokenizer.hpp" line="39" column="1" bodyfile="/home/agyss/iis_robot_sw/iis_catkin_ws/src/kukadu/src/utils/kukadutokenizer.cpp" bodystart="77" bodyend="97"/>
+      </memberdef>
+      <memberdef kind="function" id="classkukadu_1_1KukaduTokenizer_1ac432b19d37cd0ee3baf73d7ee350cf55" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>void kukadu::KukaduTokenizer::putBackLast</definition>
+        <argsstring>()</argsstring>
+        <name>putBackLast</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/agyss/iis_robot_sw/iis_catkin_ws/src/kukadu/include/kukadu/utils/kukadutokenizer.hpp" line="40" column="1" bodyfile="/home/agyss/iis_robot_sw/iis_catkin_ws/src/kukadu/src/utils/kukadutokenizer.cpp" bodystart="99" bodyend="103"/>
+      </memberdef>
+      <memberdef kind="function" id="classkukadu_1_1KukaduTokenizer_1a8fa96ce320c74d7b350546c28bc18d12" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>std::vector&lt; std::string &gt;</type>
+        <definition>std::vector&lt; std::string &gt; kukadu::KukaduTokenizer::split</definition>
+        <argsstring>()</argsstring>
+        <name>split</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/agyss/iis_robot_sw/iis_catkin_ws/src/kukadu/include/kukadu/utils/kukadutokenizer.hpp" line="42" column="1" bodyfile="/home/agyss/iis_robot_sw/iis_catkin_ws/src/kukadu/src/utils/kukadutokenizer.cpp" bodystart="130" bodyend="138"/>
+      </memberdef>
+      <memberdef kind="function" id="classkukadu_1_1KukaduTokenizer_1a4d9ef340611b923b365394ee314f05b3" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>int</type>
+        <definition>int kukadu::KukaduTokenizer::getTokenIdx</definition>
+        <argsstring>()</argsstring>
+        <name>getTokenIdx</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/agyss/iis_robot_sw/iis_catkin_ws/src/kukadu/include/kukadu/utils/kukadutokenizer.hpp" line="44" column="1" bodyfile="/home/agyss/iis_robot_sw/iis_catkin_ws/src/kukadu/src/utils/kukadutokenizer.cpp" bodystart="69" bodyend="71"/>
+      </memberdef>
+      </sectiondef>
+      <sectiondef kind="private-func">
+      <memberdef kind="function" id="classkukadu_1_1KukaduTokenizer_1ac0442524d001e69e50f718303ec56746" prot="private" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>void kukadu::KukaduTokenizer::skipDelimiter</definition>
+        <argsstring>()</argsstring>
+        <name>skipDelimiter</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/agyss/iis_robot_sw/iis_catkin_ws/src/kukadu/include/kukadu/utils/kukadutokenizer.hpp" line="50" column="1" bodyfile="/home/agyss/iis_robot_sw/iis_catkin_ws/src/kukadu/src/utils/kukadutokenizer.cpp" bodystart="110" bodyend="113"/>
+      </memberdef>
+      <memberdef kind="function" id="classkukadu_1_1KukaduTokenizer_1afecd48a34692b59b94e55e3acda24e2d" prot="private" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>bool</type>
+        <definition>bool kukadu::KukaduTokenizer::isDelimiter</definition>
+        <argsstring>(char c)</argsstring>
+        <name>isDelimiter</name>
+        <param>
+          <type>char</type>
+          <declname>c</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/agyss/iis_robot_sw/iis_catkin_ws/src/kukadu/include/kukadu/utils/kukadutokenizer.hpp" line="51" column="1" bodyfile="/home/agyss/iis_robot_sw/iis_catkin_ws/src/kukadu/src/utils/kukadutokenizer.cpp" bodystart="120" bodyend="122"/>
+      </memberdef>
+      </sectiondef>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <location file="/home/agyss/iis_robot_sw/iis_catkin_ws/src/kukadu/include/kukadu/utils/kukadutokenizer.hpp" line="27" column="1" bodyfile="/home/agyss/iis_robot_sw/iis_catkin_ws/src/kukadu/include/kukadu/utils/kukadutokenizer.hpp" bodystart="27" bodyend="62"/>
+    <listofallmembers>
+      <member refid="classkukadu_1_1KukaduTokenizer_1a33d325fb27bd5c29117992354f700d54" prot="private" virt="non-virtual"><scope>kukadu::KukaduTokenizer</scope><name>buffer</name></member>
+      <member refid="classkukadu_1_1KukaduTokenizer_1a949515ffe4af657dfc748cc961d16364" prot="private" virt="non-virtual"><scope>kukadu::KukaduTokenizer</scope><name>currPos</name></member>
+      <member refid="classkukadu_1_1KukaduTokenizer_1ae5e9e3f82db5ae47b54548fc4e1d98fc" prot="private" virt="non-virtual"><scope>kukadu::KukaduTokenizer</scope><name>delimiter</name></member>
+      <member refid="classkukadu_1_1KukaduTokenizer_1a4d9ef340611b923b365394ee314f05b3" prot="public" virt="non-virtual"><scope>kukadu::KukaduTokenizer</scope><name>getTokenIdx</name></member>
+      <member refid="classkukadu_1_1KukaduTokenizer_1afecd48a34692b59b94e55e3acda24e2d" prot="private" virt="non-virtual"><scope>kukadu::KukaduTokenizer</scope><name>isDelimiter</name></member>
+      <member refid="classkukadu_1_1KukaduTokenizer_1adac547831a69634be6d1622b8db59162" prot="public" virt="non-virtual"><scope>kukadu::KukaduTokenizer</scope><name>KukaduTokenizer</name></member>
+      <member refid="classkukadu_1_1KukaduTokenizer_1aae8ae3c9b1fa4cf3b2e1d7aacce89042" prot="public" virt="non-virtual"><scope>kukadu::KukaduTokenizer</scope><name>KukaduTokenizer</name></member>
+      <member refid="classkukadu_1_1KukaduTokenizer_1a635c4e0a8d359f7bd68b5ed8b396f8e4" prot="private" virt="non-virtual"><scope>kukadu::KukaduTokenizer</scope><name>lastToken</name></member>
+      <member refid="classkukadu_1_1KukaduTokenizer_1a1276cdd662e68254f9f7f277e534603d" prot="public" virt="non-virtual"><scope>kukadu::KukaduTokenizer</scope><name>next</name></member>
+      <member refid="classkukadu_1_1KukaduTokenizer_1ac432b19d37cd0ee3baf73d7ee350cf55" prot="public" virt="non-virtual"><scope>kukadu::KukaduTokenizer</scope><name>putBackLast</name></member>
+      <member refid="classkukadu_1_1KukaduTokenizer_1a0bf607b688bdb8a21371335ac4415a1e" prot="public" virt="non-virtual"><scope>kukadu::KukaduTokenizer</scope><name>set</name></member>
+      <member refid="classkukadu_1_1KukaduTokenizer_1a6ca4375a16e6be13c2b425345c324811" prot="public" virt="non-virtual"><scope>kukadu::KukaduTokenizer</scope><name>setDelimiter</name></member>
+      <member refid="classkukadu_1_1KukaduTokenizer_1a0d3d6891c51dff67d9b9b367f9ffc930" prot="public" virt="non-virtual"><scope>kukadu::KukaduTokenizer</scope><name>setString</name></member>
+      <member refid="classkukadu_1_1KukaduTokenizer_1ac0442524d001e69e50f718303ec56746" prot="private" virt="non-virtual"><scope>kukadu::KukaduTokenizer</scope><name>skipDelimiter</name></member>
+      <member refid="classkukadu_1_1KukaduTokenizer_1a8fa96ce320c74d7b350546c28bc18d12" prot="public" virt="non-virtual"><scope>kukadu::KukaduTokenizer</scope><name>split</name></member>
+      <member refid="classkukadu_1_1KukaduTokenizer_1a24dcb362cb7219fbde62cc34116c96fe" prot="private" virt="non-virtual"><scope>kukadu::KukaduTokenizer</scope><name>token</name></member>
+      <member refid="classkukadu_1_1KukaduTokenizer_1a03631f902a1d83c87f30528543ad2a95" prot="private" virt="non-virtual"><scope>kukadu::KukaduTokenizer</scope><name>tokenIdx</name></member>
+      <member refid="classkukadu_1_1KukaduTokenizer_1a0979e99f196fc7060e25b893cfefb905" prot="private" virt="non-virtual"><scope>kukadu::KukaduTokenizer</scope><name>useLastToken</name></member>
+      <member refid="classkukadu_1_1KukaduTokenizer_1ab10036baf18ec6de0189d993c4ccabc3" prot="public" virt="non-virtual"><scope>kukadu::KukaduTokenizer</scope><name>~KukaduTokenizer</name></member>
+    </listofallmembers>
+  </compounddef>
+</doxygen>

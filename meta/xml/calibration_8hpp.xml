@@ -1,0 +1,453 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.8.11">
+  <compounddef id="calibration_8hpp" kind="file" language="C++">
+    <compoundname>calibration.hpp</compoundname>
+    <includes local="no">istream</includes>
+    <includes local="no">utility</includes>
+    <includes local="no">armadillo</includes>
+    <includes local="no">geometry_msgs/Pose.h</includes>
+    <includes refid="queue_8hpp" local="no">kukadu/robot/queue.hpp</includes>
+    <includes refid="kukadutypes_8hpp" local="no">kukadu/types/kukadutypes.hpp</includes>
+    <includes refid="arlocalizer_8hpp" local="no">kukadu/vision/arlocalizer.hpp</includes>
+    <includedby refid="calibration_8cpp" local="no">/home/agyss/iis_robot_sw/iis_catkin_ws/src/kukadu/src/robot/calibration.cpp</includedby>
+    <includedby refid="robot_8hpp" local="no">/home/agyss/iis_robot_sw/iis_catkin_ws/src/kukadu/include/kukadu/robot.hpp</includedby>
+    <incdepgraph>
+      <node id="1242">
+        <label>list</label>
+      </node>
+      <node id="1245">
+        <label>boost/thread/mutex.hpp</label>
+      </node>
+      <node id="1252">
+        <label>kukadu/vision/arlocalizer/arMulti.h</label>
+      </node>
+      <node id="1229">
+        <label>cppconn/resultset.h</label>
+      </node>
+      <node id="1237">
+        <label>sensor_msgs/PointCloud2.h</label>
+      </node>
+      <node id="1210">
+        <label>queue</label>
+      </node>
+      <node id="1209">
+        <label>kukadu/robot/queue.hpp</label>
+        <link refid="queue_8hpp"/>
+        <childnode refid="1210" relation="include">
+        </childnode>
+        <childnode refid="1211" relation="include">
+        </childnode>
+        <childnode refid="1207" relation="include">
+        </childnode>
+        <childnode refid="1208" relation="include">
+        </childnode>
+        <childnode refid="1212" relation="include">
+        </childnode>
+        <childnode refid="1221" relation="include">
+        </childnode>
+        <childnode refid="1215" relation="include">
+        </childnode>
+        <childnode refid="1231" relation="include">
+        </childnode>
+        <childnode refid="1223" relation="include">
+        </childnode>
+      </node>
+      <node id="1236">
+        <label>pcl/point_types.h</label>
+      </node>
+      <node id="1244">
+        <label>opencv/cv.h</label>
+      </node>
+      <node id="1247">
+        <label>tf/transform_listener.h</label>
+      </node>
+      <node id="1246">
+        <label>tf/transform_broadcaster.h</label>
+      </node>
+      <node id="1223">
+        <label>kukadu/storage/storagesingleton.hpp</label>
+        <link refid="storagesingleton_8hpp_source"/>
+        <childnode refid="1224" relation="include">
+        </childnode>
+        <childnode refid="1210" relation="include">
+        </childnode>
+        <childnode refid="1222" relation="include">
+        </childnode>
+        <childnode refid="1211" relation="include">
+        </childnode>
+        <childnode refid="1225" relation="include">
+        </childnode>
+        <childnode refid="1215" relation="include">
+        </childnode>
+        <childnode refid="1226" relation="include">
+        </childnode>
+        <childnode refid="1227" relation="include">
+        </childnode>
+        <childnode refid="1228" relation="include">
+        </childnode>
+        <childnode refid="1229" relation="include">
+        </childnode>
+        <childnode refid="1230" relation="include">
+        </childnode>
+      </node>
+      <node id="1235">
+        <label>pcl/point_cloud.h</label>
+      </node>
+      <node id="1215">
+        <label>kukadu/types/kukadutypes.hpp</label>
+        <link refid="kukadutypes_8hpp_source"/>
+        <childnode refid="1216" relation="include">
+        </childnode>
+        <childnode refid="1217" relation="include">
+        </childnode>
+        <childnode refid="1218" relation="include">
+        </childnode>
+        <childnode refid="1219" relation="include">
+        </childnode>
+        <childnode refid="1220" relation="include">
+        </childnode>
+      </node>
+      <node id="1238">
+        <label>kukadu/vision/pcstdtrans.hpp</label>
+        <link refid="pcstdtrans_8hpp_source"/>
+        <childnode refid="1207" relation="include">
+        </childnode>
+        <childnode refid="1239" relation="include">
+        </childnode>
+        <childnode refid="1240" relation="include">
+        </childnode>
+      </node>
+      <node id="1248">
+        <label>image_transport/image_transport.h</label>
+      </node>
+      <node id="1221">
+        <label>kukadu/robot/hardware.hpp</label>
+        <link refid="hardware_8hpp_source"/>
+        <childnode refid="1222" relation="include">
+        </childnode>
+        <childnode refid="1207" relation="include">
+        </childnode>
+        <childnode refid="1223" relation="include">
+        </childnode>
+      </node>
+      <node id="1222">
+        <label>string</label>
+      </node>
+      <node id="1224">
+        <label>map</label>
+      </node>
+      <node id="1207">
+        <label>armadillo</label>
+      </node>
+      <node id="1216">
+        <label>exception</label>
+      </node>
+      <node id="1249">
+        <label>dynamic_reconfigure/server.h</label>
+      </node>
+      <node id="1230">
+        <label>cppconn/statement.h</label>
+      </node>
+      <node id="1253">
+        <label>kukadu/vision/arlocalizer/CameraAdvImpl.h</label>
+      </node>
+      <node id="1220">
+        <label>random</label>
+      </node>
+      <node id="1251">
+        <label>kukadu/vision/arlocalizer/ar.h</label>
+      </node>
+      <node id="1213">
+        <label>kukadu/utils/types.hpp</label>
+        <link refid="utils_2types_8hpp_source"/>
+        <childnode refid="1211" relation="include">
+        </childnode>
+        <childnode refid="1207" relation="include">
+        </childnode>
+        <childnode refid="1214" relation="include">
+        </childnode>
+      </node>
+      <node id="1250">
+        <label>tf/transform_datatypes.h</label>
+      </node>
+      <node id="1204">
+        <label>/home/agyss/iis_robot_sw/iis_catkin_ws/src/kukadu/include/kukadu/robot/calibration.hpp</label>
+        <link refid="calibration.hpp"/>
+        <childnode refid="1205" relation="include">
+        </childnode>
+        <childnode refid="1206" relation="include">
+        </childnode>
+        <childnode refid="1207" relation="include">
+        </childnode>
+        <childnode refid="1208" relation="include">
+        </childnode>
+        <childnode refid="1209" relation="include">
+        </childnode>
+        <childnode refid="1215" relation="include">
+        </childnode>
+        <childnode refid="1232" relation="include">
+        </childnode>
+      </node>
+      <node id="1211">
+        <label>vector</label>
+      </node>
+      <node id="1212">
+        <label>kukadu/robot/filters.hpp</label>
+        <link refid="filters_8hpp_source"/>
+        <childnode refid="1213" relation="include">
+        </childnode>
+        <childnode refid="1215" relation="include">
+        </childnode>
+      </node>
+      <node id="1206">
+        <label>utility</label>
+      </node>
+      <node id="1227">
+        <label>cppconn/driver.h</label>
+      </node>
+      <node id="1228">
+        <label>cppconn/exception.h</label>
+      </node>
+      <node id="1208">
+        <label>geometry_msgs/Pose.h</label>
+      </node>
+      <node id="1243">
+        <label>ros/ros.h</label>
+      </node>
+      <node id="1225">
+        <label>iostream</label>
+      </node>
+      <node id="1226">
+        <label>mysql_connection.h</label>
+      </node>
+      <node id="1240">
+        <label>pcl/kdtree/kdtree_flann.h</label>
+      </node>
+      <node id="1231">
+        <label>kukadu/utils/destroyableobject.hpp</label>
+        <link refid="destroyableobject_8hpp_source"/>
+      </node>
+      <node id="1219">
+        <label>mutex</label>
+      </node>
+      <node id="1232">
+        <label>kukadu/vision/arlocalizer.hpp</label>
+        <link refid="arlocalizer_8hpp_source"/>
+        <childnode refid="1233" relation="include">
+        </childnode>
+        <childnode refid="1215" relation="include">
+        </childnode>
+        <childnode refid="1224" relation="include">
+        </childnode>
+        <childnode refid="1242" relation="include">
+        </childnode>
+        <childnode refid="1243" relation="include">
+        </childnode>
+        <childnode refid="1244" relation="include">
+        </childnode>
+        <childnode refid="1245" relation="include">
+        </childnode>
+        <childnode refid="1246" relation="include">
+        </childnode>
+        <childnode refid="1247" relation="include">
+        </childnode>
+        <childnode refid="1248" relation="include">
+        </childnode>
+        <childnode refid="1249" relation="include">
+        </childnode>
+        <childnode refid="1250" relation="include">
+        </childnode>
+        <childnode refid="1251" relation="include">
+        </childnode>
+        <childnode refid="1252" relation="include">
+        </childnode>
+        <childnode refid="1253" relation="include">
+        </childnode>
+        <childnode refid="1254" relation="include">
+        </childnode>
+      </node>
+      <node id="1254">
+        <label>kukadu/vision/arlocalizer/ARToolKitPlus.h</label>
+      </node>
+      <node id="1218">
+        <label>thread</label>
+      </node>
+      <node id="1239">
+        <label>pcl_ros/transforms.h</label>
+      </node>
+      <node id="1233">
+        <label>kukadu/vision/localizer.hpp</label>
+        <link refid="localizer_8hpp_source"/>
+        <childnode refid="1217" relation="include">
+        </childnode>
+        <childnode refid="1211" relation="include">
+        </childnode>
+        <childnode refid="1222" relation="include">
+        </childnode>
+        <childnode refid="1206" relation="include">
+        </childnode>
+        <childnode refid="1207" relation="include">
+        </childnode>
+        <childnode refid="1208" relation="include">
+        </childnode>
+        <childnode refid="1234" relation="include">
+        </childnode>
+        <childnode refid="1215" relation="include">
+        </childnode>
+      </node>
+      <node id="1234">
+        <label>kukadu/vision/kinect.hpp</label>
+        <link refid="kinect_8hpp_source"/>
+        <childnode refid="1211" relation="include">
+        </childnode>
+        <childnode refid="1222" relation="include">
+        </childnode>
+        <childnode refid="1235" relation="include">
+        </childnode>
+        <childnode refid="1236" relation="include">
+        </childnode>
+        <childnode refid="1237" relation="include">
+        </childnode>
+        <childnode refid="1215" relation="include">
+        </childnode>
+        <childnode refid="1238" relation="include">
+        </childnode>
+        <childnode refid="1241" relation="include">
+        </childnode>
+      </node>
+      <node id="1241">
+        <label>pcl_conversions/pcl_conversions.h</label>
+      </node>
+      <node id="1214">
+        <label>gsl/gsl_matrix.h</label>
+      </node>
+      <node id="1217">
+        <label>memory</label>
+      </node>
+      <node id="1205">
+        <label>istream</label>
+      </node>
+    </incdepgraph>
+    <invincdepgraph>
+      <node id="1256">
+        <label>/home/agyss/iis_robot_sw/iis_catkin_ws/src/kukadu/include/kukadu/robot.hpp</label>
+        <link refid="robot_8hpp_source"/>
+        <childnode refid="1257" relation="include">
+        </childnode>
+      </node>
+      <node id="1257">
+        <label>/home/agyss/iis_robot_sw/iis_catkin_ws/src/kukadu/include/kukadu/kukadu.hpp</label>
+        <link refid="kukadu_8hpp_source"/>
+      </node>
+      <node id="1255">
+        <label>/home/agyss/iis_robot_sw/iis_catkin_ws/src/kukadu/include/kukadu/robot/calibration.hpp</label>
+        <link refid="calibration.hpp"/>
+        <childnode refid="1256" relation="include">
+        </childnode>
+      </node>
+    </invincdepgraph>
+    <innerclass refid="classkukadu_1_1Calibrator" prot="public">kukadu::Calibrator</innerclass>
+    <innerclass refid="classkukadu_1_1CameraCalibrator" prot="public">kukadu::CameraCalibrator</innerclass>
+    <innernamespace refid="namespacekukadu">kukadu</innernamespace>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <programlisting>
+<codeline lineno="1"><highlight class="preprocessor">#ifndef<sp/>KUKADU_CALIBRATION_H</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="2"><highlight class="normal"></highlight><highlight class="preprocessor">#define<sp/>KUKADU_CALIBRATION_H</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="3"><highlight class="normal"></highlight></codeline>
+<codeline lineno="4"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&lt;istream&gt;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="5"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&lt;utility&gt;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="6"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&lt;armadillo&gt;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="7"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&lt;geometry_msgs/Pose.h&gt;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="8"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&lt;<ref refid="queue_8hpp" kindref="compound">kukadu/robot/queue.hpp</ref>&gt;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="9"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&lt;kukadu/types/kukadutypes.hpp&gt;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="10"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&lt;kukadu/vision/arlocalizer.hpp&gt;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="11"><highlight class="normal"></highlight></codeline>
+<codeline lineno="12"><highlight class="normal"></highlight><highlight class="keyword">namespace<sp/></highlight><highlight class="normal"><ref refid="namespacekukadu" kindref="compound">kukadu</ref><sp/>{</highlight></codeline>
+<codeline lineno="13"><highlight class="normal"></highlight></codeline>
+<codeline lineno="14" refid="classkukadu_1_1Calibrator" refkind="compound"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">class<sp/></highlight><highlight class="normal"><ref refid="classkukadu_1_1Calibrator" kindref="compound">Calibrator</ref><sp/>{</highlight></codeline>
+<codeline lineno="15"><highlight class="normal"></highlight></codeline>
+<codeline lineno="16"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>std::string<sp/>originalFrame;</highlight></codeline>
+<codeline lineno="17"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>std::string<sp/>targetFrame;</highlight></codeline>
+<codeline lineno="18"><highlight class="normal"></highlight></codeline>
+<codeline lineno="19"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">public</highlight><highlight class="normal">:</highlight></codeline>
+<codeline lineno="20"><highlight class="normal"></highlight></codeline>
+<codeline lineno="21"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><ref refid="classkukadu_1_1Calibrator" kindref="compound">Calibrator</ref>(std::string<sp/>originalFrame,<sp/>std::string<sp/>targetFrame);</highlight></codeline>
+<codeline lineno="22"><highlight class="normal"></highlight></codeline>
+<codeline lineno="23"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">virtual</highlight><highlight class="normal"><sp/>tf::Transform<sp/>calibrateTfTransform();</highlight></codeline>
+<codeline lineno="24"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">virtual</highlight><highlight class="normal"><sp/>arma::mat<sp/>calibrateAffineTransMatrix();</highlight></codeline>
+<codeline lineno="25"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">virtual</highlight><highlight class="normal"><sp/>std::pair&lt;arma::mat,<sp/>arma::vec&gt;<sp/>calibrate()<sp/>=<sp/>0;</highlight></codeline>
+<codeline lineno="26"><highlight class="normal"></highlight></codeline>
+<codeline lineno="27"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>std::string<sp/>getOriginalFrame();</highlight></codeline>
+<codeline lineno="28"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>std::string<sp/>getTargetFrame();</highlight></codeline>
+<codeline lineno="29"><highlight class="normal"></highlight></codeline>
+<codeline lineno="30"><highlight class="normal"><sp/><sp/><sp/><sp/>};</highlight></codeline>
+<codeline lineno="31"><highlight class="normal"></highlight></codeline>
+<codeline lineno="32" refid="classkukadu_1_1CameraCalibrator" refkind="compound"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">class<sp/></highlight><highlight class="normal"><ref refid="classkukadu_1_1CameraCalibrator" kindref="compound">CameraCalibrator</ref><sp/>:<sp/></highlight><highlight class="keyword">public</highlight><highlight class="normal"><sp/><ref refid="classkukadu_1_1Calibrator" kindref="compound">Calibrator</ref><sp/>{</highlight></codeline>
+<codeline lineno="33"><highlight class="normal"></highlight></codeline>
+<codeline lineno="34"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">private</highlight><highlight class="normal">:</highlight></codeline>
+<codeline lineno="35"><highlight class="normal"></highlight></codeline>
+<codeline lineno="36"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">bool</highlight><highlight class="normal"><sp/>runDataCollectionThread;</highlight></codeline>
+<codeline lineno="37"><highlight class="normal"></highlight></codeline>
+<codeline lineno="38"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">bool</highlight><highlight class="normal"><sp/>storeDataToFile;</highlight></codeline>
+<codeline lineno="39"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>std::string<sp/>storePath;</highlight></codeline>
+<codeline lineno="40"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>std::string<sp/>attachedObjectId;</highlight></codeline>
+<codeline lineno="41"><highlight class="normal"></highlight></codeline>
+<codeline lineno="42"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">bool</highlight><highlight class="normal"><sp/>readFromFile;</highlight></codeline>
+<codeline lineno="43"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>std::ifstream<sp/>inStream;</highlight></codeline>
+<codeline lineno="44"><highlight class="normal"></highlight></codeline>
+<codeline lineno="45"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">double</highlight><highlight class="normal"><sp/>minCartDistance;</highlight></codeline>
+<codeline lineno="46"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">double</highlight><highlight class="normal"><sp/>minQuatDistance;</highlight></codeline>
+<codeline lineno="47"><highlight class="normal"></highlight></codeline>
+<codeline lineno="48"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>std::ofstream<sp/>outFile;</highlight></codeline>
+<codeline lineno="49"><highlight class="normal"></highlight></codeline>
+<codeline lineno="50"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>kukadu_thread<sp/>collectionThread;</highlight></codeline>
+<codeline lineno="51"><highlight class="normal"></highlight></codeline>
+<codeline lineno="52"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>geometry_msgs::Pose<sp/>lastObjectPoseInCamFrame;</highlight></codeline>
+<codeline lineno="53"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>geometry_msgs::Pose<sp/>lastObjectPoseInRobotFrame;</highlight></codeline>
+<codeline lineno="54"><highlight class="normal"></highlight></codeline>
+<codeline lineno="55"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/>dataPointCount;</highlight></codeline>
+<codeline lineno="56"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>arma::vec<sp/>centroidRobot;</highlight></codeline>
+<codeline lineno="57"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>arma::vec<sp/>centroidCamera;</highlight></codeline>
+<codeline lineno="58"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>std::vector&lt;arma::vec&gt;<sp/>samplesRobot;</highlight></codeline>
+<codeline lineno="59"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>std::vector&lt;arma::vec&gt;<sp/>samplesCamera;</highlight></codeline>
+<codeline lineno="60"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>kukadu_mutex<sp/>dataMutex;</highlight></codeline>
+<codeline lineno="61"><highlight class="normal"></highlight></codeline>
+<codeline lineno="62"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>KUKADU_SHARED_PTR&lt;ControlQueue&gt;<sp/>queue;</highlight></codeline>
+<codeline lineno="63"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>KUKADU_SHARED_PTR&lt;Localizer&gt;<sp/>localizer;</highlight></codeline>
+<codeline lineno="64"><highlight class="normal"></highlight></codeline>
+<codeline lineno="65"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>geometry_msgs::Pose<sp/>getPoseFromLine(</highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/>std::string&amp;<sp/>line);</highlight></codeline>
+<codeline lineno="66"><highlight class="normal"></highlight></codeline>
+<codeline lineno="67"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>geometry_msgs::Pose<sp/>getCurrentPoseRobot();</highlight></codeline>
+<codeline lineno="68"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>std::pair&lt;bool,<sp/>geometry_msgs::Pose&gt;<sp/>getCurrentPoseCamera();</highlight></codeline>
+<codeline lineno="69"><highlight class="normal"></highlight></codeline>
+<codeline lineno="70"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/>initializeForNewRun();</highlight></codeline>
+<codeline lineno="71"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/>dataCollectionRunner();</highlight></codeline>
+<codeline lineno="72"><highlight class="normal"></highlight></codeline>
+<codeline lineno="73"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">bool</highlight><highlight class="normal"><sp/>isSignificantlyDifferenct(</highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/>geometry_msgs::Pose&amp;<sp/>p1,<sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/>geometry_msgs::Pose&amp;<sp/>p2);</highlight></codeline>
+<codeline lineno="74"><highlight class="normal"></highlight></codeline>
+<codeline lineno="75"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">public</highlight><highlight class="normal">:</highlight></codeline>
+<codeline lineno="76"><highlight class="normal"></highlight></codeline>
+<codeline lineno="77"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><ref refid="classkukadu_1_1CameraCalibrator" kindref="compound">CameraCalibrator</ref>(KUKADU_SHARED_PTR&lt;ControlQueue&gt;<sp/>queue,<sp/>KUKADU_SHARED_PTR&lt;Localizer&gt;<sp/>localizer,<sp/>std::string<sp/>attachedObjectId,<sp/></highlight><highlight class="keywordtype">bool</highlight><highlight class="normal"><sp/>storeDataToFile<sp/>=<sp/></highlight><highlight class="keyword">false</highlight><highlight class="normal">,<sp/>std::string<sp/>storePath<sp/>=<sp/></highlight><highlight class="stringliteral">&quot;&quot;</highlight><highlight class="normal">,</highlight></codeline>
+<codeline lineno="78"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">double</highlight><highlight class="normal"><sp/>minCartDistance<sp/>=<sp/>0.03,<sp/></highlight><highlight class="keywordtype">double</highlight><highlight class="normal"><sp/>minQuatDistance<sp/>=<sp/>0.03);</highlight></codeline>
+<codeline lineno="79"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>~<ref refid="classkukadu_1_1CameraCalibrator" kindref="compound">CameraCalibrator</ref>();</highlight></codeline>
+<codeline lineno="80"><highlight class="normal"></highlight></codeline>
+<codeline lineno="81"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">virtual</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/>startDataCollection();</highlight></codeline>
+<codeline lineno="82"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">virtual</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/>endDataCollection();</highlight></codeline>
+<codeline lineno="83"><highlight class="normal"></highlight></codeline>
+<codeline lineno="84"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">virtual</highlight><highlight class="normal"><sp/>std::pair&lt;arma::mat,<sp/>arma::vec&gt;<sp/>calibrate();</highlight></codeline>
+<codeline lineno="85"><highlight class="normal"></highlight></codeline>
+<codeline lineno="86"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/>setReadDataFromRobot();</highlight></codeline>
+<codeline lineno="87"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/>setReadDataFromFile(std::string<sp/>file);</highlight></codeline>
+<codeline lineno="88"><highlight class="normal"></highlight></codeline>
+<codeline lineno="89"><highlight class="normal"><sp/><sp/><sp/><sp/>};</highlight></codeline>
+<codeline lineno="90"><highlight class="normal"></highlight></codeline>
+<codeline lineno="91"><highlight class="normal">}</highlight></codeline>
+<codeline lineno="92"><highlight class="normal"></highlight></codeline>
+<codeline lineno="93"><highlight class="normal"></highlight><highlight class="preprocessor">#endif</highlight></codeline>
+    </programlisting>
+    <location file="/home/agyss/iis_robot_sw/iis_catkin_ws/src/kukadu/include/kukadu/robot/calibration.hpp"/>
+  </compounddef>
+</doxygen>

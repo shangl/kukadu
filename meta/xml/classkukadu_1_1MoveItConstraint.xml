@@ -1,0 +1,147 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.8.11">
+  <compounddef id="classkukadu_1_1MoveItConstraint" kind="class" language="C++" prot="public">
+    <compoundname>kukadu::MoveItConstraint</compoundname>
+    <basecompoundref refid="classkukadu_1_1Constraint" prot="public" virt="non-virtual">kukadu::Constraint</basecompoundref>
+      <sectiondef kind="private-attrib">
+      <memberdef kind="variable" id="classkukadu_1_1MoveItConstraint_1a9eb3a2ea42d6161980b66d3be135f183" prot="private" static="no" mutable="no">
+        <type>robot_model::RobotModelPtr</type>
+        <definition>robot_model::RobotModelPtr kukadu::MoveItConstraint::robotModel</definition>
+        <argsstring></argsstring>
+        <name>robotModel</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/agyss/iis_robot_sw/iis_catkin_ws/src/kukadu/include/kukadu/planning/moveit.hpp" line="32" column="1" bodyfile="/home/agyss/iis_robot_sw/iis_catkin_ws/src/kukadu/include/kukadu/planning/moveit.hpp" bodystart="32" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classkukadu_1_1MoveItConstraint_1a501206b2b5a757dbc73f4b66f7f33183" prot="private" static="no" mutable="no">
+        <type>planning_scene::PlanningScenePtr</type>
+        <definition>planning_scene::PlanningScenePtr kukadu::MoveItConstraint::planningScene</definition>
+        <argsstring></argsstring>
+        <name>planningScene</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/agyss/iis_robot_sw/iis_catkin_ws/src/kukadu/include/kukadu/planning/moveit.hpp" line="33" column="1" bodyfile="/home/agyss/iis_robot_sw/iis_catkin_ws/src/kukadu/include/kukadu/planning/moveit.hpp" bodystart="33" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classkukadu_1_1MoveItConstraint_1a1635cbb2cb0bfd3d6e1c4175c2efc189" prot="private" static="no" mutable="no">
+        <type>moveit::core::JointModelGroup *</type>
+        <definition>moveit::core::JointModelGroup* kukadu::MoveItConstraint::modelGroup</definition>
+        <argsstring></argsstring>
+        <name>modelGroup</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/agyss/iis_robot_sw/iis_catkin_ws/src/kukadu/include/kukadu/planning/moveit.hpp" line="34" column="1" bodyfile="/home/agyss/iis_robot_sw/iis_catkin_ws/src/kukadu/include/kukadu/planning/moveit.hpp" bodystart="34" bodyend="-1"/>
+      </memberdef>
+      </sectiondef>
+      <sectiondef kind="public-func">
+      <memberdef kind="function" id="classkukadu_1_1MoveItConstraint_1a8c238ba81d91e292334a1f7fc58366d2" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type></type>
+        <definition>kukadu::MoveItConstraint::MoveItConstraint</definition>
+        <argsstring>(robot_model::RobotModelPtr, planning_scene::PlanningScenePtr planningScene, moveit::core::JointModelGroup *modelGroup)</argsstring>
+        <name>MoveItConstraint</name>
+        <param>
+          <type>robot_model::RobotModelPtr</type>
+        </param>
+        <param>
+          <type>planning_scene::PlanningScenePtr</type>
+          <declname>planningScene</declname>
+        </param>
+        <param>
+          <type>moveit::core::JointModelGroup *</type>
+          <declname>modelGroup</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/agyss/iis_robot_sw/iis_catkin_ws/src/kukadu/include/kukadu/planning/moveit.hpp" line="38" column="1" bodyfile="/home/agyss/iis_robot_sw/iis_catkin_ws/src/kukadu/src/planning/moveit.cpp" bodystart="387" bodyend="393"/>
+      </memberdef>
+      <memberdef kind="function" id="classkukadu_1_1MoveItConstraint_1a9454a3a164f71145b89d8df88dcbab2f" prot="public" static="no" const="no" explicit="no" inline="no" virt="virtual">
+        <type>std::string</type>
+        <definition>std::string kukadu::MoveItConstraint::getConstraintName</definition>
+        <argsstring>()</argsstring>
+        <name>getConstraintName</name>
+        <reimplements refid="classkukadu_1_1Constraint_1aa3991ff85b8e0496b6193da496370eec">getConstraintName</reimplements>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/agyss/iis_robot_sw/iis_catkin_ws/src/kukadu/include/kukadu/planning/moveit.hpp" line="40" column="1" bodyfile="/home/agyss/iis_robot_sw/iis_catkin_ws/src/kukadu/src/planning/moveit.cpp" bodystart="434" bodyend="436"/>
+      </memberdef>
+      <memberdef kind="function" id="classkukadu_1_1MoveItConstraint_1a32ad1c00688ae65a244708cac486bb03" prot="public" static="no" const="no" explicit="no" inline="no" virt="virtual">
+        <type>bool</type>
+        <definition>bool kukadu::MoveItConstraint::stateOk</definition>
+        <argsstring>(arma::vec joint, geometry_msgs::Pose cartPose)</argsstring>
+        <name>stateOk</name>
+        <reimplements refid="classkukadu_1_1Constraint_1a64f1dfe00ed3a4794ef383f9232d7f1c">stateOk</reimplements>
+        <param>
+          <type>arma::vec</type>
+          <declname>joint</declname>
+        </param>
+        <param>
+          <type>geometry_msgs::Pose</type>
+          <declname>cartPose</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/agyss/iis_robot_sw/iis_catkin_ws/src/kukadu/include/kukadu/planning/moveit.hpp" line="41" column="1" bodyfile="/home/agyss/iis_robot_sw/iis_catkin_ws/src/kukadu/src/planning/moveit.cpp" bodystart="395" bodyend="432"/>
+      </memberdef>
+      </sectiondef>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <inheritancegraph>
+      <node id="461">
+        <label>kukadu::Constraint</label>
+        <link refid="classkukadu_1_1Constraint"/>
+      </node>
+      <node id="460">
+        <label>kukadu::MoveItConstraint</label>
+        <link refid="classkukadu_1_1MoveItConstraint"/>
+        <childnode refid="461" relation="public-inheritance">
+        </childnode>
+      </node>
+    </inheritancegraph>
+    <collaborationgraph>
+      <node id="463">
+        <label>kukadu::Constraint</label>
+        <link refid="classkukadu_1_1Constraint"/>
+      </node>
+      <node id="462">
+        <label>kukadu::MoveItConstraint</label>
+        <link refid="classkukadu_1_1MoveItConstraint"/>
+        <childnode refid="463" relation="public-inheritance">
+        </childnode>
+      </node>
+    </collaborationgraph>
+    <location file="/home/agyss/iis_robot_sw/iis_catkin_ws/src/kukadu/include/kukadu/planning/moveit.hpp" line="28" column="1" bodyfile="/home/agyss/iis_robot_sw/iis_catkin_ws/src/kukadu/include/kukadu/planning/moveit.hpp" bodystart="28" bodyend="43"/>
+    <listofallmembers>
+      <member refid="classkukadu_1_1MoveItConstraint_1a9454a3a164f71145b89d8df88dcbab2f" prot="public" virt="virtual"><scope>kukadu::MoveItConstraint</scope><name>getConstraintName</name></member>
+      <member refid="classkukadu_1_1MoveItConstraint_1a1635cbb2cb0bfd3d6e1c4175c2efc189" prot="private" virt="non-virtual"><scope>kukadu::MoveItConstraint</scope><name>modelGroup</name></member>
+      <member refid="classkukadu_1_1MoveItConstraint_1a8c238ba81d91e292334a1f7fc58366d2" prot="public" virt="non-virtual"><scope>kukadu::MoveItConstraint</scope><name>MoveItConstraint</name></member>
+      <member refid="classkukadu_1_1MoveItConstraint_1a501206b2b5a757dbc73f4b66f7f33183" prot="private" virt="non-virtual"><scope>kukadu::MoveItConstraint</scope><name>planningScene</name></member>
+      <member refid="classkukadu_1_1MoveItConstraint_1a9eb3a2ea42d6161980b66d3be135f183" prot="private" virt="non-virtual"><scope>kukadu::MoveItConstraint</scope><name>robotModel</name></member>
+      <member refid="classkukadu_1_1MoveItConstraint_1a32ad1c00688ae65a244708cac486bb03" prot="public" virt="virtual"><scope>kukadu::MoveItConstraint</scope><name>stateOk</name></member>
+    </listofallmembers>
+  </compounddef>
+</doxygen>

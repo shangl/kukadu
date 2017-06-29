@@ -1,0 +1,96 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.8.11">
+  <compounddef id="CameraFactory_8cpp" kind="file" language="C++">
+    <compoundname>CameraFactory.cpp</compoundname>
+    <includes local="no">kukadu/vision/arlocalizer/CameraFactory.h</includes>
+    <includes local="no">kukadu/vision/arlocalizer/CameraImpl.h</includes>
+    <includes local="no">kukadu/vision/arlocalizer/CameraAdvImpl.h</includes>
+    <incdepgraph>
+      <node id="5076">
+        <label>/home/agyss/iis_robot_sw/iis_catkin_ws/src/kukadu/src/vision/arlocalizer/CameraFactory.cpp</label>
+        <link refid="CameraFactory.cpp"/>
+        <childnode refid="5077" relation="include">
+        </childnode>
+        <childnode refid="5078" relation="include">
+        </childnode>
+        <childnode refid="5079" relation="include">
+        </childnode>
+      </node>
+      <node id="5079">
+        <label>kukadu/vision/arlocalizer/CameraAdvImpl.h</label>
+      </node>
+      <node id="5078">
+        <label>kukadu/vision/arlocalizer/CameraImpl.h</label>
+      </node>
+      <node id="5077">
+        <label>kukadu/vision/arlocalizer/CameraFactory.h</label>
+      </node>
+    </incdepgraph>
+    <innernamespace refid="namespacekukadu">kukadu</innernamespace>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <programlisting>
+<codeline lineno="1"><highlight class="comment">/*<sp/>========================================================================</highlight></codeline>
+<codeline lineno="2"><highlight class="comment"><sp/>*<sp/>PROJECT:<sp/>ARToolKitPlus</highlight></codeline>
+<codeline lineno="3"><highlight class="comment"><sp/>*<sp/>========================================================================</highlight></codeline>
+<codeline lineno="4"><highlight class="comment"><sp/>*<sp/>This<sp/>work<sp/>is<sp/>based<sp/>on<sp/>the<sp/>original<sp/>ARToolKit<sp/>developed<sp/>by</highlight></codeline>
+<codeline lineno="5"><highlight class="comment"><sp/>*<sp/><sp/><sp/>Hirokazu<sp/>Kato</highlight></codeline>
+<codeline lineno="6"><highlight class="comment"><sp/>*<sp/><sp/><sp/>Mark<sp/>Billinghurst</highlight></codeline>
+<codeline lineno="7"><highlight class="comment"><sp/>*<sp/><sp/><sp/>HITLab,<sp/>University<sp/>of<sp/>Washington,<sp/>Seattle</highlight></codeline>
+<codeline lineno="8"><highlight class="comment"><sp/>*<sp/>http://www.hitl.washington.edu/artoolkit/</highlight></codeline>
+<codeline lineno="9"><highlight class="comment"><sp/>*</highlight></codeline>
+<codeline lineno="10"><highlight class="comment"><sp/>*<sp/>Copyright<sp/>of<sp/>the<sp/>derived<sp/>and<sp/>new<sp/>portions<sp/>of<sp/>this<sp/>work</highlight></codeline>
+<codeline lineno="11"><highlight class="comment"><sp/>*<sp/><sp/><sp/><sp/><sp/>(C)<sp/>2006<sp/>Graz<sp/>University<sp/>of<sp/>Technology</highlight></codeline>
+<codeline lineno="12"><highlight class="comment"><sp/>*</highlight></codeline>
+<codeline lineno="13"><highlight class="comment"><sp/>*<sp/>This<sp/>framework<sp/>is<sp/>free<sp/>software;<sp/>you<sp/>can<sp/>redistribute<sp/>it<sp/>and/or<sp/>modify</highlight></codeline>
+<codeline lineno="14"><highlight class="comment"><sp/>*<sp/>it<sp/>under<sp/>the<sp/>terms<sp/>of<sp/>the<sp/>GNU<sp/>General<sp/>Public<sp/>License<sp/>as<sp/>published<sp/>by</highlight></codeline>
+<codeline lineno="15"><highlight class="comment"><sp/>*<sp/>the<sp/>Free<sp/>Software<sp/>Foundation;<sp/>either<sp/>version<sp/>2<sp/>of<sp/>the<sp/>License,<sp/>or</highlight></codeline>
+<codeline lineno="16"><highlight class="comment"><sp/>*<sp/>(at<sp/>your<sp/>option)<sp/>any<sp/>later<sp/>version.</highlight></codeline>
+<codeline lineno="17"><highlight class="comment"><sp/>*</highlight></codeline>
+<codeline lineno="18"><highlight class="comment"><sp/>*<sp/>This<sp/>framework<sp/>is<sp/>distributed<sp/>in<sp/>the<sp/>hope<sp/>that<sp/>it<sp/>will<sp/>be<sp/>useful,</highlight></codeline>
+<codeline lineno="19"><highlight class="comment"><sp/>*<sp/>but<sp/>WITHOUT<sp/>ANY<sp/>WARRANTY;<sp/>without<sp/>even<sp/>the<sp/>implied<sp/>warranty<sp/>of</highlight></codeline>
+<codeline lineno="20"><highlight class="comment"><sp/>*<sp/>MERCHANTABILITY<sp/>or<sp/>FITNESS<sp/>FOR<sp/>A<sp/>PARTICULAR<sp/>PURPOSE.<sp/><sp/>See<sp/>the</highlight></codeline>
+<codeline lineno="21"><highlight class="comment"><sp/>*<sp/>GNU<sp/>General<sp/>Public<sp/>License<sp/>for<sp/>more<sp/>details.</highlight></codeline>
+<codeline lineno="22"><highlight class="comment"><sp/>*</highlight></codeline>
+<codeline lineno="23"><highlight class="comment"><sp/>*<sp/>You<sp/>should<sp/>have<sp/>received<sp/>a<sp/>copy<sp/>of<sp/>the<sp/>GNU<sp/>General<sp/>Public<sp/>License</highlight></codeline>
+<codeline lineno="24"><highlight class="comment"><sp/>*<sp/>along<sp/>with<sp/>this<sp/>framework;<sp/>if<sp/>not,<sp/>write<sp/>to<sp/>the<sp/>Free<sp/>Software</highlight></codeline>
+<codeline lineno="25"><highlight class="comment"><sp/>*<sp/>Foundation,<sp/>Inc.,<sp/>59<sp/>Temple<sp/>Place,<sp/>Suite<sp/>330,<sp/>Boston,<sp/>MA<sp/><sp/>02111-1307<sp/><sp/>USA</highlight></codeline>
+<codeline lineno="26"><highlight class="comment"><sp/>*</highlight></codeline>
+<codeline lineno="27"><highlight class="comment"><sp/>*<sp/>For<sp/>further<sp/>information<sp/>please<sp/>contact<sp/></highlight></codeline>
+<codeline lineno="28"><highlight class="comment"><sp/>*<sp/><sp/><sp/>Dieter<sp/>Schmalstieg</highlight></codeline>
+<codeline lineno="29"><highlight class="comment"><sp/>*<sp/><sp/><sp/>&lt;schmalstieg@icg.tu-graz.ac.at&gt;</highlight></codeline>
+<codeline lineno="30"><highlight class="comment"><sp/>*<sp/><sp/><sp/>Graz<sp/>University<sp/>of<sp/>Technology,<sp/></highlight></codeline>
+<codeline lineno="31"><highlight class="comment"><sp/>*<sp/><sp/><sp/>Institut<sp/>for<sp/>Computer<sp/>Graphics<sp/>and<sp/>Vision,</highlight></codeline>
+<codeline lineno="32"><highlight class="comment"><sp/>*<sp/><sp/><sp/>Inffeldgasse<sp/>16a,<sp/>8010<sp/>Graz,<sp/>Austria.</highlight></codeline>
+<codeline lineno="33"><highlight class="comment"><sp/>*<sp/>========================================================================</highlight></codeline>
+<codeline lineno="34"><highlight class="comment"><sp/>**<sp/>@author<sp/><sp/><sp/>Thomas<sp/>Pintaric</highlight></codeline>
+<codeline lineno="35"><highlight class="comment"><sp/>*</highlight></codeline>
+<codeline lineno="36"><highlight class="comment"><sp/>*<sp/>$Id:<sp/>CameraFactory.cxx<sp/>162<sp/>2006-04-19<sp/>21:28:10Z<sp/>grabner<sp/>$</highlight></codeline>
+<codeline lineno="37"><highlight class="comment"><sp/>*<sp/>@file</highlight></codeline>
+<codeline lineno="38"><highlight class="comment"><sp/>*<sp/>========================================================================<sp/>*/</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="39"><highlight class="normal"></highlight></codeline>
+<codeline lineno="40"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&lt;kukadu/vision/arlocalizer/CameraFactory.h&gt;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="41"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&lt;kukadu/vision/arlocalizer/CameraImpl.h&gt;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="42"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&lt;kukadu/vision/arlocalizer/CameraAdvImpl.h&gt;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="43"><highlight class="normal"></highlight></codeline>
+<codeline lineno="44"><highlight class="normal"></highlight><highlight class="keyword">namespace<sp/></highlight><highlight class="normal"><ref refid="namespacekukadu" kindref="compound">kukadu</ref><sp/>{</highlight></codeline>
+<codeline lineno="45"><highlight class="normal"></highlight></codeline>
+<codeline lineno="46"><highlight class="normal">Camera*<sp/>CameraFactory::createCamera(</highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">char</highlight><highlight class="normal">*<sp/>filename)<sp/>{</highlight></codeline>
+<codeline lineno="47"><highlight class="normal"><sp/><sp/><sp/><sp/>CameraAdvImpl<sp/>*c_ptr<sp/>=<sp/></highlight><highlight class="keyword">new</highlight><highlight class="normal"><sp/>CameraAdvImpl();</highlight></codeline>
+<codeline lineno="48"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">if</highlight><highlight class="normal">(c_ptr-&gt;loadFromFile(filename))<sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal">((Camera*)c_ptr);</highlight></codeline>
+<codeline lineno="49"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">else</highlight><highlight class="normal"><sp/></highlight><highlight class="keyword">delete</highlight><highlight class="normal"><sp/>c_ptr;</highlight></codeline>
+<codeline lineno="50"><highlight class="normal"></highlight></codeline>
+<codeline lineno="51"><highlight class="normal"><sp/><sp/><sp/><sp/>CameraImpl<sp/>*c2_ptr<sp/>=<sp/></highlight><highlight class="keyword">new</highlight><highlight class="normal"><sp/>CameraImpl();</highlight></codeline>
+<codeline lineno="52"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">if</highlight><highlight class="normal">(c2_ptr-&gt;loadFromFile(filename))<sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal">((Camera*)c2_ptr);</highlight></codeline>
+<codeline lineno="53"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">else</highlight><highlight class="normal"><sp/></highlight><highlight class="keyword">delete</highlight><highlight class="normal"><sp/>c2_ptr;</highlight></codeline>
+<codeline lineno="54"><highlight class="normal"></highlight></codeline>
+<codeline lineno="55"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal">(NULL);</highlight></codeline>
+<codeline lineno="56"><highlight class="normal">}</highlight></codeline>
+<codeline lineno="57"><highlight class="normal"></highlight></codeline>
+<codeline lineno="58"><highlight class="normal">}</highlight></codeline>
+    </programlisting>
+    <location file="/home/agyss/iis_robot_sw/iis_catkin_ws/src/kukadu/src/vision/arlocalizer/CameraFactory.cpp"/>
+  </compounddef>
+</doxygen>

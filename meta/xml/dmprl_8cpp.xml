@@ -1,0 +1,803 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.8.11">
+  <compounddef id="dmprl_8cpp" kind="file" language="C++">
+    <compoundname>dmprl.cpp</compoundname>
+    <includes refid="queue_8hpp" local="no">kukadu/robot/queue.hpp</includes>
+    <includes refid="gnuplot_8hpp" local="no">kukadu/utils/gnuplot.hpp</includes>
+    <includes refid="sensordata_8hpp" local="no">kukadu/types/sensordata.hpp</includes>
+    <includes refid="dmprl_8hpp" local="no">kukadu/learning/rl/dmprl.hpp</includes>
+    <includes refid="sensorstorage_8hpp" local="no">kukadu/storage/sensorstorage.hpp</includes>
+    <includes refid="moduleusagesingleton_8hpp" local="no">kukadu/storage/moduleusagesingleton.hpp</includes>
+    <incdepgraph>
+      <node id="3512">
+        <label>sys/stat.h</label>
+      </node>
+      <node id="3497">
+        <label>list</label>
+      </node>
+      <node id="3515">
+        <label>gsl/gsl_vector.h</label>
+      </node>
+      <node id="3511">
+        <label>wordexp.h</label>
+      </node>
+      <node id="3510">
+        <label>stdbool.h</label>
+      </node>
+      <node id="3506">
+        <label>stdarg.h</label>
+      </node>
+      <node id="3488">
+        <label>cppconn/resultset.h</label>
+      </node>
+      <node id="3523">
+        <label>sensor_msgs/PointCloud2.h</label>
+      </node>
+      <node id="3530">
+        <label>kukadu/control/trajectory.hpp</label>
+        <link refid="trajectory_8hpp_source"/>
+        <childnode refid="3469" relation="include">
+        </childnode>
+        <childnode refid="3466" relation="include">
+        </childnode>
+        <childnode refid="3474" relation="include">
+        </childnode>
+        <childnode refid="3525" relation="include">
+        </childnode>
+      </node>
+      <node id="3467">
+        <label>queue</label>
+      </node>
+      <node id="3521">
+        <label>pcl/PCLPointCloud2.h</label>
+      </node>
+      <node id="3501">
+        <label>limits</label>
+      </node>
+      <node id="3466">
+        <label>kukadu/robot/queue.hpp</label>
+        <link refid="queue_8hpp"/>
+        <childnode refid="3467" relation="include">
+        </childnode>
+        <childnode refid="3468" relation="include">
+        </childnode>
+        <childnode refid="3469" relation="include">
+        </childnode>
+        <childnode refid="3470" relation="include">
+        </childnode>
+        <childnode refid="3471" relation="include">
+        </childnode>
+        <childnode refid="3480" relation="include">
+        </childnode>
+        <childnode refid="3474" relation="include">
+        </childnode>
+        <childnode refid="3490" relation="include">
+        </childnode>
+        <childnode refid="3482" relation="include">
+        </childnode>
+      </node>
+      <node id="3518">
+        <label>pcl/point_types.h</label>
+      </node>
+      <node id="3538">
+        <label>kukadu/storage/moduleusagesingleton.hpp</label>
+        <link refid="moduleusagesingleton_8hpp_source"/>
+        <childnode refid="3483" relation="include">
+        </childnode>
+        <childnode refid="3481" relation="include">
+        </childnode>
+        <childnode refid="3499" relation="include">
+        </childnode>
+        <childnode refid="3500" relation="include">
+        </childnode>
+        <childnode refid="3474" relation="include">
+        </childnode>
+        <childnode refid="3482" relation="include">
+        </childnode>
+      </node>
+      <node id="3482">
+        <label>kukadu/storage/storagesingleton.hpp</label>
+        <link refid="storagesingleton_8hpp_source"/>
+        <childnode refid="3483" relation="include">
+        </childnode>
+        <childnode refid="3467" relation="include">
+        </childnode>
+        <childnode refid="3481" relation="include">
+        </childnode>
+        <childnode refid="3468" relation="include">
+        </childnode>
+        <childnode refid="3484" relation="include">
+        </childnode>
+        <childnode refid="3474" relation="include">
+        </childnode>
+        <childnode refid="3485" relation="include">
+        </childnode>
+        <childnode refid="3486" relation="include">
+        </childnode>
+        <childnode refid="3487" relation="include">
+        </childnode>
+        <childnode refid="3488" relation="include">
+        </childnode>
+        <childnode refid="3489" relation="include">
+        </childnode>
+      </node>
+      <node id="3517">
+        <label>pcl/point_cloud.h</label>
+      </node>
+      <node id="3474">
+        <label>kukadu/types/kukadutypes.hpp</label>
+        <link refid="kukadutypes_8hpp_source"/>
+        <childnode refid="3475" relation="include">
+        </childnode>
+        <childnode refid="3476" relation="include">
+        </childnode>
+        <childnode refid="3477" relation="include">
+        </childnode>
+        <childnode refid="3478" relation="include">
+        </childnode>
+        <childnode refid="3479" relation="include">
+        </childnode>
+      </node>
+      <node id="3494">
+        <label>stdexcept</label>
+      </node>
+      <node id="3509">
+        <label>termios.h</label>
+      </node>
+      <node id="3520">
+        <label>eigen3/Eigen/Dense</label>
+      </node>
+      <node id="3480">
+        <label>kukadu/robot/hardware.hpp</label>
+        <link refid="hardware_8hpp_source"/>
+        <childnode refid="3481" relation="include">
+        </childnode>
+        <childnode refid="3469" relation="include">
+        </childnode>
+        <childnode refid="3482" relation="include">
+        </childnode>
+      </node>
+      <node id="3514">
+        <label>gsl/gsl_poly.h</label>
+      </node>
+      <node id="3481">
+        <label>string</label>
+      </node>
+      <node id="3483">
+        <label>map</label>
+      </node>
+      <node id="3491">
+        <label>kukadu/utils/gnuplot.hpp</label>
+        <link refid="gnuplot_8hpp_source"/>
+        <childnode refid="3484" relation="include">
+        </childnode>
+        <childnode refid="3481" relation="include">
+        </childnode>
+        <childnode refid="3468" relation="include">
+        </childnode>
+        <childnode refid="3492" relation="include">
+        </childnode>
+        <childnode refid="3493" relation="include">
+        </childnode>
+        <childnode refid="3494" relation="include">
+        </childnode>
+        <childnode refid="3495" relation="include">
+        </childnode>
+        <childnode refid="3496" relation="include">
+        </childnode>
+        <childnode refid="3497" relation="include">
+        </childnode>
+      </node>
+      <node id="3532">
+        <label>tf/tf.h</label>
+      </node>
+      <node id="3469">
+        <label>armadillo</label>
+      </node>
+      <node id="3475">
+        <label>exception</label>
+      </node>
+      <node id="3492">
+        <label>fstream</label>
+      </node>
+      <node id="3527">
+        <label>kukadu/utils/kukadutokenizer.hpp</label>
+        <link refid="kukadutokenizer_8hpp_source"/>
+        <childnode refid="3481" relation="include">
+        </childnode>
+        <childnode refid="3468" relation="include">
+        </childnode>
+      </node>
+      <node id="3489">
+        <label>cppconn/statement.h</label>
+      </node>
+      <node id="3528">
+        <label>kukadu/learning/rl/dmprl.hpp</label>
+        <link refid="dmprl_8hpp_source"/>
+        <childnode refid="3469" relation="include">
+        </childnode>
+        <childnode refid="3529" relation="include">
+        </childnode>
+        <childnode refid="3474" relation="include">
+        </childnode>
+        <childnode refid="3534" relation="include">
+        </childnode>
+      </node>
+      <node id="3479">
+        <label>random</label>
+      </node>
+      <node id="3513">
+        <label>sys/types.h</label>
+      </node>
+      <node id="3529">
+        <label>kukadu/control/dmp.hpp</label>
+        <link refid="dmp_8hpp_source"/>
+        <childnode refid="3468" relation="include">
+        </childnode>
+        <childnode refid="3469" relation="include">
+        </childnode>
+        <childnode refid="3529" relation="include">
+        </childnode>
+        <childnode refid="3472" relation="include">
+        </childnode>
+        <childnode refid="3466" relation="include">
+        </childnode>
+        <childnode refid="3530" relation="include">
+        </childnode>
+        <childnode refid="3531" relation="include">
+        </childnode>
+        <childnode refid="3532" relation="include">
+        </childnode>
+        <childnode refid="3533" relation="include">
+        </childnode>
+      </node>
+      <node id="3472">
+        <label>kukadu/utils/types.hpp</label>
+        <link refid="utils_2types_8hpp_source"/>
+        <childnode refid="3468" relation="include">
+        </childnode>
+        <childnode refid="3469" relation="include">
+        </childnode>
+        <childnode refid="3473" relation="include">
+        </childnode>
+      </node>
+      <node id="3522">
+        <label>tf/transform_datatypes.h</label>
+      </node>
+      <node id="3495">
+        <label>cstdio</label>
+      </node>
+      <node id="3500">
+        <label>kukadu/utils/utils.hpp</label>
+        <link refid="utils_2utils_8hpp_source"/>
+        <childnode refid="3483" relation="include">
+        </childnode>
+        <childnode refid="3467" relation="include">
+        </childnode>
+        <childnode refid="3501" relation="include">
+        </childnode>
+        <childnode refid="3468" relation="include">
+        </childnode>
+        <childnode refid="3502" relation="include">
+        </childnode>
+        <childnode refid="3481" relation="include">
+        </childnode>
+        <childnode refid="3503" relation="include">
+        </childnode>
+        <childnode refid="3493" relation="include">
+        </childnode>
+        <childnode refid="3504" relation="include">
+        </childnode>
+        <childnode refid="3492" relation="include">
+        </childnode>
+        <childnode refid="3499" relation="include">
+        </childnode>
+        <childnode refid="3505" relation="include">
+        </childnode>
+        <childnode refid="3506" relation="include">
+        </childnode>
+        <childnode refid="3484" relation="include">
+        </childnode>
+        <childnode refid="3507" relation="include">
+        </childnode>
+        <childnode refid="3508" relation="include">
+        </childnode>
+        <childnode refid="3509" relation="include">
+        </childnode>
+        <childnode refid="3510" relation="include">
+        </childnode>
+        <childnode refid="3469" relation="include">
+        </childnode>
+        <childnode refid="3511" relation="include">
+        </childnode>
+        <childnode refid="3512" relation="include">
+        </childnode>
+        <childnode refid="3513" relation="include">
+        </childnode>
+        <childnode refid="3514" relation="include">
+        </childnode>
+        <childnode refid="3515" relation="include">
+        </childnode>
+        <childnode refid="3473" relation="include">
+        </childnode>
+        <childnode refid="3516" relation="include">
+        </childnode>
+        <childnode refid="3517" relation="include">
+        </childnode>
+        <childnode refid="3518" relation="include">
+        </childnode>
+        <childnode refid="3519" relation="include">
+        </childnode>
+        <childnode refid="3520" relation="include">
+        </childnode>
+        <childnode refid="3521" relation="include">
+        </childnode>
+        <childnode refid="3522" relation="include">
+        </childnode>
+        <childnode refid="3523" relation="include">
+        </childnode>
+        <childnode refid="3524" relation="include">
+        </childnode>
+        <childnode refid="3472" relation="include">
+        </childnode>
+        <childnode refid="3491" relation="include">
+        </childnode>
+        <childnode refid="3480" relation="include">
+        </childnode>
+        <childnode refid="3525" relation="include">
+        </childnode>
+        <childnode refid="3527" relation="include">
+        </childnode>
+      </node>
+      <node id="3525">
+        <label>kukadu/control/controller.hpp</label>
+        <link refid="controller_8hpp_source"/>
+        <childnode refid="3481" relation="include">
+        </childnode>
+        <childnode refid="3480" relation="include">
+        </childnode>
+        <childnode refid="3474" relation="include">
+        </childnode>
+        <childnode refid="3526" relation="include">
+        </childnode>
+        <childnode refid="3482" relation="include">
+        </childnode>
+        <childnode refid="3466" relation="include">
+        </childnode>
+      </node>
+      <node id="3534">
+        <label>kukadu/learning/rl/policyrl.hpp</label>
+        <link refid="policyrl_8hpp_source"/>
+        <childnode refid="3468" relation="include">
+        </childnode>
+        <childnode refid="3469" relation="include">
+        </childnode>
+        <childnode refid="3466" relation="include">
+        </childnode>
+        <childnode refid="3474" relation="include">
+        </childnode>
+        <childnode refid="3530" relation="include">
+        </childnode>
+      </node>
+      <node id="3531">
+        <label>kukadu/learning/regression/fitting.hpp</label>
+        <link refid="fitting_8hpp_source"/>
+        <childnode refid="3469" relation="include">
+        </childnode>
+        <childnode refid="3530" relation="include">
+        </childnode>
+      </node>
+      <node id="3505">
+        <label>unistd.h</label>
+      </node>
+      <node id="3468">
+        <label>vector</label>
+      </node>
+      <node id="3471">
+        <label>kukadu/robot/filters.hpp</label>
+        <link refid="filters_8hpp_source"/>
+        <childnode refid="3472" relation="include">
+        </childnode>
+        <childnode refid="3474" relation="include">
+        </childnode>
+      </node>
+      <node id="3507">
+        <label>signal.h</label>
+      </node>
+      <node id="3535">
+        <label>kukadu/storage/sensorstorage.hpp</label>
+        <link refid="sensorstorage_8hpp_source"/>
+        <childnode refid="3481" relation="include">
+        </childnode>
+        <childnode refid="3468" relation="include">
+        </childnode>
+        <childnode refid="3496" relation="include">
+        </childnode>
+        <childnode refid="3484" relation="include">
+        </childnode>
+        <childnode refid="3469" relation="include">
+        </childnode>
+        <childnode refid="3536" relation="include">
+        </childnode>
+        <childnode refid="3470" relation="include">
+        </childnode>
+        <childnode refid="3537" relation="include">
+        </childnode>
+        <childnode refid="3466" relation="include">
+        </childnode>
+        <childnode refid="3472" relation="include">
+        </childnode>
+        <childnode refid="3500" relation="include">
+        </childnode>
+        <childnode refid="3498" relation="include">
+        </childnode>
+        <childnode refid="3474" relation="include">
+        </childnode>
+        <childnode refid="3482" relation="include">
+        </childnode>
+      </node>
+      <node id="3499">
+        <label>utility</label>
+      </node>
+      <node id="3493">
+        <label>sstream</label>
+      </node>
+      <node id="3486">
+        <label>cppconn/driver.h</label>
+      </node>
+      <node id="3487">
+        <label>cppconn/exception.h</label>
+      </node>
+      <node id="3470">
+        <label>geometry_msgs/Pose.h</label>
+      </node>
+      <node id="3536">
+        <label>ros/ros.h</label>
+      </node>
+      <node id="3502">
+        <label>math.h</label>
+      </node>
+      <node id="3496">
+        <label>cstdlib</label>
+      </node>
+      <node id="3465">
+        <label>/home/agyss/iis_robot_sw/iis_catkin_ws/src/kukadu/src/learning/rl/dmprl.cpp</label>
+        <link refid="dmprl.cpp"/>
+        <childnode refid="3466" relation="include">
+        </childnode>
+        <childnode refid="3491" relation="include">
+        </childnode>
+        <childnode refid="3498" relation="include">
+        </childnode>
+        <childnode refid="3528" relation="include">
+        </childnode>
+        <childnode refid="3535" relation="include">
+        </childnode>
+        <childnode refid="3538" relation="include">
+        </childnode>
+      </node>
+      <node id="3484">
+        <label>iostream</label>
+      </node>
+      <node id="3485">
+        <label>mysql_connection.h</label>
+      </node>
+      <node id="3490">
+        <label>kukadu/utils/destroyableobject.hpp</label>
+        <link refid="destroyableobject_8hpp_source"/>
+      </node>
+      <node id="3478">
+        <label>mutex</label>
+      </node>
+      <node id="3519">
+        <label>gsl/gsl_multifit.h</label>
+      </node>
+      <node id="3524">
+        <label>geometry_msgs/Quaternion.h</label>
+      </node>
+      <node id="3477">
+        <label>thread</label>
+      </node>
+      <node id="3533">
+        <label>gsl/gsl_odeiv2.h</label>
+      </node>
+      <node id="3516">
+        <label>gsl/gsl_linalg.h</label>
+      </node>
+      <node id="3537">
+        <label>kukadu/robot/hand.hpp</label>
+        <link refid="hand_8hpp_source"/>
+        <childnode refid="3501" relation="include">
+        </childnode>
+        <childnode refid="3468" relation="include">
+        </childnode>
+        <childnode refid="3536" relation="include">
+        </childnode>
+        <childnode refid="3469" relation="include">
+        </childnode>
+        <childnode refid="3472" relation="include">
+        </childnode>
+        <childnode refid="3480" relation="include">
+        </childnode>
+        <childnode refid="3490" relation="include">
+        </childnode>
+        <childnode refid="3482" relation="include">
+        </childnode>
+      </node>
+      <node id="3504">
+        <label>stdio.h</label>
+      </node>
+      <node id="3503">
+        <label>cstring</label>
+      </node>
+      <node id="3473">
+        <label>gsl/gsl_matrix.h</label>
+      </node>
+      <node id="3476">
+        <label>memory</label>
+      </node>
+      <node id="3526">
+        <label>kukadu/types/controllerresult.hpp</label>
+        <link refid="controllerresult_8hpp_source"/>
+        <childnode refid="3468" relation="include">
+        </childnode>
+        <childnode refid="3469" relation="include">
+        </childnode>
+      </node>
+      <node id="3498">
+        <label>kukadu/types/sensordata.hpp</label>
+        <link refid="sensordata_8hpp_source"/>
+        <childnode refid="3468" relation="include">
+        </childnode>
+        <childnode refid="3481" relation="include">
+        </childnode>
+        <childnode refid="3499" relation="include">
+        </childnode>
+        <childnode refid="3469" relation="include">
+        </childnode>
+        <childnode refid="3470" relation="include">
+        </childnode>
+        <childnode refid="3500" relation="include">
+        </childnode>
+      </node>
+      <node id="3508">
+        <label>dirent.h</label>
+      </node>
+    </incdepgraph>
+    <innernamespace refid="namespacekukadu">kukadu</innernamespace>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <programlisting>
+<codeline lineno="1"><highlight class="preprocessor">#include<sp/>&lt;<ref refid="queue_8hpp" kindref="compound">kukadu/robot/queue.hpp</ref>&gt;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="2"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&lt;kukadu/utils/gnuplot.hpp&gt;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="3"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&lt;kukadu/types/sensordata.hpp&gt;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="4"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&lt;kukadu/learning/rl/dmprl.hpp&gt;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="5"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&lt;kukadu/storage/sensorstorage.hpp&gt;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="6"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&lt;kukadu/storage/moduleusagesingleton.hpp&gt;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="7"><highlight class="normal"></highlight></codeline>
+<codeline lineno="8"><highlight class="normal"></highlight><highlight class="keyword">using<sp/>namespace<sp/></highlight><highlight class="normal"><ref refid="namespacestd" kindref="compound">std</ref>;</highlight></codeline>
+<codeline lineno="9"><highlight class="normal"></highlight><highlight class="keyword">using<sp/>namespace<sp/></highlight><highlight class="normal"><ref refid="namespacearma" kindref="compound">arma</ref>;</highlight></codeline>
+<codeline lineno="10"><highlight class="normal"></highlight></codeline>
+<codeline lineno="11"><highlight class="normal"></highlight><highlight class="keyword">namespace<sp/></highlight><highlight class="normal"><ref refid="namespacekukadu" kindref="compound">kukadu</ref><sp/>{</highlight></codeline>
+<codeline lineno="12"><highlight class="normal"></highlight></codeline>
+<codeline lineno="13"><highlight class="normal"><sp/><sp/><sp/><sp/>DMPReinforcer::DMPReinforcer(StorageSingleton&amp;<sp/>dbStorage,<sp/>CostComputer*<sp/>cost,<sp/>KUKADU_SHARED_PTR&lt;ControlQueue&gt;<sp/>movementQueue,<sp/></highlight><highlight class="keywordtype">double</highlight><highlight class="normal"><sp/>ac,<sp/></highlight><highlight class="keywordtype">double</highlight><highlight class="normal"><sp/>tolAbsErr,<sp/></highlight><highlight class="keywordtype">double</highlight><highlight class="normal"><sp/>tolRelErr)<sp/>:<sp/>storage(dbStorage)<sp/>{</highlight></codeline>
+<codeline lineno="14"><highlight class="normal"></highlight></codeline>
+<codeline lineno="15"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>this-&gt;cost<sp/>=<sp/>cost;</highlight></codeline>
+<codeline lineno="16"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>this-&gt;movementQueue<sp/>=<sp/>movementQueue;</highlight></codeline>
+<codeline lineno="17"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>this-&gt;ac<sp/>=<sp/>ac;</highlight></codeline>
+<codeline lineno="18"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>this-&gt;tolAbsErr<sp/>=<sp/>tolAbsErr;</highlight></codeline>
+<codeline lineno="19"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>this-&gt;tolRelErr<sp/>=<sp/>tolRelErr;</highlight></codeline>
+<codeline lineno="20"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>this-&gt;isFirstIteration<sp/>=<sp/></highlight><highlight class="keyword">true</highlight><highlight class="normal">;</highlight></codeline>
+<codeline lineno="21"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>this-&gt;lastCost.push_back(-1.0);</highlight></codeline>
+<codeline lineno="22"><highlight class="normal"></highlight></codeline>
+<codeline lineno="23"><highlight class="normal"><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline lineno="24"><highlight class="normal"></highlight></codeline>
+<codeline lineno="25"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">bool</highlight><highlight class="normal"><sp/><ref refid="classkukadu_1_1DMPReinforcer_1ab9ba3dc996de2223db6fb8d0dd79c429" kindref="member">DMPReinforcer::getIsFirstIteration</ref>()<sp/>{</highlight></codeline>
+<codeline lineno="26"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal"><sp/>isFirstIteration;</highlight></codeline>
+<codeline lineno="27"><highlight class="normal"><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline lineno="28"><highlight class="normal"></highlight></codeline>
+<codeline lineno="29"><highlight class="normal"><sp/><sp/><sp/><sp/>std::vector&lt;double&gt;<sp/><ref refid="classkukadu_1_1DMPReinforcer_1ae1e7b4f023979e5076897102a54066c3" kindref="member">DMPReinforcer::getLastRolloutCost</ref>()<sp/>{</highlight></codeline>
+<codeline lineno="30"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal"><sp/>lastCost;</highlight></codeline>
+<codeline lineno="31"><highlight class="normal"><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline lineno="32"><highlight class="normal"></highlight></codeline>
+<codeline lineno="33"><highlight class="normal"><sp/><sp/><sp/><sp/>std::vector&lt;KUKADU_SHARED_PTR&lt;Dmp&gt;<sp/>&gt;<sp/>DMPReinforcer::getLastRolloutParameters()<sp/>{</highlight></codeline>
+<codeline lineno="34"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal"><sp/>rollout;</highlight></codeline>
+<codeline lineno="35"><highlight class="normal"><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline lineno="36"><highlight class="normal"></highlight></codeline>
+<codeline lineno="37"><highlight class="normal"><sp/><sp/><sp/><sp/>std::vector&lt;KUKADU_SHARED_PTR&lt;ControllerResult&gt;<sp/>&gt;<sp/>DMPReinforcer::getLastExecutionResults()<sp/>{</highlight></codeline>
+<codeline lineno="38"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal"><sp/>dmpResult;</highlight></codeline>
+<codeline lineno="39"><highlight class="normal"><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline lineno="40"><highlight class="normal"></highlight></codeline>
+<codeline lineno="41"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">double</highlight><highlight class="normal"><sp/><ref refid="classkukadu_1_1DMPReinforcer_1a9b75bfd5aefec6e93dd6ac6a130da023" kindref="member">DMPReinforcer::getTolAbsErr</ref>()<sp/>{</highlight></codeline>
+<codeline lineno="42"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal"><sp/>tolAbsErr;</highlight></codeline>
+<codeline lineno="43"><highlight class="normal"><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline lineno="44"><highlight class="normal"></highlight></codeline>
+<codeline lineno="45"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">double</highlight><highlight class="normal"><sp/><ref refid="classkukadu_1_1DMPReinforcer_1a377d0dc8df73872a2d4c10e8247b0862" kindref="member">DMPReinforcer::getTolRelErr</ref>()<sp/>{</highlight></codeline>
+<codeline lineno="46"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal"><sp/>tolRelErr;</highlight></codeline>
+<codeline lineno="47"><highlight class="normal"><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline lineno="48"><highlight class="normal"></highlight></codeline>
+<codeline lineno="49"><highlight class="normal"><sp/><sp/><sp/><sp/>KUKADU_SHARED_PTR&lt;ControllerResult&gt;<sp/>DMPReinforcer::getLastUpdateRes()<sp/>{</highlight></codeline>
+<codeline lineno="50"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal"><sp/>lastUpdateRes;</highlight></codeline>
+<codeline lineno="51"><highlight class="normal"><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline lineno="52"><highlight class="normal"></highlight></codeline>
+<codeline lineno="53"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/><ref refid="classkukadu_1_1DMPReinforcer_1ab2597f0265192981ab70cadc9fa35a05" kindref="member">DMPReinforcer::performRollout</ref>(</highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/>doSimulation,<sp/></highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/>doExecution)<sp/>{</highlight></codeline>
+<codeline lineno="54"><highlight class="normal"></highlight></codeline>
+<codeline lineno="55"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>KUKADU_MODULE_START_USAGE();</highlight></codeline>
+<codeline lineno="56"><highlight class="normal"></highlight></codeline>
+<codeline lineno="57"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">char</highlight><highlight class="normal"><sp/>cont<sp/>=<sp/></highlight><highlight class="charliteral">&apos;y&apos;</highlight><highlight class="normal">;</highlight></codeline>
+<codeline lineno="58"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>vector&lt;Gnuplot*&gt;<sp/>gs;</highlight></codeline>
+<codeline lineno="59"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>Gnuplot*<sp/>g1<sp/>=<sp/>NULL;</highlight></codeline>
+<codeline lineno="60"><highlight class="normal"></highlight></codeline>
+<codeline lineno="61"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">if</highlight><highlight class="normal">(isFirstIteration)<sp/>{</highlight></codeline>
+<codeline lineno="62"><highlight class="normal"></highlight></codeline>
+<codeline lineno="63"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>rollout<sp/>=<sp/>getInitialRollout();</highlight></codeline>
+<codeline lineno="64"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>isFirstIteration<sp/>=<sp/></highlight><highlight class="keyword">false</highlight><highlight class="normal">;</highlight></codeline>
+<codeline lineno="65"><highlight class="normal"></highlight></codeline>
+<codeline lineno="66"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>DMPExecutor<sp/>dmpSim(storage,<sp/>rollout.at(0),<sp/>movementQueue);</highlight></codeline>
+<codeline lineno="67"><highlight class="normal"></highlight></codeline>
+<codeline lineno="68"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="comment">//<sp/>TODO:<sp/>switch<sp/>this<sp/>to<sp/>new<sp/>class<sp/>scheme<sp/>(not<sp/>explicetely<sp/>use<sp/>DMPExecutor,<sp/>but<sp/>trajectory<sp/>executor)</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="69"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>dmpSim.setExecutionMode(TrajectoryExecutor::SIMULATE_ROBOT);</highlight></codeline>
+<codeline lineno="70"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>lastUpdateRes<sp/>=<sp/>dmpSim.execute();</highlight></codeline>
+<codeline lineno="71"><highlight class="normal"></highlight></codeline>
+<codeline lineno="72"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline lineno="73"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">else</highlight><highlight class="normal"><sp/>{</highlight></codeline>
+<codeline lineno="74"><highlight class="normal"></highlight></codeline>
+<codeline lineno="75"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>rollout<sp/>=<sp/>computeRolloutParamters();</highlight></codeline>
+<codeline lineno="76"><highlight class="normal"></highlight></codeline>
+<codeline lineno="77"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline lineno="78"><highlight class="normal"></highlight></codeline>
+<codeline lineno="79"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>lastCost.clear();</highlight></codeline>
+<codeline lineno="80"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>dmpResult.clear();</highlight></codeline>
+<codeline lineno="81"><highlight class="normal"></highlight></codeline>
+<codeline lineno="82"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">for</highlight><highlight class="normal">(</highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/>k<sp/>=<sp/>0;<sp/>k<sp/>&lt;<sp/>rollout.size();<sp/>++k)<sp/>{</highlight></codeline>
+<codeline lineno="83"><highlight class="normal"></highlight></codeline>
+<codeline lineno="84"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>DMPExecutor<sp/>dmpsim(storage,<sp/>rollout.at(k),<sp/>movementQueue);</highlight></codeline>
+<codeline lineno="85"><highlight class="normal"></highlight></codeline>
+<codeline lineno="86"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">if</highlight><highlight class="normal">(doSimulation)<sp/>{</highlight></codeline>
+<codeline lineno="87"><highlight class="normal"></highlight></codeline>
+<codeline lineno="88"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>dmpsim.setExecutionMode(TrajectoryExecutor::SIMULATE_ROBOT);</highlight></codeline>
+<codeline lineno="89"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>KUKADU_SHARED_PTR&lt;ControllerResult&gt;<sp/>simRes<sp/>=<sp/>dmpsim.execute();</highlight></codeline>
+<codeline lineno="90"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>dmpResult.push_back(simRes);</highlight></codeline>
+<codeline lineno="91"><highlight class="normal"></highlight></codeline>
+<codeline lineno="92"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline lineno="93"><highlight class="normal"></highlight></codeline>
+<codeline lineno="94"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">if</highlight><highlight class="normal">(doExecution)<sp/>{</highlight></codeline>
+<codeline lineno="95"><highlight class="normal"></highlight></codeline>
+<codeline lineno="96"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>cout<sp/>&lt;&lt;<sp/></highlight><highlight class="stringliteral">&quot;(DMPReinforcer)<sp/>do<sp/>you<sp/>want<sp/>to<sp/>execute<sp/>this<sp/>trajectory?<sp/>(y/N)<sp/>&quot;</highlight><highlight class="normal">;</highlight></codeline>
+<codeline lineno="97"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>cin<sp/>&gt;&gt;<sp/>cont;</highlight></codeline>
+<codeline lineno="98"><highlight class="normal"></highlight></codeline>
+<codeline lineno="99"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">if</highlight><highlight class="normal">(doExecution<sp/>&amp;&amp;<sp/>(cont<sp/>==<sp/></highlight><highlight class="charliteral">&apos;y&apos;</highlight><highlight class="normal"><sp/>||<sp/>cont<sp/>==<sp/></highlight><highlight class="charliteral">&apos;Y&apos;</highlight><highlight class="normal">))<sp/>{</highlight></codeline>
+<codeline lineno="100"><highlight class="normal"></highlight></codeline>
+<codeline lineno="101"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>cout<sp/>&lt;&lt;<sp/></highlight><highlight class="stringliteral">&quot;(DMPReinforcer)<sp/>executing<sp/>rollout&quot;</highlight><highlight class="normal"><sp/>&lt;&lt;<sp/>endl;</highlight></codeline>
+<codeline lineno="102"><highlight class="normal"></highlight></codeline>
+<codeline lineno="103"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>arma::vec<sp/>startingJoints<sp/>=<sp/>rollout.at(k)-&gt;getY0();</highlight></codeline>
+<codeline lineno="104"><highlight class="normal"></highlight></codeline>
+<codeline lineno="105"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>movementQueue-&gt;setStartingJoints(startingJoints);</highlight></codeline>
+<codeline lineno="106"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>movementQueue-&gt;setStiffness(2200,<sp/>300,<sp/>1.0,<sp/>15000,<sp/>150,<sp/>2.0);</highlight></codeline>
+<codeline lineno="107"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>KUKADU_SHARED_PTR&lt;kukadu_thread&gt;<sp/>thr<sp/>=<sp/>movementQueue-&gt;startQueue();</highlight></codeline>
+<codeline lineno="108"><highlight class="normal"></highlight></codeline>
+<codeline lineno="109"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>dmpsim.setExecutionMode(TrajectoryExecutor::EXECUTE_ROBOT);</highlight></codeline>
+<codeline lineno="110"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>dmpResult.push_back(dmpsim.execute());</highlight></codeline>
+<codeline lineno="111"><highlight class="normal"></highlight></codeline>
+<codeline lineno="112"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>movementQueue-&gt;stopQueue();</highlight></codeline>
+<codeline lineno="113"><highlight class="normal"></highlight></codeline>
+<codeline lineno="114"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">if</highlight><highlight class="normal">(thr<sp/>&amp;&amp;<sp/>thr-&gt;joinable())</highlight></codeline>
+<codeline lineno="115"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>thr-&gt;join();</highlight></codeline>
+<codeline lineno="116"><highlight class="normal"></highlight></codeline>
+<codeline lineno="117"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline lineno="118"><highlight class="normal"></highlight></codeline>
+<codeline lineno="119"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline lineno="120"><highlight class="normal"></highlight></codeline>
+<codeline lineno="121"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">double</highlight><highlight class="normal"><sp/>delta<sp/>=<sp/>cost-&gt;computeCost(dmpResult.at(k));</highlight></codeline>
+<codeline lineno="122"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>lastCost.push_back(delta);</highlight></codeline>
+<codeline lineno="123"><highlight class="normal"></highlight></codeline>
+<codeline lineno="124"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline lineno="125"><highlight class="normal"></highlight></codeline>
+<codeline lineno="126"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>lastUpdate<sp/>=<sp/>updateStep();</highlight></codeline>
+<codeline lineno="127"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>DMPExecutor<sp/>dmpsim(storage,<sp/>lastUpdate,<sp/>movementQueue);</highlight></codeline>
+<codeline lineno="128"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>dmpsim.setExecutionMode(TrajectoryExecutor::SIMULATE_ROBOT);</highlight></codeline>
+<codeline lineno="129"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>lastUpdateRes<sp/>=<sp/>dmpsim.execute();</highlight></codeline>
+<codeline lineno="130"><highlight class="normal"></highlight></codeline>
+<codeline lineno="131"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">double</highlight><highlight class="normal"><sp/>lastUpdateCost<sp/>=<sp/>cost-&gt;computeCost(lastUpdateRes);</highlight></codeline>
+<codeline lineno="132"><highlight class="normal"></highlight></codeline>
+<codeline lineno="133"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>this-&gt;lastUpdate<sp/>=<sp/>lastUpdate;</highlight></codeline>
+<codeline lineno="134"><highlight class="normal"></highlight></codeline>
+<codeline lineno="135"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>cout<sp/>&lt;&lt;<sp/></highlight><highlight class="stringliteral">&quot;(DMPReinforcer)<sp/>last<sp/>update<sp/>reward/cost:<sp/>&quot;</highlight><highlight class="normal"><sp/>&lt;&lt;<sp/>lastUpdateCost<sp/>&lt;&lt;<sp/>endl<sp/>&lt;&lt;<sp/>endl;</highlight></codeline>
+<codeline lineno="136"><highlight class="normal"></highlight></codeline>
+<codeline lineno="137"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>KUKADU_MODULE_END_USAGE();</highlight></codeline>
+<codeline lineno="138"><highlight class="normal"></highlight></codeline>
+<codeline lineno="139"><highlight class="normal"><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline lineno="140"><highlight class="normal"></highlight></codeline>
+<codeline lineno="141"><highlight class="normal"><sp/><sp/><sp/><sp/>KUKADU_SHARED_PTR&lt;Dmp&gt;<sp/>DMPReinforcer::getLastUpdate()<sp/>{</highlight></codeline>
+<codeline lineno="142"><highlight class="normal"></highlight></codeline>
+<codeline lineno="143"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal"><sp/>lastUpdate;</highlight></codeline>
+<codeline lineno="144"><highlight class="normal"></highlight></codeline>
+<codeline lineno="145"><highlight class="normal"><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline lineno="146"><highlight class="normal"></highlight></codeline>
+<codeline lineno="147"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/>DMPReinforcer::setLastUpdate(KUKADU_SHARED_PTR&lt;Dmp&gt;<sp/>lastUpdate)<sp/>{</highlight></codeline>
+<codeline lineno="148"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>this-&gt;lastUpdate<sp/>=<sp/>lastUpdate;</highlight></codeline>
+<codeline lineno="149"><highlight class="normal"><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline lineno="150"><highlight class="normal"></highlight></codeline>
+<codeline lineno="151"><highlight class="normal"><sp/><sp/><sp/><sp/>DmpRewardComputer::DmpRewardComputer(StorageSingleton&amp;<sp/>storage,<sp/></highlight><highlight class="keywordtype">string</highlight><highlight class="normal"><sp/>robotName,<sp/></highlight><highlight class="keywordtype">string</highlight><highlight class="normal"><sp/>file,<sp/></highlight><highlight class="keywordtype">double</highlight><highlight class="normal"><sp/>az,<sp/></highlight><highlight class="keywordtype">double</highlight><highlight class="normal"><sp/>bz,<sp/></highlight><highlight class="keywordtype">double</highlight><highlight class="normal"><sp/>timeStep,<sp/></highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/>degOfFreedom,<sp/></highlight><highlight class="keywordtype">double</highlight><highlight class="normal"><sp/>tmax,<sp/></highlight><highlight class="keywordtype">double</highlight><highlight class="normal"><sp/>step)<sp/>:<sp/>TrajectoryBasedReward(degOfFreedom,<sp/>tmax,<sp/>step)<sp/>{</highlight></codeline>
+<codeline lineno="152"><highlight class="normal"></highlight></codeline>
+<codeline lineno="153"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>this-&gt;file<sp/>=<sp/>file;</highlight></codeline>
+<codeline lineno="154"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>this-&gt;az<sp/>=<sp/>az;</highlight></codeline>
+<codeline lineno="155"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>this-&gt;bz<sp/>=<sp/>bz;</highlight></codeline>
+<codeline lineno="156"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>this-&gt;timeStep<sp/>=<sp/>timeStep;</highlight></codeline>
+<codeline lineno="157"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>KUKADU_SHARED_PTR&lt;ControlQueue&gt;<sp/>pcq<sp/>=<sp/>make_shared&lt;PlottingControlQueue&gt;(storage,<sp/>robotName,<sp/>degOfFreedom,<sp/></highlight><highlight class="stringliteral">&quot;origin&quot;</highlight><highlight class="normal">,<sp/></highlight><highlight class="stringliteral">&quot;hand_link&quot;</highlight><highlight class="normal">,<sp/>timeStep);</highlight></codeline>
+<codeline lineno="158"><highlight class="normal"></highlight></codeline>
+<codeline lineno="159"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>cout<sp/>&lt;&lt;<sp/></highlight><highlight class="stringliteral">&quot;(DmpRewardComputer)<sp/>starting<sp/>execution<sp/>of<sp/>sample<sp/>trajectory<sp/>with<sp/>timeStep<sp/>size<sp/>&quot;</highlight><highlight class="normal"><sp/>&lt;&lt;<sp/>timeStep<sp/>&lt;&lt;<sp/>endl;</highlight></codeline>
+<codeline lineno="160"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>KUKADU_SHARED_PTR&lt;SensorData&gt;<sp/>data<sp/>=<sp/>SensorStorage::readStorage(pcq,<sp/>file);</highlight></codeline>
+<codeline lineno="161"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">auto</highlight><highlight class="normal"><sp/>timesInMilliseconds<sp/>=<sp/>data-&gt;getTimeInMilliSeconds();</highlight></codeline>
+<codeline lineno="162"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">auto</highlight><highlight class="normal"><sp/>times<sp/>=<sp/>convertAndRemoveOffset(timesInMilliseconds);</highlight></codeline>
+<codeline lineno="163"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>KUKADU_SHARED_PTR&lt;JointDMPLearner&gt;<sp/>dmpLearner<sp/>=<sp/>make_shared&lt;JointDMPLearner&gt;(az,<sp/>bz,<sp/>times,<sp/>data-&gt;getJointPos());</highlight></codeline>
+<codeline lineno="164"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>KUKADU_SHARED_PTR&lt;Dmp&gt;<sp/>finalDmp<sp/>=<sp/>dmpLearner-&gt;fitTrajectories();</highlight></codeline>
+<codeline lineno="165"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>DMPExecutor<sp/>execDmp(storage,<sp/>finalDmp,<sp/>pcq);</highlight></codeline>
+<codeline lineno="166"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>execDmp.setExecutionMode(TrajectoryExecutor::EXECUTE_ROBOT);</highlight></codeline>
+<codeline lineno="167"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>executionResult<sp/>=<sp/>execDmp.execute();</highlight></codeline>
+<codeline lineno="168"><highlight class="normal"></highlight></codeline>
+<codeline lineno="169"><highlight class="normal"><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline lineno="170"><highlight class="normal"></highlight></codeline>
+<codeline lineno="171"><highlight class="normal"><sp/><sp/><sp/><sp/>arma::vec<sp/>DmpRewardComputer::computeFun(</highlight><highlight class="keywordtype">double</highlight><highlight class="normal"><sp/>t)<sp/>{</highlight></codeline>
+<codeline lineno="172"><highlight class="normal"></highlight></codeline>
+<codeline lineno="173"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>vec<sp/>time<sp/>=<sp/>executionResult-&gt;getTimes();</highlight></codeline>
+<codeline lineno="174"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>vec<sp/>retVec(executionResult-&gt;getYs().size());</highlight></codeline>
+<codeline lineno="175"><highlight class="normal"></highlight></codeline>
+<codeline lineno="176"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">if</highlight><highlight class="normal">(t<sp/>&gt;=<sp/>time(time.n_elem<sp/>-<sp/>1))<sp/>{</highlight></codeline>
+<codeline lineno="177"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">for</highlight><highlight class="normal">(</highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/>i<sp/>=<sp/>0;<sp/>i<sp/>&lt;<sp/>retVec.n_elem;<sp/>++i)</highlight></codeline>
+<codeline lineno="178"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>retVec(i)<sp/>=<sp/>executionResult-&gt;getYs().at(i)(time.n_elem<sp/>-<sp/>1);</highlight></codeline>
+<codeline lineno="179"><highlight class="normal"></highlight></codeline>
+<codeline lineno="180"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>}<sp/></highlight><highlight class="keywordflow">else</highlight><highlight class="normal"><sp/>{</highlight></codeline>
+<codeline lineno="181"><highlight class="normal"></highlight></codeline>
+<codeline lineno="182"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/>tIdx<sp/>=<sp/>binaryTimeSearch(time,<sp/>t);</highlight></codeline>
+<codeline lineno="183"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">double</highlight><highlight class="normal"><sp/>firstT<sp/>=<sp/>time(tIdx);</highlight></codeline>
+<codeline lineno="184"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">double</highlight><highlight class="normal"><sp/>secondT<sp/>=<sp/>time(tIdx<sp/>+<sp/>1);</highlight></codeline>
+<codeline lineno="185"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">double</highlight><highlight class="normal"><sp/>firstDist<sp/>=<sp/>timeStep<sp/>-<sp/>t<sp/>+<sp/>firstT;</highlight></codeline>
+<codeline lineno="186"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">double</highlight><highlight class="normal"><sp/>secondDist<sp/>=<sp/>timeStep<sp/>-<sp/>secondT<sp/>+<sp/>t;</highlight></codeline>
+<codeline lineno="187"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>cout<sp/>&lt;&lt;<sp/></highlight><highlight class="stringliteral">&quot;(DmpRewardComputer)<sp/>here<sp/>is<sp/>an<sp/>interpolation<sp/>bug&quot;</highlight><highlight class="normal"><sp/>&lt;&lt;<sp/>endl;</highlight></codeline>
+<codeline lineno="188"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">for</highlight><highlight class="normal">(</highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/>i<sp/>=<sp/>0;<sp/>i<sp/>&lt;<sp/>retVec.n_elem;<sp/>++i)</highlight></codeline>
+<codeline lineno="189"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>retVec(i)<sp/>=<sp/>(firstDist<sp/>*<sp/>executionResult-&gt;getYs().at(i)(tIdx)<sp/>+<sp/>secondDist<sp/>*<sp/>executionResult-&gt;getYs().at(i)(tIdx<sp/>+<sp/>1))<sp/>/<sp/>timeStep;</highlight></codeline>
+<codeline lineno="190"><highlight class="normal"></highlight></codeline>
+<codeline lineno="191"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline lineno="192"><highlight class="normal"></highlight></codeline>
+<codeline lineno="193"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal"><sp/>retVec;</highlight></codeline>
+<codeline lineno="194"><highlight class="normal"></highlight></codeline>
+<codeline lineno="195"><highlight class="normal"><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline lineno="196"><highlight class="normal"></highlight></codeline>
+<codeline lineno="197"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/>DmpRewardComputer::binaryTimeSearch(arma::vec<sp/>times,<sp/></highlight><highlight class="keywordtype">double</highlight><highlight class="normal"><sp/>t)<sp/>{</highlight></codeline>
+<codeline lineno="198"><highlight class="normal"></highlight></codeline>
+<codeline lineno="199"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/>start<sp/>=<sp/>0;</highlight></codeline>
+<codeline lineno="200"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/>end<sp/>=<sp/>times.n_elem<sp/>-<sp/>1;</highlight></codeline>
+<codeline lineno="201"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/>middle<sp/>=<sp/>(start<sp/>+<sp/>end)<sp/>/<sp/>2;</highlight></codeline>
+<codeline lineno="202"><highlight class="normal"></highlight></codeline>
+<codeline lineno="203"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">if</highlight><highlight class="normal">(t<sp/>&gt;=<sp/>times(end))</highlight></codeline>
+<codeline lineno="204"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal"><sp/>end;</highlight></codeline>
+<codeline lineno="205"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">else</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordflow">if</highlight><highlight class="normal">(t<sp/>&lt;=<sp/>times(start))</highlight></codeline>
+<codeline lineno="206"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal"><sp/>start;</highlight></codeline>
+<codeline lineno="207"><highlight class="normal"></highlight></codeline>
+<codeline lineno="208"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">while</highlight><highlight class="normal">(start<sp/>!=<sp/>end<sp/>&amp;&amp;<sp/>(start<sp/>+<sp/>1)<sp/>!=<sp/>end)<sp/>{</highlight></codeline>
+<codeline lineno="209"><highlight class="normal"></highlight></codeline>
+<codeline lineno="210"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">if</highlight><highlight class="normal">(t<sp/>&gt;=<sp/>times(middle)<sp/>&amp;&amp;<sp/>t<sp/>&lt;<sp/>(times(middle)<sp/>+<sp/>timeStep))</highlight></codeline>
+<codeline lineno="211"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal"><sp/>middle;</highlight></codeline>
+<codeline lineno="212"><highlight class="normal"></highlight></codeline>
+<codeline lineno="213"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">if</highlight><highlight class="normal">(times(middle)<sp/>&gt;<sp/>t)</highlight></codeline>
+<codeline lineno="214"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>end<sp/>=<sp/>middle;</highlight></codeline>
+<codeline lineno="215"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">else</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="216"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>start<sp/>=<sp/>middle;</highlight></codeline>
+<codeline lineno="217"><highlight class="normal"></highlight></codeline>
+<codeline lineno="218"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>middle<sp/>=<sp/>(start<sp/>+<sp/>end)<sp/>/<sp/>2;</highlight></codeline>
+<codeline lineno="219"><highlight class="normal"></highlight></codeline>
+<codeline lineno="220"><highlight class="normal"></highlight></codeline>
+<codeline lineno="221"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline lineno="222"><highlight class="normal"></highlight></codeline>
+<codeline lineno="223"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal"><sp/>(start<sp/>+<sp/>1);</highlight></codeline>
+<codeline lineno="224"><highlight class="normal"></highlight></codeline>
+<codeline lineno="225"><highlight class="normal"><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline lineno="226"><highlight class="normal"></highlight></codeline>
+<codeline lineno="227"><highlight class="normal">}</highlight></codeline>
+    </programlisting>
+    <location file="/home/agyss/iis_robot_sw/iis_catkin_ws/src/kukadu/src/learning/rl/dmprl.cpp"/>
+  </compounddef>
+</doxygen>

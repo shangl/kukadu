@@ -1,0 +1,149 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.8.11">
+  <compounddef id="classkukadu_1_1PCTransformator" kind="class" language="C++" prot="public" abstract="yes">
+    <compoundname>kukadu::PCTransformator</compoundname>
+    <derivedcompoundref refid="classkukadu_1_1ColorFilter" prot="public" virt="non-virtual">kukadu::ColorFilter</derivedcompoundref>
+    <derivedcompoundref refid="classkukadu_1_1CustomLambdaFilter" prot="public" virt="non-virtual">kukadu::CustomLambdaFilter</derivedcompoundref>
+    <derivedcompoundref refid="classkukadu_1_1OpenBoxFilter" prot="public" virt="non-virtual">kukadu::OpenBoxFilter</derivedcompoundref>
+    <derivedcompoundref refid="classkukadu_1_1PlanarCutTransformator" prot="public" virt="non-virtual">kukadu::PlanarCutTransformator</derivedcompoundref>
+      <sectiondef kind="public-func">
+      <memberdef kind="function" id="classkukadu_1_1PCTransformator_1a00b1b5ca897b6a7a3590340c19a53435" prot="public" static="no" const="no" explicit="no" inline="no" virt="pure-virtual">
+        <type>pcl::PointCloud&lt; pcl::PointXYZ &gt;::Ptr</type>
+        <definition>virtual pcl::PointCloud&lt;pcl::PointXYZ&gt;::Ptr kukadu::PCTransformator::transformPc</definition>
+        <argsstring>(pcl::PointCloud&lt; pcl::PointXYZ &gt;::Ptr pc)=0</argsstring>
+        <name>transformPc</name>
+        <reimplementedby refid="classkukadu_1_1PlanarCutTransformator_1aa1b53c6e79e383ca2c53c0b0071a4dbc">transformPc</reimplementedby>
+        <reimplementedby refid="classkukadu_1_1OpenBoxFilter_1ab50cb129fdd531fa3033aa5de741a64c">transformPc</reimplementedby>
+        <reimplementedby refid="classkukadu_1_1ColorFilter_1a578b211becef1320def3cac4d54c7cab">transformPc</reimplementedby>
+        <reimplementedby refid="classkukadu_1_1CustomLambdaFilter_1a0bd346bf104bf186ef84fb835ff59c8a">transformPc</reimplementedby>
+        <param>
+          <type>pcl::PointCloud&lt; pcl::PointXYZ &gt;::Ptr</type>
+          <declname>pc</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/agyss/iis_robot_sw/iis_catkin_ws/src/kukadu/include/kukadu/vision/pcstdtrans.hpp" line="17" column="1"/>
+      </memberdef>
+      <memberdef kind="function" id="classkukadu_1_1PCTransformator_1af5b8457c380316080cdcde4e2919e1a7" prot="public" static="no" const="no" explicit="no" inline="no" virt="pure-virtual">
+        <type>pcl::PointCloud&lt; pcl::PointXYZRGB &gt;::Ptr</type>
+        <definition>virtual pcl::PointCloud&lt;pcl::PointXYZRGB&gt;::Ptr kukadu::PCTransformator::transformPc</definition>
+        <argsstring>(pcl::PointCloud&lt; pcl::PointXYZRGB &gt;::Ptr pc)=0</argsstring>
+        <name>transformPc</name>
+        <reimplementedby refid="classkukadu_1_1PlanarCutTransformator_1a11a3005c87b7cbefa413c8031a529854">transformPc</reimplementedby>
+        <reimplementedby refid="classkukadu_1_1OpenBoxFilter_1a90a18e56f06d06f992e4825164b1844c">transformPc</reimplementedby>
+        <reimplementedby refid="classkukadu_1_1ColorFilter_1a97fb6daa64417747bd262f86fbe275d7">transformPc</reimplementedby>
+        <reimplementedby refid="classkukadu_1_1CustomLambdaFilter_1ab90d5638433097cde6468830a081006e">transformPc</reimplementedby>
+        <param>
+          <type>pcl::PointCloud&lt; pcl::PointXYZRGB &gt;::Ptr</type>
+          <declname>pc</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/agyss/iis_robot_sw/iis_catkin_ws/src/kukadu/include/kukadu/vision/pcstdtrans.hpp" line="18" column="1"/>
+      </memberdef>
+      </sectiondef>
+      <sectiondef kind="public-static-func">
+      <memberdef kind="function" id="classkukadu_1_1PCTransformator_1aec33a492661e428643b680b3ea2455f0" prot="public" static="yes" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>pcl::PointCloud&lt; pcl::PointXYZ &gt;::Ptr</type>
+        <definition>pcl::PointCloud&lt; pcl::PointXYZ &gt;::Ptr kukadu::PCTransformator::removeIntensity</definition>
+        <argsstring>(pcl::PointCloud&lt; pcl::PointXYZI &gt;::Ptr toTransform)</argsstring>
+        <name>removeIntensity</name>
+        <param>
+          <type>pcl::PointCloud&lt; pcl::PointXYZI &gt;::Ptr</type>
+          <declname>toTransform</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/agyss/iis_robot_sw/iis_catkin_ws/src/kukadu/include/kukadu/vision/pcstdtrans.hpp" line="20" column="1" bodyfile="/home/agyss/iis_robot_sw/iis_catkin_ws/src/kukadu/src/vision/pcstdtrans.cpp" bodystart="50" bodyend="62"/>
+      </memberdef>
+      <memberdef kind="function" id="classkukadu_1_1PCTransformator_1a0c533cd3559a1d2959ff315f0d2efc17" prot="public" static="yes" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>pcl::PointCloud&lt; pcl::PointXYZ &gt;::Ptr</type>
+        <definition>pcl::PointCloud&lt; pcl::PointXYZ &gt;::Ptr kukadu::PCTransformator::removeRgb</definition>
+        <argsstring>(pcl::PointCloud&lt; pcl::PointXYZRGB &gt;::Ptr toTransform)</argsstring>
+        <name>removeRgb</name>
+        <param>
+          <type>pcl::PointCloud&lt; pcl::PointXYZRGB &gt;::Ptr</type>
+          <declname>toTransform</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/agyss/iis_robot_sw/iis_catkin_ws/src/kukadu/include/kukadu/vision/pcstdtrans.hpp" line="21" column="1" bodyfile="/home/agyss/iis_robot_sw/iis_catkin_ws/src/kukadu/src/vision/pcstdtrans.cpp" bodystart="22" bodyend="34"/>
+      </memberdef>
+      <memberdef kind="function" id="classkukadu_1_1PCTransformator_1a9e37df3d586aa7991c13f70394ca6ab8" prot="public" static="yes" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>pcl::PointCloud&lt; pcl::PointXYZRGB &gt;::Ptr</type>
+        <definition>pcl::PointCloud&lt; pcl::PointXYZRGB &gt;::Ptr kukadu::PCTransformator::fakeRgb</definition>
+        <argsstring>(pcl::PointCloud&lt; pcl::PointXYZ &gt;::Ptr toTransform)</argsstring>
+        <name>fakeRgb</name>
+        <param>
+          <type>pcl::PointCloud&lt; pcl::PointXYZ &gt;::Ptr</type>
+          <declname>toTransform</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/agyss/iis_robot_sw/iis_catkin_ws/src/kukadu/include/kukadu/vision/pcstdtrans.hpp" line="22" column="1" bodyfile="/home/agyss/iis_robot_sw/iis_catkin_ws/src/kukadu/src/vision/pcstdtrans.cpp" bodystart="36" bodyend="48"/>
+      </memberdef>
+      </sectiondef>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <inheritancegraph>
+      <node id="492">
+        <label>kukadu::PlanarCutTransformator</label>
+        <link refid="classkukadu_1_1PlanarCutTransformator"/>
+        <childnode refid="488" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="488">
+        <label>kukadu::PCTransformator</label>
+        <link refid="classkukadu_1_1PCTransformator"/>
+      </node>
+      <node id="490">
+        <label>kukadu::CustomLambdaFilter</label>
+        <link refid="classkukadu_1_1CustomLambdaFilter"/>
+        <childnode refid="488" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="491">
+        <label>kukadu::OpenBoxFilter</label>
+        <link refid="classkukadu_1_1OpenBoxFilter"/>
+        <childnode refid="488" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="489">
+        <label>kukadu::ColorFilter</label>
+        <link refid="classkukadu_1_1ColorFilter"/>
+        <childnode refid="488" relation="public-inheritance">
+        </childnode>
+      </node>
+    </inheritancegraph>
+    <location file="/home/agyss/iis_robot_sw/iis_catkin_ws/src/kukadu/include/kukadu/vision/pcstdtrans.hpp" line="10" column="1" bodyfile="/home/agyss/iis_robot_sw/iis_catkin_ws/src/kukadu/include/kukadu/vision/pcstdtrans.hpp" bodystart="10" bodyend="24"/>
+    <listofallmembers>
+      <member refid="classkukadu_1_1PCTransformator_1a9e37df3d586aa7991c13f70394ca6ab8" prot="public" virt="non-virtual"><scope>kukadu::PCTransformator</scope><name>fakeRgb</name></member>
+      <member refid="classkukadu_1_1PCTransformator_1aec33a492661e428643b680b3ea2455f0" prot="public" virt="non-virtual"><scope>kukadu::PCTransformator</scope><name>removeIntensity</name></member>
+      <member refid="classkukadu_1_1PCTransformator_1a0c533cd3559a1d2959ff315f0d2efc17" prot="public" virt="non-virtual"><scope>kukadu::PCTransformator</scope><name>removeRgb</name></member>
+      <member refid="classkukadu_1_1PCTransformator_1a00b1b5ca897b6a7a3590340c19a53435" prot="public" virt="pure-virtual"><scope>kukadu::PCTransformator</scope><name>transformPc</name></member>
+      <member refid="classkukadu_1_1PCTransformator_1af5b8457c380316080cdcde4e2919e1a7" prot="public" virt="pure-virtual"><scope>kukadu::PCTransformator</scope><name>transformPc</name></member>
+    </listofallmembers>
+  </compounddef>
+</doxygen>

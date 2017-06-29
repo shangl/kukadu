@@ -1,0 +1,105 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.8.11">
+  <compounddef id="classkukadu_1_1TricubeKernel" kind="class" language="C++" prot="public">
+    <compoundname>kukadu::TricubeKernel</compoundname>
+    <basecompoundref refid="classkukadu_1_1GenericKernel" prot="public" virt="non-virtual">kukadu::GenericKernel</basecompoundref>
+    <includes refid="kernel_8hpp" local="no">kernel.hpp</includes>
+      <sectiondef kind="public-func">
+      <memberdef kind="function" id="classkukadu_1_1TricubeKernel_1a9b9c6b0452e019ba8f9028e6dce00f64" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type></type>
+        <definition>kukadu::TricubeKernel::TricubeKernel</definition>
+        <argsstring>()</argsstring>
+        <name>TricubeKernel</name>
+        <briefdescription>
+<para>constructor </para>        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/agyss/iis_robot_sw/iis_catkin_ws/src/kukadu/include/kukadu/learning/regression/kernel.hpp" line="73" column="1" bodyfile="/home/agyss/iis_robot_sw/iis_catkin_ws/src/kukadu/src/learning/regression/kernel.cpp" bodystart="32" bodyend="32"/>
+      </memberdef>
+      <memberdef kind="function" id="classkukadu_1_1TricubeKernel_1a2c4053e0212bdfae0652c8bde2ae70df" prot="public" static="no" const="no" explicit="no" inline="no" virt="virtual">
+        <type>double</type>
+        <definition>double kukadu::TricubeKernel::evaluateKernel</definition>
+        <argsstring>(arma::vec q1, arma::vec q2, void *kernelParam)</argsstring>
+        <name>evaluateKernel</name>
+        <reimplements refid="classkukadu_1_1GenericKernel_1a802a15e8fb5f863e798c9114be976045">evaluateKernel</reimplements>
+        <param>
+          <type>arma::vec</type>
+          <declname>q1</declname>
+        </param>
+        <param>
+          <type>arma::vec</type>
+          <declname>q2</declname>
+        </param>
+        <param>
+          <type>void *</type>
+          <declname>kernelParam</declname>
+        </param>
+        <briefdescription>
+<para>computes kernel values with given vectors q1 and q2 and passes a not further specified kernel parameter that can be used by the kernel implementation </para>        </briefdescription>
+        <detaileddescription>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>q1</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>vector q1 with K = K(d(q1, q2)) </para></parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>q2</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>vector q2 with K = K(d(q1, q2)) </para></parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>kernelParam</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>arbitrary kernel parameter </para></parameterdescription>
+</parameteritem>
+</parameterlist>
+</para>        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/agyss/iis_robot_sw/iis_catkin_ws/src/kukadu/include/kukadu/learning/regression/kernel.hpp" line="75" column="1" bodyfile="/home/agyss/iis_robot_sw/iis_catkin_ws/src/kukadu/src/learning/regression/kernel.cpp" bodystart="34" bodyend="52"/>
+      </memberdef>
+      </sectiondef>
+    <briefdescription>
+<para>Implements a tricube kernel according to the <ref refid="classkukadu_1_1GenericKernel" kindref="compound">GenericKernel</ref> specifiction. </para>    </briefdescription>
+    <detaileddescription>
+<para>This class implements a tricube kernel given by the function K(u) = 70/81 (1 - |u|^3)^3 </para>    </detaileddescription>
+    <inheritancegraph>
+      <node id="702">
+        <label>kukadu::TricubeKernel</label>
+        <link refid="classkukadu_1_1TricubeKernel"/>
+        <childnode refid="703" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="703">
+        <label>kukadu::GenericKernel</label>
+        <link refid="classkukadu_1_1GenericKernel"/>
+      </node>
+    </inheritancegraph>
+    <collaborationgraph>
+      <node id="704">
+        <label>kukadu::TricubeKernel</label>
+        <link refid="classkukadu_1_1TricubeKernel"/>
+        <childnode refid="705" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="705">
+        <label>kukadu::GenericKernel</label>
+        <link refid="classkukadu_1_1GenericKernel"/>
+      </node>
+    </collaborationgraph>
+    <location file="/home/agyss/iis_robot_sw/iis_catkin_ws/src/kukadu/include/kukadu/learning/regression/kernel.hpp" line="64" column="1" bodyfile="/home/agyss/iis_robot_sw/iis_catkin_ws/src/kukadu/include/kukadu/learning/regression/kernel.hpp" bodystart="64" bodyend="77"/>
+    <listofallmembers>
+      <member refid="classkukadu_1_1TricubeKernel_1a2c4053e0212bdfae0652c8bde2ae70df" prot="public" virt="virtual"><scope>kukadu::TricubeKernel</scope><name>evaluateKernel</name></member>
+      <member refid="classkukadu_1_1GenericKernel_1a9392e79e7da5d8473ac9e42f74e8ef3e" prot="public" virt="non-virtual"><scope>kukadu::TricubeKernel</scope><name>GenericKernel</name></member>
+      <member refid="classkukadu_1_1TricubeKernel_1a9b9c6b0452e019ba8f9028e6dce00f64" prot="public" virt="non-virtual"><scope>kukadu::TricubeKernel</scope><name>TricubeKernel</name></member>
+    </listofallmembers>
+  </compounddef>
+</doxygen>

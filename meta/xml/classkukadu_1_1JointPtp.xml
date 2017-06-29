@@ -1,0 +1,233 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.8.11">
+  <compounddef id="classkukadu_1_1JointPtp" kind="class" language="C++" prot="public">
+    <compoundname>kukadu::JointPtp</compoundname>
+    <basecompoundref refid="classkukadu_1_1Controller" prot="public" virt="non-virtual">kukadu::Controller</basecompoundref>
+      <sectiondef kind="private-attrib">
+      <memberdef kind="variable" id="classkukadu_1_1JointPtp_1ac311da65030112c86af595beafc888c1" prot="private" static="no" mutable="no">
+        <type>KUKADU_SHARED_PTR&lt; <ref refid="classkukadu_1_1ControlQueue" kindref="compound">ControlQueue</ref> &gt;</type>
+        <definition>KUKADU_SHARED_PTR&lt;ControlQueue&gt; kukadu::JointPtp::leftQueue</definition>
+        <argsstring></argsstring>
+        <name>leftQueue</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/agyss/iis_robot_sw/iis_catkin_ws/src/kukadu/include/kukadu/control/controller.hpp" line="130" column="1" bodyfile="/home/agyss/iis_robot_sw/iis_catkin_ws/src/kukadu/include/kukadu/control/controller.hpp" bodystart="130" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classkukadu_1_1JointPtp_1ae82f8524043c8e38eafebe0b730174d8" prot="private" static="no" mutable="no">
+        <type>std::vector&lt; int &gt;</type>
+        <definition>std::vector&lt;int&gt; kukadu::JointPtp::joints</definition>
+        <argsstring></argsstring>
+        <name>joints</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/agyss/iis_robot_sw/iis_catkin_ws/src/kukadu/include/kukadu/control/controller.hpp" line="132" column="1" bodyfile="/home/agyss/iis_robot_sw/iis_catkin_ws/src/kukadu/include/kukadu/control/controller.hpp" bodystart="132" bodyend="-1"/>
+      </memberdef>
+      </sectiondef>
+      <sectiondef kind="protected-func">
+      <memberdef kind="function" id="classkukadu_1_1JointPtp_1ae8d2ba4ffc5e8bc29ecc684ab5b47646" prot="protected" static="no" const="no" explicit="no" inline="no" virt="virtual">
+        <type>void</type>
+        <definition>void kukadu::JointPtp::createSkillFromThisInternal</definition>
+        <argsstring>(std::string skillName)</argsstring>
+        <name>createSkillFromThisInternal</name>
+        <reimplements refid="classkukadu_1_1Controller_1a83ec6ad1794980392e897edc2916c9ce">createSkillFromThisInternal</reimplements>
+        <param>
+          <type>std::string</type>
+          <declname>skillName</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/agyss/iis_robot_sw/iis_catkin_ws/src/kukadu/include/kukadu/control/controller.hpp" line="136" column="1" bodyfile="/home/agyss/iis_robot_sw/iis_catkin_ws/src/kukadu/src/control/controller.cpp" bodystart="318" bodyend="320"/>
+      </memberdef>
+      </sectiondef>
+      <sectiondef kind="public-func">
+      <memberdef kind="function" id="classkukadu_1_1JointPtp_1a29c1e5406c2ead3d6a931066f448f318" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type></type>
+        <definition>kukadu::JointPtp::JointPtp</definition>
+        <argsstring>(StorageSingleton &amp;storage, KUKADU_SHARED_PTR&lt; ControlQueue &gt; leftQueue)</argsstring>
+        <name>JointPtp</name>
+        <param>
+          <type><ref refid="classkukadu_1_1StorageSingleton" kindref="compound">StorageSingleton</ref> &amp;</type>
+          <declname>storage</declname>
+        </param>
+        <param>
+          <type>KUKADU_SHARED_PTR&lt; <ref refid="classkukadu_1_1ControlQueue" kindref="compound">ControlQueue</ref> &gt;</type>
+          <declname>leftQueue</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/agyss/iis_robot_sw/iis_catkin_ws/src/kukadu/include/kukadu/control/controller.hpp" line="140" column="1" bodyfile="/home/agyss/iis_robot_sw/iis_catkin_ws/src/kukadu/src/control/controller.cpp" bodystart="288" bodyend="293"/>
+      </memberdef>
+      <memberdef kind="function" id="classkukadu_1_1JointPtp_1af669a689640d7ff69977bd1575decca3" prot="public" static="no" const="no" explicit="no" inline="no" virt="virtual">
+        <type>bool</type>
+        <definition>bool kukadu::JointPtp::requiresGraspInternal</definition>
+        <argsstring>()</argsstring>
+        <name>requiresGraspInternal</name>
+        <reimplements refid="classkukadu_1_1Controller_1ae67659a3a55cef09b2a5575107d88145">requiresGraspInternal</reimplements>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/agyss/iis_robot_sw/iis_catkin_ws/src/kukadu/include/kukadu/control/controller.hpp" line="142" column="1" bodyfile="/home/agyss/iis_robot_sw/iis_catkin_ws/src/kukadu/src/control/controller.cpp" bodystart="295" bodyend="297"/>
+      </memberdef>
+      <memberdef kind="function" id="classkukadu_1_1JointPtp_1aaf6903ed027c9a1667c057ef8458ea88" prot="public" static="no" const="no" explicit="no" inline="no" virt="virtual">
+        <type>bool</type>
+        <definition>bool kukadu::JointPtp::producesGraspInternal</definition>
+        <argsstring>()</argsstring>
+        <name>producesGraspInternal</name>
+        <reimplements refid="classkukadu_1_1Controller_1a5566a7cf711318f1bf4dcd939ba7fe76">producesGraspInternal</reimplements>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/agyss/iis_robot_sw/iis_catkin_ws/src/kukadu/include/kukadu/control/controller.hpp" line="144" column="1" bodyfile="/home/agyss/iis_robot_sw/iis_catkin_ws/src/kukadu/src/control/controller.cpp" bodystart="299" bodyend="301"/>
+      </memberdef>
+      <memberdef kind="function" id="classkukadu_1_1JointPtp_1a9aa30af08ba54cdd90e7904c35557342" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>void kukadu::JointPtp::setJoints</definition>
+        <argsstring>(std::vector&lt; double &gt; joints)</argsstring>
+        <name>setJoints</name>
+        <param>
+          <type>std::vector&lt; double &gt;</type>
+          <declname>joints</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/agyss/iis_robot_sw/iis_catkin_ws/src/kukadu/include/kukadu/control/controller.hpp" line="146" column="1"/>
+      </memberdef>
+      <memberdef kind="function" id="classkukadu_1_1JointPtp_1aa34e8754f54d94e062a920bca1c39c69" prot="public" static="no" const="no" explicit="no" inline="no" virt="virtual">
+        <type>std::shared_ptr&lt; <ref refid="classkukadu_1_1ControllerResult" kindref="compound">ControllerResult</ref> &gt;</type>
+        <definition>std::shared_ptr&lt; ControllerResult &gt; kukadu::JointPtp::executeInternal</definition>
+        <argsstring>()</argsstring>
+        <name>executeInternal</name>
+        <reimplements refid="classkukadu_1_1Controller_1ad32ce108f7ab90d8631e7262239433ac">executeInternal</reimplements>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/agyss/iis_robot_sw/iis_catkin_ws/src/kukadu/include/kukadu/control/controller.hpp" line="148" column="1" bodyfile="/home/agyss/iis_robot_sw/iis_catkin_ws/src/kukadu/src/control/controller.cpp" bodystart="307" bodyend="312"/>
+      </memberdef>
+      <memberdef kind="function" id="classkukadu_1_1JointPtp_1a159e270825c4a016872edab69ef4767a" prot="public" static="no" const="no" explicit="no" inline="no" virt="virtual">
+        <type>std::string</type>
+        <definition>std::string kukadu::JointPtp::getClassName</definition>
+        <argsstring>()</argsstring>
+        <name>getClassName</name>
+        <reimplements refid="classkukadu_1_1Controller_1aaad4258aa03d4f941cdf8e5d9400212b">getClassName</reimplements>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/agyss/iis_robot_sw/iis_catkin_ws/src/kukadu/include/kukadu/control/controller.hpp" line="150" column="1" bodyfile="/home/agyss/iis_robot_sw/iis_catkin_ws/src/kukadu/src/control/controller.cpp" bodystart="314" bodyend="316"/>
+      </memberdef>
+      </sectiondef>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <inheritancegraph>
+      <node id="355">
+        <label>kukadu::TimedObject</label>
+        <link refid="classkukadu_1_1TimedObject"/>
+      </node>
+      <node id="353">
+        <label>kukadu::JointPtp</label>
+        <link refid="classkukadu_1_1JointPtp"/>
+        <childnode refid="354" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="354">
+        <label>kukadu::Controller</label>
+        <link refid="classkukadu_1_1Controller"/>
+        <childnode refid="355" relation="private-inheritance">
+        </childnode>
+      </node>
+    </inheritancegraph>
+    <collaborationgraph>
+      <node id="358">
+        <label>kukadu::TimedObject</label>
+        <link refid="classkukadu_1_1TimedObject"/>
+      </node>
+      <node id="356">
+        <label>kukadu::JointPtp</label>
+        <link refid="classkukadu_1_1JointPtp"/>
+        <childnode refid="357" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="357">
+        <label>kukadu::Controller</label>
+        <link refid="classkukadu_1_1Controller"/>
+        <childnode refid="358" relation="private-inheritance">
+        </childnode>
+        <childnode refid="359" relation="usage">
+          <edgelabel>storage</edgelabel>
+        </childnode>
+      </node>
+      <node id="359">
+        <label>kukadu::StorageSingleton</label>
+        <link refid="classkukadu_1_1StorageSingleton"/>
+      </node>
+    </collaborationgraph>
+    <location file="/home/agyss/iis_robot_sw/iis_catkin_ws/src/kukadu/include/kukadu/control/controller.hpp" line="126" column="1" bodyfile="/home/agyss/iis_robot_sw/iis_catkin_ws/src/kukadu/include/kukadu/control/controller.hpp" bodystart="126" bodyend="152"/>
+    <listofallmembers>
+      <member refid="classkukadu_1_1Controller_1af6f6a6174bbce460a82570b3d1f18f3c" prot="public" virt="non-virtual"><scope>kukadu::JointPtp</scope><name>Controller</name></member>
+      <member refid="classkukadu_1_1Controller_1a7925a80f7f1a69302633606ba6a73c34" prot="public" virt="virtual"><scope>kukadu::JointPtp</scope><name>createSkillFromThis</name></member>
+      <member refid="classkukadu_1_1JointPtp_1ae8d2ba4ffc5e8bc29ecc684ab5b47646" prot="protected" virt="virtual"><scope>kukadu::JointPtp</scope><name>createSkillFromThisInternal</name></member>
+      <member refid="classkukadu_1_1Controller_1a07b38b6146b380471de2c0e0706e9260" prot="public" virt="virtual"><scope>kukadu::JointPtp</scope><name>execute</name></member>
+      <member refid="classkukadu_1_1JointPtp_1aa34e8754f54d94e062a920bca1c39c69" prot="public" virt="virtual"><scope>kukadu::JointPtp</scope><name>executeInternal</name></member>
+      <member refid="classkukadu_1_1Controller_1a253f0cdc788a49d3d7ff325bbdbd2252" prot="protected" virt="virtual"><scope>kukadu::JointPtp</scope><name>getAugmentedInfoTableName</name></member>
+      <member refid="classkukadu_1_1Controller_1aae1903e89a3af93030bd85cb6baac366" prot="public" virt="non-virtual"><scope>kukadu::JointPtp</scope><name>getCaption</name></member>
+      <member refid="classkukadu_1_1JointPtp_1a159e270825c4a016872edab69ef4767a" prot="public" virt="virtual"><scope>kukadu::JointPtp</scope><name>getClassName</name></member>
+      <member refid="classkukadu_1_1Controller_1a72d9fb0bcdfd41faf8b1277802df4a1d" prot="public" virt="non-virtual"><scope>kukadu::JointPtp</scope><name>getControllerId</name></member>
+      <member refid="classkukadu_1_1Controller_1a6a78436c180e48afbf6887fcd07d3173" prot="public" virt="non-virtual"><scope>kukadu::JointPtp</scope><name>getIsSkill</name></member>
+      <member refid="classkukadu_1_1Controller_1aeb403995b4bfc9f279594ff339027cbf" prot="public" virt="virtual"><scope>kukadu::JointPtp</scope><name>getLastSkillExecutionSuccessful</name></member>
+      <member refid="classkukadu_1_1Controller_1a97ffde82f967a920ddc5efb1c5700b2a" prot="public" virt="non-virtual"><scope>kukadu::JointPtp</scope><name>getSimFailingProb</name></member>
+      <member refid="classkukadu_1_1Controller_1a868b762c6bf33afe14c27dd12806972d" prot="public" virt="virtual"><scope>kukadu::JointPtp</scope><name>getSimulationMode</name></member>
+      <member refid="classkukadu_1_1Controller_1a1dbcbec07e0189e26275f1db57f4baf3" prot="public" virt="virtual"><scope>kukadu::JointPtp</scope><name>getUsedHardware</name></member>
+      <member refid="classkukadu_1_1Controller_1a74a2a16a16104b1bf16ad5eae443e968" prot="public" virt="virtual"><scope>kukadu::JointPtp</scope><name>initialize</name></member>
+      <member refid="classkukadu_1_1Controller_1a57e89bfd0fdf2fd1c9991dce2a0a9196" prot="protected" virt="virtual"><scope>kukadu::JointPtp</scope><name>installDb</name></member>
+      <member refid="classkukadu_1_1Controller_1a8ae66f58c5dcd2e548e933b3d1bf395e" prot="protected" virt="non-virtual"><scope>kukadu::JointPtp</scope><name>isControllerInstalled</name></member>
+      <member refid="classkukadu_1_1Controller_1abeb3dd890d6f8d50306b1b8f9d6b5512" prot="protected" virt="non-virtual"><scope>kukadu::JointPtp</scope><name>isShutUp</name></member>
+      <member refid="classkukadu_1_1JointPtp_1a29c1e5406c2ead3d6a931066f448f318" prot="public" virt="non-virtual"><scope>kukadu::JointPtp</scope><name>JointPtp</name></member>
+      <member refid="classkukadu_1_1JointPtp_1ae82f8524043c8e38eafebe0b730174d8" prot="private" virt="non-virtual"><scope>kukadu::JointPtp</scope><name>joints</name></member>
+      <member refid="classkukadu_1_1JointPtp_1ac311da65030112c86af595beafc888c1" prot="private" virt="non-virtual"><scope>kukadu::JointPtp</scope><name>leftQueue</name></member>
+      <member refid="classkukadu_1_1Controller_1a12aafcec427d197314434f04f5ae438c" prot="public" virt="virtual"><scope>kukadu::JointPtp</scope><name>prepare</name></member>
+      <member refid="classkukadu_1_1Controller_1ad28145aa06ce1cfe4bccddff42459019" prot="public" virt="virtual"><scope>kukadu::JointPtp</scope><name>producesGrasp</name></member>
+      <member refid="classkukadu_1_1JointPtp_1aaf6903ed027c9a1667c057ef8458ea88" prot="public" virt="virtual"><scope>kukadu::JointPtp</scope><name>producesGraspInternal</name></member>
+      <member refid="classkukadu_1_1Controller_1a20240ff89fb6a2582024140d388fd335" prot="public" virt="virtual"><scope>kukadu::JointPtp</scope><name>requiresGrasp</name></member>
+      <member refid="classkukadu_1_1JointPtp_1af669a689640d7ff69977bd1575decca3" prot="public" virt="virtual"><scope>kukadu::JointPtp</scope><name>requiresGraspInternal</name></member>
+      <member refid="classkukadu_1_1JointPtp_1a9aa30af08ba54cdd90e7904c35557342" prot="public" virt="non-virtual"><scope>kukadu::JointPtp</scope><name>setJoints</name></member>
+      <member refid="classkukadu_1_1Controller_1a888ebe1be866cb19e4c8f50eaded5bb9" prot="public" virt="virtual"><scope>kukadu::JointPtp</scope><name>setSimulationMode</name></member>
+      <member refid="classkukadu_1_1Controller_1a07c70a71d6028cb711567d55e2010430" prot="protected" virt="virtual"><scope>kukadu::JointPtp</scope><name>setSimulationModeInChain</name></member>
+      <member refid="classkukadu_1_1Controller_1aa27eb73a93a2d59bc0ebe15baf28bea0" prot="public" virt="non-virtual"><scope>kukadu::JointPtp</scope><name>shutUp</name></member>
+      <member refid="classkukadu_1_1Controller_1a1973596dea74a0706e275f044ca190b0" prot="public" virt="non-virtual"><scope>kukadu::JointPtp</scope><name>startTalking</name></member>
+      <member refid="classkukadu_1_1Controller_1a15f9c5940d6584ccea9832de54525f27" prot="protected" virt="non-virtual"><scope>kukadu::JointPtp</scope><name>storage</name></member>
+    </listofallmembers>
+  </compounddef>
+</doxygen>

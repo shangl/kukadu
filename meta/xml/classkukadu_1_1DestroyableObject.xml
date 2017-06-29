@@ -1,0 +1,78 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.8.11">
+  <compounddef id="classkukadu_1_1DestroyableObject" kind="class" language="C++" prot="public" abstract="yes">
+    <compoundname>kukadu::DestroyableObject</compoundname>
+    <derivedcompoundref refid="classkukadu_1_1ControlQueue" prot="public" virt="non-virtual">kukadu::ControlQueue</derivedcompoundref>
+    <derivedcompoundref refid="classkukadu_1_1GenericHand" prot="public" virt="non-virtual">kukadu::GenericHand</derivedcompoundref>
+    <includes refid="destroyableobject_8hpp" local="no">destroyableobject.hpp</includes>
+      <sectiondef kind="public-func">
+      <memberdef kind="function" id="classkukadu_1_1DestroyableObject_1a9e490cfa46af84690eb5ff0682df986c" prot="public" static="no" const="no" explicit="no" inline="no" virt="pure-virtual">
+        <type>void</type>
+        <definition>virtual void kukadu::DestroyableObject::safelyDestroy</definition>
+        <argsstring>()=0</argsstring>
+        <name>safelyDestroy</name>
+        <reimplementedby refid="classkukadu_1_1KukieHand_1ad4f676de2f32cee7c191e4fbf42cb133">safelyDestroy</reimplementedby>
+        <reimplementedby refid="classkukadu_1_1PlottingHand_1ac6bd32e47c044f6b7ee5dede4eb5941f">safelyDestroy</reimplementedby>
+        <reimplementedby refid="classkukadu_1_1KukieControlQueue_1a39da1e622d39d7870c9d0e802d5afa4b">safelyDestroy</reimplementedby>
+        <reimplementedby refid="classkukadu_1_1PlottingControlQueue_1ae15b42e3d6b4b98bc2e470ff3ab3f7ea">safelyDestroy</reimplementedby>
+        <briefdescription>
+<para>Method is called whenever destroy event occurs and ensures safe and clean termination of the programm (e.g. stops robot) </para>        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/agyss/iis_robot_sw/iis_catkin_ws/src/kukadu/include/kukadu/utils/destroyableobject.hpp" line="20" column="1"/>
+      </memberdef>
+      </sectiondef>
+    <briefdescription>
+<para>Interface defining a callback function. </para>    </briefdescription>
+    <detaileddescription>
+<para>The specified callback function should be called whenever unexpected behaviour during robot execution occurs. This is used to handle this execption in a controlled way. </para>    </detaileddescription>
+    <inheritancegraph>
+      <node id="178">
+        <label>kukadu::ControlQueue</label>
+        <link refid="classkukadu_1_1ControlQueue"/>
+        <childnode refid="177" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="179">
+        <label>kukadu::KukieControlQueue</label>
+        <link refid="classkukadu_1_1KukieControlQueue"/>
+        <childnode refid="178" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="182">
+        <label>kukadu::KukieHand</label>
+        <link refid="classkukadu_1_1KukieHand"/>
+        <childnode refid="181" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="183">
+        <label>kukadu::PlottingHand</label>
+        <link refid="classkukadu_1_1PlottingHand"/>
+        <childnode refid="181" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="177">
+        <label>kukadu::DestroyableObject</label>
+        <link refid="classkukadu_1_1DestroyableObject"/>
+      </node>
+      <node id="181">
+        <label>kukadu::GenericHand</label>
+        <link refid="classkukadu_1_1GenericHand"/>
+        <childnode refid="177" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="180">
+        <label>kukadu::PlottingControlQueue</label>
+        <link refid="classkukadu_1_1PlottingControlQueue"/>
+        <childnode refid="178" relation="public-inheritance">
+        </childnode>
+      </node>
+    </inheritancegraph>
+    <location file="/home/agyss/iis_robot_sw/iis_catkin_ws/src/kukadu/include/kukadu/utils/destroyableobject.hpp" line="11" column="1" bodyfile="/home/agyss/iis_robot_sw/iis_catkin_ws/src/kukadu/include/kukadu/utils/destroyableobject.hpp" bodystart="11" bodyend="22"/>
+    <listofallmembers>
+      <member refid="classkukadu_1_1DestroyableObject_1a9e490cfa46af84690eb5ff0682df986c" prot="public" virt="pure-virtual"><scope>kukadu::DestroyableObject</scope><name>safelyDestroy</name></member>
+    </listofallmembers>
+  </compounddef>
+</doxygen>

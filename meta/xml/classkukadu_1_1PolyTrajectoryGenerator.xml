@@ -1,0 +1,239 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.8.11">
+  <compounddef id="classkukadu_1_1PolyTrajectoryGenerator" kind="class" language="C++" prot="public">
+    <compoundname>kukadu::PolyTrajectoryGenerator</compoundname>
+    <basecompoundref refid="classkukadu_1_1TrajectoryGenerator" prot="public" virt="non-virtual">kukadu::TrajectoryGenerator</basecompoundref>
+    <includes refid="trajectory_8hpp" local="no">trajectory.hpp</includes>
+      <sectiondef kind="private-attrib">
+      <memberdef kind="variable" id="classkukadu_1_1PolyTrajectoryGenerator_1a4651ffb9312a47427b46fc0b9e18e2e6" prot="private" static="no" mutable="no">
+        <type>int</type>
+        <definition>int kukadu::PolyTrajectoryGenerator::basisFunctionCount</definition>
+        <argsstring></argsstring>
+        <name>basisFunctionCount</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/agyss/iis_robot_sw/iis_catkin_ws/src/kukadu/include/kukadu/control/trajectory.hpp" line="131" column="1" bodyfile="/home/agyss/iis_robot_sw/iis_catkin_ws/src/kukadu/include/kukadu/control/trajectory.hpp" bodystart="131" bodyend="-1"/>
+      </memberdef>
+      </sectiondef>
+      <sectiondef kind="public-func">
+      <memberdef kind="function" id="classkukadu_1_1PolyTrajectoryGenerator_1aaae3f21fde5c8bef81f3cc9eb365fcfb" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type></type>
+        <definition>kukadu::PolyTrajectoryGenerator::PolyTrajectoryGenerator</definition>
+        <argsstring>(int basisFunctionCount)</argsstring>
+        <name>PolyTrajectoryGenerator</name>
+        <param>
+          <type>int</type>
+          <declname>basisFunctionCount</declname>
+        </param>
+        <briefdescription>
+<para>constructor. the polynomials are defined by giving the degree of the polynomial </para>        </briefdescription>
+        <detaileddescription>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>basisFunctionCount</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>polynomial degree </para></parameterdescription>
+</parameteritem>
+</parameterlist>
+</para>        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/agyss/iis_robot_sw/iis_catkin_ws/src/kukadu/include/kukadu/control/trajectory.hpp" line="139" column="1" bodyfile="/home/agyss/iis_robot_sw/iis_catkin_ws/src/kukadu/src/control/trajectory.cpp" bodystart="141" bodyend="143"/>
+      </memberdef>
+      <memberdef kind="function" id="classkukadu_1_1PolyTrajectoryGenerator_1aaad5efdc0b4a8a4e55db0ffcfd7939f7" prot="public" static="no" const="no" explicit="no" inline="no" virt="virtual">
+        <type>double</type>
+        <definition>double kukadu::PolyTrajectoryGenerator::evaluateBasisFunction</definition>
+        <argsstring>(double x, int fun)</argsstring>
+        <name>evaluateBasisFunction</name>
+        <reimplements refid="classkukadu_1_1TrajectoryGenerator_1abbd50214ceb85171e7103a1fded7fd91">evaluateBasisFunction</reimplements>
+        <param>
+          <type>double</type>
+          <declname>x</declname>
+        </param>
+        <param>
+          <type>int</type>
+          <declname>fun</declname>
+        </param>
+        <briefdescription>
+<para>evaluates the value of a single basis function </para>        </briefdescription>
+        <detaileddescription>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>x</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>value, where the basis function should be evaluated </para></parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>fun</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>basis function index that specifies the basis function </para></parameterdescription>
+</parameteritem>
+</parameterlist>
+</para>        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/agyss/iis_robot_sw/iis_catkin_ws/src/kukadu/include/kukadu/control/trajectory.hpp" line="141" column="1" bodyfile="/home/agyss/iis_robot_sw/iis_catkin_ws/src/kukadu/src/control/trajectory.cpp" bodystart="145" bodyend="147"/>
+      </memberdef>
+      <memberdef kind="function" id="classkukadu_1_1PolyTrajectoryGenerator_1a3ce8a84b6a838a73708414baf2a688ba" prot="public" static="no" const="no" explicit="no" inline="no" virt="virtual">
+        <type>double</type>
+        <definition>double kukadu::PolyTrajectoryGenerator::evaluateByCoefficientsSingle</definition>
+        <argsstring>(double x, arma::vec coeff)</argsstring>
+        <name>evaluateByCoefficientsSingle</name>
+        <reimplements refid="classkukadu_1_1TrajectoryGenerator_1a3cd7129235c868a1cad3d56f3a05ad49">evaluateByCoefficientsSingle</reimplements>
+        <param>
+          <type>double</type>
+          <declname>x</declname>
+        </param>
+        <param>
+          <type>arma::vec</type>
+          <declname>coeff</declname>
+        </param>
+        <briefdescription>
+<para>evaluates the linear combination of basis functions by defining the coefficients for a single value x </para>        </briefdescription>
+        <detaileddescription>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>x</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>value, where the basis functions should be evaluated </para></parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>coeff</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>coefficients that have to be used for computing the linear combination </para></parameterdescription>
+</parameteritem>
+</parameterlist>
+</para>        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/agyss/iis_robot_sw/iis_catkin_ws/src/kukadu/include/kukadu/control/trajectory.hpp" line="142" column="1" bodyfile="/home/agyss/iis_robot_sw/iis_catkin_ws/src/kukadu/src/control/trajectory.cpp" bodystart="149" bodyend="154"/>
+      </memberdef>
+      <memberdef kind="function" id="classkukadu_1_1PolyTrajectoryGenerator_1a00a575cf44a1b0061131227baae4f593" prot="public" static="no" const="no" explicit="no" inline="no" virt="virtual">
+        <type>arma::vec</type>
+        <definition>vec kukadu::PolyTrajectoryGenerator::evaluateByCoefficientsMultiple</definition>
+        <argsstring>(arma::vec x, int sampleCount, arma::vec coeff)</argsstring>
+        <name>evaluateByCoefficientsMultiple</name>
+        <reimplements refid="classkukadu_1_1TrajectoryGenerator_1a80e470d557ac5fc9a075b582d97bf67b">evaluateByCoefficientsMultiple</reimplements>
+        <param>
+          <type>arma::vec</type>
+          <declname>x</declname>
+        </param>
+        <param>
+          <type>int</type>
+          <declname>sampleCount</declname>
+        </param>
+        <param>
+          <type>arma::vec</type>
+          <declname>coeff</declname>
+        </param>
+        <briefdescription>
+<para>performs the same as evaluateByCoefficientsSingle, but for multiple values of x </para>        </briefdescription>
+        <detaileddescription>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>x</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>vector of evaluation points </para></parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>sampleCount</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>size of vector x </para></parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>coeff</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>coefficients that have to be used for computing the linear combination </para></parameterdescription>
+</parameteritem>
+</parameterlist>
+</para>        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/agyss/iis_robot_sw/iis_catkin_ws/src/kukadu/include/kukadu/control/trajectory.hpp" line="143" column="1" bodyfile="/home/agyss/iis_robot_sw/iis_catkin_ws/src/kukadu/src/control/trajectory.cpp" bodystart="156" bodyend="163"/>
+      </memberdef>
+      <memberdef kind="function" id="classkukadu_1_1PolyTrajectoryGenerator_1ae8578365c5ae221c8cf14208b74c8975" prot="public" static="no" const="no" explicit="no" inline="no" virt="virtual">
+        <type>int</type>
+        <definition>int kukadu::PolyTrajectoryGenerator::getBasisFunctionCount</definition>
+        <argsstring>()</argsstring>
+        <name>getBasisFunctionCount</name>
+        <reimplements refid="classkukadu_1_1TrajectoryGenerator_1a8204375540872676478a83e2b24da772">getBasisFunctionCount</reimplements>
+        <briefdescription>
+<para>returns the number of basis functions </para>        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/agyss/iis_robot_sw/iis_catkin_ws/src/kukadu/include/kukadu/control/trajectory.hpp" line="145" column="1" bodyfile="/home/agyss/iis_robot_sw/iis_catkin_ws/src/kukadu/src/control/trajectory.cpp" bodystart="165" bodyend="167"/>
+      </memberdef>
+      <memberdef kind="function" id="classkukadu_1_1PolyTrajectoryGenerator_1adb937d18031924c54829977211e1d250" prot="public" static="no" const="no" explicit="no" inline="no" virt="virtual">
+        <type>std::string</type>
+        <definition>string kukadu::PolyTrajectoryGenerator::getTrajectoryType</definition>
+        <argsstring>()</argsstring>
+        <name>getTrajectoryType</name>
+        <reimplements refid="classkukadu_1_1TrajectoryGenerator_1a10929c80057835d260493eb05a335148">getTrajectoryType</reimplements>
+        <briefdescription>
+<para>returns the name of the basis function system as a string </para>        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/agyss/iis_robot_sw/iis_catkin_ws/src/kukadu/include/kukadu/control/trajectory.hpp" line="147" column="1" bodyfile="/home/agyss/iis_robot_sw/iis_catkin_ws/src/kukadu/src/control/trajectory.cpp" bodystart="169" bodyend="171"/>
+      </memberdef>
+      </sectiondef>
+    <briefdescription>
+<para>Implements the <ref refid="classkukadu_1_1TrajectoryGenerator" kindref="compound">TrajectoryGenerator</ref> interface for polynomials. </para>    </briefdescription>
+    <detaileddescription>
+<para>This class provides simple polynomials as basis functions. f(x) = sum c_i x^i </para>    </detaileddescription>
+    <inheritancegraph>
+      <node id="539">
+        <label>kukadu::TrajectoryGenerator</label>
+        <link refid="classkukadu_1_1TrajectoryGenerator"/>
+      </node>
+      <node id="538">
+        <label>kukadu::PolyTrajectoryGenerator</label>
+        <link refid="classkukadu_1_1PolyTrajectoryGenerator"/>
+        <childnode refid="539" relation="public-inheritance">
+        </childnode>
+      </node>
+    </inheritancegraph>
+    <collaborationgraph>
+      <node id="541">
+        <label>kukadu::TrajectoryGenerator</label>
+        <link refid="classkukadu_1_1TrajectoryGenerator"/>
+      </node>
+      <node id="540">
+        <label>kukadu::PolyTrajectoryGenerator</label>
+        <link refid="classkukadu_1_1PolyTrajectoryGenerator"/>
+        <childnode refid="541" relation="public-inheritance">
+        </childnode>
+      </node>
+    </collaborationgraph>
+    <location file="/home/agyss/iis_robot_sw/iis_catkin_ws/src/kukadu/include/kukadu/control/trajectory.hpp" line="127" column="1" bodyfile="/home/agyss/iis_robot_sw/iis_catkin_ws/src/kukadu/include/kukadu/control/trajectory.hpp" bodystart="127" bodyend="149"/>
+    <listofallmembers>
+      <member refid="classkukadu_1_1PolyTrajectoryGenerator_1a4651ffb9312a47427b46fc0b9e18e2e6" prot="private" virt="non-virtual"><scope>kukadu::PolyTrajectoryGenerator</scope><name>basisFunctionCount</name></member>
+      <member refid="classkukadu_1_1PolyTrajectoryGenerator_1aaad5efdc0b4a8a4e55db0ffcfd7939f7" prot="public" virt="virtual"><scope>kukadu::PolyTrajectoryGenerator</scope><name>evaluateBasisFunction</name></member>
+      <member refid="classkukadu_1_1PolyTrajectoryGenerator_1a00a575cf44a1b0061131227baae4f593" prot="public" virt="virtual"><scope>kukadu::PolyTrajectoryGenerator</scope><name>evaluateByCoefficientsMultiple</name></member>
+      <member refid="classkukadu_1_1PolyTrajectoryGenerator_1a3ce8a84b6a838a73708414baf2a688ba" prot="public" virt="virtual"><scope>kukadu::PolyTrajectoryGenerator</scope><name>evaluateByCoefficientsSingle</name></member>
+      <member refid="classkukadu_1_1PolyTrajectoryGenerator_1ae8578365c5ae221c8cf14208b74c8975" prot="public" virt="virtual"><scope>kukadu::PolyTrajectoryGenerator</scope><name>getBasisFunctionCount</name></member>
+      <member refid="classkukadu_1_1PolyTrajectoryGenerator_1adb937d18031924c54829977211e1d250" prot="public" virt="virtual"><scope>kukadu::PolyTrajectoryGenerator</scope><name>getTrajectoryType</name></member>
+      <member refid="classkukadu_1_1PolyTrajectoryGenerator_1aaae3f21fde5c8bef81f3cc9eb365fcfb" prot="public" virt="non-virtual"><scope>kukadu::PolyTrajectoryGenerator</scope><name>PolyTrajectoryGenerator</name></member>
+      <member refid="classkukadu_1_1TrajectoryGenerator_1ab8e8192c73d62ba4d5d22151f3c3b1a2" prot="public" virt="non-virtual"><scope>kukadu::PolyTrajectoryGenerator</scope><name>TrajectoryGenerator</name></member>
+    </listofallmembers>
+  </compounddef>
+</doxygen>

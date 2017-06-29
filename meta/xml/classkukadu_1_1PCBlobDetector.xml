@@ -1,0 +1,265 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.8.11">
+  <compounddef id="classkukadu_1_1PCBlobDetector" kind="class" language="C++" prot="public">
+    <compoundname>kukadu::PCBlobDetector</compoundname>
+    <basecompoundref refid="classkukadu_1_1Localizer" prot="public" virt="non-virtual">kukadu::Localizer</basecompoundref>
+    <basecompoundref refid="classkukadu_1_1PoseEstimator" prot="public" virt="non-virtual">kukadu::PoseEstimator</basecompoundref>
+      <sectiondef kind="private-attrib">
+      <memberdef kind="variable" id="classkukadu_1_1PCBlobDetector_1a326be4c3f4c8f0eb80e8bd12c66feb75" prot="private" static="no" mutable="no">
+        <type>std::string</type>
+        <definition>std::string kukadu::PCBlobDetector::targetFrame</definition>
+        <argsstring></argsstring>
+        <name>targetFrame</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/agyss/iis_robot_sw/iis_catkin_ws/src/kukadu/include/kukadu/vision/localizer.hpp" line="41" column="1" bodyfile="/home/agyss/iis_robot_sw/iis_catkin_ws/src/kukadu/include/kukadu/vision/localizer.hpp" bodystart="41" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classkukadu_1_1PCBlobDetector_1a6cd1b507f4b9e0ebb6c15a72134df178" prot="private" static="no" mutable="no">
+        <type>bool</type>
+        <definition>bool kukadu::PCBlobDetector::visualizeResult</definition>
+        <argsstring></argsstring>
+        <name>visualizeResult</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/agyss/iis_robot_sw/iis_catkin_ws/src/kukadu/include/kukadu/vision/localizer.hpp" line="43" column="1" bodyfile="/home/agyss/iis_robot_sw/iis_catkin_ws/src/kukadu/include/kukadu/vision/localizer.hpp" bodystart="43" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classkukadu_1_1PCBlobDetector_1af3bc1eed661fdd05747b254e4f205ab6" prot="private" static="no" mutable="no">
+        <type>double</type>
+        <definition>double kukadu::PCBlobDetector::xOffset</definition>
+        <argsstring></argsstring>
+        <name>xOffset</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/agyss/iis_robot_sw/iis_catkin_ws/src/kukadu/include/kukadu/vision/localizer.hpp" line="45" column="1" bodyfile="/home/agyss/iis_robot_sw/iis_catkin_ws/src/kukadu/include/kukadu/vision/localizer.hpp" bodystart="45" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classkukadu_1_1PCBlobDetector_1a5c30084079835576c79d1e58bb83670b" prot="private" static="no" mutable="no">
+        <type>double</type>
+        <definition>double kukadu::PCBlobDetector::yOffset</definition>
+        <argsstring></argsstring>
+        <name>yOffset</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/agyss/iis_robot_sw/iis_catkin_ws/src/kukadu/include/kukadu/vision/localizer.hpp" line="46" column="1" bodyfile="/home/agyss/iis_robot_sw/iis_catkin_ws/src/kukadu/include/kukadu/vision/localizer.hpp" bodystart="46" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classkukadu_1_1PCBlobDetector_1a106d2af661b345a0831719de7d1a5af0" prot="private" static="no" mutable="no">
+        <type>arma::vec</type>
+        <definition>arma::vec kukadu::PCBlobDetector::center</definition>
+        <argsstring></argsstring>
+        <name>center</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/agyss/iis_robot_sw/iis_catkin_ws/src/kukadu/include/kukadu/vision/localizer.hpp" line="48" column="1" bodyfile="/home/agyss/iis_robot_sw/iis_catkin_ws/src/kukadu/include/kukadu/vision/localizer.hpp" bodystart="48" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classkukadu_1_1PCBlobDetector_1a1dfd4dca507260425f6363ffde53e2f4" prot="private" static="no" mutable="no">
+        <type>std::shared_ptr&lt; <ref refid="classkukadu_1_1Kinect" kindref="compound">Kinect</ref> &gt;</type>
+        <definition>std::shared_ptr&lt;Kinect&gt; kukadu::PCBlobDetector::kinect</definition>
+        <argsstring></argsstring>
+        <name>kinect</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/agyss/iis_robot_sw/iis_catkin_ws/src/kukadu/include/kukadu/vision/localizer.hpp" line="50" column="1" bodyfile="/home/agyss/iis_robot_sw/iis_catkin_ws/src/kukadu/include/kukadu/vision/localizer.hpp" bodystart="50" bodyend="-1"/>
+      </memberdef>
+      </sectiondef>
+      <sectiondef kind="public-func">
+      <memberdef kind="function" id="classkukadu_1_1PCBlobDetector_1a5c8b01b90d67bb2e24c1bd7b6acffc05" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type></type>
+        <definition>kukadu::PCBlobDetector::PCBlobDetector</definition>
+        <argsstring>(std::shared_ptr&lt; Kinect &gt; kinect, std::string targetFrame, arma::vec center, double xOffset, double yOffset, bool visualizeResult=false)</argsstring>
+        <name>PCBlobDetector</name>
+        <param>
+          <type>std::shared_ptr&lt; <ref refid="classkukadu_1_1Kinect" kindref="compound">Kinect</ref> &gt;</type>
+          <declname>kinect</declname>
+        </param>
+        <param>
+          <type>std::string</type>
+          <declname>targetFrame</declname>
+        </param>
+        <param>
+          <type>arma::vec</type>
+          <declname>center</declname>
+        </param>
+        <param>
+          <type>double</type>
+          <declname>xOffset</declname>
+        </param>
+        <param>
+          <type>double</type>
+          <declname>yOffset</declname>
+        </param>
+        <param>
+          <type>bool</type>
+          <declname>visualizeResult</declname>
+          <defval>false</defval>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/agyss/iis_robot_sw/iis_catkin_ws/src/kukadu/include/kukadu/vision/localizer.hpp" line="54" column="1" bodyfile="/home/agyss/iis_robot_sw/iis_catkin_ws/src/kukadu/src/vision/localizer.cpp" bodystart="124" bodyend="134"/>
+      </memberdef>
+      <memberdef kind="function" id="classkukadu_1_1PCBlobDetector_1ab627eaba835158c1463f654935f5463d" prot="public" static="no" const="no" explicit="no" inline="no" virt="virtual">
+        <type>std::string</type>
+        <definition>std::string kukadu::PCBlobDetector::getLocalizerFrame</definition>
+        <argsstring>()</argsstring>
+        <name>getLocalizerFrame</name>
+        <reimplements refid="classkukadu_1_1Localizer_1a5cfada2ce8027cdde1389e851e21aa77">getLocalizerFrame</reimplements>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/agyss/iis_robot_sw/iis_catkin_ws/src/kukadu/include/kukadu/vision/localizer.hpp" line="56" column="1" bodyfile="/home/agyss/iis_robot_sw/iis_catkin_ws/src/kukadu/src/vision/localizer.cpp" bodystart="136" bodyend="138"/>
+      </memberdef>
+      <memberdef kind="function" id="classkukadu_1_1PCBlobDetector_1ae937318cd29943c4b7b44afa77ea3659" prot="public" static="no" const="no" explicit="no" inline="no" virt="virtual">
+        <type>geometry_msgs::Pose</type>
+        <definition>geometry_msgs::Pose kukadu::PCBlobDetector::localizeObject</definition>
+        <argsstring>(std::string id)</argsstring>
+        <name>localizeObject</name>
+        <reimplements refid="classkukadu_1_1Localizer_1a93434e46ef64f12a86f9778992d56b1f">localizeObject</reimplements>
+        <param>
+          <type>std::string</type>
+          <declname>id</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/agyss/iis_robot_sw/iis_catkin_ws/src/kukadu/include/kukadu/vision/localizer.hpp" line="58" column="1" bodyfile="/home/agyss/iis_robot_sw/iis_catkin_ws/src/kukadu/src/vision/localizer.cpp" bodystart="227" bodyend="237"/>
+      </memberdef>
+      <memberdef kind="function" id="classkukadu_1_1PCBlobDetector_1aba8ce4d2a86d17367b7b547c465c56c3" prot="public" static="no" const="no" explicit="no" inline="no" virt="virtual">
+        <type>std::map&lt; std::string, geometry_msgs::Pose &gt;</type>
+        <definition>std::map&lt; std::string, geometry_msgs::Pose &gt; kukadu::PCBlobDetector::localizeObjects</definition>
+        <argsstring>()</argsstring>
+        <name>localizeObjects</name>
+        <reimplements refid="classkukadu_1_1Localizer_1a1d272cadb42a4b13f730742d1a002e25">localizeObjects</reimplements>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/agyss/iis_robot_sw/iis_catkin_ws/src/kukadu/include/kukadu/vision/localizer.hpp" line="60" column="1" bodyfile="/home/agyss/iis_robot_sw/iis_catkin_ws/src/kukadu/src/vision/localizer.cpp" bodystart="239" bodyend="250"/>
+      </memberdef>
+      <memberdef kind="function" id="classkukadu_1_1PCBlobDetector_1a0ff8247ccbe35b03db8e5f022cf28e0c" prot="public" static="no" const="no" explicit="no" inline="no" virt="virtual">
+        <type>std::vector&lt; geometry_msgs::Pose &gt;</type>
+        <definition>std::vector&lt; geometry_msgs::Pose &gt; kukadu::PCBlobDetector::localizeObjects</definition>
+        <argsstring>(std::vector&lt; std::string &gt; ids)</argsstring>
+        <name>localizeObjects</name>
+        <reimplements refid="classkukadu_1_1Localizer_1a78c8587b231e25122771597fbcfbdd52">localizeObjects</reimplements>
+        <param>
+          <type>std::vector&lt; std::string &gt;</type>
+          <declname>ids</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/agyss/iis_robot_sw/iis_catkin_ws/src/kukadu/include/kukadu/vision/localizer.hpp" line="62" column="1" bodyfile="/home/agyss/iis_robot_sw/iis_catkin_ws/src/kukadu/src/vision/localizer.cpp" bodystart="252" bodyend="263"/>
+      </memberdef>
+      <memberdef kind="function" id="classkukadu_1_1PCBlobDetector_1a90b55d297f7418a7560df748c88fba32" prot="public" static="no" const="no" explicit="no" inline="no" virt="virtual">
+        <type>std::pair&lt; geometry_msgs::Pose, arma::vec &gt;</type>
+        <definition>std::pair&lt; geometry_msgs::Pose, arma::vec &gt; kukadu::PCBlobDetector::estimatePose</definition>
+        <argsstring>(std::string id)</argsstring>
+        <name>estimatePose</name>
+        <reimplements refid="classkukadu_1_1PoseEstimator_1a4aaabec5499bfa763036c9f5174f69eb">estimatePose</reimplements>
+        <param>
+          <type>std::string</type>
+          <declname>id</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/agyss/iis_robot_sw/iis_catkin_ws/src/kukadu/include/kukadu/vision/localizer.hpp" line="64" column="1" bodyfile="/home/agyss/iis_robot_sw/iis_catkin_ws/src/kukadu/src/vision/localizer.cpp" bodystart="140" bodyend="225"/>
+      </memberdef>
+      </sectiondef>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <inheritancegraph>
+      <node id="482">
+        <label>kukadu::PoseEstimator</label>
+        <link refid="classkukadu_1_1PoseEstimator"/>
+      </node>
+      <node id="480">
+        <label>kukadu::PCBlobDetector</label>
+        <link refid="classkukadu_1_1PCBlobDetector"/>
+        <childnode refid="481" relation="public-inheritance">
+        </childnode>
+        <childnode refid="482" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="481">
+        <label>kukadu::Localizer</label>
+        <link refid="classkukadu_1_1Localizer"/>
+      </node>
+    </inheritancegraph>
+    <collaborationgraph>
+      <node id="485">
+        <label>kukadu::PoseEstimator</label>
+        <link refid="classkukadu_1_1PoseEstimator"/>
+      </node>
+      <node id="483">
+        <label>kukadu::PCBlobDetector</label>
+        <link refid="classkukadu_1_1PCBlobDetector"/>
+        <childnode refid="484" relation="public-inheritance">
+        </childnode>
+        <childnode refid="485" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="484">
+        <label>kukadu::Localizer</label>
+        <link refid="classkukadu_1_1Localizer"/>
+      </node>
+    </collaborationgraph>
+    <location file="/home/agyss/iis_robot_sw/iis_catkin_ws/src/kukadu/include/kukadu/vision/localizer.hpp" line="37" column="1" bodyfile="/home/agyss/iis_robot_sw/iis_catkin_ws/src/kukadu/include/kukadu/vision/localizer.hpp" bodystart="37" bodyend="66"/>
+    <listofallmembers>
+      <member refid="classkukadu_1_1PCBlobDetector_1a106d2af661b345a0831719de7d1a5af0" prot="private" virt="non-virtual"><scope>kukadu::PCBlobDetector</scope><name>center</name></member>
+      <member refid="classkukadu_1_1PCBlobDetector_1a90b55d297f7418a7560df748c88fba32" prot="public" virt="virtual"><scope>kukadu::PCBlobDetector</scope><name>estimatePose</name></member>
+      <member refid="classkukadu_1_1PCBlobDetector_1ab627eaba835158c1463f654935f5463d" prot="public" virt="virtual"><scope>kukadu::PCBlobDetector</scope><name>getLocalizerFrame</name></member>
+      <member refid="classkukadu_1_1PCBlobDetector_1a1dfd4dca507260425f6363ffde53e2f4" prot="private" virt="non-virtual"><scope>kukadu::PCBlobDetector</scope><name>kinect</name></member>
+      <member refid="classkukadu_1_1PCBlobDetector_1ae937318cd29943c4b7b44afa77ea3659" prot="public" virt="virtual"><scope>kukadu::PCBlobDetector</scope><name>localizeObject</name></member>
+      <member refid="classkukadu_1_1PCBlobDetector_1aba8ce4d2a86d17367b7b547c465c56c3" prot="public" virt="virtual"><scope>kukadu::PCBlobDetector</scope><name>localizeObjects</name></member>
+      <member refid="classkukadu_1_1PCBlobDetector_1a0ff8247ccbe35b03db8e5f022cf28e0c" prot="public" virt="virtual"><scope>kukadu::PCBlobDetector</scope><name>localizeObjects</name></member>
+      <member refid="classkukadu_1_1PCBlobDetector_1a5c8b01b90d67bb2e24c1bd7b6acffc05" prot="public" virt="non-virtual"><scope>kukadu::PCBlobDetector</scope><name>PCBlobDetector</name></member>
+      <member refid="classkukadu_1_1PCBlobDetector_1a326be4c3f4c8f0eb80e8bd12c66feb75" prot="private" virt="non-virtual"><scope>kukadu::PCBlobDetector</scope><name>targetFrame</name></member>
+      <member refid="classkukadu_1_1PCBlobDetector_1a6cd1b507f4b9e0ebb6c15a72134df178" prot="private" virt="non-virtual"><scope>kukadu::PCBlobDetector</scope><name>visualizeResult</name></member>
+      <member refid="classkukadu_1_1PCBlobDetector_1af3bc1eed661fdd05747b254e4f205ab6" prot="private" virt="non-virtual"><scope>kukadu::PCBlobDetector</scope><name>xOffset</name></member>
+      <member refid="classkukadu_1_1PCBlobDetector_1a5c30084079835576c79d1e58bb83670b" prot="private" virt="non-virtual"><scope>kukadu::PCBlobDetector</scope><name>yOffset</name></member>
+    </listofallmembers>
+  </compounddef>
+</doxygen>

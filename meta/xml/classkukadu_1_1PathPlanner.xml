@@ -1,0 +1,335 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.8.11">
+  <compounddef id="classkukadu_1_1PathPlanner" kind="class" language="C++" prot="public" abstract="yes">
+    <compoundname>kukadu::PathPlanner</compoundname>
+    <basecompoundref refid="classkukadu_1_1Kinematics" prot="public" virt="non-virtual">kukadu::Kinematics</basecompoundref>
+    <derivedcompoundref refid="classkukadu_1_1CachedPlanner" prot="public" virt="non-virtual">kukadu::CachedPlanner</derivedcompoundref>
+    <derivedcompoundref refid="classkukadu_1_1Komo" prot="public" virt="non-virtual">kukadu::Komo</derivedcompoundref>
+    <derivedcompoundref refid="classkukadu_1_1MoveIt" prot="public" virt="non-virtual">kukadu::MoveIt</derivedcompoundref>
+    <derivedcompoundref refid="classkukadu_1_1SimplePlanner" prot="public" virt="non-virtual">kukadu::SimplePlanner</derivedcompoundref>
+      <sectiondef kind="private-attrib">
+      <memberdef kind="variable" id="classkukadu_1_1PathPlanner_1a10043c9220e5006aa52ba809001aa302" prot="private" static="no" mutable="no">
+        <type>bool</type>
+        <definition>bool kukadu::PathPlanner::checkCollision</definition>
+        <argsstring></argsstring>
+        <name>checkCollision</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/agyss/iis_robot_sw/iis_catkin_ws/src/kukadu/include/kukadu/planning/planning.hpp" line="112" column="1" bodyfile="/home/agyss/iis_robot_sw/iis_catkin_ws/src/kukadu/include/kukadu/planning/planning.hpp" bodystart="112" bodyend="-1"/>
+      </memberdef>
+      </sectiondef>
+      <sectiondef kind="public-static-attrib">
+      <memberdef kind="variable" id="classkukadu_1_1PathPlanner_1acb48a2d0a667f922536bbac8699451e8" prot="public" static="yes" mutable="no">
+        <type>constexpr int</type>
+        <definition>constexpr int kukadu::PathPlanner::RESULT_FAILED</definition>
+        <argsstring></argsstring>
+        <name>RESULT_FAILED</name>
+        <initializer>= 0</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/agyss/iis_robot_sw/iis_catkin_ws/src/kukadu/include/kukadu/planning/planning.hpp" line="134" column="1" bodyfile="/home/agyss/iis_robot_sw/iis_catkin_ws/src/kukadu/include/kukadu/planning/planning.hpp" bodystart="134" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classkukadu_1_1PathPlanner_1a805c234a0fcbfb17a328893aced1439a" prot="public" static="yes" mutable="no">
+        <type>constexpr int</type>
+        <definition>constexpr int kukadu::PathPlanner::RESULT_SUCCESS</definition>
+        <argsstring></argsstring>
+        <name>RESULT_SUCCESS</name>
+        <initializer>= 1</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/agyss/iis_robot_sw/iis_catkin_ws/src/kukadu/include/kukadu/planning/planning.hpp" line="135" column="1" bodyfile="/home/agyss/iis_robot_sw/iis_catkin_ws/src/kukadu/include/kukadu/planning/planning.hpp" bodystart="135" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classkukadu_1_1PathPlanner_1a47cbdf0417d30f68abddf6d051a3ba41" prot="public" static="yes" mutable="no">
+        <type>constexpr int</type>
+        <definition>constexpr int kukadu::PathPlanner::RESULT_APPROXIMATE</definition>
+        <argsstring></argsstring>
+        <name>RESULT_APPROXIMATE</name>
+        <initializer>= 2</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/agyss/iis_robot_sw/iis_catkin_ws/src/kukadu/include/kukadu/planning/planning.hpp" line="136" column="1" bodyfile="/home/agyss/iis_robot_sw/iis_catkin_ws/src/kukadu/include/kukadu/planning/planning.hpp" bodystart="136" bodyend="-1"/>
+      </memberdef>
+      </sectiondef>
+      <sectiondef kind="public-func">
+      <memberdef kind="function" id="classkukadu_1_1PathPlanner_1a1d5ea50e4e1e45b4feb02f3507152540" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type></type>
+        <definition>kukadu::PathPlanner::PathPlanner</definition>
+        <argsstring>(std::vector&lt; std::string &gt; jointNames)</argsstring>
+        <name>PathPlanner</name>
+        <param>
+          <type>std::vector&lt; std::string &gt;</type>
+          <declname>jointNames</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/agyss/iis_robot_sw/iis_catkin_ws/src/kukadu/include/kukadu/planning/planning.hpp" line="116" column="1" bodyfile="/home/agyss/iis_robot_sw/iis_catkin_ws/src/kukadu/src/planning/planning.cpp" bodystart="38" bodyend="39"/>
+      </memberdef>
+      <memberdef kind="function" id="classkukadu_1_1PathPlanner_1a64bdab84aa8cf63b4c3a50f6ae0a9d7d" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>void kukadu::PathPlanner::setCheckCollisions</definition>
+        <argsstring>(bool collision)</argsstring>
+        <name>setCheckCollisions</name>
+        <param>
+          <type>bool</type>
+          <declname>collision</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/agyss/iis_robot_sw/iis_catkin_ws/src/kukadu/include/kukadu/planning/planning.hpp" line="118" column="1" bodyfile="/home/agyss/iis_robot_sw/iis_catkin_ws/src/kukadu/src/planning/planning.cpp" bodystart="116" bodyend="120"/>
+      </memberdef>
+      <memberdef kind="function" id="classkukadu_1_1PathPlanner_1ad807f61926f499a4b7dd277303156807" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>bool</type>
+        <definition>bool kukadu::PathPlanner::getCheckCollision</definition>
+        <argsstring>()</argsstring>
+        <name>getCheckCollision</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/agyss/iis_robot_sw/iis_catkin_ws/src/kukadu/include/kukadu/planning/planning.hpp" line="120" column="1" bodyfile="/home/agyss/iis_robot_sw/iis_catkin_ws/src/kukadu/src/planning/planning.cpp" bodystart="122" bodyend="126"/>
+      </memberdef>
+      <memberdef kind="function" id="classkukadu_1_1PathPlanner_1a85f304bce58b35715520a9ddfa02a843" prot="public" static="no" const="no" explicit="no" inline="no" virt="virtual">
+        <type>std::vector&lt; arma::vec &gt;</type>
+        <definition>std::vector&lt; arma::vec &gt; kukadu::PathPlanner::smoothJointPlan</definition>
+        <argsstring>(std::vector&lt; arma::vec &gt; jointPlan, arma::vec maxVelocities, double cycleTime)</argsstring>
+        <name>smoothJointPlan</name>
+        <reimplementedby refid="classkukadu_1_1CachedPlanner_1ad09864c1ca8950ecc3dbf2170772f074">smoothJointPlan</reimplementedby>
+        <param>
+          <type>std::vector&lt; arma::vec &gt;</type>
+          <declname>jointPlan</declname>
+        </param>
+        <param>
+          <type>arma::vec</type>
+          <declname>maxVelocities</declname>
+        </param>
+        <param>
+          <type>double</type>
+          <declname>cycleTime</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/agyss/iis_robot_sw/iis_catkin_ws/src/kukadu/include/kukadu/planning/planning.hpp" line="122" column="1" bodyfile="/home/agyss/iis_robot_sw/iis_catkin_ws/src/kukadu/src/planning/planning.cpp" bodystart="128" bodyend="166"/>
+      </memberdef>
+      <memberdef kind="function" id="classkukadu_1_1PathPlanner_1ab757c9af3406da8180bef68597b83542" prot="public" static="no" const="no" explicit="no" inline="no" virt="pure-virtual">
+        <type>std::vector&lt; arma::vec &gt;</type>
+        <definition>virtual std::vector&lt;arma::vec&gt; kukadu::PathPlanner::planJointTrajectory</definition>
+        <argsstring>(std::vector&lt; arma::vec &gt; intermediateJoints)=0</argsstring>
+        <name>planJointTrajectory</name>
+        <reimplementedby refid="classkukadu_1_1SimplePlanner_1ae47217c2e300e1b510f4c9fd7325fedc">planJointTrajectory</reimplementedby>
+        <reimplementedby refid="classkukadu_1_1Komo_1a322dfb4859b9f5b40d5ec67af8403a6d">planJointTrajectory</reimplementedby>
+        <reimplementedby refid="classkukadu_1_1MoveIt_1a5a0133f49f68c5b0b34dc34b151c6cf6">planJointTrajectory</reimplementedby>
+        <reimplementedby refid="classkukadu_1_1CachedPlanner_1a371489e4e0ff35a1a832aed99dea7f79">planJointTrajectory</reimplementedby>
+        <param>
+          <type>std::vector&lt; arma::vec &gt;</type>
+          <declname>intermediateJoints</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/agyss/iis_robot_sw/iis_catkin_ws/src/kukadu/include/kukadu/planning/planning.hpp" line="124" column="1"/>
+      </memberdef>
+      <memberdef kind="function" id="classkukadu_1_1PathPlanner_1a959eb5545d65fdc108fdecad5d9d8542" prot="public" static="no" const="no" explicit="no" inline="no" virt="pure-virtual">
+        <type>std::vector&lt; arma::vec &gt;</type>
+        <definition>virtual std::vector&lt;arma::vec&gt; kukadu::PathPlanner::planCartesianTrajectory</definition>
+        <argsstring>(std::vector&lt; geometry_msgs::Pose &gt; intermediatePoses, bool smoothCartesians, bool useCurrentRobotState)=0</argsstring>
+        <name>planCartesianTrajectory</name>
+        <reimplementedby refid="classkukadu_1_1SimplePlanner_1aad7a23553297e05123565c99ac773d01">planCartesianTrajectory</reimplementedby>
+        <reimplementedby refid="classkukadu_1_1Komo_1a3a01464dfa62117fa2f3164fd9b6d228">planCartesianTrajectory</reimplementedby>
+        <reimplementedby refid="classkukadu_1_1MoveIt_1a24a11114333b44a8fce67affb7afe07d">planCartesianTrajectory</reimplementedby>
+        <reimplementedby refid="classkukadu_1_1CachedPlanner_1a9f818e9573e71ac96cb057e43c42390e">planCartesianTrajectory</reimplementedby>
+        <param>
+          <type>std::vector&lt; geometry_msgs::Pose &gt;</type>
+          <declname>intermediatePoses</declname>
+        </param>
+        <param>
+          <type>bool</type>
+          <declname>smoothCartesians</declname>
+        </param>
+        <param>
+          <type>bool</type>
+          <declname>useCurrentRobotState</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/agyss/iis_robot_sw/iis_catkin_ws/src/kukadu/include/kukadu/planning/planning.hpp" line="125" column="1"/>
+      </memberdef>
+      <memberdef kind="function" id="classkukadu_1_1PathPlanner_1a7b3cf9ab52478e3d1775a17c9a6240e0" prot="public" static="no" const="no" explicit="no" inline="no" virt="pure-virtual">
+        <type>std::vector&lt; arma::vec &gt;</type>
+        <definition>virtual std::vector&lt;arma::vec&gt; kukadu::PathPlanner::planCartesianTrajectory</definition>
+        <argsstring>(arma::vec startJoints, std::vector&lt; geometry_msgs::Pose &gt; intermediatePoses, bool smoothCartesians=false, bool useCurrentRobotState=true)=0</argsstring>
+        <name>planCartesianTrajectory</name>
+        <reimplementedby refid="classkukadu_1_1SimplePlanner_1aaef70f4952f29e543e1c2ade53c8381d">planCartesianTrajectory</reimplementedby>
+        <reimplementedby refid="classkukadu_1_1Komo_1a938f5ef40492b0ff82993f06123bdb2b">planCartesianTrajectory</reimplementedby>
+        <reimplementedby refid="classkukadu_1_1MoveIt_1a455bf20309967e7bc288507f92bd4b24">planCartesianTrajectory</reimplementedby>
+        <reimplementedby refid="classkukadu_1_1CachedPlanner_1af918e17fb32fb725d11d8f8083b019d3">planCartesianTrajectory</reimplementedby>
+        <param>
+          <type>arma::vec</type>
+          <declname>startJoints</declname>
+        </param>
+        <param>
+          <type>std::vector&lt; geometry_msgs::Pose &gt;</type>
+          <declname>intermediatePoses</declname>
+        </param>
+        <param>
+          <type>bool</type>
+          <declname>smoothCartesians</declname>
+          <defval>false</defval>
+        </param>
+        <param>
+          <type>bool</type>
+          <declname>useCurrentRobotState</declname>
+          <defval>true</defval>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/agyss/iis_robot_sw/iis_catkin_ws/src/kukadu/include/kukadu/planning/planning.hpp" line="127" column="1"/>
+      </memberdef>
+      <memberdef kind="function" id="classkukadu_1_1PathPlanner_1a73771852ce2d30556eca8ce726a8c652" prot="public" static="no" const="no" explicit="no" inline="no" virt="pure-virtual">
+        <type>void</type>
+        <definition>virtual void kukadu::PathPlanner::setSpeed</definition>
+        <argsstring>(double speed)=0</argsstring>
+        <name>setSpeed</name>
+        <reimplementedby refid="classkukadu_1_1SimplePlanner_1a0f37848fb642544c627c14c7d36d5487">setSpeed</reimplementedby>
+        <reimplementedby refid="classkukadu_1_1Komo_1abb008bb3e79d95c831e8924c53bfe5c9">setSpeed</reimplementedby>
+        <reimplementedby refid="classkukadu_1_1MoveIt_1ae7fa8ae6dddb95872109a8c5bf2f011d">setSpeed</reimplementedby>
+        <reimplementedby refid="classkukadu_1_1CachedPlanner_1ad1e90b2f4b34e83a8c04644fa4d676a3">setSpeed</reimplementedby>
+        <param>
+          <type>double</type>
+          <declname>speed</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/agyss/iis_robot_sw/iis_catkin_ws/src/kukadu/include/kukadu/planning/planning.hpp" line="131" column="1"/>
+      </memberdef>
+      </sectiondef>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <inheritancegraph>
+      <node id="472">
+        <label>kukadu::PathPlanner</label>
+        <link refid="classkukadu_1_1PathPlanner"/>
+        <childnode refid="473" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="474">
+        <label>kukadu::CachedPlanner</label>
+        <link refid="classkukadu_1_1CachedPlanner"/>
+        <childnode refid="472" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="473">
+        <label>kukadu::Kinematics</label>
+        <link refid="classkukadu_1_1Kinematics"/>
+      </node>
+      <node id="475">
+        <label>kukadu::Komo</label>
+        <link refid="classkukadu_1_1Komo"/>
+        <childnode refid="472" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="476">
+        <label>kukadu::MoveIt</label>
+        <link refid="classkukadu_1_1MoveIt"/>
+        <childnode refid="472" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="477">
+        <label>kukadu::SimplePlanner</label>
+        <link refid="classkukadu_1_1SimplePlanner"/>
+        <childnode refid="472" relation="public-inheritance">
+        </childnode>
+      </node>
+    </inheritancegraph>
+    <collaborationgraph>
+      <node id="478">
+        <label>kukadu::PathPlanner</label>
+        <link refid="classkukadu_1_1PathPlanner"/>
+        <childnode refid="479" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="479">
+        <label>kukadu::Kinematics</label>
+        <link refid="classkukadu_1_1Kinematics"/>
+      </node>
+    </collaborationgraph>
+    <location file="/home/agyss/iis_robot_sw/iis_catkin_ws/src/kukadu/include/kukadu/planning/planning.hpp" line="108" column="1" bodyfile="/home/agyss/iis_robot_sw/iis_catkin_ws/src/kukadu/include/kukadu/planning/planning.hpp" bodystart="108" bodyend="143"/>
+    <listofallmembers>
+      <member refid="classkukadu_1_1Kinematics_1a6148045661ff549e6f6627e4ef71e03c" prot="public" virt="non-virtual"><scope>kukadu::PathPlanner</scope><name>addConstraint</name></member>
+      <member refid="classkukadu_1_1Kinematics_1a685f76d61feec05ba02fb8f82c30bc63" prot="public" virt="non-virtual"><scope>kukadu::PathPlanner</scope><name>checkAllConstraints</name></member>
+      <member refid="classkukadu_1_1PathPlanner_1a10043c9220e5006aa52ba809001aa302" prot="private" virt="non-virtual"><scope>kukadu::PathPlanner</scope><name>checkCollision</name></member>
+      <member refid="classkukadu_1_1Kinematics_1aa80b36c16d23f6031f9b133ed72795f2" prot="public" virt="pure-virtual"><scope>kukadu::PathPlanner</scope><name>computeFk</name></member>
+      <member refid="classkukadu_1_1Kinematics_1ac9215d036bbdfab163745ade3033910e" prot="public" virt="virtual"><scope>kukadu::PathPlanner</scope><name>computeIk</name></member>
+      <member refid="classkukadu_1_1Kinematics_1a5b143f7db7a84d7caa03419043426a5e" prot="public" virt="pure-virtual"><scope>kukadu::PathPlanner</scope><name>computeIk</name></member>
+      <member refid="classkukadu_1_1Kinematics_1acb407e22a5efe10767727b94448b32bc" prot="protected" virt="non-virtual"><scope>kukadu::PathPlanner</scope><name>generateDefaultJointNames</name></member>
+      <member refid="classkukadu_1_1Kinematics_1a03901fc799987b5840de994cfc7d7260" prot="public" virt="pure-virtual"><scope>kukadu::PathPlanner</scope><name>getCartesianLinkName</name></member>
+      <member refid="classkukadu_1_1Kinematics_1a933b787ca3d264cdcfec9245a90744aa" prot="public" virt="pure-virtual"><scope>kukadu::PathPlanner</scope><name>getCartesianReferenceFrame</name></member>
+      <member refid="classkukadu_1_1PathPlanner_1ad807f61926f499a4b7dd277303156807" prot="public" virt="non-virtual"><scope>kukadu::PathPlanner</scope><name>getCheckCollision</name></member>
+      <member refid="classkukadu_1_1Kinematics_1a59ed85e60fb4d6b82bc5e145a55b1e56" prot="public" virt="non-virtual"><scope>kukadu::PathPlanner</scope><name>getConstraintByIdx</name></member>
+      <member refid="classkukadu_1_1Kinematics_1af6a30efefca4b925d68173ed8af060f5" prot="public" virt="non-virtual"><scope>kukadu::PathPlanner</scope><name>getConstraintIdx</name></member>
+      <member refid="classkukadu_1_1Kinematics_1a4eb2b717f47bf4d28a82bfded60f75b6" prot="public" virt="non-virtual"><scope>kukadu::PathPlanner</scope><name>getConstraintsCount</name></member>
+      <member refid="classkukadu_1_1Kinematics_1a16c8379a7ee87657a5f3db5b7534391b" prot="public" virt="pure-virtual"><scope>kukadu::PathPlanner</scope><name>getJacobian</name></member>
+      <member refid="classkukadu_1_1Kinematics_1a888c5039b2db5c1f5964753c2474efbd" prot="public" virt="virtual"><scope>kukadu::PathPlanner</scope><name>getJointNames</name></member>
+      <member refid="classkukadu_1_1Kinematics_1a050de3ff89fdec3b1debfeddf34ffa44" prot="public" virt="pure-virtual"><scope>kukadu::PathPlanner</scope><name>isColliding</name></member>
+      <member refid="classkukadu_1_1Kinematics_1a13e20d58d587757cae1d9d3a2c34ac40" prot="public" virt="non-virtual"><scope>kukadu::PathPlanner</scope><name>Kinematics</name></member>
+      <member refid="classkukadu_1_1PathPlanner_1a1d5ea50e4e1e45b4feb02f3507152540" prot="public" virt="non-virtual"><scope>kukadu::PathPlanner</scope><name>PathPlanner</name></member>
+      <member refid="classkukadu_1_1PathPlanner_1a959eb5545d65fdc108fdecad5d9d8542" prot="public" virt="pure-virtual"><scope>kukadu::PathPlanner</scope><name>planCartesianTrajectory</name></member>
+      <member refid="classkukadu_1_1PathPlanner_1a7b3cf9ab52478e3d1775a17c9a6240e0" prot="public" virt="pure-virtual"><scope>kukadu::PathPlanner</scope><name>planCartesianTrajectory</name></member>
+      <member refid="classkukadu_1_1PathPlanner_1ab757c9af3406da8180bef68597b83542" prot="public" virt="pure-virtual"><scope>kukadu::PathPlanner</scope><name>planJointTrajectory</name></member>
+      <member refid="classkukadu_1_1Kinematics_1a3c79131b3d003ed6a02079ff575c7f75" prot="public" virt="non-virtual"><scope>kukadu::PathPlanner</scope><name>removeConstraint</name></member>
+      <member refid="classkukadu_1_1PathPlanner_1a47cbdf0417d30f68abddf6d051a3ba41" prot="public" virt="non-virtual"><scope>kukadu::PathPlanner</scope><name>RESULT_APPROXIMATE</name></member>
+      <member refid="classkukadu_1_1PathPlanner_1acb48a2d0a667f922536bbac8699451e8" prot="public" virt="non-virtual"><scope>kukadu::PathPlanner</scope><name>RESULT_FAILED</name></member>
+      <member refid="classkukadu_1_1PathPlanner_1a805c234a0fcbfb17a328893aced1439a" prot="public" virt="non-virtual"><scope>kukadu::PathPlanner</scope><name>RESULT_SUCCESS</name></member>
+      <member refid="classkukadu_1_1PathPlanner_1a64bdab84aa8cf63b4c3a50f6ae0a9d7d" prot="public" virt="non-virtual"><scope>kukadu::PathPlanner</scope><name>setCheckCollisions</name></member>
+      <member refid="classkukadu_1_1Kinematics_1a12859eb774a27710b71b70fd883f5d53" prot="public" virt="virtual"><scope>kukadu::PathPlanner</scope><name>setJointNames</name></member>
+      <member refid="classkukadu_1_1PathPlanner_1a73771852ce2d30556eca8ce726a8c652" prot="public" virt="pure-virtual"><scope>kukadu::PathPlanner</scope><name>setSpeed</name></member>
+      <member refid="classkukadu_1_1PathPlanner_1a85f304bce58b35715520a9ddfa02a843" prot="public" virt="virtual"><scope>kukadu::PathPlanner</scope><name>smoothJointPlan</name></member>
+    </listofallmembers>
+  </compounddef>
+</doxygen>

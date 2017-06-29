@@ -1,0 +1,229 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.8.11">
+  <compounddef id="classkukadu_1_1GeneralFitter" kind="class" language="C++" prot="public">
+    <compoundname>kukadu::GeneralFitter</compoundname>
+    <includes refid="fitting_8hpp" local="no">fitting.hpp</includes>
+      <sectiondef kind="private-attrib">
+      <memberdef kind="variable" id="classkukadu_1_1GeneralFitter_1a59395830c8ff2ac70fc17acfc160fecf" prot="private" static="no" mutable="no">
+        <type>arma::vec</type>
+        <definition>arma::vec kukadu::GeneralFitter::samplesX</definition>
+        <argsstring></argsstring>
+        <name>samplesX</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/agyss/iis_robot_sw/iis_catkin_ws/src/kukadu/include/kukadu/learning/regression/fitting.hpp" line="24" column="1" bodyfile="/home/agyss/iis_robot_sw/iis_catkin_ws/src/kukadu/include/kukadu/learning/regression/fitting.hpp" bodystart="24" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classkukadu_1_1GeneralFitter_1a3bd752d181305186a06ce551655c5caa" prot="private" static="no" mutable="no">
+        <type>arma::vec</type>
+        <definition>arma::vec kukadu::GeneralFitter::samplesY</definition>
+        <argsstring></argsstring>
+        <name>samplesY</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/agyss/iis_robot_sw/iis_catkin_ws/src/kukadu/include/kukadu/learning/regression/fitting.hpp" line="25" column="1" bodyfile="/home/agyss/iis_robot_sw/iis_catkin_ws/src/kukadu/include/kukadu/learning/regression/fitting.hpp" bodystart="25" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classkukadu_1_1GeneralFitter_1a9aef0d47d4e1b2b1392ff43eb5dda28d" prot="private" static="no" mutable="no">
+        <type>int</type>
+        <definition>int kukadu::GeneralFitter::sampleCount</definition>
+        <argsstring></argsstring>
+        <name>sampleCount</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/agyss/iis_robot_sw/iis_catkin_ws/src/kukadu/include/kukadu/learning/regression/fitting.hpp" line="26" column="1" bodyfile="/home/agyss/iis_robot_sw/iis_catkin_ws/src/kukadu/include/kukadu/learning/regression/fitting.hpp" bodystart="26" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classkukadu_1_1GeneralFitter_1a9c6c7487e3676c5f513c3c960b3527cf" prot="private" static="no" mutable="no">
+        <type>int</type>
+        <definition>int kukadu::GeneralFitter::regressionMode</definition>
+        <argsstring></argsstring>
+        <name>regressionMode</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/agyss/iis_robot_sw/iis_catkin_ws/src/kukadu/include/kukadu/learning/regression/fitting.hpp" line="27" column="1" bodyfile="/home/agyss/iis_robot_sw/iis_catkin_ws/src/kukadu/include/kukadu/learning/regression/fitting.hpp" bodystart="27" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classkukadu_1_1GeneralFitter_1ab38ec22404ef02072b12c035265c567b" prot="private" static="no" mutable="no">
+        <type><ref refid="classkukadu_1_1TrajectoryGenerator" kindref="compound">TrajectoryGenerator</ref> *</type>
+        <definition>TrajectoryGenerator* kukadu::GeneralFitter::trajGen</definition>
+        <argsstring></argsstring>
+        <name>trajGen</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/agyss/iis_robot_sw/iis_catkin_ws/src/kukadu/include/kukadu/learning/regression/fitting.hpp" line="29" column="1" bodyfile="/home/agyss/iis_robot_sw/iis_catkin_ws/src/kukadu/include/kukadu/learning/regression/fitting.hpp" bodystart="29" bodyend="-1"/>
+      </memberdef>
+      </sectiondef>
+      <sectiondef kind="public-func">
+      <memberdef kind="function" id="classkukadu_1_1GeneralFitter_1a6546135463b8ae78e707a5538166d545" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type></type>
+        <definition>kukadu::GeneralFitter::GeneralFitter</definition>
+        <argsstring>(arma::vec samplesX, arma::vec samplesY, int sampleCount, TrajectoryGenerator *trajGen)</argsstring>
+        <name>GeneralFitter</name>
+        <param>
+          <type>arma::vec</type>
+          <declname>samplesX</declname>
+        </param>
+        <param>
+          <type>arma::vec</type>
+          <declname>samplesY</declname>
+        </param>
+        <param>
+          <type>int</type>
+          <declname>sampleCount</declname>
+        </param>
+        <param>
+          <type><ref refid="classkukadu_1_1TrajectoryGenerator" kindref="compound">TrajectoryGenerator</ref> *</type>
+          <declname>trajGen</declname>
+        </param>
+        <briefdescription>
+<para>constructor </para>        </briefdescription>
+        <detaileddescription>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>samplesX</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>vector of samples, where samplesX specifies the x-axis </para></parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>samplesY</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>vector of samples, where samplesY specifies the y-axis </para></parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>sampleCount</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>number of sample points </para></parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>trajGen</parametername>
+</parameternamelist>
+<parameterdescription>
+<para><ref refid="classkukadu_1_1TrajectoryGenerator" kindref="compound">TrajectoryGenerator</ref> instance defining the basis functions </para></parameterdescription>
+</parameteritem>
+</parameterlist>
+</para>        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/agyss/iis_robot_sw/iis_catkin_ws/src/kukadu/include/kukadu/learning/regression/fitting.hpp" line="40" column="1" bodyfile="/home/agyss/iis_robot_sw/iis_catkin_ws/src/kukadu/src/learning/regression/fitting.cpp" bodystart="10" bodyend="15"/>
+      </memberdef>
+      <memberdef kind="function" id="classkukadu_1_1GeneralFitter_1ac87a8f6d6e036c424dd022808876421f" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>int</type>
+        <definition>int kukadu::GeneralFitter::getBasisFunctionCount</definition>
+        <argsstring>()</argsstring>
+        <name>getBasisFunctionCount</name>
+        <briefdescription>
+<para>returns the number of basis functions </para>        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/agyss/iis_robot_sw/iis_catkin_ws/src/kukadu/include/kukadu/learning/regression/fitting.hpp" line="45" column="1"/>
+      </memberdef>
+      <memberdef kind="function" id="classkukadu_1_1GeneralFitter_1ab5aad99091bf484941090ce2dcaf9881" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>int</type>
+        <definition>int kukadu::GeneralFitter::getSampleCount</definition>
+        <argsstring>()</argsstring>
+        <name>getSampleCount</name>
+        <briefdescription>
+<para>returns the number of samples </para>        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/agyss/iis_robot_sw/iis_catkin_ws/src/kukadu/include/kukadu/learning/regression/fitting.hpp" line="50" column="1" bodyfile="/home/agyss/iis_robot_sw/iis_catkin_ws/src/kukadu/src/learning/regression/fitting.cpp" bodystart="17" bodyend="19"/>
+      </memberdef>
+      <memberdef kind="function" id="classkukadu_1_1GeneralFitter_1ad83ff2da0b13813710684596ee4e28df" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>arma::vec</type>
+        <definition>vec kukadu::GeneralFitter::computeLinFitCoefficients</definition>
+        <argsstring>()</argsstring>
+        <name>computeLinFitCoefficients</name>
+        <briefdescription>
+<para>performs linear regression and returns vector of coefficients corresponding to the basis functions </para>        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/agyss/iis_robot_sw/iis_catkin_ws/src/kukadu/include/kukadu/learning/regression/fitting.hpp" line="55" column="1" bodyfile="/home/agyss/iis_robot_sw/iis_catkin_ws/src/kukadu/src/learning/regression/fitting.cpp" bodystart="42" bodyend="53"/>
+      </memberdef>
+      <memberdef kind="function" id="classkukadu_1_1GeneralFitter_1ababdab99ea68030d3fa7b5cd692e4372" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>arma::vec</type>
+        <definition>arma::vec kukadu::GeneralFitter::computeLinFitCoefficients</definition>
+        <argsstring>(arma::mat desMat)</argsstring>
+        <name>computeLinFitCoefficients</name>
+        <param>
+          <type>arma::mat</type>
+          <declname>desMat</declname>
+        </param>
+        <briefdescription>
+<para>performs linear regression and returns vector of coefficients corresponding to the basis functions by explicitly taking the design matrix as parameter </para>        </briefdescription>
+        <detaileddescription>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>desMat</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>design matrix needed for linear regression </para></parameterdescription>
+</parameteritem>
+</parameterlist>
+</para>        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/agyss/iis_robot_sw/iis_catkin_ws/src/kukadu/include/kukadu/learning/regression/fitting.hpp" line="61" column="1"/>
+      </memberdef>
+      <memberdef kind="function" id="classkukadu_1_1GeneralFitter_1aa1b7d37f59d0c86185425ec550e6c1b0" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>arma::mat</type>
+        <definition>mat kukadu::GeneralFitter::computeDesignMatrix</definition>
+        <argsstring>()</argsstring>
+        <name>computeDesignMatrix</name>
+        <briefdescription>
+<para>computes design matrix </para>        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/agyss/iis_robot_sw/iis_catkin_ws/src/kukadu/include/kukadu/learning/regression/fitting.hpp" line="66" column="1" bodyfile="/home/agyss/iis_robot_sw/iis_catkin_ws/src/kukadu/src/learning/regression/fitting.cpp" bodystart="55" bodyend="70"/>
+      </memberdef>
+      </sectiondef>
+    <briefdescription>
+<para>Provides the generic part of the linear regression methods. </para>    </briefdescription>
+    <detaileddescription>
+<para>This class provides implements the generic part of the linear regression method. It is independent of the specific choice of basis functions. These basis functions are defined via the <ref refid="classkukadu_1_1TrajectoryGenerator" kindref="compound">TrajectoryGenerator</ref> class. </para>    </detaileddescription>
+    <location file="/home/agyss/iis_robot_sw/iis_catkin_ws/src/kukadu/include/kukadu/learning/regression/fitting.hpp" line="20" column="1" bodyfile="/home/agyss/iis_robot_sw/iis_catkin_ws/src/kukadu/include/kukadu/learning/regression/fitting.hpp" bodystart="20" bodyend="68"/>
+    <listofallmembers>
+      <member refid="classkukadu_1_1GeneralFitter_1aa1b7d37f59d0c86185425ec550e6c1b0" prot="public" virt="non-virtual"><scope>kukadu::GeneralFitter</scope><name>computeDesignMatrix</name></member>
+      <member refid="classkukadu_1_1GeneralFitter_1ad83ff2da0b13813710684596ee4e28df" prot="public" virt="non-virtual"><scope>kukadu::GeneralFitter</scope><name>computeLinFitCoefficients</name></member>
+      <member refid="classkukadu_1_1GeneralFitter_1ababdab99ea68030d3fa7b5cd692e4372" prot="public" virt="non-virtual"><scope>kukadu::GeneralFitter</scope><name>computeLinFitCoefficients</name></member>
+      <member refid="classkukadu_1_1GeneralFitter_1a6546135463b8ae78e707a5538166d545" prot="public" virt="non-virtual"><scope>kukadu::GeneralFitter</scope><name>GeneralFitter</name></member>
+      <member refid="classkukadu_1_1GeneralFitter_1ac87a8f6d6e036c424dd022808876421f" prot="public" virt="non-virtual"><scope>kukadu::GeneralFitter</scope><name>getBasisFunctionCount</name></member>
+      <member refid="classkukadu_1_1GeneralFitter_1ab5aad99091bf484941090ce2dcaf9881" prot="public" virt="non-virtual"><scope>kukadu::GeneralFitter</scope><name>getSampleCount</name></member>
+      <member refid="classkukadu_1_1GeneralFitter_1a9c6c7487e3676c5f513c3c960b3527cf" prot="private" virt="non-virtual"><scope>kukadu::GeneralFitter</scope><name>regressionMode</name></member>
+      <member refid="classkukadu_1_1GeneralFitter_1a9aef0d47d4e1b2b1392ff43eb5dda28d" prot="private" virt="non-virtual"><scope>kukadu::GeneralFitter</scope><name>sampleCount</name></member>
+      <member refid="classkukadu_1_1GeneralFitter_1a59395830c8ff2ac70fc17acfc160fecf" prot="private" virt="non-virtual"><scope>kukadu::GeneralFitter</scope><name>samplesX</name></member>
+      <member refid="classkukadu_1_1GeneralFitter_1a3bd752d181305186a06ce551655c5caa" prot="private" virt="non-virtual"><scope>kukadu::GeneralFitter</scope><name>samplesY</name></member>
+      <member refid="classkukadu_1_1GeneralFitter_1ab38ec22404ef02072b12c035265c567b" prot="private" virt="non-virtual"><scope>kukadu::GeneralFitter</scope><name>trajGen</name></member>
+    </listofallmembers>
+  </compounddef>
+</doxygen>

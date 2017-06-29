@@ -1,0 +1,123 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.8.11">
+  <compounddef id="classkukadu_1_1CustomFunctor" kind="class" language="C++" prot="public" abstract="yes">
+    <compoundname>kukadu::CustomFunctor</compoundname>
+    <derivedcompoundref refid="classkukadu_1_1HaloFunctor" prot="public" virt="non-virtual">kukadu::HaloFunctor</derivedcompoundref>
+    <derivedcompoundref refid="classkukadu_1_1IntensityFunctor" prot="public" virt="non-virtual">kukadu::IntensityFunctor</derivedcompoundref>
+      <sectiondef kind="public-func">
+      <memberdef kind="function" id="classkukadu_1_1CustomFunctor_1ac3e9756dffb76ab7dbeee78343f23eb0" prot="public" static="no" const="no" explicit="no" inline="no" virt="pure-virtual">
+        <type>void</type>
+        <definition>virtual void kukadu::CustomFunctor::initializeFilterForIteration</definition>
+        <argsstring>(pcl::PointCloud&lt; pcl::PointXYZ &gt;::Ptr cloud)=0</argsstring>
+        <name>initializeFilterForIteration</name>
+        <reimplementedby refid="classkukadu_1_1IntensityFunctor_1a5babe041a9b81829fee572505378098a">initializeFilterForIteration</reimplementedby>
+        <reimplementedby refid="classkukadu_1_1HaloFunctor_1a55dd0afc12e35c633205d67955d731b7">initializeFilterForIteration</reimplementedby>
+        <param>
+          <type>pcl::PointCloud&lt; pcl::PointXYZ &gt;::Ptr</type>
+          <declname>cloud</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/agyss/iis_robot_sw/iis_catkin_ws/src/kukadu/include/kukadu/vision/pcstdtrans.hpp" line="84" column="1"/>
+      </memberdef>
+      <memberdef kind="function" id="classkukadu_1_1CustomFunctor_1a3b874d6b81360de38968fcaff58c7158" prot="public" static="no" const="no" explicit="no" inline="no" virt="pure-virtual">
+        <type>void</type>
+        <definition>virtual void kukadu::CustomFunctor::initializeFilterForIteration</definition>
+        <argsstring>(pcl::PointCloud&lt; pcl::PointXYZRGB &gt;::Ptr cloud)=0</argsstring>
+        <name>initializeFilterForIteration</name>
+        <reimplementedby refid="classkukadu_1_1IntensityFunctor_1afc8f41805170a06c6e36a322d2f60e23">initializeFilterForIteration</reimplementedby>
+        <reimplementedby refid="classkukadu_1_1HaloFunctor_1a45699ed1552ef87b5818dada88124caf">initializeFilterForIteration</reimplementedby>
+        <param>
+          <type>pcl::PointCloud&lt; pcl::PointXYZRGB &gt;::Ptr</type>
+          <declname>cloud</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/agyss/iis_robot_sw/iis_catkin_ws/src/kukadu/include/kukadu/vision/pcstdtrans.hpp" line="85" column="1"/>
+      </memberdef>
+      <memberdef kind="function" id="classkukadu_1_1CustomFunctor_1a8db257e7cbd10ae94ef45724b8528fe1" prot="public" static="no" const="no" explicit="no" inline="no" virt="pure-virtual">
+        <type>bool</type>
+        <definition>virtual bool kukadu::CustomFunctor::matchPoint</definition>
+        <argsstring>(const pcl::PointCloud&lt; pcl::PointXYZ &gt;::Ptr cloud, const pcl::PointXYZ &amp;currentPoint)=0</argsstring>
+        <name>matchPoint</name>
+        <reimplementedby refid="classkukadu_1_1IntensityFunctor_1a4ce77e82ccc86fce1dd2461ad1eaa0c7">matchPoint</reimplementedby>
+        <reimplementedby refid="classkukadu_1_1HaloFunctor_1a8fa190d8b7f7a6213fef4364f253d174">matchPoint</reimplementedby>
+        <param>
+          <type>const pcl::PointCloud&lt; pcl::PointXYZ &gt;::Ptr</type>
+          <declname>cloud</declname>
+        </param>
+        <param>
+          <type>const pcl::PointXYZ &amp;</type>
+          <declname>currentPoint</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/agyss/iis_robot_sw/iis_catkin_ws/src/kukadu/include/kukadu/vision/pcstdtrans.hpp" line="87" column="1"/>
+      </memberdef>
+      <memberdef kind="function" id="classkukadu_1_1CustomFunctor_1ac4121f093810ab0fb7add535445219b0" prot="public" static="no" const="no" explicit="no" inline="no" virt="pure-virtual">
+        <type>bool</type>
+        <definition>virtual bool kukadu::CustomFunctor::matchPoint</definition>
+        <argsstring>(const pcl::PointCloud&lt; pcl::PointXYZRGB &gt;::Ptr cloud, const pcl::PointXYZRGB &amp;currentPoint)=0</argsstring>
+        <name>matchPoint</name>
+        <reimplementedby refid="classkukadu_1_1IntensityFunctor_1aa50517afe1dd00aecfb32fec6f6a0bb7">matchPoint</reimplementedby>
+        <reimplementedby refid="classkukadu_1_1HaloFunctor_1aa4da02a2730cab41bc74829e8994edea">matchPoint</reimplementedby>
+        <param>
+          <type>const pcl::PointCloud&lt; pcl::PointXYZRGB &gt;::Ptr</type>
+          <declname>cloud</declname>
+        </param>
+        <param>
+          <type>const pcl::PointXYZRGB &amp;</type>
+          <declname>currentPoint</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/agyss/iis_robot_sw/iis_catkin_ws/src/kukadu/include/kukadu/vision/pcstdtrans.hpp" line="88" column="1"/>
+      </memberdef>
+      </sectiondef>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <inheritancegraph>
+      <node id="163">
+        <label>kukadu::IntensityFunctor</label>
+        <link refid="classkukadu_1_1IntensityFunctor"/>
+        <childnode refid="161" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="161">
+        <label>kukadu::CustomFunctor</label>
+        <link refid="classkukadu_1_1CustomFunctor"/>
+      </node>
+      <node id="162">
+        <label>kukadu::HaloFunctor</label>
+        <link refid="classkukadu_1_1HaloFunctor"/>
+        <childnode refid="161" relation="public-inheritance">
+        </childnode>
+      </node>
+    </inheritancegraph>
+    <location file="/home/agyss/iis_robot_sw/iis_catkin_ws/src/kukadu/include/kukadu/vision/pcstdtrans.hpp" line="80" column="1" bodyfile="/home/agyss/iis_robot_sw/iis_catkin_ws/src/kukadu/include/kukadu/vision/pcstdtrans.hpp" bodystart="80" bodyend="90"/>
+    <listofallmembers>
+      <member refid="classkukadu_1_1CustomFunctor_1ac3e9756dffb76ab7dbeee78343f23eb0" prot="public" virt="pure-virtual"><scope>kukadu::CustomFunctor</scope><name>initializeFilterForIteration</name></member>
+      <member refid="classkukadu_1_1CustomFunctor_1a3b874d6b81360de38968fcaff58c7158" prot="public" virt="pure-virtual"><scope>kukadu::CustomFunctor</scope><name>initializeFilterForIteration</name></member>
+      <member refid="classkukadu_1_1CustomFunctor_1a8db257e7cbd10ae94ef45724b8528fe1" prot="public" virt="pure-virtual"><scope>kukadu::CustomFunctor</scope><name>matchPoint</name></member>
+      <member refid="classkukadu_1_1CustomFunctor_1ac4121f093810ab0fb7add535445219b0" prot="public" virt="pure-virtual"><scope>kukadu::CustomFunctor</scope><name>matchPoint</name></member>
+    </listofallmembers>
+  </compounddef>
+</doxygen>

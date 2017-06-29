@@ -1,0 +1,848 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.8.11">
+  <compounddef id="classkukadu_1_1ARToolKitPlusNode" kind="class" language="C++" prot="public">
+    <compoundname>kukadu::ARToolKitPlusNode</compoundname>
+      <sectiondef kind="private-attrib">
+      <memberdef kind="variable" id="classkukadu_1_1ARToolKitPlusNode_1abe933cb7a770aa3a87b53d337cc0266f" prot="private" static="no" mutable="no">
+        <type>boost::mutex</type>
+        <definition>boost::mutex kukadu::ARToolKitPlusNode::tfMutex</definition>
+        <argsstring></argsstring>
+        <name>tfMutex</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/agyss/iis_robot_sw/iis_catkin_ws/src/kukadu/include/kukadu/vision/arlocalizer.hpp" line="112" column="1" bodyfile="/home/agyss/iis_robot_sw/iis_catkin_ws/src/kukadu/include/kukadu/vision/arlocalizer.hpp" bodystart="112" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classkukadu_1_1ARToolKitPlusNode_1a8979ae395a63c3175b20fc2f8cd475c5" prot="private" static="no" mutable="no">
+        <type>bool</type>
+        <definition>bool kukadu::ARToolKitPlusNode::firstImageRetrieved</definition>
+        <argsstring></argsstring>
+        <name>firstImageRetrieved</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/agyss/iis_robot_sw/iis_catkin_ws/src/kukadu/include/kukadu/vision/arlocalizer.hpp" line="114" column="1" bodyfile="/home/agyss/iis_robot_sw/iis_catkin_ws/src/kukadu/include/kukadu/vision/arlocalizer.hpp" bodystart="114" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classkukadu_1_1ARToolKitPlusNode_1afa448b3074680fc573bcc192ab956b4a" prot="private" static="no" mutable="no">
+        <type>std::string</type>
+        <definition>std::string kukadu::ARToolKitPlusNode::detectionFrameName</definition>
+        <argsstring></argsstring>
+        <name>detectionFrameName</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/agyss/iis_robot_sw/iis_catkin_ws/src/kukadu/include/kukadu/vision/arlocalizer.hpp" line="115" column="1" bodyfile="/home/agyss/iis_robot_sw/iis_catkin_ws/src/kukadu/include/kukadu/vision/arlocalizer.hpp" bodystart="115" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classkukadu_1_1ARToolKitPlusNode_1a02d4bcd144de96d0d919c2e0da765439" prot="private" static="no" mutable="no">
+        <type>int</type>
+        <definition>int kukadu::ARToolKitPlusNode::skip_frames</definition>
+        <argsstring></argsstring>
+        <name>skip_frames</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/agyss/iis_robot_sw/iis_catkin_ws/src/kukadu/include/kukadu/vision/arlocalizer.hpp" line="118" column="1" bodyfile="/home/agyss/iis_robot_sw/iis_catkin_ws/src/kukadu/include/kukadu/vision/arlocalizer.hpp" bodystart="118" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classkukadu_1_1ARToolKitPlusNode_1a3d750f804210d71749aa3035c4ca349b" prot="private" static="no" mutable="no">
+        <type>bool</type>
+        <definition>bool kukadu::ARToolKitPlusNode::show_camera_image</definition>
+        <argsstring></argsstring>
+        <name>show_camera_image</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/agyss/iis_robot_sw/iis_catkin_ws/src/kukadu/include/kukadu/vision/arlocalizer.hpp" line="119" column="1" bodyfile="/home/agyss/iis_robot_sw/iis_catkin_ws/src/kukadu/include/kukadu/vision/arlocalizer.hpp" bodystart="119" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classkukadu_1_1ARToolKitPlusNode_1a4d185c3d80e30aa90e9d881c51e6f54d" prot="private" static="no" mutable="no">
+        <type>std::string</type>
+        <definition>std::string kukadu::ARToolKitPlusNode::tf_prefix</definition>
+        <argsstring></argsstring>
+        <name>tf_prefix</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/agyss/iis_robot_sw/iis_catkin_ws/src/kukadu/include/kukadu/vision/arlocalizer.hpp" line="120" column="1" bodyfile="/home/agyss/iis_robot_sw/iis_catkin_ws/src/kukadu/include/kukadu/vision/arlocalizer.hpp" bodystart="120" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classkukadu_1_1ARToolKitPlusNode_1abae9cb7d2fd0f2bc06a235017dae6294" prot="private" static="no" mutable="no">
+        <type>bool</type>
+        <definition>bool kukadu::ARToolKitPlusNode::tracker_single_marker</definition>
+        <argsstring></argsstring>
+        <name>tracker_single_marker</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/agyss/iis_robot_sw/iis_catkin_ws/src/kukadu/include/kukadu/vision/arlocalizer.hpp" line="121" column="1" bodyfile="/home/agyss/iis_robot_sw/iis_catkin_ws/src/kukadu/include/kukadu/vision/arlocalizer.hpp" bodystart="121" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classkukadu_1_1ARToolKitPlusNode_1aa18ba28efe2e846a33b55bed89b63d79" prot="private" static="no" mutable="no">
+        <type>bool</type>
+        <definition>bool kukadu::ARToolKitPlusNode::tracker_multi_marker</definition>
+        <argsstring></argsstring>
+        <name>tracker_multi_marker</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/agyss/iis_robot_sw/iis_catkin_ws/src/kukadu/include/kukadu/vision/arlocalizer.hpp" line="122" column="1" bodyfile="/home/agyss/iis_robot_sw/iis_catkin_ws/src/kukadu/include/kukadu/vision/arlocalizer.hpp" bodystart="122" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classkukadu_1_1ARToolKitPlusNode_1a41ce894cb7862b8ce6c5d6919467a257" prot="private" static="no" mutable="no">
+        <type>std::string</type>
+        <definition>std::string kukadu::ARToolKitPlusNode::pattern_frame</definition>
+        <argsstring></argsstring>
+        <name>pattern_frame</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/agyss/iis_robot_sw/iis_catkin_ws/src/kukadu/include/kukadu/vision/arlocalizer.hpp" line="123" column="1" bodyfile="/home/agyss/iis_robot_sw/iis_catkin_ws/src/kukadu/include/kukadu/vision/arlocalizer.hpp" bodystart="123" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classkukadu_1_1ARToolKitPlusNode_1a8ee877ad8292fd3f6ad51d1e64466ab0" prot="private" static="no" mutable="no">
+        <type>std::string</type>
+        <definition>std::string kukadu::ARToolKitPlusNode::pattern_file</definition>
+        <argsstring></argsstring>
+        <name>pattern_file</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/agyss/iis_robot_sw/iis_catkin_ws/src/kukadu/include/kukadu/vision/arlocalizer.hpp" line="124" column="1" bodyfile="/home/agyss/iis_robot_sw/iis_catkin_ws/src/kukadu/include/kukadu/vision/arlocalizer.hpp" bodystart="124" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classkukadu_1_1ARToolKitPlusNode_1aa4c5c3c737acb1be69347922e361cc6b" prot="private" static="no" mutable="no">
+        <type>MARKER_MODE</type>
+        <definition>MARKER_MODE kukadu::ARToolKitPlusNode::marker_mode</definition>
+        <argsstring></argsstring>
+        <name>marker_mode</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/agyss/iis_robot_sw/iis_catkin_ws/src/kukadu/include/kukadu/vision/arlocalizer.hpp" line="125" column="1" bodyfile="/home/agyss/iis_robot_sw/iis_catkin_ws/src/kukadu/include/kukadu/vision/arlocalizer.hpp" bodystart="125" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classkukadu_1_1ARToolKitPlusNode_1a8763d2861ede50c8f5e8cb37347cf004" prot="private" static="no" mutable="no">
+        <type>double</type>
+        <definition>double kukadu::ARToolKitPlusNode::pattern_width</definition>
+        <argsstring></argsstring>
+        <name>pattern_width</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/agyss/iis_robot_sw/iis_catkin_ws/src/kukadu/include/kukadu/vision/arlocalizer.hpp" line="126" column="1" bodyfile="/home/agyss/iis_robot_sw/iis_catkin_ws/src/kukadu/include/kukadu/vision/arlocalizer.hpp" bodystart="126" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classkukadu_1_1ARToolKitPlusNode_1acd9168e71b205245c77b027b69a79323" prot="private" static="no" mutable="no">
+        <type>double</type>
+        <definition>double kukadu::ARToolKitPlusNode::threshold</definition>
+        <argsstring></argsstring>
+        <name>threshold</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/agyss/iis_robot_sw/iis_catkin_ws/src/kukadu/include/kukadu/vision/arlocalizer.hpp" line="127" column="1" bodyfile="/home/agyss/iis_robot_sw/iis_catkin_ws/src/kukadu/include/kukadu/vision/arlocalizer.hpp" bodystart="127" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classkukadu_1_1ARToolKitPlusNode_1a2358bc0db523c45f43fa24d306b33f14" prot="private" static="no" mutable="no">
+        <type>double</type>
+        <definition>double kukadu::ARToolKitPlusNode::border_width</definition>
+        <argsstring></argsstring>
+        <name>border_width</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/agyss/iis_robot_sw/iis_catkin_ws/src/kukadu/include/kukadu/vision/arlocalizer.hpp" line="128" column="1" bodyfile="/home/agyss/iis_robot_sw/iis_catkin_ws/src/kukadu/include/kukadu/vision/arlocalizer.hpp" bodystart="128" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classkukadu_1_1ARToolKitPlusNode_1a59979d5bd99d4a78a2a8b1f2fe6fbd04" prot="private" static="no" mutable="no">
+        <type>int</type>
+        <definition>int kukadu::ARToolKitPlusNode::undist_iterations</definition>
+        <argsstring></argsstring>
+        <name>undist_iterations</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/agyss/iis_robot_sw/iis_catkin_ws/src/kukadu/include/kukadu/vision/arlocalizer.hpp" line="129" column="1" bodyfile="/home/agyss/iis_robot_sw/iis_catkin_ws/src/kukadu/include/kukadu/vision/arlocalizer.hpp" bodystart="129" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classkukadu_1_1ARToolKitPlusNode_1a63be61e83b8da8a1187927eed804bf35" prot="private" static="no" mutable="no">
+        <type>bool</type>
+        <definition>bool kukadu::ARToolKitPlusNode::distorted_input</definition>
+        <argsstring></argsstring>
+        <name>distorted_input</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/agyss/iis_robot_sw/iis_catkin_ws/src/kukadu/include/kukadu/vision/arlocalizer.hpp" line="130" column="1" bodyfile="/home/agyss/iis_robot_sw/iis_catkin_ws/src/kukadu/include/kukadu/vision/arlocalizer.hpp" bodystart="130" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classkukadu_1_1ARToolKitPlusNode_1a3c763cb9f13d37232baf929ecb880ddb" prot="private" static="no" mutable="no">
+        <type>UNDIST_MODE</type>
+        <definition>UNDIST_MODE kukadu::ARToolKitPlusNode::undist_mode</definition>
+        <argsstring></argsstring>
+        <name>undist_mode</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/agyss/iis_robot_sw/iis_catkin_ws/src/kukadu/include/kukadu/vision/arlocalizer.hpp" line="131" column="1" bodyfile="/home/agyss/iis_robot_sw/iis_catkin_ws/src/kukadu/include/kukadu/vision/arlocalizer.hpp" bodystart="131" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classkukadu_1_1ARToolKitPlusNode_1a59af814b7ef8f2702287e517a53689c1" prot="private" static="no" mutable="no">
+        <type>POSE_ESTIMATOR</type>
+        <definition>POSE_ESTIMATOR kukadu::ARToolKitPlusNode::pose_estimation_mode</definition>
+        <argsstring></argsstring>
+        <name>pose_estimation_mode</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/agyss/iis_robot_sw/iis_catkin_ws/src/kukadu/include/kukadu/vision/arlocalizer.hpp" line="132" column="1" bodyfile="/home/agyss/iis_robot_sw/iis_catkin_ws/src/kukadu/include/kukadu/vision/arlocalizer.hpp" bodystart="132" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classkukadu_1_1ARToolKitPlusNode_1a6d6bc6e62721d8badd4449bc1115a7bd" prot="private" static="no" mutable="no">
+        <type>std::string</type>
+        <definition>std::string kukadu::ARToolKitPlusNode::imageTopic</definition>
+        <argsstring></argsstring>
+        <name>imageTopic</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/agyss/iis_robot_sw/iis_catkin_ws/src/kukadu/include/kukadu/vision/arlocalizer.hpp" line="133" column="1" bodyfile="/home/agyss/iis_robot_sw/iis_catkin_ws/src/kukadu/include/kukadu/vision/arlocalizer.hpp" bodystart="133" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classkukadu_1_1ARToolKitPlusNode_1a71c0e09cf38d67bb3f88eafaee19d776" prot="private" static="no" mutable="no">
+        <type>bool</type>
+        <definition>bool kukadu::ARToolKitPlusNode::use_multi_marker_lite_detection</definition>
+        <argsstring></argsstring>
+        <name>use_multi_marker_lite_detection</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/agyss/iis_robot_sw/iis_catkin_ws/src/kukadu/include/kukadu/vision/arlocalizer.hpp" line="134" column="1" bodyfile="/home/agyss/iis_robot_sw/iis_catkin_ws/src/kukadu/include/kukadu/vision/arlocalizer.hpp" bodystart="134" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classkukadu_1_1ARToolKitPlusNode_1a6890fbcfd216cf45e79b928298b08b39" prot="private" static="no" mutable="no">
+        <type>ros::NodeHandle</type>
+        <definition>ros::NodeHandle kukadu::ARToolKitPlusNode::n_</definition>
+        <argsstring></argsstring>
+        <name>n_</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/agyss/iis_robot_sw/iis_catkin_ws/src/kukadu/include/kukadu/vision/arlocalizer.hpp" line="137" column="1" bodyfile="/home/agyss/iis_robot_sw/iis_catkin_ws/src/kukadu/include/kukadu/vision/arlocalizer.hpp" bodystart="137" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classkukadu_1_1ARToolKitPlusNode_1a6b0892b5bc77f016eca24ed8cfbf2125" prot="private" static="no" mutable="no">
+        <type>ros::NodeHandle</type>
+        <definition>ros::NodeHandle kukadu::ARToolKitPlusNode::n_param_</definition>
+        <argsstring></argsstring>
+        <name>n_param_</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/agyss/iis_robot_sw/iis_catkin_ws/src/kukadu/include/kukadu/vision/arlocalizer.hpp" line="138" column="1" bodyfile="/home/agyss/iis_robot_sw/iis_catkin_ws/src/kukadu/include/kukadu/vision/arlocalizer.hpp" bodystart="138" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classkukadu_1_1ARToolKitPlusNode_1aacdf14822510bc7db12055d8071650f2" prot="private" static="no" mutable="no">
+        <type>int</type>
+        <definition>int kukadu::ARToolKitPlusNode::callback_counter_</definition>
+        <argsstring></argsstring>
+        <name>callback_counter_</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/agyss/iis_robot_sw/iis_catkin_ws/src/kukadu/include/kukadu/vision/arlocalizer.hpp" line="139" column="1" bodyfile="/home/agyss/iis_robot_sw/iis_catkin_ws/src/kukadu/include/kukadu/vision/arlocalizer.hpp" bodystart="139" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classkukadu_1_1ARToolKitPlusNode_1abbe2e6e77673c892c62686d819bf28f6" prot="private" static="no" mutable="no">
+        <type>image_transport::ImageTransport</type>
+        <definition>image_transport::ImageTransport kukadu::ARToolKitPlusNode::imageTransport_</definition>
+        <argsstring></argsstring>
+        <name>imageTransport_</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/agyss/iis_robot_sw/iis_catkin_ws/src/kukadu/include/kukadu/vision/arlocalizer.hpp" line="140" column="1" bodyfile="/home/agyss/iis_robot_sw/iis_catkin_ws/src/kukadu/include/kukadu/vision/arlocalizer.hpp" bodystart="140" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classkukadu_1_1ARToolKitPlusNode_1a11939a868b7263232af6706d592efae9" prot="private" static="no" mutable="no">
+        <type>image_transport::CameraSubscriber</type>
+        <definition>image_transport::CameraSubscriber kukadu::ARToolKitPlusNode::cameraSubscriber_</definition>
+        <argsstring></argsstring>
+        <name>cameraSubscriber_</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/agyss/iis_robot_sw/iis_catkin_ws/src/kukadu/include/kukadu/vision/arlocalizer.hpp" line="141" column="1" bodyfile="/home/agyss/iis_robot_sw/iis_catkin_ws/src/kukadu/include/kukadu/vision/arlocalizer.hpp" bodystart="141" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classkukadu_1_1ARToolKitPlusNode_1a127b70e57286740376150f9719ea0847" prot="private" static="no" mutable="no">
+        <type>tf::TransformBroadcaster</type>
+        <definition>tf::TransformBroadcaster kukadu::ARToolKitPlusNode::transformBroadcaster_</definition>
+        <argsstring></argsstring>
+        <name>transformBroadcaster_</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/agyss/iis_robot_sw/iis_catkin_ws/src/kukadu/include/kukadu/vision/arlocalizer.hpp" line="142" column="1" bodyfile="/home/agyss/iis_robot_sw/iis_catkin_ws/src/kukadu/include/kukadu/vision/arlocalizer.hpp" bodystart="142" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classkukadu_1_1ARToolKitPlusNode_1a0964dfe76715ffe60fea779641351c1e" prot="private" static="no" mutable="no">
+        <type>boost::shared_ptr&lt; kukadu::TrackerSingleMarker &gt;</type>
+        <definition>boost::shared_ptr&lt;kukadu::TrackerSingleMarker&gt; kukadu::ARToolKitPlusNode::trackerSingleMarker_</definition>
+        <argsstring></argsstring>
+        <name>trackerSingleMarker_</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/agyss/iis_robot_sw/iis_catkin_ws/src/kukadu/include/kukadu/vision/arlocalizer.hpp" line="143" column="1" bodyfile="/home/agyss/iis_robot_sw/iis_catkin_ws/src/kukadu/include/kukadu/vision/arlocalizer.hpp" bodystart="143" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classkukadu_1_1ARToolKitPlusNode_1afa6d21c0d444a36bc5668966e2e93ac5" prot="private" static="no" mutable="no">
+        <type>boost::shared_ptr&lt; kukadu::TrackerMultiMarker &gt;</type>
+        <definition>boost::shared_ptr&lt;kukadu::TrackerMultiMarker&gt; kukadu::ARToolKitPlusNode::trackerMultiMarker_</definition>
+        <argsstring></argsstring>
+        <name>trackerMultiMarker_</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/agyss/iis_robot_sw/iis_catkin_ws/src/kukadu/include/kukadu/vision/arlocalizer.hpp" line="144" column="1" bodyfile="/home/agyss/iis_robot_sw/iis_catkin_ws/src/kukadu/include/kukadu/vision/arlocalizer.hpp" bodystart="144" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classkukadu_1_1ARToolKitPlusNode_1a0b1e106474beac371040e01f0677a80e" prot="private" static="no" mutable="no">
+        <type>std::vector&lt; <ref refid="classkukadu_1_1ARTag2D" kindref="compound">kukadu::ARTag2D</ref> &gt;</type>
+        <definition>std::vector&lt;kukadu::ARTag2D&gt; kukadu::ARToolKitPlusNode::arTags2D_</definition>
+        <argsstring></argsstring>
+        <name>arTags2D_</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/agyss/iis_robot_sw/iis_catkin_ws/src/kukadu/include/kukadu/vision/arlocalizer.hpp" line="145" column="1" bodyfile="/home/agyss/iis_robot_sw/iis_catkin_ws/src/kukadu/include/kukadu/vision/arlocalizer.hpp" bodystart="145" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classkukadu_1_1ARToolKitPlusNode_1af15ea8d2e0478eb9dee41b813b6c0394" prot="private" static="no" mutable="no">
+        <type>std::list&lt; tf::StampedTransform &gt;</type>
+        <definition>std::list&lt;tf::StampedTransform&gt; kukadu::ARToolKitPlusNode::markerTransforms_</definition>
+        <argsstring></argsstring>
+        <name>markerTransforms_</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/agyss/iis_robot_sw/iis_catkin_ws/src/kukadu/include/kukadu/vision/arlocalizer.hpp" line="146" column="1" bodyfile="/home/agyss/iis_robot_sw/iis_catkin_ws/src/kukadu/include/kukadu/vision/arlocalizer.hpp" bodystart="146" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classkukadu_1_1ARToolKitPlusNode_1a826574b98eb1a4075125bc55090ee340" prot="private" static="no" mutable="no">
+        <type>const kukadu::ARMultiMarkerInfoT *</type>
+        <definition>const kukadu::ARMultiMarkerInfoT* kukadu::ARToolKitPlusNode::arMultiMarkerInfo_</definition>
+        <argsstring></argsstring>
+        <name>arMultiMarkerInfo_</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/agyss/iis_robot_sw/iis_catkin_ws/src/kukadu/include/kukadu/vision/arlocalizer.hpp" line="147" column="1" bodyfile="/home/agyss/iis_robot_sw/iis_catkin_ws/src/kukadu/include/kukadu/vision/arlocalizer.hpp" bodystart="147" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classkukadu_1_1ARToolKitPlusNode_1a1a466fe4cb5e2162920ac812b3396131" prot="private" static="no" mutable="no">
+        <type>Logger *</type>
+        <definition>Logger* kukadu::ARToolKitPlusNode::logger_</definition>
+        <argsstring></argsstring>
+        <name>logger_</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/agyss/iis_robot_sw/iis_catkin_ws/src/kukadu/include/kukadu/vision/arlocalizer.hpp" line="148" column="1" bodyfile="/home/agyss/iis_robot_sw/iis_catkin_ws/src/kukadu/include/kukadu/vision/arlocalizer.hpp" bodystart="148" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classkukadu_1_1ARToolKitPlusNode_1a18efaebb5baa76a155c72fdff0bab12b" prot="private" static="no" mutable="no">
+        <type>kukadu::CameraAdvImpl *</type>
+        <definition>kukadu::CameraAdvImpl* kukadu::ARToolKitPlusNode::camera</definition>
+        <argsstring></argsstring>
+        <name>camera</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/agyss/iis_robot_sw/iis_catkin_ws/src/kukadu/include/kukadu/vision/arlocalizer.hpp" line="149" column="1" bodyfile="/home/agyss/iis_robot_sw/iis_catkin_ws/src/kukadu/include/kukadu/vision/arlocalizer.hpp" bodystart="149" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classkukadu_1_1ARToolKitPlusNode_1ac11663a5c8e03ee539d85ff38c41672e" prot="private" static="no" mutable="no">
+        <type>ros::Publisher</type>
+        <definition>ros::Publisher kukadu::ARToolKitPlusNode::pub_perceptions_</definition>
+        <argsstring></argsstring>
+        <name>pub_perceptions_</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/agyss/iis_robot_sw/iis_catkin_ws/src/kukadu/include/kukadu/vision/arlocalizer.hpp" line="150" column="1" bodyfile="/home/agyss/iis_robot_sw/iis_catkin_ws/src/kukadu/include/kukadu/vision/arlocalizer.hpp" bodystart="150" bodyend="-1"/>
+      </memberdef>
+      </sectiondef>
+      <sectiondef kind="public-func">
+      <memberdef kind="function" id="classkukadu_1_1ARToolKitPlusNode_1af59f135659c7c82497b4206cdb257069" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type></type>
+        <definition>kukadu::ARToolKitPlusNode::ARToolKitPlusNode</definition>
+        <argsstring>(ros::NodeHandle &amp;n)</argsstring>
+        <name>ARToolKitPlusNode</name>
+        <param>
+          <type>ros::NodeHandle &amp;</type>
+          <declname>n</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/agyss/iis_robot_sw/iis_catkin_ws/src/kukadu/include/kukadu/vision/arlocalizer.hpp" line="83" column="1" bodyfile="/home/agyss/iis_robot_sw/iis_catkin_ws/src/kukadu/src/vision/arlocalizer/arlocalizer.cpp" bodystart="70" bodyend="99"/>
+      </memberdef>
+      <memberdef kind="function" id="classkukadu_1_1ARToolKitPlusNode_1abd9a833fe8465b6e3ad8517432a86dd5" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type></type>
+        <definition>kukadu::ARToolKitPlusNode::ARToolKitPlusNode</definition>
+        <argsstring>(ros::NodeHandle &amp;n, std::string imageTopic, bool show_camera_image)</argsstring>
+        <name>ARToolKitPlusNode</name>
+        <param>
+          <type>ros::NodeHandle &amp;</type>
+          <declname>n</declname>
+        </param>
+        <param>
+          <type>std::string</type>
+          <declname>imageTopic</declname>
+        </param>
+        <param>
+          <type>bool</type>
+          <declname>show_camera_image</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/agyss/iis_robot_sw/iis_catkin_ws/src/kukadu/include/kukadu/vision/arlocalizer.hpp" line="85" column="1" bodyfile="/home/agyss/iis_robot_sw/iis_catkin_ws/src/kukadu/src/vision/arlocalizer/arlocalizer.cpp" bodystart="101" bodyend="131"/>
+      </memberdef>
+      <memberdef kind="function" id="classkukadu_1_1ARToolKitPlusNode_1aa166bd1ebd987ecf4e7d312f9e9b1033" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type></type>
+        <definition>kukadu::ARToolKitPlusNode::ARToolKitPlusNode</definition>
+        <argsstring>(ros::NodeHandle &amp;n, int skip_frames, bool show_camera_image, std::string tf_prefix, bool tracker_single_marker, bool tracker_multi_marker, std::string pattern_frame, std::string pattern_file, MARKER_MODE marker_mode, double pattern_width, double threshold, double border_width, int undist_iterations, bool distorted_input, UNDIST_MODE undist_mode, POSE_ESTIMATOR pose_estimation_mode, std::string imageTopic, bool use_multi_marker_lite_detection)</argsstring>
+        <name>ARToolKitPlusNode</name>
+        <param>
+          <type>ros::NodeHandle &amp;</type>
+          <declname>n</declname>
+        </param>
+        <param>
+          <type>int</type>
+          <declname>skip_frames</declname>
+        </param>
+        <param>
+          <type>bool</type>
+          <declname>show_camera_image</declname>
+        </param>
+        <param>
+          <type>std::string</type>
+          <declname>tf_prefix</declname>
+        </param>
+        <param>
+          <type>bool</type>
+          <declname>tracker_single_marker</declname>
+        </param>
+        <param>
+          <type>bool</type>
+          <declname>tracker_multi_marker</declname>
+        </param>
+        <param>
+          <type>std::string</type>
+          <declname>pattern_frame</declname>
+        </param>
+        <param>
+          <type>std::string</type>
+          <declname>pattern_file</declname>
+        </param>
+        <param>
+          <type>MARKER_MODE</type>
+          <declname>marker_mode</declname>
+        </param>
+        <param>
+          <type>double</type>
+          <declname>pattern_width</declname>
+        </param>
+        <param>
+          <type>double</type>
+          <declname>threshold</declname>
+        </param>
+        <param>
+          <type>double</type>
+          <declname>border_width</declname>
+        </param>
+        <param>
+          <type>int</type>
+          <declname>undist_iterations</declname>
+        </param>
+        <param>
+          <type>bool</type>
+          <declname>distorted_input</declname>
+        </param>
+        <param>
+          <type>UNDIST_MODE</type>
+          <declname>undist_mode</declname>
+        </param>
+        <param>
+          <type>POSE_ESTIMATOR</type>
+          <declname>pose_estimation_mode</declname>
+        </param>
+        <param>
+          <type>std::string</type>
+          <declname>imageTopic</declname>
+        </param>
+        <param>
+          <type>bool</type>
+          <declname>use_multi_marker_lite_detection</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/agyss/iis_robot_sw/iis_catkin_ws/src/kukadu/include/kukadu/vision/arlocalizer.hpp" line="87" column="1" bodyfile="/home/agyss/iis_robot_sw/iis_catkin_ws/src/kukadu/src/vision/arlocalizer/arlocalizer.cpp" bodystart="133" bodyend="179"/>
+      </memberdef>
+      <memberdef kind="function" id="classkukadu_1_1ARToolKitPlusNode_1a30eec7d870fb10233aadc39505a36579" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>std::map&lt; std::string, geometry_msgs::Pose &gt;</type>
+        <definition>std::map&lt; std::string, geometry_msgs::Pose &gt; kukadu::ARToolKitPlusNode::getDetectedPoses</definition>
+        <argsstring>()</argsstring>
+        <name>getDetectedPoses</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/agyss/iis_robot_sw/iis_catkin_ws/src/kukadu/include/kukadu/vision/arlocalizer.hpp" line="106" column="1" bodyfile="/home/agyss/iis_robot_sw/iis_catkin_ws/src/kukadu/src/vision/arlocalizer/arlocalizer.cpp" bodystart="501" bodyend="528"/>
+      </memberdef>
+      <memberdef kind="function" id="classkukadu_1_1ARToolKitPlusNode_1a2133a9697a70994291b491587722c827" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>std::string</type>
+        <definition>std::string kukadu::ARToolKitPlusNode::getDetectionFrameName</definition>
+        <argsstring>()</argsstring>
+        <name>getDetectionFrameName</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/agyss/iis_robot_sw/iis_catkin_ws/src/kukadu/include/kukadu/vision/arlocalizer.hpp" line="108" column="1" bodyfile="/home/agyss/iis_robot_sw/iis_catkin_ws/src/kukadu/src/vision/arlocalizer/arlocalizer.cpp" bodystart="256" bodyend="258"/>
+      </memberdef>
+      </sectiondef>
+      <sectiondef kind="private-func">
+      <memberdef kind="function" id="classkukadu_1_1ARToolKitPlusNode_1ae628fb811f1ae002be763c4363bbe2c4" prot="private" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>void kukadu::ARToolKitPlusNode::initTrackerSingleMarker</definition>
+        <argsstring>(const sensor_msgs::CameraInfoConstPtr &amp;camer_info_)</argsstring>
+        <name>initTrackerSingleMarker</name>
+        <param>
+          <type>const sensor_msgs::CameraInfoConstPtr &amp;</type>
+          <declname>camer_info_</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/agyss/iis_robot_sw/iis_catkin_ws/src/kukadu/include/kukadu/vision/arlocalizer.hpp" line="152" column="1" bodyfile="/home/agyss/iis_robot_sw/iis_catkin_ws/src/kukadu/src/vision/arlocalizer/arlocalizer.cpp" bodystart="283" bodyend="297"/>
+      </memberdef>
+      <memberdef kind="function" id="classkukadu_1_1ARToolKitPlusNode_1ac8380cdcd823dde6ddd16cf6e18c56f0" prot="private" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>void kukadu::ARToolKitPlusNode::initTrackerMultiMarker</definition>
+        <argsstring>(const sensor_msgs::CameraInfoConstPtr &amp;camer_info_)</argsstring>
+        <name>initTrackerMultiMarker</name>
+        <param>
+          <type>const sensor_msgs::CameraInfoConstPtr &amp;</type>
+          <declname>camer_info_</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/agyss/iis_robot_sw/iis_catkin_ws/src/kukadu/include/kukadu/vision/arlocalizer.hpp" line="153" column="1" bodyfile="/home/agyss/iis_robot_sw/iis_catkin_ws/src/kukadu/src/vision/arlocalizer/arlocalizer.cpp" bodystart="260" bodyend="281"/>
+      </memberdef>
+      <memberdef kind="function" id="classkukadu_1_1ARToolKitPlusNode_1ad218e979aab96cbe517c32917959d991" prot="private" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>void kukadu::ARToolKitPlusNode::updateParameterTrackerSingleMarker</definition>
+        <argsstring>(const sensor_msgs::CameraInfoConstPtr &amp;camer_info)</argsstring>
+        <name>updateParameterTrackerSingleMarker</name>
+        <param>
+          <type>const sensor_msgs::CameraInfoConstPtr &amp;</type>
+          <declname>camer_info</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/agyss/iis_robot_sw/iis_catkin_ws/src/kukadu/include/kukadu/vision/arlocalizer.hpp" line="155" column="1" bodyfile="/home/agyss/iis_robot_sw/iis_catkin_ws/src/kukadu/src/vision/arlocalizer/arlocalizer.cpp" bodystart="299" bodyend="332"/>
+      </memberdef>
+      <memberdef kind="function" id="classkukadu_1_1ARToolKitPlusNode_1a03c791ca90145574f7c96186b01bd767" prot="private" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>void kukadu::ARToolKitPlusNode::updateParameterTrackerMultiMarker</definition>
+        <argsstring>(const sensor_msgs::CameraInfoConstPtr &amp;camer_info)</argsstring>
+        <name>updateParameterTrackerMultiMarker</name>
+        <param>
+          <type>const sensor_msgs::CameraInfoConstPtr &amp;</type>
+          <declname>camer_info</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/agyss/iis_robot_sw/iis_catkin_ws/src/kukadu/include/kukadu/vision/arlocalizer.hpp" line="156" column="1" bodyfile="/home/agyss/iis_robot_sw/iis_catkin_ws/src/kukadu/src/vision/arlocalizer/arlocalizer.cpp" bodystart="334" bodyend="370"/>
+      </memberdef>
+      <memberdef kind="function" id="classkukadu_1_1ARToolKitPlusNode_1a9e5762c66238e4cc79417a98feeb4dd9" prot="private" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>void kukadu::ARToolKitPlusNode::imageCallback</definition>
+        <argsstring>(const sensor_msgs::ImageConstPtr &amp;image_msg, const sensor_msgs::CameraInfoConstPtr &amp;info_msg)</argsstring>
+        <name>imageCallback</name>
+        <param>
+          <type>const sensor_msgs::ImageConstPtr &amp;</type>
+          <declname>image_msg</declname>
+        </param>
+        <param>
+          <type>const sensor_msgs::CameraInfoConstPtr &amp;</type>
+          <declname>info_msg</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+<para>Sort out marker which are part of multi marker patterns </para>        </inbodydescription>
+        <location file="/home/agyss/iis_robot_sw/iis_catkin_ws/src/kukadu/include/kukadu/vision/arlocalizer.hpp" line="158" column="1" bodyfile="/home/agyss/iis_robot_sw/iis_catkin_ws/src/kukadu/src/vision/arlocalizer/arlocalizer.cpp" bodystart="372" bodyend="437"/>
+      </memberdef>
+      <memberdef kind="function" id="classkukadu_1_1ARToolKitPlusNode_1a3da9b7aa75f931095868aa7375b4b76a" prot="private" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>void kukadu::ARToolKitPlusNode::estimatePoses</definition>
+        <argsstring>(const std_msgs::Header &amp;header)</argsstring>
+        <name>estimatePoses</name>
+        <param>
+          <type>const std_msgs::Header &amp;</type>
+          <declname>header</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/agyss/iis_robot_sw/iis_catkin_ws/src/kukadu/include/kukadu/vision/arlocalizer.hpp" line="160" column="1" bodyfile="/home/agyss/iis_robot_sw/iis_catkin_ws/src/kukadu/src/vision/arlocalizer/arlocalizer.cpp" bodystart="439" bodyend="499"/>
+      </memberdef>
+      <memberdef kind="function" id="classkukadu_1_1ARToolKitPlusNode_1a615f693468c3ede63f5b7f9e64e6a0b3" prot="private" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>void kukadu::ARToolKitPlusNode::publishTf</definition>
+        <argsstring>()</argsstring>
+        <name>publishTf</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/agyss/iis_robot_sw/iis_catkin_ws/src/kukadu/include/kukadu/vision/arlocalizer.hpp" line="161" column="1" bodyfile="/home/agyss/iis_robot_sw/iis_catkin_ws/src/kukadu/src/vision/arlocalizer/arlocalizer.cpp" bodystart="580" bodyend="582"/>
+      </memberdef>
+      <memberdef kind="function" id="classkukadu_1_1ARToolKitPlusNode_1acd811d527d1bfb01b1c85bb148e31fb7" prot="private" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>void kukadu::ARToolKitPlusNode::generateDebugImage</definition>
+        <argsstring>(cv::Mat &amp;img)</argsstring>
+        <name>generateDebugImage</name>
+        <param>
+          <type>cv::Mat &amp;</type>
+          <declname>img</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/agyss/iis_robot_sw/iis_catkin_ws/src/kukadu/include/kukadu/vision/arlocalizer.hpp" line="162" column="1" bodyfile="/home/agyss/iis_robot_sw/iis_catkin_ws/src/kukadu/src/vision/arlocalizer/arlocalizer.cpp" bodystart="538" bodyend="569"/>
+      </memberdef>
+      <memberdef kind="function" id="classkukadu_1_1ARToolKitPlusNode_1a65f2f1f11c86775d2185b610caba5ad5" prot="private" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>int</type>
+        <definition>int kukadu::ARToolKitPlusNode::matrix2Tf</definition>
+        <argsstring>(const kukadu::ARFloat M[3][4], tf::Transform &amp;transform)</argsstring>
+        <name>matrix2Tf</name>
+        <param>
+          <type>const kukadu::ARFloat</type>
+          <declname>M</declname>
+          <array>[3][4]</array>
+        </param>
+        <param>
+          <type>tf::Transform &amp;</type>
+          <declname>transform</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/agyss/iis_robot_sw/iis_catkin_ws/src/kukadu/include/kukadu/vision/arlocalizer.hpp" line="163" column="1" bodyfile="/home/agyss/iis_robot_sw/iis_catkin_ws/src/kukadu/src/vision/arlocalizer/arlocalizer.cpp" bodystart="571" bodyend="578"/>
+      </memberdef>
+      <memberdef kind="function" id="classkukadu_1_1ARToolKitPlusNode_1abb0a705341e48623e32c7c05aa48fdb8" prot="private" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>void kukadu::ARToolKitPlusNode::readParam</definition>
+        <argsstring>()</argsstring>
+        <name>readParam</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/agyss/iis_robot_sw/iis_catkin_ws/src/kukadu/include/kukadu/vision/arlocalizer.hpp" line="164" column="1"/>
+      </memberdef>
+      <memberdef kind="function" id="classkukadu_1_1ARToolKitPlusNode_1a26748512a732c68790f951b8645fb954" prot="private" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>void kukadu::ARToolKitPlusNode::init</definition>
+        <argsstring>()</argsstring>
+        <name>init</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/agyss/iis_robot_sw/iis_catkin_ws/src/kukadu/include/kukadu/vision/arlocalizer.hpp" line="165" column="1" bodyfile="/home/agyss/iis_robot_sw/iis_catkin_ws/src/kukadu/src/vision/arlocalizer/arlocalizer.cpp" bodystart="530" bodyend="536"/>
+      </memberdef>
+      </sectiondef>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <location file="/home/agyss/iis_robot_sw/iis_catkin_ws/src/kukadu/include/kukadu/vision/arlocalizer.hpp" line="79" column="1" bodyfile="/home/agyss/iis_robot_sw/iis_catkin_ws/src/kukadu/include/kukadu/vision/arlocalizer.hpp" bodystart="79" bodyend="167"/>
+    <listofallmembers>
+      <member refid="classkukadu_1_1ARToolKitPlusNode_1a826574b98eb1a4075125bc55090ee340" prot="private" virt="non-virtual"><scope>kukadu::ARToolKitPlusNode</scope><name>arMultiMarkerInfo_</name></member>
+      <member refid="classkukadu_1_1ARToolKitPlusNode_1a0b1e106474beac371040e01f0677a80e" prot="private" virt="non-virtual"><scope>kukadu::ARToolKitPlusNode</scope><name>arTags2D_</name></member>
+      <member refid="classkukadu_1_1ARToolKitPlusNode_1af59f135659c7c82497b4206cdb257069" prot="public" virt="non-virtual"><scope>kukadu::ARToolKitPlusNode</scope><name>ARToolKitPlusNode</name></member>
+      <member refid="classkukadu_1_1ARToolKitPlusNode_1abd9a833fe8465b6e3ad8517432a86dd5" prot="public" virt="non-virtual"><scope>kukadu::ARToolKitPlusNode</scope><name>ARToolKitPlusNode</name></member>
+      <member refid="classkukadu_1_1ARToolKitPlusNode_1aa166bd1ebd987ecf4e7d312f9e9b1033" prot="public" virt="non-virtual"><scope>kukadu::ARToolKitPlusNode</scope><name>ARToolKitPlusNode</name></member>
+      <member refid="classkukadu_1_1ARToolKitPlusNode_1a2358bc0db523c45f43fa24d306b33f14" prot="private" virt="non-virtual"><scope>kukadu::ARToolKitPlusNode</scope><name>border_width</name></member>
+      <member refid="classkukadu_1_1ARToolKitPlusNode_1aacdf14822510bc7db12055d8071650f2" prot="private" virt="non-virtual"><scope>kukadu::ARToolKitPlusNode</scope><name>callback_counter_</name></member>
+      <member refid="classkukadu_1_1ARToolKitPlusNode_1a18efaebb5baa76a155c72fdff0bab12b" prot="private" virt="non-virtual"><scope>kukadu::ARToolKitPlusNode</scope><name>camera</name></member>
+      <member refid="classkukadu_1_1ARToolKitPlusNode_1a11939a868b7263232af6706d592efae9" prot="private" virt="non-virtual"><scope>kukadu::ARToolKitPlusNode</scope><name>cameraSubscriber_</name></member>
+      <member refid="classkukadu_1_1ARToolKitPlusNode_1afa448b3074680fc573bcc192ab956b4a" prot="private" virt="non-virtual"><scope>kukadu::ARToolKitPlusNode</scope><name>detectionFrameName</name></member>
+      <member refid="classkukadu_1_1ARToolKitPlusNode_1a63be61e83b8da8a1187927eed804bf35" prot="private" virt="non-virtual"><scope>kukadu::ARToolKitPlusNode</scope><name>distorted_input</name></member>
+      <member refid="classkukadu_1_1ARToolKitPlusNode_1a3da9b7aa75f931095868aa7375b4b76a" prot="private" virt="non-virtual"><scope>kukadu::ARToolKitPlusNode</scope><name>estimatePoses</name></member>
+      <member refid="classkukadu_1_1ARToolKitPlusNode_1a8979ae395a63c3175b20fc2f8cd475c5" prot="private" virt="non-virtual"><scope>kukadu::ARToolKitPlusNode</scope><name>firstImageRetrieved</name></member>
+      <member refid="classkukadu_1_1ARToolKitPlusNode_1acd811d527d1bfb01b1c85bb148e31fb7" prot="private" virt="non-virtual"><scope>kukadu::ARToolKitPlusNode</scope><name>generateDebugImage</name></member>
+      <member refid="classkukadu_1_1ARToolKitPlusNode_1a30eec7d870fb10233aadc39505a36579" prot="public" virt="non-virtual"><scope>kukadu::ARToolKitPlusNode</scope><name>getDetectedPoses</name></member>
+      <member refid="classkukadu_1_1ARToolKitPlusNode_1a2133a9697a70994291b491587722c827" prot="public" virt="non-virtual"><scope>kukadu::ARToolKitPlusNode</scope><name>getDetectionFrameName</name></member>
+      <member refid="classkukadu_1_1ARToolKitPlusNode_1a9e5762c66238e4cc79417a98feeb4dd9" prot="private" virt="non-virtual"><scope>kukadu::ARToolKitPlusNode</scope><name>imageCallback</name></member>
+      <member refid="classkukadu_1_1ARToolKitPlusNode_1a6d6bc6e62721d8badd4449bc1115a7bd" prot="private" virt="non-virtual"><scope>kukadu::ARToolKitPlusNode</scope><name>imageTopic</name></member>
+      <member refid="classkukadu_1_1ARToolKitPlusNode_1abbe2e6e77673c892c62686d819bf28f6" prot="private" virt="non-virtual"><scope>kukadu::ARToolKitPlusNode</scope><name>imageTransport_</name></member>
+      <member refid="classkukadu_1_1ARToolKitPlusNode_1a26748512a732c68790f951b8645fb954" prot="private" virt="non-virtual"><scope>kukadu::ARToolKitPlusNode</scope><name>init</name></member>
+      <member refid="classkukadu_1_1ARToolKitPlusNode_1ac8380cdcd823dde6ddd16cf6e18c56f0" prot="private" virt="non-virtual"><scope>kukadu::ARToolKitPlusNode</scope><name>initTrackerMultiMarker</name></member>
+      <member refid="classkukadu_1_1ARToolKitPlusNode_1ae628fb811f1ae002be763c4363bbe2c4" prot="private" virt="non-virtual"><scope>kukadu::ARToolKitPlusNode</scope><name>initTrackerSingleMarker</name></member>
+      <member refid="classkukadu_1_1ARToolKitPlusNode_1a1a466fe4cb5e2162920ac812b3396131" prot="private" virt="non-virtual"><scope>kukadu::ARToolKitPlusNode</scope><name>logger_</name></member>
+      <member refid="classkukadu_1_1ARToolKitPlusNode_1aa4c5c3c737acb1be69347922e361cc6b" prot="private" virt="non-virtual"><scope>kukadu::ARToolKitPlusNode</scope><name>marker_mode</name></member>
+      <member refid="classkukadu_1_1ARToolKitPlusNode_1af15ea8d2e0478eb9dee41b813b6c0394" prot="private" virt="non-virtual"><scope>kukadu::ARToolKitPlusNode</scope><name>markerTransforms_</name></member>
+      <member refid="classkukadu_1_1ARToolKitPlusNode_1a65f2f1f11c86775d2185b610caba5ad5" prot="private" virt="non-virtual"><scope>kukadu::ARToolKitPlusNode</scope><name>matrix2Tf</name></member>
+      <member refid="classkukadu_1_1ARToolKitPlusNode_1a6890fbcfd216cf45e79b928298b08b39" prot="private" virt="non-virtual"><scope>kukadu::ARToolKitPlusNode</scope><name>n_</name></member>
+      <member refid="classkukadu_1_1ARToolKitPlusNode_1a6b0892b5bc77f016eca24ed8cfbf2125" prot="private" virt="non-virtual"><scope>kukadu::ARToolKitPlusNode</scope><name>n_param_</name></member>
+      <member refid="classkukadu_1_1ARToolKitPlusNode_1a8ee877ad8292fd3f6ad51d1e64466ab0" prot="private" virt="non-virtual"><scope>kukadu::ARToolKitPlusNode</scope><name>pattern_file</name></member>
+      <member refid="classkukadu_1_1ARToolKitPlusNode_1a41ce894cb7862b8ce6c5d6919467a257" prot="private" virt="non-virtual"><scope>kukadu::ARToolKitPlusNode</scope><name>pattern_frame</name></member>
+      <member refid="classkukadu_1_1ARToolKitPlusNode_1a8763d2861ede50c8f5e8cb37347cf004" prot="private" virt="non-virtual"><scope>kukadu::ARToolKitPlusNode</scope><name>pattern_width</name></member>
+      <member refid="classkukadu_1_1ARToolKitPlusNode_1a59af814b7ef8f2702287e517a53689c1" prot="private" virt="non-virtual"><scope>kukadu::ARToolKitPlusNode</scope><name>pose_estimation_mode</name></member>
+      <member refid="classkukadu_1_1ARToolKitPlusNode_1ac11663a5c8e03ee539d85ff38c41672e" prot="private" virt="non-virtual"><scope>kukadu::ARToolKitPlusNode</scope><name>pub_perceptions_</name></member>
+      <member refid="classkukadu_1_1ARToolKitPlusNode_1a615f693468c3ede63f5b7f9e64e6a0b3" prot="private" virt="non-virtual"><scope>kukadu::ARToolKitPlusNode</scope><name>publishTf</name></member>
+      <member refid="classkukadu_1_1ARToolKitPlusNode_1abb0a705341e48623e32c7c05aa48fdb8" prot="private" virt="non-virtual"><scope>kukadu::ARToolKitPlusNode</scope><name>readParam</name></member>
+      <member refid="classkukadu_1_1ARToolKitPlusNode_1a3d750f804210d71749aa3035c4ca349b" prot="private" virt="non-virtual"><scope>kukadu::ARToolKitPlusNode</scope><name>show_camera_image</name></member>
+      <member refid="classkukadu_1_1ARToolKitPlusNode_1a02d4bcd144de96d0d919c2e0da765439" prot="private" virt="non-virtual"><scope>kukadu::ARToolKitPlusNode</scope><name>skip_frames</name></member>
+      <member refid="classkukadu_1_1ARToolKitPlusNode_1a4d185c3d80e30aa90e9d881c51e6f54d" prot="private" virt="non-virtual"><scope>kukadu::ARToolKitPlusNode</scope><name>tf_prefix</name></member>
+      <member refid="classkukadu_1_1ARToolKitPlusNode_1abe933cb7a770aa3a87b53d337cc0266f" prot="private" virt="non-virtual"><scope>kukadu::ARToolKitPlusNode</scope><name>tfMutex</name></member>
+      <member refid="classkukadu_1_1ARToolKitPlusNode_1acd9168e71b205245c77b027b69a79323" prot="private" virt="non-virtual"><scope>kukadu::ARToolKitPlusNode</scope><name>threshold</name></member>
+      <member refid="classkukadu_1_1ARToolKitPlusNode_1aa18ba28efe2e846a33b55bed89b63d79" prot="private" virt="non-virtual"><scope>kukadu::ARToolKitPlusNode</scope><name>tracker_multi_marker</name></member>
+      <member refid="classkukadu_1_1ARToolKitPlusNode_1abae9cb7d2fd0f2bc06a235017dae6294" prot="private" virt="non-virtual"><scope>kukadu::ARToolKitPlusNode</scope><name>tracker_single_marker</name></member>
+      <member refid="classkukadu_1_1ARToolKitPlusNode_1afa6d21c0d444a36bc5668966e2e93ac5" prot="private" virt="non-virtual"><scope>kukadu::ARToolKitPlusNode</scope><name>trackerMultiMarker_</name></member>
+      <member refid="classkukadu_1_1ARToolKitPlusNode_1a0964dfe76715ffe60fea779641351c1e" prot="private" virt="non-virtual"><scope>kukadu::ARToolKitPlusNode</scope><name>trackerSingleMarker_</name></member>
+      <member refid="classkukadu_1_1ARToolKitPlusNode_1a127b70e57286740376150f9719ea0847" prot="private" virt="non-virtual"><scope>kukadu::ARToolKitPlusNode</scope><name>transformBroadcaster_</name></member>
+      <member refid="classkukadu_1_1ARToolKitPlusNode_1a59979d5bd99d4a78a2a8b1f2fe6fbd04" prot="private" virt="non-virtual"><scope>kukadu::ARToolKitPlusNode</scope><name>undist_iterations</name></member>
+      <member refid="classkukadu_1_1ARToolKitPlusNode_1a3c763cb9f13d37232baf929ecb880ddb" prot="private" virt="non-virtual"><scope>kukadu::ARToolKitPlusNode</scope><name>undist_mode</name></member>
+      <member refid="classkukadu_1_1ARToolKitPlusNode_1a03c791ca90145574f7c96186b01bd767" prot="private" virt="non-virtual"><scope>kukadu::ARToolKitPlusNode</scope><name>updateParameterTrackerMultiMarker</name></member>
+      <member refid="classkukadu_1_1ARToolKitPlusNode_1ad218e979aab96cbe517c32917959d991" prot="private" virt="non-virtual"><scope>kukadu::ARToolKitPlusNode</scope><name>updateParameterTrackerSingleMarker</name></member>
+      <member refid="classkukadu_1_1ARToolKitPlusNode_1a71c0e09cf38d67bb3f88eafaee19d776" prot="private" virt="non-virtual"><scope>kukadu::ARToolKitPlusNode</scope><name>use_multi_marker_lite_detection</name></member>
+    </listofallmembers>
+  </compounddef>
+</doxygen>

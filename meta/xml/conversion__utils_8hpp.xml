@@ -1,0 +1,105 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.8.11">
+  <compounddef id="conversion__utils_8hpp" kind="file" language="C++">
+    <compoundname>conversion_utils.hpp</compoundname>
+    <includes local="no">vector</includes>
+    <includes local="no">fstream</includes>
+    <includes local="no">iostream</includes>
+    <includes local="no">armadillo</includes>
+    <includes refid="kukadutokenizer_8hpp" local="yes">../utils/kukadutokenizer.hpp</includes>
+    <includedby refid="dmp_8cpp" local="no">/home/agyss/iis_robot_sw/iis_catkin_ws/src/kukadu/src/control/dmp.cpp</includedby>
+    <includedby refid="trajectory_8cpp" local="no">/home/agyss/iis_robot_sw/iis_catkin_ws/src/kukadu/src/control/trajectory.cpp</includedby>
+    <includedby refid="conversion__utils_8cpp" local="no">/home/agyss/iis_robot_sw/iis_catkin_ws/src/kukadu/src/utils/conversion_utils.cpp</includedby>
+    <includedby refid="utils_8hpp" local="no">/home/agyss/iis_robot_sw/iis_catkin_ws/src/kukadu/include/kukadu/utils.hpp</includedby>
+    <incdepgraph>
+      <node id="2144">
+        <label>/home/agyss/iis_robot_sw/iis_catkin_ws/src/kukadu/include/kukadu/utils/conversion_utils.hpp</label>
+        <link refid="conversion_utils.hpp"/>
+        <childnode refid="2145" relation="include">
+        </childnode>
+        <childnode refid="2146" relation="include">
+        </childnode>
+        <childnode refid="2147" relation="include">
+        </childnode>
+        <childnode refid="2148" relation="include">
+        </childnode>
+        <childnode refid="2149" relation="include">
+        </childnode>
+      </node>
+      <node id="2150">
+        <label>string</label>
+      </node>
+      <node id="2148">
+        <label>armadillo</label>
+      </node>
+      <node id="2146">
+        <label>fstream</label>
+      </node>
+      <node id="2149">
+        <label>../utils/kukadutokenizer.hpp</label>
+        <link refid="kukadutokenizer_8hpp_source"/>
+        <childnode refid="2150" relation="include">
+        </childnode>
+        <childnode refid="2145" relation="include">
+        </childnode>
+      </node>
+      <node id="2145">
+        <label>vector</label>
+      </node>
+      <node id="2147">
+        <label>iostream</label>
+      </node>
+    </incdepgraph>
+    <invincdepgraph>
+      <node id="2151">
+        <label>/home/agyss/iis_robot_sw/iis_catkin_ws/src/kukadu/include/kukadu/utils/conversion_utils.hpp</label>
+        <link refid="conversion_utils.hpp"/>
+        <childnode refid="2152" relation="include">
+        </childnode>
+      </node>
+      <node id="2152">
+        <label>/home/agyss/iis_robot_sw/iis_catkin_ws/src/kukadu/include/kukadu/utils.hpp</label>
+        <link refid="utils_8hpp_source"/>
+        <childnode refid="2153" relation="include">
+        </childnode>
+      </node>
+      <node id="2153">
+        <label>/home/agyss/iis_robot_sw/iis_catkin_ws/src/kukadu/include/kukadu/kukadu.hpp</label>
+        <link refid="kukadu_8hpp_source"/>
+      </node>
+    </invincdepgraph>
+    <innernamespace refid="namespacekukadu">kukadu</innernamespace>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <programlisting>
+<codeline lineno="1"><highlight class="preprocessor">#ifndef<sp/>CONVERSIONUTILS</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="2"><highlight class="normal"></highlight><highlight class="preprocessor">#define<sp/>CONVERSIONUTILS</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="3"><highlight class="normal"></highlight></codeline>
+<codeline lineno="4"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&lt;vector&gt;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="5"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&lt;fstream&gt;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="6"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&lt;iostream&gt;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="7"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&lt;armadillo&gt;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="8"><highlight class="normal"></highlight></codeline>
+<codeline lineno="9"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&quot;../utils/kukadutokenizer.hpp&quot;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="10"><highlight class="normal"></highlight></codeline>
+<codeline lineno="11"><highlight class="normal"></highlight><highlight class="keyword">namespace<sp/></highlight><highlight class="normal"><ref refid="namespacekukadu" kindref="compound">kukadu</ref><sp/>{</highlight></codeline>
+<codeline lineno="12"><highlight class="normal"></highlight></codeline>
+<codeline lineno="13"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/>compareArmadilloVec(arma::vec<sp/>vec1,<sp/>arma::vec<sp/>vec2);</highlight></codeline>
+<codeline lineno="14"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/>compareVectorOfDoubles(std::vector&lt;double&gt;<sp/>vec1,<sp/>std::vector&lt;double&gt;<sp/>vec2);</highlight></codeline>
+<codeline lineno="15"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/>compareVectorOfArmadillos(std::vector&lt;arma::vec&gt;<sp/>vec1,<sp/>std::vector&lt;arma::vec&gt;<sp/>vec2);</highlight></codeline>
+<codeline lineno="16"><highlight class="normal"></highlight></codeline>
+<codeline lineno="17"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">double</highlight><highlight class="normal"><sp/>string_to_double(</highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/>std::string&amp;<sp/>s);</highlight></codeline>
+<codeline lineno="18"><highlight class="normal"></highlight></codeline>
+<codeline lineno="19"><highlight class="normal"><sp/><sp/><sp/><sp/>std::string<sp/>double_to_string(</highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">double</highlight><highlight class="normal"><sp/>d);</highlight></codeline>
+<codeline lineno="20"><highlight class="normal"></highlight></codeline>
+<codeline lineno="21"><highlight class="normal"><sp/><sp/><sp/><sp/>arma::mat<sp/>readMat(std::ifstream&amp;<sp/>inStream);</highlight></codeline>
+<codeline lineno="22"><highlight class="normal"></highlight></codeline>
+<codeline lineno="23"><highlight class="normal">}</highlight></codeline>
+<codeline lineno="24"><highlight class="normal"></highlight></codeline>
+<codeline lineno="25"><highlight class="normal"></highlight><highlight class="preprocessor">#endif</highlight></codeline>
+    </programlisting>
+    <location file="/home/agyss/iis_robot_sw/iis_catkin_ws/src/kukadu/include/kukadu/utils/conversion_utils.hpp"/>
+  </compounddef>
+</doxygen>

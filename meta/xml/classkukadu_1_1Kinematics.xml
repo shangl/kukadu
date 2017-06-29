@@ -1,0 +1,418 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.8.11">
+  <compounddef id="classkukadu_1_1Kinematics" kind="class" language="C++" prot="public" abstract="yes">
+    <compoundname>kukadu::Kinematics</compoundname>
+    <derivedcompoundref refid="classkukadu_1_1PathPlanner" prot="public" virt="non-virtual">kukadu::PathPlanner</derivedcompoundref>
+      <sectiondef kind="private-attrib">
+      <memberdef kind="variable" id="classkukadu_1_1Kinematics_1aef784993d076186b66260861c25b1ab8" prot="private" static="no" mutable="no">
+        <type>std::vector&lt; KUKADU_SHARED_PTR&lt; <ref refid="classkukadu_1_1Constraint" kindref="compound">Constraint</ref> &gt; &gt;</type>
+        <definition>std::vector&lt;KUKADU_SHARED_PTR&lt;Constraint&gt; &gt; kukadu::Kinematics::Constraints</definition>
+        <argsstring></argsstring>
+        <name>Constraints</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/agyss/iis_robot_sw/iis_catkin_ws/src/kukadu/include/kukadu/planning/planning.hpp" line="64" column="1" bodyfile="/home/agyss/iis_robot_sw/iis_catkin_ws/src/kukadu/include/kukadu/planning/planning.hpp" bodystart="64" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classkukadu_1_1Kinematics_1a812a4bfecedb1944c2302e182327f00b" prot="private" static="no" mutable="no">
+        <type>std::vector&lt; std::string &gt;</type>
+        <definition>std::vector&lt;std::string&gt; kukadu::Kinematics::jointNames</definition>
+        <argsstring></argsstring>
+        <name>jointNames</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/agyss/iis_robot_sw/iis_catkin_ws/src/kukadu/include/kukadu/planning/planning.hpp" line="66" column="1" bodyfile="/home/agyss/iis_robot_sw/iis_catkin_ws/src/kukadu/include/kukadu/planning/planning.hpp" bodystart="66" bodyend="-1"/>
+      </memberdef>
+      </sectiondef>
+      <sectiondef kind="protected-static-func">
+      <memberdef kind="function" id="classkukadu_1_1Kinematics_1acb407e22a5efe10767727b94448b32bc" prot="protected" static="yes" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>std::vector&lt; std::string &gt;</type>
+        <definition>std::vector&lt; std::string &gt; kukadu::Kinematics::generateDefaultJointNames</definition>
+        <argsstring>(int jointCount)</argsstring>
+        <name>generateDefaultJointNames</name>
+        <param>
+          <type>int</type>
+          <declname>jointCount</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/agyss/iis_robot_sw/iis_catkin_ws/src/kukadu/include/kukadu/planning/planning.hpp" line="70" column="1" bodyfile="/home/agyss/iis_robot_sw/iis_catkin_ws/src/kukadu/src/planning/planning.cpp" bodystart="565" bodyend="576"/>
+      </memberdef>
+      </sectiondef>
+      <sectiondef kind="public-func">
+      <memberdef kind="function" id="classkukadu_1_1Kinematics_1a13e20d58d587757cae1d9d3a2c34ac40" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type></type>
+        <definition>kukadu::Kinematics::Kinematics</definition>
+        <argsstring>(std::vector&lt; std::string &gt; jointNames)</argsstring>
+        <name>Kinematics</name>
+        <param>
+          <type>std::vector&lt; std::string &gt;</type>
+          <declname>jointNames</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/agyss/iis_robot_sw/iis_catkin_ws/src/kukadu/include/kukadu/planning/planning.hpp" line="74" column="1" bodyfile="/home/agyss/iis_robot_sw/iis_catkin_ws/src/kukadu/src/planning/planning.cpp" bodystart="41" bodyend="44"/>
+      </memberdef>
+      <memberdef kind="function" id="classkukadu_1_1Kinematics_1a6148045661ff549e6f6627e4ef71e03c" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>void kukadu::Kinematics::addConstraint</definition>
+        <argsstring>(KUKADU_SHARED_PTR&lt; Constraint &gt; constraint)</argsstring>
+        <name>addConstraint</name>
+        <param>
+          <type>KUKADU_SHARED_PTR&lt; <ref refid="classkukadu_1_1Constraint" kindref="compound">Constraint</ref> &gt;</type>
+          <declname>constraint</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/agyss/iis_robot_sw/iis_catkin_ws/src/kukadu/include/kukadu/planning/planning.hpp" line="76" column="1" bodyfile="/home/agyss/iis_robot_sw/iis_catkin_ws/src/kukadu/src/planning/planning.cpp" bodystart="46" bodyend="50"/>
+      </memberdef>
+      <memberdef kind="function" id="classkukadu_1_1Kinematics_1a3c79131b3d003ed6a02079ff575c7f75" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>void kukadu::Kinematics::removeConstraint</definition>
+        <argsstring>(KUKADU_SHARED_PTR&lt; Constraint &gt; constraint)</argsstring>
+        <name>removeConstraint</name>
+        <param>
+          <type>KUKADU_SHARED_PTR&lt; <ref refid="classkukadu_1_1Constraint" kindref="compound">Constraint</ref> &gt;</type>
+          <declname>constraint</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/agyss/iis_robot_sw/iis_catkin_ws/src/kukadu/include/kukadu/planning/planning.hpp" line="77" column="1" bodyfile="/home/agyss/iis_robot_sw/iis_catkin_ws/src/kukadu/src/planning/planning.cpp" bodystart="52" bodyend="56"/>
+      </memberdef>
+      <memberdef kind="function" id="classkukadu_1_1Kinematics_1a4eb2b717f47bf4d28a82bfded60f75b6" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>int</type>
+        <definition>int kukadu::Kinematics::getConstraintsCount</definition>
+        <argsstring>()</argsstring>
+        <name>getConstraintsCount</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/agyss/iis_robot_sw/iis_catkin_ws/src/kukadu/include/kukadu/planning/planning.hpp" line="79" column="1" bodyfile="/home/agyss/iis_robot_sw/iis_catkin_ws/src/kukadu/src/planning/planning.cpp" bodystart="58" bodyend="63"/>
+      </memberdef>
+      <memberdef kind="function" id="classkukadu_1_1Kinematics_1af6a30efefca4b925d68173ed8af060f5" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>int</type>
+        <definition>int kukadu::Kinematics::getConstraintIdx</definition>
+        <argsstring>(KUKADU_SHARED_PTR&lt; Constraint &gt; constraint)</argsstring>
+        <name>getConstraintIdx</name>
+        <param>
+          <type>KUKADU_SHARED_PTR&lt; <ref refid="classkukadu_1_1Constraint" kindref="compound">Constraint</ref> &gt;</type>
+          <declname>constraint</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/agyss/iis_robot_sw/iis_catkin_ws/src/kukadu/include/kukadu/planning/planning.hpp" line="80" column="1" bodyfile="/home/agyss/iis_robot_sw/iis_catkin_ws/src/kukadu/src/planning/planning.cpp" bodystart="65" bodyend="70"/>
+      </memberdef>
+      <memberdef kind="function" id="classkukadu_1_1Kinematics_1a59ed85e60fb4d6b82bc5e145a55b1e56" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>KUKADU_SHARED_PTR&lt; <ref refid="classkukadu_1_1Constraint" kindref="compound">Constraint</ref> &gt;</type>
+        <definition>KUKADU_SHARED_PTR&lt; Constraint &gt; kukadu::Kinematics::getConstraintByIdx</definition>
+        <argsstring>(int idx)</argsstring>
+        <name>getConstraintByIdx</name>
+        <param>
+          <type>int</type>
+          <declname>idx</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/agyss/iis_robot_sw/iis_catkin_ws/src/kukadu/include/kukadu/planning/planning.hpp" line="82" column="1" bodyfile="/home/agyss/iis_robot_sw/iis_catkin_ws/src/kukadu/src/planning/planning.cpp" bodystart="109" bodyend="114"/>
+      </memberdef>
+      <memberdef kind="function" id="classkukadu_1_1Kinematics_1a685f76d61feec05ba02fb8f82c30bc63" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>bool</type>
+        <definition>bool kukadu::Kinematics::checkAllConstraints</definition>
+        <argsstring>(arma::vec currentState, geometry_msgs::Pose pose)</argsstring>
+        <name>checkAllConstraints</name>
+        <param>
+          <type>arma::vec</type>
+          <declname>currentState</declname>
+        </param>
+        <param>
+          <type>geometry_msgs::Pose</type>
+          <declname>pose</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/agyss/iis_robot_sw/iis_catkin_ws/src/kukadu/include/kukadu/planning/planning.hpp" line="84" column="1" bodyfile="/home/agyss/iis_robot_sw/iis_catkin_ws/src/kukadu/src/planning/planning.cpp" bodystart="72" bodyend="89"/>
+      </memberdef>
+      <memberdef kind="function" id="classkukadu_1_1Kinematics_1a050de3ff89fdec3b1debfeddf34ffa44" prot="public" static="no" const="no" explicit="no" inline="no" virt="pure-virtual">
+        <type>bool</type>
+        <definition>virtual bool kukadu::Kinematics::isColliding</definition>
+        <argsstring>(arma::vec jointState, geometry_msgs::Pose pose)=0</argsstring>
+        <name>isColliding</name>
+        <reimplementedby refid="classkukadu_1_1SimplePlanner_1a6848bec97693943933a9f55c72215e75">isColliding</reimplementedby>
+        <reimplementedby refid="classkukadu_1_1Komo_1afd21f2d6c4046379ffd93d8bd228f5a1">isColliding</reimplementedby>
+        <reimplementedby refid="classkukadu_1_1MoveIt_1a6280adfe71401d1caad3d61c07cec82f">isColliding</reimplementedby>
+        <reimplementedby refid="classkukadu_1_1CachedPlanner_1af6ebcd64b0ff6f4d4f2221e857bf23b3">isColliding</reimplementedby>
+        <param>
+          <type>arma::vec</type>
+          <declname>jointState</declname>
+        </param>
+        <param>
+          <type>geometry_msgs::Pose</type>
+          <declname>pose</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/agyss/iis_robot_sw/iis_catkin_ws/src/kukadu/include/kukadu/planning/planning.hpp" line="86" column="1"/>
+      </memberdef>
+      <memberdef kind="function" id="classkukadu_1_1Kinematics_1a16c8379a7ee87657a5f3db5b7534391b" prot="public" static="no" const="no" explicit="no" inline="no" virt="pure-virtual">
+        <type>Eigen::MatrixXd</type>
+        <definition>virtual Eigen::MatrixXd kukadu::Kinematics::getJacobian</definition>
+        <argsstring>(std::vector&lt; double &gt; jointState=std::vector&lt; double &gt;())=0</argsstring>
+        <name>getJacobian</name>
+        <reimplementedby refid="classkukadu_1_1SimplePlanner_1a00b1f03b60b407dda558d9d5a026c23a">getJacobian</reimplementedby>
+        <reimplementedby refid="classkukadu_1_1Komo_1af92fedee721583ea9a44ce147e537991">getJacobian</reimplementedby>
+        <reimplementedby refid="classkukadu_1_1MoveIt_1affc6ab624a10cb091a9ec5b8ad39127b">getJacobian</reimplementedby>
+        <reimplementedby refid="classkukadu_1_1CachedPlanner_1a7aa487c1d8452abb5563584294f9c77c">getJacobian</reimplementedby>
+        <param>
+          <type>std::vector&lt; double &gt;</type>
+          <declname>jointState</declname>
+          <defval>std::vector&lt; double &gt;()</defval>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/agyss/iis_robot_sw/iis_catkin_ws/src/kukadu/include/kukadu/planning/planning.hpp" line="87" column="1"/>
+      </memberdef>
+      <memberdef kind="function" id="classkukadu_1_1Kinematics_1ac9215d036bbdfab163745ade3033910e" prot="public" static="no" const="no" explicit="no" inline="no" virt="virtual">
+        <type>std::vector&lt; arma::vec &gt;</type>
+        <definition>std::vector&lt; arma::vec &gt; kukadu::Kinematics::computeIk</definition>
+        <argsstring>(arma::vec currentJointState, const geometry_msgs::Pose &amp;goal)</argsstring>
+        <name>computeIk</name>
+        <reimplementedby refid="classkukadu_1_1CachedPlanner_1ac8ba6abe26d404f713affec8e8ebc9e9">computeIk</reimplementedby>
+        <param>
+          <type>arma::vec</type>
+          <declname>currentJointState</declname>
+        </param>
+        <param>
+          <type>const geometry_msgs::Pose &amp;</type>
+          <declname>goal</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/agyss/iis_robot_sw/iis_catkin_ws/src/kukadu/include/kukadu/planning/planning.hpp" line="89" column="1" bodyfile="/home/agyss/iis_robot_sw/iis_catkin_ws/src/kukadu/src/planning/planning.cpp" bodystart="91" bodyend="95"/>
+      </memberdef>
+      <memberdef kind="function" id="classkukadu_1_1Kinematics_1a5b143f7db7a84d7caa03419043426a5e" prot="public" static="no" const="no" explicit="no" inline="no" virt="pure-virtual">
+        <type>std::vector&lt; arma::vec &gt;</type>
+        <definition>virtual std::vector&lt;arma::vec&gt; kukadu::Kinematics::computeIk</definition>
+        <argsstring>(std::vector&lt; double &gt; currentJointState, const geometry_msgs::Pose &amp;goal)=0</argsstring>
+        <name>computeIk</name>
+        <reimplementedby refid="classkukadu_1_1SimplePlanner_1aa90b54858bfda912bcc906224b065ed2">computeIk</reimplementedby>
+        <reimplementedby refid="classkukadu_1_1Komo_1ac5024e3bd49c0a741640e35bf841f0bd">computeIk</reimplementedby>
+        <reimplementedby refid="classkukadu_1_1MoveIt_1acb2e3c4e704ee64509e0a704cfc4481a">computeIk</reimplementedby>
+        <reimplementedby refid="classkukadu_1_1CachedPlanner_1ab5c0a4e18246ad13eb3ebf776224e65c">computeIk</reimplementedby>
+        <param>
+          <type>std::vector&lt; double &gt;</type>
+          <declname>currentJointState</declname>
+        </param>
+        <param>
+          <type>const geometry_msgs::Pose &amp;</type>
+          <declname>goal</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/agyss/iis_robot_sw/iis_catkin_ws/src/kukadu/include/kukadu/planning/planning.hpp" line="90" column="1"/>
+      </memberdef>
+      <memberdef kind="function" id="classkukadu_1_1Kinematics_1aa80b36c16d23f6031f9b133ed72795f2" prot="public" static="no" const="no" explicit="no" inline="no" virt="pure-virtual">
+        <type>geometry_msgs::Pose</type>
+        <definition>virtual geometry_msgs::Pose kukadu::Kinematics::computeFk</definition>
+        <argsstring>(std::vector&lt; double &gt; jointState)=0</argsstring>
+        <name>computeFk</name>
+        <reimplementedby refid="classkukadu_1_1SimplePlanner_1ab21d2a091977216e8d01036f389c4dd7">computeFk</reimplementedby>
+        <reimplementedby refid="classkukadu_1_1Komo_1a9081baf7213db3e0c6d903d8d5f81d8f">computeFk</reimplementedby>
+        <reimplementedby refid="classkukadu_1_1MoveIt_1a5c6edaf481c36d8dbf176606b17e3acd">computeFk</reimplementedby>
+        <reimplementedby refid="classkukadu_1_1CachedPlanner_1a02e459ee30a7bf208892d330e4f7f09d">computeFk</reimplementedby>
+        <param>
+          <type>std::vector&lt; double &gt;</type>
+          <declname>jointState</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/agyss/iis_robot_sw/iis_catkin_ws/src/kukadu/include/kukadu/planning/planning.hpp" line="92" column="1"/>
+      </memberdef>
+      <memberdef kind="function" id="classkukadu_1_1Kinematics_1a12859eb774a27710b71b70fd883f5d53" prot="public" static="no" const="no" explicit="no" inline="no" virt="virtual">
+        <type>void</type>
+        <definition>void kukadu::Kinematics::setJointNames</definition>
+        <argsstring>(std::vector&lt; std::string &gt; jointNames)</argsstring>
+        <name>setJointNames</name>
+        <reimplementedby refid="classkukadu_1_1CachedPlanner_1a21fb3c3bd2048b68cfc740e764141c62">setJointNames</reimplementedby>
+        <param>
+          <type>std::vector&lt; std::string &gt;</type>
+          <declname>jointNames</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/agyss/iis_robot_sw/iis_catkin_ws/src/kukadu/include/kukadu/planning/planning.hpp" line="94" column="1" bodyfile="/home/agyss/iis_robot_sw/iis_catkin_ws/src/kukadu/src/planning/planning.cpp" bodystart="97" bodyend="101"/>
+      </memberdef>
+      <memberdef kind="function" id="classkukadu_1_1Kinematics_1a888c5039b2db5c1f5964753c2474efbd" prot="public" static="no" const="no" explicit="no" inline="no" virt="virtual">
+        <type>std::vector&lt; std::string &gt;</type>
+        <definition>std::vector&lt; std::string &gt; kukadu::Kinematics::getJointNames</definition>
+        <argsstring>()</argsstring>
+        <name>getJointNames</name>
+        <reimplementedby refid="classkukadu_1_1CachedPlanner_1ae9aeaed93ce4de78da002ae9db531043">getJointNames</reimplementedby>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/agyss/iis_robot_sw/iis_catkin_ws/src/kukadu/include/kukadu/planning/planning.hpp" line="95" column="1" bodyfile="/home/agyss/iis_robot_sw/iis_catkin_ws/src/kukadu/src/planning/planning.cpp" bodystart="103" bodyend="107"/>
+      </memberdef>
+      <memberdef kind="function" id="classkukadu_1_1Kinematics_1a03901fc799987b5840de994cfc7d7260" prot="public" static="no" const="no" explicit="no" inline="no" virt="pure-virtual">
+        <type>std::string</type>
+        <definition>virtual std::string kukadu::Kinematics::getCartesianLinkName</definition>
+        <argsstring>()=0</argsstring>
+        <name>getCartesianLinkName</name>
+        <reimplementedby refid="classkukadu_1_1SimplePlanner_1aebcab78fe5627af2ad823220cdbce7f9">getCartesianLinkName</reimplementedby>
+        <reimplementedby refid="classkukadu_1_1Komo_1af0bc25dedd4a41275de5fddc3fb4d7af">getCartesianLinkName</reimplementedby>
+        <reimplementedby refid="classkukadu_1_1MoveIt_1aa20e8b9de995a3a50c0b60180c3f9460">getCartesianLinkName</reimplementedby>
+        <reimplementedby refid="classkukadu_1_1CachedPlanner_1a0e29aaf0705d572a316ba74915f9a186">getCartesianLinkName</reimplementedby>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/agyss/iis_robot_sw/iis_catkin_ws/src/kukadu/include/kukadu/planning/planning.hpp" line="97" column="1"/>
+      </memberdef>
+      <memberdef kind="function" id="classkukadu_1_1Kinematics_1a933b787ca3d264cdcfec9245a90744aa" prot="public" static="no" const="no" explicit="no" inline="no" virt="pure-virtual">
+        <type>std::string</type>
+        <definition>virtual std::string kukadu::Kinematics::getCartesianReferenceFrame</definition>
+        <argsstring>()=0</argsstring>
+        <name>getCartesianReferenceFrame</name>
+        <reimplementedby refid="classkukadu_1_1SimplePlanner_1ab1f21bd55c45d83fe64490d99e45c53b">getCartesianReferenceFrame</reimplementedby>
+        <reimplementedby refid="classkukadu_1_1Komo_1ac8b1d5695e865adc313937da5eab629a">getCartesianReferenceFrame</reimplementedby>
+        <reimplementedby refid="classkukadu_1_1MoveIt_1a2c7997b863e784370dde51eff19515d2">getCartesianReferenceFrame</reimplementedby>
+        <reimplementedby refid="classkukadu_1_1CachedPlanner_1a836c9f6f1ab03859e4348243d44e71a2">getCartesianReferenceFrame</reimplementedby>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/agyss/iis_robot_sw/iis_catkin_ws/src/kukadu/include/kukadu/planning/planning.hpp" line="98" column="1"/>
+      </memberdef>
+      </sectiondef>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <inheritancegraph>
+      <node id="367">
+        <label>kukadu::PathPlanner</label>
+        <link refid="classkukadu_1_1PathPlanner"/>
+        <childnode refid="366" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="368">
+        <label>kukadu::CachedPlanner</label>
+        <link refid="classkukadu_1_1CachedPlanner"/>
+        <childnode refid="367" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="366">
+        <label>kukadu::Kinematics</label>
+        <link refid="classkukadu_1_1Kinematics"/>
+      </node>
+      <node id="369">
+        <label>kukadu::Komo</label>
+        <link refid="classkukadu_1_1Komo"/>
+        <childnode refid="367" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="370">
+        <label>kukadu::MoveIt</label>
+        <link refid="classkukadu_1_1MoveIt"/>
+        <childnode refid="367" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="371">
+        <label>kukadu::SimplePlanner</label>
+        <link refid="classkukadu_1_1SimplePlanner"/>
+        <childnode refid="367" relation="public-inheritance">
+        </childnode>
+      </node>
+    </inheritancegraph>
+    <location file="/home/agyss/iis_robot_sw/iis_catkin_ws/src/kukadu/include/kukadu/planning/planning.hpp" line="60" column="1" bodyfile="/home/agyss/iis_robot_sw/iis_catkin_ws/src/kukadu/include/kukadu/planning/planning.hpp" bodystart="60" bodyend="100"/>
+    <listofallmembers>
+      <member refid="classkukadu_1_1Kinematics_1a6148045661ff549e6f6627e4ef71e03c" prot="public" virt="non-virtual"><scope>kukadu::Kinematics</scope><name>addConstraint</name></member>
+      <member refid="classkukadu_1_1Kinematics_1a685f76d61feec05ba02fb8f82c30bc63" prot="public" virt="non-virtual"><scope>kukadu::Kinematics</scope><name>checkAllConstraints</name></member>
+      <member refid="classkukadu_1_1Kinematics_1aa80b36c16d23f6031f9b133ed72795f2" prot="public" virt="pure-virtual"><scope>kukadu::Kinematics</scope><name>computeFk</name></member>
+      <member refid="classkukadu_1_1Kinematics_1ac9215d036bbdfab163745ade3033910e" prot="public" virt="virtual"><scope>kukadu::Kinematics</scope><name>computeIk</name></member>
+      <member refid="classkukadu_1_1Kinematics_1a5b143f7db7a84d7caa03419043426a5e" prot="public" virt="pure-virtual"><scope>kukadu::Kinematics</scope><name>computeIk</name></member>
+      <member refid="classkukadu_1_1Kinematics_1aef784993d076186b66260861c25b1ab8" prot="private" virt="non-virtual"><scope>kukadu::Kinematics</scope><name>Constraints</name></member>
+      <member refid="classkukadu_1_1Kinematics_1acb407e22a5efe10767727b94448b32bc" prot="protected" virt="non-virtual"><scope>kukadu::Kinematics</scope><name>generateDefaultJointNames</name></member>
+      <member refid="classkukadu_1_1Kinematics_1a03901fc799987b5840de994cfc7d7260" prot="public" virt="pure-virtual"><scope>kukadu::Kinematics</scope><name>getCartesianLinkName</name></member>
+      <member refid="classkukadu_1_1Kinematics_1a933b787ca3d264cdcfec9245a90744aa" prot="public" virt="pure-virtual"><scope>kukadu::Kinematics</scope><name>getCartesianReferenceFrame</name></member>
+      <member refid="classkukadu_1_1Kinematics_1a59ed85e60fb4d6b82bc5e145a55b1e56" prot="public" virt="non-virtual"><scope>kukadu::Kinematics</scope><name>getConstraintByIdx</name></member>
+      <member refid="classkukadu_1_1Kinematics_1af6a30efefca4b925d68173ed8af060f5" prot="public" virt="non-virtual"><scope>kukadu::Kinematics</scope><name>getConstraintIdx</name></member>
+      <member refid="classkukadu_1_1Kinematics_1a4eb2b717f47bf4d28a82bfded60f75b6" prot="public" virt="non-virtual"><scope>kukadu::Kinematics</scope><name>getConstraintsCount</name></member>
+      <member refid="classkukadu_1_1Kinematics_1a16c8379a7ee87657a5f3db5b7534391b" prot="public" virt="pure-virtual"><scope>kukadu::Kinematics</scope><name>getJacobian</name></member>
+      <member refid="classkukadu_1_1Kinematics_1a888c5039b2db5c1f5964753c2474efbd" prot="public" virt="virtual"><scope>kukadu::Kinematics</scope><name>getJointNames</name></member>
+      <member refid="classkukadu_1_1Kinematics_1a050de3ff89fdec3b1debfeddf34ffa44" prot="public" virt="pure-virtual"><scope>kukadu::Kinematics</scope><name>isColliding</name></member>
+      <member refid="classkukadu_1_1Kinematics_1a812a4bfecedb1944c2302e182327f00b" prot="private" virt="non-virtual"><scope>kukadu::Kinematics</scope><name>jointNames</name></member>
+      <member refid="classkukadu_1_1Kinematics_1a13e20d58d587757cae1d9d3a2c34ac40" prot="public" virt="non-virtual"><scope>kukadu::Kinematics</scope><name>Kinematics</name></member>
+      <member refid="classkukadu_1_1Kinematics_1a3c79131b3d003ed6a02079ff575c7f75" prot="public" virt="non-virtual"><scope>kukadu::Kinematics</scope><name>removeConstraint</name></member>
+      <member refid="classkukadu_1_1Kinematics_1a12859eb774a27710b71b70fd883f5d53" prot="public" virt="virtual"><scope>kukadu::Kinematics</scope><name>setJointNames</name></member>
+    </listofallmembers>
+  </compounddef>
+</doxygen>

@@ -1,0 +1,489 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.8.11">
+  <compounddef id="classkukadu_1_1ModuleUsageSingleton" kind="class" language="C++" prot="public">
+    <compoundname>kukadu::ModuleUsageSingleton</compoundname>
+    <basecompoundref refid="classkukadu_1_1TimedObject" prot="private" virt="non-virtual">kukadu::TimedObject</basecompoundref>
+      <sectiondef kind="private-static-attrib">
+      <memberdef kind="variable" id="classkukadu_1_1ModuleUsageSingleton_1ad60b7169821f42e3fceaa9cad76a0f45" prot="private" static="yes" mutable="no">
+        <type>auto constexpr</type>
+        <definition>auto constexpr kukadu::ModuleUsageSingleton::ID_NOT_FOUND</definition>
+        <argsstring></argsstring>
+        <name>ID_NOT_FOUND</name>
+        <initializer>= -1</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/agyss/iis_robot_sw/iis_catkin_ws/src/kukadu/include/kukadu/storage/moduleusagesingleton.hpp" line="24" column="1" bodyfile="/home/agyss/iis_robot_sw/iis_catkin_ws/src/kukadu/include/kukadu/storage/moduleusagesingleton.hpp" bodystart="24" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classkukadu_1_1ModuleUsageSingleton_1a5bfb13f56c44f7db522e25930e9606c8" prot="private" static="yes" mutable="no">
+        <type>auto constexpr</type>
+        <definition>auto constexpr kukadu::ModuleUsageSingleton::MODE_STD_STORAGE</definition>
+        <argsstring></argsstring>
+        <name>MODE_STD_STORAGE</name>
+        <initializer>= 0</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/agyss/iis_robot_sw/iis_catkin_ws/src/kukadu/include/kukadu/storage/moduleusagesingleton.hpp" line="25" column="1" bodyfile="/home/agyss/iis_robot_sw/iis_catkin_ws/src/kukadu/include/kukadu/storage/moduleusagesingleton.hpp" bodystart="25" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classkukadu_1_1ModuleUsageSingleton_1af59609528a52b101e2abc7957b2cc136" prot="private" static="yes" mutable="no">
+        <type>auto constexpr</type>
+        <definition>auto constexpr kukadu::ModuleUsageSingleton::MODE_POOL_STORAGE</definition>
+        <argsstring></argsstring>
+        <name>MODE_POOL_STORAGE</name>
+        <initializer>= 1</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/agyss/iis_robot_sw/iis_catkin_ws/src/kukadu/include/kukadu/storage/moduleusagesingleton.hpp" line="26" column="1" bodyfile="/home/agyss/iis_robot_sw/iis_catkin_ws/src/kukadu/include/kukadu/storage/moduleusagesingleton.hpp" bodystart="26" bodyend="-1"/>
+      </memberdef>
+      </sectiondef>
+      <sectiondef kind="private-attrib">
+      <memberdef kind="variable" id="classkukadu_1_1ModuleUsageSingleton_1a41bd8b7b948c3a22364bff999d603db5" prot="private" static="no" mutable="no">
+        <type>bool</type>
+        <definition>bool kukadu::ModuleUsageSingleton::statisticsActivated</definition>
+        <argsstring></argsstring>
+        <name>statisticsActivated</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/agyss/iis_robot_sw/iis_catkin_ws/src/kukadu/include/kukadu/storage/moduleusagesingleton.hpp" line="33" column="1" bodyfile="/home/agyss/iis_robot_sw/iis_catkin_ws/src/kukadu/include/kukadu/storage/moduleusagesingleton.hpp" bodystart="33" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classkukadu_1_1ModuleUsageSingleton_1ae15df00c47aa48c00a280d2527ff4f10" prot="private" static="no" mutable="no">
+        <type>int</type>
+        <definition>int kukadu::ModuleUsageSingleton::maxFunctionId</definition>
+        <argsstring></argsstring>
+        <name>maxFunctionId</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/agyss/iis_robot_sw/iis_catkin_ws/src/kukadu/include/kukadu/storage/moduleusagesingleton.hpp" line="35" column="1" bodyfile="/home/agyss/iis_robot_sw/iis_catkin_ws/src/kukadu/include/kukadu/storage/moduleusagesingleton.hpp" bodystart="35" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classkukadu_1_1ModuleUsageSingleton_1aff38d89c3cfba2e038b328c023464f83" prot="private" static="no" mutable="no">
+        <type>std::map&lt; int, int &gt;</type>
+        <definition>std::map&lt;int, int&gt; kukadu::ModuleUsageSingleton::poolingWindowSizes</definition>
+        <argsstring></argsstring>
+        <name>poolingWindowSizes</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/agyss/iis_robot_sw/iis_catkin_ws/src/kukadu/include/kukadu/storage/moduleusagesingleton.hpp" line="37" column="1" bodyfile="/home/agyss/iis_robot_sw/iis_catkin_ws/src/kukadu/include/kukadu/storage/moduleusagesingleton.hpp" bodystart="37" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classkukadu_1_1ModuleUsageSingleton_1aec070978ab0cef13f265f04d28426656" prot="private" static="no" mutable="no">
+        <type>std::map&lt; int, int &gt;</type>
+        <definition>std::map&lt;int, int&gt; kukadu::ModuleUsageSingleton::pooledFunctionCount</definition>
+        <argsstring></argsstring>
+        <name>pooledFunctionCount</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/agyss/iis_robot_sw/iis_catkin_ws/src/kukadu/include/kukadu/storage/moduleusagesingleton.hpp" line="38" column="1" bodyfile="/home/agyss/iis_robot_sw/iis_catkin_ws/src/kukadu/include/kukadu/storage/moduleusagesingleton.hpp" bodystart="38" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classkukadu_1_1ModuleUsageSingleton_1a601dea960a5c5ce3425e13dd51af873d" prot="private" static="no" mutable="no">
+        <type>std::map&lt; int, std::string &gt;</type>
+        <definition>std::map&lt;int, std::string&gt; kukadu::ModuleUsageSingleton::moduleFunctionMap</definition>
+        <argsstring></argsstring>
+        <name>moduleFunctionMap</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/agyss/iis_robot_sw/iis_catkin_ws/src/kukadu/include/kukadu/storage/moduleusagesingleton.hpp" line="39" column="1" bodyfile="/home/agyss/iis_robot_sw/iis_catkin_ws/src/kukadu/include/kukadu/storage/moduleusagesingleton.hpp" bodystart="39" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classkukadu_1_1ModuleUsageSingleton_1a8b855d632678c57ca124a09babffde08" prot="private" static="no" mutable="no">
+        <type>std::map&lt; std::string, std::pair&lt; int, int &gt; &gt;</type>
+        <definition>std::map&lt;std::string, std::pair&lt;int, int&gt; &gt; kukadu::ModuleUsageSingleton::supportedFunctions</definition>
+        <argsstring></argsstring>
+        <name>supportedFunctions</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/agyss/iis_robot_sw/iis_catkin_ws/src/kukadu/include/kukadu/storage/moduleusagesingleton.hpp" line="40" column="1" bodyfile="/home/agyss/iis_robot_sw/iis_catkin_ws/src/kukadu/include/kukadu/storage/moduleusagesingleton.hpp" bodystart="40" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classkukadu_1_1ModuleUsageSingleton_1af9bc85ae10a91a9cf1925f4ff0acac7e" prot="private" static="no" mutable="no">
+        <type>std::map&lt; int, std::pair&lt; long long int, long long int &gt; &gt;</type>
+        <definition>std::map&lt;int, std::pair&lt;long long int, long long int&gt; &gt; kukadu::ModuleUsageSingleton::pooledFunctionDuration</definition>
+        <argsstring></argsstring>
+        <name>pooledFunctionDuration</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/agyss/iis_robot_sw/iis_catkin_ws/src/kukadu/include/kukadu/storage/moduleusagesingleton.hpp" line="41" column="1" bodyfile="/home/agyss/iis_robot_sw/iis_catkin_ws/src/kukadu/include/kukadu/storage/moduleusagesingleton.hpp" bodystart="41" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classkukadu_1_1ModuleUsageSingleton_1ab92d71490da294a2f79a2d94317864b6" prot="private" static="no" mutable="no">
+        <type><ref refid="classkukadu_1_1StorageSingleton" kindref="compound">StorageSingleton</ref> &amp;</type>
+        <definition>StorageSingleton&amp; kukadu::ModuleUsageSingleton::storage</definition>
+        <argsstring></argsstring>
+        <name>storage</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/agyss/iis_robot_sw/iis_catkin_ws/src/kukadu/include/kukadu/storage/moduleusagesingleton.hpp" line="43" column="1" bodyfile="/home/agyss/iis_robot_sw/iis_catkin_ws/src/kukadu/include/kukadu/storage/moduleusagesingleton.hpp" bodystart="43" bodyend="-1"/>
+      </memberdef>
+      </sectiondef>
+      <sectiondef kind="private-func">
+      <memberdef kind="function" id="classkukadu_1_1ModuleUsageSingleton_1a5bc7e5e338a56633e5e0e0a627c6bdf4" prot="private" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type></type>
+        <definition>kukadu::ModuleUsageSingleton::ModuleUsageSingleton</definition>
+        <argsstring>()</argsstring>
+        <name>ModuleUsageSingleton</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/agyss/iis_robot_sw/iis_catkin_ws/src/kukadu/include/kukadu/storage/moduleusagesingleton.hpp" line="45" column="1" bodyfile="/home/agyss/iis_robot_sw/iis_catkin_ws/src/kukadu/src/storage/moduleusagesingleton.cpp" bodystart="12" bodyend="16"/>
+      </memberdef>
+      <memberdef kind="function" id="classkukadu_1_1ModuleUsageSingleton_1a56e7dd4a71bd6750942c0118aafec32a" prot="private" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type></type>
+        <definition>kukadu::ModuleUsageSingleton::~ModuleUsageSingleton</definition>
+        <argsstring>()</argsstring>
+        <name>~ModuleUsageSingleton</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/agyss/iis_robot_sw/iis_catkin_ws/src/kukadu/include/kukadu/storage/moduleusagesingleton.hpp" line="46" column="1" bodyfile="/home/agyss/iis_robot_sw/iis_catkin_ws/src/kukadu/src/storage/moduleusagesingleton.cpp" bodystart="18" bodyend="25"/>
+      </memberdef>
+      <memberdef kind="function" id="classkukadu_1_1ModuleUsageSingleton_1a1ef144cc9228e4816d1f576f2c3b64d0" prot="private" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>std::string</type>
+        <definition>std::string kukadu::ModuleUsageSingleton::combineIdentifiers</definition>
+        <argsstring>(const std::string &amp;currentNamespace, const std::string &amp;currentClass, const std::string &amp;currentFunction)</argsstring>
+        <name>combineIdentifiers</name>
+        <param>
+          <type>const std::string &amp;</type>
+          <declname>currentNamespace</declname>
+        </param>
+        <param>
+          <type>const std::string &amp;</type>
+          <declname>currentClass</declname>
+        </param>
+        <param>
+          <type>const std::string &amp;</type>
+          <declname>currentFunction</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/agyss/iis_robot_sw/iis_catkin_ws/src/kukadu/include/kukadu/storage/moduleusagesingleton.hpp" line="48" column="1" bodyfile="/home/agyss/iis_robot_sw/iis_catkin_ws/src/kukadu/src/storage/moduleusagesingleton.cpp" bodystart="113" bodyend="115"/>
+      </memberdef>
+      <memberdef kind="function" id="classkukadu_1_1ModuleUsageSingleton_1a9907536542cee15bcce647882e219cba" prot="private" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>void kukadu::ModuleUsageSingleton::storePooledStatistics</definition>
+        <argsstring>(const int &amp;functionId, const long long int &amp;currentTime, const bool finalize=false)</argsstring>
+        <name>storePooledStatistics</name>
+        <param>
+          <type>const int &amp;</type>
+          <declname>functionId</declname>
+        </param>
+        <param>
+          <type>const long long int &amp;</type>
+          <declname>currentTime</declname>
+        </param>
+        <param>
+          <type>const bool</type>
+          <declname>finalize</declname>
+          <defval>false</defval>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/agyss/iis_robot_sw/iis_catkin_ws/src/kukadu/include/kukadu/storage/moduleusagesingleton.hpp" line="50" column="1" bodyfile="/home/agyss/iis_robot_sw/iis_catkin_ws/src/kukadu/src/storage/moduleusagesingleton.cpp" bodystart="246" bodyend="276"/>
+      </memberdef>
+      <memberdef kind="function" id="classkukadu_1_1ModuleUsageSingleton_1a14bb908f7b7f440aec110c5b05293963" prot="private" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>void kukadu::ModuleUsageSingleton::loadStatisticsProperties</definition>
+        <argsstring>(const std::string file)</argsstring>
+        <name>loadStatisticsProperties</name>
+        <param>
+          <type>const std::string</type>
+          <declname>file</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/agyss/iis_robot_sw/iis_catkin_ws/src/kukadu/include/kukadu/storage/moduleusagesingleton.hpp" line="52" column="1" bodyfile="/home/agyss/iis_robot_sw/iis_catkin_ws/src/kukadu/src/storage/moduleusagesingleton.cpp" bodystart="35" bodyend="111"/>
+      </memberdef>
+      <memberdef kind="function" id="classkukadu_1_1ModuleUsageSingleton_1a06a916648c2156dd482415506bcda0ce" prot="private" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>void kukadu::ModuleUsageSingleton::addNewFunction</definition>
+        <argsstring>(const std::string &amp;currentModule, const std::string &amp;currentNamespace, const std::string &amp;currentClass, const std::string &amp;currentFunction, const int &amp;currentId, const int &amp;currentMode)</argsstring>
+        <name>addNewFunction</name>
+        <param>
+          <type>const std::string &amp;</type>
+          <declname>currentModule</declname>
+        </param>
+        <param>
+          <type>const std::string &amp;</type>
+          <declname>currentNamespace</declname>
+        </param>
+        <param>
+          <type>const std::string &amp;</type>
+          <declname>currentClass</declname>
+        </param>
+        <param>
+          <type>const std::string &amp;</type>
+          <declname>currentFunction</declname>
+        </param>
+        <param>
+          <type>const int &amp;</type>
+          <declname>currentId</declname>
+        </param>
+        <param>
+          <type>const int &amp;</type>
+          <declname>currentMode</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/agyss/iis_robot_sw/iis_catkin_ws/src/kukadu/include/kukadu/storage/moduleusagesingleton.hpp" line="53" column="1" bodyfile="/home/agyss/iis_robot_sw/iis_catkin_ws/src/kukadu/src/storage/moduleusagesingleton.cpp" bodystart="117" bodyend="134"/>
+      </memberdef>
+      <memberdef kind="function" id="classkukadu_1_1ModuleUsageSingleton_1a69fa7266a4b9870888f47c3eb25e6a14" prot="private" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>int</type>
+        <definition>int kukadu::ModuleUsageSingleton::checkConsistencyOrInsert</definition>
+        <argsstring>(const std::string &amp;currentModule, const std::string &amp;currentNamespace, const std::string &amp;currentClass, const std::string &amp;currentFunction, const int &amp;currentId, const int &amp;currentMode)</argsstring>
+        <name>checkConsistencyOrInsert</name>
+        <param>
+          <type>const std::string &amp;</type>
+          <declname>currentModule</declname>
+        </param>
+        <param>
+          <type>const std::string &amp;</type>
+          <declname>currentNamespace</declname>
+        </param>
+        <param>
+          <type>const std::string &amp;</type>
+          <declname>currentClass</declname>
+        </param>
+        <param>
+          <type>const std::string &amp;</type>
+          <declname>currentFunction</declname>
+        </param>
+        <param>
+          <type>const int &amp;</type>
+          <declname>currentId</declname>
+        </param>
+        <param>
+          <type>const int &amp;</type>
+          <declname>currentMode</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/agyss/iis_robot_sw/iis_catkin_ws/src/kukadu/include/kukadu/storage/moduleusagesingleton.hpp" line="55" column="1" bodyfile="/home/agyss/iis_robot_sw/iis_catkin_ws/src/kukadu/src/storage/moduleusagesingleton.cpp" bodystart="136" bodyend="226"/>
+      </memberdef>
+      </sectiondef>
+      <sectiondef kind="public-static-func">
+      <memberdef kind="function" id="classkukadu_1_1ModuleUsageSingleton_1ad1a2579d069c91b1bf0e5be22e6c67e4" prot="public" static="yes" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type><ref refid="classkukadu_1_1ModuleUsageSingleton" kindref="compound">ModuleUsageSingleton</ref> &amp;</type>
+        <definition>ModuleUsageSingleton &amp; kukadu::ModuleUsageSingleton::get</definition>
+        <argsstring>()</argsstring>
+        <name>get</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/agyss/iis_robot_sw/iis_catkin_ws/src/kukadu/include/kukadu/storage/moduleusagesingleton.hpp" line="59" column="1" bodyfile="/home/agyss/iis_robot_sw/iis_catkin_ws/src/kukadu/src/storage/moduleusagesingleton.cpp" bodystart="228" bodyend="231"/>
+      </memberdef>
+      </sectiondef>
+      <sectiondef kind="public-func">
+      <memberdef kind="function" id="classkukadu_1_1ModuleUsageSingleton_1a9cf0246c3cbd5b576edb00ab7d6e95b3" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>void kukadu::ModuleUsageSingleton::startStatisticsModule</definition>
+        <argsstring>()</argsstring>
+        <name>startStatisticsModule</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/agyss/iis_robot_sw/iis_catkin_ws/src/kukadu/include/kukadu/storage/moduleusagesingleton.hpp" line="61" column="1" bodyfile="/home/agyss/iis_robot_sw/iis_catkin_ws/src/kukadu/src/storage/moduleusagesingleton.cpp" bodystart="27" bodyend="29"/>
+      </memberdef>
+      <memberdef kind="function" id="classkukadu_1_1ModuleUsageSingleton_1a863a275d20f1b5571e04103975ff7290" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>void kukadu::ModuleUsageSingleton::stopStatisticsModule</definition>
+        <argsstring>()</argsstring>
+        <name>stopStatisticsModule</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/agyss/iis_robot_sw/iis_catkin_ws/src/kukadu/include/kukadu/storage/moduleusagesingleton.hpp" line="62" column="1" bodyfile="/home/agyss/iis_robot_sw/iis_catkin_ws/src/kukadu/src/storage/moduleusagesingleton.cpp" bodystart="31" bodyend="33"/>
+      </memberdef>
+      <memberdef kind="function" id="classkukadu_1_1ModuleUsageSingleton_1a246cfb12eff2d0c25c57b9240355fc94" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>long long</type>
+        <definition>long long int kukadu::ModuleUsageSingleton::storeFunctionUsedStart</definition>
+        <argsstring>(const int &amp;functionId, const int &amp;mode)</argsstring>
+        <name>storeFunctionUsedStart</name>
+        <param>
+          <type>const int &amp;</type>
+          <declname>functionId</declname>
+        </param>
+        <param>
+          <type>const int &amp;</type>
+          <declname>mode</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/agyss/iis_robot_sw/iis_catkin_ws/src/kukadu/include/kukadu/storage/moduleusagesingleton.hpp" line="64" column="1" bodyfile="/home/agyss/iis_robot_sw/iis_catkin_ws/src/kukadu/src/storage/moduleusagesingleton.cpp" bodystart="278" bodyend="313"/>
+      </memberdef>
+      <memberdef kind="function" id="classkukadu_1_1ModuleUsageSingleton_1a5edc4104f93d35edc1d8b006a7f6ee6b" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>void kukadu::ModuleUsageSingleton::storeFunctionUsedEnd</definition>
+        <argsstring>(const int &amp;functionId, const int &amp;mode, long long int &amp;startTimestamp)</argsstring>
+        <name>storeFunctionUsedEnd</name>
+        <param>
+          <type>const int &amp;</type>
+          <declname>functionId</declname>
+        </param>
+        <param>
+          <type>const int &amp;</type>
+          <declname>mode</declname>
+        </param>
+        <param>
+          <type>long long int &amp;</type>
+          <declname>startTimestamp</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/agyss/iis_robot_sw/iis_catkin_ws/src/kukadu/include/kukadu/storage/moduleusagesingleton.hpp" line="65" column="1" bodyfile="/home/agyss/iis_robot_sw/iis_catkin_ws/src/kukadu/src/storage/moduleusagesingleton.cpp" bodystart="315" bodyend="328"/>
+      </memberdef>
+      <memberdef kind="function" id="classkukadu_1_1ModuleUsageSingleton_1ac66394d95b2eadf3e0b41043356591ec" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>std::pair&lt; int, int &gt;</type>
+        <definition>std::pair&lt; int, int &gt; kukadu::ModuleUsageSingleton::loadFunctionId</definition>
+        <argsstring>(std::string prettyFunctionName)</argsstring>
+        <name>loadFunctionId</name>
+        <param>
+          <type>std::string</type>
+          <declname>prettyFunctionName</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/agyss/iis_robot_sw/iis_catkin_ws/src/kukadu/include/kukadu/storage/moduleusagesingleton.hpp" line="67" column="1" bodyfile="/home/agyss/iis_robot_sw/iis_catkin_ws/src/kukadu/src/storage/moduleusagesingleton.cpp" bodystart="233" bodyend="244"/>
+      </memberdef>
+      </sectiondef>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <inheritancegraph>
+      <node id="450">
+        <label>kukadu::ModuleUsageSingleton</label>
+        <link refid="classkukadu_1_1ModuleUsageSingleton"/>
+        <childnode refid="451" relation="private-inheritance">
+        </childnode>
+      </node>
+      <node id="451">
+        <label>kukadu::TimedObject</label>
+        <link refid="classkukadu_1_1TimedObject"/>
+      </node>
+    </inheritancegraph>
+    <collaborationgraph>
+      <node id="452">
+        <label>kukadu::ModuleUsageSingleton</label>
+        <link refid="classkukadu_1_1ModuleUsageSingleton"/>
+        <childnode refid="453" relation="private-inheritance">
+        </childnode>
+      </node>
+      <node id="453">
+        <label>kukadu::TimedObject</label>
+        <link refid="classkukadu_1_1TimedObject"/>
+      </node>
+    </collaborationgraph>
+    <location file="/home/agyss/iis_robot_sw/iis_catkin_ws/src/kukadu/include/kukadu/storage/moduleusagesingleton.hpp" line="19" column="1" bodyfile="/home/agyss/iis_robot_sw/iis_catkin_ws/src/kukadu/include/kukadu/storage/moduleusagesingleton.hpp" bodystart="19" bodyend="69"/>
+    <listofallmembers>
+      <member refid="classkukadu_1_1ModuleUsageSingleton_1a06a916648c2156dd482415506bcda0ce" prot="private" virt="non-virtual"><scope>kukadu::ModuleUsageSingleton</scope><name>addNewFunction</name></member>
+      <member refid="classkukadu_1_1ModuleUsageSingleton_1a69fa7266a4b9870888f47c3eb25e6a14" prot="private" virt="non-virtual"><scope>kukadu::ModuleUsageSingleton</scope><name>checkConsistencyOrInsert</name></member>
+      <member refid="classkukadu_1_1ModuleUsageSingleton_1a1ef144cc9228e4816d1f576f2c3b64d0" prot="private" virt="non-virtual"><scope>kukadu::ModuleUsageSingleton</scope><name>combineIdentifiers</name></member>
+      <member refid="classkukadu_1_1ModuleUsageSingleton_1ad1a2579d069c91b1bf0e5be22e6c67e4" prot="public" virt="non-virtual"><scope>kukadu::ModuleUsageSingleton</scope><name>get</name></member>
+      <member refid="classkukadu_1_1TimedObject_1a9c4db6e3f71d4bbddecd12b43e586691" prot="private" virt="non-virtual"><scope>kukadu::ModuleUsageSingleton</scope><name>getCurrentTime</name></member>
+      <member refid="classkukadu_1_1ModuleUsageSingleton_1ad60b7169821f42e3fceaa9cad76a0f45" prot="private" virt="non-virtual"><scope>kukadu::ModuleUsageSingleton</scope><name>ID_NOT_FOUND</name></member>
+      <member refid="classkukadu_1_1ModuleUsageSingleton_1ac66394d95b2eadf3e0b41043356591ec" prot="public" virt="non-virtual"><scope>kukadu::ModuleUsageSingleton</scope><name>loadFunctionId</name></member>
+      <member refid="classkukadu_1_1ModuleUsageSingleton_1a14bb908f7b7f440aec110c5b05293963" prot="private" virt="non-virtual"><scope>kukadu::ModuleUsageSingleton</scope><name>loadStatisticsProperties</name></member>
+      <member refid="classkukadu_1_1ModuleUsageSingleton_1ae15df00c47aa48c00a280d2527ff4f10" prot="private" virt="non-virtual"><scope>kukadu::ModuleUsageSingleton</scope><name>maxFunctionId</name></member>
+      <member refid="classkukadu_1_1ModuleUsageSingleton_1af59609528a52b101e2abc7957b2cc136" prot="private" virt="non-virtual"><scope>kukadu::ModuleUsageSingleton</scope><name>MODE_POOL_STORAGE</name></member>
+      <member refid="classkukadu_1_1ModuleUsageSingleton_1a5bfb13f56c44f7db522e25930e9606c8" prot="private" virt="non-virtual"><scope>kukadu::ModuleUsageSingleton</scope><name>MODE_STD_STORAGE</name></member>
+      <member refid="classkukadu_1_1ModuleUsageSingleton_1a601dea960a5c5ce3425e13dd51af873d" prot="private" virt="non-virtual"><scope>kukadu::ModuleUsageSingleton</scope><name>moduleFunctionMap</name></member>
+      <member refid="classkukadu_1_1ModuleUsageSingleton_1a5bc7e5e338a56633e5e0e0a627c6bdf4" prot="private" virt="non-virtual"><scope>kukadu::ModuleUsageSingleton</scope><name>ModuleUsageSingleton</name></member>
+      <member refid="classkukadu_1_1ModuleUsageSingleton_1aec070978ab0cef13f265f04d28426656" prot="private" virt="non-virtual"><scope>kukadu::ModuleUsageSingleton</scope><name>pooledFunctionCount</name></member>
+      <member refid="classkukadu_1_1ModuleUsageSingleton_1af9bc85ae10a91a9cf1925f4ff0acac7e" prot="private" virt="non-virtual"><scope>kukadu::ModuleUsageSingleton</scope><name>pooledFunctionDuration</name></member>
+      <member refid="classkukadu_1_1ModuleUsageSingleton_1aff38d89c3cfba2e038b328c023464f83" prot="private" virt="non-virtual"><scope>kukadu::ModuleUsageSingleton</scope><name>poolingWindowSizes</name></member>
+      <member refid="classkukadu_1_1ModuleUsageSingleton_1a9cf0246c3cbd5b576edb00ab7d6e95b3" prot="public" virt="non-virtual"><scope>kukadu::ModuleUsageSingleton</scope><name>startStatisticsModule</name></member>
+      <member refid="classkukadu_1_1ModuleUsageSingleton_1a41bd8b7b948c3a22364bff999d603db5" prot="private" virt="non-virtual"><scope>kukadu::ModuleUsageSingleton</scope><name>statisticsActivated</name></member>
+      <member refid="classkukadu_1_1ModuleUsageSingleton_1a863a275d20f1b5571e04103975ff7290" prot="public" virt="non-virtual"><scope>kukadu::ModuleUsageSingleton</scope><name>stopStatisticsModule</name></member>
+      <member refid="classkukadu_1_1ModuleUsageSingleton_1ab92d71490da294a2f79a2d94317864b6" prot="private" virt="non-virtual"><scope>kukadu::ModuleUsageSingleton</scope><name>storage</name></member>
+      <member refid="classkukadu_1_1ModuleUsageSingleton_1a5edc4104f93d35edc1d8b006a7f6ee6b" prot="public" virt="non-virtual"><scope>kukadu::ModuleUsageSingleton</scope><name>storeFunctionUsedEnd</name></member>
+      <member refid="classkukadu_1_1ModuleUsageSingleton_1a246cfb12eff2d0c25c57b9240355fc94" prot="public" virt="non-virtual"><scope>kukadu::ModuleUsageSingleton</scope><name>storeFunctionUsedStart</name></member>
+      <member refid="classkukadu_1_1ModuleUsageSingleton_1a9907536542cee15bcce647882e219cba" prot="private" virt="non-virtual"><scope>kukadu::ModuleUsageSingleton</scope><name>storePooledStatistics</name></member>
+      <member refid="classkukadu_1_1ModuleUsageSingleton_1a8b855d632678c57ca124a09babffde08" prot="private" virt="non-virtual"><scope>kukadu::ModuleUsageSingleton</scope><name>supportedFunctions</name></member>
+      <member refid="classkukadu_1_1ModuleUsageSingleton_1a56e7dd4a71bd6750942c0118aafec32a" prot="private" virt="non-virtual"><scope>kukadu::ModuleUsageSingleton</scope><name>~ModuleUsageSingleton</name></member>
+    </listofallmembers>
+  </compounddef>
+</doxygen>

@@ -1,0 +1,366 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.8.11">
+  <compounddef id="classkukadu_1_1DMPGeneralizer" kind="class" language="C++" prot="public">
+    <compoundname>kukadu::DMPGeneralizer</compoundname>
+    <basecompoundref refid="classkukadu_1_1GenericGeneralizer" prot="public" virt="non-virtual">kukadu::GenericGeneralizer</basecompoundref>
+    <includes refid="generalizer_8hpp" local="no">generalizer.hpp</includes>
+      <sectiondef kind="private-attrib">
+      <memberdef kind="variable" id="classkukadu_1_1DMPGeneralizer_1a281baf3984d716b4c75e33e4874f8b5b" prot="private" static="no" mutable="no">
+        <type>double</type>
+        <definition>double kukadu::DMPGeneralizer::ax</definition>
+        <argsstring></argsstring>
+        <name>ax</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/agyss/iis_robot_sw/iis_catkin_ws/src/kukadu/include/kukadu/control/generalizer.hpp" line="115" column="1" bodyfile="/home/agyss/iis_robot_sw/iis_catkin_ws/src/kukadu/include/kukadu/control/generalizer.hpp" bodystart="115" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classkukadu_1_1DMPGeneralizer_1afb7b667f234cba13be96a3b0e6c49b66" prot="private" static="no" mutable="no">
+        <type>double</type>
+        <definition>double kukadu::DMPGeneralizer::tau</definition>
+        <argsstring></argsstring>
+        <name>tau</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/agyss/iis_robot_sw/iis_catkin_ws/src/kukadu/include/kukadu/control/generalizer.hpp" line="116" column="1" bodyfile="/home/agyss/iis_robot_sw/iis_catkin_ws/src/kukadu/include/kukadu/control/generalizer.hpp" bodystart="116" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classkukadu_1_1DMPGeneralizer_1a58a9660be6f56221fd5c96834b9e5725" prot="private" static="no" mutable="no">
+        <type>double</type>
+        <definition>double kukadu::DMPGeneralizer::degOfFreedom</definition>
+        <argsstring></argsstring>
+        <name>degOfFreedom</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/agyss/iis_robot_sw/iis_catkin_ws/src/kukadu/include/kukadu/control/generalizer.hpp" line="117" column="1" bodyfile="/home/agyss/iis_robot_sw/iis_catkin_ws/src/kukadu/include/kukadu/control/generalizer.hpp" bodystart="117" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classkukadu_1_1DMPGeneralizer_1a52fd837e1939b9cb0e48f6f49330ac84" prot="private" static="no" mutable="no">
+        <type>std::string</type>
+        <definition>std::string kukadu::DMPGeneralizer::baseFolder</definition>
+        <argsstring></argsstring>
+        <name>baseFolder</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/agyss/iis_robot_sw/iis_catkin_ws/src/kukadu/include/kukadu/control/generalizer.hpp" line="119" column="1" bodyfile="/home/agyss/iis_robot_sw/iis_catkin_ws/src/kukadu/include/kukadu/control/generalizer.hpp" bodystart="119" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classkukadu_1_1DMPGeneralizer_1a2ded30bf10c5fbb86de19876f06d5be0" prot="private" static="no" mutable="no">
+        <type><ref refid="classkukadu_1_1DictionaryTrajectory" kindref="compound">DictionaryTrajectory</ref> *</type>
+        <definition>DictionaryTrajectory* kukadu::DMPGeneralizer::dictTraj</definition>
+        <argsstring></argsstring>
+        <name>dictTraj</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/agyss/iis_robot_sw/iis_catkin_ws/src/kukadu/include/kukadu/control/generalizer.hpp" line="121" column="1" bodyfile="/home/agyss/iis_robot_sw/iis_catkin_ws/src/kukadu/include/kukadu/control/generalizer.hpp" bodystart="121" bodyend="-1"/>
+      </memberdef>
+      </sectiondef>
+      <sectiondef kind="private-func">
+      <memberdef kind="function" id="classkukadu_1_1DMPGeneralizer_1a2ca66d8c1b2798e5d344134acc2a86ae" prot="private" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>arma::mat</type>
+        <definition>arma::mat kukadu::DMPGeneralizer::computeCovarianceMatrix</definition>
+        <argsstring>(int level, GenericKernel *kernel, double beta)</argsstring>
+        <name>computeCovarianceMatrix</name>
+        <param>
+          <type>int</type>
+          <declname>level</declname>
+        </param>
+        <param>
+          <type><ref refid="classkukadu_1_1GenericKernel" kindref="compound">GenericKernel</ref> *</type>
+          <declname>kernel</declname>
+        </param>
+        <param>
+          <type>double</type>
+          <declname>beta</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/agyss/iis_robot_sw/iis_catkin_ws/src/kukadu/include/kukadu/control/generalizer.hpp" line="123" column="1"/>
+      </memberdef>
+      <memberdef kind="function" id="classkukadu_1_1DMPGeneralizer_1af1d4734f9c6d2df2d318a1102a83968c" prot="private" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>std::vector&lt; <ref refid="classkukadu_1_1QueryPoint" kindref="compound">QueryPoint</ref> &gt;</type>
+        <definition>vector&lt; QueryPoint &gt; kukadu::DMPGeneralizer::mapFiles</definition>
+        <argsstring>(std::vector&lt; std::string &gt; queryFiles, std::vector&lt; std::string &gt; trajFiles, std::string prefix1, std::string prefix2)</argsstring>
+        <name>mapFiles</name>
+        <param>
+          <type>std::vector&lt; std::string &gt;</type>
+          <declname>queryFiles</declname>
+        </param>
+        <param>
+          <type>std::vector&lt; std::string &gt;</type>
+          <declname>trajFiles</declname>
+        </param>
+        <param>
+          <type>std::string</type>
+          <declname>prefix1</declname>
+        </param>
+        <param>
+          <type>std::string</type>
+          <declname>prefix2</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/agyss/iis_robot_sw/iis_catkin_ws/src/kukadu/include/kukadu/control/generalizer.hpp" line="124" column="1" bodyfile="/home/agyss/iis_robot_sw/iis_catkin_ws/src/kukadu/src/control/generalizer.cpp" bodystart="287" bodyend="312"/>
+      </memberdef>
+      </sectiondef>
+      <sectiondef kind="public-func">
+      <memberdef kind="function" id="classkukadu_1_1DMPGeneralizer_1a75bfc264da4632ef2ce2454759b53d9c" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type></type>
+        <definition>kukadu::DMPGeneralizer::DMPGeneralizer</definition>
+        <argsstring>(std::string baseFolder, int degOfFreedom, std::vector&lt; double &gt; tmpmys, std::vector&lt; double &gt; tmpsigmas, double az, double bz)</argsstring>
+        <name>DMPGeneralizer</name>
+        <param>
+          <type>std::string</type>
+          <declname>baseFolder</declname>
+        </param>
+        <param>
+          <type>int</type>
+          <declname>degOfFreedom</declname>
+        </param>
+        <param>
+          <type>std::vector&lt; double &gt;</type>
+          <declname>tmpmys</declname>
+        </param>
+        <param>
+          <type>std::vector&lt; double &gt;</type>
+          <declname>tmpsigmas</declname>
+        </param>
+        <param>
+          <type>double</type>
+          <declname>az</declname>
+        </param>
+        <param>
+          <type>double</type>
+          <declname>bz</declname>
+        </param>
+        <briefdescription>
+<para>constructor </para>        </briefdescription>
+        <detaileddescription>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>baseFolder</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>folder that contains the sample trajectory files </para></parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>degOfFreedom</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>number of degrees of freedom </para></parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>tmpmys</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>defines basis functions for dynamic movement primitives </para></parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>tmpsigmas</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>defines basis functions for dynamic movement primitives </para></parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>az</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>dmp az parameter </para></parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>bz</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>dmp bz parameter </para></parameterdescription>
+</parameteritem>
+</parameterlist>
+</para>        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/agyss/iis_robot_sw/iis_catkin_ws/src/kukadu/include/kukadu/control/generalizer.hpp" line="137" column="1" bodyfile="/home/agyss/iis_robot_sw/iis_catkin_ws/src/kukadu/src/control/generalizer.cpp" bodystart="12" bodyend="22"/>
+      </memberdef>
+      <memberdef kind="function" id="classkukadu_1_1DMPGeneralizer_1a66ae70315e509c84bb1763825a15b2ea" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>int</type>
+        <definition>int kukadu::DMPGeneralizer::getQueryPointCount</definition>
+        <argsstring>()</argsstring>
+        <name>getQueryPointCount</name>
+        <briefdescription>
+<para>returns number of trajectory samples </para>        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/agyss/iis_robot_sw/iis_catkin_ws/src/kukadu/include/kukadu/control/generalizer.hpp" line="142" column="1" bodyfile="/home/agyss/iis_robot_sw/iis_catkin_ws/src/kukadu/src/control/generalizer.cpp" bodystart="32" bodyend="34"/>
+      </memberdef>
+      <memberdef kind="function" id="classkukadu_1_1DMPGeneralizer_1a603d560be6c932e1715d74bc581900fa" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>double</type>
+        <definition>double kukadu::DMPGeneralizer::getDegOfFreedom</definition>
+        <argsstring>()</argsstring>
+        <name>getDegOfFreedom</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/agyss/iis_robot_sw/iis_catkin_ws/src/kukadu/include/kukadu/control/generalizer.hpp" line="144" column="1" bodyfile="/home/agyss/iis_robot_sw/iis_catkin_ws/src/kukadu/src/control/generalizer.cpp" bodystart="24" bodyend="26"/>
+      </memberdef>
+      <memberdef kind="function" id="classkukadu_1_1DMPGeneralizer_1a670a0b673aee54cc4c10f308b1d211a2" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type><ref refid="classkukadu_1_1QueryPoint" kindref="compound">QueryPoint</ref></type>
+        <definition>QueryPoint kukadu::DMPGeneralizer::getQueryPointByIndex</definition>
+        <argsstring>(int index)</argsstring>
+        <name>getQueryPointByIndex</name>
+        <param>
+          <type>int</type>
+          <declname>index</declname>
+        </param>
+        <briefdescription>
+<para>returns a sample point by index </para>        </briefdescription>
+        <detaileddescription>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>index</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>index of sample point </para></parameterdescription>
+</parameteritem>
+</parameterlist>
+</para>        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/agyss/iis_robot_sw/iis_catkin_ws/src/kukadu/include/kukadu/control/generalizer.hpp" line="150" column="1" bodyfile="/home/agyss/iis_robot_sw/iis_catkin_ws/src/kukadu/src/control/generalizer.cpp" bodystart="28" bodyend="30"/>
+      </memberdef>
+      <memberdef kind="function" id="classkukadu_1_1DMPGeneralizer_1acb8a703ee5bb8492d2035120ab51942b" prot="public" static="no" const="no" explicit="no" inline="no" virt="virtual">
+        <type>KUKADU_SHARED_PTR&lt; <ref refid="classkukadu_1_1JointDmp" kindref="compound">JointDmp</ref> &gt;</type>
+        <definition>KUKADU_SHARED_PTR&lt; JointDmp &gt; kukadu::DMPGeneralizer::generalizeDmp</definition>
+        <argsstring>(GenericKernel *trajectoryKernel, GenericKernel *parameterKernel, arma::vec query, double beta)</argsstring>
+        <name>generalizeDmp</name>
+        <reimplements refid="classkukadu_1_1GenericGeneralizer_1a39874ac4acbf59957ba81f3ba2f620cd">generalizeDmp</reimplements>
+        <param>
+          <type><ref refid="classkukadu_1_1GenericKernel" kindref="compound">GenericKernel</ref> *</type>
+          <declname>trajectoryKernel</declname>
+        </param>
+        <param>
+          <type><ref refid="classkukadu_1_1GenericKernel" kindref="compound">GenericKernel</ref> *</type>
+          <declname>parameterKernel</declname>
+        </param>
+        <param>
+          <type>arma::vec</type>
+          <declname>query</declname>
+        </param>
+        <param>
+          <type>double</type>
+          <declname>beta</declname>
+        </param>
+        <briefdescription>
+<para>returns the generalized trajectory at a certain query point </para>        </briefdescription>
+        <detaileddescription>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>trajectoryKernel</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>kernel for trajectory shape generalization </para></parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>parameterKernel</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>kernel for trajectory goal generalization </para></parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>query</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>required query point </para></parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>beta</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>beta for Gaussian processes </para></parameterdescription>
+</parameteritem>
+</parameterlist>
+</para>        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/agyss/iis_robot_sw/iis_catkin_ws/src/kukadu/include/kukadu/control/generalizer.hpp" line="159" column="1" bodyfile="/home/agyss/iis_robot_sw/iis_catkin_ws/src/kukadu/src/control/generalizer.cpp" bodystart="37" bodyend="87"/>
+      </memberdef>
+      </sectiondef>
+    <briefdescription>
+<para>This class is able to generalize task specific trajectories from previous examples. </para>    </briefdescription>
+    <detaileddescription>
+<para>This method works well on tasks, where the sample trajectories are similar in shape. Therefore, several simple trajectories have to be measured and stored in files. </para>    </detaileddescription>
+    <inheritancegraph>
+      <node id="210">
+        <label>kukadu::DMPGeneralizer</label>
+        <link refid="classkukadu_1_1DMPGeneralizer"/>
+        <childnode refid="211" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="211">
+        <label>kukadu::GenericGeneralizer</label>
+        <link refid="classkukadu_1_1GenericGeneralizer"/>
+      </node>
+    </inheritancegraph>
+    <collaborationgraph>
+      <node id="212">
+        <label>kukadu::DMPGeneralizer</label>
+        <link refid="classkukadu_1_1DMPGeneralizer"/>
+        <childnode refid="213" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="213">
+        <label>kukadu::GenericGeneralizer</label>
+        <link refid="classkukadu_1_1GenericGeneralizer"/>
+      </node>
+    </collaborationgraph>
+    <location file="/home/agyss/iis_robot_sw/iis_catkin_ws/src/kukadu/include/kukadu/control/generalizer.hpp" line="111" column="1" bodyfile="/home/agyss/iis_robot_sw/iis_catkin_ws/src/kukadu/include/kukadu/control/generalizer.hpp" bodystart="111" bodyend="161"/>
+    <listofallmembers>
+      <member refid="classkukadu_1_1DMPGeneralizer_1a281baf3984d716b4c75e33e4874f8b5b" prot="private" virt="non-virtual"><scope>kukadu::DMPGeneralizer</scope><name>ax</name></member>
+      <member refid="classkukadu_1_1DMPGeneralizer_1a52fd837e1939b9cb0e48f6f49330ac84" prot="private" virt="non-virtual"><scope>kukadu::DMPGeneralizer</scope><name>baseFolder</name></member>
+      <member refid="classkukadu_1_1DMPGeneralizer_1a2ca66d8c1b2798e5d344134acc2a86ae" prot="private" virt="non-virtual"><scope>kukadu::DMPGeneralizer</scope><name>computeCovarianceMatrix</name></member>
+      <member refid="classkukadu_1_1DMPGeneralizer_1a58a9660be6f56221fd5c96834b9e5725" prot="private" virt="non-virtual"><scope>kukadu::DMPGeneralizer</scope><name>degOfFreedom</name></member>
+      <member refid="classkukadu_1_1DMPGeneralizer_1a2ded30bf10c5fbb86de19876f06d5be0" prot="private" virt="non-virtual"><scope>kukadu::DMPGeneralizer</scope><name>dictTraj</name></member>
+      <member refid="classkukadu_1_1DMPGeneralizer_1a75bfc264da4632ef2ce2454759b53d9c" prot="public" virt="non-virtual"><scope>kukadu::DMPGeneralizer</scope><name>DMPGeneralizer</name></member>
+      <member refid="classkukadu_1_1DMPGeneralizer_1acb8a703ee5bb8492d2035120ab51942b" prot="public" virt="virtual"><scope>kukadu::DMPGeneralizer</scope><name>generalizeDmp</name></member>
+      <member refid="classkukadu_1_1DMPGeneralizer_1a603d560be6c932e1715d74bc581900fa" prot="public" virt="non-virtual"><scope>kukadu::DMPGeneralizer</scope><name>getDegOfFreedom</name></member>
+      <member refid="classkukadu_1_1DMPGeneralizer_1a670a0b673aee54cc4c10f308b1d211a2" prot="public" virt="non-virtual"><scope>kukadu::DMPGeneralizer</scope><name>getQueryPointByIndex</name></member>
+      <member refid="classkukadu_1_1DMPGeneralizer_1a66ae70315e509c84bb1763825a15b2ea" prot="public" virt="non-virtual"><scope>kukadu::DMPGeneralizer</scope><name>getQueryPointCount</name></member>
+      <member refid="classkukadu_1_1DMPGeneralizer_1af1d4734f9c6d2df2d318a1102a83968c" prot="private" virt="non-virtual"><scope>kukadu::DMPGeneralizer</scope><name>mapFiles</name></member>
+      <member refid="classkukadu_1_1DMPGeneralizer_1afb7b667f234cba13be96a3b0e6c49b66" prot="private" virt="non-virtual"><scope>kukadu::DMPGeneralizer</scope><name>tau</name></member>
+    </listofallmembers>
+  </compounddef>
+</doxygen>

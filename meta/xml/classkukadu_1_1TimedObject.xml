@@ -1,0 +1,143 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.8.11">
+  <compounddef id="classkukadu_1_1TimedObject" kind="class" language="C++" prot="public">
+    <compoundname>kukadu::TimedObject</compoundname>
+    <derivedcompoundref refid="classkukadu_1_1Controller" prot="private" virt="non-virtual">kukadu::Controller</derivedcompoundref>
+    <derivedcompoundref refid="classkukadu_1_1ControlQueue" prot="public" virt="non-virtual">kukadu::ControlQueue</derivedcompoundref>
+    <derivedcompoundref refid="classkukadu_1_1GenericHand" prot="public" virt="non-virtual">kukadu::GenericHand</derivedcompoundref>
+    <derivedcompoundref refid="classkukadu_1_1ModuleUsageSingleton" prot="private" virt="non-virtual">kukadu::ModuleUsageSingleton</derivedcompoundref>
+    <derivedcompoundref refid="classkukadu_1_1SensorStorage" prot="public" virt="non-virtual">kukadu::SensorStorage</derivedcompoundref>
+      <sectiondef kind="public-static-func">
+      <memberdef kind="function" id="classkukadu_1_1TimedObject_1a9c4db6e3f71d4bbddecd12b43e586691" prot="public" static="yes" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>long long int</type>
+        <definition>long long int kukadu::TimedObject::getCurrentTime</definition>
+        <argsstring>()</argsstring>
+        <name>getCurrentTime</name>
+        <briefdescription>
+<para>An intrinsic clock is started with startQueue(). This method returns the current time according to this clock. </para>        </briefdescription>
+        <detaileddescription>
+<para><simplesect kind="return"><para>current time </para></simplesect>
+</para>        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/agyss/iis_robot_sw/iis_catkin_ws/src/kukadu/include/kukadu/types/kukadutypes.hpp" line="87" column="1" bodyfile="/home/agyss/iis_robot_sw/iis_catkin_ws/src/kukadu/src/types/kukadutypes.cpp" bodystart="9" bodyend="11"/>
+      </memberdef>
+      </sectiondef>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <inheritancegraph>
+      <node id="662">
+        <label>kukadu::ModuleUsageSingleton</label>
+        <link refid="classkukadu_1_1ModuleUsageSingleton"/>
+        <childnode refid="646" relation="private-inheritance">
+        </childnode>
+      </node>
+      <node id="654">
+        <label>kukadu::TrajectoryExecutor</label>
+        <link refid="classkukadu_1_1TrajectoryExecutor"/>
+        <childnode refid="647" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="648">
+        <label>kukadu::CartesianPtp</label>
+        <link refid="classkukadu_1_1CartesianPtp"/>
+        <childnode refid="647" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="651">
+        <label>kukadu::ControllerActionClip</label>
+        <link refid="classkukadu_1_1ControllerActionClip"/>
+        <childnode refid="647" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="663">
+        <label>kukadu::SensorStorage</label>
+        <link refid="classkukadu_1_1SensorStorage"/>
+        <childnode refid="646" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="656">
+        <label>kukadu::ControlQueue</label>
+        <link refid="classkukadu_1_1ControlQueue"/>
+        <childnode refid="646" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="653">
+        <label>kukadu::SensingController</label>
+        <link refid="classkukadu_1_1SensingController"/>
+        <childnode refid="647" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="646">
+        <label>kukadu::TimedObject</label>
+        <link refid="classkukadu_1_1TimedObject"/>
+      </node>
+      <node id="652">
+        <label>kukadu::JointPtp</label>
+        <link refid="classkukadu_1_1JointPtp"/>
+        <childnode refid="647" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="657">
+        <label>kukadu::KukieControlQueue</label>
+        <link refid="classkukadu_1_1KukieControlQueue"/>
+        <childnode refid="656" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="660">
+        <label>kukadu::KukieHand</label>
+        <link refid="classkukadu_1_1KukieHand"/>
+        <childnode refid="659" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="661">
+        <label>kukadu::PlottingHand</label>
+        <link refid="classkukadu_1_1PlottingHand"/>
+        <childnode refid="659" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="647">
+        <label>kukadu::Controller</label>
+        <link refid="classkukadu_1_1Controller"/>
+        <childnode refid="646" relation="private-inheritance">
+        </childnode>
+      </node>
+      <node id="655">
+        <label>kukadu::DMPExecutor</label>
+        <link refid="classkukadu_1_1DMPExecutor"/>
+        <childnode refid="654" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="650">
+        <label>kukadu::ConcatController</label>
+        <link refid="classkukadu_1_1ConcatController"/>
+        <childnode refid="647" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="649">
+        <label>kukadu::ComplexController</label>
+        <link refid="classkukadu_1_1ComplexController"/>
+        <childnode refid="647" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="659">
+        <label>kukadu::GenericHand</label>
+        <link refid="classkukadu_1_1GenericHand"/>
+        <childnode refid="646" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="658">
+        <label>kukadu::PlottingControlQueue</label>
+        <link refid="classkukadu_1_1PlottingControlQueue"/>
+        <childnode refid="656" relation="public-inheritance">
+        </childnode>
+      </node>
+    </inheritancegraph>
+    <location file="/home/agyss/iis_robot_sw/iis_catkin_ws/src/kukadu/include/kukadu/types/kukadutypes.hpp" line="78" column="1" bodyfile="/home/agyss/iis_robot_sw/iis_catkin_ws/src/kukadu/include/kukadu/types/kukadutypes.hpp" bodystart="78" bodyend="89"/>
+    <listofallmembers>
+      <member refid="classkukadu_1_1TimedObject_1a9c4db6e3f71d4bbddecd12b43e586691" prot="public" virt="non-virtual"><scope>kukadu::TimedObject</scope><name>getCurrentTime</name></member>
+    </listofallmembers>
+  </compounddef>
+</doxygen>

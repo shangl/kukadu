@@ -1,0 +1,1459 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.8.11">
+  <compounddef id="classkukadu_1_1ProjectiveSimulator" kind="class" language="C++" prot="public">
+    <compoundname>kukadu::ProjectiveSimulator</compoundname>
+      <sectiondef kind="private-attrib">
+      <memberdef kind="variable" id="classkukadu_1_1ProjectiveSimulator_1a16873c22b0af367724b2fb0fc9bf1beb" prot="private" static="no" mutable="no">
+        <type>bool</type>
+        <definition>bool kukadu::ProjectiveSimulator::useRanking</definition>
+        <argsstring></argsstring>
+        <name>useRanking</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/agyss/iis_robot_sw/iis_catkin_ws/src/kukadu/include/kukadu/learning/projective_simulation/core.hpp" line="78" column="1" bodyfile="/home/agyss/iis_robot_sw/iis_catkin_ws/src/kukadu/include/kukadu/learning/projective_simulation/core.hpp" bodystart="78" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classkukadu_1_1ProjectiveSimulator_1a7c0ab4c76e6566dd5bc7b528f04d08ea" prot="private" static="no" mutable="no">
+        <type>bool</type>
+        <definition>bool kukadu::ProjectiveSimulator::doTraining</definition>
+        <argsstring></argsstring>
+        <name>doTraining</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/agyss/iis_robot_sw/iis_catkin_ws/src/kukadu/include/kukadu/learning/projective_simulation/core.hpp" line="79" column="1" bodyfile="/home/agyss/iis_robot_sw/iis_catkin_ws/src/kukadu/include/kukadu/learning/projective_simulation/core.hpp" bodystart="79" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classkukadu_1_1ProjectiveSimulator_1a50b69ace62df209a98567af2475db5c9" prot="private" static="no" mutable="no">
+        <type>bool</type>
+        <definition>bool kukadu::ProjectiveSimulator::loadedFromFile</definition>
+        <argsstring></argsstring>
+        <name>loadedFromFile</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/agyss/iis_robot_sw/iis_catkin_ws/src/kukadu/include/kukadu/learning/projective_simulation/core.hpp" line="80" column="1" bodyfile="/home/agyss/iis_robot_sw/iis_catkin_ws/src/kukadu/include/kukadu/learning/projective_simulation/core.hpp" bodystart="80" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classkukadu_1_1ProjectiveSimulator_1a57d151d5b64a1f67f387d451c15f59c8" prot="private" static="no" mutable="no">
+        <type>bool</type>
+        <definition>bool kukadu::ProjectiveSimulator::lastRunWasBored</definition>
+        <argsstring></argsstring>
+        <name>lastRunWasBored</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/agyss/iis_robot_sw/iis_catkin_ws/src/kukadu/include/kukadu/learning/projective_simulation/core.hpp" line="81" column="1" bodyfile="/home/agyss/iis_robot_sw/iis_catkin_ws/src/kukadu/include/kukadu/learning/projective_simulation/core.hpp" bodystart="81" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classkukadu_1_1ProjectiveSimulator_1adee8b9ac52d378af11ab53b9f3155b04" prot="private" static="no" mutable="no">
+        <type>int</type>
+        <definition>int kukadu::ProjectiveSimulator::levels</definition>
+        <argsstring></argsstring>
+        <name>levels</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/agyss/iis_robot_sw/iis_catkin_ws/src/kukadu/include/kukadu/learning/projective_simulation/core.hpp" line="83" column="1" bodyfile="/home/agyss/iis_robot_sw/iis_catkin_ws/src/kukadu/include/kukadu/learning/projective_simulation/core.hpp" bodystart="83" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classkukadu_1_1ProjectiveSimulator_1a965bea5f4c5ae094925b4abfb740f625" prot="private" static="no" mutable="no">
+        <type>int</type>
+        <definition>int kukadu::ProjectiveSimulator::maxActionId</definition>
+        <argsstring></argsstring>
+        <name>maxActionId</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/agyss/iis_robot_sw/iis_catkin_ws/src/kukadu/include/kukadu/learning/projective_simulation/core.hpp" line="84" column="1" bodyfile="/home/agyss/iis_robot_sw/iis_catkin_ws/src/kukadu/include/kukadu/learning/projective_simulation/core.hpp" bodystart="84" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classkukadu_1_1ProjectiveSimulator_1aca0194c68143fd6bfa0ea7c43a364a06" prot="private" static="no" mutable="no">
+        <type>int</type>
+        <definition>int kukadu::ProjectiveSimulator::maxPerceptId</definition>
+        <argsstring></argsstring>
+        <name>maxPerceptId</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/agyss/iis_robot_sw/iis_catkin_ws/src/kukadu/include/kukadu/learning/projective_simulation/core.hpp" line="85" column="1" bodyfile="/home/agyss/iis_robot_sw/iis_catkin_ws/src/kukadu/include/kukadu/learning/projective_simulation/core.hpp" bodystart="85" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classkukadu_1_1ProjectiveSimulator_1ade129883cc8c63bd5d61b95d11a89a96" prot="private" static="no" mutable="no">
+        <type>int</type>
+        <definition>int kukadu::ProjectiveSimulator::operationMode</definition>
+        <argsstring></argsstring>
+        <name>operationMode</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/agyss/iis_robot_sw/iis_catkin_ws/src/kukadu/include/kukadu/learning/projective_simulation/core.hpp" line="86" column="1" bodyfile="/home/agyss/iis_robot_sw/iis_catkin_ws/src/kukadu/include/kukadu/learning/projective_simulation/core.hpp" bodystart="86" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classkukadu_1_1ProjectiveSimulator_1a7d6b79d4aff60d98c5708b88280d62a9" prot="private" static="no" mutable="no">
+        <type>int</type>
+        <definition>int kukadu::ProjectiveSimulator::immunityThresh</definition>
+        <argsstring></argsstring>
+        <name>immunityThresh</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/agyss/iis_robot_sw/iis_catkin_ws/src/kukadu/include/kukadu/learning/projective_simulation/core.hpp" line="87" column="1" bodyfile="/home/agyss/iis_robot_sw/iis_catkin_ws/src/kukadu/include/kukadu/learning/projective_simulation/core.hpp" bodystart="87" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classkukadu_1_1ProjectiveSimulator_1aa5bf4ac86a1c33a20eaea1106de6c7b3" prot="private" static="no" mutable="no">
+        <type>int</type>
+        <definition>int kukadu::ProjectiveSimulator::maxNumberOfClips</definition>
+        <argsstring></argsstring>
+        <name>maxNumberOfClips</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/agyss/iis_robot_sw/iis_catkin_ws/src/kukadu/include/kukadu/learning/projective_simulation/core.hpp" line="88" column="1" bodyfile="/home/agyss/iis_robot_sw/iis_catkin_ws/src/kukadu/include/kukadu/learning/projective_simulation/core.hpp" bodystart="88" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classkukadu_1_1ProjectiveSimulator_1a468c12c5ef88008fc0797b64b753479a" prot="private" static="no" mutable="no">
+        <type>double</type>
+        <definition>double kukadu::ProjectiveSimulator::gamma</definition>
+        <argsstring></argsstring>
+        <name>gamma</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/agyss/iis_robot_sw/iis_catkin_ws/src/kukadu/include/kukadu/learning/projective_simulation/core.hpp" line="90" column="1" bodyfile="/home/agyss/iis_robot_sw/iis_catkin_ws/src/kukadu/include/kukadu/learning/projective_simulation/core.hpp" bodystart="90" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classkukadu_1_1ProjectiveSimulator_1abdb6681793a92e61b5a4faa9abc65276" prot="private" static="no" mutable="no">
+        <type>std::string</type>
+        <definition>std::string kukadu::ProjectiveSimulator::psFile</definition>
+        <argsstring></argsstring>
+        <name>psFile</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/agyss/iis_robot_sw/iis_catkin_ws/src/kukadu/include/kukadu/learning/projective_simulation/core.hpp" line="92" column="1" bodyfile="/home/agyss/iis_robot_sw/iis_catkin_ws/src/kukadu/include/kukadu/learning/projective_simulation/core.hpp" bodystart="92" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classkukadu_1_1ProjectiveSimulator_1a3d80dd2fb908401c1a26c0eaa1cf6a1f" prot="private" static="no" mutable="no">
+        <type>std::vector&lt; double &gt;</type>
+        <definition>std::vector&lt;double&gt; kukadu::ProjectiveSimulator::boredomLevels</definition>
+        <argsstring></argsstring>
+        <name>boredomLevels</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/agyss/iis_robot_sw/iis_catkin_ws/src/kukadu/include/kukadu/learning/projective_simulation/core.hpp" line="94" column="1" bodyfile="/home/agyss/iis_robot_sw/iis_catkin_ws/src/kukadu/include/kukadu/learning/projective_simulation/core.hpp" bodystart="94" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classkukadu_1_1ProjectiveSimulator_1afbba151d38c6d013cb980f17dfe92ccc" prot="private" static="no" mutable="no">
+        <type>KUKADU_SHARED_PTR&lt; <ref refid="classkukadu_1_1Clip" kindref="compound">Clip</ref> &gt;</type>
+        <definition>KUKADU_SHARED_PTR&lt;Clip&gt; kukadu::ProjectiveSimulator::predefinedFirstHop</definition>
+        <argsstring></argsstring>
+        <name>predefinedFirstHop</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/agyss/iis_robot_sw/iis_catkin_ws/src/kukadu/include/kukadu/learning/projective_simulation/core.hpp" line="96" column="1" bodyfile="/home/agyss/iis_robot_sw/iis_catkin_ws/src/kukadu/include/kukadu/learning/projective_simulation/core.hpp" bodystart="96" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classkukadu_1_1ProjectiveSimulator_1adfbaf8b9609518bfc7bf62994041190f" prot="private" static="no" mutable="no">
+        <type>KUKADU_SHARED_PTR&lt; <ref refid="classkukadu_1_1Clip" kindref="compound">Clip</ref> &gt;</type>
+        <definition>KUKADU_SHARED_PTR&lt;Clip&gt; kukadu::ProjectiveSimulator::lastVisitedClip</definition>
+        <argsstring></argsstring>
+        <name>lastVisitedClip</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/agyss/iis_robot_sw/iis_catkin_ws/src/kukadu/include/kukadu/learning/projective_simulation/core.hpp" line="97" column="1" bodyfile="/home/agyss/iis_robot_sw/iis_catkin_ws/src/kukadu/include/kukadu/learning/projective_simulation/core.hpp" bodystart="97" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classkukadu_1_1ProjectiveSimulator_1af068ce6c17f99aef3d6834c4222123c7" prot="private" static="no" mutable="no">
+        <type>int</type>
+        <definition>int kukadu::ProjectiveSimulator::lastVisitedPreviousIdx</definition>
+        <argsstring></argsstring>
+        <name>lastVisitedPreviousIdx</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/agyss/iis_robot_sw/iis_catkin_ws/src/kukadu/include/kukadu/learning/projective_simulation/core.hpp" line="99" column="1" bodyfile="/home/agyss/iis_robot_sw/iis_catkin_ws/src/kukadu/include/kukadu/learning/projective_simulation/core.hpp" bodystart="99" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classkukadu_1_1ProjectiveSimulator_1a095199c5829806bcf7fbe57b5caa97e3" prot="private" static="no" mutable="no">
+        <type>int</type>
+        <definition>int kukadu::ProjectiveSimulator::lastVisitedLevel</definition>
+        <argsstring></argsstring>
+        <name>lastVisitedLevel</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/agyss/iis_robot_sw/iis_catkin_ws/src/kukadu/include/kukadu/learning/projective_simulation/core.hpp" line="100" column="1" bodyfile="/home/agyss/iis_robot_sw/iis_catkin_ws/src/kukadu/include/kukadu/learning/projective_simulation/core.hpp" bodystart="100" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classkukadu_1_1ProjectiveSimulator_1ade3edb404f082d155a94cb2b820bf43a" prot="private" static="no" mutable="no">
+        <type>bool</type>
+        <definition>bool kukadu::ProjectiveSimulator::lastBoredomResult</definition>
+        <argsstring></argsstring>
+        <name>lastBoredomResult</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/agyss/iis_robot_sw/iis_catkin_ws/src/kukadu/include/kukadu/learning/projective_simulation/core.hpp" line="101" column="1" bodyfile="/home/agyss/iis_robot_sw/iis_catkin_ws/src/kukadu/include/kukadu/learning/projective_simulation/core.hpp" bodystart="101" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classkukadu_1_1ProjectiveSimulator_1ae041f678d679ead3ac03758fa3195443" prot="private" static="no" mutable="no">
+        <type>bool</type>
+        <definition>bool kukadu::ProjectiveSimulator::walkedFurtherSinceLastBoredom</definition>
+        <argsstring></argsstring>
+        <name>walkedFurtherSinceLastBoredom</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/agyss/iis_robot_sw/iis_catkin_ws/src/kukadu/include/kukadu/learning/projective_simulation/core.hpp" line="102" column="1" bodyfile="/home/agyss/iis_robot_sw/iis_catkin_ws/src/kukadu/include/kukadu/learning/projective_simulation/core.hpp" bodystart="102" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classkukadu_1_1ProjectiveSimulator_1a7fb00f88e55a7c0e2d81af5ddd932189" prot="private" static="no" mutable="no">
+        <type>std::vector&lt; std::pair&lt; double, KUKADU_SHARED_PTR&lt; <ref refid="classkukadu_1_1Clip" kindref="compound">Clip</ref> &gt; &gt; &gt;</type>
+        <definition>std::vector&lt;std::pair&lt;double, KUKADU_SHARED_PTR&lt;Clip&gt; &gt; &gt; kukadu::ProjectiveSimulator::rankVec</definition>
+        <argsstring></argsstring>
+        <name>rankVec</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/agyss/iis_robot_sw/iis_catkin_ws/src/kukadu/include/kukadu/learning/projective_simulation/core.hpp" line="104" column="1" bodyfile="/home/agyss/iis_robot_sw/iis_catkin_ws/src/kukadu/include/kukadu/learning/projective_simulation/core.hpp" bodystart="104" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classkukadu_1_1ProjectiveSimulator_1a4a6d275136d838afd4c92d102c573c28" prot="private" static="no" mutable="no">
+        <type>KUKADU_SHARED_PTR&lt; <ref refid="classkukadu_1_1Reward" kindref="compound">Reward</ref> &gt;</type>
+        <definition>KUKADU_SHARED_PTR&lt;Reward&gt; kukadu::ProjectiveSimulator::reward</definition>
+        <argsstring></argsstring>
+        <name>reward</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/agyss/iis_robot_sw/iis_catkin_ws/src/kukadu/include/kukadu/learning/projective_simulation/core.hpp" line="106" column="1" bodyfile="/home/agyss/iis_robot_sw/iis_catkin_ws/src/kukadu/include/kukadu/learning/projective_simulation/core.hpp" bodystart="106" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classkukadu_1_1ProjectiveSimulator_1aff1a045b2db478554a89eae1d36dbbff" prot="private" static="no" mutable="no">
+        <type>KUKADU_SHARED_PTR&lt; <ref refid="classkukadu_1_1Clip" kindref="compound">Clip</ref> &gt;</type>
+        <definition>KUKADU_SHARED_PTR&lt;Clip&gt; kukadu::ProjectiveSimulator::lastClipBeforeAction</definition>
+        <argsstring></argsstring>
+        <name>lastClipBeforeAction</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/agyss/iis_robot_sw/iis_catkin_ws/src/kukadu/include/kukadu/learning/projective_simulation/core.hpp" line="107" column="1" bodyfile="/home/agyss/iis_robot_sw/iis_catkin_ws/src/kukadu/include/kukadu/learning/projective_simulation/core.hpp" bodystart="107" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classkukadu_1_1ProjectiveSimulator_1aceb5e27a01a3e48ee202e01a204adb93" prot="private" static="no" mutable="no">
+        <type>KUKADU_SHARED_PTR&lt; <ref refid="classkukadu_1_1ActionClip" kindref="compound">ActionClip</ref> &gt;</type>
+        <definition>KUKADU_SHARED_PTR&lt;ActionClip&gt; kukadu::ProjectiveSimulator::lastActionClip</definition>
+        <argsstring></argsstring>
+        <name>lastActionClip</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/agyss/iis_robot_sw/iis_catkin_ws/src/kukadu/include/kukadu/learning/projective_simulation/core.hpp" line="108" column="1" bodyfile="/home/agyss/iis_robot_sw/iis_catkin_ws/src/kukadu/include/kukadu/learning/projective_simulation/core.hpp" bodystart="108" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classkukadu_1_1ProjectiveSimulator_1a192ab856082cbbf1a8647bac2ee85735" prot="private" static="no" mutable="no">
+        <type>KUKADU_SHARED_PTR&lt; <ref refid="classkukadu_1_1PerceptClip" kindref="compound">PerceptClip</ref> &gt;</type>
+        <definition>KUKADU_SHARED_PTR&lt;PerceptClip&gt; kukadu::ProjectiveSimulator::lastPerceptClip</definition>
+        <argsstring></argsstring>
+        <name>lastPerceptClip</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/agyss/iis_robot_sw/iis_catkin_ws/src/kukadu/include/kukadu/learning/projective_simulation/core.hpp" line="109" column="1" bodyfile="/home/agyss/iis_robot_sw/iis_catkin_ws/src/kukadu/include/kukadu/learning/projective_simulation/core.hpp" bodystart="109" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classkukadu_1_1ProjectiveSimulator_1a98b750b3a279bb52322e36df45fe4197" prot="private" static="no" mutable="no">
+        <type>KUKADU_SHARED_PTR&lt; kukadu_mersenne_twister &gt;</type>
+        <definition>KUKADU_SHARED_PTR&lt;kukadu_mersenne_twister&gt; kukadu::ProjectiveSimulator::generator</definition>
+        <argsstring></argsstring>
+        <name>generator</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/agyss/iis_robot_sw/iis_catkin_ws/src/kukadu/include/kukadu/learning/projective_simulation/core.hpp" line="110" column="1" bodyfile="/home/agyss/iis_robot_sw/iis_catkin_ws/src/kukadu/include/kukadu/learning/projective_simulation/core.hpp" bodystart="110" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classkukadu_1_1ProjectiveSimulator_1af822ce96184feea3cff52b81455ae61a" prot="private" static="no" mutable="no">
+        <type>KUKADU_SHARED_PTR&lt; <ref refid="classkukadu_1_1PerceptClip" kindref="compound">PerceptClip</ref> &gt;</type>
+        <definition>KUKADU_SHARED_PTR&lt;PerceptClip&gt; kukadu::ProjectiveSimulator::lastGeneralizedPercept</definition>
+        <argsstring></argsstring>
+        <name>lastGeneralizedPercept</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/agyss/iis_robot_sw/iis_catkin_ws/src/kukadu/include/kukadu/learning/projective_simulation/core.hpp" line="111" column="1" bodyfile="/home/agyss/iis_robot_sw/iis_catkin_ws/src/kukadu/include/kukadu/learning/projective_simulation/core.hpp" bodystart="111" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classkukadu_1_1ProjectiveSimulator_1af97c52a64ae9978b5e833a246742fe81" prot="private" static="no" mutable="no">
+        <type>KUKADU_SHARED_PTR&lt; std::vector&lt; int &gt; &gt;</type>
+        <definition>KUKADU_SHARED_PTR&lt;std::vector&lt;int&gt; &gt; kukadu::ProjectiveSimulator::intermediateHops</definition>
+        <argsstring></argsstring>
+        <name>intermediateHops</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/agyss/iis_robot_sw/iis_catkin_ws/src/kukadu/include/kukadu/learning/projective_simulation/core.hpp" line="112" column="1" bodyfile="/home/agyss/iis_robot_sw/iis_catkin_ws/src/kukadu/include/kukadu/learning/projective_simulation/core.hpp" bodystart="112" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classkukadu_1_1ProjectiveSimulator_1af87dfeea78873d0cbaddc8733012c25b" prot="private" static="no" mutable="no">
+        <type>KUKADU_SHARED_PTR&lt; std::vector&lt; KUKADU_SHARED_PTR&lt; <ref refid="classkukadu_1_1ActionClip" kindref="compound">ActionClip</ref> &gt; &gt; &gt;</type>
+        <definition>KUKADU_SHARED_PTR&lt;std::vector&lt;KUKADU_SHARED_PTR&lt;ActionClip&gt; &gt; &gt; kukadu::ProjectiveSimulator::actionClips</definition>
+        <argsstring></argsstring>
+        <name>actionClips</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/agyss/iis_robot_sw/iis_catkin_ws/src/kukadu/include/kukadu/learning/projective_simulation/core.hpp" line="113" column="1" bodyfile="/home/agyss/iis_robot_sw/iis_catkin_ws/src/kukadu/include/kukadu/learning/projective_simulation/core.hpp" bodystart="113" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classkukadu_1_1ProjectiveSimulator_1aaf0466ad9bfc52e6bf871d8d0643cc76" prot="private" static="no" mutable="no">
+        <type>KUKADU_SHARED_PTR&lt; std::vector&lt; KUKADU_SHARED_PTR&lt; <ref refid="classkukadu_1_1PerceptClip" kindref="compound">PerceptClip</ref> &gt; &gt; &gt;</type>
+        <definition>KUKADU_SHARED_PTR&lt;std::vector&lt;KUKADU_SHARED_PTR&lt;PerceptClip&gt; &gt; &gt; kukadu::ProjectiveSimulator::perceptClips</definition>
+        <argsstring></argsstring>
+        <name>perceptClips</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/agyss/iis_robot_sw/iis_catkin_ws/src/kukadu/include/kukadu/learning/projective_simulation/core.hpp" line="114" column="1" bodyfile="/home/agyss/iis_robot_sw/iis_catkin_ws/src/kukadu/include/kukadu/learning/projective_simulation/core.hpp" bodystart="114" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classkukadu_1_1ProjectiveSimulator_1a4488056a3197d22e6b7258cc029d4c39" prot="private" static="no" mutable="no">
+        <type>KUKADU_SHARED_PTR&lt; std::vector&lt; KUKADU_SHARED_PTR&lt; std::set&lt; KUKADU_SHARED_PTR&lt; <ref refid="classkukadu_1_1Clip" kindref="compound">Clip</ref> &gt;, <ref refid="structkukadu_1_1clip__compare" kindref="compound">clip_compare</ref> &gt; &gt; &gt; &gt;</type>
+        <definition>KUKADU_SHARED_PTR&lt;std::vector&lt;KUKADU_SHARED_PTR&lt;std::set&lt;KUKADU_SHARED_PTR&lt;Clip&gt;, clip_compare&gt; &gt; &gt; &gt; kukadu::ProjectiveSimulator::clipLayers</definition>
+        <argsstring></argsstring>
+        <name>clipLayers</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/agyss/iis_robot_sw/iis_catkin_ws/src/kukadu/include/kukadu/learning/projective_simulation/core.hpp" line="115" column="1" bodyfile="/home/agyss/iis_robot_sw/iis_catkin_ws/src/kukadu/include/kukadu/learning/projective_simulation/core.hpp" bodystart="115" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classkukadu_1_1ProjectiveSimulator_1a83ca13098bebcb7ab2a08c3b655ad5d0" prot="private" static="no" mutable="no">
+        <type>kukadu_uniform_distribution</type>
+        <definition>kukadu_uniform_distribution kukadu::ProjectiveSimulator::intDist</definition>
+        <argsstring></argsstring>
+        <name>intDist</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/agyss/iis_robot_sw/iis_catkin_ws/src/kukadu/include/kukadu/learning/projective_simulation/core.hpp" line="117" column="1" bodyfile="/home/agyss/iis_robot_sw/iis_catkin_ws/src/kukadu/include/kukadu/learning/projective_simulation/core.hpp" bodystart="117" bodyend="-1"/>
+      </memberdef>
+      </sectiondef>
+      <sectiondef kind="public-static-attrib">
+      <memberdef kind="variable" id="classkukadu_1_1ProjectiveSimulator_1aca61d0fef4c6b66880d901dee5d013e1" prot="public" static="yes" mutable="no">
+        <type>constexpr auto</type>
+        <definition>constexpr auto kukadu::ProjectiveSimulator::IGNORE_ID</definition>
+        <argsstring></argsstring>
+        <name>IGNORE_ID</name>
+        <initializer>= INT_MIN</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/agyss/iis_robot_sw/iis_catkin_ws/src/kukadu/include/kukadu/learning/projective_simulation/core.hpp" line="193" column="1" bodyfile="/home/agyss/iis_robot_sw/iis_catkin_ws/src/kukadu/include/kukadu/learning/projective_simulation/core.hpp" bodystart="193" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classkukadu_1_1ProjectiveSimulator_1abd06bd43a4a3f8fb07ac2d5cd2b65c8f" prot="public" static="yes" mutable="no">
+        <type>constexpr auto</type>
+        <definition>constexpr auto kukadu::ProjectiveSimulator::PS_DEFAULT_IMMUNITY</definition>
+        <argsstring></argsstring>
+        <name>PS_DEFAULT_IMMUNITY</name>
+        <initializer>= 10000</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/agyss/iis_robot_sw/iis_catkin_ws/src/kukadu/include/kukadu/learning/projective_simulation/core.hpp" line="195" column="1" bodyfile="/home/agyss/iis_robot_sw/iis_catkin_ws/src/kukadu/include/kukadu/learning/projective_simulation/core.hpp" bodystart="195" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classkukadu_1_1ProjectiveSimulator_1a34d27d64db9a7784f2a1e6bb384fbebf" prot="public" static="yes" mutable="no">
+        <type>constexpr auto</type>
+        <definition>constexpr auto kukadu::ProjectiveSimulator::PS_USE_ORIGINAL</definition>
+        <argsstring></argsstring>
+        <name>PS_USE_ORIGINAL</name>
+        <initializer>= 1</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/agyss/iis_robot_sw/iis_catkin_ws/src/kukadu/include/kukadu/learning/projective_simulation/core.hpp" line="197" column="1" bodyfile="/home/agyss/iis_robot_sw/iis_catkin_ws/src/kukadu/include/kukadu/learning/projective_simulation/core.hpp" bodystart="197" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classkukadu_1_1ProjectiveSimulator_1aa3c0938e8baabba18467af36f47f4e59" prot="public" static="yes" mutable="no">
+        <type>constexpr auto</type>
+        <definition>constexpr auto kukadu::ProjectiveSimulator::PS_USE_GEN</definition>
+        <argsstring></argsstring>
+        <name>PS_USE_GEN</name>
+        <initializer>= 2</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/agyss/iis_robot_sw/iis_catkin_ws/src/kukadu/include/kukadu/learning/projective_simulation/core.hpp" line="198" column="1" bodyfile="/home/agyss/iis_robot_sw/iis_catkin_ws/src/kukadu/include/kukadu/learning/projective_simulation/core.hpp" bodystart="198" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classkukadu_1_1ProjectiveSimulator_1a8cb8845bbc8f20498f708fac575d7d79" prot="public" static="yes" mutable="no">
+        <type>constexpr auto</type>
+        <definition>constexpr auto kukadu::ProjectiveSimulator::PS_PRINT_DEBUG_INFO</definition>
+        <argsstring></argsstring>
+        <name>PS_PRINT_DEBUG_INFO</name>
+        <initializer>= 0</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/agyss/iis_robot_sw/iis_catkin_ws/src/kukadu/include/kukadu/learning/projective_simulation/core.hpp" line="200" column="1" bodyfile="/home/agyss/iis_robot_sw/iis_catkin_ws/src/kukadu/include/kukadu/learning/projective_simulation/core.hpp" bodystart="200" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classkukadu_1_1ProjectiveSimulator_1a451e306dd5587b68fcd90a9e43dac576" prot="public" static="yes" mutable="no">
+        <type>constexpr auto</type>
+        <definition>constexpr auto kukadu::ProjectiveSimulator::PS_PRINT_RANKING_DEBUG_INFO</definition>
+        <argsstring></argsstring>
+        <name>PS_PRINT_RANKING_DEBUG_INFO</name>
+        <initializer>= 1</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/agyss/iis_robot_sw/iis_catkin_ws/src/kukadu/include/kukadu/learning/projective_simulation/core.hpp" line="201" column="1" bodyfile="/home/agyss/iis_robot_sw/iis_catkin_ws/src/kukadu/include/kukadu/learning/projective_simulation/core.hpp" bodystart="201" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classkukadu_1_1ProjectiveSimulator_1ad21dc772fd571626d7fad31ff251e0a5" prot="public" static="yes" mutable="no">
+        <type>constexpr auto</type>
+        <definition>constexpr auto kukadu::ProjectiveSimulator::PS_MAX_NUMBER_OF_CLIPS</definition>
+        <argsstring></argsstring>
+        <name>PS_MAX_NUMBER_OF_CLIPS</name>
+        <initializer>= 1000</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/agyss/iis_robot_sw/iis_catkin_ws/src/kukadu/include/kukadu/learning/projective_simulation/core.hpp" line="203" column="1" bodyfile="/home/agyss/iis_robot_sw/iis_catkin_ws/src/kukadu/include/kukadu/learning/projective_simulation/core.hpp" bodystart="203" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classkukadu_1_1ProjectiveSimulator_1a972c03f7b17fc7f38e676919bb16609a" prot="public" static="yes" mutable="no">
+        <type>constexpr auto</type>
+        <definition>constexpr auto kukadu::ProjectiveSimulator::PS_WALK_UNTIL_END</definition>
+        <argsstring></argsstring>
+        <name>PS_WALK_UNTIL_END</name>
+        <initializer>= -1</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/agyss/iis_robot_sw/iis_catkin_ws/src/kukadu/include/kukadu/learning/projective_simulation/core.hpp" line="205" column="1" bodyfile="/home/agyss/iis_robot_sw/iis_catkin_ws/src/kukadu/include/kukadu/learning/projective_simulation/core.hpp" bodystart="205" bodyend="-1"/>
+      </memberdef>
+      </sectiondef>
+      <sectiondef kind="private-func">
+      <memberdef kind="function" id="classkukadu_1_1ProjectiveSimulator_1a539a8508d6cb61866cae7f13ecd3d369" prot="private" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>void kukadu::ProjectiveSimulator::cleanByRank</definition>
+        <argsstring>()</argsstring>
+        <name>cleanByRank</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/agyss/iis_robot_sw/iis_catkin_ws/src/kukadu/include/kukadu/learning/projective_simulation/core.hpp" line="119" column="1" bodyfile="/home/agyss/iis_robot_sw/iis_catkin_ws/src/kukadu/src/learning/projective_simulation/core.cpp" bodystart="930" bodyend="976"/>
+      </memberdef>
+      <memberdef kind="function" id="classkukadu_1_1ProjectiveSimulator_1adeeac1e6c3eba7fd91edfd929725e3e4" prot="private" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>void kukadu::ProjectiveSimulator::printRankVec</definition>
+        <argsstring>()</argsstring>
+        <name>printRankVec</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/agyss/iis_robot_sw/iis_catkin_ws/src/kukadu/include/kukadu/learning/projective_simulation/core.hpp" line="120" column="1" bodyfile="/home/agyss/iis_robot_sw/iis_catkin_ws/src/kukadu/src/learning/projective_simulation/core.cpp" bodystart="1401" bodyend="1405"/>
+      </memberdef>
+      <memberdef kind="function" id="classkukadu_1_1ProjectiveSimulator_1a4e9e572217c3d8aa55df4b3b697d5bbe" prot="private" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>void kukadu::ProjectiveSimulator::computeRankVec</definition>
+        <argsstring>()</argsstring>
+        <name>computeRankVec</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/agyss/iis_robot_sw/iis_catkin_ws/src/kukadu/include/kukadu/learning/projective_simulation/core.hpp" line="121" column="1" bodyfile="/home/agyss/iis_robot_sw/iis_catkin_ws/src/kukadu/src/learning/projective_simulation/core.cpp" bodystart="1371" bodyend="1395"/>
+      </memberdef>
+      <memberdef kind="function" id="classkukadu_1_1ProjectiveSimulator_1a0cdb2b868ead2d7ad5c26a0f27dc6de5" prot="private" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>void kukadu::ProjectiveSimulator::construct</definition>
+        <argsstring>(KUKADU_SHARED_PTR&lt; Reward &gt; reward, KUKADU_SHARED_PTR&lt; kukadu_mersenne_twister &gt; generator, double gamma, int operationMode, bool useRanking)</argsstring>
+        <name>construct</name>
+        <param>
+          <type>KUKADU_SHARED_PTR&lt; <ref refid="classkukadu_1_1Reward" kindref="compound">Reward</ref> &gt;</type>
+          <declname>reward</declname>
+        </param>
+        <param>
+          <type>KUKADU_SHARED_PTR&lt; kukadu_mersenne_twister &gt;</type>
+          <declname>generator</declname>
+        </param>
+        <param>
+          <type>double</type>
+          <declname>gamma</declname>
+        </param>
+        <param>
+          <type>int</type>
+          <declname>operationMode</declname>
+        </param>
+        <param>
+          <type>bool</type>
+          <declname>useRanking</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/agyss/iis_robot_sw/iis_catkin_ws/src/kukadu/include/kukadu/learning/projective_simulation/core.hpp" line="122" column="1" bodyfile="/home/agyss/iis_robot_sw/iis_catkin_ws/src/kukadu/src/learning/projective_simulation/core.cpp" bodystart="699" bodyend="733"/>
+      </memberdef>
+      <memberdef kind="function" id="classkukadu_1_1ProjectiveSimulator_1a0e0c6240ee37c3ccd4cb5fdf43a9cd04" prot="private" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>bool</type>
+        <definition>bool kukadu::ProjectiveSimulator::fileExists</definition>
+        <argsstring>(const std::string filePath)</argsstring>
+        <name>fileExists</name>
+        <param>
+          <type>const std::string</type>
+          <declname>filePath</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/agyss/iis_robot_sw/iis_catkin_ws/src/kukadu/include/kukadu/learning/projective_simulation/core.hpp" line="124" column="1" bodyfile="/home/agyss/iis_robot_sw/iis_catkin_ws/src/kukadu/src/learning/projective_simulation/core.cpp" bodystart="1407" bodyend="1416"/>
+      </memberdef>
+      <memberdef kind="function" id="classkukadu_1_1ProjectiveSimulator_1a7e2c2d28cc6610b3bbb18bcb11f907c9" prot="private" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>int</type>
+        <definition>int kukadu::ProjectiveSimulator::getIdVecLevel</definition>
+        <argsstring>(KUKADU_SHARED_PTR&lt; std::vector&lt; int &gt; &gt; idVec)</argsstring>
+        <name>getIdVecLevel</name>
+        <param>
+          <type>KUKADU_SHARED_PTR&lt; std::vector&lt; int &gt; &gt;</type>
+          <declname>idVec</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/agyss/iis_robot_sw/iis_catkin_ws/src/kukadu/include/kukadu/learning/projective_simulation/core.hpp" line="126" column="1" bodyfile="/home/agyss/iis_robot_sw/iis_catkin_ws/src/kukadu/src/learning/projective_simulation/core.cpp" bodystart="582" bodyend="595"/>
+      </memberdef>
+      <memberdef kind="function" id="classkukadu_1_1ProjectiveSimulator_1ad83189d097501d8eb393f390ba9680f4" prot="private" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>bool</type>
+        <definition>bool kukadu::ProjectiveSimulator::computeBoredom</definition>
+        <argsstring>(KUKADU_SHARED_PTR&lt; Clip &gt; clip)</argsstring>
+        <name>computeBoredom</name>
+        <param>
+          <type>KUKADU_SHARED_PTR&lt; <ref refid="classkukadu_1_1Clip" kindref="compound">Clip</ref> &gt;</type>
+          <declname>clip</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/agyss/iis_robot_sw/iis_catkin_ws/src/kukadu/include/kukadu/learning/projective_simulation/core.hpp" line="128" column="1" bodyfile="/home/agyss/iis_robot_sw/iis_catkin_ws/src/kukadu/src/learning/projective_simulation/core.cpp" bodystart="1110" bodyend="1146"/>
+      </memberdef>
+      <memberdef kind="function" id="classkukadu_1_1ProjectiveSimulator_1a67b0d6cf12ab9c9b2c8411178e17c367" prot="private" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>void kukadu::ProjectiveSimulator::loadPsConstructor</definition>
+        <argsstring>(KUKADU_SHARED_PTR&lt; Reward &gt; reward, KUKADU_SHARED_PTR&lt; kukadu_mersenne_twister &gt; generator, std::string file, std::function&lt; KUKADU_SHARED_PTR&lt; Clip &gt;(const std::string &amp;, const int &amp;, const int &amp;, KUKADU_SHARED_PTR&lt; kukadu_mersenne_twister &gt;) &gt; createClipFunc)</argsstring>
+        <name>loadPsConstructor</name>
+        <param>
+          <type>KUKADU_SHARED_PTR&lt; <ref refid="classkukadu_1_1Reward" kindref="compound">Reward</ref> &gt;</type>
+          <declname>reward</declname>
+        </param>
+        <param>
+          <type>KUKADU_SHARED_PTR&lt; kukadu_mersenne_twister &gt;</type>
+          <declname>generator</declname>
+        </param>
+        <param>
+          <type>std::string</type>
+          <declname>file</declname>
+        </param>
+        <param>
+          <type>std::function&lt; KUKADU_SHARED_PTR&lt; <ref refid="classkukadu_1_1Clip" kindref="compound">Clip</ref> &gt;(const std::string &amp;, const int &amp;, const int &amp;, KUKADU_SHARED_PTR&lt; kukadu_mersenne_twister &gt;) &gt;</type>
+          <declname>createClipFunc</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/agyss/iis_robot_sw/iis_catkin_ws/src/kukadu/include/kukadu/learning/projective_simulation/core.hpp" line="130" column="1" bodyfile="/home/agyss/iis_robot_sw/iis_catkin_ws/src/kukadu/src/learning/projective_simulation/core.cpp" bodystart="293" bodyend="509"/>
+      </memberdef>
+      </sectiondef>
+      <sectiondef kind="public-func">
+      <memberdef kind="function" id="classkukadu_1_1ProjectiveSimulator_1a5ab38c1c4ddc848435ef268154a68964" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type></type>
+        <definition>kukadu::ProjectiveSimulator::ProjectiveSimulator</definition>
+        <argsstring>(KUKADU_SHARED_PTR&lt; Reward &gt; reward, KUKADU_SHARED_PTR&lt; kukadu_mersenne_twister &gt; generator, std::string file)</argsstring>
+        <name>ProjectiveSimulator</name>
+        <param>
+          <type>KUKADU_SHARED_PTR&lt; <ref refid="classkukadu_1_1Reward" kindref="compound">Reward</ref> &gt;</type>
+          <declname>reward</declname>
+        </param>
+        <param>
+          <type>KUKADU_SHARED_PTR&lt; kukadu_mersenne_twister &gt;</type>
+          <declname>generator</declname>
+        </param>
+        <param>
+          <type>std::string</type>
+          <declname>file</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/agyss/iis_robot_sw/iis_catkin_ws/src/kukadu/include/kukadu/learning/projective_simulation/core.hpp" line="135" column="1" bodyfile="/home/agyss/iis_robot_sw/iis_catkin_ws/src/kukadu/src/learning/projective_simulation/core.cpp" bodystart="524" bodyend="558"/>
+      </memberdef>
+      <memberdef kind="function" id="classkukadu_1_1ProjectiveSimulator_1af2a9a8b46a43939fc551c9a6d2ebac2d" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type></type>
+        <definition>kukadu::ProjectiveSimulator::ProjectiveSimulator</definition>
+        <argsstring>(KUKADU_SHARED_PTR&lt; Reward &gt; reward, KUKADU_SHARED_PTR&lt; kukadu_mersenne_twister &gt; generator, std::string file, std::function&lt; KUKADU_SHARED_PTR&lt; Clip &gt;(const std::string &amp;, const int &amp;, const int &amp;, KUKADU_SHARED_PTR&lt; kukadu_mersenne_twister &gt; generator) &gt; createClipFunc)</argsstring>
+        <name>ProjectiveSimulator</name>
+        <param>
+          <type>KUKADU_SHARED_PTR&lt; <ref refid="classkukadu_1_1Reward" kindref="compound">Reward</ref> &gt;</type>
+          <declname>reward</declname>
+        </param>
+        <param>
+          <type>KUKADU_SHARED_PTR&lt; kukadu_mersenne_twister &gt;</type>
+          <declname>generator</declname>
+        </param>
+        <param>
+          <type>std::string</type>
+          <declname>file</declname>
+        </param>
+        <param>
+          <type>std::function&lt; KUKADU_SHARED_PTR&lt; <ref refid="classkukadu_1_1Clip" kindref="compound">Clip</ref> &gt;(const std::string &amp;, const int &amp;, const int &amp;, KUKADU_SHARED_PTR&lt; kukadu_mersenne_twister &gt; generator) &gt;</type>
+          <declname>createClipFunc</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/agyss/iis_robot_sw/iis_catkin_ws/src/kukadu/include/kukadu/learning/projective_simulation/core.hpp" line="136" column="1" bodyfile="/home/agyss/iis_robot_sw/iis_catkin_ws/src/kukadu/src/learning/projective_simulation/core.cpp" bodystart="511" bodyend="522"/>
+      </memberdef>
+      <memberdef kind="function" id="classkukadu_1_1ProjectiveSimulator_1aa7f5285814bf9a4a630a8b3e62483cd3" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type></type>
+        <definition>kukadu::ProjectiveSimulator::ProjectiveSimulator</definition>
+        <argsstring>(KUKADU_SHARED_PTR&lt; Reward &gt; reward, KUKADU_SHARED_PTR&lt; kukadu_mersenne_twister &gt; generator, double gamma, int operationMode, bool useRanking)</argsstring>
+        <name>ProjectiveSimulator</name>
+        <param>
+          <type>KUKADU_SHARED_PTR&lt; <ref refid="classkukadu_1_1Reward" kindref="compound">Reward</ref> &gt;</type>
+          <declname>reward</declname>
+        </param>
+        <param>
+          <type>KUKADU_SHARED_PTR&lt; kukadu_mersenne_twister &gt;</type>
+          <declname>generator</declname>
+        </param>
+        <param>
+          <type>double</type>
+          <declname>gamma</declname>
+        </param>
+        <param>
+          <type>int</type>
+          <declname>operationMode</declname>
+        </param>
+        <param>
+          <type>bool</type>
+          <declname>useRanking</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/agyss/iis_robot_sw/iis_catkin_ws/src/kukadu/include/kukadu/learning/projective_simulation/core.hpp" line="138" column="1" bodyfile="/home/agyss/iis_robot_sw/iis_catkin_ws/src/kukadu/src/learning/projective_simulation/core.cpp" bodystart="735" bodyend="769"/>
+      </memberdef>
+      <memberdef kind="function" id="classkukadu_1_1ProjectiveSimulator_1aa9bfdf6524f30d1f1e3e3c9c1094d59f" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type></type>
+        <definition>kukadu::ProjectiveSimulator::ProjectiveSimulator</definition>
+        <argsstring>(KUKADU_SHARED_PTR&lt; Reward &gt; reward, KUKADU_SHARED_PTR&lt; kukadu_mersenne_twister &gt; generator, KUKADU_SHARED_PTR&lt; std::vector&lt; KUKADU_SHARED_PTR&lt; PerceptClip &gt; &gt; &gt; network, double gamma, int operationMode, bool useRanking)</argsstring>
+        <name>ProjectiveSimulator</name>
+        <param>
+          <type>KUKADU_SHARED_PTR&lt; <ref refid="classkukadu_1_1Reward" kindref="compound">Reward</ref> &gt;</type>
+          <declname>reward</declname>
+        </param>
+        <param>
+          <type>KUKADU_SHARED_PTR&lt; kukadu_mersenne_twister &gt;</type>
+          <declname>generator</declname>
+        </param>
+        <param>
+          <type>KUKADU_SHARED_PTR&lt; std::vector&lt; KUKADU_SHARED_PTR&lt; <ref refid="classkukadu_1_1PerceptClip" kindref="compound">PerceptClip</ref> &gt; &gt; &gt;</type>
+          <declname>network</declname>
+        </param>
+        <param>
+          <type>double</type>
+          <declname>gamma</declname>
+        </param>
+        <param>
+          <type>int</type>
+          <declname>operationMode</declname>
+        </param>
+        <param>
+          <type>bool</type>
+          <declname>useRanking</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/agyss/iis_robot_sw/iis_catkin_ws/src/kukadu/include/kukadu/learning/projective_simulation/core.hpp" line="139" column="1" bodyfile="/home/agyss/iis_robot_sw/iis_catkin_ws/src/kukadu/src/learning/projective_simulation/core.cpp" bodystart="804" bodyend="845"/>
+      </memberdef>
+      <memberdef kind="function" id="classkukadu_1_1ProjectiveSimulator_1a017c150ca000692b9e7b1e267cb1fd9e" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type></type>
+        <definition>kukadu::ProjectiveSimulator::~ProjectiveSimulator</definition>
+        <argsstring>()</argsstring>
+        <name>~ProjectiveSimulator</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/agyss/iis_robot_sw/iis_catkin_ws/src/kukadu/include/kukadu/learning/projective_simulation/core.hpp" line="142" column="1" bodyfile="/home/agyss/iis_robot_sw/iis_catkin_ws/src/kukadu/src/learning/projective_simulation/core.cpp" bodystart="869" bodyend="898"/>
+      </memberdef>
+      <memberdef kind="function" id="classkukadu_1_1ProjectiveSimulator_1aefa86b1c8c1ec4af765fe4326de58d8e" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>void kukadu::ProjectiveSimulator::printWeights</definition>
+        <argsstring>()</argsstring>
+        <name>printWeights</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/agyss/iis_robot_sw/iis_catkin_ws/src/kukadu/include/kukadu/learning/projective_simulation/core.hpp" line="144" column="1" bodyfile="/home/agyss/iis_robot_sw/iis_catkin_ws/src/kukadu/src/learning/projective_simulation/core.cpp" bodystart="1221" bodyend="1244"/>
+      </memberdef>
+      <memberdef kind="function" id="classkukadu_1_1ProjectiveSimulator_1aae63392865e563583bdbe0f4d13f1e15" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>void kukadu::ProjectiveSimulator::setTrainingMode</definition>
+        <argsstring>(bool doTraining)</argsstring>
+        <name>setTrainingMode</name>
+        <param>
+          <type>bool</type>
+          <declname>doTraining</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/agyss/iis_robot_sw/iis_catkin_ws/src/kukadu/include/kukadu/learning/projective_simulation/core.hpp" line="145" column="1" bodyfile="/home/agyss/iis_robot_sw/iis_catkin_ws/src/kukadu/src/learning/projective_simulation/core.cpp" bodystart="695" bodyend="697"/>
+      </memberdef>
+      <memberdef kind="function" id="classkukadu_1_1ProjectiveSimulator_1a70b1a60ab925ae6e3ea9863f9441316d" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>void kukadu::ProjectiveSimulator::setStandardImmunity</definition>
+        <argsstring>(int immunity)</argsstring>
+        <name>setStandardImmunity</name>
+        <param>
+          <type>int</type>
+          <declname>immunity</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/agyss/iis_robot_sw/iis_catkin_ws/src/kukadu/include/kukadu/learning/projective_simulation/core.hpp" line="146" column="1" bodyfile="/home/agyss/iis_robot_sw/iis_catkin_ws/src/kukadu/src/learning/projective_simulation/core.cpp" bodystart="978" bodyend="980"/>
+      </memberdef>
+      <memberdef kind="function" id="classkukadu_1_1ProjectiveSimulator_1a4229e8a82d34e153890a5667eb504a18" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>void kukadu::ProjectiveSimulator::setBoredom</definition>
+        <argsstring>(double boredom, int level)</argsstring>
+        <name>setBoredom</name>
+        <param>
+          <type>double</type>
+          <declname>boredom</declname>
+        </param>
+        <param>
+          <type>int</type>
+          <declname>level</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/agyss/iis_robot_sw/iis_catkin_ws/src/kukadu/include/kukadu/learning/projective_simulation/core.hpp" line="147" column="1" bodyfile="/home/agyss/iis_robot_sw/iis_catkin_ws/src/kukadu/src/learning/projective_simulation/core.cpp" bodystart="682" bodyend="693"/>
+      </memberdef>
+      <memberdef kind="function" id="classkukadu_1_1ProjectiveSimulator_1a6ef831cdb028505f18d3ae4f240c87da" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>void kukadu::ProjectiveSimulator::setMaxNumberOfClips</definition>
+        <argsstring>(int maxNumberOfClips)</argsstring>
+        <name>setMaxNumberOfClips</name>
+        <param>
+          <type>int</type>
+          <declname>maxNumberOfClips</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/agyss/iis_robot_sw/iis_catkin_ws/src/kukadu/include/kukadu/learning/projective_simulation/core.hpp" line="148" column="1" bodyfile="/home/agyss/iis_robot_sw/iis_catkin_ws/src/kukadu/src/learning/projective_simulation/core.cpp" bodystart="982" bodyend="984"/>
+      </memberdef>
+      <memberdef kind="function" id="classkukadu_1_1ProjectiveSimulator_1a46b3dadc103c9c4a08ad6ceca15b57b6" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>void kukadu::ProjectiveSimulator::connectNewClip</definition>
+        <argsstring>(KUKADU_SHARED_PTR&lt; Clip &gt; conClip)</argsstring>
+        <name>connectNewClip</name>
+        <param>
+          <type>KUKADU_SHARED_PTR&lt; <ref refid="classkukadu_1_1Clip" kindref="compound">Clip</ref> &gt;</type>
+          <declname>conClip</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/agyss/iis_robot_sw/iis_catkin_ws/src/kukadu/include/kukadu/learning/projective_simulation/core.hpp" line="149" column="1" bodyfile="/home/agyss/iis_robot_sw/iis_catkin_ws/src/kukadu/src/learning/projective_simulation/core.cpp" bodystart="1246" bodyend="1282"/>
+      </memberdef>
+      <memberdef kind="function" id="classkukadu_1_1ProjectiveSimulator_1a86a95c6087dd30be659efbf46408551f" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>void kukadu::ProjectiveSimulator::eliminateClip</definition>
+        <argsstring>(KUKADU_SHARED_PTR&lt; Clip &gt; currClip)</argsstring>
+        <name>eliminateClip</name>
+        <param>
+          <type>KUKADU_SHARED_PTR&lt; <ref refid="classkukadu_1_1Clip" kindref="compound">Clip</ref> &gt;</type>
+          <declname>currClip</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/agyss/iis_robot_sw/iis_catkin_ws/src/kukadu/include/kukadu/learning/projective_simulation/core.hpp" line="150" column="1" bodyfile="/home/agyss/iis_robot_sw/iis_catkin_ws/src/kukadu/src/learning/projective_simulation/core.cpp" bodystart="900" bodyend="924"/>
+      </memberdef>
+      <memberdef kind="function" id="classkukadu_1_1ProjectiveSimulator_1af63fed758aeac7a58d99c077ff1e3b61" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>void kukadu::ProjectiveSimulator::generalize</definition>
+        <argsstring>(KUKADU_SHARED_PTR&lt; PerceptClip &gt; nextClip)</argsstring>
+        <name>generalize</name>
+        <param>
+          <type>KUKADU_SHARED_PTR&lt; <ref refid="classkukadu_1_1PerceptClip" kindref="compound">PerceptClip</ref> &gt;</type>
+          <declname>nextClip</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/agyss/iis_robot_sw/iis_catkin_ws/src/kukadu/include/kukadu/learning/projective_simulation/core.hpp" line="151" column="1" bodyfile="/home/agyss/iis_robot_sw/iis_catkin_ws/src/kukadu/src/learning/projective_simulation/core.cpp" bodystart="1194" bodyend="1219"/>
+      </memberdef>
+      <memberdef kind="function" id="classkukadu_1_1ProjectiveSimulator_1ac828f78597b965f87e702dd0642fa08f" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>void kukadu::ProjectiveSimulator::fillClipLayersFromNetwork</definition>
+        <argsstring>(KUKADU_SHARED_PTR&lt; Clip &gt; cl)</argsstring>
+        <name>fillClipLayersFromNetwork</name>
+        <param>
+          <type>KUKADU_SHARED_PTR&lt; <ref refid="classkukadu_1_1Clip" kindref="compound">Clip</ref> &gt;</type>
+          <declname>cl</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/agyss/iis_robot_sw/iis_catkin_ws/src/kukadu/include/kukadu/learning/projective_simulation/core.hpp" line="152" column="1" bodyfile="/home/agyss/iis_robot_sw/iis_catkin_ws/src/kukadu/src/learning/projective_simulation/core.cpp" bodystart="847" bodyend="863"/>
+      </memberdef>
+      <memberdef kind="function" id="classkukadu_1_1ProjectiveSimulator_1a4ca0e0196f65af2b779b4c82dd17de8e" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>KUKADU_SHARED_PTR&lt; <ref refid="classkukadu_1_1Clip" kindref="compound">Clip</ref> &gt;</type>
+        <definition>KUKADU_SHARED_PTR&lt; Clip &gt; kukadu::ProjectiveSimulator::findClipByIdVec</definition>
+        <argsstring>(KUKADU_SHARED_PTR&lt; std::vector&lt; int &gt; &gt; idVec)</argsstring>
+        <name>findClipByIdVec</name>
+        <param>
+          <type>KUKADU_SHARED_PTR&lt; std::vector&lt; int &gt; &gt;</type>
+          <declname>idVec</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/agyss/iis_robot_sw/iis_catkin_ws/src/kukadu/include/kukadu/learning/projective_simulation/core.hpp" line="154" column="1" bodyfile="/home/agyss/iis_robot_sw/iis_catkin_ws/src/kukadu/src/learning/projective_simulation/core.cpp" bodystart="649" bodyend="680"/>
+      </memberdef>
+      <memberdef kind="function" id="classkukadu_1_1ProjectiveSimulator_1ad1e515f6331ab4ad332b0b4baeaa7668" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>KUKADU_SHARED_PTR&lt; <ref refid="classkukadu_1_1Clip" kindref="compound">Clip</ref> &gt;</type>
+        <definition>KUKADU_SHARED_PTR&lt; Clip &gt; kukadu::ProjectiveSimulator::findClipInLevelByIdVec</definition>
+        <argsstring>(KUKADU_SHARED_PTR&lt; std::vector&lt; int &gt; &gt; idVec, int level)</argsstring>
+        <name>findClipInLevelByIdVec</name>
+        <param>
+          <type>KUKADU_SHARED_PTR&lt; std::vector&lt; int &gt; &gt;</type>
+          <declname>idVec</declname>
+        </param>
+        <param>
+          <type>int</type>
+          <declname>level</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/agyss/iis_robot_sw/iis_catkin_ws/src/kukadu/include/kukadu/learning/projective_simulation/core.hpp" line="155" column="1" bodyfile="/home/agyss/iis_robot_sw/iis_catkin_ws/src/kukadu/src/learning/projective_simulation/core.cpp" bodystart="628" bodyend="647"/>
+      </memberdef>
+      <memberdef kind="function" id="classkukadu_1_1ProjectiveSimulator_1aceef6e9292f13d36a1c75fe2432b9d10" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>KUKADU_SHARED_PTR&lt; <ref refid="classkukadu_1_1Clip" kindref="compound">Clip</ref> &gt;</type>
+        <definition>KUKADU_SHARED_PTR&lt; Clip &gt; kukadu::ProjectiveSimulator::findClipInLevelByLabel</definition>
+        <argsstring>(std::string label, int level)</argsstring>
+        <name>findClipInLevelByLabel</name>
+        <param>
+          <type>std::string</type>
+          <declname>label</declname>
+        </param>
+        <param>
+          <type>int</type>
+          <declname>level</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/agyss/iis_robot_sw/iis_catkin_ws/src/kukadu/include/kukadu/learning/projective_simulation/core.hpp" line="156" column="1" bodyfile="/home/agyss/iis_robot_sw/iis_catkin_ws/src/kukadu/src/learning/projective_simulation/core.cpp" bodystart="608" bodyend="626"/>
+      </memberdef>
+      <memberdef kind="function" id="classkukadu_1_1ProjectiveSimulator_1aacb71a7ed83541dcfc383ee3e47c55d5" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>bool</type>
+        <definition>bool kukadu::ProjectiveSimulator::compareIdVectors</definition>
+        <argsstring>(std::vector&lt; int &gt; &amp;idVec1, std::vector&lt; int &gt; &amp;idVec2)</argsstring>
+        <name>compareIdVectors</name>
+        <param>
+          <type>std::vector&lt; int &gt; &amp;</type>
+          <declname>idVec1</declname>
+        </param>
+        <param>
+          <type>std::vector&lt; int &gt; &amp;</type>
+          <declname>idVec2</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/agyss/iis_robot_sw/iis_catkin_ws/src/kukadu/include/kukadu/learning/projective_simulation/core.hpp" line="158" column="1" bodyfile="/home/agyss/iis_robot_sw/iis_catkin_ws/src/kukadu/src/learning/projective_simulation/core.cpp" bodystart="771" bodyend="786"/>
+      </memberdef>
+      <memberdef kind="function" id="classkukadu_1_1ProjectiveSimulator_1ab0de7a9e711ccdb9f162913a8aae532b" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>int</type>
+        <definition>int kukadu::ProjectiveSimulator::getClipCount</definition>
+        <argsstring>()</argsstring>
+        <name>getClipCount</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/agyss/iis_robot_sw/iis_catkin_ws/src/kukadu/include/kukadu/learning/projective_simulation/core.hpp" line="160" column="1" bodyfile="/home/agyss/iis_robot_sw/iis_catkin_ws/src/kukadu/src/learning/projective_simulation/core.cpp" bodystart="1397" bodyend="1399"/>
+      </memberdef>
+      <memberdef kind="function" id="classkukadu_1_1ProjectiveSimulator_1a3b53862020f96d5d98d197b9c0c54327" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>int</type>
+        <definition>int kukadu::ProjectiveSimulator::getStandardImmunity</definition>
+        <argsstring>()</argsstring>
+        <name>getStandardImmunity</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/agyss/iis_robot_sw/iis_catkin_ws/src/kukadu/include/kukadu/learning/projective_simulation/core.hpp" line="161" column="1" bodyfile="/home/agyss/iis_robot_sw/iis_catkin_ws/src/kukadu/src/learning/projective_simulation/core.cpp" bodystart="926" bodyend="928"/>
+      </memberdef>
+      <memberdef kind="function" id="classkukadu_1_1ProjectiveSimulator_1a8734b5804fb4b278c832df2bc4e8ca08" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>int</type>
+        <definition>int kukadu::ProjectiveSimulator::generateNewActionId</definition>
+        <argsstring>()</argsstring>
+        <name>generateNewActionId</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/agyss/iis_robot_sw/iis_catkin_ws/src/kukadu/include/kukadu/learning/projective_simulation/core.hpp" line="162" column="1" bodyfile="/home/agyss/iis_robot_sw/iis_catkin_ws/src/kukadu/src/learning/projective_simulation/core.cpp" bodystart="1351" bodyend="1353"/>
+      </memberdef>
+      <memberdef kind="function" id="classkukadu_1_1ProjectiveSimulator_1aca144fe3c78a30c1300bc064020415f6" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>int</type>
+        <definition>int kukadu::ProjectiveSimulator::generateNewPerceptId</definition>
+        <argsstring>()</argsstring>
+        <name>generateNewPerceptId</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/agyss/iis_robot_sw/iis_catkin_ws/src/kukadu/include/kukadu/learning/projective_simulation/core.hpp" line="163" column="1" bodyfile="/home/agyss/iis_robot_sw/iis_catkin_ws/src/kukadu/src/learning/projective_simulation/core.cpp" bodystart="1355" bodyend="1357"/>
+      </memberdef>
+      <memberdef kind="function" id="classkukadu_1_1ProjectiveSimulator_1a83606ac15041cb91450822a1b5f0cb29" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>void kukadu::ProjectiveSimulator::addActionClip</definition>
+        <argsstring>(KUKADU_SHARED_PTR&lt; ActionClip &gt; newAction)</argsstring>
+        <name>addActionClip</name>
+        <param>
+          <type>KUKADU_SHARED_PTR&lt; <ref refid="classkukadu_1_1ActionClip" kindref="compound">ActionClip</ref> &gt;</type>
+          <declname>newAction</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/agyss/iis_robot_sw/iis_catkin_ws/src/kukadu/include/kukadu/learning/projective_simulation/core.hpp" line="165" column="1" bodyfile="/home/agyss/iis_robot_sw/iis_catkin_ws/src/kukadu/src/learning/projective_simulation/core.cpp" bodystart="597" bodyend="600"/>
+      </memberdef>
+      <memberdef kind="function" id="classkukadu_1_1ProjectiveSimulator_1afc989736fc57a04245b6f7c9fb204512" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>void kukadu::ProjectiveSimulator::addPerceptClip</definition>
+        <argsstring>(KUKADU_SHARED_PTR&lt; PerceptClip &gt; newPercept)</argsstring>
+        <name>addPerceptClip</name>
+        <param>
+          <type>KUKADU_SHARED_PTR&lt; <ref refid="classkukadu_1_1PerceptClip" kindref="compound">PerceptClip</ref> &gt;</type>
+          <declname>newPercept</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/agyss/iis_robot_sw/iis_catkin_ws/src/kukadu/include/kukadu/learning/projective_simulation/core.hpp" line="166" column="1" bodyfile="/home/agyss/iis_robot_sw/iis_catkin_ws/src/kukadu/src/learning/projective_simulation/core.cpp" bodystart="602" bodyend="606"/>
+      </memberdef>
+      <memberdef kind="function" id="classkukadu_1_1ProjectiveSimulator_1a6f0f3cb8481c1cf3c5597db2acd1d9ba" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>void kukadu::ProjectiveSimulator::setNextPredefinedPath</definition>
+        <argsstring>(std::vector&lt; KUKADU_SHARED_PTR&lt; Clip &gt; &gt; hopPath)</argsstring>
+        <name>setNextPredefinedPath</name>
+        <param>
+          <type>std::vector&lt; KUKADU_SHARED_PTR&lt; <ref refid="classkukadu_1_1Clip" kindref="compound">Clip</ref> &gt; &gt;</type>
+          <declname>hopPath</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/agyss/iis_robot_sw/iis_catkin_ws/src/kukadu/include/kukadu/learning/projective_simulation/core.hpp" line="167" column="1" bodyfile="/home/agyss/iis_robot_sw/iis_catkin_ws/src/kukadu/src/learning/projective_simulation/core.cpp" bodystart="574" bodyend="580"/>
+      </memberdef>
+      <memberdef kind="function" id="classkukadu_1_1ProjectiveSimulator_1a631dec0b20ff3314a91858ed43cf3b4a" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>bool</type>
+        <definition>bool kukadu::ProjectiveSimulator::nextHopIsBored</definition>
+        <argsstring>()</argsstring>
+        <name>nextHopIsBored</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/agyss/iis_robot_sw/iis_catkin_ws/src/kukadu/include/kukadu/learning/projective_simulation/core.hpp" line="169" column="1" bodyfile="/home/agyss/iis_robot_sw/iis_catkin_ws/src/kukadu/src/learning/projective_simulation/core.cpp" bodystart="994" bodyend="1007"/>
+      </memberdef>
+      <memberdef kind="function" id="classkukadu_1_1ProjectiveSimulator_1a9511320018bdf0e5e0e2131a8d2be4e4" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>bool</type>
+        <definition>bool kukadu::ProjectiveSimulator::lastHopWasBored</definition>
+        <argsstring>()</argsstring>
+        <name>lastHopWasBored</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/agyss/iis_robot_sw/iis_catkin_ws/src/kukadu/include/kukadu/learning/projective_simulation/core.hpp" line="170" column="1" bodyfile="/home/agyss/iis_robot_sw/iis_catkin_ws/src/kukadu/src/learning/projective_simulation/core.cpp" bodystart="990" bodyend="992"/>
+      </memberdef>
+      <memberdef kind="function" id="classkukadu_1_1ProjectiveSimulator_1a4143df271e8aef42fcfcebcffaf10e68" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>KUKADU_SHARED_PTR&lt; <ref refid="classkukadu_1_1Clip" kindref="compound">Clip</ref> &gt;</type>
+        <definition>KUKADU_SHARED_PTR&lt; Clip &gt; kukadu::ProjectiveSimulator::getLastVisitedClip</definition>
+        <argsstring>()</argsstring>
+        <name>getLastVisitedClip</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/agyss/iis_robot_sw/iis_catkin_ws/src/kukadu/include/kukadu/learning/projective_simulation/core.hpp" line="172" column="1" bodyfile="/home/agyss/iis_robot_sw/iis_catkin_ws/src/kukadu/src/learning/projective_simulation/core.cpp" bodystart="1009" bodyend="1011"/>
+      </memberdef>
+      <memberdef kind="function" id="classkukadu_1_1ProjectiveSimulator_1ad27a256005f9bbd8648fc95e874a8326" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>std::tuple&lt; bool, double, std::vector&lt; int &gt; &gt;</type>
+        <definition>std::tuple&lt; bool, double, vector&lt; int &gt; &gt; kukadu::ProjectiveSimulator::performRewarding</definition>
+        <argsstring>()</argsstring>
+        <name>performRewarding</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/agyss/iis_robot_sw/iis_catkin_ws/src/kukadu/include/kukadu/learning/projective_simulation/core.hpp" line="174" column="1" bodyfile="/home/agyss/iis_robot_sw/iis_catkin_ws/src/kukadu/src/learning/projective_simulation/core.cpp" bodystart="1148" bodyend="1192"/>
+      </memberdef>
+      <memberdef kind="function" id="classkukadu_1_1ProjectiveSimulator_1a243c3f0fd4eb0ccf9550f7a0e1f156ba" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>KUKADU_SHARED_PTR&lt; std::vector&lt; int &gt; &gt;</type>
+        <definition>KUKADU_SHARED_PTR&lt; std::vector&lt; int &gt; &gt; kukadu::ProjectiveSimulator::getIntermediateHopIdx</definition>
+        <argsstring>()</argsstring>
+        <name>getIntermediateHopIdx</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/agyss/iis_robot_sw/iis_catkin_ws/src/kukadu/include/kukadu/learning/projective_simulation/core.hpp" line="176" column="1" bodyfile="/home/agyss/iis_robot_sw/iis_catkin_ws/src/kukadu/src/learning/projective_simulation/core.cpp" bodystart="865" bodyend="867"/>
+      </memberdef>
+      <memberdef kind="function" id="classkukadu_1_1ProjectiveSimulator_1ad914042887aecd7daec22ce86618b4b9" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>std::pair&lt; int, KUKADU_SHARED_PTR&lt; <ref refid="classkukadu_1_1Clip" kindref="compound">Clip</ref> &gt; &gt;</type>
+        <definition>std::pair&lt; int, KUKADU_SHARED_PTR&lt; Clip &gt; &gt; kukadu::ProjectiveSimulator::performRandomWalk</definition>
+        <argsstring>(int untilLevel=PS_WALK_UNTIL_END, bool continueLastWalk=false)</argsstring>
+        <name>performRandomWalk</name>
+        <param>
+          <type>int</type>
+          <declname>untilLevel</declname>
+          <defval>PS_WALK_UNTIL_END</defval>
+        </param>
+        <param>
+          <type>bool</type>
+          <declname>continueLastWalk</declname>
+          <defval>false</defval>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/agyss/iis_robot_sw/iis_catkin_ws/src/kukadu/include/kukadu/learning/projective_simulation/core.hpp" line="178" column="1" bodyfile="/home/agyss/iis_robot_sw/iis_catkin_ws/src/kukadu/src/learning/projective_simulation/core.cpp" bodystart="1013" bodyend="1108"/>
+      </memberdef>
+      <memberdef kind="function" id="classkukadu_1_1ProjectiveSimulator_1a4b05eb50a4d1e67a8b8d2efb66101c4b" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>std::vector&lt; KUKADU_SHARED_PTR&lt; <ref refid="classkukadu_1_1Clip" kindref="compound">Clip</ref> &gt; &gt;</type>
+        <definition>std::vector&lt; KUKADU_SHARED_PTR&lt; Clip &gt; &gt; kukadu::ProjectiveSimulator::retrieveClipsOnLayer</definition>
+        <argsstring>(std::vector&lt; int &gt; queryId, int layer)</argsstring>
+        <name>retrieveClipsOnLayer</name>
+        <param>
+          <type>std::vector&lt; int &gt;</type>
+          <declname>queryId</declname>
+        </param>
+        <param>
+          <type>int</type>
+          <declname>layer</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/agyss/iis_robot_sw/iis_catkin_ws/src/kukadu/include/kukadu/learning/projective_simulation/core.hpp" line="180" column="1" bodyfile="/home/agyss/iis_robot_sw/iis_catkin_ws/src/kukadu/src/learning/projective_simulation/core.cpp" bodystart="788" bodyend="802"/>
+      </memberdef>
+      <memberdef kind="function" id="classkukadu_1_1ProjectiveSimulator_1a4a89d7e3be9a430d2d9408ea45b118fd" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>KUKADU_SHARED_PTR&lt; std::set&lt; KUKADU_SHARED_PTR&lt; <ref refid="classkukadu_1_1Clip" kindref="compound">Clip</ref> &gt;, <ref refid="structkukadu_1_1clip__compare" kindref="compound">clip_compare</ref> &gt; &gt;</type>
+        <definition>KUKADU_SHARED_PTR&lt; std::set&lt; KUKADU_SHARED_PTR&lt; Clip &gt;, clip_compare &gt; &gt; kukadu::ProjectiveSimulator::createNewClips</definition>
+        <argsstring>(KUKADU_SHARED_PTR&lt; PerceptClip &gt; nextClip)</argsstring>
+        <name>createNewClips</name>
+        <param>
+          <type>KUKADU_SHARED_PTR&lt; <ref refid="classkukadu_1_1PerceptClip" kindref="compound">PerceptClip</ref> &gt;</type>
+          <declname>nextClip</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/agyss/iis_robot_sw/iis_catkin_ws/src/kukadu/include/kukadu/learning/projective_simulation/core.hpp" line="183" column="1" bodyfile="/home/agyss/iis_robot_sw/iis_catkin_ws/src/kukadu/src/learning/projective_simulation/core.cpp" bodystart="1284" bodyend="1349"/>
+      </memberdef>
+      <memberdef kind="function" id="classkukadu_1_1ProjectiveSimulator_1a9ef2a9e013f08283106eda01a99d71c3" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>KUKADU_SHARED_PTR&lt; std::vector&lt; KUKADU_SHARED_PTR&lt; <ref refid="classkukadu_1_1PerceptClip" kindref="compound">PerceptClip</ref> &gt; &gt; &gt;</type>
+        <definition>KUKADU_SHARED_PTR&lt; std::vector&lt; KUKADU_SHARED_PTR&lt; PerceptClip &gt; &gt; &gt; kukadu::ProjectiveSimulator::getPerceptClips</definition>
+        <argsstring>()</argsstring>
+        <name>getPerceptClips</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/agyss/iis_robot_sw/iis_catkin_ws/src/kukadu/include/kukadu/learning/projective_simulation/core.hpp" line="184" column="1" bodyfile="/home/agyss/iis_robot_sw/iis_catkin_ws/src/kukadu/src/learning/projective_simulation/core.cpp" bodystart="1363" bodyend="1365"/>
+      </memberdef>
+      <memberdef kind="function" id="classkukadu_1_1ProjectiveSimulator_1a41b6e2ac27ec4ecc22361fa5e7569699" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>KUKADU_SHARED_PTR&lt; std::vector&lt; KUKADU_SHARED_PTR&lt; <ref refid="classkukadu_1_1ActionClip" kindref="compound">ActionClip</ref> &gt; &gt; &gt;</type>
+        <definition>KUKADU_SHARED_PTR&lt; std::vector&lt; KUKADU_SHARED_PTR&lt; ActionClip &gt; &gt; &gt; kukadu::ProjectiveSimulator::getActionClips</definition>
+        <argsstring>()</argsstring>
+        <name>getActionClips</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/agyss/iis_robot_sw/iis_catkin_ws/src/kukadu/include/kukadu/learning/projective_simulation/core.hpp" line="185" column="1" bodyfile="/home/agyss/iis_robot_sw/iis_catkin_ws/src/kukadu/src/learning/projective_simulation/core.cpp" bodystart="986" bodyend="988"/>
+      </memberdef>
+      <memberdef kind="function" id="classkukadu_1_1ProjectiveSimulator_1a095634e6ccec95d061b9327c74c548f7" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>KUKADU_SHARED_PTR&lt; std::vector&lt; KUKADU_SHARED_PTR&lt; std::set&lt; KUKADU_SHARED_PTR&lt; <ref refid="classkukadu_1_1Clip" kindref="compound">Clip</ref> &gt;, <ref refid="structkukadu_1_1clip__compare" kindref="compound">clip_compare</ref> &gt; &gt; &gt; &gt;</type>
+        <definition>KUKADU_SHARED_PTR&lt; std::vector&lt; KUKADU_SHARED_PTR&lt; std::set&lt; KUKADU_SHARED_PTR&lt; Clip &gt;, clip_compare &gt; &gt; &gt; &gt; kukadu::ProjectiveSimulator::getClipLayers</definition>
+        <argsstring>()</argsstring>
+        <name>getClipLayers</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/agyss/iis_robot_sw/iis_catkin_ws/src/kukadu/include/kukadu/learning/projective_simulation/core.hpp" line="186" column="1" bodyfile="/home/agyss/iis_robot_sw/iis_catkin_ws/src/kukadu/src/learning/projective_simulation/core.cpp" bodystart="1359" bodyend="1361"/>
+      </memberdef>
+      <memberdef kind="function" id="classkukadu_1_1ProjectiveSimulator_1a705de6305d606ba41f0057279a3a9963" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>std::vector&lt; KUKADU_SHARED_PTR&lt; <ref refid="classkukadu_1_1Clip" kindref="compound">Clip</ref> &gt; &gt;</type>
+        <definition>std::vector&lt; KUKADU_SHARED_PTR&lt; Clip &gt; &gt; kukadu::ProjectiveSimulator::getClipsOnLayer</definition>
+        <argsstring>(int layerId)</argsstring>
+        <name>getClipsOnLayer</name>
+        <param>
+          <type>int</type>
+          <declname>layerId</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/agyss/iis_robot_sw/iis_catkin_ws/src/kukadu/include/kukadu/learning/projective_simulation/core.hpp" line="188" column="1" bodyfile="/home/agyss/iis_robot_sw/iis_catkin_ws/src/kukadu/src/learning/projective_simulation/core.cpp" bodystart="560" bodyend="562"/>
+      </memberdef>
+      <memberdef kind="function" id="classkukadu_1_1ProjectiveSimulator_1ae65467c2fdeebf45195a339d4546be9a" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>void kukadu::ProjectiveSimulator::updatePsFile</definition>
+        <argsstring>()</argsstring>
+        <name>updatePsFile</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/agyss/iis_robot_sw/iis_catkin_ws/src/kukadu/include/kukadu/learning/projective_simulation/core.hpp" line="190" column="1" bodyfile="/home/agyss/iis_robot_sw/iis_catkin_ws/src/kukadu/src/learning/projective_simulation/core.cpp" bodystart="564" bodyend="572"/>
+      </memberdef>
+      <memberdef kind="function" id="classkukadu_1_1ProjectiveSimulator_1ac488f5b98aeafa9704a2a1cbff78d433" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>void kukadu::ProjectiveSimulator::storePS</definition>
+        <argsstring>(std::string targetFile)</argsstring>
+        <name>storePS</name>
+        <param>
+          <type>std::string</type>
+          <declname>targetFile</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/agyss/iis_robot_sw/iis_catkin_ws/src/kukadu/include/kukadu/learning/projective_simulation/core.hpp" line="191" column="1" bodyfile="/home/agyss/iis_robot_sw/iis_catkin_ws/src/kukadu/src/learning/projective_simulation/core.cpp" bodystart="1418" bodyend="1508"/>
+      </memberdef>
+      </sectiondef>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <location file="/home/agyss/iis_robot_sw/iis_catkin_ws/src/kukadu/include/kukadu/learning/projective_simulation/core.hpp" line="74" column="1" bodyfile="/home/agyss/iis_robot_sw/iis_catkin_ws/src/kukadu/include/kukadu/learning/projective_simulation/core.hpp" bodystart="74" bodyend="207"/>
+    <listofallmembers>
+      <member refid="classkukadu_1_1ProjectiveSimulator_1af87dfeea78873d0cbaddc8733012c25b" prot="private" virt="non-virtual"><scope>kukadu::ProjectiveSimulator</scope><name>actionClips</name></member>
+      <member refid="classkukadu_1_1ProjectiveSimulator_1a83606ac15041cb91450822a1b5f0cb29" prot="public" virt="non-virtual"><scope>kukadu::ProjectiveSimulator</scope><name>addActionClip</name></member>
+      <member refid="classkukadu_1_1ProjectiveSimulator_1afc989736fc57a04245b6f7c9fb204512" prot="public" virt="non-virtual"><scope>kukadu::ProjectiveSimulator</scope><name>addPerceptClip</name></member>
+      <member refid="classkukadu_1_1ProjectiveSimulator_1a3d80dd2fb908401c1a26c0eaa1cf6a1f" prot="private" virt="non-virtual"><scope>kukadu::ProjectiveSimulator</scope><name>boredomLevels</name></member>
+      <member refid="classkukadu_1_1ProjectiveSimulator_1a539a8508d6cb61866cae7f13ecd3d369" prot="private" virt="non-virtual"><scope>kukadu::ProjectiveSimulator</scope><name>cleanByRank</name></member>
+      <member refid="classkukadu_1_1ProjectiveSimulator_1a4488056a3197d22e6b7258cc029d4c39" prot="private" virt="non-virtual"><scope>kukadu::ProjectiveSimulator</scope><name>clipLayers</name></member>
+      <member refid="classkukadu_1_1ProjectiveSimulator_1aacb71a7ed83541dcfc383ee3e47c55d5" prot="public" virt="non-virtual"><scope>kukadu::ProjectiveSimulator</scope><name>compareIdVectors</name></member>
+      <member refid="classkukadu_1_1ProjectiveSimulator_1ad83189d097501d8eb393f390ba9680f4" prot="private" virt="non-virtual"><scope>kukadu::ProjectiveSimulator</scope><name>computeBoredom</name></member>
+      <member refid="classkukadu_1_1ProjectiveSimulator_1a4e9e572217c3d8aa55df4b3b697d5bbe" prot="private" virt="non-virtual"><scope>kukadu::ProjectiveSimulator</scope><name>computeRankVec</name></member>
+      <member refid="classkukadu_1_1ProjectiveSimulator_1a46b3dadc103c9c4a08ad6ceca15b57b6" prot="public" virt="non-virtual"><scope>kukadu::ProjectiveSimulator</scope><name>connectNewClip</name></member>
+      <member refid="classkukadu_1_1ProjectiveSimulator_1a0cdb2b868ead2d7ad5c26a0f27dc6de5" prot="private" virt="non-virtual"><scope>kukadu::ProjectiveSimulator</scope><name>construct</name></member>
+      <member refid="classkukadu_1_1ProjectiveSimulator_1a4a89d7e3be9a430d2d9408ea45b118fd" prot="public" virt="non-virtual"><scope>kukadu::ProjectiveSimulator</scope><name>createNewClips</name></member>
+      <member refid="classkukadu_1_1ProjectiveSimulator_1a7c0ab4c76e6566dd5bc7b528f04d08ea" prot="private" virt="non-virtual"><scope>kukadu::ProjectiveSimulator</scope><name>doTraining</name></member>
+      <member refid="classkukadu_1_1ProjectiveSimulator_1a86a95c6087dd30be659efbf46408551f" prot="public" virt="non-virtual"><scope>kukadu::ProjectiveSimulator</scope><name>eliminateClip</name></member>
+      <member refid="classkukadu_1_1ProjectiveSimulator_1a0e0c6240ee37c3ccd4cb5fdf43a9cd04" prot="private" virt="non-virtual"><scope>kukadu::ProjectiveSimulator</scope><name>fileExists</name></member>
+      <member refid="classkukadu_1_1ProjectiveSimulator_1ac828f78597b965f87e702dd0642fa08f" prot="public" virt="non-virtual"><scope>kukadu::ProjectiveSimulator</scope><name>fillClipLayersFromNetwork</name></member>
+      <member refid="classkukadu_1_1ProjectiveSimulator_1a4ca0e0196f65af2b779b4c82dd17de8e" prot="public" virt="non-virtual"><scope>kukadu::ProjectiveSimulator</scope><name>findClipByIdVec</name></member>
+      <member refid="classkukadu_1_1ProjectiveSimulator_1ad1e515f6331ab4ad332b0b4baeaa7668" prot="public" virt="non-virtual"><scope>kukadu::ProjectiveSimulator</scope><name>findClipInLevelByIdVec</name></member>
+      <member refid="classkukadu_1_1ProjectiveSimulator_1aceef6e9292f13d36a1c75fe2432b9d10" prot="public" virt="non-virtual"><scope>kukadu::ProjectiveSimulator</scope><name>findClipInLevelByLabel</name></member>
+      <member refid="classkukadu_1_1ProjectiveSimulator_1a468c12c5ef88008fc0797b64b753479a" prot="private" virt="non-virtual"><scope>kukadu::ProjectiveSimulator</scope><name>gamma</name></member>
+      <member refid="classkukadu_1_1ProjectiveSimulator_1af63fed758aeac7a58d99c077ff1e3b61" prot="public" virt="non-virtual"><scope>kukadu::ProjectiveSimulator</scope><name>generalize</name></member>
+      <member refid="classkukadu_1_1ProjectiveSimulator_1a8734b5804fb4b278c832df2bc4e8ca08" prot="public" virt="non-virtual"><scope>kukadu::ProjectiveSimulator</scope><name>generateNewActionId</name></member>
+      <member refid="classkukadu_1_1ProjectiveSimulator_1aca144fe3c78a30c1300bc064020415f6" prot="public" virt="non-virtual"><scope>kukadu::ProjectiveSimulator</scope><name>generateNewPerceptId</name></member>
+      <member refid="classkukadu_1_1ProjectiveSimulator_1a98b750b3a279bb52322e36df45fe4197" prot="private" virt="non-virtual"><scope>kukadu::ProjectiveSimulator</scope><name>generator</name></member>
+      <member refid="classkukadu_1_1ProjectiveSimulator_1a41b6e2ac27ec4ecc22361fa5e7569699" prot="public" virt="non-virtual"><scope>kukadu::ProjectiveSimulator</scope><name>getActionClips</name></member>
+      <member refid="classkukadu_1_1ProjectiveSimulator_1ab0de7a9e711ccdb9f162913a8aae532b" prot="public" virt="non-virtual"><scope>kukadu::ProjectiveSimulator</scope><name>getClipCount</name></member>
+      <member refid="classkukadu_1_1ProjectiveSimulator_1a095634e6ccec95d061b9327c74c548f7" prot="public" virt="non-virtual"><scope>kukadu::ProjectiveSimulator</scope><name>getClipLayers</name></member>
+      <member refid="classkukadu_1_1ProjectiveSimulator_1a705de6305d606ba41f0057279a3a9963" prot="public" virt="non-virtual"><scope>kukadu::ProjectiveSimulator</scope><name>getClipsOnLayer</name></member>
+      <member refid="classkukadu_1_1ProjectiveSimulator_1a7e2c2d28cc6610b3bbb18bcb11f907c9" prot="private" virt="non-virtual"><scope>kukadu::ProjectiveSimulator</scope><name>getIdVecLevel</name></member>
+      <member refid="classkukadu_1_1ProjectiveSimulator_1a243c3f0fd4eb0ccf9550f7a0e1f156ba" prot="public" virt="non-virtual"><scope>kukadu::ProjectiveSimulator</scope><name>getIntermediateHopIdx</name></member>
+      <member refid="classkukadu_1_1ProjectiveSimulator_1a4143df271e8aef42fcfcebcffaf10e68" prot="public" virt="non-virtual"><scope>kukadu::ProjectiveSimulator</scope><name>getLastVisitedClip</name></member>
+      <member refid="classkukadu_1_1ProjectiveSimulator_1a9ef2a9e013f08283106eda01a99d71c3" prot="public" virt="non-virtual"><scope>kukadu::ProjectiveSimulator</scope><name>getPerceptClips</name></member>
+      <member refid="classkukadu_1_1ProjectiveSimulator_1a3b53862020f96d5d98d197b9c0c54327" prot="public" virt="non-virtual"><scope>kukadu::ProjectiveSimulator</scope><name>getStandardImmunity</name></member>
+      <member refid="classkukadu_1_1ProjectiveSimulator_1aca61d0fef4c6b66880d901dee5d013e1" prot="public" virt="non-virtual"><scope>kukadu::ProjectiveSimulator</scope><name>IGNORE_ID</name></member>
+      <member refid="classkukadu_1_1ProjectiveSimulator_1a7d6b79d4aff60d98c5708b88280d62a9" prot="private" virt="non-virtual"><scope>kukadu::ProjectiveSimulator</scope><name>immunityThresh</name></member>
+      <member refid="classkukadu_1_1ProjectiveSimulator_1a83ca13098bebcb7ab2a08c3b655ad5d0" prot="private" virt="non-virtual"><scope>kukadu::ProjectiveSimulator</scope><name>intDist</name></member>
+      <member refid="classkukadu_1_1ProjectiveSimulator_1af97c52a64ae9978b5e833a246742fe81" prot="private" virt="non-virtual"><scope>kukadu::ProjectiveSimulator</scope><name>intermediateHops</name></member>
+      <member refid="classkukadu_1_1ProjectiveSimulator_1aceb5e27a01a3e48ee202e01a204adb93" prot="private" virt="non-virtual"><scope>kukadu::ProjectiveSimulator</scope><name>lastActionClip</name></member>
+      <member refid="classkukadu_1_1ProjectiveSimulator_1ade3edb404f082d155a94cb2b820bf43a" prot="private" virt="non-virtual"><scope>kukadu::ProjectiveSimulator</scope><name>lastBoredomResult</name></member>
+      <member refid="classkukadu_1_1ProjectiveSimulator_1aff1a045b2db478554a89eae1d36dbbff" prot="private" virt="non-virtual"><scope>kukadu::ProjectiveSimulator</scope><name>lastClipBeforeAction</name></member>
+      <member refid="classkukadu_1_1ProjectiveSimulator_1af822ce96184feea3cff52b81455ae61a" prot="private" virt="non-virtual"><scope>kukadu::ProjectiveSimulator</scope><name>lastGeneralizedPercept</name></member>
+      <member refid="classkukadu_1_1ProjectiveSimulator_1a9511320018bdf0e5e0e2131a8d2be4e4" prot="public" virt="non-virtual"><scope>kukadu::ProjectiveSimulator</scope><name>lastHopWasBored</name></member>
+      <member refid="classkukadu_1_1ProjectiveSimulator_1a192ab856082cbbf1a8647bac2ee85735" prot="private" virt="non-virtual"><scope>kukadu::ProjectiveSimulator</scope><name>lastPerceptClip</name></member>
+      <member refid="classkukadu_1_1ProjectiveSimulator_1a57d151d5b64a1f67f387d451c15f59c8" prot="private" virt="non-virtual"><scope>kukadu::ProjectiveSimulator</scope><name>lastRunWasBored</name></member>
+      <member refid="classkukadu_1_1ProjectiveSimulator_1adfbaf8b9609518bfc7bf62994041190f" prot="private" virt="non-virtual"><scope>kukadu::ProjectiveSimulator</scope><name>lastVisitedClip</name></member>
+      <member refid="classkukadu_1_1ProjectiveSimulator_1a095199c5829806bcf7fbe57b5caa97e3" prot="private" virt="non-virtual"><scope>kukadu::ProjectiveSimulator</scope><name>lastVisitedLevel</name></member>
+      <member refid="classkukadu_1_1ProjectiveSimulator_1af068ce6c17f99aef3d6834c4222123c7" prot="private" virt="non-virtual"><scope>kukadu::ProjectiveSimulator</scope><name>lastVisitedPreviousIdx</name></member>
+      <member refid="classkukadu_1_1ProjectiveSimulator_1adee8b9ac52d378af11ab53b9f3155b04" prot="private" virt="non-virtual"><scope>kukadu::ProjectiveSimulator</scope><name>levels</name></member>
+      <member refid="classkukadu_1_1ProjectiveSimulator_1a50b69ace62df209a98567af2475db5c9" prot="private" virt="non-virtual"><scope>kukadu::ProjectiveSimulator</scope><name>loadedFromFile</name></member>
+      <member refid="classkukadu_1_1ProjectiveSimulator_1a67b0d6cf12ab9c9b2c8411178e17c367" prot="private" virt="non-virtual"><scope>kukadu::ProjectiveSimulator</scope><name>loadPsConstructor</name></member>
+      <member refid="classkukadu_1_1ProjectiveSimulator_1a965bea5f4c5ae094925b4abfb740f625" prot="private" virt="non-virtual"><scope>kukadu::ProjectiveSimulator</scope><name>maxActionId</name></member>
+      <member refid="classkukadu_1_1ProjectiveSimulator_1aa5bf4ac86a1c33a20eaea1106de6c7b3" prot="private" virt="non-virtual"><scope>kukadu::ProjectiveSimulator</scope><name>maxNumberOfClips</name></member>
+      <member refid="classkukadu_1_1ProjectiveSimulator_1aca0194c68143fd6bfa0ea7c43a364a06" prot="private" virt="non-virtual"><scope>kukadu::ProjectiveSimulator</scope><name>maxPerceptId</name></member>
+      <member refid="classkukadu_1_1ProjectiveSimulator_1a631dec0b20ff3314a91858ed43cf3b4a" prot="public" virt="non-virtual"><scope>kukadu::ProjectiveSimulator</scope><name>nextHopIsBored</name></member>
+      <member refid="classkukadu_1_1ProjectiveSimulator_1ade129883cc8c63bd5d61b95d11a89a96" prot="private" virt="non-virtual"><scope>kukadu::ProjectiveSimulator</scope><name>operationMode</name></member>
+      <member refid="classkukadu_1_1ProjectiveSimulator_1aaf0466ad9bfc52e6bf871d8d0643cc76" prot="private" virt="non-virtual"><scope>kukadu::ProjectiveSimulator</scope><name>perceptClips</name></member>
+      <member refid="classkukadu_1_1ProjectiveSimulator_1ad914042887aecd7daec22ce86618b4b9" prot="public" virt="non-virtual"><scope>kukadu::ProjectiveSimulator</scope><name>performRandomWalk</name></member>
+      <member refid="classkukadu_1_1ProjectiveSimulator_1ad27a256005f9bbd8648fc95e874a8326" prot="public" virt="non-virtual"><scope>kukadu::ProjectiveSimulator</scope><name>performRewarding</name></member>
+      <member refid="classkukadu_1_1ProjectiveSimulator_1afbba151d38c6d013cb980f17dfe92ccc" prot="private" virt="non-virtual"><scope>kukadu::ProjectiveSimulator</scope><name>predefinedFirstHop</name></member>
+      <member refid="classkukadu_1_1ProjectiveSimulator_1adeeac1e6c3eba7fd91edfd929725e3e4" prot="private" virt="non-virtual"><scope>kukadu::ProjectiveSimulator</scope><name>printRankVec</name></member>
+      <member refid="classkukadu_1_1ProjectiveSimulator_1aefa86b1c8c1ec4af765fe4326de58d8e" prot="public" virt="non-virtual"><scope>kukadu::ProjectiveSimulator</scope><name>printWeights</name></member>
+      <member refid="classkukadu_1_1ProjectiveSimulator_1a5ab38c1c4ddc848435ef268154a68964" prot="public" virt="non-virtual"><scope>kukadu::ProjectiveSimulator</scope><name>ProjectiveSimulator</name></member>
+      <member refid="classkukadu_1_1ProjectiveSimulator_1af2a9a8b46a43939fc551c9a6d2ebac2d" prot="public" virt="non-virtual"><scope>kukadu::ProjectiveSimulator</scope><name>ProjectiveSimulator</name></member>
+      <member refid="classkukadu_1_1ProjectiveSimulator_1aa7f5285814bf9a4a630a8b3e62483cd3" prot="public" virt="non-virtual"><scope>kukadu::ProjectiveSimulator</scope><name>ProjectiveSimulator</name></member>
+      <member refid="classkukadu_1_1ProjectiveSimulator_1aa9bfdf6524f30d1f1e3e3c9c1094d59f" prot="public" virt="non-virtual"><scope>kukadu::ProjectiveSimulator</scope><name>ProjectiveSimulator</name></member>
+      <member refid="classkukadu_1_1ProjectiveSimulator_1abd06bd43a4a3f8fb07ac2d5cd2b65c8f" prot="public" virt="non-virtual"><scope>kukadu::ProjectiveSimulator</scope><name>PS_DEFAULT_IMMUNITY</name></member>
+      <member refid="classkukadu_1_1ProjectiveSimulator_1ad21dc772fd571626d7fad31ff251e0a5" prot="public" virt="non-virtual"><scope>kukadu::ProjectiveSimulator</scope><name>PS_MAX_NUMBER_OF_CLIPS</name></member>
+      <member refid="classkukadu_1_1ProjectiveSimulator_1a8cb8845bbc8f20498f708fac575d7d79" prot="public" virt="non-virtual"><scope>kukadu::ProjectiveSimulator</scope><name>PS_PRINT_DEBUG_INFO</name></member>
+      <member refid="classkukadu_1_1ProjectiveSimulator_1a451e306dd5587b68fcd90a9e43dac576" prot="public" virt="non-virtual"><scope>kukadu::ProjectiveSimulator</scope><name>PS_PRINT_RANKING_DEBUG_INFO</name></member>
+      <member refid="classkukadu_1_1ProjectiveSimulator_1aa3c0938e8baabba18467af36f47f4e59" prot="public" virt="non-virtual"><scope>kukadu::ProjectiveSimulator</scope><name>PS_USE_GEN</name></member>
+      <member refid="classkukadu_1_1ProjectiveSimulator_1a34d27d64db9a7784f2a1e6bb384fbebf" prot="public" virt="non-virtual"><scope>kukadu::ProjectiveSimulator</scope><name>PS_USE_ORIGINAL</name></member>
+      <member refid="classkukadu_1_1ProjectiveSimulator_1a972c03f7b17fc7f38e676919bb16609a" prot="public" virt="non-virtual"><scope>kukadu::ProjectiveSimulator</scope><name>PS_WALK_UNTIL_END</name></member>
+      <member refid="classkukadu_1_1ProjectiveSimulator_1abdb6681793a92e61b5a4faa9abc65276" prot="private" virt="non-virtual"><scope>kukadu::ProjectiveSimulator</scope><name>psFile</name></member>
+      <member refid="classkukadu_1_1ProjectiveSimulator_1a7fb00f88e55a7c0e2d81af5ddd932189" prot="private" virt="non-virtual"><scope>kukadu::ProjectiveSimulator</scope><name>rankVec</name></member>
+      <member refid="classkukadu_1_1ProjectiveSimulator_1a4b05eb50a4d1e67a8b8d2efb66101c4b" prot="public" virt="non-virtual"><scope>kukadu::ProjectiveSimulator</scope><name>retrieveClipsOnLayer</name></member>
+      <member refid="classkukadu_1_1ProjectiveSimulator_1a4a6d275136d838afd4c92d102c573c28" prot="private" virt="non-virtual"><scope>kukadu::ProjectiveSimulator</scope><name>reward</name></member>
+      <member refid="classkukadu_1_1ProjectiveSimulator_1a4229e8a82d34e153890a5667eb504a18" prot="public" virt="non-virtual"><scope>kukadu::ProjectiveSimulator</scope><name>setBoredom</name></member>
+      <member refid="classkukadu_1_1ProjectiveSimulator_1a6ef831cdb028505f18d3ae4f240c87da" prot="public" virt="non-virtual"><scope>kukadu::ProjectiveSimulator</scope><name>setMaxNumberOfClips</name></member>
+      <member refid="classkukadu_1_1ProjectiveSimulator_1a6f0f3cb8481c1cf3c5597db2acd1d9ba" prot="public" virt="non-virtual"><scope>kukadu::ProjectiveSimulator</scope><name>setNextPredefinedPath</name></member>
+      <member refid="classkukadu_1_1ProjectiveSimulator_1a70b1a60ab925ae6e3ea9863f9441316d" prot="public" virt="non-virtual"><scope>kukadu::ProjectiveSimulator</scope><name>setStandardImmunity</name></member>
+      <member refid="classkukadu_1_1ProjectiveSimulator_1aae63392865e563583bdbe0f4d13f1e15" prot="public" virt="non-virtual"><scope>kukadu::ProjectiveSimulator</scope><name>setTrainingMode</name></member>
+      <member refid="classkukadu_1_1ProjectiveSimulator_1ac488f5b98aeafa9704a2a1cbff78d433" prot="public" virt="non-virtual"><scope>kukadu::ProjectiveSimulator</scope><name>storePS</name></member>
+      <member refid="classkukadu_1_1ProjectiveSimulator_1ae65467c2fdeebf45195a339d4546be9a" prot="public" virt="non-virtual"><scope>kukadu::ProjectiveSimulator</scope><name>updatePsFile</name></member>
+      <member refid="classkukadu_1_1ProjectiveSimulator_1a16873c22b0af367724b2fb0fc9bf1beb" prot="private" virt="non-virtual"><scope>kukadu::ProjectiveSimulator</scope><name>useRanking</name></member>
+      <member refid="classkukadu_1_1ProjectiveSimulator_1ae041f678d679ead3ac03758fa3195443" prot="private" virt="non-virtual"><scope>kukadu::ProjectiveSimulator</scope><name>walkedFurtherSinceLastBoredom</name></member>
+      <member refid="classkukadu_1_1ProjectiveSimulator_1a017c150ca000692b9e7b1e267cb1fd9e" prot="public" virt="non-virtual"><scope>kukadu::ProjectiveSimulator</scope><name>~ProjectiveSimulator</name></member>
+    </listofallmembers>
+  </compounddef>
+</doxygen>

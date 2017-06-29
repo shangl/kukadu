@@ -1,0 +1,357 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.8.11">
+  <compounddef id="classkukadu_1_1TrajectoryBasedReward" kind="class" language="C++" prot="public" abstract="yes">
+    <compoundname>kukadu::TrajectoryBasedReward</compoundname>
+    <basecompoundref refid="classkukadu_1_1CostComputer" prot="public" virt="non-virtual">kukadu::CostComputer</basecompoundref>
+    <derivedcompoundref refid="classkukadu_1_1DmpRewardComputer" prot="public" virt="non-virtual">kukadu::DmpRewardComputer</derivedcompoundref>
+    <derivedcompoundref refid="classkukadu_1_1SampleRewardComputer" prot="public" virt="non-virtual">kukadu::SampleRewardComputer</derivedcompoundref>
+      <sectiondef kind="private-attrib">
+      <memberdef kind="variable" id="classkukadu_1_1TrajectoryBasedReward_1ac37b2d0b8d2d305d2b961c4333659cf3" prot="private" static="no" mutable="no">
+        <type>int</type>
+        <definition>int kukadu::TrajectoryBasedReward::degOfFreedom</definition>
+        <argsstring></argsstring>
+        <name>degOfFreedom</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/agyss/iis_robot_sw/iis_catkin_ws/src/kukadu/include/kukadu/learning/rl/policyrl.hpp" line="35" column="1" bodyfile="/home/agyss/iis_robot_sw/iis_catkin_ws/src/kukadu/include/kukadu/learning/rl/policyrl.hpp" bodystart="35" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classkukadu_1_1TrajectoryBasedReward_1aa63016d2425abc03d7d4bcacc6d992f9" prot="private" static="no" mutable="no">
+        <type>double</type>
+        <definition>double kukadu::TrajectoryBasedReward::step</definition>
+        <argsstring></argsstring>
+        <name>step</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/agyss/iis_robot_sw/iis_catkin_ws/src/kukadu/include/kukadu/learning/rl/policyrl.hpp" line="37" column="1" bodyfile="/home/agyss/iis_robot_sw/iis_catkin_ws/src/kukadu/include/kukadu/learning/rl/policyrl.hpp" bodystart="37" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classkukadu_1_1TrajectoryBasedReward_1a3d21027cf46e2e8cb9f5a6fc49354bea" prot="private" static="no" mutable="no">
+        <type>double</type>
+        <definition>double kukadu::TrajectoryBasedReward::tmax</definition>
+        <argsstring></argsstring>
+        <name>tmax</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/agyss/iis_robot_sw/iis_catkin_ws/src/kukadu/include/kukadu/learning/rl/policyrl.hpp" line="38" column="1" bodyfile="/home/agyss/iis_robot_sw/iis_catkin_ws/src/kukadu/include/kukadu/learning/rl/policyrl.hpp" bodystart="38" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classkukadu_1_1TrajectoryBasedReward_1a8d45db388511ecef42f1802f1742b9e2" prot="private" static="no" mutable="no">
+        <type>double</type>
+        <definition>double kukadu::TrajectoryBasedReward::slope</definition>
+        <argsstring></argsstring>
+        <name>slope</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/agyss/iis_robot_sw/iis_catkin_ws/src/kukadu/include/kukadu/learning/rl/policyrl.hpp" line="39" column="1" bodyfile="/home/agyss/iis_robot_sw/iis_catkin_ws/src/kukadu/include/kukadu/learning/rl/policyrl.hpp" bodystart="39" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classkukadu_1_1TrajectoryBasedReward_1a72ba3e244d3380c3e91f7209cd3ed9bb" prot="private" static="no" mutable="no">
+        <type>arma::vec</type>
+        <definition>arma::vec kukadu::TrajectoryBasedReward::rewardsWeights</definition>
+        <argsstring></argsstring>
+        <name>rewardsWeights</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/agyss/iis_robot_sw/iis_catkin_ws/src/kukadu/include/kukadu/learning/rl/policyrl.hpp" line="41" column="1" bodyfile="/home/agyss/iis_robot_sw/iis_catkin_ws/src/kukadu/include/kukadu/learning/rl/policyrl.hpp" bodystart="41" bodyend="-1"/>
+      </memberdef>
+      </sectiondef>
+      <sectiondef kind="public-func">
+      <memberdef kind="function" id="classkukadu_1_1TrajectoryBasedReward_1a646065b5b00ac72e582f9553ca790f32" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type></type>
+        <definition>kukadu::TrajectoryBasedReward::TrajectoryBasedReward</definition>
+        <argsstring>(int degOfFreedom, double tmax, double timeStep)</argsstring>
+        <name>TrajectoryBasedReward</name>
+        <param>
+          <type>int</type>
+          <declname>degOfFreedom</declname>
+        </param>
+        <param>
+          <type>double</type>
+          <declname>tmax</declname>
+        </param>
+        <param>
+          <type>double</type>
+          <declname>timeStep</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/agyss/iis_robot_sw/iis_catkin_ws/src/kukadu/include/kukadu/learning/rl/policyrl.hpp" line="45" column="1" bodyfile="/home/agyss/iis_robot_sw/iis_catkin_ws/src/kukadu/src/learning/rl/policyrl.cpp" bodystart="402" bodyend="410"/>
+      </memberdef>
+      <memberdef kind="function" id="classkukadu_1_1TrajectoryBasedReward_1a6778592c4f88c8abdc0327f12080c550" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type></type>
+        <definition>kukadu::TrajectoryBasedReward::TrajectoryBasedReward</definition>
+        <argsstring>(int degOfFreedom, arma::vec rewardsWeights, double tmax, double timeStep)</argsstring>
+        <name>TrajectoryBasedReward</name>
+        <param>
+          <type>int</type>
+          <declname>degOfFreedom</declname>
+        </param>
+        <param>
+          <type>arma::vec</type>
+          <declname>rewardsWeights</declname>
+        </param>
+        <param>
+          <type>double</type>
+          <declname>tmax</declname>
+        </param>
+        <param>
+          <type>double</type>
+          <declname>timeStep</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/agyss/iis_robot_sw/iis_catkin_ws/src/kukadu/include/kukadu/learning/rl/policyrl.hpp" line="46" column="1" bodyfile="/home/agyss/iis_robot_sw/iis_catkin_ws/src/kukadu/src/learning/rl/policyrl.cpp" bodystart="412" bodyend="419"/>
+      </memberdef>
+      <memberdef kind="function" id="classkukadu_1_1TrajectoryBasedReward_1a434ee68a4e810d796789eebbd5ce17bf" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>void kukadu::TrajectoryBasedReward::writeToFile</definition>
+        <argsstring>(std::string file, double tStart, double tEnd, double stepSize)</argsstring>
+        <name>writeToFile</name>
+        <param>
+          <type>std::string</type>
+          <declname>file</declname>
+        </param>
+        <param>
+          <type>double</type>
+          <declname>tStart</declname>
+        </param>
+        <param>
+          <type>double</type>
+          <declname>tEnd</declname>
+        </param>
+        <param>
+          <type>double</type>
+          <declname>stepSize</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/agyss/iis_robot_sw/iis_catkin_ws/src/kukadu/include/kukadu/learning/rl/policyrl.hpp" line="48" column="1" bodyfile="/home/agyss/iis_robot_sw/iis_catkin_ws/src/kukadu/src/learning/rl/policyrl.cpp" bodystart="449" bodyend="461"/>
+      </memberdef>
+      <memberdef kind="function" id="classkukadu_1_1TrajectoryBasedReward_1a320c223ada03c976b2c545203d1b26d8" prot="public" static="no" const="no" explicit="no" inline="no" virt="virtual">
+        <type>double</type>
+        <definition>double kukadu::TrajectoryBasedReward::computeCost</definition>
+        <argsstring>(KUKADU_SHARED_PTR&lt; ControllerResult &gt; results)</argsstring>
+        <name>computeCost</name>
+        <reimplements refid="classkukadu_1_1CostComputer_1a8d02974e1f097ac0451f03f535843175">computeCost</reimplements>
+        <param>
+          <type>KUKADU_SHARED_PTR&lt; <ref refid="classkukadu_1_1ControllerResult" kindref="compound">ControllerResult</ref> &gt;</type>
+          <declname>results</declname>
+        </param>
+        <briefdescription>
+<para>computes cost for a given dmp execution </para>        </briefdescription>
+        <detaileddescription>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>results</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>measured results of the last dmp execution </para></parameterdescription>
+</parameteritem>
+</parameterlist>
+</para>        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/agyss/iis_robot_sw/iis_catkin_ws/src/kukadu/include/kukadu/learning/rl/policyrl.hpp" line="50" column="1" bodyfile="/home/agyss/iis_robot_sw/iis_catkin_ws/src/kukadu/src/learning/rl/policyrl.cpp" bodystart="421" bodyend="447"/>
+      </memberdef>
+      <memberdef kind="function" id="classkukadu_1_1TrajectoryBasedReward_1abed1b45c79d4925e3d3ec860a1a2d736" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>KUKADU_SHARED_PTR&lt; <ref refid="classkukadu_1_1ControllerResult" kindref="compound">ControllerResult</ref> &gt;</type>
+        <definition>KUKADU_SHARED_PTR&lt; ControllerResult &gt; kukadu::TrajectoryBasedReward::getOptimalTraj</definition>
+        <argsstring>()</argsstring>
+        <name>getOptimalTraj</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/agyss/iis_robot_sw/iis_catkin_ws/src/kukadu/include/kukadu/learning/rl/policyrl.hpp" line="52" column="1" bodyfile="/home/agyss/iis_robot_sw/iis_catkin_ws/src/kukadu/src/learning/rl/policyrl.cpp" bodystart="463" bodyend="465"/>
+      </memberdef>
+      <memberdef kind="function" id="classkukadu_1_1TrajectoryBasedReward_1a1faa4baa7554aa2199293b97b67d715e" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>KUKADU_SHARED_PTR&lt; <ref refid="classkukadu_1_1ControllerResult" kindref="compound">ControllerResult</ref> &gt;</type>
+        <definition>KUKADU_SHARED_PTR&lt; ControllerResult &gt; kukadu::TrajectoryBasedReward::getOptimalTraj</definition>
+        <argsstring>(double tmax)</argsstring>
+        <name>getOptimalTraj</name>
+        <param>
+          <type>double</type>
+          <declname>tmax</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/agyss/iis_robot_sw/iis_catkin_ws/src/kukadu/include/kukadu/learning/rl/policyrl.hpp" line="53" column="1" bodyfile="/home/agyss/iis_robot_sw/iis_catkin_ws/src/kukadu/src/learning/rl/policyrl.cpp" bodystart="467" bodyend="482"/>
+      </memberdef>
+      <memberdef kind="function" id="classkukadu_1_1TrajectoryBasedReward_1a30b268ffa8e9df7d2b6af3a5741e389e" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>KUKADU_SHARED_PTR&lt; <ref refid="classkukadu_1_1ControllerResult" kindref="compound">ControllerResult</ref> &gt;</type>
+        <definition>KUKADU_SHARED_PTR&lt; ControllerResult &gt; kukadu::TrajectoryBasedReward::getOptimalTraj</definition>
+        <argsstring>(double tmax, int freedomIdx)</argsstring>
+        <name>getOptimalTraj</name>
+        <param>
+          <type>double</type>
+          <declname>tmax</declname>
+        </param>
+        <param>
+          <type>int</type>
+          <declname>freedomIdx</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/agyss/iis_robot_sw/iis_catkin_ws/src/kukadu/include/kukadu/learning/rl/policyrl.hpp" line="54" column="1" bodyfile="/home/agyss/iis_robot_sw/iis_catkin_ws/src/kukadu/src/learning/rl/policyrl.cpp" bodystart="484" bodyend="486"/>
+      </memberdef>
+      <memberdef kind="function" id="classkukadu_1_1TrajectoryBasedReward_1a65f5ac9332273b99b470e74deb126fda" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>KUKADU_SHARED_PTR&lt; <ref refid="classkukadu_1_1ControllerResult" kindref="compound">ControllerResult</ref> &gt;</type>
+        <definition>KUKADU_SHARED_PTR&lt; ControllerResult &gt; kukadu::TrajectoryBasedReward::getOptimalTraj</definition>
+        <argsstring>(double tmin, double tmax, int freedomIdx)</argsstring>
+        <name>getOptimalTraj</name>
+        <param>
+          <type>double</type>
+          <declname>tmin</declname>
+        </param>
+        <param>
+          <type>double</type>
+          <declname>tmax</declname>
+        </param>
+        <param>
+          <type>int</type>
+          <declname>freedomIdx</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/agyss/iis_robot_sw/iis_catkin_ws/src/kukadu/include/kukadu/learning/rl/policyrl.hpp" line="55" column="1" bodyfile="/home/agyss/iis_robot_sw/iis_catkin_ws/src/kukadu/src/learning/rl/policyrl.cpp" bodystart="488" bodyend="509"/>
+      </memberdef>
+      <memberdef kind="function" id="classkukadu_1_1TrajectoryBasedReward_1a4352dea3dc32bf7558991523d9f02f9d" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>std::vector&lt; arma::vec &gt;</type>
+        <definition>std::vector&lt; arma::vec &gt; kukadu::TrajectoryBasedReward::computeFun</definition>
+        <argsstring>(arma::vec t)</argsstring>
+        <name>computeFun</name>
+        <param>
+          <type>arma::vec</type>
+          <declname>t</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/agyss/iis_robot_sw/iis_catkin_ws/src/kukadu/include/kukadu/learning/rl/policyrl.hpp" line="57" column="1" bodyfile="/home/agyss/iis_robot_sw/iis_catkin_ws/src/kukadu/src/learning/rl/policyrl.cpp" bodystart="511" bodyend="529"/>
+      </memberdef>
+      <memberdef kind="function" id="classkukadu_1_1TrajectoryBasedReward_1a44c9d712ca3399bd04fa76aac118e6b9" prot="public" static="no" const="no" explicit="no" inline="no" virt="pure-virtual">
+        <type>arma::vec</type>
+        <definition>virtual arma::vec kukadu::TrajectoryBasedReward::computeFun</definition>
+        <argsstring>(double t)=0</argsstring>
+        <name>computeFun</name>
+        <reimplementedby refid="classkukadu_1_1DmpRewardComputer_1aef2a5a9a1703bd183e09eac8becba726">computeFun</reimplementedby>
+        <reimplementedby refid="classkukadu_1_1SampleRewardComputer_1ad68ea48b817bf04485fe3fb13a4007e0">computeFun</reimplementedby>
+        <param>
+          <type>double</type>
+          <declname>t</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/agyss/iis_robot_sw/iis_catkin_ws/src/kukadu/include/kukadu/learning/rl/policyrl.hpp" line="59" column="1"/>
+      </memberdef>
+      </sectiondef>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <inheritancegraph>
+      <node id="681">
+        <label>kukadu::CostComputer</label>
+        <link refid="classkukadu_1_1CostComputer"/>
+      </node>
+      <node id="680">
+        <label>kukadu::TrajectoryBasedReward</label>
+        <link refid="classkukadu_1_1TrajectoryBasedReward"/>
+        <childnode refid="681" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="683">
+        <label>kukadu::SampleRewardComputer</label>
+        <link refid="classkukadu_1_1SampleRewardComputer"/>
+        <childnode refid="680" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="682">
+        <label>kukadu::DmpRewardComputer</label>
+        <link refid="classkukadu_1_1DmpRewardComputer"/>
+        <childnode refid="680" relation="public-inheritance">
+        </childnode>
+      </node>
+    </inheritancegraph>
+    <collaborationgraph>
+      <node id="685">
+        <label>kukadu::CostComputer</label>
+        <link refid="classkukadu_1_1CostComputer"/>
+      </node>
+      <node id="684">
+        <label>kukadu::TrajectoryBasedReward</label>
+        <link refid="classkukadu_1_1TrajectoryBasedReward"/>
+        <childnode refid="685" relation="public-inheritance">
+        </childnode>
+      </node>
+    </collaborationgraph>
+    <location file="/home/agyss/iis_robot_sw/iis_catkin_ws/src/kukadu/include/kukadu/learning/rl/policyrl.hpp" line="31" column="1" bodyfile="/home/agyss/iis_robot_sw/iis_catkin_ws/src/kukadu/include/kukadu/learning/rl/policyrl.hpp" bodystart="31" bodyend="61"/>
+    <listofallmembers>
+      <member refid="classkukadu_1_1TrajectoryBasedReward_1a320c223ada03c976b2c545203d1b26d8" prot="public" virt="virtual"><scope>kukadu::TrajectoryBasedReward</scope><name>computeCost</name></member>
+      <member refid="classkukadu_1_1TrajectoryBasedReward_1a4352dea3dc32bf7558991523d9f02f9d" prot="public" virt="non-virtual"><scope>kukadu::TrajectoryBasedReward</scope><name>computeFun</name></member>
+      <member refid="classkukadu_1_1TrajectoryBasedReward_1a44c9d712ca3399bd04fa76aac118e6b9" prot="public" virt="pure-virtual"><scope>kukadu::TrajectoryBasedReward</scope><name>computeFun</name></member>
+      <member refid="classkukadu_1_1TrajectoryBasedReward_1ac37b2d0b8d2d305d2b961c4333659cf3" prot="private" virt="non-virtual"><scope>kukadu::TrajectoryBasedReward</scope><name>degOfFreedom</name></member>
+      <member refid="classkukadu_1_1TrajectoryBasedReward_1abed1b45c79d4925e3d3ec860a1a2d736" prot="public" virt="non-virtual"><scope>kukadu::TrajectoryBasedReward</scope><name>getOptimalTraj</name></member>
+      <member refid="classkukadu_1_1TrajectoryBasedReward_1a1faa4baa7554aa2199293b97b67d715e" prot="public" virt="non-virtual"><scope>kukadu::TrajectoryBasedReward</scope><name>getOptimalTraj</name></member>
+      <member refid="classkukadu_1_1TrajectoryBasedReward_1a30b268ffa8e9df7d2b6af3a5741e389e" prot="public" virt="non-virtual"><scope>kukadu::TrajectoryBasedReward</scope><name>getOptimalTraj</name></member>
+      <member refid="classkukadu_1_1TrajectoryBasedReward_1a65f5ac9332273b99b470e74deb126fda" prot="public" virt="non-virtual"><scope>kukadu::TrajectoryBasedReward</scope><name>getOptimalTraj</name></member>
+      <member refid="classkukadu_1_1TrajectoryBasedReward_1a72ba3e244d3380c3e91f7209cd3ed9bb" prot="private" virt="non-virtual"><scope>kukadu::TrajectoryBasedReward</scope><name>rewardsWeights</name></member>
+      <member refid="classkukadu_1_1TrajectoryBasedReward_1a8d45db388511ecef42f1802f1742b9e2" prot="private" virt="non-virtual"><scope>kukadu::TrajectoryBasedReward</scope><name>slope</name></member>
+      <member refid="classkukadu_1_1TrajectoryBasedReward_1aa63016d2425abc03d7d4bcacc6d992f9" prot="private" virt="non-virtual"><scope>kukadu::TrajectoryBasedReward</scope><name>step</name></member>
+      <member refid="classkukadu_1_1TrajectoryBasedReward_1a3d21027cf46e2e8cb9f5a6fc49354bea" prot="private" virt="non-virtual"><scope>kukadu::TrajectoryBasedReward</scope><name>tmax</name></member>
+      <member refid="classkukadu_1_1TrajectoryBasedReward_1a646065b5b00ac72e582f9553ca790f32" prot="public" virt="non-virtual"><scope>kukadu::TrajectoryBasedReward</scope><name>TrajectoryBasedReward</name></member>
+      <member refid="classkukadu_1_1TrajectoryBasedReward_1a6778592c4f88c8abdc0327f12080c550" prot="public" virt="non-virtual"><scope>kukadu::TrajectoryBasedReward</scope><name>TrajectoryBasedReward</name></member>
+      <member refid="classkukadu_1_1TrajectoryBasedReward_1a434ee68a4e810d796789eebbd5ce17bf" prot="public" virt="non-virtual"><scope>kukadu::TrajectoryBasedReward</scope><name>writeToFile</name></member>
+    </listofallmembers>
+  </compounddef>
+</doxygen>

@@ -1,0 +1,126 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.8.11">
+  <compounddef id="classkukadu_1_1PSEvaluator" kind="class" language="C++" prot="public">
+    <compoundname>kukadu::PSEvaluator</compoundname>
+      <sectiondef kind="public-static-attrib">
+      <memberdef kind="variable" id="classkukadu_1_1PSEvaluator_1a59da5d274bf294c24a7374c0b7ab58b2" prot="public" static="yes" mutable="no">
+        <type>auto constexpr</type>
+        <definition>auto constexpr kukadu::PSEvaluator::PSEVAL_BUFFER_SIZE</definition>
+        <argsstring></argsstring>
+        <name>PSEVAL_BUFFER_SIZE</name>
+        <initializer>= 500</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/agyss/iis_robot_sw/iis_catkin_ws/src/kukadu/include/kukadu/learning/projective_simulation/core.hpp" line="220" column="1" bodyfile="/home/agyss/iis_robot_sw/iis_catkin_ws/src/kukadu/include/kukadu/learning/projective_simulation/core.hpp" bodystart="220" bodyend="-1"/>
+      </memberdef>
+      </sectiondef>
+      <sectiondef kind="public-func">
+      <memberdef kind="function" id="classkukadu_1_1PSEvaluator_1a70cf2fd9ff890d362197cb5078246072" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type></type>
+        <definition>kukadu::PSEvaluator::PSEvaluator</definition>
+        <argsstring>()</argsstring>
+        <name>PSEvaluator</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/agyss/iis_robot_sw/iis_catkin_ws/src/kukadu/include/kukadu/learning/projective_simulation/core.hpp" line="213" column="1" bodyfile="/home/agyss/iis_robot_sw/iis_catkin_ws/src/kukadu/src/learning/projective_simulation/core.cpp" bodystart="108" bodyend="109"/>
+      </memberdef>
+      </sectiondef>
+      <sectiondef kind="public-static-func">
+      <memberdef kind="function" id="classkukadu_1_1PSEvaluator_1ac61d51fa489996d05fef58be55d57e7e" prot="public" static="yes" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>void kukadu::PSEvaluator::produceStatistics</definition>
+        <argsstring>(KUKADU_SHARED_PTR&lt; ProjectiveSimulator &gt; ps, KUKADU_SHARED_PTR&lt; Reward &gt; reward, int numberOfWalks, int clipImmunity, int rewardValue, std::ostream &amp;outStream)</argsstring>
+        <name>produceStatistics</name>
+        <param>
+          <type>KUKADU_SHARED_PTR&lt; <ref refid="classkukadu_1_1ProjectiveSimulator" kindref="compound">ProjectiveSimulator</ref> &gt;</type>
+          <declname>ps</declname>
+        </param>
+        <param>
+          <type>KUKADU_SHARED_PTR&lt; <ref refid="classkukadu_1_1Reward" kindref="compound">Reward</ref> &gt;</type>
+          <declname>reward</declname>
+        </param>
+        <param>
+          <type>int</type>
+          <declname>numberOfWalks</declname>
+        </param>
+        <param>
+          <type>int</type>
+          <declname>clipImmunity</declname>
+        </param>
+        <param>
+          <type>int</type>
+          <declname>rewardValue</declname>
+        </param>
+        <param>
+          <type>std::ostream &amp;</type>
+          <declname>outStream</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/agyss/iis_robot_sw/iis_catkin_ws/src/kukadu/include/kukadu/learning/projective_simulation/core.hpp" line="215" column="1" bodyfile="/home/agyss/iis_robot_sw/iis_catkin_ws/src/kukadu/src/learning/projective_simulation/core.cpp" bodystart="258" bodyend="291"/>
+      </memberdef>
+      <memberdef kind="function" id="classkukadu_1_1PSEvaluator_1a4da4ad6cc48d918d8fabce26a560fcb1" prot="public" static="yes" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>std::vector&lt; double &gt;</type>
+        <definition>vector&lt; double &gt; kukadu::PSEvaluator::evaluateStatistics</definition>
+        <argsstring>(std::vector&lt; KUKADU_SHARED_PTR&lt; std::ifstream &gt; &gt; &amp;inputStreams)</argsstring>
+        <name>evaluateStatistics</name>
+        <param>
+          <type>std::vector&lt; KUKADU_SHARED_PTR&lt; std::ifstream &gt; &gt; &amp;</type>
+          <declname>inputStreams</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/agyss/iis_robot_sw/iis_catkin_ws/src/kukadu/include/kukadu/learning/projective_simulation/core.hpp" line="217" column="1" bodyfile="/home/agyss/iis_robot_sw/iis_catkin_ws/src/kukadu/src/learning/projective_simulation/core.cpp" bodystart="190" bodyend="256"/>
+      </memberdef>
+      <memberdef kind="function" id="classkukadu_1_1PSEvaluator_1aff218534a5ddb7d3c7b9c7452ba27015" prot="public" static="yes" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>std::pair&lt; std::vector&lt; int &gt;, std::vector&lt; double &gt; &gt;</type>
+        <definition>static std::pair&lt;std::vector&lt;int&gt;, std::vector&lt;double&gt; &gt; kukadu::PSEvaluator::evaluateStatistics</definition>
+        <argsstring>(std::vector&lt; std::string &gt; inputFiles, std::vector&lt; int &gt; inputPos)</argsstring>
+        <name>evaluateStatistics</name>
+        <param>
+          <type>std::vector&lt; std::string &gt;</type>
+          <declname>inputFiles</declname>
+        </param>
+        <param>
+          <type>std::vector&lt; int &gt;</type>
+          <declname>inputPos</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/agyss/iis_robot_sw/iis_catkin_ws/src/kukadu/include/kukadu/learning/projective_simulation/core.hpp" line="218" column="1"/>
+      </memberdef>
+      </sectiondef>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <location file="/home/agyss/iis_robot_sw/iis_catkin_ws/src/kukadu/include/kukadu/learning/projective_simulation/core.hpp" line="209" column="1" bodyfile="/home/agyss/iis_robot_sw/iis_catkin_ws/src/kukadu/include/kukadu/learning/projective_simulation/core.hpp" bodystart="209" bodyend="222"/>
+    <listofallmembers>
+      <member refid="classkukadu_1_1PSEvaluator_1a4da4ad6cc48d918d8fabce26a560fcb1" prot="public" virt="non-virtual"><scope>kukadu::PSEvaluator</scope><name>evaluateStatistics</name></member>
+      <member refid="classkukadu_1_1PSEvaluator_1aff218534a5ddb7d3c7b9c7452ba27015" prot="public" virt="non-virtual"><scope>kukadu::PSEvaluator</scope><name>evaluateStatistics</name></member>
+      <member refid="classkukadu_1_1PSEvaluator_1ac61d51fa489996d05fef58be55d57e7e" prot="public" virt="non-virtual"><scope>kukadu::PSEvaluator</scope><name>produceStatistics</name></member>
+      <member refid="classkukadu_1_1PSEvaluator_1a59da5d274bf294c24a7374c0b7ab58b2" prot="public" virt="non-virtual"><scope>kukadu::PSEvaluator</scope><name>PSEVAL_BUFFER_SIZE</name></member>
+      <member refid="classkukadu_1_1PSEvaluator_1a70cf2fd9ff890d362197cb5078246072" prot="public" virt="non-virtual"><scope>kukadu::PSEvaluator</scope><name>PSEvaluator</name></member>
+    </listofallmembers>
+  </compounddef>
+</doxygen>

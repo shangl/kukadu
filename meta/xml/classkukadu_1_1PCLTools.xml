@@ -1,0 +1,489 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.8.11">
+  <compounddef id="classkukadu_1_1PCLTools" kind="class" language="C++" prot="public">
+    <compoundname>kukadu::PCLTools</compoundname>
+      <sectiondef kind="private-attrib">
+      <memberdef kind="variable" id="classkukadu_1_1PCLTools_1a93015c6b4866fe530266a12c7eb534f4" prot="private" static="no" mutable="no">
+        <type>bool</type>
+        <definition>bool kukadu::PCLTools::isVisInit</definition>
+        <argsstring></argsstring>
+        <name>isVisInit</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/agyss/iis_robot_sw/iis_catkin_ws/src/kukadu/include/kukadu/vision/pcltools.hpp" line="23" column="1" bodyfile="/home/agyss/iis_robot_sw/iis_catkin_ws/src/kukadu/include/kukadu/vision/pcltools.hpp" bodystart="23" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classkukadu_1_1PCLTools_1a36a451d22d81fb9aab768e2b5c188fd6" prot="private" static="no" mutable="no">
+        <type>bool</type>
+        <definition>bool kukadu::PCLTools::keepShowingVis</definition>
+        <argsstring></argsstring>
+        <name>keepShowingVis</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/agyss/iis_robot_sw/iis_catkin_ws/src/kukadu/include/kukadu/vision/pcltools.hpp" line="24" column="1" bodyfile="/home/agyss/iis_robot_sw/iis_catkin_ws/src/kukadu/include/kukadu/vision/pcltools.hpp" bodystart="24" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classkukadu_1_1PCLTools_1a8fcd4c26fdef4ba81957c07fd1ef60aa" prot="private" static="no" mutable="no">
+        <type>std::shared_ptr&lt; kukadu_thread &gt;</type>
+        <definition>std::shared_ptr&lt;kukadu_thread&gt; kukadu::PCLTools::visThread</definition>
+        <argsstring></argsstring>
+        <name>visThread</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/agyss/iis_robot_sw/iis_catkin_ws/src/kukadu/include/kukadu/vision/pcltools.hpp" line="26" column="1" bodyfile="/home/agyss/iis_robot_sw/iis_catkin_ws/src/kukadu/include/kukadu/vision/pcltools.hpp" bodystart="26" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classkukadu_1_1PCLTools_1aafdf1f91cfa48e97a48c843b8b2fcfd6" prot="private" static="no" mutable="no">
+        <type>std::shared_ptr&lt; pcl::visualization::PCLVisualizer &gt;</type>
+        <definition>std::shared_ptr&lt;pcl::visualization::PCLVisualizer&gt; kukadu::PCLTools::viewer</definition>
+        <argsstring></argsstring>
+        <name>viewer</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/agyss/iis_robot_sw/iis_catkin_ws/src/kukadu/include/kukadu/vision/pcltools.hpp" line="27" column="1" bodyfile="/home/agyss/iis_robot_sw/iis_catkin_ws/src/kukadu/include/kukadu/vision/pcltools.hpp" bodystart="27" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classkukadu_1_1PCLTools_1a32816858433574b9646635c5a33f8c9b" prot="private" static="no" mutable="no">
+        <type>std::vector&lt; std::pair&lt; std::string, pcl::PointCloud&lt; pcl::PointXYZRGB &gt;::Ptr &gt; &gt;</type>
+        <definition>std::vector&lt;std::pair&lt;std::string, pcl::PointCloud&lt;pcl::PointXYZRGB&gt;::Ptr&gt; &gt; kukadu::PCLTools::visPointClouds</definition>
+        <argsstring></argsstring>
+        <name>visPointClouds</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/agyss/iis_robot_sw/iis_catkin_ws/src/kukadu/include/kukadu/vision/pcltools.hpp" line="29" column="1" bodyfile="/home/agyss/iis_robot_sw/iis_catkin_ws/src/kukadu/include/kukadu/vision/pcltools.hpp" bodystart="29" bodyend="-1"/>
+      </memberdef>
+      </sectiondef>
+      <sectiondef kind="private-func">
+      <memberdef kind="function" id="classkukadu_1_1PCLTools_1a80e890aa616100a0050782bae6d72665" prot="private" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>void kukadu::PCLTools::runVisThread</definition>
+        <argsstring>()</argsstring>
+        <name>runVisThread</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/agyss/iis_robot_sw/iis_catkin_ws/src/kukadu/include/kukadu/vision/pcltools.hpp" line="31" column="1" bodyfile="/home/agyss/iis_robot_sw/iis_catkin_ws/src/kukadu/src/vision/pcltools.cpp" bodystart="82" bodyend="103"/>
+      </memberdef>
+      </sectiondef>
+      <sectiondef kind="public-func">
+      <memberdef kind="function" id="classkukadu_1_1PCLTools_1a0480e73fa91f7edf826271f8d3e4a020" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type></type>
+        <definition>kukadu::PCLTools::PCLTools</definition>
+        <argsstring>()</argsstring>
+        <name>PCLTools</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/agyss/iis_robot_sw/iis_catkin_ws/src/kukadu/include/kukadu/vision/pcltools.hpp" line="35" column="1" bodyfile="/home/agyss/iis_robot_sw/iis_catkin_ws/src/kukadu/src/vision/pcltools.cpp" bodystart="24" bodyend="27"/>
+      </memberdef>
+      <memberdef kind="function" id="classkukadu_1_1PCLTools_1a14141dd30ae2c613b6547398bfe7b3d1" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>void kukadu::PCLTools::stopVisualizationWindow</definition>
+        <argsstring>()</argsstring>
+        <name>stopVisualizationWindow</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/agyss/iis_robot_sw/iis_catkin_ws/src/kukadu/include/kukadu/vision/pcltools.hpp" line="41" column="1" bodyfile="/home/agyss/iis_robot_sw/iis_catkin_ws/src/kukadu/src/vision/pcltools.cpp" bodystart="66" bodyend="80"/>
+      </memberdef>
+      <memberdef kind="function" id="classkukadu_1_1PCLTools_1a77ceff148e148532dfd6edef82aeba70" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>void kukadu::PCLTools::visDrawBox</definition>
+        <argsstring>(std::string id, struct FitCube dim)</argsstring>
+        <name>visDrawBox</name>
+        <param>
+          <type>std::string</type>
+          <declname>id</declname>
+        </param>
+        <param>
+          <type>struct <ref refid="structkukadu_1_1FitCube" kindref="compound">FitCube</ref></type>
+          <declname>dim</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/agyss/iis_robot_sw/iis_catkin_ws/src/kukadu/include/kukadu/vision/pcltools.hpp" line="42" column="1" bodyfile="/home/agyss/iis_robot_sw/iis_catkin_ws/src/kukadu/src/vision/pcltools.cpp" bodystart="280" bodyend="283"/>
+      </memberdef>
+      <memberdef kind="function" id="classkukadu_1_1PCLTools_1a561208fa3e7334fb3541d39c18c2008c" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>void kukadu::PCLTools::visDrawPlaneWithNormal</definition>
+        <argsstring>(std::string id, arma::vec r0, arma::vec n)</argsstring>
+        <name>visDrawPlaneWithNormal</name>
+        <param>
+          <type>std::string</type>
+          <declname>id</declname>
+        </param>
+        <param>
+          <type>arma::vec</type>
+          <declname>r0</declname>
+        </param>
+        <param>
+          <type>arma::vec</type>
+          <declname>n</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/agyss/iis_robot_sw/iis_catkin_ws/src/kukadu/include/kukadu/vision/pcltools.hpp" line="43" column="1" bodyfile="/home/agyss/iis_robot_sw/iis_catkin_ws/src/kukadu/src/vision/pcltools.cpp" bodystart="219" bodyend="242"/>
+      </memberdef>
+      <memberdef kind="function" id="classkukadu_1_1PCLTools_1a7f7cfc6e839712f4ca2d8b9e696350f5" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>void kukadu::PCLTools::visDrawLine</definition>
+        <argsstring>(std::string id, double pointX1, double pointY1, double pointZ1, double pointX2, double pointY2, double pointZ2)</argsstring>
+        <name>visDrawLine</name>
+        <param>
+          <type>std::string</type>
+          <declname>id</declname>
+        </param>
+        <param>
+          <type>double</type>
+          <declname>pointX1</declname>
+        </param>
+        <param>
+          <type>double</type>
+          <declname>pointY1</declname>
+        </param>
+        <param>
+          <type>double</type>
+          <declname>pointZ1</declname>
+        </param>
+        <param>
+          <type>double</type>
+          <declname>pointX2</declname>
+        </param>
+        <param>
+          <type>double</type>
+          <declname>pointY2</declname>
+        </param>
+        <param>
+          <type>double</type>
+          <declname>pointZ2</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/agyss/iis_robot_sw/iis_catkin_ws/src/kukadu/include/kukadu/vision/pcltools.hpp" line="44" column="1" bodyfile="/home/agyss/iis_robot_sw/iis_catkin_ws/src/kukadu/src/vision/pcltools.cpp" bodystart="244" bodyend="254"/>
+      </memberdef>
+      <memberdef kind="function" id="classkukadu_1_1PCLTools_1a4964f97b079a8ec36b540bfb83d52853" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>void kukadu::PCLTools::visualizePointCloud</definition>
+        <argsstring>(std::string id, pcl::PointCloud&lt; pcl::PointXYZ &gt;::Ptr pc)</argsstring>
+        <name>visualizePointCloud</name>
+        <param>
+          <type>std::string</type>
+          <declname>id</declname>
+        </param>
+        <param>
+          <type>pcl::PointCloud&lt; pcl::PointXYZ &gt;::Ptr</type>
+          <declname>pc</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/agyss/iis_robot_sw/iis_catkin_ws/src/kukadu/include/kukadu/vision/pcltools.hpp" line="46" column="1" bodyfile="/home/agyss/iis_robot_sw/iis_catkin_ws/src/kukadu/src/vision/pcltools.cpp" bodystart="29" bodyend="33"/>
+      </memberdef>
+      <memberdef kind="function" id="classkukadu_1_1PCLTools_1aaadc343ad0aa658435832085edbae347" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>void kukadu::PCLTools::visualizePointCloud</definition>
+        <argsstring>(std::string id, pcl::PointCloud&lt; pcl::PointXYZI &gt;::Ptr pc)</argsstring>
+        <name>visualizePointCloud</name>
+        <param>
+          <type>std::string</type>
+          <declname>id</declname>
+        </param>
+        <param>
+          <type>pcl::PointCloud&lt; pcl::PointXYZI &gt;::Ptr</type>
+          <declname>pc</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/agyss/iis_robot_sw/iis_catkin_ws/src/kukadu/include/kukadu/vision/pcltools.hpp" line="47" column="1" bodyfile="/home/agyss/iis_robot_sw/iis_catkin_ws/src/kukadu/src/vision/pcltools.cpp" bodystart="35" bodyend="39"/>
+      </memberdef>
+      <memberdef kind="function" id="classkukadu_1_1PCLTools_1a58bb832d31dc862dd7b9059d0f89dcda" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>void kukadu::PCLTools::visualizePointCloud</definition>
+        <argsstring>(std::string id, pcl::PointCloud&lt; pcl::PointXYZRGB &gt;::Ptr pc)</argsstring>
+        <name>visualizePointCloud</name>
+        <param>
+          <type>std::string</type>
+          <declname>id</declname>
+        </param>
+        <param>
+          <type>pcl::PointCloud&lt; pcl::PointXYZRGB &gt;::Ptr</type>
+          <declname>pc</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/agyss/iis_robot_sw/iis_catkin_ws/src/kukadu/include/kukadu/vision/pcltools.hpp" line="48" column="1" bodyfile="/home/agyss/iis_robot_sw/iis_catkin_ws/src/kukadu/src/vision/pcltools.cpp" bodystart="47" bodyend="64"/>
+      </memberdef>
+      <memberdef kind="function" id="classkukadu_1_1PCLTools_1a15816eaff6d57a5ae0249a2fe085d6a8" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>void kukadu::PCLTools::visualizePointCloud</definition>
+        <argsstring>(std::string id, pcl::PointCloud&lt; pcl::PointXYZRGBA &gt;::Ptr pc)</argsstring>
+        <name>visualizePointCloud</name>
+        <param>
+          <type>std::string</type>
+          <declname>id</declname>
+        </param>
+        <param>
+          <type>pcl::PointCloud&lt; pcl::PointXYZRGBA &gt;::Ptr</type>
+          <declname>pc</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/agyss/iis_robot_sw/iis_catkin_ws/src/kukadu/include/kukadu/vision/pcltools.hpp" line="49" column="1" bodyfile="/home/agyss/iis_robot_sw/iis_catkin_ws/src/kukadu/src/vision/pcltools.cpp" bodystart="41" bodyend="45"/>
+      </memberdef>
+      <memberdef kind="function" id="classkukadu_1_1PCLTools_1a1c66a201e0907c90081d8b8940277563" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>void kukadu::PCLTools::updateVisualizedPointCloud</definition>
+        <argsstring>(std::string id, pcl::PointCloud&lt; pcl::PointXYZ &gt;::Ptr pc)</argsstring>
+        <name>updateVisualizedPointCloud</name>
+        <param>
+          <type>std::string</type>
+          <declname>id</declname>
+        </param>
+        <param>
+          <type>pcl::PointCloud&lt; pcl::PointXYZ &gt;::Ptr</type>
+          <declname>pc</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/agyss/iis_robot_sw/iis_catkin_ws/src/kukadu/include/kukadu/vision/pcltools.hpp" line="51" column="1" bodyfile="/home/agyss/iis_robot_sw/iis_catkin_ws/src/kukadu/src/vision/pcltools.cpp" bodystart="268" bodyend="272"/>
+      </memberdef>
+      <memberdef kind="function" id="classkukadu_1_1PCLTools_1acef2c2e3e90262fc2643ab3947dc799f" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>void kukadu::PCLTools::updateVisualizedPointCloud</definition>
+        <argsstring>(std::string id, pcl::PointCloud&lt; pcl::PointXYZI &gt;::Ptr pc)</argsstring>
+        <name>updateVisualizedPointCloud</name>
+        <param>
+          <type>std::string</type>
+          <declname>id</declname>
+        </param>
+        <param>
+          <type>pcl::PointCloud&lt; pcl::PointXYZI &gt;::Ptr</type>
+          <declname>pc</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/agyss/iis_robot_sw/iis_catkin_ws/src/kukadu/include/kukadu/vision/pcltools.hpp" line="52" column="1" bodyfile="/home/agyss/iis_robot_sw/iis_catkin_ws/src/kukadu/src/vision/pcltools.cpp" bodystart="274" bodyend="278"/>
+      </memberdef>
+      <memberdef kind="function" id="classkukadu_1_1PCLTools_1a4e8a0a75dd402884a04565e257d21cbf" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>void kukadu::PCLTools::updateVisualizedPointCloud</definition>
+        <argsstring>(std::string id, pcl::PointCloud&lt; pcl::PointXYZRGB &gt;::Ptr pc)</argsstring>
+        <name>updateVisualizedPointCloud</name>
+        <param>
+          <type>std::string</type>
+          <declname>id</declname>
+        </param>
+        <param>
+          <type>pcl::PointCloud&lt; pcl::PointXYZRGB &gt;::Ptr</type>
+          <declname>pc</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/agyss/iis_robot_sw/iis_catkin_ws/src/kukadu/include/kukadu/vision/pcltools.hpp" line="53" column="1" bodyfile="/home/agyss/iis_robot_sw/iis_catkin_ws/src/kukadu/src/vision/pcltools.cpp" bodystart="256" bodyend="260"/>
+      </memberdef>
+      <memberdef kind="function" id="classkukadu_1_1PCLTools_1a15827a5f20d928f5cd2d4737af2c95c9" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>void kukadu::PCLTools::updateVisualizedPointCloud</definition>
+        <argsstring>(std::string id, pcl::PointCloud&lt; pcl::PointXYZRGBA &gt;::Ptr pc)</argsstring>
+        <name>updateVisualizedPointCloud</name>
+        <param>
+          <type>std::string</type>
+          <declname>id</declname>
+        </param>
+        <param>
+          <type>pcl::PointCloud&lt; pcl::PointXYZRGBA &gt;::Ptr</type>
+          <declname>pc</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/agyss/iis_robot_sw/iis_catkin_ws/src/kukadu/include/kukadu/vision/pcltools.hpp" line="54" column="1" bodyfile="/home/agyss/iis_robot_sw/iis_catkin_ws/src/kukadu/src/vision/pcltools.cpp" bodystart="262" bodyend="266"/>
+      </memberdef>
+      <memberdef kind="function" id="classkukadu_1_1PCLTools_1aa5b4944460518ddf14707c3cf5d2272b" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>KUKADU_SHARED_PTR&lt; kukadu_thread &gt;</type>
+        <definition>KUKADU_SHARED_PTR&lt; kukadu_thread &gt; kukadu::PCLTools::initializeVisualizationWindow</definition>
+        <argsstring>()</argsstring>
+        <name>initializeVisualizationWindow</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/agyss/iis_robot_sw/iis_catkin_ws/src/kukadu/include/kukadu/vision/pcltools.hpp" line="56" column="1" bodyfile="/home/agyss/iis_robot_sw/iis_catkin_ws/src/kukadu/src/vision/pcltools.cpp" bodystart="105" bodyend="120"/>
+      </memberdef>
+      <memberdef kind="function" id="classkukadu_1_1PCLTools_1a99abc0b66655b8511f519c2f42c740be" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>KUKADU_SHARED_PTR&lt; pcl::visualization::PCLVisualizer &gt;</type>
+        <definition>KUKADU_SHARED_PTR&lt; pcl::visualization::PCLVisualizer &gt; kukadu::PCLTools::getVisualizer</definition>
+        <argsstring>()</argsstring>
+        <name>getVisualizer</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/agyss/iis_robot_sw/iis_catkin_ws/src/kukadu/include/kukadu/vision/pcltools.hpp" line="57" column="1" bodyfile="/home/agyss/iis_robot_sw/iis_catkin_ws/src/kukadu/src/vision/pcltools.cpp" bodystart="215" bodyend="217"/>
+      </memberdef>
+      </sectiondef>
+      <sectiondef kind="public-static-func">
+      <memberdef kind="function" id="classkukadu_1_1PCLTools_1a1294a33f9577e78f8c562fd71ef8fd36" prot="public" static="yes" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type><ref refid="structkukadu_1_1FitCube" kindref="compound">FitCube</ref></type>
+        <definition>FitCube kukadu::PCLTools::fitBox</definition>
+        <argsstring>(pcl::PointCloud&lt; pcl::PointXYZRGB &gt;::Ptr cloud)</argsstring>
+        <name>fitBox</name>
+        <param>
+          <type>pcl::PointCloud&lt; pcl::PointXYZRGB &gt;::Ptr</type>
+          <declname>cloud</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/agyss/iis_robot_sw/iis_catkin_ws/src/kukadu/include/kukadu/vision/pcltools.hpp" line="37" column="1" bodyfile="/home/agyss/iis_robot_sw/iis_catkin_ws/src/kukadu/src/vision/pcltools.cpp" bodystart="123" bodyend="169"/>
+      </memberdef>
+      <memberdef kind="function" id="classkukadu_1_1PCLTools_1ace9796d5b9bf7bfcee964241139ec8bf" prot="public" static="yes" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>pcl::PointCloud&lt; pcl::PointXYZRGB &gt;::Ptr</type>
+        <definition>PointCloud&lt; PointXYZRGB &gt;::Ptr kukadu::PCLTools::segmentPlanar</definition>
+        <argsstring>(pcl::PointCloud&lt; pcl::PointXYZRGB &gt;::Ptr cloud, bool negative)</argsstring>
+        <name>segmentPlanar</name>
+        <param>
+          <type>pcl::PointCloud&lt; pcl::PointXYZRGB &gt;::Ptr</type>
+          <declname>cloud</declname>
+        </param>
+        <param>
+          <type>bool</type>
+          <declname>negative</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/agyss/iis_robot_sw/iis_catkin_ws/src/kukadu/include/kukadu/vision/pcltools.hpp" line="38" column="1" bodyfile="/home/agyss/iis_robot_sw/iis_catkin_ws/src/kukadu/src/vision/pcltools.cpp" bodystart="171" bodyend="213"/>
+      </memberdef>
+      <memberdef kind="function" id="classkukadu_1_1PCLTools_1afa121bf94ed33682e0ac825fb8be08cc" prot="public" static="yes" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>pcl::PointCloud&lt; pcl::PointXYZRGB &gt;::Ptr</type>
+        <definition>pcl::PointCloud&lt; pcl::PointXYZRGB &gt;::Ptr kukadu::PCLTools::filterCluster</definition>
+        <argsstring>(pcl::PointCloud&lt; pcl::PointXYZRGB &gt;::Ptr cloud, bool negative)</argsstring>
+        <name>filterCluster</name>
+        <param>
+          <type>pcl::PointCloud&lt; pcl::PointXYZRGB &gt;::Ptr</type>
+          <declname>cloud</declname>
+        </param>
+        <param>
+          <type>bool</type>
+          <declname>negative</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/agyss/iis_robot_sw/iis_catkin_ws/src/kukadu/include/kukadu/vision/pcltools.hpp" line="39" column="1" bodyfile="/home/agyss/iis_robot_sw/iis_catkin_ws/src/kukadu/src/vision/pcltools.cpp" bodystart="285" bodyend="348"/>
+      </memberdef>
+      </sectiondef>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <location file="/home/agyss/iis_robot_sw/iis_catkin_ws/src/kukadu/include/kukadu/vision/pcltools.hpp" line="19" column="1" bodyfile="/home/agyss/iis_robot_sw/iis_catkin_ws/src/kukadu/include/kukadu/vision/pcltools.hpp" bodystart="19" bodyend="59"/>
+    <listofallmembers>
+      <member refid="classkukadu_1_1PCLTools_1afa121bf94ed33682e0ac825fb8be08cc" prot="public" virt="non-virtual"><scope>kukadu::PCLTools</scope><name>filterCluster</name></member>
+      <member refid="classkukadu_1_1PCLTools_1a1294a33f9577e78f8c562fd71ef8fd36" prot="public" virt="non-virtual"><scope>kukadu::PCLTools</scope><name>fitBox</name></member>
+      <member refid="classkukadu_1_1PCLTools_1a99abc0b66655b8511f519c2f42c740be" prot="public" virt="non-virtual"><scope>kukadu::PCLTools</scope><name>getVisualizer</name></member>
+      <member refid="classkukadu_1_1PCLTools_1aa5b4944460518ddf14707c3cf5d2272b" prot="public" virt="non-virtual"><scope>kukadu::PCLTools</scope><name>initializeVisualizationWindow</name></member>
+      <member refid="classkukadu_1_1PCLTools_1a93015c6b4866fe530266a12c7eb534f4" prot="private" virt="non-virtual"><scope>kukadu::PCLTools</scope><name>isVisInit</name></member>
+      <member refid="classkukadu_1_1PCLTools_1a36a451d22d81fb9aab768e2b5c188fd6" prot="private" virt="non-virtual"><scope>kukadu::PCLTools</scope><name>keepShowingVis</name></member>
+      <member refid="classkukadu_1_1PCLTools_1a0480e73fa91f7edf826271f8d3e4a020" prot="public" virt="non-virtual"><scope>kukadu::PCLTools</scope><name>PCLTools</name></member>
+      <member refid="classkukadu_1_1PCLTools_1a80e890aa616100a0050782bae6d72665" prot="private" virt="non-virtual"><scope>kukadu::PCLTools</scope><name>runVisThread</name></member>
+      <member refid="classkukadu_1_1PCLTools_1ace9796d5b9bf7bfcee964241139ec8bf" prot="public" virt="non-virtual"><scope>kukadu::PCLTools</scope><name>segmentPlanar</name></member>
+      <member refid="classkukadu_1_1PCLTools_1a14141dd30ae2c613b6547398bfe7b3d1" prot="public" virt="non-virtual"><scope>kukadu::PCLTools</scope><name>stopVisualizationWindow</name></member>
+      <member refid="classkukadu_1_1PCLTools_1a1c66a201e0907c90081d8b8940277563" prot="public" virt="non-virtual"><scope>kukadu::PCLTools</scope><name>updateVisualizedPointCloud</name></member>
+      <member refid="classkukadu_1_1PCLTools_1acef2c2e3e90262fc2643ab3947dc799f" prot="public" virt="non-virtual"><scope>kukadu::PCLTools</scope><name>updateVisualizedPointCloud</name></member>
+      <member refid="classkukadu_1_1PCLTools_1a4e8a0a75dd402884a04565e257d21cbf" prot="public" virt="non-virtual"><scope>kukadu::PCLTools</scope><name>updateVisualizedPointCloud</name></member>
+      <member refid="classkukadu_1_1PCLTools_1a15827a5f20d928f5cd2d4737af2c95c9" prot="public" virt="non-virtual"><scope>kukadu::PCLTools</scope><name>updateVisualizedPointCloud</name></member>
+      <member refid="classkukadu_1_1PCLTools_1aafdf1f91cfa48e97a48c843b8b2fcfd6" prot="private" virt="non-virtual"><scope>kukadu::PCLTools</scope><name>viewer</name></member>
+      <member refid="classkukadu_1_1PCLTools_1a77ceff148e148532dfd6edef82aeba70" prot="public" virt="non-virtual"><scope>kukadu::PCLTools</scope><name>visDrawBox</name></member>
+      <member refid="classkukadu_1_1PCLTools_1a7f7cfc6e839712f4ca2d8b9e696350f5" prot="public" virt="non-virtual"><scope>kukadu::PCLTools</scope><name>visDrawLine</name></member>
+      <member refid="classkukadu_1_1PCLTools_1a561208fa3e7334fb3541d39c18c2008c" prot="public" virt="non-virtual"><scope>kukadu::PCLTools</scope><name>visDrawPlaneWithNormal</name></member>
+      <member refid="classkukadu_1_1PCLTools_1a32816858433574b9646635c5a33f8c9b" prot="private" virt="non-virtual"><scope>kukadu::PCLTools</scope><name>visPointClouds</name></member>
+      <member refid="classkukadu_1_1PCLTools_1a8fcd4c26fdef4ba81957c07fd1ef60aa" prot="private" virt="non-virtual"><scope>kukadu::PCLTools</scope><name>visThread</name></member>
+      <member refid="classkukadu_1_1PCLTools_1a4964f97b079a8ec36b540bfb83d52853" prot="public" virt="non-virtual"><scope>kukadu::PCLTools</scope><name>visualizePointCloud</name></member>
+      <member refid="classkukadu_1_1PCLTools_1aaadc343ad0aa658435832085edbae347" prot="public" virt="non-virtual"><scope>kukadu::PCLTools</scope><name>visualizePointCloud</name></member>
+      <member refid="classkukadu_1_1PCLTools_1a58bb832d31dc862dd7b9059d0f89dcda" prot="public" virt="non-virtual"><scope>kukadu::PCLTools</scope><name>visualizePointCloud</name></member>
+      <member refid="classkukadu_1_1PCLTools_1a15816eaff6d57a5ae0249a2fe085d6a8" prot="public" virt="non-virtual"><scope>kukadu::PCLTools</scope><name>visualizePointCloud</name></member>
+    </listofallmembers>
+  </compounddef>
+</doxygen>

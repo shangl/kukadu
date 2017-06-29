@@ -1,0 +1,257 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.8.11">
+  <compounddef id="CameraAdvImpl_8cpp" kind="file" language="C++">
+    <compoundname>CameraAdvImpl.cpp</compoundname>
+    <includes local="no">stdlib.h</includes>
+    <includes local="no">stdio.h</includes>
+    <includes local="no">math.h</includes>
+    <includes local="no">kukadu/vision/arlocalizer/CameraAdvImpl.h</includes>
+    <incdepgraph>
+      <node id="5071">
+        <label>stdlib.h</label>
+      </node>
+      <node id="5074">
+        <label>kukadu/vision/arlocalizer/CameraAdvImpl.h</label>
+      </node>
+      <node id="5073">
+        <label>math.h</label>
+      </node>
+      <node id="5072">
+        <label>stdio.h</label>
+      </node>
+      <node id="5070">
+        <label>/home/agyss/iis_robot_sw/iis_catkin_ws/src/kukadu/src/vision/arlocalizer/CameraAdvImpl.cpp</label>
+        <link refid="CameraAdvImpl.cpp"/>
+        <childnode refid="5071" relation="include">
+        </childnode>
+        <childnode refid="5072" relation="include">
+        </childnode>
+        <childnode refid="5073" relation="include">
+        </childnode>
+        <childnode refid="5074" relation="include">
+        </childnode>
+      </node>
+    </incdepgraph>
+    <innernamespace refid="namespacekukadu">kukadu</innernamespace>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <programlisting>
+<codeline lineno="1"><highlight class="comment">/*<sp/>========================================================================</highlight></codeline>
+<codeline lineno="2"><highlight class="comment"><sp/>*<sp/>PROJECT:<sp/>ARToolKitPlus</highlight></codeline>
+<codeline lineno="3"><highlight class="comment"><sp/>*<sp/>========================================================================</highlight></codeline>
+<codeline lineno="4"><highlight class="comment"><sp/>*<sp/>This<sp/>work<sp/>is<sp/>based<sp/>on<sp/>the<sp/>original<sp/>ARToolKit<sp/>developed<sp/>by</highlight></codeline>
+<codeline lineno="5"><highlight class="comment"><sp/>*<sp/><sp/><sp/>Hirokazu<sp/>Kato</highlight></codeline>
+<codeline lineno="6"><highlight class="comment"><sp/>*<sp/><sp/><sp/>Mark<sp/>Billinghurst</highlight></codeline>
+<codeline lineno="7"><highlight class="comment"><sp/>*<sp/><sp/><sp/>HITLab,<sp/>University<sp/>of<sp/>Washington,<sp/>Seattle</highlight></codeline>
+<codeline lineno="8"><highlight class="comment"><sp/>*<sp/>http://www.hitl.washington.edu/artoolkit/</highlight></codeline>
+<codeline lineno="9"><highlight class="comment"><sp/>*</highlight></codeline>
+<codeline lineno="10"><highlight class="comment"><sp/>*<sp/>Copyright<sp/>of<sp/>the<sp/>derived<sp/>and<sp/>new<sp/>portions<sp/>of<sp/>this<sp/>work</highlight></codeline>
+<codeline lineno="11"><highlight class="comment"><sp/>*<sp/><sp/><sp/><sp/><sp/>(C)<sp/>2006<sp/>Graz<sp/>University<sp/>of<sp/>Technology</highlight></codeline>
+<codeline lineno="12"><highlight class="comment"><sp/>*</highlight></codeline>
+<codeline lineno="13"><highlight class="comment"><sp/>*<sp/>This<sp/>framework<sp/>is<sp/>free<sp/>software;<sp/>you<sp/>can<sp/>redistribute<sp/>it<sp/>and/or<sp/>modify</highlight></codeline>
+<codeline lineno="14"><highlight class="comment"><sp/>*<sp/>it<sp/>under<sp/>the<sp/>terms<sp/>of<sp/>the<sp/>GNU<sp/>General<sp/>Public<sp/>License<sp/>as<sp/>published<sp/>by</highlight></codeline>
+<codeline lineno="15"><highlight class="comment"><sp/>*<sp/>the<sp/>Free<sp/>Software<sp/>Foundation;<sp/>either<sp/>version<sp/>2<sp/>of<sp/>the<sp/>License,<sp/>or</highlight></codeline>
+<codeline lineno="16"><highlight class="comment"><sp/>*<sp/>(at<sp/>your<sp/>option)<sp/>any<sp/>later<sp/>version.</highlight></codeline>
+<codeline lineno="17"><highlight class="comment"><sp/>*</highlight></codeline>
+<codeline lineno="18"><highlight class="comment"><sp/>*<sp/>This<sp/>framework<sp/>is<sp/>distributed<sp/>in<sp/>the<sp/>hope<sp/>that<sp/>it<sp/>will<sp/>be<sp/>useful,</highlight></codeline>
+<codeline lineno="19"><highlight class="comment"><sp/>*<sp/>but<sp/>WITHOUT<sp/>ANY<sp/>WARRANTY;<sp/>without<sp/>even<sp/>the<sp/>implied<sp/>warranty<sp/>of</highlight></codeline>
+<codeline lineno="20"><highlight class="comment"><sp/>*<sp/>MERCHANTABILITY<sp/>or<sp/>FITNESS<sp/>FOR<sp/>A<sp/>PARTICULAR<sp/>PURPOSE.<sp/><sp/>See<sp/>the</highlight></codeline>
+<codeline lineno="21"><highlight class="comment"><sp/>*<sp/>GNU<sp/>General<sp/>Public<sp/>License<sp/>for<sp/>more<sp/>details.</highlight></codeline>
+<codeline lineno="22"><highlight class="comment"><sp/>*</highlight></codeline>
+<codeline lineno="23"><highlight class="comment"><sp/>*<sp/>You<sp/>should<sp/>have<sp/>received<sp/>a<sp/>copy<sp/>of<sp/>the<sp/>GNU<sp/>General<sp/>Public<sp/>License</highlight></codeline>
+<codeline lineno="24"><highlight class="comment"><sp/>*<sp/>along<sp/>with<sp/>this<sp/>framework;<sp/>if<sp/>not,<sp/>write<sp/>to<sp/>the<sp/>Free<sp/>Software</highlight></codeline>
+<codeline lineno="25"><highlight class="comment"><sp/>*<sp/>Foundation,<sp/>Inc.,<sp/>59<sp/>Temple<sp/>Place,<sp/>Suite<sp/>330,<sp/>Boston,<sp/>MA<sp/><sp/>02111-1307<sp/><sp/>USA</highlight></codeline>
+<codeline lineno="26"><highlight class="comment"><sp/>*</highlight></codeline>
+<codeline lineno="27"><highlight class="comment"><sp/>*<sp/>For<sp/>further<sp/>information<sp/>please<sp/>contact<sp/></highlight></codeline>
+<codeline lineno="28"><highlight class="comment"><sp/>*<sp/><sp/><sp/>Dieter<sp/>Schmalstieg</highlight></codeline>
+<codeline lineno="29"><highlight class="comment"><sp/>*<sp/><sp/><sp/>&lt;schmalstieg@icg.tu-graz.ac.at&gt;</highlight></codeline>
+<codeline lineno="30"><highlight class="comment"><sp/>*<sp/><sp/><sp/>Graz<sp/>University<sp/>of<sp/>Technology,<sp/></highlight></codeline>
+<codeline lineno="31"><highlight class="comment"><sp/>*<sp/><sp/><sp/>Institut<sp/>for<sp/>Computer<sp/>Graphics<sp/>and<sp/>Vision,</highlight></codeline>
+<codeline lineno="32"><highlight class="comment"><sp/>*<sp/><sp/><sp/>Inffeldgasse<sp/>16a,<sp/>8010<sp/>Graz,<sp/>Austria.</highlight></codeline>
+<codeline lineno="33"><highlight class="comment"><sp/>*<sp/>========================================================================</highlight></codeline>
+<codeline lineno="34"><highlight class="comment"><sp/>**<sp/>@author<sp/><sp/><sp/>Thomas<sp/>Pintaric</highlight></codeline>
+<codeline lineno="35"><highlight class="comment"><sp/>*</highlight></codeline>
+<codeline lineno="36"><highlight class="comment"><sp/>*<sp/>$Id:<sp/>CameraAdvImpl.cxx<sp/>172<sp/>2006-07-25<sp/>14:05:47Z<sp/>daniel<sp/>$</highlight></codeline>
+<codeline lineno="37"><highlight class="comment"><sp/>*<sp/>@file</highlight></codeline>
+<codeline lineno="38"><highlight class="comment"><sp/>*<sp/>========================================================================<sp/>*/</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="39"><highlight class="normal"></highlight></codeline>
+<codeline lineno="40"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&lt;stdlib.h&gt;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="41"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&lt;stdio.h&gt;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="42"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&lt;math.h&gt;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="43"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&lt;kukadu/vision/arlocalizer/CameraAdvImpl.h&gt;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="44"><highlight class="normal"></highlight></codeline>
+<codeline lineno="45"><highlight class="normal"></highlight><highlight class="keyword">namespace<sp/></highlight><highlight class="normal"><ref refid="namespacekukadu" kindref="compound">kukadu</ref><sp/>{</highlight></codeline>
+<codeline lineno="46"><highlight class="normal"></highlight></codeline>
+<codeline lineno="47"><highlight class="normal">CameraAdvImpl::CameraAdvImpl()</highlight></codeline>
+<codeline lineno="48"><highlight class="normal">{}</highlight></codeline>
+<codeline lineno="49"><highlight class="normal"></highlight></codeline>
+<codeline lineno="50"><highlight class="normal">CameraAdvImpl::~CameraAdvImpl()</highlight></codeline>
+<codeline lineno="51"><highlight class="normal">{}</highlight></codeline>
+<codeline lineno="52"><highlight class="normal"></highlight></codeline>
+<codeline lineno="53"><highlight class="normal"></highlight><highlight class="keywordtype">bool</highlight><highlight class="normal"><sp/>CameraAdvImpl::</highlight></codeline>
+<codeline lineno="54"><highlight class="normal">loadFromFile(</highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">char</highlight><highlight class="normal">*<sp/>filename)</highlight></codeline>
+<codeline lineno="55"><highlight class="normal">{</highlight></codeline>
+<codeline lineno="56"><highlight class="normal"><sp/><sp/><sp/><sp/>FILE<sp/>*fp<sp/>=<sp/>fopen(<sp/>filename,<sp/></highlight><highlight class="stringliteral">&quot;r&quot;</highlight><highlight class="normal"><sp/>);</highlight></codeline>
+<codeline lineno="57"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">if</highlight><highlight class="normal">(<sp/>fp<sp/>==<sp/>NULL<sp/>)<sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal">(</highlight><highlight class="keyword">false</highlight><highlight class="normal">);</highlight></codeline>
+<codeline lineno="58"><highlight class="normal"></highlight></codeline>
+<codeline lineno="59"><highlight class="normal"><sp/><sp/><sp/><sp/>setFileName(filename);</highlight></codeline>
+<codeline lineno="60"><highlight class="normal"></highlight></codeline>
+<codeline lineno="61"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">double</highlight><highlight class="normal"><sp/>_cc[2];</highlight></codeline>
+<codeline lineno="62"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">double</highlight><highlight class="normal"><sp/>_fc[2];</highlight></codeline>
+<codeline lineno="63"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">double</highlight><highlight class="normal"><sp/>_kc[6];</highlight></codeline>
+<codeline lineno="64"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/>n;</highlight></codeline>
+<codeline lineno="65"><highlight class="normal"></highlight></codeline>
+<codeline lineno="66"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">char</highlight><highlight class="normal"><sp/>_s[32];</highlight></codeline>
+<codeline lineno="67"><highlight class="normal"><sp/><sp/><sp/><sp/>sprintf(_s,</highlight><highlight class="stringliteral">&quot;%c%i%c%c%c&quot;</highlight><highlight class="normal">,</highlight><highlight class="charliteral">&apos;%&apos;</highlight><highlight class="normal">,(</highlight><highlight class="keywordtype">int</highlight><highlight class="normal">)strlen(CAMERA_ADV_HEADER),</highlight><highlight class="charliteral">&apos;s&apos;</highlight><highlight class="normal">,</highlight><highlight class="charliteral">&apos;\\&apos;</highlight><highlight class="normal">,</highlight><highlight class="charliteral">&apos;n&apos;</highlight><highlight class="normal">);</highlight></codeline>
+<codeline lineno="68"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">char</highlight><highlight class="normal"><sp/>hdr[MAX_PATH];</highlight></codeline>
+<codeline lineno="69"><highlight class="normal"><sp/><sp/><sp/><sp/>n=fscanf(fp,<sp/>_s,<sp/>hdr);</highlight></codeline>
+<codeline lineno="70"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">if</highlight><highlight class="normal">(strstr(hdr,CAMERA_ADV_HEADER)<sp/>==<sp/>NULL)<sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal">(</highlight><highlight class="keyword">false</highlight><highlight class="normal">);</highlight></codeline>
+<codeline lineno="71"><highlight class="normal"></highlight></codeline>
+<codeline lineno="72"><highlight class="normal"><sp/><sp/><sp/><sp/>n=fscanf(fp,<sp/></highlight><highlight class="stringliteral">&quot;%d%d%lf%lf%lf%lf%lf%lf%lf%lf%lf%lf%d\n&quot;</highlight><highlight class="normal">,</highlight></codeline>
+<codeline lineno="73"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>&amp;this-&gt;xsize,<sp/>&amp;this-&gt;ysize,<sp/>&amp;_cc[0],&amp;_cc[1],&amp;_fc[0],&amp;_fc[1],</highlight></codeline>
+<codeline lineno="74"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>&amp;_kc[0],&amp;_kc[1],&amp;_kc[2],&amp;_kc[3],&amp;_kc[4],&amp;_kc[5],&amp;undist_iterations);<sp/></highlight></codeline>
+<codeline lineno="75"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">if</highlight><highlight class="normal">((n!=13)<sp/>||<sp/>ferror(fp))</highlight></codeline>
+<codeline lineno="76"><highlight class="normal"><sp/><sp/><sp/><sp/>{</highlight></codeline>
+<codeline lineno="77"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal">(</highlight><highlight class="keyword">false</highlight><highlight class="normal">);</highlight></codeline>
+<codeline lineno="78"><highlight class="normal"><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline lineno="79"><highlight class="normal"></highlight></codeline>
+<codeline lineno="80"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">unsigned</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/>i,j;</highlight></codeline>
+<codeline lineno="81"><highlight class="normal"><sp/><sp/><sp/><sp/>this-&gt;cc[0]<sp/>=<sp/>(ARFloat)<sp/>_cc[0];</highlight></codeline>
+<codeline lineno="82"><highlight class="normal"><sp/><sp/><sp/><sp/>this-&gt;cc[1]<sp/>=<sp/>(ARFloat)<sp/>_cc[1];</highlight></codeline>
+<codeline lineno="83"><highlight class="normal"><sp/><sp/><sp/><sp/>this-&gt;fc[0]<sp/>=<sp/>(ARFloat)<sp/>_fc[0];</highlight></codeline>
+<codeline lineno="84"><highlight class="normal"><sp/><sp/><sp/><sp/>this-&gt;fc[1]<sp/>=<sp/>(ARFloat)<sp/>_fc[1];</highlight></codeline>
+<codeline lineno="85"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">for</highlight><highlight class="normal">(i=0;<sp/>i&lt;6;<sp/>i++)<sp/>this-&gt;kc[i]<sp/>=<sp/>(ARFloat)<sp/>_kc[i];</highlight></codeline>
+<codeline lineno="86"><highlight class="normal"></highlight></codeline>
+<codeline lineno="87"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">for</highlight><highlight class="normal">(i=0;<sp/>i&lt;3;<sp/>i++)</highlight></codeline>
+<codeline lineno="88"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">for</highlight><highlight class="normal">(j=0;<sp/>j&lt;4;<sp/>j++)</highlight></codeline>
+<codeline lineno="89"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>this-&gt;mat[i][j]<sp/>=<sp/>0.;</highlight></codeline>
+<codeline lineno="90"><highlight class="normal"></highlight></codeline>
+<codeline lineno="91"><highlight class="normal"><sp/><sp/><sp/><sp/>mat[0][0]<sp/>=<sp/>fc[0];<sp/></highlight><highlight class="comment">//<sp/>fc_x</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="92"><highlight class="normal"><sp/><sp/><sp/><sp/>mat[1][1]<sp/>=<sp/>fc[1];<sp/></highlight><highlight class="comment">//<sp/>fc_y</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="93"><highlight class="normal"><sp/><sp/><sp/><sp/>mat[0][2]<sp/>=<sp/>cc[0];<sp/></highlight><highlight class="comment">//<sp/>cc_x</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="94"><highlight class="normal"><sp/><sp/><sp/><sp/>mat[1][2]<sp/>=<sp/>cc[1];<sp/></highlight><highlight class="comment">//<sp/>cc_y</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="95"><highlight class="normal"><sp/><sp/><sp/><sp/>mat[2][2]<sp/>=<sp/>1.0;</highlight></codeline>
+<codeline lineno="96"><highlight class="normal"></highlight></codeline>
+<codeline lineno="97"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">if</highlight><highlight class="normal"><sp/>(undist_iterations<sp/>&gt;<sp/>CAMERA_ADV_MAX_UNDIST_ITERATIONS)</highlight></codeline>
+<codeline lineno="98"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>undist_iterations<sp/>=<sp/>CAMERA_ADV_MAX_UNDIST_ITERATIONS;</highlight></codeline>
+<codeline lineno="99"><highlight class="normal"></highlight></codeline>
+<codeline lineno="100"><highlight class="normal"><sp/><sp/><sp/><sp/>fclose(fp);</highlight></codeline>
+<codeline lineno="101"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal">(</highlight><highlight class="keyword">true</highlight><highlight class="normal">);</highlight></codeline>
+<codeline lineno="102"><highlight class="normal">}</highlight></codeline>
+<codeline lineno="103"><highlight class="normal"></highlight></codeline>
+<codeline lineno="104"><highlight class="normal"></highlight></codeline>
+<codeline lineno="105"><highlight class="normal"></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/>CameraAdvImpl::</highlight></codeline>
+<codeline lineno="106"><highlight class="normal">observ2Ideal(ARFloat<sp/>ox,<sp/>ARFloat<sp/>oy,<sp/>ARFloat<sp/>*ix,<sp/>ARFloat<sp/>*iy)</highlight></codeline>
+<codeline lineno="107"><highlight class="normal">{</highlight></codeline>
+<codeline lineno="108"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">if</highlight><highlight class="normal">(undist_iterations<sp/>&lt;=<sp/>0)</highlight></codeline>
+<codeline lineno="109"><highlight class="normal"><sp/><sp/><sp/><sp/>{</highlight></codeline>
+<codeline lineno="110"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>*ix<sp/>=<sp/>ox;</highlight></codeline>
+<codeline lineno="111"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>*iy<sp/>=<sp/>oy;</highlight></codeline>
+<codeline lineno="112"><highlight class="normal"><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline lineno="113"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">else</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="114"><highlight class="normal"><sp/><sp/><sp/><sp/>{</highlight></codeline>
+<codeline lineno="115"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/>ARFloat<sp/>xd[2]<sp/>=<sp/>{<sp/>(ox<sp/>-<sp/>cc[0])<sp/>/<sp/>fc[0],<sp/>(oy<sp/>-<sp/>cc[1])<sp/>/<sp/>fc[1]<sp/>};</highlight></codeline>
+<codeline lineno="116"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/>ARFloat<sp/>k1<sp/>=<sp/>kc[0];</highlight></codeline>
+<codeline lineno="117"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/>ARFloat<sp/>k2<sp/>=<sp/>kc[1];</highlight></codeline>
+<codeline lineno="118"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/>ARFloat<sp/>k3<sp/>=<sp/>kc[4];</highlight></codeline>
+<codeline lineno="119"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/>ARFloat<sp/>p1<sp/>=<sp/>kc[2];</highlight></codeline>
+<codeline lineno="120"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/>ARFloat<sp/>p2<sp/>=<sp/>kc[3];</highlight></codeline>
+<codeline lineno="121"><highlight class="normal"></highlight></codeline>
+<codeline lineno="122"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>ARFloat<sp/>x[2]<sp/>=<sp/>{<sp/>xd[0],<sp/>xd[1]<sp/>};</highlight></codeline>
+<codeline lineno="123"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">for</highlight><highlight class="normal">(</highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/>kk=0;<sp/>kk&lt;undist_iterations;<sp/>kk++)</highlight></codeline>
+<codeline lineno="124"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>{</highlight></codeline>
+<codeline lineno="125"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/>ARFloat<sp/>x0_sq<sp/>=<sp/>(x[0]*x[0]);</highlight></codeline>
+<codeline lineno="126"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/>ARFloat<sp/>x1_sq<sp/>=<sp/>(x[1]*x[1]);</highlight></codeline>
+<codeline lineno="127"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/>ARFloat<sp/>x0_x1<sp/>=<sp/>(x[0]*x[1]);</highlight></codeline>
+<codeline lineno="128"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/>ARFloat<sp/>r_2<sp/>=<sp/>x0_sq<sp/>+<sp/>x1_sq;</highlight></codeline>
+<codeline lineno="129"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/>ARFloat<sp/>r_2_sq<sp/>=<sp/>(r_2<sp/>*<sp/>r_2);</highlight></codeline>
+<codeline lineno="130"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/>ARFloat<sp/>k_radial<sp/>=<sp/><sp/>1<sp/>+<sp/>k1<sp/>*<sp/>r_2<sp/>+<sp/>k2<sp/>*<sp/>(r_2_sq)<sp/>+<sp/>k3<sp/>*<sp/>(r_2*r_2_sq);</highlight></codeline>
+<codeline lineno="131"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/>ARFloat<sp/>delta_x[2]<sp/>=<sp/>{<sp/><sp/><sp/>2*p1*x0_x1<sp/>+<sp/>p2*(r_2<sp/>+<sp/>2*x0_sq),</highlight></codeline>
+<codeline lineno="132"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>p1<sp/>*<sp/>(r_2<sp/>+<sp/>2*x1_sq)<sp/>+<sp/>2*p2*x0_x1<sp/><sp/><sp/>};</highlight></codeline>
+<codeline lineno="133"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>x[0]<sp/>=<sp/>xd[0]<sp/>-<sp/>delta_x[0];</highlight></codeline>
+<codeline lineno="134"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>x[1]<sp/>=<sp/>xd[1]<sp/>-<sp/>delta_x[1];</highlight></codeline>
+<codeline lineno="135"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>x[0]<sp/>/=<sp/>k_radial;</highlight></codeline>
+<codeline lineno="136"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>x[1]<sp/>/=<sp/>k_radial;</highlight></codeline>
+<codeline lineno="137"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline lineno="138"><highlight class="normal"></highlight></codeline>
+<codeline lineno="139"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>*ix<sp/>=<sp/>(x[0]<sp/>*<sp/>fc[0])<sp/>+<sp/>cc[0];</highlight></codeline>
+<codeline lineno="140"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>*iy<sp/>=<sp/>(x[1]<sp/>*<sp/>fc[1])<sp/>+<sp/>cc[1];</highlight></codeline>
+<codeline lineno="141"><highlight class="normal"><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline lineno="142"><highlight class="normal">}</highlight></codeline>
+<codeline lineno="143"><highlight class="normal"></highlight></codeline>
+<codeline lineno="144"><highlight class="normal"></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/>CameraAdvImpl::</highlight></codeline>
+<codeline lineno="145"><highlight class="normal">ideal2Observ(ARFloat<sp/>ix,<sp/>ARFloat<sp/>iy,<sp/>ARFloat<sp/>*ox,<sp/>ARFloat<sp/>*oy)</highlight></codeline>
+<codeline lineno="146"><highlight class="normal">{</highlight></codeline>
+<codeline lineno="147"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/>ARFloat<sp/>xu[2]<sp/>=<sp/>{<sp/>(ix<sp/>-<sp/>cc[0])<sp/>/<sp/>fc[0],<sp/>(iy<sp/>-<sp/>cc[1])<sp/>/<sp/>fc[1]<sp/>};</highlight></codeline>
+<codeline lineno="148"><highlight class="normal"></highlight></codeline>
+<codeline lineno="149"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/>ARFloat<sp/>r2<sp/>=<sp/>(xu[0]*xu[0])<sp/>+<sp/>(xu[1]*xu[1]);</highlight></codeline>
+<codeline lineno="150"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/>ARFloat<sp/>r4<sp/>=<sp/>r2*r2;</highlight></codeline>
+<codeline lineno="151"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/>ARFloat<sp/>r6<sp/>=<sp/>r4*r2;</highlight></codeline>
+<codeline lineno="152"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/>ARFloat<sp/>cdist<sp/>=<sp/>1<sp/>+<sp/>kc[0]<sp/>*<sp/>r2<sp/>+<sp/>kc[1]<sp/>*<sp/>r4<sp/>+<sp/>kc[4]<sp/>*<sp/>r6;</highlight></codeline>
+<codeline lineno="153"><highlight class="normal"></highlight></codeline>
+<codeline lineno="154"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/>ARFloat<sp/>a1<sp/>=<sp/>2*xu[0]*xu[1];</highlight></codeline>
+<codeline lineno="155"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/>ARFloat<sp/>a2<sp/>=<sp/>r2<sp/>+<sp/>2*(xu[0]*xu[0]);</highlight></codeline>
+<codeline lineno="156"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/>ARFloat<sp/>a3<sp/>=<sp/>r2<sp/>+<sp/>2*(xu[1]*xu[1]);</highlight></codeline>
+<codeline lineno="157"><highlight class="normal"></highlight></codeline>
+<codeline lineno="158"><highlight class="normal"><sp/><sp/><sp/><sp/>*ox<sp/>=<sp/>(xu[0]<sp/>*<sp/>cdist)<sp/>+<sp/>(kc[2]*a1<sp/>+<sp/>kc[3]*a2);</highlight></codeline>
+<codeline lineno="159"><highlight class="normal"><sp/><sp/><sp/><sp/>*oy<sp/>=<sp/>(xu[1]<sp/>*<sp/>cdist)<sp/>+<sp/>(kc[2]*a3<sp/>+<sp/>kc[3]*a1);</highlight></codeline>
+<codeline lineno="160"><highlight class="normal">}</highlight></codeline>
+<codeline lineno="161"><highlight class="normal"></highlight></codeline>
+<codeline lineno="162"><highlight class="normal">Camera*<sp/>CameraAdvImpl::clone()</highlight></codeline>
+<codeline lineno="163"><highlight class="normal">{</highlight></codeline>
+<codeline lineno="164"><highlight class="normal"><sp/><sp/><sp/><sp/>CameraAdvImpl*<sp/>pCam<sp/>=<sp/></highlight><highlight class="keyword">new</highlight><highlight class="normal"><sp/>CameraAdvImpl();</highlight></codeline>
+<codeline lineno="165"><highlight class="normal"><sp/><sp/><sp/><sp/>pCam-&gt;xsize<sp/>=<sp/>xsize;</highlight></codeline>
+<codeline lineno="166"><highlight class="normal"><sp/><sp/><sp/><sp/>pCam-&gt;ysize<sp/>=<sp/>ysize;</highlight></codeline>
+<codeline lineno="167"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">unsigned</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/>i,j;</highlight></codeline>
+<codeline lineno="168"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">for</highlight><highlight class="normal">(i=0;<sp/>i&lt;3;<sp/>i++)<sp/></highlight><highlight class="keywordflow">for</highlight><highlight class="normal">(j=0;<sp/>j&lt;4;<sp/>j++)<sp/>pCam-&gt;mat[i][j]<sp/>=<sp/>mat[i][j];</highlight></codeline>
+<codeline lineno="169"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">for</highlight><highlight class="normal">(i=0;<sp/>i&lt;4;<sp/>i++)<sp/>pCam-&gt;dist_factor[i]<sp/>=<sp/>dist_factor[i];</highlight></codeline>
+<codeline lineno="170"><highlight class="normal"><sp/><sp/><sp/><sp/>pCam-&gt;cc[0]<sp/>=<sp/>cc[0];</highlight></codeline>
+<codeline lineno="171"><highlight class="normal"><sp/><sp/><sp/><sp/>pCam-&gt;cc[1]<sp/>=<sp/>cc[1];</highlight></codeline>
+<codeline lineno="172"><highlight class="normal"><sp/><sp/><sp/><sp/>pCam-&gt;fc[0]<sp/>=<sp/>fc[0];</highlight></codeline>
+<codeline lineno="173"><highlight class="normal"><sp/><sp/><sp/><sp/>pCam-&gt;fc[1]<sp/>=<sp/>fc[1];</highlight></codeline>
+<codeline lineno="174"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">for</highlight><highlight class="normal">(i=0;<sp/>i&lt;6;<sp/>i++)<sp/>pCam-&gt;kc[i]<sp/>=<sp/>kc[i];</highlight></codeline>
+<codeline lineno="175"><highlight class="normal"><sp/><sp/><sp/><sp/>pCam-&gt;undist_iterations<sp/>=<sp/>undist_iterations;</highlight></codeline>
+<codeline lineno="176"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal">((Camera*)pCam);</highlight></codeline>
+<codeline lineno="177"><highlight class="normal">}</highlight></codeline>
+<codeline lineno="178"><highlight class="normal"></highlight></codeline>
+<codeline lineno="179"><highlight class="normal"></highlight><highlight class="keywordtype">bool</highlight><highlight class="normal"><sp/>CameraAdvImpl::</highlight></codeline>
+<codeline lineno="180"><highlight class="normal">changeFrameSize(</highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/>frameWidth,<sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/>frameHeight)</highlight></codeline>
+<codeline lineno="181"><highlight class="normal">{</highlight></codeline>
+<codeline lineno="182"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">if</highlight><highlight class="normal">(frameWidth<sp/>&lt;=0<sp/>||<sp/>frameHeight<sp/>&lt;=0)<sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal">(</highlight><highlight class="keyword">false</highlight><highlight class="normal">);</highlight></codeline>
+<codeline lineno="183"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/>ARFloat<sp/>scale<sp/>=<sp/>(ARFloat)frameWidth<sp/>/<sp/>(ARFloat)xsize;</highlight></codeline>
+<codeline lineno="184"><highlight class="normal"><sp/><sp/><sp/><sp/>xsize<sp/>=<sp/>frameWidth;</highlight></codeline>
+<codeline lineno="185"><highlight class="normal"><sp/><sp/><sp/><sp/>ysize<sp/>=<sp/>frameHeight;</highlight></codeline>
+<codeline lineno="186"><highlight class="normal"></highlight></codeline>
+<codeline lineno="187"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">for</highlight><highlight class="normal">(</highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/>i<sp/>=<sp/>0;<sp/>i<sp/>&lt;<sp/>4;<sp/>i++<sp/>)</highlight></codeline>
+<codeline lineno="188"><highlight class="normal"><sp/><sp/><sp/><sp/>{</highlight></codeline>
+<codeline lineno="189"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>mat[0][i]<sp/>*=<sp/>scale;</highlight></codeline>
+<codeline lineno="190"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>mat[1][i]<sp/>*=<sp/>scale;</highlight></codeline>
+<codeline lineno="191"><highlight class="normal"><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline lineno="192"><highlight class="normal"></highlight></codeline>
+<codeline lineno="193"><highlight class="normal"><sp/><sp/><sp/><sp/>cc[0]<sp/>*=<sp/>scale;<sp/><sp/><sp/><sp/><sp/>cc[1]<sp/>*=<sp/>scale;</highlight></codeline>
+<codeline lineno="194"><highlight class="normal"><sp/><sp/><sp/><sp/>fc[0]<sp/>*=<sp/>scale;<sp/><sp/><sp/><sp/><sp/>fc[1]<sp/>*=<sp/>scale;</highlight></codeline>
+<codeline lineno="195"><highlight class="normal"></highlight></codeline>
+<codeline lineno="196"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal">(</highlight><highlight class="keyword">true</highlight><highlight class="normal">);</highlight></codeline>
+<codeline lineno="197"><highlight class="normal">}</highlight></codeline>
+<codeline lineno="198"><highlight class="normal"></highlight></codeline>
+<codeline lineno="199"><highlight class="normal"></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/>CameraAdvImpl::</highlight></codeline>
+<codeline lineno="200"><highlight class="normal">logSettings(Logger*<sp/>logger)</highlight></codeline>
+<codeline lineno="201"><highlight class="normal">{</highlight></codeline>
+<codeline lineno="202"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">if</highlight><highlight class="normal">(logger<sp/>!=<sp/>NULL)</highlight></codeline>
+<codeline lineno="203"><highlight class="normal"><sp/><sp/><sp/><sp/>{</highlight></codeline>
+<codeline lineno="204"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>logger-&gt;artLogEx(</highlight><highlight class="stringliteral">&quot;ARToolKitPlus:<sp/>CamSize<sp/>%d<sp/>,<sp/>%d\n&quot;</highlight><highlight class="normal">,<sp/>xsize,<sp/>ysize);</highlight></codeline>
+<codeline lineno="205"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>logger-&gt;artLogEx(</highlight><highlight class="stringliteral">&quot;ARToolKitPlus:<sp/>cc<sp/>=<sp/>[%.2f<sp/><sp/>%.2f]<sp/><sp/>fc<sp/>=<sp/>[%.2f<sp/><sp/>%.2f]\n&quot;</highlight><highlight class="normal">,<sp/></highlight></codeline>
+<codeline lineno="206"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>cc[0],<sp/>cc[1],<sp/>fc[0],<sp/>fc[1]);</highlight></codeline>
+<codeline lineno="207"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>logger-&gt;artLogEx(</highlight><highlight class="stringliteral">&quot;ARToolKitPlus:<sp/>kc<sp/>=<sp/>[%.4f<sp/>%.4f<sp/>%.4f<sp/>%.4f<sp/>%.4f<sp/>%.4f]\n&quot;</highlight><highlight class="normal">,<sp/></highlight></codeline>
+<codeline lineno="208"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>kc[0],<sp/>kc[1],<sp/>kc[2],<sp/>kc[3],<sp/>kc[4],<sp/>kc[5]);</highlight></codeline>
+<codeline lineno="209"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>logger-&gt;artLogEx(</highlight><highlight class="stringliteral">&quot;ARToolKitPlus:<sp/>undist_iterations<sp/>=<sp/>%i\n&quot;</highlight><highlight class="normal">,<sp/>undist_iterations);<sp/></highlight></codeline>
+<codeline lineno="210"><highlight class="normal"><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline lineno="211"><highlight class="normal">}</highlight></codeline>
+<codeline lineno="212"><highlight class="normal"></highlight></codeline>
+<codeline lineno="213"><highlight class="normal">}</highlight></codeline>
+    </programlisting>
+    <location file="/home/agyss/iis_robot_sw/iis_catkin_ws/src/kukadu/src/vision/arlocalizer/CameraAdvImpl.cpp"/>
+  </compounddef>
+</doxygen>

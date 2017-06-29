@@ -1,0 +1,476 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.8.11">
+  <compounddef id="classkukadu_1_1DMPReinforcer" kind="class" language="C++" prot="public" abstract="yes">
+    <compoundname>kukadu::DMPReinforcer</compoundname>
+    <includes refid="dmprl_8hpp" local="no">dmprl.hpp</includes>
+      <sectiondef kind="private-attrib">
+      <memberdef kind="variable" id="classkukadu_1_1DMPReinforcer_1a196a2bc90cfc12043b0bdf89cca92bd7" prot="private" static="no" mutable="no">
+        <type><ref refid="classkukadu_1_1StorageSingleton" kindref="compound">StorageSingleton</ref> &amp;</type>
+        <definition>StorageSingleton&amp; kukadu::DMPReinforcer::storage</definition>
+        <argsstring></argsstring>
+        <name>storage</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/agyss/iis_robot_sw/iis_catkin_ws/src/kukadu/include/kukadu/learning/rl/dmprl.hpp" line="43" column="1" bodyfile="/home/agyss/iis_robot_sw/iis_catkin_ws/src/kukadu/include/kukadu/learning/rl/dmprl.hpp" bodystart="43" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classkukadu_1_1DMPReinforcer_1a6c172028f469366d99a3089860c781d2" prot="private" static="no" mutable="no">
+        <type>bool</type>
+        <definition>bool kukadu::DMPReinforcer::isFirstIteration</definition>
+        <argsstring></argsstring>
+        <name>isFirstIteration</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/agyss/iis_robot_sw/iis_catkin_ws/src/kukadu/include/kukadu/learning/rl/dmprl.hpp" line="45" column="1" bodyfile="/home/agyss/iis_robot_sw/iis_catkin_ws/src/kukadu/include/kukadu/learning/rl/dmprl.hpp" bodystart="45" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classkukadu_1_1DMPReinforcer_1a7575bdccecd42a5176b037d25fc9dbbc" prot="private" static="no" mutable="no">
+        <type>double</type>
+        <definition>double kukadu::DMPReinforcer::ac</definition>
+        <argsstring></argsstring>
+        <name>ac</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/agyss/iis_robot_sw/iis_catkin_ws/src/kukadu/include/kukadu/learning/rl/dmprl.hpp" line="47" column="1" bodyfile="/home/agyss/iis_robot_sw/iis_catkin_ws/src/kukadu/include/kukadu/learning/rl/dmprl.hpp" bodystart="47" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classkukadu_1_1DMPReinforcer_1a376b45cd76f96f595253496f2f22c5f6" prot="private" static="no" mutable="no">
+        <type>double</type>
+        <definition>double kukadu::DMPReinforcer::tolAbsErr</definition>
+        <argsstring></argsstring>
+        <name>tolAbsErr</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/agyss/iis_robot_sw/iis_catkin_ws/src/kukadu/include/kukadu/learning/rl/dmprl.hpp" line="48" column="1" bodyfile="/home/agyss/iis_robot_sw/iis_catkin_ws/src/kukadu/include/kukadu/learning/rl/dmprl.hpp" bodystart="48" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classkukadu_1_1DMPReinforcer_1aba196392f3ab57ffa31c3bd99988ff3b" prot="private" static="no" mutable="no">
+        <type>double</type>
+        <definition>double kukadu::DMPReinforcer::tolRelErr</definition>
+        <argsstring></argsstring>
+        <name>tolRelErr</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/agyss/iis_robot_sw/iis_catkin_ws/src/kukadu/include/kukadu/learning/rl/dmprl.hpp" line="49" column="1" bodyfile="/home/agyss/iis_robot_sw/iis_catkin_ws/src/kukadu/include/kukadu/learning/rl/dmprl.hpp" bodystart="49" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classkukadu_1_1DMPReinforcer_1a0a9d6e5cbbe57f3081d6027586dbc5f6" prot="private" static="no" mutable="no">
+        <type><ref refid="classkukadu_1_1CostComputer" kindref="compound">CostComputer</ref> *</type>
+        <definition>CostComputer* kukadu::DMPReinforcer::cost</definition>
+        <argsstring></argsstring>
+        <name>cost</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/agyss/iis_robot_sw/iis_catkin_ws/src/kukadu/include/kukadu/learning/rl/dmprl.hpp" line="51" column="1" bodyfile="/home/agyss/iis_robot_sw/iis_catkin_ws/src/kukadu/include/kukadu/learning/rl/dmprl.hpp" bodystart="51" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classkukadu_1_1DMPReinforcer_1a351d25f792e7945c930fdd92de0c7c48" prot="private" static="no" mutable="no">
+        <type>KUKADU_SHARED_PTR&lt; <ref refid="classkukadu_1_1Dmp" kindref="compound">Dmp</ref> &gt;</type>
+        <definition>KUKADU_SHARED_PTR&lt;Dmp&gt; kukadu::DMPReinforcer::lastUpdate</definition>
+        <argsstring></argsstring>
+        <name>lastUpdate</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/agyss/iis_robot_sw/iis_catkin_ws/src/kukadu/include/kukadu/learning/rl/dmprl.hpp" line="53" column="1" bodyfile="/home/agyss/iis_robot_sw/iis_catkin_ws/src/kukadu/include/kukadu/learning/rl/dmprl.hpp" bodystart="53" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classkukadu_1_1DMPReinforcer_1acbb28b68671d95da71873c73e90619ea" prot="private" static="no" mutable="no">
+        <type>KUKADU_SHARED_PTR&lt; <ref refid="classkukadu_1_1ControlQueue" kindref="compound">ControlQueue</ref> &gt;</type>
+        <definition>KUKADU_SHARED_PTR&lt;ControlQueue&gt; kukadu::DMPReinforcer::movementQueue</definition>
+        <argsstring></argsstring>
+        <name>movementQueue</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/agyss/iis_robot_sw/iis_catkin_ws/src/kukadu/include/kukadu/learning/rl/dmprl.hpp" line="54" column="1" bodyfile="/home/agyss/iis_robot_sw/iis_catkin_ws/src/kukadu/include/kukadu/learning/rl/dmprl.hpp" bodystart="54" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classkukadu_1_1DMPReinforcer_1a87466492159ac4060a752b2ec40a07ca" prot="private" static="no" mutable="no">
+        <type>KUKADU_SHARED_PTR&lt; <ref refid="classkukadu_1_1ControllerResult" kindref="compound">ControllerResult</ref> &gt;</type>
+        <definition>KUKADU_SHARED_PTR&lt;ControllerResult&gt; kukadu::DMPReinforcer::lastUpdateRes</definition>
+        <argsstring></argsstring>
+        <name>lastUpdateRes</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/agyss/iis_robot_sw/iis_catkin_ws/src/kukadu/include/kukadu/learning/rl/dmprl.hpp" line="55" column="1" bodyfile="/home/agyss/iis_robot_sw/iis_catkin_ws/src/kukadu/include/kukadu/learning/rl/dmprl.hpp" bodystart="55" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classkukadu_1_1DMPReinforcer_1a336d40e4d3c623ccab11bc3a78051202" prot="private" static="no" mutable="no">
+        <type>std::vector&lt; double &gt;</type>
+        <definition>std::vector&lt;double&gt; kukadu::DMPReinforcer::lastCost</definition>
+        <argsstring></argsstring>
+        <name>lastCost</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/agyss/iis_robot_sw/iis_catkin_ws/src/kukadu/include/kukadu/learning/rl/dmprl.hpp" line="57" column="1" bodyfile="/home/agyss/iis_robot_sw/iis_catkin_ws/src/kukadu/include/kukadu/learning/rl/dmprl.hpp" bodystart="57" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classkukadu_1_1DMPReinforcer_1ac48f9f4761623652672a77345994b350" prot="private" static="no" mutable="no">
+        <type>std::vector&lt; KUKADU_SHARED_PTR&lt; <ref refid="classkukadu_1_1Dmp" kindref="compound">Dmp</ref> &gt; &gt;</type>
+        <definition>std::vector&lt;KUKADU_SHARED_PTR&lt;Dmp&gt; &gt; kukadu::DMPReinforcer::rollout</definition>
+        <argsstring></argsstring>
+        <name>rollout</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/agyss/iis_robot_sw/iis_catkin_ws/src/kukadu/include/kukadu/learning/rl/dmprl.hpp" line="58" column="1" bodyfile="/home/agyss/iis_robot_sw/iis_catkin_ws/src/kukadu/include/kukadu/learning/rl/dmprl.hpp" bodystart="58" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classkukadu_1_1DMPReinforcer_1aea4a0b3384fac64b656c7e96964aa01a" prot="private" static="no" mutable="no">
+        <type>std::vector&lt; KUKADU_SHARED_PTR&lt; <ref refid="classkukadu_1_1ControllerResult" kindref="compound">ControllerResult</ref> &gt; &gt;</type>
+        <definition>std::vector&lt;KUKADU_SHARED_PTR&lt;ControllerResult&gt; &gt; kukadu::DMPReinforcer::dmpResult</definition>
+        <argsstring></argsstring>
+        <name>dmpResult</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/agyss/iis_robot_sw/iis_catkin_ws/src/kukadu/include/kukadu/learning/rl/dmprl.hpp" line="59" column="1" bodyfile="/home/agyss/iis_robot_sw/iis_catkin_ws/src/kukadu/include/kukadu/learning/rl/dmprl.hpp" bodystart="59" bodyend="-1"/>
+      </memberdef>
+      </sectiondef>
+      <sectiondef kind="public-func">
+      <memberdef kind="function" id="classkukadu_1_1DMPReinforcer_1a59e44d8e092d40a1db9a8a14f7628e05" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type></type>
+        <definition>kukadu::DMPReinforcer::DMPReinforcer</definition>
+        <argsstring>(StorageSingleton &amp;dbStorage, CostComputer *cost, KUKADU_SHARED_PTR&lt; ControlQueue &gt; movementQueue, double ac, double tolAbsErr, double tolRelErr)</argsstring>
+        <name>DMPReinforcer</name>
+        <param>
+          <type><ref refid="classkukadu_1_1StorageSingleton" kindref="compound">StorageSingleton</ref> &amp;</type>
+          <declname>dbStorage</declname>
+        </param>
+        <param>
+          <type><ref refid="classkukadu_1_1CostComputer" kindref="compound">CostComputer</ref> *</type>
+          <declname>cost</declname>
+        </param>
+        <param>
+          <type>KUKADU_SHARED_PTR&lt; <ref refid="classkukadu_1_1ControlQueue" kindref="compound">ControlQueue</ref> &gt;</type>
+          <declname>movementQueue</declname>
+        </param>
+        <param>
+          <type>double</type>
+          <declname>ac</declname>
+        </param>
+        <param>
+          <type>double</type>
+          <declname>tolAbsErr</declname>
+        </param>
+        <param>
+          <type>double</type>
+          <declname>tolRelErr</declname>
+        </param>
+        <briefdescription>
+<para>constructor </para>        </briefdescription>
+        <detaileddescription>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>cost</parametername>
+</parameternamelist>
+<parameterdescription>
+<para><ref refid="classkukadu_1_1CostComputer" kindref="compound">CostComputer</ref> instance that computes the cost of a given rollout </para></parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>movementQueue</parametername>
+</parameternamelist>
+<parameterdescription>
+<para><ref refid="classkukadu_1_1ControlQueue" kindref="compound">ControlQueue</ref> instance for robot execution </para></parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>ac</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>dmp phase stopping parameter </para></parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>dmpStepSize</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>step size for dmp execution </para></parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>tolAbsErr</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>absolute tolerated error for numerical approximation </para></parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>tolRelErr</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>relative tolerated error for numerical approximation </para></parameterdescription>
+</parameteritem>
+</parameterlist>
+</para>        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/agyss/iis_robot_sw/iis_catkin_ws/src/kukadu/include/kukadu/learning/rl/dmprl.hpp" line="72" column="1" bodyfile="/home/agyss/iis_robot_sw/iis_catkin_ws/src/kukadu/src/learning/rl/dmprl.cpp" bodystart="13" bodyend="23"/>
+      </memberdef>
+      <memberdef kind="function" id="classkukadu_1_1DMPReinforcer_1a759bd3c0954e4287f8166a4115fd2c55" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>void kukadu::DMPReinforcer::setLastUpdate</definition>
+        <argsstring>(KUKADU_SHARED_PTR&lt; Dmp &gt; lastUpdate)</argsstring>
+        <name>setLastUpdate</name>
+        <param>
+          <type>KUKADU_SHARED_PTR&lt; <ref refid="classkukadu_1_1Dmp" kindref="compound">Dmp</ref> &gt;</type>
+          <declname>lastUpdate</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/agyss/iis_robot_sw/iis_catkin_ws/src/kukadu/include/kukadu/learning/rl/dmprl.hpp" line="74" column="1" bodyfile="/home/agyss/iis_robot_sw/iis_catkin_ws/src/kukadu/src/learning/rl/dmprl.cpp" bodystart="147" bodyend="149"/>
+      </memberdef>
+      <memberdef kind="function" id="classkukadu_1_1DMPReinforcer_1ab2597f0265192981ab70cadc9fa35a05" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>void kukadu::DMPReinforcer::performRollout</definition>
+        <argsstring>(int doSimulation, int doExecution)</argsstring>
+        <name>performRollout</name>
+        <param>
+          <type>int</type>
+          <declname>doSimulation</declname>
+        </param>
+        <param>
+          <type>int</type>
+          <declname>doExecution</declname>
+        </param>
+        <briefdescription>
+<para>executes rollout. first, the trajectory is simulated and the user is asked, whether the trajectory really should be executed </para>        </briefdescription>
+        <detaileddescription>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>doSimulation</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>flag whether trajectory should be simulated </para></parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>doExecution</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>flag whether trajectory should be executed at robot </para></parameterdescription>
+</parameteritem>
+</parameterlist>
+</para>        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/agyss/iis_robot_sw/iis_catkin_ws/src/kukadu/include/kukadu/learning/rl/dmprl.hpp" line="80" column="1" bodyfile="/home/agyss/iis_robot_sw/iis_catkin_ws/src/kukadu/src/learning/rl/dmprl.cpp" bodystart="53" bodyend="139"/>
+      </memberdef>
+      <memberdef kind="function" id="classkukadu_1_1DMPReinforcer_1ab9ba3dc996de2223db6fb8d0dd79c429" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>bool</type>
+        <definition>bool kukadu::DMPReinforcer::getIsFirstIteration</definition>
+        <argsstring>()</argsstring>
+        <name>getIsFirstIteration</name>
+        <briefdescription>
+<para>returns true if the first iteration has not been performed yet </para>        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/agyss/iis_robot_sw/iis_catkin_ws/src/kukadu/include/kukadu/learning/rl/dmprl.hpp" line="85" column="1" bodyfile="/home/agyss/iis_robot_sw/iis_catkin_ws/src/kukadu/src/learning/rl/dmprl.cpp" bodystart="25" bodyend="27"/>
+      </memberdef>
+      <memberdef kind="function" id="classkukadu_1_1DMPReinforcer_1a9b75bfd5aefec6e93dd6ac6a130da023" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>double</type>
+        <definition>double kukadu::DMPReinforcer::getTolAbsErr</definition>
+        <argsstring>()</argsstring>
+        <name>getTolAbsErr</name>
+        <briefdescription>
+<para>returns simulation tolerated absolute error </para>        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/agyss/iis_robot_sw/iis_catkin_ws/src/kukadu/include/kukadu/learning/rl/dmprl.hpp" line="90" column="1" bodyfile="/home/agyss/iis_robot_sw/iis_catkin_ws/src/kukadu/src/learning/rl/dmprl.cpp" bodystart="41" bodyend="43"/>
+      </memberdef>
+      <memberdef kind="function" id="classkukadu_1_1DMPReinforcer_1a377d0dc8df73872a2d4c10e8247b0862" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>double</type>
+        <definition>double kukadu::DMPReinforcer::getTolRelErr</definition>
+        <argsstring>()</argsstring>
+        <name>getTolRelErr</name>
+        <briefdescription>
+<para>returns simulation tolerated relative error </para>        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/agyss/iis_robot_sw/iis_catkin_ws/src/kukadu/include/kukadu/learning/rl/dmprl.hpp" line="95" column="1" bodyfile="/home/agyss/iis_robot_sw/iis_catkin_ws/src/kukadu/src/learning/rl/dmprl.cpp" bodystart="45" bodyend="47"/>
+      </memberdef>
+      <memberdef kind="function" id="classkukadu_1_1DMPReinforcer_1abab6e2bd6abdd613335ecc7186e3d89c" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>KUKADU_SHARED_PTR&lt; <ref refid="classkukadu_1_1Dmp" kindref="compound">Dmp</ref> &gt;</type>
+        <definition>KUKADU_SHARED_PTR&lt; Dmp &gt; kukadu::DMPReinforcer::getLastUpdate</definition>
+        <argsstring>()</argsstring>
+        <name>getLastUpdate</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/agyss/iis_robot_sw/iis_catkin_ws/src/kukadu/include/kukadu/learning/rl/dmprl.hpp" line="97" column="1" bodyfile="/home/agyss/iis_robot_sw/iis_catkin_ws/src/kukadu/src/learning/rl/dmprl.cpp" bodystart="141" bodyend="145"/>
+      </memberdef>
+      <memberdef kind="function" id="classkukadu_1_1DMPReinforcer_1aa8722bbe4c69ca344c82a2e5aaa85d74" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>KUKADU_SHARED_PTR&lt; <ref refid="classkukadu_1_1ControllerResult" kindref="compound">ControllerResult</ref> &gt;</type>
+        <definition>KUKADU_SHARED_PTR&lt; ControllerResult &gt; kukadu::DMPReinforcer::getLastUpdateRes</definition>
+        <argsstring>()</argsstring>
+        <name>getLastUpdateRes</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/agyss/iis_robot_sw/iis_catkin_ws/src/kukadu/include/kukadu/learning/rl/dmprl.hpp" line="98" column="1" bodyfile="/home/agyss/iis_robot_sw/iis_catkin_ws/src/kukadu/src/learning/rl/dmprl.cpp" bodystart="49" bodyend="51"/>
+      </memberdef>
+      <memberdef kind="function" id="classkukadu_1_1DMPReinforcer_1af88dad66482a357f0c4bcfc94aeac631" prot="public" static="no" const="no" explicit="no" inline="no" virt="pure-virtual">
+        <type>KUKADU_SHARED_PTR&lt; <ref refid="classkukadu_1_1Dmp" kindref="compound">Dmp</ref> &gt;</type>
+        <definition>virtual KUKADU_SHARED_PTR&lt;Dmp&gt; kukadu::DMPReinforcer::updateStep</definition>
+        <argsstring>()=0</argsstring>
+        <name>updateStep</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/agyss/iis_robot_sw/iis_catkin_ws/src/kukadu/include/kukadu/learning/rl/dmprl.hpp" line="100" column="1"/>
+      </memberdef>
+      <memberdef kind="function" id="classkukadu_1_1DMPReinforcer_1ad4032a5137fd6ff47b09455361e2ebe3" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>std::vector&lt; KUKADU_SHARED_PTR&lt; <ref refid="classkukadu_1_1Dmp" kindref="compound">Dmp</ref> &gt; &gt;</type>
+        <definition>std::vector&lt; KUKADU_SHARED_PTR&lt; Dmp &gt; &gt; kukadu::DMPReinforcer::getLastRolloutParameters</definition>
+        <argsstring>()</argsstring>
+        <name>getLastRolloutParameters</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/agyss/iis_robot_sw/iis_catkin_ws/src/kukadu/include/kukadu/learning/rl/dmprl.hpp" line="102" column="1" bodyfile="/home/agyss/iis_robot_sw/iis_catkin_ws/src/kukadu/src/learning/rl/dmprl.cpp" bodystart="33" bodyend="35"/>
+      </memberdef>
+      <memberdef kind="function" id="classkukadu_1_1DMPReinforcer_1a32bac8a17c007d40673b05f34ee017ca" prot="public" static="no" const="no" explicit="no" inline="no" virt="pure-virtual">
+        <type>std::vector&lt; KUKADU_SHARED_PTR&lt; <ref refid="classkukadu_1_1Dmp" kindref="compound">Dmp</ref> &gt; &gt;</type>
+        <definition>virtual std::vector&lt;KUKADU_SHARED_PTR&lt;Dmp&gt; &gt; kukadu::DMPReinforcer::getInitialRollout</definition>
+        <argsstring>()=0</argsstring>
+        <name>getInitialRollout</name>
+        <briefdescription>
+<para>returns the first rollout of the reinforcement learning algorithm </para>        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/agyss/iis_robot_sw/iis_catkin_ws/src/kukadu/include/kukadu/learning/rl/dmprl.hpp" line="106" column="1"/>
+      </memberdef>
+      <memberdef kind="function" id="classkukadu_1_1DMPReinforcer_1abf1b944f57802f5ea3470be9746ad5ab" prot="public" static="no" const="no" explicit="no" inline="no" virt="pure-virtual">
+        <type>std::vector&lt; KUKADU_SHARED_PTR&lt; <ref refid="classkukadu_1_1Dmp" kindref="compound">Dmp</ref> &gt; &gt;</type>
+        <definition>virtual std::vector&lt;KUKADU_SHARED_PTR&lt;Dmp&gt; &gt; kukadu::DMPReinforcer::computeRolloutParamters</definition>
+        <argsstring>()=0</argsstring>
+        <name>computeRolloutParamters</name>
+        <briefdescription>
+<para>computes the dmp parameters for the next rollout </para>        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/agyss/iis_robot_sw/iis_catkin_ws/src/kukadu/include/kukadu/learning/rl/dmprl.hpp" line="110" column="1"/>
+      </memberdef>
+      <memberdef kind="function" id="classkukadu_1_1DMPReinforcer_1ae1e7b4f023979e5076897102a54066c3" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>std::vector&lt; double &gt;</type>
+        <definition>std::vector&lt; double &gt; kukadu::DMPReinforcer::getLastRolloutCost</definition>
+        <argsstring>()</argsstring>
+        <name>getLastRolloutCost</name>
+        <briefdescription>
+<para>returns cost for the last executed rollout </para>        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/agyss/iis_robot_sw/iis_catkin_ws/src/kukadu/include/kukadu/learning/rl/dmprl.hpp" line="115" column="1" bodyfile="/home/agyss/iis_robot_sw/iis_catkin_ws/src/kukadu/src/learning/rl/dmprl.cpp" bodystart="29" bodyend="31"/>
+      </memberdef>
+      <memberdef kind="function" id="classkukadu_1_1DMPReinforcer_1a53f28e972c75ec336d55aee227ba5b30" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>std::vector&lt; KUKADU_SHARED_PTR&lt; <ref refid="classkukadu_1_1ControllerResult" kindref="compound">ControllerResult</ref> &gt; &gt;</type>
+        <definition>std::vector&lt; KUKADU_SHARED_PTR&lt; ControllerResult &gt; &gt; kukadu::DMPReinforcer::getLastExecutionResults</definition>
+        <argsstring>()</argsstring>
+        <name>getLastExecutionResults</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/agyss/iis_robot_sw/iis_catkin_ws/src/kukadu/include/kukadu/learning/rl/dmprl.hpp" line="116" column="1" bodyfile="/home/agyss/iis_robot_sw/iis_catkin_ws/src/kukadu/src/learning/rl/dmprl.cpp" bodystart="37" bodyend="39"/>
+      </memberdef>
+      </sectiondef>
+    <briefdescription>
+<para>The <ref refid="classkukadu_1_1DMPReinforcer" kindref="compound">DMPReinforcer</ref> provides a general framework for reinforcement learning. </para>    </briefdescription>
+    <detaileddescription>
+<para>It is an abstract class that implements elementary functionality that should be in common for all reinforcement learning methods (such as rollout execution). A concrete implementation of the <ref refid="classkukadu_1_1DMPReinforcer" kindref="compound">DMPReinforcer</ref> has to implement the missing parts such as the methods getInitialRollout and computeRolloutParamters. </para>    </detaileddescription>
+    <location file="/home/agyss/iis_robot_sw/iis_catkin_ws/src/kukadu/include/kukadu/learning/rl/dmprl.hpp" line="39" column="1" bodyfile="/home/agyss/iis_robot_sw/iis_catkin_ws/src/kukadu/include/kukadu/learning/rl/dmprl.hpp" bodystart="39" bodyend="118"/>
+    <listofallmembers>
+      <member refid="classkukadu_1_1DMPReinforcer_1a7575bdccecd42a5176b037d25fc9dbbc" prot="private" virt="non-virtual"><scope>kukadu::DMPReinforcer</scope><name>ac</name></member>
+      <member refid="classkukadu_1_1DMPReinforcer_1abf1b944f57802f5ea3470be9746ad5ab" prot="public" virt="pure-virtual"><scope>kukadu::DMPReinforcer</scope><name>computeRolloutParamters</name></member>
+      <member refid="classkukadu_1_1DMPReinforcer_1a0a9d6e5cbbe57f3081d6027586dbc5f6" prot="private" virt="non-virtual"><scope>kukadu::DMPReinforcer</scope><name>cost</name></member>
+      <member refid="classkukadu_1_1DMPReinforcer_1a59e44d8e092d40a1db9a8a14f7628e05" prot="public" virt="non-virtual"><scope>kukadu::DMPReinforcer</scope><name>DMPReinforcer</name></member>
+      <member refid="classkukadu_1_1DMPReinforcer_1aea4a0b3384fac64b656c7e96964aa01a" prot="private" virt="non-virtual"><scope>kukadu::DMPReinforcer</scope><name>dmpResult</name></member>
+      <member refid="classkukadu_1_1DMPReinforcer_1a32bac8a17c007d40673b05f34ee017ca" prot="public" virt="pure-virtual"><scope>kukadu::DMPReinforcer</scope><name>getInitialRollout</name></member>
+      <member refid="classkukadu_1_1DMPReinforcer_1ab9ba3dc996de2223db6fb8d0dd79c429" prot="public" virt="non-virtual"><scope>kukadu::DMPReinforcer</scope><name>getIsFirstIteration</name></member>
+      <member refid="classkukadu_1_1DMPReinforcer_1a53f28e972c75ec336d55aee227ba5b30" prot="public" virt="non-virtual"><scope>kukadu::DMPReinforcer</scope><name>getLastExecutionResults</name></member>
+      <member refid="classkukadu_1_1DMPReinforcer_1ae1e7b4f023979e5076897102a54066c3" prot="public" virt="non-virtual"><scope>kukadu::DMPReinforcer</scope><name>getLastRolloutCost</name></member>
+      <member refid="classkukadu_1_1DMPReinforcer_1ad4032a5137fd6ff47b09455361e2ebe3" prot="public" virt="non-virtual"><scope>kukadu::DMPReinforcer</scope><name>getLastRolloutParameters</name></member>
+      <member refid="classkukadu_1_1DMPReinforcer_1abab6e2bd6abdd613335ecc7186e3d89c" prot="public" virt="non-virtual"><scope>kukadu::DMPReinforcer</scope><name>getLastUpdate</name></member>
+      <member refid="classkukadu_1_1DMPReinforcer_1aa8722bbe4c69ca344c82a2e5aaa85d74" prot="public" virt="non-virtual"><scope>kukadu::DMPReinforcer</scope><name>getLastUpdateRes</name></member>
+      <member refid="classkukadu_1_1DMPReinforcer_1a9b75bfd5aefec6e93dd6ac6a130da023" prot="public" virt="non-virtual"><scope>kukadu::DMPReinforcer</scope><name>getTolAbsErr</name></member>
+      <member refid="classkukadu_1_1DMPReinforcer_1a377d0dc8df73872a2d4c10e8247b0862" prot="public" virt="non-virtual"><scope>kukadu::DMPReinforcer</scope><name>getTolRelErr</name></member>
+      <member refid="classkukadu_1_1DMPReinforcer_1a6c172028f469366d99a3089860c781d2" prot="private" virt="non-virtual"><scope>kukadu::DMPReinforcer</scope><name>isFirstIteration</name></member>
+      <member refid="classkukadu_1_1DMPReinforcer_1a336d40e4d3c623ccab11bc3a78051202" prot="private" virt="non-virtual"><scope>kukadu::DMPReinforcer</scope><name>lastCost</name></member>
+      <member refid="classkukadu_1_1DMPReinforcer_1a351d25f792e7945c930fdd92de0c7c48" prot="private" virt="non-virtual"><scope>kukadu::DMPReinforcer</scope><name>lastUpdate</name></member>
+      <member refid="classkukadu_1_1DMPReinforcer_1a87466492159ac4060a752b2ec40a07ca" prot="private" virt="non-virtual"><scope>kukadu::DMPReinforcer</scope><name>lastUpdateRes</name></member>
+      <member refid="classkukadu_1_1DMPReinforcer_1acbb28b68671d95da71873c73e90619ea" prot="private" virt="non-virtual"><scope>kukadu::DMPReinforcer</scope><name>movementQueue</name></member>
+      <member refid="classkukadu_1_1DMPReinforcer_1ab2597f0265192981ab70cadc9fa35a05" prot="public" virt="non-virtual"><scope>kukadu::DMPReinforcer</scope><name>performRollout</name></member>
+      <member refid="classkukadu_1_1DMPReinforcer_1ac48f9f4761623652672a77345994b350" prot="private" virt="non-virtual"><scope>kukadu::DMPReinforcer</scope><name>rollout</name></member>
+      <member refid="classkukadu_1_1DMPReinforcer_1a759bd3c0954e4287f8166a4115fd2c55" prot="public" virt="non-virtual"><scope>kukadu::DMPReinforcer</scope><name>setLastUpdate</name></member>
+      <member refid="classkukadu_1_1DMPReinforcer_1a196a2bc90cfc12043b0bdf89cca92bd7" prot="private" virt="non-virtual"><scope>kukadu::DMPReinforcer</scope><name>storage</name></member>
+      <member refid="classkukadu_1_1DMPReinforcer_1a376b45cd76f96f595253496f2f22c5f6" prot="private" virt="non-virtual"><scope>kukadu::DMPReinforcer</scope><name>tolAbsErr</name></member>
+      <member refid="classkukadu_1_1DMPReinforcer_1aba196392f3ab57ffa31c3bd99988ff3b" prot="private" virt="non-virtual"><scope>kukadu::DMPReinforcer</scope><name>tolRelErr</name></member>
+      <member refid="classkukadu_1_1DMPReinforcer_1af88dad66482a357f0c4bcfc94aeac631" prot="public" virt="pure-virtual"><scope>kukadu::DMPReinforcer</scope><name>updateStep</name></member>
+    </listofallmembers>
+  </compounddef>
+</doxygen>

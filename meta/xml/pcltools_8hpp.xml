@@ -1,0 +1,149 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.8.11">
+  <compounddef id="pcltools_8hpp" kind="file" language="C++">
+    <compoundname>pcltools.hpp</compoundname>
+    <includes local="no">vector</includes>
+    <includes local="no">armadillo</includes>
+    <includes local="no">pcl/point_cloud.h</includes>
+    <includes local="no">pcl/point_types.h</includes>
+    <includes refid="kukadutypes_8hpp" local="no">kukadu/types/kukadutypes.hpp</includes>
+    <includes local="no">pcl/visualization/pcl_visualizer.h</includes>
+    <includedby refid="pcltools_8cpp" local="no">/home/agyss/iis_robot_sw/iis_catkin_ws/src/kukadu/src/vision/pcltools.cpp</includedby>
+    <includedby refid="pcstdtrans_8cpp" local="no">/home/agyss/iis_robot_sw/iis_catkin_ws/src/kukadu/src/vision/pcstdtrans.cpp</includedby>
+    <incdepgraph>
+      <node id="2495">
+        <label>pcl/point_types.h</label>
+      </node>
+      <node id="2494">
+        <label>pcl/point_cloud.h</label>
+      </node>
+      <node id="2496">
+        <label>kukadu/types/kukadutypes.hpp</label>
+        <link refid="kukadutypes_8hpp_source"/>
+        <childnode refid="2497" relation="include">
+        </childnode>
+        <childnode refid="2498" relation="include">
+        </childnode>
+        <childnode refid="2499" relation="include">
+        </childnode>
+        <childnode refid="2500" relation="include">
+        </childnode>
+        <childnode refid="2501" relation="include">
+        </childnode>
+      </node>
+      <node id="2502">
+        <label>pcl/visualization/pcl_visualizer.h</label>
+      </node>
+      <node id="2493">
+        <label>armadillo</label>
+      </node>
+      <node id="2497">
+        <label>exception</label>
+      </node>
+      <node id="2501">
+        <label>random</label>
+      </node>
+      <node id="2492">
+        <label>vector</label>
+      </node>
+      <node id="2500">
+        <label>mutex</label>
+      </node>
+      <node id="2491">
+        <label>/home/agyss/iis_robot_sw/iis_catkin_ws/src/kukadu/include/kukadu/vision/pcltools.hpp</label>
+        <link refid="pcltools.hpp"/>
+        <childnode refid="2492" relation="include">
+        </childnode>
+        <childnode refid="2493" relation="include">
+        </childnode>
+        <childnode refid="2494" relation="include">
+        </childnode>
+        <childnode refid="2495" relation="include">
+        </childnode>
+        <childnode refid="2496" relation="include">
+        </childnode>
+        <childnode refid="2502" relation="include">
+        </childnode>
+      </node>
+      <node id="2499">
+        <label>thread</label>
+      </node>
+      <node id="2498">
+        <label>memory</label>
+      </node>
+    </incdepgraph>
+    <innerclass refid="structkukadu_1_1FitCube" prot="public">kukadu::FitCube</innerclass>
+    <innerclass refid="classkukadu_1_1PCLTools" prot="public">kukadu::PCLTools</innerclass>
+    <innernamespace refid="namespacekukadu">kukadu</innernamespace>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <programlisting>
+<codeline lineno="1"><highlight class="preprocessor">#ifndef<sp/>KUKADU_PCLTOOLS_H</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="2"><highlight class="normal"></highlight><highlight class="preprocessor">#define<sp/>KUKADU_PCLTOOLS_H</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="3"><highlight class="normal"></highlight></codeline>
+<codeline lineno="4"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&lt;vector&gt;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="5"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&lt;armadillo&gt;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="6"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&lt;pcl/point_cloud.h&gt;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="7"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&lt;pcl/point_types.h&gt;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="8"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&lt;kukadu/types/kukadutypes.hpp&gt;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="9"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&lt;pcl/visualization/pcl_visualizer.h&gt;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="10"><highlight class="normal"></highlight></codeline>
+<codeline lineno="11"><highlight class="normal"></highlight><highlight class="keyword">namespace<sp/></highlight><highlight class="normal"><ref refid="namespacekukadu" kindref="compound">kukadu</ref><sp/>{</highlight></codeline>
+<codeline lineno="12"><highlight class="normal"></highlight></codeline>
+<codeline lineno="13" refid="structkukadu_1_1FitCube" refkind="compound"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">struct<sp/></highlight><highlight class="normal"><ref refid="structkukadu_1_1FitCube" kindref="compound">FitCube</ref><sp/>{</highlight></codeline>
+<codeline lineno="14"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>Eigen::Vector3f<sp/>translation;</highlight></codeline>
+<codeline lineno="15"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>Eigen::Quaternionf<sp/>rotation;</highlight></codeline>
+<codeline lineno="16"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">double</highlight><highlight class="normal"><sp/>width,<sp/>height,<sp/>depth;</highlight></codeline>
+<codeline lineno="17"><highlight class="normal"><sp/><sp/><sp/><sp/>};</highlight></codeline>
+<codeline lineno="18"><highlight class="normal"></highlight></codeline>
+<codeline lineno="19" refid="classkukadu_1_1PCLTools" refkind="compound"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">class<sp/></highlight><highlight class="normal"><ref refid="classkukadu_1_1PCLTools" kindref="compound">PCLTools</ref><sp/>{</highlight></codeline>
+<codeline lineno="20"><highlight class="normal"></highlight></codeline>
+<codeline lineno="21"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">private</highlight><highlight class="normal">:</highlight></codeline>
+<codeline lineno="22"><highlight class="normal"></highlight></codeline>
+<codeline lineno="23"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">bool</highlight><highlight class="normal"><sp/>isVisInit;</highlight></codeline>
+<codeline lineno="24"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">bool</highlight><highlight class="normal"><sp/>keepShowingVis;</highlight></codeline>
+<codeline lineno="25"><highlight class="normal"></highlight></codeline>
+<codeline lineno="26"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>std::shared_ptr&lt;kukadu_thread&gt;<sp/>visThread;</highlight></codeline>
+<codeline lineno="27"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>std::shared_ptr&lt;pcl::visualization::PCLVisualizer&gt;<sp/>viewer;</highlight></codeline>
+<codeline lineno="28"><highlight class="normal"></highlight></codeline>
+<codeline lineno="29"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>std::vector&lt;std::pair&lt;std::string,<sp/>pcl::PointCloud&lt;pcl::PointXYZRGB&gt;::Ptr&gt;<sp/>&gt;<sp/>visPointClouds;</highlight></codeline>
+<codeline lineno="30"><highlight class="normal"></highlight></codeline>
+<codeline lineno="31"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/>runVisThread();</highlight></codeline>
+<codeline lineno="32"><highlight class="normal"></highlight></codeline>
+<codeline lineno="33"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">public</highlight><highlight class="normal">:</highlight></codeline>
+<codeline lineno="34"><highlight class="normal"></highlight></codeline>
+<codeline lineno="35"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><ref refid="classkukadu_1_1PCLTools" kindref="compound">PCLTools</ref>();</highlight></codeline>
+<codeline lineno="36"><highlight class="normal"></highlight></codeline>
+<codeline lineno="37"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">static</highlight><highlight class="normal"><sp/><ref refid="structkukadu_1_1FitCube" kindref="compound">FitCube</ref><sp/>fitBox(pcl::PointCloud&lt;pcl::PointXYZRGB&gt;::Ptr<sp/>cloud);</highlight></codeline>
+<codeline lineno="38"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">static</highlight><highlight class="normal"><sp/>pcl::PointCloud&lt;pcl::PointXYZRGB&gt;::Ptr<sp/>segmentPlanar(pcl::PointCloud&lt;pcl::PointXYZRGB&gt;::Ptr<sp/>cloud,<sp/></highlight><highlight class="keywordtype">bool</highlight><highlight class="normal"><sp/>negative);</highlight></codeline>
+<codeline lineno="39"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">static</highlight><highlight class="normal"><sp/>pcl::PointCloud&lt;pcl::PointXYZRGB&gt;::Ptr<sp/>filterCluster(pcl::PointCloud&lt;pcl::PointXYZRGB&gt;::Ptr<sp/>cloud,<sp/></highlight><highlight class="keywordtype">bool</highlight><highlight class="normal"><sp/>negative);</highlight></codeline>
+<codeline lineno="40"><highlight class="normal"></highlight></codeline>
+<codeline lineno="41"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/>stopVisualizationWindow();</highlight></codeline>
+<codeline lineno="42"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/>visDrawBox(std::string<sp/></highlight><highlight class="keywordtype">id</highlight><highlight class="normal">,<sp/></highlight><highlight class="keyword">struct</highlight><highlight class="normal"><sp/><ref refid="structkukadu_1_1FitCube" kindref="compound">FitCube</ref><sp/>dim);</highlight></codeline>
+<codeline lineno="43"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/>visDrawPlaneWithNormal(std::string<sp/></highlight><highlight class="keywordtype">id</highlight><highlight class="normal">,<sp/>arma::vec<sp/>r0,<sp/>arma::vec<sp/>n);</highlight></codeline>
+<codeline lineno="44"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/>visDrawLine(std::string<sp/></highlight><highlight class="keywordtype">id</highlight><highlight class="normal">,<sp/></highlight><highlight class="keywordtype">double</highlight><highlight class="normal"><sp/>pointX1,<sp/></highlight><highlight class="keywordtype">double</highlight><highlight class="normal"><sp/>pointY1,<sp/></highlight><highlight class="keywordtype">double</highlight><highlight class="normal"><sp/>pointZ1,<sp/></highlight><highlight class="keywordtype">double</highlight><highlight class="normal"><sp/>pointX2,<sp/></highlight><highlight class="keywordtype">double</highlight><highlight class="normal"><sp/>pointY2,<sp/></highlight><highlight class="keywordtype">double</highlight><highlight class="normal"><sp/>pointZ2);</highlight></codeline>
+<codeline lineno="45"><highlight class="normal"></highlight></codeline>
+<codeline lineno="46"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/>visualizePointCloud(std::string<sp/></highlight><highlight class="keywordtype">id</highlight><highlight class="normal">,<sp/>pcl::PointCloud&lt;pcl::PointXYZ&gt;::Ptr<sp/>pc);</highlight></codeline>
+<codeline lineno="47"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/>visualizePointCloud(std::string<sp/></highlight><highlight class="keywordtype">id</highlight><highlight class="normal">,<sp/>pcl::PointCloud&lt;pcl::PointXYZI&gt;::Ptr<sp/>pc);</highlight></codeline>
+<codeline lineno="48"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/>visualizePointCloud(std::string<sp/></highlight><highlight class="keywordtype">id</highlight><highlight class="normal">,<sp/>pcl::PointCloud&lt;pcl::PointXYZRGB&gt;::Ptr<sp/>pc);</highlight></codeline>
+<codeline lineno="49"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/>visualizePointCloud(std::string<sp/></highlight><highlight class="keywordtype">id</highlight><highlight class="normal">,<sp/>pcl::PointCloud&lt;pcl::PointXYZRGBA&gt;::Ptr<sp/>pc);</highlight></codeline>
+<codeline lineno="50"><highlight class="normal"></highlight></codeline>
+<codeline lineno="51"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/>updateVisualizedPointCloud(std::string<sp/></highlight><highlight class="keywordtype">id</highlight><highlight class="normal">,<sp/>pcl::PointCloud&lt;pcl::PointXYZ&gt;::Ptr<sp/>pc);</highlight></codeline>
+<codeline lineno="52"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/>updateVisualizedPointCloud(std::string<sp/></highlight><highlight class="keywordtype">id</highlight><highlight class="normal">,<sp/>pcl::PointCloud&lt;pcl::PointXYZI&gt;::Ptr<sp/>pc);</highlight></codeline>
+<codeline lineno="53"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/>updateVisualizedPointCloud(std::string<sp/></highlight><highlight class="keywordtype">id</highlight><highlight class="normal">,<sp/>pcl::PointCloud&lt;pcl::PointXYZRGB&gt;::Ptr<sp/>pc);</highlight></codeline>
+<codeline lineno="54"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/>updateVisualizedPointCloud(std::string<sp/></highlight><highlight class="keywordtype">id</highlight><highlight class="normal">,<sp/>pcl::PointCloud&lt;pcl::PointXYZRGBA&gt;::Ptr<sp/>pc);</highlight></codeline>
+<codeline lineno="55"><highlight class="normal"></highlight></codeline>
+<codeline lineno="56"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>KUKADU_SHARED_PTR&lt;kukadu_thread&gt;<sp/>initializeVisualizationWindow();</highlight></codeline>
+<codeline lineno="57"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>KUKADU_SHARED_PTR&lt;pcl::visualization::PCLVisualizer&gt;<sp/>getVisualizer();</highlight></codeline>
+<codeline lineno="58"><highlight class="normal"></highlight></codeline>
+<codeline lineno="59"><highlight class="normal"><sp/><sp/><sp/><sp/>};</highlight></codeline>
+<codeline lineno="60"><highlight class="normal"></highlight></codeline>
+<codeline lineno="61"><highlight class="normal">}</highlight></codeline>
+<codeline lineno="62"><highlight class="normal"></highlight></codeline>
+<codeline lineno="63"><highlight class="normal"></highlight><highlight class="preprocessor">#endif<sp/>//<sp/>PCLTOOLS_H</highlight></codeline>
+    </programlisting>
+    <location file="/home/agyss/iis_robot_sw/iis_catkin_ws/src/kukadu/include/kukadu/vision/pcltools.hpp"/>
+  </compounddef>
+</doxygen>

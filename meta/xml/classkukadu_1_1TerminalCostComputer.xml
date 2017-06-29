@@ -1,0 +1,68 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.8.11">
+  <compounddef id="classkukadu_1_1TerminalCostComputer" kind="class" language="C++" prot="public">
+    <compoundname>kukadu::TerminalCostComputer</compoundname>
+    <basecompoundref refid="classkukadu_1_1CostComputer" prot="public" virt="non-virtual">kukadu::CostComputer</basecompoundref>
+    <includes refid="policyrl_8hpp" local="no">policyrl.hpp</includes>
+      <sectiondef kind="public-func">
+      <memberdef kind="function" id="classkukadu_1_1TerminalCostComputer_1aec0329f108e413d004139f5da01f04e5" prot="public" static="no" const="no" explicit="no" inline="no" virt="virtual">
+        <type>double</type>
+        <definition>double kukadu::TerminalCostComputer::computeCost</definition>
+        <argsstring>(KUKADU_SHARED_PTR&lt; ControllerResult &gt; results)</argsstring>
+        <name>computeCost</name>
+        <reimplements refid="classkukadu_1_1CostComputer_1a8d02974e1f097ac0451f03f535843175">computeCost</reimplements>
+        <param>
+          <type>KUKADU_SHARED_PTR&lt; <ref refid="classkukadu_1_1ControllerResult" kindref="compound">ControllerResult</ref> &gt;</type>
+          <declname>results</declname>
+        </param>
+        <briefdescription>
+<para>computes cost for a given dmp execution </para>        </briefdescription>
+        <detaileddescription>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>results</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>measured results of the last dmp execution </para></parameterdescription>
+</parameteritem>
+</parameterlist>
+</para>        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/agyss/iis_robot_sw/iis_catkin_ws/src/kukadu/include/kukadu/learning/rl/policyrl.hpp" line="90" column="1" bodyfile="/home/agyss/iis_robot_sw/iis_catkin_ws/src/kukadu/src/learning/rl/policyrl.cpp" bodystart="388" bodyend="400"/>
+      </memberdef>
+      </sectiondef>
+    <briefdescription>
+<para>The <ref refid="classkukadu_1_1TerminalCostComputer" kindref="compound">TerminalCostComputer</ref> implements the <ref refid="classkukadu_1_1CostComputer" kindref="compound">CostComputer</ref> interface. </para>    </briefdescription>
+    <detaileddescription>
+<para>This class implements the <ref refid="classkukadu_1_1CostComputer" kindref="compound">CostComputer</ref> in a simple way. The cost of the last rollout is inserted manually by the user to the console. This method can be used for very low dimensional reinforcement learning as there a low number of rollouts is needed. </para>    </detaileddescription>
+    <inheritancegraph>
+      <node id="641">
+        <label>kukadu::CostComputer</label>
+        <link refid="classkukadu_1_1CostComputer"/>
+      </node>
+      <node id="640">
+        <label>kukadu::TerminalCostComputer</label>
+        <link refid="classkukadu_1_1TerminalCostComputer"/>
+        <childnode refid="641" relation="public-inheritance">
+        </childnode>
+      </node>
+    </inheritancegraph>
+    <collaborationgraph>
+      <node id="643">
+        <label>kukadu::CostComputer</label>
+        <link refid="classkukadu_1_1CostComputer"/>
+      </node>
+      <node id="642">
+        <label>kukadu::TerminalCostComputer</label>
+        <link refid="classkukadu_1_1TerminalCostComputer"/>
+        <childnode refid="643" relation="public-inheritance">
+        </childnode>
+      </node>
+    </collaborationgraph>
+    <location file="/home/agyss/iis_robot_sw/iis_catkin_ws/src/kukadu/include/kukadu/learning/rl/policyrl.hpp" line="84" column="1" bodyfile="/home/agyss/iis_robot_sw/iis_catkin_ws/src/kukadu/include/kukadu/learning/rl/policyrl.hpp" bodystart="84" bodyend="92"/>
+    <listofallmembers>
+      <member refid="classkukadu_1_1TerminalCostComputer_1aec0329f108e413d004139f5da01f04e5" prot="public" virt="virtual"><scope>kukadu::TerminalCostComputer</scope><name>computeCost</name></member>
+    </listofallmembers>
+  </compounddef>
+</doxygen>

@@ -1,0 +1,195 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.8.11">
+  <compounddef id="classkukadu_1_1VisualizerSingleton" kind="class" language="C++" prot="public">
+    <compoundname>kukadu::VisualizerSingleton</compoundname>
+      <sectiondef kind="private-attrib">
+      <memberdef kind="variable" id="classkukadu_1_1VisualizerSingleton_1adb41f6a0be991e37092f89fbb76133ae" prot="private" static="no" mutable="no">
+        <type>std::mutex</type>
+        <definition>std::mutex kukadu::VisualizerSingleton::windowMutex</definition>
+        <argsstring></argsstring>
+        <name>windowMutex</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/agyss/iis_robot_sw/iis_catkin_ws/src/kukadu/include/kukadu/vision/visualizersingleton.hpp" line="18" column="1" bodyfile="/home/agyss/iis_robot_sw/iis_catkin_ws/src/kukadu/include/kukadu/vision/visualizersingleton.hpp" bodystart="18" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classkukadu_1_1VisualizerSingleton_1ac49c203352418968ec72c9469ef7c2c6" prot="private" static="no" mutable="no">
+        <type>pcl::visualization::PCLVisualizer</type>
+        <definition>pcl::visualization::PCLVisualizer kukadu::VisualizerSingleton::vis</definition>
+        <argsstring></argsstring>
+        <name>vis</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/agyss/iis_robot_sw/iis_catkin_ws/src/kukadu/include/kukadu/vision/visualizersingleton.hpp" line="20" column="1" bodyfile="/home/agyss/iis_robot_sw/iis_catkin_ws/src/kukadu/include/kukadu/vision/visualizersingleton.hpp" bodystart="20" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classkukadu_1_1VisualizerSingleton_1a8858ab1fbb913fe01dc94cffcd688576" prot="private" static="no" mutable="no">
+        <type>std::vector&lt; std::string &gt;</type>
+        <definition>std::vector&lt;std::string&gt; kukadu::VisualizerSingleton::visPointClouds</definition>
+        <argsstring></argsstring>
+        <name>visPointClouds</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/agyss/iis_robot_sw/iis_catkin_ws/src/kukadu/include/kukadu/vision/visualizersingleton.hpp" line="21" column="1" bodyfile="/home/agyss/iis_robot_sw/iis_catkin_ws/src/kukadu/include/kukadu/vision/visualizersingleton.hpp" bodystart="21" bodyend="-1"/>
+      </memberdef>
+      </sectiondef>
+      <sectiondef kind="private-func">
+      <memberdef kind="function" id="classkukadu_1_1VisualizerSingleton_1aa86c9d75f55375a01a58f15c2edde6a1" prot="private" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type></type>
+        <definition>kukadu::VisualizerSingleton::VisualizerSingleton</definition>
+        <argsstring>()</argsstring>
+        <name>VisualizerSingleton</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/agyss/iis_robot_sw/iis_catkin_ws/src/kukadu/include/kukadu/vision/visualizersingleton.hpp" line="23" column="1" bodyfile="/home/agyss/iis_robot_sw/iis_catkin_ws/src/kukadu/src/vision/visualizersingleton.cpp" bodystart="10" bodyend="12"/>
+      </memberdef>
+      </sectiondef>
+      <sectiondef kind="public-static-func">
+      <memberdef kind="function" id="classkukadu_1_1VisualizerSingleton_1a4933414e0d7ab36b5d003abda2bb413c" prot="public" static="yes" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type><ref refid="classkukadu_1_1VisualizerSingleton" kindref="compound">VisualizerSingleton</ref> &amp;</type>
+        <definition>VisualizerSingleton &amp; kukadu::VisualizerSingleton::get</definition>
+        <argsstring>()</argsstring>
+        <name>get</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/agyss/iis_robot_sw/iis_catkin_ws/src/kukadu/include/kukadu/vision/visualizersingleton.hpp" line="27" column="1" bodyfile="/home/agyss/iis_robot_sw/iis_catkin_ws/src/kukadu/src/vision/visualizersingleton.cpp" bodystart="14" bodyend="17"/>
+      </memberdef>
+      </sectiondef>
+      <sectiondef kind="public-func">
+      <memberdef kind="function" id="classkukadu_1_1VisualizerSingleton_1a79f0e92760dae5616f9534ee8033aa6d" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>void kukadu::VisualizerSingleton::startWindow</definition>
+        <argsstring>()</argsstring>
+        <name>startWindow</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/agyss/iis_robot_sw/iis_catkin_ws/src/kukadu/include/kukadu/vision/visualizersingleton.hpp" line="29" column="1" bodyfile="/home/agyss/iis_robot_sw/iis_catkin_ws/src/kukadu/src/vision/visualizersingleton.cpp" bodystart="19" bodyend="34"/>
+      </memberdef>
+      <memberdef kind="function" id="classkukadu_1_1VisualizerSingleton_1a153c7d591441f580b1a1599ee0184034" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>void kukadu::VisualizerSingleton::drawBox</definition>
+        <argsstring>(std::string id, geometry_msgs::Pose pose, arma::vec dimensions)</argsstring>
+        <name>drawBox</name>
+        <param>
+          <type>std::string</type>
+          <declname>id</declname>
+        </param>
+        <param>
+          <type>geometry_msgs::Pose</type>
+          <declname>pose</declname>
+        </param>
+        <param>
+          <type>arma::vec</type>
+          <declname>dimensions</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/agyss/iis_robot_sw/iis_catkin_ws/src/kukadu/include/kukadu/vision/visualizersingleton.hpp" line="30" column="1" bodyfile="/home/agyss/iis_robot_sw/iis_catkin_ws/src/kukadu/src/vision/visualizersingleton.cpp" bodystart="36" bodyend="41"/>
+      </memberdef>
+      <memberdef kind="function" id="classkukadu_1_1VisualizerSingleton_1a6047d1a4619dd0fd7bcd8e684c04c946" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>void kukadu::VisualizerSingleton::showPointCloud</definition>
+        <argsstring>(std::string id, pcl::PointCloud&lt; pcl::PointXYZRGB &gt;::Ptr cloud)</argsstring>
+        <name>showPointCloud</name>
+        <param>
+          <type>std::string</type>
+          <declname>id</declname>
+        </param>
+        <param>
+          <type>pcl::PointCloud&lt; pcl::PointXYZRGB &gt;::Ptr</type>
+          <declname>cloud</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/agyss/iis_robot_sw/iis_catkin_ws/src/kukadu/include/kukadu/vision/visualizersingleton.hpp" line="31" column="1" bodyfile="/home/agyss/iis_robot_sw/iis_catkin_ws/src/kukadu/src/vision/visualizersingleton.cpp" bodystart="55" bodyend="80"/>
+      </memberdef>
+      <memberdef kind="function" id="classkukadu_1_1VisualizerSingleton_1aa6f85314a007cf7da65321d947977fbd" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>void kukadu::VisualizerSingleton::drawLine</definition>
+        <argsstring>(std::string id, double pointX1, double pointY1, double pointZ1, double pointX2, double pointY2, double pointZ2)</argsstring>
+        <name>drawLine</name>
+        <param>
+          <type>std::string</type>
+          <declname>id</declname>
+        </param>
+        <param>
+          <type>double</type>
+          <declname>pointX1</declname>
+        </param>
+        <param>
+          <type>double</type>
+          <declname>pointY1</declname>
+        </param>
+        <param>
+          <type>double</type>
+          <declname>pointZ1</declname>
+        </param>
+        <param>
+          <type>double</type>
+          <declname>pointX2</declname>
+        </param>
+        <param>
+          <type>double</type>
+          <declname>pointY2</declname>
+        </param>
+        <param>
+          <type>double</type>
+          <declname>pointZ2</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/agyss/iis_robot_sw/iis_catkin_ws/src/kukadu/include/kukadu/vision/visualizersingleton.hpp" line="32" column="1" bodyfile="/home/agyss/iis_robot_sw/iis_catkin_ws/src/kukadu/src/vision/visualizersingleton.cpp" bodystart="43" bodyend="53"/>
+      </memberdef>
+      </sectiondef>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <location file="/home/agyss/iis_robot_sw/iis_catkin_ws/src/kukadu/include/kukadu/vision/visualizersingleton.hpp" line="14" column="1" bodyfile="/home/agyss/iis_robot_sw/iis_catkin_ws/src/kukadu/include/kukadu/vision/visualizersingleton.hpp" bodystart="14" bodyend="34"/>
+    <listofallmembers>
+      <member refid="classkukadu_1_1VisualizerSingleton_1a153c7d591441f580b1a1599ee0184034" prot="public" virt="non-virtual"><scope>kukadu::VisualizerSingleton</scope><name>drawBox</name></member>
+      <member refid="classkukadu_1_1VisualizerSingleton_1aa6f85314a007cf7da65321d947977fbd" prot="public" virt="non-virtual"><scope>kukadu::VisualizerSingleton</scope><name>drawLine</name></member>
+      <member refid="classkukadu_1_1VisualizerSingleton_1a4933414e0d7ab36b5d003abda2bb413c" prot="public" virt="non-virtual"><scope>kukadu::VisualizerSingleton</scope><name>get</name></member>
+      <member refid="classkukadu_1_1VisualizerSingleton_1a6047d1a4619dd0fd7bcd8e684c04c946" prot="public" virt="non-virtual"><scope>kukadu::VisualizerSingleton</scope><name>showPointCloud</name></member>
+      <member refid="classkukadu_1_1VisualizerSingleton_1a79f0e92760dae5616f9534ee8033aa6d" prot="public" virt="non-virtual"><scope>kukadu::VisualizerSingleton</scope><name>startWindow</name></member>
+      <member refid="classkukadu_1_1VisualizerSingleton_1ac49c203352418968ec72c9469ef7c2c6" prot="private" virt="non-virtual"><scope>kukadu::VisualizerSingleton</scope><name>vis</name></member>
+      <member refid="classkukadu_1_1VisualizerSingleton_1a8858ab1fbb913fe01dc94cffcd688576" prot="private" virt="non-virtual"><scope>kukadu::VisualizerSingleton</scope><name>visPointClouds</name></member>
+      <member refid="classkukadu_1_1VisualizerSingleton_1aa86c9d75f55375a01a58f15c2edde6a1" prot="private" virt="non-virtual"><scope>kukadu::VisualizerSingleton</scope><name>VisualizerSingleton</name></member>
+      <member refid="classkukadu_1_1VisualizerSingleton_1adb41f6a0be991e37092f89fbb76133ae" prot="private" virt="non-virtual"><scope>kukadu::VisualizerSingleton</scope><name>windowMutex</name></member>
+    </listofallmembers>
+  </compounddef>
+</doxygen>

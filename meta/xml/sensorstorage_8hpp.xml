@@ -1,0 +1,613 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.8.11">
+  <compounddef id="sensorstorage_8hpp" kind="file" language="C++">
+    <compoundname>sensorstorage.hpp</compoundname>
+    <includes local="no">string</includes>
+    <includes local="no">vector</includes>
+    <includes local="no">cstdlib</includes>
+    <includes local="no">iostream</includes>
+    <includes local="no">armadillo</includes>
+    <includes local="no">ros/ros.h</includes>
+    <includes local="no">geometry_msgs/Pose.h</includes>
+    <includes refid="hand_8hpp" local="no">kukadu/robot/hand.hpp</includes>
+    <includes refid="queue_8hpp" local="no">kukadu/robot/queue.hpp</includes>
+    <includes refid="utils_2types_8hpp" local="no">kukadu/utils/types.hpp</includes>
+    <includes refid="utils_2utils_8hpp" local="no">kukadu/utils/utils.hpp</includes>
+    <includes refid="sensordata_8hpp" local="no">kukadu/types/sensordata.hpp</includes>
+    <includes refid="kukadutypes_8hpp" local="no">kukadu/types/kukadutypes.hpp</includes>
+    <includes refid="storagesingleton_8hpp" local="no">kukadu/storage/storagesingleton.hpp</includes>
+    <includedby refid="dmp_8cpp" local="no">/home/agyss/iis_robot_sw/iis_catkin_ws/src/kukadu/src/control/dmp.cpp</includedby>
+    <includedby refid="dmprl_8cpp" local="no">/home/agyss/iis_robot_sw/iis_catkin_ws/src/kukadu/src/learning/rl/dmprl.cpp</includedby>
+    <includedby refid="controllers_8cpp" local="no">/home/agyss/iis_robot_sw/iis_catkin_ws/src/kukadu/src/manipulation/playing/controllers.cpp</includedby>
+    <includedby refid="hand_8cpp" local="no">/home/agyss/iis_robot_sw/iis_catkin_ws/src/kukadu/src/robot/hand.cpp</includedby>
+    <includedby refid="queue_8cpp" local="no">/home/agyss/iis_robot_sw/iis_catkin_ws/src/kukadu/src/robot/queue.cpp</includedby>
+    <includedby refid="sensorstorage_8cpp" local="no">/home/agyss/iis_robot_sw/iis_catkin_ws/src/kukadu/src/storage/sensorstorage.cpp</includedby>
+    <includedby refid="kinestheticteaching_8hpp" local="no">/home/agyss/iis_robot_sw/iis_catkin_ws/src/kukadu/include/kukadu/robot/kinestheticteaching.hpp</includedby>
+    <includedby refid="storage_8hpp" local="no">/home/agyss/iis_robot_sw/iis_catkin_ws/src/kukadu/include/kukadu/storage.hpp</includedby>
+    <incdepgraph>
+      <node id="1779">
+        <label>sys/stat.h</label>
+      </node>
+      <node id="1795">
+        <label>list</label>
+      </node>
+      <node id="1782">
+        <label>gsl/gsl_vector.h</label>
+      </node>
+      <node id="1778">
+        <label>wordexp.h</label>
+      </node>
+      <node id="1777">
+        <label>stdbool.h</label>
+      </node>
+      <node id="1773">
+        <label>stdarg.h</label>
+      </node>
+      <node id="1760">
+        <label>cppconn/resultset.h</label>
+      </node>
+      <node id="1790">
+        <label>sensor_msgs/PointCloud2.h</label>
+      </node>
+      <node id="1750">
+        <label>queue</label>
+      </node>
+      <node id="1788">
+        <label>pcl/PCLPointCloud2.h</label>
+      </node>
+      <node id="1744">
+        <label>limits</label>
+      </node>
+      <node id="1763">
+        <label>kukadu/robot/queue.hpp</label>
+        <link refid="queue_8hpp"/>
+        <childnode refid="1750" relation="include">
+        </childnode>
+        <childnode refid="1737" relation="include">
+        </childnode>
+        <childnode refid="1740" relation="include">
+        </childnode>
+        <childnode refid="1742" relation="include">
+        </childnode>
+        <childnode refid="1764" relation="include">
+        </childnode>
+        <childnode refid="1747" relation="include">
+        </childnode>
+        <childnode refid="1751" relation="include">
+        </childnode>
+        <childnode refid="1762" relation="include">
+        </childnode>
+        <childnode refid="1748" relation="include">
+        </childnode>
+      </node>
+      <node id="1785">
+        <label>pcl/point_types.h</label>
+      </node>
+      <node id="1748">
+        <label>kukadu/storage/storagesingleton.hpp</label>
+        <link refid="storagesingleton_8hpp_source"/>
+        <childnode refid="1749" relation="include">
+        </childnode>
+        <childnode refid="1750" relation="include">
+        </childnode>
+        <childnode refid="1736" relation="include">
+        </childnode>
+        <childnode refid="1737" relation="include">
+        </childnode>
+        <childnode refid="1739" relation="include">
+        </childnode>
+        <childnode refid="1751" relation="include">
+        </childnode>
+        <childnode refid="1757" relation="include">
+        </childnode>
+        <childnode refid="1758" relation="include">
+        </childnode>
+        <childnode refid="1759" relation="include">
+        </childnode>
+        <childnode refid="1760" relation="include">
+        </childnode>
+        <childnode refid="1761" relation="include">
+        </childnode>
+      </node>
+      <node id="1784">
+        <label>pcl/point_cloud.h</label>
+      </node>
+      <node id="1751">
+        <label>kukadu/types/kukadutypes.hpp</label>
+        <link refid="kukadutypes_8hpp_source"/>
+        <childnode refid="1752" relation="include">
+        </childnode>
+        <childnode refid="1753" relation="include">
+        </childnode>
+        <childnode refid="1754" relation="include">
+        </childnode>
+        <childnode refid="1755" relation="include">
+        </childnode>
+        <childnode refid="1756" relation="include">
+        </childnode>
+      </node>
+      <node id="1793">
+        <label>stdexcept</label>
+      </node>
+      <node id="1776">
+        <label>termios.h</label>
+      </node>
+      <node id="1787">
+        <label>eigen3/Eigen/Dense</label>
+      </node>
+      <node id="1747">
+        <label>kukadu/robot/hardware.hpp</label>
+        <link refid="hardware_8hpp_source"/>
+        <childnode refid="1736" relation="include">
+        </childnode>
+        <childnode refid="1740" relation="include">
+        </childnode>
+        <childnode refid="1748" relation="include">
+        </childnode>
+      </node>
+      <node id="1781">
+        <label>gsl/gsl_poly.h</label>
+      </node>
+      <node id="1736">
+        <label>string</label>
+      </node>
+      <node id="1749">
+        <label>map</label>
+      </node>
+      <node id="1792">
+        <label>kukadu/utils/gnuplot.hpp</label>
+        <link refid="gnuplot_8hpp_source"/>
+        <childnode refid="1739" relation="include">
+        </childnode>
+        <childnode refid="1736" relation="include">
+        </childnode>
+        <childnode refid="1737" relation="include">
+        </childnode>
+        <childnode refid="1770" relation="include">
+        </childnode>
+        <childnode refid="1768" relation="include">
+        </childnode>
+        <childnode refid="1793" relation="include">
+        </childnode>
+        <childnode refid="1794" relation="include">
+        </childnode>
+        <childnode refid="1738" relation="include">
+        </childnode>
+        <childnode refid="1795" relation="include">
+        </childnode>
+      </node>
+      <node id="1740">
+        <label>armadillo</label>
+      </node>
+      <node id="1752">
+        <label>exception</label>
+      </node>
+      <node id="1770">
+        <label>fstream</label>
+      </node>
+      <node id="1798">
+        <label>kukadu/utils/kukadutokenizer.hpp</label>
+        <link refid="kukadutokenizer_8hpp_source"/>
+        <childnode refid="1736" relation="include">
+        </childnode>
+        <childnode refid="1737" relation="include">
+        </childnode>
+      </node>
+      <node id="1761">
+        <label>cppconn/statement.h</label>
+      </node>
+      <node id="1756">
+        <label>random</label>
+      </node>
+      <node id="1780">
+        <label>sys/types.h</label>
+      </node>
+      <node id="1745">
+        <label>kukadu/utils/types.hpp</label>
+        <link refid="utils_2types_8hpp_source"/>
+        <childnode refid="1737" relation="include">
+        </childnode>
+        <childnode refid="1740" relation="include">
+        </childnode>
+        <childnode refid="1746" relation="include">
+        </childnode>
+      </node>
+      <node id="1789">
+        <label>tf/transform_datatypes.h</label>
+      </node>
+      <node id="1794">
+        <label>cstdio</label>
+      </node>
+      <node id="1765">
+        <label>kukadu/utils/utils.hpp</label>
+        <link refid="utils_2utils_8hpp_source"/>
+        <childnode refid="1749" relation="include">
+        </childnode>
+        <childnode refid="1750" relation="include">
+        </childnode>
+        <childnode refid="1744" relation="include">
+        </childnode>
+        <childnode refid="1737" relation="include">
+        </childnode>
+        <childnode refid="1766" relation="include">
+        </childnode>
+        <childnode refid="1736" relation="include">
+        </childnode>
+        <childnode refid="1767" relation="include">
+        </childnode>
+        <childnode refid="1768" relation="include">
+        </childnode>
+        <childnode refid="1769" relation="include">
+        </childnode>
+        <childnode refid="1770" relation="include">
+        </childnode>
+        <childnode refid="1771" relation="include">
+        </childnode>
+        <childnode refid="1772" relation="include">
+        </childnode>
+        <childnode refid="1773" relation="include">
+        </childnode>
+        <childnode refid="1739" relation="include">
+        </childnode>
+        <childnode refid="1774" relation="include">
+        </childnode>
+        <childnode refid="1775" relation="include">
+        </childnode>
+        <childnode refid="1776" relation="include">
+        </childnode>
+        <childnode refid="1777" relation="include">
+        </childnode>
+        <childnode refid="1740" relation="include">
+        </childnode>
+        <childnode refid="1778" relation="include">
+        </childnode>
+        <childnode refid="1779" relation="include">
+        </childnode>
+        <childnode refid="1780" relation="include">
+        </childnode>
+        <childnode refid="1781" relation="include">
+        </childnode>
+        <childnode refid="1782" relation="include">
+        </childnode>
+        <childnode refid="1746" relation="include">
+        </childnode>
+        <childnode refid="1783" relation="include">
+        </childnode>
+        <childnode refid="1784" relation="include">
+        </childnode>
+        <childnode refid="1785" relation="include">
+        </childnode>
+        <childnode refid="1786" relation="include">
+        </childnode>
+        <childnode refid="1787" relation="include">
+        </childnode>
+        <childnode refid="1788" relation="include">
+        </childnode>
+        <childnode refid="1789" relation="include">
+        </childnode>
+        <childnode refid="1790" relation="include">
+        </childnode>
+        <childnode refid="1791" relation="include">
+        </childnode>
+        <childnode refid="1745" relation="include">
+        </childnode>
+        <childnode refid="1792" relation="include">
+        </childnode>
+        <childnode refid="1747" relation="include">
+        </childnode>
+        <childnode refid="1796" relation="include">
+        </childnode>
+        <childnode refid="1798" relation="include">
+        </childnode>
+      </node>
+      <node id="1796">
+        <label>kukadu/control/controller.hpp</label>
+        <link refid="controller_8hpp_source"/>
+        <childnode refid="1736" relation="include">
+        </childnode>
+        <childnode refid="1747" relation="include">
+        </childnode>
+        <childnode refid="1751" relation="include">
+        </childnode>
+        <childnode refid="1797" relation="include">
+        </childnode>
+        <childnode refid="1748" relation="include">
+        </childnode>
+        <childnode refid="1763" relation="include">
+        </childnode>
+      </node>
+      <node id="1772">
+        <label>unistd.h</label>
+      </node>
+      <node id="1737">
+        <label>vector</label>
+      </node>
+      <node id="1764">
+        <label>kukadu/robot/filters.hpp</label>
+        <link refid="filters_8hpp_source"/>
+        <childnode refid="1745" relation="include">
+        </childnode>
+        <childnode refid="1751" relation="include">
+        </childnode>
+      </node>
+      <node id="1774">
+        <label>signal.h</label>
+      </node>
+      <node id="1735">
+        <label>/home/agyss/iis_robot_sw/iis_catkin_ws/src/kukadu/include/kukadu/storage/sensorstorage.hpp</label>
+        <link refid="sensorstorage.hpp"/>
+        <childnode refid="1736" relation="include">
+        </childnode>
+        <childnode refid="1737" relation="include">
+        </childnode>
+        <childnode refid="1738" relation="include">
+        </childnode>
+        <childnode refid="1739" relation="include">
+        </childnode>
+        <childnode refid="1740" relation="include">
+        </childnode>
+        <childnode refid="1741" relation="include">
+        </childnode>
+        <childnode refid="1742" relation="include">
+        </childnode>
+        <childnode refid="1743" relation="include">
+        </childnode>
+        <childnode refid="1763" relation="include">
+        </childnode>
+        <childnode refid="1745" relation="include">
+        </childnode>
+        <childnode refid="1765" relation="include">
+        </childnode>
+        <childnode refid="1799" relation="include">
+        </childnode>
+        <childnode refid="1751" relation="include">
+        </childnode>
+        <childnode refid="1748" relation="include">
+        </childnode>
+      </node>
+      <node id="1771">
+        <label>utility</label>
+      </node>
+      <node id="1768">
+        <label>sstream</label>
+      </node>
+      <node id="1758">
+        <label>cppconn/driver.h</label>
+      </node>
+      <node id="1759">
+        <label>cppconn/exception.h</label>
+      </node>
+      <node id="1742">
+        <label>geometry_msgs/Pose.h</label>
+      </node>
+      <node id="1741">
+        <label>ros/ros.h</label>
+      </node>
+      <node id="1766">
+        <label>math.h</label>
+      </node>
+      <node id="1738">
+        <label>cstdlib</label>
+      </node>
+      <node id="1739">
+        <label>iostream</label>
+      </node>
+      <node id="1757">
+        <label>mysql_connection.h</label>
+      </node>
+      <node id="1762">
+        <label>kukadu/utils/destroyableobject.hpp</label>
+        <link refid="destroyableobject_8hpp_source"/>
+      </node>
+      <node id="1755">
+        <label>mutex</label>
+      </node>
+      <node id="1786">
+        <label>gsl/gsl_multifit.h</label>
+      </node>
+      <node id="1791">
+        <label>geometry_msgs/Quaternion.h</label>
+      </node>
+      <node id="1754">
+        <label>thread</label>
+      </node>
+      <node id="1783">
+        <label>gsl/gsl_linalg.h</label>
+      </node>
+      <node id="1743">
+        <label>kukadu/robot/hand.hpp</label>
+        <link refid="hand_8hpp_source"/>
+        <childnode refid="1744" relation="include">
+        </childnode>
+        <childnode refid="1737" relation="include">
+        </childnode>
+        <childnode refid="1741" relation="include">
+        </childnode>
+        <childnode refid="1740" relation="include">
+        </childnode>
+        <childnode refid="1745" relation="include">
+        </childnode>
+        <childnode refid="1747" relation="include">
+        </childnode>
+        <childnode refid="1762" relation="include">
+        </childnode>
+        <childnode refid="1748" relation="include">
+        </childnode>
+      </node>
+      <node id="1769">
+        <label>stdio.h</label>
+      </node>
+      <node id="1767">
+        <label>cstring</label>
+      </node>
+      <node id="1746">
+        <label>gsl/gsl_matrix.h</label>
+      </node>
+      <node id="1753">
+        <label>memory</label>
+      </node>
+      <node id="1797">
+        <label>kukadu/types/controllerresult.hpp</label>
+        <link refid="controllerresult_8hpp_source"/>
+        <childnode refid="1737" relation="include">
+        </childnode>
+        <childnode refid="1740" relation="include">
+        </childnode>
+      </node>
+      <node id="1799">
+        <label>kukadu/types/sensordata.hpp</label>
+        <link refid="sensordata_8hpp_source"/>
+        <childnode refid="1737" relation="include">
+        </childnode>
+        <childnode refid="1736" relation="include">
+        </childnode>
+        <childnode refid="1771" relation="include">
+        </childnode>
+        <childnode refid="1740" relation="include">
+        </childnode>
+        <childnode refid="1742" relation="include">
+        </childnode>
+        <childnode refid="1765" relation="include">
+        </childnode>
+      </node>
+      <node id="1775">
+        <label>dirent.h</label>
+      </node>
+    </incdepgraph>
+    <invincdepgraph>
+      <node id="1801">
+        <label>/home/agyss/iis_robot_sw/iis_catkin_ws/src/kukadu/include/kukadu/robot/kinestheticteaching.hpp</label>
+        <link refid="kinestheticteaching_8hpp_source"/>
+      </node>
+      <node id="1803">
+        <label>/home/agyss/iis_robot_sw/iis_catkin_ws/src/kukadu/include/kukadu/kukadu.hpp</label>
+        <link refid="kukadu_8hpp_source"/>
+      </node>
+      <node id="1800">
+        <label>/home/agyss/iis_robot_sw/iis_catkin_ws/src/kukadu/include/kukadu/storage/sensorstorage.hpp</label>
+        <link refid="sensorstorage.hpp"/>
+        <childnode refid="1801" relation="include">
+        </childnode>
+        <childnode refid="1802" relation="include">
+        </childnode>
+      </node>
+      <node id="1802">
+        <label>/home/agyss/iis_robot_sw/iis_catkin_ws/src/kukadu/include/kukadu/storage.hpp</label>
+        <link refid="storage_8hpp_source"/>
+        <childnode refid="1803" relation="include">
+        </childnode>
+      </node>
+    </invincdepgraph>
+    <innerclass refid="classkukadu_1_1SensorStorage" prot="public">kukadu::SensorStorage</innerclass>
+    <innernamespace refid="namespacekukadu">kukadu</innernamespace>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <programlisting>
+<codeline lineno="1"><highlight class="preprocessor">#ifndef<sp/>KUKADU_SENSORSTORAGE_H</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="2"><highlight class="normal"></highlight><highlight class="preprocessor">#define<sp/>KUKADU_SENSORSTORAGE_H</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="3"><highlight class="normal"></highlight></codeline>
+<codeline lineno="4"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&lt;string&gt;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="5"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&lt;vector&gt;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="6"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&lt;cstdlib&gt;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="7"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&lt;iostream&gt;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="8"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&lt;armadillo&gt;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="9"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&lt;ros/ros.h&gt;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="10"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&lt;geometry_msgs/Pose.h&gt;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="11"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&lt;kukadu/robot/hand.hpp&gt;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="12"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&lt;<ref refid="queue_8hpp" kindref="compound">kukadu/robot/queue.hpp</ref>&gt;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="13"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&lt;kukadu/utils/types.hpp&gt;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="14"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&lt;kukadu/utils/utils.hpp&gt;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="15"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&lt;kukadu/types/sensordata.hpp&gt;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="16"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&lt;kukadu/types/kukadutypes.hpp&gt;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="17"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&lt;kukadu/storage/storagesingleton.hpp&gt;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="18"><highlight class="normal"></highlight></codeline>
+<codeline lineno="19"><highlight class="normal"></highlight><highlight class="keyword">namespace<sp/></highlight><highlight class="normal"><ref refid="namespacekukadu" kindref="compound">kukadu</ref><sp/>{</highlight></codeline>
+<codeline lineno="20"><highlight class="normal"></highlight></codeline>
+<codeline lineno="29" refid="classkukadu_1_1SensorStorage" refkind="compound"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">class<sp/></highlight><highlight class="normal"><ref refid="classkukadu_1_1SensorStorage" kindref="compound">SensorStorage</ref><sp/>:<sp/></highlight><highlight class="keyword">public</highlight><highlight class="normal"><sp/><ref refid="classkukadu_1_1TimedObject" kindref="compound">TimedObject</ref><sp/>{</highlight></codeline>
+<codeline lineno="30"><highlight class="normal"></highlight></codeline>
+<codeline lineno="31"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">private</highlight><highlight class="normal">:</highlight></codeline>
+<codeline lineno="32"><highlight class="normal"></highlight></codeline>
+<codeline lineno="33"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">bool</highlight><highlight class="normal"><sp/>stopped;</highlight></codeline>
+<codeline lineno="34"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">bool</highlight><highlight class="normal"><sp/>storeTime;</highlight></codeline>
+<codeline lineno="35"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">bool</highlight><highlight class="normal"><sp/>storeJntPos;</highlight></codeline>
+<codeline lineno="36"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">bool</highlight><highlight class="normal"><sp/>storeJntFrc;</highlight></codeline>
+<codeline lineno="37"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">bool</highlight><highlight class="normal"><sp/>storeCartPos;</highlight></codeline>
+<codeline lineno="38"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">bool</highlight><highlight class="normal"><sp/>storeHndTctle;</highlight></codeline>
+<codeline lineno="39"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">bool</highlight><highlight class="normal"><sp/>storeHndJntPos;</highlight></codeline>
+<codeline lineno="40"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">bool</highlight><highlight class="normal"><sp/>storeCartFrcTrq;</highlight></codeline>
+<codeline lineno="41"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">bool</highlight><highlight class="normal"><sp/>storeCartAbsFrc;</highlight></codeline>
+<codeline lineno="42"><highlight class="normal"></highlight></codeline>
+<codeline lineno="43"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">double</highlight><highlight class="normal"><sp/>pollingFrequency;</highlight></codeline>
+<codeline lineno="44"><highlight class="normal"></highlight></codeline>
+<codeline lineno="45"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><ref refid="classkukadu_1_1StorageSingleton" kindref="compound">StorageSingleton</ref>&amp;<sp/>dbStorage;</highlight></codeline>
+<codeline lineno="46"><highlight class="normal"></highlight></codeline>
+<codeline lineno="47"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>KUKADU_SHARED_PTR&lt;kukadu_thread&gt;<sp/>thr;</highlight></codeline>
+<codeline lineno="48"><highlight class="normal"></highlight></codeline>
+<codeline lineno="49"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>std::vector&lt;KUKADU_SHARED_PTR&lt;GenericHand&gt;<sp/>&gt;<sp/>hands;</highlight></codeline>
+<codeline lineno="50"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>std::vector&lt;KUKADU_SHARED_PTR&lt;ControlQueue&gt;<sp/>&gt;<sp/>queues;</highlight></codeline>
+<codeline lineno="51"><highlight class="normal"></highlight></codeline>
+<codeline lineno="52"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>std::vector&lt;KUKADU_SHARED_PTR&lt;std::ofstream&gt;<sp/>&gt;<sp/>handStreams;</highlight></codeline>
+<codeline lineno="53"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>std::vector&lt;KUKADU_SHARED_PTR&lt;std::ofstream&gt;<sp/>&gt;<sp/>queueStreams;</highlight></codeline>
+<codeline lineno="54"><highlight class="normal"></highlight></codeline>
+<codeline lineno="55"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/>store();</highlight></codeline>
+<codeline lineno="56"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/>writeVectorInLine(KUKADU_SHARED_PTR&lt;std::ofstream&gt;<sp/>stream,<sp/>arma::vec<sp/>writeVec);</highlight></codeline>
+<codeline lineno="57"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/>writeMatrixInLine(KUKADU_SHARED_PTR&lt;std::ofstream&gt;<sp/>stream,<sp/>arma::mat<sp/>writeMat);</highlight></codeline>
+<codeline lineno="58"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/>writeLabels(KUKADU_SHARED_PTR&lt;std::ofstream&gt;<sp/>stream,<sp/>std::vector&lt;std::string&gt;<sp/>labels);</highlight></codeline>
+<codeline lineno="59"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/>writeMatrixMetaInfo(KUKADU_SHARED_PTR&lt;std::ofstream&gt;<sp/>stream,<sp/></highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/>matrixNum,<sp/></highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/>xDim,<sp/></highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/>yDim);</highlight></codeline>
+<codeline lineno="60"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/>initSensorStorage(std::vector&lt;KUKADU_SHARED_PTR&lt;ControlQueue&gt;<sp/>&gt;<sp/>queues,<sp/>std::vector&lt;KUKADU_SHARED_PTR&lt;GenericHand&gt;<sp/>&gt;<sp/>hands,<sp/></highlight><highlight class="keywordtype">double</highlight><highlight class="normal"><sp/>pollingFrequency);</highlight></codeline>
+<codeline lineno="61"><highlight class="normal"></highlight></codeline>
+<codeline lineno="62"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="comment">/*</highlight></codeline>
+<codeline lineno="63"><highlight class="comment"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>*<sp/>\brief:<sp/>Stores<sp/>gathered<sp/>data.<sp/>If<sp/>the<sp/>SensorData<sp/>data<sp/>is<sp/>null,<sp/>the<sp/>data<sp/>is<sp/>collected<sp/>live.<sp/>Otherwise<sp/>the<sp/>passed<sp/>data<sp/>is<sp/>written.<sp/>The<sp/>write<sp/>destination</highlight></codeline>
+<codeline lineno="64"><highlight class="comment"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>*<sp/>is<sp/>a<sp/>file<sp/>if<sp/>the<sp/>string<sp/>file<sp/>is<sp/>not<sp/>empty.<sp/>Otherwise,<sp/>data<sp/>is<sp/>stored<sp/>to<sp/>the<sp/>database</highlight></codeline>
+<codeline lineno="65"><highlight class="comment"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>*/</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="66"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/>storeData(</highlight><highlight class="keywordtype">bool</highlight><highlight class="normal"><sp/>storeHeader,<sp/>KUKADU_SHARED_PTR&lt;SensorData&gt;<sp/>data,<sp/>std::string<sp/>file<sp/>=<sp/></highlight><highlight class="stringliteral">&quot;&quot;</highlight><highlight class="normal">);</highlight></codeline>
+<codeline lineno="67"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/>storeData(</highlight><highlight class="keywordtype">bool</highlight><highlight class="normal"><sp/>storeHeader,<sp/>std::vector&lt;KUKADU_SHARED_PTR&lt;SensorData&gt;<sp/>&gt;<sp/>data,<sp/>std::vector&lt;std::string&gt;<sp/>files);</highlight></codeline>
+<codeline lineno="68"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/>storeData(</highlight><highlight class="keywordtype">bool</highlight><highlight class="normal"><sp/>storeHeader,<sp/>std::vector&lt;KUKADU_SHARED_PTR&lt;SensorData&gt;<sp/>&gt;<sp/>data,<sp/>std::vector&lt;KUKADU_SHARED_PTR&lt;std::ofstream&gt;<sp/>&gt;<sp/>queueStreams);</highlight></codeline>
+<codeline lineno="69"><highlight class="normal"></highlight></codeline>
+<codeline lineno="70"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">public</highlight><highlight class="normal">:</highlight></codeline>
+<codeline lineno="71"><highlight class="normal"></highlight></codeline>
+<codeline lineno="72"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><ref refid="classkukadu_1_1SensorStorage" kindref="compound">SensorStorage</ref>(<ref refid="classkukadu_1_1StorageSingleton" kindref="compound">StorageSingleton</ref>&amp;<sp/>storage,<sp/>std::vector&lt;KUKADU_SHARED_PTR&lt;ControlQueue&gt;<sp/>&gt;<sp/>queues,<sp/>std::vector&lt;KUKADU_SHARED_PTR&lt;GenericHand&gt;<sp/>&gt;<sp/>hands,<sp/></highlight><highlight class="keywordtype">double</highlight><highlight class="normal"><sp/>pollingFrequency);</highlight></codeline>
+<codeline lineno="73"><highlight class="normal"></highlight></codeline>
+<codeline lineno="74"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/>stopDataStorage();</highlight></codeline>
+<codeline lineno="75"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/>setExportMode(</highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/>mode);</highlight></codeline>
+<codeline lineno="76"><highlight class="normal"></highlight></codeline>
+<codeline lineno="77"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="comment">/*</highlight></codeline>
+<codeline lineno="78"><highlight class="comment"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>*<sp/>\brief:<sp/>Starts<sp/>the<sp/>storage<sp/>of<sp/>data.<sp/>If<sp/>a<sp/>parameter<sp/>is<sp/>passed,<sp/>the<sp/>data<sp/>is<sp/>stored<sp/>to<sp/>a<sp/>file.<sp/>Otherwise<sp/>it<sp/>is<sp/>stored<sp/>to<sp/>the<sp/>database</highlight></codeline>
+<codeline lineno="79"><highlight class="comment"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>*/</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="80"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">long</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">long</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/>startDataStorage(std::string<sp/>folderName<sp/>=<sp/></highlight><highlight class="stringliteral">&quot;&quot;</highlight><highlight class="normal">);</highlight></codeline>
+<codeline lineno="81"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">static</highlight><highlight class="normal"><sp/>KUKADU_SHARED_PTR&lt;SensorData&gt;<sp/>readStorage(KUKADU_SHARED_PTR&lt;ControlQueue&gt;<sp/>queue,<sp/>std::string<sp/>file);</highlight></codeline>
+<codeline lineno="82"><highlight class="normal"></highlight></codeline>
+<codeline lineno="83"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">static</highlight><highlight class="normal"><sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/>STORE_RBT_JNT_POS<sp/>=<sp/>1;</highlight></codeline>
+<codeline lineno="84"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">static</highlight><highlight class="normal"><sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/>STORE_RBT_CART_POS<sp/>=<sp/>2;</highlight></codeline>
+<codeline lineno="85"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">static</highlight><highlight class="normal"><sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/>STORE_RBT_JNT_FTRQ<sp/>=<sp/>4;</highlight></codeline>
+<codeline lineno="86"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">static</highlight><highlight class="normal"><sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/>STORE_RBT_CART_FTRQ<sp/>=<sp/>8;</highlight></codeline>
+<codeline lineno="87"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">static</highlight><highlight class="normal"><sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/>STORE_HND_JNT_POS<sp/>=<sp/>16;</highlight></codeline>
+<codeline lineno="88"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">static</highlight><highlight class="normal"><sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/>STORE_HND_TCTLE<sp/>=<sp/>32;</highlight></codeline>
+<codeline lineno="89"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">static</highlight><highlight class="normal"><sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/>STORE_CART_ABS_FRC<sp/>=<sp/>64;</highlight></codeline>
+<codeline lineno="90"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">static</highlight><highlight class="normal"><sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/>STORE_SIM_OBJECT<sp/>=<sp/>128;</highlight></codeline>
+<codeline lineno="91"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">static</highlight><highlight class="normal"><sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/>STORE_VIS_OBJECT<sp/>=<sp/>256;</highlight></codeline>
+<codeline lineno="92"><highlight class="normal"></highlight></codeline>
+<codeline lineno="93"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="comment">//<sp/>transfers<sp/>joint<sp/>information<sp/>from<sp/>a<sp/>file<sp/>to<sp/>the<sp/>database;<sp/>returns<sp/>the<sp/>start<sp/>and<sp/>end<sp/>timestamp<sp/>of<sp/>the<sp/>stored<sp/>trajectory</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="94"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">static</highlight><highlight class="normal"><sp/>std::pair&lt;long<sp/>long<sp/>int,<sp/>long<sp/>long<sp/>int&gt;<sp/>transferArmDataToDb(<ref refid="classkukadu_1_1StorageSingleton" kindref="compound">StorageSingleton</ref>&amp;<sp/>dbStorage,<sp/>KUKADU_SHARED_PTR&lt;ControlQueue&gt;<sp/>queue,<sp/>std::string<sp/>file);</highlight></codeline>
+<codeline lineno="95"><highlight class="normal"></highlight></codeline>
+<codeline lineno="96"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">static</highlight><highlight class="normal"><sp/>arma::vec<sp/>loadSampleTimesInRangeFromDb(<ref refid="classkukadu_1_1StorageSingleton" kindref="compound">StorageSingleton</ref>&amp;<sp/>storage,<sp/>KUKADU_SHARED_PTR&lt;ControlQueue&gt;<sp/>queue,<sp/></highlight><highlight class="keywordtype">long</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">long</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/>startTime,<sp/></highlight><highlight class="keywordtype">long</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">long</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/>endTime);</highlight></codeline>
+<codeline lineno="97"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">static</highlight><highlight class="normal"><sp/>arma::mat<sp/>loadJointsFromDb(<ref refid="classkukadu_1_1StorageSingleton" kindref="compound">StorageSingleton</ref>&amp;<sp/>storage,<sp/>KUKADU_SHARED_PTR&lt;ControlQueue&gt;<sp/>queue,<sp/></highlight><highlight class="keywordtype">long</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">long</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/>startTime,<sp/></highlight><highlight class="keywordtype">long</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">long</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/>endTime);</highlight></codeline>
+<codeline lineno="98"><highlight class="normal"></highlight></codeline>
+<codeline lineno="99"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">static</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/>storeCartInformation(<ref refid="classkukadu_1_1StorageSingleton" kindref="compound">StorageSingleton</ref>&amp;<sp/>dbStorage,<sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">int</highlight><highlight class="normal">&amp;<sp/>robotId,<sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">long</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">long</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">int</highlight><highlight class="normal">&amp;<sp/>timeStamp,<sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/>std::string&amp;<sp/>referenceFrame,<sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/>std::string&amp;<sp/>linkName,<sp/>geometry_msgs::Pose&amp;<sp/>cartesianPose,</highlight></codeline>
+<codeline lineno="100"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/>arma::vec&amp;<sp/>frcTrq,<sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">double</highlight><highlight class="normal">&amp;<sp/>absFrc,</highlight></codeline>
+<codeline lineno="101"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">bool</highlight><highlight class="normal">&amp;<sp/>storePos,<sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">bool</highlight><highlight class="normal">&amp;<sp/>storeFrc,<sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">bool</highlight><highlight class="normal">&amp;<sp/>storeAbsFrc);</highlight></codeline>
+<codeline lineno="102"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">static</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/>storeJointInfoToDatabase(<ref refid="classkukadu_1_1StorageSingleton" kindref="compound">StorageSingleton</ref>&amp;<sp/>dbStorage,<sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">int</highlight><highlight class="normal">&amp;<sp/>robotId,<sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">long</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">long</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">int</highlight><highlight class="normal">&amp;<sp/>timeStamp,</highlight></codeline>
+<codeline lineno="103"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>std::vector&lt;int&gt;&amp;<sp/>jointIds,<sp/>arma::vec&amp;<sp/>jointPositions,<sp/>arma::vec&amp;<sp/>jointVelocities,<sp/>arma::vec&amp;<sp/>jointAccelerations,<sp/></highlight><highlight class="keywordtype">bool</highlight><highlight class="normal"><sp/>storeForces,</highlight></codeline>
+<codeline lineno="104"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>arma::vec&amp;<sp/>jointForces);</highlight></codeline>
+<codeline lineno="105"><highlight class="normal"></highlight></codeline>
+<codeline lineno="106"><highlight class="normal"><sp/><sp/><sp/><sp/>};</highlight></codeline>
+<codeline lineno="107"><highlight class="normal"></highlight></codeline>
+<codeline lineno="108"><highlight class="normal">}</highlight></codeline>
+<codeline lineno="109"><highlight class="normal"></highlight></codeline>
+<codeline lineno="110"><highlight class="normal"></highlight><highlight class="preprocessor">#endif</highlight></codeline>
+    </programlisting>
+    <location file="/home/agyss/iis_robot_sw/iis_catkin_ws/src/kukadu/include/kukadu/storage/sensorstorage.hpp"/>
+  </compounddef>
+</doxygen>

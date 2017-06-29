@@ -1,0 +1,569 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.8.11">
+  <compounddef id="classkukadu_1_1GeneralDmpLearner" kind="class" language="C++" prot="public" abstract="yes">
+    <compoundname>kukadu::GeneralDmpLearner</compoundname>
+    <derivedcompoundref refid="classkukadu_1_1CartesianDMPLearner" prot="public" virt="non-virtual">kukadu::CartesianDMPLearner</derivedcompoundref>
+    <derivedcompoundref refid="classkukadu_1_1JointDMPLearner" prot="public" virt="non-virtual">kukadu::JointDMPLearner</derivedcompoundref>
+      <sectiondef kind="private-attrib">
+      <memberdef kind="variable" id="classkukadu_1_1GeneralDmpLearner_1acd76ca9cd8cbe99822771cedbce5a3a7" prot="private" static="no" mutable="no">
+        <type>int</type>
+        <definition>int kukadu::GeneralDmpLearner::degFreedom</definition>
+        <argsstring></argsstring>
+        <name>degFreedom</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/agyss/iis_robot_sw/iis_catkin_ws/src/kukadu/include/kukadu/control/dmp.hpp" line="253" column="1" bodyfile="/home/agyss/iis_robot_sw/iis_catkin_ws/src/kukadu/include/kukadu/control/dmp.hpp" bodystart="253" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classkukadu_1_1GeneralDmpLearner_1af5dd59826adef750889a26914250c2e2" prot="private" static="no" mutable="no">
+        <type>arma::vec</type>
+        <definition>arma::vec kukadu::GeneralDmpLearner::timesInSeconds</definition>
+        <argsstring></argsstring>
+        <name>timesInSeconds</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/agyss/iis_robot_sw/iis_catkin_ws/src/kukadu/include/kukadu/control/dmp.hpp" line="255" column="1" bodyfile="/home/agyss/iis_robot_sw/iis_catkin_ws/src/kukadu/include/kukadu/control/dmp.hpp" bodystart="255" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classkukadu_1_1GeneralDmpLearner_1a15880c76354ec59011b3156a40601e82" prot="private" static="no" mutable="no">
+        <type>arma::mat</type>
+        <definition>arma::mat kukadu::GeneralDmpLearner::joints</definition>
+        <argsstring></argsstring>
+        <name>joints</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/agyss/iis_robot_sw/iis_catkin_ws/src/kukadu/include/kukadu/control/dmp.hpp" line="256" column="1" bodyfile="/home/agyss/iis_robot_sw/iis_catkin_ws/src/kukadu/include/kukadu/control/dmp.hpp" bodystart="256" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classkukadu_1_1GeneralDmpLearner_1a9984bc4c34a241ed875bcd6189274707" prot="private" static="no" mutable="no">
+        <type>std::vector&lt; <ref refid="classkukadu_1_1DMPBase" kindref="compound">DMPBase</ref> &gt;</type>
+        <definition>std::vector&lt;DMPBase&gt; kukadu::GeneralDmpLearner::dmpBase</definition>
+        <argsstring></argsstring>
+        <name>dmpBase</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/agyss/iis_robot_sw/iis_catkin_ws/src/kukadu/include/kukadu/control/dmp.hpp" line="258" column="1" bodyfile="/home/agyss/iis_robot_sw/iis_catkin_ws/src/kukadu/include/kukadu/control/dmp.hpp" bodystart="258" bodyend="-1"/>
+      </memberdef>
+      </sectiondef>
+      <sectiondef kind="protected-attrib">
+      <memberdef kind="variable" id="classkukadu_1_1GeneralDmpLearner_1abccf72154087561579ce0abe1ff85ff3" prot="protected" static="no" mutable="no">
+        <type>double</type>
+        <definition>double kukadu::GeneralDmpLearner::az</definition>
+        <argsstring></argsstring>
+        <name>az</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/agyss/iis_robot_sw/iis_catkin_ws/src/kukadu/include/kukadu/control/dmp.hpp" line="265" column="1" bodyfile="/home/agyss/iis_robot_sw/iis_catkin_ws/src/kukadu/include/kukadu/control/dmp.hpp" bodystart="265" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classkukadu_1_1GeneralDmpLearner_1ad910f3a86c8551f63c643347ae4f15fe" prot="protected" static="no" mutable="no">
+        <type>double</type>
+        <definition>double kukadu::GeneralDmpLearner::bz</definition>
+        <argsstring></argsstring>
+        <name>bz</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/agyss/iis_robot_sw/iis_catkin_ws/src/kukadu/include/kukadu/control/dmp.hpp" line="266" column="1" bodyfile="/home/agyss/iis_robot_sw/iis_catkin_ws/src/kukadu/include/kukadu/control/dmp.hpp" bodystart="266" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classkukadu_1_1GeneralDmpLearner_1ab6b6b3fa49ef6c7925dbe34ea5991f48" prot="protected" static="no" mutable="no">
+        <type>double</type>
+        <definition>double kukadu::GeneralDmpLearner::ax</definition>
+        <argsstring></argsstring>
+        <name>ax</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/agyss/iis_robot_sw/iis_catkin_ws/src/kukadu/include/kukadu/control/dmp.hpp" line="267" column="1" bodyfile="/home/agyss/iis_robot_sw/iis_catkin_ws/src/kukadu/include/kukadu/control/dmp.hpp" bodystart="267" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classkukadu_1_1GeneralDmpLearner_1af27b307365984e9deae829ca2159ed57" prot="protected" static="no" mutable="no">
+        <type>double</type>
+        <definition>double kukadu::GeneralDmpLearner::tau</definition>
+        <argsstring></argsstring>
+        <name>tau</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/agyss/iis_robot_sw/iis_catkin_ws/src/kukadu/include/kukadu/control/dmp.hpp" line="268" column="1" bodyfile="/home/agyss/iis_robot_sw/iis_catkin_ws/src/kukadu/include/kukadu/control/dmp.hpp" bodystart="268" bodyend="-1"/>
+      </memberdef>
+      </sectiondef>
+      <sectiondef kind="private-func">
+      <memberdef kind="function" id="classkukadu_1_1GeneralDmpLearner_1a0185175e75e5925ccd7712ba07ddebbf" prot="private" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>void kukadu::GeneralDmpLearner::construct</definition>
+        <argsstring>(std::vector&lt; DMPBase &gt; dmpBase, double tau, double az, double bz, double ax, arma::vec timesInSeconds, arma::mat joints, int degFreedom)</argsstring>
+        <name>construct</name>
+        <param>
+          <type>std::vector&lt; <ref refid="classkukadu_1_1DMPBase" kindref="compound">DMPBase</ref> &gt;</type>
+          <declname>dmpBase</declname>
+        </param>
+        <param>
+          <type>double</type>
+          <declname>tau</declname>
+        </param>
+        <param>
+          <type>double</type>
+          <declname>az</declname>
+        </param>
+        <param>
+          <type>double</type>
+          <declname>bz</declname>
+        </param>
+        <param>
+          <type>double</type>
+          <declname>ax</declname>
+        </param>
+        <param>
+          <type>arma::vec</type>
+          <declname>timesInSeconds</declname>
+        </param>
+        <param>
+          <type>arma::mat</type>
+          <declname>joints</declname>
+        </param>
+        <param>
+          <type>int</type>
+          <declname>degFreedom</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/agyss/iis_robot_sw/iis_catkin_ws/src/kukadu/include/kukadu/control/dmp.hpp" line="260" column="1" bodyfile="/home/agyss/iis_robot_sw/iis_catkin_ws/src/kukadu/src/control/dmp.cpp" bodystart="1771" bodyend="1798"/>
+      </memberdef>
+      <memberdef kind="function" id="classkukadu_1_1GeneralDmpLearner_1ae831ed2b70ab2681b9e9e500066f0ff0" prot="private" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>std::vector&lt; <ref refid="structtrajectory__learner__internal" kindref="compound">trajectory_learner_internal</ref> &gt;</type>
+        <definition>std::vector&lt; trajectory_learner_internal &gt; kukadu::GeneralDmpLearner::fitTrajectory</definition>
+        <argsstring>(arma::vec time, arma::mat y, arma::mat dy, arma::mat ddy)</argsstring>
+        <name>fitTrajectory</name>
+        <param>
+          <type>arma::vec</type>
+          <declname>time</declname>
+        </param>
+        <param>
+          <type>arma::mat</type>
+          <declname>y</declname>
+        </param>
+        <param>
+          <type>arma::mat</type>
+          <declname>dy</declname>
+        </param>
+        <param>
+          <type>arma::mat</type>
+          <declname>ddy</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/agyss/iis_robot_sw/iis_catkin_ws/src/kukadu/include/kukadu/control/dmp.hpp" line="261" column="1" bodyfile="/home/agyss/iis_robot_sw/iis_catkin_ws/src/kukadu/src/control/dmp.cpp" bodystart="1800" bodyend="1827"/>
+      </memberdef>
+      </sectiondef>
+      <sectiondef kind="protected-func">
+      <memberdef kind="function" id="classkukadu_1_1GeneralDmpLearner_1ac09b61a9d1fc81a4d32b00e8a27c9a37" prot="protected" static="no" const="no" explicit="no" inline="no" virt="pure-virtual">
+        <type>KUKADU_SHARED_PTR&lt; <ref refid="classkukadu_1_1Dmp" kindref="compound">Dmp</ref> &gt;</type>
+        <definition>virtual KUKADU_SHARED_PTR&lt;Dmp&gt; kukadu::GeneralDmpLearner::createDmpInstance</definition>
+        <argsstring>(arma::vec &amp;supervisedTsInSeconds, std::vector&lt; arma::vec &gt; sampleYs, std::vector&lt; arma::vec &gt; fitYs, std::vector&lt; arma::vec &gt; dmpCoeffs, std::vector&lt; DMPBase &gt; dmpBase, std::vector&lt; arma::mat &gt; designMatrices, double tau, double az, double bz, double ax)=0</argsstring>
+        <name>createDmpInstance</name>
+        <reimplementedby refid="classkukadu_1_1JointDMPLearner_1a1e1bf80ba81e702fb0bc60f8ac2f899b">createDmpInstance</reimplementedby>
+        <reimplementedby refid="classkukadu_1_1CartesianDMPLearner_1ac6060b23f8fbf519e3d9944dab73c8d2">createDmpInstance</reimplementedby>
+        <param>
+          <type>arma::vec &amp;</type>
+          <declname>supervisedTsInSeconds</declname>
+        </param>
+        <param>
+          <type>std::vector&lt; arma::vec &gt;</type>
+          <declname>sampleYs</declname>
+        </param>
+        <param>
+          <type>std::vector&lt; arma::vec &gt;</type>
+          <declname>fitYs</declname>
+        </param>
+        <param>
+          <type>std::vector&lt; arma::vec &gt;</type>
+          <declname>dmpCoeffs</declname>
+        </param>
+        <param>
+          <type>std::vector&lt; <ref refid="classkukadu_1_1DMPBase" kindref="compound">DMPBase</ref> &gt;</type>
+          <declname>dmpBase</declname>
+        </param>
+        <param>
+          <type>std::vector&lt; arma::mat &gt;</type>
+          <declname>designMatrices</declname>
+        </param>
+        <param>
+          <type>double</type>
+          <declname>tau</declname>
+        </param>
+        <param>
+          <type>double</type>
+          <declname>az</declname>
+        </param>
+        <param>
+          <type>double</type>
+          <declname>bz</declname>
+        </param>
+        <param>
+          <type>double</type>
+          <declname>ax</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/agyss/iis_robot_sw/iis_catkin_ws/src/kukadu/include/kukadu/control/dmp.hpp" line="270" column="1"/>
+      </memberdef>
+      <memberdef kind="function" id="classkukadu_1_1GeneralDmpLearner_1a5df8ee4640adf585cbce7b04e77ae3a6" prot="protected" static="no" const="no" explicit="no" inline="no" virt="pure-virtual">
+        <type>arma::mat</type>
+        <definition>virtual arma::mat kukadu::GeneralDmpLearner::computeFitY</definition>
+        <argsstring>(arma::vec &amp;time, arma::mat &amp;y, arma::mat &amp;dy, arma::mat &amp;ddy, arma::vec &amp;vec_g)=0</argsstring>
+        <name>computeFitY</name>
+        <reimplementedby refid="classkukadu_1_1JointDMPLearner_1a36b5758b427bcc8047899cebc4a2a693">computeFitY</reimplementedby>
+        <reimplementedby refid="classkukadu_1_1CartesianDMPLearner_1a17b09095c1a7e462e34bf5448cb021ab">computeFitY</reimplementedby>
+        <param>
+          <type>arma::vec &amp;</type>
+          <declname>time</declname>
+        </param>
+        <param>
+          <type>arma::mat &amp;</type>
+          <declname>y</declname>
+        </param>
+        <param>
+          <type>arma::mat &amp;</type>
+          <declname>dy</declname>
+        </param>
+        <param>
+          <type>arma::mat &amp;</type>
+          <declname>ddy</declname>
+        </param>
+        <param>
+          <type>arma::vec &amp;</type>
+          <declname>vec_g</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/agyss/iis_robot_sw/iis_catkin_ws/src/kukadu/include/kukadu/control/dmp.hpp" line="273" column="1"/>
+      </memberdef>
+      </sectiondef>
+      <sectiondef kind="public-func">
+      <memberdef kind="function" id="classkukadu_1_1GeneralDmpLearner_1ac1d5a121adb29527ee7044d1c1394342" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type></type>
+        <definition>kukadu::GeneralDmpLearner::GeneralDmpLearner</definition>
+        <argsstring>(std::vector&lt; DMPBase &gt; dmpBase, double tau, double az, double bz, double ax, arma::vec timesInSeconds, arma::mat joints)</argsstring>
+        <name>GeneralDmpLearner</name>
+        <param>
+          <type>std::vector&lt; <ref refid="classkukadu_1_1DMPBase" kindref="compound">DMPBase</ref> &gt;</type>
+          <declname>dmpBase</declname>
+        </param>
+        <param>
+          <type>double</type>
+          <declname>tau</declname>
+        </param>
+        <param>
+          <type>double</type>
+          <declname>az</declname>
+        </param>
+        <param>
+          <type>double</type>
+          <declname>bz</declname>
+        </param>
+        <param>
+          <type>double</type>
+          <declname>ax</declname>
+        </param>
+        <param>
+          <type>arma::vec</type>
+          <declname>timesInSeconds</declname>
+        </param>
+        <param>
+          <type>arma::mat</type>
+          <declname>joints</declname>
+        </param>
+        <briefdescription>
+<para>constructor </para>        </briefdescription>
+        <detaileddescription>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>dmpBase</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>dmp basis function definition </para></parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>tau</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>dmp timing constant </para></parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>az</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>dmp az constant </para></parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>bz</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>dmp bz constant </para></parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>ax</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>dmp ax constant </para></parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>joints</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>measured joints </para></parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>degFreedom</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>robots degrees of freedom </para></parameterdescription>
+</parameteritem>
+</parameterlist>
+</para>        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/agyss/iis_robot_sw/iis_catkin_ws/src/kukadu/include/kukadu/control/dmp.hpp" line="287" column="1"/>
+      </memberdef>
+      <memberdef kind="function" id="classkukadu_1_1GeneralDmpLearner_1a317520b316d8d6e75206237f0848b3c1" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type></type>
+        <definition>kukadu::GeneralDmpLearner::GeneralDmpLearner</definition>
+        <argsstring>(std::vector&lt; double &gt; mysDef, std::vector&lt; double &gt; sigmasDef, double az, double bz, std::string file)</argsstring>
+        <name>GeneralDmpLearner</name>
+        <param>
+          <type>std::vector&lt; double &gt;</type>
+          <declname>mysDef</declname>
+        </param>
+        <param>
+          <type>std::vector&lt; double &gt;</type>
+          <declname>sigmasDef</declname>
+        </param>
+        <param>
+          <type>double</type>
+          <declname>az</declname>
+        </param>
+        <param>
+          <type>double</type>
+          <declname>bz</declname>
+        </param>
+        <param>
+          <type>std::string</type>
+          <declname>file</declname>
+        </param>
+        <briefdescription>
+<para>constructor </para>        </briefdescription>
+        <detaileddescription>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>dmpBase</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>dmp basis function definition </para></parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>tau</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>dmp timing constant </para></parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>az</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>dmp az constant </para></parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>bz</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>dmp bz constant </para></parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>ax</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>dmp ax constant </para></parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>file</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>file containing the measured joints </para></parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>degFreedom</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>robots degrees of freedom </para></parameterdescription>
+</parameteritem>
+</parameterlist>
+</para>        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/agyss/iis_robot_sw/iis_catkin_ws/src/kukadu/include/kukadu/control/dmp.hpp" line="299" column="1"/>
+      </memberdef>
+      <memberdef kind="function" id="classkukadu_1_1GeneralDmpLearner_1ab9adb95165d0799c1abe7038b088c419" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type></type>
+        <definition>kukadu::GeneralDmpLearner::GeneralDmpLearner</definition>
+        <argsstring>(double az, double bz, std::string file)</argsstring>
+        <name>GeneralDmpLearner</name>
+        <param>
+          <type>double</type>
+          <declname>az</declname>
+        </param>
+        <param>
+          <type>double</type>
+          <declname>bz</declname>
+        </param>
+        <param>
+          <type>std::string</type>
+          <declname>file</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/agyss/iis_robot_sw/iis_catkin_ws/src/kukadu/include/kukadu/control/dmp.hpp" line="301" column="1" bodyfile="/home/agyss/iis_robot_sw/iis_catkin_ws/src/kukadu/src/control/dmp.cpp" bodystart="1172" bodyend="1194"/>
+      </memberdef>
+      <memberdef kind="function" id="classkukadu_1_1GeneralDmpLearner_1ac98e9dc7b0da404a3df4bd7e8bd77ae7" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type></type>
+        <definition>kukadu::GeneralDmpLearner::GeneralDmpLearner</definition>
+        <argsstring>(double az, double bz, arma::vec timesInSeconds, arma::mat joints)</argsstring>
+        <name>GeneralDmpLearner</name>
+        <param>
+          <type>double</type>
+          <declname>az</declname>
+        </param>
+        <param>
+          <type>double</type>
+          <declname>bz</declname>
+        </param>
+        <param>
+          <type>arma::vec</type>
+          <declname>timesInSeconds</declname>
+        </param>
+        <param>
+          <type>arma::mat</type>
+          <declname>joints</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/agyss/iis_robot_sw/iis_catkin_ws/src/kukadu/include/kukadu/control/dmp.hpp" line="303" column="1" bodyfile="/home/agyss/iis_robot_sw/iis_catkin_ws/src/kukadu/src/control/dmp.cpp" bodystart="1196" bodyend="1211"/>
+      </memberdef>
+      <memberdef kind="function" id="classkukadu_1_1GeneralDmpLearner_1a4f2f314a7bfb0d9ff54fabbb038757c8" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>KUKADU_SHARED_PTR&lt; <ref refid="classkukadu_1_1Dmp" kindref="compound">Dmp</ref> &gt;</type>
+        <definition>KUKADU_SHARED_PTR&lt; Dmp &gt; kukadu::GeneralDmpLearner::fitTrajectories</definition>
+        <argsstring>()</argsstring>
+        <name>fitTrajectories</name>
+        <briefdescription>
+<para>fit the specified trajectories </para>        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/agyss/iis_robot_sw/iis_catkin_ws/src/kukadu/include/kukadu/control/dmp.hpp" line="308" column="1" bodyfile="/home/agyss/iis_robot_sw/iis_catkin_ws/src/kukadu/src/control/dmp.cpp" bodystart="1213" bodyend="1278"/>
+      </memberdef>
+      </sectiondef>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <inheritancegraph>
+      <node id="245">
+        <label>kukadu::CartesianDMPLearner</label>
+        <link refid="classkukadu_1_1CartesianDMPLearner"/>
+        <childnode refid="244" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="244">
+        <label>kukadu::GeneralDmpLearner</label>
+        <link refid="classkukadu_1_1GeneralDmpLearner"/>
+      </node>
+      <node id="246">
+        <label>kukadu::JointDMPLearner</label>
+        <link refid="classkukadu_1_1JointDMPLearner"/>
+        <childnode refid="244" relation="public-inheritance">
+        </childnode>
+      </node>
+    </inheritancegraph>
+    <location file="/home/agyss/iis_robot_sw/iis_catkin_ws/src/kukadu/include/kukadu/control/dmp.hpp" line="249" column="1" bodyfile="/home/agyss/iis_robot_sw/iis_catkin_ws/src/kukadu/include/kukadu/control/dmp.hpp" bodystart="249" bodyend="310"/>
+    <listofallmembers>
+      <member refid="classkukadu_1_1GeneralDmpLearner_1ab6b6b3fa49ef6c7925dbe34ea5991f48" prot="protected" virt="non-virtual"><scope>kukadu::GeneralDmpLearner</scope><name>ax</name></member>
+      <member refid="classkukadu_1_1GeneralDmpLearner_1abccf72154087561579ce0abe1ff85ff3" prot="protected" virt="non-virtual"><scope>kukadu::GeneralDmpLearner</scope><name>az</name></member>
+      <member refid="classkukadu_1_1GeneralDmpLearner_1ad910f3a86c8551f63c643347ae4f15fe" prot="protected" virt="non-virtual"><scope>kukadu::GeneralDmpLearner</scope><name>bz</name></member>
+      <member refid="classkukadu_1_1GeneralDmpLearner_1a5df8ee4640adf585cbce7b04e77ae3a6" prot="protected" virt="pure-virtual"><scope>kukadu::GeneralDmpLearner</scope><name>computeFitY</name></member>
+      <member refid="classkukadu_1_1GeneralDmpLearner_1a0185175e75e5925ccd7712ba07ddebbf" prot="private" virt="non-virtual"><scope>kukadu::GeneralDmpLearner</scope><name>construct</name></member>
+      <member refid="classkukadu_1_1GeneralDmpLearner_1ac09b61a9d1fc81a4d32b00e8a27c9a37" prot="protected" virt="pure-virtual"><scope>kukadu::GeneralDmpLearner</scope><name>createDmpInstance</name></member>
+      <member refid="classkukadu_1_1GeneralDmpLearner_1acd76ca9cd8cbe99822771cedbce5a3a7" prot="private" virt="non-virtual"><scope>kukadu::GeneralDmpLearner</scope><name>degFreedom</name></member>
+      <member refid="classkukadu_1_1GeneralDmpLearner_1a9984bc4c34a241ed875bcd6189274707" prot="private" virt="non-virtual"><scope>kukadu::GeneralDmpLearner</scope><name>dmpBase</name></member>
+      <member refid="classkukadu_1_1GeneralDmpLearner_1a4f2f314a7bfb0d9ff54fabbb038757c8" prot="public" virt="non-virtual"><scope>kukadu::GeneralDmpLearner</scope><name>fitTrajectories</name></member>
+      <member refid="classkukadu_1_1GeneralDmpLearner_1ae831ed2b70ab2681b9e9e500066f0ff0" prot="private" virt="non-virtual"><scope>kukadu::GeneralDmpLearner</scope><name>fitTrajectory</name></member>
+      <member refid="classkukadu_1_1GeneralDmpLearner_1ac1d5a121adb29527ee7044d1c1394342" prot="public" virt="non-virtual"><scope>kukadu::GeneralDmpLearner</scope><name>GeneralDmpLearner</name></member>
+      <member refid="classkukadu_1_1GeneralDmpLearner_1a317520b316d8d6e75206237f0848b3c1" prot="public" virt="non-virtual"><scope>kukadu::GeneralDmpLearner</scope><name>GeneralDmpLearner</name></member>
+      <member refid="classkukadu_1_1GeneralDmpLearner_1ab9adb95165d0799c1abe7038b088c419" prot="public" virt="non-virtual"><scope>kukadu::GeneralDmpLearner</scope><name>GeneralDmpLearner</name></member>
+      <member refid="classkukadu_1_1GeneralDmpLearner_1ac98e9dc7b0da404a3df4bd7e8bd77ae7" prot="public" virt="non-virtual"><scope>kukadu::GeneralDmpLearner</scope><name>GeneralDmpLearner</name></member>
+      <member refid="classkukadu_1_1GeneralDmpLearner_1a15880c76354ec59011b3156a40601e82" prot="private" virt="non-virtual"><scope>kukadu::GeneralDmpLearner</scope><name>joints</name></member>
+      <member refid="classkukadu_1_1GeneralDmpLearner_1af27b307365984e9deae829ca2159ed57" prot="protected" virt="non-virtual"><scope>kukadu::GeneralDmpLearner</scope><name>tau</name></member>
+      <member refid="classkukadu_1_1GeneralDmpLearner_1af5dd59826adef750889a26914250c2e2" prot="private" virt="non-virtual"><scope>kukadu::GeneralDmpLearner</scope><name>timesInSeconds</name></member>
+    </listofallmembers>
+  </compounddef>
+</doxygen>

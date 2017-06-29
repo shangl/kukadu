@@ -1,0 +1,281 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.8.11">
+  <compounddef id="classkukadu_1_1HapticControllerResult" kind="class" language="C++" prot="public">
+    <compoundname>kukadu::HapticControllerResult</compoundname>
+    <basecompoundref refid="classkukadu_1_1ControllerResult" prot="public" virt="non-virtual">kukadu::ControllerResult</basecompoundref>
+      <sectiondef kind="private-attrib">
+      <memberdef kind="variable" id="classkukadu_1_1HapticControllerResult_1a49f71a3c8c9039535877178379c15f32" prot="private" static="no" mutable="no">
+        <type>bool</type>
+        <definition>bool kukadu::HapticControllerResult::bored</definition>
+        <argsstring></argsstring>
+        <name>bored</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/agyss/iis_robot_sw/iis_catkin_ws/src/kukadu/include/kukadu/manipulation/playing/controllers.hpp" line="23" column="1" bodyfile="/home/agyss/iis_robot_sw/iis_catkin_ws/src/kukadu/include/kukadu/manipulation/playing/controllers.hpp" bodystart="23" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classkukadu_1_1HapticControllerResult_1a0cb864d35c500388cd5be8c5d666897b" prot="private" static="no" mutable="no">
+        <type>std::vector&lt; int &gt;</type>
+        <definition>std::vector&lt;int&gt; kukadu::HapticControllerResult::walkedPath</definition>
+        <argsstring></argsstring>
+        <name>walkedPath</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/agyss/iis_robot_sw/iis_catkin_ws/src/kukadu/include/kukadu/manipulation/playing/controllers.hpp" line="25" column="1" bodyfile="/home/agyss/iis_robot_sw/iis_catkin_ws/src/kukadu/include/kukadu/manipulation/playing/controllers.hpp" bodystart="25" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classkukadu_1_1HapticControllerResult_1ad5d700b3cd0c7e0860ce50432fb241f5" prot="private" static="no" mutable="no">
+        <type>std::map&lt; std::string, std::vector&lt; double &gt; &gt;</type>
+        <definition>std::map&lt;std::string, std::vector&lt;double&gt; &gt; kukadu::HapticControllerResult::entropies</definition>
+        <argsstring></argsstring>
+        <name>entropies</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/agyss/iis_robot_sw/iis_catkin_ws/src/kukadu/include/kukadu/manipulation/playing/controllers.hpp" line="27" column="1" bodyfile="/home/agyss/iis_robot_sw/iis_catkin_ws/src/kukadu/include/kukadu/manipulation/playing/controllers.hpp" bodystart="27" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classkukadu_1_1HapticControllerResult_1a7626c71aa084974782a8dc689cc42fab" prot="private" static="no" mutable="no">
+        <type>std::map&lt; std::string, std::pair&lt; double, double &gt; &gt;</type>
+        <definition>std::map&lt;std::string, std::pair&lt;double, double&gt; &gt; kukadu::HapticControllerResult::meanAndVar</definition>
+        <argsstring></argsstring>
+        <name>meanAndVar</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/agyss/iis_robot_sw/iis_catkin_ws/src/kukadu/include/kukadu/manipulation/playing/controllers.hpp" line="28" column="1" bodyfile="/home/agyss/iis_robot_sw/iis_catkin_ws/src/kukadu/include/kukadu/manipulation/playing/controllers.hpp" bodystart="28" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classkukadu_1_1HapticControllerResult_1aaaf866bc07fd04714b5e5c0440369f89" prot="private" static="no" mutable="no">
+        <type>KUKADU_SHARED_PTR&lt; std::tuple&lt; double, KUKADU_SHARED_PTR&lt; <ref refid="classkukadu_1_1Clip" kindref="compound">kukadu::Clip</ref> &gt;, std::vector&lt; KUKADU_SHARED_PTR&lt; <ref refid="classkukadu_1_1Clip" kindref="compound">kukadu::Clip</ref> &gt; &gt; &gt; &gt;</type>
+        <definition>KUKADU_SHARED_PTR&lt;std::tuple&lt;double, KUKADU_SHARED_PTR&lt;kukadu::Clip&gt;, std::vector&lt;KUKADU_SHARED_PTR&lt;kukadu::Clip&gt; &gt; &gt; &gt; kukadu::HapticControllerResult::environmentTransition</definition>
+        <argsstring></argsstring>
+        <name>environmentTransition</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/agyss/iis_robot_sw/iis_catkin_ws/src/kukadu/include/kukadu/manipulation/playing/controllers.hpp" line="30" column="1" bodyfile="/home/agyss/iis_robot_sw/iis_catkin_ws/src/kukadu/include/kukadu/manipulation/playing/controllers.hpp" bodystart="30" bodyend="-1"/>
+      </memberdef>
+      </sectiondef>
+      <sectiondef kind="public-func">
+      <memberdef kind="function" id="classkukadu_1_1HapticControllerResult_1a47345ffc29dd31ecb607327272e22f77" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type></type>
+        <definition>kukadu::HapticControllerResult::HapticControllerResult</definition>
+        <argsstring>(arma::vec t, std::vector&lt; arma::vec &gt; ys, bool success, bool bored, std::vector&lt; int &gt; walkedPath, KUKADU_SHARED_PTR&lt; std::tuple&lt; double, KUKADU_SHARED_PTR&lt; kukadu::Clip &gt;, std::vector&lt; KUKADU_SHARED_PTR&lt; kukadu::Clip &gt; &gt; &gt; &gt; environmentTransition)</argsstring>
+        <name>HapticControllerResult</name>
+        <param>
+          <type>arma::vec</type>
+          <declname>t</declname>
+        </param>
+        <param>
+          <type>std::vector&lt; arma::vec &gt;</type>
+          <declname>ys</declname>
+        </param>
+        <param>
+          <type>bool</type>
+          <declname>success</declname>
+        </param>
+        <param>
+          <type>bool</type>
+          <declname>bored</declname>
+        </param>
+        <param>
+          <type>std::vector&lt; int &gt;</type>
+          <declname>walkedPath</declname>
+        </param>
+        <param>
+          <type>KUKADU_SHARED_PTR&lt; std::tuple&lt; double, KUKADU_SHARED_PTR&lt; <ref refid="classkukadu_1_1Clip" kindref="compound">kukadu::Clip</ref> &gt;, std::vector&lt; KUKADU_SHARED_PTR&lt; <ref refid="classkukadu_1_1Clip" kindref="compound">kukadu::Clip</ref> &gt; &gt; &gt; &gt;</type>
+          <declname>environmentTransition</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/agyss/iis_robot_sw/iis_catkin_ws/src/kukadu/include/kukadu/manipulation/playing/controllers.hpp" line="34" column="1" bodyfile="/home/agyss/iis_robot_sw/iis_catkin_ws/src/kukadu/src/manipulation/playing/controllers.cpp" bodystart="1362" bodyend="1370"/>
+      </memberdef>
+      <memberdef kind="function" id="classkukadu_1_1HapticControllerResult_1a9de0d818f4846a50824982a206093174" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>bool</type>
+        <definition>bool kukadu::HapticControllerResult::wasBored</definition>
+        <argsstring>()</argsstring>
+        <name>wasBored</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/agyss/iis_robot_sw/iis_catkin_ws/src/kukadu/include/kukadu/manipulation/playing/controllers.hpp" line="36" column="1" bodyfile="/home/agyss/iis_robot_sw/iis_catkin_ws/src/kukadu/src/manipulation/playing/controllers.cpp" bodystart="1372" bodyend="1374"/>
+      </memberdef>
+      <memberdef kind="function" id="classkukadu_1_1HapticControllerResult_1a41168ae19f32a8718ce596b754fe2b60" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>void kukadu::HapticControllerResult::setWasBored</definition>
+        <argsstring>(bool wasBored)</argsstring>
+        <name>setWasBored</name>
+        <param>
+          <type>bool</type>
+          <declname>wasBored</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/agyss/iis_robot_sw/iis_catkin_ws/src/kukadu/include/kukadu/manipulation/playing/controllers.hpp" line="38" column="1" bodyfile="/home/agyss/iis_robot_sw/iis_catkin_ws/src/kukadu/src/manipulation/playing/controllers.cpp" bodystart="1400" bodyend="1402"/>
+      </memberdef>
+      <memberdef kind="function" id="classkukadu_1_1HapticControllerResult_1adfc6e0fc926a70efe4f0fe385a841203" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>int</type>
+        <definition>int kukadu::HapticControllerResult::getFinalStateClass</definition>
+        <argsstring>()</argsstring>
+        <name>getFinalStateClass</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/agyss/iis_robot_sw/iis_catkin_ws/src/kukadu/include/kukadu/manipulation/playing/controllers.hpp" line="40" column="1" bodyfile="/home/agyss/iis_robot_sw/iis_catkin_ws/src/kukadu/src/manipulation/playing/controllers.cpp" bodystart="1396" bodyend="1398"/>
+      </memberdef>
+      <memberdef kind="function" id="classkukadu_1_1HapticControllerResult_1ad22c014f12ae0bff2c24edc4cce7fd32" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>std::vector&lt; int &gt;</type>
+        <definition>std::vector&lt; int &gt; kukadu::HapticControllerResult::getWalkedPath</definition>
+        <argsstring>()</argsstring>
+        <name>getWalkedPath</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/agyss/iis_robot_sw/iis_catkin_ws/src/kukadu/include/kukadu/manipulation/playing/controllers.hpp" line="41" column="1" bodyfile="/home/agyss/iis_robot_sw/iis_catkin_ws/src/kukadu/src/manipulation/playing/controllers.cpp" bodystart="1376" bodyend="1378"/>
+      </memberdef>
+      <memberdef kind="function" id="classkukadu_1_1HapticControllerResult_1a5019187d52615705b23481128de8ef17" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>std::map&lt; std::string, std::vector&lt; double &gt; &gt;</type>
+        <definition>std::map&lt; std::string, std::vector&lt; double &gt; &gt; kukadu::HapticControllerResult::getEntropies</definition>
+        <argsstring>()</argsstring>
+        <name>getEntropies</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/agyss/iis_robot_sw/iis_catkin_ws/src/kukadu/include/kukadu/manipulation/playing/controllers.hpp" line="43" column="1" bodyfile="/home/agyss/iis_robot_sw/iis_catkin_ws/src/kukadu/src/manipulation/playing/controllers.cpp" bodystart="1392" bodyend="1394"/>
+      </memberdef>
+      <memberdef kind="function" id="classkukadu_1_1HapticControllerResult_1a8897bf6371b7f8a1624dc9f0d5f4248f" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>std::map&lt; std::string, std::pair&lt; double, double &gt; &gt;</type>
+        <definition>std::map&lt; std::string, std::pair&lt; double, double &gt; &gt; kukadu::HapticControllerResult::getMeanAndVar</definition>
+        <argsstring>()</argsstring>
+        <name>getMeanAndVar</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/agyss/iis_robot_sw/iis_catkin_ws/src/kukadu/include/kukadu/manipulation/playing/controllers.hpp" line="44" column="1" bodyfile="/home/agyss/iis_robot_sw/iis_catkin_ws/src/kukadu/src/manipulation/playing/controllers.cpp" bodystart="1384" bodyend="1386"/>
+      </memberdef>
+      <memberdef kind="function" id="classkukadu_1_1HapticControllerResult_1a61989f77350b4021008f0c1a29e50423" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>void kukadu::HapticControllerResult::setEntropyMeanAndVariance</definition>
+        <argsstring>(std::map&lt; std::string, std::pair&lt; double, double &gt; &gt; meanAndVar)</argsstring>
+        <name>setEntropyMeanAndVariance</name>
+        <param>
+          <type>std::map&lt; std::string, std::pair&lt; double, double &gt; &gt;</type>
+          <declname>meanAndVar</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/agyss/iis_robot_sw/iis_catkin_ws/src/kukadu/include/kukadu/manipulation/playing/controllers.hpp" line="46" column="1" bodyfile="/home/agyss/iis_robot_sw/iis_catkin_ws/src/kukadu/src/manipulation/playing/controllers.cpp" bodystart="1380" bodyend="1382"/>
+      </memberdef>
+      <memberdef kind="function" id="classkukadu_1_1HapticControllerResult_1aa63c891414fe5d58deea87e4623d635f" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>void kukadu::HapticControllerResult::setEntropies</definition>
+        <argsstring>(std::map&lt; std::string, std::vector&lt; double &gt; &gt; entropies)</argsstring>
+        <name>setEntropies</name>
+        <param>
+          <type>std::map&lt; std::string, std::vector&lt; double &gt; &gt;</type>
+          <declname>entropies</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/agyss/iis_robot_sw/iis_catkin_ws/src/kukadu/include/kukadu/manipulation/playing/controllers.hpp" line="47" column="1" bodyfile="/home/agyss/iis_robot_sw/iis_catkin_ws/src/kukadu/src/manipulation/playing/controllers.cpp" bodystart="1388" bodyend="1390"/>
+      </memberdef>
+      </sectiondef>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <inheritancegraph>
+      <node id="292">
+        <label>kukadu::HapticControllerResult</label>
+        <link refid="classkukadu_1_1HapticControllerResult"/>
+        <childnode refid="293" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="293">
+        <label>kukadu::ControllerResult</label>
+        <link refid="classkukadu_1_1ControllerResult"/>
+      </node>
+    </inheritancegraph>
+    <collaborationgraph>
+      <node id="294">
+        <label>kukadu::HapticControllerResult</label>
+        <link refid="classkukadu_1_1HapticControllerResult"/>
+        <childnode refid="295" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="295">
+        <label>kukadu::ControllerResult</label>
+        <link refid="classkukadu_1_1ControllerResult"/>
+      </node>
+    </collaborationgraph>
+    <location file="/home/agyss/iis_robot_sw/iis_catkin_ws/src/kukadu/include/kukadu/manipulation/playing/controllers.hpp" line="19" column="1" bodyfile="/home/agyss/iis_robot_sw/iis_catkin_ws/src/kukadu/include/kukadu/manipulation/playing/controllers.hpp" bodystart="19" bodyend="49"/>
+    <listofallmembers>
+      <member refid="classkukadu_1_1HapticControllerResult_1a49f71a3c8c9039535877178379c15f32" prot="private" virt="non-virtual"><scope>kukadu::HapticControllerResult</scope><name>bored</name></member>
+      <member refid="classkukadu_1_1ControllerResult_1ad2ed8a808d635b2b6f3183ae9447bd0c" prot="public" virt="non-virtual"><scope>kukadu::HapticControllerResult</scope><name>ControllerResult</name></member>
+      <member refid="classkukadu_1_1HapticControllerResult_1ad5d700b3cd0c7e0860ce50432fb241f5" prot="private" virt="non-virtual"><scope>kukadu::HapticControllerResult</scope><name>entropies</name></member>
+      <member refid="classkukadu_1_1HapticControllerResult_1aaaf866bc07fd04714b5e5c0440369f89" prot="private" virt="non-virtual"><scope>kukadu::HapticControllerResult</scope><name>environmentTransition</name></member>
+      <member refid="classkukadu_1_1HapticControllerResult_1a5019187d52615705b23481128de8ef17" prot="public" virt="non-virtual"><scope>kukadu::HapticControllerResult</scope><name>getEntropies</name></member>
+      <member refid="classkukadu_1_1HapticControllerResult_1adfc6e0fc926a70efe4f0fe385a841203" prot="public" virt="non-virtual"><scope>kukadu::HapticControllerResult</scope><name>getFinalStateClass</name></member>
+      <member refid="classkukadu_1_1HapticControllerResult_1a8897bf6371b7f8a1624dc9f0d5f4248f" prot="public" virt="non-virtual"><scope>kukadu::HapticControllerResult</scope><name>getMeanAndVar</name></member>
+      <member refid="classkukadu_1_1ControllerResult_1aeb935f4206986fea6d5762e4c31298b6" prot="public" virt="non-virtual"><scope>kukadu::HapticControllerResult</scope><name>getSuccess</name></member>
+      <member refid="classkukadu_1_1ControllerResult_1a26edcc9c10dccd4c53c18e081712ed48" prot="public" virt="non-virtual"><scope>kukadu::HapticControllerResult</scope><name>getTimes</name></member>
+      <member refid="classkukadu_1_1HapticControllerResult_1ad22c014f12ae0bff2c24edc4cce7fd32" prot="public" virt="non-virtual"><scope>kukadu::HapticControllerResult</scope><name>getWalkedPath</name></member>
+      <member refid="classkukadu_1_1ControllerResult_1a620e3873f0e548c919ba5452b12c98a6" prot="public" virt="non-virtual"><scope>kukadu::HapticControllerResult</scope><name>getYCol</name></member>
+      <member refid="classkukadu_1_1ControllerResult_1a6d39870fa7743699c4376562f687a56b" prot="public" virt="non-virtual"><scope>kukadu::HapticControllerResult</scope><name>getYs</name></member>
+      <member refid="classkukadu_1_1HapticControllerResult_1a47345ffc29dd31ecb607327272e22f77" prot="public" virt="non-virtual"><scope>kukadu::HapticControllerResult</scope><name>HapticControllerResult</name></member>
+      <member refid="classkukadu_1_1HapticControllerResult_1a7626c71aa084974782a8dc689cc42fab" prot="private" virt="non-virtual"><scope>kukadu::HapticControllerResult</scope><name>meanAndVar</name></member>
+      <member refid="classkukadu_1_1HapticControllerResult_1aa63c891414fe5d58deea87e4623d635f" prot="public" virt="non-virtual"><scope>kukadu::HapticControllerResult</scope><name>setEntropies</name></member>
+      <member refid="classkukadu_1_1HapticControllerResult_1a61989f77350b4021008f0c1a29e50423" prot="public" virt="non-virtual"><scope>kukadu::HapticControllerResult</scope><name>setEntropyMeanAndVariance</name></member>
+      <member refid="classkukadu_1_1ControllerResult_1a77c5a596b26000f06ee1138ce62c82a7" prot="public" virt="non-virtual"><scope>kukadu::HapticControllerResult</scope><name>setSuccess</name></member>
+      <member refid="classkukadu_1_1HapticControllerResult_1a41168ae19f32a8718ce596b754fe2b60" prot="public" virt="non-virtual"><scope>kukadu::HapticControllerResult</scope><name>setWasBored</name></member>
+      <member refid="classkukadu_1_1HapticControllerResult_1a0cb864d35c500388cd5be8c5d666897b" prot="private" virt="non-virtual"><scope>kukadu::HapticControllerResult</scope><name>walkedPath</name></member>
+      <member refid="classkukadu_1_1HapticControllerResult_1a9de0d818f4846a50824982a206093174" prot="public" virt="non-virtual"><scope>kukadu::HapticControllerResult</scope><name>wasBored</name></member>
+      <member refid="classkukadu_1_1ControllerResult_1a7e5239469458c51263456d030cb0a724" prot="public" virt="virtual"><scope>kukadu::HapticControllerResult</scope><name>~ControllerResult</name></member>
+    </listofallmembers>
+  </compounddef>
+</doxygen>

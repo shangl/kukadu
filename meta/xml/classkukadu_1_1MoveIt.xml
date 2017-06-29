@@ -1,0 +1,838 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.8.11">
+  <compounddef id="classkukadu_1_1MoveIt" kind="class" language="C++" prot="public">
+    <compoundname>kukadu::MoveIt</compoundname>
+    <basecompoundref refid="classkukadu_1_1PathPlanner" prot="public" virt="non-virtual">kukadu::PathPlanner</basecompoundref>
+      <sectiondef kind="private-attrib">
+      <memberdef kind="variable" id="classkukadu_1_1MoveIt_1af4f959cc853f4b78fe3c00d2bf8b00f6" prot="private" static="no" mutable="no">
+        <type>bool</type>
+        <definition>bool kukadu::MoveIt::avoidCollisions</definition>
+        <argsstring></argsstring>
+        <name>avoidCollisions</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/agyss/iis_robot_sw/iis_catkin_ws/src/kukadu/include/kukadu/planning/moveit.hpp" line="55" column="1" bodyfile="/home/agyss/iis_robot_sw/iis_catkin_ws/src/kukadu/include/kukadu/planning/moveit.hpp" bodystart="55" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classkukadu_1_1MoveIt_1a45dc65b03447d1882bdd48f9dabacbf4" prot="private" static="no" mutable="no">
+        <type>int</type>
+        <definition>int kukadu::MoveIt::maxAttempts</definition>
+        <argsstring></argsstring>
+        <name>maxAttempts</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/agyss/iis_robot_sw/iis_catkin_ws/src/kukadu/include/kukadu/planning/moveit.hpp" line="57" column="1" bodyfile="/home/agyss/iis_robot_sw/iis_catkin_ws/src/kukadu/include/kukadu/planning/moveit.hpp" bodystart="57" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classkukadu_1_1MoveIt_1adb8d75691cab0a04a6929818da8e8df8" prot="private" static="no" mutable="no">
+        <type>int</type>
+        <definition>int kukadu::MoveIt::degOfFreedom</definition>
+        <argsstring></argsstring>
+        <name>degOfFreedom</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/agyss/iis_robot_sw/iis_catkin_ws/src/kukadu/include/kukadu/planning/moveit.hpp" line="58" column="1" bodyfile="/home/agyss/iis_robot_sw/iis_catkin_ws/src/kukadu/include/kukadu/planning/moveit.hpp" bodystart="58" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classkukadu_1_1MoveIt_1afce5c6eec1d4f4db9668517e01c0d39c" prot="private" static="no" mutable="no">
+        <type>double</type>
+        <definition>double kukadu::MoveIt::timeOut</definition>
+        <argsstring></argsstring>
+        <name>timeOut</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/agyss/iis_robot_sw/iis_catkin_ws/src/kukadu/include/kukadu/planning/moveit.hpp" line="60" column="1" bodyfile="/home/agyss/iis_robot_sw/iis_catkin_ws/src/kukadu/include/kukadu/planning/moveit.hpp" bodystart="60" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classkukadu_1_1MoveIt_1a5c27ae8a58bcc49ac750dec7c5e8d17a" prot="private" static="no" mutable="no">
+        <type>double</type>
+        <definition>double kukadu::MoveIt::planning_time_</definition>
+        <argsstring></argsstring>
+        <name>planning_time_</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/agyss/iis_robot_sw/iis_catkin_ws/src/kukadu/include/kukadu/planning/moveit.hpp" line="62" column="1" bodyfile="/home/agyss/iis_robot_sw/iis_catkin_ws/src/kukadu/include/kukadu/planning/moveit.hpp" bodystart="62" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classkukadu_1_1MoveIt_1aa35e9ed72f890733e0e1a5e6b69fcf55" prot="private" static="no" mutable="no">
+        <type>int</type>
+        <definition>int kukadu::MoveIt::planning_attempts_</definition>
+        <argsstring></argsstring>
+        <name>planning_attempts_</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/agyss/iis_robot_sw/iis_catkin_ws/src/kukadu/include/kukadu/planning/moveit.hpp" line="63" column="1" bodyfile="/home/agyss/iis_robot_sw/iis_catkin_ws/src/kukadu/include/kukadu/planning/moveit.hpp" bodystart="63" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classkukadu_1_1MoveIt_1a76bfb6272b67660036c272d60738569d" prot="private" static="no" mutable="no">
+        <type>int</type>
+        <definition>int kukadu::MoveIt::max_traj_pts_</definition>
+        <argsstring></argsstring>
+        <name>max_traj_pts_</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/agyss/iis_robot_sw/iis_catkin_ws/src/kukadu/include/kukadu/planning/moveit.hpp" line="64" column="1" bodyfile="/home/agyss/iis_robot_sw/iis_catkin_ws/src/kukadu/include/kukadu/planning/moveit.hpp" bodystart="64" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classkukadu_1_1MoveIt_1aa210b5faf9e52e8dadc2b1fe13885e5a" prot="private" static="no" mutable="no">
+        <type>double</type>
+        <definition>double kukadu::MoveIt::goal_joint_tolerance_</definition>
+        <argsstring></argsstring>
+        <name>goal_joint_tolerance_</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/agyss/iis_robot_sw/iis_catkin_ws/src/kukadu/include/kukadu/planning/moveit.hpp" line="65" column="1" bodyfile="/home/agyss/iis_robot_sw/iis_catkin_ws/src/kukadu/include/kukadu/planning/moveit.hpp" bodystart="65" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classkukadu_1_1MoveIt_1a03165f71463805c5421aaf9fbf1a21de" prot="private" static="no" mutable="no">
+        <type>double</type>
+        <definition>double kukadu::MoveIt::goal_position_tolerance_</definition>
+        <argsstring></argsstring>
+        <name>goal_position_tolerance_</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/agyss/iis_robot_sw/iis_catkin_ws/src/kukadu/include/kukadu/planning/moveit.hpp" line="66" column="1" bodyfile="/home/agyss/iis_robot_sw/iis_catkin_ws/src/kukadu/include/kukadu/planning/moveit.hpp" bodystart="66" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classkukadu_1_1MoveIt_1a0f84c61bc44bd93b65ddab7f5b59973e" prot="private" static="no" mutable="no">
+        <type>double</type>
+        <definition>double kukadu::MoveIt::goal_orientation_tolerance_</definition>
+        <argsstring></argsstring>
+        <name>goal_orientation_tolerance_</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/agyss/iis_robot_sw/iis_catkin_ws/src/kukadu/include/kukadu/planning/moveit.hpp" line="67" column="1" bodyfile="/home/agyss/iis_robot_sw/iis_catkin_ws/src/kukadu/include/kukadu/planning/moveit.hpp" bodystart="67" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classkukadu_1_1MoveIt_1ab47dbd487f63df362c75963d100442c2" prot="private" static="no" mutable="no">
+        <type>std::string</type>
+        <definition>std::string kukadu::MoveIt::planner_id_</definition>
+        <argsstring></argsstring>
+        <name>planner_id_</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/agyss/iis_robot_sw/iis_catkin_ws/src/kukadu/include/kukadu/planning/moveit.hpp" line="68" column="1" bodyfile="/home/agyss/iis_robot_sw/iis_catkin_ws/src/kukadu/include/kukadu/planning/moveit.hpp" bodystart="68" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classkukadu_1_1MoveIt_1af1558ffdeddab868e39f0ccae3a98da9" prot="private" static="no" mutable="no">
+        <type>std::vector&lt; std::string &gt;</type>
+        <definition>std::vector&lt;std::string&gt; kukadu::MoveIt::jointNames</definition>
+        <argsstring></argsstring>
+        <name>jointNames</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/agyss/iis_robot_sw/iis_catkin_ws/src/kukadu/include/kukadu/planning/moveit.hpp" line="70" column="1" bodyfile="/home/agyss/iis_robot_sw/iis_catkin_ws/src/kukadu/include/kukadu/planning/moveit.hpp" bodystart="70" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classkukadu_1_1MoveIt_1a5ee4b9db447e8ff6bcfcc091f1a01958" prot="private" static="no" mutable="no">
+        <type>std::string</type>
+        <definition>std::string kukadu::MoveIt::tipLink</definition>
+        <argsstring></argsstring>
+        <name>tipLink</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/agyss/iis_robot_sw/iis_catkin_ws/src/kukadu/include/kukadu/planning/moveit.hpp" line="72" column="1" bodyfile="/home/agyss/iis_robot_sw/iis_catkin_ws/src/kukadu/include/kukadu/planning/moveit.hpp" bodystart="72" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classkukadu_1_1MoveIt_1a7d81d271add519ad28ddc9bfc098a01b" prot="private" static="no" mutable="no">
+        <type>std::string</type>
+        <definition>std::string kukadu::MoveIt::moveGroupName</definition>
+        <argsstring></argsstring>
+        <name>moveGroupName</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/agyss/iis_robot_sw/iis_catkin_ws/src/kukadu/include/kukadu/planning/moveit.hpp" line="73" column="1" bodyfile="/home/agyss/iis_robot_sw/iis_catkin_ws/src/kukadu/include/kukadu/planning/moveit.hpp" bodystart="73" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classkukadu_1_1MoveIt_1aaa0daeb7215332815dd8c0f3d6002830" prot="private" static="no" mutable="no">
+        <type>ros::NodeHandle</type>
+        <definition>ros::NodeHandle kukadu::MoveIt::node</definition>
+        <argsstring></argsstring>
+        <name>node</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/agyss/iis_robot_sw/iis_catkin_ws/src/kukadu/include/kukadu/planning/moveit.hpp" line="75" column="1" bodyfile="/home/agyss/iis_robot_sw/iis_catkin_ws/src/kukadu/include/kukadu/planning/moveit.hpp" bodystart="75" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classkukadu_1_1MoveIt_1a01b5531b6a9a4c1dc17118ddedb6643c" prot="private" static="no" mutable="no">
+        <type>robot_model::RobotModelPtr</type>
+        <definition>robot_model::RobotModelPtr kukadu::MoveIt::robot_model_</definition>
+        <argsstring></argsstring>
+        <name>robot_model_</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/agyss/iis_robot_sw/iis_catkin_ws/src/kukadu/include/kukadu/planning/moveit.hpp" line="77" column="1" bodyfile="/home/agyss/iis_robot_sw/iis_catkin_ws/src/kukadu/include/kukadu/planning/moveit.hpp" bodystart="77" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classkukadu_1_1MoveIt_1a9ce4894fb9e4d70ee4980f8c490855ac" prot="private" static="no" mutable="no">
+        <type>robot_model_loader::RobotModelLoaderPtr</type>
+        <definition>robot_model_loader::RobotModelLoaderPtr kukadu::MoveIt::rml_</definition>
+        <argsstring></argsstring>
+        <name>rml_</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/agyss/iis_robot_sw/iis_catkin_ws/src/kukadu/include/kukadu/planning/moveit.hpp" line="78" column="1" bodyfile="/home/agyss/iis_robot_sw/iis_catkin_ws/src/kukadu/include/kukadu/planning/moveit.hpp" bodystart="78" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classkukadu_1_1MoveIt_1a324a2999abbb7444fb6a72a7fc4d36b1" prot="private" static="no" mutable="no">
+        <type>planning_scene::PlanningScenePtr</type>
+        <definition>planning_scene::PlanningScenePtr kukadu::MoveIt::planning_scene_</definition>
+        <argsstring></argsstring>
+        <name>planning_scene_</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/agyss/iis_robot_sw/iis_catkin_ws/src/kukadu/include/kukadu/planning/moveit.hpp" line="79" column="1" bodyfile="/home/agyss/iis_robot_sw/iis_catkin_ws/src/kukadu/include/kukadu/planning/moveit.hpp" bodystart="79" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classkukadu_1_1MoveIt_1aad92e4ca21efa622c210c04c5682e62e" prot="private" static="no" mutable="no">
+        <type>const moveit::planning_interface::MoveGroup &amp;</type>
+        <definition>const moveit::planning_interface::MoveGroup&amp; kukadu::MoveIt::moveGroup</definition>
+        <argsstring></argsstring>
+        <name>moveGroup</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/agyss/iis_robot_sw/iis_catkin_ws/src/kukadu/include/kukadu/planning/moveit.hpp" line="84" column="1" bodyfile="/home/agyss/iis_robot_sw/iis_catkin_ws/src/kukadu/include/kukadu/planning/moveit.hpp" bodystart="84" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classkukadu_1_1MoveIt_1afbcf77b18188347d4594f7eec5652136" prot="private" static="no" mutable="no">
+        <type>ros::ServiceClient</type>
+        <definition>ros::ServiceClient kukadu::MoveIt::planning_client_</definition>
+        <argsstring></argsstring>
+        <name>planning_client_</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/agyss/iis_robot_sw/iis_catkin_ws/src/kukadu/include/kukadu/planning/moveit.hpp" line="87" column="1" bodyfile="/home/agyss/iis_robot_sw/iis_catkin_ws/src/kukadu/include/kukadu/planning/moveit.hpp" bodystart="87" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classkukadu_1_1MoveIt_1aa6ef411eff8fc92be8d55548082a70eb" prot="private" static="no" mutable="no">
+        <type>KUKADU_SHARED_PTR&lt; <ref refid="classkukadu_1_1Constraint" kindref="compound">Constraint</ref> &gt;</type>
+        <definition>KUKADU_SHARED_PTR&lt;Constraint&gt; kukadu::MoveIt::modelRestriction</definition>
+        <argsstring></argsstring>
+        <name>modelRestriction</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/agyss/iis_robot_sw/iis_catkin_ws/src/kukadu/include/kukadu/planning/moveit.hpp" line="89" column="1" bodyfile="/home/agyss/iis_robot_sw/iis_catkin_ws/src/kukadu/include/kukadu/planning/moveit.hpp" bodystart="89" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classkukadu_1_1MoveIt_1a495338209953b9f358e2c05ee4893a9c" prot="private" static="no" mutable="no">
+        <type>robot_model::JointModelGroup *</type>
+        <definition>robot_model::JointModelGroup* kukadu::MoveIt::jnt_model_group</definition>
+        <argsstring></argsstring>
+        <name>jnt_model_group</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/agyss/iis_robot_sw/iis_catkin_ws/src/kukadu/include/kukadu/planning/moveit.hpp" line="90" column="1" bodyfile="/home/agyss/iis_robot_sw/iis_catkin_ws/src/kukadu/include/kukadu/planning/moveit.hpp" bodystart="90" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classkukadu_1_1MoveIt_1afc635ba116b6937e9f1d68925b1979c2" prot="private" static="no" mutable="no">
+        <type>KUKADU_SHARED_PTR&lt; <ref refid="classkukadu_1_1SimplePlanner" kindref="compound">SimplePlanner</ref> &gt;</type>
+        <definition>KUKADU_SHARED_PTR&lt;SimplePlanner&gt; kukadu::MoveIt::simplePlanner</definition>
+        <argsstring></argsstring>
+        <name>simplePlanner</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/agyss/iis_robot_sw/iis_catkin_ws/src/kukadu/include/kukadu/planning/moveit.hpp" line="92" column="1" bodyfile="/home/agyss/iis_robot_sw/iis_catkin_ws/src/kukadu/include/kukadu/planning/moveit.hpp" bodystart="92" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classkukadu_1_1MoveIt_1a26d53ae0a614bdc769a2134e9a6f1521" prot="private" static="no" mutable="no">
+        <type>KUKADU_SHARED_PTR&lt; <ref refid="classkukadu_1_1ControlQueue" kindref="compound">ControlQueue</ref> &gt;</type>
+        <definition>KUKADU_SHARED_PTR&lt;ControlQueue&gt; kukadu::MoveIt::queue</definition>
+        <argsstring></argsstring>
+        <name>queue</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/agyss/iis_robot_sw/iis_catkin_ws/src/kukadu/include/kukadu/planning/moveit.hpp" line="93" column="1" bodyfile="/home/agyss/iis_robot_sw/iis_catkin_ws/src/kukadu/include/kukadu/planning/moveit.hpp" bodystart="93" bodyend="-1"/>
+      </memberdef>
+      </sectiondef>
+      <sectiondef kind="public-static-attrib">
+      <memberdef kind="variable" id="classkukadu_1_1MoveIt_1add665929ffeb6ce186119fa47ddbe3cf" prot="public" static="yes" mutable="no">
+        <type>constexpr int</type>
+        <definition>constexpr int kukadu::MoveIt::STD_MAX_ATTEMPTS</definition>
+        <argsstring></argsstring>
+        <name>STD_MAX_ATTEMPTS</name>
+        <initializer>= 5</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/agyss/iis_robot_sw/iis_catkin_ws/src/kukadu/include/kukadu/planning/moveit.hpp" line="123" column="1" bodyfile="/home/agyss/iis_robot_sw/iis_catkin_ws/src/kukadu/include/kukadu/planning/moveit.hpp" bodystart="123" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classkukadu_1_1MoveIt_1ac4b2f2756039fa58060eebd87c788c18" prot="public" static="yes" mutable="no">
+        <type>constexpr int</type>
+        <definition>constexpr int kukadu::MoveIt::STD_TIMEOUT</definition>
+        <argsstring></argsstring>
+        <name>STD_TIMEOUT</name>
+        <initializer>= 10</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/agyss/iis_robot_sw/iis_catkin_ws/src/kukadu/include/kukadu/planning/moveit.hpp" line="124" column="1" bodyfile="/home/agyss/iis_robot_sw/iis_catkin_ws/src/kukadu/include/kukadu/planning/moveit.hpp" bodystart="124" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classkukadu_1_1MoveIt_1afc4bca8312888ae169bed7dbd16a5cca" prot="public" static="yes" mutable="no">
+        <type>constexpr bool</type>
+        <definition>constexpr bool kukadu::MoveIt::STD_AVOID_COLLISIONS</definition>
+        <argsstring></argsstring>
+        <name>STD_AVOID_COLLISIONS</name>
+        <initializer>= true</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/agyss/iis_robot_sw/iis_catkin_ws/src/kukadu/include/kukadu/planning/moveit.hpp" line="125" column="1" bodyfile="/home/agyss/iis_robot_sw/iis_catkin_ws/src/kukadu/include/kukadu/planning/moveit.hpp" bodystart="125" bodyend="-1"/>
+      </memberdef>
+      </sectiondef>
+      <sectiondef kind="private-func">
+      <memberdef kind="function" id="classkukadu_1_1MoveIt_1a9afe0b9c3c74282da1bc74201d281621" prot="private" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>void kukadu::MoveIt::construct</definition>
+        <argsstring>(KUKADU_SHARED_PTR&lt; ControlQueue &gt; queue, ros::NodeHandle node, const std::string &amp;moveGroupName, std::vector&lt; std::string &gt; jointNames, std::string tipLink, bool avoidCollisions, int maxAttempts, double timeOut)</argsstring>
+        <name>construct</name>
+        <param>
+          <type>KUKADU_SHARED_PTR&lt; <ref refid="classkukadu_1_1ControlQueue" kindref="compound">ControlQueue</ref> &gt;</type>
+          <declname>queue</declname>
+        </param>
+        <param>
+          <type>ros::NodeHandle</type>
+          <declname>node</declname>
+        </param>
+        <param>
+          <type>const std::string &amp;</type>
+          <declname>moveGroupName</declname>
+        </param>
+        <param>
+          <type>std::vector&lt; std::string &gt;</type>
+          <declname>jointNames</declname>
+        </param>
+        <param>
+          <type>std::string</type>
+          <declname>tipLink</declname>
+        </param>
+        <param>
+          <type>bool</type>
+          <declname>avoidCollisions</declname>
+        </param>
+        <param>
+          <type>int</type>
+          <declname>maxAttempts</declname>
+        </param>
+        <param>
+          <type>double</type>
+          <declname>timeOut</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/agyss/iis_robot_sw/iis_catkin_ws/src/kukadu/include/kukadu/planning/moveit.hpp" line="95" column="1" bodyfile="/home/agyss/iis_robot_sw/iis_catkin_ws/src/kukadu/src/planning/moveit.cpp" bodystart="308" bodyend="364"/>
+      </memberdef>
+      <memberdef kind="function" id="classkukadu_1_1MoveIt_1ab179374eb2553df4352d50ca8ea5113d" prot="private" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>bool</type>
+        <definition>bool kukadu::MoveIt::collisionCheckCallback</definition>
+        <argsstring>(moveit::core::RobotState *state, const moveit::core::JointModelGroup *joint_group, const double *solution)</argsstring>
+        <name>collisionCheckCallback</name>
+        <param>
+          <type>moveit::core::RobotState *</type>
+          <declname>state</declname>
+        </param>
+        <param>
+          <type>const moveit::core::JointModelGroup *</type>
+          <declname>joint_group</declname>
+        </param>
+        <param>
+          <type>const double *</type>
+          <declname>solution</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/agyss/iis_robot_sw/iis_catkin_ws/src/kukadu/include/kukadu/planning/moveit.hpp" line="97" column="1" bodyfile="/home/agyss/iis_robot_sw/iis_catkin_ws/src/kukadu/src/planning/moveit.cpp" bodystart="366" bodyend="381"/>
+      </memberdef>
+      <memberdef kind="function" id="classkukadu_1_1MoveIt_1af21f91514318b8fce586d826b2647f65" prot="private" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>KUKADU_SHARED_PTR&lt; <ref refid="classkukadu_1_1Constraint" kindref="compound">Constraint</ref> &gt;</type>
+        <definition>KUKADU_SHARED_PTR&lt; Constraint &gt; kukadu::MoveIt::getModelConstraint</definition>
+        <argsstring>()</argsstring>
+        <name>getModelConstraint</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/agyss/iis_robot_sw/iis_catkin_ws/src/kukadu/include/kukadu/planning/moveit.hpp" line="99" column="1" bodyfile="/home/agyss/iis_robot_sw/iis_catkin_ws/src/kukadu/src/planning/moveit.cpp" bodystart="383" bodyend="385"/>
+      </memberdef>
+      </sectiondef>
+      <sectiondef kind="public-func">
+      <memberdef kind="function" id="classkukadu_1_1MoveIt_1af05bbf682a12c575e1d9940f7faf4d07" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type></type>
+        <definition>kukadu::MoveIt::MoveIt</definition>
+        <argsstring>(KUKADU_SHARED_PTR&lt; ControlQueue &gt; queue, ros::NodeHandle node, const std::string &amp;moveGroupName, std::vector&lt; std::string &gt; jointNames, std::string tipLink)</argsstring>
+        <name>MoveIt</name>
+        <param>
+          <type>KUKADU_SHARED_PTR&lt; <ref refid="classkukadu_1_1ControlQueue" kindref="compound">ControlQueue</ref> &gt;</type>
+          <declname>queue</declname>
+        </param>
+        <param>
+          <type>ros::NodeHandle</type>
+          <declname>node</declname>
+        </param>
+        <param>
+          <type>const std::string &amp;</type>
+          <declname>moveGroupName</declname>
+        </param>
+        <param>
+          <type>std::vector&lt; std::string &gt;</type>
+          <declname>jointNames</declname>
+        </param>
+        <param>
+          <type>std::string</type>
+          <declname>tipLink</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/agyss/iis_robot_sw/iis_catkin_ws/src/kukadu/include/kukadu/planning/moveit.hpp" line="103" column="1"/>
+      </memberdef>
+      <memberdef kind="function" id="classkukadu_1_1MoveIt_1a53313988a9ab67257a4718c7e5e26a89" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type></type>
+        <definition>kukadu::MoveIt::MoveIt</definition>
+        <argsstring>(KUKADU_SHARED_PTR&lt; ControlQueue &gt; queue, ros::NodeHandle node, const std::string &amp;moveGroupName, std::vector&lt; std::string &gt; jointNames, std::string tipLink, bool avoidCollisions, int maxAttempts, double timeOut)</argsstring>
+        <name>MoveIt</name>
+        <param>
+          <type>KUKADU_SHARED_PTR&lt; <ref refid="classkukadu_1_1ControlQueue" kindref="compound">ControlQueue</ref> &gt;</type>
+          <declname>queue</declname>
+        </param>
+        <param>
+          <type>ros::NodeHandle</type>
+          <declname>node</declname>
+        </param>
+        <param>
+          <type>const std::string &amp;</type>
+          <declname>moveGroupName</declname>
+        </param>
+        <param>
+          <type>std::vector&lt; std::string &gt;</type>
+          <declname>jointNames</declname>
+        </param>
+        <param>
+          <type>std::string</type>
+          <declname>tipLink</declname>
+        </param>
+        <param>
+          <type>bool</type>
+          <declname>avoidCollisions</declname>
+        </param>
+        <param>
+          <type>int</type>
+          <declname>maxAttempts</declname>
+        </param>
+        <param>
+          <type>double</type>
+          <declname>timeOut</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/agyss/iis_robot_sw/iis_catkin_ws/src/kukadu/include/kukadu/planning/moveit.hpp" line="104" column="1" bodyfile="/home/agyss/iis_robot_sw/iis_catkin_ws/src/kukadu/src/planning/moveit.cpp" bodystart="29" bodyend="34"/>
+      </memberdef>
+      <memberdef kind="function" id="classkukadu_1_1MoveIt_1a5c6edaf481c36d8dbf176606b17e3acd" prot="public" static="no" const="no" explicit="no" inline="no" virt="virtual">
+        <type>geometry_msgs::Pose</type>
+        <definition>geometry_msgs::Pose kukadu::MoveIt::computeFk</definition>
+        <argsstring>(std::vector&lt; double &gt; jointState)</argsstring>
+        <name>computeFk</name>
+        <reimplements refid="classkukadu_1_1Kinematics_1aa80b36c16d23f6031f9b133ed72795f2">computeFk</reimplements>
+        <param>
+          <type>std::vector&lt; double &gt;</type>
+          <declname>jointState</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/agyss/iis_robot_sw/iis_catkin_ws/src/kukadu/include/kukadu/planning/moveit.hpp" line="106" column="1" bodyfile="/home/agyss/iis_robot_sw/iis_catkin_ws/src/kukadu/src/planning/moveit.cpp" bodystart="36" bodyend="50"/>
+      </memberdef>
+      <memberdef kind="function" id="classkukadu_1_1MoveIt_1acb2e3c4e704ee64509e0a704cfc4481a" prot="public" static="no" const="no" explicit="no" inline="no" virt="virtual">
+        <type>std::vector&lt; arma::vec &gt;</type>
+        <definition>std::vector&lt; arma::vec &gt; kukadu::MoveIt::computeIk</definition>
+        <argsstring>(std::vector&lt; double &gt; currentJointState, const geometry_msgs::Pose &amp;goal)</argsstring>
+        <name>computeIk</name>
+        <reimplements refid="classkukadu_1_1Kinematics_1a5b143f7db7a84d7caa03419043426a5e">computeIk</reimplements>
+        <param>
+          <type>std::vector&lt; double &gt;</type>
+          <declname>currentJointState</declname>
+        </param>
+        <param>
+          <type>const geometry_msgs::Pose &amp;</type>
+          <declname>goal</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/agyss/iis_robot_sw/iis_catkin_ws/src/kukadu/include/kukadu/planning/moveit.hpp" line="107" column="1" bodyfile="/home/agyss/iis_robot_sw/iis_catkin_ws/src/kukadu/src/planning/moveit.cpp" bodystart="52" bodyend="84"/>
+      </memberdef>
+      <memberdef kind="function" id="classkukadu_1_1MoveIt_1a5a0133f49f68c5b0b34dc34b151c6cf6" prot="public" static="no" const="no" explicit="no" inline="no" virt="virtual">
+        <type>std::vector&lt; arma::vec &gt;</type>
+        <definition>std::vector&lt; arma::vec &gt; kukadu::MoveIt::planJointTrajectory</definition>
+        <argsstring>(std::vector&lt; arma::vec &gt; intermediateJoints)</argsstring>
+        <name>planJointTrajectory</name>
+        <reimplements refid="classkukadu_1_1PathPlanner_1ab757c9af3406da8180bef68597b83542">planJointTrajectory</reimplements>
+        <param>
+          <type>std::vector&lt; arma::vec &gt;</type>
+          <declname>intermediateJoints</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/agyss/iis_robot_sw/iis_catkin_ws/src/kukadu/include/kukadu/planning/moveit.hpp" line="109" column="1" bodyfile="/home/agyss/iis_robot_sw/iis_catkin_ws/src/kukadu/src/planning/moveit.cpp" bodystart="86" bodyend="160"/>
+      </memberdef>
+      <memberdef kind="function" id="classkukadu_1_1MoveIt_1a24a11114333b44a8fce67affb7afe07d" prot="public" static="no" const="no" explicit="no" inline="no" virt="virtual">
+        <type>std::vector&lt; arma::vec &gt;</type>
+        <definition>std::vector&lt; arma::vec &gt; kukadu::MoveIt::planCartesianTrajectory</definition>
+        <argsstring>(std::vector&lt; geometry_msgs::Pose &gt; intermediatePoses, bool smoothCartesians=false, bool useCurrentRobotState=true)</argsstring>
+        <name>planCartesianTrajectory</name>
+        <reimplements refid="classkukadu_1_1PathPlanner_1a959eb5545d65fdc108fdecad5d9d8542">planCartesianTrajectory</reimplements>
+        <param>
+          <type>std::vector&lt; geometry_msgs::Pose &gt;</type>
+          <declname>intermediatePoses</declname>
+        </param>
+        <param>
+          <type>bool</type>
+          <declname>smoothCartesians</declname>
+          <defval>false</defval>
+        </param>
+        <param>
+          <type>bool</type>
+          <declname>useCurrentRobotState</declname>
+          <defval>true</defval>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/agyss/iis_robot_sw/iis_catkin_ws/src/kukadu/include/kukadu/planning/moveit.hpp" line="110" column="1" bodyfile="/home/agyss/iis_robot_sw/iis_catkin_ws/src/kukadu/src/planning/moveit.cpp" bodystart="166" bodyend="179"/>
+      </memberdef>
+      <memberdef kind="function" id="classkukadu_1_1MoveIt_1a455bf20309967e7bc288507f92bd4b24" prot="public" static="no" const="no" explicit="no" inline="no" virt="virtual">
+        <type>std::vector&lt; arma::vec &gt;</type>
+        <definition>std::vector&lt; arma::vec &gt; kukadu::MoveIt::planCartesianTrajectory</definition>
+        <argsstring>(arma::vec startJoints, std::vector&lt; geometry_msgs::Pose &gt; intermediatePoses, bool smoothCartesians=false, bool useCurrentRobotState=true)</argsstring>
+        <name>planCartesianTrajectory</name>
+        <reimplements refid="classkukadu_1_1PathPlanner_1a7b3cf9ab52478e3d1775a17c9a6240e0">planCartesianTrajectory</reimplements>
+        <param>
+          <type>arma::vec</type>
+          <declname>startJoints</declname>
+        </param>
+        <param>
+          <type>std::vector&lt; geometry_msgs::Pose &gt;</type>
+          <declname>intermediatePoses</declname>
+        </param>
+        <param>
+          <type>bool</type>
+          <declname>smoothCartesians</declname>
+          <defval>false</defval>
+        </param>
+        <param>
+          <type>bool</type>
+          <declname>useCurrentRobotState</declname>
+          <defval>true</defval>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/agyss/iis_robot_sw/iis_catkin_ws/src/kukadu/include/kukadu/planning/moveit.hpp" line="111" column="1" bodyfile="/home/agyss/iis_robot_sw/iis_catkin_ws/src/kukadu/src/planning/moveit.cpp" bodystart="181" bodyend="273"/>
+      </memberdef>
+      <memberdef kind="function" id="classkukadu_1_1MoveIt_1affc6ab624a10cb091a9ec5b8ad39127b" prot="public" static="no" const="no" explicit="no" inline="no" virt="virtual">
+        <type>Eigen::MatrixXd</type>
+        <definition>Eigen::MatrixXd kukadu::MoveIt::getJacobian</definition>
+        <argsstring>(std::vector&lt; double &gt; jointState=std::vector&lt; double &gt;())</argsstring>
+        <name>getJacobian</name>
+        <reimplements refid="classkukadu_1_1Kinematics_1a16c8379a7ee87657a5f3db5b7534391b">getJacobian</reimplements>
+        <param>
+          <type>std::vector&lt; double &gt;</type>
+          <declname>jointState</declname>
+          <defval>std::vector&lt; double &gt;()</defval>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/agyss/iis_robot_sw/iis_catkin_ws/src/kukadu/include/kukadu/planning/moveit.hpp" line="113" column="1" bodyfile="/home/agyss/iis_robot_sw/iis_catkin_ws/src/kukadu/src/planning/moveit.cpp" bodystart="275" bodyend="292"/>
+      </memberdef>
+      <memberdef kind="function" id="classkukadu_1_1MoveIt_1a6280adfe71401d1caad3d61c07cec82f" prot="public" static="no" const="no" explicit="no" inline="no" virt="virtual">
+        <type>bool</type>
+        <definition>bool kukadu::MoveIt::isColliding</definition>
+        <argsstring>(arma::vec jointState, geometry_msgs::Pose pose)</argsstring>
+        <name>isColliding</name>
+        <reimplements refid="classkukadu_1_1Kinematics_1a050de3ff89fdec3b1debfeddf34ffa44">isColliding</reimplements>
+        <param>
+          <type>arma::vec</type>
+          <declname>jointState</declname>
+        </param>
+        <param>
+          <type>geometry_msgs::Pose</type>
+          <declname>pose</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/agyss/iis_robot_sw/iis_catkin_ws/src/kukadu/include/kukadu/planning/moveit.hpp" line="115" column="1" bodyfile="/home/agyss/iis_robot_sw/iis_catkin_ws/src/kukadu/src/planning/moveit.cpp" bodystart="294" bodyend="296"/>
+      </memberdef>
+      <memberdef kind="function" id="classkukadu_1_1MoveIt_1aa20e8b9de995a3a50c0b60180c3f9460" prot="public" static="no" const="no" explicit="no" inline="no" virt="virtual">
+        <type>std::string</type>
+        <definition>std::string kukadu::MoveIt::getCartesianLinkName</definition>
+        <argsstring>()</argsstring>
+        <name>getCartesianLinkName</name>
+        <reimplements refid="classkukadu_1_1Kinematics_1a03901fc799987b5840de994cfc7d7260">getCartesianLinkName</reimplements>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/agyss/iis_robot_sw/iis_catkin_ws/src/kukadu/include/kukadu/planning/moveit.hpp" line="117" column="1" bodyfile="/home/agyss/iis_robot_sw/iis_catkin_ws/src/kukadu/src/planning/moveit.cpp" bodystart="298" bodyend="300"/>
+      </memberdef>
+      <memberdef kind="function" id="classkukadu_1_1MoveIt_1a2c7997b863e784370dde51eff19515d2" prot="public" static="no" const="no" explicit="no" inline="no" virt="virtual">
+        <type>std::string</type>
+        <definition>std::string kukadu::MoveIt::getCartesianReferenceFrame</definition>
+        <argsstring>()</argsstring>
+        <name>getCartesianReferenceFrame</name>
+        <reimplements refid="classkukadu_1_1Kinematics_1a933b787ca3d264cdcfec9245a90744aa">getCartesianReferenceFrame</reimplements>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/agyss/iis_robot_sw/iis_catkin_ws/src/kukadu/include/kukadu/planning/moveit.hpp" line="118" column="1" bodyfile="/home/agyss/iis_robot_sw/iis_catkin_ws/src/kukadu/src/planning/moveit.cpp" bodystart="302" bodyend="304"/>
+      </memberdef>
+      <memberdef kind="function" id="classkukadu_1_1MoveIt_1ae7fa8ae6dddb95872109a8c5bf2f011d" prot="public" static="no" const="no" explicit="no" inline="no" virt="virtual">
+        <type>void</type>
+        <definition>void kukadu::MoveIt::setSpeed</definition>
+        <argsstring>(double speed)</argsstring>
+        <name>setSpeed</name>
+        <reimplements refid="classkukadu_1_1PathPlanner_1a73771852ce2d30556eca8ce726a8c652">setSpeed</reimplements>
+        <param>
+          <type>double</type>
+          <declname>speed</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/agyss/iis_robot_sw/iis_catkin_ws/src/kukadu/include/kukadu/planning/moveit.hpp" line="120" column="1" bodyfile="/home/agyss/iis_robot_sw/iis_catkin_ws/src/kukadu/src/planning/moveit.cpp" bodystart="162" bodyend="164"/>
+      </memberdef>
+      </sectiondef>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <inheritancegraph>
+      <node id="455">
+        <label>kukadu::PathPlanner</label>
+        <link refid="classkukadu_1_1PathPlanner"/>
+        <childnode refid="456" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="456">
+        <label>kukadu::Kinematics</label>
+        <link refid="classkukadu_1_1Kinematics"/>
+      </node>
+      <node id="454">
+        <label>kukadu::MoveIt</label>
+        <link refid="classkukadu_1_1MoveIt"/>
+        <childnode refid="455" relation="public-inheritance">
+        </childnode>
+      </node>
+    </inheritancegraph>
+    <collaborationgraph>
+      <node id="458">
+        <label>kukadu::PathPlanner</label>
+        <link refid="classkukadu_1_1PathPlanner"/>
+        <childnode refid="459" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="459">
+        <label>kukadu::Kinematics</label>
+        <link refid="classkukadu_1_1Kinematics"/>
+      </node>
+      <node id="457">
+        <label>kukadu::MoveIt</label>
+        <link refid="classkukadu_1_1MoveIt"/>
+        <childnode refid="458" relation="public-inheritance">
+        </childnode>
+      </node>
+    </collaborationgraph>
+    <location file="/home/agyss/iis_robot_sw/iis_catkin_ws/src/kukadu/include/kukadu/planning/moveit.hpp" line="51" column="1" bodyfile="/home/agyss/iis_robot_sw/iis_catkin_ws/src/kukadu/include/kukadu/planning/moveit.hpp" bodystart="51" bodyend="132"/>
+    <listofallmembers>
+      <member refid="classkukadu_1_1Kinematics_1a6148045661ff549e6f6627e4ef71e03c" prot="public" virt="non-virtual"><scope>kukadu::MoveIt</scope><name>addConstraint</name></member>
+      <member refid="classkukadu_1_1MoveIt_1af4f959cc853f4b78fe3c00d2bf8b00f6" prot="private" virt="non-virtual"><scope>kukadu::MoveIt</scope><name>avoidCollisions</name></member>
+      <member refid="classkukadu_1_1Kinematics_1a685f76d61feec05ba02fb8f82c30bc63" prot="public" virt="non-virtual"><scope>kukadu::MoveIt</scope><name>checkAllConstraints</name></member>
+      <member refid="classkukadu_1_1MoveIt_1ab179374eb2553df4352d50ca8ea5113d" prot="private" virt="non-virtual"><scope>kukadu::MoveIt</scope><name>collisionCheckCallback</name></member>
+      <member refid="classkukadu_1_1MoveIt_1a5c6edaf481c36d8dbf176606b17e3acd" prot="public" virt="virtual"><scope>kukadu::MoveIt</scope><name>computeFk</name></member>
+      <member refid="classkukadu_1_1MoveIt_1acb2e3c4e704ee64509e0a704cfc4481a" prot="public" virt="virtual"><scope>kukadu::MoveIt</scope><name>computeIk</name></member>
+      <member refid="classkukadu_1_1Kinematics_1ac9215d036bbdfab163745ade3033910e" prot="public" virt="virtual" ambiguityscope="kukadu::PathPlanner::"><scope>kukadu::MoveIt</scope><name>computeIk</name></member>
+      <member refid="classkukadu_1_1MoveIt_1a9afe0b9c3c74282da1bc74201d281621" prot="private" virt="non-virtual"><scope>kukadu::MoveIt</scope><name>construct</name></member>
+      <member refid="classkukadu_1_1MoveIt_1adb8d75691cab0a04a6929818da8e8df8" prot="private" virt="non-virtual"><scope>kukadu::MoveIt</scope><name>degOfFreedom</name></member>
+      <member refid="classkukadu_1_1Kinematics_1acb407e22a5efe10767727b94448b32bc" prot="protected" virt="non-virtual"><scope>kukadu::MoveIt</scope><name>generateDefaultJointNames</name></member>
+      <member refid="classkukadu_1_1MoveIt_1aa20e8b9de995a3a50c0b60180c3f9460" prot="public" virt="virtual"><scope>kukadu::MoveIt</scope><name>getCartesianLinkName</name></member>
+      <member refid="classkukadu_1_1MoveIt_1a2c7997b863e784370dde51eff19515d2" prot="public" virt="virtual"><scope>kukadu::MoveIt</scope><name>getCartesianReferenceFrame</name></member>
+      <member refid="classkukadu_1_1PathPlanner_1ad807f61926f499a4b7dd277303156807" prot="public" virt="non-virtual"><scope>kukadu::MoveIt</scope><name>getCheckCollision</name></member>
+      <member refid="classkukadu_1_1Kinematics_1a59ed85e60fb4d6b82bc5e145a55b1e56" prot="public" virt="non-virtual"><scope>kukadu::MoveIt</scope><name>getConstraintByIdx</name></member>
+      <member refid="classkukadu_1_1Kinematics_1af6a30efefca4b925d68173ed8af060f5" prot="public" virt="non-virtual"><scope>kukadu::MoveIt</scope><name>getConstraintIdx</name></member>
+      <member refid="classkukadu_1_1Kinematics_1a4eb2b717f47bf4d28a82bfded60f75b6" prot="public" virt="non-virtual"><scope>kukadu::MoveIt</scope><name>getConstraintsCount</name></member>
+      <member refid="classkukadu_1_1MoveIt_1affc6ab624a10cb091a9ec5b8ad39127b" prot="public" virt="virtual"><scope>kukadu::MoveIt</scope><name>getJacobian</name></member>
+      <member refid="classkukadu_1_1Kinematics_1a888c5039b2db5c1f5964753c2474efbd" prot="public" virt="virtual"><scope>kukadu::MoveIt</scope><name>getJointNames</name></member>
+      <member refid="classkukadu_1_1MoveIt_1af21f91514318b8fce586d826b2647f65" prot="private" virt="non-virtual"><scope>kukadu::MoveIt</scope><name>getModelConstraint</name></member>
+      <member refid="classkukadu_1_1MoveIt_1aa210b5faf9e52e8dadc2b1fe13885e5a" prot="private" virt="non-virtual"><scope>kukadu::MoveIt</scope><name>goal_joint_tolerance_</name></member>
+      <member refid="classkukadu_1_1MoveIt_1a0f84c61bc44bd93b65ddab7f5b59973e" prot="private" virt="non-virtual"><scope>kukadu::MoveIt</scope><name>goal_orientation_tolerance_</name></member>
+      <member refid="classkukadu_1_1MoveIt_1a03165f71463805c5421aaf9fbf1a21de" prot="private" virt="non-virtual"><scope>kukadu::MoveIt</scope><name>goal_position_tolerance_</name></member>
+      <member refid="classkukadu_1_1MoveIt_1a6280adfe71401d1caad3d61c07cec82f" prot="public" virt="virtual"><scope>kukadu::MoveIt</scope><name>isColliding</name></member>
+      <member refid="classkukadu_1_1MoveIt_1a495338209953b9f358e2c05ee4893a9c" prot="private" virt="non-virtual"><scope>kukadu::MoveIt</scope><name>jnt_model_group</name></member>
+      <member refid="classkukadu_1_1MoveIt_1af1558ffdeddab868e39f0ccae3a98da9" prot="private" virt="non-virtual"><scope>kukadu::MoveIt</scope><name>jointNames</name></member>
+      <member refid="classkukadu_1_1Kinematics_1a13e20d58d587757cae1d9d3a2c34ac40" prot="public" virt="non-virtual"><scope>kukadu::MoveIt</scope><name>Kinematics</name></member>
+      <member refid="classkukadu_1_1MoveIt_1a76bfb6272b67660036c272d60738569d" prot="private" virt="non-virtual"><scope>kukadu::MoveIt</scope><name>max_traj_pts_</name></member>
+      <member refid="classkukadu_1_1MoveIt_1a45dc65b03447d1882bdd48f9dabacbf4" prot="private" virt="non-virtual"><scope>kukadu::MoveIt</scope><name>maxAttempts</name></member>
+      <member refid="classkukadu_1_1MoveIt_1aa6ef411eff8fc92be8d55548082a70eb" prot="private" virt="non-virtual"><scope>kukadu::MoveIt</scope><name>modelRestriction</name></member>
+      <member refid="classkukadu_1_1MoveIt_1aad92e4ca21efa622c210c04c5682e62e" prot="private" virt="non-virtual"><scope>kukadu::MoveIt</scope><name>moveGroup</name></member>
+      <member refid="classkukadu_1_1MoveIt_1a7d81d271add519ad28ddc9bfc098a01b" prot="private" virt="non-virtual"><scope>kukadu::MoveIt</scope><name>moveGroupName</name></member>
+      <member refid="classkukadu_1_1MoveIt_1af05bbf682a12c575e1d9940f7faf4d07" prot="public" virt="non-virtual"><scope>kukadu::MoveIt</scope><name>MoveIt</name></member>
+      <member refid="classkukadu_1_1MoveIt_1a53313988a9ab67257a4718c7e5e26a89" prot="public" virt="non-virtual"><scope>kukadu::MoveIt</scope><name>MoveIt</name></member>
+      <member refid="classkukadu_1_1MoveIt_1aaa0daeb7215332815dd8c0f3d6002830" prot="private" virt="non-virtual"><scope>kukadu::MoveIt</scope><name>node</name></member>
+      <member refid="classkukadu_1_1PathPlanner_1a1d5ea50e4e1e45b4feb02f3507152540" prot="public" virt="non-virtual"><scope>kukadu::MoveIt</scope><name>PathPlanner</name></member>
+      <member refid="classkukadu_1_1MoveIt_1a24a11114333b44a8fce67affb7afe07d" prot="public" virt="virtual"><scope>kukadu::MoveIt</scope><name>planCartesianTrajectory</name></member>
+      <member refid="classkukadu_1_1MoveIt_1a455bf20309967e7bc288507f92bd4b24" prot="public" virt="virtual"><scope>kukadu::MoveIt</scope><name>planCartesianTrajectory</name></member>
+      <member refid="classkukadu_1_1MoveIt_1a5a0133f49f68c5b0b34dc34b151c6cf6" prot="public" virt="virtual"><scope>kukadu::MoveIt</scope><name>planJointTrajectory</name></member>
+      <member refid="classkukadu_1_1MoveIt_1ab47dbd487f63df362c75963d100442c2" prot="private" virt="non-virtual"><scope>kukadu::MoveIt</scope><name>planner_id_</name></member>
+      <member refid="classkukadu_1_1MoveIt_1aa35e9ed72f890733e0e1a5e6b69fcf55" prot="private" virt="non-virtual"><scope>kukadu::MoveIt</scope><name>planning_attempts_</name></member>
+      <member refid="classkukadu_1_1MoveIt_1afbcf77b18188347d4594f7eec5652136" prot="private" virt="non-virtual"><scope>kukadu::MoveIt</scope><name>planning_client_</name></member>
+      <member refid="classkukadu_1_1MoveIt_1a324a2999abbb7444fb6a72a7fc4d36b1" prot="private" virt="non-virtual"><scope>kukadu::MoveIt</scope><name>planning_scene_</name></member>
+      <member refid="classkukadu_1_1MoveIt_1a5c27ae8a58bcc49ac750dec7c5e8d17a" prot="private" virt="non-virtual"><scope>kukadu::MoveIt</scope><name>planning_time_</name></member>
+      <member refid="classkukadu_1_1MoveIt_1a26d53ae0a614bdc769a2134e9a6f1521" prot="private" virt="non-virtual"><scope>kukadu::MoveIt</scope><name>queue</name></member>
+      <member refid="classkukadu_1_1Kinematics_1a3c79131b3d003ed6a02079ff575c7f75" prot="public" virt="non-virtual"><scope>kukadu::MoveIt</scope><name>removeConstraint</name></member>
+      <member refid="classkukadu_1_1PathPlanner_1a47cbdf0417d30f68abddf6d051a3ba41" prot="public" virt="non-virtual"><scope>kukadu::MoveIt</scope><name>RESULT_APPROXIMATE</name></member>
+      <member refid="classkukadu_1_1PathPlanner_1acb48a2d0a667f922536bbac8699451e8" prot="public" virt="non-virtual"><scope>kukadu::MoveIt</scope><name>RESULT_FAILED</name></member>
+      <member refid="classkukadu_1_1PathPlanner_1a805c234a0fcbfb17a328893aced1439a" prot="public" virt="non-virtual"><scope>kukadu::MoveIt</scope><name>RESULT_SUCCESS</name></member>
+      <member refid="classkukadu_1_1MoveIt_1a9ce4894fb9e4d70ee4980f8c490855ac" prot="private" virt="non-virtual"><scope>kukadu::MoveIt</scope><name>rml_</name></member>
+      <member refid="classkukadu_1_1MoveIt_1a01b5531b6a9a4c1dc17118ddedb6643c" prot="private" virt="non-virtual"><scope>kukadu::MoveIt</scope><name>robot_model_</name></member>
+      <member refid="classkukadu_1_1PathPlanner_1a64bdab84aa8cf63b4c3a50f6ae0a9d7d" prot="public" virt="non-virtual"><scope>kukadu::MoveIt</scope><name>setCheckCollisions</name></member>
+      <member refid="classkukadu_1_1Kinematics_1a12859eb774a27710b71b70fd883f5d53" prot="public" virt="virtual"><scope>kukadu::MoveIt</scope><name>setJointNames</name></member>
+      <member refid="classkukadu_1_1MoveIt_1ae7fa8ae6dddb95872109a8c5bf2f011d" prot="public" virt="virtual"><scope>kukadu::MoveIt</scope><name>setSpeed</name></member>
+      <member refid="classkukadu_1_1MoveIt_1afc635ba116b6937e9f1d68925b1979c2" prot="private" virt="non-virtual"><scope>kukadu::MoveIt</scope><name>simplePlanner</name></member>
+      <member refid="classkukadu_1_1PathPlanner_1a85f304bce58b35715520a9ddfa02a843" prot="public" virt="virtual"><scope>kukadu::MoveIt</scope><name>smoothJointPlan</name></member>
+      <member refid="classkukadu_1_1MoveIt_1afc4bca8312888ae169bed7dbd16a5cca" prot="public" virt="non-virtual"><scope>kukadu::MoveIt</scope><name>STD_AVOID_COLLISIONS</name></member>
+      <member refid="classkukadu_1_1MoveIt_1add665929ffeb6ce186119fa47ddbe3cf" prot="public" virt="non-virtual"><scope>kukadu::MoveIt</scope><name>STD_MAX_ATTEMPTS</name></member>
+      <member refid="classkukadu_1_1MoveIt_1ac4b2f2756039fa58060eebd87c788c18" prot="public" virt="non-virtual"><scope>kukadu::MoveIt</scope><name>STD_TIMEOUT</name></member>
+      <member refid="classkukadu_1_1MoveIt_1afce5c6eec1d4f4db9668517e01c0d39c" prot="private" virt="non-virtual"><scope>kukadu::MoveIt</scope><name>timeOut</name></member>
+      <member refid="classkukadu_1_1MoveIt_1a5ee4b9db447e8ff6bcfcc091f1a01958" prot="private" virt="non-virtual"><scope>kukadu::MoveIt</scope><name>tipLink</name></member>
+    </listofallmembers>
+  </compounddef>
+</doxygen>

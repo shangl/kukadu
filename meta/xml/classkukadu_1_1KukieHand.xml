@@ -1,0 +1,831 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.8.11">
+  <compounddef id="classkukadu_1_1KukieHand" kind="class" language="C++" prot="public">
+    <compoundname>kukadu::KukieHand</compoundname>
+    <basecompoundref refid="classkukadu_1_1GenericHand" prot="public" virt="non-virtual">kukadu::GenericHand</basecompoundref>
+      <sectiondef kind="private-attrib">
+      <memberdef kind="variable" id="classkukadu_1_1KukieHand_1af96b0d8a3d04f2adf36102f692e1d2ba" prot="private" static="no" mutable="no">
+        <type>kukadu_grasps</type>
+        <definition>kukadu_grasps kukadu::KukieHand::currentGraspId</definition>
+        <argsstring></argsstring>
+        <name>currentGraspId</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/agyss/iis_robot_sw/iis_catkin_ws/src/kukadu/include/kukadu/robot/kukiehand.hpp" line="27" column="1" bodyfile="/home/agyss/iis_robot_sw/iis_catkin_ws/src/kukadu/include/kukadu/robot/kukiehand.hpp" bodystart="27" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classkukadu_1_1KukieHand_1aebc89fa73f2bf50458116fe5b0f35ef6" prot="private" static="no" mutable="no">
+        <type>bool</type>
+        <definition>bool kukadu::KukieHand::waitForReached</definition>
+        <argsstring></argsstring>
+        <name>waitForReached</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/agyss/iis_robot_sw/iis_catkin_ws/src/kukadu/include/kukadu/robot/kukiehand.hpp" line="29" column="1" bodyfile="/home/agyss/iis_robot_sw/iis_catkin_ws/src/kukadu/include/kukadu/robot/kukiehand.hpp" bodystart="29" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classkukadu_1_1KukieHand_1a7cdcc9eaa38d697711fb653a03700f76" prot="private" static="no" mutable="no">
+        <type>bool</type>
+        <definition>bool kukadu::KukieHand::stopCollecting</definition>
+        <argsstring></argsstring>
+        <name>stopCollecting</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/agyss/iis_robot_sw/iis_catkin_ws/src/kukadu/include/kukadu/robot/kukiehand.hpp" line="30" column="1" bodyfile="/home/agyss/iis_robot_sw/iis_catkin_ws/src/kukadu/include/kukadu/robot/kukiehand.hpp" bodystart="30" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classkukadu_1_1KukieHand_1addbb92ad473ee7c282349bde1825c515" prot="private" static="no" mutable="no">
+        <type>bool</type>
+        <definition>bool kukadu::KukieHand::firstJointNamesRetrieval</definition>
+        <argsstring></argsstring>
+        <name>firstJointNamesRetrieval</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/agyss/iis_robot_sw/iis_catkin_ws/src/kukadu/include/kukadu/robot/kukiehand.hpp" line="31" column="1" bodyfile="/home/agyss/iis_robot_sw/iis_catkin_ws/src/kukadu/include/kukadu/robot/kukiehand.hpp" bodystart="31" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classkukadu_1_1KukieHand_1a4398a41eea4d64df9766b7e0d5f31559" prot="private" static="no" mutable="no">
+        <type>int</type>
+        <definition>int kukadu::KukieHand::degOfFreedom</definition>
+        <argsstring></argsstring>
+        <name>degOfFreedom</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/agyss/iis_robot_sw/iis_catkin_ws/src/kukadu/include/kukadu/robot/kukiehand.hpp" line="33" column="1" bodyfile="/home/agyss/iis_robot_sw/iis_catkin_ws/src/kukadu/include/kukadu/robot/kukiehand.hpp" bodystart="33" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classkukadu_1_1KukieHand_1aab38fec13de2b8cfcd557a5663972acc" prot="private" static="no" mutable="no">
+        <type>int</type>
+        <definition>int kukadu::KukieHand::previousCurrentPosQueueSize</definition>
+        <argsstring></argsstring>
+        <name>previousCurrentPosQueueSize</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/agyss/iis_robot_sw/iis_catkin_ws/src/kukadu/include/kukadu/robot/kukiehand.hpp" line="34" column="1" bodyfile="/home/agyss/iis_robot_sw/iis_catkin_ws/src/kukadu/include/kukadu/robot/kukiehand.hpp" bodystart="34" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classkukadu_1_1KukieHand_1a326b54c172c34a4302288af2892fc3c6" prot="private" static="no" mutable="no">
+        <type>ros::NodeHandle</type>
+        <definition>ros::NodeHandle kukadu::KukieHand::node</definition>
+        <argsstring></argsstring>
+        <name>node</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/agyss/iis_robot_sw/iis_catkin_ws/src/kukadu/include/kukadu/robot/kukiehand.hpp" line="36" column="1" bodyfile="/home/agyss/iis_robot_sw/iis_catkin_ws/src/kukadu/include/kukadu/robot/kukiehand.hpp" bodystart="36" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classkukadu_1_1KukieHand_1a72d723204091635caeaa36079ee350e4" prot="private" static="no" mutable="no">
+        <type>ros::Publisher</type>
+        <definition>ros::Publisher kukadu::KukieHand::trajPub</definition>
+        <argsstring></argsstring>
+        <name>trajPub</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/agyss/iis_robot_sw/iis_catkin_ws/src/kukadu/include/kukadu/robot/kukiehand.hpp" line="37" column="1" bodyfile="/home/agyss/iis_robot_sw/iis_catkin_ws/src/kukadu/include/kukadu/robot/kukiehand.hpp" bodystart="37" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classkukadu_1_1KukieHand_1ae251731daf3dab217c9b177a540dc28c" prot="private" static="no" mutable="no">
+        <type>ros::Subscriber</type>
+        <definition>ros::Subscriber kukadu::KukieHand::stateSub</definition>
+        <argsstring></argsstring>
+        <name>stateSub</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/agyss/iis_robot_sw/iis_catkin_ws/src/kukadu/include/kukadu/robot/kukiehand.hpp" line="38" column="1" bodyfile="/home/agyss/iis_robot_sw/iis_catkin_ws/src/kukadu/include/kukadu/robot/kukiehand.hpp" bodystart="38" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classkukadu_1_1KukieHand_1a2f9c413c6193fc2373a4ef795e331e0c" prot="private" static="no" mutable="no">
+        <type>ros::Subscriber</type>
+        <definition>ros::Subscriber kukadu::KukieHand::tactileSub</definition>
+        <argsstring></argsstring>
+        <name>tactileSub</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/agyss/iis_robot_sw/iis_catkin_ws/src/kukadu/include/kukadu/robot/kukiehand.hpp" line="39" column="1" bodyfile="/home/agyss/iis_robot_sw/iis_catkin_ws/src/kukadu/include/kukadu/robot/kukiehand.hpp" bodystart="39" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classkukadu_1_1KukieHand_1ac067f863a0af5d4b6c1fd416b6afb35e" prot="private" static="no" mutable="no">
+        <type>std::vector&lt; std::string &gt;</type>
+        <definition>std::vector&lt;std::string&gt; kukadu::KukieHand::jointNames</definition>
+        <argsstring></argsstring>
+        <name>jointNames</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/agyss/iis_robot_sw/iis_catkin_ws/src/kukadu/include/kukadu/robot/kukiehand.hpp" line="41" column="1" bodyfile="/home/agyss/iis_robot_sw/iis_catkin_ws/src/kukadu/include/kukadu/robot/kukiehand.hpp" bodystart="41" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classkukadu_1_1KukieHand_1a3013743080e16101bddd81ea23282373" prot="private" static="no" mutable="no">
+        <type>std::vector&lt; arma::mat &gt;</type>
+        <definition>std::vector&lt;arma::mat&gt; kukadu::KukieHand::currentTactileReadings</definition>
+        <argsstring></argsstring>
+        <name>currentTactileReadings</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/agyss/iis_robot_sw/iis_catkin_ws/src/kukadu/include/kukadu/robot/kukiehand.hpp" line="42" column="1" bodyfile="/home/agyss/iis_robot_sw/iis_catkin_ws/src/kukadu/include/kukadu/robot/kukiehand.hpp" bodystart="42" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classkukadu_1_1KukieHand_1a7ee36184cbbf88df2ae57b4b6a166734" prot="private" static="no" mutable="no">
+        <type>std::string</type>
+        <definition>std::string kukadu::KukieHand::hand</definition>
+        <argsstring></argsstring>
+        <name>hand</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/agyss/iis_robot_sw/iis_catkin_ws/src/kukadu/include/kukadu/robot/kukiehand.hpp" line="44" column="1" bodyfile="/home/agyss/iis_robot_sw/iis_catkin_ws/src/kukadu/include/kukadu/robot/kukiehand.hpp" bodystart="44" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classkukadu_1_1KukieHand_1aae668b42b5c8a29517edd566e83e85a6" prot="private" static="no" mutable="no">
+        <type>bool</type>
+        <definition>bool kukadu::KukieHand::targetReached</definition>
+        <argsstring></argsstring>
+        <name>targetReached</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/agyss/iis_robot_sw/iis_catkin_ws/src/kukadu/include/kukadu/robot/kukiehand.hpp" line="51" column="1" bodyfile="/home/agyss/iis_robot_sw/iis_catkin_ws/src/kukadu/include/kukadu/robot/kukiehand.hpp" bodystart="51" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classkukadu_1_1KukieHand_1a5e6ae9c403c39b169f2d613c006817dd" prot="private" static="no" mutable="no">
+        <type>bool</type>
+        <definition>bool kukadu::KukieHand::isFirstCallback</definition>
+        <argsstring></argsstring>
+        <name>isFirstCallback</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/agyss/iis_robot_sw/iis_catkin_ws/src/kukadu/include/kukadu/robot/kukiehand.hpp" line="52" column="1" bodyfile="/home/agyss/iis_robot_sw/iis_catkin_ws/src/kukadu/include/kukadu/robot/kukiehand.hpp" bodystart="52" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classkukadu_1_1KukieHand_1a06e5d8d9d4372e4bd6368c2992dcac31" prot="private" static="no" mutable="no">
+        <type>bool</type>
+        <definition>bool kukadu::KukieHand::movementStarted</definition>
+        <argsstring></argsstring>
+        <name>movementStarted</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/agyss/iis_robot_sw/iis_catkin_ws/src/kukadu/include/kukadu/robot/kukiehand.hpp" line="53" column="1" bodyfile="/home/agyss/iis_robot_sw/iis_catkin_ws/src/kukadu/include/kukadu/robot/kukiehand.hpp" bodystart="53" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classkukadu_1_1KukieHand_1a0573e00ecf59836fda85517a3ae66f6c" prot="private" static="no" mutable="no">
+        <type>std::vector&lt; double &gt;</type>
+        <definition>std::vector&lt;double&gt; kukadu::KukieHand::initCurrentPos</definition>
+        <argsstring></argsstring>
+        <name>initCurrentPos</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/agyss/iis_robot_sw/iis_catkin_ws/src/kukadu/include/kukadu/robot/kukiehand.hpp" line="56" column="1" bodyfile="/home/agyss/iis_robot_sw/iis_catkin_ws/src/kukadu/include/kukadu/robot/kukiehand.hpp" bodystart="56" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classkukadu_1_1KukieHand_1a29a9ba3846cf1748b40e29824c2ec882" prot="private" static="no" mutable="no">
+        <type>std::vector&lt; double &gt;</type>
+        <definition>std::vector&lt;double&gt; kukadu::KukieHand::currentPos</definition>
+        <argsstring></argsstring>
+        <name>currentPos</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/agyss/iis_robot_sw/iis_catkin_ws/src/kukadu/include/kukadu/robot/kukiehand.hpp" line="57" column="1" bodyfile="/home/agyss/iis_robot_sw/iis_catkin_ws/src/kukadu/include/kukadu/robot/kukiehand.hpp" bodystart="57" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classkukadu_1_1KukieHand_1a0b193c5a9c71b7b1a2a2ddc992484fa8" prot="private" static="no" mutable="no">
+        <type>std::queue&lt; std::vector&lt; double &gt; &gt;</type>
+        <definition>std::queue&lt;std::vector&lt;double&gt; &gt; kukadu::KukieHand::previousCurrentPosQueue</definition>
+        <argsstring></argsstring>
+        <name>previousCurrentPosQueue</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/agyss/iis_robot_sw/iis_catkin_ws/src/kukadu/include/kukadu/robot/kukiehand.hpp" line="58" column="1" bodyfile="/home/agyss/iis_robot_sw/iis_catkin_ws/src/kukadu/include/kukadu/robot/kukiehand.hpp" bodystart="58" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classkukadu_1_1KukieHand_1a0af5f80fe91db6dd38c02ef06b858213" prot="private" static="no" mutable="no">
+        <type>kukadu_mutex</type>
+        <definition>kukadu_mutex kukadu::KukieHand::currentPosMutex</definition>
+        <argsstring></argsstring>
+        <name>currentPosMutex</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/agyss/iis_robot_sw/iis_catkin_ws/src/kukadu/include/kukadu/robot/kukiehand.hpp" line="60" column="1" bodyfile="/home/agyss/iis_robot_sw/iis_catkin_ws/src/kukadu/include/kukadu/robot/kukiehand.hpp" bodystart="60" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classkukadu_1_1KukieHand_1a8aa596d63b39874cb3bc080cf50ce685" prot="private" static="no" mutable="no">
+        <type>kukadu_mutex</type>
+        <definition>kukadu_mutex kukadu::KukieHand::tactileMutex</definition>
+        <argsstring></argsstring>
+        <name>tactileMutex</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/agyss/iis_robot_sw/iis_catkin_ws/src/kukadu/include/kukadu/robot/kukiehand.hpp" line="61" column="1" bodyfile="/home/agyss/iis_robot_sw/iis_catkin_ws/src/kukadu/include/kukadu/robot/kukiehand.hpp" bodystart="61" bodyend="-1"/>
+      </memberdef>
+      </sectiondef>
+      <sectiondef kind="public-static-attrib">
+      <memberdef kind="variable" id="classkukadu_1_1KukieHand_1a2fd16294d41f30d129b7c6c6251a3a98" prot="public" static="yes" mutable="no">
+        <type>auto constexpr</type>
+        <definition>auto constexpr kukadu::KukieHand::SDH_IGNORE_JOINT</definition>
+        <argsstring></argsstring>
+        <name>SDH_IGNORE_JOINT</name>
+        <initializer>= std::numeric_limits&lt;double&gt;::max()</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/agyss/iis_robot_sw/iis_catkin_ws/src/kukadu/include/kukadu/robot/kukiehand.hpp" line="88" column="1" bodyfile="/home/agyss/iis_robot_sw/iis_catkin_ws/src/kukadu/include/kukadu/robot/kukiehand.hpp" bodystart="88" bodyend="-1"/>
+      </memberdef>
+      </sectiondef>
+      <sectiondef kind="private-func">
+      <memberdef kind="function" id="classkukadu_1_1KukieHand_1a24852168138b90c3238a46749d548258" prot="private" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>std::vector&lt; double &gt;</type>
+        <definition>std::vector&lt; double &gt; kukadu::KukieHand::generateParallelPose</definition>
+        <argsstring>(double percentage)</argsstring>
+        <name>generateParallelPose</name>
+        <param>
+          <type>double</type>
+          <declname>percentage</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/agyss/iis_robot_sw/iis_catkin_ws/src/kukadu/include/kukadu/robot/kukiehand.hpp" line="46" column="1" bodyfile="/home/agyss/iis_robot_sw/iis_catkin_ws/src/kukadu/src/robot/hand.cpp" bodystart="330" bodyend="354"/>
+      </memberdef>
+      <memberdef kind="function" id="classkukadu_1_1KukieHand_1a82ede6c90be161576fe00e3ed6294ffc" prot="private" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>std::vector&lt; double &gt;</type>
+        <definition>std::vector&lt; double &gt; kukadu::KukieHand::generateCentricalPose</definition>
+        <argsstring>(double percentage)</argsstring>
+        <name>generateCentricalPose</name>
+        <param>
+          <type>double</type>
+          <declname>percentage</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/agyss/iis_robot_sw/iis_catkin_ws/src/kukadu/include/kukadu/robot/kukiehand.hpp" line="47" column="1" bodyfile="/home/agyss/iis_robot_sw/iis_catkin_ws/src/kukadu/src/robot/hand.cpp" bodystart="356" bodyend="370"/>
+      </memberdef>
+      <memberdef kind="function" id="classkukadu_1_1KukieHand_1ad81f4c3984b7849ea6d4ca28243b73e4" prot="private" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>std::vector&lt; double &gt;</type>
+        <definition>std::vector&lt; double &gt; kukadu::KukieHand::generateSphericalPose</definition>
+        <argsstring>(double percentage)</argsstring>
+        <name>generateSphericalPose</name>
+        <param>
+          <type>double</type>
+          <declname>percentage</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/agyss/iis_robot_sw/iis_catkin_ws/src/kukadu/include/kukadu/robot/kukiehand.hpp" line="48" column="1" bodyfile="/home/agyss/iis_robot_sw/iis_catkin_ws/src/kukadu/src/robot/hand.cpp" bodystart="372" bodyend="386"/>
+      </memberdef>
+      <memberdef kind="function" id="classkukadu_1_1KukieHand_1a332b3b8a92e2c6680a78b8343c595492" prot="private" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>std::vector&lt; double &gt;</type>
+        <definition>std::vector&lt; double &gt; kukadu::KukieHand::generateCylindricalPose</definition>
+        <argsstring>(double percentage)</argsstring>
+        <name>generateCylindricalPose</name>
+        <param>
+          <type>double</type>
+          <declname>percentage</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/agyss/iis_robot_sw/iis_catkin_ws/src/kukadu/include/kukadu/robot/kukiehand.hpp" line="49" column="1" bodyfile="/home/agyss/iis_robot_sw/iis_catkin_ws/src/kukadu/src/robot/hand.cpp" bodystart="314" bodyend="328"/>
+      </memberdef>
+      <memberdef kind="function" id="classkukadu_1_1KukieHand_1ab9ddcac52b45713ba8d3c12487995cdc" prot="private" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>bool</type>
+        <definition>bool kukadu::KukieHand::vectorsDeviate</definition>
+        <argsstring>(const std::vector&lt; double &gt; v1, const std::vector&lt; double &gt; v2, double tolerance)</argsstring>
+        <name>vectorsDeviate</name>
+        <param>
+          <type>const std::vector&lt; double &gt;</type>
+          <declname>v1</declname>
+        </param>
+        <param>
+          <type>const std::vector&lt; double &gt;</type>
+          <declname>v2</declname>
+        </param>
+        <param>
+          <type>double</type>
+          <declname>tolerance</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/agyss/iis_robot_sw/iis_catkin_ws/src/kukadu/include/kukadu/robot/kukiehand.hpp" line="55" column="1" bodyfile="/home/agyss/iis_robot_sw/iis_catkin_ws/src/kukadu/src/robot/hand.cpp" bodystart="301" bodyend="312"/>
+      </memberdef>
+      <memberdef kind="function" id="classkukadu_1_1KukieHand_1af2f6daf38ae96ee3e54bccef4d595d0c" prot="private" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>void kukadu::KukieHand::stateCallback</definition>
+        <argsstring>(const sensor_msgs::JointState &amp;state)</argsstring>
+        <name>stateCallback</name>
+        <param>
+          <type>const sensor_msgs::JointState &amp;</type>
+          <declname>state</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/agyss/iis_robot_sw/iis_catkin_ws/src/kukadu/include/kukadu/robot/kukiehand.hpp" line="63" column="1" bodyfile="/home/agyss/iis_robot_sw/iis_catkin_ws/src/kukadu/src/robot/hand.cpp" bodystart="256" bodyend="289"/>
+      </memberdef>
+      <memberdef kind="function" id="classkukadu_1_1KukieHand_1a644d6de9221f55568a5b03cb830681ea" prot="private" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>void kukadu::KukieHand::tactileCallback</definition>
+        <argsstring>(const iis_robot_dep::TactileSensor &amp;state)</argsstring>
+        <name>tactileCallback</name>
+        <param>
+          <type>const iis_robot_dep::TactileSensor &amp;</type>
+          <declname>state</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/agyss/iis_robot_sw/iis_catkin_ws/src/kukadu/include/kukadu/robot/kukiehand.hpp" line="64" column="1" bodyfile="/home/agyss/iis_robot_sw/iis_catkin_ws/src/kukadu/src/robot/hand.cpp" bodystart="227" bodyend="254"/>
+      </memberdef>
+      </sectiondef>
+      <sectiondef kind="public-func">
+      <memberdef kind="function" id="classkukadu_1_1KukieHand_1a4283b3849f083f7469be19eafbb4ff63" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type></type>
+        <definition>kukadu::KukieHand::KukieHand</definition>
+        <argsstring>(StorageSingleton &amp;storage, ros::NodeHandle node, std::string simulationType, std::string hand)</argsstring>
+        <name>KukieHand</name>
+        <param>
+          <type><ref refid="classkukadu_1_1StorageSingleton" kindref="compound">StorageSingleton</ref> &amp;</type>
+          <declname>storage</declname>
+        </param>
+        <param>
+          <type>ros::NodeHandle</type>
+          <declname>node</declname>
+        </param>
+        <param>
+          <type>std::string</type>
+          <declname>simulationType</declname>
+        </param>
+        <param>
+          <type>std::string</type>
+          <declname>hand</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/agyss/iis_robot_sw/iis_catkin_ws/src/kukadu/include/kukadu/robot/kukiehand.hpp" line="68" column="1" bodyfile="/home/agyss/iis_robot_sw/iis_catkin_ws/src/kukadu/src/robot/hand.cpp" bodystart="174" bodyend="204"/>
+      </memberdef>
+      <memberdef kind="function" id="classkukadu_1_1KukieHand_1a6f7937b8fb19261a15104d0997e10439" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type></type>
+        <definition>kukadu::KukieHand::~KukieHand</definition>
+        <argsstring>()</argsstring>
+        <name>~KukieHand</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/agyss/iis_robot_sw/iis_catkin_ws/src/kukadu/include/kukadu/robot/kukiehand.hpp" line="69" column="1" bodyfile="/home/agyss/iis_robot_sw/iis_catkin_ws/src/kukadu/src/robot/hand.cpp" bodystart="450" bodyend="452"/>
+      </memberdef>
+      <memberdef kind="function" id="classkukadu_1_1KukieHand_1aaccb81a60e09b915c8fd4b0acfe76d2f" prot="public" static="no" const="no" explicit="no" inline="no" virt="virtual">
+        <type>void</type>
+        <definition>void kukadu::KukieHand::connectHand</definition>
+        <argsstring>()</argsstring>
+        <name>connectHand</name>
+        <reimplements refid="classkukadu_1_1GenericHand_1a965ed8a8d225fb36eabf5089fa5d4f32">connectHand</reimplements>
+        <briefdescription>
+<para>Initializes the connection to the hand. </para>        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/agyss/iis_robot_sw/iis_catkin_ws/src/kukadu/include/kukadu/robot/kukiehand.hpp" line="71" column="1" bodyfile="/home/agyss/iis_robot_sw/iis_catkin_ws/src/kukadu/src/robot/hand.cpp" bodystart="388" bodyend="394"/>
+      </memberdef>
+      <memberdef kind="function" id="classkukadu_1_1KukieHand_1ad4f676de2f32cee7c191e4fbf42cb133" prot="public" static="no" const="no" explicit="no" inline="no" virt="virtual">
+        <type>void</type>
+        <definition>void kukadu::KukieHand::safelyDestroy</definition>
+        <argsstring>()</argsstring>
+        <name>safelyDestroy</name>
+        <reimplements refid="classkukadu_1_1DestroyableObject_1a9e490cfa46af84690eb5ff0682df986c">safelyDestroy</reimplements>
+        <briefdescription>
+<para>Method is called whenever destroy event occurs and ensures safe and clean termination of the programm (e.g. stops robot) </para>        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/agyss/iis_robot_sw/iis_catkin_ws/src/kukadu/include/kukadu/robot/kukiehand.hpp" line="72" column="1" bodyfile="/home/agyss/iis_robot_sw/iis_catkin_ws/src/kukadu/src/robot/hand.cpp" bodystart="454" bodyend="456"/>
+      </memberdef>
+      <memberdef kind="function" id="classkukadu_1_1KukieHand_1aac5de8a17e7592b4c0c693fe6d06e0e9" prot="public" static="no" const="no" explicit="no" inline="no" virt="virtual">
+        <type>void</type>
+        <definition>void kukadu::KukieHand::disconnectHand</definition>
+        <argsstring>()</argsstring>
+        <name>disconnectHand</name>
+        <reimplements refid="classkukadu_1_1GenericHand_1a94c4a983aae8562bda7711a71baa7502">disconnectHand</reimplements>
+        <briefdescription>
+<para>Closes connection between host computer and hand. </para>        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/agyss/iis_robot_sw/iis_catkin_ws/src/kukadu/include/kukadu/robot/kukiehand.hpp" line="73" column="1" bodyfile="/home/agyss/iis_robot_sw/iis_catkin_ws/src/kukadu/src/robot/hand.cpp" bodystart="436" bodyend="442"/>
+      </memberdef>
+      <memberdef kind="function" id="classkukadu_1_1KukieHand_1a7aa80edce6f8b938eea2ca1826bf230a" prot="public" static="no" const="no" explicit="no" inline="no" virt="virtual">
+        <type>void</type>
+        <definition>void kukadu::KukieHand::setGrasp</definition>
+        <argsstring>(kukadu_grasps grasp)</argsstring>
+        <name>setGrasp</name>
+        <reimplements refid="classkukadu_1_1GenericHand_1ad64a2319fec86b037f7383d2657ed601">setGrasp</reimplements>
+        <param>
+          <type>kukadu_grasps</type>
+          <declname>grasp</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/agyss/iis_robot_sw/iis_catkin_ws/src/kukadu/include/kukadu/robot/kukiehand.hpp" line="74" column="1" bodyfile="/home/agyss/iis_robot_sw/iis_catkin_ws/src/kukadu/src/robot/hand.cpp" bodystart="444" bodyend="448"/>
+      </memberdef>
+      <memberdef kind="function" id="classkukadu_1_1KukieHand_1a3b11fd1af2a71838a4cb87b96d7d14e6" prot="public" static="no" const="no" explicit="no" inline="no" virt="virtual">
+        <type>void</type>
+        <definition>void kukadu::KukieHand::publishSingleJoint</definition>
+        <argsstring>(int idx, double pos)</argsstring>
+        <name>publishSingleJoint</name>
+        <param>
+          <type>int</type>
+          <declname>idx</declname>
+        </param>
+        <param>
+          <type>double</type>
+          <declname>pos</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/agyss/iis_robot_sw/iis_catkin_ws/src/kukadu/include/kukadu/robot/kukiehand.hpp" line="75" column="1" bodyfile="/home/agyss/iis_robot_sw/iis_catkin_ws/src/kukadu/src/robot/hand.cpp" bodystart="458" bodyend="473"/>
+      </memberdef>
+      <memberdef kind="function" id="classkukadu_1_1KukieHand_1ace726db985affda8ed5f49464f7aab04" prot="public" static="no" const="no" explicit="no" inline="no" virt="virtual">
+        <type>void</type>
+        <definition>void kukadu::KukieHand::closeHand</definition>
+        <argsstring>(double percentage, double velocity)</argsstring>
+        <name>closeHand</name>
+        <reimplements refid="classkukadu_1_1GenericHand_1a000e4d03e93f50d7101c50e6096d28a0">closeHand</reimplements>
+        <param>
+          <type>double</type>
+          <declname>percentage</declname>
+        </param>
+        <param>
+          <type>double</type>
+          <declname>velocity</declname>
+        </param>
+        <briefdescription>
+<para>Opens and closes the hand according to the provided closing percentage and velocity. </para>        </briefdescription>
+        <detaileddescription>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>percentage</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>closing percentage (0.0 - hand fully open, 1.0 hand fully closed) </para></parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>velocity</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>closing velocity in range between 0 and 1 </para></parameterdescription>
+</parameteritem>
+</parameterlist>
+</para>        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/agyss/iis_robot_sw/iis_catkin_ws/src/kukadu/include/kukadu/robot/kukiehand.hpp" line="76" column="1" bodyfile="/home/agyss/iis_robot_sw/iis_catkin_ws/src/kukadu/src/robot/hand.cpp" bodystart="396" bodyend="434"/>
+      </memberdef>
+      <memberdef kind="function" id="classkukadu_1_1KukieHand_1a548ed81cee0f111abc4c6b127b075da4" prot="public" static="no" const="no" explicit="no" inline="no" virt="virtual">
+        <type>void</type>
+        <definition>void kukadu::KukieHand::moveJoints</definition>
+        <argsstring>(arma::vec joints)</argsstring>
+        <name>moveJoints</name>
+        <reimplements refid="classkukadu_1_1GenericHand_1a7662305094e40833ef22e6675e41c5fd">moveJoints</reimplements>
+        <param>
+          <type>arma::vec</type>
+          <declname>joints</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/agyss/iis_robot_sw/iis_catkin_ws/src/kukadu/include/kukadu/robot/kukiehand.hpp" line="78" column="1" bodyfile="/home/agyss/iis_robot_sw/iis_catkin_ws/src/kukadu/src/robot/hand.cpp" bodystart="475" bodyend="539"/>
+      </memberdef>
+      <memberdef kind="function" id="classkukadu_1_1KukieHand_1ae1b5de05777e8364b59a8832057c1e4f" prot="public" static="no" const="no" explicit="no" inline="no" virt="virtual">
+        <type>void</type>
+        <definition>void kukadu::KukieHand::setWaitForReached</definition>
+        <argsstring>(bool waitForReached)</argsstring>
+        <name>setWaitForReached</name>
+        <reimplements refid="classkukadu_1_1GenericHand_1ad2a3163741664b6777e148343d22879a">setWaitForReached</reimplements>
+        <param>
+          <type>bool</type>
+          <declname>waitForReached</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/agyss/iis_robot_sw/iis_catkin_ws/src/kukadu/include/kukadu/robot/kukiehand.hpp" line="79" column="1" bodyfile="/home/agyss/iis_robot_sw/iis_catkin_ws/src/kukadu/src/robot/hand.cpp" bodystart="223" bodyend="225"/>
+      </memberdef>
+      <memberdef kind="function" id="classkukadu_1_1KukieHand_1aa974a0837ed5efb96e0586604d55289e" prot="public" static="no" const="no" explicit="no" inline="no" virt="virtual">
+        <type>std::vector&lt; std::string &gt;</type>
+        <definition>std::vector&lt; std::string &gt; kukadu::KukieHand::getJointNames</definition>
+        <argsstring>()</argsstring>
+        <name>getJointNames</name>
+        <reimplements refid="classkukadu_1_1GenericHand_1aa562dea13207e605ee489e774e061fbb">getJointNames</reimplements>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/agyss/iis_robot_sw/iis_catkin_ws/src/kukadu/include/kukadu/robot/kukiehand.hpp" line="81" column="1" bodyfile="/home/agyss/iis_robot_sw/iis_catkin_ws/src/kukadu/src/robot/hand.cpp" bodystart="206" bodyend="221"/>
+      </memberdef>
+      <memberdef kind="function" id="classkukadu_1_1KukieHand_1a80b72409f58b8d2b3529633b8381a030" prot="public" static="no" const="no" explicit="no" inline="no" virt="virtual">
+        <type>arma::vec</type>
+        <definition>arma::vec kukadu::KukieHand::getCurrentJoints</definition>
+        <argsstring>()</argsstring>
+        <name>getCurrentJoints</name>
+        <reimplements refid="classkukadu_1_1GenericHand_1a3e18d7bfb6e3b19fde791d245d589a11">getCurrentJoints</reimplements>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/agyss/iis_robot_sw/iis_catkin_ws/src/kukadu/include/kukadu/robot/kukiehand.hpp" line="83" column="1" bodyfile="/home/agyss/iis_robot_sw/iis_catkin_ws/src/kukadu/src/robot/hand.cpp" bodystart="291" bodyend="299"/>
+      </memberdef>
+      <memberdef kind="function" id="classkukadu_1_1KukieHand_1aace79d111dc83774ed326756466429f6" prot="public" static="no" const="no" explicit="no" inline="no" virt="virtual">
+        <type>std::vector&lt; arma::mat &gt;</type>
+        <definition>std::vector&lt; arma::mat &gt; kukadu::KukieHand::getTactileSensing</definition>
+        <argsstring>()</argsstring>
+        <name>getTactileSensing</name>
+        <reimplements refid="classkukadu_1_1GenericHand_1a85b4263bc45c19fb64fd167d58ca7e43">getTactileSensing</reimplements>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/agyss/iis_robot_sw/iis_catkin_ws/src/kukadu/include/kukadu/robot/kukiehand.hpp" line="85" column="1" bodyfile="/home/agyss/iis_robot_sw/iis_catkin_ws/src/kukadu/src/robot/hand.cpp" bodystart="541" bodyend="554"/>
+      </memberdef>
+      </sectiondef>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <inheritancegraph>
+      <node id="418">
+        <label>kukadu::TimedObject</label>
+        <link refid="classkukadu_1_1TimedObject"/>
+      </node>
+      <node id="414">
+        <label>kukadu::JointHardware</label>
+        <link refid="classkukadu_1_1JointHardware"/>
+        <childnode refid="415" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="412">
+        <label>kukadu::KukieHand</label>
+        <link refid="classkukadu_1_1KukieHand"/>
+        <childnode refid="413" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="416">
+        <label>kukadu::StorageHolder</label>
+        <link refid="classkukadu_1_1StorageHolder"/>
+      </node>
+      <node id="415">
+        <label>kukadu::Hardware</label>
+        <link refid="classkukadu_1_1Hardware"/>
+        <childnode refid="416" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="417">
+        <label>kukadu::DestroyableObject</label>
+        <link refid="classkukadu_1_1DestroyableObject"/>
+      </node>
+      <node id="413">
+        <label>kukadu::GenericHand</label>
+        <link refid="classkukadu_1_1GenericHand"/>
+        <childnode refid="414" relation="public-inheritance">
+        </childnode>
+        <childnode refid="417" relation="public-inheritance">
+        </childnode>
+        <childnode refid="418" relation="public-inheritance">
+        </childnode>
+      </node>
+    </inheritancegraph>
+    <collaborationgraph>
+      <node id="425">
+        <label>kukadu::TimedObject</label>
+        <link refid="classkukadu_1_1TimedObject"/>
+      </node>
+      <node id="421">
+        <label>kukadu::JointHardware</label>
+        <link refid="classkukadu_1_1JointHardware"/>
+        <childnode refid="422" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="419">
+        <label>kukadu::KukieHand</label>
+        <link refid="classkukadu_1_1KukieHand"/>
+        <childnode refid="420" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="423">
+        <label>kukadu::StorageHolder</label>
+        <link refid="classkukadu_1_1StorageHolder"/>
+      </node>
+      <node id="422">
+        <label>kukadu::Hardware</label>
+        <link refid="classkukadu_1_1Hardware"/>
+        <childnode refid="423" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="424">
+        <label>kukadu::DestroyableObject</label>
+        <link refid="classkukadu_1_1DestroyableObject"/>
+      </node>
+      <node id="420">
+        <label>kukadu::GenericHand</label>
+        <link refid="classkukadu_1_1GenericHand"/>
+        <childnode refid="421" relation="public-inheritance">
+        </childnode>
+        <childnode refid="424" relation="public-inheritance">
+        </childnode>
+        <childnode refid="425" relation="public-inheritance">
+        </childnode>
+      </node>
+    </collaborationgraph>
+    <location file="/home/agyss/iis_robot_sw/iis_catkin_ws/src/kukadu/include/kukadu/robot/kukiehand.hpp" line="23" column="1" bodyfile="/home/agyss/iis_robot_sw/iis_catkin_ws/src/kukadu/include/kukadu/robot/kukiehand.hpp" bodystart="23" bodyend="93"/>
+    <listofallmembers>
+      <member refid="classkukadu_1_1KukieHand_1ace726db985affda8ed5f49464f7aab04" prot="public" virt="virtual"><scope>kukadu::KukieHand</scope><name>closeHand</name></member>
+      <member refid="classkukadu_1_1KukieHand_1aaccb81a60e09b915c8fd4b0acfe76d2f" prot="public" virt="virtual"><scope>kukadu::KukieHand</scope><name>connectHand</name></member>
+      <member refid="classkukadu_1_1KukieHand_1af96b0d8a3d04f2adf36102f692e1d2ba" prot="private" virt="non-virtual"><scope>kukadu::KukieHand</scope><name>currentGraspId</name></member>
+      <member refid="classkukadu_1_1KukieHand_1a29a9ba3846cf1748b40e29824c2ec882" prot="private" virt="non-virtual"><scope>kukadu::KukieHand</scope><name>currentPos</name></member>
+      <member refid="classkukadu_1_1KukieHand_1a0af5f80fe91db6dd38c02ef06b858213" prot="private" virt="non-virtual"><scope>kukadu::KukieHand</scope><name>currentPosMutex</name></member>
+      <member refid="classkukadu_1_1KukieHand_1a3013743080e16101bddd81ea23282373" prot="private" virt="non-virtual"><scope>kukadu::KukieHand</scope><name>currentTactileReadings</name></member>
+      <member refid="classkukadu_1_1KukieHand_1a4398a41eea4d64df9766b7e0d5f31559" prot="private" virt="non-virtual"><scope>kukadu::KukieHand</scope><name>degOfFreedom</name></member>
+      <member refid="classkukadu_1_1KukieHand_1aac5de8a17e7592b4c0c693fe6d06e0e9" prot="public" virt="virtual"><scope>kukadu::KukieHand</scope><name>disconnectHand</name></member>
+      <member refid="classkukadu_1_1KukieHand_1addbb92ad473ee7c282349bde1825c515" prot="private" virt="non-virtual"><scope>kukadu::KukieHand</scope><name>firstJointNamesRetrieval</name></member>
+      <member refid="classkukadu_1_1KukieHand_1a82ede6c90be161576fe00e3ed6294ffc" prot="private" virt="non-virtual"><scope>kukadu::KukieHand</scope><name>generateCentricalPose</name></member>
+      <member refid="classkukadu_1_1KukieHand_1a332b3b8a92e2c6680a78b8343c595492" prot="private" virt="non-virtual"><scope>kukadu::KukieHand</scope><name>generateCylindricalPose</name></member>
+      <member refid="classkukadu_1_1KukieHand_1a24852168138b90c3238a46749d548258" prot="private" virt="non-virtual"><scope>kukadu::KukieHand</scope><name>generateParallelPose</name></member>
+      <member refid="classkukadu_1_1KukieHand_1ad81f4c3984b7849ea6d4ca28243b73e4" prot="private" virt="non-virtual"><scope>kukadu::KukieHand</scope><name>generateSphericalPose</name></member>
+      <member refid="classkukadu_1_1GenericHand_1aa249fecba3926e7c8e2d313b68be37e1" prot="public" virt="non-virtual"><scope>kukadu::KukieHand</scope><name>GenericHand</name></member>
+      <member refid="classkukadu_1_1GenericHand_1acc1027f8a563e38c6b8dee0163b3ae66" prot="public" virt="non-virtual"><scope>kukadu::KukieHand</scope><name>GenericHand</name></member>
+      <member refid="classkukadu_1_1KukieHand_1a80b72409f58b8d2b3529633b8381a030" prot="public" virt="virtual"><scope>kukadu::KukieHand</scope><name>getCurrentJoints</name></member>
+      <member refid="classkukadu_1_1TimedObject_1a9c4db6e3f71d4bbddecd12b43e586691" prot="public" virt="non-virtual"><scope>kukadu::KukieHand</scope><name>getCurrentTime</name></member>
+      <member refid="classkukadu_1_1JointHardware_1a6e1bbab3cb82d94f3154060d5a8ee62a" prot="public" virt="virtual"><scope>kukadu::KukieHand</scope><name>getDegreesOfFreedom</name></member>
+      <member refid="classkukadu_1_1GenericHand_1adcb32c8131d597cd67671c44265b56df" prot="public" virt="virtual"><scope>kukadu::KukieHand</scope><name>getHandName</name></member>
+      <member refid="classkukadu_1_1Hardware_1a33e1b7ba05ccb5f7b9f9f7c9455efa4e" prot="public" virt="non-virtual"><scope>kukadu::KukieHand</scope><name>getHardwareClass</name></member>
+      <member refid="classkukadu_1_1Hardware_1a7739a3df264205b2587f37c1828c8fb6" prot="public" virt="non-virtual"><scope>kukadu::KukieHand</scope><name>getHardwareInstance</name></member>
+      <member refid="classkukadu_1_1Hardware_1a994090c6bf74f03a91a44df6eeb41703" prot="public" virt="non-virtual"><scope>kukadu::KukieHand</scope><name>getHardwareInstanceName</name></member>
+      <member refid="classkukadu_1_1Hardware_1a34e793c453fe444d98905f7a64d1720b" prot="public" virt="non-virtual"><scope>kukadu::KukieHand</scope><name>getHardwareType</name></member>
+      <member refid="classkukadu_1_1Hardware_1a1353994ae509caf0e5c8d5f112d82e66" prot="public" virt="non-virtual"><scope>kukadu::KukieHand</scope><name>getHardwareTypeName</name></member>
+      <member refid="classkukadu_1_1JointHardware_1a6f2a9128511dcc626932bee6850cd833" prot="public" virt="virtual"><scope>kukadu::KukieHand</scope><name>getJointId</name></member>
+      <member refid="classkukadu_1_1JointHardware_1a556b26ac4e21479009fb661cb2a9b943" prot="public" virt="virtual"><scope>kukadu::KukieHand</scope><name>getJointIds</name></member>
+      <member refid="classkukadu_1_1JointHardware_1a5629c63268491477ace5210e8ed1721d" prot="public" virt="virtual"><scope>kukadu::KukieHand</scope><name>getJointIds</name></member>
+      <member refid="classkukadu_1_1KukieHand_1aa974a0837ed5efb96e0586604d55289e" prot="public" virt="virtual"><scope>kukadu::KukieHand</scope><name>getJointNames</name></member>
+      <member refid="classkukadu_1_1GenericHand_1ada5ce87f83585abeb39709e50388e60f" prot="public" virt="virtual"><scope>kukadu::KukieHand</scope><name>getPreferredPollingFrequency</name></member>
+      <member refid="classkukadu_1_1StorageHolder_1ab960ded0b470890c8ca94741b61c8d2e" prot="public" virt="non-virtual"><scope>kukadu::KukieHand</scope><name>getStorage</name></member>
+      <member refid="classkukadu_1_1KukieHand_1aace79d111dc83774ed326756466429f6" prot="public" virt="virtual"><scope>kukadu::KukieHand</scope><name>getTactileSensing</name></member>
+      <member refid="classkukadu_1_1KukieHand_1a7ee36184cbbf88df2ae57b4b6a166734" prot="private" virt="non-virtual"><scope>kukadu::KukieHand</scope><name>hand</name></member>
+      <member refid="classkukadu_1_1Hardware_1af7a1355a6d8c10e68b7bfd783bc9d8a2" prot="public" virt="non-virtual"><scope>kukadu::KukieHand</scope><name>Hardware</name></member>
+      <member refid="classkukadu_1_1KukieHand_1a0573e00ecf59836fda85517a3ae66f6c" prot="private" virt="non-virtual"><scope>kukadu::KukieHand</scope><name>initCurrentPos</name></member>
+      <member refid="classkukadu_1_1Hardware_1a694ca4d7b1cb52b17d2bdb8a4c64d16c" prot="public" virt="virtual"><scope>kukadu::KukieHand</scope><name>install</name></member>
+      <member refid="classkukadu_1_1GenericHand_1ac13a2cd5234361b3483f0cc88467cbd7" prot="protected" virt="virtual"><scope>kukadu::KukieHand</scope><name>installHardwareInstanceInternal</name></member>
+      <member refid="classkukadu_1_1GenericHand_1ac784c881aaa1f6db378bff64407384a4" prot="protected" virt="virtual"><scope>kukadu::KukieHand</scope><name>installHardwareTypeInternal</name></member>
+      <member refid="classkukadu_1_1KukieHand_1a5e6ae9c403c39b169f2d613c006817dd" prot="private" virt="non-virtual"><scope>kukadu::KukieHand</scope><name>isFirstCallback</name></member>
+      <member refid="classkukadu_1_1JointHardware_1a0514e200c960e5246107dff0dbee11da" prot="public" virt="non-virtual"><scope>kukadu::KukieHand</scope><name>JointHardware</name></member>
+      <member refid="classkukadu_1_1KukieHand_1ac067f863a0af5d4b6c1fd416b6afb35e" prot="private" virt="non-virtual"><scope>kukadu::KukieHand</scope><name>jointNames</name></member>
+      <member refid="classkukadu_1_1KukieHand_1a4283b3849f083f7469be19eafbb4ff63" prot="public" virt="non-virtual"><scope>kukadu::KukieHand</scope><name>KukieHand</name></member>
+      <member refid="classkukadu_1_1JointHardware_1a8145b779bc5fbda910d4c412e18dabe8" prot="public" virt="virtual"><scope>kukadu::KukieHand</scope><name>loadData</name></member>
+      <member refid="classkukadu_1_1Hardware_1a4ea17ba6cb91d1a5f53e5b2c96c0cd8c" prot="public" virt="pure-virtual" ambiguityscope="kukadu::Hardware::"><scope>kukadu::KukieHand</scope><name>loadData</name></member>
+      <member refid="classkukadu_1_1Hardware_1ac1f3b6662e4446c2dd67d702fccc8b7e" prot="public" virt="non-virtual"><scope>kukadu::KukieHand</scope><name>loadInstanceIdFromName</name></member>
+      <member refid="classkukadu_1_1Hardware_1abfeecedf0a480422ea9d47da4f228c7b" prot="public" virt="non-virtual"><scope>kukadu::KukieHand</scope><name>loadOrCreateInstanceIdFromName</name></member>
+      <member refid="classkukadu_1_1Hardware_1aeb3c6a1ca42389cc341aee61c633daba" prot="public" virt="non-virtual"><scope>kukadu::KukieHand</scope><name>loadOrCreateTypeIdFromName</name></member>
+      <member refid="classkukadu_1_1Hardware_1a305c4f348e988d76e2cae7eb9105fec1" prot="public" virt="non-virtual"><scope>kukadu::KukieHand</scope><name>loadTypeIdFromInstanceId</name></member>
+      <member refid="classkukadu_1_1Hardware_1a6e5a6e1f250a02df3e9766801f82d255" prot="public" virt="non-virtual"><scope>kukadu::KukieHand</scope><name>loadTypeIdFromInstanceName</name></member>
+      <member refid="classkukadu_1_1Hardware_1a553cd9394cc78773c0effb7d80f0ee16" prot="public" virt="non-virtual"><scope>kukadu::KukieHand</scope><name>loadTypeIdFromName</name></member>
+      <member refid="classkukadu_1_1Hardware_1a58f76f5117554f7f2613cdb082addf22" prot="public" virt="non-virtual"><scope>kukadu::KukieHand</scope><name>loadTypeNameFromInstanceName</name></member>
+      <member refid="classkukadu_1_1KukieHand_1a548ed81cee0f111abc4c6b127b075da4" prot="public" virt="virtual"><scope>kukadu::KukieHand</scope><name>moveJoints</name></member>
+      <member refid="classkukadu_1_1KukieHand_1a06e5d8d9d4372e4bd6368c2992dcac31" prot="private" virt="non-virtual"><scope>kukadu::KukieHand</scope><name>movementStarted</name></member>
+      <member refid="classkukadu_1_1KukieHand_1a326b54c172c34a4302288af2892fc3c6" prot="private" virt="non-virtual"><scope>kukadu::KukieHand</scope><name>node</name></member>
+      <member refid="classkukadu_1_1KukieHand_1a0b193c5a9c71b7b1a2a2ddc992484fa8" prot="private" virt="non-virtual"><scope>kukadu::KukieHand</scope><name>previousCurrentPosQueue</name></member>
+      <member refid="classkukadu_1_1KukieHand_1aab38fec13de2b8cfcd557a5663972acc" prot="private" virt="non-virtual"><scope>kukadu::KukieHand</scope><name>previousCurrentPosQueueSize</name></member>
+      <member refid="classkukadu_1_1KukieHand_1a3b11fd1af2a71838a4cb87b96d7d14e6" prot="public" virt="virtual"><scope>kukadu::KukieHand</scope><name>publishSingleJoint</name></member>
+      <member refid="classkukadu_1_1KukieHand_1ad4f676de2f32cee7c191e4fbf42cb133" prot="public" virt="virtual"><scope>kukadu::KukieHand</scope><name>safelyDestroy</name></member>
+      <member refid="classkukadu_1_1KukieHand_1a2fd16294d41f30d129b7c6c6251a3a98" prot="public" virt="non-virtual"><scope>kukadu::KukieHand</scope><name>SDH_IGNORE_JOINT</name></member>
+      <member refid="classkukadu_1_1KukieHand_1a7aa80edce6f8b938eea2ca1826bf230a" prot="public" virt="virtual"><scope>kukadu::KukieHand</scope><name>setGrasp</name></member>
+      <member refid="classkukadu_1_1KukieHand_1ae1b5de05777e8364b59a8832057c1e4f" prot="public" virt="virtual"><scope>kukadu::KukieHand</scope><name>setWaitForReached</name></member>
+      <member refid="classkukadu_1_1KukieHand_1af2f6daf38ae96ee3e54bccef4d595d0c" prot="private" virt="non-virtual"><scope>kukadu::KukieHand</scope><name>stateCallback</name></member>
+      <member refid="classkukadu_1_1KukieHand_1ae251731daf3dab217c9b177a540dc28c" prot="private" virt="non-virtual"><scope>kukadu::KukieHand</scope><name>stateSub</name></member>
+      <member refid="classkukadu_1_1KukieHand_1a7cdcc9eaa38d697711fb653a03700f76" prot="private" virt="non-virtual"><scope>kukadu::KukieHand</scope><name>stopCollecting</name></member>
+      <member refid="classkukadu_1_1StorageHolder_1a1c64f1528f3243ace2ec3932d69d9704" prot="public" virt="non-virtual"><scope>kukadu::KukieHand</scope><name>StorageHolder</name></member>
+      <member refid="classkukadu_1_1GenericHand_1ab1d138bbbf8575eb6e981c5f5fd91376" prot="public" virt="virtual"><scope>kukadu::KukieHand</scope><name>storeCurrentSensorDataToDatabase</name></member>
+      <member refid="classkukadu_1_1KukieHand_1a644d6de9221f55568a5b03cb830681ea" prot="private" virt="non-virtual"><scope>kukadu::KukieHand</scope><name>tactileCallback</name></member>
+      <member refid="classkukadu_1_1KukieHand_1a8aa596d63b39874cb3bc080cf50ce685" prot="private" virt="non-virtual"><scope>kukadu::KukieHand</scope><name>tactileMutex</name></member>
+      <member refid="classkukadu_1_1KukieHand_1a2f9c413c6193fc2373a4ef795e331e0c" prot="private" virt="non-virtual"><scope>kukadu::KukieHand</scope><name>tactileSub</name></member>
+      <member refid="classkukadu_1_1KukieHand_1aae668b42b5c8a29517edd566e83e85a6" prot="private" virt="non-virtual"><scope>kukadu::KukieHand</scope><name>targetReached</name></member>
+      <member refid="classkukadu_1_1KukieHand_1a72d723204091635caeaa36079ee350e4" prot="private" virt="non-virtual"><scope>kukadu::KukieHand</scope><name>trajPub</name></member>
+      <member refid="classkukadu_1_1KukieHand_1ab9ddcac52b45713ba8d3c12487995cdc" prot="private" virt="non-virtual"><scope>kukadu::KukieHand</scope><name>vectorsDeviate</name></member>
+      <member refid="classkukadu_1_1KukieHand_1aebc89fa73f2bf50458116fe5b0f35ef6" prot="private" virt="non-virtual"><scope>kukadu::KukieHand</scope><name>waitForReached</name></member>
+      <member refid="classkukadu_1_1KukieHand_1a6f7937b8fb19261a15104d0997e10439" prot="public" virt="non-virtual"><scope>kukadu::KukieHand</scope><name>~KukieHand</name></member>
+    </listofallmembers>
+  </compounddef>
+</doxygen>

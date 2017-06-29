@@ -1,0 +1,1243 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.8.11">
+  <compounddef id="classkukadu_1_1Komo" kind="class" language="C++" prot="public">
+    <compoundname>kukadu::Komo</compoundname>
+    <basecompoundref refid="classkukadu_1_1PathPlanner" prot="public" virt="non-virtual">kukadu::PathPlanner</basecompoundref>
+    <basecompoundref prot="public" virt="non-virtual">KUKADU_ENABLE_SHARED_FROM_THIS&lt; Komo &gt;</basecompoundref>
+      <sectiondef kind="private-attrib">
+      <memberdef kind="variable" id="classkukadu_1_1Komo_1ac38b296a0e9d295ada957cdf074be8cb" prot="private" static="no" mutable="no">
+        <type>bool</type>
+        <definition>bool kukadu::Komo::acceptCollision</definition>
+        <argsstring></argsstring>
+        <name>acceptCollision</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/agyss/iis_robot_sw/iis_catkin_ws/src/kukadu/include/kukadu/planning/komo.hpp" line="28" column="1" bodyfile="/home/agyss/iis_robot_sw/iis_catkin_ws/src/kukadu/include/kukadu/planning/komo.hpp" bodystart="28" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classkukadu_1_1Komo_1aac60ab0700133028d3a33f34b27254d1" prot="private" static="no" mutable="no">
+        <type>double</type>
+        <definition>double kukadu::Komo::_positionPrecision</definition>
+        <argsstring></argsstring>
+        <name>_positionPrecision</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/agyss/iis_robot_sw/iis_catkin_ws/src/kukadu/include/kukadu/planning/komo.hpp" line="30" column="1" bodyfile="/home/agyss/iis_robot_sw/iis_catkin_ws/src/kukadu/include/kukadu/planning/komo.hpp" bodystart="30" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classkukadu_1_1Komo_1a8692131e3288f6f9843ea4fa5929c67e" prot="private" static="no" mutable="no">
+        <type>double</type>
+        <definition>double kukadu::Komo::_zeroVelocityPrecision</definition>
+        <argsstring></argsstring>
+        <name>_zeroVelocityPrecision</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/agyss/iis_robot_sw/iis_catkin_ws/src/kukadu/include/kukadu/planning/komo.hpp" line="31" column="1" bodyfile="/home/agyss/iis_robot_sw/iis_catkin_ws/src/kukadu/include/kukadu/planning/komo.hpp" bodystart="31" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classkukadu_1_1Komo_1ab0000705baa81d076e3d0554da5a4738" prot="private" static="no" mutable="no">
+        <type>double</type>
+        <definition>double kukadu::Komo::_jointLimitPrecision</definition>
+        <argsstring></argsstring>
+        <name>_jointLimitPrecision</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/agyss/iis_robot_sw/iis_catkin_ws/src/kukadu/include/kukadu/planning/komo.hpp" line="32" column="1" bodyfile="/home/agyss/iis_robot_sw/iis_catkin_ws/src/kukadu/include/kukadu/planning/komo.hpp" bodystart="32" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classkukadu_1_1Komo_1a202a46196ae42319f6cd7b754669a3df" prot="private" static="no" mutable="no">
+        <type>double</type>
+        <definition>double kukadu::Komo::_jointLimitMargin</definition>
+        <argsstring></argsstring>
+        <name>_jointLimitMargin</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/agyss/iis_robot_sw/iis_catkin_ws/src/kukadu/include/kukadu/planning/komo.hpp" line="33" column="1" bodyfile="/home/agyss/iis_robot_sw/iis_catkin_ws/src/kukadu/include/kukadu/planning/komo.hpp" bodystart="33" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classkukadu_1_1Komo_1a3e0acb77a8a354ca98adaaa56716b730" prot="private" static="no" mutable="no">
+        <type>double</type>
+        <definition>double kukadu::Komo::_jointStatePrecision</definition>
+        <argsstring></argsstring>
+        <name>_jointStatePrecision</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/agyss/iis_robot_sw/iis_catkin_ws/src/kukadu/include/kukadu/planning/komo.hpp" line="34" column="1" bodyfile="/home/agyss/iis_robot_sw/iis_catkin_ws/src/kukadu/include/kukadu/planning/komo.hpp" bodystart="34" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classkukadu_1_1Komo_1a9de04f700820b403bd117c3aa9dbcd74" prot="private" static="no" mutable="no">
+        <type>double</type>
+        <definition>double kukadu::Komo::_collisionPrecision</definition>
+        <argsstring></argsstring>
+        <name>_collisionPrecision</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/agyss/iis_robot_sw/iis_catkin_ws/src/kukadu/include/kukadu/planning/komo.hpp" line="35" column="1" bodyfile="/home/agyss/iis_robot_sw/iis_catkin_ws/src/kukadu/include/kukadu/planning/komo.hpp" bodystart="35" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classkukadu_1_1Komo_1a5b7a3ee3817731029098620e8ae5b3f9" prot="private" static="no" mutable="no">
+        <type>double</type>
+        <definition>double kukadu::Komo::_collisionMargin</definition>
+        <argsstring></argsstring>
+        <name>_collisionMargin</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/agyss/iis_robot_sw/iis_catkin_ws/src/kukadu/include/kukadu/planning/komo.hpp" line="36" column="1" bodyfile="/home/agyss/iis_robot_sw/iis_catkin_ws/src/kukadu/include/kukadu/planning/komo.hpp" bodystart="36" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classkukadu_1_1Komo_1af1cfe90b317333fe63cfed8604eed65d" prot="private" static="no" mutable="no">
+        <type>double</type>
+        <definition>double kukadu::Komo::_alignmentPrecision</definition>
+        <argsstring></argsstring>
+        <name>_alignmentPrecision</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/agyss/iis_robot_sw/iis_catkin_ws/src/kukadu/include/kukadu/planning/komo.hpp" line="37" column="1" bodyfile="/home/agyss/iis_robot_sw/iis_catkin_ws/src/kukadu/include/kukadu/planning/komo.hpp" bodystart="37" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classkukadu_1_1Komo_1aa765fdd5d1bc7ef3436a8dfe419ae30e" prot="private" static="no" mutable="no">
+        <type>double</type>
+        <definition>double kukadu::Komo::_maxIterations</definition>
+        <argsstring></argsstring>
+        <name>_maxIterations</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/agyss/iis_robot_sw/iis_catkin_ws/src/kukadu/include/kukadu/planning/komo.hpp" line="38" column="1" bodyfile="/home/agyss/iis_robot_sw/iis_catkin_ws/src/kukadu/include/kukadu/planning/komo.hpp" bodystart="38" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classkukadu_1_1Komo_1a62f74660c9ca10b11cdcea462c09d6cf" prot="private" static="no" mutable="no">
+        <type>std::string</type>
+        <definition>std::string kukadu::Komo::eef_link</definition>
+        <argsstring></argsstring>
+        <name>eef_link</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/agyss/iis_robot_sw/iis_catkin_ws/src/kukadu/include/kukadu/planning/komo.hpp" line="43" column="1" bodyfile="/home/agyss/iis_robot_sw/iis_catkin_ws/src/kukadu/include/kukadu/planning/komo.hpp" bodystart="43" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classkukadu_1_1Komo_1a9c8a2b86c3049cbbce292a3bb1ae8225" prot="private" static="no" mutable="no">
+        <type>std::string</type>
+        <definition>std::string kukadu::Komo::activeJointsPrefix</definition>
+        <argsstring></argsstring>
+        <name>activeJointsPrefix</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/agyss/iis_robot_sw/iis_catkin_ws/src/kukadu/include/kukadu/planning/komo.hpp" line="44" column="1" bodyfile="/home/agyss/iis_robot_sw/iis_catkin_ws/src/kukadu/include/kukadu/planning/komo.hpp" bodystart="44" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classkukadu_1_1Komo_1a0fe2430713cd17935a471549df882dec" prot="private" static="no" mutable="no">
+        <type>ors::Vector</type>
+        <definition>ors::Vector kukadu::Komo::_pos_tolerance</definition>
+        <argsstring></argsstring>
+        <name>_pos_tolerance</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/agyss/iis_robot_sw/iis_catkin_ws/src/kukadu/include/kukadu/planning/komo.hpp" line="46" column="1" bodyfile="/home/agyss/iis_robot_sw/iis_catkin_ws/src/kukadu/include/kukadu/planning/komo.hpp" bodystart="46" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classkukadu_1_1Komo_1ade40385d3173e5238780facd43396877" prot="private" static="no" mutable="no">
+        <type>ors::Vector</type>
+        <definition>ors::Vector kukadu::Komo::_ang_tolerance</definition>
+        <argsstring></argsstring>
+        <name>_ang_tolerance</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/agyss/iis_robot_sw/iis_catkin_ws/src/kukadu/include/kukadu/planning/komo.hpp" line="47" column="1" bodyfile="/home/agyss/iis_robot_sw/iis_catkin_ws/src/kukadu/include/kukadu/planning/komo.hpp" bodystart="47" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classkukadu_1_1Komo_1a9151c7d0842bea8db2521b6481795780" prot="private" static="no" mutable="no">
+        <type>MT::String</type>
+        <definition>MT::String kukadu::Komo::_world_link_name</definition>
+        <argsstring></argsstring>
+        <name>_world_link_name</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/agyss/iis_robot_sw/iis_catkin_ws/src/kukadu/include/kukadu/planning/komo.hpp" line="49" column="1" bodyfile="/home/agyss/iis_robot_sw/iis_catkin_ws/src/kukadu/include/kukadu/planning/komo.hpp" bodystart="49" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classkukadu_1_1Komo_1a6b5dbda060236767e2ec48af0545a39e" prot="private" static="no" mutable="no">
+        <type>MT::String</type>
+        <definition>MT::String kukadu::Komo::_support_surface_name</definition>
+        <argsstring></argsstring>
+        <name>_support_surface_name</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/agyss/iis_robot_sw/iis_catkin_ws/src/kukadu/include/kukadu/planning/komo.hpp" line="50" column="1" bodyfile="/home/agyss/iis_robot_sw/iis_catkin_ws/src/kukadu/include/kukadu/planning/komo.hpp" bodystart="50" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classkukadu_1_1Komo_1af42dbdf7a518748858b8e255d1f25924" prot="private" static="no" mutable="no">
+        <type>ors::KinematicWorld *</type>
+        <definition>ors::KinematicWorld* kukadu::Komo::_world</definition>
+        <argsstring></argsstring>
+        <name>_world</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/agyss/iis_robot_sw/iis_catkin_ws/src/kukadu/include/kukadu/planning/komo.hpp" line="52" column="1" bodyfile="/home/agyss/iis_robot_sw/iis_catkin_ws/src/kukadu/include/kukadu/planning/komo.hpp" bodystart="52" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classkukadu_1_1Komo_1a9d937eb0424d1e60ea5316767e2dc6a1" prot="private" static="no" mutable="no">
+        <type>std::vector&lt; std::string &gt;</type>
+        <definition>std::vector&lt;std::string&gt; kukadu::Komo::sJointNames</definition>
+        <argsstring></argsstring>
+        <name>sJointNames</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/agyss/iis_robot_sw/iis_catkin_ws/src/kukadu/include/kukadu/planning/komo.hpp" line="53" column="1" bodyfile="/home/agyss/iis_robot_sw/iis_catkin_ws/src/kukadu/include/kukadu/planning/komo.hpp" bodystart="53" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classkukadu_1_1Komo_1af03d2c2f8c171eb9e7ec45cbfc7b085b" prot="private" static="no" mutable="no">
+        <type>std::vector&lt; ors::Joint * &gt;</type>
+        <definition>std::vector&lt;ors::Joint*&gt; kukadu::Komo::_active_joints</definition>
+        <argsstring></argsstring>
+        <name>_active_joints</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/agyss/iis_robot_sw/iis_catkin_ws/src/kukadu/include/kukadu/planning/komo.hpp" line="54" column="1" bodyfile="/home/agyss/iis_robot_sw/iis_catkin_ws/src/kukadu/include/kukadu/planning/komo.hpp" bodystart="54" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classkukadu_1_1Komo_1a90c220a0b4596ab98f800c726db7a749" prot="private" static="no" mutable="no">
+        <type>KUKADU_SHARED_PTR&lt; <ref refid="classkukadu_1_1ControlQueue" kindref="compound">ControlQueue</ref> &gt;</type>
+        <definition>KUKADU_SHARED_PTR&lt;ControlQueue&gt; kukadu::Komo::queue</definition>
+        <argsstring></argsstring>
+        <name>queue</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/agyss/iis_robot_sw/iis_catkin_ws/src/kukadu/include/kukadu/planning/komo.hpp" line="56" column="1" bodyfile="/home/agyss/iis_robot_sw/iis_catkin_ws/src/kukadu/include/kukadu/planning/komo.hpp" bodystart="56" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classkukadu_1_1Komo_1a90e5a4a229c9663db508ae1668b701f2" prot="private" static="no" mutable="no">
+        <type>KUKADU_SHARED_PTR&lt; <ref refid="classkukadu_1_1SimplePlanner" kindref="compound">SimplePlanner</ref> &gt;</type>
+        <definition>KUKADU_SHARED_PTR&lt;SimplePlanner&gt; kukadu::Komo::simplePlanner</definition>
+        <argsstring></argsstring>
+        <name>simplePlanner</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/agyss/iis_robot_sw/iis_catkin_ws/src/kukadu/include/kukadu/planning/komo.hpp" line="57" column="1" bodyfile="/home/agyss/iis_robot_sw/iis_catkin_ws/src/kukadu/include/kukadu/planning/komo.hpp" bodystart="57" bodyend="-1"/>
+      </memberdef>
+      </sectiondef>
+      <sectiondef kind="private-static-attrib">
+      <memberdef kind="variable" id="classkukadu_1_1Komo_1a8160076e0722aca4495cca9182a1e348" prot="private" static="yes" mutable="no">
+        <type>kukadu_mutex</type>
+        <definition>kukadu_mutex kukadu::Komo::oneAtATimeMutex</definition>
+        <argsstring></argsstring>
+        <name>oneAtATimeMutex</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/agyss/iis_robot_sw/iis_catkin_ws/src/kukadu/include/kukadu/planning/komo.hpp" line="41" column="1" bodyfile="/home/agyss/iis_robot_sw/iis_catkin_ws/src/kukadu/include/kukadu/planning/komo.hpp" bodystart="41" bodyend="-1"/>
+      </memberdef>
+      </sectiondef>
+      <sectiondef kind="private-func">
+      <memberdef kind="function" id="classkukadu_1_1Komo_1a9a9b440bae7ed842fe966af64ce6ab62" prot="private" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>void kukadu::Komo::display</definition>
+        <argsstring>(bool block, const char *msg)</argsstring>
+        <name>display</name>
+        <param>
+          <type>bool</type>
+          <declname>block</declname>
+        </param>
+        <param>
+          <type>const char *</type>
+          <declname>msg</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/agyss/iis_robot_sw/iis_catkin_ws/src/kukadu/include/kukadu/planning/komo.hpp" line="59" column="1" bodyfile="/home/agyss/iis_robot_sw/iis_catkin_ws/src/kukadu/src/planning/komo.cpp" bodystart="824" bodyend="826"/>
+      </memberdef>
+      <memberdef kind="function" id="classkukadu_1_1Komo_1a5319628a17b4cd91d1642edefd6b3f74" prot="private" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>void kukadu::Komo::setState</definition>
+        <argsstring>(const sensor_msgs::JointState &amp;state)</argsstring>
+        <name>setState</name>
+        <param>
+          <type>const sensor_msgs::JointState &amp;</type>
+          <declname>state</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/agyss/iis_robot_sw/iis_catkin_ws/src/kukadu/include/kukadu/planning/komo.hpp" line="60" column="1" bodyfile="/home/agyss/iis_robot_sw/iis_catkin_ws/src/kukadu/src/planning/komo.cpp" bodystart="333" bodyend="348"/>
+      </memberdef>
+      <memberdef kind="function" id="classkukadu_1_1Komo_1a97e86e9c72710f3d20a8dd5bc803c2c3" prot="private" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>void kukadu::Komo::ensureJointLimits</definition>
+        <argsstring>(ors::KinematicWorld &amp;w, arr &amp;x)</argsstring>
+        <name>ensureJointLimits</name>
+        <param>
+          <type>ors::KinematicWorld &amp;</type>
+          <declname>w</declname>
+        </param>
+        <param>
+          <type>arr &amp;</type>
+          <declname>x</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para>Correct joint limit violations in given trajectory. Ensures that each joint position in all waypoints is within configured limits.</para><para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>w</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>The KinematicWorld to use </para></parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>x</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>The trajectory to check </para></parameterdescription>
+</parameteritem>
+</parameterlist>
+</para>        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/agyss/iis_robot_sw/iis_catkin_ws/src/kukadu/include/kukadu/planning/komo.hpp" line="61" column="1" bodyfile="/home/agyss/iis_robot_sw/iis_catkin_ws/src/kukadu/src/planning/komo.cpp" bodystart="708" bodyend="734"/>
+      </memberdef>
+      <memberdef kind="function" id="classkukadu_1_1Komo_1a8d640c87e995cfcf2ba8f619b87ec308" prot="private" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>void kukadu::Komo::setJointPosition</definition>
+        <argsstring>(const std::string &amp;name, const double pos)</argsstring>
+        <name>setJointPosition</name>
+        <param>
+          <type>const std::string &amp;</type>
+          <declname>name</declname>
+        </param>
+        <param>
+          <type>const double</type>
+          <declname>pos</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/agyss/iis_robot_sw/iis_catkin_ws/src/kukadu/include/kukadu/planning/komo.hpp" line="62" column="1" bodyfile="/home/agyss/iis_robot_sw/iis_catkin_ws/src/kukadu/src/planning/komo.cpp" bodystart="323" bodyend="331"/>
+      </memberdef>
+      <memberdef kind="function" id="classkukadu_1_1Komo_1ade20c2aa4097850af0d1a0c780b9a0db" prot="private" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>void kukadu::Komo::pathToTrajectory</definition>
+        <argsstring>(trajectory_msgs::JointTrajectory &amp;traj, const arr &amp;path)</argsstring>
+        <name>pathToTrajectory</name>
+        <param>
+          <type>trajectory_msgs::JointTrajectory &amp;</type>
+          <declname>traj</declname>
+        </param>
+        <param>
+          <type>const arr &amp;</type>
+          <declname>path</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/agyss/iis_robot_sw/iis_catkin_ws/src/kukadu/include/kukadu/planning/komo.hpp" line="63" column="1" bodyfile="/home/agyss/iis_robot_sw/iis_catkin_ws/src/kukadu/src/planning/komo.cpp" bodystart="804" bodyend="822"/>
+      </memberdef>
+      <memberdef kind="function" id="classkukadu_1_1Komo_1a2a915c064ab30c88cd00bff846e00661" prot="private" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>void kukadu::Komo::setState</definition>
+        <argsstring>(const std::vector&lt; std::string &gt; &amp;jointNames, const arma::vec &amp;joints)</argsstring>
+        <name>setState</name>
+        <param>
+          <type>const std::vector&lt; std::string &gt; &amp;</type>
+          <declname>jointNames</declname>
+        </param>
+        <param>
+          <type>const arma::vec &amp;</type>
+          <declname>joints</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/agyss/iis_robot_sw/iis_catkin_ws/src/kukadu/include/kukadu/planning/komo.hpp" line="64" column="1" bodyfile="/home/agyss/iis_robot_sw/iis_catkin_ws/src/kukadu/src/planning/komo.cpp" bodystart="350" bodyend="357"/>
+      </memberdef>
+      <memberdef kind="function" id="classkukadu_1_1Komo_1a7340745dabf518678bea5e277617c2b5" prot="private" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>void kukadu::Komo::computePositionError</definition>
+        <argsstring>(const ors::Shape &amp;eef, const ors::Shape &amp;target, ors::Vector &amp;error)</argsstring>
+        <name>computePositionError</name>
+        <param>
+          <type>const ors::Shape &amp;</type>
+          <declname>eef</declname>
+        </param>
+        <param>
+          <type>const ors::Shape &amp;</type>
+          <declname>target</declname>
+        </param>
+        <param>
+          <type>ors::Vector &amp;</type>
+          <declname>error</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/agyss/iis_robot_sw/iis_catkin_ws/src/kukadu/include/kukadu/planning/komo.hpp" line="65" column="1" bodyfile="/home/agyss/iis_robot_sw/iis_catkin_ws/src/kukadu/src/planning/komo.cpp" bodystart="597" bodyend="600"/>
+      </memberdef>
+      <memberdef kind="function" id="classkukadu_1_1Komo_1afd596231a5ed3d4f64e35c5705e23551" prot="private" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>void kukadu::Komo::computePositionError</definition>
+        <argsstring>(ors::KinematicWorld &amp;w, const char *eef, const char *target, ors::Vector &amp;error)</argsstring>
+        <name>computePositionError</name>
+        <param>
+          <type>ors::KinematicWorld &amp;</type>
+          <declname>w</declname>
+        </param>
+        <param>
+          <type>const char *</type>
+          <declname>eef</declname>
+        </param>
+        <param>
+          <type>const char *</type>
+          <declname>target</declname>
+        </param>
+        <param>
+          <type>ors::Vector &amp;</type>
+          <declname>error</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/agyss/iis_robot_sw/iis_catkin_ws/src/kukadu/include/kukadu/planning/komo.hpp" line="66" column="1" bodyfile="/home/agyss/iis_robot_sw/iis_catkin_ws/src/kukadu/src/planning/komo.cpp" bodystart="602" bodyend="606"/>
+      </memberdef>
+      <memberdef kind="function" id="classkukadu_1_1Komo_1aeefe37efe31f0c293c4fe9c8bf9e64c5" prot="private" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>void kukadu::Komo::computeAlignmentError</definition>
+        <argsstring>(ors::KinematicWorld &amp;w, const char *eef, const char *target, ors::Vector &amp;error)</argsstring>
+        <name>computeAlignmentError</name>
+        <param>
+          <type>ors::KinematicWorld &amp;</type>
+          <declname>w</declname>
+        </param>
+        <param>
+          <type>const char *</type>
+          <declname>eef</declname>
+        </param>
+        <param>
+          <type>const char *</type>
+          <declname>target</declname>
+        </param>
+        <param>
+          <type>ors::Vector &amp;</type>
+          <declname>error</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/agyss/iis_robot_sw/iis_catkin_ws/src/kukadu/include/kukadu/planning/komo.hpp" line="67" column="1" bodyfile="/home/agyss/iis_robot_sw/iis_catkin_ws/src/kukadu/src/planning/komo.cpp" bodystart="629" bodyend="633"/>
+      </memberdef>
+      <memberdef kind="function" id="classkukadu_1_1Komo_1a5d52a0e118dd3b5fc42a3a40e2bf398c" prot="private" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>void kukadu::Komo::computeAlignmentError</definition>
+        <argsstring>(const ors::Shape &amp;eef, const ors::Shape &amp;target, ors::Vector &amp;error, int axes=7)</argsstring>
+        <name>computeAlignmentError</name>
+        <param>
+          <type>const ors::Shape &amp;</type>
+          <declname>eef</declname>
+        </param>
+        <param>
+          <type>const ors::Shape &amp;</type>
+          <declname>target</declname>
+        </param>
+        <param>
+          <type>ors::Vector &amp;</type>
+          <declname>error</declname>
+        </param>
+        <param>
+          <type>int</type>
+          <declname>axes</declname>
+          <defval>7</defval>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/agyss/iis_robot_sw/iis_catkin_ws/src/kukadu/include/kukadu/planning/komo.hpp" line="68" column="1" bodyfile="/home/agyss/iis_robot_sw/iis_catkin_ws/src/kukadu/src/planning/komo.cpp" bodystart="608" bodyend="627"/>
+      </memberdef>
+      <memberdef kind="function" id="classkukadu_1_1Komo_1ad0bae5343c20cef63351a277932197a8" prot="private" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>bool</type>
+        <definition>bool kukadu::Komo::check_goal_state</definition>
+        <argsstring>(const arr &amp;desired, const arr &amp;actual)</argsstring>
+        <name>check_goal_state</name>
+        <param>
+          <type>const arr &amp;</type>
+          <declname>desired</declname>
+        </param>
+        <param>
+          <type>const arr &amp;</type>
+          <declname>actual</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para>Checks, whether a given goal state was reached</para><para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>desired</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>The desired state </para></parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>actual</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>The actual state </para></parameterdescription>
+</parameteritem>
+</parameterlist>
+<simplesect kind="return"><para>True, if actual state is within goal tolerance </para></simplesect>
+</para>        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/agyss/iis_robot_sw/iis_catkin_ws/src/kukadu/include/kukadu/planning/komo.hpp" line="70" column="1" bodyfile="/home/agyss/iis_robot_sw/iis_catkin_ws/src/kukadu/src/planning/komo.cpp" bodystart="795" bodyend="802"/>
+      </memberdef>
+      <memberdef kind="function" id="classkukadu_1_1Komo_1a3f2fcb39a8e6f3fbcd333e1053dac214" prot="private" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>bool</type>
+        <definition>bool kukadu::Komo::withinTolerance</definition>
+        <argsstring>(ors::Vector &amp;error, ors::Vector &amp;tolerance)</argsstring>
+        <name>withinTolerance</name>
+        <param>
+          <type>ors::Vector &amp;</type>
+          <declname>error</declname>
+        </param>
+        <param>
+          <type>ors::Vector &amp;</type>
+          <declname>tolerance</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/agyss/iis_robot_sw/iis_catkin_ws/src/kukadu/include/kukadu/planning/komo.hpp" line="71" column="1" bodyfile="/home/agyss/iis_robot_sw/iis_catkin_ws/src/kukadu/src/planning/komo.cpp" bodystart="643" bodyend="645"/>
+      </memberdef>
+      <memberdef kind="function" id="classkukadu_1_1Komo_1afed4fd3a115e6139d1a4cdabda0826e7" prot="private" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>bool</type>
+        <definition>bool kukadu::Komo::validateJointLimits</definition>
+        <argsstring>(arr wp, arr limits, std::string &amp;error_msg)</argsstring>
+        <name>validateJointLimits</name>
+        <param>
+          <type>arr</type>
+          <declname>wp</declname>
+        </param>
+        <param>
+          <type>arr</type>
+          <declname>limits</declname>
+        </param>
+        <param>
+          <type>std::string &amp;</type>
+          <declname>error_msg</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/agyss/iis_robot_sw/iis_catkin_ws/src/kukadu/include/kukadu/planning/komo.hpp" line="72" column="1"/>
+      </memberdef>
+      <memberdef kind="function" id="classkukadu_1_1Komo_1afd6d7c00a2d87fc0492bf62bed5f173a" prot="private" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>bool</type>
+        <definition>bool kukadu::Komo::withinTolerance</definition>
+        <argsstring>(ors::Vector &amp;error, ors::Vector &amp;tolerance, int axes)</argsstring>
+        <name>withinTolerance</name>
+        <param>
+          <type>ors::Vector &amp;</type>
+          <declname>error</declname>
+        </param>
+        <param>
+          <type>ors::Vector &amp;</type>
+          <declname>tolerance</declname>
+        </param>
+        <param>
+          <type>int</type>
+          <declname>axes</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/agyss/iis_robot_sw/iis_catkin_ws/src/kukadu/include/kukadu/planning/komo.hpp" line="73" column="1" bodyfile="/home/agyss/iis_robot_sw/iis_catkin_ws/src/kukadu/src/planning/komo.cpp" bodystart="635" bodyend="641"/>
+      </memberdef>
+      <memberdef kind="function" id="classkukadu_1_1Komo_1afa67842d72ec7c1f256d9b077fc1475f" prot="private" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>bool</type>
+        <definition>bool kukadu::Komo::validateJointLimits</definition>
+        <argsstring>(ors::KinematicWorld &amp;w, arr x, std::string &amp;error_msg)</argsstring>
+        <name>validateJointLimits</name>
+        <param>
+          <type>ors::KinematicWorld &amp;</type>
+          <declname>w</declname>
+        </param>
+        <param>
+          <type>arr</type>
+          <declname>x</declname>
+        </param>
+        <param>
+          <type>std::string &amp;</type>
+          <declname>error_msg</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/agyss/iis_robot_sw/iis_catkin_ws/src/kukadu/include/kukadu/planning/komo.hpp" line="74" column="1"/>
+      </memberdef>
+      <memberdef kind="function" id="classkukadu_1_1Komo_1a5da23e2839b974299ad6491ac8a9c6e4" prot="private" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>bool</type>
+        <definition>bool kukadu::Komo::validateCollisions</definition>
+        <argsstring>(ors::KinematicWorld &amp;w, const arr &amp;x, std::string &amp;error_msg)</argsstring>
+        <name>validateCollisions</name>
+        <param>
+          <type>ors::KinematicWorld &amp;</type>
+          <declname>w</declname>
+        </param>
+        <param>
+          <type>const arr &amp;</type>
+          <declname>x</declname>
+        </param>
+        <param>
+          <type>std::string &amp;</type>
+          <declname>error_msg</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para>Check given trajectory or waypoint for detected collisions, using given KinematicWorld</para><para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>w</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>The KinematicWorld to use for collision checking </para></parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>x</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>The <ref refid="classkukadu_1_1Trajectory" kindref="compound">Trajectory</ref> or waypoint to check </para></parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>error_msg</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>A string that will contain a resulting error message </para></parameterdescription>
+</parameteritem>
+</parameterlist>
+<simplesect kind="return"><para>True, if no collision was detected </para></simplesect>
+</para>        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/agyss/iis_robot_sw/iis_catkin_ws/src/kukadu/include/kukadu/planning/komo.hpp" line="75" column="1" bodyfile="/home/agyss/iis_robot_sw/iis_catkin_ws/src/kukadu/src/planning/komo.cpp" bodystart="744" bodyend="786"/>
+      </memberdef>
+      <memberdef kind="function" id="classkukadu_1_1Komo_1a5e66c1d96e469ee3e200b0939dc02444" prot="private" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>double</type>
+        <definition>double kukadu::Komo::keyframeOptimizer</definition>
+        <argsstring>(arr &amp;x, MotionProblem &amp;MP, bool x_is_initialized, uint verbose)</argsstring>
+        <name>keyframeOptimizer</name>
+        <param>
+          <type>arr &amp;</type>
+          <declname>x</declname>
+        </param>
+        <param>
+          <type>MotionProblem &amp;</type>
+          <declname>MP</declname>
+        </param>
+        <param>
+          <type>bool</type>
+          <declname>x_is_initialized</declname>
+        </param>
+        <param>
+          <type>uint</type>
+          <declname>verbose</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/agyss/iis_robot_sw/iis_catkin_ws/src/kukadu/include/kukadu/planning/komo.hpp" line="77" column="1" bodyfile="/home/agyss/iis_robot_sw/iis_catkin_ws/src/kukadu/src/planning/komo.cpp" bodystart="539" bodyend="550"/>
+      </memberdef>
+      <memberdef kind="function" id="classkukadu_1_1Komo_1a580809c7550dc230a311b3577fb09518" prot="private" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>double</type>
+        <definition>double kukadu::Komo::optimizeEndpose</definition>
+        <argsstring>(arr &amp;xT, ors::KinematicWorld &amp;w, const char *link, const char *target, bool allowCollision=true)</argsstring>
+        <name>optimizeEndpose</name>
+        <param>
+          <type>arr &amp;</type>
+          <declname>xT</declname>
+        </param>
+        <param>
+          <type>ors::KinematicWorld &amp;</type>
+          <declname>w</declname>
+        </param>
+        <param>
+          <type>const char *</type>
+          <declname>link</declname>
+        </param>
+        <param>
+          <type>const char *</type>
+          <declname>target</declname>
+        </param>
+        <param>
+          <type>bool</type>
+          <declname>allowCollision</declname>
+          <defval>true</defval>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/agyss/iis_robot_sw/iis_catkin_ws/src/kukadu/include/kukadu/planning/komo.hpp" line="78" column="1" bodyfile="/home/agyss/iis_robot_sw/iis_catkin_ws/src/kukadu/src/planning/komo.cpp" bodystart="552" bodyend="595"/>
+      </memberdef>
+      <memberdef kind="function" id="classkukadu_1_1Komo_1a8ef5f5984354a5648be48dff6dc49cc9" prot="private" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>void kukadu::Komo::allowContact</definition>
+        <argsstring>(const char *link, bool allow)</argsstring>
+        <name>allowContact</name>
+        <param>
+          <type>const char *</type>
+          <declname>link</declname>
+        </param>
+        <param>
+          <type>bool</type>
+          <declname>allow</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/agyss/iis_robot_sw/iis_catkin_ws/src/kukadu/include/kukadu/planning/komo.hpp" line="80" column="1" bodyfile="/home/agyss/iis_robot_sw/iis_catkin_ws/src/kukadu/src/planning/komo.cpp" bodystart="828" bodyend="835"/>
+      </memberdef>
+      <memberdef kind="function" id="classkukadu_1_1Komo_1a4193d4e102f476fe4a0376cccce5034f" prot="private" static="no" const="no" explicit="no" inline="no" virt="virtual">
+        <type>std::vector&lt; arma::vec &gt;</type>
+        <definition>std::vector&lt; arma::vec &gt; kukadu::Komo::computeSinglePlan</definition>
+        <argsstring>(arma::vec startJoints, geometry_msgs::Pose targetPose, bool smoothCartesians=false, bool useCurrentRobotState=true)</argsstring>
+        <name>computeSinglePlan</name>
+        <param>
+          <type>arma::vec</type>
+          <declname>startJoints</declname>
+        </param>
+        <param>
+          <type>geometry_msgs::Pose</type>
+          <declname>targetPose</declname>
+        </param>
+        <param>
+          <type>bool</type>
+          <declname>smoothCartesians</declname>
+          <defval>false</defval>
+        </param>
+        <param>
+          <type>bool</type>
+          <declname>useCurrentRobotState</declname>
+          <defval>true</defval>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/agyss/iis_robot_sw/iis_catkin_ws/src/kukadu/include/kukadu/planning/komo.hpp" line="82" column="1" bodyfile="/home/agyss/iis_robot_sw/iis_catkin_ws/src/kukadu/src/planning/komo.cpp" bodystart="359" bodyend="532"/>
+      </memberdef>
+      </sectiondef>
+      <sectiondef kind="public-func">
+      <memberdef kind="function" id="classkukadu_1_1Komo_1a9d41f27b5273b018ea246e44b52fcf0a" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type></type>
+        <definition>kukadu::Komo::Komo</definition>
+        <argsstring>(KUKADU_SHARED_PTR&lt; ControlQueue &gt; queue, std::string configPath, std::string mtConfigPath, std::string activeJointsPrefix, bool acceptCollision=false)</argsstring>
+        <name>Komo</name>
+        <param>
+          <type>KUKADU_SHARED_PTR&lt; <ref refid="classkukadu_1_1ControlQueue" kindref="compound">ControlQueue</ref> &gt;</type>
+          <declname>queue</declname>
+        </param>
+        <param>
+          <type>std::string</type>
+          <declname>configPath</declname>
+        </param>
+        <param>
+          <type>std::string</type>
+          <declname>mtConfigPath</declname>
+        </param>
+        <param>
+          <type>std::string</type>
+          <declname>activeJointsPrefix</declname>
+        </param>
+        <param>
+          <type>bool</type>
+          <declname>acceptCollision</declname>
+          <defval>false</defval>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/agyss/iis_robot_sw/iis_catkin_ws/src/kukadu/include/kukadu/planning/komo.hpp" line="86" column="1" bodyfile="/home/agyss/iis_robot_sw/iis_catkin_ws/src/kukadu/src/planning/komo.cpp" bodystart="41" bodyend="99"/>
+      </memberdef>
+      <memberdef kind="function" id="classkukadu_1_1Komo_1a71b5bc19f04980de6db5d38fe1286a2e" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type></type>
+        <definition>kukadu::Komo::~Komo</definition>
+        <argsstring>()</argsstring>
+        <name>~Komo</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/agyss/iis_robot_sw/iis_catkin_ws/src/kukadu/include/kukadu/planning/komo.hpp" line="87" column="1" bodyfile="/home/agyss/iis_robot_sw/iis_catkin_ws/src/kukadu/src/planning/komo.cpp" bodystart="105" bodyend="110"/>
+      </memberdef>
+      <memberdef kind="function" id="classkukadu_1_1Komo_1a322dfb4859b9f5b40d5ec67af8403a6d" prot="public" static="no" const="no" explicit="no" inline="no" virt="virtual">
+        <type>std::vector&lt; arma::vec &gt;</type>
+        <definition>std::vector&lt; arma::vec &gt; kukadu::Komo::planJointTrajectory</definition>
+        <argsstring>(std::vector&lt; arma::vec &gt; intermediateJoints)</argsstring>
+        <name>planJointTrajectory</name>
+        <reimplements refid="classkukadu_1_1PathPlanner_1ab757c9af3406da8180bef68597b83542">planJointTrajectory</reimplements>
+        <param>
+          <type>std::vector&lt; arma::vec &gt;</type>
+          <declname>intermediateJoints</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/agyss/iis_robot_sw/iis_catkin_ws/src/kukadu/include/kukadu/planning/komo.hpp" line="89" column="1" bodyfile="/home/agyss/iis_robot_sw/iis_catkin_ws/src/kukadu/src/planning/komo.cpp" bodystart="112" bodyend="232"/>
+      </memberdef>
+      <memberdef kind="function" id="classkukadu_1_1Komo_1a3a01464dfa62117fa2f3164fd9b6d228" prot="public" static="no" const="no" explicit="no" inline="no" virt="virtual">
+        <type>std::vector&lt; arma::vec &gt;</type>
+        <definition>std::vector&lt; arma::vec &gt; kukadu::Komo::planCartesianTrajectory</definition>
+        <argsstring>(std::vector&lt; geometry_msgs::Pose &gt; intermediatePoses, bool smoothCartesians=false, bool useCurrentRobotState=true)</argsstring>
+        <name>planCartesianTrajectory</name>
+        <reimplements refid="classkukadu_1_1PathPlanner_1a959eb5545d65fdc108fdecad5d9d8542">planCartesianTrajectory</reimplements>
+        <param>
+          <type>std::vector&lt; geometry_msgs::Pose &gt;</type>
+          <declname>intermediatePoses</declname>
+        </param>
+        <param>
+          <type>bool</type>
+          <declname>smoothCartesians</declname>
+          <defval>false</defval>
+        </param>
+        <param>
+          <type>bool</type>
+          <declname>useCurrentRobotState</declname>
+          <defval>true</defval>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/agyss/iis_robot_sw/iis_catkin_ws/src/kukadu/include/kukadu/planning/komo.hpp" line="90" column="1" bodyfile="/home/agyss/iis_robot_sw/iis_catkin_ws/src/kukadu/src/planning/komo.cpp" bodystart="268" bodyend="272"/>
+      </memberdef>
+      <memberdef kind="function" id="classkukadu_1_1Komo_1a938f5ef40492b0ff82993f06123bdb2b" prot="public" static="no" const="no" explicit="no" inline="no" virt="virtual">
+        <type>std::vector&lt; arma::vec &gt;</type>
+        <definition>std::vector&lt; arma::vec &gt; kukadu::Komo::planCartesianTrajectory</definition>
+        <argsstring>(arma::vec startJoints, std::vector&lt; geometry_msgs::Pose &gt; intermediatePoses, bool smoothCartesians=false, bool useCurrentRobotState=true)</argsstring>
+        <name>planCartesianTrajectory</name>
+        <reimplements refid="classkukadu_1_1PathPlanner_1a7b3cf9ab52478e3d1775a17c9a6240e0">planCartesianTrajectory</reimplements>
+        <param>
+          <type>arma::vec</type>
+          <declname>startJoints</declname>
+        </param>
+        <param>
+          <type>std::vector&lt; geometry_msgs::Pose &gt;</type>
+          <declname>intermediatePoses</declname>
+        </param>
+        <param>
+          <type>bool</type>
+          <declname>smoothCartesians</declname>
+          <defval>false</defval>
+        </param>
+        <param>
+          <type>bool</type>
+          <declname>useCurrentRobotState</declname>
+          <defval>true</defval>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/agyss/iis_robot_sw/iis_catkin_ws/src/kukadu/include/kukadu/planning/komo.hpp" line="91" column="1" bodyfile="/home/agyss/iis_robot_sw/iis_catkin_ws/src/kukadu/src/planning/komo.cpp" bodystart="234" bodyend="266"/>
+      </memberdef>
+      <memberdef kind="function" id="classkukadu_1_1Komo_1a34827d5919ab2c771fab7a53d83006c7" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>geometry_msgs::Pose</type>
+        <definition>geometry_msgs::Pose kukadu::Komo::computeFk</definition>
+        <argsstring>(arma::vec joints)</argsstring>
+        <name>computeFk</name>
+        <param>
+          <type>arma::vec</type>
+          <declname>joints</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/agyss/iis_robot_sw/iis_catkin_ws/src/kukadu/include/kukadu/planning/komo.hpp" line="93" column="1" bodyfile="/home/agyss/iis_robot_sw/iis_catkin_ws/src/kukadu/src/planning/komo.cpp" bodystart="274" bodyend="292"/>
+      </memberdef>
+      <memberdef kind="function" id="classkukadu_1_1Komo_1a9081baf7213db3e0c6d903d8d5f81d8f" prot="public" static="no" const="no" explicit="no" inline="no" virt="virtual">
+        <type>geometry_msgs::Pose</type>
+        <definition>geometry_msgs::Pose kukadu::Komo::computeFk</definition>
+        <argsstring>(std::vector&lt; double &gt; jointState)</argsstring>
+        <name>computeFk</name>
+        <reimplements refid="classkukadu_1_1Kinematics_1aa80b36c16d23f6031f9b133ed72795f2">computeFk</reimplements>
+        <param>
+          <type>std::vector&lt; double &gt;</type>
+          <declname>jointState</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/agyss/iis_robot_sw/iis_catkin_ws/src/kukadu/include/kukadu/planning/komo.hpp" line="95" column="1" bodyfile="/home/agyss/iis_robot_sw/iis_catkin_ws/src/kukadu/src/planning/komo.cpp" bodystart="294" bodyend="298"/>
+      </memberdef>
+      <memberdef kind="function" id="classkukadu_1_1Komo_1ac5024e3bd49c0a741640e35bf841f0bd" prot="public" static="no" const="no" explicit="no" inline="no" virt="virtual">
+        <type>std::vector&lt; arma::vec &gt;</type>
+        <definition>std::vector&lt; arma::vec &gt; kukadu::Komo::computeIk</definition>
+        <argsstring>(std::vector&lt; double &gt; currentJointState, const geometry_msgs::Pose &amp;goal)</argsstring>
+        <name>computeIk</name>
+        <reimplements refid="classkukadu_1_1Kinematics_1a5b143f7db7a84d7caa03419043426a5e">computeIk</reimplements>
+        <param>
+          <type>std::vector&lt; double &gt;</type>
+          <declname>currentJointState</declname>
+        </param>
+        <param>
+          <type>const geometry_msgs::Pose &amp;</type>
+          <declname>goal</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/agyss/iis_robot_sw/iis_catkin_ws/src/kukadu/include/kukadu/planning/komo.hpp" line="96" column="1" bodyfile="/home/agyss/iis_robot_sw/iis_catkin_ws/src/kukadu/src/planning/komo.cpp" bodystart="300" bodyend="302"/>
+      </memberdef>
+      <memberdef kind="function" id="classkukadu_1_1Komo_1afd21f2d6c4046379ffd93d8bd228f5a1" prot="public" static="no" const="no" explicit="no" inline="no" virt="virtual">
+        <type>bool</type>
+        <definition>bool kukadu::Komo::isColliding</definition>
+        <argsstring>(arma::vec jointState, geometry_msgs::Pose pose)</argsstring>
+        <name>isColliding</name>
+        <reimplements refid="classkukadu_1_1Kinematics_1a050de3ff89fdec3b1debfeddf34ffa44">isColliding</reimplements>
+        <param>
+          <type>arma::vec</type>
+          <declname>jointState</declname>
+        </param>
+        <param>
+          <type>geometry_msgs::Pose</type>
+          <declname>pose</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/agyss/iis_robot_sw/iis_catkin_ws/src/kukadu/include/kukadu/planning/komo.hpp" line="98" column="1" bodyfile="/home/agyss/iis_robot_sw/iis_catkin_ws/src/kukadu/src/planning/komo.cpp" bodystart="304" bodyend="306"/>
+      </memberdef>
+      <memberdef kind="function" id="classkukadu_1_1Komo_1af92fedee721583ea9a44ce147e537991" prot="public" static="no" const="no" explicit="no" inline="no" virt="virtual">
+        <type>Eigen::MatrixXd</type>
+        <definition>Eigen::MatrixXd kukadu::Komo::getJacobian</definition>
+        <argsstring>(std::vector&lt; double &gt; jointState=std::vector&lt; double &gt;())</argsstring>
+        <name>getJacobian</name>
+        <reimplements refid="classkukadu_1_1Kinematics_1a16c8379a7ee87657a5f3db5b7534391b">getJacobian</reimplements>
+        <param>
+          <type>std::vector&lt; double &gt;</type>
+          <declname>jointState</declname>
+          <defval>std::vector&lt; double &gt;()</defval>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/agyss/iis_robot_sw/iis_catkin_ws/src/kukadu/include/kukadu/planning/komo.hpp" line="99" column="1" bodyfile="/home/agyss/iis_robot_sw/iis_catkin_ws/src/kukadu/src/planning/komo.cpp" bodystart="308" bodyend="310"/>
+      </memberdef>
+      <memberdef kind="function" id="classkukadu_1_1Komo_1af0bc25dedd4a41275de5fddc3fb4d7af" prot="public" static="no" const="no" explicit="no" inline="no" virt="virtual">
+        <type>std::string</type>
+        <definition>std::string kukadu::Komo::getCartesianLinkName</definition>
+        <argsstring>()</argsstring>
+        <name>getCartesianLinkName</name>
+        <reimplements refid="classkukadu_1_1Kinematics_1a03901fc799987b5840de994cfc7d7260">getCartesianLinkName</reimplements>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/agyss/iis_robot_sw/iis_catkin_ws/src/kukadu/include/kukadu/planning/komo.hpp" line="101" column="1" bodyfile="/home/agyss/iis_robot_sw/iis_catkin_ws/src/kukadu/src/planning/komo.cpp" bodystart="312" bodyend="314"/>
+      </memberdef>
+      <memberdef kind="function" id="classkukadu_1_1Komo_1ac8b1d5695e865adc313937da5eab629a" prot="public" static="no" const="no" explicit="no" inline="no" virt="virtual">
+        <type>std::string</type>
+        <definition>std::string kukadu::Komo::getCartesianReferenceFrame</definition>
+        <argsstring>()</argsstring>
+        <name>getCartesianReferenceFrame</name>
+        <reimplements refid="classkukadu_1_1Kinematics_1a933b787ca3d264cdcfec9245a90744aa">getCartesianReferenceFrame</reimplements>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/agyss/iis_robot_sw/iis_catkin_ws/src/kukadu/include/kukadu/planning/komo.hpp" line="102" column="1" bodyfile="/home/agyss/iis_robot_sw/iis_catkin_ws/src/kukadu/src/planning/komo.cpp" bodystart="316" bodyend="319"/>
+      </memberdef>
+      <memberdef kind="function" id="classkukadu_1_1Komo_1abb008bb3e79d95c831e8924c53bfe5c9" prot="public" static="no" const="no" explicit="no" inline="no" virt="virtual">
+        <type>void</type>
+        <definition>void kukadu::Komo::setSpeed</definition>
+        <argsstring>(double speed)</argsstring>
+        <name>setSpeed</name>
+        <reimplements refid="classkukadu_1_1PathPlanner_1a73771852ce2d30556eca8ce726a8c652">setSpeed</reimplements>
+        <param>
+          <type>double</type>
+          <declname>speed</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/agyss/iis_robot_sw/iis_catkin_ws/src/kukadu/include/kukadu/planning/komo.hpp" line="104" column="1" bodyfile="/home/agyss/iis_robot_sw/iis_catkin_ws/src/kukadu/src/planning/komo.cpp" bodystart="101" bodyend="103"/>
+      </memberdef>
+      </sectiondef>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <inheritancegraph>
+      <node id="377">
+        <label>kukadu::PathPlanner</label>
+        <link refid="classkukadu_1_1PathPlanner"/>
+        <childnode refid="378" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="378">
+        <label>kukadu::Kinematics</label>
+        <link refid="classkukadu_1_1Kinematics"/>
+      </node>
+      <node id="379">
+        <label>KUKADU_ENABLE_SHARED_FROM_THIS&lt; Komo &gt;</label>
+      </node>
+      <node id="376">
+        <label>kukadu::Komo</label>
+        <link refid="classkukadu_1_1Komo"/>
+        <childnode refid="377" relation="public-inheritance">
+        </childnode>
+        <childnode refid="379" relation="public-inheritance">
+        </childnode>
+      </node>
+    </inheritancegraph>
+    <collaborationgraph>
+      <node id="381">
+        <label>kukadu::PathPlanner</label>
+        <link refid="classkukadu_1_1PathPlanner"/>
+        <childnode refid="382" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="382">
+        <label>kukadu::Kinematics</label>
+        <link refid="classkukadu_1_1Kinematics"/>
+      </node>
+      <node id="383">
+        <label>KUKADU_ENABLE_SHARED_FROM_THIS&lt; Komo &gt;</label>
+      </node>
+      <node id="380">
+        <label>kukadu::Komo</label>
+        <link refid="classkukadu_1_1Komo"/>
+        <childnode refid="381" relation="public-inheritance">
+        </childnode>
+        <childnode refid="383" relation="public-inheritance">
+        </childnode>
+      </node>
+    </collaborationgraph>
+    <location file="/home/agyss/iis_robot_sw/iis_catkin_ws/src/kukadu/include/kukadu/planning/komo.hpp" line="24" column="1" bodyfile="/home/agyss/iis_robot_sw/iis_catkin_ws/src/kukadu/include/kukadu/planning/komo.hpp" bodystart="24" bodyend="106"/>
+    <listofallmembers>
+      <member refid="classkukadu_1_1Komo_1af03d2c2f8c171eb9e7ec45cbfc7b085b" prot="private" virt="non-virtual"><scope>kukadu::Komo</scope><name>_active_joints</name></member>
+      <member refid="classkukadu_1_1Komo_1af1cfe90b317333fe63cfed8604eed65d" prot="private" virt="non-virtual"><scope>kukadu::Komo</scope><name>_alignmentPrecision</name></member>
+      <member refid="classkukadu_1_1Komo_1ade40385d3173e5238780facd43396877" prot="private" virt="non-virtual"><scope>kukadu::Komo</scope><name>_ang_tolerance</name></member>
+      <member refid="classkukadu_1_1Komo_1a5b7a3ee3817731029098620e8ae5b3f9" prot="private" virt="non-virtual"><scope>kukadu::Komo</scope><name>_collisionMargin</name></member>
+      <member refid="classkukadu_1_1Komo_1a9de04f700820b403bd117c3aa9dbcd74" prot="private" virt="non-virtual"><scope>kukadu::Komo</scope><name>_collisionPrecision</name></member>
+      <member refid="classkukadu_1_1Komo_1a202a46196ae42319f6cd7b754669a3df" prot="private" virt="non-virtual"><scope>kukadu::Komo</scope><name>_jointLimitMargin</name></member>
+      <member refid="classkukadu_1_1Komo_1ab0000705baa81d076e3d0554da5a4738" prot="private" virt="non-virtual"><scope>kukadu::Komo</scope><name>_jointLimitPrecision</name></member>
+      <member refid="classkukadu_1_1Komo_1a3e0acb77a8a354ca98adaaa56716b730" prot="private" virt="non-virtual"><scope>kukadu::Komo</scope><name>_jointStatePrecision</name></member>
+      <member refid="classkukadu_1_1Komo_1aa765fdd5d1bc7ef3436a8dfe419ae30e" prot="private" virt="non-virtual"><scope>kukadu::Komo</scope><name>_maxIterations</name></member>
+      <member refid="classkukadu_1_1Komo_1a0fe2430713cd17935a471549df882dec" prot="private" virt="non-virtual"><scope>kukadu::Komo</scope><name>_pos_tolerance</name></member>
+      <member refid="classkukadu_1_1Komo_1aac60ab0700133028d3a33f34b27254d1" prot="private" virt="non-virtual"><scope>kukadu::Komo</scope><name>_positionPrecision</name></member>
+      <member refid="classkukadu_1_1Komo_1a6b5dbda060236767e2ec48af0545a39e" prot="private" virt="non-virtual"><scope>kukadu::Komo</scope><name>_support_surface_name</name></member>
+      <member refid="classkukadu_1_1Komo_1af42dbdf7a518748858b8e255d1f25924" prot="private" virt="non-virtual"><scope>kukadu::Komo</scope><name>_world</name></member>
+      <member refid="classkukadu_1_1Komo_1a9151c7d0842bea8db2521b6481795780" prot="private" virt="non-virtual"><scope>kukadu::Komo</scope><name>_world_link_name</name></member>
+      <member refid="classkukadu_1_1Komo_1a8692131e3288f6f9843ea4fa5929c67e" prot="private" virt="non-virtual"><scope>kukadu::Komo</scope><name>_zeroVelocityPrecision</name></member>
+      <member refid="classkukadu_1_1Komo_1ac38b296a0e9d295ada957cdf074be8cb" prot="private" virt="non-virtual"><scope>kukadu::Komo</scope><name>acceptCollision</name></member>
+      <member refid="classkukadu_1_1Komo_1a9c8a2b86c3049cbbce292a3bb1ae8225" prot="private" virt="non-virtual"><scope>kukadu::Komo</scope><name>activeJointsPrefix</name></member>
+      <member refid="classkukadu_1_1Kinematics_1a6148045661ff549e6f6627e4ef71e03c" prot="public" virt="non-virtual"><scope>kukadu::Komo</scope><name>addConstraint</name></member>
+      <member refid="classkukadu_1_1Komo_1a8ef5f5984354a5648be48dff6dc49cc9" prot="private" virt="non-virtual"><scope>kukadu::Komo</scope><name>allowContact</name></member>
+      <member refid="classkukadu_1_1Komo_1ad0bae5343c20cef63351a277932197a8" prot="private" virt="non-virtual"><scope>kukadu::Komo</scope><name>check_goal_state</name></member>
+      <member refid="classkukadu_1_1Kinematics_1a685f76d61feec05ba02fb8f82c30bc63" prot="public" virt="non-virtual"><scope>kukadu::Komo</scope><name>checkAllConstraints</name></member>
+      <member refid="classkukadu_1_1Komo_1aeefe37efe31f0c293c4fe9c8bf9e64c5" prot="private" virt="non-virtual"><scope>kukadu::Komo</scope><name>computeAlignmentError</name></member>
+      <member refid="classkukadu_1_1Komo_1a5d52a0e118dd3b5fc42a3a40e2bf398c" prot="private" virt="non-virtual"><scope>kukadu::Komo</scope><name>computeAlignmentError</name></member>
+      <member refid="classkukadu_1_1Komo_1a34827d5919ab2c771fab7a53d83006c7" prot="public" virt="non-virtual"><scope>kukadu::Komo</scope><name>computeFk</name></member>
+      <member refid="classkukadu_1_1Komo_1a9081baf7213db3e0c6d903d8d5f81d8f" prot="public" virt="virtual"><scope>kukadu::Komo</scope><name>computeFk</name></member>
+      <member refid="classkukadu_1_1Komo_1ac5024e3bd49c0a741640e35bf841f0bd" prot="public" virt="virtual"><scope>kukadu::Komo</scope><name>computeIk</name></member>
+      <member refid="classkukadu_1_1Kinematics_1ac9215d036bbdfab163745ade3033910e" prot="public" virt="virtual" ambiguityscope="kukadu::PathPlanner::"><scope>kukadu::Komo</scope><name>computeIk</name></member>
+      <member refid="classkukadu_1_1Komo_1a7340745dabf518678bea5e277617c2b5" prot="private" virt="non-virtual"><scope>kukadu::Komo</scope><name>computePositionError</name></member>
+      <member refid="classkukadu_1_1Komo_1afd596231a5ed3d4f64e35c5705e23551" prot="private" virt="non-virtual"><scope>kukadu::Komo</scope><name>computePositionError</name></member>
+      <member refid="classkukadu_1_1Komo_1a4193d4e102f476fe4a0376cccce5034f" prot="private" virt="virtual"><scope>kukadu::Komo</scope><name>computeSinglePlan</name></member>
+      <member refid="classkukadu_1_1Komo_1a9a9b440bae7ed842fe966af64ce6ab62" prot="private" virt="non-virtual"><scope>kukadu::Komo</scope><name>display</name></member>
+      <member refid="classkukadu_1_1Komo_1a62f74660c9ca10b11cdcea462c09d6cf" prot="private" virt="non-virtual"><scope>kukadu::Komo</scope><name>eef_link</name></member>
+      <member refid="classkukadu_1_1Komo_1a97e86e9c72710f3d20a8dd5bc803c2c3" prot="private" virt="non-virtual"><scope>kukadu::Komo</scope><name>ensureJointLimits</name></member>
+      <member refid="classkukadu_1_1Kinematics_1acb407e22a5efe10767727b94448b32bc" prot="protected" virt="non-virtual"><scope>kukadu::Komo</scope><name>generateDefaultJointNames</name></member>
+      <member refid="classkukadu_1_1Komo_1af0bc25dedd4a41275de5fddc3fb4d7af" prot="public" virt="virtual"><scope>kukadu::Komo</scope><name>getCartesianLinkName</name></member>
+      <member refid="classkukadu_1_1Komo_1ac8b1d5695e865adc313937da5eab629a" prot="public" virt="virtual"><scope>kukadu::Komo</scope><name>getCartesianReferenceFrame</name></member>
+      <member refid="classkukadu_1_1PathPlanner_1ad807f61926f499a4b7dd277303156807" prot="public" virt="non-virtual"><scope>kukadu::Komo</scope><name>getCheckCollision</name></member>
+      <member refid="classkukadu_1_1Kinematics_1a59ed85e60fb4d6b82bc5e145a55b1e56" prot="public" virt="non-virtual"><scope>kukadu::Komo</scope><name>getConstraintByIdx</name></member>
+      <member refid="classkukadu_1_1Kinematics_1af6a30efefca4b925d68173ed8af060f5" prot="public" virt="non-virtual"><scope>kukadu::Komo</scope><name>getConstraintIdx</name></member>
+      <member refid="classkukadu_1_1Kinematics_1a4eb2b717f47bf4d28a82bfded60f75b6" prot="public" virt="non-virtual"><scope>kukadu::Komo</scope><name>getConstraintsCount</name></member>
+      <member refid="classkukadu_1_1Komo_1af92fedee721583ea9a44ce147e537991" prot="public" virt="virtual"><scope>kukadu::Komo</scope><name>getJacobian</name></member>
+      <member refid="classkukadu_1_1Kinematics_1a888c5039b2db5c1f5964753c2474efbd" prot="public" virt="virtual"><scope>kukadu::Komo</scope><name>getJointNames</name></member>
+      <member refid="classkukadu_1_1Komo_1afd21f2d6c4046379ffd93d8bd228f5a1" prot="public" virt="virtual"><scope>kukadu::Komo</scope><name>isColliding</name></member>
+      <member refid="classkukadu_1_1Komo_1a5e66c1d96e469ee3e200b0939dc02444" prot="private" virt="non-virtual"><scope>kukadu::Komo</scope><name>keyframeOptimizer</name></member>
+      <member refid="classkukadu_1_1Kinematics_1a13e20d58d587757cae1d9d3a2c34ac40" prot="public" virt="non-virtual"><scope>kukadu::Komo</scope><name>Kinematics</name></member>
+      <member refid="classkukadu_1_1Komo_1a9d41f27b5273b018ea246e44b52fcf0a" prot="public" virt="non-virtual"><scope>kukadu::Komo</scope><name>Komo</name></member>
+      <member refid="classkukadu_1_1Komo_1a8160076e0722aca4495cca9182a1e348" prot="private" virt="non-virtual"><scope>kukadu::Komo</scope><name>oneAtATimeMutex</name></member>
+      <member refid="classkukadu_1_1Komo_1a580809c7550dc230a311b3577fb09518" prot="private" virt="non-virtual"><scope>kukadu::Komo</scope><name>optimizeEndpose</name></member>
+      <member refid="classkukadu_1_1PathPlanner_1a1d5ea50e4e1e45b4feb02f3507152540" prot="public" virt="non-virtual"><scope>kukadu::Komo</scope><name>PathPlanner</name></member>
+      <member refid="classkukadu_1_1Komo_1ade20c2aa4097850af0d1a0c780b9a0db" prot="private" virt="non-virtual"><scope>kukadu::Komo</scope><name>pathToTrajectory</name></member>
+      <member refid="classkukadu_1_1Komo_1a3a01464dfa62117fa2f3164fd9b6d228" prot="public" virt="virtual"><scope>kukadu::Komo</scope><name>planCartesianTrajectory</name></member>
+      <member refid="classkukadu_1_1Komo_1a938f5ef40492b0ff82993f06123bdb2b" prot="public" virt="virtual"><scope>kukadu::Komo</scope><name>planCartesianTrajectory</name></member>
+      <member refid="classkukadu_1_1Komo_1a322dfb4859b9f5b40d5ec67af8403a6d" prot="public" virt="virtual"><scope>kukadu::Komo</scope><name>planJointTrajectory</name></member>
+      <member refid="classkukadu_1_1Komo_1a90c220a0b4596ab98f800c726db7a749" prot="private" virt="non-virtual"><scope>kukadu::Komo</scope><name>queue</name></member>
+      <member refid="classkukadu_1_1Kinematics_1a3c79131b3d003ed6a02079ff575c7f75" prot="public" virt="non-virtual"><scope>kukadu::Komo</scope><name>removeConstraint</name></member>
+      <member refid="classkukadu_1_1PathPlanner_1a47cbdf0417d30f68abddf6d051a3ba41" prot="public" virt="non-virtual"><scope>kukadu::Komo</scope><name>RESULT_APPROXIMATE</name></member>
+      <member refid="classkukadu_1_1PathPlanner_1acb48a2d0a667f922536bbac8699451e8" prot="public" virt="non-virtual"><scope>kukadu::Komo</scope><name>RESULT_FAILED</name></member>
+      <member refid="classkukadu_1_1PathPlanner_1a805c234a0fcbfb17a328893aced1439a" prot="public" virt="non-virtual"><scope>kukadu::Komo</scope><name>RESULT_SUCCESS</name></member>
+      <member refid="classkukadu_1_1PathPlanner_1a64bdab84aa8cf63b4c3a50f6ae0a9d7d" prot="public" virt="non-virtual"><scope>kukadu::Komo</scope><name>setCheckCollisions</name></member>
+      <member refid="classkukadu_1_1Kinematics_1a12859eb774a27710b71b70fd883f5d53" prot="public" virt="virtual"><scope>kukadu::Komo</scope><name>setJointNames</name></member>
+      <member refid="classkukadu_1_1Komo_1a8d640c87e995cfcf2ba8f619b87ec308" prot="private" virt="non-virtual"><scope>kukadu::Komo</scope><name>setJointPosition</name></member>
+      <member refid="classkukadu_1_1Komo_1abb008bb3e79d95c831e8924c53bfe5c9" prot="public" virt="virtual"><scope>kukadu::Komo</scope><name>setSpeed</name></member>
+      <member refid="classkukadu_1_1Komo_1a5319628a17b4cd91d1642edefd6b3f74" prot="private" virt="non-virtual"><scope>kukadu::Komo</scope><name>setState</name></member>
+      <member refid="classkukadu_1_1Komo_1a2a915c064ab30c88cd00bff846e00661" prot="private" virt="non-virtual"><scope>kukadu::Komo</scope><name>setState</name></member>
+      <member refid="classkukadu_1_1Komo_1a90e5a4a229c9663db508ae1668b701f2" prot="private" virt="non-virtual"><scope>kukadu::Komo</scope><name>simplePlanner</name></member>
+      <member refid="classkukadu_1_1Komo_1a9d937eb0424d1e60ea5316767e2dc6a1" prot="private" virt="non-virtual"><scope>kukadu::Komo</scope><name>sJointNames</name></member>
+      <member refid="classkukadu_1_1PathPlanner_1a85f304bce58b35715520a9ddfa02a843" prot="public" virt="virtual"><scope>kukadu::Komo</scope><name>smoothJointPlan</name></member>
+      <member refid="classkukadu_1_1Komo_1a5da23e2839b974299ad6491ac8a9c6e4" prot="private" virt="non-virtual"><scope>kukadu::Komo</scope><name>validateCollisions</name></member>
+      <member refid="classkukadu_1_1Komo_1afed4fd3a115e6139d1a4cdabda0826e7" prot="private" virt="non-virtual"><scope>kukadu::Komo</scope><name>validateJointLimits</name></member>
+      <member refid="classkukadu_1_1Komo_1afa67842d72ec7c1f256d9b077fc1475f" prot="private" virt="non-virtual"><scope>kukadu::Komo</scope><name>validateJointLimits</name></member>
+      <member refid="classkukadu_1_1Komo_1a3f2fcb39a8e6f3fbcd333e1053dac214" prot="private" virt="non-virtual"><scope>kukadu::Komo</scope><name>withinTolerance</name></member>
+      <member refid="classkukadu_1_1Komo_1afd6d7c00a2d87fc0492bf62bed5f173a" prot="private" virt="non-virtual"><scope>kukadu::Komo</scope><name>withinTolerance</name></member>
+      <member refid="classkukadu_1_1Komo_1a71b5bc19f04980de6db5d38fe1286a2e" prot="public" virt="non-virtual"><scope>kukadu::Komo</scope><name>~Komo</name></member>
+    </listofallmembers>
+  </compounddef>
+</doxygen>

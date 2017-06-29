@@ -1,0 +1,202 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.8.11">
+  <compounddef id="classkukadu_1_1LWRRegressor" kind="class" language="C++" prot="public">
+    <compoundname>kukadu::LWRRegressor</compoundname>
+    <basecompoundref refid="classkukadu_1_1KernelRegressor" prot="public" virt="non-virtual">kukadu::KernelRegressor</basecompoundref>
+    <includes refid="kernel_8hpp" local="no">kernel.hpp</includes>
+      <sectiondef kind="private-attrib">
+      <memberdef kind="variable" id="classkukadu_1_1LWRRegressor_1acd4396bd690a980c6e6f7aeacf809ea1" prot="private" static="no" mutable="no">
+        <type>std::vector&lt; arma::vec &gt;</type>
+        <definition>std::vector&lt;arma::vec&gt; kukadu::LWRRegressor::sampleXs</definition>
+        <argsstring></argsstring>
+        <name>sampleXs</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/agyss/iis_robot_sw/iis_catkin_ws/src/kukadu/include/kukadu/learning/regression/kernel.hpp" line="129" column="1" bodyfile="/home/agyss/iis_robot_sw/iis_catkin_ws/src/kukadu/include/kukadu/learning/regression/kernel.hpp" bodystart="129" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classkukadu_1_1LWRRegressor_1a0aa25a4b863ca946f797aabf862e2c82" prot="private" static="no" mutable="no">
+        <type>std::vector&lt; arma::vec &gt;</type>
+        <definition>std::vector&lt;arma::vec&gt; kukadu::LWRRegressor::sampleTs</definition>
+        <argsstring></argsstring>
+        <name>sampleTs</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/agyss/iis_robot_sw/iis_catkin_ws/src/kukadu/include/kukadu/learning/regression/kernel.hpp" line="130" column="1" bodyfile="/home/agyss/iis_robot_sw/iis_catkin_ws/src/kukadu/include/kukadu/learning/regression/kernel.hpp" bodystart="130" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classkukadu_1_1LWRRegressor_1ab7b9e91de81cac0ab6c13b782c948b28" prot="private" static="no" mutable="no">
+        <type>std::vector&lt; arma::mat &gt;</type>
+        <definition>std::vector&lt;arma::mat&gt; kukadu::LWRRegressor::designMatrices</definition>
+        <argsstring></argsstring>
+        <name>designMatrices</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/agyss/iis_robot_sw/iis_catkin_ws/src/kukadu/include/kukadu/learning/regression/kernel.hpp" line="132" column="1" bodyfile="/home/agyss/iis_robot_sw/iis_catkin_ws/src/kukadu/include/kukadu/learning/regression/kernel.hpp" bodystart="132" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classkukadu_1_1LWRRegressor_1a9f96ba525c54ea100667a9213a680390" prot="private" static="no" mutable="no">
+        <type><ref refid="classkukadu_1_1GenericKernel" kindref="compound">GenericKernel</ref> *</type>
+        <definition>GenericKernel* kukadu::LWRRegressor::kernel</definition>
+        <argsstring></argsstring>
+        <name>kernel</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/agyss/iis_robot_sw/iis_catkin_ws/src/kukadu/include/kukadu/learning/regression/kernel.hpp" line="134" column="1" bodyfile="/home/agyss/iis_robot_sw/iis_catkin_ws/src/kukadu/include/kukadu/learning/regression/kernel.hpp" bodystart="134" bodyend="-1"/>
+      </memberdef>
+      </sectiondef>
+      <sectiondef kind="private-func">
+      <memberdef kind="function" id="classkukadu_1_1LWRRegressor_1a5974fcb53b52c8eca35dc3c308607b59" prot="private" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>double</type>
+        <definition>double kukadu::LWRRegressor::computeKernelNormValue</definition>
+        <argsstring>()</argsstring>
+        <name>computeKernelNormValue</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/agyss/iis_robot_sw/iis_catkin_ws/src/kukadu/include/kukadu/learning/regression/kernel.hpp" line="136" column="1"/>
+      </memberdef>
+      </sectiondef>
+      <sectiondef kind="public-func">
+      <memberdef kind="function" id="classkukadu_1_1LWRRegressor_1a587e643f830a35a4ecdd21c1c8ac162a" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type></type>
+        <definition>kukadu::LWRRegressor::LWRRegressor</definition>
+        <argsstring>(std::vector&lt; arma::vec &gt; sampleXs, std::vector&lt; arma::vec &gt; sampleTs, GenericKernel *kernel, std::vector&lt; arma::mat &gt; designMatrices)</argsstring>
+        <name>LWRRegressor</name>
+        <param>
+          <type>std::vector&lt; arma::vec &gt;</type>
+          <declname>sampleXs</declname>
+        </param>
+        <param>
+          <type>std::vector&lt; arma::vec &gt;</type>
+          <declname>sampleTs</declname>
+        </param>
+        <param>
+          <type><ref refid="classkukadu_1_1GenericKernel" kindref="compound">GenericKernel</ref> *</type>
+          <declname>kernel</declname>
+        </param>
+        <param>
+          <type>std::vector&lt; arma::mat &gt;</type>
+          <declname>designMatrices</declname>
+        </param>
+        <briefdescription>
+<para>constructor, setting all the sample data, the selected kernel and a vector of design matrices (one design matrix for each sample) </para>        </briefdescription>
+        <detaileddescription>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>sampleXs</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>vector of samples (x-axis) </para></parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>sampleTs</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>vector of samples (y-axis) </para></parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>kernel</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>the selected kernel implementation </para></parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>designMatrices</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>vector of design matrices </para></parameterdescription>
+</parameteritem>
+</parameterlist>
+</para>        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/agyss/iis_robot_sw/iis_catkin_ws/src/kukadu/include/kukadu/learning/regression/kernel.hpp" line="147" column="1"/>
+      </memberdef>
+      <memberdef kind="function" id="classkukadu_1_1LWRRegressor_1ae1b1aeb272526f396b603ff0328b8898" prot="public" static="no" const="no" explicit="no" inline="no" virt="virtual">
+        <type>arma::vec</type>
+        <definition>arma::vec kukadu::LWRRegressor::fitAtPosition</definition>
+        <argsstring>(arma::vec pos)</argsstring>
+        <name>fitAtPosition</name>
+        <reimplements refid="classkukadu_1_1KernelRegressor_1afd1489310e11cff4bd88390ba76c38e1">fitAtPosition</reimplements>
+        <param>
+          <type>arma::vec</type>
+          <declname>pos</declname>
+        </param>
+        <briefdescription>
+<para>performs the kernel method for predicting the functin value at a given position </para>        </briefdescription>
+        <detaileddescription>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>pos</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>vector defining the required position </para></parameterdescription>
+</parameteritem>
+</parameterlist>
+</para>        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/agyss/iis_robot_sw/iis_catkin_ws/src/kukadu/include/kukadu/learning/regression/kernel.hpp" line="148" column="1"/>
+      </memberdef>
+      </sectiondef>
+    <briefdescription>
+<para>Implements the locally weighted regression method. </para>    </briefdescription>
+    <detaileddescription>
+<para>This class inherits from the <ref refid="classkukadu_1_1KernelRegressor" kindref="compound">KernelRegressor</ref> and implements locally weighted regression. It reuses the design matrices computed by the <ref refid="classkukadu_1_1GeneralFitter" kindref="compound">GeneralFitter</ref> class. </para>    </detaileddescription>
+    <inheritancegraph>
+      <node id="434">
+        <label>kukadu::LWRRegressor</label>
+        <link refid="classkukadu_1_1LWRRegressor"/>
+        <childnode refid="435" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="435">
+        <label>kukadu::KernelRegressor</label>
+        <link refid="classkukadu_1_1KernelRegressor"/>
+      </node>
+    </inheritancegraph>
+    <collaborationgraph>
+      <node id="436">
+        <label>kukadu::LWRRegressor</label>
+        <link refid="classkukadu_1_1LWRRegressor"/>
+        <childnode refid="437" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="437">
+        <label>kukadu::KernelRegressor</label>
+        <link refid="classkukadu_1_1KernelRegressor"/>
+      </node>
+    </collaborationgraph>
+    <location file="/home/agyss/iis_robot_sw/iis_catkin_ws/src/kukadu/include/kukadu/learning/regression/kernel.hpp" line="125" column="1" bodyfile="/home/agyss/iis_robot_sw/iis_catkin_ws/src/kukadu/include/kukadu/learning/regression/kernel.hpp" bodystart="125" bodyend="150"/>
+    <listofallmembers>
+      <member refid="classkukadu_1_1LWRRegressor_1a5974fcb53b52c8eca35dc3c308607b59" prot="private" virt="non-virtual"><scope>kukadu::LWRRegressor</scope><name>computeKernelNormValue</name></member>
+      <member refid="classkukadu_1_1LWRRegressor_1ab7b9e91de81cac0ab6c13b782c948b28" prot="private" virt="non-virtual"><scope>kukadu::LWRRegressor</scope><name>designMatrices</name></member>
+      <member refid="classkukadu_1_1LWRRegressor_1ae1b1aeb272526f396b603ff0328b8898" prot="public" virt="virtual"><scope>kukadu::LWRRegressor</scope><name>fitAtPosition</name></member>
+      <member refid="classkukadu_1_1LWRRegressor_1a9f96ba525c54ea100667a9213a680390" prot="private" virt="non-virtual"><scope>kukadu::LWRRegressor</scope><name>kernel</name></member>
+      <member refid="classkukadu_1_1KernelRegressor_1a9b1048e4eb0cbc70797e27909f886e1a" prot="public" virt="non-virtual"><scope>kukadu::LWRRegressor</scope><name>KernelRegressor</name></member>
+      <member refid="classkukadu_1_1LWRRegressor_1a587e643f830a35a4ecdd21c1c8ac162a" prot="public" virt="non-virtual"><scope>kukadu::LWRRegressor</scope><name>LWRRegressor</name></member>
+      <member refid="classkukadu_1_1LWRRegressor_1a0aa25a4b863ca946f797aabf862e2c82" prot="private" virt="non-virtual"><scope>kukadu::LWRRegressor</scope><name>sampleTs</name></member>
+      <member refid="classkukadu_1_1LWRRegressor_1acd4396bd690a980c6e6f7aeacf809ea1" prot="private" virt="non-virtual"><scope>kukadu::LWRRegressor</scope><name>sampleXs</name></member>
+    </listofallmembers>
+  </compounddef>
+</doxygen>

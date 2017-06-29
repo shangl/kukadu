@@ -1,0 +1,514 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.8.11">
+  <compounddef id="fitting_8cpp" kind="file" language="C++">
+    <compoundname>fitting.cpp</compoundname>
+    <includes refid="kukadutypes_8hpp" local="no">kukadu/types/kukadutypes.hpp</includes>
+    <includes refid="fitting_8hpp" local="no">kukadu/learning/regression/fitting.hpp</includes>
+    <includes refid="moduleusagesingleton_8hpp" local="no">kukadu/storage/moduleusagesingleton.hpp</includes>
+    <incdepgraph>
+      <node id="3380">
+        <label>sys/stat.h</label>
+      </node>
+      <node id="3397">
+        <label>list</label>
+      </node>
+      <node id="3383">
+        <label>gsl/gsl_vector.h</label>
+      </node>
+      <node id="3379">
+        <label>wordexp.h</label>
+      </node>
+      <node id="3378">
+        <label>stdbool.h</label>
+      </node>
+      <node id="3374">
+        <label>stdarg.h</label>
+      </node>
+      <node id="3359">
+        <label>cppconn/resultset.h</label>
+      </node>
+      <node id="3391">
+        <label>sensor_msgs/PointCloud2.h</label>
+      </node>
+      <node id="3343">
+        <label>kukadu/control/trajectory.hpp</label>
+        <link refid="trajectory_8hpp_source"/>
+        <childnode refid="3342" relation="include">
+        </childnode>
+        <childnode refid="3344" relation="include">
+        </childnode>
+        <childnode refid="3335" relation="include">
+        </childnode>
+        <childnode refid="3362" relation="include">
+        </childnode>
+      </node>
+      <node id="3345">
+        <label>queue</label>
+      </node>
+      <node id="3389">
+        <label>pcl/PCLPointCloud2.h</label>
+      </node>
+      <node id="3367">
+        <label>limits</label>
+      </node>
+      <node id="3344">
+        <label>kukadu/robot/queue.hpp</label>
+        <link refid="queue_8hpp"/>
+        <childnode refid="3345" relation="include">
+        </childnode>
+        <childnode refid="3346" relation="include">
+        </childnode>
+        <childnode refid="3342" relation="include">
+        </childnode>
+        <childnode refid="3347" relation="include">
+        </childnode>
+        <childnode refid="3348" relation="include">
+        </childnode>
+        <childnode refid="3351" relation="include">
+        </childnode>
+        <childnode refid="3335" relation="include">
+        </childnode>
+        <childnode refid="3361" relation="include">
+        </childnode>
+        <childnode refid="3353" relation="include">
+        </childnode>
+      </node>
+      <node id="3386">
+        <label>pcl/point_types.h</label>
+      </node>
+      <node id="3364">
+        <label>kukadu/storage/moduleusagesingleton.hpp</label>
+        <link refid="moduleusagesingleton_8hpp_source"/>
+        <childnode refid="3354" relation="include">
+        </childnode>
+        <childnode refid="3352" relation="include">
+        </childnode>
+        <childnode refid="3365" relation="include">
+        </childnode>
+        <childnode refid="3366" relation="include">
+        </childnode>
+        <childnode refid="3335" relation="include">
+        </childnode>
+        <childnode refid="3353" relation="include">
+        </childnode>
+      </node>
+      <node id="3353">
+        <label>kukadu/storage/storagesingleton.hpp</label>
+        <link refid="storagesingleton_8hpp_source"/>
+        <childnode refid="3354" relation="include">
+        </childnode>
+        <childnode refid="3345" relation="include">
+        </childnode>
+        <childnode refid="3352" relation="include">
+        </childnode>
+        <childnode refid="3346" relation="include">
+        </childnode>
+        <childnode refid="3355" relation="include">
+        </childnode>
+        <childnode refid="3335" relation="include">
+        </childnode>
+        <childnode refid="3356" relation="include">
+        </childnode>
+        <childnode refid="3357" relation="include">
+        </childnode>
+        <childnode refid="3358" relation="include">
+        </childnode>
+        <childnode refid="3359" relation="include">
+        </childnode>
+        <childnode refid="3360" relation="include">
+        </childnode>
+      </node>
+      <node id="3385">
+        <label>pcl/point_cloud.h</label>
+      </node>
+      <node id="3335">
+        <label>kukadu/types/kukadutypes.hpp</label>
+        <link refid="kukadutypes_8hpp_source"/>
+        <childnode refid="3336" relation="include">
+        </childnode>
+        <childnode refid="3337" relation="include">
+        </childnode>
+        <childnode refid="3338" relation="include">
+        </childnode>
+        <childnode refid="3339" relation="include">
+        </childnode>
+        <childnode refid="3340" relation="include">
+        </childnode>
+      </node>
+      <node id="3394">
+        <label>stdexcept</label>
+      </node>
+      <node id="3377">
+        <label>termios.h</label>
+      </node>
+      <node id="3388">
+        <label>eigen3/Eigen/Dense</label>
+      </node>
+      <node id="3351">
+        <label>kukadu/robot/hardware.hpp</label>
+        <link refid="hardware_8hpp_source"/>
+        <childnode refid="3352" relation="include">
+        </childnode>
+        <childnode refid="3342" relation="include">
+        </childnode>
+        <childnode refid="3353" relation="include">
+        </childnode>
+      </node>
+      <node id="3382">
+        <label>gsl/gsl_poly.h</label>
+      </node>
+      <node id="3352">
+        <label>string</label>
+      </node>
+      <node id="3354">
+        <label>map</label>
+      </node>
+      <node id="3393">
+        <label>kukadu/utils/gnuplot.hpp</label>
+        <link refid="gnuplot_8hpp_source"/>
+        <childnode refid="3355" relation="include">
+        </childnode>
+        <childnode refid="3352" relation="include">
+        </childnode>
+        <childnode refid="3346" relation="include">
+        </childnode>
+        <childnode refid="3372" relation="include">
+        </childnode>
+        <childnode refid="3370" relation="include">
+        </childnode>
+        <childnode refid="3394" relation="include">
+        </childnode>
+        <childnode refid="3395" relation="include">
+        </childnode>
+        <childnode refid="3396" relation="include">
+        </childnode>
+        <childnode refid="3397" relation="include">
+        </childnode>
+      </node>
+      <node id="3342">
+        <label>armadillo</label>
+      </node>
+      <node id="3336">
+        <label>exception</label>
+      </node>
+      <node id="3372">
+        <label>fstream</label>
+      </node>
+      <node id="3398">
+        <label>kukadu/utils/kukadutokenizer.hpp</label>
+        <link refid="kukadutokenizer_8hpp_source"/>
+        <childnode refid="3352" relation="include">
+        </childnode>
+        <childnode refid="3346" relation="include">
+        </childnode>
+      </node>
+      <node id="3360">
+        <label>cppconn/statement.h</label>
+      </node>
+      <node id="3340">
+        <label>random</label>
+      </node>
+      <node id="3381">
+        <label>sys/types.h</label>
+      </node>
+      <node id="3334">
+        <label>/home/agyss/iis_robot_sw/iis_catkin_ws/src/kukadu/src/learning/regression/fitting.cpp</label>
+        <link refid="fitting.cpp"/>
+        <childnode refid="3335" relation="include">
+        </childnode>
+        <childnode refid="3341" relation="include">
+        </childnode>
+        <childnode refid="3364" relation="include">
+        </childnode>
+      </node>
+      <node id="3349">
+        <label>kukadu/utils/types.hpp</label>
+        <link refid="utils_2types_8hpp_source"/>
+        <childnode refid="3346" relation="include">
+        </childnode>
+        <childnode refid="3342" relation="include">
+        </childnode>
+        <childnode refid="3350" relation="include">
+        </childnode>
+      </node>
+      <node id="3390">
+        <label>tf/transform_datatypes.h</label>
+      </node>
+      <node id="3395">
+        <label>cstdio</label>
+      </node>
+      <node id="3366">
+        <label>kukadu/utils/utils.hpp</label>
+        <link refid="utils_2utils_8hpp_source"/>
+        <childnode refid="3354" relation="include">
+        </childnode>
+        <childnode refid="3345" relation="include">
+        </childnode>
+        <childnode refid="3367" relation="include">
+        </childnode>
+        <childnode refid="3346" relation="include">
+        </childnode>
+        <childnode refid="3368" relation="include">
+        </childnode>
+        <childnode refid="3352" relation="include">
+        </childnode>
+        <childnode refid="3369" relation="include">
+        </childnode>
+        <childnode refid="3370" relation="include">
+        </childnode>
+        <childnode refid="3371" relation="include">
+        </childnode>
+        <childnode refid="3372" relation="include">
+        </childnode>
+        <childnode refid="3365" relation="include">
+        </childnode>
+        <childnode refid="3373" relation="include">
+        </childnode>
+        <childnode refid="3374" relation="include">
+        </childnode>
+        <childnode refid="3355" relation="include">
+        </childnode>
+        <childnode refid="3375" relation="include">
+        </childnode>
+        <childnode refid="3376" relation="include">
+        </childnode>
+        <childnode refid="3377" relation="include">
+        </childnode>
+        <childnode refid="3378" relation="include">
+        </childnode>
+        <childnode refid="3342" relation="include">
+        </childnode>
+        <childnode refid="3379" relation="include">
+        </childnode>
+        <childnode refid="3380" relation="include">
+        </childnode>
+        <childnode refid="3381" relation="include">
+        </childnode>
+        <childnode refid="3382" relation="include">
+        </childnode>
+        <childnode refid="3383" relation="include">
+        </childnode>
+        <childnode refid="3350" relation="include">
+        </childnode>
+        <childnode refid="3384" relation="include">
+        </childnode>
+        <childnode refid="3385" relation="include">
+        </childnode>
+        <childnode refid="3386" relation="include">
+        </childnode>
+        <childnode refid="3387" relation="include">
+        </childnode>
+        <childnode refid="3388" relation="include">
+        </childnode>
+        <childnode refid="3389" relation="include">
+        </childnode>
+        <childnode refid="3390" relation="include">
+        </childnode>
+        <childnode refid="3391" relation="include">
+        </childnode>
+        <childnode refid="3392" relation="include">
+        </childnode>
+        <childnode refid="3349" relation="include">
+        </childnode>
+        <childnode refid="3393" relation="include">
+        </childnode>
+        <childnode refid="3351" relation="include">
+        </childnode>
+        <childnode refid="3362" relation="include">
+        </childnode>
+        <childnode refid="3398" relation="include">
+        </childnode>
+      </node>
+      <node id="3362">
+        <label>kukadu/control/controller.hpp</label>
+        <link refid="controller_8hpp_source"/>
+        <childnode refid="3352" relation="include">
+        </childnode>
+        <childnode refid="3351" relation="include">
+        </childnode>
+        <childnode refid="3335" relation="include">
+        </childnode>
+        <childnode refid="3363" relation="include">
+        </childnode>
+        <childnode refid="3353" relation="include">
+        </childnode>
+        <childnode refid="3344" relation="include">
+        </childnode>
+      </node>
+      <node id="3341">
+        <label>kukadu/learning/regression/fitting.hpp</label>
+        <link refid="fitting_8hpp_source"/>
+        <childnode refid="3342" relation="include">
+        </childnode>
+        <childnode refid="3343" relation="include">
+        </childnode>
+      </node>
+      <node id="3373">
+        <label>unistd.h</label>
+      </node>
+      <node id="3346">
+        <label>vector</label>
+      </node>
+      <node id="3348">
+        <label>kukadu/robot/filters.hpp</label>
+        <link refid="filters_8hpp_source"/>
+        <childnode refid="3349" relation="include">
+        </childnode>
+        <childnode refid="3335" relation="include">
+        </childnode>
+      </node>
+      <node id="3375">
+        <label>signal.h</label>
+      </node>
+      <node id="3365">
+        <label>utility</label>
+      </node>
+      <node id="3370">
+        <label>sstream</label>
+      </node>
+      <node id="3357">
+        <label>cppconn/driver.h</label>
+      </node>
+      <node id="3358">
+        <label>cppconn/exception.h</label>
+      </node>
+      <node id="3347">
+        <label>geometry_msgs/Pose.h</label>
+      </node>
+      <node id="3368">
+        <label>math.h</label>
+      </node>
+      <node id="3396">
+        <label>cstdlib</label>
+      </node>
+      <node id="3355">
+        <label>iostream</label>
+      </node>
+      <node id="3356">
+        <label>mysql_connection.h</label>
+      </node>
+      <node id="3361">
+        <label>kukadu/utils/destroyableobject.hpp</label>
+        <link refid="destroyableobject_8hpp_source"/>
+      </node>
+      <node id="3339">
+        <label>mutex</label>
+      </node>
+      <node id="3387">
+        <label>gsl/gsl_multifit.h</label>
+      </node>
+      <node id="3392">
+        <label>geometry_msgs/Quaternion.h</label>
+      </node>
+      <node id="3338">
+        <label>thread</label>
+      </node>
+      <node id="3384">
+        <label>gsl/gsl_linalg.h</label>
+      </node>
+      <node id="3371">
+        <label>stdio.h</label>
+      </node>
+      <node id="3369">
+        <label>cstring</label>
+      </node>
+      <node id="3350">
+        <label>gsl/gsl_matrix.h</label>
+      </node>
+      <node id="3337">
+        <label>memory</label>
+      </node>
+      <node id="3363">
+        <label>kukadu/types/controllerresult.hpp</label>
+        <link refid="controllerresult_8hpp_source"/>
+        <childnode refid="3346" relation="include">
+        </childnode>
+        <childnode refid="3342" relation="include">
+        </childnode>
+      </node>
+      <node id="3376">
+        <label>dirent.h</label>
+      </node>
+    </incdepgraph>
+    <innernamespace refid="namespacekukadu">kukadu</innernamespace>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <programlisting>
+<codeline lineno="1"><highlight class="preprocessor">#include<sp/>&lt;kukadu/types/kukadutypes.hpp&gt;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="2"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&lt;kukadu/learning/regression/fitting.hpp&gt;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="3"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&lt;kukadu/storage/moduleusagesingleton.hpp&gt;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="4"><highlight class="normal"></highlight></codeline>
+<codeline lineno="5"><highlight class="normal"></highlight><highlight class="keyword">using<sp/>namespace<sp/></highlight><highlight class="normal"><ref refid="namespacestd" kindref="compound">std</ref>;</highlight></codeline>
+<codeline lineno="6"><highlight class="normal"></highlight><highlight class="keyword">using<sp/>namespace<sp/></highlight><highlight class="normal"><ref refid="namespacearma" kindref="compound">arma</ref>;</highlight></codeline>
+<codeline lineno="7"><highlight class="normal"></highlight></codeline>
+<codeline lineno="8"><highlight class="normal"></highlight><highlight class="keyword">namespace<sp/></highlight><highlight class="normal"><ref refid="namespacekukadu" kindref="compound">kukadu</ref><sp/>{</highlight></codeline>
+<codeline lineno="9"><highlight class="normal"></highlight></codeline>
+<codeline lineno="10"><highlight class="normal"><sp/><sp/><sp/><sp/>GeneralFitter::GeneralFitter(vec<sp/>samplesX,<sp/>vec<sp/>samplesY,<sp/></highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/>sampleCount,<sp/>TrajectoryGenerator*<sp/>trajGen)<sp/>{</highlight></codeline>
+<codeline lineno="11"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>this-&gt;samplesX<sp/>=<sp/>samplesX;</highlight></codeline>
+<codeline lineno="12"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>this-&gt;samplesY<sp/>=<sp/>samplesY;</highlight></codeline>
+<codeline lineno="13"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>this-&gt;sampleCount<sp/>=<sp/>sampleCount;</highlight></codeline>
+<codeline lineno="14"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>this-&gt;trajGen<sp/>=<sp/>trajGen;</highlight></codeline>
+<codeline lineno="15"><highlight class="normal"><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline lineno="16"><highlight class="normal"></highlight></codeline>
+<codeline lineno="17"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/>GeneralFitter::getSampleCount()<sp/>{</highlight></codeline>
+<codeline lineno="18"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal"><sp/>sampleCount;</highlight></codeline>
+<codeline lineno="19"><highlight class="normal"><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline lineno="20"><highlight class="normal"></highlight></codeline>
+<codeline lineno="21"><highlight class="normal"><sp/><sp/><sp/><sp/>vec<sp/>GeneralFitter::computeLinFitCoefficients(mat<sp/>desMat)<sp/>{</highlight></codeline>
+<codeline lineno="22"><highlight class="normal"></highlight></codeline>
+<codeline lineno="23"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>KUKADU_MODULE_START_USAGE();</highlight></codeline>
+<codeline lineno="24"><highlight class="normal"></highlight></codeline>
+<codeline lineno="25"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>vec<sp/>t(sampleCount);</highlight></codeline>
+<codeline lineno="26"><highlight class="normal"></highlight></codeline>
+<codeline lineno="27"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">for</highlight><highlight class="normal">(</highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/>i<sp/>=<sp/>0;<sp/>i<sp/>&lt;<sp/>sampleCount;<sp/>++i)</highlight></codeline>
+<codeline lineno="28"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>t.at(i)<sp/>=<sp/>samplesY(i);</highlight></codeline>
+<codeline lineno="29"><highlight class="normal"></highlight></codeline>
+<codeline lineno="30"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>vec<sp/>res<sp/>=<sp/>solve(desMat,<sp/>t);</highlight></codeline>
+<codeline lineno="31"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">for</highlight><highlight class="normal">(</highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/>i<sp/>=<sp/>0;<sp/>i<sp/>&lt;<sp/>res.n_elem;<sp/>++i)</highlight></codeline>
+<codeline lineno="32"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="comment">//<sp/>if<sp/>any<sp/>element<sp/>is<sp/>NaN</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="33"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">if</highlight><highlight class="normal">(res(i)<sp/>!=<sp/>res(i))</highlight></codeline>
+<codeline lineno="34"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">throw</highlight><highlight class="normal"><sp/>KukaduException(</highlight><highlight class="stringliteral">&quot;(GeneralFitter)<sp/>Learned<sp/>coefficients<sp/>contain<sp/>NaN&quot;</highlight><highlight class="normal">);</highlight></codeline>
+<codeline lineno="35"><highlight class="normal"></highlight></codeline>
+<codeline lineno="36"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>KUKADU_MODULE_END_USAGE();</highlight></codeline>
+<codeline lineno="37"><highlight class="normal"></highlight></codeline>
+<codeline lineno="38"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal"><sp/>res;</highlight></codeline>
+<codeline lineno="39"><highlight class="normal"></highlight></codeline>
+<codeline lineno="40"><highlight class="normal"><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline lineno="41"><highlight class="normal"></highlight></codeline>
+<codeline lineno="42"><highlight class="normal"><sp/><sp/><sp/><sp/>vec<sp/>GeneralFitter::computeLinFitCoefficients()<sp/>{</highlight></codeline>
+<codeline lineno="43"><highlight class="normal"></highlight></codeline>
+<codeline lineno="44"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>KUKADU_MODULE_START_USAGE();</highlight></codeline>
+<codeline lineno="45"><highlight class="normal"></highlight></codeline>
+<codeline lineno="46"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>mat<sp/>desMat<sp/>=<sp/>computeDesignMatrix();</highlight></codeline>
+<codeline lineno="47"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>vec<sp/>ret<sp/>=<sp/>computeLinFitCoefficients(desMat);</highlight></codeline>
+<codeline lineno="48"><highlight class="normal"></highlight></codeline>
+<codeline lineno="49"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>KUKADU_MODULE_END_USAGE();</highlight></codeline>
+<codeline lineno="50"><highlight class="normal"></highlight></codeline>
+<codeline lineno="51"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal"><sp/>ret;</highlight></codeline>
+<codeline lineno="52"><highlight class="normal"></highlight></codeline>
+<codeline lineno="53"><highlight class="normal"><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline lineno="54"><highlight class="normal"></highlight></codeline>
+<codeline lineno="55"><highlight class="normal"><sp/><sp/><sp/><sp/>mat<sp/>GeneralFitter::computeDesignMatrix()<sp/>{</highlight></codeline>
+<codeline lineno="56"><highlight class="normal"></highlight></codeline>
+<codeline lineno="57"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/>basisFunctionCount<sp/>=<sp/>trajGen-&gt;getBasisFunctionCount();</highlight></codeline>
+<codeline lineno="58"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>mat<sp/>X(sampleCount,<sp/>basisFunctionCount);</highlight></codeline>
+<codeline lineno="59"><highlight class="normal"></highlight></codeline>
+<codeline lineno="60"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="comment">//<sp/>computation<sp/>of<sp/>design<sp/>matrix<sp/>according<sp/>to<sp/>bishop<sp/>equation<sp/>3.16<sp/>(page<sp/>142)</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="61"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">for</highlight><highlight class="normal">(</highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/>i<sp/>=<sp/>0;<sp/>i<sp/>&lt;<sp/>sampleCount;<sp/>++i)<sp/>{</highlight></codeline>
+<codeline lineno="62"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">for</highlight><highlight class="normal">(</highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/>j<sp/>=<sp/>0;<sp/>j<sp/>&lt;<sp/>basisFunctionCount;<sp/>j++)<sp/>{</highlight></codeline>
+<codeline lineno="63"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">double</highlight><highlight class="normal"><sp/>val<sp/>=<sp/>trajGen-&gt;evaluateBasisFunction(samplesX(i),<sp/>j);</highlight></codeline>
+<codeline lineno="64"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>X(i,<sp/>j)<sp/>=<sp/>val;</highlight></codeline>
+<codeline lineno="65"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline lineno="66"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline lineno="67"><highlight class="normal"></highlight></codeline>
+<codeline lineno="68"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal"><sp/>X;</highlight></codeline>
+<codeline lineno="69"><highlight class="normal"></highlight></codeline>
+<codeline lineno="70"><highlight class="normal"><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline lineno="71"><highlight class="normal"></highlight></codeline>
+<codeline lineno="72"><highlight class="normal">}</highlight></codeline>
+    </programlisting>
+    <location file="/home/agyss/iis_robot_sw/iis_catkin_ws/src/kukadu/src/learning/regression/fitting.cpp"/>
+  </compounddef>
+</doxygen>

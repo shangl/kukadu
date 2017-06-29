@@ -1,0 +1,140 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.8.11">
+  <compounddef id="classkukadu_1_1SampleRewardComputer" kind="class" language="C++" prot="public">
+    <compoundname>kukadu::SampleRewardComputer</compoundname>
+    <basecompoundref refid="classkukadu_1_1TrajectoryBasedReward" prot="public" virt="non-virtual">kukadu::TrajectoryBasedReward</basecompoundref>
+      <sectiondef kind="private-attrib">
+      <memberdef kind="variable" id="classkukadu_1_1SampleRewardComputer_1af3872fb1dbe26cb6fd054ef6e7b6e85a" prot="private" static="no" mutable="no">
+        <type>double</type>
+        <definition>double kukadu::SampleRewardComputer::tmax</definition>
+        <argsstring></argsstring>
+        <name>tmax</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/agyss/iis_robot_sw/iis_catkin_ws/src/kukadu/include/kukadu/learning/rl/policyrl.hpp" line="67" column="1" bodyfile="/home/agyss/iis_robot_sw/iis_catkin_ws/src/kukadu/include/kukadu/learning/rl/policyrl.hpp" bodystart="67" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classkukadu_1_1SampleRewardComputer_1ad60f9c78dd757a46c9e93c025d7375a3" prot="private" static="no" mutable="no">
+        <type>double</type>
+        <definition>double kukadu::SampleRewardComputer::slope</definition>
+        <argsstring></argsstring>
+        <name>slope</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/agyss/iis_robot_sw/iis_catkin_ws/src/kukadu/include/kukadu/learning/rl/policyrl.hpp" line="68" column="1" bodyfile="/home/agyss/iis_robot_sw/iis_catkin_ws/src/kukadu/include/kukadu/learning/rl/policyrl.hpp" bodystart="68" bodyend="-1"/>
+      </memberdef>
+      </sectiondef>
+      <sectiondef kind="public-func">
+      <memberdef kind="function" id="classkukadu_1_1SampleRewardComputer_1a335d5335d0e783f07fb024acc50eec92" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type></type>
+        <definition>kukadu::SampleRewardComputer::SampleRewardComputer</definition>
+        <argsstring>(double slope, int degOfFreedom, double tmax, double stepSize)</argsstring>
+        <name>SampleRewardComputer</name>
+        <param>
+          <type>double</type>
+          <declname>slope</declname>
+        </param>
+        <param>
+          <type>int</type>
+          <declname>degOfFreedom</declname>
+        </param>
+        <param>
+          <type>double</type>
+          <declname>tmax</declname>
+        </param>
+        <param>
+          <type>double</type>
+          <declname>stepSize</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/agyss/iis_robot_sw/iis_catkin_ws/src/kukadu/include/kukadu/learning/rl/policyrl.hpp" line="72" column="1" bodyfile="/home/agyss/iis_robot_sw/iis_catkin_ws/src/kukadu/src/learning/rl/policyrl.cpp" bodystart="374" bodyend="376"/>
+      </memberdef>
+      <memberdef kind="function" id="classkukadu_1_1SampleRewardComputer_1ad68ea48b817bf04485fe3fb13a4007e0" prot="public" static="no" const="no" explicit="no" inline="no" virt="virtual">
+        <type>arma::vec</type>
+        <definition>arma::vec kukadu::SampleRewardComputer::computeFun</definition>
+        <argsstring>(double t)</argsstring>
+        <name>computeFun</name>
+        <reimplements refid="classkukadu_1_1TrajectoryBasedReward_1a44c9d712ca3399bd04fa76aac118e6b9">computeFun</reimplements>
+        <param>
+          <type>double</type>
+          <declname>t</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/agyss/iis_robot_sw/iis_catkin_ws/src/kukadu/include/kukadu/learning/rl/policyrl.hpp" line="74" column="1" bodyfile="/home/agyss/iis_robot_sw/iis_catkin_ws/src/kukadu/src/learning/rl/policyrl.cpp" bodystart="378" bodyend="386"/>
+      </memberdef>
+      </sectiondef>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <inheritancegraph>
+      <node id="571">
+        <label>kukadu::CostComputer</label>
+        <link refid="classkukadu_1_1CostComputer"/>
+      </node>
+      <node id="570">
+        <label>kukadu::TrajectoryBasedReward</label>
+        <link refid="classkukadu_1_1TrajectoryBasedReward"/>
+        <childnode refid="571" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="569">
+        <label>kukadu::SampleRewardComputer</label>
+        <link refid="classkukadu_1_1SampleRewardComputer"/>
+        <childnode refid="570" relation="public-inheritance">
+        </childnode>
+      </node>
+    </inheritancegraph>
+    <collaborationgraph>
+      <node id="574">
+        <label>kukadu::CostComputer</label>
+        <link refid="classkukadu_1_1CostComputer"/>
+      </node>
+      <node id="573">
+        <label>kukadu::TrajectoryBasedReward</label>
+        <link refid="classkukadu_1_1TrajectoryBasedReward"/>
+        <childnode refid="574" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="572">
+        <label>kukadu::SampleRewardComputer</label>
+        <link refid="classkukadu_1_1SampleRewardComputer"/>
+        <childnode refid="573" relation="public-inheritance">
+        </childnode>
+      </node>
+    </collaborationgraph>
+    <location file="/home/agyss/iis_robot_sw/iis_catkin_ws/src/kukadu/include/kukadu/learning/rl/policyrl.hpp" line="63" column="1" bodyfile="/home/agyss/iis_robot_sw/iis_catkin_ws/src/kukadu/include/kukadu/learning/rl/policyrl.hpp" bodystart="63" bodyend="76"/>
+    <listofallmembers>
+      <member refid="classkukadu_1_1TrajectoryBasedReward_1a320c223ada03c976b2c545203d1b26d8" prot="public" virt="virtual"><scope>kukadu::SampleRewardComputer</scope><name>computeCost</name></member>
+      <member refid="classkukadu_1_1SampleRewardComputer_1ad68ea48b817bf04485fe3fb13a4007e0" prot="public" virt="virtual"><scope>kukadu::SampleRewardComputer</scope><name>computeFun</name></member>
+      <member refid="classkukadu_1_1TrajectoryBasedReward_1a4352dea3dc32bf7558991523d9f02f9d" prot="public" virt="non-virtual" ambiguityscope="kukadu::TrajectoryBasedReward::"><scope>kukadu::SampleRewardComputer</scope><name>computeFun</name></member>
+      <member refid="classkukadu_1_1TrajectoryBasedReward_1abed1b45c79d4925e3d3ec860a1a2d736" prot="public" virt="non-virtual"><scope>kukadu::SampleRewardComputer</scope><name>getOptimalTraj</name></member>
+      <member refid="classkukadu_1_1TrajectoryBasedReward_1a1faa4baa7554aa2199293b97b67d715e" prot="public" virt="non-virtual"><scope>kukadu::SampleRewardComputer</scope><name>getOptimalTraj</name></member>
+      <member refid="classkukadu_1_1TrajectoryBasedReward_1a30b268ffa8e9df7d2b6af3a5741e389e" prot="public" virt="non-virtual"><scope>kukadu::SampleRewardComputer</scope><name>getOptimalTraj</name></member>
+      <member refid="classkukadu_1_1TrajectoryBasedReward_1a65f5ac9332273b99b470e74deb126fda" prot="public" virt="non-virtual"><scope>kukadu::SampleRewardComputer</scope><name>getOptimalTraj</name></member>
+      <member refid="classkukadu_1_1SampleRewardComputer_1a335d5335d0e783f07fb024acc50eec92" prot="public" virt="non-virtual"><scope>kukadu::SampleRewardComputer</scope><name>SampleRewardComputer</name></member>
+      <member refid="classkukadu_1_1SampleRewardComputer_1ad60f9c78dd757a46c9e93c025d7375a3" prot="private" virt="non-virtual"><scope>kukadu::SampleRewardComputer</scope><name>slope</name></member>
+      <member refid="classkukadu_1_1SampleRewardComputer_1af3872fb1dbe26cb6fd054ef6e7b6e85a" prot="private" virt="non-virtual"><scope>kukadu::SampleRewardComputer</scope><name>tmax</name></member>
+      <member refid="classkukadu_1_1TrajectoryBasedReward_1a646065b5b00ac72e582f9553ca790f32" prot="public" virt="non-virtual"><scope>kukadu::SampleRewardComputer</scope><name>TrajectoryBasedReward</name></member>
+      <member refid="classkukadu_1_1TrajectoryBasedReward_1a6778592c4f88c8abdc0327f12080c550" prot="public" virt="non-virtual"><scope>kukadu::SampleRewardComputer</scope><name>TrajectoryBasedReward</name></member>
+      <member refid="classkukadu_1_1TrajectoryBasedReward_1a434ee68a4e810d796789eebbd5ce17bf" prot="public" virt="non-virtual"><scope>kukadu::SampleRewardComputer</scope><name>writeToFile</name></member>
+    </listofallmembers>
+  </compounddef>
+</doxygen>

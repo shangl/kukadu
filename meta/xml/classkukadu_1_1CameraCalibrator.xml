@@ -1,0 +1,560 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.8.11">
+  <compounddef id="classkukadu_1_1CameraCalibrator" kind="class" language="C++" prot="public">
+    <compoundname>kukadu::CameraCalibrator</compoundname>
+    <basecompoundref refid="classkukadu_1_1Calibrator" prot="public" virt="non-virtual">kukadu::Calibrator</basecompoundref>
+      <sectiondef kind="private-attrib">
+      <memberdef kind="variable" id="classkukadu_1_1CameraCalibrator_1ab58454db62149085d8eec6628326b455" prot="private" static="no" mutable="no">
+        <type>bool</type>
+        <definition>bool kukadu::CameraCalibrator::runDataCollectionThread</definition>
+        <argsstring></argsstring>
+        <name>runDataCollectionThread</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/agyss/iis_robot_sw/iis_catkin_ws/src/kukadu/include/kukadu/robot/calibration.hpp" line="36" column="1" bodyfile="/home/agyss/iis_robot_sw/iis_catkin_ws/src/kukadu/include/kukadu/robot/calibration.hpp" bodystart="36" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classkukadu_1_1CameraCalibrator_1a7a094ae1e3ca585e52fbda0b2c92f30f" prot="private" static="no" mutable="no">
+        <type>bool</type>
+        <definition>bool kukadu::CameraCalibrator::storeDataToFile</definition>
+        <argsstring></argsstring>
+        <name>storeDataToFile</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/agyss/iis_robot_sw/iis_catkin_ws/src/kukadu/include/kukadu/robot/calibration.hpp" line="38" column="1" bodyfile="/home/agyss/iis_robot_sw/iis_catkin_ws/src/kukadu/include/kukadu/robot/calibration.hpp" bodystart="38" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classkukadu_1_1CameraCalibrator_1a264b92bb514fd69d1f1ebdb5f8d4bf8e" prot="private" static="no" mutable="no">
+        <type>std::string</type>
+        <definition>std::string kukadu::CameraCalibrator::storePath</definition>
+        <argsstring></argsstring>
+        <name>storePath</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/agyss/iis_robot_sw/iis_catkin_ws/src/kukadu/include/kukadu/robot/calibration.hpp" line="39" column="1" bodyfile="/home/agyss/iis_robot_sw/iis_catkin_ws/src/kukadu/include/kukadu/robot/calibration.hpp" bodystart="39" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classkukadu_1_1CameraCalibrator_1abebce3d7c4ad243865a754719a427860" prot="private" static="no" mutable="no">
+        <type>std::string</type>
+        <definition>std::string kukadu::CameraCalibrator::attachedObjectId</definition>
+        <argsstring></argsstring>
+        <name>attachedObjectId</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/agyss/iis_robot_sw/iis_catkin_ws/src/kukadu/include/kukadu/robot/calibration.hpp" line="40" column="1" bodyfile="/home/agyss/iis_robot_sw/iis_catkin_ws/src/kukadu/include/kukadu/robot/calibration.hpp" bodystart="40" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classkukadu_1_1CameraCalibrator_1a2c5987d9c1d465093cbac761e430a1ab" prot="private" static="no" mutable="no">
+        <type>bool</type>
+        <definition>bool kukadu::CameraCalibrator::readFromFile</definition>
+        <argsstring></argsstring>
+        <name>readFromFile</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/agyss/iis_robot_sw/iis_catkin_ws/src/kukadu/include/kukadu/robot/calibration.hpp" line="42" column="1" bodyfile="/home/agyss/iis_robot_sw/iis_catkin_ws/src/kukadu/include/kukadu/robot/calibration.hpp" bodystart="42" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classkukadu_1_1CameraCalibrator_1aa8a050d6a98e51efa00089964fc20b2e" prot="private" static="no" mutable="no">
+        <type>std::ifstream</type>
+        <definition>std::ifstream kukadu::CameraCalibrator::inStream</definition>
+        <argsstring></argsstring>
+        <name>inStream</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/agyss/iis_robot_sw/iis_catkin_ws/src/kukadu/include/kukadu/robot/calibration.hpp" line="43" column="1" bodyfile="/home/agyss/iis_robot_sw/iis_catkin_ws/src/kukadu/include/kukadu/robot/calibration.hpp" bodystart="43" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classkukadu_1_1CameraCalibrator_1a16d6da725f7918b548ed1e1126a84da1" prot="private" static="no" mutable="no">
+        <type>double</type>
+        <definition>double kukadu::CameraCalibrator::minCartDistance</definition>
+        <argsstring></argsstring>
+        <name>minCartDistance</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/agyss/iis_robot_sw/iis_catkin_ws/src/kukadu/include/kukadu/robot/calibration.hpp" line="45" column="1" bodyfile="/home/agyss/iis_robot_sw/iis_catkin_ws/src/kukadu/include/kukadu/robot/calibration.hpp" bodystart="45" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classkukadu_1_1CameraCalibrator_1aa17eb0093ac8a224d7d3b4ee9fdf0cb3" prot="private" static="no" mutable="no">
+        <type>double</type>
+        <definition>double kukadu::CameraCalibrator::minQuatDistance</definition>
+        <argsstring></argsstring>
+        <name>minQuatDistance</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/agyss/iis_robot_sw/iis_catkin_ws/src/kukadu/include/kukadu/robot/calibration.hpp" line="46" column="1" bodyfile="/home/agyss/iis_robot_sw/iis_catkin_ws/src/kukadu/include/kukadu/robot/calibration.hpp" bodystart="46" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classkukadu_1_1CameraCalibrator_1a12fff363fd56874c151bcb626d8c7990" prot="private" static="no" mutable="no">
+        <type>std::ofstream</type>
+        <definition>std::ofstream kukadu::CameraCalibrator::outFile</definition>
+        <argsstring></argsstring>
+        <name>outFile</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/agyss/iis_robot_sw/iis_catkin_ws/src/kukadu/include/kukadu/robot/calibration.hpp" line="48" column="1" bodyfile="/home/agyss/iis_robot_sw/iis_catkin_ws/src/kukadu/include/kukadu/robot/calibration.hpp" bodystart="48" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classkukadu_1_1CameraCalibrator_1a6f4c6b2b80ce438c91ae49439f559e4c" prot="private" static="no" mutable="no">
+        <type>kukadu_thread</type>
+        <definition>kukadu_thread kukadu::CameraCalibrator::collectionThread</definition>
+        <argsstring></argsstring>
+        <name>collectionThread</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/agyss/iis_robot_sw/iis_catkin_ws/src/kukadu/include/kukadu/robot/calibration.hpp" line="50" column="1" bodyfile="/home/agyss/iis_robot_sw/iis_catkin_ws/src/kukadu/include/kukadu/robot/calibration.hpp" bodystart="50" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classkukadu_1_1CameraCalibrator_1a0bb108a3f51d9a2f48a1ecdc7927a0df" prot="private" static="no" mutable="no">
+        <type>geometry_msgs::Pose</type>
+        <definition>geometry_msgs::Pose kukadu::CameraCalibrator::lastObjectPoseInCamFrame</definition>
+        <argsstring></argsstring>
+        <name>lastObjectPoseInCamFrame</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/agyss/iis_robot_sw/iis_catkin_ws/src/kukadu/include/kukadu/robot/calibration.hpp" line="52" column="1" bodyfile="/home/agyss/iis_robot_sw/iis_catkin_ws/src/kukadu/include/kukadu/robot/calibration.hpp" bodystart="52" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classkukadu_1_1CameraCalibrator_1a3f81b2234d60f3776b0c4ad45bef0810" prot="private" static="no" mutable="no">
+        <type>geometry_msgs::Pose</type>
+        <definition>geometry_msgs::Pose kukadu::CameraCalibrator::lastObjectPoseInRobotFrame</definition>
+        <argsstring></argsstring>
+        <name>lastObjectPoseInRobotFrame</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/agyss/iis_robot_sw/iis_catkin_ws/src/kukadu/include/kukadu/robot/calibration.hpp" line="53" column="1" bodyfile="/home/agyss/iis_robot_sw/iis_catkin_ws/src/kukadu/include/kukadu/robot/calibration.hpp" bodystart="53" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classkukadu_1_1CameraCalibrator_1a60b21906cebfbb2e3de0a36d0093f4d3" prot="private" static="no" mutable="no">
+        <type>int</type>
+        <definition>int kukadu::CameraCalibrator::dataPointCount</definition>
+        <argsstring></argsstring>
+        <name>dataPointCount</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/agyss/iis_robot_sw/iis_catkin_ws/src/kukadu/include/kukadu/robot/calibration.hpp" line="55" column="1" bodyfile="/home/agyss/iis_robot_sw/iis_catkin_ws/src/kukadu/include/kukadu/robot/calibration.hpp" bodystart="55" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classkukadu_1_1CameraCalibrator_1a5a4c192ae84353ff232301a3c361717e" prot="private" static="no" mutable="no">
+        <type>arma::vec</type>
+        <definition>arma::vec kukadu::CameraCalibrator::centroidRobot</definition>
+        <argsstring></argsstring>
+        <name>centroidRobot</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/agyss/iis_robot_sw/iis_catkin_ws/src/kukadu/include/kukadu/robot/calibration.hpp" line="56" column="1" bodyfile="/home/agyss/iis_robot_sw/iis_catkin_ws/src/kukadu/include/kukadu/robot/calibration.hpp" bodystart="56" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classkukadu_1_1CameraCalibrator_1afef0a78943f9b8a071a56b56df84259c" prot="private" static="no" mutable="no">
+        <type>arma::vec</type>
+        <definition>arma::vec kukadu::CameraCalibrator::centroidCamera</definition>
+        <argsstring></argsstring>
+        <name>centroidCamera</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/agyss/iis_robot_sw/iis_catkin_ws/src/kukadu/include/kukadu/robot/calibration.hpp" line="57" column="1" bodyfile="/home/agyss/iis_robot_sw/iis_catkin_ws/src/kukadu/include/kukadu/robot/calibration.hpp" bodystart="57" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classkukadu_1_1CameraCalibrator_1acc20a6f72465534bff6e87f42bbfe4c9" prot="private" static="no" mutable="no">
+        <type>std::vector&lt; arma::vec &gt;</type>
+        <definition>std::vector&lt;arma::vec&gt; kukadu::CameraCalibrator::samplesRobot</definition>
+        <argsstring></argsstring>
+        <name>samplesRobot</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/agyss/iis_robot_sw/iis_catkin_ws/src/kukadu/include/kukadu/robot/calibration.hpp" line="58" column="1" bodyfile="/home/agyss/iis_robot_sw/iis_catkin_ws/src/kukadu/include/kukadu/robot/calibration.hpp" bodystart="58" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classkukadu_1_1CameraCalibrator_1afb7310feb88473e76d2c86bce477f37c" prot="private" static="no" mutable="no">
+        <type>std::vector&lt; arma::vec &gt;</type>
+        <definition>std::vector&lt;arma::vec&gt; kukadu::CameraCalibrator::samplesCamera</definition>
+        <argsstring></argsstring>
+        <name>samplesCamera</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/agyss/iis_robot_sw/iis_catkin_ws/src/kukadu/include/kukadu/robot/calibration.hpp" line="59" column="1" bodyfile="/home/agyss/iis_robot_sw/iis_catkin_ws/src/kukadu/include/kukadu/robot/calibration.hpp" bodystart="59" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classkukadu_1_1CameraCalibrator_1af0e4df1d3eaca94a3254c06be3d06da8" prot="private" static="no" mutable="no">
+        <type>kukadu_mutex</type>
+        <definition>kukadu_mutex kukadu::CameraCalibrator::dataMutex</definition>
+        <argsstring></argsstring>
+        <name>dataMutex</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/agyss/iis_robot_sw/iis_catkin_ws/src/kukadu/include/kukadu/robot/calibration.hpp" line="60" column="1" bodyfile="/home/agyss/iis_robot_sw/iis_catkin_ws/src/kukadu/include/kukadu/robot/calibration.hpp" bodystart="60" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classkukadu_1_1CameraCalibrator_1ac22b700e7395f47f352f664b7996bff7" prot="private" static="no" mutable="no">
+        <type>KUKADU_SHARED_PTR&lt; <ref refid="classkukadu_1_1ControlQueue" kindref="compound">ControlQueue</ref> &gt;</type>
+        <definition>KUKADU_SHARED_PTR&lt;ControlQueue&gt; kukadu::CameraCalibrator::queue</definition>
+        <argsstring></argsstring>
+        <name>queue</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/agyss/iis_robot_sw/iis_catkin_ws/src/kukadu/include/kukadu/robot/calibration.hpp" line="62" column="1" bodyfile="/home/agyss/iis_robot_sw/iis_catkin_ws/src/kukadu/include/kukadu/robot/calibration.hpp" bodystart="62" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classkukadu_1_1CameraCalibrator_1af5cfbc90e1c0c276bf300dc89c82a766" prot="private" static="no" mutable="no">
+        <type>KUKADU_SHARED_PTR&lt; <ref refid="classkukadu_1_1Localizer" kindref="compound">Localizer</ref> &gt;</type>
+        <definition>KUKADU_SHARED_PTR&lt;Localizer&gt; kukadu::CameraCalibrator::localizer</definition>
+        <argsstring></argsstring>
+        <name>localizer</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/agyss/iis_robot_sw/iis_catkin_ws/src/kukadu/include/kukadu/robot/calibration.hpp" line="63" column="1" bodyfile="/home/agyss/iis_robot_sw/iis_catkin_ws/src/kukadu/include/kukadu/robot/calibration.hpp" bodystart="63" bodyend="-1"/>
+      </memberdef>
+      </sectiondef>
+      <sectiondef kind="private-func">
+      <memberdef kind="function" id="classkukadu_1_1CameraCalibrator_1ace4ae719cfb19002e10eb4e4b77e4a2c" prot="private" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>geometry_msgs::Pose</type>
+        <definition>geometry_msgs::Pose kukadu::CameraCalibrator::getPoseFromLine</definition>
+        <argsstring>(const std::string &amp;line)</argsstring>
+        <name>getPoseFromLine</name>
+        <param>
+          <type>const std::string &amp;</type>
+          <declname>line</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/agyss/iis_robot_sw/iis_catkin_ws/src/kukadu/include/kukadu/robot/calibration.hpp" line="65" column="1" bodyfile="/home/agyss/iis_robot_sw/iis_catkin_ws/src/kukadu/src/robot/calibration.cpp" bodystart="100" bodyend="112"/>
+      </memberdef>
+      <memberdef kind="function" id="classkukadu_1_1CameraCalibrator_1ad79a0cd5fb9a7312ec5ff9afec885bfd" prot="private" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>geometry_msgs::Pose</type>
+        <definition>geometry_msgs::Pose kukadu::CameraCalibrator::getCurrentPoseRobot</definition>
+        <argsstring>()</argsstring>
+        <name>getCurrentPoseRobot</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/agyss/iis_robot_sw/iis_catkin_ws/src/kukadu/include/kukadu/robot/calibration.hpp" line="67" column="1" bodyfile="/home/agyss/iis_robot_sw/iis_catkin_ws/src/kukadu/src/robot/calibration.cpp" bodystart="114" bodyend="128"/>
+      </memberdef>
+      <memberdef kind="function" id="classkukadu_1_1CameraCalibrator_1a694adc2cc372d55c82716055a2fac304" prot="private" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>std::pair&lt; bool, geometry_msgs::Pose &gt;</type>
+        <definition>std::pair&lt; bool, geometry_msgs::Pose &gt; kukadu::CameraCalibrator::getCurrentPoseCamera</definition>
+        <argsstring>()</argsstring>
+        <name>getCurrentPoseCamera</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/agyss/iis_robot_sw/iis_catkin_ws/src/kukadu/include/kukadu/robot/calibration.hpp" line="68" column="1" bodyfile="/home/agyss/iis_robot_sw/iis_catkin_ws/src/kukadu/src/robot/calibration.cpp" bodystart="130" bodyend="149"/>
+      </memberdef>
+      <memberdef kind="function" id="classkukadu_1_1CameraCalibrator_1ae491717e41d9d4933af4dc8708c1d9fd" prot="private" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>void kukadu::CameraCalibrator::initializeForNewRun</definition>
+        <argsstring>()</argsstring>
+        <name>initializeForNewRun</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/agyss/iis_robot_sw/iis_catkin_ws/src/kukadu/include/kukadu/robot/calibration.hpp" line="70" column="1" bodyfile="/home/agyss/iis_robot_sw/iis_catkin_ws/src/kukadu/src/robot/calibration.cpp" bodystart="230" bodyend="254"/>
+      </memberdef>
+      <memberdef kind="function" id="classkukadu_1_1CameraCalibrator_1ad39d44a8feee72fac72b5cf5374d9437" prot="private" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>void kukadu::CameraCalibrator::dataCollectionRunner</definition>
+        <argsstring>()</argsstring>
+        <name>dataCollectionRunner</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/agyss/iis_robot_sw/iis_catkin_ws/src/kukadu/include/kukadu/robot/calibration.hpp" line="71" column="1" bodyfile="/home/agyss/iis_robot_sw/iis_catkin_ws/src/kukadu/src/robot/calibration.cpp" bodystart="151" bodyend="228"/>
+      </memberdef>
+      <memberdef kind="function" id="classkukadu_1_1CameraCalibrator_1a73f8bc65359deaed79d313ad1981b072" prot="private" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>bool</type>
+        <definition>bool kukadu::CameraCalibrator::isSignificantlyDifferenct</definition>
+        <argsstring>(const geometry_msgs::Pose &amp;p1, const geometry_msgs::Pose &amp;p2)</argsstring>
+        <name>isSignificantlyDifferenct</name>
+        <param>
+          <type>const geometry_msgs::Pose &amp;</type>
+          <declname>p1</declname>
+        </param>
+        <param>
+          <type>const geometry_msgs::Pose &amp;</type>
+          <declname>p2</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/agyss/iis_robot_sw/iis_catkin_ws/src/kukadu/include/kukadu/robot/calibration.hpp" line="73" column="1" bodyfile="/home/agyss/iis_robot_sw/iis_catkin_ws/src/kukadu/src/robot/calibration.cpp" bodystart="295" bodyend="317"/>
+      </memberdef>
+      </sectiondef>
+      <sectiondef kind="public-func">
+      <memberdef kind="function" id="classkukadu_1_1CameraCalibrator_1a1941a6c93d98924d450fa91b91470fe9" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type></type>
+        <definition>kukadu::CameraCalibrator::CameraCalibrator</definition>
+        <argsstring>(KUKADU_SHARED_PTR&lt; ControlQueue &gt; queue, KUKADU_SHARED_PTR&lt; Localizer &gt; localizer, std::string attachedObjectId, bool storeDataToFile=false, std::string storePath=&quot;&quot;, double minCartDistance=0.03, double minQuatDistance=0.03)</argsstring>
+        <name>CameraCalibrator</name>
+        <param>
+          <type>KUKADU_SHARED_PTR&lt; <ref refid="classkukadu_1_1ControlQueue" kindref="compound">ControlQueue</ref> &gt;</type>
+          <declname>queue</declname>
+        </param>
+        <param>
+          <type>KUKADU_SHARED_PTR&lt; <ref refid="classkukadu_1_1Localizer" kindref="compound">Localizer</ref> &gt;</type>
+          <declname>localizer</declname>
+        </param>
+        <param>
+          <type>std::string</type>
+          <declname>attachedObjectId</declname>
+        </param>
+        <param>
+          <type>bool</type>
+          <declname>storeDataToFile</declname>
+          <defval>false</defval>
+        </param>
+        <param>
+          <type>std::string</type>
+          <declname>storePath</declname>
+          <defval>&quot;&quot;</defval>
+        </param>
+        <param>
+          <type>double</type>
+          <declname>minCartDistance</declname>
+          <defval>0.03</defval>
+        </param>
+        <param>
+          <type>double</type>
+          <declname>minQuatDistance</declname>
+          <defval>0.03</defval>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/agyss/iis_robot_sw/iis_catkin_ws/src/kukadu/include/kukadu/robot/calibration.hpp" line="77" column="1" bodyfile="/home/agyss/iis_robot_sw/iis_catkin_ws/src/kukadu/src/robot/calibration.cpp" bodystart="61" bodyend="81"/>
+      </memberdef>
+      <memberdef kind="function" id="classkukadu_1_1CameraCalibrator_1aac23dd97c461aa587723ef12af093b3c" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type></type>
+        <definition>kukadu::CameraCalibrator::~CameraCalibrator</definition>
+        <argsstring>()</argsstring>
+        <name>~CameraCalibrator</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/agyss/iis_robot_sw/iis_catkin_ws/src/kukadu/include/kukadu/robot/calibration.hpp" line="79" column="1" bodyfile="/home/agyss/iis_robot_sw/iis_catkin_ws/src/kukadu/src/robot/calibration.cpp" bodystart="291" bodyend="293"/>
+      </memberdef>
+      <memberdef kind="function" id="classkukadu_1_1CameraCalibrator_1a40c9950282b9fb2e84ad705e78b81308" prot="public" static="no" const="no" explicit="no" inline="no" virt="virtual">
+        <type>void</type>
+        <definition>void kukadu::CameraCalibrator::startDataCollection</definition>
+        <argsstring>()</argsstring>
+        <name>startDataCollection</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/agyss/iis_robot_sw/iis_catkin_ws/src/kukadu/include/kukadu/robot/calibration.hpp" line="81" column="1" bodyfile="/home/agyss/iis_robot_sw/iis_catkin_ws/src/kukadu/src/robot/calibration.cpp" bodystart="256" bodyend="273"/>
+      </memberdef>
+      <memberdef kind="function" id="classkukadu_1_1CameraCalibrator_1a4714c3127097fa7cc104d554bcd6cc7f" prot="public" static="no" const="no" explicit="no" inline="no" virt="virtual">
+        <type>void</type>
+        <definition>void kukadu::CameraCalibrator::endDataCollection</definition>
+        <argsstring>()</argsstring>
+        <name>endDataCollection</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/agyss/iis_robot_sw/iis_catkin_ws/src/kukadu/include/kukadu/robot/calibration.hpp" line="82" column="1" bodyfile="/home/agyss/iis_robot_sw/iis_catkin_ws/src/kukadu/src/robot/calibration.cpp" bodystart="275" bodyend="289"/>
+      </memberdef>
+      <memberdef kind="function" id="classkukadu_1_1CameraCalibrator_1a73c8d81f922e12fc4c876e5df31badac" prot="public" static="no" const="no" explicit="no" inline="no" virt="virtual">
+        <type>std::pair&lt; arma::mat, arma::vec &gt;</type>
+        <definition>std::pair&lt; arma::mat, arma::vec &gt; kukadu::CameraCalibrator::calibrate</definition>
+        <argsstring>()</argsstring>
+        <name>calibrate</name>
+        <reimplements refid="classkukadu_1_1Calibrator_1a2dbd564003a893249b311c35213ffe3f">calibrate</reimplements>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/agyss/iis_robot_sw/iis_catkin_ws/src/kukadu/include/kukadu/robot/calibration.hpp" line="84" column="1" bodyfile="/home/agyss/iis_robot_sw/iis_catkin_ws/src/kukadu/src/robot/calibration.cpp" bodystart="319" bodyend="352"/>
+      </memberdef>
+      <memberdef kind="function" id="classkukadu_1_1CameraCalibrator_1add2fa1c655be6eedba4a49aa2fe9553d" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>void kukadu::CameraCalibrator::setReadDataFromRobot</definition>
+        <argsstring>()</argsstring>
+        <name>setReadDataFromRobot</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/agyss/iis_robot_sw/iis_catkin_ws/src/kukadu/include/kukadu/robot/calibration.hpp" line="86" column="1" bodyfile="/home/agyss/iis_robot_sw/iis_catkin_ws/src/kukadu/src/robot/calibration.cpp" bodystart="83" bodyend="85"/>
+      </memberdef>
+      <memberdef kind="function" id="classkukadu_1_1CameraCalibrator_1a0bf4b1fda76b85aad7c040c9f78d349f" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>void kukadu::CameraCalibrator::setReadDataFromFile</definition>
+        <argsstring>(std::string file)</argsstring>
+        <name>setReadDataFromFile</name>
+        <param>
+          <type>std::string</type>
+          <declname>file</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/agyss/iis_robot_sw/iis_catkin_ws/src/kukadu/include/kukadu/robot/calibration.hpp" line="87" column="1" bodyfile="/home/agyss/iis_robot_sw/iis_catkin_ws/src/kukadu/src/robot/calibration.cpp" bodystart="87" bodyend="98"/>
+      </memberdef>
+      </sectiondef>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <inheritancegraph>
+      <node id="47">
+        <label>kukadu::Calibrator</label>
+        <link refid="classkukadu_1_1Calibrator"/>
+      </node>
+      <node id="46">
+        <label>kukadu::CameraCalibrator</label>
+        <link refid="classkukadu_1_1CameraCalibrator"/>
+        <childnode refid="47" relation="public-inheritance">
+        </childnode>
+      </node>
+    </inheritancegraph>
+    <collaborationgraph>
+      <node id="49">
+        <label>kukadu::Calibrator</label>
+        <link refid="classkukadu_1_1Calibrator"/>
+      </node>
+      <node id="48">
+        <label>kukadu::CameraCalibrator</label>
+        <link refid="classkukadu_1_1CameraCalibrator"/>
+        <childnode refid="49" relation="public-inheritance">
+        </childnode>
+      </node>
+    </collaborationgraph>
+    <location file="/home/agyss/iis_robot_sw/iis_catkin_ws/src/kukadu/include/kukadu/robot/calibration.hpp" line="32" column="1" bodyfile="/home/agyss/iis_robot_sw/iis_catkin_ws/src/kukadu/include/kukadu/robot/calibration.hpp" bodystart="32" bodyend="89"/>
+    <listofallmembers>
+      <member refid="classkukadu_1_1CameraCalibrator_1abebce3d7c4ad243865a754719a427860" prot="private" virt="non-virtual"><scope>kukadu::CameraCalibrator</scope><name>attachedObjectId</name></member>
+      <member refid="classkukadu_1_1CameraCalibrator_1a73c8d81f922e12fc4c876e5df31badac" prot="public" virt="virtual"><scope>kukadu::CameraCalibrator</scope><name>calibrate</name></member>
+      <member refid="classkukadu_1_1Calibrator_1acbf815349a0f5fb5324b1783ec952045" prot="public" virt="virtual"><scope>kukadu::CameraCalibrator</scope><name>calibrateAffineTransMatrix</name></member>
+      <member refid="classkukadu_1_1Calibrator_1a0f638f0956600e8787ba3b9fdd476814" prot="public" virt="virtual"><scope>kukadu::CameraCalibrator</scope><name>calibrateTfTransform</name></member>
+      <member refid="classkukadu_1_1Calibrator_1a5f637d0bb1f32b6d2c51edbc01fca453" prot="public" virt="non-virtual"><scope>kukadu::CameraCalibrator</scope><name>Calibrator</name></member>
+      <member refid="classkukadu_1_1CameraCalibrator_1a1941a6c93d98924d450fa91b91470fe9" prot="public" virt="non-virtual"><scope>kukadu::CameraCalibrator</scope><name>CameraCalibrator</name></member>
+      <member refid="classkukadu_1_1CameraCalibrator_1afef0a78943f9b8a071a56b56df84259c" prot="private" virt="non-virtual"><scope>kukadu::CameraCalibrator</scope><name>centroidCamera</name></member>
+      <member refid="classkukadu_1_1CameraCalibrator_1a5a4c192ae84353ff232301a3c361717e" prot="private" virt="non-virtual"><scope>kukadu::CameraCalibrator</scope><name>centroidRobot</name></member>
+      <member refid="classkukadu_1_1CameraCalibrator_1a6f4c6b2b80ce438c91ae49439f559e4c" prot="private" virt="non-virtual"><scope>kukadu::CameraCalibrator</scope><name>collectionThread</name></member>
+      <member refid="classkukadu_1_1CameraCalibrator_1ad39d44a8feee72fac72b5cf5374d9437" prot="private" virt="non-virtual"><scope>kukadu::CameraCalibrator</scope><name>dataCollectionRunner</name></member>
+      <member refid="classkukadu_1_1CameraCalibrator_1af0e4df1d3eaca94a3254c06be3d06da8" prot="private" virt="non-virtual"><scope>kukadu::CameraCalibrator</scope><name>dataMutex</name></member>
+      <member refid="classkukadu_1_1CameraCalibrator_1a60b21906cebfbb2e3de0a36d0093f4d3" prot="private" virt="non-virtual"><scope>kukadu::CameraCalibrator</scope><name>dataPointCount</name></member>
+      <member refid="classkukadu_1_1CameraCalibrator_1a4714c3127097fa7cc104d554bcd6cc7f" prot="public" virt="virtual"><scope>kukadu::CameraCalibrator</scope><name>endDataCollection</name></member>
+      <member refid="classkukadu_1_1CameraCalibrator_1a694adc2cc372d55c82716055a2fac304" prot="private" virt="non-virtual"><scope>kukadu::CameraCalibrator</scope><name>getCurrentPoseCamera</name></member>
+      <member refid="classkukadu_1_1CameraCalibrator_1ad79a0cd5fb9a7312ec5ff9afec885bfd" prot="private" virt="non-virtual"><scope>kukadu::CameraCalibrator</scope><name>getCurrentPoseRobot</name></member>
+      <member refid="classkukadu_1_1Calibrator_1a41e3faf08e5b4d1a5d589c6e8fd358cc" prot="public" virt="non-virtual"><scope>kukadu::CameraCalibrator</scope><name>getOriginalFrame</name></member>
+      <member refid="classkukadu_1_1CameraCalibrator_1ace4ae719cfb19002e10eb4e4b77e4a2c" prot="private" virt="non-virtual"><scope>kukadu::CameraCalibrator</scope><name>getPoseFromLine</name></member>
+      <member refid="classkukadu_1_1Calibrator_1a208cf9e4fee3a5b4b09d1d6a9034497e" prot="public" virt="non-virtual"><scope>kukadu::CameraCalibrator</scope><name>getTargetFrame</name></member>
+      <member refid="classkukadu_1_1CameraCalibrator_1ae491717e41d9d4933af4dc8708c1d9fd" prot="private" virt="non-virtual"><scope>kukadu::CameraCalibrator</scope><name>initializeForNewRun</name></member>
+      <member refid="classkukadu_1_1CameraCalibrator_1aa8a050d6a98e51efa00089964fc20b2e" prot="private" virt="non-virtual"><scope>kukadu::CameraCalibrator</scope><name>inStream</name></member>
+      <member refid="classkukadu_1_1CameraCalibrator_1a73f8bc65359deaed79d313ad1981b072" prot="private" virt="non-virtual"><scope>kukadu::CameraCalibrator</scope><name>isSignificantlyDifferenct</name></member>
+      <member refid="classkukadu_1_1CameraCalibrator_1a0bb108a3f51d9a2f48a1ecdc7927a0df" prot="private" virt="non-virtual"><scope>kukadu::CameraCalibrator</scope><name>lastObjectPoseInCamFrame</name></member>
+      <member refid="classkukadu_1_1CameraCalibrator_1a3f81b2234d60f3776b0c4ad45bef0810" prot="private" virt="non-virtual"><scope>kukadu::CameraCalibrator</scope><name>lastObjectPoseInRobotFrame</name></member>
+      <member refid="classkukadu_1_1CameraCalibrator_1af5cfbc90e1c0c276bf300dc89c82a766" prot="private" virt="non-virtual"><scope>kukadu::CameraCalibrator</scope><name>localizer</name></member>
+      <member refid="classkukadu_1_1CameraCalibrator_1a16d6da725f7918b548ed1e1126a84da1" prot="private" virt="non-virtual"><scope>kukadu::CameraCalibrator</scope><name>minCartDistance</name></member>
+      <member refid="classkukadu_1_1CameraCalibrator_1aa17eb0093ac8a224d7d3b4ee9fdf0cb3" prot="private" virt="non-virtual"><scope>kukadu::CameraCalibrator</scope><name>minQuatDistance</name></member>
+      <member refid="classkukadu_1_1CameraCalibrator_1a12fff363fd56874c151bcb626d8c7990" prot="private" virt="non-virtual"><scope>kukadu::CameraCalibrator</scope><name>outFile</name></member>
+      <member refid="classkukadu_1_1CameraCalibrator_1ac22b700e7395f47f352f664b7996bff7" prot="private" virt="non-virtual"><scope>kukadu::CameraCalibrator</scope><name>queue</name></member>
+      <member refid="classkukadu_1_1CameraCalibrator_1a2c5987d9c1d465093cbac761e430a1ab" prot="private" virt="non-virtual"><scope>kukadu::CameraCalibrator</scope><name>readFromFile</name></member>
+      <member refid="classkukadu_1_1CameraCalibrator_1ab58454db62149085d8eec6628326b455" prot="private" virt="non-virtual"><scope>kukadu::CameraCalibrator</scope><name>runDataCollectionThread</name></member>
+      <member refid="classkukadu_1_1CameraCalibrator_1afb7310feb88473e76d2c86bce477f37c" prot="private" virt="non-virtual"><scope>kukadu::CameraCalibrator</scope><name>samplesCamera</name></member>
+      <member refid="classkukadu_1_1CameraCalibrator_1acc20a6f72465534bff6e87f42bbfe4c9" prot="private" virt="non-virtual"><scope>kukadu::CameraCalibrator</scope><name>samplesRobot</name></member>
+      <member refid="classkukadu_1_1CameraCalibrator_1a0bf4b1fda76b85aad7c040c9f78d349f" prot="public" virt="non-virtual"><scope>kukadu::CameraCalibrator</scope><name>setReadDataFromFile</name></member>
+      <member refid="classkukadu_1_1CameraCalibrator_1add2fa1c655be6eedba4a49aa2fe9553d" prot="public" virt="non-virtual"><scope>kukadu::CameraCalibrator</scope><name>setReadDataFromRobot</name></member>
+      <member refid="classkukadu_1_1CameraCalibrator_1a40c9950282b9fb2e84ad705e78b81308" prot="public" virt="virtual"><scope>kukadu::CameraCalibrator</scope><name>startDataCollection</name></member>
+      <member refid="classkukadu_1_1CameraCalibrator_1a7a094ae1e3ca585e52fbda0b2c92f30f" prot="private" virt="non-virtual"><scope>kukadu::CameraCalibrator</scope><name>storeDataToFile</name></member>
+      <member refid="classkukadu_1_1CameraCalibrator_1a264b92bb514fd69d1f1ebdb5f8d4bf8e" prot="private" virt="non-virtual"><scope>kukadu::CameraCalibrator</scope><name>storePath</name></member>
+      <member refid="classkukadu_1_1CameraCalibrator_1aac23dd97c461aa587723ef12af093b3c" prot="public" virt="non-virtual"><scope>kukadu::CameraCalibrator</scope><name>~CameraCalibrator</name></member>
+    </listofallmembers>
+  </compounddef>
+</doxygen>

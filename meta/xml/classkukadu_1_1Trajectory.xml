@@ -1,0 +1,226 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.8.11">
+  <compounddef id="classkukadu_1_1Trajectory" kind="class" language="C++" prot="public" abstract="yes">
+    <compoundname>kukadu::Trajectory</compoundname>
+    <derivedcompoundref refid="classkukadu_1_1DictionaryTrajectory" prot="public" virt="non-virtual">kukadu::DictionaryTrajectory</derivedcompoundref>
+    <derivedcompoundref refid="classkukadu_1_1SingleSampleTrajectory" prot="public" virt="non-virtual">kukadu::SingleSampleTrajectory</derivedcompoundref>
+      <sectiondef kind="public-func">
+      <memberdef kind="function" id="classkukadu_1_1Trajectory_1ac01f5b8794309be3f359df2d7e1eafa7" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type></type>
+        <definition>kukadu::Trajectory::Trajectory</definition>
+        <argsstring>()</argsstring>
+        <name>Trajectory</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/agyss/iis_robot_sw/iis_catkin_ws/src/kukadu/include/kukadu/control/trajectory.hpp" line="17" column="1" bodyfile="/home/agyss/iis_robot_sw/iis_catkin_ws/src/kukadu/src/control/trajectory.cpp" bodystart="16" bodyend="16"/>
+      </memberdef>
+      <memberdef kind="function" id="classkukadu_1_1Trajectory_1a9546cb13ba9d3e4731af50033c54caf7" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type></type>
+        <definition>kukadu::Trajectory::Trajectory</definition>
+        <argsstring>(const Trajectory &amp;copy)</argsstring>
+        <name>Trajectory</name>
+        <param>
+          <type>const <ref refid="classkukadu_1_1Trajectory" kindref="compound">Trajectory</ref> &amp;</type>
+          <declname>copy</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/agyss/iis_robot_sw/iis_catkin_ws/src/kukadu/include/kukadu/control/trajectory.hpp" line="18" column="1" bodyfile="/home/agyss/iis_robot_sw/iis_catkin_ws/src/kukadu/src/control/trajectory.cpp" bodystart="12" bodyend="14"/>
+      </memberdef>
+      <memberdef kind="function" id="classkukadu_1_1Trajectory_1ac3bfd744d4afb90f67afd7c0208192fb" prot="public" static="no" const="yes" explicit="no" inline="no" virt="pure-virtual">
+        <type>int</type>
+        <definition>virtual int kukadu::Trajectory::getDegreesOfFreedom</definition>
+        <argsstring>() const =0</argsstring>
+        <name>getDegreesOfFreedom</name>
+        <reimplementedby refid="classkukadu_1_1SingleSampleTrajectory_1acafc41e33a17cd3e2178460b04535f85">getDegreesOfFreedom</reimplementedby>
+        <reimplementedby refid="classkukadu_1_1DictionaryTrajectory_1adda7370fe6219f6ebc338dfd069eb82d">getDegreesOfFreedom</reimplementedby>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/agyss/iis_robot_sw/iis_catkin_ws/src/kukadu/include/kukadu/control/trajectory.hpp" line="20" column="1"/>
+      </memberdef>
+      <memberdef kind="function" id="classkukadu_1_1Trajectory_1a28ee5ea908f0f5b236a986dc0d97e8eb" prot="public" static="no" const="no" explicit="no" inline="no" virt="pure-virtual">
+        <type>arma::vec</type>
+        <definition>virtual arma::vec kukadu::Trajectory::getStartingPos</definition>
+        <argsstring>()=0</argsstring>
+        <name>getStartingPos</name>
+        <reimplementedby refid="classkukadu_1_1SingleSampleTrajectory_1afac3c5f483c8d603c695b9d393b77c38">getStartingPos</reimplementedby>
+        <reimplementedby refid="classkukadu_1_1DictionaryTrajectory_1a271c61b9017bc3bab7c8743197680310">getStartingPos</reimplementedby>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/agyss/iis_robot_sw/iis_catkin_ws/src/kukadu/include/kukadu/control/trajectory.hpp" line="21" column="1"/>
+      </memberdef>
+      <memberdef kind="function" id="classkukadu_1_1Trajectory_1a352b19fcc831bc578170b21e33e131af" prot="public" static="no" const="no" explicit="no" inline="no" virt="pure-virtual">
+        <type>std::vector&lt; arma::vec &gt;</type>
+        <definition>virtual std::vector&lt;arma::vec&gt; kukadu::Trajectory::getCoefficients</definition>
+        <argsstring>()=0</argsstring>
+        <name>getCoefficients</name>
+        <reimplementedby refid="classkukadu_1_1SingleSampleTrajectory_1a3dfb670c00d9034c5a867be3801845fa">getCoefficients</reimplementedby>
+        <reimplementedby refid="classkukadu_1_1DictionaryTrajectory_1ab118502bdf3cb95cc52f7dc640572deb">getCoefficients</reimplementedby>
+        <reimplementedby refid="classkukadu_1_1Dmp_1a4b477fea8132d45d50617d9027f55634">getCoefficients</reimplementedby>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/agyss/iis_robot_sw/iis_catkin_ws/src/kukadu/include/kukadu/control/trajectory.hpp" line="23" column="1"/>
+      </memberdef>
+      <memberdef kind="function" id="classkukadu_1_1Trajectory_1a4cf44e29c98bca578f901720fc4931ff" prot="public" static="no" const="no" explicit="no" inline="no" virt="pure-virtual">
+        <type>void</type>
+        <definition>virtual void kukadu::Trajectory::setCoefficients</definition>
+        <argsstring>(std::vector&lt; arma::vec &gt; coeffs)=0</argsstring>
+        <name>setCoefficients</name>
+        <reimplementedby refid="classkukadu_1_1SingleSampleTrajectory_1a02d1a2cc8835c05d0d882bf82c0cd409">setCoefficients</reimplementedby>
+        <reimplementedby refid="classkukadu_1_1DictionaryTrajectory_1a0a8f57d5f4f0928a86e33c72b4b13b72">setCoefficients</reimplementedby>
+        <reimplementedby refid="classkukadu_1_1Dmp_1ace27ff809c779f83daf1fd903636a332">setCoefficients</reimplementedby>
+        <param>
+          <type>std::vector&lt; arma::vec &gt;</type>
+          <declname>coeffs</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/agyss/iis_robot_sw/iis_catkin_ws/src/kukadu/include/kukadu/control/trajectory.hpp" line="24" column="1"/>
+      </memberdef>
+      <memberdef kind="function" id="classkukadu_1_1Trajectory_1a19baa2586084c301987a940a3d8bbf10" prot="public" static="no" const="yes" explicit="no" inline="no" virt="non-virtual">
+        <type>int</type>
+        <definition>int kukadu::Trajectory::operator==</definition>
+        <argsstring>(Trajectory const &amp;comp) const </argsstring>
+        <name>operator==</name>
+        <param>
+          <type><ref refid="classkukadu_1_1Trajectory" kindref="compound">Trajectory</ref> const &amp;</type>
+          <declname>comp</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/agyss/iis_robot_sw/iis_catkin_ws/src/kukadu/include/kukadu/control/trajectory.hpp" line="26" column="1" bodyfile="/home/agyss/iis_robot_sw/iis_catkin_ws/src/kukadu/src/control/trajectory.cpp" bodystart="18" bodyend="20"/>
+      </memberdef>
+      <memberdef kind="function" id="classkukadu_1_1Trajectory_1ac90ea1213d1888c4f7d7f9b41e9eb386" prot="public" static="no" const="no" explicit="no" inline="no" virt="pure-virtual">
+        <type>KUKADU_SHARED_PTR&lt; <ref refid="classkukadu_1_1Trajectory" kindref="compound">Trajectory</ref> &gt;</type>
+        <definition>virtual KUKADU_SHARED_PTR&lt;Trajectory&gt; kukadu::Trajectory::copy</definition>
+        <argsstring>()=0</argsstring>
+        <name>copy</name>
+        <reimplementedby refid="classkukadu_1_1DictionaryTrajectory_1a4bdb28bd8c9bb18572f8b1d78c683d02">copy</reimplementedby>
+        <reimplementedby refid="classkukadu_1_1JointDmp_1ac3fd610d7a8e2f74143071d06ae04290">copy</reimplementedby>
+        <reimplementedby refid="classkukadu_1_1CartesianDMP_1a9e4074fd82f6256d3b534015c03c3912">copy</reimplementedby>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/agyss/iis_robot_sw/iis_catkin_ws/src/kukadu/include/kukadu/control/trajectory.hpp" line="28" column="1"/>
+      </memberdef>
+      <memberdef kind="function" id="classkukadu_1_1Trajectory_1a6204d020bea77db78f1ea15bdd6c00e3" prot="public" static="no" const="no" explicit="no" inline="no" virt="pure-virtual">
+        <type>double</type>
+        <definition>virtual double kukadu::Trajectory::getTmax</definition>
+        <argsstring>()=0</argsstring>
+        <name>getTmax</name>
+        <reimplementedby refid="classkukadu_1_1DictionaryTrajectory_1ac712e5e1bb0ffdeff574b215adbf483c">getTmax</reimplementedby>
+        <reimplementedby refid="classkukadu_1_1Dmp_1aa7423b1cd8096790cc6162e7ecfb604b">getTmax</reimplementedby>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/agyss/iis_robot_sw/iis_catkin_ws/src/kukadu/include/kukadu/control/trajectory.hpp" line="30" column="1"/>
+      </memberdef>
+      <memberdef kind="function" id="classkukadu_1_1Trajectory_1a88078ae380944edb6256976a9b7c31e3" prot="public" static="no" const="no" explicit="no" inline="no" virt="pure-virtual">
+        <type>void</type>
+        <definition>virtual void kukadu::Trajectory::setTmax</definition>
+        <argsstring>(double tmax)=0</argsstring>
+        <name>setTmax</name>
+        <reimplementedby refid="classkukadu_1_1DictionaryTrajectory_1ad6e50b83eca9a28f4f1f491aca0adced">setTmax</reimplementedby>
+        <reimplementedby refid="classkukadu_1_1Dmp_1a90ba745176c444fb74bfd24722ee8f60">setTmax</reimplementedby>
+        <param>
+          <type>double</type>
+          <declname>tmax</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/agyss/iis_robot_sw/iis_catkin_ws/src/kukadu/include/kukadu/control/trajectory.hpp" line="31" column="1"/>
+      </memberdef>
+      </sectiondef>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <inheritancegraph>
+      <node id="674">
+        <label>kukadu::Dmp</label>
+        <link refid="classkukadu_1_1Dmp"/>
+        <childnode refid="673" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="672">
+        <label>kukadu::DictionaryTrajectory</label>
+        <link refid="classkukadu_1_1DictionaryTrajectory"/>
+        <childnode refid="671" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="673">
+        <label>kukadu::SingleSampleTrajectory</label>
+        <link refid="classkukadu_1_1SingleSampleTrajectory"/>
+        <childnode refid="671" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="671">
+        <label>kukadu::Trajectory</label>
+        <link refid="classkukadu_1_1Trajectory"/>
+      </node>
+      <node id="676">
+        <label>kukadu::JointDmp</label>
+        <link refid="classkukadu_1_1JointDmp"/>
+        <childnode refid="674" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="675">
+        <label>kukadu::CartesianDMP</label>
+        <link refid="classkukadu_1_1CartesianDMP"/>
+        <childnode refid="674" relation="public-inheritance">
+        </childnode>
+      </node>
+    </inheritancegraph>
+    <location file="/home/agyss/iis_robot_sw/iis_catkin_ws/src/kukadu/include/kukadu/control/trajectory.hpp" line="11" column="1" bodyfile="/home/agyss/iis_robot_sw/iis_catkin_ws/src/kukadu/include/kukadu/control/trajectory.hpp" bodystart="11" bodyend="33"/>
+    <listofallmembers>
+      <member refid="classkukadu_1_1Trajectory_1ac90ea1213d1888c4f7d7f9b41e9eb386" prot="public" virt="pure-virtual"><scope>kukadu::Trajectory</scope><name>copy</name></member>
+      <member refid="classkukadu_1_1Trajectory_1a352b19fcc831bc578170b21e33e131af" prot="public" virt="pure-virtual"><scope>kukadu::Trajectory</scope><name>getCoefficients</name></member>
+      <member refid="classkukadu_1_1Trajectory_1ac3bfd744d4afb90f67afd7c0208192fb" prot="public" virt="pure-virtual"><scope>kukadu::Trajectory</scope><name>getDegreesOfFreedom</name></member>
+      <member refid="classkukadu_1_1Trajectory_1a28ee5ea908f0f5b236a986dc0d97e8eb" prot="public" virt="pure-virtual"><scope>kukadu::Trajectory</scope><name>getStartingPos</name></member>
+      <member refid="classkukadu_1_1Trajectory_1a6204d020bea77db78f1ea15bdd6c00e3" prot="public" virt="pure-virtual"><scope>kukadu::Trajectory</scope><name>getTmax</name></member>
+      <member refid="classkukadu_1_1Trajectory_1a19baa2586084c301987a940a3d8bbf10" prot="public" virt="non-virtual"><scope>kukadu::Trajectory</scope><name>operator==</name></member>
+      <member refid="classkukadu_1_1Trajectory_1a4cf44e29c98bca578f901720fc4931ff" prot="public" virt="pure-virtual"><scope>kukadu::Trajectory</scope><name>setCoefficients</name></member>
+      <member refid="classkukadu_1_1Trajectory_1a88078ae380944edb6256976a9b7c31e3" prot="public" virt="pure-virtual"><scope>kukadu::Trajectory</scope><name>setTmax</name></member>
+      <member refid="classkukadu_1_1Trajectory_1ac01f5b8794309be3f359df2d7e1eafa7" prot="public" virt="non-virtual"><scope>kukadu::Trajectory</scope><name>Trajectory</name></member>
+      <member refid="classkukadu_1_1Trajectory_1a9546cb13ba9d3e4731af50033c54caf7" prot="public" virt="non-virtual"><scope>kukadu::Trajectory</scope><name>Trajectory</name></member>
+    </listofallmembers>
+  </compounddef>
+</doxygen>

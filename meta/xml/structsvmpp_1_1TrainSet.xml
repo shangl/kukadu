@@ -1,0 +1,160 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.8.11">
+  <compounddef id="structsvmpp_1_1TrainSet" kind="struct" language="C++" prot="public">
+    <compoundname>svmpp::TrainSet</compoundname>
+    <includes refid="svmpp_8hpp" local="no">svmpp.hpp</includes>
+      <sectiondef kind="public-type">
+      <memberdef kind="typedef" id="structsvmpp_1_1TrainSet_1a039e1cf9720111d60307f1e9a520ef32" prot="public" static="no">
+        <type>svm_problem</type>
+        <definition>typedef svm_problem svmpp::TrainSet::Problem</definition>
+        <argsstring></argsstring>
+        <name>Problem</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/agyss/iis_robot_sw/iis_catkin_ws/src/kukadu/include/kukadu/learning/classification/svmpp.hpp" line="41" column="1" bodyfile="/home/agyss/iis_robot_sw/iis_catkin_ws/src/kukadu/include/kukadu/learning/classification/svmpp.hpp" bodystart="41" bodyend="-1"/>
+      </memberdef>
+      </sectiondef>
+      <sectiondef kind="private-attrib">
+      <memberdef kind="variable" id="structsvmpp_1_1TrainSet_1a94a480ee6f2ab2fc5bb4af6ba10913fb" prot="private" static="no" mutable="no">
+        <type>std::vector&lt; std::vector&lt; double &gt; &gt;</type>
+        <definition>std::vector&lt;std::vector&lt;double&gt; &gt; svmpp::TrainSet::mX</definition>
+        <argsstring></argsstring>
+        <name>mX</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/agyss/iis_robot_sw/iis_catkin_ws/src/kukadu/include/kukadu/learning/classification/svmpp.hpp" line="52" column="1" bodyfile="/home/agyss/iis_robot_sw/iis_catkin_ws/src/kukadu/include/kukadu/learning/classification/svmpp.hpp" bodystart="52" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="structsvmpp_1_1TrainSet_1a12e8b16ee2e847b80a2e394775ff5526" prot="private" static="no" mutable="no">
+        <type>std::vector&lt; double &gt;</type>
+        <definition>std::vector&lt;double&gt; svmpp::TrainSet::mY</definition>
+        <argsstring></argsstring>
+        <name>mY</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/agyss/iis_robot_sw/iis_catkin_ws/src/kukadu/include/kukadu/learning/classification/svmpp.hpp" line="53" column="1" bodyfile="/home/agyss/iis_robot_sw/iis_catkin_ws/src/kukadu/include/kukadu/learning/classification/svmpp.hpp" bodystart="53" bodyend="-1"/>
+      </memberdef>
+      </sectiondef>
+      <sectiondef kind="public-func">
+      <memberdef kind="function" id="structsvmpp_1_1TrainSet_1aa11b10f14e308ce82401cc1f374876aa" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>void svmpp::TrainSet::addEntry</definition>
+        <argsstring>(double *_x, unsigned _dimension, double _y)</argsstring>
+        <name>addEntry</name>
+        <param>
+          <type>double *</type>
+          <declname>_x</declname>
+        </param>
+        <param>
+          <type>unsigned</type>
+          <declname>_dimension</declname>
+        </param>
+        <param>
+          <type>double</type>
+          <declname>_y</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/agyss/iis_robot_sw/iis_catkin_ws/src/kukadu/include/kukadu/learning/classification/svmpp.hpp" line="43" column="1" bodyfile="/home/agyss/iis_robot_sw/iis_catkin_ws/src/kukadu/src/learning/classification/svmpp.cpp" bodystart="37" bodyend="39"/>
+      </memberdef>
+      <memberdef kind="function" id="structsvmpp_1_1TrainSet_1af4f1e480d40e9fd5bf561d21312cfc24" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>void svmpp::TrainSet::addEntry</definition>
+        <argsstring>(const std::vector&lt; double &gt; &amp;_x, double _y)</argsstring>
+        <name>addEntry</name>
+        <param>
+          <type>const std::vector&lt; double &gt; &amp;</type>
+          <declname>_x</declname>
+        </param>
+        <param>
+          <type>double</type>
+          <declname>_y</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/agyss/iis_robot_sw/iis_catkin_ws/src/kukadu/include/kukadu/learning/classification/svmpp.hpp" line="44" column="1" bodyfile="/home/agyss/iis_robot_sw/iis_catkin_ws/src/kukadu/src/learning/classification/svmpp.cpp" bodystart="42" bodyend="45"/>
+      </memberdef>
+      <memberdef kind="function" id="structsvmpp_1_1TrainSet_1a58e7e75aab79f8719119443f147ec797" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>void svmpp::TrainSet::addEntries</definition>
+        <argsstring>(const std::vector&lt; std::vector&lt; double &gt;&gt; &amp;_X, const std::vector&lt; double &gt; &amp;_Y)</argsstring>
+        <name>addEntries</name>
+        <param>
+          <type>const std::vector&lt; std::vector&lt; double &gt;&gt; &amp;</type>
+          <declname>_X</declname>
+        </param>
+        <param>
+          <type>const std::vector&lt; double &gt; &amp;</type>
+          <declname>_Y</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/agyss/iis_robot_sw/iis_catkin_ws/src/kukadu/include/kukadu/learning/classification/svmpp.hpp" line="46" column="1" bodyfile="/home/agyss/iis_robot_sw/iis_catkin_ws/src/kukadu/src/learning/classification/svmpp.cpp" bodystart="48" bodyend="51"/>
+      </memberdef>
+      <memberdef kind="function" id="structsvmpp_1_1TrainSet_1a0b2c557076b1f9f0e438954b58f62a6b" prot="public" static="no" const="yes" explicit="no" inline="no" virt="non-virtual">
+        <type>std::vector&lt; double &gt;</type>
+        <definition>std::vector&lt; double &gt; svmpp::TrainSet::labels</definition>
+        <argsstring>() const </argsstring>
+        <name>labels</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/agyss/iis_robot_sw/iis_catkin_ws/src/kukadu/include/kukadu/learning/classification/svmpp.hpp" line="48" column="1" bodyfile="/home/agyss/iis_robot_sw/iis_catkin_ws/src/kukadu/src/learning/classification/svmpp.cpp" bodystart="54" bodyend="56"/>
+      </memberdef>
+      <memberdef kind="function" id="structsvmpp_1_1TrainSet_1a27f262ed658575085f93fb4d76842367" prot="public" static="no" const="yes" explicit="no" inline="no" virt="non-virtual">
+        <type>Problem</type>
+        <definition>TrainSet::Problem svmpp::TrainSet::problem</definition>
+        <argsstring>() const </argsstring>
+        <name>problem</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/agyss/iis_robot_sw/iis_catkin_ws/src/kukadu/include/kukadu/learning/classification/svmpp.hpp" line="50" column="1" bodyfile="/home/agyss/iis_robot_sw/iis_catkin_ws/src/kukadu/src/learning/classification/svmpp.cpp" bodystart="59" bodyend="90"/>
+      </memberdef>
+      </sectiondef>
+    <briefdescription>
+<para>Struct that holds information for training the svm. </para>    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <location file="/home/agyss/iis_robot_sw/iis_catkin_ws/src/kukadu/include/kukadu/learning/classification/svmpp.hpp" line="39" column="1" bodyfile="/home/agyss/iis_robot_sw/iis_catkin_ws/src/kukadu/include/kukadu/learning/classification/svmpp.hpp" bodystart="39" bodyend="54"/>
+    <listofallmembers>
+      <member refid="structsvmpp_1_1TrainSet_1a58e7e75aab79f8719119443f147ec797" prot="public" virt="non-virtual"><scope>svmpp::TrainSet</scope><name>addEntries</name></member>
+      <member refid="structsvmpp_1_1TrainSet_1aa11b10f14e308ce82401cc1f374876aa" prot="public" virt="non-virtual"><scope>svmpp::TrainSet</scope><name>addEntry</name></member>
+      <member refid="structsvmpp_1_1TrainSet_1af4f1e480d40e9fd5bf561d21312cfc24" prot="public" virt="non-virtual"><scope>svmpp::TrainSet</scope><name>addEntry</name></member>
+      <member refid="structsvmpp_1_1TrainSet_1a0b2c557076b1f9f0e438954b58f62a6b" prot="public" virt="non-virtual"><scope>svmpp::TrainSet</scope><name>labels</name></member>
+      <member refid="structsvmpp_1_1TrainSet_1a94a480ee6f2ab2fc5bb4af6ba10913fb" prot="private" virt="non-virtual"><scope>svmpp::TrainSet</scope><name>mX</name></member>
+      <member refid="structsvmpp_1_1TrainSet_1a12e8b16ee2e847b80a2e394775ff5526" prot="private" virt="non-virtual"><scope>svmpp::TrainSet</scope><name>mY</name></member>
+      <member refid="structsvmpp_1_1TrainSet_1a039e1cf9720111d60307f1e9a520ef32" prot="public" virt="non-virtual"><scope>svmpp::TrainSet</scope><name>Problem</name></member>
+      <member refid="structsvmpp_1_1TrainSet_1a27f262ed658575085f93fb4d76842367" prot="public" virt="non-virtual"><scope>svmpp::TrainSet</scope><name>problem</name></member>
+    </listofallmembers>
+  </compounddef>
+</doxygen>

@@ -1,0 +1,1856 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.8.11">
+  <compounddef id="classkukadu_1_1Gnuplot" kind="class" language="C++" prot="public">
+    <compoundname>kukadu::Gnuplot</compoundname>
+      <sectiondef kind="private-attrib">
+      <memberdef kind="variable" id="classkukadu_1_1Gnuplot_1a0cdb1efc94cd517fd7a8b5240dc53d59" prot="private" static="no" mutable="no">
+        <type>int</type>
+        <definition>int kukadu::Gnuplot::tmpfile_num</definition>
+        <argsstring></argsstring>
+        <name>tmpfile_num</name>
+        <briefdescription>
+<para>number of all tmpfiles (number of tmpfiles restricted) </para>        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/agyss/iis_robot_sw/iis_catkin_ws/src/kukadu/include/kukadu/utils/gnuplot.hpp" line="74" column="1" bodyfile="/home/agyss/iis_robot_sw/iis_catkin_ws/src/kukadu/include/kukadu/utils/gnuplot.hpp" bodystart="74" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classkukadu_1_1Gnuplot_1a20f490157d107b4122144508439a06d6" prot="private" static="no" mutable="no">
+        <type>std::string</type>
+        <definition>std::string kukadu::Gnuplot::m_sGNUPlotFileName</definition>
+        <argsstring></argsstring>
+        <name>m_sGNUPlotFileName</name>
+        <briefdescription>
+<para>name of executed GNUPlot file </para>        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/agyss/iis_robot_sw/iis_catkin_ws/src/kukadu/include/kukadu/utils/gnuplot.hpp" line="76" column="1" bodyfile="/home/agyss/iis_robot_sw/iis_catkin_ws/src/kukadu/include/kukadu/utils/gnuplot.hpp" bodystart="76" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classkukadu_1_1Gnuplot_1ad2bdb9daf099385dbb27ff843150afae" prot="private" static="no" mutable="no">
+        <type>std::string</type>
+        <definition>std::string kukadu::Gnuplot::m_sGNUPlotPath</definition>
+        <argsstring></argsstring>
+        <name>m_sGNUPlotPath</name>
+        <briefdescription>
+<para>gnuplot path </para>        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/agyss/iis_robot_sw/iis_catkin_ws/src/kukadu/include/kukadu/utils/gnuplot.hpp" line="78" column="1" bodyfile="/home/agyss/iis_robot_sw/iis_catkin_ws/src/kukadu/include/kukadu/utils/gnuplot.hpp" bodystart="78" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classkukadu_1_1Gnuplot_1a37872f04450a2d02ab61fee4b5062150" prot="private" static="no" mutable="no">
+        <type>std::string</type>
+        <definition>std::string kukadu::Gnuplot::terminal_std</definition>
+        <argsstring></argsstring>
+        <name>terminal_std</name>
+        <briefdescription>
+<para>standart terminal, used by showonscreen </para>        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/agyss/iis_robot_sw/iis_catkin_ws/src/kukadu/include/kukadu/utils/gnuplot.hpp" line="80" column="1" bodyfile="/home/agyss/iis_robot_sw/iis_catkin_ws/src/kukadu/include/kukadu/utils/gnuplot.hpp" bodystart="80" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classkukadu_1_1Gnuplot_1a570cf5bf54caadc5aea61d81fa9ee57f" prot="private" static="no" mutable="no">
+        <type>FILE *</type>
+        <definition>FILE* kukadu::Gnuplot::gnucmd</definition>
+        <argsstring></argsstring>
+        <name>gnucmd</name>
+        <briefdescription>
+<para>pointer to the stream that can be used to write to the pipe </para>        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/agyss/iis_robot_sw/iis_catkin_ws/src/kukadu/include/kukadu/utils/gnuplot.hpp" line="85" column="1" bodyfile="/home/agyss/iis_robot_sw/iis_catkin_ws/src/kukadu/include/kukadu/utils/gnuplot.hpp" bodystart="85" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classkukadu_1_1Gnuplot_1aa9fc28504102c8c1e5c625ab82257339" prot="private" static="no" mutable="no">
+        <type>bool</type>
+        <definition>bool kukadu::Gnuplot::valid</definition>
+        <argsstring></argsstring>
+        <name>valid</name>
+        <briefdescription>
+<para>validation of gnuplot session </para>        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/agyss/iis_robot_sw/iis_catkin_ws/src/kukadu/include/kukadu/utils/gnuplot.hpp" line="87" column="1" bodyfile="/home/agyss/iis_robot_sw/iis_catkin_ws/src/kukadu/include/kukadu/utils/gnuplot.hpp" bodystart="87" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classkukadu_1_1Gnuplot_1ae6b3a8602f79e601c3d9f144aad40166" prot="private" static="no" mutable="no">
+        <type>bool</type>
+        <definition>bool kukadu::Gnuplot::two_dim</definition>
+        <argsstring></argsstring>
+        <name>two_dim</name>
+        <briefdescription>
+<para>true = 2d, false = 3d </para>        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/agyss/iis_robot_sw/iis_catkin_ws/src/kukadu/include/kukadu/utils/gnuplot.hpp" line="89" column="1" bodyfile="/home/agyss/iis_robot_sw/iis_catkin_ws/src/kukadu/include/kukadu/utils/gnuplot.hpp" bodystart="89" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classkukadu_1_1Gnuplot_1afb25696b38537c14258e85e5e5b4953b" prot="private" static="no" mutable="no">
+        <type>int</type>
+        <definition>int kukadu::Gnuplot::nplots</definition>
+        <argsstring></argsstring>
+        <name>nplots</name>
+        <briefdescription>
+<para>number of plots in session </para>        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/agyss/iis_robot_sw/iis_catkin_ws/src/kukadu/include/kukadu/utils/gnuplot.hpp" line="91" column="1" bodyfile="/home/agyss/iis_robot_sw/iis_catkin_ws/src/kukadu/include/kukadu/utils/gnuplot.hpp" bodystart="91" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classkukadu_1_1Gnuplot_1a5dc2361db4f30fcc8fa26f894d791730" prot="private" static="no" mutable="no">
+        <type>std::string</type>
+        <definition>std::string kukadu::Gnuplot::pstyle</definition>
+        <argsstring></argsstring>
+        <name>pstyle</name>
+        <briefdescription>
+<para>functions and data are displayed in a defined styles </para>        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/agyss/iis_robot_sw/iis_catkin_ws/src/kukadu/include/kukadu/utils/gnuplot.hpp" line="93" column="1" bodyfile="/home/agyss/iis_robot_sw/iis_catkin_ws/src/kukadu/include/kukadu/utils/gnuplot.hpp" bodystart="93" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classkukadu_1_1Gnuplot_1ab131f1eb3587dfb0e226dbe9e3bdd6ba" prot="private" static="no" mutable="no">
+        <type>std::string</type>
+        <definition>std::string kukadu::Gnuplot::smooth</definition>
+        <argsstring></argsstring>
+        <name>smooth</name>
+        <briefdescription>
+<para>interpolate and approximate data in defined styles (e.g. spline) </para>        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/agyss/iis_robot_sw/iis_catkin_ws/src/kukadu/include/kukadu/utils/gnuplot.hpp" line="95" column="1" bodyfile="/home/agyss/iis_robot_sw/iis_catkin_ws/src/kukadu/include/kukadu/utils/gnuplot.hpp" bodystart="95" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classkukadu_1_1Gnuplot_1a5d0495fb046c3b036a2309c65c259ab1" prot="private" static="no" mutable="no">
+        <type>std::vector&lt; std::string &gt;</type>
+        <definition>std::vector&lt;std::string&gt; kukadu::Gnuplot::tmpfile_list</definition>
+        <argsstring></argsstring>
+        <name>tmpfile_list</name>
+        <briefdescription>
+<para>list of created tmpfiles </para>        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/agyss/iis_robot_sw/iis_catkin_ws/src/kukadu/include/kukadu/utils/gnuplot.hpp" line="97" column="1" bodyfile="/home/agyss/iis_robot_sw/iis_catkin_ws/src/kukadu/include/kukadu/utils/gnuplot.hpp" bodystart="97" bodyend="-1"/>
+      </memberdef>
+      </sectiondef>
+      <sectiondef kind="private-func">
+      <memberdef kind="function" id="classkukadu_1_1Gnuplot_1ac14c54994b89d01f0c0c3e0336799d4b" prot="private" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>void kukadu::Gnuplot::init</definition>
+        <argsstring>()</argsstring>
+        <name>init</name>
+        <briefdescription>
+<para>get_program_path(); and popen(); </para>        </briefdescription>
+        <detaileddescription>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>&amp;ndash;&gt;</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>void</para></parameterdescription>
+</parameteritem>
+</parameterlist>
+<simplesect kind="return"><para>&lt;<ndash/> void </para></simplesect>
+</para>        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/agyss/iis_robot_sw/iis_catkin_ws/src/kukadu/include/kukadu/utils/gnuplot.hpp" line="108" column="1" bodyfile="/home/agyss/iis_robot_sw/iis_catkin_ws/src/kukadu/src/utils/gnuplot.cpp" bodystart="1086" bodyend="1156"/>
+      </memberdef>
+      <memberdef kind="function" id="classkukadu_1_1Gnuplot_1a25e0943c1dcc81cf46bc4043d6ba7b90" prot="private" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>std::string</type>
+        <definition>std::string kukadu::Gnuplot::create_tmpfile</definition>
+        <argsstring>(std::ofstream &amp;tmp)</argsstring>
+        <name>create_tmpfile</name>
+        <param>
+          <type>std::ofstream &amp;</type>
+          <declname>tmp</declname>
+        </param>
+        <briefdescription>
+<para>creates tmpfile and returns its name </para>        </briefdescription>
+        <detaileddescription>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>tmp</parametername>
+</parameternamelist>
+<parameterdescription>
+<para><ndash/>&gt; points to the tempfile</para></parameterdescription>
+</parameteritem>
+</parameterlist>
+<simplesect kind="return"><para>&lt;<ndash/> the name of the tempfile </para></simplesect>
+</para>        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/agyss/iis_robot_sw/iis_catkin_ws/src/kukadu/include/kukadu/utils/gnuplot.hpp" line="116" column="1" bodyfile="/home/agyss/iis_robot_sw/iis_catkin_ws/src/kukadu/src/utils/gnuplot.cpp" bodystart="1293" bodyend="1357"/>
+      </memberdef>
+      <memberdef kind="function" id="classkukadu_1_1Gnuplot_1a39d172ebd874ed484937a04ae20f6f55" prot="private" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>bool</type>
+        <definition>bool kukadu::Gnuplot::get_program_path</definition>
+        <argsstring>()</argsstring>
+        <name>get_program_path</name>
+        <briefdescription>
+<para>gnuplot path found? </para>        </briefdescription>
+        <detaileddescription>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>&amp;mdash;</parametername>
+</parameternamelist>
+<parameterdescription>
+<para></para></parameterdescription>
+</parameteritem>
+</parameterlist>
+<simplesect kind="return"><para>&lt;<ndash/> found the gnuplot path (yes == true, no == false) </para></simplesect>
+</para>        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/agyss/iis_robot_sw/iis_catkin_ws/src/kukadu/include/kukadu/utils/gnuplot.hpp" line="125" column="1" bodyfile="/home/agyss/iis_robot_sw/iis_catkin_ws/src/kukadu/src/utils/gnuplot.cpp" bodystart="1163" bodyend="1228"/>
+      </memberdef>
+      <memberdef kind="function" id="classkukadu_1_1Gnuplot_1a5827a08d85fb25505ab1cf6472d455f8" prot="private" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>bool</type>
+        <definition>bool kukadu::Gnuplot::file_available</definition>
+        <argsstring>(const std::string &amp;filename)</argsstring>
+        <name>file_available</name>
+        <param>
+          <type>const std::string &amp;</type>
+          <declname>filename</declname>
+        </param>
+        <briefdescription>
+<para>checks if file is available </para>        </briefdescription>
+        <detaileddescription>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>filename</parametername>
+</parameternamelist>
+<parameterdescription>
+<para><ndash/>&gt; the filename </para></parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>mode</parametername>
+</parameternamelist>
+<parameterdescription>
+<para><ndash/>&gt; the mode [optional,default value = 0]</para></parameterdescription>
+</parameteritem>
+</parameterlist>
+<simplesect kind="return"><para>file exists (yes == true, no == false) </para></simplesect>
+</para>        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/agyss/iis_robot_sw/iis_catkin_ws/src/kukadu/include/kukadu/utils/gnuplot.hpp" line="135" column="1" bodyfile="/home/agyss/iis_robot_sw/iis_catkin_ws/src/kukadu/src/utils/gnuplot.cpp" bodystart="1270" bodyend="1285"/>
+      </memberdef>
+      <memberdef kind="function" id="classkukadu_1_1Gnuplot_1a4b29500043eea53215335642460ccd53" prot="private" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>bool</type>
+        <definition>bool kukadu::Gnuplot::file_exists</definition>
+        <argsstring>(const std::string &amp;filename, int mode=0)</argsstring>
+        <name>file_exists</name>
+        <param>
+          <type>const std::string &amp;</type>
+          <declname>filename</declname>
+        </param>
+        <param>
+          <type>int</type>
+          <declname>mode</declname>
+          <defval>0</defval>
+        </param>
+        <briefdescription>
+<para>checks if file exists </para>        </briefdescription>
+        <detaileddescription>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>filename</parametername>
+</parameternamelist>
+<parameterdescription>
+<para><ndash/>&gt; the filename </para></parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>mode</parametername>
+</parameternamelist>
+<parameterdescription>
+<para><ndash/>&gt; the mode [optional,default value = 0]</para></parameterdescription>
+</parameteritem>
+</parameterlist>
+<simplesect kind="return"><para>file exists (yes == true, no == false) </para></simplesect>
+</para>        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/agyss/iis_robot_sw/iis_catkin_ws/src/kukadu/include/kukadu/utils/gnuplot.hpp" line="145" column="1" bodyfile="/home/agyss/iis_robot_sw/iis_catkin_ws/src/kukadu/src/utils/gnuplot.cpp" bodystart="1236" bodyend="1268"/>
+      </memberdef>
+      </sectiondef>
+      <sectiondef kind="public-func">
+      <memberdef kind="function" id="classkukadu_1_1Gnuplot_1a04d7a36bbe70dcb878a1ae5d8299d012" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>bool</type>
+        <definition>bool kukadu::Gnuplot::set_GNUPlotPath</definition>
+        <argsstring>(const std::string &amp;path)</argsstring>
+        <name>set_GNUPlotPath</name>
+        <param>
+          <type>const std::string &amp;</type>
+          <declname>path</declname>
+        </param>
+        <briefdescription>
+<para>optional function: set <ref refid="classkukadu_1_1Gnuplot" kindref="compound">Gnuplot</ref> path manual attention: for windows: path with slash &apos;/&apos; not backslash &apos;\&apos; </para>        </briefdescription>
+        <detaileddescription>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>path</parametername>
+</parameternamelist>
+<parameterdescription>
+<para><ndash/>&gt; the gnuplot path</para></parameterdescription>
+</parameteritem>
+</parameterlist>
+<simplesect kind="return"><para>true on success, false otherwise </para></simplesect>
+</para>        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/agyss/iis_robot_sw/iis_catkin_ws/src/kukadu/include/kukadu/utils/gnuplot.hpp" line="157" column="1" bodyfile="/home/agyss/iis_robot_sw/iis_catkin_ws/src/kukadu/src/utils/gnuplot.cpp" bodystart="253" bodyend="273"/>
+      </memberdef>
+      <memberdef kind="function" id="classkukadu_1_1Gnuplot_1aecc02fa13c09680a010e50331d50804c" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>void kukadu::Gnuplot::set_terminal_std</definition>
+        <argsstring>(const std::string &amp;type)</argsstring>
+        <name>set_terminal_std</name>
+        <param>
+          <type>const std::string &amp;</type>
+          <declname>type</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para>optional: set standart terminal, used by showonscreen defaults: Windows - win, Linux - x11, Mac - aqua</para><para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>type</parametername>
+</parameternamelist>
+<parameterdescription>
+<para><ndash/>&gt; the terminal type</para></parameterdescription>
+</parameteritem>
+</parameterlist>
+<simplesect kind="return"><para><mdash/> </para></simplesect>
+</para>        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/agyss/iis_robot_sw/iis_catkin_ws/src/kukadu/include/kukadu/utils/gnuplot.hpp" line="168" column="1" bodyfile="/home/agyss/iis_robot_sw/iis_catkin_ws/src/kukadu/src/utils/gnuplot.cpp" bodystart="281" bodyend="293"/>
+      </memberdef>
+      <memberdef kind="function" id="classkukadu_1_1Gnuplot_1afb20839c235bdf281f61a7c8e1ea8de9" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type></type>
+        <definition>kukadu::Gnuplot::Gnuplot</definition>
+        <argsstring>(const std::string &amp;style=&quot;lines lw 3&quot;)</argsstring>
+        <name>Gnuplot</name>
+        <param>
+          <type>const std::string &amp;</type>
+          <declname>style</declname>
+          <defval>&quot;lines lw 3&quot;</defval>
+        </param>
+        <briefdescription>
+<para>set a style during construction </para>        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/agyss/iis_robot_sw/iis_catkin_ws/src/kukadu/include/kukadu/utils/gnuplot.hpp" line="176" column="1" bodyfile="/home/agyss/iis_robot_sw/iis_catkin_ws/src/kukadu/src/utils/gnuplot.cpp" bodystart="9" bodyend="15"/>
+      </memberdef>
+      <memberdef kind="function" id="classkukadu_1_1Gnuplot_1a116918cb455b18e367cfcd34dfe2ecab" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type></type>
+        <definition>kukadu::Gnuplot::Gnuplot</definition>
+        <argsstring>(const std::vector&lt; double &gt; &amp;x, const std::string &amp;title=&quot;&quot;, const std::string &amp;style=&quot;lines lw 3&quot;, const std::string &amp;labelx=&quot;x&quot;, const std::string &amp;labely=&quot;y&quot;)</argsstring>
+        <name>Gnuplot</name>
+        <param>
+          <type>const std::vector&lt; double &gt; &amp;</type>
+          <declname>x</declname>
+        </param>
+        <param>
+          <type>const std::string &amp;</type>
+          <declname>title</declname>
+          <defval>&quot;&quot;</defval>
+        </param>
+        <param>
+          <type>const std::string &amp;</type>
+          <declname>style</declname>
+          <defval>&quot;lines lw 3&quot;</defval>
+        </param>
+        <param>
+          <type>const std::string &amp;</type>
+          <declname>labelx</declname>
+          <defval>&quot;x&quot;</defval>
+        </param>
+        <param>
+          <type>const std::string &amp;</type>
+          <declname>labely</declname>
+          <defval>&quot;y&quot;</defval>
+        </param>
+        <briefdescription>
+<para>plot a single std::vector at one go </para>        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/agyss/iis_robot_sw/iis_catkin_ws/src/kukadu/include/kukadu/utils/gnuplot.hpp" line="179" column="1" bodyfile="/home/agyss/iis_robot_sw/iis_catkin_ws/src/kukadu/src/utils/gnuplot.cpp" bodystart="21" bodyend="35"/>
+      </memberdef>
+      <memberdef kind="function" id="classkukadu_1_1Gnuplot_1a78963c977dfcc32904344da61d35e57a" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type></type>
+        <definition>kukadu::Gnuplot::Gnuplot</definition>
+        <argsstring>(const std::vector&lt; double &gt; &amp;x, const std::vector&lt; double &gt; &amp;y, const std::string &amp;title=&quot;&quot;, const std::string &amp;style=&quot;lines lw 3&quot;, const std::string &amp;labelx=&quot;x&quot;, const std::string &amp;labely=&quot;y&quot;)</argsstring>
+        <name>Gnuplot</name>
+        <param>
+          <type>const std::vector&lt; double &gt; &amp;</type>
+          <declname>x</declname>
+        </param>
+        <param>
+          <type>const std::vector&lt; double &gt; &amp;</type>
+          <declname>y</declname>
+        </param>
+        <param>
+          <type>const std::string &amp;</type>
+          <declname>title</declname>
+          <defval>&quot;&quot;</defval>
+        </param>
+        <param>
+          <type>const std::string &amp;</type>
+          <declname>style</declname>
+          <defval>&quot;lines lw 3&quot;</defval>
+        </param>
+        <param>
+          <type>const std::string &amp;</type>
+          <declname>labelx</declname>
+          <defval>&quot;x&quot;</defval>
+        </param>
+        <param>
+          <type>const std::string &amp;</type>
+          <declname>labely</declname>
+          <defval>&quot;y&quot;</defval>
+        </param>
+        <briefdescription>
+<para>plot pairs std::vector at one go </para>        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/agyss/iis_robot_sw/iis_catkin_ws/src/kukadu/include/kukadu/utils/gnuplot.hpp" line="186" column="1" bodyfile="/home/agyss/iis_robot_sw/iis_catkin_ws/src/kukadu/src/utils/gnuplot.cpp" bodystart="42" bodyend="57"/>
+      </memberdef>
+      <memberdef kind="function" id="classkukadu_1_1Gnuplot_1a871b56fac856507973efb00861f7cd06" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type></type>
+        <definition>kukadu::Gnuplot::Gnuplot</definition>
+        <argsstring>(const std::vector&lt; double &gt; &amp;x, const std::vector&lt; double &gt; &amp;y, const std::vector&lt; double &gt; &amp;z, const std::string &amp;title=&quot;&quot;, const std::string &amp;style=&quot;lines lw 3&quot;, const std::string &amp;labelx=&quot;x&quot;, const std::string &amp;labely=&quot;y&quot;, const std::string &amp;labelz=&quot;z&quot;)</argsstring>
+        <name>Gnuplot</name>
+        <param>
+          <type>const std::vector&lt; double &gt; &amp;</type>
+          <declname>x</declname>
+        </param>
+        <param>
+          <type>const std::vector&lt; double &gt; &amp;</type>
+          <declname>y</declname>
+        </param>
+        <param>
+          <type>const std::vector&lt; double &gt; &amp;</type>
+          <declname>z</declname>
+        </param>
+        <param>
+          <type>const std::string &amp;</type>
+          <declname>title</declname>
+          <defval>&quot;&quot;</defval>
+        </param>
+        <param>
+          <type>const std::string &amp;</type>
+          <declname>style</declname>
+          <defval>&quot;lines lw 3&quot;</defval>
+        </param>
+        <param>
+          <type>const std::string &amp;</type>
+          <declname>labelx</declname>
+          <defval>&quot;x&quot;</defval>
+        </param>
+        <param>
+          <type>const std::string &amp;</type>
+          <declname>labely</declname>
+          <defval>&quot;y&quot;</defval>
+        </param>
+        <param>
+          <type>const std::string &amp;</type>
+          <declname>labelz</declname>
+          <defval>&quot;z&quot;</defval>
+        </param>
+        <briefdescription>
+<para>plot triples std::vector at one go </para>        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/agyss/iis_robot_sw/iis_catkin_ws/src/kukadu/include/kukadu/utils/gnuplot.hpp" line="194" column="1" bodyfile="/home/agyss/iis_robot_sw/iis_catkin_ws/src/kukadu/src/utils/gnuplot.cpp" bodystart="64" bodyend="82"/>
+      </memberdef>
+      <memberdef kind="function" id="classkukadu_1_1Gnuplot_1a512e0f34eacae8a6a819b0b74fab029b" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type></type>
+        <definition>kukadu::Gnuplot::~Gnuplot</definition>
+        <argsstring>()</argsstring>
+        <name>~Gnuplot</name>
+        <briefdescription>
+<para>destructor: needed to delete temporary files </para>        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/agyss/iis_robot_sw/iis_catkin_ws/src/kukadu/include/kukadu/utils/gnuplot.hpp" line="204" column="1" bodyfile="/home/agyss/iis_robot_sw/iis_catkin_ws/src/kukadu/src/utils/gnuplot.cpp" bodystart="341" bodyend="352"/>
+      </memberdef>
+      <memberdef kind="function" id="classkukadu_1_1Gnuplot_1a02945efc7719ceb26b97bdee6dfa0c76" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type><ref refid="classkukadu_1_1Gnuplot" kindref="compound">Gnuplot</ref> &amp;</type>
+        <definition>Gnuplot &amp; kukadu::Gnuplot::cmd</definition>
+        <argsstring>(const std::string &amp;cmdstr)</argsstring>
+        <name>cmd</name>
+        <param>
+          <type>const std::string &amp;</type>
+          <declname>cmdstr</declname>
+        </param>
+        <briefdescription>
+<para>send a command to gnuplot </para>        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/agyss/iis_robot_sw/iis_catkin_ws/src/kukadu/include/kukadu/utils/gnuplot.hpp" line="210" column="1" bodyfile="/home/agyss/iis_robot_sw/iis_catkin_ws/src/kukadu/src/utils/gnuplot.cpp" bodystart="1040" bodyend="1078"/>
+      </memberdef>
+      <memberdef kind="function" id="classkukadu_1_1Gnuplot_1a76d956598dab9d160127acf2c7d06e1f" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type><ref refid="classkukadu_1_1Gnuplot" kindref="compound">Gnuplot</ref> &amp;</type>
+        <definition>Gnuplot&amp; kukadu::Gnuplot::operator&lt;&lt;</definition>
+        <argsstring>(const std::string &amp;cmdstr)</argsstring>
+        <name>operator&lt;&lt;</name>
+        <param>
+          <type>const std::string &amp;</type>
+          <declname>cmdstr</declname>
+        </param>
+        <briefdescription>
+<para>Sends a command to an active gnuplot session, identical to <ref refid="classkukadu_1_1Gnuplot_1a02945efc7719ceb26b97bdee6dfa0c76" kindref="member">cmd()</ref> send a command to gnuplot using the &lt;&lt; operator. </para>        </briefdescription>
+        <detaileddescription>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>cmdstr</parametername>
+</parameternamelist>
+<parameterdescription>
+<para><ndash/>&gt; the command string</para></parameterdescription>
+</parameteritem>
+</parameterlist>
+<simplesect kind="return"><para>&lt;<ndash/> a reference to the gnuplot object </para></simplesect>
+</para>        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/agyss/iis_robot_sw/iis_catkin_ws/src/kukadu/include/kukadu/utils/gnuplot.hpp" line="219" column="1" bodyfile="/home/agyss/iis_robot_sw/iis_catkin_ws/src/kukadu/include/kukadu/utils/gnuplot.hpp" bodystart="219" bodyend="222"/>
+      </memberdef>
+      <memberdef kind="function" id="classkukadu_1_1Gnuplot_1a88c750479a441fe5e0113e7f795d6f42" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type><ref refid="classkukadu_1_1Gnuplot" kindref="compound">Gnuplot</ref> &amp;</type>
+        <definition>Gnuplot &amp; kukadu::Gnuplot::showonscreen</definition>
+        <argsstring>()</argsstring>
+        <name>showonscreen</name>
+        <briefdescription>
+<para>sets terminal type to terminal_std </para>        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/agyss/iis_robot_sw/iis_catkin_ws/src/kukadu/include/kukadu/utils/gnuplot.hpp" line="230" column="1" bodyfile="/home/agyss/iis_robot_sw/iis_catkin_ws/src/kukadu/src/utils/gnuplot.cpp" bodystart="462" bodyend="470"/>
+      </memberdef>
+      <memberdef kind="function" id="classkukadu_1_1Gnuplot_1ae6857197036b0739d792b5aa3833c673" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type><ref refid="classkukadu_1_1Gnuplot" kindref="compound">Gnuplot</ref> &amp;</type>
+        <definition>Gnuplot &amp; kukadu::Gnuplot::savetops</definition>
+        <argsstring>(const std::string &amp;filename=&quot;gnuplot_output&quot;)</argsstring>
+        <name>savetops</name>
+        <param>
+          <type>const std::string &amp;</type>
+          <declname>filename</declname>
+          <defval>&quot;gnuplot_output&quot;</defval>
+        </param>
+        <briefdescription>
+<para>saves a gnuplot session to a postscript file, filename without extension </para>        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/agyss/iis_robot_sw/iis_catkin_ws/src/kukadu/include/kukadu/utils/gnuplot.hpp" line="233" column="1" bodyfile="/home/agyss/iis_robot_sw/iis_catkin_ws/src/kukadu/src/utils/gnuplot.cpp" bodystart="476" bodyend="485"/>
+      </memberdef>
+      <memberdef kind="function" id="classkukadu_1_1Gnuplot_1a168775b6cf04b25a621886d2f0f85806" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type><ref refid="classkukadu_1_1Gnuplot" kindref="compound">Gnuplot</ref> &amp;</type>
+        <definition>Gnuplot &amp; kukadu::Gnuplot::set_style</definition>
+        <argsstring>(const std::string &amp;stylestr=&quot;points&quot;)</argsstring>
+        <name>set_style</name>
+        <param>
+          <type>const std::string &amp;</type>
+          <declname>stylestr</declname>
+          <defval>&quot;points&quot;</defval>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para>set line style (some of these styles require additional information): lines, points, linespoints, impulses, dots, steps, fsteps, histeps, boxes, histograms, filledcurves </para>        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/agyss/iis_robot_sw/iis_catkin_ws/src/kukadu/include/kukadu/utils/gnuplot.hpp" line="242" column="1" bodyfile="/home/agyss/iis_robot_sw/iis_catkin_ws/src/kukadu/src/utils/gnuplot.cpp" bodystart="392" bodyend="431"/>
+      </memberdef>
+      <memberdef kind="function" id="classkukadu_1_1Gnuplot_1a8b8849a77a1c674c30e4e5f8d59f8308" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type><ref refid="classkukadu_1_1Gnuplot" kindref="compound">Gnuplot</ref> &amp;</type>
+        <definition>Gnuplot &amp; kukadu::Gnuplot::set_smooth</definition>
+        <argsstring>(const std::string &amp;stylestr=&quot;csplines&quot;)</argsstring>
+        <name>set_smooth</name>
+        <param>
+          <type>const std::string &amp;</type>
+          <declname>stylestr</declname>
+          <defval>&quot;csplines&quot;</defval>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para>interpolation and approximation of data, arguments: csplines, bezier, acsplines (for data values &gt; 0), sbezier, unique, frequency (works only with plot_x, plot_xy, plotfile_x, plotfile_xy (if smooth is set, set_style has no effekt on data plotting) </para>        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/agyss/iis_robot_sw/iis_catkin_ws/src/kukadu/include/kukadu/utils/gnuplot.hpp" line="248" column="1" bodyfile="/home/agyss/iis_robot_sw/iis_catkin_ws/src/kukadu/src/utils/gnuplot.cpp" bodystart="438" bodyend="455"/>
+      </memberdef>
+      <memberdef kind="function" id="classkukadu_1_1Gnuplot_1abbebd88fffd2654ff192d6222f4d8e65" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type><ref refid="classkukadu_1_1Gnuplot" kindref="compound">Gnuplot</ref> &amp;</type>
+        <definition>Gnuplot&amp; kukadu::Gnuplot::unset_smooth</definition>
+        <argsstring>()</argsstring>
+        <name>unset_smooth</name>
+        <briefdescription>
+<para>unset smooth attention: smooth is not set by default </para>        </briefdescription>
+        <detaileddescription>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>&amp;mdash;</parametername>
+</parameternamelist>
+<parameterdescription>
+<para></para></parameterdescription>
+</parameteritem>
+</parameterlist>
+<simplesect kind="return"><para>&lt;<ndash/> a reference to a gnuplot object </para></simplesect>
+</para>        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/agyss/iis_robot_sw/iis_catkin_ws/src/kukadu/include/kukadu/utils/gnuplot.hpp" line="258" column="1" bodyfile="/home/agyss/iis_robot_sw/iis_catkin_ws/src/kukadu/include/kukadu/utils/gnuplot.hpp" bodystart="258" bodyend="258"/>
+      </memberdef>
+      <memberdef kind="function" id="classkukadu_1_1Gnuplot_1ab1033881b0494423cd292c5084bf3925" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type><ref refid="classkukadu_1_1Gnuplot" kindref="compound">Gnuplot</ref> &amp;</type>
+        <definition>Gnuplot &amp; kukadu::Gnuplot::set_pointsize</definition>
+        <argsstring>(const double pointsize=1.0)</argsstring>
+        <name>set_pointsize</name>
+        <param>
+          <type>const double</type>
+          <declname>pointsize</declname>
+          <defval>1.0</defval>
+        </param>
+        <briefdescription>
+<para>scales the size of the points used in plots </para>        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/agyss/iis_robot_sw/iis_catkin_ws/src/kukadu/include/kukadu/utils/gnuplot.hpp" line="262" column="1" bodyfile="/home/agyss/iis_robot_sw/iis_catkin_ws/src/kukadu/src/utils/gnuplot.cpp" bodystart="547" bodyend="554"/>
+      </memberdef>
+      <memberdef kind="function" id="classkukadu_1_1Gnuplot_1aebcefffa35cefd5e4e0cffab0f3b5a6a" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type><ref refid="classkukadu_1_1Gnuplot" kindref="compound">Gnuplot</ref> &amp;</type>
+        <definition>Gnuplot&amp; kukadu::Gnuplot::set_grid</definition>
+        <argsstring>()</argsstring>
+        <name>set_grid</name>
+        <briefdescription>
+<para>turns grid on/off </para>        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/agyss/iis_robot_sw/iis_catkin_ws/src/kukadu/include/kukadu/utils/gnuplot.hpp" line="265" column="1" bodyfile="/home/agyss/iis_robot_sw/iis_catkin_ws/src/kukadu/include/kukadu/utils/gnuplot.hpp" bodystart="265" bodyend="265"/>
+      </memberdef>
+      <memberdef kind="function" id="classkukadu_1_1Gnuplot_1a58316e0929ce39f1a50aefd528ba835e" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type><ref refid="classkukadu_1_1Gnuplot" kindref="compound">Gnuplot</ref> &amp;</type>
+        <definition>Gnuplot&amp; kukadu::Gnuplot::unset_grid</definition>
+        <argsstring>()</argsstring>
+        <name>unset_grid</name>
+        <briefdescription>
+<para>grid is not set by default </para>        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/agyss/iis_robot_sw/iis_catkin_ws/src/kukadu/include/kukadu/utils/gnuplot.hpp" line="267" column="1" bodyfile="/home/agyss/iis_robot_sw/iis_catkin_ws/src/kukadu/include/kukadu/utils/gnuplot.hpp" bodystart="267" bodyend="267"/>
+      </memberdef>
+      <memberdef kind="function" id="classkukadu_1_1Gnuplot_1aab85e8b17756b471d3c800be4aab9cff" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type><ref refid="classkukadu_1_1Gnuplot" kindref="compound">Gnuplot</ref> &amp;</type>
+        <definition>Gnuplot&amp; kukadu::Gnuplot::set_multiplot</definition>
+        <argsstring>()</argsstring>
+        <name>set_multiplot</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para>set the mulitplot mode</para><para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>&amp;mdash;</parametername>
+</parameternamelist>
+<parameterdescription>
+<para></para></parameterdescription>
+</parameteritem>
+</parameterlist>
+<simplesect kind="return"><para>&lt;<ndash/> reference to the gnuplot object </para></simplesect>
+</para>        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/agyss/iis_robot_sw/iis_catkin_ws/src/kukadu/include/kukadu/utils/gnuplot.hpp" line="276" column="1" bodyfile="/home/agyss/iis_robot_sw/iis_catkin_ws/src/kukadu/include/kukadu/utils/gnuplot.hpp" bodystart="276" bodyend="276"/>
+      </memberdef>
+      <memberdef kind="function" id="classkukadu_1_1Gnuplot_1a91600bc5fa98295f48440bb211ba89db" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type><ref refid="classkukadu_1_1Gnuplot" kindref="compound">Gnuplot</ref> &amp;</type>
+        <definition>Gnuplot&amp; kukadu::Gnuplot::unset_multiplot</definition>
+        <argsstring>()</argsstring>
+        <name>unset_multiplot</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para>unsets the mulitplot mode</para><para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>&amp;mdash;</parametername>
+</parameternamelist>
+<parameterdescription>
+<para></para></parameterdescription>
+</parameteritem>
+</parameterlist>
+<simplesect kind="return"><para>&lt;<ndash/> reference to the gnuplot object </para></simplesect>
+</para>        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/agyss/iis_robot_sw/iis_catkin_ws/src/kukadu/include/kukadu/utils/gnuplot.hpp" line="285" column="1" bodyfile="/home/agyss/iis_robot_sw/iis_catkin_ws/src/kukadu/include/kukadu/utils/gnuplot.hpp" bodystart="285" bodyend="285"/>
+      </memberdef>
+      <memberdef kind="function" id="classkukadu_1_1Gnuplot_1aed34438f8adfdd17b5b529e77eca3dd8" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type><ref refid="classkukadu_1_1Gnuplot" kindref="compound">Gnuplot</ref> &amp;</type>
+        <definition>Gnuplot &amp; kukadu::Gnuplot::set_samples</definition>
+        <argsstring>(const int samples=100)</argsstring>
+        <name>set_samples</name>
+        <param>
+          <type>const int</type>
+          <declname>samples</declname>
+          <defval>100</defval>
+        </param>
+        <briefdescription>
+<para>set sampling rate of functions, or for interpolating data </para>        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/agyss/iis_robot_sw/iis_catkin_ws/src/kukadu/include/kukadu/utils/gnuplot.hpp" line="290" column="1" bodyfile="/home/agyss/iis_robot_sw/iis_catkin_ws/src/kukadu/src/utils/gnuplot.cpp" bodystart="560" bodyend="567"/>
+      </memberdef>
+      <memberdef kind="function" id="classkukadu_1_1Gnuplot_1ae915b506a6ad7667635b1c8f2d41365e" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type><ref refid="classkukadu_1_1Gnuplot" kindref="compound">Gnuplot</ref> &amp;</type>
+        <definition>Gnuplot &amp; kukadu::Gnuplot::set_isosamples</definition>
+        <argsstring>(const int isolines=10)</argsstring>
+        <name>set_isosamples</name>
+        <param>
+          <type>const int</type>
+          <declname>isolines</declname>
+          <defval>10</defval>
+        </param>
+        <briefdescription>
+<para>set isoline density (grid) for plotting functions as surfaces (for 3d plots) </para>        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/agyss/iis_robot_sw/iis_catkin_ws/src/kukadu/include/kukadu/utils/gnuplot.hpp" line="292" column="1" bodyfile="/home/agyss/iis_robot_sw/iis_catkin_ws/src/kukadu/src/utils/gnuplot.cpp" bodystart="574" bodyend="581"/>
+      </memberdef>
+      <memberdef kind="function" id="classkukadu_1_1Gnuplot_1ac6aa969947a3e5ad968726b58d839d0a" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type><ref refid="classkukadu_1_1Gnuplot" kindref="compound">Gnuplot</ref> &amp;</type>
+        <definition>Gnuplot&amp; kukadu::Gnuplot::set_hidden3d</definition>
+        <argsstring>()</argsstring>
+        <name>set_hidden3d</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para>enables/disables hidden line removal for surface plotting (for 3d plot)</para><para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>&amp;mdash;</parametername>
+</parameternamelist>
+<parameterdescription>
+<para></para></parameterdescription>
+</parameteritem>
+</parameterlist>
+<simplesect kind="return"><para>&lt;<ndash/> reference to the gnuplot object </para></simplesect>
+</para>        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/agyss/iis_robot_sw/iis_catkin_ws/src/kukadu/include/kukadu/utils/gnuplot.hpp" line="301" column="1" bodyfile="/home/agyss/iis_robot_sw/iis_catkin_ws/src/kukadu/include/kukadu/utils/gnuplot.hpp" bodystart="301" bodyend="301"/>
+      </memberdef>
+      <memberdef kind="function" id="classkukadu_1_1Gnuplot_1a4e93a0f9c069b953a70502765d31dc1e" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type><ref refid="classkukadu_1_1Gnuplot" kindref="compound">Gnuplot</ref> &amp;</type>
+        <definition>Gnuplot&amp; kukadu::Gnuplot::unset_hidden3d</definition>
+        <argsstring>()</argsstring>
+        <name>unset_hidden3d</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para>hidden3d is not set by default</para><para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>&amp;mdash;</parametername>
+</parameternamelist>
+<parameterdescription>
+<para></para></parameterdescription>
+</parameteritem>
+</parameterlist>
+<simplesect kind="return"><para>&lt;<ndash/> reference to the gnuplot object </para></simplesect>
+</para>        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/agyss/iis_robot_sw/iis_catkin_ws/src/kukadu/include/kukadu/utils/gnuplot.hpp" line="310" column="1" bodyfile="/home/agyss/iis_robot_sw/iis_catkin_ws/src/kukadu/include/kukadu/utils/gnuplot.hpp" bodystart="310" bodyend="310"/>
+      </memberdef>
+      <memberdef kind="function" id="classkukadu_1_1Gnuplot_1a6666c2286bcd0f8fea294b94a6c8545c" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type><ref refid="classkukadu_1_1Gnuplot" kindref="compound">Gnuplot</ref> &amp;</type>
+        <definition>Gnuplot &amp; kukadu::Gnuplot::set_contour</definition>
+        <argsstring>(const std::string &amp;position=&quot;base&quot;)</argsstring>
+        <name>set_contour</name>
+        <param>
+          <type>const std::string &amp;</type>
+          <declname>position</declname>
+          <defval>&quot;base&quot;</defval>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para>enables/disables contour drawing for surfaces (for 3d plot) base, surface, both </para>        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/agyss/iis_robot_sw/iis_catkin_ws/src/kukadu/include/kukadu/utils/gnuplot.hpp" line="314" column="1" bodyfile="/home/agyss/iis_robot_sw/iis_catkin_ws/src/kukadu/src/utils/gnuplot.cpp" bodystart="589" bodyend="603"/>
+      </memberdef>
+      <memberdef kind="function" id="classkukadu_1_1Gnuplot_1a6fe8c0d459872698c3531c50cf57be88" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type><ref refid="classkukadu_1_1Gnuplot" kindref="compound">Gnuplot</ref> &amp;</type>
+        <definition>Gnuplot&amp; kukadu::Gnuplot::unset_contour</definition>
+        <argsstring>()</argsstring>
+        <name>unset_contour</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para>contour is not set by default, it disables contour drawing for surfaces</para><para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>&amp;mdash;</parametername>
+</parameternamelist>
+<parameterdescription>
+<para></para></parameterdescription>
+</parameteritem>
+</parameterlist>
+<simplesect kind="return"><para>&lt;<ndash/> reference to the gnuplot object </para></simplesect>
+</para>        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/agyss/iis_robot_sw/iis_catkin_ws/src/kukadu/include/kukadu/utils/gnuplot.hpp" line="322" column="1" bodyfile="/home/agyss/iis_robot_sw/iis_catkin_ws/src/kukadu/include/kukadu/utils/gnuplot.hpp" bodystart="322" bodyend="322"/>
+      </memberdef>
+      <memberdef kind="function" id="classkukadu_1_1Gnuplot_1a2b1dba26cececc7cb0c0c3d6c6345c18" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type><ref refid="classkukadu_1_1Gnuplot" kindref="compound">Gnuplot</ref> &amp;</type>
+        <definition>Gnuplot&amp; kukadu::Gnuplot::set_surface</definition>
+        <argsstring>()</argsstring>
+        <name>set_surface</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para>enables/disables the display of surfaces (for 3d plot)</para><para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>&amp;mdash;</parametername>
+</parameternamelist>
+<parameterdescription>
+<para></para></parameterdescription>
+</parameteritem>
+</parameterlist>
+<simplesect kind="return"><para>&lt;<ndash/> reference to the gnuplot object </para></simplesect>
+</para>        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/agyss/iis_robot_sw/iis_catkin_ws/src/kukadu/include/kukadu/utils/gnuplot.hpp" line="331" column="1" bodyfile="/home/agyss/iis_robot_sw/iis_catkin_ws/src/kukadu/include/kukadu/utils/gnuplot.hpp" bodystart="331" bodyend="331"/>
+      </memberdef>
+      <memberdef kind="function" id="classkukadu_1_1Gnuplot_1a23283eaf224fede9a5a9378f678226a1" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type><ref refid="classkukadu_1_1Gnuplot" kindref="compound">Gnuplot</ref> &amp;</type>
+        <definition>Gnuplot&amp; kukadu::Gnuplot::unset_surface</definition>
+        <argsstring>()</argsstring>
+        <name>unset_surface</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para>surface is set by default, it disables the display of surfaces (for 3d plot)</para><para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>&amp;mdash;</parametername>
+</parameternamelist>
+<parameterdescription>
+<para></para></parameterdescription>
+</parameteritem>
+</parameterlist>
+<simplesect kind="return"><para>&lt;<ndash/> reference to the gnuplot object </para></simplesect>
+</para>        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/agyss/iis_robot_sw/iis_catkin_ws/src/kukadu/include/kukadu/utils/gnuplot.hpp" line="341" column="1" bodyfile="/home/agyss/iis_robot_sw/iis_catkin_ws/src/kukadu/include/kukadu/utils/gnuplot.hpp" bodystart="341" bodyend="341"/>
+      </memberdef>
+      <memberdef kind="function" id="classkukadu_1_1Gnuplot_1aca9ce23dbc33bd29ff563c23a29e47ae" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type><ref refid="classkukadu_1_1Gnuplot" kindref="compound">Gnuplot</ref> &amp;</type>
+        <definition>Gnuplot &amp; kukadu::Gnuplot::set_legend</definition>
+        <argsstring>(const std::string &amp;position=&quot;default&quot;)</argsstring>
+        <name>set_legend</name>
+        <param>
+          <type>const std::string &amp;</type>
+          <declname>position</declname>
+          <defval>&quot;default&quot;</defval>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para>switches legend on/off position: inside/outside, left/center/right, top/center/bottom, nobox/box </para>        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/agyss/iis_robot_sw/iis_catkin_ws/src/kukadu/include/kukadu/utils/gnuplot.hpp" line="346" column="1" bodyfile="/home/agyss/iis_robot_sw/iis_catkin_ws/src/kukadu/src/utils/gnuplot.cpp" bodystart="491" bodyend="499"/>
+      </memberdef>
+      <memberdef kind="function" id="classkukadu_1_1Gnuplot_1a5c8dab8e316a7d9b316d45f715ff0859" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type><ref refid="classkukadu_1_1Gnuplot" kindref="compound">Gnuplot</ref> &amp;</type>
+        <definition>Gnuplot&amp; kukadu::Gnuplot::unset_legend</definition>
+        <argsstring>()</argsstring>
+        <name>unset_legend</name>
+        <briefdescription>
+<para>Switches legend off attention:legend is set by default. </para>        </briefdescription>
+        <detaileddescription>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>&amp;mdash;</parametername>
+</parameternamelist>
+<parameterdescription>
+<para></para></parameterdescription>
+</parameteritem>
+</parameterlist>
+<simplesect kind="return"><para>&lt;<ndash/> reference to the gnuplot object </para></simplesect>
+</para>        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/agyss/iis_robot_sw/iis_catkin_ws/src/kukadu/include/kukadu/utils/gnuplot.hpp" line="356" column="1" bodyfile="/home/agyss/iis_robot_sw/iis_catkin_ws/src/kukadu/include/kukadu/utils/gnuplot.hpp" bodystart="356" bodyend="356"/>
+      </memberdef>
+      <memberdef kind="function" id="classkukadu_1_1Gnuplot_1a1f0757bd29d5e3bee4e23be95951bc13" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type><ref refid="classkukadu_1_1Gnuplot" kindref="compound">Gnuplot</ref> &amp;</type>
+        <definition>Gnuplot&amp; kukadu::Gnuplot::set_title</definition>
+        <argsstring>(const std::string &amp;title=&quot;&quot;)</argsstring>
+        <name>set_title</name>
+        <param>
+          <type>const std::string &amp;</type>
+          <declname>title</declname>
+          <defval>&quot;&quot;</defval>
+        </param>
+        <briefdescription>
+<para>sets and clears the title of a gnuplot session </para>        </briefdescription>
+        <detaileddescription>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>title</parametername>
+</parameternamelist>
+<parameterdescription>
+<para><ndash/>&gt; the title of the plot [optional, default == &quot;&quot;]</para></parameterdescription>
+</parameteritem>
+</parameterlist>
+<simplesect kind="return"><para>&lt;<ndash/> reference to the gnuplot object </para></simplesect>
+</para>        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/agyss/iis_robot_sw/iis_catkin_ws/src/kukadu/include/kukadu/utils/gnuplot.hpp" line="365" column="1" bodyfile="/home/agyss/iis_robot_sw/iis_catkin_ws/src/kukadu/include/kukadu/utils/gnuplot.hpp" bodystart="365" bodyend="373"/>
+      </memberdef>
+      <memberdef kind="function" id="classkukadu_1_1Gnuplot_1a5fc9e87f3c624fbff79a960c66a16bd1" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type><ref refid="classkukadu_1_1Gnuplot" kindref="compound">Gnuplot</ref> &amp;</type>
+        <definition>Gnuplot&amp; kukadu::Gnuplot::unset_title</definition>
+        <argsstring>()</argsstring>
+        <name>unset_title</name>
+        <briefdescription>
+<para>Clears the title of a gnuplot session The title is not set by default. </para>        </briefdescription>
+        <detaileddescription>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>&amp;mdash;</parametername>
+</parameternamelist>
+<parameterdescription>
+<para></para></parameterdescription>
+</parameteritem>
+</parameterlist>
+<simplesect kind="return"><para>&lt;<ndash/> reference to the gnuplot object </para></simplesect>
+</para>        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/agyss/iis_robot_sw/iis_catkin_ws/src/kukadu/include/kukadu/utils/gnuplot.hpp" line="383" column="1" bodyfile="/home/agyss/iis_robot_sw/iis_catkin_ws/src/kukadu/include/kukadu/utils/gnuplot.hpp" bodystart="383" bodyend="383"/>
+      </memberdef>
+      <memberdef kind="function" id="classkukadu_1_1Gnuplot_1abee1cfd744420fd989db8092acedcc93" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type><ref refid="classkukadu_1_1Gnuplot" kindref="compound">Gnuplot</ref> &amp;</type>
+        <definition>Gnuplot &amp; kukadu::Gnuplot::set_ylabel</definition>
+        <argsstring>(const std::string &amp;label=&quot;x&quot;)</argsstring>
+        <name>set_ylabel</name>
+        <param>
+          <type>const std::string &amp;</type>
+          <declname>label</declname>
+          <defval>&quot;x&quot;</defval>
+        </param>
+        <briefdescription>
+<para>set x axis label </para>        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/agyss/iis_robot_sw/iis_catkin_ws/src/kukadu/include/kukadu/utils/gnuplot.hpp" line="387" column="1" bodyfile="/home/agyss/iis_robot_sw/iis_catkin_ws/src/kukadu/src/utils/gnuplot.cpp" bodystart="623" bodyend="631"/>
+      </memberdef>
+      <memberdef kind="function" id="classkukadu_1_1Gnuplot_1a48b3c2b23f740375b73d27d1906968d0" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type><ref refid="classkukadu_1_1Gnuplot" kindref="compound">Gnuplot</ref> &amp;</type>
+        <definition>Gnuplot &amp; kukadu::Gnuplot::set_xlabel</definition>
+        <argsstring>(const std::string &amp;label=&quot;y&quot;)</argsstring>
+        <name>set_xlabel</name>
+        <param>
+          <type>const std::string &amp;</type>
+          <declname>label</declname>
+          <defval>&quot;y&quot;</defval>
+        </param>
+        <briefdescription>
+<para>set y axis label </para>        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/agyss/iis_robot_sw/iis_catkin_ws/src/kukadu/include/kukadu/utils/gnuplot.hpp" line="389" column="1" bodyfile="/home/agyss/iis_robot_sw/iis_catkin_ws/src/kukadu/src/utils/gnuplot.cpp" bodystart="610" bodyend="618"/>
+      </memberdef>
+      <memberdef kind="function" id="classkukadu_1_1Gnuplot_1a439a74f49c171b12df1a941a39b3e8c1" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type><ref refid="classkukadu_1_1Gnuplot" kindref="compound">Gnuplot</ref> &amp;</type>
+        <definition>Gnuplot &amp; kukadu::Gnuplot::set_zlabel</definition>
+        <argsstring>(const std::string &amp;label=&quot;z&quot;)</argsstring>
+        <name>set_zlabel</name>
+        <param>
+          <type>const std::string &amp;</type>
+          <declname>label</declname>
+          <defval>&quot;z&quot;</defval>
+        </param>
+        <briefdescription>
+<para>set z axis label </para>        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/agyss/iis_robot_sw/iis_catkin_ws/src/kukadu/include/kukadu/utils/gnuplot.hpp" line="391" column="1" bodyfile="/home/agyss/iis_robot_sw/iis_catkin_ws/src/kukadu/src/utils/gnuplot.cpp" bodystart="636" bodyend="644"/>
+      </memberdef>
+      <memberdef kind="function" id="classkukadu_1_1Gnuplot_1a1e27f156415728196a52946e304f5d1e" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type><ref refid="classkukadu_1_1Gnuplot" kindref="compound">Gnuplot</ref> &amp;</type>
+        <definition>Gnuplot &amp; kukadu::Gnuplot::set_xrange</definition>
+        <argsstring>(const double iFrom, const double iTo)</argsstring>
+        <name>set_xrange</name>
+        <param>
+          <type>const double</type>
+          <declname>iFrom</declname>
+        </param>
+        <param>
+          <type>const double</type>
+          <declname>iTo</declname>
+        </param>
+        <briefdescription>
+<para>set axis - ranges </para>        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/agyss/iis_robot_sw/iis_catkin_ws/src/kukadu/include/kukadu/utils/gnuplot.hpp" line="394" column="1" bodyfile="/home/agyss/iis_robot_sw/iis_catkin_ws/src/kukadu/src/utils/gnuplot.cpp" bodystart="651" bodyend="660"/>
+      </memberdef>
+      <memberdef kind="function" id="classkukadu_1_1Gnuplot_1a5b27c86aa6c5505aa9b7f65958f1da26" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type><ref refid="classkukadu_1_1Gnuplot" kindref="compound">Gnuplot</ref> &amp;</type>
+        <definition>Gnuplot &amp; kukadu::Gnuplot::set_yrange</definition>
+        <argsstring>(const double iFrom, const double iTo)</argsstring>
+        <name>set_yrange</name>
+        <param>
+          <type>const double</type>
+          <declname>iFrom</declname>
+        </param>
+        <param>
+          <type>const double</type>
+          <declname>iTo</declname>
+        </param>
+        <briefdescription>
+<para>set y-axis - ranges </para>        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/agyss/iis_robot_sw/iis_catkin_ws/src/kukadu/include/kukadu/utils/gnuplot.hpp" line="397" column="1" bodyfile="/home/agyss/iis_robot_sw/iis_catkin_ws/src/kukadu/src/utils/gnuplot.cpp" bodystart="665" bodyend="674"/>
+      </memberdef>
+      <memberdef kind="function" id="classkukadu_1_1Gnuplot_1a719ea05d40c1cdd23f6844a494064720" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type><ref refid="classkukadu_1_1Gnuplot" kindref="compound">Gnuplot</ref> &amp;</type>
+        <definition>Gnuplot &amp; kukadu::Gnuplot::set_zrange</definition>
+        <argsstring>(const double iFrom, const double iTo)</argsstring>
+        <name>set_zrange</name>
+        <param>
+          <type>const double</type>
+          <declname>iFrom</declname>
+        </param>
+        <param>
+          <type>const double</type>
+          <declname>iTo</declname>
+        </param>
+        <briefdescription>
+<para>set z-axis - ranges </para>        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/agyss/iis_robot_sw/iis_catkin_ws/src/kukadu/include/kukadu/utils/gnuplot.hpp" line="400" column="1" bodyfile="/home/agyss/iis_robot_sw/iis_catkin_ws/src/kukadu/src/utils/gnuplot.cpp" bodystart="679" bodyend="688"/>
+      </memberdef>
+      <memberdef kind="function" id="classkukadu_1_1Gnuplot_1ad895bac1da923236a2bbbddf13df4f5b" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type><ref refid="classkukadu_1_1Gnuplot" kindref="compound">Gnuplot</ref> &amp;</type>
+        <definition>Gnuplot&amp; kukadu::Gnuplot::set_xautoscale</definition>
+        <argsstring>()</argsstring>
+        <name>set_xautoscale</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para>autoscale axis (set by default) of xaxis</para><para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>&amp;mdash;</parametername>
+</parameternamelist>
+<parameterdescription>
+<para></para></parameterdescription>
+</parameteritem>
+</parameterlist>
+<simplesect kind="return"><para>&lt;<ndash/> reference to the gnuplot object </para></simplesect>
+</para>        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/agyss/iis_robot_sw/iis_catkin_ws/src/kukadu/include/kukadu/utils/gnuplot.hpp" line="408" column="1" bodyfile="/home/agyss/iis_robot_sw/iis_catkin_ws/src/kukadu/include/kukadu/utils/gnuplot.hpp" bodystart="408" bodyend="408"/>
+      </memberdef>
+      <memberdef kind="function" id="classkukadu_1_1Gnuplot_1aa5c079210584a06fa50ae99f5fe2d00d" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type><ref refid="classkukadu_1_1Gnuplot" kindref="compound">Gnuplot</ref> &amp;</type>
+        <definition>Gnuplot&amp; kukadu::Gnuplot::set_yautoscale</definition>
+        <argsstring>()</argsstring>
+        <name>set_yautoscale</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para>autoscale axis (set by default) of yaxis</para><para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>&amp;mdash;</parametername>
+</parameternamelist>
+<parameterdescription>
+<para></para></parameterdescription>
+</parameteritem>
+</parameterlist>
+<simplesect kind="return"><para>&lt;<ndash/> reference to the gnuplot object </para></simplesect>
+</para>        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/agyss/iis_robot_sw/iis_catkin_ws/src/kukadu/include/kukadu/utils/gnuplot.hpp" line="417" column="1" bodyfile="/home/agyss/iis_robot_sw/iis_catkin_ws/src/kukadu/include/kukadu/utils/gnuplot.hpp" bodystart="417" bodyend="417"/>
+      </memberdef>
+      <memberdef kind="function" id="classkukadu_1_1Gnuplot_1a24266265b9d32e8991d1ac053dbc58c5" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type><ref refid="classkukadu_1_1Gnuplot" kindref="compound">Gnuplot</ref> &amp;</type>
+        <definition>Gnuplot&amp; kukadu::Gnuplot::set_zautoscale</definition>
+        <argsstring>()</argsstring>
+        <name>set_zautoscale</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para>autoscale axis (set by default) of zaxis</para><para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>&amp;mdash;</parametername>
+</parameternamelist>
+<parameterdescription>
+<para></para></parameterdescription>
+</parameteritem>
+</parameterlist>
+<simplesect kind="return"><para>&lt;<ndash/> reference to the gnuplot object </para></simplesect>
+</para>        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/agyss/iis_robot_sw/iis_catkin_ws/src/kukadu/include/kukadu/utils/gnuplot.hpp" line="426" column="1" bodyfile="/home/agyss/iis_robot_sw/iis_catkin_ws/src/kukadu/include/kukadu/utils/gnuplot.hpp" bodystart="426" bodyend="426"/>
+      </memberdef>
+      <memberdef kind="function" id="classkukadu_1_1Gnuplot_1a11893bdae68ab25f8ecb95818ca65395" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type><ref refid="classkukadu_1_1Gnuplot" kindref="compound">Gnuplot</ref> &amp;</type>
+        <definition>Gnuplot &amp; kukadu::Gnuplot::set_xlogscale</definition>
+        <argsstring>(const double base=10)</argsstring>
+        <name>set_xlogscale</name>
+        <param>
+          <type>const double</type>
+          <declname>base</declname>
+          <defval>10</defval>
+        </param>
+        <briefdescription>
+<para>turns on/off log scaling for the specified xaxis (logscale is not set by default) </para>        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/agyss/iis_robot_sw/iis_catkin_ws/src/kukadu/include/kukadu/utils/gnuplot.hpp" line="430" column="1" bodyfile="/home/agyss/iis_robot_sw/iis_catkin_ws/src/kukadu/src/utils/gnuplot.cpp" bodystart="505" bodyend="513"/>
+      </memberdef>
+      <memberdef kind="function" id="classkukadu_1_1Gnuplot_1a83bdceeb4e068075caf98b030ef9372f" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type><ref refid="classkukadu_1_1Gnuplot" kindref="compound">Gnuplot</ref> &amp;</type>
+        <definition>Gnuplot &amp; kukadu::Gnuplot::set_ylogscale</definition>
+        <argsstring>(const double base=10)</argsstring>
+        <name>set_ylogscale</name>
+        <param>
+          <type>const double</type>
+          <declname>base</declname>
+          <defval>10</defval>
+        </param>
+        <briefdescription>
+<para>turns on/off log scaling for the specified yaxis (logscale is not set by default) </para>        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/agyss/iis_robot_sw/iis_catkin_ws/src/kukadu/include/kukadu/utils/gnuplot.hpp" line="432" column="1" bodyfile="/home/agyss/iis_robot_sw/iis_catkin_ws/src/kukadu/src/utils/gnuplot.cpp" bodystart="519" bodyend="527"/>
+      </memberdef>
+      <memberdef kind="function" id="classkukadu_1_1Gnuplot_1aaeecd89ae7aabf9fb304f60965198588" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type><ref refid="classkukadu_1_1Gnuplot" kindref="compound">Gnuplot</ref> &amp;</type>
+        <definition>Gnuplot &amp; kukadu::Gnuplot::set_zlogscale</definition>
+        <argsstring>(const double base=10)</argsstring>
+        <name>set_zlogscale</name>
+        <param>
+          <type>const double</type>
+          <declname>base</declname>
+          <defval>10</defval>
+        </param>
+        <briefdescription>
+<para>turns on/off log scaling for the specified zaxis (logscale is not set by default) </para>        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/agyss/iis_robot_sw/iis_catkin_ws/src/kukadu/include/kukadu/utils/gnuplot.hpp" line="434" column="1" bodyfile="/home/agyss/iis_robot_sw/iis_catkin_ws/src/kukadu/src/utils/gnuplot.cpp" bodystart="533" bodyend="541"/>
+      </memberdef>
+      <memberdef kind="function" id="classkukadu_1_1Gnuplot_1a8d4ff3b840757c7d7e248aa2932dfd9e" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type><ref refid="classkukadu_1_1Gnuplot" kindref="compound">Gnuplot</ref> &amp;</type>
+        <definition>Gnuplot&amp; kukadu::Gnuplot::unset_xlogscale</definition>
+        <argsstring>()</argsstring>
+        <name>unset_xlogscale</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para>turns off log scaling for the x axis</para><para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>&amp;mdash;</parametername>
+</parameternamelist>
+<parameterdescription>
+<para></para></parameterdescription>
+</parameteritem>
+</parameterlist>
+<simplesect kind="return"><para>&lt;<ndash/> reference to the gnuplot object </para></simplesect>
+</para>        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/agyss/iis_robot_sw/iis_catkin_ws/src/kukadu/include/kukadu/utils/gnuplot.hpp" line="443" column="1" bodyfile="/home/agyss/iis_robot_sw/iis_catkin_ws/src/kukadu/include/kukadu/utils/gnuplot.hpp" bodystart="443" bodyend="443"/>
+      </memberdef>
+      <memberdef kind="function" id="classkukadu_1_1Gnuplot_1ab4faf2a5d5572733967ef00b03937a98" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type><ref refid="classkukadu_1_1Gnuplot" kindref="compound">Gnuplot</ref> &amp;</type>
+        <definition>Gnuplot&amp; kukadu::Gnuplot::unset_ylogscale</definition>
+        <argsstring>()</argsstring>
+        <name>unset_ylogscale</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para>turns off log scaling for the y axis</para><para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>&amp;mdash;</parametername>
+</parameternamelist>
+<parameterdescription>
+<para></para></parameterdescription>
+</parameteritem>
+</parameterlist>
+<simplesect kind="return"><para>&lt;<ndash/> reference to the gnuplot object </para></simplesect>
+</para>        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/agyss/iis_robot_sw/iis_catkin_ws/src/kukadu/include/kukadu/utils/gnuplot.hpp" line="452" column="1" bodyfile="/home/agyss/iis_robot_sw/iis_catkin_ws/src/kukadu/include/kukadu/utils/gnuplot.hpp" bodystart="452" bodyend="452"/>
+      </memberdef>
+      <memberdef kind="function" id="classkukadu_1_1Gnuplot_1a2bccf59dc2f3dc853d45e6f0ebbc33e2" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type><ref refid="classkukadu_1_1Gnuplot" kindref="compound">Gnuplot</ref> &amp;</type>
+        <definition>Gnuplot&amp; kukadu::Gnuplot::unset_zlogscale</definition>
+        <argsstring>()</argsstring>
+        <name>unset_zlogscale</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para>turns off log scaling for the z axis</para><para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>&amp;mdash;</parametername>
+</parameternamelist>
+<parameterdescription>
+<para></para></parameterdescription>
+</parameteritem>
+</parameterlist>
+<simplesect kind="return"><para>&lt;<ndash/> reference to the gnuplot object </para></simplesect>
+</para>        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/agyss/iis_robot_sw/iis_catkin_ws/src/kukadu/include/kukadu/utils/gnuplot.hpp" line="461" column="1" bodyfile="/home/agyss/iis_robot_sw/iis_catkin_ws/src/kukadu/include/kukadu/utils/gnuplot.hpp" bodystart="461" bodyend="461"/>
+      </memberdef>
+      <memberdef kind="function" id="classkukadu_1_1Gnuplot_1ab1eeecc6cca9d87af3be7af4e37ab1c0" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type><ref refid="classkukadu_1_1Gnuplot" kindref="compound">Gnuplot</ref> &amp;</type>
+        <definition>Gnuplot &amp; kukadu::Gnuplot::set_cbrange</definition>
+        <argsstring>(const double iFrom, const double iTo)</argsstring>
+        <name>set_cbrange</name>
+        <param>
+          <type>const double</type>
+          <declname>iFrom</declname>
+        </param>
+        <param>
+          <type>const double</type>
+          <declname>iTo</declname>
+        </param>
+        <briefdescription>
+<para>set palette range (autoscale by default) </para>        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/agyss/iis_robot_sw/iis_catkin_ws/src/kukadu/include/kukadu/utils/gnuplot.hpp" line="465" column="1" bodyfile="/home/agyss/iis_robot_sw/iis_catkin_ws/src/kukadu/src/utils/gnuplot.cpp" bodystart="694" bodyend="703"/>
+      </memberdef>
+      <memberdef kind="function" id="classkukadu_1_1Gnuplot_1a6f7bb713dd84b3ad5a737f7005411bfc" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type><ref refid="classkukadu_1_1Gnuplot" kindref="compound">Gnuplot</ref> &amp;</type>
+        <definition>Gnuplot &amp; kukadu::Gnuplot::plotfile_x</definition>
+        <argsstring>(const std::string &amp;filename, const unsigned int column=1, const std::string &amp;title=&quot;&quot;)</argsstring>
+        <name>plotfile_x</name>
+        <param>
+          <type>const std::string &amp;</type>
+          <declname>filename</declname>
+        </param>
+        <param>
+          <type>const unsigned int</type>
+          <declname>column</declname>
+          <defval>1</defval>
+        </param>
+        <param>
+          <type>const std::string &amp;</type>
+          <declname>title</declname>
+          <defval>&quot;&quot;</defval>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para>plot a single std::vector: x from file </para>        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/agyss/iis_robot_sw/iis_catkin_ws/src/kukadu/include/kukadu/utils/gnuplot.hpp" line="473" column="1" bodyfile="/home/agyss/iis_robot_sw/iis_catkin_ws/src/kukadu/src/utils/gnuplot.cpp" bodystart="811" bodyend="848"/>
+      </memberdef>
+      <memberdef kind="function" id="classkukadu_1_1Gnuplot_1af942480ea37a33cbd5bef00e8592404d" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <templateparamlist>
+          <param>
+            <type>typename X</type>
+          </param>
+        </templateparamlist>
+        <type><ref refid="classkukadu_1_1Gnuplot" kindref="compound">Gnuplot</ref> &amp;</type>
+        <definition>Gnuplot &amp; kukadu::Gnuplot::plot_x</definition>
+        <argsstring>(const X &amp;x, const std::string &amp;title=&quot;&quot;)</argsstring>
+        <name>plot_x</name>
+        <param>
+          <type>const X &amp;</type>
+          <declname>x</declname>
+        </param>
+        <param>
+          <type>const std::string &amp;</type>
+          <declname>title</declname>
+          <defval>&quot;&quot;</defval>
+        </param>
+        <briefdescription>
+<para>from std::vector </para>        </briefdescription>
+        <detaileddescription>
+<para>Plots a 2d graph from a list of doubles: x. </para>        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/agyss/iis_robot_sw/iis_catkin_ws/src/kukadu/include/kukadu/utils/gnuplot.hpp" line="478" column="1" bodyfile="/home/agyss/iis_robot_sw/iis_catkin_ws/src/kukadu/src/utils/gnuplot.cpp" bodystart="90" bodyend="116"/>
+      </memberdef>
+      <memberdef kind="function" id="classkukadu_1_1Gnuplot_1a69a964c20551ba369846d10c74e53d51" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type><ref refid="classkukadu_1_1Gnuplot" kindref="compound">Gnuplot</ref> &amp;</type>
+        <definition>Gnuplot &amp; kukadu::Gnuplot::plotfile_xy</definition>
+        <argsstring>(const std::string &amp;filename, const unsigned int column_x=1, const unsigned int column_y=2, const std::string &amp;title=&quot;&quot;)</argsstring>
+        <name>plotfile_xy</name>
+        <param>
+          <type>const std::string &amp;</type>
+          <declname>filename</declname>
+        </param>
+        <param>
+          <type>const unsigned int</type>
+          <declname>column_x</declname>
+          <defval>1</defval>
+        </param>
+        <param>
+          <type>const unsigned int</type>
+          <declname>column_y</declname>
+          <defval>2</defval>
+        </param>
+        <param>
+          <type>const std::string &amp;</type>
+          <declname>title</declname>
+          <defval>&quot;&quot;</defval>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para>plot x,y pairs: x y from file </para>        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/agyss/iis_robot_sw/iis_catkin_ws/src/kukadu/include/kukadu/utils/gnuplot.hpp" line="483" column="1" bodyfile="/home/agyss/iis_robot_sw/iis_catkin_ws/src/kukadu/src/utils/gnuplot.cpp" bodystart="856" bodyend="894"/>
+      </memberdef>
+      <memberdef kind="function" id="classkukadu_1_1Gnuplot_1ac80122ec909d18c1c1b22bd7c3570fb9" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <templateparamlist>
+          <param>
+            <type>typename X</type>
+          </param>
+          <param>
+            <type>typename Y</type>
+          </param>
+        </templateparamlist>
+        <type><ref refid="classkukadu_1_1Gnuplot" kindref="compound">Gnuplot</ref> &amp;</type>
+        <definition>Gnuplot &amp; kukadu::Gnuplot::plot_xy</definition>
+        <argsstring>(const X &amp;x, const Y &amp;y, const std::string &amp;title=&quot;&quot;)</argsstring>
+        <name>plot_xy</name>
+        <param>
+          <type>const X &amp;</type>
+          <declname>x</declname>
+        </param>
+        <param>
+          <type>const Y &amp;</type>
+          <declname>y</declname>
+        </param>
+        <param>
+          <type>const std::string &amp;</type>
+          <declname>title</declname>
+          <defval>&quot;&quot;</defval>
+        </param>
+        <briefdescription>
+<para>from data </para>        </briefdescription>
+        <detaileddescription>
+<para>Plots a 2d graph from a list of doubles: x y. </para>        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/agyss/iis_robot_sw/iis_catkin_ws/src/kukadu/include/kukadu/utils/gnuplot.hpp" line="489" column="1" bodyfile="/home/agyss/iis_robot_sw/iis_catkin_ws/src/kukadu/src/utils/gnuplot.cpp" bodystart="124" bodyend="157"/>
+      </memberdef>
+      <memberdef kind="function" id="classkukadu_1_1Gnuplot_1a78fb33f6b8f7c169bad61f7767b4452f" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type><ref refid="classkukadu_1_1Gnuplot" kindref="compound">Gnuplot</ref> &amp;</type>
+        <definition>Gnuplot &amp; kukadu::Gnuplot::plotfile_xy_err</definition>
+        <argsstring>(const std::string &amp;filename, const unsigned int column_x=1, const unsigned int column_y=2, const unsigned int column_dy=3, const std::string &amp;title=&quot;&quot;)</argsstring>
+        <name>plotfile_xy_err</name>
+        <param>
+          <type>const std::string &amp;</type>
+          <declname>filename</declname>
+        </param>
+        <param>
+          <type>const unsigned int</type>
+          <declname>column_x</declname>
+          <defval>1</defval>
+        </param>
+        <param>
+          <type>const unsigned int</type>
+          <declname>column_y</declname>
+          <defval>2</defval>
+        </param>
+        <param>
+          <type>const unsigned int</type>
+          <declname>column_dy</declname>
+          <defval>3</defval>
+        </param>
+        <param>
+          <type>const std::string &amp;</type>
+          <declname>title</declname>
+          <defval>&quot;&quot;</defval>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para>plot x,y pairs with dy errorbars: x y dy from file </para>        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/agyss/iis_robot_sw/iis_catkin_ws/src/kukadu/include/kukadu/utils/gnuplot.hpp" line="494" column="1" bodyfile="/home/agyss/iis_robot_sw/iis_catkin_ws/src/kukadu/src/utils/gnuplot.cpp" bodystart="901" bodyend="936"/>
+      </memberdef>
+      <memberdef kind="function" id="classkukadu_1_1Gnuplot_1a4cc62bb2504de6635ed6b47cbaf02c1c" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <templateparamlist>
+          <param>
+            <type>typename X</type>
+          </param>
+          <param>
+            <type>typename Y</type>
+          </param>
+          <param>
+            <type>typename E</type>
+          </param>
+        </templateparamlist>
+        <type><ref refid="classkukadu_1_1Gnuplot" kindref="compound">Gnuplot</ref> &amp;</type>
+        <definition>Gnuplot &amp; kukadu::Gnuplot::plot_xy_err</definition>
+        <argsstring>(const X &amp;x, const Y &amp;y, const E &amp;dy, const std::string &amp;title=&quot;&quot;)</argsstring>
+        <name>plot_xy_err</name>
+        <param>
+          <type>const X &amp;</type>
+          <declname>x</declname>
+        </param>
+        <param>
+          <type>const Y &amp;</type>
+          <declname>y</declname>
+        </param>
+        <param>
+          <type>const E &amp;</type>
+          <declname>dy</declname>
+        </param>
+        <param>
+          <type>const std::string &amp;</type>
+          <declname>title</declname>
+          <defval>&quot;&quot;</defval>
+        </param>
+        <briefdescription>
+<para>from data </para>        </briefdescription>
+        <detaileddescription>
+<para><hruler/>
+</para><para>plot x,y pairs with dy errorbars </para>        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/agyss/iis_robot_sw/iis_catkin_ws/src/kukadu/include/kukadu/utils/gnuplot.hpp" line="501" column="1" bodyfile="/home/agyss/iis_robot_sw/iis_catkin_ws/src/kukadu/src/utils/gnuplot.cpp" bodystart="164" bodyend="201"/>
+      </memberdef>
+      <memberdef kind="function" id="classkukadu_1_1Gnuplot_1a03b4eec7a72bc05abfcdfd7bcd61513b" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type><ref refid="classkukadu_1_1Gnuplot" kindref="compound">Gnuplot</ref> &amp;</type>
+        <definition>Gnuplot &amp; kukadu::Gnuplot::plotfile_xyz</definition>
+        <argsstring>(const std::string &amp;filename, const unsigned int column_x=1, const unsigned int column_y=2, const unsigned int column_z=3, const std::string &amp;title=&quot;&quot;)</argsstring>
+        <name>plotfile_xyz</name>
+        <param>
+          <type>const std::string &amp;</type>
+          <declname>filename</declname>
+        </param>
+        <param>
+          <type>const unsigned int</type>
+          <declname>column_x</declname>
+          <defval>1</defval>
+        </param>
+        <param>
+          <type>const unsigned int</type>
+          <declname>column_y</declname>
+          <defval>2</defval>
+        </param>
+        <param>
+          <type>const unsigned int</type>
+          <declname>column_z</declname>
+          <defval>3</defval>
+        </param>
+        <param>
+          <type>const std::string &amp;</type>
+          <declname>title</declname>
+          <defval>&quot;&quot;</defval>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para>plot x,y,z triples: x y z from file </para>        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/agyss/iis_robot_sw/iis_catkin_ws/src/kukadu/include/kukadu/utils/gnuplot.hpp" line="507" column="1" bodyfile="/home/agyss/iis_robot_sw/iis_catkin_ws/src/kukadu/src/utils/gnuplot.cpp" bodystart="943" bodyend="977"/>
+      </memberdef>
+      <memberdef kind="function" id="classkukadu_1_1Gnuplot_1ac3e5d63b5a9729d5e609e45abc65520f" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <templateparamlist>
+          <param>
+            <type>typename X</type>
+          </param>
+          <param>
+            <type>typename Y</type>
+          </param>
+          <param>
+            <type>typename Z</type>
+          </param>
+        </templateparamlist>
+        <type><ref refid="classkukadu_1_1Gnuplot" kindref="compound">Gnuplot</ref> &amp;</type>
+        <definition>Gnuplot &amp; kukadu::Gnuplot::plot_xyz</definition>
+        <argsstring>(const X &amp;x, const Y &amp;y, const Z &amp;z, const std::string &amp;title=&quot;&quot;)</argsstring>
+        <name>plot_xyz</name>
+        <param>
+          <type>const X &amp;</type>
+          <declname>x</declname>
+        </param>
+        <param>
+          <type>const Y &amp;</type>
+          <declname>y</declname>
+        </param>
+        <param>
+          <type>const Z &amp;</type>
+          <declname>z</declname>
+        </param>
+        <param>
+          <type>const std::string &amp;</type>
+          <declname>title</declname>
+          <defval>&quot;&quot;</defval>
+        </param>
+        <briefdescription>
+<para>from std::vector </para>        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/agyss/iis_robot_sw/iis_catkin_ws/src/kukadu/include/kukadu/utils/gnuplot.hpp" line="514" column="1" bodyfile="/home/agyss/iis_robot_sw/iis_catkin_ws/src/kukadu/src/utils/gnuplot.cpp" bodystart="209" bodyend="245"/>
+      </memberdef>
+      <memberdef kind="function" id="classkukadu_1_1Gnuplot_1aaddc220bf3a1726a962c801a1218b826" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type><ref refid="classkukadu_1_1Gnuplot" kindref="compound">Gnuplot</ref> &amp;</type>
+        <definition>Gnuplot &amp; kukadu::Gnuplot::plot_slope</definition>
+        <argsstring>(const double a, const double b, const std::string &amp;title=&quot;&quot;)</argsstring>
+        <name>plot_slope</name>
+        <param>
+          <type>const double</type>
+          <declname>a</declname>
+        </param>
+        <param>
+          <type>const double</type>
+          <declname>b</declname>
+        </param>
+        <param>
+          <type>const std::string &amp;</type>
+          <declname>title</declname>
+          <defval>&quot;&quot;</defval>
+        </param>
+        <briefdescription>
+<para>plot an equation of the form: y = ax + b, you supply a and b </para>        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/agyss/iis_robot_sw/iis_catkin_ws/src/kukadu/include/kukadu/utils/gnuplot.hpp" line="522" column="1" bodyfile="/home/agyss/iis_robot_sw/iis_catkin_ws/src/kukadu/src/utils/gnuplot.cpp" bodystart="710" bodyend="738"/>
+      </memberdef>
+      <memberdef kind="function" id="classkukadu_1_1Gnuplot_1a96c92aa357fa26095bfeb7afcc1d7ae5" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type><ref refid="classkukadu_1_1Gnuplot" kindref="compound">Gnuplot</ref> &amp;</type>
+        <definition>Gnuplot &amp; kukadu::Gnuplot::plot_equation</definition>
+        <argsstring>(const std::string &amp;equation, const std::string &amp;title=&quot;&quot;)</argsstring>
+        <name>plot_equation</name>
+        <param>
+          <type>const std::string &amp;</type>
+          <declname>equation</declname>
+        </param>
+        <param>
+          <type>const std::string &amp;</type>
+          <declname>title</declname>
+          <defval>&quot;&quot;</defval>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para>plot an equation supplied as a std::string y=f(x), write only the function f(x) not y= the independent variable has to be x binary operators: ** exponentiation, * multiply, / divide, + add, - substract, % modulo unary operators: - minus, ! factorial elementary functions: rand(x), abs(x), sgn(x), ceil(x), floor(x), int(x), imag(x), real(x), arg(x), sqrt(x), exp(x), log(x), log10(x), sin(x), cos(x), tan(x), asin(x), acos(x), atan(x), atan2(y,x), sinh(x), cosh(x), tanh(x), asinh(x), acosh(x), atanh(x) special functions: erf(x), erfc(x), inverf(x), gamma(x), igamma(a,x), lgamma(x), ibeta(p,q,x), besj0(x), besj1(x), besy0(x), besy1(x), lambertw(x) statistical fuctions: norm(x), invnorm(x) </para>        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/agyss/iis_robot_sw/iis_catkin_ws/src/kukadu/include/kukadu/utils/gnuplot.hpp" line="537" column="1" bodyfile="/home/agyss/iis_robot_sw/iis_catkin_ws/src/kukadu/src/utils/gnuplot.cpp" bodystart="744" bodyend="771"/>
+      </memberdef>
+      <memberdef kind="function" id="classkukadu_1_1Gnuplot_1a2500bea1234a30061b30cb66247d101e" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type><ref refid="classkukadu_1_1Gnuplot" kindref="compound">Gnuplot</ref> &amp;</type>
+        <definition>Gnuplot &amp; kukadu::Gnuplot::plot_equation3d</definition>
+        <argsstring>(const std::string &amp;equation, const std::string &amp;title=&quot;&quot;)</argsstring>
+        <name>plot_equation3d</name>
+        <param>
+          <type>const std::string &amp;</type>
+          <declname>equation</declname>
+        </param>
+        <param>
+          <type>const std::string &amp;</type>
+          <declname>title</declname>
+          <defval>&quot;&quot;</defval>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para>plot an equation supplied as a std::string z=f(x,y), write only the function f(x,y) not z= the independent variables have to be x and y </para>        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/agyss/iis_robot_sw/iis_catkin_ws/src/kukadu/include/kukadu/utils/gnuplot.hpp" line="542" column="1" bodyfile="/home/agyss/iis_robot_sw/iis_catkin_ws/src/kukadu/src/utils/gnuplot.cpp" bodystart="777" bodyend="804"/>
+      </memberdef>
+      <memberdef kind="function" id="classkukadu_1_1Gnuplot_1a00fa2629225493cef7be8e0263fb7fa4" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type><ref refid="classkukadu_1_1Gnuplot" kindref="compound">Gnuplot</ref> &amp;</type>
+        <definition>Gnuplot &amp; kukadu::Gnuplot::plot_image</definition>
+        <argsstring>(const unsigned char *ucPicBuf, const unsigned int iWidth, const unsigned int iHeight, const std::string &amp;title=&quot;&quot;)</argsstring>
+        <name>plot_image</name>
+        <param>
+          <type>const unsigned char *</type>
+          <declname>ucPicBuf</declname>
+        </param>
+        <param>
+          <type>const unsigned int</type>
+          <declname>iWidth</declname>
+        </param>
+        <param>
+          <type>const unsigned int</type>
+          <declname>iHeight</declname>
+        </param>
+        <param>
+          <type>const std::string &amp;</type>
+          <declname>title</declname>
+          <defval>&quot;&quot;</defval>
+        </param>
+        <briefdescription>
+<para>plot image </para>        </briefdescription>
+        <detaileddescription>
+<para><itemizedlist>
+<listitem><para>note that this function is not valid for versions of GNUPlot below 4.2 </para></listitem></itemizedlist>
+</para>        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/agyss/iis_robot_sw/iis_catkin_ws/src/kukadu/include/kukadu/utils/gnuplot.hpp" line="547" column="1" bodyfile="/home/agyss/iis_robot_sw/iis_catkin_ws/src/kukadu/src/utils/gnuplot.cpp" bodystart="985" bodyend="1032"/>
+      </memberdef>
+      <memberdef kind="function" id="classkukadu_1_1Gnuplot_1a775739d7e45f805b8e8d6629a7fc1e6c" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type><ref refid="classkukadu_1_1Gnuplot" kindref="compound">Gnuplot</ref> &amp;</type>
+        <definition>Gnuplot&amp; kukadu::Gnuplot::replot</definition>
+        <argsstring>(void)</argsstring>
+        <name>replot</name>
+        <param>
+          <type>void</type>
+        </param>
+        <briefdescription>
+<para>replot repeats the last plot or splot command. this can be useful for viewing a plot with different set options, or when generating the same plot for several devices (showonscreen, savetops) </para>        </briefdescription>
+        <detaileddescription>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>&amp;mdash;</parametername>
+</parameternamelist>
+<parameterdescription>
+<para></para></parameterdescription>
+</parameteritem>
+</parameterlist>
+<simplesect kind="return"><para><mdash/> </para></simplesect>
+</para>        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/agyss/iis_robot_sw/iis_catkin_ws/src/kukadu/include/kukadu/utils/gnuplot.hpp" line="562" column="1" bodyfile="/home/agyss/iis_robot_sw/iis_catkin_ws/src/kukadu/include/kukadu/utils/gnuplot.hpp" bodystart="562" bodyend="562"/>
+      </memberdef>
+      <memberdef kind="function" id="classkukadu_1_1Gnuplot_1a8437ccf75a256391bc8727c72af71ba7" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type><ref refid="classkukadu_1_1Gnuplot" kindref="compound">Gnuplot</ref> &amp;</type>
+        <definition>Gnuplot &amp; kukadu::Gnuplot::reset_plot</definition>
+        <argsstring>()</argsstring>
+        <name>reset_plot</name>
+        <briefdescription>
+<para>resets a gnuplot session (next plot will erase previous ones) </para>        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/agyss/iis_robot_sw/iis_catkin_ws/src/kukadu/include/kukadu/utils/gnuplot.hpp" line="565" column="1" bodyfile="/home/agyss/iis_robot_sw/iis_catkin_ws/src/kukadu/src/utils/gnuplot.cpp" bodystart="359" bodyend="366"/>
+      </memberdef>
+      <memberdef kind="function" id="classkukadu_1_1Gnuplot_1a90fcd1025b2bc89e5d1f1d3c0ac4121e" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type><ref refid="classkukadu_1_1Gnuplot" kindref="compound">Gnuplot</ref> &amp;</type>
+        <definition>Gnuplot &amp; kukadu::Gnuplot::reset_all</definition>
+        <argsstring>()</argsstring>
+        <name>reset_all</name>
+        <briefdescription>
+<para>resets a gnuplot session and sets all variables to default </para>        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/agyss/iis_robot_sw/iis_catkin_ws/src/kukadu/include/kukadu/utils/gnuplot.hpp" line="568" column="1" bodyfile="/home/agyss/iis_robot_sw/iis_catkin_ws/src/kukadu/src/utils/gnuplot.cpp" bodystart="373" bodyend="385"/>
+      </memberdef>
+      <memberdef kind="function" id="classkukadu_1_1Gnuplot_1ae0d9d829d071346b0d137ea5167417a0" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>void kukadu::Gnuplot::remove_tmpfiles</definition>
+        <argsstring>()</argsstring>
+        <name>remove_tmpfiles</name>
+        <briefdescription>
+<para>deletes temporary files </para>        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/agyss/iis_robot_sw/iis_catkin_ws/src/kukadu/include/kukadu/utils/gnuplot.hpp" line="571" column="1" bodyfile="/home/agyss/iis_robot_sw/iis_catkin_ws/src/kukadu/src/utils/gnuplot.cpp" bodystart="1359" bodyend="1367"/>
+      </memberdef>
+      <memberdef kind="function" id="classkukadu_1_1Gnuplot_1af51379284d1d3b6b2e1a51106a81788b" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>bool</type>
+        <definition>bool kukadu::Gnuplot::is_valid</definition>
+        <argsstring>()</argsstring>
+        <name>is_valid</name>
+        <briefdescription>
+<para>Is the gnuplot session valid ?? </para>        </briefdescription>
+        <detaileddescription>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>&amp;mdash;</parametername>
+</parameternamelist>
+<parameterdescription>
+<para></para></parameterdescription>
+</parameteritem>
+</parameterlist>
+<simplesect kind="return"><para>true if valid, false if not </para></simplesect>
+</para>        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/agyss/iis_robot_sw/iis_catkin_ws/src/kukadu/include/kukadu/utils/gnuplot.hpp" line="581" column="1" bodyfile="/home/agyss/iis_robot_sw/iis_catkin_ws/src/kukadu/include/kukadu/utils/gnuplot.hpp" bodystart="581" bodyend="581"/>
+      </memberdef>
+      </sectiondef>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <location file="/home/agyss/iis_robot_sw/iis_catkin_ws/src/kukadu/include/kukadu/utils/gnuplot.hpp" line="69" column="1" bodyfile="/home/agyss/iis_robot_sw/iis_catkin_ws/src/kukadu/include/kukadu/utils/gnuplot.hpp" bodystart="68" bodyend="583"/>
+    <listofallmembers>
+      <member refid="classkukadu_1_1Gnuplot_1a02945efc7719ceb26b97bdee6dfa0c76" prot="public" virt="non-virtual"><scope>kukadu::Gnuplot</scope><name>cmd</name></member>
+      <member refid="classkukadu_1_1Gnuplot_1a25e0943c1dcc81cf46bc4043d6ba7b90" prot="private" virt="non-virtual"><scope>kukadu::Gnuplot</scope><name>create_tmpfile</name></member>
+      <member refid="classkukadu_1_1Gnuplot_1a5827a08d85fb25505ab1cf6472d455f8" prot="private" virt="non-virtual"><scope>kukadu::Gnuplot</scope><name>file_available</name></member>
+      <member refid="classkukadu_1_1Gnuplot_1a4b29500043eea53215335642460ccd53" prot="private" virt="non-virtual"><scope>kukadu::Gnuplot</scope><name>file_exists</name></member>
+      <member refid="classkukadu_1_1Gnuplot_1a39d172ebd874ed484937a04ae20f6f55" prot="private" virt="non-virtual"><scope>kukadu::Gnuplot</scope><name>get_program_path</name></member>
+      <member refid="classkukadu_1_1Gnuplot_1a570cf5bf54caadc5aea61d81fa9ee57f" prot="private" virt="non-virtual"><scope>kukadu::Gnuplot</scope><name>gnucmd</name></member>
+      <member refid="classkukadu_1_1Gnuplot_1afb20839c235bdf281f61a7c8e1ea8de9" prot="public" virt="non-virtual"><scope>kukadu::Gnuplot</scope><name>Gnuplot</name></member>
+      <member refid="classkukadu_1_1Gnuplot_1a116918cb455b18e367cfcd34dfe2ecab" prot="public" virt="non-virtual"><scope>kukadu::Gnuplot</scope><name>Gnuplot</name></member>
+      <member refid="classkukadu_1_1Gnuplot_1a78963c977dfcc32904344da61d35e57a" prot="public" virt="non-virtual"><scope>kukadu::Gnuplot</scope><name>Gnuplot</name></member>
+      <member refid="classkukadu_1_1Gnuplot_1a871b56fac856507973efb00861f7cd06" prot="public" virt="non-virtual"><scope>kukadu::Gnuplot</scope><name>Gnuplot</name></member>
+      <member refid="classkukadu_1_1Gnuplot_1ac14c54994b89d01f0c0c3e0336799d4b" prot="private" virt="non-virtual"><scope>kukadu::Gnuplot</scope><name>init</name></member>
+      <member refid="classkukadu_1_1Gnuplot_1af51379284d1d3b6b2e1a51106a81788b" prot="public" virt="non-virtual"><scope>kukadu::Gnuplot</scope><name>is_valid</name></member>
+      <member refid="classkukadu_1_1Gnuplot_1a20f490157d107b4122144508439a06d6" prot="private" virt="non-virtual"><scope>kukadu::Gnuplot</scope><name>m_sGNUPlotFileName</name></member>
+      <member refid="classkukadu_1_1Gnuplot_1ad2bdb9daf099385dbb27ff843150afae" prot="private" virt="non-virtual"><scope>kukadu::Gnuplot</scope><name>m_sGNUPlotPath</name></member>
+      <member refid="classkukadu_1_1Gnuplot_1afb25696b38537c14258e85e5e5b4953b" prot="private" virt="non-virtual"><scope>kukadu::Gnuplot</scope><name>nplots</name></member>
+      <member refid="classkukadu_1_1Gnuplot_1a76d956598dab9d160127acf2c7d06e1f" prot="public" virt="non-virtual"><scope>kukadu::Gnuplot</scope><name>operator&lt;&lt;</name></member>
+      <member refid="classkukadu_1_1Gnuplot_1a96c92aa357fa26095bfeb7afcc1d7ae5" prot="public" virt="non-virtual"><scope>kukadu::Gnuplot</scope><name>plot_equation</name></member>
+      <member refid="classkukadu_1_1Gnuplot_1a2500bea1234a30061b30cb66247d101e" prot="public" virt="non-virtual"><scope>kukadu::Gnuplot</scope><name>plot_equation3d</name></member>
+      <member refid="classkukadu_1_1Gnuplot_1a00fa2629225493cef7be8e0263fb7fa4" prot="public" virt="non-virtual"><scope>kukadu::Gnuplot</scope><name>plot_image</name></member>
+      <member refid="classkukadu_1_1Gnuplot_1aaddc220bf3a1726a962c801a1218b826" prot="public" virt="non-virtual"><scope>kukadu::Gnuplot</scope><name>plot_slope</name></member>
+      <member refid="classkukadu_1_1Gnuplot_1af942480ea37a33cbd5bef00e8592404d" prot="public" virt="non-virtual"><scope>kukadu::Gnuplot</scope><name>plot_x</name></member>
+      <member refid="classkukadu_1_1Gnuplot_1ac80122ec909d18c1c1b22bd7c3570fb9" prot="public" virt="non-virtual"><scope>kukadu::Gnuplot</scope><name>plot_xy</name></member>
+      <member refid="classkukadu_1_1Gnuplot_1a4cc62bb2504de6635ed6b47cbaf02c1c" prot="public" virt="non-virtual"><scope>kukadu::Gnuplot</scope><name>plot_xy_err</name></member>
+      <member refid="classkukadu_1_1Gnuplot_1ac3e5d63b5a9729d5e609e45abc65520f" prot="public" virt="non-virtual"><scope>kukadu::Gnuplot</scope><name>plot_xyz</name></member>
+      <member refid="classkukadu_1_1Gnuplot_1a6f7bb713dd84b3ad5a737f7005411bfc" prot="public" virt="non-virtual"><scope>kukadu::Gnuplot</scope><name>plotfile_x</name></member>
+      <member refid="classkukadu_1_1Gnuplot_1a69a964c20551ba369846d10c74e53d51" prot="public" virt="non-virtual"><scope>kukadu::Gnuplot</scope><name>plotfile_xy</name></member>
+      <member refid="classkukadu_1_1Gnuplot_1a78fb33f6b8f7c169bad61f7767b4452f" prot="public" virt="non-virtual"><scope>kukadu::Gnuplot</scope><name>plotfile_xy_err</name></member>
+      <member refid="classkukadu_1_1Gnuplot_1a03b4eec7a72bc05abfcdfd7bcd61513b" prot="public" virt="non-virtual"><scope>kukadu::Gnuplot</scope><name>plotfile_xyz</name></member>
+      <member refid="classkukadu_1_1Gnuplot_1a5dc2361db4f30fcc8fa26f894d791730" prot="private" virt="non-virtual"><scope>kukadu::Gnuplot</scope><name>pstyle</name></member>
+      <member refid="classkukadu_1_1Gnuplot_1ae0d9d829d071346b0d137ea5167417a0" prot="public" virt="non-virtual"><scope>kukadu::Gnuplot</scope><name>remove_tmpfiles</name></member>
+      <member refid="classkukadu_1_1Gnuplot_1a775739d7e45f805b8e8d6629a7fc1e6c" prot="public" virt="non-virtual"><scope>kukadu::Gnuplot</scope><name>replot</name></member>
+      <member refid="classkukadu_1_1Gnuplot_1a90fcd1025b2bc89e5d1f1d3c0ac4121e" prot="public" virt="non-virtual"><scope>kukadu::Gnuplot</scope><name>reset_all</name></member>
+      <member refid="classkukadu_1_1Gnuplot_1a8437ccf75a256391bc8727c72af71ba7" prot="public" virt="non-virtual"><scope>kukadu::Gnuplot</scope><name>reset_plot</name></member>
+      <member refid="classkukadu_1_1Gnuplot_1ae6857197036b0739d792b5aa3833c673" prot="public" virt="non-virtual"><scope>kukadu::Gnuplot</scope><name>savetops</name></member>
+      <member refid="classkukadu_1_1Gnuplot_1ab1eeecc6cca9d87af3be7af4e37ab1c0" prot="public" virt="non-virtual"><scope>kukadu::Gnuplot</scope><name>set_cbrange</name></member>
+      <member refid="classkukadu_1_1Gnuplot_1a6666c2286bcd0f8fea294b94a6c8545c" prot="public" virt="non-virtual"><scope>kukadu::Gnuplot</scope><name>set_contour</name></member>
+      <member refid="classkukadu_1_1Gnuplot_1a04d7a36bbe70dcb878a1ae5d8299d012" prot="public" virt="non-virtual"><scope>kukadu::Gnuplot</scope><name>set_GNUPlotPath</name></member>
+      <member refid="classkukadu_1_1Gnuplot_1aebcefffa35cefd5e4e0cffab0f3b5a6a" prot="public" virt="non-virtual"><scope>kukadu::Gnuplot</scope><name>set_grid</name></member>
+      <member refid="classkukadu_1_1Gnuplot_1ac6aa969947a3e5ad968726b58d839d0a" prot="public" virt="non-virtual"><scope>kukadu::Gnuplot</scope><name>set_hidden3d</name></member>
+      <member refid="classkukadu_1_1Gnuplot_1ae915b506a6ad7667635b1c8f2d41365e" prot="public" virt="non-virtual"><scope>kukadu::Gnuplot</scope><name>set_isosamples</name></member>
+      <member refid="classkukadu_1_1Gnuplot_1aca9ce23dbc33bd29ff563c23a29e47ae" prot="public" virt="non-virtual"><scope>kukadu::Gnuplot</scope><name>set_legend</name></member>
+      <member refid="classkukadu_1_1Gnuplot_1aab85e8b17756b471d3c800be4aab9cff" prot="public" virt="non-virtual"><scope>kukadu::Gnuplot</scope><name>set_multiplot</name></member>
+      <member refid="classkukadu_1_1Gnuplot_1ab1033881b0494423cd292c5084bf3925" prot="public" virt="non-virtual"><scope>kukadu::Gnuplot</scope><name>set_pointsize</name></member>
+      <member refid="classkukadu_1_1Gnuplot_1aed34438f8adfdd17b5b529e77eca3dd8" prot="public" virt="non-virtual"><scope>kukadu::Gnuplot</scope><name>set_samples</name></member>
+      <member refid="classkukadu_1_1Gnuplot_1a8b8849a77a1c674c30e4e5f8d59f8308" prot="public" virt="non-virtual"><scope>kukadu::Gnuplot</scope><name>set_smooth</name></member>
+      <member refid="classkukadu_1_1Gnuplot_1a168775b6cf04b25a621886d2f0f85806" prot="public" virt="non-virtual"><scope>kukadu::Gnuplot</scope><name>set_style</name></member>
+      <member refid="classkukadu_1_1Gnuplot_1a2b1dba26cececc7cb0c0c3d6c6345c18" prot="public" virt="non-virtual"><scope>kukadu::Gnuplot</scope><name>set_surface</name></member>
+      <member refid="classkukadu_1_1Gnuplot_1aecc02fa13c09680a010e50331d50804c" prot="public" virt="non-virtual"><scope>kukadu::Gnuplot</scope><name>set_terminal_std</name></member>
+      <member refid="classkukadu_1_1Gnuplot_1a1f0757bd29d5e3bee4e23be95951bc13" prot="public" virt="non-virtual"><scope>kukadu::Gnuplot</scope><name>set_title</name></member>
+      <member refid="classkukadu_1_1Gnuplot_1ad895bac1da923236a2bbbddf13df4f5b" prot="public" virt="non-virtual"><scope>kukadu::Gnuplot</scope><name>set_xautoscale</name></member>
+      <member refid="classkukadu_1_1Gnuplot_1a48b3c2b23f740375b73d27d1906968d0" prot="public" virt="non-virtual"><scope>kukadu::Gnuplot</scope><name>set_xlabel</name></member>
+      <member refid="classkukadu_1_1Gnuplot_1a11893bdae68ab25f8ecb95818ca65395" prot="public" virt="non-virtual"><scope>kukadu::Gnuplot</scope><name>set_xlogscale</name></member>
+      <member refid="classkukadu_1_1Gnuplot_1a1e27f156415728196a52946e304f5d1e" prot="public" virt="non-virtual"><scope>kukadu::Gnuplot</scope><name>set_xrange</name></member>
+      <member refid="classkukadu_1_1Gnuplot_1aa5c079210584a06fa50ae99f5fe2d00d" prot="public" virt="non-virtual"><scope>kukadu::Gnuplot</scope><name>set_yautoscale</name></member>
+      <member refid="classkukadu_1_1Gnuplot_1abee1cfd744420fd989db8092acedcc93" prot="public" virt="non-virtual"><scope>kukadu::Gnuplot</scope><name>set_ylabel</name></member>
+      <member refid="classkukadu_1_1Gnuplot_1a83bdceeb4e068075caf98b030ef9372f" prot="public" virt="non-virtual"><scope>kukadu::Gnuplot</scope><name>set_ylogscale</name></member>
+      <member refid="classkukadu_1_1Gnuplot_1a5b27c86aa6c5505aa9b7f65958f1da26" prot="public" virt="non-virtual"><scope>kukadu::Gnuplot</scope><name>set_yrange</name></member>
+      <member refid="classkukadu_1_1Gnuplot_1a24266265b9d32e8991d1ac053dbc58c5" prot="public" virt="non-virtual"><scope>kukadu::Gnuplot</scope><name>set_zautoscale</name></member>
+      <member refid="classkukadu_1_1Gnuplot_1a439a74f49c171b12df1a941a39b3e8c1" prot="public" virt="non-virtual"><scope>kukadu::Gnuplot</scope><name>set_zlabel</name></member>
+      <member refid="classkukadu_1_1Gnuplot_1aaeecd89ae7aabf9fb304f60965198588" prot="public" virt="non-virtual"><scope>kukadu::Gnuplot</scope><name>set_zlogscale</name></member>
+      <member refid="classkukadu_1_1Gnuplot_1a719ea05d40c1cdd23f6844a494064720" prot="public" virt="non-virtual"><scope>kukadu::Gnuplot</scope><name>set_zrange</name></member>
+      <member refid="classkukadu_1_1Gnuplot_1a88c750479a441fe5e0113e7f795d6f42" prot="public" virt="non-virtual"><scope>kukadu::Gnuplot</scope><name>showonscreen</name></member>
+      <member refid="classkukadu_1_1Gnuplot_1ab131f1eb3587dfb0e226dbe9e3bdd6ba" prot="private" virt="non-virtual"><scope>kukadu::Gnuplot</scope><name>smooth</name></member>
+      <member refid="classkukadu_1_1Gnuplot_1a37872f04450a2d02ab61fee4b5062150" prot="private" virt="non-virtual"><scope>kukadu::Gnuplot</scope><name>terminal_std</name></member>
+      <member refid="classkukadu_1_1Gnuplot_1a5d0495fb046c3b036a2309c65c259ab1" prot="private" virt="non-virtual"><scope>kukadu::Gnuplot</scope><name>tmpfile_list</name></member>
+      <member refid="classkukadu_1_1Gnuplot_1a0cdb1efc94cd517fd7a8b5240dc53d59" prot="private" virt="non-virtual"><scope>kukadu::Gnuplot</scope><name>tmpfile_num</name></member>
+      <member refid="classkukadu_1_1Gnuplot_1ae6b3a8602f79e601c3d9f144aad40166" prot="private" virt="non-virtual"><scope>kukadu::Gnuplot</scope><name>two_dim</name></member>
+      <member refid="classkukadu_1_1Gnuplot_1a6fe8c0d459872698c3531c50cf57be88" prot="public" virt="non-virtual"><scope>kukadu::Gnuplot</scope><name>unset_contour</name></member>
+      <member refid="classkukadu_1_1Gnuplot_1a58316e0929ce39f1a50aefd528ba835e" prot="public" virt="non-virtual"><scope>kukadu::Gnuplot</scope><name>unset_grid</name></member>
+      <member refid="classkukadu_1_1Gnuplot_1a4e93a0f9c069b953a70502765d31dc1e" prot="public" virt="non-virtual"><scope>kukadu::Gnuplot</scope><name>unset_hidden3d</name></member>
+      <member refid="classkukadu_1_1Gnuplot_1a5c8dab8e316a7d9b316d45f715ff0859" prot="public" virt="non-virtual"><scope>kukadu::Gnuplot</scope><name>unset_legend</name></member>
+      <member refid="classkukadu_1_1Gnuplot_1a91600bc5fa98295f48440bb211ba89db" prot="public" virt="non-virtual"><scope>kukadu::Gnuplot</scope><name>unset_multiplot</name></member>
+      <member refid="classkukadu_1_1Gnuplot_1abbebd88fffd2654ff192d6222f4d8e65" prot="public" virt="non-virtual"><scope>kukadu::Gnuplot</scope><name>unset_smooth</name></member>
+      <member refid="classkukadu_1_1Gnuplot_1a23283eaf224fede9a5a9378f678226a1" prot="public" virt="non-virtual"><scope>kukadu::Gnuplot</scope><name>unset_surface</name></member>
+      <member refid="classkukadu_1_1Gnuplot_1a5fc9e87f3c624fbff79a960c66a16bd1" prot="public" virt="non-virtual"><scope>kukadu::Gnuplot</scope><name>unset_title</name></member>
+      <member refid="classkukadu_1_1Gnuplot_1a8d4ff3b840757c7d7e248aa2932dfd9e" prot="public" virt="non-virtual"><scope>kukadu::Gnuplot</scope><name>unset_xlogscale</name></member>
+      <member refid="classkukadu_1_1Gnuplot_1ab4faf2a5d5572733967ef00b03937a98" prot="public" virt="non-virtual"><scope>kukadu::Gnuplot</scope><name>unset_ylogscale</name></member>
+      <member refid="classkukadu_1_1Gnuplot_1a2bccf59dc2f3dc853d45e6f0ebbc33e2" prot="public" virt="non-virtual"><scope>kukadu::Gnuplot</scope><name>unset_zlogscale</name></member>
+      <member refid="classkukadu_1_1Gnuplot_1aa9fc28504102c8c1e5c625ab82257339" prot="private" virt="non-virtual"><scope>kukadu::Gnuplot</scope><name>valid</name></member>
+      <member refid="classkukadu_1_1Gnuplot_1a512e0f34eacae8a6a819b0b74fab029b" prot="public" virt="non-virtual"><scope>kukadu::Gnuplot</scope><name>~Gnuplot</name></member>
+    </listofallmembers>
+  </compounddef>
+</doxygen>
