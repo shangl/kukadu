@@ -13,6 +13,8 @@ else()
     add_definitions(-DVISUALIZATION=0)
 endif()
 
+#add_definitions(-Weffc++)
+
 find_package(cmake_modules REQUIRED)
 
 find_package(catkin REQUIRED COMPONENTS

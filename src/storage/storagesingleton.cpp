@@ -307,7 +307,7 @@ namespace kukadu {
 
             auto stmt = con->createStatement();
             for(auto& sql : statements)
-                try { stmt->execute(sql); }
+                try { stmt->execute(sql); cout << sql << endl; }
                 catch(sql::SQLException& ex) { lastEx = string(ex.what()); }
                 catch(std::exception& ex) { cerr << ex.what() << endl; }
             delete stmt;
@@ -358,12 +358,12 @@ namespace kukadu {
 
     KUKADU_SHARED_PTR<sql::ResultSet> StorageSingleton::executeQuery(std::string sql) {
 
-cout << "locking mutex" << endl;
         connectionMutex.lock();
-cout << "mutex locked" << endl;
+
             auto stmt = con->createStatement();
             KUKADU_SHARED_PTR<sql::ResultSet> retSet;
             try {
+
                 retSet = KUKADU_SHARED_PTR<sql::ResultSet>(stmt->executeQuery(sql));
             } catch(std::exception& ex) {
                 delete stmt;
@@ -375,7 +375,7 @@ cout << "mutex locked" << endl;
             delete stmt;
 
         connectionMutex.unlock();
-cout << "unlocking mutex" << endl;
+
         return retSet;
 
     }

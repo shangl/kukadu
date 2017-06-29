@@ -5,7 +5,7 @@
 %%For: 
 %Magnification: 1.00
 %%Orientation: Portrait
-%%BoundingBox: 0 0 500 102.564103
+%%BoundingBox: 0 0 500 131.868132
 %%Pages: 0
 %%BeginSetup
 %%EndSetup
@@ -19,12 +19,12 @@
 /marginwidth 10 def
 /distx 20 def
 /disty 40 def
-/boundaspect 4.875000 def  % aspect ratio of the BoundingBox (width/height)
+/boundaspect 3.791667 def  % aspect ratio of the BoundingBox (width/height)
 /boundx 500 def
 /boundy boundx boundaspect div def
 /xspacing 0 def
 /yspacing 0 def
-/rows 7 def
+/rows 9 def
 /cols 7 def
 /scalefactor 0 def
 /boxfont /Times-Roman findfont fontheight scalefont def
@@ -179,9 +179,11 @@ boxfont setfont
 (kukadu::GenericHand) cw
 (kukadu::ModuleUsageSingleton) cw
 (kukadu::SensorStorage) cw
+(kukadu::CartesianPtp) cw
 (kukadu::ComplexController) cw
 (kukadu::ConcatController) cw
 (kukadu::ControllerActionClip) cw
+(kukadu::JointPtp) cw
 (kukadu::SensingController) cw
 (kukadu::TrajectoryExecutor) cw
 (kukadu::KukieControlQueue) cw
@@ -199,45 +201,51 @@ boundx scalefactor div boundy scalefactor div scale
 
 % ----- classes -----
 
- (kukadu::TimedObject) 4.000000 6.000000 box
- (kukadu::Controller) 0.000000 5.000000 box
- (kukadu::ControlQueue) 2.000000 5.000000 box
- (kukadu::GenericHand) 4.000000 5.000000 box
- (kukadu::ModuleUsageSingleton) 5.000000 5.000000 box
- (kukadu::SensorStorage) 6.000000 5.000000 box
- (kukadu::ComplexController) 1.000000 4.000000 box
- (kukadu::ConcatController) 1.000000 3.000000 box
- (kukadu::ControllerActionClip) 1.000000 2.000000 box
+ (kukadu::TimedObject) 4.000000 8.000000 box
+ (kukadu::Controller) 0.000000 7.000000 box
+ (kukadu::ControlQueue) 2.000000 7.000000 box
+ (kukadu::GenericHand) 4.000000 7.000000 box
+ (kukadu::ModuleUsageSingleton) 5.000000 7.000000 box
+ (kukadu::SensorStorage) 6.000000 7.000000 box
+ (kukadu::CartesianPtp) 1.000000 6.000000 box
+ (kukadu::ComplexController) 1.000000 5.000000 box
+ (kukadu::ConcatController) 1.000000 4.000000 box
+ (kukadu::ControllerActionClip) 1.000000 3.000000 box
+ (kukadu::JointPtp) 1.000000 2.000000 box
  (kukadu::SensingController) 1.000000 1.000000 box
  (kukadu::TrajectoryExecutor) 1.000000 0.000000 box
 1.000000 0.000000 mark
- (kukadu::KukieControlQueue) 3.000000 4.000000 box
- (kukadu::PlottingControlQueue) 3.000000 3.000000 box
- (kukadu::KukieHand) 5.000000 4.000000 box
- (kukadu::PlottingHand) 5.000000 3.000000 box
+ (kukadu::KukieControlQueue) 3.000000 6.000000 box
+ (kukadu::PlottingControlQueue) 3.000000 5.000000 box
+ (kukadu::KukieHand) 5.000000 6.000000 box
+ (kukadu::PlottingHand) 5.000000 5.000000 box
 
 % ----- relations -----
 
 solid
-1 4.000000 5.250000 out
+1 4.000000 7.250000 out
 solid
-0.000000 6.000000 6.000000 conn
+0.000000 6.000000 8.000000 conn
 dotted
-0 0.000000 5.750000 in
+0 0.000000 7.750000 in
 solid
-1 0.000000 4.250000 out
+1 0.000000 6.250000 out
 solid
-0 2.000000 5.750000 in
+0 2.000000 7.750000 in
 solid
-1 2.000000 4.250000 out
+1 2.000000 6.250000 out
 solid
-0 4.000000 5.750000 in
+0 4.000000 7.750000 in
 solid
-1 4.000000 4.250000 out
+1 4.000000 6.250000 out
 dotted
-0 5.000000 5.750000 in
+0 5.000000 7.750000 in
 solid
-0 6.000000 5.750000 in
+0 6.000000 7.750000 in
+solid
+0 0.000000 6.500000 hedge
+solid
+0 0.000000 5.500000 hedge
 solid
 0 0.000000 4.500000 hedge
 solid
@@ -249,16 +257,16 @@ solid
 solid
 0 0.000000 0.500000 hedge
 solid
-0.000000 5.000000 0.500000 vedge
+0.000000 7.000000 0.500000 vedge
 solid
-0 2.000000 4.500000 hedge
+0 2.000000 6.500000 hedge
 solid
-0 2.000000 3.500000 hedge
+0 2.000000 5.500000 hedge
 solid
-2.000000 5.000000 3.500000 vedge
+2.000000 7.000000 5.500000 vedge
 solid
-0 4.000000 4.500000 hedge
+0 4.000000 6.500000 hedge
 solid
-0 4.000000 3.500000 hedge
+0 4.000000 5.500000 hedge
 solid
-4.000000 5.000000 3.500000 vedge
+4.000000 7.000000 5.500000 vedge

@@ -121,6 +121,9 @@ Inheritance diagram for kukadu::KukieControlQueue:</div>
 <table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pub-methods"></a>
 Public Member Functions</h2></td></tr>
+<tr class="memitem:a9f89f061f2b8f95f8e289aa2173686b4"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a9f89f061f2b8f95f8e289aa2173686b4"></a>
+&#160;</td><td class="memItemRight" valign="bottom"><b>KukieControlQueue</b> (<a class="el" href="classkukadu_1_1StorageSingleton.html">StorageSingleton</a> &amp;storage, std::string hardwareName, bool simulation)</td></tr>
+<tr class="separator:a9f89f061f2b8f95f8e289aa2173686b4"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a73e6eef8ab4943e4c458a28e4b2fae8d"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a73e6eef8ab4943e4c458a28e4b2fae8d"></a>
 &#160;</td><td class="memItemRight" valign="bottom"><b>KukieControlQueue</b> (<a class="el" href="classkukadu_1_1StorageSingleton.html">StorageSingleton</a> &amp;storage, std::string robotName, std::string deviceType, std::string armPrefix, ros::NodeHandle node, bool acceptCollisions=false, KUKADU_SHARED_PTR&lt; <a class="el" href="classkukadu_1_1Kinematics.html">Kinematics</a> &gt; kin=KUKADU_SHARED_PTR&lt; <a class="el" href="classkukadu_1_1Kinematics.html">Kinematics</a> &gt;(), KUKADU_SHARED_PTR&lt; <a class="el" href="classkukadu_1_1PathPlanner.html">PathPlanner</a> &gt; planner=KUKADU_SHARED_PTR&lt; <a class="el" href="classkukadu_1_1PathPlanner.html">PathPlanner</a> &gt;(), double sleepTime=-1.0, double maxDistPerCycle=-1.0)</td></tr>
 <tr class="separator:a73e6eef8ab4943e4c458a28e4b2fae8d"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -309,12 +312,6 @@ std::vector&lt; int &gt;&#160;</td><td class="memItemRight" valign="bottom"><b>g
 <tr class="memitem:a0b4d383e644b9f96bcd820ce5de4ede0 inherit pub_methods_classkukadu_1_1ControlQueue"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a0b4d383e644b9f96bcd820ce5de4ede0"></a>
 std::vector&lt; int &gt;&#160;</td><td class="memItemRight" valign="bottom"><b>getJointIds</b> (std::vector&lt; std::string &gt; jointNames)</td></tr>
 <tr class="separator:a0b4d383e644b9f96bcd820ce5de4ede0 inherit pub_methods_classkukadu_1_1ControlQueue"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a268ab9493f8825784c4765002990fef1 inherit pub_methods_classkukadu_1_1ControlQueue"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a268ab9493f8825784c4765002990fef1"></a>
-virtual void&#160;</td><td class="memItemRight" valign="bottom"><b>installHardwareTypeInternal</b> ()</td></tr>
-<tr class="separator:a268ab9493f8825784c4765002990fef1 inherit pub_methods_classkukadu_1_1ControlQueue"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ab8c2ae10f57d7589c96006ae881f449e inherit pub_methods_classkukadu_1_1ControlQueue"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="ab8c2ae10f57d7589c96006ae881f449e"></a>
-virtual void&#160;</td><td class="memItemRight" valign="bottom"><b>installHardwareInstanceInternal</b> ()</td></tr>
-<tr class="separator:ab8c2ae10f57d7589c96006ae881f449e inherit pub_methods_classkukadu_1_1ControlQueue"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a53eb51dd1ae778d7a449ae0b6752305e inherit pub_methods_classkukadu_1_1ControlQueue"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a53eb51dd1ae778d7a449ae0b6752305e"></a>
 virtual void&#160;</td><td class="memItemRight" valign="bottom"><b>storeCurrentSensorDataToDatabase</b> ()</td></tr>
 <tr class="separator:a53eb51dd1ae778d7a449ae0b6752305e inherit pub_methods_classkukadu_1_1ControlQueue"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -444,6 +441,12 @@ virtual void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" hr
 <tr class="memdesc:abb6d8763fada53c6583b2a1ef58274ed"><td class="mdescLeft">&#160;</td><td class="mdescRight">This method determines, if the queue execetion should be stopped while ptp commands are executed (this is typically the case when ptp is done outside of the control queue implementation). If two different controls interfere it can result in dangerous behaviour.  <a href="#abb6d8763fada53c6583b2a1ef58274ed">More...</a><br /></td></tr>
 <tr class="separator:abb6d8763fada53c6583b2a1ef58274ed"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="inherit_header pro_methods_classkukadu_1_1ControlQueue"><td colspan="2" onclick="javascript:toggleInherit('pro_methods_classkukadu_1_1ControlQueue')"><img src="closed.png" alt="-"/>&#160;Protected Member Functions inherited from <a class="el" href="classkukadu_1_1ControlQueue.html">kukadu::ControlQueue</a></td></tr>
+<tr class="memitem:a268ab9493f8825784c4765002990fef1 inherit pro_methods_classkukadu_1_1ControlQueue"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a268ab9493f8825784c4765002990fef1"></a>
+virtual void&#160;</td><td class="memItemRight" valign="bottom"><b>installHardwareTypeInternal</b> ()</td></tr>
+<tr class="separator:a268ab9493f8825784c4765002990fef1 inherit pro_methods_classkukadu_1_1ControlQueue"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ab8c2ae10f57d7589c96006ae881f449e inherit pro_methods_classkukadu_1_1ControlQueue"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="ab8c2ae10f57d7589c96006ae881f449e"></a>
+virtual void&#160;</td><td class="memItemRight" valign="bottom"><b>installHardwareInstanceInternal</b> ()</td></tr>
+<tr class="separator:ab8c2ae10f57d7589c96006ae881f449e inherit pro_methods_classkukadu_1_1ControlQueue"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ac38a2bac4927cf5d424e735af703f199 inherit pro_methods_classkukadu_1_1ControlQueue"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="ac38a2bac4927cf5d424e735af703f199"></a>
 virtual void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classkukadu_1_1ControlQueue.html#ac38a2bac4927cf5d424e735af703f199">setDegOfFreedom</a> (int degOfFreedom)</td></tr>
 <tr class="memdesc:ac38a2bac4927cf5d424e735af703f199 inherit pro_methods_classkukadu_1_1ControlQueue"><td class="mdescLeft">&#160;</td><td class="mdescRight">Can be used to set the number of degrees of freedom. <br /></td></tr>
@@ -898,7 +901,7 @@ int&#160;</td><td class="memItemRight" valign="bottom"><b>currentControlType</b>
 </div><!-- contents -->
 <!-- start footer part -->
 <hr class="footer"/><address class="footer"><small>
-Generated on Tue Jun 20 2017 15:47:29 for kukadu by &#160;<a href="http://www.doxygen.org/index.html">
+Generated on Wed Jun 28 2017 11:39:34 for kukadu by &#160;<a href="http://www.doxygen.org/index.html">
 <img class="footer" src="doxygen.png" alt="doxygen"/>
 </a> 1.8.11
 </small></address>

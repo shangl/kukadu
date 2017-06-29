@@ -5,6 +5,7 @@ var searchData=
   ['cameracalibrator',['CameraCalibrator',['../classkukadu_1_1CameraCalibrator.html',1,'kukadu']]],
   ['cartesiandmp',['CartesianDMP',['../classkukadu_1_1CartesianDMP.html',1,'kukadu']]],
   ['cartesiandmplearner',['CartesianDMPLearner',['../classkukadu_1_1CartesianDMPLearner.html',1,'kukadu']]],
+  ['cartesianptp',['CartesianPtp',['../classkukadu_1_1CartesianPtp.html',1,'kukadu']]],
   ['classifier',['Classifier',['../classkukadu_1_1Classifier.html',1,'kukadu']]],
   ['clip',['Clip',['../classkukadu_1_1Clip.html',1,'kukadu']]],
   ['clip_5fcompare',['clip_compare',['../structkukadu_1_1clip__compare.html',1,'kukadu']]],
