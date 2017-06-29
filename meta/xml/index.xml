@@ -632,6 +632,8 @@
     <member refid="classkukadu_1_1ControlQueue_1a970d47c760758782d07e5e5f55469ead" kind="function"><name>internalJointPtpCaller</name></member>
     <member refid="classkukadu_1_1ControlQueue_1a15edefd75b411cc2c0d286e21b75fc2e" kind="function"><name>jointsCollector</name></member>
     <member refid="classkukadu_1_1ControlQueue_1a07b7070ab29a985dd7d7f41b1e20335d" kind="function"><name>run</name></member>
+    <member refid="classkukadu_1_1ControlQueue_1a268ab9493f8825784c4765002990fef1" kind="function"><name>installHardwareTypeInternal</name></member>
+    <member refid="classkukadu_1_1ControlQueue_1ab8c2ae10f57d7589c96006ae881f449e" kind="function"><name>installHardwareInstanceInternal</name></member>
     <member refid="classkukadu_1_1ControlQueue_1ac38a2bac4927cf5d424e735af703f199" kind="function"><name>setDegOfFreedom</name></member>
     <member refid="classkukadu_1_1ControlQueue_1a743fbc08007b777393a6f14d66ed2e8a" kind="function"><name>setInitValues</name></member>
     <member refid="classkukadu_1_1ControlQueue_1a89a7b21307ccd0759a9e8b8e483cb919" kind="function"><name>jointPtpInternal</name></member>
@@ -642,9 +644,9 @@
     <member refid="classkukadu_1_1ControlQueue_1a87d7c2d918d0ca720eeae609959d4d78" kind="function"><name>startQueueHook</name></member>
     <member refid="classkukadu_1_1ControlQueue_1a6ebb66d1bd2188e1fca3ee1440b8c0fe" kind="function"><name>stopQueueWhilePtp</name></member>
     <member refid="classkukadu_1_1ControlQueue_1a3b67b32a4724ad089741b51377c98054" kind="function"><name>loadDegOfFreedom</name></member>
+    <member refid="classkukadu_1_1ControlQueue_1a3c069761e17f3917575129c4fae803d9" kind="function"><name>ControlQueue</name></member>
     <member refid="classkukadu_1_1ControlQueue_1ae9c6ce0ac682b36829f892d8c3e44977" kind="function"><name>ControlQueue</name></member>
     <member refid="classkukadu_1_1ControlQueue_1a90e78528f686215996715d225c6c4804" kind="function"><name>getQueueSize</name></member>
-    <member refid="classkukadu_1_1ControlQueue_1a809f7cfd97038949139e3b13218738ad" kind="function"><name>getDegreesOfFreedom</name></member>
     <member refid="classkukadu_1_1ControlQueue_1a5245ff31c7dea26070743d1f6560801c" kind="function"><name>setCycleTime</name></member>
     <member refid="classkukadu_1_1ControlQueue_1a35d6a6e4e7c8467691c11567fe21f340" kind="function"><name>startQueue</name></member>
     <member refid="classkukadu_1_1ControlQueue_1a82349f67c4ea6f2dc2689e765717d8e2" kind="function"><name>getCycleTime</name></member>
@@ -691,8 +693,6 @@
     <member refid="classkukadu_1_1ControlQueue_1aff80ecc4803860d32864dad5cc137cf0" kind="function"><name>getJointId</name></member>
     <member refid="classkukadu_1_1ControlQueue_1a28d0f8cf6fe5f330eef5900c7c66d45c" kind="function"><name>getJointIds</name></member>
     <member refid="classkukadu_1_1ControlQueue_1a0b4d383e644b9f96bcd820ce5de4ede0" kind="function"><name>getJointIds</name></member>
-    <member refid="classkukadu_1_1ControlQueue_1a268ab9493f8825784c4765002990fef1" kind="function"><name>installHardwareTypeInternal</name></member>
-    <member refid="classkukadu_1_1ControlQueue_1ab8c2ae10f57d7589c96006ae881f449e" kind="function"><name>installHardwareInstanceInternal</name></member>
     <member refid="classkukadu_1_1ControlQueue_1a53eb51dd1ae778d7a449ae0b6752305e" kind="function"><name>storeCurrentSensorDataToDatabase</name></member>
     <member refid="classkukadu_1_1ControlQueue_1a989bba841246f198e64176d2adad8127" kind="function"><name>getPreferredPollingFrequency</name></member>
     <member refid="classkukadu_1_1ControlQueue_1a9bab2ac4a6a35f7ee728a8e126e2689c" kind="function"><name>loadData</name></member>
@@ -1320,6 +1320,16 @@
     <member refid="classkukadu_1_1Hardware_1abfeecedf0a480422ea9d47da4f228c7b" kind="function"><name>loadOrCreateInstanceIdFromName</name></member>
     <member refid="classkukadu_1_1Hardware_1a58f76f5117554f7f2613cdb082addf22" kind="function"><name>loadTypeNameFromInstanceName</name></member>
   </compound>
+  <compound refid="classkukadu_1_1HardwareFactory" kind="class"><name>kukadu::HardwareFactory</name>
+    <member refid="classkukadu_1_1HardwareFactory_1a2970f4e0e7d328b4ae05962ea06726bc" kind="variable"><name>storage</name></member>
+    <member refid="classkukadu_1_1HardwareFactory_1a589a022940de60126024ce902e08bc52" kind="variable"><name>createdHardware</name></member>
+    <member refid="classkukadu_1_1HardwareFactory_1a551bedd0793d9793f4de3960d84b1832" kind="variable"><name>hardwareFactories</name></member>
+    <member refid="classkukadu_1_1HardwareFactory_1a6c29689149eef2cb78be964d4a80d7c5" kind="function"><name>HardwareFactory</name></member>
+    <member refid="classkukadu_1_1HardwareFactory_1ade5c3a1a91030aa4b1ae470131d2d554" kind="function"><name>get</name></member>
+    <member refid="classkukadu_1_1HardwareFactory_1a8d1439f94adc8f7014e67a5f444a99d2" kind="function"><name>loadHardware</name></member>
+    <member refid="classkukadu_1_1HardwareFactory_1a47484c5add39e17755cdfb4945238108" kind="function"><name>listAvailableHardware</name></member>
+    <member refid="classkukadu_1_1HardwareFactory_1ab9fae8be0870e1f03ef2cb66b69c2158" kind="function"><name>hardwareExists</name></member>
+  </compound>
   <compound refid="classkukadu_1_1InfTheoConstraints" kind="class"><name>kukadu::InfTheoConstraints</name>
     <member refid="classkukadu_1_1InfTheoConstraints_1aaf255dd0b67bf5552b926a368f95cae7" kind="variable"><name>x1s</name></member>
     <member refid="classkukadu_1_1InfTheoConstraints_1af18fbac314068ffc8c47b0502df0c5c1" kind="variable"><name>x2s</name></member>
@@ -1586,6 +1596,7 @@
     <member refid="classkukadu_1_1KukieControlQueue_1a88be03b7db8a646d8b8228ad208a1274" kind="variable"><name>firstMaxDistPerCycleReceived</name></member>
     <member refid="classkukadu_1_1KukieControlQueue_1a301c1b85c32a11486650900377f45507" kind="variable"><name>impMode</name></member>
     <member refid="classkukadu_1_1KukieControlQueue_1a7089a1c53909da28b78b15c4f7f839cc" kind="variable"><name>cartesianPtpReached</name></member>
+    <member refid="classkukadu_1_1KukieControlQueue_1a0ed85582c2f0957905e1bd39385b5803" kind="variable"><name>degFreedom</name></member>
     <member refid="classkukadu_1_1KukieControlQueue_1ad8defcdfa924e98b377e10d56b092fee" kind="variable"><name>ptpReached</name></member>
     <member refid="classkukadu_1_1KukieControlQueue_1a9052c63b7c66c129bd40a56444aafb9a" kind="variable"><name>isRealRobot</name></member>
     <member refid="classkukadu_1_1KukieControlQueue_1ac33eef4809f132624a7e532dd9223ce5" kind="variable"><name>acceptCollisions</name></member>
@@ -1659,6 +1670,7 @@
     <member refid="classkukadu_1_1KukieControlQueue_1a074a69b7801bf71d3008187f0455c2f7" kind="variable"><name>KUKA_STD_AXISMAXDELTATRQ</name></member>
     <member refid="classkukadu_1_1KukieControlQueue_1a46e1e54d3a7251362a0eed1c0c8dd351" kind="function"><name>degCallback</name></member>
     <member refid="classkukadu_1_1KukieControlQueue_1aa74212e7965f225334d3839b1eebba65" kind="function"><name>loadDegOfFreedom</name></member>
+    <member refid="classkukadu_1_1KukieControlQueue_1a3f62010ff8caab981b7e361c266c6f6b" kind="function"><name>loadDbInfo</name></member>
     <member refid="classkukadu_1_1KukieControlQueue_1aa2ea2356437c292a8c8b2560267d1181" kind="function"><name>cartPosRfCallback</name></member>
     <member refid="classkukadu_1_1KukieControlQueue_1a634ff36f7455cf4bf3d05fe9d3620a3f" kind="function"><name>cartFrcTrqCallback</name></member>
     <member refid="classkukadu_1_1KukieControlQueue_1a0dbc4612daa55a29bc88064196ce1ebc" kind="function"><name>jntMoveCallback</name></member>
@@ -1682,8 +1694,10 @@
     <member refid="classkukadu_1_1KukieControlQueue_1a7976aea7ef93fe9c96d017309e11e2c1" kind="function"><name>submitNextCartMove</name></member>
     <member refid="classkukadu_1_1KukieControlQueue_1ade8c63d5fad6dedbbd89b1f1a8915191" kind="function"><name>setCurrentControlTypeInternal</name></member>
     <member refid="classkukadu_1_1KukieControlQueue_1abb6d8763fada53c6583b2a1ef58274ed" kind="function"><name>stopQueueWhilePtp</name></member>
-    <member refid="classkukadu_1_1KukieControlQueue_1a73e6eef8ab4943e4c458a28e4b2fae8d" kind="function"><name>KukieControlQueue</name></member>
+    <member refid="classkukadu_1_1KukieControlQueue_1a9f89f061f2b8f95f8e289aa2173686b4" kind="function"><name>KukieControlQueue</name></member>
+    <member refid="classkukadu_1_1KukieControlQueue_1a0b7af9ba3f4ea49bd71372baafe2224c" kind="function"><name>KukieControlQueue</name></member>
     <member refid="classkukadu_1_1KukieControlQueue_1a39da1e622d39d7870c9d0e802d5afa4b" kind="function"><name>safelyDestroy</name></member>
+    <member refid="classkukadu_1_1KukieControlQueue_1ad3f9dc447a06533dc04242e8c1c692b1" kind="function"><name>getDegreesOfFreedom</name></member>
     <member refid="classkukadu_1_1KukieControlQueue_1a0e8516eeb18eabfe472ef2552adb5855" kind="function"><name>setKinematics</name></member>
     <member refid="classkukadu_1_1KukieControlQueue_1ae4fed3b50bbe1ea52be8ee5b0c327462" kind="function"><name>setPathPlanner</name></member>
     <member refid="classkukadu_1_1KukieControlQueue_1ac6653c3a050bb338702294776b4a8065" kind="function"><name>setJntPtpThresh</name></member>
@@ -3158,6 +3172,8 @@
   </compound>
   <compound refid="hardware_8hpp" kind="file"><name>hardware.hpp</name>
   </compound>
+  <compound refid="hardwarefactory_8hpp" kind="file"><name>hardwarefactory.hpp</name>
+  </compound>
   <compound refid="kinestheticteacher_8hpp" kind="file"><name>kinestheticteacher.hpp</name>
   </compound>
   <compound refid="kinestheticteaching_8hpp" kind="file"><name>kinestheticteaching.hpp</name>
@@ -3316,6 +3332,8 @@
   <compound refid="hand_8cpp" kind="file"><name>hand.cpp</name>
   </compound>
   <compound refid="hardware_8cpp" kind="file"><name>hardware.cpp</name>
+  </compound>
+  <compound refid="hardwarefactory_8cpp" kind="file"><name>hardwarefactory.cpp</name>
   </compound>
   <compound refid="kinestheticteaching_8cpp" kind="file"><name>kinestheticteaching.cpp</name>
   </compound>
