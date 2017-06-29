@@ -8,5 +8,6 @@
     #include <kukadu/robot/kukiequeue.hpp>
     #include <kukadu/robot/calibration.hpp>
     #include <kukadu/robot/autocompfilter.hpp>
+    #include <kukadu/robot/hardwarefactory.hpp>
     #include <kukadu/robot/kinestheticteacher.hpp>
 #endif

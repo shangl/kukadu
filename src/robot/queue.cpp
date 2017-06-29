@@ -216,6 +216,29 @@ namespace kukadu {
 
     }
 
+    ControlQueue::ControlQueue(StorageSingleton& storage, std::string robotName) :
+        JointHardware(storage, HARDWARE_ARM, loadTypeIdFromName("ControlQueue"), "ControlQueue", loadInstanceIdFromName(robotName), robotName) {
+
+        // load cycle time and degrees of freedom
+
+        thr = nullptr;
+        frcTrqFilterUpdateThr = nullptr;
+        cartPtpThr = nullptr;
+        jointPtpThr = nullptr;
+        jointsColletorThr = nullptr;
+
+        this->robotName = robotName;
+        this->sleepTime = desiredCycleTime;
+
+        jointPtpRunning = false;
+        cartesianPtpRunning = false;
+        frcTrqFilterRunning = true;
+        currentTime = getCurrentTime();
+        continueCollecting = false;
+        currentFrcTrqSensorFilter = make_shared<StandardFilter>();
+
+    }
+
     ControlQueue::ControlQueue(StorageSingleton& storage, std::string robotName, int degreesOfFreedom, double desiredCycleTime) :
         JointHardware(storage, HARDWARE_ARM, loadOrCreateTypeIdFromName("ControlQueue"), "ControlQueue", loadOrCreateInstanceIdFromName(robotName), robotName) {
 
@@ -254,10 +277,6 @@ namespace kukadu {
 
     void ControlQueue::setDegOfFreedom(int degOfFreedom) {
         this->degOfFreedom = degOfFreedom;
-    }
-
-    int ControlQueue::getDegreesOfFreedom() {
-        return degOfFreedom;
     }
 
     void ControlQueue::setCycleTime(double cycleTime) {
@@ -758,6 +777,106 @@ namespace kukadu {
         }
     }
 
+    std::tuple<int, double, std::string> KukieControlQueue::loadDbInfo(std::string hardwareName) {
+
+        stringstream s;
+        s << "select deg_of_freedom, frequency, arm_prefix from kukie_hardware as kh inner join hardware_instances as hi on " <<
+             "hi.instance_id = kh.hardware_instance_id where instance_name = " << hardwareName;
+        auto result = getStorage().executeQuery(s.str());
+
+        int degOfFreedom;
+        double frequency;
+        string armPrefix;
+        if(result->next()) {
+            degOfFreedom = result->getInt("deg_of_freedom");
+            frequency = result->getDouble("frequency");
+            armPrefix = result->getString("arm_prefix");
+        } else
+            throw KukaduException("Cannot create KukieQueue from database. It first has to be installed.");
+
+        return std::tuple<int, double, std::string>(degOfFreedom, frequency, armPrefix);
+
+    }
+
+    KukieControlQueue::KukieControlQueue(StorageSingleton& storage, std::string hardwareName, bool simulation) :
+        ControlQueue(storage, "kukie_" + get<2>(loadDbInfo(hardwareName)), get<0>(loadDbInfo(hardwareName)), get<1>(loadDbInfo(hardwareName))) {
+
+        deviceType = (simulation) ? "simulation" : "real";
+        armPrefix = get<2>(loadDbInfo(hardwareName));
+
+        double sleepTime = 1.0 / get<1>(loadDbInfo(hardwareName));
+
+        retJointPosTopic = deviceType + "/" + armPrefix + "/joint_control/get_state";
+
+cout << retJointPosTopic << endl;
+
+        commandTopic = deviceType + "/" + armPrefix + "/joint_control/move";
+        switchModeTopic = deviceType + "/" + armPrefix + "/settings/switch_mode";
+        retCartPosTopic = deviceType + "/" + armPrefix + "/cartesian_control/get_pose_quat_wf";
+        stiffnessTopic = deviceType + "/" + armPrefix + "/cartesian_control/set_impedance";
+        jntStiffnessTopic = deviceType + "/" + armPrefix + "/joint_control/set_impedance";
+        ptpTopic = deviceType + "/" + armPrefix + "/joint_control/ptp";
+        commandStateTopic = deviceType + "/" + armPrefix + "/settings/get_command_state";
+        ptpReachedTopic = deviceType + "/" + armPrefix + "/joint_control/ptp_reached";
+        jntFrcTrqTopic = deviceType + "/" + armPrefix + "/sensoring/est_ext_jnt_trq";
+        cartFrcTrqTopic = deviceType + "/" + armPrefix + "/sensoring/cartesian_wrench";
+        cartPtpTopic = deviceType + "/" + armPrefix + "/cartesian_control/ptpQuaternion";
+        cartPtpReachedTopic = deviceType + "/" + armPrefix + "/cartesian_control/ptp_reached";
+        cartMoveRfQueueTopic = deviceType + "/" + armPrefix + "/cartesian_control/move_rf";
+        cartMoveWfQueueTopic = deviceType + "/" + armPrefix + "/cartesian_control/move_wf";
+        cartPoseRfTopic = deviceType + "/" + armPrefix + "/cartesian_control/get_pose_quat_rf";
+        jntSetPtpThreshTopic = deviceType + "/" + armPrefix + "/joint_control/set_ptp_thresh";
+        clockCycleTopic = deviceType + "/" + armPrefix + "/settings/get_clock_cycle";
+        maxDistPerCycleTopic = deviceType + "/" + armPrefix + "/joint_control/get_max_dist_per_cycle";
+        addLoadTopic = "not supported yet";
+
+        constructQueue(commandTopic, retJointPosTopic, switchModeTopic, retCartPosTopic, stiffnessTopic,
+                       jntStiffnessTopic, ptpTopic, commandStateTopic, ptpReachedTopic, addLoadTopic, jntFrcTrqTopic, cartFrcTrqTopic,
+                       cartPtpTopic, cartPtpReachedTopic, cartMoveRfQueueTopic, cartMoveWfQueueTopic, cartPoseRfTopic, jntSetPtpThreshTopic,
+                       clockCycleTopic, maxDistPerCycleTopic,
+                       acceptCollisions, node,
+                       kin, planner,
+                       sleepTime, maxDistPerCycle);
+
+    }
+
+    KukieControlQueue::KukieControlQueue(StorageSingleton& storage, std::string deviceType, std::string armPrefix, ros::NodeHandle node, bool acceptCollisions, KUKADU_SHARED_PTR<Kinematics> kin, KUKADU_SHARED_PTR<PathPlanner> planner, double sleepTime, double maxDistPerCycle) :
+        ControlQueue(storage, "kukie_" + armPrefix, loadDegOfFreedom(node, "/" + deviceType + "/" + armPrefix + "/joint_control/get_state"), sleepTime) {
+
+        retJointPosTopic = deviceType + "/" + armPrefix + "/joint_control/get_state";
+        commandTopic = deviceType + "/" + armPrefix + "/joint_control/move";
+        switchModeTopic = deviceType + "/" + armPrefix + "/settings/switch_mode";
+        retCartPosTopic = deviceType + "/" + armPrefix + "/cartesian_control/get_pose_quat_wf";
+        stiffnessTopic = deviceType + "/" + armPrefix + "/cartesian_control/set_impedance";
+        jntStiffnessTopic = deviceType + "/" + armPrefix + "/joint_control/set_impedance";
+        ptpTopic = deviceType + "/" + armPrefix + "/joint_control/ptp";
+        commandStateTopic = deviceType + "/" + armPrefix + "/settings/get_command_state";
+        ptpReachedTopic = deviceType + "/" + armPrefix + "/joint_control/ptp_reached";
+        jntFrcTrqTopic = deviceType + "/" + armPrefix + "/sensoring/est_ext_jnt_trq";
+        cartFrcTrqTopic = deviceType + "/" + armPrefix + "/sensoring/cartesian_wrench";
+        cartPtpTopic = deviceType + "/" + armPrefix + "/cartesian_control/ptpQuaternion";
+        cartPtpReachedTopic = deviceType + "/" + armPrefix + "/cartesian_control/ptp_reached";
+        cartMoveRfQueueTopic = deviceType + "/" + armPrefix + "/cartesian_control/move_rf";
+        cartMoveWfQueueTopic = deviceType + "/" + armPrefix + "/cartesian_control/move_wf";
+        cartPoseRfTopic = deviceType + "/" + armPrefix + "/cartesian_control/get_pose_quat_rf";
+        jntSetPtpThreshTopic = deviceType + "/" + armPrefix + "/joint_control/set_ptp_thresh";
+        clockCycleTopic = deviceType + "/" + armPrefix + "/settings/get_clock_cycle";
+        maxDistPerCycleTopic = deviceType + "/" + armPrefix + "/joint_control/get_max_dist_per_cycle";
+        addLoadTopic = "not supported yet";
+
+        this->deviceType = deviceType;
+        this->armPrefix = armPrefix;
+
+        constructQueue(commandTopic, retJointPosTopic, switchModeTopic, retCartPosTopic, stiffnessTopic,
+                       jntStiffnessTopic, ptpTopic, commandStateTopic, ptpReachedTopic, addLoadTopic, jntFrcTrqTopic, cartFrcTrqTopic,
+                       cartPtpTopic, cartPtpReachedTopic, cartMoveRfQueueTopic, cartMoveWfQueueTopic, cartPoseRfTopic, jntSetPtpThreshTopic,
+                       clockCycleTopic, maxDistPerCycleTopic,
+                       acceptCollisions, node,
+                       kin, planner,
+                       sleepTime, maxDistPerCycle);
+
+    }
+
     void KukieControlQueue::constructQueue(std::string commandTopic, std::string retPosTopic, std::string switchModeTopic, std::string retCartPosTopic,
                             std::string cartStiffnessTopic, std::string jntStiffnessTopic, std::string ptpTopic,
                             std::string commandStateTopic, std::string ptpReachedTopic, std::string addLoadTopic, std::string jntFrcTrqTopic, std::string cartFrcTrqTopic,
@@ -955,43 +1074,6 @@ namespace kukadu {
 
         while(!firstCartsComputed)
             std::this_thread::sleep_for(std::chrono::milliseconds(100));
-
-    }
-
-    KukieControlQueue::KukieControlQueue(StorageSingleton& storage, std::string robotName, std::string deviceType, std::string armPrefix, ros::NodeHandle node, bool acceptCollisions, KUKADU_SHARED_PTR<Kinematics> kin, KUKADU_SHARED_PTR<PathPlanner> planner, double sleepTime, double maxDistPerCycle) :
-        ControlQueue(storage, "kukie_" + robotName + "_" + armPrefix, loadDegOfFreedom(node, "/" + deviceType + "/" + armPrefix + "/joint_control/get_state"), sleepTime) {
-
-        retJointPosTopic = deviceType + "/" + armPrefix + "/joint_control/get_state";
-        commandTopic = deviceType + "/" + armPrefix + "/joint_control/move";
-        switchModeTopic = deviceType + "/" + armPrefix + "/settings/switch_mode";
-        retCartPosTopic = deviceType + "/" + armPrefix + "/cartesian_control/get_pose_quat_wf";
-        stiffnessTopic = deviceType + "/" + armPrefix + "/cartesian_control/set_impedance";
-        jntStiffnessTopic = deviceType + "/" + armPrefix + "/joint_control/set_impedance";
-        ptpTopic = deviceType + "/" + armPrefix + "/joint_control/ptp";
-        commandStateTopic = deviceType + "/" + armPrefix + "/settings/get_command_state";
-        ptpReachedTopic = deviceType + "/" + armPrefix + "/joint_control/ptp_reached";
-        jntFrcTrqTopic = deviceType + "/" + armPrefix + "/sensoring/est_ext_jnt_trq";
-        cartFrcTrqTopic = deviceType + "/" + armPrefix + "/sensoring/cartesian_wrench";
-        cartPtpTopic = deviceType + "/" + armPrefix + "/cartesian_control/ptpQuaternion";
-        cartPtpReachedTopic = deviceType + "/" + armPrefix + "/cartesian_control/ptp_reached";
-        cartMoveRfQueueTopic = deviceType + "/" + armPrefix + "/cartesian_control/move_rf";
-        cartMoveWfQueueTopic = deviceType + "/" + armPrefix + "/cartesian_control/move_wf";
-        cartPoseRfTopic = deviceType + "/" + armPrefix + "/cartesian_control/get_pose_quat_rf";
-        jntSetPtpThreshTopic = deviceType + "/" + armPrefix + "/joint_control/set_ptp_thresh";
-        clockCycleTopic = deviceType + "/" + armPrefix + "/settings/get_clock_cycle";
-        maxDistPerCycleTopic = deviceType + "/" + armPrefix + "/joint_control/get_max_dist_per_cycle";
-        addLoadTopic = "not supported yet";
-
-        this->deviceType = deviceType;
-        this->armPrefix = armPrefix;
-
-        constructQueue(commandTopic, retJointPosTopic, switchModeTopic, retCartPosTopic, stiffnessTopic,
-                       jntStiffnessTopic, ptpTopic, commandStateTopic, ptpReachedTopic, addLoadTopic, jntFrcTrqTopic, cartFrcTrqTopic,
-                       cartPtpTopic, cartPtpReachedTopic, cartMoveRfQueueTopic, cartMoveWfQueueTopic, cartPoseRfTopic, jntSetPtpThreshTopic,
-                       clockCycleTopic, maxDistPerCycleTopic,
-                       acceptCollisions, node,
-                       kin, planner,
-                       sleepTime, maxDistPerCycle);
 
     }
 
