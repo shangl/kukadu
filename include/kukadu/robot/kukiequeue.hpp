@@ -44,6 +44,7 @@ namespace kukadu {
 
         int impMode;
         int cartesianPtpReached;
+        int degFreedom;
 
         bool ptpReached;
         bool isRealRobot;
@@ -167,6 +168,7 @@ namespace kukadu {
                           double sleepTime = -1.0, double maxDistPerCycle = -1.0);
 
         void safelyDestroy();
+        virtual int getDegreesOfFreedom();
 
         void setKinematics(KUKADU_SHARED_PTR<Kinematics> kin);
         void setPathPlanner(KUKADU_SHARED_PTR<PathPlanner> planner);

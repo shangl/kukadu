@@ -1,4 +1,5 @@
 #include <chrono>
+#include <memory>
 #include <sstream>
 #include <ros/ros.h>
 #include <std_msgs/Int32.h>
@@ -780,17 +781,18 @@ namespace kukadu {
     std::tuple<int, double, std::string> KukieControlQueue::loadDbInfo(std::string hardwareName) {
 
         stringstream s;
-        s << "select deg_of_freedom, frequency, arm_prefix from kukie_hardware as kh inner join hardware_instances as hi on " <<
-             "hi.instance_id = kh.hardware_instance_id where instance_name = " << hardwareName;
-        auto result = getStorage().executeQuery(s.str());
+        s << "select deg_of_freedom, frequency, name_prefix from kukie_hardware as kh inner join hardware_instances as hi on " <<
+             "hi.instance_id = kh.hardware_instance_id where instance_name = '" << hardwareName << "'";
+        StorageSingleton& storage = StorageSingleton::get();
+        auto result = storage.executeQuery(s.str());
 
-        int degOfFreedom;
-        double frequency;
-        string armPrefix;
+        int degOfFreedom = 0;
+        double frequency = 70.0;
+        string armPrefix = "";
         if(result->next()) {
             degOfFreedom = result->getInt("deg_of_freedom");
             frequency = result->getDouble("frequency");
-            armPrefix = result->getString("arm_prefix");
+            armPrefix = result->getString("name_prefix");
         } else
             throw KukaduException("Cannot create KukieQueue from database. It first has to be installed.");
 
@@ -799,7 +801,8 @@ namespace kukadu {
     }
 
     KukieControlQueue::KukieControlQueue(StorageSingleton& storage, std::string hardwareName, bool simulation) :
-        ControlQueue(storage, "kukie_" + get<2>(loadDbInfo(hardwareName)), get<0>(loadDbInfo(hardwareName)), get<1>(loadDbInfo(hardwareName))) {
+        degFreedom(get<0>(loadDbInfo(hardwareName))),
+        ControlQueue(storage, "kukie_" + get<2>(loadDbInfo(hardwareName)), degFreedom, get<1>(loadDbInfo(hardwareName))) {
 
         deviceType = (simulation) ? "simulation" : "real";
         armPrefix = get<2>(loadDbInfo(hardwareName));
@@ -807,9 +810,6 @@ namespace kukadu {
         double sleepTime = 1.0 / get<1>(loadDbInfo(hardwareName));
 
         retJointPosTopic = deviceType + "/" + armPrefix + "/joint_control/get_state";
-
-cout << retJointPosTopic << endl;
-
         commandTopic = deviceType + "/" + armPrefix + "/joint_control/move";
         switchModeTopic = deviceType + "/" + armPrefix + "/settings/switch_mode";
         retCartPosTopic = deviceType + "/" + armPrefix + "/cartesian_control/get_pose_quat_wf";
@@ -841,7 +841,8 @@ cout << retJointPosTopic << endl;
     }
 
     KukieControlQueue::KukieControlQueue(StorageSingleton& storage, std::string deviceType, std::string armPrefix, ros::NodeHandle node, bool acceptCollisions, KUKADU_SHARED_PTR<Kinematics> kin, KUKADU_SHARED_PTR<PathPlanner> planner, double sleepTime, double maxDistPerCycle) :
-        ControlQueue(storage, "kukie_" + armPrefix, loadDegOfFreedom(node, "/" + deviceType + "/" + armPrefix + "/joint_control/get_state"), sleepTime) {
+        degFreedom(loadDegOfFreedom(node, "/" + deviceType + "/" + armPrefix + "/joint_control/get_state")),
+        ControlQueue(storage, "kukie_" + armPrefix, degFreedom, sleepTime) {
 
         retJointPosTopic = deviceType + "/" + armPrefix + "/joint_control/get_state";
         commandTopic = deviceType + "/" + armPrefix + "/joint_control/move";
@@ -875,6 +876,10 @@ cout << retJointPosTopic << endl;
                        kin, planner,
                        sleepTime, maxDistPerCycle);
 
+    }
+
+    int KukieControlQueue::getDegreesOfFreedom() {
+        return degFreedom;
     }
 
     void KukieControlQueue::constructQueue(std::string commandTopic, std::string retPosTopic, std::string switchModeTopic, std::string retCartPosTopic,
@@ -913,6 +918,9 @@ cout << retJointPosTopic << endl;
         this->jntSetPtpThreshTopic = jntSetPtpThreshTopic;
 
         cartesianPtpReached = 0;
+
+        kin = nullptr;
+        planner = nullptr;
 
         setInitValues();
         this->node = node;
@@ -1015,8 +1023,20 @@ cout << retJointPosTopic << endl;
         if(!kinematicsInitialized) {
 
             planAndKinMutex.lock();
-                kin = make_shared<Komo>(shared_from_this(), resolvePath("$KUKADU_HOME/external/komo/share/data/kuka/data/iis_robot.kvg"), resolvePath("$KUKADU_HOME/external/komo/share/data/kuka/config/MT.cfg"), getRobotSidePrefix(), acceptCollisions);
-                kinematicsInitialized = true;
+
+                // very hacky
+                while(!kin) {
+
+                    try {
+                        kin = make_shared<Komo>(shared_from_this(), resolvePath("$KUKADU_HOME/external/komo/share/data/kuka/data/iis_robot.kvg"), resolvePath("$KUKADU_HOME/external/komo/share/data/kuka/config/MT.cfg"), getRobotSidePrefix(), acceptCollisions);
+                        kinematicsInitialized = true;
+                    } catch(std::bad_weak_ptr& ex) {
+                        planAndKinMutex.unlock();
+                        cout << "weak pointer not ready yet" << endl;
+                    }
+
+                }
+
             planAndKinMutex.unlock();
 
         }
@@ -1030,9 +1050,21 @@ cout << retJointPosTopic << endl;
         if(!plannerInitialized) {
 
             planAndKinMutex.lock();
-                auto actualPlanner = make_shared<Komo>(shared_from_this(), resolvePath("$KUKADU_HOME/external/komo/share/data/kuka/data/iis_robot.kvg"), resolvePath("$KUKADU_HOME/external/komo/share/data/kuka/config/MT.cfg"), getRobotSidePrefix(), acceptCollisions);
-                planner = make_shared<CachedPlanner>(getStorage(), shared_from_this(), actualPlanner);
-                plannerInitialized = true;
+
+                // very hacky
+                while(!planner) {
+
+                    try {
+                        auto actualPlanner = make_shared<Komo>(shared_from_this(), resolvePath("$KUKADU_HOME/external/komo/share/data/kuka/data/iis_robot.kvg"), resolvePath("$KUKADU_HOME/external/komo/share/data/kuka/config/MT.cfg"), getRobotSidePrefix(), acceptCollisions);
+                        planner = make_shared<CachedPlanner>(getStorage(), shared_from_this(), actualPlanner);
+                        plannerInitialized = true;
+                    } catch(std::bad_weak_ptr& ex) {
+                        planAndKinMutex.unlock();
+                        cout << "weak pointer not ready yet" << endl;
+                    }
+
+                }
+
             planAndKinMutex.unlock();
 
         }
@@ -1346,7 +1378,8 @@ cout << retJointPosTopic << endl;
 
         cartesianPtpReached = false;
 
-        loadPlanner();
+        while(!planner)
+            loadPlanner();
 
         auto currentPose = getCurrentCartesianPose();
         vector<geometry_msgs::Pose> desiredPlan;
