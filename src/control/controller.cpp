@@ -289,6 +289,7 @@ namespace kukadu {
                     : Controller(storage, "test_skill_wrapper", {leftQueue}, 0.01) {
 
         this->leftQueue = leftQueue;
+        this->joints = {1,1,1,1,1,1,1};
     }
 
     bool JointPtp::requiresGraspInternal() {
@@ -299,9 +300,13 @@ namespace kukadu {
         return false;
     }
 
+    void setJoints(std::vector<double> joints) {
+        this->joints = joints;
+    }
+
     std::shared_ptr<ControllerResult> JointPtp::executeInternal() {
 
-        leftQueue->jointPtp({-0.96, 1.11, 1.14, -1.44, -0.28, -0.89, -0.26});
+        leftQueue->jointPtp(this->joints);
         return nullptr;
 
     }

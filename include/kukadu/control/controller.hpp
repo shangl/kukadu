@@ -129,6 +129,8 @@ namespace kukadu {
 
             KUKADU_SHARED_PTR<ControlQueue> leftQueue;
 
+            std::vector<int> joints;
+
         protected:
 
             virtual void createSkillFromThisInternal(std::string skillName);
@@ -140,6 +142,8 @@ namespace kukadu {
             bool requiresGraspInternal();
 
             bool producesGraspInternal();
+
+            void setJoints(std::vector<double> joints);
 
             std::shared_ptr<ControllerResult> executeInternal();
 
