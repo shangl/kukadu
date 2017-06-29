@@ -31,6 +31,8 @@ namespace kukadu {
         static void degCallback(const ros::MessageEvent<sensor_msgs::JointState>& event);
         static int loadDegOfFreedom(ros::NodeHandle node, std::string topic);
 
+        std::tuple<int, double, std::string> loadDbInfo(std::string hardwareName);
+
         bool loadCycleTimeFromServer;
         bool loadMaxDistPerCycleFromServer;
 
@@ -157,7 +159,9 @@ namespace kukadu {
 
     public:
 
-        KukieControlQueue(StorageSingleton& storage, std::string robotName, std::string deviceType, std::string armPrefix, ros::NodeHandle node,
+        KukieControlQueue(StorageSingleton& storage, std::string hardwareName, bool simulation);
+
+        KukieControlQueue(StorageSingleton& storage, std::string deviceType, std::string armPrefix, ros::NodeHandle node,
                           bool acceptCollisions = false,
                           KUKADU_SHARED_PTR<Kinematics> kin = KUKADU_SHARED_PTR<Kinematics>(), KUKADU_SHARED_PTR<PathPlanner> planner = KUKADU_SHARED_PTR<PathPlanner>(),
                           double sleepTime = -1.0, double maxDistPerCycle = -1.0);

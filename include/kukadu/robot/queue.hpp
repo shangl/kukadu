@@ -115,6 +115,9 @@ namespace kukadu {
 
         int currentControlType;
 
+        virtual void installHardwareTypeInternal();
+        virtual void installHardwareInstanceInternal();
+
         /**
          * @brief Can be used to set the number of degrees of freedom.
          */
@@ -182,19 +185,15 @@ namespace kukadu {
 
     public:
 
+        ControlQueue(StorageSingleton& storage, std::string robotName);
+
         /**
-         * \brief Constructor taking the robot dependent degrees of freedom
+         * \brief Constructor taking the robot dependent degrees of freedom (this constructor should be used for installing a new control queue)
          * \param degOfFreedom number of robots degrees of freedom
          */
         ControlQueue(StorageSingleton& storage, std::string robotName, int degreesOfFreedom, double desiredCycleTime);
 
         int getQueueSize();
-
-        /**
-         * \brief Returns number of the robots degrees of freedom
-         * @return number of degrees of freedom
-         */
-        int getDegreesOfFreedom();
 
         /**
          * \brief Sets the queue cycle time
@@ -448,9 +447,6 @@ namespace kukadu {
 
         std::vector<int> getJointIds();
         std::vector<int> getJointIds(std::vector<std::string> jointNames);
-
-        virtual void installHardwareTypeInternal();
-        virtual void installHardwareInstanceInternal();
 
         virtual void storeCurrentSensorDataToDatabase();
         virtual double getPreferredPollingFrequency();
