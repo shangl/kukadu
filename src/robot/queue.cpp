@@ -778,6 +778,30 @@ namespace kukadu {
         }
     }
 
+    void KukieControlQueue::installHardwareInstanceInternal() {
+
+        StorageSingleton& storage = StorageSingleton::get();
+
+        auto degOfFreedom = getDegreesOfFreedom();
+        auto frequency = 1.0 / getCycleTime();
+        auto prefix = armPrefix;
+        auto hardwareInstance = getHardwareInstance();
+
+        stringstream s;
+
+        s << "select hardware_instance_id from kukie_hardware where hardware_instance_id = " << hardwareInstance;
+        auto result = storage.executeQuery(s.str());
+
+        if(result->next()) {
+
+        } else {
+            s.str("");
+            s << "insert into kukie_hardware values(" << hardwareInstance << ", " << degOfFreedom << ", " << frequency << ", '" << prefix << "')";
+            storage.executeStatementPriority(s.str());
+        }
+
+    }
+
     std::tuple<int, double, std::string> KukieControlQueue::loadDbInfo(std::string hardwareName) {
 
         stringstream s;
