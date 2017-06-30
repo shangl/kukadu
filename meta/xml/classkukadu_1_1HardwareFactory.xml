@@ -1,0 +1,150 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.8.11">
+  <compounddef id="classkukadu_1_1HardwareFactory" kind="class" language="C++" prot="public">
+    <compoundname>kukadu::HardwareFactory</compoundname>
+      <sectiondef kind="private-attrib">
+      <memberdef kind="variable" id="classkukadu_1_1HardwareFactory_1a2970f4e0e7d328b4ae05962ea06726bc" prot="private" static="no" mutable="no">
+        <type><ref refid="classkukadu_1_1StorageSingleton" kindref="compound">StorageSingleton</ref> &amp;</type>
+        <definition>StorageSingleton&amp; kukadu::HardwareFactory::storage</definition>
+        <argsstring></argsstring>
+        <name>storage</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/agyss/iis_robot_sw/iis_catkin_ws/src/kukadu/include/kukadu/robot/hardwarefactory.hpp" line="13" column="1" bodyfile="/home/agyss/iis_robot_sw/iis_catkin_ws/src/kukadu/include/kukadu/robot/hardwarefactory.hpp" bodystart="13" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classkukadu_1_1HardwareFactory_1a589a022940de60126024ce902e08bc52" prot="private" static="no" mutable="no">
+        <type>std::map&lt; std::string, KUKADU_SHARED_PTR&lt; <ref refid="classkukadu_1_1Hardware" kindref="compound">Hardware</ref> &gt; &gt;</type>
+        <definition>std::map&lt;std::string, KUKADU_SHARED_PTR&lt;Hardware&gt; &gt; kukadu::HardwareFactory::createdHardware</definition>
+        <argsstring></argsstring>
+        <name>createdHardware</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/agyss/iis_robot_sw/iis_catkin_ws/src/kukadu/include/kukadu/robot/hardwarefactory.hpp" line="17" column="1" bodyfile="/home/agyss/iis_robot_sw/iis_catkin_ws/src/kukadu/include/kukadu/robot/hardwarefactory.hpp" bodystart="17" bodyend="-1"/>
+      </memberdef>
+      </sectiondef>
+      <sectiondef kind="private-static-attrib">
+      <memberdef kind="variable" id="classkukadu_1_1HardwareFactory_1a551bedd0793d9793f4de3960d84b1832" prot="private" static="yes" mutable="no">
+        <type>std::map&lt; std::string, std::function&lt; KUKADU_SHARED_PTR&lt; <ref refid="classkukadu_1_1Hardware" kindref="compound">Hardware</ref> &gt;<ref refid="classkukadu_1_1StorageSingleton" kindref="compound">StorageSingleton</ref> &amp;, std::string, bool)&gt; &gt;</type>
+        <definition>std::map&lt; std::string, std::function&lt; KUKADU_SHARED_PTR&lt; Hardware &gt;StorageSingleton &amp;, std::string, bool)&gt; &gt; kukadu::HardwareFactory::hardwareFactories</definition>
+        <argsstring></argsstring>
+        <name>hardwareFactories</name>
+        <initializer>{
+        {
+            &quot;KukieControlQueue&quot;, [](StorageSingleton&amp; storage, std::string hardwareName, bool simulation) {
+                return make_shared&lt;<ref refid="classkukadu_1_1KukieControlQueue" kindref="compound">KukieControlQueue</ref>&gt;(storage, hardwareName, simulation);
+            }
+        }
+    }</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/agyss/iis_robot_sw/iis_catkin_ws/src/kukadu/include/kukadu/robot/hardwarefactory.hpp" line="15" column="1" bodyfile="/home/agyss/iis_robot_sw/iis_catkin_ws/src/kukadu/include/kukadu/robot/hardwarefactory.hpp" bodystart="15" bodyend="-1"/>
+      </memberdef>
+      </sectiondef>
+      <sectiondef kind="private-func">
+      <memberdef kind="function" id="classkukadu_1_1HardwareFactory_1a6c29689149eef2cb78be964d4a80d7c5" prot="private" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type></type>
+        <definition>kukadu::HardwareFactory::HardwareFactory</definition>
+        <argsstring>()</argsstring>
+        <name>HardwareFactory</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/agyss/iis_robot_sw/iis_catkin_ws/src/kukadu/include/kukadu/robot/hardwarefactory.hpp" line="19" column="1" bodyfile="/home/agyss/iis_robot_sw/iis_catkin_ws/src/kukadu/src/robot/hardwarefactory.cpp" bodystart="16" bodyend="18"/>
+      </memberdef>
+      </sectiondef>
+      <sectiondef kind="public-static-func">
+      <memberdef kind="function" id="classkukadu_1_1HardwareFactory_1ade5c3a1a91030aa4b1ae470131d2d554" prot="public" static="yes" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type><ref refid="classkukadu_1_1HardwareFactory" kindref="compound">HardwareFactory</ref> &amp;</type>
+        <definition>HardwareFactory &amp; kukadu::HardwareFactory::get</definition>
+        <argsstring>()</argsstring>
+        <name>get</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/agyss/iis_robot_sw/iis_catkin_ws/src/kukadu/include/kukadu/robot/hardwarefactory.hpp" line="23" column="1" bodyfile="/home/agyss/iis_robot_sw/iis_catkin_ws/src/kukadu/src/robot/hardwarefactory.cpp" bodystart="20" bodyend="23"/>
+      </memberdef>
+      </sectiondef>
+      <sectiondef kind="public-func">
+      <memberdef kind="function" id="classkukadu_1_1HardwareFactory_1a8d1439f94adc8f7014e67a5f444a99d2" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>KUKADU_SHARED_PTR&lt; <ref refid="classkukadu_1_1Hardware" kindref="compound">Hardware</ref> &gt;</type>
+        <definition>KUKADU_SHARED_PTR&lt; Hardware &gt; kukadu::HardwareFactory::loadHardware</definition>
+        <argsstring>(std::string hardwareName)</argsstring>
+        <name>loadHardware</name>
+        <param>
+          <type>std::string</type>
+          <declname>hardwareName</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/agyss/iis_robot_sw/iis_catkin_ws/src/kukadu/include/kukadu/robot/hardwarefactory.hpp" line="25" column="1" bodyfile="/home/agyss/iis_robot_sw/iis_catkin_ws/src/kukadu/src/robot/hardwarefactory.cpp" bodystart="25" bodyend="29"/>
+      </memberdef>
+      <memberdef kind="function" id="classkukadu_1_1HardwareFactory_1a47484c5add39e17755cdfb4945238108" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>std::vector&lt; std::string &gt;</type>
+        <definition>std::vector&lt; std::string &gt; kukadu::HardwareFactory::listAvailableHardware</definition>
+        <argsstring>()</argsstring>
+        <name>listAvailableHardware</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/agyss/iis_robot_sw/iis_catkin_ws/src/kukadu/include/kukadu/robot/hardwarefactory.hpp" line="27" column="1" bodyfile="/home/agyss/iis_robot_sw/iis_catkin_ws/src/kukadu/src/robot/hardwarefactory.cpp" bodystart="31" bodyend="33"/>
+      </memberdef>
+      <memberdef kind="function" id="classkukadu_1_1HardwareFactory_1ab9fae8be0870e1f03ef2cb66b69c2158" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>bool</type>
+        <definition>bool kukadu::HardwareFactory::hardwareExists</definition>
+        <argsstring>(std::string skillName)</argsstring>
+        <name>hardwareExists</name>
+        <param>
+          <type>std::string</type>
+          <declname>skillName</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/agyss/iis_robot_sw/iis_catkin_ws/src/kukadu/include/kukadu/robot/hardwarefactory.hpp" line="29" column="1" bodyfile="/home/agyss/iis_robot_sw/iis_catkin_ws/src/kukadu/src/robot/hardwarefactory.cpp" bodystart="35" bodyend="37"/>
+      </memberdef>
+      </sectiondef>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <location file="/home/agyss/iis_robot_sw/iis_catkin_ws/src/kukadu/include/kukadu/robot/hardwarefactory.hpp" line="9" column="1" bodyfile="/home/agyss/iis_robot_sw/iis_catkin_ws/src/kukadu/include/kukadu/robot/hardwarefactory.hpp" bodystart="9" bodyend="31"/>
+    <listofallmembers>
+      <member refid="classkukadu_1_1HardwareFactory_1a589a022940de60126024ce902e08bc52" prot="private" virt="non-virtual"><scope>kukadu::HardwareFactory</scope><name>createdHardware</name></member>
+      <member refid="classkukadu_1_1HardwareFactory_1ade5c3a1a91030aa4b1ae470131d2d554" prot="public" virt="non-virtual"><scope>kukadu::HardwareFactory</scope><name>get</name></member>
+      <member refid="classkukadu_1_1HardwareFactory_1ab9fae8be0870e1f03ef2cb66b69c2158" prot="public" virt="non-virtual"><scope>kukadu::HardwareFactory</scope><name>hardwareExists</name></member>
+      <member refid="classkukadu_1_1HardwareFactory_1a551bedd0793d9793f4de3960d84b1832" prot="private" virt="non-virtual"><scope>kukadu::HardwareFactory</scope><name>hardwareFactories</name></member>
+      <member refid="classkukadu_1_1HardwareFactory_1a6c29689149eef2cb78be964d4a80d7c5" prot="private" virt="non-virtual"><scope>kukadu::HardwareFactory</scope><name>HardwareFactory</name></member>
+      <member refid="classkukadu_1_1HardwareFactory_1a47484c5add39e17755cdfb4945238108" prot="public" virt="non-virtual"><scope>kukadu::HardwareFactory</scope><name>listAvailableHardware</name></member>
+      <member refid="classkukadu_1_1HardwareFactory_1a8d1439f94adc8f7014e67a5f444a99d2" prot="public" virt="non-virtual"><scope>kukadu::HardwareFactory</scope><name>loadHardware</name></member>
+      <member refid="classkukadu_1_1HardwareFactory_1a2970f4e0e7d328b4ae05962ea06726bc" prot="private" virt="non-virtual"><scope>kukadu::HardwareFactory</scope><name>storage</name></member>
+    </listofallmembers>
+  </compounddef>
+</doxygen>

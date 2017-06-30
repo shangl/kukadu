@@ -129,7 +129,7 @@ namespace kukadu {
 
             KUKADU_SHARED_PTR<ControlQueue> leftQueue;
 
-            std::vector<int> joints;
+            std::vector<double> joints;
 
         protected:
 
