@@ -185,13 +185,13 @@ namespace kukadu {
 
     public:
 
-        ControlQueue(StorageSingleton& storage, std::string robotName);
+        ControlQueue(StorageSingleton& storage, std::string robotName, std::string className);
 
         /**
          * \brief Constructor taking the robot dependent degrees of freedom (this constructor should be used for installing a new control queue)
          * \param degOfFreedom number of robots degrees of freedom
          */
-        ControlQueue(StorageSingleton& storage, std::string robotName, int degreesOfFreedom, double desiredCycleTime);
+        ControlQueue(StorageSingleton& storage, std::string robotName, std::string className, int degreesOfFreedom, double desiredCycleTime);
 
         int getQueueSize();
 

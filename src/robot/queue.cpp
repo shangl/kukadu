@@ -217,8 +217,8 @@ namespace kukadu {
 
     }
 
-    ControlQueue::ControlQueue(StorageSingleton& storage, std::string robotName) :
-        JointHardware(storage, HARDWARE_ARM, loadTypeIdFromName("ControlQueue"), "ControlQueue", loadInstanceIdFromName(robotName), robotName) {
+    ControlQueue::ControlQueue(StorageSingleton& storage, std::string robotName, std::string className) :
+        JointHardware(storage, HARDWARE_ARM, loadTypeIdFromName(className), className, loadInstanceIdFromName(robotName), robotName) {
 
         // load cycle time and degrees of freedom
 
@@ -240,8 +240,8 @@ namespace kukadu {
 
     }
 
-    ControlQueue::ControlQueue(StorageSingleton& storage, std::string robotName, int degreesOfFreedom, double desiredCycleTime) :
-        JointHardware(storage, HARDWARE_ARM, loadOrCreateTypeIdFromName("ControlQueue"), "ControlQueue", loadOrCreateInstanceIdFromName(robotName), robotName) {
+    ControlQueue::ControlQueue(StorageSingleton& storage, std::string robotName, std::string className, int degreesOfFreedom, double desiredCycleTime) :
+        JointHardware(storage, HARDWARE_ARM, loadOrCreateTypeIdFromName(className), className, loadOrCreateInstanceIdFromName(robotName), robotName) {
 
         thr = nullptr;
         frcTrqFilterUpdateThr = nullptr;
@@ -826,7 +826,7 @@ namespace kukadu {
 
     KukieControlQueue::KukieControlQueue(StorageSingleton& storage, std::string hardwareName, bool simulation) :
         degFreedom(get<0>(loadDbInfo(hardwareName))),
-        ControlQueue(storage, "kukie_" + get<2>(loadDbInfo(hardwareName)), degFreedom, get<1>(loadDbInfo(hardwareName))) {
+        ControlQueue(storage, "kukie_" + get<2>(loadDbInfo(hardwareName)), "KukieControlQueue", degFreedom, get<1>(loadDbInfo(hardwareName))) {
 
         deviceType = (simulation) ? "simulation" : "real";
         armPrefix = get<2>(loadDbInfo(hardwareName));
@@ -866,7 +866,7 @@ namespace kukadu {
 
     KukieControlQueue::KukieControlQueue(StorageSingleton& storage, std::string deviceType, std::string armPrefix, ros::NodeHandle node, bool acceptCollisions, KUKADU_SHARED_PTR<Kinematics> kin, KUKADU_SHARED_PTR<PathPlanner> planner, double sleepTime, double maxDistPerCycle) :
         degFreedom(loadDegOfFreedom(node, "/" + deviceType + "/" + armPrefix + "/joint_control/get_state")),
-        ControlQueue(storage, "kukie_" + armPrefix, degFreedom, sleepTime) {
+        ControlQueue(storage, "kukie_" + armPrefix, "KukieControlQueue", degFreedom, sleepTime) {
 
         retJointPosTopic = deviceType + "/" + armPrefix + "/joint_control/get_state";
         commandTopic = deviceType + "/" + armPrefix + "/joint_control/move";
@@ -1573,7 +1573,7 @@ namespace kukadu {
     }
 
     PlottingControlQueue::PlottingControlQueue(StorageSingleton& storage, std::string robotName, int degOfFreedom, std::string referenceFrame, std::string linkName, double timeStep) :
-        ControlQueue(storage, robotName, degOfFreedom, timeStep) {
+        ControlQueue(storage, robotName, "PlottingControlQueue", degOfFreedom, timeStep) {
 
         this->linkName = linkName;
         this->referenceFrame = referenceFrame;

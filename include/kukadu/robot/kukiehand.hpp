@@ -63,9 +63,16 @@ namespace kukadu {
         void stateCallback(const sensor_msgs::JointState& state);
         void tactileCallback(const iis_robot_dep::TactileSensor& state);
 
+        void construct(std::string hand, bool simulation);
+
+    protected:
+
+        virtual void installHardwareInstanceInternal();
+
     public:
 
-        KukieHand(StorageSingleton& storage, ros::NodeHandle node, std::string simulationType, std::string hand);
+        KukieHand(StorageSingleton& storage, std::string robotName, bool simulation);
+        KukieHand(StorageSingleton& storage, ros::NodeHandle node, bool simulation, std::string hand);
         ~KukieHand();
 
         virtual void connectHand();

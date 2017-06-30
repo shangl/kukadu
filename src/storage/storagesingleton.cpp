@@ -174,7 +174,7 @@ namespace kukadu {
 
     std::vector<int> StorageSingleton::getCachedLabelIds(string table, string labelIdCol, string labelCol, string label, string additionalWhere) {
 
-        auto key = table + "+++" + labelCol + "+++" + label + "+++" + additionalWhere;
+        auto key = table + "+++" + labelIdCol + "+++" + labelCol + "+++" + label + "+++" + additionalWhere;
         auto el = labelIdsMap.find(key);
 
         // check if label is already in map --> increment id and return it
@@ -307,7 +307,7 @@ namespace kukadu {
 
             auto stmt = con->createStatement();
             for(auto& sql : statements)
-                try { stmt->execute(sql); cout << sql << endl; }
+                try { stmt->execute(sql); }
                 catch(sql::SQLException& ex) { lastEx = string(ex.what()); }
                 catch(std::exception& ex) { cerr << ex.what() << endl; }
             delete stmt;

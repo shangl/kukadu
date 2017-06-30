@@ -26,7 +26,7 @@ namespace kukadu {
 
         std::vector<std::string> listAvailableHardware();
 
-        bool hardwareExists(std::string skillName);
+        bool hardwareExists(std::string hardwareName);
 
     };
 

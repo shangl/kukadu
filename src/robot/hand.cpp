@@ -171,19 +171,36 @@ namespace kukadu {
 
     std::string GenericHand::getHandName() { return getHardwareInstanceName(); }
 
-    KukieHand::KukieHand(StorageSingleton& storage, ros::NodeHandle node, std::string simulationType, std::string hand) :
+    KukieHand::KukieHand(StorageSingleton& storage, std::string robotName, bool simulation) :
+        GenericHand(storage, loadTypeIdFromName("KukieHand"), "KukieHand", Hardware::loadInstanceIdFromName(robotName), robotName) {
+
+        auto handLabel = storage.getCachedLabel("kukie_hardware", "hardware_instance_id", "name_prefix", getHardwareInstance());
+        construct(handLabel, simulation);
+
+    }
+
+    KukieHand::KukieHand(StorageSingleton& storage, ros::NodeHandle node, bool simulation, std::string hand) :
         GenericHand(storage, loadOrCreateTypeIdFromName("KukieHand"), "KukieHand", Hardware::loadOrCreateInstanceIdFromName("kukiehand_" + hand), "kukiehand_" + hand) {
+
+        construct(hand, simulation);
+
+    }
+
+    void KukieHand::construct(std::string hand, bool simulation) {
+
+        this->hand = hand;
+        this->node = ros::NodeHandle();
+        sleep(1);
 
         firstJointNamesRetrieval = true;
         stopCollecting = false;
-        this->node = node;
         waitForReached = true;
 
         degOfFreedom = -1;
 
-        trajPub = node.advertise<std_msgs::Float64MultiArray>(simulationType + "/" + hand + "_sdh/joint_control/move", 1);
+        string simulationType = (simulation) ? "simulation" : "real";
 
-        this->hand = hand;
+        trajPub = node.advertise<std_msgs::Float64MultiArray>(simulationType + "/" + hand + "_sdh/joint_control/move", 1);
 
         stateSub = node.subscribe(simulationType + "/" + hand + "_sdh/joint_control/get_state", 1, &KukieHand::stateCallback, this);
         tactileSub = node.subscribe("/" + simulationType + "/" + hand + "_sdh/sensoring/tactile", 1, &KukieHand::tactileCallback, this);
@@ -200,6 +217,30 @@ namespace kukadu {
 
         currentGraspId = eGID_PARALLEL;
         moveJoints(stdToArmadilloVec(currentPos));
+
+    }
+
+    void KukieHand::installHardwareInstanceInternal() {
+
+        StorageSingleton& storage = StorageSingleton::get();
+
+        auto degOfFreedom = getDegreesOfFreedom();
+        auto frequency = 0.0;
+        auto prefix = hand;
+        auto hardwareInstance = getHardwareInstance();
+
+        stringstream s;
+
+        s << "select hardware_instance_id from kukie_hardware where hardware_instance_id = " << hardwareInstance;
+        auto result = storage.executeQuery(s.str());
+
+        if(result->next()) {
+
+        } else {
+            s.str("");
+            s << "insert into kukie_hardware values(" << hardwareInstance << ", " << degOfFreedom << ", " << frequency << ", '" << prefix << "')";
+            storage.executeStatementPriority(s.str());
+        }
 
     }
 
