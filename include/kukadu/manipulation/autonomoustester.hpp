@@ -90,7 +90,7 @@ namespace kukadu {
 
         void addSimulatedSkill(std::string skillName, std::vector<int> usedFunctionRows, std::vector<double> functionMeans, std::vector<double> functionVariances, int numberOfSamples, int durationIndexCount);
 
-        std::vector<int> testRobot();
+        std::vector<int> testRobot(std::string firstSkill = "");
 
     };
 

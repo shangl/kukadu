@@ -84,9 +84,13 @@ namespace kukadu {
             throw KukaduException("(AutonomousTester) simulation data not complete");
 
         vector<mat> skillData;
+        vector<int> skillSuccess;
         cout << "generating data for simulated skill " << skillName << endl;
         boost::progress_display show_progress(numberOfSamples);
         for(int i = 0; i < numberOfSamples; ++i) {
+
+            // assume all samples are successful
+            skillSuccess.push_back(1);
 
             skillData.push_back(generateSimulatedSample(usedFunctionRows, functionMeans, functionVariances, durationIndexCount));
             ++show_progress;
@@ -96,6 +100,8 @@ namespace kukadu {
         skillSimulatedFunctionRows[skillName] = usedFunctionRows;
         skillSimulatedFunctionMeans[skillName] = functionMeans;
         skillSimulatedFunctionStdDevs[skillName] = functionVariances;
+
+        skillsData[skillName] = {skillSuccess, skillData};
 
         loadSkillFingerPrintDb(skillName, skillData);
 
@@ -371,9 +377,9 @@ namespace kukadu {
 
     }
 
-    vector<int> AutonomousTester::testRobot() {
+    vector<int> AutonomousTester::testRobot(std::string firstSkill) {
 
-        int speedUpBias = 3;
+        int speedUpBias = 10;
 
         vec pBlame(functionIdsToRows.size());
         pBlame.fill(1.0 / functionIdsToRows.size());
@@ -384,8 +390,8 @@ namespace kukadu {
         ofstream igStream;
         igStream.open("/tmp/tester-igs");
 
-        ofstream skillStream;
-        skillStream.open("/tmp/tester-skills");
+ofstream skillStream;
+skillStream.open("/tmp/tester-skills");
 
         // get ordered list of all skills (not sure if foreach ensures this for every run)
         vector<string> orderedSkillsList;
@@ -397,20 +403,33 @@ namespace kukadu {
             skillStream << s.first << endl;
         }
 
-        auto igs = maximizeInformationGains(pBlame);
-        auto maxGainSkill = igs.first;
-        auto maxGainValue = igs.second[igs.first];
+        std::pair<std::string, std::map<string, double> > igs;
+        string maxGainSkill;
+        double maxGainValue;
 
-        for(auto& skillName : orderedSkillsList) {
-            auto ig = igs.second[skillName];
-            igStream << ig << "\t";
-        }
-        igStream << endl;
+        string selectedSkill;
+        if(firstSkill != "") {
+            selectedSkill = firstSkill;
+        } else {
 
-        int runCount = 100;
-        string selectedSkill = maxGainSkill;
+            igs = maximizeInformationGains(pBlame);
+            maxGainSkill = igs.first;
+            maxGainValue = igs.second[igs.first];
+
+            for(auto& skillName : orderedSkillsList) {
+                auto ig = igs.second[skillName];
+                igStream << ig << "\t";
+            }
+            igStream << endl;
+
+            selectedSkill = maxGainSkill;
+
 skillStream << selectedSkill << ":" << endl;
 cout  << selectedSkill << " (" << maxGainValue << "): " << endl;
+
+        }
+
+        int runCount = 100;
         for(int i = 0; i < runCount; ++i) {
 
             auto observationLikelihood = testSkill(selectedSkill);
@@ -502,8 +521,10 @@ igStream.close();
             std::vector<std::pair<int, double> > failurePlaces;
             if(successful) {
 
+                auto& skillData = skillsData[id];
+
                 // the "failure place is the last index
-                failurePlaces = {{skillsData[id].second.front().n_cols - 1, 1.0}};
+                failurePlaces = {{skillData.second.front().n_cols - 1, 1.0}};
 
             } else {
 
