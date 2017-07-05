@@ -41,11 +41,9 @@ find_package(catkin REQUIRED COMPONENTS
 )
 
 find_package(PCL REQUIRED)
+find_package(OpenCV REQUIRED)
 find_package(Boost 1.54 REQUIRED)
 find_package(Armadillo REQUIRED)
-find_package(Qt5Widgets REQUIRED)
-find_package(Qt5Webkitwidgets REQUIRED)
-find_package(OpenCV REQUIRED)
 
 if($ENV{ROS_DISTRO} STREQUAL "kinetic")
     set(PYTH_INC /usr/include/python3.5m)
@@ -64,7 +62,8 @@ add_definitions(-export-dynamic)
 find_package(Qt5Gui REQUIRED)
 find_package(Qt5Core REQUIRED)
 find_package(Qt5Widgets REQUIRED)
-find_package(Qt5Webkitwidgets REQUIRED)
+#find_package(QtWebEngine REQUIRED)
+#find_package(Qt5Webkitwidgets REQUIRED)
 find_package(PkgConfig REQUIRED)
 find_package(Curl)
 

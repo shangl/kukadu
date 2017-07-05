@@ -10,6 +10,11 @@
 #include <QtWidgets/QGridLayout>
 #include <QtWidgets/QMessageBox>
 #include <QtWebKit/QtWebKit>
+
+// very nasty tweak
+//#include <QtWidgets/../QtWebKitWidgets/QWebView>
+//#include <QtWidgets/../QtWebKitWidgets/QWebPage>
+//#include <QtWidgets/../QtWebKitWidgets/QWebFrame>
 #include <QtWebKitWidgets/QWebView>
 #include <QtWebKitWidgets/QWebPage>
 #include <QtWebKitWidgets/QWebFrame>
