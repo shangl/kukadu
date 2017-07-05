@@ -44,6 +44,7 @@ find_package(PCL REQUIRED)
 find_package(Boost 1.54 REQUIRED)
 find_package(Armadillo REQUIRED)
 find_package(Qt5Widgets REQUIRED)
+find_package(Qt5Webkitwidgets REQUIRED)
 find_package(OpenCV REQUIRED)
 
 if($ENV{ROS_DISTRO} STREQUAL "kinetic")
@@ -63,6 +64,7 @@ add_definitions(-export-dynamic)
 find_package(Qt5Gui REQUIRED)
 find_package(Qt5Core REQUIRED)
 find_package(Qt5Widgets REQUIRED)
+find_package(Qt5Webkitwidgets REQUIRED)
 find_package(PkgConfig REQUIRED)
 find_package(Curl)
 
@@ -72,7 +74,7 @@ add_definitions(-pthread)
 add_definitions(-DROS_SUPPORT)
 add_definitions(-DOSNAME_LINUX=1)
 
-set(kukaduguilib_hdr ${PROJECT_SOURCE_DIR}/include/kukadu/gui/gui.hpp)
+set(kukaduguilib_hdr ${PROJECT_SOURCE_DIR}/include/kukadu/gui/gui.hpp ${PROJECT_SOURCE_DIR}/include/kukadu/gui/graphical.hpp)
 qt5_wrap_cpp(kukaduguilib_hdr_moc ${kukaduguilib_hdr})
 
 pkg_check_modules(GTK2 REQUIRED gtk+-2.0)
@@ -98,6 +100,7 @@ include_directories(
     ${CURL_INCLUDE_DIR}
     ${Boost_INCLUDE_DIRS}
     ${catkin_INCLUDE_DIRS}
+    ${Qt5WebKitWidgets_INCLUDE_DIRS}
     external
     external/json/src
     external/backward-cpp
@@ -227,11 +230,11 @@ add_dependencies(${PROJECT_NAME} ${catkin_EXPORTED_TARGETS} ${PYTH_LIB} svm Back
 add_dependencies(kukaduvision ${catkin_EXPORTED_TARGETS} svm Backward::Backward curl nlohmann_json allegro allegro_primitives allegro_font allegro_ttf)
 add_dependencies(kukadugui ${catkin_EXPORTED_TARGETS} kukadu svm Backward::Backward curl nlohmann_json allegro allegro_primitives allegro_font allegro_ttf)
 
-target_link_libraries(kukadugui ${catkin_LIBRARIES} Qt5::Widgets kukadu svm curl nlohmann_json)
+target_link_libraries(kukadugui ${catkin_LIBRARIES} Qt5::Widgets Qt5::WebKitWidgets kukadu svm curl nlohmann_json)
 
 target_link_libraries(${PROJECT_NAME} ${catkin_LIBRARIES} ${Boost_LIBRARIES} ${ARMADILLO_LIBRARIES}
     reflexxeslib ncurses gsl gslcblas stdc++ pthread dl util m komo swift algo ann gui ors optim motion rt lapack blas glut GLU GL X11 ${GTK_LIBRARIES} ${GTK2_LIBRARIES}
-    gthread-2.0 qhull ${PYTH_LIB} m mysqlcppconn Qt5::Widgets svm curl nlohmann_json
+    gthread-2.0 qhull ${PYTH_LIB} m mysqlcppconn Qt5::Widgets Qt5::WebKitWidgets svm curl nlohmann_json
     allegro allegro_primitives allegro_font allegro_ttf)
 
 target_link_libraries(kukaduvision ${catkin_LIBRARIES} ${Boost_LIBRARIES} ${PCL_LIBRARIES} ${ARMADILLO_LIBRARIES} ${OpenCV_LIBRARIES} svm nlohmann_json)
