@@ -1,0 +1,397 @@
+'use strict';
+
+goog.provide('Blockly.Blocks.custom');
+goog.require('Blockly.Blocks');
+
+Blockly.Blocks['skillloader'] = {
+    init: function () {
+        this._hardwareIds = -1;
+        this._skillId = -1;
+
+        this.appendValueInput("HARDWARE")
+            .setCheck("Hardware")
+            .appendField('Hardware: ');
+        this.appendDummyInput("SKILL")
+            .appendField('Available Skills: ')
+            .appendField(new Blockly.FieldDropdown([['No Elements available', '']]), "SkillOptions");
+        this.setPreviousStatement(true, null);
+        this.setNextStatement(true, null);
+        this.setColour(230);
+        this.setTooltip('Skillloader');
+        this.setHelpUrl('');
+    },
+
+    getCurrentHardware: function () {
+        var input = this.getInput('HARDWARE');
+        var target = null;
+
+        if (input != null) {
+            target = input.connection.targetConnection
+        }
+
+        var hardwareNames = [];
+        if (target != null) {
+            hardwareNames = target.sourceBlock_.getSelectedHardware();
+        }
+
+        var hardwareInstances = {};
+        for (var i = 0; i < hardwareNames.length; i++) {
+            var instance = Databaseloader.hardwareMap[hardwareNames[i]];
+            hardwareInstances[instance.id] = instance;
+        }
+
+        return hardwareInstances;
+    },
+
+    getCurrentSkill: function () {
+        var blockvalue = this.getFieldValue('SkillOptions');
+        return Databaseloader.skillMap[blockvalue];
+    },
+
+    onchange: function (event) {
+        Blockly.Blocks.requireInFunction(this);
+        var addedHardwareSet = this.getCurrentHardware();
+        var hardwareKey = idsToKey(getKeysFromMap(addedHardwareSet));
+        var connectedHardware = Databaseloader.hardwareToSkillMap[hardwareKey];
+
+        if (getKeysFromMap(addedHardwareSet).length > 0 && hardwareKey !== this._hardwareIds) {    //if addedHardware Changed
+            this._hardwareIds = hardwareKey;
+            var availableSkills = Databaseloader.hardwareToSkillMap[hardwareKey];
+
+            if (typeof availableSkills == 'undefined') {
+                this.setNoSkillsAvailable();
+            } else {
+                this.setAvailableSkills(availableSkills)
+            }
+        } else if (getKeysFromMap(addedHardwareSet).length == 0 && hardwareKey !== this._hardwareIds) {
+            var skillsInput = this.getInput('SKILL');
+            if (skillsInput != null) {
+                skillsInput.fieldRow[1].menuGenerator_ = [];
+                skillsInput.fieldRow[1].setValue("No Elements available");
+            }
+        }
+
+        var currentSkill = this.getCurrentSkill();
+        if (typeof currentSkill != 'undefined' && this._skillId != currentSkill.id) {      //skill changed
+            this.setInputsForSelectedSkill();
+            this._skillId = this.getCurrentSkill().id;
+        } else if (typeof currentSkill === 'undefined') {
+            this.setInputsForSelectedSkill();
+            this._skillId = -1;
+        }
+    },
+
+    setNoSkillsAvailable: function () {
+        var skillsInput = this.getInput('SKILL');
+        skillsInput.fieldRow[1].menuGenerator_ = [];
+        skillsInput.fieldRow[1].setValue("No Elements available");
+    },
+
+    setAvailableSkills: function (availableSkills) {
+        var skillsInput = this.getInput('SKILL');
+        var skillsNameArray = [];
+
+        var skills = getValuesFromMap(availableSkills);
+        for (var i = 0; i < skills.length; i++) {
+            var skill = skills[i];
+            skillsNameArray.push([skill.name, skill.name]);
+        }
+
+        skillsInput.fieldRow[1].menuGenerator_ = skillsNameArray;
+        skillsInput.fieldRow[1].setValue(skillsNameArray[0][0]);
+
+        this._skillId = this.getCurrentSkill();
+        this.setInputsForSelectedSkill();
+    },
+
+    setInputsForSelectedSkill: function () {
+        for (var i = this._inputsCount - 1; i >= 0; i--) {
+            this.removeInput("attributes" + i);
+        }
+        var currentSkill = this.getCurrentSkill();
+
+        if (typeof currentSkill === 'undefined') {
+            this._inputsCount = 0;
+            return;
+        } else {
+            var skillId = currentSkill.id;
+            var skill = Databaseloader.hardwareToSkillMap[this._hardwareIds][skillId];
+            var attributes = getValuesFromMap(skill.getAttributes());
+
+            if (attributes != null) {
+                var additionalLimitForVectors = 0;
+                for (var i = 0; i < attributes.length + additionalLimitForVectors; i++) {
+                    var attribute = attributes[i];
+                    var validator = Blockly.FieldTextInput.dummyValidator;
+                    if (attribute.dataType === "int") {
+                        validator = Blockly.FieldTextInput.integerValidator;
+                    } else if (attribute.dataType === "double") {
+                        validator = Blockly.FieldTextInput.floatValidator;
+                    }
+
+                    this.appendDummyInput("attributes" + i)
+                        .appendField(attribute.dataType + " " + attribute.name)
+                    var input = this.getInput("attributes" + i);
+
+                    if (attribute.dataType === "std::vector< double >" || attribute.dataType === "std::vector< int >" || attribute.dataType === "std::vector< string >") {
+                        switch (attribute.dataType) {
+                            case "std::vector< double >":
+                                validator = Blockly.FieldTextInput.floatValidator;
+                                break;
+                            case "std::vector< int >":
+                                validator = Blockly.FieldTextInput.integerValidator;
+                                break;
+                            case "std::vector< string>":
+                                validator = Blockly.FieldTextInput.dummyValidator;
+                                break;
+                        }
+
+                        var degOfFreedom = 0;
+                        var skillHardware = getValuesFromMap(skill.getHardware());
+                        for (var j = 0; j < skillHardware.length; j++) {
+                            var hardware = skillHardware[j];
+                            degOfFreedom = hardware.degOfFreedom > degOfFreedom ? hardware.degOfFreedom : degOfFreedom;
+                        }
+
+                        for (var j = 0; j < degOfFreedom; j++) {
+                            input.appendField(new Blockly.FieldTextInput(attribute.defaultValue + "", validator), "attribute" + i++);
+                            additionalLimitForVectors++;
+                        }
+                        if (degOfFreedom > 0) {
+                            i--;    //set i to old value for incrementation in loopheader
+                            additionalLimitForVectors--; //decrease by one to match amount of added fields
+                        }
+                    } else {
+                        input.appendField(new Blockly.FieldTextInput(attribute.defaultValue + "", validator), "attribute" + i);
+                    }
+                }
+
+                this._inputsCount = attributes.length;
+            }
+        }
+    }
+};
+
+Blockly.Blocks['hardware'] = {
+    init: function () {
+        this.appendDummyInput()
+            .appendField(new Blockly.FieldDropdown(Databaseloader.hardwareTupleArray), "HardwareOptions");
+        this.appendValueInput("Further")
+            .setCheck("Hardware");
+        this.setInputsInline(true);
+        this.setOutput(true, "Hardware");
+        this.setColour(230);
+        this.setTooltip("Here you can select the hardware for your robot.");
+        this.setHelpUrl('');
+    },
+
+    getSelectedHardware: function () {
+        var currentSelection = this.getFieldValue('HardwareOptions');
+        var child = this.getInput('Further').connection.targetConnection;      //this is null or a hardwareBlock
+        var selectedHardware = [];
+
+        if (child != null) {
+            selectedHardware = child.sourceBlock_.getSelectedHardware();        //this works because it is a hardware Block
+        }
+
+        return selectedHardware.concat([currentSelection]);
+    },
+
+    onchange: function (event) {
+        Blockly.Blocks.requireInFunction(this);
+    }
+};
+
+var Databaseloader = new function () {
+    this.hardwareTupleArray = [];
+    this.hardwareToSkillMap = {};
+    this.skillMap = {};          //name to skill
+    this.hardwareMap = {};       //name to hardware
+
+    this.init = function () {
+        $.getJSON('http://localhost/test.php', function (data) {
+            Databaseloader.hardwareTupleArray = [];
+            Databaseloader.hardwareToSkillMap = {};
+            Databaseloader.skillMap = {};
+            Databaseloader.hardwareMap = {};
+
+            var idToHardware = {};
+            for (var i = 0; i < data[0]['hardwareInformation'].length; i++) {
+                var hardwareEntry = data[0]['hardwareInformation'][i];
+                var hardwareInstance = new Hardware(hardwareEntry.hardwareId, hardwareEntry.hardwareName, hardwareEntry.degOfFreedom);
+                idToHardware[hardwareInstance.id] = hardwareInstance;
+                Databaseloader.hardwareMap[hardwareInstance.name] = hardwareInstance;
+            }
+
+            for (var i = 0; i < data[1]['skillInformation'].length; i++) {
+                var skillEntry = data[1]['skillInformation'][i];
+                var skillInstance = new Skill(skillEntry.id, skillEntry.skillName, skillEntry.controller);
+                var hardwareids = skillEntry.hardwareId;
+
+                var hardwareInstances = {};
+                for (var j = 0; j < hardwareids.length; j++) {
+                    var hw = idToHardware[hardwareids[j]];
+                    hardwareInstances[hw.id] = hw;
+                }
+
+                skillInstance.setHardware(hardwareInstances);
+
+                skillInstance.setAttributes(Databaseloader.getAttributes(skillInstance.name, skillInstance.controller));
+
+                Databaseloader.skillMap[skillInstance.name] = skillInstance;
+            }
+
+            var skills = getValuesFromMap(Databaseloader.skillMap);
+            for (var i = 0; i < skills.length; i++) {
+                var skill = skills[i];
+                var neededHardware = getValuesFromMap(skill.getHardware());
+                var neededHardwareIds = [];
+
+                for (var j = 0; j < neededHardware.length; j++) {
+                    neededHardwareIds.push(neededHardware[j].id);
+                }
+
+                var key = idsToKey(neededHardwareIds);
+
+                var setToAddSkill = Databaseloader.hardwareToSkillMap[key];
+
+                if (typeof setToAddSkill == 'undefined') {
+                    setToAddSkill = {};
+                    Databaseloader.hardwareToSkillMap[key] = setToAddSkill;
+                }
+
+                setToAddSkill[skill.id] = skill;
+            }
+
+            var idsToHardware = getValuesFromMap(idToHardware);
+            for (var k = 0; k < idsToHardware.length; k++) {
+                var h = idsToHardware[k];
+                Databaseloader.hardwareTupleArray.push([h.name, h.name]);
+            }
+
+        });
+    }
+
+    this.getAttributes = function (skill, controllerClass) {
+        var attributes = {};
+        $.ajax({
+            type: "GET",
+            url: "/home/agyss/iis_robot_sw/iis_catkin_ws/src/kukadu/meta/xml/classkukadu_1_1" + controllerClass + ".xml",
+            dataType: "xml",
+            async: false,
+            success: function (xml) {
+                var regex = "\w+(<[\w:<>*,\s]+>\s\w+|[\w+\s:*]+)+";
+
+                var pubfunctionBlock = $(xml).find('sectiondef').filter(function () {
+                    return $(this).attr('kind') == "public-func";
+                });
+
+                $(pubfunctionBlock).find('memberdef').each(function () {
+                    var functionname = $(this).find('name').text();
+                    if (functionname.substring(0, 3) === "set") {
+                        var argumentString = $(this).find('argsstring').text();
+
+                        var regex = /\w+(<[\w:<>*,\s]+>\s\w+|[\w+\s:*]+)+/g;
+                        var m;
+
+                        while ((m = regex.exec(argumentString)) !== null) {
+                            // This is necessary to avoid infinite loops with zero-width matches
+                            if (m.index === regex.lastIndex) {
+                                regex.lastIndex++;
+                            }
+
+                            var match = m[0];   //only get full match
+                            var subStringIndex = match.lastIndexOf(" ");
+                            var dataType = match.substr(0, subStringIndex);
+                            var variableName = match.substr(subStringIndex + 1);
+
+                            var attribute = new Attribute(variableName, dataType, "not defined");
+                            attributes[attribute.name] = attribute;
+                        }
+                    }
+
+                });
+            }
+        });
+
+        return attributes;
+    }
+}
+
+function eqSet(as, bs) {
+    if (as.length !== bs.length) {
+        return false;
+    }
+
+    var entriesOfAs = getKeysFromMap(as);
+    var entriesOfBs = getKeysFromMap(bs);
+    for (var i = 0; i < entriesOfAs.length; i++) {
+        var a = entriesOfAs[i];
+        if (bs.indexOf(a) === -1) {
+            return false;
+        }
+    }
+    return true;
+}
+
+function Skill(id, name, controller) {
+    this.id = id;
+    this.name = name;
+    this.controller = controller
+
+    this.setAttributes = function (attributes) {
+        this.attributes = attributes;
+    }
+
+    this.getAttributes = function () {
+        return this.attributes;
+    }
+
+    this.setHardware = function (hardware) {
+        this.hardware = hardware;
+    };
+
+    this.getHardware = function () {
+        return this.hardware;
+    }
+}
+
+function Hardware(id, name, degOfFreedom) {
+    this.id = id;
+    this.name = name;
+    this.degOfFreedom = degOfFreedom;
+}
+
+function Attribute(name, dataType, defaultValue) {
+    this.name = name;
+    this.dataType = dataType;
+    this.defaultValue = defaultValue;
+}
+
+function getKeysFromMap(map) {
+    var keys = [];
+    for (var key in map) {
+        keys.push(key);
+    }
+
+    return keys;
+}
+
+function getValuesFromMap(map) {
+    var values = [];
+    for (var key in map) {
+        values.push(map[key]);
+    }
+
+    return values;
+}
+
+function idsToKey(ids) {
+    var key = "";
+    ids.sort();
+    for (var keypart in ids) {
+        key += keypart + ", "
+    }
+
+    return key;
+}
