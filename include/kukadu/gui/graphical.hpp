@@ -12,6 +12,19 @@
 #include <QtWebKitWidgets/QWebPage>
 #include <QtWebKitWidgets/QWebFrame>
 #include <stdio.h>
+#include <sstream>
+#include <iostream>
+#include <vector>
+#include <QtWidgets/QLabel>
+#include <QtWidgets/QListView>
+#include <QtWidgets/QLineEdit>
+#include <QtWidgets/QTableView>
+#include <QtWidgets/QPushButton>
+#include <QtWidgets/QGridLayout>
+#include <QtWidgets/QHBoxLayout>
+#include <QtWidgets/QMessageBox>
+#include <QtWebKit/QtWebKit>
+#include <kukadu/utils/utils.hpp>
 
 #include <string>
 #include <vector>
@@ -30,8 +43,10 @@ namespace kukadu {
 
         QTabWidget* mainTab;
         QWebView* webView;
+        QLineEdit* packeNameLineEdit;
 
         QGroupBox* createUI();
+        std::string getCatkinMakeString(const std::string& packageName);
 
     public:
 

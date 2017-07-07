@@ -1,18 +1,5 @@
 #include <kukadu/gui/graphical.hpp>
 
-#include <sstream>
-#include <iostream>
-#include <vector>
-#include <QtWidgets/QLabel>
-#include <QtWidgets/QListView>
-#include <QtWidgets/QLineEdit>
-#include <QtWidgets/QTableView>
-#include <QtWidgets/QPushButton>
-#include <QtWidgets/QGridLayout>
-#include <QtWidgets/QHBoxLayout>
-#include <QtWidgets/QMessageBox>
-#include <QtWebKit/QtWebKit>
-
 // very nasty tweak
 //#include <QtWidgets/../QtWebKitWidgets/QWebView>
 //#include <QtWidgets/../QtWebKitWidgets/QWebPage>
@@ -37,9 +24,11 @@ namespace kukadu {
     }
 
     QGroupBox* KukaduGraphical::createUI() {
+        std::string blocklyPath = resolvePath("$KUKADU_HOME/external/blockly/cake/test.html");
         auto mainView = new QGroupBox();
         auto mainLayout = new QGridLayout();
         auto buttonContainer = new QHBoxLayout();
+        packeNameLineEdit = new QLineEdit();
 
         QWebSettings::globalSettings()->setAttribute(QWebSettings::DeveloperExtrasEnabled, true);
         QWebSettings::globalSettings()->setAttribute(QWebSettings::LocalContentCanAccessRemoteUrls,true);
@@ -51,7 +40,8 @@ namespace kukadu {
         webView = new QWebView(this);
         webView->setMinimumSize(DEFAULT_WIDTH, DEFAULT_HEIGHT-150);
         webView->setMaximumSize(DEFAULT_WIDTH, DEFAULT_HEIGHT-150);
-        webView->load(QUrl("file:///home/agyss/blockly\ test/cake/test.html"));
+        std::string indexFilePath = "file://" + blocklyPath;
+        webView->load(QUrl(indexFilePath.c_str()));
 
         auto executeButton = new QPushButton("Execute");
         QObject::connect(executeButton, SIGNAL(clicked()),this, SLOT(clickedSlot()));
@@ -61,17 +51,31 @@ namespace kukadu {
         mainLayout->addLayout(buttonContainer, 1, 0);
         mainLayout->addWidget(webView, 0, 0);
         buttonContainer->addWidget(executeButton);
+        buttonContainer->addWidget(packeNameLineEdit);
 
         return mainView;
     }
 
     void KukaduGraphical::clickedSlot() {
+        std::string var = "test";
+        getCatkinMakeString(var);
+
         QVariant codeVariant = webView->page()->mainFrame()->evaluateJavaScript("getCode()");
         qDebug() << codeVariant.toString();
-        system("cd ~/iis_robot_sw/iis_catkin_ws/src/;rm -r test;catkin_create_pkg test geometry_msgs kukadu;cd test;mkdir src;");
 
+        std::string packageName = packeNameLineEdit->text().toUtf8().constData();
+        if(packageName.empty()){
+            packageName = "graphical_test";
+        }
 
-        QFile codeFile("/home/agyss/iis_robot_sw/iis_catkin_ws/src/test/src/code.cpp");
+        std::string catkinSources = resolvePath("$KUKADU_HOME/../");
+        std::string catkinWorkingDirectory = catkinSources + "../";
+
+        std::string argumentString= "cd " + catkinSources + ";rm -r " + packageName + ";catkin_create_pkg " + packageName + " geometry_msgs kukadu;cd " + packageName + ";mkdir src;";
+        system(argumentString.c_str());
+
+        argumentString = catkinSources + packageName + "/src/code.cpp";
+        QFile codeFile(argumentString.c_str());
         if(codeFile.exists()){
             codeFile.remove();
         }
@@ -82,9 +86,10 @@ namespace kukadu {
         codeFile.write(codeByteArray.data(), code.length());
         codeFile.close();
 
-
-        QFile cmakeInFile("/home/agyss/iis_robot_sw/iis_catkin_ws/src/test/CMakeLists.txt");
-        QFile cmakeOutFile("/home/agyss/iis_robot_sw/iis_catkin_ws/src/test/CMakeLists.txt1");
+        argumentString = catkinSources + packageName + "/CMakeLists.txt";
+        QFile cmakeInFile(argumentString.c_str());
+        argumentString = catkinSources + packageName + "/CMakeLists.txt1";
+        QFile cmakeOutFile(argumentString.c_str());
         cmakeInFile.open(QIODevice::ReadOnly);
         cmakeOutFile.open(QIODevice::WriteOnly);
 
@@ -94,7 +99,8 @@ namespace kukadu {
         QString textToAdd[arraysize];
         textToAdd[3] = QString("set(CMAKE_BUILD_TYPE Debug)");
         textToAdd[5] = QString("include(CheckCXXCompilerFlag)\r\nCHECK_CXX_COMPILER_FLAG(\"-std=c++11\" COMPILER_SUPPORTS_CXX11)\r\nCHECK_CXX_COMPILER_FLAG(\"-std=c++0x\" COMPILER_SUPPORTS_CXX0X)\r\nif(COMPILER_SUPPORTS_CXX11)\r\nset(CMAKE_CXX_FLAGS \"${CMAKE_CXX_FLAGS} -std=c++11\")\r\nadd_definitions(-DCPP11SUPPORTED)\r\nelseif(COMPILER_SUPPORTS_CXX0X)\r\nset(CMAKE_CXX_FLAGS \"${CMAKE_CXX_FLAGS} -std=c++0x\")\r\nadd_definitions(-DCPP11SUPPORTED)\r\nelse()\r\nmessage(STATUS \"The compiler ${CMAKE_CXX_COMPILER} has no C++11 support. Please use a different C++ compiler.\")\r\nendif()");
-        textToAdd[123] = QString("add_executable(test src/code.cpp)\r\ntarget_link_libraries(test ${catkin_LIBRARIES} kukadu kukaduvision)");
+        argumentString = "add_executable(" + packageName + " src/code.cpp)\r\ntarget_link_libraries(" + packageName + " ${catkin_LIBRARIES} kukadu kukaduvision)";
+        textToAdd[123] = QString(argumentString.c_str());
         int i = 0;
         while (!streamIn.atEnd()){
             if(i < arraysize){
@@ -115,6 +121,45 @@ namespace kukadu {
         cmakeOutFile.close();
 
         cmakeInFile.remove();
-        cmakeOutFile.rename("/home/agyss/iis_robot_sw/iis_catkin_ws/src/test/CMakeLists.txt");
+        argumentString = catkinSources + packageName + "/CMakeLists.txt";
+        cmakeOutFile.rename(argumentString.c_str());
+
+
+        argumentString = "cd " + catkinWorkingDirectory + ";";
+        argumentString += getCatkinMakeString(packageName) + ";";
+        argumentString += "cd devel/lib/" + packageName + ";";
+        argumentString += "./" + packageName;
+        system(argumentString.c_str());
+    }
+
+    std::string KukaduGraphical::getCatkinMakeString(const std::string& packageName){
+        std::string cmakeCacheFilePath = resolvePath("$KUKADU_HOME/../../build/CMakeCache.txt");
+        QFile cmakeCacheFile(cmakeCacheFilePath.c_str());
+        cmakeCacheFile.open(QIODevice::ReadOnly);
+        QTextStream inputStream(&cmakeCacheFile);
+
+
+        std::string catkinMakeString = "";
+        while(!inputStream.atEnd() && catkinMakeString.empty()){
+            QString line = inputStream.readLine();
+            if(line.startsWith("CATKIN_WHITELIST_PACKAGES:STRING=")){
+                auto length = line.length()-33;
+                auto arguments = line.mid(33, length);
+                QString startString((packageName + ";").c_str());
+                QString containsString((";" + packageName + ";").c_str());
+                QString endString((";" + packageName).c_str());
+                if(arguments.isEmpty() || arguments.startsWith(startString) || arguments.contains(containsString) || arguments.endsWith(endString)){
+                    catkinMakeString = "catkin_make";
+                } else {
+                    catkinMakeString = "catkin_make --only-pkg-with-deps " + std::string(arguments.toUtf8().constData()) + ";" + packageName;
+                }
+            }
+        }
+
+        cmakeCacheFile.close();
+
+        std::replace(catkinMakeString.begin(), catkinMakeString.end(), ';', ' ');
+        std::cout << catkinMakeString << std::endl;
+        return catkinMakeString;
     }
 }
