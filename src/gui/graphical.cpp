@@ -138,6 +138,12 @@ namespace kukadu {
 
         codeFile.open(QIODevice::WriteOnly);
         QString code = codeVariant.toString();
+        QString replace("ros::init(argc, args, \"kukadu\")");
+        QString replacement("ros::init(argc, args, \"");
+        replacement.append(QString::fromStdString(packageName));
+        replacement.append("\")");
+        code.replace(replace, replacement);
+
         QByteArray codeByteArray = code.toLatin1();
         codeFile.write(codeByteArray.data(), code.length());
         codeFile.close();
