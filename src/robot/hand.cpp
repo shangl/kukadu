@@ -61,6 +61,11 @@ namespace kukadu {
         return jointIds;
     }
 
+    std::vector<mes_result> GenericHand::jointPtp(arma::vec joints){
+        moveJoints(joints);
+        return {};
+    }
+
     double GenericHand::getPreferredPollingFrequency() {
         return 5.0;
     }

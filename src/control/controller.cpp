@@ -285,8 +285,7 @@ namespace kukadu {
     }
 
     /************************* JointPtp *********************************/
-    // statt KUKADU_SHARED_PTR<ControlQueue> leftQueue kommt KUKADU_SHARED_PTR<JointHardware> leftQueue
-    JointPtp::JointPtp(StorageSingleton& storage, KUKADU_SHARED_PTR<ControlQueue> leftQueue)
+    JointPtp::JointPtp(StorageSingleton& storage, KUKADU_SHARED_PTR<JointHardware> leftQueue)
                     : Controller(storage, "test_skill_wrapper", {leftQueue}, 0.01) {
 
         this->leftQueue = leftQueue;

@@ -3,6 +3,7 @@
 
 #include <string>
 #include <armadillo>
+#include <kukadu/utils/types.hpp>
 #include <kukadu/storage/storagesingleton.hpp>
 
 namespace kukadu {
@@ -88,8 +89,7 @@ namespace kukadu {
                                                                            long long int maxTotalDuration = 3600000,
                                                                            long long maxTimeStepDifference = 5000);
 
-        // einfuegen und diese pure virtual function bei allen implementieren die dann fehler schmeissen
-        //virtual std::vector<mes_result> jointPtp(arma::vec joints) = 0;
+        virtual std::vector<kukadu::mes_result> jointPtp(arma::vec joints) = 0;
 
     };
 
