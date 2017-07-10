@@ -71,3 +71,7 @@ function downloadCode() {
 function getCode() {
   return Blockly.cake.workspaceToCode();
 }
+
+function initializeDatabaseloader(jsonString){
+  Databaseloader.init(JSON.parse(jsonString));
+}

@@ -23,6 +23,56 @@ namespace kukadu {
 
     }
 
+    void KukaduGraphical::loadInformationFromDatabase(){
+        kukadu::StorageSingleton& storage = kukadu::StorageSingleton::get();
+        auto skillResult= storage.executeQuery("SELECT skill_id as id, label as skillName, controller_types.controller_implementation_class as controller FROM skills INNER JOIN controller_types ON skills.controller_type=controller_types.controller_id");
+
+        nlohmann::json skillJson;
+
+        while(skillResult->next()){
+            int id = skillResult->getInt("id");
+            nlohmann::json skillInformation;
+            skillInformation["id"] = id;
+            auto label = skillResult->getString("skillName");
+            skillInformation["skillName"] = label;
+            auto controller = skillResult->getString("controller");
+            skillInformation["controller"] = controller;
+
+            std::string query = "SELECT hardware_Instance_id as hardwareId FROM skills_robot WHERE skill_id=" + std::to_string(id);
+            auto hardwareForSkill = storage.executeQuery(query);
+            std::vector<int> requiredHardwareIds;
+            while(hardwareForSkill->next()){
+                requiredHardwareIds.push_back(hardwareForSkill->getInt("hardwareId"));
+            }
+
+            skillInformation["hardwareId"] = requiredHardwareIds;
+
+            skillJson.push_back(skillInformation);
+        }
+
+        nlohmann::json hardwareJson;
+        auto hardwareResult = storage.executeQuery("SELECT hardware_instances.instance_id AS hardwareId, hardware_instances.instance_name as hardwareName ,IFNULL(kukie_hardware.deg_of_freedom, 0) AS degOfFreedom FROM hardware_instances LEFT OUTER JOIN kukie_hardware ON hardware_instances.instance_id=kukie_hardware.hardware_instance_id");
+        while(hardwareResult->next()){
+            nlohmann::json hardwareInformation;
+            int id = hardwareResult->getInt("hardwareId");
+            hardwareInformation["hardwareId"] = id;
+            auto name = hardwareResult->getString("hardwareName");
+            hardwareInformation["hardwareName"] = name;
+            int defOfFreedom = hardwareResult->getInt("degOfFreedom");
+            hardwareInformation["degOfFreedom"] = defOfFreedom;
+
+            hardwareJson.push_back(hardwareInformation);
+        }
+
+        nlohmann::json finalJson;
+        finalJson["hardwareInformation"] = hardwareJson;
+        finalJson["skillInformation"] = skillJson;
+
+        std::string js = finalJson.dump();
+        QString info = QString("initializeDatabaseloader('%1')").arg(QString::fromStdString(js));
+        webView->page()->mainFrame()->evaluateJavaScript(info);
+    }
+
     QGroupBox* KukaduGraphical::createUI() {
         std::string blocklyPath = resolvePath("$KUKADU_HOME/external/blockly/cake/test.html");
         auto mainView = new QGroupBox();
@@ -41,6 +91,7 @@ namespace kukadu {
         webView->setMinimumSize(DEFAULT_WIDTH, DEFAULT_HEIGHT-150);
         webView->setMaximumSize(DEFAULT_WIDTH, DEFAULT_HEIGHT-150);
         std::string indexFilePath = "file://" + blocklyPath;
+        QObject::connect(webView, SIGNAL(loadFinished(bool)), this, SLOT(onStart()));
         webView->load(QUrl(indexFilePath.c_str()));
 
         auto executeButton = new QPushButton("Execute");
@@ -56,12 +107,16 @@ namespace kukadu {
         return mainView;
     }
 
+    void KukaduGraphical::onStart() {
+        loadInformationFromDatabase();
+        std::cout << "started" << std::endl;
+    }
+
     void KukaduGraphical::clickedSlot() {
         std::string var = "test";
         getCatkinMakeString(var);
 
         QVariant codeVariant = webView->page()->mainFrame()->evaluateJavaScript("getCode()");
-        qDebug() << codeVariant.toString();
 
         std::string packageName = packeNameLineEdit->text().toUtf8().constData();
         if(packageName.empty()){

@@ -25,6 +25,7 @@
 #include <QtWidgets/QMessageBox>
 #include <QtWebKit/QtWebKit>
 #include <kukadu/utils/utils.hpp>
+#include <json.hpp>
 
 #include <string>
 #include <vector>
@@ -45,6 +46,7 @@ namespace kukadu {
         QWebView* webView;
         QLineEdit* packeNameLineEdit;
 
+        void loadInformationFromDatabase();
         QGroupBox* createUI();
         std::string getCatkinMakeString(const std::string& packageName);
 
@@ -56,6 +58,7 @@ namespace kukadu {
     public slots:
 
       void clickedSlot();
+      void onStart();
 
     };
 

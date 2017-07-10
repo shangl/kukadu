@@ -208,23 +208,22 @@ var Databaseloader = new function () {
     this.skillMap = {};          //name to skill
     this.hardwareMap = {};       //name to hardware
 
-    this.init = function () {
-        $.getJSON('http://localhost/test.php', function (data) {
+    this.init = function (data) {
             Databaseloader.hardwareTupleArray = [];
             Databaseloader.hardwareToSkillMap = {};
             Databaseloader.skillMap = {};
             Databaseloader.hardwareMap = {};
 
             var idToHardware = {};
-            for (var i = 0; i < data[0]['hardwareInformation'].length; i++) {
-                var hardwareEntry = data[0]['hardwareInformation'][i];
+            for (var i = 0; i < data['hardwareInformation'].length; i++) {
+                var hardwareEntry = data['hardwareInformation'][i];
                 var hardwareInstance = new Hardware(hardwareEntry.hardwareId, hardwareEntry.hardwareName, hardwareEntry.degOfFreedom);
                 idToHardware[hardwareInstance.id] = hardwareInstance;
                 Databaseloader.hardwareMap[hardwareInstance.name] = hardwareInstance;
             }
 
-            for (var i = 0; i < data[1]['skillInformation'].length; i++) {
-                var skillEntry = data[1]['skillInformation'][i];
+            for (var i = 0; i < data['skillInformation'].length; i++) {
+                var skillEntry = data['skillInformation'][i];
                 var skillInstance = new Skill(skillEntry.id, skillEntry.skillName, skillEntry.controller);
                 var hardwareids = skillEntry.hardwareId;
 
@@ -268,8 +267,6 @@ var Databaseloader = new function () {
                 var h = idsToHardware[k];
                 Databaseloader.hardwareTupleArray.push([h.name, h.name]);
             }
-
-        });
     }
 
     this.getAttributes = function (skill, controllerClass) {
