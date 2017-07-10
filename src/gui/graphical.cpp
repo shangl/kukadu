@@ -67,6 +67,7 @@ namespace kukadu {
         nlohmann::json finalJson;
         finalJson["hardwareInformation"] = hardwareJson;
         finalJson["skillInformation"] = skillJson;
+        finalJson["attributePath"] = resolvePath("$KUKADU_HOME/meta/xml/");
 
         std::string js = finalJson.dump();
         QString info = QString("initializeDatabaseloader('%1')").arg(QString::fromStdString(js));

@@ -213,6 +213,7 @@ var Databaseloader = new function () {
             Databaseloader.hardwareToSkillMap = {};
             Databaseloader.skillMap = {};
             Databaseloader.hardwareMap = {};
+            this.attributePath = data['attributePath'];
 
             var idToHardware = {};
             for (var i = 0; i < data['hardwareInformation'].length; i++) {
@@ -273,7 +274,7 @@ var Databaseloader = new function () {
         var attributes = {};
         $.ajax({
             type: "GET",
-            url: "/home/agyss/iis_robot_sw/iis_catkin_ws/src/kukadu/meta/xml/classkukadu_1_1" + controllerClass + ".xml",
+            url: this.attributePath + "classkukadu_1_1" + controllerClass + ".xml",
             dataType: "xml",
             async: false,
             success: function (xml) {
