@@ -68,6 +68,19 @@ namespace kukadu {
 
     };
 
+    class RobotConfiguration : public StorageHolder {
+
+    public:
+
+        RobotConfiguration(StorageSingleton& storage, int configurationId);
+        bool containsHardwareInOrder(std::vector<KUKADU_SHARED_PTR<Hardware> > hardwareComponents);
+        bool containsHardwareAsSet(std::vector<KUKADU_SHARED_PTR<Hardware> > hardwareComponents);
+        bool containsHardware(std::vector<KUKADU_SHARED_PTR<Hardware> > hardwareComponents);
+
+    private:
+        std::vector<int> hardwareIds;
+    };
+
     class JointHardware : public Hardware {
 
     public:

@@ -1,10 +1,50 @@
 #include <sstream>
 #include <kukadu/robot/hardware.hpp>
+#include <algorithm>
 
 using namespace std;
 using namespace arma;
 
 namespace kukadu {
+
+    RobotConfiguration::RobotConfiguration(StorageSingleton& storage, int configurationId) : StorageHolder(storage) {
+        stringstream s;
+        s << "SELECT * FROM `robot_config` WHERE robot_config_id=" << configurationId << " ORDER BY order_id ASC";
+        auto robotConfig = storage.executeQuery(s.str());
+
+        while (robotConfig->next()) {
+            auto hardwareId = robotConfig->getInt("hardware_Instance_id");
+            hardwareIds.push_back(hardwareId);
+        }
+    }
+
+    bool RobotConfiguration::containsHardwareInOrder(std::vector<KUKADU_SHARED_PTR<Hardware> > hardwareComponents){
+        if(hardwareComponents.size() != hardwareIds.size()) {
+            return false;
+        }
+
+        auto argumentIterator = hardwareComponents.begin();
+        auto propertyIterator = hardwareIds.begin();
+
+        for(;(*argumentIterator)->getHardwareInstance() == *propertyIterator && argumentIterator != --hardwareComponents.end(); argumentIterator++, propertyIterator++);
+
+        return (*argumentIterator)->getHardwareInstance() == *propertyIterator;
+    }
+
+    bool RobotConfiguration::containsHardwareAsSet(std::vector<KUKADU_SHARED_PTR<Hardware> > hardwareComponents){
+        if(hardwareComponents.size() != hardwareIds.size()){
+            return false;
+        }
+
+        auto argumentIterator = hardwareComponents.begin();
+
+        for (; argumentIterator != --hardwareComponents.end() && std::find(hardwareIds.begin(), hardwareIds.end(), (*argumentIterator)->getHardwareInstance()) != hardwareIds.end();
+              ++argumentIterator);
+
+        return std::find(hardwareIds.begin(), hardwareIds.end(), (*argumentIterator)->getHardwareInstance()) != hardwareIds.end();
+    }
+
+
 
     Hardware::Hardware(StorageSingleton& dbStorage, int hardwareClass, int hardwareType, std::string hardwareTypeName, int hardwareInstanceId, std::string hardwareInstanceName) :
         StorageHolder(dbStorage) {

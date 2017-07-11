@@ -39,22 +39,22 @@ namespace kukadu {
 
             std::string query = "SELECT DISTINCT robot_config.robot_config_id as configId FROM skills_robot INNER JOIN robot_config ON skills_robot.robot_config_id=robot_config.robot_config_id WHERE skills_robot.skill_id=" + std::to_string(id);
             auto configForSkill = storage.executeQuery(query);
-            std::vector<int> requiredHardwareIds;
+            std::vector<int> roboterConfigIds;
             while(configForSkill->next()){
-                requiredHardwareIds.push_back(configForSkill->getInt("configId"));
+                roboterConfigIds.push_back(configForSkill->getInt("configId"));
             }
 
-            skillInformation["configId"] = requiredHardwareIds;
+            skillInformation["configId"] = roboterConfigIds;
 
             skillJson.push_back(skillInformation);
         }
 
         nlohmann::json robotConfigJson;
-        auto robotConfigResult = storage.executeQuery("SELECT robot_config_id FROM robot_config");
+        auto robotConfigResult = storage.executeQuery("SELECT DISTINCT robot_config_id FROM robot_config");
         while(robotConfigResult->next()){
 
             int id = robotConfigResult->getInt("robot_config_id");
-            auto configForId = storage.executeQuery("SELECT hardware_instance_id, order_id FROM robot_config WHERE robot_config_id=" + std::to_string(id));
+            auto configForId = storage.executeQuery("SELECT DISTINCT hardware_instance_id, order_id FROM robot_config WHERE robot_config_id=" + std::to_string(id));
             nlohmann::json configInformation;
             std::vector<int> hardwareIds;
             std::vector<int> orderIds;
@@ -67,7 +67,8 @@ namespace kukadu {
 
             configInformation["hardwareId"] = hardwareIds;
             configInformation["order"] = orderIds;
-            robotConfigJson[std::to_string(id)] = configInformation;
+            configInformation["id"] = id;
+            robotConfigJson.push_back(configInformation);
         }
 
         nlohmann::json hardwareJson;
@@ -87,7 +88,7 @@ namespace kukadu {
         nlohmann::json finalJson;
         finalJson["hardwareInformation"] = hardwareJson;
         finalJson["skillInformation"] = skillJson;
-        finalJson["roboterConfigs"] = robotConfigJson;
+        finalJson["roboConfigs"] = robotConfigJson;
         finalJson["attributePath"] = resolvePath("$KUKADU_HOME/meta/xml/");
 
         std::string js = finalJson.dump();

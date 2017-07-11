@@ -38,7 +38,7 @@ namespace kukadu {
         return instance;
     }
 
-    KUKADU_SHARED_PTR<Controller> SkillFactory::loadSkill(std::string skillName, KUKADU_SHARED_PTR<Hardware> queue) {
+    KUKADU_SHARED_PTR<Controller> SkillFactory::loadSkill(std::string skillName, std::vector<KUKADU_SHARED_PTR<Hardware> > hardwareComponents) {
 
         stringstream s;
         s << "select skr.skill_id as skid, controller_type from skills as ski" <<

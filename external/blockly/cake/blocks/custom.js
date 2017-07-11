@@ -52,18 +52,20 @@ Blockly.Blocks['skillloader'] = {
         Blockly.Blocks.requireInFunction(this);
         var addedHardwareSet = this.getCurrentHardware();
         var hardwareKey = idsToKey(getKeysFromMap(addedHardwareSet));
-        var connectedHardware = Databaseloader.hardwareToSkillMap[hardwareKey];
+        var chosenConfig = Databaseloader.roboConfigMap[hardwareKey];
 
+        console.log(hardwareKey + " and " + this._hardwareIds);
         if (getKeysFromMap(addedHardwareSet).length > 0 && hardwareKey !== this._hardwareIds) {    //if addedHardware Changed
             this._hardwareIds = hardwareKey;
-            var availableSkills = Databaseloader.hardwareToSkillMap[hardwareKey];
 
-            if (typeof availableSkills == 'undefined') {
+            if (typeof chosenConfig == 'undefined') {
                 this.setNoSkillsAvailable();
             } else {
+                var availableSkills = Databaseloader.roboConfigToSkillMap[chosenConfig.id];
                 this.setAvailableSkills(availableSkills)
             }
         } else if (getKeysFromMap(addedHardwareSet).length == 0 && hardwareKey !== this._hardwareIds) {
+            this._hardwareIds = -1;
             var skillsInput = this.getInput('SKILL');
             if (skillsInput != null) {
                 skillsInput.fieldRow[1].menuGenerator_ = [];
@@ -115,7 +117,7 @@ Blockly.Blocks['skillloader'] = {
             return;
         } else {
             var skillId = currentSkill.id;
-            var skill = Databaseloader.hardwareToSkillMap[this._hardwareIds][skillId];
+            var skill = Databaseloader.roboConfigToSkillMap[this._hardwareIds][skillId];
             var attributes = getValuesFromMap(skill.getAttributes());
 
             if (attributes != null) {
@@ -147,9 +149,12 @@ Blockly.Blocks['skillloader'] = {
                         }
 
                         var degOfFreedom = 0;
-                        var skillHardware = getValuesFromMap(skill.getHardware());
-                        for (var j = 0; j < skillHardware.length; j++) {
-                            var hardware = skillHardware[j];
+                        var addedHardwareSet = this.getCurrentHardware();
+                        var hardwareKey = idsToKey(getKeysFromMap(addedHardwareSet));
+                        var chosenConfig = Databaseloader.roboConfigMap[hardwareKey];
+
+                        for (var j = 0; j < chosenConfig.hardwareInOrder.length; j++) {
+                            var hardware = chosenConfig.hardwareInOrder[j];
                             degOfFreedom = hardware.degOfFreedom > degOfFreedom ? hardware.degOfFreedom : degOfFreedom;
                         }
 
@@ -204,70 +209,77 @@ Blockly.Blocks['hardware'] = {
 
 var Databaseloader = new function () {
     this.hardwareTupleArray = [];
-    this.hardwareToSkillMap = {};
+    this.roboConfigToSkillMap = {};
     this.skillMap = {};          //name to skill
     this.hardwareMap = {};       //name to hardware
+    this.roboConfigMap = {};     //hardwareIds to configIds
 
     this.init = function (data) {
-            Databaseloader.hardwareTupleArray = [];
-            Databaseloader.hardwareToSkillMap = {};
-            Databaseloader.skillMap = {};
-            Databaseloader.hardwareMap = {};
-            this.attributePath = data['attributePath'];
+        Databaseloader.hardwareTupleArray = [];
+        Databaseloader.roboConfigToSkillMap = {};
+        Databaseloader.skillMap = {};
+        Databaseloader.hardwareMap = {};
+        Databaseloader.roboConfigMap = {};
+        this.attributePath = data['attributePath'];
 
-            var idToHardware = {};
-            for (var i = 0; i < data['hardwareInformation'].length; i++) {
-                var hardwareEntry = data['hardwareInformation'][i];
-                var hardwareInstance = new Hardware(hardwareEntry.hardwareId, hardwareEntry.hardwareName, hardwareEntry.degOfFreedom);
-                idToHardware[hardwareInstance.id] = hardwareInstance;
-                Databaseloader.hardwareMap[hardwareInstance.name] = hardwareInstance;
+        var idToHardware = {};
+        for (var i = 0; i < data['hardwareInformation'].length; i++) {
+            var hardwareEntry = data['hardwareInformation'][i];
+            var hardwareInstance = new Hardware(hardwareEntry.hardwareId, hardwareEntry.hardwareName, hardwareEntry.degOfFreedom);
+            idToHardware[hardwareInstance.id] = hardwareInstance;
+            Databaseloader.hardwareMap[hardwareInstance.name] = hardwareInstance;
+        }
+
+        for (var i = 0; i < data['roboConfigs'].length; i++) {
+            var configEntry = data['roboConfigs'][i];
+            var id = configEntry.id;
+            var hwId = configEntry.hardwareId;
+            var order = configEntry.order;
+            var hardwareIdsInOrder = [];
+            var hardwareInOrder = [];
+
+            for (var j = 0; j < hwId.length; j++) {
+                hardwareIdsInOrder[order[j] - 1] = hwId[j];     //-1 because order starts with 1
+                hardwareInOrder[order[j] - 1] = idToHardware[hwId[j]];
             }
 
-            for (var i = 0; i < data['skillInformation'].length; i++) {
-                var skillEntry = data['skillInformation'][i];
-                var skillInstance = new Skill(skillEntry.id, skillEntry.skillName, skillEntry.controller);
-                var hardwareids = skillEntry.hardwareId;
+            Databaseloader.roboConfigMap[idsToKey(hardwareIdsInOrder)] = new RoboConfig(id, hardwareInOrder);
+        }
 
-                var hardwareInstances = {};
-                for (var j = 0; j < hardwareids.length; j++) {
-                    var hw = idToHardware[hardwareids[j]];
-                    hardwareInstances[hw.id] = hw;
-                }
+        for (var i = 0; i < data['skillInformation'].length; i++) {
+            var skillEntry = data['skillInformation'][i];
+            var skillInstance = new Skill(skillEntry.id, skillEntry.skillName, skillEntry.controller);
+            var configIds = skillEntry.configId;
 
-                skillInstance.setHardware(hardwareInstances);
+            skillInstance.setConfigs(configIds);
 
-                skillInstance.setAttributes(Databaseloader.getAttributes(skillInstance.name, skillInstance.controller));
+            skillInstance.setAttributes(Databaseloader.getAttributes(skillInstance.name, skillInstance.controller));
 
-                Databaseloader.skillMap[skillInstance.name] = skillInstance;
-            }
+            Databaseloader.skillMap[skillInstance.name] = skillInstance;
+        }
 
-            var skills = getValuesFromMap(Databaseloader.skillMap);
-            for (var i = 0; i < skills.length; i++) {
-                var skill = skills[i];
-                var neededHardware = getValuesFromMap(skill.getHardware());
-                var neededHardwareIds = [];
+        var skills = getValuesFromMap(Databaseloader.skillMap);
+        for (var i = 0; i < skills.length; i++) {
+            var skill = skills[i];
+            var possibleConfigs = getValuesFromMap(skill.getConfigs());
 
-                for (var j = 0; j < neededHardware.length; j++) {
-                    neededHardwareIds.push(neededHardware[j].id);
-                }
-
-                var key = idsToKey(neededHardwareIds);
-
-                var setToAddSkill = Databaseloader.hardwareToSkillMap[key];
+            for (var j = 0; j < possibleConfigs.length; j++) {
+                var setToAddSkill = Databaseloader.roboConfigToSkillMap[possibleConfigs[j]];
 
                 if (typeof setToAddSkill == 'undefined') {
                     setToAddSkill = {};
-                    Databaseloader.hardwareToSkillMap[key] = setToAddSkill;
+                    Databaseloader.roboConfigToSkillMap[possibleConfigs[j]] = setToAddSkill;
                 }
 
                 setToAddSkill[skill.id] = skill;
             }
+        }
 
-            var idsToHardware = getValuesFromMap(idToHardware);
-            for (var k = 0; k < idsToHardware.length; k++) {
-                var h = idsToHardware[k];
-                Databaseloader.hardwareTupleArray.push([h.name, h.name]);
-            }
+        var hardwareArray = getValuesFromMap(idToHardware);
+        for (var k = 0; k < hardwareArray.length; k++) {
+            var hw = hardwareArray[k];
+            Databaseloader.hardwareTupleArray.push([hw.name, hw.name]);
+        }
     }
 
     this.getAttributes = function (skill, controllerClass) {
@@ -332,6 +344,11 @@ function eqSet(as, bs) {
     return true;
 }
 
+function RoboConfig(id, hardwareInOrder) {
+    this.id = id;
+    this.hardwareInOrder = hardwareInOrder;
+}
+
 function Skill(id, name, controller) {
     this.id = id;
     this.name = name;
@@ -345,12 +362,12 @@ function Skill(id, name, controller) {
         return this.attributes;
     }
 
-    this.setHardware = function (hardware) {
-        this.hardware = hardware;
+    this.setConfigs = function (config) {
+        this.roboConfig = config;
     };
 
-    this.getHardware = function () {
-        return this.hardware;
+    this.getConfigs = function () {
+        return this.roboConfig;
     }
 }
 
@@ -386,9 +403,13 @@ function getValuesFromMap(map) {
 
 function idsToKey(ids) {
     var key = "";
-    ids.sort();
-    for (var keypart in ids) {
-        key += keypart + ", "
+
+    for (var i = 0; i < ids.length; i++) {
+        if (i === ids.length - 1) {
+            key += ids[i];
+        } else {
+            key += ids[i] + ", ";
+        }
     }
 
     return key;
