@@ -37,6 +37,10 @@ KUKADU_SHARED_PTR<Hardware> HardwareFactory::loadHardware(std::string hardwareNa
     auto hardwareId = storage.getCachedLabelId("hardware_instances", "hardware_id", "instance_name", hardwareName);
     auto className = storage.getCachedLabel("hardware", "hardware_id", "hardware_name", hardwareId);
 
+
+    auto& storage = StorageSingleton::get();
+    auto tmp = hardwareFactories[className](storage, hardwareName, true);
+
     auto& created = createdHardware[hardwareName] = hardwareFactories[className](StorageSingleton::get(), hardwareName, true);
 
     return created;

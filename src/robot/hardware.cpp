@@ -32,17 +32,37 @@ namespace kukadu {
     }
 
     bool RobotConfiguration::containsHardwareAsSet(std::vector<KUKADU_SHARED_PTR<Hardware> > hardwareComponents){
-        if(hardwareComponents.size() != hardwareIds.size()){
-            return false;
+        auto propertyIterator = hardwareIds.begin();
+        auto argumentContainsAllProperties = hardwareComponents.size() == hardwareIds.size();
+
+        for(; propertyIterator != hardwareIds.end() && argumentContainsAllProperties; ++propertyIterator){
+            auto elementFound = false;
+            for(auto argumentIterator = hardwareComponents.begin(); !elementFound && argumentIterator != hardwareComponents.end(); ++argumentIterator){
+                elementFound = (*argumentIterator)->getHardwareInstance()==*propertyIterator;
+            }
+
+            argumentContainsAllProperties &= elementFound;
         }
 
-        auto argumentIterator = hardwareComponents.begin();
-
-        for (; argumentIterator != --hardwareComponents.end() && std::find(hardwareIds.begin(), hardwareIds.end(), (*argumentIterator)->getHardwareInstance()) != hardwareIds.end();
-              ++argumentIterator);
-
-        return std::find(hardwareIds.begin(), hardwareIds.end(), (*argumentIterator)->getHardwareInstance()) != hardwareIds.end();
+        return argumentContainsAllProperties;
     }
+
+    bool RobotConfiguration::containsHardware(std::vector<KUKADU_SHARED_PTR<Hardware> > hardwareComponents){        
+        auto propertyIterator = hardwareIds.begin();
+        auto argumentContainsAllProperties = hardwareComponents.size() >= hardwareIds.size();
+
+        for(; propertyIterator != hardwareIds.end() && argumentContainsAllProperties; ++propertyIterator){
+            auto elementFound = false;
+            for(auto argumentIterator = hardwareComponents.begin(); !elementFound && argumentIterator != hardwareComponents.end(); ++argumentIterator){
+                elementFound = (*argumentIterator)->getHardwareInstance()==*propertyIterator;
+            }
+
+            argumentContainsAllProperties &= elementFound;
+        }
+
+        return argumentContainsAllProperties;
+    }
+
 
 
 

@@ -4,8 +4,3 @@ CREATE TABLE IF NOT EXISTS `hardware` (
   `hardware_class` int(11) NOT NULL,
   PRIMARY KEY (`hardware_id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
-
-
-
-INSERT INTO hardware (hardware_id, hardware_name, hardware_class)
-VALUES (0, 'no_hardware', 0); 

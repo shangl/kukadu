@@ -2,6 +2,7 @@
 #include <kukadu/control/controller.hpp>
 #include <kukadu/storage/moduleusagesingleton.hpp>
 #include <kukadu/storage/sensorstoragesingleton.hpp>
+#include <algorithm>
 
 using namespace std;
 
@@ -53,7 +54,47 @@ namespace kukadu {
             auto skillId = storage.getCachedLabelId("skills", "skill_id", "label", skillName);
 
             s.str("");
-            s << "insert into skills_robot(skill_id, hardware_instance_id) values";
+
+            //create ordered list of hardware to get configuration, if no hardware use "no configuration", if configuration not exists create it
+            //then save skill with id of configuration
+            vector<int> usedHwIds;
+            for(auto& hw : usedHw) {
+                if(std::find(usedHwIds.begin(), usedHwIds.end(), hw->getHardwareInstance()) == usedHwIds.end()) {
+                    usedHwIds.push_back(hw->getHardwareInstance());
+                }
+            }
+
+            s << "select distinct robot_config_id from robot_config";
+
+            for(auto hwIdsIterator = usedHwIds.begin(), i=0; hwIdsIterator != usedHwIds.end(); ++hwIdsIterator, ++i){
+                if(hwIdsIterator == --usedHwIds.end()) {
+                    s << "order_id=" << i << " and hardware_instance_id=" << *hwIdsIterator;
+                } else if (hwIdsIterator == usedHwIds.begin()){
+                    s << " where order_id=" << i << " and hardware_instance_id=" << *hwIdsIterator << " and ";
+                } else {
+                    s << "order_id=" << i << " and hardware_instance_id=" << *hwIdsIterator << " and ";
+                }
+            }
+
+            sql::ResultSet skillsRes = storage.executeQuery(s.str());
+
+
+
+            auto idForNewConfig = storage.getNextIdInTable("robot_config", "robot_config_id");
+
+
+            //go on here
+
+
+
+
+
+
+
+
+
+            // install configuration if it does not exist yet
+            s << "insert into skills_robot(skill_id, robot_config_id) values";
             int insertedCount = 0;
 
             map<int, KUKADU_SHARED_PTR<Hardware> > hardwareMap;

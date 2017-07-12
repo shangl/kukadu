@@ -597,10 +597,11 @@ namespace kukadu {
         stringstream s;
         // load dmp base from database
         vector<DMPBase> bases;
+        cout << "(dmp) warning: dmp is assumed to be unique for different configurations" << endl;
         s << "select co.joint_id as ji, my, sigma, coeff from skill_dmp_coeff as co inner join skills as ski on co.skill_id = ski.skill_id " <<
-             " inner join skills_robot skr on skr.skill_id = ski.skill_id" <<
+             " inner join skills_robot skr on skr.skill_id = ski.skill_id inner join robot_config on skr.robot_config_id=robot_config.robot_config_id" <<
              " where ski.skill_id = " << skillId
-                << " and skr.hardware_instance_id = " << robotId << " order by co.joint_id asc, co.my asc, co.sigma asc";
+                << " and robot_config.hardware_instance_id = " << robotId << " order by co.joint_id asc, co.my asc, co.sigma asc";
 
         auto baseRes = dbStorage.executeQuery(s.str());
 

@@ -367,6 +367,7 @@ namespace kukadu {
                 retSet = KUKADU_SHARED_PTR<sql::ResultSet>(stmt->executeQuery(sql));
             } catch(std::exception& ex) {
                 delete stmt;
+                cout << sql << endl;
                 connectionMutex.unlock();
                 throw ex;
             }

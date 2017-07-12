@@ -17,7 +17,7 @@ namespace kukadu {
 
         StorageSingleton& storage;
 
-        static std::map<std::string, std::function<KUKADU_SHARED_PTR<Controller>(StorageSingleton&, int, int, KUKADU_SHARED_PTR<Hardware>)> > skillFactories;
+        static std::map<std::string, std::function<KUKADU_SHARED_PTR<Controller>(StorageSingleton&, int, int, std::vector<KUKADU_SHARED_PTR<Hardware> >)> > skillFactories;
 
         SkillFactory();
 
