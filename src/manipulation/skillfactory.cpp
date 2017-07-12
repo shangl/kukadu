@@ -41,7 +41,7 @@ namespace kukadu {
     KUKADU_SHARED_PTR<Controller> SkillFactory::loadSkill(std::string skillName, std::vector<KUKADU_SHARED_PTR<Hardware> > hardwareComponents) {
 
         stringstream s;
-        s << "select skr.skill_id as skid, controller_type from skills as ski" <<
+        /*s << "select skr.skill_id as skid, controller_type from skills as ski" <<
              " inner join skills_robot skr on skr.skill_id = ski.skill_id" <<
              " where label = '" << skillName << "' and skr.hardware_instance_id = " << queue->getHardwareInstance();
         auto skillResult = storage.executeQuery(s.str());
@@ -58,7 +58,7 @@ namespace kukadu {
                 throw KukaduException("(SkillFactory) automatic loading is not supported for the required controller");
 
         } else
-            throw KukaduException("(SkillFactory) requested skill name does not exist in the data base or is not available for your robot");
+            throw KukaduException("(SkillFactory) requested skill name does not exist in the data base or is not available for your robot");*/
         return nullptr;
     }
 
