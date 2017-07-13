@@ -108,10 +108,10 @@ namespace kukadu {
             stringstream s;
             s << "insert into hardware(hardware_id, hardware_name, hardware_class) values(" << getHardwareType() << ", '"
               << getHardwareTypeName() << "', " << getHardwareClass() << ")";
+
             getStorage().executeStatementPriority(s.str());
 
             installHardwareTypeInternal();
-
         }
 
     }

@@ -127,7 +127,7 @@ namespace kukadu {
 
         private:
 
-            KUKADU_SHARED_PTR<JointHardware> leftQueue;
+            KUKADU_SHARED_PTR<JointHardware> hardware;
 
             std::vector<double> joints;
 
@@ -137,7 +137,7 @@ namespace kukadu {
 
         public:
 
-            JointPtp(StorageSingleton& storage, KUKADU_SHARED_PTR<JointHardware> leftQueue);
+            JointPtp(StorageSingleton& storage, KUKADU_SHARED_PTR<JointHardware> hardware);
 
             bool requiresGraspInternal();
 

@@ -55,6 +55,7 @@ namespace kukadu {
 
         long long int getNextIdInTable(std::string table, std::string idCol);
 
+        bool checkTableExists(std::string table);
         bool checkIdExists(std::string table, std::string idCol, int val);
         bool checkLabelExists(std::string table, std::string labelCol, std::string val);
 

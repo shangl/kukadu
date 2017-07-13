@@ -4,8 +4,3 @@ CREATE TABLE IF NOT EXISTS `robot_config` (
   `order_id` int(11) not null,
   PRIMARY KEY (`robot_config_id`, `hardware_instance_id`, `order_id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1 AUTO_INCREMENT=1 ;
-
-
-
-INSERT INTO robot_config (robot_config_id, hardware_instance_id, order_id)
-VALUES (0, 0, 1); 
