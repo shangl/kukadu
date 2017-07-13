@@ -40,6 +40,8 @@ namespace kukadu {
 
         virtual void install();
 
+        virtual void start() = 0;
+
         int getHardwareType();
         int getHardwareClass();
         int getHardwareInstance();
@@ -70,6 +72,8 @@ namespace kukadu {
 
     class RobotConfiguration : public StorageHolder {
 
+    private:
+
     public:
 
         RobotConfiguration(StorageSingleton& storage, int configurationId);
@@ -77,6 +81,8 @@ namespace kukadu {
         bool containsHardwareAsSet(std::vector<KUKADU_SHARED_PTR<Hardware> > hardwareComponents);
         bool containsHardware(std::vector<KUKADU_SHARED_PTR<Hardware> > hardwareComponents);
 
+        static bool configurationExists(std::vector<std::shared_ptr<kukadu::Hardware>> hardware);
+        static int getConfigurationId(std::vector<std::shared_ptr<kukadu::Hardware>> hardware);
     private:
         std::vector<int> hardwareIds;
     };

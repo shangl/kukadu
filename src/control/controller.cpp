@@ -71,19 +71,22 @@ void Controller::createSkillFromThis(std::string skillName) {
 
             s << "select distinct robot_config_id from robot_config";
 
-            int i = 0;
+            int i = 1;
             for(auto hwIdsIterator = usedHwIds.begin(); hwIdsIterator != usedHwIds.end(); ++hwIdsIterator, ++i){
+                if (hwIdsIterator == usedHwIds.begin()){
+                    s << " where ";
+                }
+
                 if(hwIdsIterator == --usedHwIds.end()) {
                     s << "order_id=" << i << " and hardware_instance_id=" << *hwIdsIterator;
-                } else if (hwIdsIterator == usedHwIds.begin()){
-                    s << " where order_id=" << i << " and hardware_instance_id=" << *hwIdsIterator << " and ";
                 } else {
                     s << "order_id=" << i << " and hardware_instance_id=" << *hwIdsIterator << " and ";
                 }
             }
 
             stringstream t;
-            t << "SELECT COUNT(*) as count FROM (" << s.str() << ")";
+            t << "SELECT COUNT(*) as count FROM (" << s.str() << ") tmp";
+
             auto amountOfConfigurations = storage.executeQuery(t.str());
             amountOfConfigurations->next();
 
@@ -94,10 +97,12 @@ void Controller::createSkillFromThis(std::string skillName) {
 
                 t.str(string());
                 t << "INSERT INTO robot_config (robot_config_id, hardware_instance_id, order_id) VALUES ";
-                for(int i = 0; i < usedHwIds.size()-1; i++){
+                i = 0;
+                for(; i < usedHwIds.size()-1; i++){
                     t << "(" << idForNewConfig << ", " << usedHwIds.at(i) << ", " << i+1 << "), ";
                 }
-                t << "(" << idForNewConfig << ","  << usedHwIds.at(i) << ", " << i+1 << ")";
+                t << "(" << idForNewConfig << ", "  << usedHwIds.at(i) << ", " << i+1 << ")";
+                cout << t.str() << endl;
 
                 storage.executeStatementPriority(t.str());
             } else {
@@ -109,7 +114,7 @@ void Controller::createSkillFromThis(std::string skillName) {
 
         s.str(string());
         s << "insert into skills_robot(skill_id, robot_config_id) values";
-        s << "(" << skillId << ", " << insertConfigId << "),";
+        s << "(" << skillId << ", " << insertConfigId << ")";
 
         storage.executeStatementPriority(s.str());
 

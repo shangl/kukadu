@@ -176,6 +176,10 @@ namespace kukadu {
 
     std::string GenericHand::getHandName() { return getHardwareInstanceName(); }
 
+    void GenericHand::start(){
+
+    }
+
     KukieHand::KukieHand(StorageSingleton& storage, std::string robotName, bool simulation) :
         GenericHand(storage, loadTypeIdFromName("KukieHand"), "KukieHand", Hardware::loadInstanceIdFromName(robotName), robotName) {
 
@@ -439,6 +443,10 @@ namespace kukadu {
 
     }
 
+    void KukieHand::safelyDestroy() {
+
+    }
+
     void KukieHand::closeHand(double percentage, double velocity) {
 
         KUKADU_MODULE_START_USAGE();
@@ -495,10 +503,6 @@ namespace kukadu {
 
     KukieHand::~KukieHand() {
         stopCollecting = true;
-    }
-
-    void KukieHand::safelyDestroy() {
-
     }
 
     void KukieHand::publishSingleJoint(int idx, double pos) {

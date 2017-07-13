@@ -217,6 +217,10 @@ namespace kukadu {
 
     }
 
+    void ControlQueue::start(){
+        startQueue();
+    }
+
     ControlQueue::ControlQueue(StorageSingleton& storage, std::string robotName, std::string className) :
         JointHardware(storage, HARDWARE_ARM, loadTypeIdFromName(className), className, loadInstanceIdFromName(robotName), robotName) {
 

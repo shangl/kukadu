@@ -79,6 +79,7 @@ namespace kukadu {
         virtual void storeCurrentSensorDataToDatabase();
         virtual double getPreferredPollingFrequency();
 
+        virtual void start();
     };
 
     /**

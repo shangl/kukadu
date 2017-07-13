@@ -136,7 +136,6 @@ namespace kukadu {
 
     void KukaduGraphical::clickedSlot() {
         std::string var = "test";
-        getCatkinMakeString(var);
 
         QVariant codeVariant = webView->page()->mainFrame()->evaluateJavaScript("getCode()");
 
@@ -218,6 +217,9 @@ namespace kukadu {
     std::string KukaduGraphical::getCatkinMakeString(const std::string& packageName){
         std::string cmakeCacheFilePath = resolvePath("$KUKADU_HOME/../../build/CMakeCache.txt");
         QFile cmakeCacheFile(cmakeCacheFilePath.c_str());
+        if(!cmakeCacheFile.exists())
+            return "catkin_make";
+
         cmakeCacheFile.open(QIODevice::ReadOnly);
         QTextStream inputStream(&cmakeCacheFile);
 

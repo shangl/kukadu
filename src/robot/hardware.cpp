@@ -63,6 +63,56 @@ namespace kukadu {
         return argumentContainsAllProperties;
     }
 
+    bool RobotConfiguration::configurationExists(std::vector<std::shared_ptr<kukadu::Hardware>> hardware) {
+        return getConfigurationId(hardware) != -1;
+    }
+
+    int RobotConfiguration::getConfigurationId(std::vector<std::shared_ptr<kukadu::Hardware>> hardware) {
+        auto& storage = kukadu::StorageSingleton::get();
+
+        vector<int> usedHwIds;
+        for(auto& hw : hardware) {
+            if(std::find(usedHwIds.begin(), usedHwIds.end(), hw->getHardwareInstance()) == usedHwIds.end()) {
+                usedHwIds.push_back(hw->getHardwareInstance());
+            }
+        }
+
+        stringstream s;
+        s << "select distinct robot_config_id from robot_config";
+
+        int i = 1;
+        for(auto hwIdsIterator = usedHwIds.begin(); hwIdsIterator != usedHwIds.end(); ++hwIdsIterator, ++i){
+            if (hwIdsIterator == usedHwIds.begin()){
+                s << " where ";
+            }
+
+            if(hwIdsIterator == --usedHwIds.end()) {
+                s << "order_id=" << i << " and hardware_instance_id=" << *hwIdsIterator;
+            } else {
+                s << "order_id=" << i << " and hardware_instance_id=" << *hwIdsIterator << " and ";
+            }
+        }
+
+        s << " and order_id <> " << i;
+
+        cout << s.str() << endl;
+        stringstream t;
+        t << "SELECT COUNT(*) as count FROM (" << s.str() << ") tmp";
+
+        cout << t.str() << endl;
+
+        auto amountOfConfigurations = storage.executeQuery(t.str());
+        amountOfConfigurations->next();
+
+        //no config exists
+        if(amountOfConfigurations->getInt("count") == 0){
+            return -1;
+        } else {
+            auto configResult = storage.executeQuery(s.str());
+            configResult->next();
+            return configResult->getInt("robot_config_id");
+        }
+    }
 
 
 

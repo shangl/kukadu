@@ -27,12 +27,12 @@ Blockly.cake['skillloader'] = function (block) {
     var skillCode = "";
     var skillSelection = block.getCurrentSkill();
     if (typeof skillSelection != 'undefined') {
-        skillCode = "\nauto skill" + skillCounter + " = kukadu::SkillFactory::get().loadSkill(\"" + skillSelection.name + "\", ";
+        skillCode = "\nauto skill" + skillCounter + " = kukadu::SkillFactory::get().loadSkill(\"" + skillSelection.name + "\", {";
         for (var j = 0; j < hardwareVariableNames.length - 1; j++) {
             skillCode += hardwareVariableNames[j] + ", ";
         }
 
-        skillCode += hardwareVariableNames[hardwareVariableNames.length - 1] + ");\n\n"
+        skillCode += hardwareVariableNames[hardwareVariableNames.length - 1] + "});\n\n"
 
         var skillAttributeInformation = skillSelection.getAttributes();
 
