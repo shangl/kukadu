@@ -54,7 +54,6 @@ Blockly.Blocks['skillloader'] = {
         var hardwareKey = idsToKey(getKeysFromMap(addedHardwareSet));
         var chosenConfig = Databaseloader.roboConfigMap[hardwareKey];
 
-        console.log(hardwareKey + " and " + this._hardwareIds);
         if (getKeysFromMap(addedHardwareSet).length > 0 && hardwareKey !== this._hardwareIds) {    //if addedHardware Changed
             this._hardwareIds = hardwareKey;
 
@@ -117,7 +116,8 @@ Blockly.Blocks['skillloader'] = {
             return;
         } else {
             var skillId = currentSkill.id;
-            var skill = Databaseloader.roboConfigToSkillMap[this._hardwareIds][skillId];
+            var configId = Databaseloader.roboConfigMap[idsToKey(this._hardwareIds)].id;
+            var skill = Databaseloader.roboConfigToSkillMap[configId][skillId];
             var attributes = getValuesFromMap(skill.getAttributes());
 
             if (attributes != null) {
@@ -266,7 +266,7 @@ var Databaseloader = new function () {
             for (var j = 0; j < possibleConfigs.length; j++) {
                 var setToAddSkill = Databaseloader.roboConfigToSkillMap[possibleConfigs[j]];
 
-                if (typeof setToAddSkill == 'undefined') {
+                if (typeof setToAddSkill === 'undefined') {
                     setToAddSkill = {};
                     Databaseloader.roboConfigToSkillMap[possibleConfigs[j]] = setToAddSkill;
                 }
@@ -280,7 +280,7 @@ var Databaseloader = new function () {
             var hw = hardwareArray[k];
             Databaseloader.hardwareTupleArray.push([hw.name, hw.name]);
         }
-    }
+    };
 
     this.getAttributes = function (skill, controllerClass) {
         var attributes = {};
@@ -290,10 +290,8 @@ var Databaseloader = new function () {
             dataType: "xml",
             async: false,
             success: function (xml) {
-                var regex = "\w+(<[\w:<>*,\s]+>\s\w+|[\w+\s:*]+)+";
-
                 var pubfunctionBlock = $(xml).find('sectiondef').filter(function () {
-                    return $(this).attr('kind') == "public-func";
+                    return $(this).attr('kind') === "public-func";
                 });
 
                 $(pubfunctionBlock).find('memberdef').each(function () {
@@ -314,8 +312,10 @@ var Databaseloader = new function () {
                             var subStringIndex = match.lastIndexOf(" ");
                             var dataType = match.substr(0, subStringIndex);
                             var variableName = match.substr(subStringIndex + 1);
+                            variableName = variableName.substr(0, 1).toUpperCase() + variableName.substr(1);
 
                             var attribute = new Attribute(variableName, dataType, "not defined");
+                            console.log(attribute);
                             attributes[attribute.name] = attribute;
                         }
                     }
@@ -326,7 +326,7 @@ var Databaseloader = new function () {
 
         return attributes;
     }
-}
+};
 
 function eqSet(as, bs) {
     if (as.length !== bs.length) {

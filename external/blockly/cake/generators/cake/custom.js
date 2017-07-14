@@ -16,11 +16,9 @@ Blockly.cake['skillloader'] = function (block) {
 
     for (var i = 0; i < splitHardware.length; i++) {
         var hardwareVariableName = "simLeftQueue" + skillCounter + i;
-        hardwareCode += "auto " + hardwareVariableName + " = std::dynamic_pointer_cast<kukadu::KukieControlQueue>(hardwareFactory.loadHardware(\"" + splitHardware[i] + "\"));\n";
+        hardwareCode += "auto " + hardwareVariableName + " = hardwareFactory.loadHardware(\"" + splitHardware[i] + "\");\n";
         hardwareCode += hardwareVariableName + "->install();\n";
-        hardwareCode += "auto realLqThread" + skillCounter + i + " = " + hardwareVariableName + "->startQueue();\nif(" + hardwareVariableName + "->getCurrentMode() != kukadu::KukieControlQueue::KUKA_JNT_IMP_MODE) {\n";
-        hardwareCode += "\t" + hardwareVariableName + "->stopCurrentMode();\n";
-        hardwareCode += "\t" + hardwareVariableName + "->switchMode(kukadu::KukieControlQueue::KUKA_JNT_IMP_MODE);\n}\n";
+        hardwareCode += hardwareVariableName + "->start();\n";
         hardwareVariableNames.push(hardwareVariableName);
     }
 
@@ -49,9 +47,9 @@ Blockly.cake['skillloader'] = function (block) {
                 var roboConfig = Databaseloader.roboConfigMap[idsToKey(block._hardwareIds)];
                 roboConfig.hardwareInOrder.forEach(function (hardware) {
                     vectorsize = hardware.degOfFreedom > vectorsize ? hardware.degOfFreedom : vectorsize;
-                })
+                });
 
-                attributeCode = "{"
+                attributeCode = "{";
 
                 for (var j = 0; j < vectorsize - 1; j++) {
                     attributeCode += isString ? "'" : "";
@@ -80,7 +78,7 @@ Blockly.cake['skillloader'] = function (block) {
                 }
             }
 
-            skillCode += "std::dynamic_pointer_cast<" + skillSelection.controller + ">(skill" + skillCounter + ")->set" + attribute.name + "(";
+            skillCode += "std::dynamic_pointer_cast<kukadu::" + skillSelection.controller + ">(skill" + skillCounter + ")->set" + attribute.name + "(";
             skillCode += attribute.dataType == "string" ? "'" : "";
             skillCode += attributeCode;
             skillCode += attribute.dataType === "string" ? "'" : "";

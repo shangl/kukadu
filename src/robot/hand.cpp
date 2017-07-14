@@ -177,7 +177,7 @@ namespace kukadu {
     std::string GenericHand::getHandName() { return getHardwareInstanceName(); }
 
     void GenericHand::start(){
-
+        connectHand();
     }
 
     KukieHand::KukieHand(StorageSingleton& storage, std::string robotName, bool simulation) :

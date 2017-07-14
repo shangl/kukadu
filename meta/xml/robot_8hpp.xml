@@ -1,6 +1,6 @@
 <?xml version='1.0' encoding='UTF-8' standalone='no'?>
-<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.8.11">
-  <compounddef id="robot_8hpp" kind="file" language="C++">
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.8.6">
+  <compounddef id="robot_8hpp" kind="file">
     <compoundname>robot.hpp</compoundname>
     <includes refid="hand_8hpp" local="no">kukadu/robot/hand.hpp</includes>
     <includes refid="queue_8hpp" local="no">kukadu/robot/queue.hpp</includes>
@@ -12,134 +12,222 @@
     <includes refid="autocompfilter_8hpp" local="no">kukadu/robot/autocompfilter.hpp</includes>
     <includes refid="hardwarefactory_8hpp" local="no">kukadu/robot/hardwarefactory.hpp</includes>
     <includes refid="kinestheticteacher_8hpp" local="no">kukadu/robot/kinestheticteacher.hpp</includes>
-    <includedby refid="kukadu_8hpp" local="no">/home/c7031109/iis_robot_sw/iis_catkin_ws/src/kukadu/include/kukadu/kukadu.hpp</includedby>
+    <includedby refid="kukadu_8hpp" local="no">/home/andreasmennel/iis_robot_sw/iis_catkin_ws/src/kukadu/include/kukadu/kukadu.hpp</includedby>
     <incdepgraph>
-      <node id="1321">
+      <node id="1323">
         <label>list</label>
       </node>
-      <node id="1323">
+      <node id="1325">
         <label>boost/thread/mutex.hpp</label>
       </node>
-      <node id="1330">
+      <node id="1332">
         <label>kukadu/vision/arlocalizer/arMulti.h</label>
       </node>
-      <node id="1291">
+      <node id="1293">
         <label>cppconn/resultset.h</label>
       </node>
-      <node id="1316">
-        <label>sensor_msgs/PointCloud2.h</label>
-      </node>
-      <node id="1274">
-        <label>kukadu/utils/types.hpp</label>
-        <link refid="utils_2types_8hpp_source"/>
-        <childnode refid="1271" relation="include">
-        </childnode>
-        <childnode refid="1273" relation="include">
-        </childnode>
+      <node id="1319">
+        <label>kukadu/vision/pcstdtrans.hpp</label>
+        <link refid="pcstdtrans_8hpp_source"/>
         <childnode refid="1275" relation="include">
         </childnode>
-      </node>
-      <node id="1280">
-        <label>queue</label>
-      </node>
-      <node id="1270">
-        <label>limits</label>
-      </node>
-      <node id="1315">
-        <label>pcl/point_types.h</label>
-      </node>
-      <node id="1322">
-        <label>opencv/cv.h</label>
-      </node>
-      <node id="1325">
-        <label>tf/transform_listener.h</label>
-      </node>
-      <node id="1324">
-        <label>tf/transform_broadcaster.h</label>
-      </node>
-      <node id="1294">
-        <label>kukadu/robot/queue.hpp</label>
-        <link refid="queue_8hpp"/>
-        <childnode refid="1280" relation="include">
+        <childnode refid="1320" relation="include">
         </childnode>
-        <childnode refid="1271" relation="include">
-        </childnode>
-        <childnode refid="1273" relation="include">
-        </childnode>
-        <childnode refid="1295" relation="include">
-        </childnode>
-        <childnode refid="1296" relation="include">
-        </childnode>
-        <childnode refid="1276" relation="include">
-        </childnode>
-        <childnode refid="1282" relation="include">
-        </childnode>
-        <childnode refid="1293" relation="include">
-        </childnode>
-        <childnode refid="1278" relation="include">
+        <childnode refid="1321" relation="include">
         </childnode>
       </node>
-      <node id="1335">
+      <node id="1318">
+        <label>sensor_msgs/PointCloud2.h</label>
+      </node>
+      <node id="1337">
         <label>kukadu/robot/kinestheticteacher.hpp</label>
         <link refid="kinestheticteacher_8hpp_source"/>
       </node>
-      <node id="1314">
+      <node id="1282">
+        <label>queue</label>
+      </node>
+      <node id="1272">
+        <label>limits</label>
+      </node>
+      <node id="1298">
+        <label>kukadu/robot/filters.hpp</label>
+        <link refid="filters_8hpp_source"/>
+        <childnode refid="1276" relation="include">
+        </childnode>
+        <childnode refid="1284" relation="include">
+        </childnode>
+      </node>
+      <node id="1317">
+        <label>pcl/point_types.h</label>
+      </node>
+      <node id="1324">
+        <label>opencv/cv.h</label>
+      </node>
+      <node id="1327">
+        <label>tf/transform_listener.h</label>
+      </node>
+      <node id="1326">
+        <label>tf/transform_broadcaster.h</label>
+      </node>
+      <node id="1316">
         <label>pcl/point_cloud.h</label>
       </node>
-      <node id="1278">
-        <label>kukadu/storage/storagesingleton.hpp</label>
-        <link refid="storagesingleton_8hpp_source"/>
-        <childnode refid="1279" relation="include">
+      <node id="1328">
+        <label>image_transport/image_transport.h</label>
+      </node>
+      <node id="1309">
+        <label>Eigen/Core</label>
+      </node>
+      <node id="1301">
+        <label>iis_robot_dep/TactileSensor.h</label>
+      </node>
+      <node id="1279">
+        <label>string</label>
+      </node>
+      <node id="1281">
+        <label>map</label>
+      </node>
+      <node id="1271">
+        <label>kukadu/robot/hand.hpp</label>
+        <link refid="hand_8hpp_source"/>
+        <childnode refid="1272" relation="include">
+        </childnode>
+        <childnode refid="1273" relation="include">
+        </childnode>
+        <childnode refid="1274" relation="include">
+        </childnode>
+        <childnode refid="1275" relation="include">
+        </childnode>
+        <childnode refid="1276" relation="include">
+        </childnode>
+        <childnode refid="1278" relation="include">
+        </childnode>
+        <childnode refid="1295" relation="include">
         </childnode>
         <childnode refid="1280" relation="include">
         </childnode>
-        <childnode refid="1277" relation="include">
-        </childnode>
-        <childnode refid="1271" relation="include">
-        </childnode>
+      </node>
+      <node id="1302">
+        <label>kukadu/robot/kukiequeue.hpp</label>
+        <link refid="kukiequeue_8hpp_source"/>
         <childnode refid="1281" relation="include">
         </childnode>
         <childnode refid="1282" relation="include">
         </childnode>
-        <childnode refid="1288" relation="include">
+        <childnode refid="1275" relation="include">
         </childnode>
-        <childnode refid="1289" relation="include">
+        <childnode refid="1274" relation="include">
         </childnode>
-        <childnode refid="1290" relation="include">
+        <childnode refid="1303" relation="include">
         </childnode>
-        <childnode refid="1291" relation="include">
+        <childnode refid="1297" relation="include">
         </childnode>
-        <childnode refid="1292" relation="include">
+        <childnode refid="1296" relation="include">
+        </childnode>
+        <childnode refid="1304" relation="include">
+        </childnode>
+        <childnode refid="1298" relation="include">
+        </childnode>
+        <childnode refid="1300" relation="include">
+        </childnode>
+        <childnode refid="1305" relation="include">
+        </childnode>
+        <childnode refid="1306" relation="include">
+        </childnode>
+        <childnode refid="1307" relation="include">
+        </childnode>
+        <childnode refid="1308" relation="include">
+        </childnode>
+        <childnode refid="1284" relation="include">
+        </childnode>
+        <childnode refid="1295" relation="include">
         </childnode>
       </node>
-      <node id="1326">
-        <label>image_transport/image_transport.h</label>
+      <node id="1275">
+        <label>armadillo</label>
       </node>
-      <node id="1307">
-        <label>Eigen/Core</label>
-      </node>
-      <node id="1299">
-        <label>iis_robot_dep/TactileSensor.h</label>
-      </node>
-      <node id="1277">
-        <label>string</label>
-      </node>
-      <node id="1311">
-        <label>kukadu/vision/arlocalizer.hpp</label>
-        <link refid="arlocalizer_8hpp_source"/>
-        <childnode refid="1312" relation="include">
+      <node id="1314">
+        <label>kukadu/vision/localizer.hpp</label>
+        <link refid="localizer_8hpp_source"/>
+        <childnode refid="1286" relation="include">
         </childnode>
-        <childnode refid="1282" relation="include">
+        <childnode refid="1273" relation="include">
         </childnode>
         <childnode refid="1279" relation="include">
         </childnode>
-        <childnode refid="1321" relation="include">
+        <childnode refid="1312" relation="include">
         </childnode>
-        <childnode refid="1272" relation="include">
+        <childnode refid="1275" relation="include">
+        </childnode>
+        <childnode refid="1297" relation="include">
+        </childnode>
+        <childnode refid="1315" relation="include">
+        </childnode>
+        <childnode refid="1284" relation="include">
+        </childnode>
+      </node>
+      <node id="1285">
+        <label>exception</label>
+      </node>
+      <node id="1270">
+        <label>/home/andreasmennel/iis_robot_sw/iis_catkin_ws/src/kukadu/include/kukadu/robot.hpp</label>
+        <link refid="robot.hpp"/>
+        <childnode refid="1271" relation="include">
+        </childnode>
+        <childnode refid="1296" relation="include">
+        </childnode>
+        <childnode refid="1298" relation="include">
+        </childnode>
+        <childnode refid="1278" relation="include">
+        </childnode>
+        <childnode refid="1299" relation="include">
+        </childnode>
+        <childnode refid="1302" relation="include">
+        </childnode>
+        <childnode refid="1310" relation="include">
+        </childnode>
+        <childnode refid="1335" relation="include">
+        </childnode>
+        <childnode refid="1336" relation="include">
+        </childnode>
+        <childnode refid="1337" relation="include">
+        </childnode>
+      </node>
+      <node id="1315">
+        <label>kukadu/vision/kinect.hpp</label>
+        <link refid="kinect_8hpp_source"/>
+        <childnode refid="1273" relation="include">
+        </childnode>
+        <childnode refid="1279" relation="include">
+        </childnode>
+        <childnode refid="1316" relation="include">
+        </childnode>
+        <childnode refid="1317" relation="include">
+        </childnode>
+        <childnode refid="1318" relation="include">
+        </childnode>
+        <childnode refid="1284" relation="include">
+        </childnode>
+        <childnode refid="1319" relation="include">
         </childnode>
         <childnode refid="1322" relation="include">
         </childnode>
+      </node>
+      <node id="1303">
+        <label>std_msgs/Float64.h</label>
+      </node>
+      <node id="1313">
+        <label>kukadu/vision/arlocalizer.hpp</label>
+        <link refid="arlocalizer_8hpp_source"/>
+        <childnode refid="1314" relation="include">
+        </childnode>
+        <childnode refid="1284" relation="include">
+        </childnode>
+        <childnode refid="1281" relation="include">
+        </childnode>
         <childnode refid="1323" relation="include">
+        </childnode>
+        <childnode refid="1274" relation="include">
         </childnode>
         <childnode refid="1324" relation="include">
         </childnode>
@@ -159,348 +247,262 @@
         </childnode>
         <childnode refid="1332" relation="include">
         </childnode>
-      </node>
-      <node id="1279">
-        <label>map</label>
-      </node>
-      <node id="1269">
-        <label>kukadu/robot/hand.hpp</label>
-        <link refid="hand_8hpp_source"/>
-        <childnode refid="1270" relation="include">
-        </childnode>
-        <childnode refid="1271" relation="include">
-        </childnode>
-        <childnode refid="1272" relation="include">
-        </childnode>
-        <childnode refid="1273" relation="include">
-        </childnode>
-        <childnode refid="1274" relation="include">
-        </childnode>
-        <childnode refid="1276" relation="include">
-        </childnode>
-        <childnode refid="1293" relation="include">
-        </childnode>
-        <childnode refid="1278" relation="include">
-        </childnode>
-      </node>
-      <node id="1273">
-        <label>armadillo</label>
-      </node>
-      <node id="1283">
-        <label>exception</label>
-      </node>
-      <node id="1317">
-        <label>kukadu/vision/pcstdtrans.hpp</label>
-        <link refid="pcstdtrans_8hpp_source"/>
-        <childnode refid="1273" relation="include">
-        </childnode>
-        <childnode refid="1318" relation="include">
-        </childnode>
-        <childnode refid="1319" relation="include">
-        </childnode>
-      </node>
-      <node id="1301">
-        <label>std_msgs/Float64.h</label>
-      </node>
-      <node id="1327">
-        <label>dynamic_reconfigure/server.h</label>
-      </node>
-      <node id="1292">
-        <label>cppconn/statement.h</label>
-      </node>
-      <node id="1331">
-        <label>kukadu/vision/arlocalizer/CameraAdvImpl.h</label>
-      </node>
-      <node id="1304">
-        <label>std_msgs/Float32MultiArray.h</label>
-      </node>
-      <node id="1268">
-        <label>/home/c7031109/iis_robot_sw/iis_catkin_ws/src/kukadu/include/kukadu/robot.hpp</label>
-        <link refid="robot.hpp"/>
-        <childnode refid="1269" relation="include">
-        </childnode>
-        <childnode refid="1294" relation="include">
-        </childnode>
-        <childnode refid="1296" relation="include">
-        </childnode>
-        <childnode refid="1276" relation="include">
-        </childnode>
-        <childnode refid="1297" relation="include">
-        </childnode>
-        <childnode refid="1300" relation="include">
-        </childnode>
-        <childnode refid="1308" relation="include">
-        </childnode>
         <childnode refid="1333" relation="include">
         </childnode>
         <childnode refid="1334" relation="include">
         </childnode>
-        <childnode refid="1335" relation="include">
-        </childnode>
-      </node>
-      <node id="1287">
-        <label>random</label>
       </node>
       <node id="1329">
-        <label>kukadu/vision/arlocalizer/ar.h</label>
+        <label>dynamic_reconfigure/server.h</label>
       </node>
-      <node id="1298">
-        <label>sensor_msgs/JointState.h</label>
+      <node id="1294">
+        <label>cppconn/statement.h</label>
       </node>
-      <node id="1328">
-        <label>tf/transform_datatypes.h</label>
-      </node>
-      <node id="1334">
+      <node id="1336">
         <label>kukadu/robot/hardwarefactory.hpp</label>
         <link refid="hardwarefactory_8hpp_source"/>
-        <childnode refid="1276" relation="include">
-        </childnode>
         <childnode refid="1278" relation="include">
         </childnode>
-      </node>
-      <node id="1271">
-        <label>vector</label>
-      </node>
-      <node id="1308">
-        <label>kukadu/robot/calibration.hpp</label>
-        <link refid="calibration_8hpp_source"/>
-        <childnode refid="1309" relation="include">
-        </childnode>
-        <childnode refid="1310" relation="include">
-        </childnode>
-        <childnode refid="1273" relation="include">
-        </childnode>
-        <childnode refid="1295" relation="include">
-        </childnode>
-        <childnode refid="1294" relation="include">
-        </childnode>
-        <childnode refid="1282" relation="include">
-        </childnode>
-        <childnode refid="1311" relation="include">
-        </childnode>
-      </node>
-      <node id="1313">
-        <label>kukadu/vision/kinect.hpp</label>
-        <link refid="kinect_8hpp_source"/>
-        <childnode refid="1271" relation="include">
-        </childnode>
-        <childnode refid="1277" relation="include">
-        </childnode>
-        <childnode refid="1314" relation="include">
-        </childnode>
-        <childnode refid="1315" relation="include">
-        </childnode>
-        <childnode refid="1316" relation="include">
-        </childnode>
-        <childnode refid="1282" relation="include">
-        </childnode>
-        <childnode refid="1317" relation="include">
-        </childnode>
-        <childnode refid="1320" relation="include">
+        <childnode refid="1280" relation="include">
         </childnode>
       </node>
       <node id="1333">
-        <label>kukadu/robot/autocompfilter.hpp</label>
-        <link refid="autocompfilter_8hpp_source"/>
-        <childnode refid="1294" relation="include">
-        </childnode>
-        <childnode refid="1274" relation="include">
-        </childnode>
-        <childnode refid="1306" relation="include">
-        </childnode>
-        <childnode refid="1282" relation="include">
-        </childnode>
+        <label>kukadu/vision/arlocalizer/CameraAdvImpl.h</label>
       </node>
-      <node id="1310">
-        <label>utility</label>
+      <node id="1306">
+        <label>std_msgs/Float32MultiArray.h</label>
       </node>
-      <node id="1293">
+      <node id="1289">
+        <label>random</label>
+      </node>
+      <node id="1331">
+        <label>kukadu/vision/arlocalizer/ar.h</label>
+      </node>
+      <node id="1295">
         <label>kukadu/utils/destroyableobject.hpp</label>
         <link refid="destroyableobject_8hpp_source"/>
       </node>
-      <node id="1297">
-        <label>kukadu/robot/kukiehand.hpp</label>
-        <link refid="kukiehand_8hpp_source"/>
-        <childnode refid="1270" relation="include">
-        </childnode>
-        <childnode refid="1280" relation="include">
-        </childnode>
-        <childnode refid="1269" relation="include">
-        </childnode>
-        <childnode refid="1298" relation="include">
-        </childnode>
-        <childnode refid="1299" relation="include">
-        </childnode>
-      </node>
-      <node id="1289">
-        <label>cppconn/driver.h</label>
-      </node>
       <node id="1300">
-        <label>kukadu/robot/kukiequeue.hpp</label>
-        <link refid="kukiequeue_8hpp_source"/>
-        <childnode refid="1279" relation="include">
-        </childnode>
-        <childnode refid="1280" relation="include">
-        </childnode>
-        <childnode refid="1273" relation="include">
-        </childnode>
-        <childnode refid="1272" relation="include">
-        </childnode>
-        <childnode refid="1301" relation="include">
-        </childnode>
-        <childnode refid="1295" relation="include">
-        </childnode>
-        <childnode refid="1294" relation="include">
-        </childnode>
-        <childnode refid="1302" relation="include">
-        </childnode>
-        <childnode refid="1296" relation="include">
-        </childnode>
-        <childnode refid="1298" relation="include">
-        </childnode>
-        <childnode refid="1303" relation="include">
-        </childnode>
-        <childnode refid="1304" relation="include">
-        </childnode>
-        <childnode refid="1305" relation="include">
-        </childnode>
-        <childnode refid="1306" relation="include">
-        </childnode>
-        <childnode refid="1282" relation="include">
-        </childnode>
-        <childnode refid="1293" relation="include">
-        </childnode>
+        <label>sensor_msgs/JointState.h</label>
       </node>
-      <node id="1290">
-        <label>cppconn/exception.h</label>
-      </node>
-      <node id="1295">
-        <label>geometry_msgs/Pose.h</label>
-      </node>
-      <node id="1272">
-        <label>ros/ros.h</label>
-      </node>
-      <node id="1282">
+      <node id="1284">
         <label>kukadu/types/kukadutypes.hpp</label>
         <link refid="kukadutypes_8hpp_source"/>
-        <childnode refid="1283" relation="include">
-        </childnode>
-        <childnode refid="1284" relation="include">
-        </childnode>
         <childnode refid="1285" relation="include">
         </childnode>
         <childnode refid="1286" relation="include">
         </childnode>
         <childnode refid="1287" relation="include">
         </childnode>
-      </node>
-      <node id="1281">
-        <label>iostream</label>
-      </node>
-      <node id="1288">
-        <label>mysql_connection.h</label>
-      </node>
-      <node id="1319">
-        <label>pcl/kdtree/kdtree_flann.h</label>
-      </node>
-      <node id="1286">
-        <label>mutex</label>
-      </node>
-      <node id="1312">
-        <label>kukadu/vision/localizer.hpp</label>
-        <link refid="localizer_8hpp_source"/>
-        <childnode refid="1284" relation="include">
+        <childnode refid="1288" relation="include">
         </childnode>
-        <childnode refid="1271" relation="include">
+        <childnode refid="1289" relation="include">
         </childnode>
-        <childnode refid="1277" relation="include">
-        </childnode>
-        <childnode refid="1310" relation="include">
+      </node>
+      <node id="1330">
+        <label>tf/transform_datatypes.h</label>
+      </node>
+      <node id="1296">
+        <label>kukadu/robot/queue.hpp</label>
+        <link refid="queue_8hpp"/>
+        <childnode refid="1282" relation="include">
         </childnode>
         <childnode refid="1273" relation="include">
         </childnode>
+        <childnode refid="1275" relation="include">
+        </childnode>
+        <childnode refid="1297" relation="include">
+        </childnode>
+        <childnode refid="1298" relation="include">
+        </childnode>
+        <childnode refid="1278" relation="include">
+        </childnode>
+        <childnode refid="1284" relation="include">
+        </childnode>
         <childnode refid="1295" relation="include">
+        </childnode>
+        <childnode refid="1280" relation="include">
+        </childnode>
+      </node>
+      <node id="1278">
+        <label>kukadu/robot/hardware.hpp</label>
+        <link refid="hardware_8hpp_source"/>
+        <childnode refid="1279" relation="include">
+        </childnode>
+        <childnode refid="1275" relation="include">
+        </childnode>
+        <childnode refid="1276" relation="include">
+        </childnode>
+        <childnode refid="1280" relation="include">
+        </childnode>
+      </node>
+      <node id="1273">
+        <label>vector</label>
+      </node>
+      <node id="1312">
+        <label>utility</label>
+      </node>
+      <node id="1291">
+        <label>cppconn/driver.h</label>
+      </node>
+      <node id="1292">
+        <label>cppconn/exception.h</label>
+      </node>
+      <node id="1297">
+        <label>geometry_msgs/Pose.h</label>
+      </node>
+      <node id="1299">
+        <label>kukadu/robot/kukiehand.hpp</label>
+        <link refid="kukiehand_8hpp_source"/>
+        <childnode refid="1272" relation="include">
+        </childnode>
+        <childnode refid="1282" relation="include">
+        </childnode>
+        <childnode refid="1271" relation="include">
+        </childnode>
+        <childnode refid="1300" relation="include">
+        </childnode>
+        <childnode refid="1301" relation="include">
+        </childnode>
+      </node>
+      <node id="1274">
+        <label>ros/ros.h</label>
+      </node>
+      <node id="1283">
+        <label>iostream</label>
+      </node>
+      <node id="1308">
+        <label>kukadu/planning/planning.hpp</label>
+        <link refid="planning_2planning_8hpp_source"/>
+        <childnode refid="1273" relation="include">
+        </childnode>
+        <childnode refid="1275" relation="include">
+        </childnode>
+        <childnode refid="1309" relation="include">
+        </childnode>
+        <childnode refid="1297" relation="include">
+        </childnode>
+        <childnode refid="1284" relation="include">
+        </childnode>
+        <childnode refid="1280" relation="include">
+        </childnode>
+      </node>
+      <node id="1290">
+        <label>mysql_connection.h</label>
+      </node>
+      <node id="1321">
+        <label>pcl/kdtree/kdtree_flann.h</label>
+      </node>
+      <node id="1288">
+        <label>mutex</label>
+      </node>
+      <node id="1276">
+        <label>kukadu/utils/types.hpp</label>
+        <link refid="utils_2types_8hpp_source"/>
+        <childnode refid="1273" relation="include">
+        </childnode>
+        <childnode refid="1275" relation="include">
+        </childnode>
+        <childnode refid="1277" relation="include">
+        </childnode>
+      </node>
+      <node id="1334">
+        <label>kukadu/vision/arlocalizer/ARToolKitPlus.h</label>
+      </node>
+      <node id="1287">
+        <label>thread</label>
+      </node>
+      <node id="1280">
+        <label>kukadu/storage/storagesingleton.hpp</label>
+        <link refid="storagesingleton_8hpp_source"/>
+        <childnode refid="1281" relation="include">
+        </childnode>
+        <childnode refid="1282" relation="include">
+        </childnode>
+        <childnode refid="1279" relation="include">
+        </childnode>
+        <childnode refid="1273" relation="include">
+        </childnode>
+        <childnode refid="1283" relation="include">
+        </childnode>
+        <childnode refid="1284" relation="include">
+        </childnode>
+        <childnode refid="1290" relation="include">
+        </childnode>
+        <childnode refid="1291" relation="include">
+        </childnode>
+        <childnode refid="1292" relation="include">
+        </childnode>
+        <childnode refid="1293" relation="include">
+        </childnode>
+        <childnode refid="1294" relation="include">
+        </childnode>
+      </node>
+      <node id="1310">
+        <label>kukadu/robot/calibration.hpp</label>
+        <link refid="calibration_8hpp_source"/>
+        <childnode refid="1311" relation="include">
+        </childnode>
+        <childnode refid="1312" relation="include">
+        </childnode>
+        <childnode refid="1275" relation="include">
+        </childnode>
+        <childnode refid="1297" relation="include">
+        </childnode>
+        <childnode refid="1296" relation="include">
+        </childnode>
+        <childnode refid="1284" relation="include">
         </childnode>
         <childnode refid="1313" relation="include">
         </childnode>
-        <childnode refid="1282" relation="include">
-        </childnode>
-      </node>
-      <node id="1296">
-        <label>kukadu/robot/filters.hpp</label>
-        <link refid="filters_8hpp_source"/>
-        <childnode refid="1274" relation="include">
-        </childnode>
-        <childnode refid="1282" relation="include">
-        </childnode>
-      </node>
-      <node id="1332">
-        <label>kukadu/vision/arlocalizer/ARToolKitPlus.h</label>
-      </node>
-      <node id="1285">
-        <label>thread</label>
-      </node>
-      <node id="1318">
-        <label>pcl_ros/transforms.h</label>
-      </node>
-      <node id="1276">
-        <label>kukadu/robot/hardware.hpp</label>
-        <link refid="hardware_8hpp_source"/>
-        <childnode refid="1277" relation="include">
-        </childnode>
-        <childnode refid="1273" relation="include">
-        </childnode>
-        <childnode refid="1278" relation="include">
-        </childnode>
-      </node>
-      <node id="1306">
-        <label>kukadu/planning/planning.hpp</label>
-        <link refid="planning_2planning_8hpp_source"/>
-        <childnode refid="1271" relation="include">
-        </childnode>
-        <childnode refid="1273" relation="include">
-        </childnode>
-        <childnode refid="1307" relation="include">
-        </childnode>
-        <childnode refid="1295" relation="include">
-        </childnode>
-        <childnode refid="1282" relation="include">
-        </childnode>
-        <childnode refid="1278" relation="include">
-        </childnode>
-      </node>
-      <node id="1305">
-        <label>std_msgs/Float64MultiArray.h</label>
       </node>
       <node id="1320">
+        <label>pcl_ros/transforms.h</label>
+      </node>
+      <node id="1307">
+        <label>std_msgs/Float64MultiArray.h</label>
+      </node>
+      <node id="1335">
+        <label>kukadu/robot/autocompfilter.hpp</label>
+        <link refid="autocompfilter_8hpp_source"/>
+        <childnode refid="1296" relation="include">
+        </childnode>
+        <childnode refid="1276" relation="include">
+        </childnode>
+        <childnode refid="1308" relation="include">
+        </childnode>
+        <childnode refid="1284" relation="include">
+        </childnode>
+      </node>
+      <node id="1322">
         <label>pcl_conversions/pcl_conversions.h</label>
       </node>
-      <node id="1275">
+      <node id="1277">
         <label>gsl/gsl_matrix.h</label>
       </node>
-      <node id="1302">
+      <node id="1304">
         <label>geometry_msgs/Wrench.h</label>
       </node>
-      <node id="1303">
+      <node id="1305">
         <label>std_msgs/Int32MultiArray.h</label>
       </node>
-      <node id="1284">
+      <node id="1286">
         <label>memory</label>
       </node>
-      <node id="1309">
+      <node id="1311">
         <label>istream</label>
       </node>
     </incdepgraph>
     <invincdepgraph>
-      <node id="1337">
-        <label>/home/c7031109/iis_robot_sw/iis_catkin_ws/src/kukadu/include/kukadu/kukadu.hpp</label>
-        <link refid="kukadu_8hpp_source"/>
-      </node>
-      <node id="1336">
-        <label>/home/c7031109/iis_robot_sw/iis_catkin_ws/src/kukadu/include/kukadu/robot.hpp</label>
+      <node id="1338">
+        <label>/home/andreasmennel/iis_robot_sw/iis_catkin_ws/src/kukadu/include/kukadu/robot.hpp</label>
         <link refid="robot.hpp"/>
-        <childnode refid="1337" relation="include">
+        <childnode refid="1339" relation="include">
         </childnode>
+      </node>
+      <node id="1339">
+        <label>/home/andreasmennel/iis_robot_sw/iis_catkin_ws/src/kukadu/include/kukadu/kukadu.hpp</label>
+        <link refid="kukadu_8hpp_source"/>
       </node>
     </invincdepgraph>
     <briefdescription>
@@ -508,9 +510,9 @@
     <detaileddescription>
     </detaileddescription>
     <programlisting>
-<codeline lineno="1"><highlight class="preprocessor">#ifndef<sp/>KUKADU_ROBOT_ALL_H</highlight><highlight class="normal"></highlight></codeline>
-<codeline lineno="2"><highlight class="normal"></highlight><highlight class="preprocessor">#define<sp/>KUKADU_ROBOT_ALL_H</highlight><highlight class="normal"></highlight></codeline>
-<codeline lineno="3"><highlight class="normal"></highlight><highlight class="preprocessor"><sp/><sp/><sp/><sp/>#include<sp/>&lt;kukadu/robot/hand.hpp&gt;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="1"><highlight class="preprocessor">#ifndef<sp/>KUKADU_ROBOT_ALL_H</highlight></codeline>
+<codeline lineno="2"><highlight class="preprocessor"></highlight><highlight class="preprocessor">#define<sp/>KUKADU_ROBOT_ALL_H</highlight></codeline>
+<codeline lineno="3"><highlight class="preprocessor"></highlight><highlight class="preprocessor"><sp/><sp/><sp/><sp/>#include<sp/>&lt;kukadu/robot/hand.hpp&gt;</highlight><highlight class="normal"></highlight></codeline>
 <codeline lineno="4"><highlight class="normal"></highlight><highlight class="preprocessor"><sp/><sp/><sp/><sp/>#include<sp/>&lt;<ref refid="queue_8hpp" kindref="compound">kukadu/robot/queue.hpp</ref>&gt;</highlight><highlight class="normal"></highlight></codeline>
 <codeline lineno="5"><highlight class="normal"></highlight><highlight class="preprocessor"><sp/><sp/><sp/><sp/>#include<sp/>&lt;kukadu/robot/filters.hpp&gt;</highlight><highlight class="normal"></highlight></codeline>
 <codeline lineno="6"><highlight class="normal"></highlight><highlight class="preprocessor"><sp/><sp/><sp/><sp/>#include<sp/>&lt;kukadu/robot/hardware.hpp&gt;</highlight><highlight class="normal"></highlight></codeline>
@@ -522,6 +524,6 @@
 <codeline lineno="12"><highlight class="normal"></highlight><highlight class="preprocessor"><sp/><sp/><sp/><sp/>#include<sp/>&lt;kukadu/robot/kinestheticteacher.hpp&gt;</highlight><highlight class="normal"></highlight></codeline>
 <codeline lineno="13"><highlight class="normal"></highlight><highlight class="preprocessor">#endif</highlight></codeline>
     </programlisting>
-    <location file="/home/c7031109/iis_robot_sw/iis_catkin_ws/src/kukadu/include/kukadu/robot.hpp"/>
+    <location file="/home/andreasmennel/iis_robot_sw/iis_catkin_ws/src/kukadu/include/kukadu/robot.hpp"/>
   </compounddef>
 </doxygen>

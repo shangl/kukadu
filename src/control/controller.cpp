@@ -38,91 +38,82 @@ std::vector<KUKADU_SHARED_PTR<Hardware> > Controller::getUsedHardware() {
 }
 
 void Controller::createSkillFromThis(std::string skillName) {
-
     this->isSkill = true;
     this->skillName = skillName;
 
-    if(!storage.checkLabelExists("skills", "label", skillName)) {
+    auto usedHw = getUsedHardware();
+    if(storage.checkLabelExists("skills", "label", skillName) && RobotConfiguration::configurationExists(usedHw)) {
+        int configId = RobotConfiguration::getConfigurationId(usedHw);
+        auto skillId = storage.getCachedLabelId("skills", "skill_id", "label", skillName);
 
+        stringstream s;
+
+        s << "SELECT COUNT(*) as count FROM (SELECT skill_id, robot_config_id FROM skills_robot WHERE skill_id=" << skillId;
+        s << " and robot_config_id=" << configId << ") tmp";
+
+        cout << s.str() << endl;
+
+        auto result = storage.executeQuery(s.str());
+        result->next();
+        if(result->getInt("count") == 0) {
+            s.str(string());
+            s << "INSERT INTO skills_robot (skill_id, robot_config_id) VALUES (" << skillId << ", " << configId << ")";
+            storage.executeStatementPriority(s.str());
+        } else {
+            throw KukaduException("(Controller) skill with provided name and robot configuration already exists");
+        }
+    }  else if (storage.checkLabelExists("skills", "label", skillName)) {
+        auto idForNewConfig = storage.getNextIdInTable("robot_config", "robot_config_id");
+
+        stringstream s;
+        s << "INSERT INTO robot_config (robot_config_id, hardware_instance_id, order_id) VALUES ";
+        unsigned int i = 0;
+        for(; i < usedHw.size()-1; i++){
+            s << "(" << idForNewConfig << ", " << (usedHw.at(i))->getHardwareInstance() << ", " << i+1 << "), ";
+        }
+        s << "(" << idForNewConfig << ", "  << (usedHw.at(i))->getHardwareInstance() << ", " << i+1 << ")";
+
+        storage.executeStatementPriority(s.str());
+        s.str(string());
+
+        auto skillId = storage.getCachedLabelId("skills", "skill_id", "label", skillName);
+        s << "INSERT INTO skills_robot (skill_id, robot_config_id) VALUES (" << skillId << ", " << idForNewConfig << ")";
+        storage.executeStatementPriority(s.str());
+    } else if (RobotConfiguration::configurationExists(usedHw)) {
+        int configId = RobotConfiguration::getConfigurationId(usedHw);
         auto controllerId = getControllerId();
-        auto usedHw = getUsedHardware();
 
         stringstream s;
         s << "insert into skills(label, controller_type) values('" << skillName << "', " << controllerId << ")";
         storage.executeStatementPriority(s.str());
 
-        auto skillId = storage.getCachedLabelId("skills", "skill_id", "label", skillName);
-
-        s.str("");
-
-        //create ordered list of hardware to get configuration, if no hardware use "no configuration", if configuration not exists create it
-        //then save skill with id of configuration
-        vector<int> usedHwIds;
-        for(auto& hw : usedHw) {
-            if(std::find(usedHwIds.begin(), usedHwIds.end(), hw->getHardwareInstance()) == usedHwIds.end()) {
-                usedHwIds.push_back(hw->getHardwareInstance());
-            }
-        }
-
-        int insertConfigId = -1;
-        if(usedHwIds.size() == 0 || usedHwIds.size() == 1 && usedHwIds.front() == 0){
-            insertConfigId = 0;
-        } else {
-
-            s << "select distinct robot_config_id from robot_config";
-
-            int i = 1;
-            for(auto hwIdsIterator = usedHwIds.begin(); hwIdsIterator != usedHwIds.end(); ++hwIdsIterator, ++i){
-                if (hwIdsIterator == usedHwIds.begin()){
-                    s << " where ";
-                }
-
-                if(hwIdsIterator == --usedHwIds.end()) {
-                    s << "order_id=" << i << " and hardware_instance_id=" << *hwIdsIterator;
-                } else {
-                    s << "order_id=" << i << " and hardware_instance_id=" << *hwIdsIterator << " and ";
-                }
-            }
-
-            stringstream t;
-            t << "SELECT COUNT(*) as count FROM (" << s.str() << ") tmp";
-
-            auto amountOfConfigurations = storage.executeQuery(t.str());
-            amountOfConfigurations->next();
-
-            //no config exists
-            if(amountOfConfigurations->getInt("count") == 0){
-                auto idForNewConfig = storage.getNextIdInTable("robot_config", "robot_config_id");
-                insertConfigId = idForNewConfig;
-
-                t.str(string());
-                t << "INSERT INTO robot_config (robot_config_id, hardware_instance_id, order_id) VALUES ";
-                i = 0;
-                for(; i < usedHwIds.size()-1; i++){
-                    t << "(" << idForNewConfig << ", " << usedHwIds.at(i) << ", " << i+1 << "), ";
-                }
-                t << "(" << idForNewConfig << ", "  << usedHwIds.at(i) << ", " << i+1 << ")";
-                cout << t.str() << endl;
-
-                storage.executeStatementPriority(t.str());
-            } else {
-                auto configResult = storage.executeQuery(s.str());
-                configResult->next();
-                insertConfigId = configResult->getInt("robot_config_id");
-            }
-        }
-
         s.str(string());
-        s << "insert into skills_robot(skill_id, robot_config_id) values";
-        s << "(" << skillId << ", " << insertConfigId << ")";
+        auto skillId = storage.getCachedLabelId("skills", "skill_id", "label", skillName);
+        s << "INSERT INTO skills_robot (skill_id, robot_config_id) VALUES (" << skillId << ", " << configId << ")";
+        storage.executeStatementPriority(s.str());
+    } else {
+        auto idForNewConfig = storage.getNextIdInTable("robot_config", "robot_config_id");
+
+        stringstream s;
+        s << "INSERT INTO robot_config (robot_config_id, hardware_instance_id, order_id) VALUES ";
+        unsigned int i = 0;
+        for(; i < usedHw.size()-1; i++){
+            s << "(" << idForNewConfig << ", " << (usedHw.at(i))->getHardwareInstance() << ", " << i+1 << "), ";
+        }
+        s << "(" << idForNewConfig << ", "  << (usedHw.at(i))->getHardwareInstance() << ", " << i+1 << ")";
 
         storage.executeStatementPriority(s.str());
 
-        createSkillFromThisInternal(skillName);
+        s.str(string());
+        auto controllerId = getControllerId();
+        s << "insert into skills(label, controller_type) values('" << skillName << "', " << controllerId << ")";
+        storage.executeStatementPriority(s.str());
 
-    } else
-        throw KukaduException("(Controller) skill with provided name already exists");
-
+        s.str(string());
+        auto skillId = storage.getCachedLabelId("skills", "skill_id", "label", skillName);
+        s << "INSERT INTO skills_robot (skill_id, robot_config_id) VALUES (" << skillId << ", " << idForNewConfig << ")";
+        storage.executeStatementPriority(s.str());
+    }
 }
 
 int Controller::getControllerId() {
@@ -344,7 +335,7 @@ void JointPtp::setJoints(std::vector<double> joints) {
 
 std::shared_ptr<ControllerResult> JointPtp::executeInternal() {
 
-    hardware->jointPtp(stdToArmadilloVec(joints));
+    hardware->jointPtp(stdToArmadilloVec(this->joints));
     return nullptr;
 
 }

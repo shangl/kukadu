@@ -95,11 +95,9 @@ namespace kukadu {
 
         s << " and order_id <> " << i;
 
-        cout << s.str() << endl;
         stringstream t;
         t << "SELECT COUNT(*) as count FROM (" << s.str() << ") tmp";
 
-        cout << t.str() << endl;
 
         auto amountOfConfigurations = storage.executeQuery(t.str());
         amountOfConfigurations->next();

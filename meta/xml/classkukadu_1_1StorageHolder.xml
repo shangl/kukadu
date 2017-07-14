@@ -1,10 +1,11 @@
 <?xml version='1.0' encoding='UTF-8' standalone='no'?>
-<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.8.11">
-  <compounddef id="classkukadu_1_1StorageHolder" kind="class" language="C++" prot="public">
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.8.6">
+  <compounddef id="classkukadu_1_1StorageHolder" kind="class" prot="public">
     <compoundname>kukadu::StorageHolder</compoundname>
     <derivedcompoundref refid="classkukadu_1_1AutonomousTester" prot="public" virt="non-virtual">kukadu::AutonomousTester</derivedcompoundref>
     <derivedcompoundref refid="classkukadu_1_1CachedPlanner" prot="public" virt="non-virtual">kukadu::CachedPlanner</derivedcompoundref>
     <derivedcompoundref refid="classkukadu_1_1Hardware" prot="public" virt="non-virtual">kukadu::Hardware</derivedcompoundref>
+    <derivedcompoundref refid="classkukadu_1_1RobotConfiguration" prot="public" virt="non-virtual">kukadu::RobotConfiguration</derivedcompoundref>
     <derivedcompoundref refid="classkukadu_1_1SkillExporter" prot="public" virt="non-virtual">kukadu::SkillExporter</derivedcompoundref>
       <sectiondef kind="private-attrib">
       <memberdef kind="variable" id="classkukadu_1_1StorageHolder_1ac2a0a3efee82b9de8092e007d3a02732" prot="private" static="no" mutable="no">
@@ -18,7 +19,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/home/c7031109/iis_robot_sw/iis_catkin_ws/src/kukadu/include/kukadu/storage/storagesingleton.hpp" line="88" column="1" bodyfile="/home/c7031109/iis_robot_sw/iis_catkin_ws/src/kukadu/include/kukadu/storage/storagesingleton.hpp" bodystart="88" bodyend="-1"/>
+        <location file="/home/andreasmennel/iis_robot_sw/iis_catkin_ws/src/kukadu/include/kukadu/storage/storagesingleton.hpp" line="89" column="1" bodyfile="/home/andreasmennel/iis_robot_sw/iis_catkin_ws/src/kukadu/include/kukadu/storage/storagesingleton.hpp" bodystart="89" bodyend="-1"/>
       </memberdef>
       </sectiondef>
       <sectiondef kind="public-func">
@@ -37,7 +38,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/home/c7031109/iis_robot_sw/iis_catkin_ws/src/kukadu/include/kukadu/storage/storagesingleton.hpp" line="92" column="1" bodyfile="/home/c7031109/iis_robot_sw/iis_catkin_ws/src/kukadu/src/storage/storagesingleton.cpp" bodystart="14" bodyend="16"/>
+        <location file="/home/andreasmennel/iis_robot_sw/iis_catkin_ws/src/kukadu/include/kukadu/storage/storagesingleton.hpp" line="93" column="1" bodyfile="/home/andreasmennel/iis_robot_sw/iis_catkin_ws/src/kukadu/src/storage/storagesingleton.cpp" bodystart="14" bodyend="16"/>
       </memberdef>
       <memberdef kind="function" id="classkukadu_1_1StorageHolder_1ab960ded0b470890c8ca94741b61c8d2e" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
         <type><ref refid="classkukadu_1_1StorageSingleton" kindref="compound">StorageSingleton</ref> &amp;</type>
@@ -50,7 +51,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/home/c7031109/iis_robot_sw/iis_catkin_ws/src/kukadu/include/kukadu/storage/storagesingleton.hpp" line="93" column="1" bodyfile="/home/c7031109/iis_robot_sw/iis_catkin_ws/src/kukadu/src/storage/storagesingleton.cpp" bodystart="18" bodyend="20"/>
+        <location file="/home/andreasmennel/iis_robot_sw/iis_catkin_ws/src/kukadu/include/kukadu/storage/storagesingleton.hpp" line="94" column="1" bodyfile="/home/andreasmennel/iis_robot_sw/iis_catkin_ws/src/kukadu/src/storage/storagesingleton.cpp" bodystart="18" bodyend="20"/>
       </memberdef>
       </sectiondef>
     <briefdescription>
@@ -58,78 +59,84 @@
     <detaileddescription>
     </detaileddescription>
     <inheritancegraph>
-      <node id="627">
+      <node id="631">
         <label>kukadu::CachedPlanner</label>
         <link refid="classkukadu_1_1CachedPlanner"/>
-        <childnode refid="625" relation="public-inheritance">
-        </childnode>
-      </node>
-      <node id="630">
-        <label>kukadu::ControlQueue</label>
-        <link refid="classkukadu_1_1ControlQueue"/>
         <childnode refid="629" relation="public-inheritance">
-        </childnode>
-      </node>
-      <node id="636">
-        <label>kukadu::SkillExporter</label>
-        <link refid="classkukadu_1_1SkillExporter"/>
-        <childnode refid="625" relation="public-inheritance">
-        </childnode>
-      </node>
-      <node id="631">
-        <label>kukadu::KukieControlQueue</label>
-        <link refid="classkukadu_1_1KukieControlQueue"/>
-        <childnode refid="630" relation="public-inheritance">
-        </childnode>
-      </node>
-      <node id="629">
-        <label>kukadu::JointHardware</label>
-        <link refid="classkukadu_1_1JointHardware"/>
-        <childnode refid="628" relation="public-inheritance">
         </childnode>
       </node>
       <node id="634">
-        <label>kukadu::KukieHand</label>
-        <link refid="classkukadu_1_1KukieHand"/>
+        <label>kukadu::ControlQueue</label>
+        <link refid="classkukadu_1_1ControlQueue"/>
         <childnode refid="633" relation="public-inheritance">
         </childnode>
       </node>
-      <node id="635">
-        <label>kukadu::PlottingHand</label>
-        <link refid="classkukadu_1_1PlottingHand"/>
-        <childnode refid="633" relation="public-inheritance">
-        </childnode>
-      </node>
-      <node id="626">
-        <label>kukadu::AutonomousTester</label>
-        <link refid="classkukadu_1_1AutonomousTester"/>
-        <childnode refid="625" relation="public-inheritance">
-        </childnode>
-      </node>
-      <node id="625">
-        <label>kukadu::StorageHolder</label>
-        <link refid="classkukadu_1_1StorageHolder"/>
-      </node>
-      <node id="628">
-        <label>kukadu::Hardware</label>
-        <link refid="classkukadu_1_1Hardware"/>
-        <childnode refid="625" relation="public-inheritance">
-        </childnode>
-      </node>
-      <node id="633">
-        <label>kukadu::GenericHand</label>
-        <link refid="classkukadu_1_1GenericHand"/>
+      <node id="641">
+        <label>kukadu::SkillExporter</label>
+        <link refid="classkukadu_1_1SkillExporter"/>
         <childnode refid="629" relation="public-inheritance">
         </childnode>
       </node>
+      <node id="635">
+        <label>kukadu::KukieControlQueue</label>
+        <link refid="classkukadu_1_1KukieControlQueue"/>
+        <childnode refid="634" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="633">
+        <label>kukadu::JointHardware</label>
+        <link refid="classkukadu_1_1JointHardware"/>
+        <childnode refid="632" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="638">
+        <label>kukadu::KukieHand</label>
+        <link refid="classkukadu_1_1KukieHand"/>
+        <childnode refid="637" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="639">
+        <label>kukadu::PlottingHand</label>
+        <link refid="classkukadu_1_1PlottingHand"/>
+        <childnode refid="637" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="630">
+        <label>kukadu::AutonomousTester</label>
+        <link refid="classkukadu_1_1AutonomousTester"/>
+        <childnode refid="629" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="629">
+        <label>kukadu::StorageHolder</label>
+        <link refid="classkukadu_1_1StorageHolder"/>
+      </node>
       <node id="632">
+        <label>kukadu::Hardware</label>
+        <link refid="classkukadu_1_1Hardware"/>
+        <childnode refid="629" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="637">
+        <label>kukadu::GenericHand</label>
+        <link refid="classkukadu_1_1GenericHand"/>
+        <childnode refid="633" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="636">
         <label>kukadu::PlottingControlQueue</label>
         <link refid="classkukadu_1_1PlottingControlQueue"/>
-        <childnode refid="630" relation="public-inheritance">
+        <childnode refid="634" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="640">
+        <label>kukadu::RobotConfiguration</label>
+        <link refid="classkukadu_1_1RobotConfiguration"/>
+        <childnode refid="629" relation="public-inheritance">
         </childnode>
       </node>
     </inheritancegraph>
-    <location file="/home/c7031109/iis_robot_sw/iis_catkin_ws/src/kukadu/include/kukadu/storage/storagesingleton.hpp" line="84" column="1" bodyfile="/home/c7031109/iis_robot_sw/iis_catkin_ws/src/kukadu/include/kukadu/storage/storagesingleton.hpp" bodystart="84" bodyend="95"/>
+    <location file="/home/andreasmennel/iis_robot_sw/iis_catkin_ws/src/kukadu/include/kukadu/storage/storagesingleton.hpp" line="85" column="1" bodyfile="/home/andreasmennel/iis_robot_sw/iis_catkin_ws/src/kukadu/include/kukadu/storage/storagesingleton.hpp" bodystart="85" bodyend="96"/>
     <listofallmembers>
       <member refid="classkukadu_1_1StorageHolder_1ab960ded0b470890c8ca94741b61c8d2e" prot="public" virt="non-virtual"><scope>kukadu::StorageHolder</scope><name>getStorage</name></member>
       <member refid="classkukadu_1_1StorageHolder_1ac2a0a3efee82b9de8092e007d3a02732" prot="private" virt="non-virtual"><scope>kukadu::StorageHolder</scope><name>storage</name></member>
