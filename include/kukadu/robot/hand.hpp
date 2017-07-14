@@ -62,6 +62,12 @@ namespace kukadu {
          */
         virtual void disconnectHand() = 0;
 
+        /**
+         * \brief Implements simple point to point movement in joint space (blocks until target reached)
+         * \param joints array of joint positions
+         */
+        virtual std::vector<mes_result> jointPtp(arma::vec joints);
+
         virtual std::vector<arma::mat> getTactileSensing() = 0;
 
         virtual std::string getHandName();
@@ -73,6 +79,7 @@ namespace kukadu {
         virtual void storeCurrentSensorDataToDatabase();
         virtual double getPreferredPollingFrequency();
 
+        virtual void start();
     };
 
     /**

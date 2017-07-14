@@ -46,7 +46,7 @@ namespace kukadu {
         if(!isInstalled(installDirectory))
             install(installDirectory);
 
-        executeStatement("use " + databaseName);
+        executeStatementPriority("use " + databaseName);
 
         cacheDemonRunning = false;
         useCaching = vm["database.storage_caching"].as<bool>();
@@ -61,21 +61,64 @@ namespace kukadu {
 
     }
 
+    bool StorageSingleton::checkTableExists(std::string table) {
+
+        stringstream s;
+        executeStatementPriority("use information_schema");
+
+        s.str("");
+        s << "select count(*) as cnt from tables where table_schema = '" << databaseName << "' and table_name = '" << table << "'";
+        auto res = executeQuery(s.str());
+        int tableCount = 0;
+        if(res->next())
+            tableCount = res->getInt("cnt");
+
+        executeStatementPriority("use " + databaseName);
+        return (tableCount) ? true : false;
+
+    }
+
     void StorageSingleton::installDirectory(std::string directory) {
 
         vector<string> installFiles = getFilesInDirectory(resolvePath(directory));
         std::sort(installFiles.begin(), installFiles.end());
-        for(auto& installFile : installFiles) {
+        for(string& installFile : installFiles) {
 
-            if(!isDirectory(installFile)) {
-                ifstream t(resolvePath(directory + "/" + installFile));
-                string sqlStr((std::istreambuf_iterator<char>(t)),
-                                 std::istreambuf_iterator<char>());
-                executeStatement(sqlStr);
-            } else if(installFile != "." && installFile != "..")
-                installDirectory(directory + "/" + installFile);
+            if(installFile.find("~") == string::npos && installFile.find(".values.sql") == string::npos) {
+
+                if(!isDirectory(installFile)) {
+
+                    KukaduTokenizer tok(installFile, ".");
+                    auto tableName = tok.next();
+                    bool isTableNew = !checkTableExists(tableName);
+
+                    string baseFile = resolvePath(directory + "/" + installFile);
+
+                    ifstream t(baseFile);
+                    string sqlStr((std::istreambuf_iterator<char>(t)),
+                                     std::istreambuf_iterator<char>());
+                    executeStatement(sqlStr);
+
+                    if(isTableNew) {
+
+                        string valuesFile = resolvePath(directory + "/" + tableName + ".values.sql");
+                        if(fileExists(valuesFile)) {
+                            ifstream t2(valuesFile);
+                            string valueSqlStr((std::istreambuf_iterator<char>(t2)),
+                                             std::istreambuf_iterator<char>());
+                            executeStatement(valueSqlStr);
+                        }
+
+                    }
+
+                } else if(installFile != "." && installFile != "..")
+                    installDirectory(directory + "/" + installFile);
+
+            }
 
         }
+
+        executeStatementPriority("use " + databaseName);
 
     }
 
@@ -96,13 +139,14 @@ namespace kukadu {
         vector<string> installFiles = getFilesInDirectory(resolvePath(directory));
         std::sort(installFiles.begin(), installFiles.end());
         int tableCount = 0;
-        for(auto& installFile : installFiles)
-            if(installFile.find("values.sql") == std::string::npos && installFile != "." && installFile != "..") {
+        for(auto& installFile : installFiles) {
+            if(installFile.find("values.sql") == std::string::npos && installFile.find("~") == std::string::npos && installFile != "." && installFile != "..") {
                 KukaduTokenizer tok(installFile, ".");
                 auto tableName = tok.next();
                 s << "table_name = '" << tableName << "' or ";
                 ++tableCount;
             }
+        }
 
         auto totalQuery = s.str();
         totalQuery = totalQuery.substr(0, totalQuery.length() - 4) + ")";
@@ -308,7 +352,7 @@ namespace kukadu {
             auto stmt = con->createStatement();
             for(auto& sql : statements)
                 try { stmt->execute(sql); }
-                catch(sql::SQLException& ex) { lastEx = string(ex.what()); }
+                catch(sql::SQLException& ex) { lastEx = string(ex.what() + string(": ") + sql); }
                 catch(std::exception& ex) { cerr << ex.what() << endl; }
             delete stmt;
 

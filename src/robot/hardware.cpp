@@ -1,10 +1,118 @@
 #include <sstream>
 #include <kukadu/robot/hardware.hpp>
+#include <algorithm>
 
 using namespace std;
 using namespace arma;
 
 namespace kukadu {
+
+    RobotConfiguration::RobotConfiguration(StorageSingleton& storage, int configurationId) : StorageHolder(storage) {
+        stringstream s;
+        s << "SELECT * FROM `robot_config` WHERE robot_config_id=" << configurationId << " ORDER BY order_id ASC";
+        auto robotConfig = storage.executeQuery(s.str());
+
+        while (robotConfig->next()) {
+            auto hardwareId = robotConfig->getInt("hardware_Instance_id");
+            hardwareIds.push_back(hardwareId);
+        }
+    }
+
+    bool RobotConfiguration::containsHardwareInOrder(std::vector<KUKADU_SHARED_PTR<Hardware> > hardwareComponents){
+        if(hardwareComponents.size() != hardwareIds.size()) {
+            return false;
+        }
+
+        auto argumentIterator = hardwareComponents.begin();
+        auto propertyIterator = hardwareIds.begin();
+
+        for(;(*argumentIterator)->getHardwareInstance() == *propertyIterator && argumentIterator != --hardwareComponents.end(); argumentIterator++, propertyIterator++);
+
+        return (*argumentIterator)->getHardwareInstance() == *propertyIterator;
+    }
+
+    bool RobotConfiguration::containsHardwareAsSet(std::vector<KUKADU_SHARED_PTR<Hardware> > hardwareComponents){
+        auto propertyIterator = hardwareIds.begin();
+        auto argumentContainsAllProperties = hardwareComponents.size() == hardwareIds.size();
+
+        for(; propertyIterator != hardwareIds.end() && argumentContainsAllProperties; ++propertyIterator){
+            auto elementFound = false;
+            for(auto argumentIterator = hardwareComponents.begin(); !elementFound && argumentIterator != hardwareComponents.end(); ++argumentIterator){
+                elementFound = (*argumentIterator)->getHardwareInstance()==*propertyIterator;
+            }
+
+            argumentContainsAllProperties &= elementFound;
+        }
+
+        return argumentContainsAllProperties;
+    }
+
+    bool RobotConfiguration::containsHardware(std::vector<KUKADU_SHARED_PTR<Hardware> > hardwareComponents){        
+        auto propertyIterator = hardwareIds.begin();
+        auto argumentContainsAllProperties = hardwareComponents.size() >= hardwareIds.size();
+
+        for(; propertyIterator != hardwareIds.end() && argumentContainsAllProperties; ++propertyIterator){
+            auto elementFound = false;
+            for(auto argumentIterator = hardwareComponents.begin(); !elementFound && argumentIterator != hardwareComponents.end(); ++argumentIterator){
+                elementFound = (*argumentIterator)->getHardwareInstance()==*propertyIterator;
+            }
+
+            argumentContainsAllProperties &= elementFound;
+        }
+
+        return argumentContainsAllProperties;
+    }
+
+    bool RobotConfiguration::configurationExists(std::vector<std::shared_ptr<kukadu::Hardware>> hardware) {
+        return getConfigurationId(hardware) != -1;
+    }
+
+    int RobotConfiguration::getConfigurationId(std::vector<std::shared_ptr<kukadu::Hardware>> hardware) {
+        auto& storage = kukadu::StorageSingleton::get();
+
+        vector<int> usedHwIds;
+        for(auto& hw : hardware) {
+            if(std::find(usedHwIds.begin(), usedHwIds.end(), hw->getHardwareInstance()) == usedHwIds.end()) {
+                usedHwIds.push_back(hw->getHardwareInstance());
+            }
+        }
+
+        stringstream s;
+        s << "select distinct robot_config_id from robot_config";
+
+        int i = 1;
+        for(auto hwIdsIterator = usedHwIds.begin(); hwIdsIterator != usedHwIds.end(); ++hwIdsIterator, ++i){
+            if (hwIdsIterator == usedHwIds.begin()){
+                s << " where ";
+            }
+
+            if(hwIdsIterator == --usedHwIds.end()) {
+                s << "order_id=" << i << " and hardware_instance_id=" << *hwIdsIterator;
+            } else {
+                s << "order_id=" << i << " and hardware_instance_id=" << *hwIdsIterator << " and ";
+            }
+        }
+
+        s << " and order_id <> " << i;
+
+        stringstream t;
+        t << "SELECT COUNT(*) as count FROM (" << s.str() << ") tmp";
+
+
+        auto amountOfConfigurations = storage.executeQuery(t.str());
+        amountOfConfigurations->next();
+
+        //no config exists
+        if(amountOfConfigurations->getInt("count") == 0){
+            return -1;
+        } else {
+            auto configResult = storage.executeQuery(s.str());
+            configResult->next();
+            return configResult->getInt("robot_config_id");
+        }
+    }
+
+
 
     Hardware::Hardware(StorageSingleton& dbStorage, int hardwareClass, int hardwareType, std::string hardwareTypeName, int hardwareInstanceId, std::string hardwareInstanceName) :
         StorageHolder(dbStorage) {
@@ -48,10 +156,10 @@ namespace kukadu {
             stringstream s;
             s << "insert into hardware(hardware_id, hardware_name, hardware_class) values(" << getHardwareType() << ", '"
               << getHardwareTypeName() << "', " << getHardwareClass() << ")";
+
             getStorage().executeStatementPriority(s.str());
 
             installHardwareTypeInternal();
-
         }
 
     }

@@ -28,7 +28,6 @@ namespace kukadu {
         auto skillResult= storage.executeQuery("SELECT skill_id as id, label as skillName, controller_types.controller_implementation_class as controller FROM skills INNER JOIN controller_types ON skills.controller_type=controller_types.controller_id");
 
         nlohmann::json skillJson;
-
         while(skillResult->next()){
             int id = skillResult->getInt("id");
             nlohmann::json skillInformation;
@@ -38,16 +37,38 @@ namespace kukadu {
             auto controller = skillResult->getString("controller");
             skillInformation["controller"] = controller;
 
-            std::string query = "SELECT hardware_Instance_id as hardwareId FROM skills_robot WHERE skill_id=" + std::to_string(id);
-            auto hardwareForSkill = storage.executeQuery(query);
-            std::vector<int> requiredHardwareIds;
-            while(hardwareForSkill->next()){
-                requiredHardwareIds.push_back(hardwareForSkill->getInt("hardwareId"));
+            std::string query = "SELECT DISTINCT robot_config.robot_config_id as configId FROM skills_robot INNER JOIN robot_config ON skills_robot.robot_config_id=robot_config.robot_config_id WHERE skills_robot.skill_id=" + std::to_string(id);
+            auto configForSkill = storage.executeQuery(query);
+            std::vector<int> roboterConfigIds;
+            while(configForSkill->next()){
+                roboterConfigIds.push_back(configForSkill->getInt("configId"));
             }
 
-            skillInformation["hardwareId"] = requiredHardwareIds;
+            skillInformation["configId"] = roboterConfigIds;
 
             skillJson.push_back(skillInformation);
+        }
+
+        nlohmann::json robotConfigJson;
+        auto robotConfigResult = storage.executeQuery("SELECT DISTINCT robot_config_id FROM robot_config");
+        while(robotConfigResult->next()){
+
+            int id = robotConfigResult->getInt("robot_config_id");
+            auto configForId = storage.executeQuery("SELECT DISTINCT hardware_instance_id, order_id FROM robot_config WHERE robot_config_id=" + std::to_string(id));
+            nlohmann::json configInformation;
+            std::vector<int> hardwareIds;
+            std::vector<int> orderIds;
+            while(configForId->next()){
+                int robotHwId = configForId->getInt("hardware_instance_id");
+                int order = configForId->getInt("order_id");
+                hardwareIds.push_back(robotHwId);
+                orderIds.push_back(order);
+            }
+
+            configInformation["hardwareId"] = hardwareIds;
+            configInformation["order"] = orderIds;
+            configInformation["id"] = id;
+            robotConfigJson.push_back(configInformation);
         }
 
         nlohmann::json hardwareJson;
@@ -67,6 +88,7 @@ namespace kukadu {
         nlohmann::json finalJson;
         finalJson["hardwareInformation"] = hardwareJson;
         finalJson["skillInformation"] = skillJson;
+        finalJson["roboConfigs"] = robotConfigJson;
         finalJson["attributePath"] = resolvePath("$KUKADU_HOME/meta/xml/");
 
         std::string js = finalJson.dump();
@@ -110,12 +132,10 @@ namespace kukadu {
 
     void KukaduGraphical::onStart() {
         loadInformationFromDatabase();
-        std::cout << "started" << std::endl;
     }
 
     void KukaduGraphical::clickedSlot() {
         std::string var = "test";
-        getCatkinMakeString(var);
 
         QVariant codeVariant = webView->page()->mainFrame()->evaluateJavaScript("getCode()");
 
@@ -138,6 +158,12 @@ namespace kukadu {
 
         codeFile.open(QIODevice::WriteOnly);
         QString code = codeVariant.toString();
+        QString replace("ros::init(argc, args, \"kukadu\")");
+        QString replacement("ros::init(argc, args, \"");
+        replacement.append(QString::fromStdString(packageName));
+        replacement.append("\")");
+        code.replace(replace, replacement);
+
         QByteArray codeByteArray = code.toLatin1();
         codeFile.write(codeByteArray.data(), code.length());
         codeFile.close();
@@ -191,6 +217,9 @@ namespace kukadu {
     std::string KukaduGraphical::getCatkinMakeString(const std::string& packageName){
         std::string cmakeCacheFilePath = resolvePath("$KUKADU_HOME/../../build/CMakeCache.txt");
         QFile cmakeCacheFile(cmakeCacheFilePath.c_str());
+        if(!cmakeCacheFile.exists())
+            return "catkin_make";
+
         cmakeCacheFile.open(QIODevice::ReadOnly);
         QTextStream inputStream(&cmakeCacheFile);
 

@@ -3,6 +3,7 @@
 
 #include <string>
 #include <armadillo>
+#include <kukadu/utils/types.hpp>
 #include <kukadu/storage/storagesingleton.hpp>
 
 namespace kukadu {
@@ -39,6 +40,8 @@ namespace kukadu {
 
         virtual void install();
 
+        virtual void start() = 0;
+
         int getHardwareType();
         int getHardwareClass();
         int getHardwareInstance();
@@ -67,6 +70,23 @@ namespace kukadu {
 
     };
 
+    class RobotConfiguration : public StorageHolder {
+
+    private:
+
+    public:
+
+        RobotConfiguration(StorageSingleton& storage, int configurationId);
+        bool containsHardwareInOrder(std::vector<KUKADU_SHARED_PTR<Hardware> > hardwareComponents);
+        bool containsHardwareAsSet(std::vector<KUKADU_SHARED_PTR<Hardware> > hardwareComponents);
+        bool containsHardware(std::vector<KUKADU_SHARED_PTR<Hardware> > hardwareComponents);
+
+        static bool configurationExists(std::vector<std::shared_ptr<kukadu::Hardware>> hardware);
+        static int getConfigurationId(std::vector<std::shared_ptr<kukadu::Hardware>> hardware);
+    private:
+        std::vector<int> hardwareIds;
+    };
+
     class JointHardware : public Hardware {
 
     public:
@@ -88,8 +108,7 @@ namespace kukadu {
                                                                            long long int maxTotalDuration = 3600000,
                                                                            long long maxTimeStepDifference = 5000);
 
-        // einfuegen und diese pure virtual function bei allen implementieren die dann fehler schmeissen
-        //virtual std::vector<mes_result> jointPtp(arma::vec joints) = 0;
+        virtual std::vector<kukadu::mes_result> jointPtp(arma::vec joints) = 0;
 
     };
 

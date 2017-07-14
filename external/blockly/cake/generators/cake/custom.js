@@ -16,71 +16,70 @@ Blockly.cake['skillloader'] = function (block) {
 
     for (var i = 0; i < splitHardware.length; i++) {
         var hardwareVariableName = "simLeftQueue" + skillCounter + i;
-        hardwareCode += "auto " + hardwareVariableName + " = std::dynamic_pointer_cast<kukadu::KukieControlQueue>(hardwareFactory.loadHardware(\"" + splitHardware[i] +"\"));\n";
+        hardwareCode += "auto " + hardwareVariableName + " = hardwareFactory.loadHardware(\"" + splitHardware[i] + "\");\n";
         hardwareCode += hardwareVariableName + "->install();\n";
-        hardwareCode += "auto realLqThread" + skillCounter + i + " = " + hardwareVariableName + "->startQueue();\nif(" + hardwareVariableName + "->getCurrentMode() != kukadu::KukieControlQueue::KUKA_JNT_IMP_MODE) {\n";
-        hardwareCode += "\t" + hardwareVariableName + "->stopCurrentMode();\n";
-        hardwareCode += "\t" + hardwareVariableName + "->switchMode(kukadu::KukieControlQueue::KUKA_JNT_IMP_MODE);\n}\n";
+        hardwareCode += hardwareVariableName + "->start();\n";
         hardwareVariableNames.push(hardwareVariableName);
     }
 
     var skillCode = "";
     var skillSelection = block.getCurrentSkill();
     if (typeof skillSelection != 'undefined') {
-        skillCode = "\nauto skill" + skillCounter + " = kukadu::SkillFactory::get().loadSkill(\"" + skillSelection.name + "\", ";
-        for(var j = 0; j < hardwareVariableNames.length -1; j++){
+        skillCode = "\nauto skill" + skillCounter + " = kukadu::SkillFactory::get().loadSkill(\"" + skillSelection.name + "\", {";
+        for (var j = 0; j < hardwareVariableNames.length - 1; j++) {
             skillCode += hardwareVariableNames[j] + ", ";
         }
 
-        skillCode += hardwareVariableNames[hardwareVariableNames.length-1] + ");\n\n"
+        skillCode += hardwareVariableNames[hardwareVariableNames.length - 1] + "});\n\n"
 
         var skillAttributeInformation = skillSelection.getAttributes();
 
         var additionalLimitForVectors = 0;
         var attributes = getValuesFromMap(skillAttributeInformation);
 
-        for(var i = 0; i < attributes.length + additionalLimitForVectors; i++) {
+        for (var i = 0; i < attributes.length + additionalLimitForVectors; i++) {
             var attribute = attributes[i];
             var attributeCode = "";
             var everyAttributeIsSet = true;
             if (attribute.dataType === "std::vector< double >" || attribute.dataType === "std::vector< int >" || attribute.dataType === "std::vector< string >") {
                 var isString = attribute.dataType === "std::vector< string >";
                 var vectorsize = 0;
-                skillSelection.getHardware().forEach(function (hardware) {
+                var roboConfig = Databaseloader.roboConfigMap[idsToKey(block._hardwareIds)];
+                roboConfig.hardwareInOrder.forEach(function (hardware) {
                     vectorsize = hardware.degOfFreedom > vectorsize ? hardware.degOfFreedom : vectorsize;
-                })
+                });
 
-                attributeCode = "{"
+                attributeCode = "{";
 
                 for (var j = 0; j < vectorsize - 1; j++) {
                     attributeCode += isString ? "'" : "";
                     var attributeValue = block.getFieldValue('attribute' + i++);
                     additionalLimitForVectors++;
 
-                    if(attributeValue === "not defined"){
+                    if (attributeValue === "not defined") {
                         everyAttributeIsSet = false;
                     }
 
                     attributeCode += attributeValue + ", ";
                     attributeCode += isString ? "'" : "";
                 }
-                
+
                 var attributeValue = block.getFieldValue('attribute' + i);
                 everyAttributeIsSet = attributeValue !== "not defined";
                 attributeCode += attributeValue + "}";
 
-                if(!everyAttributeIsSet){
+                if (!everyAttributeIsSet) {
                     continue;
                 }
-        } else {
+            } else {
                 attributeCode = block.getFieldValue('attribute' + i);
-                if(attributeCode === "not defined"){
+                if (attributeCode === "not defined") {
                     continue;
                 }
             }
 
-            skillCode += "std::dynamic_pointer_cast<" + skillSelection.controller + ">(skill" + skillCounter + ")->set" + attribute.name + "(";
-            skillCode += attribute.dataType == "string" ? "'" : "";            
+            skillCode += "std::dynamic_pointer_cast<kukadu::" + skillSelection.controller + ">(skill" + skillCounter + ")->set" + attribute.name + "(";
+            skillCode += attribute.dataType == "string" ? "'" : "";
             skillCode += attributeCode;
             skillCode += attribute.dataType === "string" ? "'" : "";
             skillCode += ");\n";

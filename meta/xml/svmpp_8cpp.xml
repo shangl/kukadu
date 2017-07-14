@@ -1,6 +1,6 @@
 <?xml version='1.0' encoding='UTF-8' standalone='no'?>
-<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.8.11">
-  <compounddef id="svmpp_8cpp" kind="file" language="C++">
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.8.6">
+  <compounddef id="svmpp_8cpp" kind="file">
     <compoundname>svmpp.cpp</compoundname>
     <includes local="no">cassert</includes>
     <includes local="no">algorithm</includes>
@@ -8,54 +8,54 @@
     <includes local="no">fstream</includes>
     <includes refid="svmpp_8hpp" local="no">kukadu/learning/classification/svmpp.hpp</includes>
     <incdepgraph>
-      <node id="3210">
-        <label>kukadu/learning/classification/svmpp.hpp</label>
-        <link refid="svmpp_8hpp_source"/>
-        <childnode refid="3211" relation="include">
-        </childnode>
-        <childnode refid="3212" relation="include">
-        </childnode>
-        <childnode refid="3213" relation="include">
-        </childnode>
-        <childnode refid="3214" relation="include">
-        </childnode>
-      </node>
-      <node id="3208">
+      <node id="3221">
         <label>functional</label>
       </node>
-      <node id="3206">
+      <node id="3219">
         <label>cassert</label>
       </node>
-      <node id="3211">
+      <node id="3224">
         <label>string</label>
       </node>
-      <node id="3205">
-        <label>/home/c7031109/iis_robot_sw/iis_catkin_ws/src/kukadu/src/learning/classification/svmpp.cpp</label>
+      <node id="3218">
+        <label>/home/andreasmennel/iis_robot_sw/iis_catkin_ws/src/kukadu/src/learning/classification/svmpp.cpp</label>
         <link refid="svmpp.cpp"/>
-        <childnode refid="3206" relation="include">
+        <childnode refid="3219" relation="include">
         </childnode>
-        <childnode refid="3207" relation="include">
+        <childnode refid="3220" relation="include">
         </childnode>
-        <childnode refid="3208" relation="include">
+        <childnode refid="3221" relation="include">
         </childnode>
-        <childnode refid="3209" relation="include">
+        <childnode refid="3222" relation="include">
         </childnode>
-        <childnode refid="3210" relation="include">
+        <childnode refid="3223" relation="include">
         </childnode>
       </node>
-      <node id="3209">
+      <node id="3222">
         <label>fstream</label>
       </node>
-      <node id="3212">
+      <node id="3225">
         <label>vector</label>
       </node>
-      <node id="3213">
+      <node id="3226">
         <label>libsvm/svm.h</label>
       </node>
-      <node id="3214">
+      <node id="3227">
         <label>unordered_map</label>
       </node>
-      <node id="3207">
+      <node id="3223">
+        <label>kukadu/learning/classification/svmpp.hpp</label>
+        <link refid="svmpp_8hpp_source"/>
+        <childnode refid="3224" relation="include">
+        </childnode>
+        <childnode refid="3225" relation="include">
+        </childnode>
+        <childnode refid="3226" relation="include">
+        </childnode>
+        <childnode refid="3227" relation="include">
+        </childnode>
+      </node>
+      <node id="3220">
         <label>algorithm</label>
       </node>
     </incdepgraph>
@@ -95,7 +95,7 @@
 <codeline lineno="30"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&lt;fstream&gt;</highlight><highlight class="normal"></highlight></codeline>
 <codeline lineno="31"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&lt;kukadu/learning/classification/svmpp.hpp&gt;</highlight><highlight class="normal"></highlight></codeline>
 <codeline lineno="32"><highlight class="normal"></highlight></codeline>
-<codeline lineno="33"><highlight class="normal"></highlight><highlight class="keyword">namespace<sp/></highlight><highlight class="normal"><ref refid="namespacesvmpp" kindref="compound">svmpp</ref><sp/>{</highlight></codeline>
+<codeline lineno="33"><highlight class="normal"></highlight><highlight class="keyword">namespace<sp/></highlight><highlight class="normal">svmpp<sp/>{</highlight></codeline>
 <codeline lineno="34"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="comment">//-----------------------------------------------------------------------------------------------------------------</highlight><highlight class="normal"></highlight></codeline>
 <codeline lineno="35"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="comment">//<sp/>Train<sp/>struct</highlight><highlight class="normal"></highlight></codeline>
 <codeline lineno="36"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="comment">//-----------------------------------------------------------------------------------------------------------------</highlight><highlight class="normal"></highlight></codeline>
@@ -158,7 +158,7 @@
 <codeline lineno="93"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="comment">//-----------------------------------------------------------------------------------------------------------------</highlight><highlight class="normal"></highlight></codeline>
 <codeline lineno="94"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="comment">//<sp/>Query<sp/>struct</highlight><highlight class="normal"></highlight></codeline>
 <codeline lineno="95"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="comment">//-----------------------------------------------------------------------------------------------------------------</highlight><highlight class="normal"></highlight></codeline>
-<codeline lineno="96"><highlight class="normal"><sp/><sp/><sp/><sp/>Query::Query(</highlight><highlight class="keywordtype">double</highlight><highlight class="normal"><sp/>*<sp/>_x,<sp/></highlight><highlight class="keywordtype">unsigned</highlight><highlight class="normal"><sp/>_dimension):<sp/>Query(<ref refid="namespacestd" kindref="compound">std</ref>::vector&lt;double&gt;(_x,<sp/>_x<sp/>+<sp/>_dimension))<sp/>{</highlight></codeline>
+<codeline lineno="96"><highlight class="normal"><sp/><sp/><sp/><sp/>Query::Query(</highlight><highlight class="keywordtype">double</highlight><highlight class="normal"><sp/>*<sp/>_x,<sp/></highlight><highlight class="keywordtype">unsigned</highlight><highlight class="normal"><sp/>_dimension):<sp/>Query(std::vector&lt;double&gt;(_x,<sp/>_x<sp/>+<sp/>_dimension))<sp/>{</highlight></codeline>
 <codeline lineno="97"><highlight class="normal"><sp/><sp/><sp/><sp/>}</highlight></codeline>
 <codeline lineno="98"><highlight class="normal"></highlight></codeline>
 <codeline lineno="99"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="comment">//-----------------------------------------------------------------------------------------------------------------</highlight><highlight class="normal"></highlight></codeline>
@@ -330,6 +330,6 @@
 <codeline lineno="265"><highlight class="normal">}<sp/><sp/><sp/></highlight><highlight class="comment">//<sp/>namespace<sp/>svmpp</highlight><highlight class="normal"></highlight></codeline>
 <codeline lineno="266"><highlight class="normal"></highlight></codeline>
     </programlisting>
-    <location file="/home/c7031109/iis_robot_sw/iis_catkin_ws/src/kukadu/src/learning/classification/svmpp.cpp"/>
+    <location file="/home/andreasmennel/iis_robot_sw/iis_catkin_ws/src/kukadu/src/learning/classification/svmpp.cpp"/>
   </compounddef>
 </doxygen>

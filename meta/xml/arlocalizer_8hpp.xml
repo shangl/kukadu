@@ -1,6 +1,6 @@
 <?xml version='1.0' encoding='UTF-8' standalone='no'?>
-<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.8.11">
-  <compounddef id="arlocalizer_8hpp" kind="file" language="C++">
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.8.6">
+  <compounddef id="arlocalizer_8hpp" kind="file">
     <compoundname>arlocalizer.hpp</compoundname>
     <includes refid="localizer_8hpp" local="no">kukadu/vision/localizer.hpp</includes>
     <includes refid="kukadutypes_8hpp" local="no">kukadu/types/kukadutypes.hpp</includes>
@@ -18,48 +18,87 @@
     <includes local="no">kukadu/vision/arlocalizer/arMulti.h</includes>
     <includes local="no">kukadu/vision/arlocalizer/CameraAdvImpl.h</includes>
     <includes local="no">kukadu/vision/arlocalizer/ARToolKitPlus.h</includes>
-    <includedby refid="arlocalizer_8cpp" local="no">/home/c7031109/iis_robot_sw/iis_catkin_ws/src/kukadu/src/vision/arlocalizer/arlocalizer.cpp</includedby>
-    <includedby refid="calibration_8hpp" local="no">/home/c7031109/iis_robot_sw/iis_catkin_ws/src/kukadu/include/kukadu/robot/calibration.hpp</includedby>
+    <includedby refid="arlocalizer_8cpp" local="no">/home/andreasmennel/iis_robot_sw/iis_catkin_ws/src/kukadu/src/vision/arlocalizer/arlocalizer.cpp</includedby>
+    <includedby refid="calibration_8hpp" local="no">/home/andreasmennel/iis_robot_sw/iis_catkin_ws/src/kukadu/include/kukadu/robot/calibration.hpp</includedby>
     <incdepgraph>
-      <node id="2635">
+      <node id="2647">
         <label>list</label>
       </node>
-      <node id="2638">
+      <node id="2650">
         <label>boost/thread/mutex.hpp</label>
       </node>
-      <node id="2645">
+      <node id="2657">
         <label>kukadu/vision/arlocalizer/arMulti.h</label>
       </node>
-      <node id="2624">
+      <node id="2642">
+        <label>kukadu/vision/pcstdtrans.hpp</label>
+        <link refid="pcstdtrans_8hpp_source"/>
+        <childnode refid="2631" relation="include">
+        </childnode>
+        <childnode refid="2643" relation="include">
+        </childnode>
+        <childnode refid="2644" relation="include">
+        </childnode>
+      </node>
+      <node id="2636">
         <label>sensor_msgs/PointCloud2.h</label>
       </node>
-      <node id="2623">
+      <node id="2635">
         <label>pcl/point_types.h</label>
       </node>
-      <node id="2637">
+      <node id="2649">
         <label>opencv/cv.h</label>
       </node>
-      <node id="2640">
+      <node id="2652">
         <label>tf/transform_listener.h</label>
       </node>
-      <node id="2639">
+      <node id="2651">
         <label>tf/transform_broadcaster.h</label>
       </node>
-      <node id="2622">
+      <node id="2634">
         <label>pcl/point_cloud.h</label>
       </node>
-      <node id="2641">
+      <node id="2653">
         <label>image_transport/image_transport.h</label>
       </node>
-      <node id="2617">
+      <node id="2629">
         <label>string</label>
       </node>
-      <node id="2613">
-        <label>/home/c7031109/iis_robot_sw/iis_catkin_ws/src/kukadu/include/kukadu/vision/arlocalizer.hpp</label>
-        <link refid="arlocalizer.hpp"/>
-        <childnode refid="2614" relation="include">
+      <node id="2646">
+        <label>map</label>
+      </node>
+      <node id="2631">
+        <label>armadillo</label>
+      </node>
+      <node id="2638">
+        <label>exception</label>
+      </node>
+      <node id="2626">
+        <label>kukadu/vision/localizer.hpp</label>
+        <link refid="localizer_8hpp_source"/>
+        <childnode refid="2627" relation="include">
         </childnode>
-        <childnode refid="2625" relation="include">
+        <childnode refid="2628" relation="include">
+        </childnode>
+        <childnode refid="2629" relation="include">
+        </childnode>
+        <childnode refid="2630" relation="include">
+        </childnode>
+        <childnode refid="2631" relation="include">
+        </childnode>
+        <childnode refid="2632" relation="include">
+        </childnode>
+        <childnode refid="2633" relation="include">
+        </childnode>
+        <childnode refid="2637" relation="include">
+        </childnode>
+      </node>
+      <node id="2633">
+        <label>kukadu/vision/kinect.hpp</label>
+        <link refid="kinect_8hpp_source"/>
+        <childnode refid="2628" relation="include">
+        </childnode>
+        <childnode refid="2629" relation="include">
         </childnode>
         <childnode refid="2634" relation="include">
         </childnode>
@@ -69,7 +108,65 @@
         </childnode>
         <childnode refid="2637" relation="include">
         </childnode>
+        <childnode refid="2642" relation="include">
+        </childnode>
+        <childnode refid="2645" relation="include">
+        </childnode>
+      </node>
+      <node id="2625">
+        <label>/home/andreasmennel/iis_robot_sw/iis_catkin_ws/src/kukadu/include/kukadu/vision/arlocalizer.hpp</label>
+        <link refid="arlocalizer.hpp"/>
+        <childnode refid="2626" relation="include">
+        </childnode>
+        <childnode refid="2637" relation="include">
+        </childnode>
+        <childnode refid="2646" relation="include">
+        </childnode>
+        <childnode refid="2647" relation="include">
+        </childnode>
+        <childnode refid="2648" relation="include">
+        </childnode>
+        <childnode refid="2649" relation="include">
+        </childnode>
+        <childnode refid="2650" relation="include">
+        </childnode>
+        <childnode refid="2651" relation="include">
+        </childnode>
+        <childnode refid="2652" relation="include">
+        </childnode>
+        <childnode refid="2653" relation="include">
+        </childnode>
+        <childnode refid="2654" relation="include">
+        </childnode>
+        <childnode refid="2655" relation="include">
+        </childnode>
+        <childnode refid="2656" relation="include">
+        </childnode>
+        <childnode refid="2657" relation="include">
+        </childnode>
+        <childnode refid="2658" relation="include">
+        </childnode>
+        <childnode refid="2659" relation="include">
+        </childnode>
+      </node>
+      <node id="2654">
+        <label>dynamic_reconfigure/server.h</label>
+      </node>
+      <node id="2658">
+        <label>kukadu/vision/arlocalizer/CameraAdvImpl.h</label>
+      </node>
+      <node id="2641">
+        <label>random</label>
+      </node>
+      <node id="2656">
+        <label>kukadu/vision/arlocalizer/ar.h</label>
+      </node>
+      <node id="2637">
+        <label>kukadu/types/kukadutypes.hpp</label>
+        <link refid="kukadutypes_8hpp_source"/>
         <childnode refid="2638" relation="include">
+        </childnode>
+        <childnode refid="2627" relation="include">
         </childnode>
         <childnode refid="2639" relation="include">
         </childnode>
@@ -77,162 +174,65 @@
         </childnode>
         <childnode refid="2641" relation="include">
         </childnode>
-        <childnode refid="2642" relation="include">
-        </childnode>
-        <childnode refid="2643" relation="include">
-        </childnode>
-        <childnode refid="2644" relation="include">
-        </childnode>
-        <childnode refid="2645" relation="include">
-        </childnode>
-        <childnode refid="2646" relation="include">
-        </childnode>
-        <childnode refid="2647" relation="include">
-        </childnode>
       </node>
-      <node id="2634">
-        <label>map</label>
-      </node>
-      <node id="2619">
-        <label>armadillo</label>
-      </node>
-      <node id="2626">
-        <label>exception</label>
-      </node>
-      <node id="2630">
-        <label>kukadu/vision/pcstdtrans.hpp</label>
-        <link refid="pcstdtrans_8hpp_source"/>
-        <childnode refid="2619" relation="include">
-        </childnode>
-        <childnode refid="2631" relation="include">
-        </childnode>
-        <childnode refid="2632" relation="include">
-        </childnode>
-      </node>
-      <node id="2642">
-        <label>dynamic_reconfigure/server.h</label>
-      </node>
-      <node id="2646">
-        <label>kukadu/vision/arlocalizer/CameraAdvImpl.h</label>
-      </node>
-      <node id="2629">
-        <label>random</label>
-      </node>
-      <node id="2644">
-        <label>kukadu/vision/arlocalizer/ar.h</label>
-      </node>
-      <node id="2643">
+      <node id="2655">
         <label>tf/transform_datatypes.h</label>
       </node>
-      <node id="2616">
+      <node id="2628">
         <label>vector</label>
       </node>
-      <node id="2621">
-        <label>kukadu/vision/kinect.hpp</label>
-        <link refid="kinect_8hpp_source"/>
-        <childnode refid="2616" relation="include">
-        </childnode>
-        <childnode refid="2617" relation="include">
-        </childnode>
-        <childnode refid="2622" relation="include">
-        </childnode>
-        <childnode refid="2623" relation="include">
-        </childnode>
-        <childnode refid="2624" relation="include">
-        </childnode>
-        <childnode refid="2625" relation="include">
-        </childnode>
-        <childnode refid="2630" relation="include">
-        </childnode>
-        <childnode refid="2633" relation="include">
-        </childnode>
-      </node>
-      <node id="2618">
+      <node id="2630">
         <label>utility</label>
       </node>
-      <node id="2620">
+      <node id="2632">
         <label>geometry_msgs/Pose.h</label>
       </node>
-      <node id="2636">
+      <node id="2648">
         <label>ros/ros.h</label>
       </node>
-      <node id="2625">
-        <label>kukadu/types/kukadutypes.hpp</label>
-        <link refid="kukadutypes_8hpp_source"/>
-        <childnode refid="2626" relation="include">
-        </childnode>
-        <childnode refid="2615" relation="include">
-        </childnode>
-        <childnode refid="2627" relation="include">
-        </childnode>
-        <childnode refid="2628" relation="include">
-        </childnode>
-        <childnode refid="2629" relation="include">
-        </childnode>
-      </node>
-      <node id="2632">
+      <node id="2644">
         <label>pcl/kdtree/kdtree_flann.h</label>
       </node>
-      <node id="2628">
+      <node id="2640">
         <label>mutex</label>
       </node>
-      <node id="2614">
-        <label>kukadu/vision/localizer.hpp</label>
-        <link refid="localizer_8hpp_source"/>
-        <childnode refid="2615" relation="include">
-        </childnode>
-        <childnode refid="2616" relation="include">
-        </childnode>
-        <childnode refid="2617" relation="include">
-        </childnode>
-        <childnode refid="2618" relation="include">
-        </childnode>
-        <childnode refid="2619" relation="include">
-        </childnode>
-        <childnode refid="2620" relation="include">
-        </childnode>
-        <childnode refid="2621" relation="include">
-        </childnode>
-        <childnode refid="2625" relation="include">
-        </childnode>
-      </node>
-      <node id="2647">
+      <node id="2659">
         <label>kukadu/vision/arlocalizer/ARToolKitPlus.h</label>
       </node>
-      <node id="2627">
+      <node id="2639">
         <label>thread</label>
       </node>
-      <node id="2631">
+      <node id="2643">
         <label>pcl_ros/transforms.h</label>
       </node>
-      <node id="2633">
+      <node id="2645">
         <label>pcl_conversions/pcl_conversions.h</label>
       </node>
-      <node id="2615">
+      <node id="2627">
         <label>memory</label>
       </node>
     </incdepgraph>
     <invincdepgraph>
-      <node id="2648">
-        <label>/home/c7031109/iis_robot_sw/iis_catkin_ws/src/kukadu/include/kukadu/vision/arlocalizer.hpp</label>
-        <link refid="arlocalizer.hpp"/>
-        <childnode refid="2649" relation="include">
+      <node id="2662">
+        <label>/home/andreasmennel/iis_robot_sw/iis_catkin_ws/src/kukadu/include/kukadu/robot.hpp</label>
+        <link refid="robot_8hpp_source"/>
+        <childnode refid="2663" relation="include">
         </childnode>
       </node>
-      <node id="2651">
-        <label>/home/c7031109/iis_robot_sw/iis_catkin_ws/src/kukadu/include/kukadu/kukadu.hpp</label>
+      <node id="2660">
+        <label>/home/andreasmennel/iis_robot_sw/iis_catkin_ws/src/kukadu/include/kukadu/vision/arlocalizer.hpp</label>
+        <link refid="arlocalizer.hpp"/>
+        <childnode refid="2661" relation="include">
+        </childnode>
+      </node>
+      <node id="2663">
+        <label>/home/andreasmennel/iis_robot_sw/iis_catkin_ws/src/kukadu/include/kukadu/kukadu.hpp</label>
         <link refid="kukadu_8hpp_source"/>
       </node>
-      <node id="2650">
-        <label>/home/c7031109/iis_robot_sw/iis_catkin_ws/src/kukadu/include/kukadu/robot.hpp</label>
-        <link refid="robot_8hpp_source"/>
-        <childnode refid="2651" relation="include">
-        </childnode>
-      </node>
-      <node id="2649">
-        <label>/home/c7031109/iis_robot_sw/iis_catkin_ws/src/kukadu/include/kukadu/robot/calibration.hpp</label>
+      <node id="2661">
+        <label>/home/andreasmennel/iis_robot_sw/iis_catkin_ws/src/kukadu/include/kukadu/robot/calibration.hpp</label>
         <link refid="calibration_8hpp_source"/>
-        <childnode refid="2650" relation="include">
+        <childnode refid="2662" relation="include">
         </childnode>
       </node>
     </invincdepgraph>
@@ -250,7 +250,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/home/c7031109/iis_robot_sw/iis_catkin_ws/src/kukadu/include/kukadu/vision/arlocalizer.hpp" line="24" column="13" bodyfile="/home/c7031109/iis_robot_sw/iis_catkin_ws/src/kukadu/include/kukadu/vision/arlocalizer.hpp" bodystart="24" bodyend="-1"/>
+        <location file="/home/andreasmennel/iis_robot_sw/iis_catkin_ws/src/kukadu/include/kukadu/vision/arlocalizer.hpp" line="24" column="13" bodyfile="/home/andreasmennel/iis_robot_sw/iis_catkin_ws/src/kukadu/include/kukadu/vision/arlocalizer.hpp" bodystart="24" bodyend="-1"/>
       </memberdef>
       <memberdef kind="define" id="arlocalizer_8hpp_1ab495e092607a790a1cbc5df7c9c01fcd" prot="public" static="no">
         <name>ARTOOLKITPLUS_DEBUG_WINDOWS_NAME</name>
@@ -261,7 +261,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/home/c7031109/iis_robot_sw/iis_catkin_ws/src/kukadu/include/kukadu/vision/arlocalizer.hpp" line="25" column="13" bodyfile="/home/c7031109/iis_robot_sw/iis_catkin_ws/src/kukadu/include/kukadu/vision/arlocalizer.hpp" bodystart="25" bodyend="-1"/>
+        <location file="/home/andreasmennel/iis_robot_sw/iis_catkin_ws/src/kukadu/include/kukadu/vision/arlocalizer.hpp" line="25" column="13" bodyfile="/home/andreasmennel/iis_robot_sw/iis_catkin_ws/src/kukadu/include/kukadu/vision/arlocalizer.hpp" bodystart="25" bodyend="-1"/>
       </memberdef>
       <memberdef kind="define" id="arlocalizer_8hpp_1aeb029bd75c00b8f68da1122d62eb25bd" prot="public" static="no">
         <name>ARTOOLKITPLUS_DEFAULT_DISTORTED_INPUT</name>
@@ -272,7 +272,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/home/c7031109/iis_robot_sw/iis_catkin_ws/src/kukadu/include/kukadu/vision/arlocalizer.hpp" line="26" column="13" bodyfile="/home/c7031109/iis_robot_sw/iis_catkin_ws/src/kukadu/include/kukadu/vision/arlocalizer.hpp" bodystart="26" bodyend="-1"/>
+        <location file="/home/andreasmennel/iis_robot_sw/iis_catkin_ws/src/kukadu/include/kukadu/vision/arlocalizer.hpp" line="26" column="13" bodyfile="/home/andreasmennel/iis_robot_sw/iis_catkin_ws/src/kukadu/include/kukadu/vision/arlocalizer.hpp" bodystart="26" bodyend="-1"/>
       </memberdef>
       <memberdef kind="define" id="arlocalizer_8hpp_1a037a3a6b0373c7e89c997ed746da016a" prot="public" static="no">
         <name>ARTOOLKITPLUS_DEFAULT_SKIP_FRAMES</name>
@@ -283,7 +283,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/home/c7031109/iis_robot_sw/iis_catkin_ws/src/kukadu/include/kukadu/vision/arlocalizer.hpp" line="27" column="13" bodyfile="/home/c7031109/iis_robot_sw/iis_catkin_ws/src/kukadu/include/kukadu/vision/arlocalizer.hpp" bodystart="27" bodyend="-1"/>
+        <location file="/home/andreasmennel/iis_robot_sw/iis_catkin_ws/src/kukadu/include/kukadu/vision/arlocalizer.hpp" line="27" column="13" bodyfile="/home/andreasmennel/iis_robot_sw/iis_catkin_ws/src/kukadu/include/kukadu/vision/arlocalizer.hpp" bodystart="27" bodyend="-1"/>
       </memberdef>
       <memberdef kind="define" id="arlocalizer_8hpp_1a4419f820ac26546ebacf54183a384128" prot="public" static="no">
         <name>ARTOOLKITPLUS_DEFAULT_SHOW_CAMERA_IMAGE</name>
@@ -294,7 +294,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/home/c7031109/iis_robot_sw/iis_catkin_ws/src/kukadu/include/kukadu/vision/arlocalizer.hpp" line="28" column="13" bodyfile="/home/c7031109/iis_robot_sw/iis_catkin_ws/src/kukadu/include/kukadu/vision/arlocalizer.hpp" bodystart="28" bodyend="-1"/>
+        <location file="/home/andreasmennel/iis_robot_sw/iis_catkin_ws/src/kukadu/include/kukadu/vision/arlocalizer.hpp" line="28" column="13" bodyfile="/home/andreasmennel/iis_robot_sw/iis_catkin_ws/src/kukadu/include/kukadu/vision/arlocalizer.hpp" bodystart="28" bodyend="-1"/>
       </memberdef>
       <memberdef kind="define" id="arlocalizer_8hpp_1a25559a1a2105ca6be78da84f5910a685" prot="public" static="no">
         <name>ARTOOLKITPLUS_DEFAULT_BASE_FRAME</name>
@@ -305,7 +305,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/home/c7031109/iis_robot_sw/iis_catkin_ws/src/kukadu/include/kukadu/vision/arlocalizer.hpp" line="29" column="13" bodyfile="/home/c7031109/iis_robot_sw/iis_catkin_ws/src/kukadu/include/kukadu/vision/arlocalizer.hpp" bodystart="29" bodyend="-1"/>
+        <location file="/home/andreasmennel/iis_robot_sw/iis_catkin_ws/src/kukadu/include/kukadu/vision/arlocalizer.hpp" line="29" column="13" bodyfile="/home/andreasmennel/iis_robot_sw/iis_catkin_ws/src/kukadu/include/kukadu/vision/arlocalizer.hpp" bodystart="29" bodyend="-1"/>
       </memberdef>
       <memberdef kind="define" id="arlocalizer_8hpp_1a8d9d2ab50ad7745e3296be5f2fe5da55" prot="public" static="no">
         <name>ARTOOLKITPLUS_DEFAULT_PATTERN_FRAME</name>
@@ -316,7 +316,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/home/c7031109/iis_robot_sw/iis_catkin_ws/src/kukadu/include/kukadu/vision/arlocalizer.hpp" line="30" column="13" bodyfile="/home/c7031109/iis_robot_sw/iis_catkin_ws/src/kukadu/include/kukadu/vision/arlocalizer.hpp" bodystart="30" bodyend="-1"/>
+        <location file="/home/andreasmennel/iis_robot_sw/iis_catkin_ws/src/kukadu/include/kukadu/vision/arlocalizer.hpp" line="30" column="13" bodyfile="/home/andreasmennel/iis_robot_sw/iis_catkin_ws/src/kukadu/include/kukadu/vision/arlocalizer.hpp" bodystart="30" bodyend="-1"/>
       </memberdef>
       <memberdef kind="define" id="arlocalizer_8hpp_1a8bb0073c200d36478b48339373b1a2d6" prot="public" static="no">
         <name>ARTOOLKITPLUS_DEFAULT_PATTERN_FILE</name>
@@ -327,7 +327,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/home/c7031109/iis_robot_sw/iis_catkin_ws/src/kukadu/include/kukadu/vision/arlocalizer.hpp" line="31" column="13" bodyfile="/home/c7031109/iis_robot_sw/iis_catkin_ws/src/kukadu/include/kukadu/vision/arlocalizer.hpp" bodystart="31" bodyend="-1"/>
+        <location file="/home/andreasmennel/iis_robot_sw/iis_catkin_ws/src/kukadu/include/kukadu/vision/arlocalizer.hpp" line="31" column="13" bodyfile="/home/andreasmennel/iis_robot_sw/iis_catkin_ws/src/kukadu/include/kukadu/vision/arlocalizer.hpp" bodystart="31" bodyend="-1"/>
       </memberdef>
       <memberdef kind="define" id="arlocalizer_8hpp_1a45240f4c3b8403dcd32f75dd3492a881" prot="public" static="no">
         <name>ARTOOLKITPLUS_DEFAULT_TF_PREFIX</name>
@@ -338,7 +338,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/home/c7031109/iis_robot_sw/iis_catkin_ws/src/kukadu/include/kukadu/vision/arlocalizer.hpp" line="32" column="13" bodyfile="/home/c7031109/iis_robot_sw/iis_catkin_ws/src/kukadu/include/kukadu/vision/arlocalizer.hpp" bodystart="32" bodyend="-1"/>
+        <location file="/home/andreasmennel/iis_robot_sw/iis_catkin_ws/src/kukadu/include/kukadu/vision/arlocalizer.hpp" line="32" column="13" bodyfile="/home/andreasmennel/iis_robot_sw/iis_catkin_ws/src/kukadu/include/kukadu/vision/arlocalizer.hpp" bodystart="32" bodyend="-1"/>
       </memberdef>
       <memberdef kind="define" id="arlocalizer_8hpp_1a9d18a52890eb7a3ad33b68cfdfb32972" prot="public" static="no">
         <name>ARTOOLKITPLUS_MARKER_MODE_BCH</name>
@@ -349,7 +349,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/home/c7031109/iis_robot_sw/iis_catkin_ws/src/kukadu/include/kukadu/vision/arlocalizer.hpp" line="34" column="13" bodyfile="/home/c7031109/iis_robot_sw/iis_catkin_ws/src/kukadu/include/kukadu/vision/arlocalizer.hpp" bodystart="34" bodyend="-1"/>
+        <location file="/home/andreasmennel/iis_robot_sw/iis_catkin_ws/src/kukadu/include/kukadu/vision/arlocalizer.hpp" line="34" column="13" bodyfile="/home/andreasmennel/iis_robot_sw/iis_catkin_ws/src/kukadu/include/kukadu/vision/arlocalizer.hpp" bodystart="34" bodyend="-1"/>
       </memberdef>
       <memberdef kind="define" id="arlocalizer_8hpp_1aa25edfe1044d0604d7cf67458097960d" prot="public" static="no">
         <name>ARTOOLKITPLUS_MARKER_MODE_SIMPEL</name>
@@ -360,7 +360,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/home/c7031109/iis_robot_sw/iis_catkin_ws/src/kukadu/include/kukadu/vision/arlocalizer.hpp" line="35" column="13" bodyfile="/home/c7031109/iis_robot_sw/iis_catkin_ws/src/kukadu/include/kukadu/vision/arlocalizer.hpp" bodystart="35" bodyend="-1"/>
+        <location file="/home/andreasmennel/iis_robot_sw/iis_catkin_ws/src/kukadu/include/kukadu/vision/arlocalizer.hpp" line="35" column="13" bodyfile="/home/andreasmennel/iis_robot_sw/iis_catkin_ws/src/kukadu/include/kukadu/vision/arlocalizer.hpp" bodystart="35" bodyend="-1"/>
       </memberdef>
       <memberdef kind="define" id="arlocalizer_8hpp_1a5b607d20cbbd6e3d472509054546dcc0" prot="public" static="no">
         <name>ARTOOLKITPLUS_DEFAULT_MARKER_MODE</name>
@@ -371,7 +371,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/home/c7031109/iis_robot_sw/iis_catkin_ws/src/kukadu/include/kukadu/vision/arlocalizer.hpp" line="36" column="13" bodyfile="/home/c7031109/iis_robot_sw/iis_catkin_ws/src/kukadu/include/kukadu/vision/arlocalizer.hpp" bodystart="36" bodyend="-1"/>
+        <location file="/home/andreasmennel/iis_robot_sw/iis_catkin_ws/src/kukadu/include/kukadu/vision/arlocalizer.hpp" line="36" column="13" bodyfile="/home/andreasmennel/iis_robot_sw/iis_catkin_ws/src/kukadu/include/kukadu/vision/arlocalizer.hpp" bodystart="36" bodyend="-1"/>
       </memberdef>
       <memberdef kind="define" id="arlocalizer_8hpp_1a523176854195e19140ba07e07730ec1f" prot="public" static="no">
         <name>ARTOOLKITPLUS_DEFAULT_PATTERN_WITH</name>
@@ -382,7 +382,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/home/c7031109/iis_robot_sw/iis_catkin_ws/src/kukadu/include/kukadu/vision/arlocalizer.hpp" line="37" column="13" bodyfile="/home/c7031109/iis_robot_sw/iis_catkin_ws/src/kukadu/include/kukadu/vision/arlocalizer.hpp" bodystart="37" bodyend="-1"/>
+        <location file="/home/andreasmennel/iis_robot_sw/iis_catkin_ws/src/kukadu/include/kukadu/vision/arlocalizer.hpp" line="37" column="13" bodyfile="/home/andreasmennel/iis_robot_sw/iis_catkin_ws/src/kukadu/include/kukadu/vision/arlocalizer.hpp" bodystart="37" bodyend="-1"/>
       </memberdef>
       <memberdef kind="define" id="arlocalizer_8hpp_1a3c9a5413f7d58a17a24e188a5d0d712c" prot="public" static="no">
         <name>ARTOOLKITPLUS_DEFAULT_THRESHOLD</name>
@@ -393,7 +393,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/home/c7031109/iis_robot_sw/iis_catkin_ws/src/kukadu/include/kukadu/vision/arlocalizer.hpp" line="38" column="13" bodyfile="/home/c7031109/iis_robot_sw/iis_catkin_ws/src/kukadu/include/kukadu/vision/arlocalizer.hpp" bodystart="38" bodyend="-1"/>
+        <location file="/home/andreasmennel/iis_robot_sw/iis_catkin_ws/src/kukadu/include/kukadu/vision/arlocalizer.hpp" line="38" column="13" bodyfile="/home/andreasmennel/iis_robot_sw/iis_catkin_ws/src/kukadu/include/kukadu/vision/arlocalizer.hpp" bodystart="38" bodyend="-1"/>
       </memberdef>
       <memberdef kind="define" id="arlocalizer_8hpp_1a5d2a1ca7d1b785b585e651ca1e75fbb6" prot="public" static="no">
         <name>ARTOOLKITPLUS_DEFAULT_BOARDER_WIDTH</name>
@@ -404,7 +404,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/home/c7031109/iis_robot_sw/iis_catkin_ws/src/kukadu/include/kukadu/vision/arlocalizer.hpp" line="39" column="13" bodyfile="/home/c7031109/iis_robot_sw/iis_catkin_ws/src/kukadu/include/kukadu/vision/arlocalizer.hpp" bodystart="39" bodyend="-1"/>
+        <location file="/home/andreasmennel/iis_robot_sw/iis_catkin_ws/src/kukadu/include/kukadu/vision/arlocalizer.hpp" line="39" column="13" bodyfile="/home/andreasmennel/iis_robot_sw/iis_catkin_ws/src/kukadu/include/kukadu/vision/arlocalizer.hpp" bodystart="39" bodyend="-1"/>
       </memberdef>
       <memberdef kind="define" id="arlocalizer_8hpp_1aac413442fa1cf7143ff272dfb4afb484" prot="public" static="no">
         <name>ARTOOLKITPLUS_DEFAULT_UNDIST_INTERATIONS</name>
@@ -415,7 +415,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/home/c7031109/iis_robot_sw/iis_catkin_ws/src/kukadu/include/kukadu/vision/arlocalizer.hpp" line="40" column="13" bodyfile="/home/c7031109/iis_robot_sw/iis_catkin_ws/src/kukadu/include/kukadu/vision/arlocalizer.hpp" bodystart="40" bodyend="-1"/>
+        <location file="/home/andreasmennel/iis_robot_sw/iis_catkin_ws/src/kukadu/include/kukadu/vision/arlocalizer.hpp" line="40" column="13" bodyfile="/home/andreasmennel/iis_robot_sw/iis_catkin_ws/src/kukadu/include/kukadu/vision/arlocalizer.hpp" bodystart="40" bodyend="-1"/>
       </memberdef>
       <memberdef kind="define" id="arlocalizer_8hpp_1a23b1203c6497ef4d593ee50c1e073b6b" prot="public" static="no">
         <name>ARTOOLKITPLUS_UNDIST_MODE_NONE</name>
@@ -426,7 +426,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/home/c7031109/iis_robot_sw/iis_catkin_ws/src/kukadu/include/kukadu/vision/arlocalizer.hpp" line="41" column="13" bodyfile="/home/c7031109/iis_robot_sw/iis_catkin_ws/src/kukadu/include/kukadu/vision/arlocalizer.hpp" bodystart="41" bodyend="-1"/>
+        <location file="/home/andreasmennel/iis_robot_sw/iis_catkin_ws/src/kukadu/include/kukadu/vision/arlocalizer.hpp" line="41" column="13" bodyfile="/home/andreasmennel/iis_robot_sw/iis_catkin_ws/src/kukadu/include/kukadu/vision/arlocalizer.hpp" bodystart="41" bodyend="-1"/>
       </memberdef>
       <memberdef kind="define" id="arlocalizer_8hpp_1a3ce05d85e0af134dede00ec5abf7a4aa" prot="public" static="no">
         <name>ARTOOLKITPLUS_UNDIST_MODE_STD</name>
@@ -437,7 +437,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/home/c7031109/iis_robot_sw/iis_catkin_ws/src/kukadu/include/kukadu/vision/arlocalizer.hpp" line="42" column="13" bodyfile="/home/c7031109/iis_robot_sw/iis_catkin_ws/src/kukadu/include/kukadu/vision/arlocalizer.hpp" bodystart="42" bodyend="-1"/>
+        <location file="/home/andreasmennel/iis_robot_sw/iis_catkin_ws/src/kukadu/include/kukadu/vision/arlocalizer.hpp" line="42" column="13" bodyfile="/home/andreasmennel/iis_robot_sw/iis_catkin_ws/src/kukadu/include/kukadu/vision/arlocalizer.hpp" bodystart="42" bodyend="-1"/>
       </memberdef>
       <memberdef kind="define" id="arlocalizer_8hpp_1aa7ebdf491489e7b3c3160446cfeefa5c" prot="public" static="no">
         <name>ARTOOLKITPLUS_UNDIST_MODE_LUT</name>
@@ -448,7 +448,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/home/c7031109/iis_robot_sw/iis_catkin_ws/src/kukadu/include/kukadu/vision/arlocalizer.hpp" line="43" column="13" bodyfile="/home/c7031109/iis_robot_sw/iis_catkin_ws/src/kukadu/include/kukadu/vision/arlocalizer.hpp" bodystart="43" bodyend="-1"/>
+        <location file="/home/andreasmennel/iis_robot_sw/iis_catkin_ws/src/kukadu/include/kukadu/vision/arlocalizer.hpp" line="43" column="13" bodyfile="/home/andreasmennel/iis_robot_sw/iis_catkin_ws/src/kukadu/include/kukadu/vision/arlocalizer.hpp" bodystart="43" bodyend="-1"/>
       </memberdef>
       <memberdef kind="define" id="arlocalizer_8hpp_1a4ce883e06602306d456c1caccf469309" prot="public" static="no">
         <name>ARTOOLKITPLUS_DEFAULT_UNDIST_MODE</name>
@@ -459,7 +459,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/home/c7031109/iis_robot_sw/iis_catkin_ws/src/kukadu/include/kukadu/vision/arlocalizer.hpp" line="44" column="13" bodyfile="/home/c7031109/iis_robot_sw/iis_catkin_ws/src/kukadu/include/kukadu/vision/arlocalizer.hpp" bodystart="44" bodyend="-1"/>
+        <location file="/home/andreasmennel/iis_robot_sw/iis_catkin_ws/src/kukadu/include/kukadu/vision/arlocalizer.hpp" line="44" column="13" bodyfile="/home/andreasmennel/iis_robot_sw/iis_catkin_ws/src/kukadu/include/kukadu/vision/arlocalizer.hpp" bodystart="44" bodyend="-1"/>
       </memberdef>
       <memberdef kind="define" id="arlocalizer_8hpp_1a70eaab1e0772f32572237c56c2febb58" prot="public" static="no">
         <name>ARTOOLKITPLUS_POSE_ESTIMATION_MODE_NORMAL</name>
@@ -470,7 +470,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/home/c7031109/iis_robot_sw/iis_catkin_ws/src/kukadu/include/kukadu/vision/arlocalizer.hpp" line="45" column="13" bodyfile="/home/c7031109/iis_robot_sw/iis_catkin_ws/src/kukadu/include/kukadu/vision/arlocalizer.hpp" bodystart="45" bodyend="-1"/>
+        <location file="/home/andreasmennel/iis_robot_sw/iis_catkin_ws/src/kukadu/include/kukadu/vision/arlocalizer.hpp" line="45" column="13" bodyfile="/home/andreasmennel/iis_robot_sw/iis_catkin_ws/src/kukadu/include/kukadu/vision/arlocalizer.hpp" bodystart="45" bodyend="-1"/>
       </memberdef>
       <memberdef kind="define" id="arlocalizer_8hpp_1ad291aa60893235c62dcc7f5439637334" prot="public" static="no">
         <name>ARTOOLKITPLUS_POSE_ESTIMATION_MODE_CONT</name>
@@ -481,7 +481,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/home/c7031109/iis_robot_sw/iis_catkin_ws/src/kukadu/include/kukadu/vision/arlocalizer.hpp" line="46" column="13" bodyfile="/home/c7031109/iis_robot_sw/iis_catkin_ws/src/kukadu/include/kukadu/vision/arlocalizer.hpp" bodystart="46" bodyend="-1"/>
+        <location file="/home/andreasmennel/iis_robot_sw/iis_catkin_ws/src/kukadu/include/kukadu/vision/arlocalizer.hpp" line="46" column="13" bodyfile="/home/andreasmennel/iis_robot_sw/iis_catkin_ws/src/kukadu/include/kukadu/vision/arlocalizer.hpp" bodystart="46" bodyend="-1"/>
       </memberdef>
       <memberdef kind="define" id="arlocalizer_8hpp_1a14b48b53cb73fa70a83df7433e02a318" prot="public" static="no">
         <name>ARTOOLKITPLUS_POSE_ESTIMATION_MODE_RPP</name>
@@ -492,7 +492,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/home/c7031109/iis_robot_sw/iis_catkin_ws/src/kukadu/include/kukadu/vision/arlocalizer.hpp" line="47" column="13" bodyfile="/home/c7031109/iis_robot_sw/iis_catkin_ws/src/kukadu/include/kukadu/vision/arlocalizer.hpp" bodystart="47" bodyend="-1"/>
+        <location file="/home/andreasmennel/iis_robot_sw/iis_catkin_ws/src/kukadu/include/kukadu/vision/arlocalizer.hpp" line="47" column="13" bodyfile="/home/andreasmennel/iis_robot_sw/iis_catkin_ws/src/kukadu/include/kukadu/vision/arlocalizer.hpp" bodystart="47" bodyend="-1"/>
       </memberdef>
       <memberdef kind="define" id="arlocalizer_8hpp_1a3de0b62dfec078db349de35b0a56256d" prot="public" static="no">
         <name>ARTOOLKITPLUS_DEFAULT_POSE_ESTIMATION_MODE</name>
@@ -503,7 +503,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/home/c7031109/iis_robot_sw/iis_catkin_ws/src/kukadu/include/kukadu/vision/arlocalizer.hpp" line="48" column="13" bodyfile="/home/c7031109/iis_robot_sw/iis_catkin_ws/src/kukadu/include/kukadu/vision/arlocalizer.hpp" bodystart="48" bodyend="-1"/>
+        <location file="/home/andreasmennel/iis_robot_sw/iis_catkin_ws/src/kukadu/include/kukadu/vision/arlocalizer.hpp" line="48" column="13" bodyfile="/home/andreasmennel/iis_robot_sw/iis_catkin_ws/src/kukadu/include/kukadu/vision/arlocalizer.hpp" bodystart="48" bodyend="-1"/>
       </memberdef>
       <memberdef kind="define" id="arlocalizer_8hpp_1a6441b7d61e40f0aa08d96ed092f0c7e9" prot="public" static="no">
         <name>ARTOOLKITPLUS_DEFAULT_TRACKER_SINGLE_MARKER</name>
@@ -514,7 +514,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/home/c7031109/iis_robot_sw/iis_catkin_ws/src/kukadu/include/kukadu/vision/arlocalizer.hpp" line="49" column="13" bodyfile="/home/c7031109/iis_robot_sw/iis_catkin_ws/src/kukadu/include/kukadu/vision/arlocalizer.hpp" bodystart="49" bodyend="-1"/>
+        <location file="/home/andreasmennel/iis_robot_sw/iis_catkin_ws/src/kukadu/include/kukadu/vision/arlocalizer.hpp" line="49" column="13" bodyfile="/home/andreasmennel/iis_robot_sw/iis_catkin_ws/src/kukadu/include/kukadu/vision/arlocalizer.hpp" bodystart="49" bodyend="-1"/>
       </memberdef>
       <memberdef kind="define" id="arlocalizer_8hpp_1aa272002f0acb46dba0d763cff47e4cd9" prot="public" static="no">
         <name>ARTOOLKITPLUS_DEFAULT_TRACKER_MULTI_MARKER</name>
@@ -525,7 +525,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/home/c7031109/iis_robot_sw/iis_catkin_ws/src/kukadu/include/kukadu/vision/arlocalizer.hpp" line="50" column="13" bodyfile="/home/c7031109/iis_robot_sw/iis_catkin_ws/src/kukadu/include/kukadu/vision/arlocalizer.hpp" bodystart="50" bodyend="-1"/>
+        <location file="/home/andreasmennel/iis_robot_sw/iis_catkin_ws/src/kukadu/include/kukadu/vision/arlocalizer.hpp" line="50" column="13" bodyfile="/home/andreasmennel/iis_robot_sw/iis_catkin_ws/src/kukadu/include/kukadu/vision/arlocalizer.hpp" bodystart="50" bodyend="-1"/>
       </memberdef>
       <memberdef kind="define" id="arlocalizer_8hpp_1a35b1a7459f13aa35cfadaaf7ee431485" prot="public" static="no">
         <name>ARTOOLKITPLUS_DEFAULT_MULIT_MARKER_LITE_DETECTION</name>
@@ -536,7 +536,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/home/c7031109/iis_robot_sw/iis_catkin_ws/src/kukadu/include/kukadu/vision/arlocalizer.hpp" line="51" column="13" bodyfile="/home/c7031109/iis_robot_sw/iis_catkin_ws/src/kukadu/include/kukadu/vision/arlocalizer.hpp" bodystart="51" bodyend="-1"/>
+        <location file="/home/andreasmennel/iis_robot_sw/iis_catkin_ws/src/kukadu/include/kukadu/vision/arlocalizer.hpp" line="51" column="13" bodyfile="/home/andreasmennel/iis_robot_sw/iis_catkin_ws/src/kukadu/include/kukadu/vision/arlocalizer.hpp" bodystart="51" bodyend="-1"/>
       </memberdef>
       </sectiondef>
     <briefdescription>
@@ -544,9 +544,9 @@
     <detaileddescription>
     </detaileddescription>
     <programlisting>
-<codeline lineno="1"><highlight class="preprocessor">#ifndef<sp/>KUKADU_ARLOCALIZER_H</highlight><highlight class="normal"></highlight></codeline>
-<codeline lineno="2"><highlight class="normal"></highlight><highlight class="preprocessor">#define<sp/>KUKADU_ARLOCALIZER_H</highlight><highlight class="normal"></highlight></codeline>
-<codeline lineno="3"><highlight class="normal"></highlight></codeline>
+<codeline lineno="1"><highlight class="preprocessor">#ifndef<sp/>KUKADU_ARLOCALIZER_H</highlight></codeline>
+<codeline lineno="2"><highlight class="preprocessor"></highlight><highlight class="preprocessor">#define<sp/>KUKADU_ARLOCALIZER_H</highlight></codeline>
+<codeline lineno="3"><highlight class="preprocessor"></highlight><highlight class="normal"></highlight></codeline>
 <codeline lineno="4"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&lt;kukadu/vision/localizer.hpp&gt;</highlight><highlight class="normal"></highlight></codeline>
 <codeline lineno="5"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&lt;kukadu/types/kukadutypes.hpp&gt;</highlight><highlight class="normal"></highlight></codeline>
 <codeline lineno="6"><highlight class="normal"></highlight></codeline>
@@ -565,37 +565,37 @@
 <codeline lineno="19"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&lt;kukadu/vision/arlocalizer/CameraAdvImpl.h&gt;</highlight><highlight class="normal"></highlight></codeline>
 <codeline lineno="20"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&lt;kukadu/vision/arlocalizer/ARToolKitPlus.h&gt;</highlight><highlight class="normal"></highlight></codeline>
 <codeline lineno="21"><highlight class="normal"></highlight></codeline>
-<codeline lineno="22"><highlight class="normal"></highlight><highlight class="keyword">namespace<sp/></highlight><highlight class="normal"><ref refid="namespacekukadu" kindref="compound">kukadu</ref><sp/>{</highlight></codeline>
+<codeline lineno="22"><highlight class="normal"></highlight><highlight class="keyword">namespace<sp/></highlight><highlight class="normal">kukadu<sp/>{</highlight></codeline>
 <codeline lineno="23"><highlight class="normal"></highlight></codeline>
-<codeline lineno="24"><highlight class="normal"></highlight><highlight class="preprocessor"><sp/><sp/><sp/><sp/>#define<sp/>ARTOOLKITPLUS_IMAGE_SRC<sp/>&quot;camera/rgb/image_raw&quot;</highlight><highlight class="normal"></highlight></codeline>
-<codeline lineno="25"><highlight class="normal"></highlight><highlight class="preprocessor"><sp/><sp/><sp/><sp/>#define<sp/>ARTOOLKITPLUS_DEBUG_WINDOWS_NAME<sp/>&quot;artoolkitplus&quot;</highlight><highlight class="normal"></highlight></codeline>
-<codeline lineno="26"><highlight class="normal"></highlight><highlight class="preprocessor"><sp/><sp/><sp/><sp/>#define<sp/>ARTOOLKITPLUS_DEFAULT_DISTORTED_INPUT<sp/>true</highlight><highlight class="normal"></highlight></codeline>
-<codeline lineno="27"><highlight class="normal"></highlight><highlight class="preprocessor"><sp/><sp/><sp/><sp/>#define<sp/>ARTOOLKITPLUS_DEFAULT_SKIP_FRAMES<sp/>0</highlight><highlight class="normal"></highlight></codeline>
-<codeline lineno="28"><highlight class="normal"></highlight><highlight class="preprocessor"><sp/><sp/><sp/><sp/>#define<sp/>ARTOOLKITPLUS_DEFAULT_SHOW_CAMERA_IMAGE<sp/>true</highlight><highlight class="normal"></highlight></codeline>
-<codeline lineno="29"><highlight class="normal"></highlight><highlight class="preprocessor"><sp/><sp/><sp/><sp/>#define<sp/>ARTOOLKITPLUS_DEFAULT_BASE_FRAME<sp/>&quot;camera&quot;</highlight><highlight class="normal"></highlight></codeline>
-<codeline lineno="30"><highlight class="normal"></highlight><highlight class="preprocessor"><sp/><sp/><sp/><sp/>#define<sp/>ARTOOLKITPLUS_DEFAULT_PATTERN_FRAME<sp/>&quot;pattern&quot;</highlight><highlight class="normal"></highlight></codeline>
-<codeline lineno="31"><highlight class="normal"></highlight><highlight class="preprocessor"><sp/><sp/><sp/><sp/>#define<sp/>ARTOOLKITPLUS_DEFAULT_PATTERN_FILE<sp/>&quot;&quot;</highlight><highlight class="normal"></highlight></codeline>
-<codeline lineno="32"><highlight class="normal"></highlight><highlight class="preprocessor"><sp/><sp/><sp/><sp/>#define<sp/>ARTOOLKITPLUS_DEFAULT_TF_PREFIX<sp/>&quot;&quot;</highlight><highlight class="normal"></highlight></codeline>
-<codeline lineno="33"><highlight class="normal"></highlight></codeline>
-<codeline lineno="34"><highlight class="normal"></highlight><highlight class="preprocessor"><sp/><sp/><sp/><sp/>#define<sp/>ARTOOLKITPLUS_MARKER_MODE_BCH<sp/>&quot;bch&quot;</highlight><highlight class="normal"></highlight></codeline>
-<codeline lineno="35"><highlight class="normal"></highlight><highlight class="preprocessor"><sp/><sp/><sp/><sp/>#define<sp/>ARTOOLKITPLUS_MARKER_MODE_SIMPEL<sp/>&quot;simple&quot;</highlight><highlight class="normal"></highlight></codeline>
-<codeline lineno="36"><highlight class="normal"></highlight><highlight class="preprocessor"><sp/><sp/><sp/><sp/>#define<sp/>ARTOOLKITPLUS_DEFAULT_MARKER_MODE<sp/>ARTOOLKITPLUS_MARKER_MODE_BCH<sp/>//<sp/>&quot;SIMPLE</highlight><highlight class="normal"></highlight></codeline>
-<codeline lineno="37"><highlight class="normal"></highlight><highlight class="preprocessor"><sp/><sp/><sp/><sp/>#define<sp/>ARTOOLKITPLUS_DEFAULT_PATTERN_WITH<sp/>0.1</highlight><highlight class="normal"></highlight></codeline>
-<codeline lineno="38"><highlight class="normal"></highlight><highlight class="preprocessor"><sp/><sp/><sp/><sp/>#define<sp/>ARTOOLKITPLUS_DEFAULT_THRESHOLD<sp/>0</highlight><highlight class="normal"></highlight></codeline>
-<codeline lineno="39"><highlight class="normal"></highlight><highlight class="preprocessor"><sp/><sp/><sp/><sp/>#define<sp/>ARTOOLKITPLUS_DEFAULT_BOARDER_WIDTH<sp/>0</highlight><highlight class="normal"></highlight></codeline>
-<codeline lineno="40"><highlight class="normal"></highlight><highlight class="preprocessor"><sp/><sp/><sp/><sp/>#define<sp/>ARTOOLKITPLUS_DEFAULT_UNDIST_INTERATIONS<sp/>10</highlight><highlight class="normal"></highlight></codeline>
-<codeline lineno="41"><highlight class="normal"></highlight><highlight class="preprocessor"><sp/><sp/><sp/><sp/>#define<sp/>ARTOOLKITPLUS_UNDIST_MODE_NONE<sp/>&quot;none&quot;</highlight><highlight class="normal"></highlight></codeline>
-<codeline lineno="42"><highlight class="normal"></highlight><highlight class="preprocessor"><sp/><sp/><sp/><sp/>#define<sp/>ARTOOLKITPLUS_UNDIST_MODE_STD<sp/>&quot;std&quot;</highlight><highlight class="normal"></highlight></codeline>
-<codeline lineno="43"><highlight class="normal"></highlight><highlight class="preprocessor"><sp/><sp/><sp/><sp/>#define<sp/>ARTOOLKITPLUS_UNDIST_MODE_LUT<sp/>&quot;lut&quot;</highlight><highlight class="normal"></highlight></codeline>
-<codeline lineno="44"><highlight class="normal"></highlight><highlight class="preprocessor"><sp/><sp/><sp/><sp/>#define<sp/>ARTOOLKITPLUS_DEFAULT_UNDIST_MODE<sp/>ARTOOLKITPLUS_UNDIST_MODE_STD</highlight><highlight class="normal"></highlight></codeline>
-<codeline lineno="45"><highlight class="normal"></highlight><highlight class="preprocessor"><sp/><sp/><sp/><sp/>#define<sp/>ARTOOLKITPLUS_POSE_ESTIMATION_MODE_NORMAL<sp/>&quot;normal&quot;</highlight><highlight class="normal"></highlight></codeline>
-<codeline lineno="46"><highlight class="normal"></highlight><highlight class="preprocessor"><sp/><sp/><sp/><sp/>#define<sp/>ARTOOLKITPLUS_POSE_ESTIMATION_MODE_CONT<sp/>&quot;cont&quot;</highlight><highlight class="normal"></highlight></codeline>
-<codeline lineno="47"><highlight class="normal"></highlight><highlight class="preprocessor"><sp/><sp/><sp/><sp/>#define<sp/>ARTOOLKITPLUS_POSE_ESTIMATION_MODE_RPP<sp/>&quot;rpp&quot;</highlight><highlight class="normal"></highlight></codeline>
-<codeline lineno="48"><highlight class="normal"></highlight><highlight class="preprocessor"><sp/><sp/><sp/><sp/>#define<sp/>ARTOOLKITPLUS_DEFAULT_POSE_ESTIMATION_MODE<sp/>ARTOOLKITPLUS_POSE_ESTIMATION_MODE_RPP</highlight><highlight class="normal"></highlight></codeline>
-<codeline lineno="49"><highlight class="normal"></highlight><highlight class="preprocessor"><sp/><sp/><sp/><sp/>#define<sp/>ARTOOLKITPLUS_DEFAULT_TRACKER_SINGLE_MARKER<sp/>true</highlight><highlight class="normal"></highlight></codeline>
-<codeline lineno="50"><highlight class="normal"></highlight><highlight class="preprocessor"><sp/><sp/><sp/><sp/>#define<sp/>ARTOOLKITPLUS_DEFAULT_TRACKER_MULTI_MARKER<sp/>false</highlight><highlight class="normal"></highlight></codeline>
-<codeline lineno="51"><highlight class="normal"></highlight><highlight class="preprocessor"><sp/><sp/><sp/><sp/>#define<sp/>ARTOOLKITPLUS_DEFAULT_MULIT_MARKER_LITE_DETECTION<sp/>true</highlight><highlight class="normal"></highlight></codeline>
-<codeline lineno="52"><highlight class="normal"></highlight></codeline>
+<codeline lineno="24"><highlight class="normal"></highlight><highlight class="preprocessor"><sp/><sp/><sp/><sp/>#define<sp/>ARTOOLKITPLUS_IMAGE_SRC<sp/>&quot;camera/rgb/image_raw&quot;</highlight></codeline>
+<codeline lineno="25"><highlight class="preprocessor"></highlight><highlight class="preprocessor"><sp/><sp/><sp/><sp/>#define<sp/>ARTOOLKITPLUS_DEBUG_WINDOWS_NAME<sp/>&quot;artoolkitplus&quot;</highlight></codeline>
+<codeline lineno="26"><highlight class="preprocessor"></highlight><highlight class="preprocessor"><sp/><sp/><sp/><sp/>#define<sp/>ARTOOLKITPLUS_DEFAULT_DISTORTED_INPUT<sp/>true</highlight></codeline>
+<codeline lineno="27"><highlight class="preprocessor"></highlight><highlight class="preprocessor"><sp/><sp/><sp/><sp/>#define<sp/>ARTOOLKITPLUS_DEFAULT_SKIP_FRAMES<sp/>0</highlight></codeline>
+<codeline lineno="28"><highlight class="preprocessor"></highlight><highlight class="preprocessor"><sp/><sp/><sp/><sp/>#define<sp/>ARTOOLKITPLUS_DEFAULT_SHOW_CAMERA_IMAGE<sp/>true</highlight></codeline>
+<codeline lineno="29"><highlight class="preprocessor"></highlight><highlight class="preprocessor"><sp/><sp/><sp/><sp/>#define<sp/>ARTOOLKITPLUS_DEFAULT_BASE_FRAME<sp/>&quot;camera&quot;</highlight></codeline>
+<codeline lineno="30"><highlight class="preprocessor"></highlight><highlight class="preprocessor"><sp/><sp/><sp/><sp/>#define<sp/>ARTOOLKITPLUS_DEFAULT_PATTERN_FRAME<sp/>&quot;pattern&quot;</highlight></codeline>
+<codeline lineno="31"><highlight class="preprocessor"></highlight><highlight class="preprocessor"><sp/><sp/><sp/><sp/>#define<sp/>ARTOOLKITPLUS_DEFAULT_PATTERN_FILE<sp/>&quot;&quot;</highlight></codeline>
+<codeline lineno="32"><highlight class="preprocessor"></highlight><highlight class="preprocessor"><sp/><sp/><sp/><sp/>#define<sp/>ARTOOLKITPLUS_DEFAULT_TF_PREFIX<sp/>&quot;&quot;</highlight></codeline>
+<codeline lineno="33"><highlight class="preprocessor"></highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="34"><highlight class="normal"></highlight><highlight class="preprocessor"><sp/><sp/><sp/><sp/>#define<sp/>ARTOOLKITPLUS_MARKER_MODE_BCH<sp/>&quot;bch&quot;</highlight></codeline>
+<codeline lineno="35"><highlight class="preprocessor"></highlight><highlight class="preprocessor"><sp/><sp/><sp/><sp/>#define<sp/>ARTOOLKITPLUS_MARKER_MODE_SIMPEL<sp/>&quot;simple&quot;</highlight></codeline>
+<codeline lineno="36"><highlight class="preprocessor"></highlight><highlight class="preprocessor"><sp/><sp/><sp/><sp/>#define<sp/>ARTOOLKITPLUS_DEFAULT_MARKER_MODE<sp/>ARTOOLKITPLUS_MARKER_MODE_BCH<sp/>//<sp/>&quot;SIMPLE</highlight></codeline>
+<codeline lineno="37"><highlight class="preprocessor"></highlight><highlight class="preprocessor"><sp/><sp/><sp/><sp/>#define<sp/>ARTOOLKITPLUS_DEFAULT_PATTERN_WITH<sp/>0.1</highlight></codeline>
+<codeline lineno="38"><highlight class="preprocessor"></highlight><highlight class="preprocessor"><sp/><sp/><sp/><sp/>#define<sp/>ARTOOLKITPLUS_DEFAULT_THRESHOLD<sp/>0</highlight></codeline>
+<codeline lineno="39"><highlight class="preprocessor"></highlight><highlight class="preprocessor"><sp/><sp/><sp/><sp/>#define<sp/>ARTOOLKITPLUS_DEFAULT_BOARDER_WIDTH<sp/>0</highlight></codeline>
+<codeline lineno="40"><highlight class="preprocessor"></highlight><highlight class="preprocessor"><sp/><sp/><sp/><sp/>#define<sp/>ARTOOLKITPLUS_DEFAULT_UNDIST_INTERATIONS<sp/>10</highlight></codeline>
+<codeline lineno="41"><highlight class="preprocessor"></highlight><highlight class="preprocessor"><sp/><sp/><sp/><sp/>#define<sp/>ARTOOLKITPLUS_UNDIST_MODE_NONE<sp/>&quot;none&quot;</highlight></codeline>
+<codeline lineno="42"><highlight class="preprocessor"></highlight><highlight class="preprocessor"><sp/><sp/><sp/><sp/>#define<sp/>ARTOOLKITPLUS_UNDIST_MODE_STD<sp/>&quot;std&quot;</highlight></codeline>
+<codeline lineno="43"><highlight class="preprocessor"></highlight><highlight class="preprocessor"><sp/><sp/><sp/><sp/>#define<sp/>ARTOOLKITPLUS_UNDIST_MODE_LUT<sp/>&quot;lut&quot;</highlight></codeline>
+<codeline lineno="44"><highlight class="preprocessor"></highlight><highlight class="preprocessor"><sp/><sp/><sp/><sp/>#define<sp/>ARTOOLKITPLUS_DEFAULT_UNDIST_MODE<sp/>ARTOOLKITPLUS_UNDIST_MODE_STD</highlight></codeline>
+<codeline lineno="45"><highlight class="preprocessor"></highlight><highlight class="preprocessor"><sp/><sp/><sp/><sp/>#define<sp/>ARTOOLKITPLUS_POSE_ESTIMATION_MODE_NORMAL<sp/>&quot;normal&quot;</highlight></codeline>
+<codeline lineno="46"><highlight class="preprocessor"></highlight><highlight class="preprocessor"><sp/><sp/><sp/><sp/>#define<sp/>ARTOOLKITPLUS_POSE_ESTIMATION_MODE_CONT<sp/>&quot;cont&quot;</highlight></codeline>
+<codeline lineno="47"><highlight class="preprocessor"></highlight><highlight class="preprocessor"><sp/><sp/><sp/><sp/>#define<sp/>ARTOOLKITPLUS_POSE_ESTIMATION_MODE_RPP<sp/>&quot;rpp&quot;</highlight></codeline>
+<codeline lineno="48"><highlight class="preprocessor"></highlight><highlight class="preprocessor"><sp/><sp/><sp/><sp/>#define<sp/>ARTOOLKITPLUS_DEFAULT_POSE_ESTIMATION_MODE<sp/>ARTOOLKITPLUS_POSE_ESTIMATION_MODE_RPP</highlight></codeline>
+<codeline lineno="49"><highlight class="preprocessor"></highlight><highlight class="preprocessor"><sp/><sp/><sp/><sp/>#define<sp/>ARTOOLKITPLUS_DEFAULT_TRACKER_SINGLE_MARKER<sp/>true</highlight></codeline>
+<codeline lineno="50"><highlight class="preprocessor"></highlight><highlight class="preprocessor"><sp/><sp/><sp/><sp/>#define<sp/>ARTOOLKITPLUS_DEFAULT_TRACKER_MULTI_MARKER<sp/>false</highlight></codeline>
+<codeline lineno="51"><highlight class="preprocessor"></highlight><highlight class="preprocessor"><sp/><sp/><sp/><sp/>#define<sp/>ARTOOLKITPLUS_DEFAULT_MULIT_MARKER_LITE_DETECTION<sp/>true</highlight></codeline>
+<codeline lineno="52"><highlight class="preprocessor"></highlight><highlight class="normal"></highlight></codeline>
 <codeline lineno="53"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">class<sp/></highlight><highlight class="normal">TrackerSingleMarker;</highlight></codeline>
 <codeline lineno="54"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">class<sp/></highlight><highlight class="normal">TrackerMultiMarker;</highlight></codeline>
 <codeline lineno="55"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">class<sp/></highlight><highlight class="normal">Tracker;</highlight></codeline>
@@ -734,6 +734,6 @@
 <codeline lineno="188"><highlight class="normal"></highlight></codeline>
 <codeline lineno="189"><highlight class="normal"></highlight><highlight class="preprocessor">#endif</highlight></codeline>
     </programlisting>
-    <location file="/home/c7031109/iis_robot_sw/iis_catkin_ws/src/kukadu/include/kukadu/vision/arlocalizer.hpp"/>
+    <location file="/home/andreasmennel/iis_robot_sw/iis_catkin_ws/src/kukadu/include/kukadu/vision/arlocalizer.hpp"/>
   </compounddef>
 </doxygen>

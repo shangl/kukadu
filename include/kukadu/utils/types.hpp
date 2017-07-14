@@ -1,19 +1,23 @@
-#ifndef DMPTYPES
-#define DMPTYPES
+#ifndef KUKADU_DMP_TYPES
+#define KUKADU_DMP_TYPES
 
 #include <vector>
 #include <armadillo>
 #include <gsl/gsl_matrix.h>
 
-struct mes_result {
-    long long int time;
-    arma::vec joints;
-};
+namespace kukadu {
 
-struct trajectory_learner_internal {
-	arma::mat desMat;
-	arma::vec coeff;
-	arma::vec fity;
-};
+    struct mes_result {
+        long long int time;
+        arma::vec joints;
+    };
+
+    struct trajectory_learner_internal {
+            arma::mat desMat;
+            arma::vec coeff;
+            arma::vec fity;
+    };
+
+}
 
 #endif

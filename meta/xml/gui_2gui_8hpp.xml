@@ -1,6 +1,6 @@
 <?xml version='1.0' encoding='UTF-8' standalone='no'?>
-<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.8.11">
-  <compounddef id="gui_2gui_8hpp" kind="file" language="C++">
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.8.6">
+  <compounddef id="gui_2gui_8hpp" kind="file">
     <compoundname>gui.hpp</compoundname>
     <includes local="no">QtWidgets/QWidget</includes>
     <includes local="no">QAbstractTableModel</includes>
@@ -11,8 +11,8 @@
     <includes local="no">vector</includes>
     <includes refid="kukadutypes_8hpp" local="no">kukadu/types/kukadutypes.hpp</includes>
     <includes refid="storagesingleton_8hpp" local="no">kukadu/storage/storagesingleton.hpp</includes>
-    <includedby refid="gui_8cpp" local="no">/home/c7031109/iis_robot_sw/iis_catkin_ws/src/kukadu/src/gui/gui.cpp</includedby>
-    <includedby refid="gui_8hpp" local="no">/home/c7031109/iis_robot_sw/iis_catkin_ws/src/kukadu/include/kukadu/gui.hpp</includedby>
+    <includedby refid="gui_8cpp" local="no">/home/andreasmennel/iis_robot_sw/iis_catkin_ws/src/kukadu/src/gui/gui.cpp</includedby>
+    <includedby refid="gui_8hpp" local="no">/home/andreasmennel/iis_robot_sw/iis_catkin_ws/src/kukadu/include/kukadu/gui.hpp</includedby>
     <incdepgraph>
       <node id="287">
         <label>QtWidgets/QWidget</label>
@@ -23,8 +23,40 @@
       <node id="302">
         <label>queue</label>
       </node>
+      <node id="292">
+        <label>string</label>
+      </node>
+      <node id="301">
+        <label>map</label>
+      </node>
+      <node id="295">
+        <label>exception</label>
+      </node>
+      <node id="308">
+        <label>cppconn/statement.h</label>
+      </node>
+      <node id="299">
+        <label>random</label>
+      </node>
+      <node id="294">
+        <label>kukadu/types/kukadutypes.hpp</label>
+        <link refid="kukadutypes_8hpp_source"/>
+        <childnode refid="295" relation="include">
+        </childnode>
+        <childnode refid="296" relation="include">
+        </childnode>
+        <childnode refid="297" relation="include">
+        </childnode>
+        <childnode refid="298" relation="include">
+        </childnode>
+        <childnode refid="299" relation="include">
+        </childnode>
+      </node>
+      <node id="293">
+        <label>vector</label>
+      </node>
       <node id="286">
-        <label>/home/c7031109/iis_robot_sw/iis_catkin_ws/src/kukadu/include/kukadu/gui/gui.hpp</label>
+        <label>/home/andreasmennel/iis_robot_sw/iis_catkin_ws/src/kukadu/include/kukadu/gui/gui.hpp</label>
         <link refid="gui/gui.hpp"/>
         <childnode refid="287" relation="include">
         </childnode>
@@ -44,6 +76,27 @@
         </childnode>
         <childnode refid="300" relation="include">
         </childnode>
+      </node>
+      <node id="305">
+        <label>cppconn/driver.h</label>
+      </node>
+      <node id="306">
+        <label>cppconn/exception.h</label>
+      </node>
+      <node id="303">
+        <label>iostream</label>
+      </node>
+      <node id="304">
+        <label>mysql_connection.h</label>
+      </node>
+      <node id="298">
+        <label>mutex</label>
+      </node>
+      <node id="290">
+        <label>QItemSelectionModel</label>
+      </node>
+      <node id="297">
+        <label>thread</label>
       </node>
       <node id="300">
         <label>kukadu/storage/storagesingleton.hpp</label>
@@ -71,59 +124,6 @@
         <childnode refid="308" relation="include">
         </childnode>
       </node>
-      <node id="292">
-        <label>string</label>
-      </node>
-      <node id="301">
-        <label>map</label>
-      </node>
-      <node id="295">
-        <label>exception</label>
-      </node>
-      <node id="308">
-        <label>cppconn/statement.h</label>
-      </node>
-      <node id="299">
-        <label>random</label>
-      </node>
-      <node id="293">
-        <label>vector</label>
-      </node>
-      <node id="305">
-        <label>cppconn/driver.h</label>
-      </node>
-      <node id="306">
-        <label>cppconn/exception.h</label>
-      </node>
-      <node id="294">
-        <label>kukadu/types/kukadutypes.hpp</label>
-        <link refid="kukadutypes_8hpp_source"/>
-        <childnode refid="295" relation="include">
-        </childnode>
-        <childnode refid="296" relation="include">
-        </childnode>
-        <childnode refid="297" relation="include">
-        </childnode>
-        <childnode refid="298" relation="include">
-        </childnode>
-        <childnode refid="299" relation="include">
-        </childnode>
-      </node>
-      <node id="303">
-        <label>iostream</label>
-      </node>
-      <node id="304">
-        <label>mysql_connection.h</label>
-      </node>
-      <node id="298">
-        <label>mutex</label>
-      </node>
-      <node id="290">
-        <label>QItemSelectionModel</label>
-      </node>
-      <node id="297">
-        <label>thread</label>
-      </node>
       <node id="291">
         <label>QtWidgets/QTabWidget</label>
       </node>
@@ -138,21 +138,21 @@
       </node>
     </incdepgraph>
     <invincdepgraph>
-      <node id="309">
-        <label>/home/c7031109/iis_robot_sw/iis_catkin_ws/src/kukadu/include/kukadu/gui/gui.hpp</label>
-        <link refid="gui/gui.hpp"/>
-        <childnode refid="310" relation="include">
-        </childnode>
-      </node>
       <node id="310">
-        <label>/home/c7031109/iis_robot_sw/iis_catkin_ws/src/kukadu/include/kukadu/gui.hpp</label>
+        <label>/home/andreasmennel/iis_robot_sw/iis_catkin_ws/src/kukadu/include/kukadu/gui.hpp</label>
         <link refid="gui_8hpp_source"/>
         <childnode refid="311" relation="include">
         </childnode>
       </node>
       <node id="311">
-        <label>/home/c7031109/iis_robot_sw/iis_catkin_ws/src/kukadu/include/kukadu/kukadu.hpp</label>
+        <label>/home/andreasmennel/iis_robot_sw/iis_catkin_ws/src/kukadu/include/kukadu/kukadu.hpp</label>
         <link refid="kukadu_8hpp_source"/>
+      </node>
+      <node id="309">
+        <label>/home/andreasmennel/iis_robot_sw/iis_catkin_ws/src/kukadu/include/kukadu/gui/gui.hpp</label>
+        <link refid="gui/gui.hpp"/>
+        <childnode refid="310" relation="include">
+        </childnode>
       </node>
     </invincdepgraph>
     <innerclass refid="classkukadu_1_1DatabaseModel" prot="public">kukadu::DatabaseModel</innerclass>
@@ -163,9 +163,9 @@
     <detaileddescription>
     </detaileddescription>
     <programlisting>
-<codeline lineno="1"><highlight class="preprocessor">#ifndef<sp/>KUKADU_GUI_H</highlight><highlight class="normal"></highlight></codeline>
-<codeline lineno="2"><highlight class="normal"></highlight><highlight class="preprocessor">#define<sp/>KUKADU_GUI_H</highlight><highlight class="normal"></highlight></codeline>
-<codeline lineno="3"><highlight class="normal"></highlight></codeline>
+<codeline lineno="1"><highlight class="preprocessor">#ifndef<sp/>KUKADU_GUI_H</highlight></codeline>
+<codeline lineno="2"><highlight class="preprocessor"></highlight><highlight class="preprocessor">#define<sp/>KUKADU_GUI_H</highlight></codeline>
+<codeline lineno="3"><highlight class="preprocessor"></highlight><highlight class="normal"></highlight></codeline>
 <codeline lineno="4"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&lt;QtWidgets/QWidget&gt;</highlight><highlight class="normal"></highlight></codeline>
 <codeline lineno="5"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&lt;QAbstractTableModel&gt;</highlight><highlight class="normal"></highlight></codeline>
 <codeline lineno="6"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&lt;QtWidgets/QGroupBox&gt;</highlight><highlight class="normal"></highlight></codeline>
@@ -177,7 +177,7 @@
 <codeline lineno="12"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&lt;kukadu/types/kukadutypes.hpp&gt;</highlight><highlight class="normal"></highlight></codeline>
 <codeline lineno="13"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&lt;kukadu/storage/storagesingleton.hpp&gt;</highlight><highlight class="normal"></highlight></codeline>
 <codeline lineno="14"><highlight class="normal"></highlight></codeline>
-<codeline lineno="15"><highlight class="normal"></highlight><highlight class="keyword">namespace<sp/></highlight><highlight class="normal"><ref refid="namespacekukadu" kindref="compound">kukadu</ref><sp/>{</highlight></codeline>
+<codeline lineno="15"><highlight class="normal"></highlight><highlight class="keyword">namespace<sp/></highlight><highlight class="normal">kukadu<sp/>{</highlight></codeline>
 <codeline lineno="16"><highlight class="normal"></highlight></codeline>
 <codeline lineno="17" refid="classkukadu_1_1DatabaseModel" refkind="compound"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">class<sp/></highlight><highlight class="normal"><ref refid="classkukadu_1_1DatabaseModel" kindref="compound">DatabaseModel</ref><sp/>:<sp/></highlight><highlight class="keyword">public</highlight><highlight class="normal"><sp/>QAbstractTableModel<sp/>{</highlight></codeline>
 <codeline lineno="18"><highlight class="normal"></highlight></codeline>
@@ -241,6 +241,6 @@
 <codeline lineno="76"><highlight class="normal"></highlight></codeline>
 <codeline lineno="77"><highlight class="normal"></highlight><highlight class="preprocessor">#endif</highlight></codeline>
     </programlisting>
-    <location file="/home/c7031109/iis_robot_sw/iis_catkin_ws/src/kukadu/include/kukadu/gui/gui.hpp"/>
+    <location file="/home/andreasmennel/iis_robot_sw/iis_catkin_ws/src/kukadu/include/kukadu/gui/gui.hpp"/>
   </compounddef>
 </doxygen>

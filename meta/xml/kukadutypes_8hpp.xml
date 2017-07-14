@@ -1,421 +1,523 @@
 <?xml version='1.0' encoding='UTF-8' standalone='no'?>
-<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.8.11">
-  <compounddef id="kukadutypes_8hpp" kind="file" language="C++">
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.8.6">
+  <compounddef id="kukadutypes_8hpp" kind="file">
     <compoundname>kukadutypes.hpp</compoundname>
     <includes local="no">exception</includes>
     <includes local="no">memory</includes>
     <includes local="no">thread</includes>
     <includes local="no">mutex</includes>
     <includes local="no">random</includes>
-    <includedby refid="classifier_8cpp" local="no">/home/c7031109/iis_robot_sw/iis_catkin_ws/src/kukadu/src/learning/classification/classifier.cpp</includedby>
-    <includedby refid="fitting_8cpp" local="no">/home/c7031109/iis_robot_sw/iis_catkin_ws/src/kukadu/src/learning/regression/fitting.cpp</includedby>
-    <includedby refid="manipulation_2playing_2core_8cpp" local="no">/home/c7031109/iis_robot_sw/iis_catkin_ws/src/kukadu/src/manipulation/playing/core.cpp</includedby>
-    <includedby refid="hand_8cpp" local="no">/home/c7031109/iis_robot_sw/iis_catkin_ws/src/kukadu/src/robot/hand.cpp</includedby>
-    <includedby refid="queue_8cpp" local="no">/home/c7031109/iis_robot_sw/iis_catkin_ws/src/kukadu/src/robot/queue.cpp</includedby>
-    <includedby refid="kukadutypes_8cpp" local="no">/home/c7031109/iis_robot_sw/iis_catkin_ws/src/kukadu/src/types/kukadutypes.cpp</includedby>
-    <includedby refid="sensordata_8cpp" local="no">/home/c7031109/iis_robot_sw/iis_catkin_ws/src/kukadu/src/types/sensordata.cpp</includedby>
-    <includedby refid="utils_8cpp" local="no">/home/c7031109/iis_robot_sw/iis_catkin_ws/src/kukadu/src/utils/utils.cpp</includedby>
-    <includedby refid="pcstdtrans_8cpp" local="no">/home/c7031109/iis_robot_sw/iis_catkin_ws/src/kukadu/src/vision/pcstdtrans.cpp</includedby>
-    <includedby refid="controller_8hpp" local="no">/home/c7031109/iis_robot_sw/iis_catkin_ws/src/kukadu/include/kukadu/control/controller.hpp</includedby>
-    <includedby refid="generalizer_8hpp" local="no">/home/c7031109/iis_robot_sw/iis_catkin_ws/src/kukadu/include/kukadu/control/generalizer.hpp</includedby>
-    <includedby refid="trajectory_8hpp" local="no">/home/c7031109/iis_robot_sw/iis_catkin_ws/src/kukadu/include/kukadu/control/trajectory.hpp</includedby>
-    <includedby refid="graphical_8hpp" local="no">/home/c7031109/iis_robot_sw/iis_catkin_ws/src/kukadu/include/kukadu/gui/graphical.hpp</includedby>
-    <includedby refid="gui_2gui_8hpp" local="no">/home/c7031109/iis_robot_sw/iis_catkin_ws/src/kukadu/include/kukadu/gui/gui.hpp</includedby>
-    <includedby refid="metriclearner_8hpp" local="no">/home/c7031109/iis_robot_sw/iis_catkin_ws/src/kukadu/include/kukadu/learning/metric_learning/metriclearner.hpp</includedby>
-    <includedby refid="clips_8hpp" local="no">/home/c7031109/iis_robot_sw/iis_catkin_ws/src/kukadu/include/kukadu/learning/projective_simulation/clips.hpp</includedby>
-    <includedby refid="learning_2projective__simulation_2core_8hpp" local="no">/home/c7031109/iis_robot_sw/iis_catkin_ws/src/kukadu/include/kukadu/learning/projective_simulation/core.hpp</includedby>
-    <includedby refid="dmprl_8hpp" local="no">/home/c7031109/iis_robot_sw/iis_catkin_ws/src/kukadu/include/kukadu/learning/rl/dmprl.hpp</includedby>
-    <includedby refid="policyrl_8hpp" local="no">/home/c7031109/iis_robot_sw/iis_catkin_ws/src/kukadu/include/kukadu/learning/rl/policyrl.hpp</includedby>
-    <includedby refid="autonomoustester_8hpp" local="no">/home/c7031109/iis_robot_sw/iis_catkin_ws/src/kukadu/include/kukadu/manipulation/autonomoustester.hpp</includedby>
-    <includedby refid="controllers_8hpp" local="no">/home/c7031109/iis_robot_sw/iis_catkin_ws/src/kukadu/include/kukadu/manipulation/playing/controllers.hpp</includedby>
-    <includedby refid="skillexporter_8hpp" local="no">/home/c7031109/iis_robot_sw/iis_catkin_ws/src/kukadu/include/kukadu/manipulation/skillexporter.hpp</includedby>
-    <includedby refid="skillfactory_8hpp" local="no">/home/c7031109/iis_robot_sw/iis_catkin_ws/src/kukadu/include/kukadu/manipulation/skillfactory.hpp</includedby>
-    <includedby refid="komo_8hpp" local="no">/home/c7031109/iis_robot_sw/iis_catkin_ws/src/kukadu/include/kukadu/planning/komo.hpp</includedby>
-    <includedby refid="moveit_8hpp" local="no">/home/c7031109/iis_robot_sw/iis_catkin_ws/src/kukadu/include/kukadu/planning/moveit.hpp</includedby>
-    <includedby refid="planning_2planning_8hpp" local="no">/home/c7031109/iis_robot_sw/iis_catkin_ws/src/kukadu/include/kukadu/planning/planning.hpp</includedby>
-    <includedby refid="simple_8hpp" local="no">/home/c7031109/iis_robot_sw/iis_catkin_ws/src/kukadu/include/kukadu/planning/simple.hpp</includedby>
-    <includedby refid="autocompfilter_8hpp" local="no">/home/c7031109/iis_robot_sw/iis_catkin_ws/src/kukadu/include/kukadu/robot/autocompfilter.hpp</includedby>
-    <includedby refid="calibration_8hpp" local="no">/home/c7031109/iis_robot_sw/iis_catkin_ws/src/kukadu/include/kukadu/robot/calibration.hpp</includedby>
-    <includedby refid="filters_8hpp" local="no">/home/c7031109/iis_robot_sw/iis_catkin_ws/src/kukadu/include/kukadu/robot/filters.hpp</includedby>
-    <includedby refid="kinestheticteaching_8hpp" local="no">/home/c7031109/iis_robot_sw/iis_catkin_ws/src/kukadu/include/kukadu/robot/kinestheticteaching.hpp</includedby>
-    <includedby refid="kukiequeue_8hpp" local="no">/home/c7031109/iis_robot_sw/iis_catkin_ws/src/kukadu/include/kukadu/robot/kukiequeue.hpp</includedby>
-    <includedby refid="queue_8hpp" local="no">/home/c7031109/iis_robot_sw/iis_catkin_ws/src/kukadu/include/kukadu/robot/queue.hpp</includedby>
-    <includedby refid="moduleusagesingleton_8hpp" local="no">/home/c7031109/iis_robot_sw/iis_catkin_ws/src/kukadu/include/kukadu/storage/moduleusagesingleton.hpp</includedby>
-    <includedby refid="sensorstorage_8hpp" local="no">/home/c7031109/iis_robot_sw/iis_catkin_ws/src/kukadu/include/kukadu/storage/sensorstorage.hpp</includedby>
-    <includedby refid="sensorstoragesingleton_8hpp" local="no">/home/c7031109/iis_robot_sw/iis_catkin_ws/src/kukadu/include/kukadu/storage/sensorstoragesingleton.hpp</includedby>
-    <includedby refid="storagesingleton_8hpp" local="no">/home/c7031109/iis_robot_sw/iis_catkin_ws/src/kukadu/include/kukadu/storage/storagesingleton.hpp</includedby>
-    <includedby refid="types_8hpp" local="no">/home/c7031109/iis_robot_sw/iis_catkin_ws/src/kukadu/include/kukadu/types.hpp</includedby>
-    <includedby refid="arlocalizer_8hpp" local="no">/home/c7031109/iis_robot_sw/iis_catkin_ws/src/kukadu/include/kukadu/vision/arlocalizer.hpp</includedby>
-    <includedby refid="kinect_8hpp" local="no">/home/c7031109/iis_robot_sw/iis_catkin_ws/src/kukadu/include/kukadu/vision/kinect.hpp</includedby>
-    <includedby refid="localizer_8hpp" local="no">/home/c7031109/iis_robot_sw/iis_catkin_ws/src/kukadu/include/kukadu/vision/localizer.hpp</includedby>
-    <includedby refid="pcltools_8hpp" local="no">/home/c7031109/iis_robot_sw/iis_catkin_ws/src/kukadu/include/kukadu/vision/pcltools.hpp</includedby>
-    <includedby refid="visualizersingleton_8hpp" local="no">/home/c7031109/iis_robot_sw/iis_catkin_ws/src/kukadu/include/kukadu/vision/visualizersingleton.hpp</includedby>
+    <includedby refid="classifier_8cpp" local="no">/home/andreasmennel/iis_robot_sw/iis_catkin_ws/src/kukadu/src/learning/classification/classifier.cpp</includedby>
+    <includedby refid="fitting_8cpp" local="no">/home/andreasmennel/iis_robot_sw/iis_catkin_ws/src/kukadu/src/learning/regression/fitting.cpp</includedby>
+    <includedby refid="manipulation_2playing_2core_8cpp" local="no">/home/andreasmennel/iis_robot_sw/iis_catkin_ws/src/kukadu/src/manipulation/playing/core.cpp</includedby>
+    <includedby refid="hand_8cpp" local="no">/home/andreasmennel/iis_robot_sw/iis_catkin_ws/src/kukadu/src/robot/hand.cpp</includedby>
+    <includedby refid="queue_8cpp" local="no">/home/andreasmennel/iis_robot_sw/iis_catkin_ws/src/kukadu/src/robot/queue.cpp</includedby>
+    <includedby refid="kukadutypes_8cpp" local="no">/home/andreasmennel/iis_robot_sw/iis_catkin_ws/src/kukadu/src/types/kukadutypes.cpp</includedby>
+    <includedby refid="sensordata_8cpp" local="no">/home/andreasmennel/iis_robot_sw/iis_catkin_ws/src/kukadu/src/types/sensordata.cpp</includedby>
+    <includedby refid="utils_8cpp" local="no">/home/andreasmennel/iis_robot_sw/iis_catkin_ws/src/kukadu/src/utils/utils.cpp</includedby>
+    <includedby refid="pcstdtrans_8cpp" local="no">/home/andreasmennel/iis_robot_sw/iis_catkin_ws/src/kukadu/src/vision/pcstdtrans.cpp</includedby>
+    <includedby refid="controller_8hpp" local="no">/home/andreasmennel/iis_robot_sw/iis_catkin_ws/src/kukadu/include/kukadu/control/controller.hpp</includedby>
+    <includedby refid="generalizer_8hpp" local="no">/home/andreasmennel/iis_robot_sw/iis_catkin_ws/src/kukadu/include/kukadu/control/generalizer.hpp</includedby>
+    <includedby refid="trajectory_8hpp" local="no">/home/andreasmennel/iis_robot_sw/iis_catkin_ws/src/kukadu/include/kukadu/control/trajectory.hpp</includedby>
+    <includedby refid="graphical_8hpp" local="no">/home/andreasmennel/iis_robot_sw/iis_catkin_ws/src/kukadu/include/kukadu/gui/graphical.hpp</includedby>
+    <includedby refid="gui_2gui_8hpp" local="no">/home/andreasmennel/iis_robot_sw/iis_catkin_ws/src/kukadu/include/kukadu/gui/gui.hpp</includedby>
+    <includedby refid="metriclearner_8hpp" local="no">/home/andreasmennel/iis_robot_sw/iis_catkin_ws/src/kukadu/include/kukadu/learning/metric_learning/metriclearner.hpp</includedby>
+    <includedby refid="clips_8hpp" local="no">/home/andreasmennel/iis_robot_sw/iis_catkin_ws/src/kukadu/include/kukadu/learning/projective_simulation/clips.hpp</includedby>
+    <includedby refid="learning_2projective__simulation_2core_8hpp" local="no">/home/andreasmennel/iis_robot_sw/iis_catkin_ws/src/kukadu/include/kukadu/learning/projective_simulation/core.hpp</includedby>
+    <includedby refid="dmprl_8hpp" local="no">/home/andreasmennel/iis_robot_sw/iis_catkin_ws/src/kukadu/include/kukadu/learning/rl/dmprl.hpp</includedby>
+    <includedby refid="policyrl_8hpp" local="no">/home/andreasmennel/iis_robot_sw/iis_catkin_ws/src/kukadu/include/kukadu/learning/rl/policyrl.hpp</includedby>
+    <includedby refid="autonomoustester_8hpp" local="no">/home/andreasmennel/iis_robot_sw/iis_catkin_ws/src/kukadu/include/kukadu/manipulation/autonomoustester.hpp</includedby>
+    <includedby refid="controllers_8hpp" local="no">/home/andreasmennel/iis_robot_sw/iis_catkin_ws/src/kukadu/include/kukadu/manipulation/playing/controllers.hpp</includedby>
+    <includedby refid="skillexporter_8hpp" local="no">/home/andreasmennel/iis_robot_sw/iis_catkin_ws/src/kukadu/include/kukadu/manipulation/skillexporter.hpp</includedby>
+    <includedby refid="skillfactory_8hpp" local="no">/home/andreasmennel/iis_robot_sw/iis_catkin_ws/src/kukadu/include/kukadu/manipulation/skillfactory.hpp</includedby>
+    <includedby refid="komo_8hpp" local="no">/home/andreasmennel/iis_robot_sw/iis_catkin_ws/src/kukadu/include/kukadu/planning/komo.hpp</includedby>
+    <includedby refid="moveit_8hpp" local="no">/home/andreasmennel/iis_robot_sw/iis_catkin_ws/src/kukadu/include/kukadu/planning/moveit.hpp</includedby>
+    <includedby refid="planning_2planning_8hpp" local="no">/home/andreasmennel/iis_robot_sw/iis_catkin_ws/src/kukadu/include/kukadu/planning/planning.hpp</includedby>
+    <includedby refid="simple_8hpp" local="no">/home/andreasmennel/iis_robot_sw/iis_catkin_ws/src/kukadu/include/kukadu/planning/simple.hpp</includedby>
+    <includedby refid="autocompfilter_8hpp" local="no">/home/andreasmennel/iis_robot_sw/iis_catkin_ws/src/kukadu/include/kukadu/robot/autocompfilter.hpp</includedby>
+    <includedby refid="calibration_8hpp" local="no">/home/andreasmennel/iis_robot_sw/iis_catkin_ws/src/kukadu/include/kukadu/robot/calibration.hpp</includedby>
+    <includedby refid="filters_8hpp" local="no">/home/andreasmennel/iis_robot_sw/iis_catkin_ws/src/kukadu/include/kukadu/robot/filters.hpp</includedby>
+    <includedby refid="kinestheticteaching_8hpp" local="no">/home/andreasmennel/iis_robot_sw/iis_catkin_ws/src/kukadu/include/kukadu/robot/kinestheticteaching.hpp</includedby>
+    <includedby refid="kukiequeue_8hpp" local="no">/home/andreasmennel/iis_robot_sw/iis_catkin_ws/src/kukadu/include/kukadu/robot/kukiequeue.hpp</includedby>
+    <includedby refid="queue_8hpp" local="no">/home/andreasmennel/iis_robot_sw/iis_catkin_ws/src/kukadu/include/kukadu/robot/queue.hpp</includedby>
+    <includedby refid="moduleusagesingleton_8hpp" local="no">/home/andreasmennel/iis_robot_sw/iis_catkin_ws/src/kukadu/include/kukadu/storage/moduleusagesingleton.hpp</includedby>
+    <includedby refid="sensorstorage_8hpp" local="no">/home/andreasmennel/iis_robot_sw/iis_catkin_ws/src/kukadu/include/kukadu/storage/sensorstorage.hpp</includedby>
+    <includedby refid="sensorstoragesingleton_8hpp" local="no">/home/andreasmennel/iis_robot_sw/iis_catkin_ws/src/kukadu/include/kukadu/storage/sensorstoragesingleton.hpp</includedby>
+    <includedby refid="storagesingleton_8hpp" local="no">/home/andreasmennel/iis_robot_sw/iis_catkin_ws/src/kukadu/include/kukadu/storage/storagesingleton.hpp</includedby>
+    <includedby refid="types_8hpp" local="no">/home/andreasmennel/iis_robot_sw/iis_catkin_ws/src/kukadu/include/kukadu/types.hpp</includedby>
+    <includedby refid="arlocalizer_8hpp" local="no">/home/andreasmennel/iis_robot_sw/iis_catkin_ws/src/kukadu/include/kukadu/vision/arlocalizer.hpp</includedby>
+    <includedby refid="kinect_8hpp" local="no">/home/andreasmennel/iis_robot_sw/iis_catkin_ws/src/kukadu/include/kukadu/vision/kinect.hpp</includedby>
+    <includedby refid="localizer_8hpp" local="no">/home/andreasmennel/iis_robot_sw/iis_catkin_ws/src/kukadu/include/kukadu/vision/localizer.hpp</includedby>
+    <includedby refid="pcltools_8hpp" local="no">/home/andreasmennel/iis_robot_sw/iis_catkin_ws/src/kukadu/include/kukadu/vision/pcltools.hpp</includedby>
+    <includedby refid="visualizersingleton_8hpp" local="no">/home/andreasmennel/iis_robot_sw/iis_catkin_ws/src/kukadu/include/kukadu/vision/visualizersingleton.hpp</includedby>
     <incdepgraph>
-      <node id="2219">
+      <node id="2231">
         <label>exception</label>
       </node>
-      <node id="2223">
+      <node id="2235">
         <label>random</label>
       </node>
-      <node id="2218">
-        <label>/home/c7031109/iis_robot_sw/iis_catkin_ws/src/kukadu/include/kukadu/types/kukadutypes.hpp</label>
+      <node id="2230">
+        <label>/home/andreasmennel/iis_robot_sw/iis_catkin_ws/src/kukadu/include/kukadu/types/kukadutypes.hpp</label>
         <link refid="kukadutypes.hpp"/>
-        <childnode refid="2219" relation="include">
+        <childnode refid="2231" relation="include">
         </childnode>
-        <childnode refid="2220" relation="include">
+        <childnode refid="2232" relation="include">
         </childnode>
-        <childnode refid="2221" relation="include">
+        <childnode refid="2233" relation="include">
         </childnode>
-        <childnode refid="2222" relation="include">
+        <childnode refid="2234" relation="include">
         </childnode>
-        <childnode refid="2223" relation="include">
+        <childnode refid="2235" relation="include">
         </childnode>
       </node>
-      <node id="2222">
+      <node id="2234">
         <label>mutex</label>
       </node>
-      <node id="2221">
+      <node id="2233">
         <label>thread</label>
       </node>
-      <node id="2220">
+      <node id="2232">
         <label>memory</label>
       </node>
     </incdepgraph>
     <invincdepgraph>
-      <node id="2238">
-        <label>/home/c7031109/iis_robot_sw/iis_catkin_ws/src/kukadu/include/kukadu/manipulation/playing/core.hpp</label>
+      <node id="2250">
+        <label>/home/andreasmennel/iis_robot_sw/iis_catkin_ws/src/kukadu/include/kukadu/manipulation/playing/core.hpp</label>
         <link refid="manipulation_2playing_2core_8hpp_source"/>
-        <childnode refid="2236" relation="include">
+        <childnode refid="2248" relation="include">
         </childnode>
       </node>
-      <node id="2237">
-        <label>/home/c7031109/iis_robot_sw/iis_catkin_ws/src/kukadu/include/kukadu/manipulation/playing/controllers.hpp</label>
-        <link refid="controllers_8hpp_source"/>
-        <childnode refid="2238" relation="include">
+      <node id="2259">
+        <label>/home/andreasmennel/iis_robot_sw/iis_catkin_ws/src/kukadu/include/kukadu/types/sensordata.hpp</label>
+        <link refid="sensordata_8hpp_source"/>
+        <childnode refid="2257" relation="include">
         </childnode>
-        <childnode refid="2236" relation="include">
-        </childnode>
-      </node>
-      <node id="2229">
-        <label>/home/c7031109/iis_robot_sw/iis_catkin_ws/src/kukadu/include/kukadu/control.hpp</label>
-        <link refid="control_8hpp_source"/>
-        <childnode refid="2230" relation="include">
-        </childnode>
-      </node>
-      <node id="2244">
-        <label>/home/c7031109/iis_robot_sw/iis_catkin_ws/src/kukadu/include/kukadu/storage.hpp</label>
-        <link refid="storage_8hpp_source"/>
-        <childnode refid="2230" relation="include">
+        <childnode refid="2260" relation="include">
         </childnode>
       </node>
       <node id="2239">
-        <label>/home/c7031109/iis_robot_sw/iis_catkin_ws/src/kukadu/include/kukadu/manipulation/skillfactory.hpp</label>
-        <link refid="skillfactory_8hpp_source"/>
-        <childnode refid="2236" relation="include">
+        <label>/home/andreasmennel/iis_robot_sw/iis_catkin_ws/src/kukadu/include/kukadu/control/dmp.hpp</label>
+        <link refid="dmp_8hpp_source"/>
+        <childnode refid="2239" relation="include">
         </childnode>
-      </node>
-      <node id="2260">
-        <label>/home/c7031109/iis_robot_sw/iis_catkin_ws/src/kukadu/include/kukadu/planning/simple.hpp</label>
-        <link refid="simple_8hpp_source"/>
-        <childnode refid="2256" relation="include">
+        <childnode refid="2240" relation="include">
         </childnode>
-        <childnode refid="2258" relation="include">
-        </childnode>
-      </node>
-      <node id="2250">
-        <label>/home/c7031109/iis_robot_sw/iis_catkin_ws/src/kukadu/include/kukadu/gui/gui.hpp</label>
-        <link refid="gui_2gui_8hpp_source"/>
-        <childnode refid="2242" relation="include">
-        </childnode>
-      </node>
-      <node id="2240">
-        <label>/home/c7031109/iis_robot_sw/iis_catkin_ws/src/kukadu/include/kukadu/utils/utils.hpp</label>
-        <link refid="utils_2utils_8hpp_source"/>
         <childnode refid="2241" relation="include">
         </childnode>
         <childnode refid="2243" relation="include">
         </childnode>
-        <childnode refid="2245" relation="include">
+      </node>
+      <node id="2277">
+        <label>/home/andreasmennel/iis_robot_sw/iis_catkin_ws/src/kukadu/include/kukadu/robot/filters.hpp</label>
+        <link refid="filters_8hpp_source"/>
+        <childnode refid="2275" relation="include">
+        </childnode>
+        <childnode refid="2278" relation="include">
+        </childnode>
+        <childnode refid="2274" relation="include">
+        </childnode>
+      </node>
+      <node id="2255">
+        <label>/home/andreasmennel/iis_robot_sw/iis_catkin_ws/src/kukadu/include/kukadu/storage/moduleusagesingleton.hpp</label>
+        <link refid="moduleusagesingleton_8hpp_source"/>
+        <childnode refid="2256" relation="include">
+        </childnode>
+      </node>
+      <node id="2265">
+        <label>/home/andreasmennel/iis_robot_sw/iis_catkin_ws/src/kukadu/include/kukadu/learning/projective_simulation/core.hpp</label>
+        <link refid="learning_2projective__simulation_2core_8hpp_source"/>
+        <childnode refid="2266" relation="include">
+        </childnode>
+        <childnode refid="2244" relation="include">
+        </childnode>
+        <childnode refid="2249" relation="include">
+        </childnode>
+        <childnode refid="2250" relation="include">
+        </childnode>
+      </node>
+      <node id="2241">
+        <label>/home/andreasmennel/iis_robot_sw/iis_catkin_ws/src/kukadu/include/kukadu/control.hpp</label>
+        <link refid="control_8hpp_source"/>
+        <childnode refid="2242" relation="include">
+        </childnode>
+      </node>
+      <node id="2240">
+        <label>/home/andreasmennel/iis_robot_sw/iis_catkin_ws/src/kukadu/include/kukadu/control/generalizer.hpp</label>
+        <link refid="generalizer_8hpp_source"/>
+        <childnode refid="2241" relation="include">
+        </childnode>
+      </node>
+      <node id="2254">
+        <label>/home/andreasmennel/iis_robot_sw/iis_catkin_ws/src/kukadu/include/kukadu/gui.hpp</label>
+        <link refid="gui_8hpp_source"/>
+        <childnode refid="2242" relation="include">
+        </childnode>
+      </node>
+      <node id="2267">
+        <label>/home/andreasmennel/iis_robot_sw/iis_catkin_ws/src/kukadu/include/kukadu/manipulation/skillexporter.hpp</label>
+        <link refid="skillexporter_8hpp_source"/>
+        <childnode refid="2248" relation="include">
+        </childnode>
+      </node>
+      <node id="2247">
+        <label>/home/andreasmennel/iis_robot_sw/iis_catkin_ws/src/kukadu/include/kukadu/manipulation/autonomoustester.hpp</label>
+        <link refid="autonomoustester_8hpp_source"/>
+        <childnode refid="2248" relation="include">
+        </childnode>
+      </node>
+      <node id="2249">
+        <label>/home/andreasmennel/iis_robot_sw/iis_catkin_ws/src/kukadu/include/kukadu/manipulation/playing/controllers.hpp</label>
+        <link refid="controllers_8hpp_source"/>
+        <childnode refid="2250" relation="include">
+        </childnode>
+        <childnode refid="2248" relation="include">
+        </childnode>
+      </node>
+      <node id="2281">
+        <label>/home/andreasmennel/iis_robot_sw/iis_catkin_ws/src/kukadu/include/kukadu/robot/hand.hpp</label>
+        <link refid="hand_8hpp_source"/>
+        <childnode refid="2249" relation="include">
+        </childnode>
+        <childnode refid="2282" relation="include">
+        </childnode>
+        <childnode refid="2274" relation="include">
+        </childnode>
+        <childnode refid="2257" relation="include">
+        </childnode>
+      </node>
+      <node id="2243">
+        <label>/home/andreasmennel/iis_robot_sw/iis_catkin_ws/src/kukadu/include/kukadu/learning/rl/dmprl.hpp</label>
+        <link refid="dmprl_8hpp_source"/>
+        <childnode refid="2244" relation="include">
+        </childnode>
+      </node>
+      <node id="2275">
+        <label>/home/andreasmennel/iis_robot_sw/iis_catkin_ws/src/kukadu/include/kukadu/robot/kukiequeue.hpp</label>
+        <link refid="kukiequeue_8hpp_source"/>
+        <childnode refid="2274" relation="include">
+        </childnode>
+      </node>
+      <node id="2253">
+        <label>/home/andreasmennel/iis_robot_sw/iis_catkin_ws/src/kukadu/include/kukadu/gui/graphical.hpp</label>
+        <link refid="graphical_8hpp_source"/>
+        <childnode refid="2254" relation="include">
+        </childnode>
+      </node>
+      <node id="2260">
+        <label>/home/andreasmennel/iis_robot_sw/iis_catkin_ws/src/kukadu/include/kukadu/types.hpp</label>
+        <link refid="types_8hpp_source"/>
+        <childnode refid="2242" relation="include">
+        </childnode>
+      </node>
+      <node id="2287">
+        <label>/home/andreasmennel/iis_robot_sw/iis_catkin_ws/src/kukadu/include/kukadu/vision/localizer.hpp</label>
+        <link refid="localizer_8hpp_source"/>
+        <childnode refid="2285" relation="include">
+        </childnode>
+        <childnode refid="2288" relation="include">
+        </childnode>
+      </node>
+      <node id="2274">
+        <label>/home/andreasmennel/iis_robot_sw/iis_catkin_ws/src/kukadu/include/kukadu/robot.hpp</label>
+        <link refid="robot_8hpp_source"/>
+        <childnode refid="2242" relation="include">
+        </childnode>
+      </node>
+      <node id="2286">
+        <label>/home/andreasmennel/iis_robot_sw/iis_catkin_ws/src/kukadu/include/kukadu/vision/kinect.hpp</label>
+        <link refid="kinect_8hpp_source"/>
+        <childnode refid="2287" relation="include">
+        </childnode>
+        <childnode refid="2288" relation="include">
+        </childnode>
+      </node>
+      <node id="2269">
+        <label>/home/andreasmennel/iis_robot_sw/iis_catkin_ws/src/kukadu/include/kukadu/planning.hpp</label>
+        <link refid="planning_8hpp_source"/>
+        <childnode refid="2242" relation="include">
+        </childnode>
+      </node>
+      <node id="2256">
+        <label>/home/andreasmennel/iis_robot_sw/iis_catkin_ws/src/kukadu/include/kukadu/storage.hpp</label>
+        <link refid="storage_8hpp_source"/>
+        <childnode refid="2242" relation="include">
+        </childnode>
+      </node>
+      <node id="2285">
+        <label>/home/andreasmennel/iis_robot_sw/iis_catkin_ws/src/kukadu/include/kukadu/vision/arlocalizer.hpp</label>
+        <link refid="arlocalizer_8hpp_source"/>
+        <childnode refid="2276" relation="include">
+        </childnode>
+      </node>
+      <node id="2284">
+        <label>/home/andreasmennel/iis_robot_sw/iis_catkin_ws/src/kukadu/include/kukadu/robot/hardwarefactory.hpp</label>
+        <link refid="hardwarefactory_8hpp_source"/>
+        <childnode refid="2274" relation="include">
+        </childnode>
+      </node>
+      <node id="2257">
+        <label>/home/andreasmennel/iis_robot_sw/iis_catkin_ws/src/kukadu/include/kukadu/storage/sensorstorage.hpp</label>
+        <link refid="sensorstorage_8hpp_source"/>
+        <childnode refid="2258" relation="include">
+        </childnode>
+        <childnode refid="2256" relation="include">
+        </childnode>
+      </node>
+      <node id="2251">
+        <label>/home/andreasmennel/iis_robot_sw/iis_catkin_ws/src/kukadu/include/kukadu/manipulation/skillfactory.hpp</label>
+        <link refid="skillfactory_8hpp_source"/>
+        <childnode refid="2248" relation="include">
+        </childnode>
+      </node>
+      <node id="2289">
+        <label>/home/andreasmennel/iis_robot_sw/iis_catkin_ws/src/kukadu/include/kukadu/vision/pcltools.hpp</label>
+        <link refid="pcltools_8hpp_source"/>
+      </node>
+      <node id="2236">
+        <label>/home/andreasmennel/iis_robot_sw/iis_catkin_ws/src/kukadu/include/kukadu/types/kukadutypes.hpp</label>
+        <link refid="kukadutypes.hpp"/>
+        <childnode refid="2237" relation="include">
+        </childnode>
+        <childnode refid="2240" relation="include">
+        </childnode>
+        <childnode refid="2238" relation="include">
+        </childnode>
+        <childnode refid="2253" relation="include">
+        </childnode>
+        <childnode refid="2262" relation="include">
+        </childnode>
+        <childnode refid="2263" relation="include">
+        </childnode>
+        <childnode refid="2264" relation="include">
+        </childnode>
+        <childnode refid="2265" relation="include">
+        </childnode>
+        <childnode refid="2243" relation="include">
+        </childnode>
+        <childnode refid="2246" relation="include">
         </childnode>
         <childnode refid="2247" relation="include">
         </childnode>
         <childnode refid="2249" relation="include">
         </childnode>
-      </node>
-      <node id="2266">
-        <label>/home/c7031109/iis_robot_sw/iis_catkin_ws/src/kukadu/include/kukadu/robot/queue.hpp</label>
-        <link refid="queue_8hpp"/>
-        <childnode refid="2225" relation="include">
+        <childnode refid="2267" relation="include">
         </childnode>
-        <childnode refid="2227" relation="include">
+        <childnode refid="2251" relation="include">
         </childnode>
-        <childnode refid="2226" relation="include">
+        <childnode refid="2268" relation="include">
         </childnode>
-        <childnode refid="2234" relation="include">
-        </childnode>
-        <childnode refid="2237" relation="include">
-        </childnode>
-        <childnode refid="2239" relation="include">
-        </childnode>
-        <childnode refid="2256" relation="include">
-        </childnode>
-        <childnode refid="2260" relation="include">
-        </childnode>
-        <childnode refid="2261" relation="include">
-        </childnode>
-        <childnode refid="2264" relation="include">
-        </childnode>
-        <childnode refid="2246" relation="include">
-        </childnode>
-        <childnode refid="2263" relation="include">
-        </childnode>
-        <childnode refid="2262" relation="include">
-        </childnode>
-        <childnode refid="2245" relation="include">
-        </childnode>
-      </node>
-      <node id="2228">
-        <label>/home/c7031109/iis_robot_sw/iis_catkin_ws/src/kukadu/include/kukadu/control/generalizer.hpp</label>
-        <link refid="generalizer_8hpp_source"/>
-        <childnode refid="2229" relation="include">
-        </childnode>
-      </node>
-      <node id="2242">
-        <label>/home/c7031109/iis_robot_sw/iis_catkin_ws/src/kukadu/include/kukadu/gui.hpp</label>
-        <link refid="gui_8hpp_source"/>
-        <childnode refid="2230" relation="include">
-        </childnode>
-      </node>
-      <node id="2243">
-        <label>/home/c7031109/iis_robot_sw/iis_catkin_ws/src/kukadu/include/kukadu/storage/moduleusagesingleton.hpp</label>
-        <link refid="moduleusagesingleton_8hpp_source"/>
-        <childnode refid="2244" relation="include">
-        </childnode>
-      </node>
-      <node id="2245">
-        <label>/home/c7031109/iis_robot_sw/iis_catkin_ws/src/kukadu/include/kukadu/storage/sensorstorage.hpp</label>
-        <link refid="sensorstorage_8hpp_source"/>
-        <childnode refid="2246" relation="include">
-        </childnode>
-        <childnode refid="2244" relation="include">
-        </childnode>
-      </node>
-      <node id="2256">
-        <label>/home/c7031109/iis_robot_sw/iis_catkin_ws/src/kukadu/include/kukadu/planning/komo.hpp</label>
-        <link refid="komo_8hpp_source"/>
-        <childnode refid="2257" relation="include">
-        </childnode>
-      </node>
-      <node id="2268">
-        <label>/home/c7031109/iis_robot_sw/iis_catkin_ws/src/kukadu/include/kukadu/storage/storagesingleton.hpp</label>
-        <link refid="storagesingleton_8hpp_source"/>
-        <childnode refid="2225" relation="include">
-        </childnode>
-        <childnode refid="2241" relation="include">
-        </childnode>
-        <childnode refid="2250" relation="include">
-        </childnode>
-        <childnode refid="2237" relation="include">
-        </childnode>
-        <childnode refid="2255" relation="include">
-        </childnode>
-        <childnode refid="2239" relation="include">
-        </childnode>
-        <childnode refid="2259" relation="include">
-        </childnode>
-        <childnode refid="2269" relation="include">
+        <childnode refid="2270" relation="include">
         </childnode>
         <childnode refid="2271" relation="include">
         </childnode>
         <childnode refid="2272" relation="include">
         </childnode>
-        <childnode refid="2266" relation="include">
+        <childnode refid="2273" relation="include">
         </childnode>
-        <childnode refid="2243" relation="include">
+        <childnode refid="2276" relation="include">
         </childnode>
-        <childnode refid="2245" relation="include">
+        <childnode refid="2277" relation="include">
         </childnode>
-        <childnode refid="2244" relation="include">
+        <childnode refid="2258" relation="include">
         </childnode>
-      </node>
-      <node id="2236">
-        <label>/home/c7031109/iis_robot_sw/iis_catkin_ws/src/kukadu/include/kukadu/manipulation.hpp</label>
-        <link refid="manipulation_8hpp_source"/>
-        <childnode refid="2230" relation="include">
+        <childnode refid="2275" relation="include">
         </childnode>
-      </node>
-      <node id="2248">
-        <label>/home/c7031109/iis_robot_sw/iis_catkin_ws/src/kukadu/include/kukadu/types.hpp</label>
-        <link refid="types_8hpp_source"/>
-        <childnode refid="2230" relation="include">
+        <childnode refid="2278" relation="include">
         </childnode>
-      </node>
-      <node id="2273">
-        <label>/home/c7031109/iis_robot_sw/iis_catkin_ws/src/kukadu/include/kukadu/vision/arlocalizer.hpp</label>
-        <link refid="arlocalizer_8hpp_source"/>
-        <childnode refid="2264" relation="include">
+        <childnode refid="2255" relation="include">
         </childnode>
-      </node>
-      <node id="2267">
-        <label>/home/c7031109/iis_robot_sw/iis_catkin_ws/src/kukadu/include/kukadu/storage/sensorstoragesingleton.hpp</label>
-        <link refid="sensorstoragesingleton_8hpp_source"/>
-        <childnode refid="2244" relation="include">
+        <childnode refid="2257" relation="include">
         </childnode>
-      </node>
-      <node id="2257">
-        <label>/home/c7031109/iis_robot_sw/iis_catkin_ws/src/kukadu/include/kukadu/planning.hpp</label>
-        <link refid="planning_8hpp_source"/>
-        <childnode refid="2230" relation="include">
+        <childnode refid="2279" relation="include">
+        </childnode>
+        <childnode refid="2280" relation="include">
+        </childnode>
+        <childnode refid="2260" relation="include">
+        </childnode>
+        <childnode refid="2285" relation="include">
+        </childnode>
+        <childnode refid="2286" relation="include">
+        </childnode>
+        <childnode refid="2287" relation="include">
+        </childnode>
+        <childnode refid="2289" relation="include">
+        </childnode>
+        <childnode refid="2290" relation="include">
         </childnode>
       </node>
-      <node id="2276">
-        <label>/home/c7031109/iis_robot_sw/iis_catkin_ws/src/kukadu/include/kukadu/vision.hpp</label>
+      <node id="2288">
+        <label>/home/andreasmennel/iis_robot_sw/iis_catkin_ws/src/kukadu/include/kukadu/vision.hpp</label>
         <link refid="vision_8hpp_source"/>
-        <childnode refid="2230" relation="include">
-        </childnode>
-      </node>
-      <node id="2269">
-        <label>/home/c7031109/iis_robot_sw/iis_catkin_ws/src/kukadu/include/kukadu/robot/hand.hpp</label>
-        <link refid="hand_8hpp_source"/>
-        <childnode refid="2237" relation="include">
-        </childnode>
-        <childnode refid="2270" relation="include">
-        </childnode>
-        <childnode refid="2262" relation="include">
-        </childnode>
-        <childnode refid="2245" relation="include">
-        </childnode>
-      </node>
-      <node id="2247">
-        <label>/home/c7031109/iis_robot_sw/iis_catkin_ws/src/kukadu/include/kukadu/types/sensordata.hpp</label>
-        <link refid="sensordata_8hpp_source"/>
-        <childnode refid="2245" relation="include">
-        </childnode>
-        <childnode refid="2248" relation="include">
-        </childnode>
-      </node>
-      <node id="2235">
-        <label>/home/c7031109/iis_robot_sw/iis_catkin_ws/src/kukadu/include/kukadu/manipulation/autonomoustester.hpp</label>
-        <link refid="autonomoustester_8hpp_source"/>
-        <childnode refid="2236" relation="include">
-        </childnode>
-      </node>
-      <node id="2231">
-        <label>/home/c7031109/iis_robot_sw/iis_catkin_ws/src/kukadu/include/kukadu/learning/rl/dmprl.hpp</label>
-        <link refid="dmprl_8hpp_source"/>
-        <childnode refid="2232" relation="include">
-        </childnode>
-      </node>
-      <node id="2249">
-        <label>/home/c7031109/iis_robot_sw/iis_catkin_ws/src/kukadu/include/kukadu/utils.hpp</label>
-        <link refid="utils_8hpp_source"/>
-        <childnode refid="2230" relation="include">
-        </childnode>
-      </node>
-      <node id="2241">
-        <label>/home/c7031109/iis_robot_sw/iis_catkin_ws/src/kukadu/include/kukadu/gui/graphical.hpp</label>
-        <link refid="graphical_8hpp_source"/>
         <childnode refid="2242" relation="include">
         </childnode>
       </node>
-      <node id="2230">
-        <label>/home/c7031109/iis_robot_sw/iis_catkin_ws/src/kukadu/include/kukadu/kukadu.hpp</label>
-        <link refid="kukadu_8hpp_source"/>
-      </node>
-      <node id="2262">
-        <label>/home/c7031109/iis_robot_sw/iis_catkin_ws/src/kukadu/include/kukadu/robot.hpp</label>
-        <link refid="robot_8hpp_source"/>
-        <childnode refid="2230" relation="include">
-        </childnode>
-      </node>
-      <node id="2227">
-        <label>/home/c7031109/iis_robot_sw/iis_catkin_ws/src/kukadu/include/kukadu/control/dmp.hpp</label>
-        <link refid="dmp_8hpp_source"/>
-        <childnode refid="2227" relation="include">
-        </childnode>
-        <childnode refid="2228" relation="include">
-        </childnode>
-        <childnode refid="2229" relation="include">
-        </childnode>
-        <childnode refid="2231" relation="include">
-        </childnode>
-      </node>
-      <node id="2272">
-        <label>/home/c7031109/iis_robot_sw/iis_catkin_ws/src/kukadu/include/kukadu/robot/hardwarefactory.hpp</label>
-        <link refid="hardwarefactory_8hpp_source"/>
-        <childnode refid="2262" relation="include">
-        </childnode>
-      </node>
-      <node id="2246">
-        <label>/home/c7031109/iis_robot_sw/iis_catkin_ws/src/kukadu/include/kukadu/robot/kinestheticteaching.hpp</label>
-        <link refid="kinestheticteaching_8hpp_source"/>
-      </node>
-      <node id="2253">
-        <label>/home/c7031109/iis_robot_sw/iis_catkin_ws/src/kukadu/include/kukadu/learning/projective_simulation/core.hpp</label>
-        <link refid="learning_2projective__simulation_2core_8hpp_source"/>
-        <childnode refid="2254" relation="include">
-        </childnode>
-        <childnode refid="2232" relation="include">
-        </childnode>
-        <childnode refid="2237" relation="include">
-        </childnode>
-        <childnode refid="2238" relation="include">
-        </childnode>
-      </node>
       <node id="2264">
-        <label>/home/c7031109/iis_robot_sw/iis_catkin_ws/src/kukadu/include/kukadu/robot/calibration.hpp</label>
-        <link refid="calibration_8hpp_source"/>
-        <childnode refid="2262" relation="include">
+        <label>/home/andreasmennel/iis_robot_sw/iis_catkin_ws/src/kukadu/include/kukadu/learning/projective_simulation/clips.hpp</label>
+        <link refid="clips_8hpp_source"/>
+        <childnode refid="2265" relation="include">
         </childnode>
-      </node>
-      <node id="2274">
-        <label>/home/c7031109/iis_robot_sw/iis_catkin_ws/src/kukadu/include/kukadu/vision/kinect.hpp</label>
-        <link refid="kinect_8hpp_source"/>
-        <childnode refid="2275" relation="include">
-        </childnode>
-        <childnode refid="2276" relation="include">
-        </childnode>
-      </node>
-      <node id="2261">
-        <label>/home/c7031109/iis_robot_sw/iis_catkin_ws/src/kukadu/include/kukadu/robot/autocompfilter.hpp</label>
-        <link refid="autocompfilter_8hpp_source"/>
-        <childnode refid="2262" relation="include">
-        </childnode>
-      </node>
-      <node id="2270">
-        <label>/home/c7031109/iis_robot_sw/iis_catkin_ws/src/kukadu/include/kukadu/robot/kukiehand.hpp</label>
-        <link refid="kukiehand_8hpp_source"/>
-        <childnode refid="2262" relation="include">
-        </childnode>
-      </node>
-      <node id="2263">
-        <label>/home/c7031109/iis_robot_sw/iis_catkin_ws/src/kukadu/include/kukadu/robot/kukiequeue.hpp</label>
-        <link refid="kukiequeue_8hpp_source"/>
-        <childnode refid="2262" relation="include">
-        </childnode>
-      </node>
-      <node id="2254">
-        <label>/home/c7031109/iis_robot_sw/iis_catkin_ws/src/kukadu/include/kukadu/learning/projective_simulation/visualization.hpp</label>
-        <link refid="visualization_8hpp_source"/>
-        <childnode refid="2232" relation="include">
+        <childnode refid="2244" relation="include">
         </childnode>
       </node>
       <node id="2278">
-        <label>/home/c7031109/iis_robot_sw/iis_catkin_ws/src/kukadu/include/kukadu/vision/visualizersingleton.hpp</label>
-        <link refid="visualizersingleton_8hpp_source"/>
+        <label>/home/andreasmennel/iis_robot_sw/iis_catkin_ws/src/kukadu/include/kukadu/robot/queue.hpp</label>
+        <link refid="queue_8hpp"/>
+        <childnode refid="2237" relation="include">
+        </childnode>
+        <childnode refid="2239" relation="include">
+        </childnode>
+        <childnode refid="2238" relation="include">
+        </childnode>
+        <childnode refid="2246" relation="include">
+        </childnode>
+        <childnode refid="2249" relation="include">
+        </childnode>
+        <childnode refid="2251" relation="include">
+        </childnode>
+        <childnode refid="2268" relation="include">
+        </childnode>
+        <childnode refid="2272" relation="include">
+        </childnode>
+        <childnode refid="2273" relation="include">
+        </childnode>
         <childnode refid="2276" relation="include">
         </childnode>
+        <childnode refid="2258" relation="include">
+        </childnode>
+        <childnode refid="2275" relation="include">
+        </childnode>
+        <childnode refid="2274" relation="include">
+        </childnode>
+        <childnode refid="2257" relation="include">
+        </childnode>
       </node>
-      <node id="2224">
-        <label>/home/c7031109/iis_robot_sw/iis_catkin_ws/src/kukadu/include/kukadu/types/kukadutypes.hpp</label>
-        <link refid="kukadutypes.hpp"/>
-        <childnode refid="2225" relation="include">
+      <node id="2242">
+        <label>/home/andreasmennel/iis_robot_sw/iis_catkin_ws/src/kukadu/include/kukadu/kukadu.hpp</label>
+        <link refid="kukadu_8hpp_source"/>
+      </node>
+      <node id="2290">
+        <label>/home/andreasmennel/iis_robot_sw/iis_catkin_ws/src/kukadu/include/kukadu/vision/visualizersingleton.hpp</label>
+        <link refid="visualizersingleton_8hpp_source"/>
+        <childnode refid="2288" relation="include">
         </childnode>
-        <childnode refid="2228" relation="include">
+      </node>
+      <node id="2245">
+        <label>/home/andreasmennel/iis_robot_sw/iis_catkin_ws/src/kukadu/include/kukadu/learning/regression/fitting.hpp</label>
+        <link refid="fitting_8hpp_source"/>
+        <childnode refid="2239" relation="include">
         </childnode>
-        <childnode refid="2226" relation="include">
+      </node>
+      <node id="2283">
+        <label>/home/andreasmennel/iis_robot_sw/iis_catkin_ws/src/kukadu/include/kukadu/robot/hardware.hpp</label>
+        <link refid="hardware_8hpp_source"/>
+        <childnode refid="2237" relation="include">
+        </childnode>
+        <childnode refid="2267" relation="include">
+        </childnode>
+        <childnode refid="2281" relation="include">
+        </childnode>
+        <childnode refid="2284" relation="include">
+        </childnode>
+        <childnode refid="2278" relation="include">
+        </childnode>
+        <childnode refid="2274" relation="include">
+        </childnode>
+        <childnode refid="2279" relation="include">
+        </childnode>
+        <childnode refid="2252" relation="include">
+        </childnode>
+      </node>
+      <node id="2262">
+        <label>/home/andreasmennel/iis_robot_sw/iis_catkin_ws/src/kukadu/include/kukadu/gui/gui.hpp</label>
+        <link refid="gui_2gui_8hpp_source"/>
+        <childnode refid="2254" relation="include">
+        </childnode>
+      </node>
+      <node id="2238">
+        <label>/home/andreasmennel/iis_robot_sw/iis_catkin_ws/src/kukadu/include/kukadu/control/trajectory.hpp</label>
+        <link refid="trajectory_8hpp_source"/>
+        <childnode refid="2239" relation="include">
         </childnode>
         <childnode refid="2241" relation="include">
+        </childnode>
+        <childnode refid="2245" relation="include">
+        </childnode>
+        <childnode refid="2246" relation="include">
+        </childnode>
+      </node>
+      <node id="2272">
+        <label>/home/andreasmennel/iis_robot_sw/iis_catkin_ws/src/kukadu/include/kukadu/planning/simple.hpp</label>
+        <link refid="simple_8hpp_source"/>
+        <childnode refid="2268" relation="include">
+        </childnode>
+        <childnode refid="2270" relation="include">
+        </childnode>
+      </node>
+      <node id="2261">
+        <label>/home/andreasmennel/iis_robot_sw/iis_catkin_ws/src/kukadu/include/kukadu/utils.hpp</label>
+        <link refid="utils_8hpp_source"/>
+        <childnode refid="2242" relation="include">
+        </childnode>
+      </node>
+      <node id="2282">
+        <label>/home/andreasmennel/iis_robot_sw/iis_catkin_ws/src/kukadu/include/kukadu/robot/kukiehand.hpp</label>
+        <link refid="kukiehand_8hpp_source"/>
+        <childnode refid="2274" relation="include">
+        </childnode>
+      </node>
+      <node id="2279">
+        <label>/home/andreasmennel/iis_robot_sw/iis_catkin_ws/src/kukadu/include/kukadu/storage/sensorstoragesingleton.hpp</label>
+        <link refid="sensorstoragesingleton_8hpp_source"/>
+        <childnode refid="2256" relation="include">
+        </childnode>
+      </node>
+      <node id="2246">
+        <label>/home/andreasmennel/iis_robot_sw/iis_catkin_ws/src/kukadu/include/kukadu/learning/rl/policyrl.hpp</label>
+        <link refid="policyrl_8hpp_source"/>
+        <childnode refid="2243" relation="include">
+        </childnode>
+        <childnode refid="2244" relation="include">
+        </childnode>
+      </node>
+      <node id="2271">
+        <label>/home/andreasmennel/iis_robot_sw/iis_catkin_ws/src/kukadu/include/kukadu/planning/planning.hpp</label>
+        <link refid="planning_2planning_8hpp_source"/>
+        <childnode refid="2268" relation="include">
+        </childnode>
+        <childnode refid="2270" relation="include">
+        </childnode>
+        <childnode refid="2272" relation="include">
+        </childnode>
+        <childnode refid="2269" relation="include">
+        </childnode>
+        <childnode refid="2273" relation="include">
+        </childnode>
+        <childnode refid="2258" relation="include">
+        </childnode>
+        <childnode refid="2275" relation="include">
+        </childnode>
+      </node>
+      <node id="2258">
+        <label>/home/andreasmennel/iis_robot_sw/iis_catkin_ws/src/kukadu/include/kukadu/robot/kinestheticteaching.hpp</label>
+        <link refid="kinestheticteaching_8hpp_source"/>
+      </node>
+      <node id="2266">
+        <label>/home/andreasmennel/iis_robot_sw/iis_catkin_ws/src/kukadu/include/kukadu/learning/projective_simulation/visualization.hpp</label>
+        <link refid="visualization_8hpp_source"/>
+        <childnode refid="2244" relation="include">
+        </childnode>
+      </node>
+      <node id="2237">
+        <label>/home/andreasmennel/iis_robot_sw/iis_catkin_ws/src/kukadu/include/kukadu/control/controller.hpp</label>
+        <link refid="controller_8hpp_source"/>
+        <childnode refid="2238" relation="include">
+        </childnode>
+        <childnode refid="2241" relation="include">
+        </childnode>
+        <childnode refid="2247" relation="include">
+        </childnode>
+        <childnode refid="2249" relation="include">
         </childnode>
         <childnode refid="2250" relation="include">
         </childnode>
@@ -423,195 +525,93 @@
         </childnode>
         <childnode refid="2252" relation="include">
         </childnode>
-        <childnode refid="2253" relation="include">
-        </childnode>
-        <childnode refid="2231" relation="include">
-        </childnode>
-        <childnode refid="2234" relation="include">
-        </childnode>
-        <childnode refid="2235" relation="include">
-        </childnode>
+      </node>
+      <node id="2280">
+        <label>/home/andreasmennel/iis_robot_sw/iis_catkin_ws/src/kukadu/include/kukadu/storage/storagesingleton.hpp</label>
+        <link refid="storagesingleton_8hpp_source"/>
         <childnode refid="2237" relation="include">
         </childnode>
-        <childnode refid="2255" relation="include">
+        <childnode refid="2253" relation="include">
         </childnode>
-        <childnode refid="2239" relation="include">
+        <childnode refid="2262" relation="include">
         </childnode>
-        <childnode refid="2256" relation="include">
-        </childnode>
-        <childnode refid="2258" relation="include">
-        </childnode>
-        <childnode refid="2259" relation="include">
-        </childnode>
-        <childnode refid="2260" relation="include">
-        </childnode>
-        <childnode refid="2261" relation="include">
-        </childnode>
-        <childnode refid="2264" relation="include">
-        </childnode>
-        <childnode refid="2265" relation="include">
-        </childnode>
-        <childnode refid="2246" relation="include">
-        </childnode>
-        <childnode refid="2263" relation="include">
-        </childnode>
-        <childnode refid="2266" relation="include">
-        </childnode>
-        <childnode refid="2243" relation="include">
-        </childnode>
-        <childnode refid="2245" relation="include">
+        <childnode refid="2249" relation="include">
         </childnode>
         <childnode refid="2267" relation="include">
         </childnode>
-        <childnode refid="2268" relation="include">
+        <childnode refid="2251" relation="include">
         </childnode>
-        <childnode refid="2248" relation="include">
+        <childnode refid="2271" relation="include">
         </childnode>
-        <childnode refid="2273" relation="include">
+        <childnode refid="2281" relation="include">
         </childnode>
-        <childnode refid="2274" relation="include">
+        <childnode refid="2283" relation="include">
         </childnode>
-        <childnode refid="2275" relation="include">
-        </childnode>
-        <childnode refid="2277" relation="include">
+        <childnode refid="2284" relation="include">
         </childnode>
         <childnode refid="2278" relation="include">
         </childnode>
-      </node>
-      <node id="2234">
-        <label>/home/c7031109/iis_robot_sw/iis_catkin_ws/src/kukadu/include/kukadu/learning/rl/policyrl.hpp</label>
-        <link refid="policyrl_8hpp_source"/>
-        <childnode refid="2231" relation="include">
+        <childnode refid="2255" relation="include">
         </childnode>
-        <childnode refid="2232" relation="include">
+        <childnode refid="2257" relation="include">
+        </childnode>
+        <childnode refid="2256" relation="include">
         </childnode>
       </node>
-      <node id="2255">
-        <label>/home/c7031109/iis_robot_sw/iis_catkin_ws/src/kukadu/include/kukadu/manipulation/skillexporter.hpp</label>
-        <link refid="skillexporter_8hpp_source"/>
-        <childnode refid="2236" relation="include">
+      <node id="2276">
+        <label>/home/andreasmennel/iis_robot_sw/iis_catkin_ws/src/kukadu/include/kukadu/robot/calibration.hpp</label>
+        <link refid="calibration_8hpp_source"/>
+        <childnode refid="2274" relation="include">
         </childnode>
       </node>
-      <node id="2225">
-        <label>/home/c7031109/iis_robot_sw/iis_catkin_ws/src/kukadu/include/kukadu/control/controller.hpp</label>
-        <link refid="controller_8hpp_source"/>
-        <childnode refid="2226" relation="include">
+      <node id="2263">
+        <label>/home/andreasmennel/iis_robot_sw/iis_catkin_ws/src/kukadu/include/kukadu/learning/metric_learning/metriclearner.hpp</label>
+        <link refid="metriclearner_8hpp_source"/>
+        <childnode refid="2244" relation="include">
         </childnode>
-        <childnode refid="2229" relation="include">
+      </node>
+      <node id="2273">
+        <label>/home/andreasmennel/iis_robot_sw/iis_catkin_ws/src/kukadu/include/kukadu/robot/autocompfilter.hpp</label>
+        <link refid="autocompfilter_8hpp_source"/>
+        <childnode refid="2274" relation="include">
         </childnode>
-        <childnode refid="2235" relation="include">
+      </node>
+      <node id="2268">
+        <label>/home/andreasmennel/iis_robot_sw/iis_catkin_ws/src/kukadu/include/kukadu/planning/komo.hpp</label>
+        <link refid="komo_8hpp_source"/>
+        <childnode refid="2269" relation="include">
         </childnode>
-        <childnode refid="2237" relation="include">
-        </childnode>
-        <childnode refid="2238" relation="include">
-        </childnode>
-        <childnode refid="2239" relation="include">
-        </childnode>
-        <childnode refid="2240" relation="include">
+      </node>
+      <node id="2270">
+        <label>/home/andreasmennel/iis_robot_sw/iis_catkin_ws/src/kukadu/include/kukadu/planning/moveit.hpp</label>
+        <link refid="moveit_8hpp_source"/>
+        <childnode refid="2269" relation="include">
         </childnode>
       </node>
       <node id="2252">
-        <label>/home/c7031109/iis_robot_sw/iis_catkin_ws/src/kukadu/include/kukadu/learning/projective_simulation/clips.hpp</label>
-        <link refid="clips_8hpp_source"/>
+        <label>/home/andreasmennel/iis_robot_sw/iis_catkin_ws/src/kukadu/include/kukadu/utils/utils.hpp</label>
+        <link refid="utils_2utils_8hpp_source"/>
         <childnode refid="2253" relation="include">
-        </childnode>
-        <childnode refid="2232" relation="include">
-        </childnode>
-      </node>
-      <node id="2277">
-        <label>/home/c7031109/iis_robot_sw/iis_catkin_ws/src/kukadu/include/kukadu/vision/pcltools.hpp</label>
-        <link refid="pcltools_8hpp_source"/>
-      </node>
-      <node id="2275">
-        <label>/home/c7031109/iis_robot_sw/iis_catkin_ws/src/kukadu/include/kukadu/vision/localizer.hpp</label>
-        <link refid="localizer_8hpp_source"/>
-        <childnode refid="2273" relation="include">
-        </childnode>
-        <childnode refid="2276" relation="include">
-        </childnode>
-      </node>
-      <node id="2226">
-        <label>/home/c7031109/iis_robot_sw/iis_catkin_ws/src/kukadu/include/kukadu/control/trajectory.hpp</label>
-        <link refid="trajectory_8hpp_source"/>
-        <childnode refid="2227" relation="include">
-        </childnode>
-        <childnode refid="2229" relation="include">
-        </childnode>
-        <childnode refid="2233" relation="include">
-        </childnode>
-        <childnode refid="2234" relation="include">
-        </childnode>
-      </node>
-      <node id="2265">
-        <label>/home/c7031109/iis_robot_sw/iis_catkin_ws/src/kukadu/include/kukadu/robot/filters.hpp</label>
-        <link refid="filters_8hpp_source"/>
-        <childnode refid="2263" relation="include">
-        </childnode>
-        <childnode refid="2266" relation="include">
-        </childnode>
-        <childnode refid="2262" relation="include">
-        </childnode>
-      </node>
-      <node id="2251">
-        <label>/home/c7031109/iis_robot_sw/iis_catkin_ws/src/kukadu/include/kukadu/learning/metric_learning/metriclearner.hpp</label>
-        <link refid="metriclearner_8hpp_source"/>
-        <childnode refid="2232" relation="include">
-        </childnode>
-      </node>
-      <node id="2271">
-        <label>/home/c7031109/iis_robot_sw/iis_catkin_ws/src/kukadu/include/kukadu/robot/hardware.hpp</label>
-        <link refid="hardware_8hpp_source"/>
-        <childnode refid="2225" relation="include">
         </childnode>
         <childnode refid="2255" relation="include">
         </childnode>
-        <childnode refid="2269" relation="include">
-        </childnode>
-        <childnode refid="2272" relation="include">
-        </childnode>
-        <childnode refid="2266" relation="include">
-        </childnode>
-        <childnode refid="2262" relation="include">
-        </childnode>
-        <childnode refid="2267" relation="include">
-        </childnode>
-        <childnode refid="2240" relation="include">
-        </childnode>
-      </node>
-      <node id="2259">
-        <label>/home/c7031109/iis_robot_sw/iis_catkin_ws/src/kukadu/include/kukadu/planning/planning.hpp</label>
-        <link refid="planning_2planning_8hpp_source"/>
-        <childnode refid="2256" relation="include">
-        </childnode>
-        <childnode refid="2258" relation="include">
-        </childnode>
-        <childnode refid="2260" relation="include">
-        </childnode>
         <childnode refid="2257" relation="include">
+        </childnode>
+        <childnode refid="2259" relation="include">
         </childnode>
         <childnode refid="2261" relation="include">
         </childnode>
-        <childnode refid="2246" relation="include">
-        </childnode>
-        <childnode refid="2263" relation="include">
-        </childnode>
       </node>
-      <node id="2232">
-        <label>/home/c7031109/iis_robot_sw/iis_catkin_ws/src/kukadu/include/kukadu/learning.hpp</label>
+      <node id="2244">
+        <label>/home/andreasmennel/iis_robot_sw/iis_catkin_ws/src/kukadu/include/kukadu/learning.hpp</label>
         <link refid="learning_8hpp_source"/>
-        <childnode refid="2230" relation="include">
+        <childnode refid="2242" relation="include">
         </childnode>
       </node>
-      <node id="2258">
-        <label>/home/c7031109/iis_robot_sw/iis_catkin_ws/src/kukadu/include/kukadu/planning/moveit.hpp</label>
-        <link refid="moveit_8hpp_source"/>
-        <childnode refid="2257" relation="include">
-        </childnode>
-      </node>
-      <node id="2233">
-        <label>/home/c7031109/iis_robot_sw/iis_catkin_ws/src/kukadu/include/kukadu/learning/regression/fitting.hpp</label>
-        <link refid="fitting_8hpp_source"/>
-        <childnode refid="2227" relation="include">
+      <node id="2248">
+        <label>/home/andreasmennel/iis_robot_sw/iis_catkin_ws/src/kukadu/include/kukadu/manipulation.hpp</label>
+        <link refid="manipulation_8hpp_source"/>
+        <childnode refid="2242" relation="include">
         </childnode>
       </node>
     </invincdepgraph>
@@ -628,7 +628,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/home/c7031109/iis_robot_sw/iis_catkin_ws/src/kukadu/include/kukadu/types/kukadutypes.hpp" line="15" column="31" bodyfile="/home/c7031109/iis_robot_sw/iis_catkin_ws/src/kukadu/include/kukadu/types/kukadutypes.hpp" bodystart="15" bodyend="-1"/>
+        <location file="/home/andreasmennel/iis_robot_sw/iis_catkin_ws/src/kukadu/include/kukadu/types/kukadutypes.hpp" line="15" column="31" bodyfile="/home/andreasmennel/iis_robot_sw/iis_catkin_ws/src/kukadu/include/kukadu/types/kukadutypes.hpp" bodystart="15" bodyend="-1"/>
       </memberdef>
       <memberdef kind="define" id="kukadutypes_8hpp_1a52e633c80da895e80f51f5896f638441" prot="public" static="no">
         <name>KUKADU_STATIC_POINTER_CAST</name>
@@ -639,7 +639,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/home/c7031109/iis_robot_sw/iis_catkin_ws/src/kukadu/include/kukadu/types/kukadutypes.hpp" line="16" column="17" bodyfile="/home/c7031109/iis_robot_sw/iis_catkin_ws/src/kukadu/include/kukadu/types/kukadutypes.hpp" bodystart="16" bodyend="-1"/>
+        <location file="/home/andreasmennel/iis_robot_sw/iis_catkin_ws/src/kukadu/include/kukadu/types/kukadutypes.hpp" line="16" column="17" bodyfile="/home/andreasmennel/iis_robot_sw/iis_catkin_ws/src/kukadu/include/kukadu/types/kukadutypes.hpp" bodystart="16" bodyend="-1"/>
       </memberdef>
       <memberdef kind="define" id="kukadutypes_8hpp_1a3fd509758f30efcb85ea089f4d39618a" prot="public" static="no">
         <name>KUKADU_DYNAMIC_POINTER_CAST</name>
@@ -650,7 +650,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/home/c7031109/iis_robot_sw/iis_catkin_ws/src/kukadu/include/kukadu/types/kukadutypes.hpp" line="17" column="17" bodyfile="/home/c7031109/iis_robot_sw/iis_catkin_ws/src/kukadu/include/kukadu/types/kukadutypes.hpp" bodystart="17" bodyend="-1"/>
+        <location file="/home/andreasmennel/iis_robot_sw/iis_catkin_ws/src/kukadu/include/kukadu/types/kukadutypes.hpp" line="17" column="17" bodyfile="/home/andreasmennel/iis_robot_sw/iis_catkin_ws/src/kukadu/include/kukadu/types/kukadutypes.hpp" bodystart="17" bodyend="-1"/>
       </memberdef>
       <memberdef kind="define" id="kukadutypes_8hpp_1ab5ae3996f559064e3d4a105bb220d956" prot="public" static="no">
         <name>KUKADU_ENABLE_SHARED_FROM_THIS</name>
@@ -661,7 +661,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/home/c7031109/iis_robot_sw/iis_catkin_ws/src/kukadu/include/kukadu/types/kukadutypes.hpp" line="18" column="17" bodyfile="/home/c7031109/iis_robot_sw/iis_catkin_ws/src/kukadu/include/kukadu/types/kukadutypes.hpp" bodystart="18" bodyend="-1"/>
+        <location file="/home/andreasmennel/iis_robot_sw/iis_catkin_ws/src/kukadu/include/kukadu/types/kukadutypes.hpp" line="18" column="17" bodyfile="/home/andreasmennel/iis_robot_sw/iis_catkin_ws/src/kukadu/include/kukadu/types/kukadutypes.hpp" bodystart="18" bodyend="-1"/>
       </memberdef>
       <memberdef kind="define" id="kukadutypes_8hpp_1a02c05506e7a3145c6e97530e932ed092" prot="public" static="no">
         <name>KUKADU_DISCRETE_DISTRIBUTION</name>
@@ -672,7 +672,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/home/c7031109/iis_robot_sw/iis_catkin_ws/src/kukadu/include/kukadu/types/kukadutypes.hpp" line="54" column="31" bodyfile="/home/c7031109/iis_robot_sw/iis_catkin_ws/src/kukadu/include/kukadu/types/kukadutypes.hpp" bodystart="54" bodyend="-1"/>
+        <location file="/home/andreasmennel/iis_robot_sw/iis_catkin_ws/src/kukadu/include/kukadu/types/kukadutypes.hpp" line="54" column="31" bodyfile="/home/andreasmennel/iis_robot_sw/iis_catkin_ws/src/kukadu/include/kukadu/types/kukadutypes.hpp" bodystart="54" bodyend="-1"/>
       </memberdef>
       </sectiondef>
       <sectiondef kind="typedef">
@@ -687,7 +687,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/home/c7031109/iis_robot_sw/iis_catkin_ws/src/kukadu/include/kukadu/types/kukadutypes.hpp" line="27" column="1" bodyfile="/home/c7031109/iis_robot_sw/iis_catkin_ws/src/kukadu/include/kukadu/types/kukadutypes.hpp" bodystart="27" bodyend="-1"/>
+        <location file="/home/andreasmennel/iis_robot_sw/iis_catkin_ws/src/kukadu/include/kukadu/types/kukadutypes.hpp" line="27" column="1" bodyfile="/home/andreasmennel/iis_robot_sw/iis_catkin_ws/src/kukadu/include/kukadu/types/kukadutypes.hpp" bodystart="27" bodyend="-1"/>
       </memberdef>
       <memberdef kind="typedef" id="kukadutypes_8hpp_1a5c6491d1e9b3234b7f9a72e8ffcb6e2f" prot="public" static="no">
         <type>std::mutex</type>
@@ -700,7 +700,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/home/c7031109/iis_robot_sw/iis_catkin_ws/src/kukadu/include/kukadu/types/kukadutypes.hpp" line="36" column="1" bodyfile="/home/c7031109/iis_robot_sw/iis_catkin_ws/src/kukadu/include/kukadu/types/kukadutypes.hpp" bodystart="36" bodyend="-1"/>
+        <location file="/home/andreasmennel/iis_robot_sw/iis_catkin_ws/src/kukadu/include/kukadu/types/kukadutypes.hpp" line="36" column="1" bodyfile="/home/andreasmennel/iis_robot_sw/iis_catkin_ws/src/kukadu/include/kukadu/types/kukadutypes.hpp" bodystart="36" bodyend="-1"/>
       </memberdef>
       <memberdef kind="typedef" id="kukadutypes_8hpp_1aeadaa22826902c6ac90fae5902fc7946" prot="public" static="no">
         <type>std::mt19937</type>
@@ -713,7 +713,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/home/c7031109/iis_robot_sw/iis_catkin_ws/src/kukadu/include/kukadu/types/kukadutypes.hpp" line="55" column="1" bodyfile="/home/c7031109/iis_robot_sw/iis_catkin_ws/src/kukadu/include/kukadu/types/kukadutypes.hpp" bodystart="55" bodyend="-1"/>
+        <location file="/home/andreasmennel/iis_robot_sw/iis_catkin_ws/src/kukadu/include/kukadu/types/kukadutypes.hpp" line="55" column="1" bodyfile="/home/andreasmennel/iis_robot_sw/iis_catkin_ws/src/kukadu/include/kukadu/types/kukadutypes.hpp" bodystart="55" bodyend="-1"/>
       </memberdef>
       <memberdef kind="typedef" id="kukadutypes_8hpp_1ad947b567c5a844bbee387ba8d754e884" prot="public" static="no">
         <type>std::uniform_int_distribution&lt; int &gt;</type>
@@ -726,7 +726,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/home/c7031109/iis_robot_sw/iis_catkin_ws/src/kukadu/include/kukadu/types/kukadutypes.hpp" line="56" column="1" bodyfile="/home/c7031109/iis_robot_sw/iis_catkin_ws/src/kukadu/include/kukadu/types/kukadutypes.hpp" bodystart="56" bodyend="-1"/>
+        <location file="/home/andreasmennel/iis_robot_sw/iis_catkin_ws/src/kukadu/include/kukadu/types/kukadutypes.hpp" line="56" column="1" bodyfile="/home/andreasmennel/iis_robot_sw/iis_catkin_ws/src/kukadu/include/kukadu/types/kukadutypes.hpp" bodystart="56" bodyend="-1"/>
       </memberdef>
       <memberdef kind="typedef" id="kukadutypes_8hpp_1a34062a4dbee9af6ca17338817224147d" prot="public" static="no">
         <type>std::normal_distribution&lt; double &gt;</type>
@@ -739,7 +739,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/home/c7031109/iis_robot_sw/iis_catkin_ws/src/kukadu/include/kukadu/types/kukadutypes.hpp" line="57" column="1" bodyfile="/home/c7031109/iis_robot_sw/iis_catkin_ws/src/kukadu/include/kukadu/types/kukadutypes.hpp" bodystart="57" bodyend="-1"/>
+        <location file="/home/andreasmennel/iis_robot_sw/iis_catkin_ws/src/kukadu/include/kukadu/types/kukadutypes.hpp" line="57" column="1" bodyfile="/home/andreasmennel/iis_robot_sw/iis_catkin_ws/src/kukadu/include/kukadu/types/kukadutypes.hpp" bodystart="57" bodyend="-1"/>
       </memberdef>
       <memberdef kind="typedef" id="kukadutypes_8hpp_1ab59b59535abbe9b1559ccdead3f6e8cf" prot="public" static="no">
         <type>std::uniform_real_distribution&lt; double &gt;</type>
@@ -752,7 +752,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/home/c7031109/iis_robot_sw/iis_catkin_ws/src/kukadu/include/kukadu/types/kukadutypes.hpp" line="58" column="1" bodyfile="/home/c7031109/iis_robot_sw/iis_catkin_ws/src/kukadu/include/kukadu/types/kukadutypes.hpp" bodystart="58" bodyend="-1"/>
+        <location file="/home/andreasmennel/iis_robot_sw/iis_catkin_ws/src/kukadu/include/kukadu/types/kukadutypes.hpp" line="58" column="1" bodyfile="/home/andreasmennel/iis_robot_sw/iis_catkin_ws/src/kukadu/include/kukadu/types/kukadutypes.hpp" bodystart="58" bodyend="-1"/>
       </memberdef>
       </sectiondef>
     <briefdescription>
@@ -760,67 +760,67 @@
     <detaileddescription>
     </detaileddescription>
     <programlisting>
-<codeline lineno="1"><highlight class="preprocessor">#ifndef<sp/>KUKADU_KUKADUTYPES_H</highlight><highlight class="normal"></highlight></codeline>
-<codeline lineno="2"><highlight class="normal"></highlight><highlight class="preprocessor">#define<sp/>KUKADU_KUKADUTYPES_H</highlight><highlight class="normal"></highlight></codeline>
-<codeline lineno="3"><highlight class="normal"></highlight></codeline>
+<codeline lineno="1"><highlight class="preprocessor">#ifndef<sp/>KUKADU_KUKADUTYPES_H</highlight></codeline>
+<codeline lineno="2"><highlight class="preprocessor"></highlight><highlight class="preprocessor">#define<sp/>KUKADU_KUKADUTYPES_H</highlight></codeline>
+<codeline lineno="3"><highlight class="preprocessor"></highlight><highlight class="normal"></highlight></codeline>
 <codeline lineno="4"><highlight class="normal"></highlight><highlight class="preprocessor"><sp/><sp/><sp/><sp/>#include<sp/>&lt;exception&gt;</highlight><highlight class="normal"></highlight></codeline>
 <codeline lineno="5"><highlight class="normal"></highlight></codeline>
 <codeline lineno="6"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="comment">//<sp/>shared_ptr</highlight><highlight class="normal"></highlight></codeline>
-<codeline lineno="7"><highlight class="normal"></highlight><highlight class="preprocessor"><sp/><sp/><sp/><sp/>#ifdef<sp/>USEBOOST</highlight><highlight class="normal"></highlight></codeline>
-<codeline lineno="8"><highlight class="normal"></highlight><highlight class="preprocessor"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>#include<sp/>&lt;boost/shared_ptr.hpp&gt;</highlight><highlight class="normal"></highlight></codeline>
-<codeline lineno="9"><highlight class="normal"></highlight><highlight class="preprocessor"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>#define<sp/>KUKADU_SHARED_PTR<sp/>boost::shared_ptr</highlight><highlight class="normal"></highlight></codeline>
-<codeline lineno="10"><highlight class="normal"></highlight><highlight class="preprocessor"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>#define<sp/>KUKADU_STATIC_POINTER_CAST<sp/>boost::static_pointer_cast</highlight><highlight class="normal"></highlight></codeline>
-<codeline lineno="11"><highlight class="normal"></highlight><highlight class="preprocessor"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>#define<sp/>KUKADU_DYNAMIC_POINTER_CAST<sp/>boost::dynamic_pointer_cast</highlight><highlight class="normal"></highlight></codeline>
-<codeline lineno="12"><highlight class="normal"></highlight><highlight class="preprocessor"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>#define<sp/>KUKADU_ENABLE_SHARED_FROM_THIS<sp/>boost::enable_shared_from_this</highlight><highlight class="normal"></highlight></codeline>
-<codeline lineno="13"><highlight class="normal"></highlight><highlight class="preprocessor"><sp/><sp/><sp/><sp/>#else</highlight><highlight class="normal"></highlight></codeline>
-<codeline lineno="14"><highlight class="normal"></highlight><highlight class="preprocessor"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>#include<sp/>&lt;memory&gt;</highlight><highlight class="normal"></highlight></codeline>
-<codeline lineno="15"><highlight class="normal"></highlight><highlight class="preprocessor"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>#define<sp/>KUKADU_SHARED_PTR<sp/>std::shared_ptr</highlight><highlight class="normal"></highlight></codeline>
-<codeline lineno="16"><highlight class="normal"></highlight><highlight class="preprocessor"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>#define<sp/>KUKADU_STATIC_POINTER_CAST<sp/>std::static_pointer_cast</highlight><highlight class="normal"></highlight></codeline>
-<codeline lineno="17"><highlight class="normal"></highlight><highlight class="preprocessor"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>#define<sp/>KUKADU_DYNAMIC_POINTER_CAST<sp/>std::dynamic_pointer_cast</highlight><highlight class="normal"></highlight></codeline>
-<codeline lineno="18"><highlight class="normal"></highlight><highlight class="preprocessor"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>#define<sp/>KUKADU_ENABLE_SHARED_FROM_THIS<sp/>std::enable_shared_from_this</highlight><highlight class="normal"></highlight></codeline>
-<codeline lineno="19"><highlight class="normal"></highlight><highlight class="preprocessor"><sp/><sp/><sp/><sp/>#endif</highlight><highlight class="normal"></highlight></codeline>
-<codeline lineno="20"><highlight class="normal"></highlight></codeline>
+<codeline lineno="7"><highlight class="normal"></highlight><highlight class="preprocessor"><sp/><sp/><sp/><sp/>#ifdef<sp/>USEBOOST</highlight></codeline>
+<codeline lineno="8"><highlight class="preprocessor"></highlight><highlight class="preprocessor"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>#include<sp/>&lt;boost/shared_ptr.hpp&gt;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="9"><highlight class="normal"></highlight><highlight class="preprocessor"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>#define<sp/>KUKADU_SHARED_PTR<sp/>boost::shared_ptr</highlight></codeline>
+<codeline lineno="10"><highlight class="preprocessor"></highlight><highlight class="preprocessor"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>#define<sp/>KUKADU_STATIC_POINTER_CAST<sp/>boost::static_pointer_cast</highlight></codeline>
+<codeline lineno="11"><highlight class="preprocessor"></highlight><highlight class="preprocessor"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>#define<sp/>KUKADU_DYNAMIC_POINTER_CAST<sp/>boost::dynamic_pointer_cast</highlight></codeline>
+<codeline lineno="12"><highlight class="preprocessor"></highlight><highlight class="preprocessor"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>#define<sp/>KUKADU_ENABLE_SHARED_FROM_THIS<sp/>boost::enable_shared_from_this</highlight></codeline>
+<codeline lineno="13"><highlight class="preprocessor"></highlight><highlight class="preprocessor"><sp/><sp/><sp/><sp/>#else</highlight></codeline>
+<codeline lineno="14"><highlight class="preprocessor"></highlight><highlight class="preprocessor"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>#include<sp/>&lt;memory&gt;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="15"><highlight class="normal"></highlight><highlight class="preprocessor"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>#define<sp/>KUKADU_SHARED_PTR<sp/>std::shared_ptr</highlight></codeline>
+<codeline lineno="16"><highlight class="preprocessor"></highlight><highlight class="preprocessor"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>#define<sp/>KUKADU_STATIC_POINTER_CAST<sp/>std::static_pointer_cast</highlight></codeline>
+<codeline lineno="17"><highlight class="preprocessor"></highlight><highlight class="preprocessor"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>#define<sp/>KUKADU_DYNAMIC_POINTER_CAST<sp/>std::dynamic_pointer_cast</highlight></codeline>
+<codeline lineno="18"><highlight class="preprocessor"></highlight><highlight class="preprocessor"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>#define<sp/>KUKADU_ENABLE_SHARED_FROM_THIS<sp/>std::enable_shared_from_this</highlight></codeline>
+<codeline lineno="19"><highlight class="preprocessor"></highlight><highlight class="preprocessor"><sp/><sp/><sp/><sp/>#endif</highlight></codeline>
+<codeline lineno="20"><highlight class="preprocessor"></highlight><highlight class="normal"></highlight></codeline>
 <codeline lineno="21"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="comment">//<sp/>thread</highlight><highlight class="normal"></highlight></codeline>
-<codeline lineno="22"><highlight class="normal"></highlight><highlight class="preprocessor"><sp/><sp/><sp/><sp/>#ifdef<sp/>USEBOOST</highlight><highlight class="normal"></highlight></codeline>
-<codeline lineno="23"><highlight class="normal"></highlight><highlight class="preprocessor"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>#include<sp/>&lt;boost/thread.hpp&gt;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="22"><highlight class="normal"></highlight><highlight class="preprocessor"><sp/><sp/><sp/><sp/>#ifdef<sp/>USEBOOST</highlight></codeline>
+<codeline lineno="23"><highlight class="preprocessor"></highlight><highlight class="preprocessor"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>#include<sp/>&lt;boost/thread.hpp&gt;</highlight><highlight class="normal"></highlight></codeline>
 <codeline lineno="24"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">typedef</highlight><highlight class="normal"><sp/>boost::thread<sp/>kukadu_thread;</highlight></codeline>
-<codeline lineno="25"><highlight class="normal"></highlight><highlight class="preprocessor"><sp/><sp/><sp/><sp/>#else</highlight><highlight class="normal"></highlight></codeline>
-<codeline lineno="26"><highlight class="normal"></highlight><highlight class="preprocessor"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>#include<sp/>&lt;thread&gt;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="25"><highlight class="normal"></highlight><highlight class="preprocessor"><sp/><sp/><sp/><sp/>#else</highlight></codeline>
+<codeline lineno="26"><highlight class="preprocessor"></highlight><highlight class="preprocessor"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>#include<sp/>&lt;thread&gt;</highlight><highlight class="normal"></highlight></codeline>
 <codeline lineno="27"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">typedef</highlight><highlight class="normal"><sp/>std::thread<sp/>kukadu_thread;</highlight></codeline>
-<codeline lineno="28"><highlight class="normal"></highlight><highlight class="preprocessor"><sp/><sp/><sp/><sp/>#endif</highlight><highlight class="normal"></highlight></codeline>
-<codeline lineno="29"><highlight class="normal"></highlight></codeline>
+<codeline lineno="28"><highlight class="normal"></highlight><highlight class="preprocessor"><sp/><sp/><sp/><sp/>#endif</highlight></codeline>
+<codeline lineno="29"><highlight class="preprocessor"></highlight><highlight class="normal"></highlight></codeline>
 <codeline lineno="30"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="comment">//<sp/>mutex</highlight><highlight class="normal"></highlight></codeline>
-<codeline lineno="31"><highlight class="normal"></highlight><highlight class="preprocessor"><sp/><sp/><sp/><sp/>#ifdef<sp/>USEBOOST</highlight><highlight class="normal"></highlight></codeline>
-<codeline lineno="32"><highlight class="normal"></highlight><highlight class="preprocessor"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>#include<sp/>&lt;boost/thread/mutex.hpp&gt;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="31"><highlight class="normal"></highlight><highlight class="preprocessor"><sp/><sp/><sp/><sp/>#ifdef<sp/>USEBOOST</highlight></codeline>
+<codeline lineno="32"><highlight class="preprocessor"></highlight><highlight class="preprocessor"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>#include<sp/>&lt;boost/thread/mutex.hpp&gt;</highlight><highlight class="normal"></highlight></codeline>
 <codeline lineno="33"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">typedef</highlight><highlight class="normal"><sp/>boost::mutex<sp/>kukadu_mutex;</highlight></codeline>
-<codeline lineno="34"><highlight class="normal"></highlight><highlight class="preprocessor"><sp/><sp/><sp/><sp/>#else</highlight><highlight class="normal"></highlight></codeline>
-<codeline lineno="35"><highlight class="normal"></highlight><highlight class="preprocessor"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>#include<sp/>&lt;mutex&gt;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="34"><highlight class="normal"></highlight><highlight class="preprocessor"><sp/><sp/><sp/><sp/>#else</highlight></codeline>
+<codeline lineno="35"><highlight class="preprocessor"></highlight><highlight class="preprocessor"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>#include<sp/>&lt;mutex&gt;</highlight><highlight class="normal"></highlight></codeline>
 <codeline lineno="36"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">typedef</highlight><highlight class="normal"><sp/>std::mutex<sp/>kukadu_mutex;</highlight></codeline>
-<codeline lineno="37"><highlight class="normal"></highlight><highlight class="preprocessor"><sp/><sp/><sp/><sp/>#endif</highlight><highlight class="normal"></highlight></codeline>
-<codeline lineno="38"><highlight class="normal"></highlight></codeline>
+<codeline lineno="37"><highlight class="normal"></highlight><highlight class="preprocessor"><sp/><sp/><sp/><sp/>#endif</highlight></codeline>
+<codeline lineno="38"><highlight class="preprocessor"></highlight><highlight class="normal"></highlight></codeline>
 <codeline lineno="39"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="comment">//<sp/>random</highlight><highlight class="normal"></highlight></codeline>
-<codeline lineno="40"><highlight class="normal"></highlight><highlight class="preprocessor"><sp/><sp/><sp/><sp/>#ifdef<sp/>USEBOOST</highlight><highlight class="normal"></highlight></codeline>
-<codeline lineno="41"><highlight class="normal"></highlight><highlight class="preprocessor"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>#include<sp/>&lt;boost/random.hpp&gt;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="40"><highlight class="normal"></highlight><highlight class="preprocessor"><sp/><sp/><sp/><sp/>#ifdef<sp/>USEBOOST</highlight></codeline>
+<codeline lineno="41"><highlight class="preprocessor"></highlight><highlight class="preprocessor"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>#include<sp/>&lt;boost/random.hpp&gt;</highlight><highlight class="normal"></highlight></codeline>
 <codeline lineno="42"><highlight class="normal"></highlight><highlight class="preprocessor"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>#include<sp/>&lt;boost/random/mersenne_twister.hpp&gt;</highlight><highlight class="normal"></highlight></codeline>
 <codeline lineno="43"><highlight class="normal"></highlight><highlight class="preprocessor"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>#include<sp/>&lt;boost/random/normal_distribution.hpp&gt;</highlight><highlight class="normal"></highlight></codeline>
 <codeline lineno="44"><highlight class="normal"></highlight><highlight class="preprocessor"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>#include<sp/>&lt;boost/random/discrete_distribution.hpp&gt;</highlight><highlight class="normal"></highlight></codeline>
 <codeline lineno="45"><highlight class="normal"></highlight><highlight class="preprocessor"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>#include<sp/>&lt;boost/random/uniform_int_distribution.hpp&gt;</highlight><highlight class="normal"></highlight></codeline>
 <codeline lineno="46"><highlight class="normal"></highlight><highlight class="preprocessor"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>#include<sp/>&lt;boost/random/uniform_real_distribution.hpp&gt;</highlight><highlight class="normal"></highlight></codeline>
-<codeline lineno="47"><highlight class="normal"></highlight><highlight class="preprocessor"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>#define<sp/>KUKADU_DISCRETE_DISTRIBUTION<sp/>boost::random::discrete_distribution</highlight><highlight class="normal"></highlight></codeline>
-<codeline lineno="48"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">typedef</highlight><highlight class="normal"><sp/>boost::random::mt19937<sp/>kukadu_mersenne_twister;</highlight></codeline>
+<codeline lineno="47"><highlight class="normal"></highlight><highlight class="preprocessor"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>#define<sp/>KUKADU_DISCRETE_DISTRIBUTION<sp/>boost::random::discrete_distribution</highlight></codeline>
+<codeline lineno="48"><highlight class="preprocessor"></highlight><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">typedef</highlight><highlight class="normal"><sp/>boost::random::mt19937<sp/>kukadu_mersenne_twister;</highlight></codeline>
 <codeline lineno="49"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">typedef</highlight><highlight class="normal"><sp/>boost::random::normal_distribution&lt;double&gt;<sp/>kukadu_normal_distribution;</highlight></codeline>
 <codeline lineno="50"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">typedef</highlight><highlight class="normal"><sp/>boost::random::uniform_int_distribution&lt;int&gt;<sp/>kukadu_uniform_distribution;</highlight></codeline>
 <codeline lineno="51"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">typedef</highlight><highlight class="normal"><sp/>boost::random::uniform_real_distribution&lt;double&gt;<sp/>kukadu_uniform_real_distribution;</highlight></codeline>
-<codeline lineno="52"><highlight class="normal"></highlight><highlight class="preprocessor"><sp/><sp/><sp/><sp/>#else</highlight><highlight class="normal"></highlight></codeline>
-<codeline lineno="53"><highlight class="normal"></highlight><highlight class="preprocessor"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>#include<sp/>&lt;random&gt;</highlight><highlight class="normal"></highlight></codeline>
-<codeline lineno="54"><highlight class="normal"></highlight><highlight class="preprocessor"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>#define<sp/>KUKADU_DISCRETE_DISTRIBUTION<sp/>std::discrete_distribution</highlight><highlight class="normal"></highlight></codeline>
-<codeline lineno="55"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">typedef</highlight><highlight class="normal"><sp/>std::mt19937<sp/>kukadu_mersenne_twister;</highlight></codeline>
+<codeline lineno="52"><highlight class="normal"></highlight><highlight class="preprocessor"><sp/><sp/><sp/><sp/>#else</highlight></codeline>
+<codeline lineno="53"><highlight class="preprocessor"></highlight><highlight class="preprocessor"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>#include<sp/>&lt;random&gt;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="54"><highlight class="normal"></highlight><highlight class="preprocessor"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>#define<sp/>KUKADU_DISCRETE_DISTRIBUTION<sp/>std::discrete_distribution</highlight></codeline>
+<codeline lineno="55"><highlight class="preprocessor"></highlight><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">typedef</highlight><highlight class="normal"><sp/>std::mt19937<sp/>kukadu_mersenne_twister;</highlight></codeline>
 <codeline lineno="56"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">typedef</highlight><highlight class="normal"><sp/>std::uniform_int_distribution&lt;int&gt;<sp/>kukadu_uniform_distribution;</highlight></codeline>
 <codeline lineno="57"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">typedef</highlight><highlight class="normal"><sp/>std::normal_distribution&lt;double&gt;<sp/>kukadu_normal_distribution;</highlight></codeline>
 <codeline lineno="58"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">typedef</highlight><highlight class="normal"><sp/>std::uniform_real_distribution&lt;double&gt;<sp/>kukadu_uniform_real_distribution;</highlight></codeline>
-<codeline lineno="59"><highlight class="normal"></highlight><highlight class="preprocessor"><sp/><sp/><sp/><sp/>#endif</highlight><highlight class="normal"></highlight></codeline>
-<codeline lineno="60"><highlight class="normal"></highlight></codeline>
-<codeline lineno="61"><highlight class="normal"></highlight><highlight class="keyword">namespace<sp/></highlight><highlight class="normal"><ref refid="namespacekukadu" kindref="compound">kukadu</ref><sp/>{</highlight></codeline>
+<codeline lineno="59"><highlight class="normal"></highlight><highlight class="preprocessor"><sp/><sp/><sp/><sp/>#endif</highlight></codeline>
+<codeline lineno="60"><highlight class="preprocessor"></highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="61"><highlight class="normal"></highlight><highlight class="keyword">namespace<sp/></highlight><highlight class="normal">kukadu<sp/>{</highlight></codeline>
 <codeline lineno="62"><highlight class="normal"></highlight></codeline>
 <codeline lineno="63" refid="classkukadu_1_1KukaduException" refkind="compound"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">class<sp/></highlight><highlight class="normal"><ref refid="classkukadu_1_1KukaduException" kindref="compound">KukaduException</ref><sp/>:<sp/></highlight><highlight class="keyword">public</highlight><highlight class="normal"><sp/>std::exception<sp/>{</highlight></codeline>
 <codeline lineno="64"><highlight class="normal"></highlight></codeline>
@@ -841,7 +841,7 @@
 <codeline lineno="79"><highlight class="normal"></highlight></codeline>
 <codeline lineno="80"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">public</highlight><highlight class="normal">:</highlight></codeline>
 <codeline lineno="81"><highlight class="normal"></highlight></codeline>
-<codeline lineno="87"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">static</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">long</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">long</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/>getCurrentTime();</highlight></codeline>
+<codeline lineno="87"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">static</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">long</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">long</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/><ref refid="classkukadu_1_1TimedObject_1a9c4db6e3f71d4bbddecd12b43e586691" kindref="member">getCurrentTime</ref>();</highlight></codeline>
 <codeline lineno="88"><highlight class="normal"></highlight></codeline>
 <codeline lineno="89"><highlight class="normal"><sp/><sp/><sp/><sp/>};</highlight></codeline>
 <codeline lineno="90"><highlight class="normal"></highlight></codeline>
@@ -849,6 +849,6 @@
 <codeline lineno="92"><highlight class="normal"></highlight></codeline>
 <codeline lineno="93"><highlight class="normal"></highlight><highlight class="preprocessor">#endif</highlight></codeline>
     </programlisting>
-    <location file="/home/c7031109/iis_robot_sw/iis_catkin_ws/src/kukadu/include/kukadu/types/kukadutypes.hpp"/>
+    <location file="/home/andreasmennel/iis_robot_sw/iis_catkin_ws/src/kukadu/include/kukadu/types/kukadutypes.hpp"/>
   </compounddef>
 </doxygen>

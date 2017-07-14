@@ -1,6 +1,6 @@
 <?xml version='1.0' encoding='UTF-8' standalone='no'?>
-<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.8.11">
-  <compounddef id="sensorstorage_8hpp" kind="file" language="C++">
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.8.6">
+  <compounddef id="sensorstorage_8hpp" kind="file">
     <compoundname>sensorstorage.hpp</compoundname>
     <includes local="no">string</includes>
     <includes local="no">vector</includes>
@@ -16,91 +16,393 @@
     <includes refid="sensordata_8hpp" local="no">kukadu/types/sensordata.hpp</includes>
     <includes refid="kukadutypes_8hpp" local="no">kukadu/types/kukadutypes.hpp</includes>
     <includes refid="storagesingleton_8hpp" local="no">kukadu/storage/storagesingleton.hpp</includes>
-    <includedby refid="dmp_8cpp" local="no">/home/c7031109/iis_robot_sw/iis_catkin_ws/src/kukadu/src/control/dmp.cpp</includedby>
-    <includedby refid="dmprl_8cpp" local="no">/home/c7031109/iis_robot_sw/iis_catkin_ws/src/kukadu/src/learning/rl/dmprl.cpp</includedby>
-    <includedby refid="controllers_8cpp" local="no">/home/c7031109/iis_robot_sw/iis_catkin_ws/src/kukadu/src/manipulation/playing/controllers.cpp</includedby>
-    <includedby refid="hand_8cpp" local="no">/home/c7031109/iis_robot_sw/iis_catkin_ws/src/kukadu/src/robot/hand.cpp</includedby>
-    <includedby refid="queue_8cpp" local="no">/home/c7031109/iis_robot_sw/iis_catkin_ws/src/kukadu/src/robot/queue.cpp</includedby>
-    <includedby refid="sensorstorage_8cpp" local="no">/home/c7031109/iis_robot_sw/iis_catkin_ws/src/kukadu/src/storage/sensorstorage.cpp</includedby>
-    <includedby refid="kinestheticteaching_8hpp" local="no">/home/c7031109/iis_robot_sw/iis_catkin_ws/src/kukadu/include/kukadu/robot/kinestheticteaching.hpp</includedby>
-    <includedby refid="storage_8hpp" local="no">/home/c7031109/iis_robot_sw/iis_catkin_ws/src/kukadu/include/kukadu/storage.hpp</includedby>
+    <includedby refid="dmp_8cpp" local="no">/home/andreasmennel/iis_robot_sw/iis_catkin_ws/src/kukadu/src/control/dmp.cpp</includedby>
+    <includedby refid="dmprl_8cpp" local="no">/home/andreasmennel/iis_robot_sw/iis_catkin_ws/src/kukadu/src/learning/rl/dmprl.cpp</includedby>
+    <includedby refid="controllers_8cpp" local="no">/home/andreasmennel/iis_robot_sw/iis_catkin_ws/src/kukadu/src/manipulation/playing/controllers.cpp</includedby>
+    <includedby refid="hand_8cpp" local="no">/home/andreasmennel/iis_robot_sw/iis_catkin_ws/src/kukadu/src/robot/hand.cpp</includedby>
+    <includedby refid="queue_8cpp" local="no">/home/andreasmennel/iis_robot_sw/iis_catkin_ws/src/kukadu/src/robot/queue.cpp</includedby>
+    <includedby refid="sensorstorage_8cpp" local="no">/home/andreasmennel/iis_robot_sw/iis_catkin_ws/src/kukadu/src/storage/sensorstorage.cpp</includedby>
+    <includedby refid="kinestheticteaching_8hpp" local="no">/home/andreasmennel/iis_robot_sw/iis_catkin_ws/src/kukadu/include/kukadu/robot/kinestheticteaching.hpp</includedby>
+    <includedby refid="storage_8hpp" local="no">/home/andreasmennel/iis_robot_sw/iis_catkin_ws/src/kukadu/include/kukadu/storage.hpp</includedby>
     <incdepgraph>
-      <node id="1974">
+      <node id="1980">
         <label>sys/stat.h</label>
       </node>
-      <node id="1990">
+      <node id="1996">
         <label>list</label>
       </node>
-      <node id="1977">
+      <node id="1983">
         <label>gsl/gsl_vector.h</label>
       </node>
-      <node id="1973">
+      <node id="1979">
         <label>wordexp.h</label>
       </node>
-      <node id="1972">
+      <node id="1978">
         <label>stdbool.h</label>
       </node>
-      <node id="1968">
+      <node id="1974">
         <label>stdarg.h</label>
       </node>
-      <node id="1955">
+      <node id="1961">
         <label>cppconn/resultset.h</label>
       </node>
-      <node id="1985">
+      <node id="1991">
         <label>sensor_msgs/PointCloud2.h</label>
       </node>
-      <node id="1940">
-        <label>kukadu/utils/types.hpp</label>
-        <link refid="utils_2types_8hpp_source"/>
-        <childnode refid="1932" relation="include">
+      <node id="1951">
+        <label>queue</label>
+      </node>
+      <node id="1989">
+        <label>pcl/PCLPointCloud2.h</label>
+      </node>
+      <node id="2000">
+        <label>kukadu/types/sensordata.hpp</label>
+        <link refid="sensordata_8hpp_source"/>
+        <childnode refid="1938" relation="include">
         </childnode>
-        <childnode refid="1935" relation="include">
+        <childnode refid="1937" relation="include">
+        </childnode>
+        <childnode refid="1972" relation="include">
+        </childnode>
+        <childnode refid="1941" relation="include">
+        </childnode>
+        <childnode refid="1943" relation="include">
+        </childnode>
+        <childnode refid="1966" relation="include">
+        </childnode>
+      </node>
+      <node id="1945">
+        <label>limits</label>
+      </node>
+      <node id="1965">
+        <label>kukadu/robot/filters.hpp</label>
+        <link refid="filters_8hpp_source"/>
+        <childnode refid="1946" relation="include">
+        </childnode>
+        <childnode refid="1952" relation="include">
+        </childnode>
+      </node>
+      <node id="1993">
+        <label>kukadu/utils/gnuplot.hpp</label>
+        <link refid="gnuplot_8hpp_source"/>
+        <childnode refid="1940" relation="include">
+        </childnode>
+        <childnode refid="1937" relation="include">
+        </childnode>
+        <childnode refid="1938" relation="include">
+        </childnode>
+        <childnode refid="1971" relation="include">
+        </childnode>
+        <childnode refid="1969" relation="include">
+        </childnode>
+        <childnode refid="1994" relation="include">
+        </childnode>
+        <childnode refid="1995" relation="include">
+        </childnode>
+        <childnode refid="1939" relation="include">
+        </childnode>
+        <childnode refid="1996" relation="include">
+        </childnode>
+      </node>
+      <node id="1986">
+        <label>pcl/point_types.h</label>
+      </node>
+      <node id="1985">
+        <label>pcl/point_cloud.h</label>
+      </node>
+      <node id="1994">
+        <label>stdexcept</label>
+      </node>
+      <node id="1977">
+        <label>termios.h</label>
+      </node>
+      <node id="1988">
+        <label>eigen3/Eigen/Dense</label>
+      </node>
+      <node id="1982">
+        <label>gsl/gsl_poly.h</label>
+      </node>
+      <node id="1937">
+        <label>string</label>
+      </node>
+      <node id="1950">
+        <label>map</label>
+      </node>
+      <node id="1944">
+        <label>kukadu/robot/hand.hpp</label>
+        <link refid="hand_8hpp_source"/>
+        <childnode refid="1945" relation="include">
+        </childnode>
+        <childnode refid="1938" relation="include">
+        </childnode>
+        <childnode refid="1942" relation="include">
+        </childnode>
+        <childnode refid="1941" relation="include">
+        </childnode>
+        <childnode refid="1946" relation="include">
+        </childnode>
+        <childnode refid="1948" relation="include">
+        </childnode>
+        <childnode refid="1963" relation="include">
+        </childnode>
+        <childnode refid="1949" relation="include">
+        </childnode>
+      </node>
+      <node id="1941">
+        <label>armadillo</label>
+      </node>
+      <node id="1953">
+        <label>exception</label>
+      </node>
+      <node id="1971">
+        <label>fstream</label>
+      </node>
+      <node id="1962">
+        <label>cppconn/statement.h</label>
+      </node>
+      <node id="1998">
+        <label>kukadu/types/controllerresult.hpp</label>
+        <link refid="controllerresult_8hpp_source"/>
+        <childnode refid="1938" relation="include">
         </childnode>
         <childnode refid="1941" relation="include">
         </childnode>
       </node>
-      <node id="1945">
-        <label>queue</label>
-      </node>
-      <node id="1983">
-        <label>pcl/PCLPointCloud2.h</label>
-      </node>
-      <node id="1939">
-        <label>limits</label>
-      </node>
-      <node id="1980">
-        <label>pcl/point_types.h</label>
-      </node>
-      <node id="1960">
-        <label>kukadu/utils/utils.hpp</label>
-        <link refid="utils_2utils_8hpp_source"/>
-        <childnode refid="1944" relation="include">
+      <node id="1936">
+        <label>/home/andreasmennel/iis_robot_sw/iis_catkin_ws/src/kukadu/include/kukadu/storage/sensorstorage.hpp</label>
+        <link refid="sensorstorage.hpp"/>
+        <childnode refid="1937" relation="include">
         </childnode>
-        <childnode refid="1945" relation="include">
+        <childnode refid="1938" relation="include">
         </childnode>
         <childnode refid="1939" relation="include">
         </childnode>
-        <childnode refid="1932" relation="include">
+        <childnode refid="1940" relation="include">
         </childnode>
-        <childnode refid="1961" relation="include">
+        <childnode refid="1941" relation="include">
         </childnode>
-        <childnode refid="1931" relation="include">
+        <childnode refid="1942" relation="include">
         </childnode>
-        <childnode refid="1962" relation="include">
+        <childnode refid="1943" relation="include">
         </childnode>
-        <childnode refid="1963" relation="include">
+        <childnode refid="1944" relation="include">
         </childnode>
         <childnode refid="1964" relation="include">
         </childnode>
-        <childnode refid="1965" relation="include">
+        <childnode refid="1946" relation="include">
         </childnode>
         <childnode refid="1966" relation="include">
         </childnode>
+        <childnode refid="2000" relation="include">
+        </childnode>
+        <childnode refid="1952" relation="include">
+        </childnode>
+        <childnode refid="1949" relation="include">
+        </childnode>
+      </node>
+      <node id="1957">
+        <label>random</label>
+      </node>
+      <node id="1981">
+        <label>sys/types.h</label>
+      </node>
+      <node id="1963">
+        <label>kukadu/utils/destroyableobject.hpp</label>
+        <link refid="destroyableobject_8hpp_source"/>
+      </node>
+      <node id="1952">
+        <label>kukadu/types/kukadutypes.hpp</label>
+        <link refid="kukadutypes_8hpp_source"/>
+        <childnode refid="1953" relation="include">
+        </childnode>
+        <childnode refid="1954" relation="include">
+        </childnode>
+        <childnode refid="1955" relation="include">
+        </childnode>
+        <childnode refid="1956" relation="include">
+        </childnode>
+        <childnode refid="1957" relation="include">
+        </childnode>
+      </node>
+      <node id="1990">
+        <label>tf/transform_datatypes.h</label>
+      </node>
+      <node id="1995">
+        <label>cstdio</label>
+      </node>
+      <node id="1964">
+        <label>kukadu/robot/queue.hpp</label>
+        <link refid="queue_8hpp"/>
+        <childnode refid="1951" relation="include">
+        </childnode>
+        <childnode refid="1938" relation="include">
+        </childnode>
+        <childnode refid="1941" relation="include">
+        </childnode>
+        <childnode refid="1943" relation="include">
+        </childnode>
+        <childnode refid="1965" relation="include">
+        </childnode>
+        <childnode refid="1948" relation="include">
+        </childnode>
+        <childnode refid="1952" relation="include">
+        </childnode>
+        <childnode refid="1963" relation="include">
+        </childnode>
+        <childnode refid="1949" relation="include">
+        </childnode>
+      </node>
+      <node id="1973">
+        <label>unistd.h</label>
+      </node>
+      <node id="1948">
+        <label>kukadu/robot/hardware.hpp</label>
+        <link refid="hardware_8hpp_source"/>
+        <childnode refid="1937" relation="include">
+        </childnode>
+        <childnode refid="1941" relation="include">
+        </childnode>
+        <childnode refid="1946" relation="include">
+        </childnode>
+        <childnode refid="1949" relation="include">
+        </childnode>
+      </node>
+      <node id="1938">
+        <label>vector</label>
+      </node>
+      <node id="1975">
+        <label>signal.h</label>
+      </node>
+      <node id="1972">
+        <label>utility</label>
+      </node>
+      <node id="1969">
+        <label>sstream</label>
+      </node>
+      <node id="1959">
+        <label>cppconn/driver.h</label>
+      </node>
+      <node id="1960">
+        <label>cppconn/exception.h</label>
+      </node>
+      <node id="1943">
+        <label>geometry_msgs/Pose.h</label>
+      </node>
+      <node id="1999">
+        <label>kukadu/utils/kukadutokenizer.hpp</label>
+        <link refid="kukadutokenizer_8hpp_source"/>
+        <childnode refid="1937" relation="include">
+        </childnode>
+        <childnode refid="1938" relation="include">
+        </childnode>
+      </node>
+      <node id="1942">
+        <label>ros/ros.h</label>
+      </node>
+      <node id="1967">
+        <label>math.h</label>
+      </node>
+      <node id="1939">
+        <label>cstdlib</label>
+      </node>
+      <node id="1940">
+        <label>iostream</label>
+      </node>
+      <node id="1958">
+        <label>mysql_connection.h</label>
+      </node>
+      <node id="1997">
+        <label>kukadu/control/controller.hpp</label>
+        <link refid="controller_8hpp_source"/>
+        <childnode refid="1937" relation="include">
+        </childnode>
+        <childnode refid="1948" relation="include">
+        </childnode>
+        <childnode refid="1952" relation="include">
+        </childnode>
+        <childnode refid="1998" relation="include">
+        </childnode>
+        <childnode refid="1949" relation="include">
+        </childnode>
+        <childnode refid="1964" relation="include">
+        </childnode>
+      </node>
+      <node id="1956">
+        <label>mutex</label>
+      </node>
+      <node id="1987">
+        <label>gsl/gsl_multifit.h</label>
+      </node>
+      <node id="1992">
+        <label>geometry_msgs/Quaternion.h</label>
+      </node>
+      <node id="1946">
+        <label>kukadu/utils/types.hpp</label>
+        <link refid="utils_2types_8hpp_source"/>
+        <childnode refid="1938" relation="include">
+        </childnode>
+        <childnode refid="1941" relation="include">
+        </childnode>
+        <childnode refid="1947" relation="include">
+        </childnode>
+      </node>
+      <node id="1955">
+        <label>thread</label>
+      </node>
+      <node id="1949">
+        <label>kukadu/storage/storagesingleton.hpp</label>
+        <link refid="storagesingleton_8hpp_source"/>
+        <childnode refid="1950" relation="include">
+        </childnode>
+        <childnode refid="1951" relation="include">
+        </childnode>
+        <childnode refid="1937" relation="include">
+        </childnode>
+        <childnode refid="1938" relation="include">
+        </childnode>
+        <childnode refid="1940" relation="include">
+        </childnode>
+        <childnode refid="1952" relation="include">
+        </childnode>
+        <childnode refid="1958" relation="include">
+        </childnode>
+        <childnode refid="1959" relation="include">
+        </childnode>
+        <childnode refid="1960" relation="include">
+        </childnode>
+        <childnode refid="1961" relation="include">
+        </childnode>
+        <childnode refid="1962" relation="include">
+        </childnode>
+      </node>
+      <node id="1984">
+        <label>gsl/gsl_linalg.h</label>
+      </node>
+      <node id="1970">
+        <label>stdio.h</label>
+      </node>
+      <node id="1968">
+        <label>cstring</label>
+      </node>
+      <node id="1947">
+        <label>gsl/gsl_matrix.h</label>
+      </node>
+      <node id="1966">
+        <label>kukadu/utils/utils.hpp</label>
+        <link refid="utils_2utils_8hpp_source"/>
+        <childnode refid="1950" relation="include">
+        </childnode>
+        <childnode refid="1951" relation="include">
+        </childnode>
+        <childnode refid="1945" relation="include">
+        </childnode>
+        <childnode refid="1938" relation="include">
+        </childnode>
         <childnode refid="1967" relation="include">
         </childnode>
-        <childnode refid="1968" relation="include">
+        <childnode refid="1937" relation="include">
         </childnode>
-        <childnode refid="1934" relation="include">
+        <childnode refid="1968" relation="include">
         </childnode>
         <childnode refid="1969" relation="include">
         </childnode>
@@ -110,11 +412,11 @@
         </childnode>
         <childnode refid="1972" relation="include">
         </childnode>
-        <childnode refid="1935" relation="include">
-        </childnode>
         <childnode refid="1973" relation="include">
         </childnode>
         <childnode refid="1974" relation="include">
+        </childnode>
+        <childnode refid="1940" relation="include">
         </childnode>
         <childnode refid="1975" relation="include">
         </childnode>
@@ -122,9 +424,9 @@
         </childnode>
         <childnode refid="1977" relation="include">
         </childnode>
-        <childnode refid="1941" relation="include">
-        </childnode>
         <childnode refid="1978" relation="include">
+        </childnode>
+        <childnode refid="1941" relation="include">
         </childnode>
         <childnode refid="1979" relation="include">
         </childnode>
@@ -136,365 +438,65 @@
         </childnode>
         <childnode refid="1983" relation="include">
         </childnode>
+        <childnode refid="1947" relation="include">
+        </childnode>
         <childnode refid="1984" relation="include">
         </childnode>
         <childnode refid="1985" relation="include">
         </childnode>
         <childnode refid="1986" relation="include">
         </childnode>
-        <childnode refid="1940" relation="include">
-        </childnode>
         <childnode refid="1987" relation="include">
-        </childnode>
-        <childnode refid="1942" relation="include">
-        </childnode>
-        <childnode refid="1991" relation="include">
-        </childnode>
-        <childnode refid="1993" relation="include">
-        </childnode>
-      </node>
-      <node id="1958">
-        <label>kukadu/robot/queue.hpp</label>
-        <link refid="queue_8hpp"/>
-        <childnode refid="1945" relation="include">
-        </childnode>
-        <childnode refid="1932" relation="include">
-        </childnode>
-        <childnode refid="1935" relation="include">
-        </childnode>
-        <childnode refid="1937" relation="include">
-        </childnode>
-        <childnode refid="1959" relation="include">
-        </childnode>
-        <childnode refid="1942" relation="include">
-        </childnode>
-        <childnode refid="1946" relation="include">
-        </childnode>
-        <childnode refid="1957" relation="include">
-        </childnode>
-        <childnode refid="1943" relation="include">
-        </childnode>
-      </node>
-      <node id="1930">
-        <label>/home/c7031109/iis_robot_sw/iis_catkin_ws/src/kukadu/include/kukadu/storage/sensorstorage.hpp</label>
-        <link refid="sensorstorage.hpp"/>
-        <childnode refid="1931" relation="include">
-        </childnode>
-        <childnode refid="1932" relation="include">
-        </childnode>
-        <childnode refid="1933" relation="include">
-        </childnode>
-        <childnode refid="1934" relation="include">
-        </childnode>
-        <childnode refid="1935" relation="include">
-        </childnode>
-        <childnode refid="1936" relation="include">
-        </childnode>
-        <childnode refid="1937" relation="include">
-        </childnode>
-        <childnode refid="1938" relation="include">
-        </childnode>
-        <childnode refid="1958" relation="include">
-        </childnode>
-        <childnode refid="1940" relation="include">
-        </childnode>
-        <childnode refid="1960" relation="include">
-        </childnode>
-        <childnode refid="1994" relation="include">
-        </childnode>
-        <childnode refid="1946" relation="include">
-        </childnode>
-        <childnode refid="1943" relation="include">
-        </childnode>
-      </node>
-      <node id="1979">
-        <label>pcl/point_cloud.h</label>
-      </node>
-      <node id="1943">
-        <label>kukadu/storage/storagesingleton.hpp</label>
-        <link refid="storagesingleton_8hpp_source"/>
-        <childnode refid="1944" relation="include">
-        </childnode>
-        <childnode refid="1945" relation="include">
-        </childnode>
-        <childnode refid="1931" relation="include">
-        </childnode>
-        <childnode refid="1932" relation="include">
-        </childnode>
-        <childnode refid="1934" relation="include">
-        </childnode>
-        <childnode refid="1946" relation="include">
-        </childnode>
-        <childnode refid="1952" relation="include">
-        </childnode>
-        <childnode refid="1953" relation="include">
-        </childnode>
-        <childnode refid="1954" relation="include">
-        </childnode>
-        <childnode refid="1955" relation="include">
-        </childnode>
-        <childnode refid="1956" relation="include">
-        </childnode>
-      </node>
-      <node id="1992">
-        <label>kukadu/types/controllerresult.hpp</label>
-        <link refid="controllerresult_8hpp_source"/>
-        <childnode refid="1932" relation="include">
-        </childnode>
-        <childnode refid="1935" relation="include">
-        </childnode>
-      </node>
-      <node id="1988">
-        <label>stdexcept</label>
-      </node>
-      <node id="1971">
-        <label>termios.h</label>
-      </node>
-      <node id="1982">
-        <label>eigen3/Eigen/Dense</label>
-      </node>
-      <node id="1976">
-        <label>gsl/gsl_poly.h</label>
-      </node>
-      <node id="1931">
-        <label>string</label>
-      </node>
-      <node id="1944">
-        <label>map</label>
-      </node>
-      <node id="1938">
-        <label>kukadu/robot/hand.hpp</label>
-        <link refid="hand_8hpp_source"/>
-        <childnode refid="1939" relation="include">
-        </childnode>
-        <childnode refid="1932" relation="include">
-        </childnode>
-        <childnode refid="1936" relation="include">
-        </childnode>
-        <childnode refid="1935" relation="include">
-        </childnode>
-        <childnode refid="1940" relation="include">
-        </childnode>
-        <childnode refid="1942" relation="include">
-        </childnode>
-        <childnode refid="1957" relation="include">
-        </childnode>
-        <childnode refid="1943" relation="include">
-        </childnode>
-      </node>
-      <node id="1935">
-        <label>armadillo</label>
-      </node>
-      <node id="1994">
-        <label>kukadu/types/sensordata.hpp</label>
-        <link refid="sensordata_8hpp_source"/>
-        <childnode refid="1932" relation="include">
-        </childnode>
-        <childnode refid="1931" relation="include">
-        </childnode>
-        <childnode refid="1966" relation="include">
-        </childnode>
-        <childnode refid="1935" relation="include">
-        </childnode>
-        <childnode refid="1937" relation="include">
-        </childnode>
-        <childnode refid="1960" relation="include">
-        </childnode>
-      </node>
-      <node id="1947">
-        <label>exception</label>
-      </node>
-      <node id="1965">
-        <label>fstream</label>
-      </node>
-      <node id="1956">
-        <label>cppconn/statement.h</label>
-      </node>
-      <node id="1951">
-        <label>random</label>
-      </node>
-      <node id="1975">
-        <label>sys/types.h</label>
-      </node>
-      <node id="1984">
-        <label>tf/transform_datatypes.h</label>
-      </node>
-      <node id="1989">
-        <label>cstdio</label>
-      </node>
-      <node id="1967">
-        <label>unistd.h</label>
-      </node>
-      <node id="1932">
-        <label>vector</label>
-      </node>
-      <node id="1969">
-        <label>signal.h</label>
-      </node>
-      <node id="1993">
-        <label>kukadu/utils/kukadutokenizer.hpp</label>
-        <link refid="kukadutokenizer_8hpp_source"/>
-        <childnode refid="1931" relation="include">
-        </childnode>
-        <childnode refid="1932" relation="include">
-        </childnode>
-      </node>
-      <node id="1966">
-        <label>utility</label>
-      </node>
-      <node id="1957">
-        <label>kukadu/utils/destroyableobject.hpp</label>
-        <link refid="destroyableobject_8hpp_source"/>
-      </node>
-      <node id="1963">
-        <label>sstream</label>
-      </node>
-      <node id="1953">
-        <label>cppconn/driver.h</label>
-      </node>
-      <node id="1954">
-        <label>cppconn/exception.h</label>
-      </node>
-      <node id="1937">
-        <label>geometry_msgs/Pose.h</label>
-      </node>
-      <node id="1936">
-        <label>ros/ros.h</label>
-      </node>
-      <node id="1961">
-        <label>math.h</label>
-      </node>
-      <node id="1946">
-        <label>kukadu/types/kukadutypes.hpp</label>
-        <link refid="kukadutypes_8hpp_source"/>
-        <childnode refid="1947" relation="include">
-        </childnode>
-        <childnode refid="1948" relation="include">
-        </childnode>
-        <childnode refid="1949" relation="include">
-        </childnode>
-        <childnode refid="1950" relation="include">
-        </childnode>
-        <childnode refid="1951" relation="include">
-        </childnode>
-      </node>
-      <node id="1933">
-        <label>cstdlib</label>
-      </node>
-      <node id="1934">
-        <label>iostream</label>
-      </node>
-      <node id="1952">
-        <label>mysql_connection.h</label>
-      </node>
-      <node id="1991">
-        <label>kukadu/control/controller.hpp</label>
-        <link refid="controller_8hpp_source"/>
-        <childnode refid="1931" relation="include">
-        </childnode>
-        <childnode refid="1942" relation="include">
-        </childnode>
-        <childnode refid="1946" relation="include">
-        </childnode>
-        <childnode refid="1992" relation="include">
-        </childnode>
-        <childnode refid="1943" relation="include">
-        </childnode>
-        <childnode refid="1958" relation="include">
-        </childnode>
-      </node>
-      <node id="1950">
-        <label>mutex</label>
-      </node>
-      <node id="1981">
-        <label>gsl/gsl_multifit.h</label>
-      </node>
-      <node id="1959">
-        <label>kukadu/robot/filters.hpp</label>
-        <link refid="filters_8hpp_source"/>
-        <childnode refid="1940" relation="include">
-        </childnode>
-        <childnode refid="1946" relation="include">
-        </childnode>
-      </node>
-      <node id="1986">
-        <label>geometry_msgs/Quaternion.h</label>
-      </node>
-      <node id="1949">
-        <label>thread</label>
-      </node>
-      <node id="1942">
-        <label>kukadu/robot/hardware.hpp</label>
-        <link refid="hardware_8hpp_source"/>
-        <childnode refid="1931" relation="include">
-        </childnode>
-        <childnode refid="1935" relation="include">
-        </childnode>
-        <childnode refid="1943" relation="include">
-        </childnode>
-      </node>
-      <node id="1978">
-        <label>gsl/gsl_linalg.h</label>
-      </node>
-      <node id="1964">
-        <label>stdio.h</label>
-      </node>
-      <node id="1987">
-        <label>kukadu/utils/gnuplot.hpp</label>
-        <link refid="gnuplot_8hpp_source"/>
-        <childnode refid="1934" relation="include">
-        </childnode>
-        <childnode refid="1931" relation="include">
-        </childnode>
-        <childnode refid="1932" relation="include">
-        </childnode>
-        <childnode refid="1965" relation="include">
-        </childnode>
-        <childnode refid="1963" relation="include">
         </childnode>
         <childnode refid="1988" relation="include">
         </childnode>
         <childnode refid="1989" relation="include">
         </childnode>
-        <childnode refid="1933" relation="include">
-        </childnode>
         <childnode refid="1990" relation="include">
         </childnode>
+        <childnode refid="1991" relation="include">
+        </childnode>
+        <childnode refid="1992" relation="include">
+        </childnode>
+        <childnode refid="1946" relation="include">
+        </childnode>
+        <childnode refid="1993" relation="include">
+        </childnode>
+        <childnode refid="1948" relation="include">
+        </childnode>
+        <childnode refid="1997" relation="include">
+        </childnode>
+        <childnode refid="1999" relation="include">
+        </childnode>
       </node>
-      <node id="1962">
-        <label>cstring</label>
-      </node>
-      <node id="1941">
-        <label>gsl/gsl_matrix.h</label>
-      </node>
-      <node id="1948">
+      <node id="1954">
         <label>memory</label>
       </node>
-      <node id="1970">
+      <node id="1976">
         <label>dirent.h</label>
       </node>
     </incdepgraph>
     <invincdepgraph>
-      <node id="1997">
-        <label>/home/c7031109/iis_robot_sw/iis_catkin_ws/src/kukadu/include/kukadu/storage.hpp</label>
+      <node id="2003">
+        <label>/home/andreasmennel/iis_robot_sw/iis_catkin_ws/src/kukadu/include/kukadu/storage.hpp</label>
         <link refid="storage_8hpp_source"/>
-        <childnode refid="1998" relation="include">
+        <childnode refid="2004" relation="include">
         </childnode>
       </node>
-      <node id="1995">
-        <label>/home/c7031109/iis_robot_sw/iis_catkin_ws/src/kukadu/include/kukadu/storage/sensorstorage.hpp</label>
+      <node id="2001">
+        <label>/home/andreasmennel/iis_robot_sw/iis_catkin_ws/src/kukadu/include/kukadu/storage/sensorstorage.hpp</label>
         <link refid="sensorstorage.hpp"/>
-        <childnode refid="1996" relation="include">
+        <childnode refid="2002" relation="include">
         </childnode>
-        <childnode refid="1997" relation="include">
+        <childnode refid="2003" relation="include">
         </childnode>
       </node>
-      <node id="1998">
-        <label>/home/c7031109/iis_robot_sw/iis_catkin_ws/src/kukadu/include/kukadu/kukadu.hpp</label>
+      <node id="2004">
+        <label>/home/andreasmennel/iis_robot_sw/iis_catkin_ws/src/kukadu/include/kukadu/kukadu.hpp</label>
         <link refid="kukadu_8hpp_source"/>
       </node>
-      <node id="1996">
-        <label>/home/c7031109/iis_robot_sw/iis_catkin_ws/src/kukadu/include/kukadu/robot/kinestheticteaching.hpp</label>
+      <node id="2002">
+        <label>/home/andreasmennel/iis_robot_sw/iis_catkin_ws/src/kukadu/include/kukadu/robot/kinestheticteaching.hpp</label>
         <link refid="kinestheticteaching_8hpp_source"/>
       </node>
     </invincdepgraph>
@@ -505,9 +507,9 @@
     <detaileddescription>
     </detaileddescription>
     <programlisting>
-<codeline lineno="1"><highlight class="preprocessor">#ifndef<sp/>KUKADU_SENSORSTORAGE_H</highlight><highlight class="normal"></highlight></codeline>
-<codeline lineno="2"><highlight class="normal"></highlight><highlight class="preprocessor">#define<sp/>KUKADU_SENSORSTORAGE_H</highlight><highlight class="normal"></highlight></codeline>
-<codeline lineno="3"><highlight class="normal"></highlight></codeline>
+<codeline lineno="1"><highlight class="preprocessor">#ifndef<sp/>KUKADU_SENSORSTORAGE_H</highlight></codeline>
+<codeline lineno="2"><highlight class="preprocessor"></highlight><highlight class="preprocessor">#define<sp/>KUKADU_SENSORSTORAGE_H</highlight></codeline>
+<codeline lineno="3"><highlight class="preprocessor"></highlight><highlight class="normal"></highlight></codeline>
 <codeline lineno="4"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&lt;string&gt;</highlight><highlight class="normal"></highlight></codeline>
 <codeline lineno="5"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&lt;vector&gt;</highlight><highlight class="normal"></highlight></codeline>
 <codeline lineno="6"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&lt;cstdlib&gt;</highlight><highlight class="normal"></highlight></codeline>
@@ -523,7 +525,7 @@
 <codeline lineno="16"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&lt;kukadu/types/kukadutypes.hpp&gt;</highlight><highlight class="normal"></highlight></codeline>
 <codeline lineno="17"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&lt;kukadu/storage/storagesingleton.hpp&gt;</highlight><highlight class="normal"></highlight></codeline>
 <codeline lineno="18"><highlight class="normal"></highlight></codeline>
-<codeline lineno="19"><highlight class="normal"></highlight><highlight class="keyword">namespace<sp/></highlight><highlight class="normal"><ref refid="namespacekukadu" kindref="compound">kukadu</ref><sp/>{</highlight></codeline>
+<codeline lineno="19"><highlight class="normal"></highlight><highlight class="keyword">namespace<sp/></highlight><highlight class="normal">kukadu<sp/>{</highlight></codeline>
 <codeline lineno="20"><highlight class="normal"></highlight></codeline>
 <codeline lineno="29" refid="classkukadu_1_1SensorStorage" refkind="compound"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">class<sp/></highlight><highlight class="normal"><ref refid="classkukadu_1_1SensorStorage" kindref="compound">SensorStorage</ref><sp/>:<sp/></highlight><highlight class="keyword">public</highlight><highlight class="normal"><sp/><ref refid="classkukadu_1_1TimedObject" kindref="compound">TimedObject</ref><sp/>{</highlight></codeline>
 <codeline lineno="30"><highlight class="normal"></highlight></codeline>
@@ -608,6 +610,6 @@
 <codeline lineno="109"><highlight class="normal"></highlight></codeline>
 <codeline lineno="110"><highlight class="normal"></highlight><highlight class="preprocessor">#endif</highlight></codeline>
     </programlisting>
-    <location file="/home/c7031109/iis_robot_sw/iis_catkin_ws/src/kukadu/include/kukadu/storage/sensorstorage.hpp"/>
+    <location file="/home/andreasmennel/iis_robot_sw/iis_catkin_ws/src/kukadu/include/kukadu/storage/sensorstorage.hpp"/>
   </compounddef>
 </doxygen>

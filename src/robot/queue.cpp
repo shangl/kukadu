@@ -217,6 +217,14 @@ namespace kukadu {
 
     }
 
+    void ControlQueue::start(){
+        startQueue();
+        if(getCurrentMode() != kukadu::KukieControlQueue::KUKA_JNT_IMP_MODE) {
+            stopCurrentMode();
+            switchMode(kukadu::KukieControlQueue::KUKA_JNT_IMP_MODE);
+        }
+    }
+
     ControlQueue::ControlQueue(StorageSingleton& storage, std::string robotName, std::string className) :
         JointHardware(storage, HARDWARE_ARM, loadTypeIdFromName(className), className, loadInstanceIdFromName(robotName), robotName) {
 

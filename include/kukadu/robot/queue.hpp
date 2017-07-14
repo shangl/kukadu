@@ -206,6 +206,8 @@ namespace kukadu {
          */
         KUKADU_SHARED_PTR<kukadu_thread> startQueue();
 
+        virtual void start();
+
         /**
          * \brief Returns the time between two cycles
          * @return cycle time
