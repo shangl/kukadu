@@ -335,7 +335,9 @@ void JointPtp::setJoints(std::vector<double> joints) {
 
 std::shared_ptr<ControllerResult> JointPtp::executeInternal() {
 
-    hardware->jointPtp(stdToArmadilloVec(this->joints));
+    if(hardware)
+        hardware->jointPtp(stdToArmadilloVec(this->joints));
+
     return nullptr;
 
 }

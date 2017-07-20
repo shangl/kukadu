@@ -11,26 +11,31 @@ Blockly.cake['skillloader'] = function (block) {
 
     var hardwareSelection = Blockly.cake.valueToCode(block, 'HARDWARE', Blockly.cake.ORDER_ATOMIC);
     var splitHardware = hardwareSelection.split(", ");
-    var hardwareCode = "";
+
+    for(var i = 0; i < splitHardware.length; i++) {
+        Blockly.cake.neededHardware_[splitHardware[i]] = "auto " + splitHardware[i] + " = hardwareFactory.loadHardware(\"" + splitHardware[i] + "\");\n" +
+                        splitHardware[i] + "->install();\n" +
+                        splitHardware[i] + "->start();\n";
+    }
+
+    var hardwareCode = "auto hardwareFactory = kukadu::HardwareFactory::get();";
     var hardwareVariableNames = [];
 
     for (var i = 0; i < splitHardware.length; i++) {
         var hardwareVariableName = "simLeftQueue" + skillCounter + i;
         hardwareCode += "auto " + hardwareVariableName + " = hardwareFactory.loadHardware(\"" + splitHardware[i] + "\");\n";
-        hardwareCode += hardwareVariableName + "->install();\n";
-        hardwareCode += hardwareVariableName + "->start();\n";
         hardwareVariableNames.push(hardwareVariableName);
     }
 
     var skillCode = "";
     var skillSelection = block.getCurrentSkill();
-    if (typeof skillSelection != 'undefined') {
+    if (typeof skillSelection !== 'undefined') {
         skillCode = "\nauto skill" + skillCounter + " = kukadu::SkillFactory::get().loadSkill(\"" + skillSelection.name + "\", {";
         for (var j = 0; j < hardwareVariableNames.length - 1; j++) {
             skillCode += hardwareVariableNames[j] + ", ";
         }
 
-        skillCode += hardwareVariableNames[hardwareVariableNames.length - 1] + "});\n\n"
+        skillCode += hardwareVariableNames[hardwareVariableNames.length - 1] + "});\n\n";
 
         var skillAttributeInformation = skillSelection.getAttributes();
 

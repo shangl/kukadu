@@ -315,7 +315,6 @@ var Databaseloader = new function () {
                             variableName = variableName.substr(0, 1).toUpperCase() + variableName.substr(1);
 
                             var attribute = new Attribute(variableName, dataType, "not defined");
-                            console.log(attribute);
                             attributes[attribute.name] = attribute;
                         }
                     }
@@ -352,15 +351,15 @@ function RoboConfig(id, hardwareInOrder) {
 function Skill(id, name, controller) {
     this.id = id;
     this.name = name;
-    this.controller = controller
+    this.controller = controller;
 
     this.setAttributes = function (attributes) {
         this.attributes = attributes;
-    }
+    };
 
     this.getAttributes = function () {
         return this.attributes;
-    }
+    };
 
     this.setConfigs = function (config) {
         this.roboConfig = config;

@@ -31,24 +31,19 @@ goog.require('Blockly.cake');
 Blockly.cake['main_block'] = function(block) {
   // Define a procedure with a return value.
   var funcName = 'main';
-  var branch = Blockly.cake.statementToCode(block, 'STACK');
+  var skillCode = Blockly.cake.statementToCode(block, 'STACK');
   if (Blockly.cake.STATEMENT_PREFIX) {
-    branch = Blockly.cake.prefixLines(
+    skillCode = Blockly.cake.prefixLines(
         Blockly.cake.STATEMENT_PREFIX.replace(/%1/g,
-        '\'' + block.id + '\''), Blockly.cake.INDENT) + branch;
+        '\'' + block.id + '\''), Blockly.cake.INDENT) + skillCode;
   }
   if (Blockly.cake.INFINITE_LOOP_TRAP) {
-    branch = Blockly.cake.INFINITE_LOOP_TRAP.replace(/%1/g,
-        '\'' + block.id + '\'') + branch;
+    skillCode = Blockly.cake.INFINITE_LOOP_TRAP.replace(/%1/g,
+        '\'' + block.id + '\'') + skillCode;
   }
-  var returnValue = Blockly.cake.valueToCode(block, 'RETURN',
-      Blockly.cake.ORDER_NONE) || '';
-  if (returnValue) {
-    returnValue = '  return ' + returnValue + ';\n';
-  }
-    else {
-      returnValue = '  return 0;\n';
-  }
+
+  var returnValue = "return EXIT_SUCCESS;\n";
+
   var args = [];
   var argTypes = [];
   var typePlusArgs = [];
@@ -87,11 +82,38 @@ Blockly.cake['main_block'] = function(block) {
         var allDefs = time.join('\n');
     }
 
-    var roscode = "  ros::init(argc, args, \"kukadu\");\n  ros::NodeHandle* node = new ros::NodeHandle();\n  usleep(1e6);\n  ros::AsyncSpinner spinner(10);\n  spinner.start();\n  kukadu::StorageSingleton& storage = kukadu::StorageSingleton::get();\n   auto& hardwareFactory = kukadu::HardwareFactory::get();\n\n";
+    var roscode = "  ros::init(argc, args, \"kukadu\");\n  " +
+        "ros::NodeHandle* node = new ros::NodeHandle();\n  " +
+        "usleep(1e6);\n  " +
+        "ros::AsyncSpinner spinner(10);\n  " +
+        "spinner.start();\n  " +
+        "kukadu::StorageSingleton& storage = kukadu::StorageSingleton::get();\n   " +
+        "auto& hardwareFactory = kukadu::HardwareFactory::get();\n\n";
 
-    var code = returnType + ' ' + funcName + '(' + typePlusArgs.join(', ') + ') {' + "\n" +
+    var executionType = block.getFieldValue('ExecutionMode');
+    var installSkill = block.getFieldValue('CheckBoxInstallSkill');
+    var skillName = block.getFieldValue('newSkillName');
+    Blockly.cake.activeSkill_ = skillName;
+    var installHardware = "";
+    var hardwareids = [];
+
+    for(var key in Blockly.cake.neededHardware_) {
+        hardwareids.push(key);
+        installHardware += Blockly.cake.neededHardware_[key];
+    }
+
+
+    console.log(installHardware);
+    var executeSkill = skillName + " skill(storage, {" + hardwareids + "});\nskill.execute();\n";
+
+    var codeClass = new CodeClass(skillName, skillCode);
+
+    var importsForMain = "#include \"../include/" + skillName + ".hpp\"\n"
+    + "#include \"" + skillName + ".cpp\"\n\n";
+
+    var code = importsForMain + returnType + ' ' + funcName + '(' + typePlusArgs.join(', ') + ') {' + "\n" +
         roscode +
-        allDefs.replace(/\n\n+/g, '\n\n').replace(/\n*$/, '\n') + branch + returnValue + '}';
+        allDefs.replace(/\n\n+/g, '\n\n').replace(/\n*$/, '\n') + installHardware + executeSkill + returnValue + '}\n\n\n\n' + codeClass.generateClass();
   code = Blockly.cake.scrub_(block, code);
   Blockly.cake.definitions_[funcName] = code;
   return null;
@@ -279,3 +301,73 @@ Blockly.cake['procedures_callnoreturn'] = function(block) {
   var code = funcName + '(' + args.join(', ') + ');\n';
   return code;
 };
+
+function CodeClass(name, code){
+    this.name = name;
+    this.code = code;
+
+    this.generateClass = function () {
+        var skillHeader = "//Skillheader for Skill\n" +
+            Blockly.cake.definitions_['include_cake_string'] + "\n";
+
+        var skillHeaderContent = "class " + name + " : public kukadu::Controller {\n" +
+            "\n" +
+            "        private:\n" +
+            "\n" +
+            "            std::vector< KUKADU_SHARED_PTR< kukadu::Hardware > > hardware;\n" +
+            "\n" +
+            "        protected:\n" +
+            "\n" +
+            "            virtual void createSkillFromThisInternal(std::string skillName);\n" +
+            "\n" +
+            "        public:\n" +
+            "\n" +
+            "            " + name + "(kukadu::StorageSingleton& storage, std::vector< KUKADU_SHARED_PTR< kukadu::Hardware > > hardware);\n" +
+            "\n" +
+            "            bool requiresGraspInternal();\n" +
+            "\n" +
+            "            bool producesGraspInternal();\n" +
+            "\n" +
+            "            std::shared_ptr<kukadu::ControllerResult> executeInternal();\n" +
+            "\n" +
+            "            std::string getClassName();\n" +
+            "\n" +
+            "        };";
+
+
+        skillHeader += skillHeaderContent;
+
+
+        var skillImplementation = "//Skillimplementation for Skill:\n" +
+            "#import <../include/" + name + ".hpp>\n";
+
+        skillImplementation += name + "::" + name + "(kukadu::StorageSingleton& storage, std::vector< KUKADU_SHARED_PTR< kukadu::Hardware > > hardware)\n" +
+            "    : Controller(storage, \"" + name + "\", hardware, 0.01) {\n" +
+            "\n" +
+            "    this->hardware = hardware;\n" +
+            "}\n" +
+            "\n" +
+            "bool " + name + "::requiresGraspInternal() {\n" +
+            "    return false;\n" +
+            "}\n" +
+            "\n" +
+            "bool " + name + "::producesGraspInternal() {\n" +
+            "    return false;\n" +
+            "}\n" +
+            "\n" +
+            "std::shared_ptr<kukadu::ControllerResult> " + name + "::executeInternal() {\n" + this.code + "\n" +
+            "}\n" +
+            "\n" +
+            "std::string " + name + "::getClassName() {\n" +
+            "    return \"" + name + "\";\n" +
+            "}\n" +
+            "\n" +
+            "void " + name + "::createSkillFromThisInternal(std::string skillName) {\n" +
+            "    // nothing to do\n" +
+            "}\n\n\n\n\n";
+
+
+
+        return skillHeader + skillImplementation;
+    }
+}

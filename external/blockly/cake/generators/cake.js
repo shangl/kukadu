@@ -102,6 +102,10 @@ Blockly.cake.init = function() {
     // Create a dictionary of definitions to be printed before the code.
     Blockly.cake.definitions_ = Object.create(null);
 
+    Blockly.cake.neededHardware_ = Object.create(null);
+
+    Blockly.cake.activeSkill_ = "";
+
     Blockly.cake.times_ = Object.create(null);
   // Create a dictionary mapping desired function names in definitions_
   // to actual function names (to avoid collisions with user functions).
