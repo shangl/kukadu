@@ -18,7 +18,7 @@ Blockly.cake['skillloader'] = function (block) {
                         splitHardware[i] + "->start();\n";
     }
 
-    var hardwareCode = "auto hardwareFactory = kukadu::HardwareFactory::get();";
+    var hardwareCode = "";
     var hardwareVariableNames = [];
 
     for (var i = 0; i < splitHardware.length; i++) {

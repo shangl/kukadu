@@ -31,7 +31,9 @@ goog.require('Blockly.cake');
 Blockly.cake['main_block'] = function(block) {
   // Define a procedure with a return value.
   var funcName = 'main';
-  var skillCode = Blockly.cake.statementToCode(block, 'STACK');
+  var skillCode = 'auto hardwareFactory = kukadu::HardwareFactory::get();\n' + Blockly.cake.statementToCode(block, 'STACK');
+
+
   if (Blockly.cake.STATEMENT_PREFIX) {
     skillCode = Blockly.cake.prefixLines(
         Blockly.cake.STATEMENT_PREFIX.replace(/%1/g,
