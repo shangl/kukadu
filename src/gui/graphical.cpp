@@ -123,22 +123,13 @@ namespace kukadu {
         QObject::connect(webView, SIGNAL(loadFinished(bool)), this, SLOT(onStart()));
         webView->load(QUrl(indexFilePath.c_str()));
 
-        auto simulateButton = new QPushButton("Simulate Skill");
-        QObject::connect(simulateButton, SIGNAL(clicked()), this, SLOT(simulateSkillSlot()));
-
-        auto executeButton = new QPushButton("Execute Skill");
-        QObject::connect(executeButton, SIGNAL(clicked()), this, SLOT(executeSkillSlot()));
-
-        auto installButton = new QPushButton("Install Skill");
-        QObject::connect(installButton, SIGNAL(clicked()), this, SLOT(installSkillSlot()));
-
+        auto simulateButton = new QPushButton("Execute");
+        QObject::connect(simulateButton, SIGNAL(clicked()), this, SLOT(executeSlot()));
 
         mainView->setLayout(mainLayout);
         mainLayout->addLayout(buttonContainer, 1, 0);
         mainLayout->addWidget(webView, 0, 0);
         buttonContainer->addWidget(simulateButton);
-        buttonContainer->addWidget(executeButton);
-        buttonContainer->addWidget(installButton);
         buttonContainer->addWidget(packeNameLineEdit);
 
         return mainView;
@@ -148,7 +139,7 @@ namespace kukadu {
         loadInformationFromDatabase();
     }
 
-    void KukaduGraphical::simulateSkillSlot() {
+    void KukaduGraphical::executeSlot() {
         std::string packageName = getPackageName();
 
         std::string catkinSources = resolvePath("$KUKADU_HOME/../");
@@ -163,7 +154,6 @@ namespace kukadu {
         writeToFileInPackage("src/main.cpp", getCodeBlocks()[0]);
         writeToFileInPackage("include/" + skillName + ".hpp", getCodeBlocks()[1]);
         writeToFileInPackage("src/" + skillName + ".cpp", getCodeBlocks()[2]);
-
 
         argumentString = catkinSources + packageName + "/CMakeLists.txt";
         QFile cmakeInFile(argumentString.c_str());
@@ -205,7 +195,6 @@ namespace kukadu {
         cmakeInFile.remove();
         argumentString = catkinSources + packageName + "/CMakeLists.txt";
         cmakeOutFile.rename(argumentString.c_str());
-
 
         argumentString = "cd " + catkinWorkingDirectory + ";";
         argumentString += getCatkinMakeString(packageName) + ";";

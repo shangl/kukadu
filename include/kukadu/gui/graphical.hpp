@@ -60,9 +60,7 @@ namespace kukadu {
         ~KukaduGraphical();
 
     public slots:
-      void simulateSkillSlot();
-      void executeSkillSlot();
-      void installSkillSlot();
+      void executeSlot();
       void onStart();
 
     };
