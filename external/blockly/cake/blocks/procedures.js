@@ -35,12 +35,15 @@ Blockly.Blocks['main_block'] = {
         var name = Blockly.Procedures.findLegalName(
             Blockly.Msg.PROCEDURES_DEFRETURN_PROCEDURE, this);
         this.appendDummyInput()
-            .appendField(Blockly.Msg.MAIN_BLOCK);
+            .appendField(Blockly.Msg.MAIN_BLOCK)
+            .appendField(new Blockly.FieldDropdown([['Simulate', 'Simulate'], ['Execute', 'Execute']]), "ExecutionMode")
+            .appendField(Blockly.Msg.MAIN_BLOCK_INSTALL)
+            .appendField(new Blockly.FieldCheckbox('FALSE'), 'CheckBoxInstallSkill');
+        this.appendDummyInput()
+            .appendField("Skillname: ")
+            .appendField(new Blockly.FieldTextInput("ultimateSkill"), "newSkillName");
         this.appendStatementInput('STACK')
             .appendField(Blockly.Msg.PROCEDURES_DEFRETURN_DO);
-        this.appendValueInput('RETURN')
-            .setAlign(Blockly.ALIGN_RIGHT)
-            .appendField(Blockly.Msg.MAIN_BLOCK_RETURN);
         this.setTooltip(Blockly.Msg.PROCEDURES_DEFRETURN_TOOLTIP);
         this.arguments_ = [];
         this.types_ = [];
@@ -49,10 +52,7 @@ Blockly.Blocks['main_block'] = {
         this.arguments_[0] = 'argc';
         this.arguments_[1] = 'args';
         this.statementConnection_ = null;
-        this.setPreviousStatement(true, ["define_declare"]);
-        this.setNextStatement(true, ["procedures_defnoreturn", "procedures_defreturn"]);
 
-        Blockly.Blocks.setCheckVariable(this, 'int', 'RETURN');
     },
     getName: function(){
         return ['Main'];

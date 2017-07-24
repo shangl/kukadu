@@ -39,8 +39,8 @@ namespace kukadu {
 
     private:
 
-        static auto constexpr DEFAULT_WIDTH = 1600;
-        static auto constexpr DEFAULT_HEIGHT = 800;
+        static auto constexpr DEFAULT_WIDTH = 1800;
+        static auto constexpr DEFAULT_HEIGHT = 900;
 
         QTabWidget* mainTab;
         QWebView* webView;
@@ -49,6 +49,10 @@ namespace kukadu {
         void loadInformationFromDatabase();
         QGroupBox* createUI();
         std::string getCatkinMakeString(const std::string& packageName);
+        std::vector< QString > getCodeBlocks();
+        std::string getPackageName();
+        void writeToFileInPackage(std::string filename, QString content);
+        std::string getCurrentSkillName();
 
     public:
 
@@ -56,8 +60,7 @@ namespace kukadu {
         ~KukaduGraphical();
 
     public slots:
-
-      void clickedSlot();
+      void executeSlot();
       void onStart();
 
     };

@@ -511,7 +511,8 @@ Blockly.Msg.DEFINE_GET_TITLE = '';
 Blockly.Msg.DEFINE_SET_TYPE_CONSTANT = 'constant';
 Blockly.Msg.DEFINE_SET_TYPE_MACRO = 'macro';
 
-Blockly.Msg.MAIN_BLOCK = 'main with: int argc, char** args';
+Blockly.Msg.MAIN_BLOCK = 'Execution Type: ';
+Blockly.Msg.MAIN_BLOCK_INSTALL = 'Install: ';
 Blockly.Msg.MAIN_BLOCK_RETURN = "int type return value:";
 
 Blockly.Msg.CONTROLS_SWITCH = 'switch ';

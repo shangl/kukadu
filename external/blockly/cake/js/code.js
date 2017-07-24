@@ -72,6 +72,10 @@ function getCode() {
   return Blockly.cake.workspaceToCode();
 }
 
+function getCurrentSkillName(){
+    return Blockly.cake.activeSkill_;
+}
+
 function initializeDatabaseloader(jsonString){
   Databaseloader.init(JSON.parse(jsonString));
 }
