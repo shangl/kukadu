@@ -39,12 +39,17 @@ KUKADU_SHARED_PTR<Hardware> HardwareFactory::loadHardware(std::string hardwareNa
 
 
     auto& storage = StorageSingleton::get();
-    auto tmp = hardwareFactories[className](storage, hardwareName, true);
+    auto tmp = hardwareFactories[className](storage, hardwareName, this->simulation);
 
-    auto& created = createdHardware[hardwareName] = hardwareFactories[className](StorageSingleton::get(), hardwareName, true);
+    auto& created = createdHardware[hardwareName] = hardwareFactories[className](StorageSingleton::get(), hardwareName, this->simulation);
 
     return created;
 
+}
+
+
+void HardwareFactory::setSimulation(bool isSimulation) {
+    this->simulation = isSimulation;
 }
 
 std::vector<std::string> HardwareFactory::listAvailableHardware() {

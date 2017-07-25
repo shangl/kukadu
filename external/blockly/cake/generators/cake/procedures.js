@@ -88,9 +88,14 @@ Blockly.cake['main_block'] = function (block) {
         "ros::AsyncSpinner spinner(10);\n" +
         "spinner.start();\n" +
         "kukadu::StorageSingleton& storage = kukadu::StorageSingleton::get();\n" +
-        "auto& hardwareFactory = kukadu::HardwareFactory::get();\n\n";
+        "auto& hardwareFactory = kukadu::HardwareFactory::get();\n";
 
     var executionType = block.getFieldValue('ExecutionMode');
+    if(executionType === 'Simulate') {
+        roscode += "hardwareFactory.setSimulation(true);"
+    } else {
+        roscode += "hardwareFactory.setSimulation(false);"
+    }
 
     var installHardware = "";
     var hardwareids = [];

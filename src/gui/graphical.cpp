@@ -297,9 +297,7 @@ namespace kukadu {
         argumentString += getCatkinMakeString(packageName) + ";";
         argumentString += "cd devel/lib/" + packageName + ";";
         argumentString += "./" + packageName;
-        cout << argumentString << endl;
         system(argumentString.c_str());
-        cout << "blub" << endl;
     }
 
     void KukaduGraphical::writeToFileInPackage(std::string filename, QString content){

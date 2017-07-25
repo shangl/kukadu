@@ -9,6 +9,7 @@ namespace kukadu {
     class HardwareFactory {
 
     private:
+        bool simulation = true;
 
         StorageSingleton& storage;
 
@@ -28,6 +29,7 @@ namespace kukadu {
 
         bool hardwareExists(std::string hardwareName);
 
+        void setSimulation(bool isSimulation);
     };
 
 }
