@@ -69,11 +69,18 @@ function downloadCode() {
 }
 
 function getCode() {
+    console.log("got code");
   return Blockly.cake.workspaceToCode();
 }
 
 function getCurrentSkillName(){
     return Blockly.cake.activeSkill_;
+}
+
+function isSkillInstalled() {
+    console.log(Blockly.cake.installSkill);
+
+    return Blockly.cake.installSkill;
 }
 
 function initializeDatabaseloader(jsonString){

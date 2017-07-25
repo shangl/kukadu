@@ -11,4 +11,5 @@
     #include <kukadu/learning.hpp>
     #include <kukadu/manipulation.hpp>
     #include <kukadu/statistics/statistics.hpp>
+    #include <kukadu/generated_skills.hpp>
 #endif

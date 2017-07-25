@@ -24,6 +24,7 @@ namespace kukadu {
     public:
 
         static SkillFactory& get();
+        static void addSkill(std::string skillName);
 
         KUKADU_SHARED_PTR<Controller> loadSkill(std::string skillName, std::vector<KUKADU_SHARED_PTR<Hardware> > hardwareComponents);
 

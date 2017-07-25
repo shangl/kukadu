@@ -95,7 +95,6 @@ Blockly.cake['main_block'] = function (block) {
     var installHardware = "";
     var hardwareids = [];
     for (var key in Blockly.cake.neededHardware_) {
-
         hardwareids.push(key);
         installHardware += Blockly.cake.neededHardware_[key];
     }
@@ -103,9 +102,10 @@ Blockly.cake['main_block'] = function (block) {
 
     var skillName = block.getFieldValue('newSkillName');
     Blockly.cake.activeSkill_ = skillName;
-    var executeSkill = skillName + " skill(storage, {" + hardwareids + "});\nskill.execute();\n";
+    var executeSkill = "kukadu::skill::" + skillName + " skill(storage, {" + hardwareids + "});\nskill.execute();\n";
 
-    var installSkill = block.getFieldValue('CheckBoxInstallSkill');
+    var installSkill = block.getFieldValue("CheckBoxInstallSkill");
+    Blockly.cake.installSkill = installSkill;
 
     if (installSkill === 'TRUE') {
         installSkill = "try { skill.createSkillFromThis(\"" + skillName + "\"); } catch(kukadu::KukaduException& ex) {}\n";
@@ -114,9 +114,6 @@ Blockly.cake['main_block'] = function (block) {
     }
 
     var codeClass = new CodeClass(skillName, skillCode);
-
-    var importsForMain = "#include \"../include/" + skillName + ".hpp\"\n"
-        + "#include \"" + skillName + ".cpp\"\n\n";
 
     var funcName = 'main';
     var returnValue = "return EXIT_SUCCESS;\n";
@@ -127,7 +124,7 @@ Blockly.cake['main_block'] = function (block) {
     installSkill = Blockly.cake.prefixLines(installSkill, Blockly.cake.INDENT);
     returnValue = Blockly.cake.prefixLines(returnValue, Blockly.cake.INDENT);
 
-    var code = importsForMain + returnType + ' ' + funcName + '(' + typePlusArgs.join(', ') + ') {' + "\n" +
+    var code = returnType + ' ' + funcName + '(' + typePlusArgs.join(', ') + ') {' + "\n" +
         roscode +
         allDefs.replace(/\n\n+/g, '\n\n').replace(/\n*$/, '\n') + installHardware + executeSkill + installSkill + returnValue + '}\n\n\n\n' + codeClass.generateClass();
     code = Blockly.cake.scrub_(block, code);
@@ -327,7 +324,8 @@ function CodeClass(name, code) {
         var skillHeader = "//Skillheader for Skill\n" +
             Blockly.cake.definitions_['include_cake_string'] + "\n";
 
-        var skillHeaderContent = "class " + name + " : public kukadu::Controller {\n" +
+        var skillHeaderContent = "namespace kukadu {\n\tnamespace skill\n\t\t{" +
+            "class " + name + " : public kukadu::Controller {\n" +
             "\n" +
             "private:\n" +
             "\n" +
@@ -349,16 +347,17 @@ function CodeClass(name, code) {
             "\n" +
             "\tstd::string getClassName();\n" +
             "\n" +
-            "};";
+            "};\n}\n}";
 
 
         skillHeader += skillHeaderContent;
 
 
         var skillImplementation = "//Skillimplementation for Skill:\n" +
-            "#import <../include/" + name + ".hpp>\n";
+            "#import <kukadu/generated_skills/" + name + ".hpp>\n";
 
-        skillImplementation += name + "::" + name + "(kukadu::StorageSingleton& storage, std::vector< KUKADU_SHARED_PTR< kukadu::Hardware > > hardware)\n" +
+        skillImplementation += "namespace kukadu {\n\tnamespace skill\n\t\t{" +
+            name + "::" + name + "(kukadu::StorageSingleton& storage, std::vector< KUKADU_SHARED_PTR< kukadu::Hardware > > hardware)\n" +
             " : Controller(storage, \"" + name + "\", hardware, 0.01) {\n" +
             "\n" +
             "\tthis->hardware = hardware;\n" +
@@ -372,7 +371,8 @@ function CodeClass(name, code) {
             "\treturn false;\n" +
             "}\n" +
             "\n" +
-            "std::shared_ptr<kukadu::ControllerResult> " + name + "::executeInternal() {\n" + this.code + "\n" +
+            "std::shared_ptr<kukadu::ControllerResult> " + name + "::executeInternal() {\n" +
+            Blockly.cake.prefixLines(this.code, Blockly.cake.INDENT) + "\n" +
             "}\n" +
             "\n" +
             "std::string " + name + "::getClassName() {\n" +
@@ -381,7 +381,7 @@ function CodeClass(name, code) {
             "\n" +
             "void " + name + "::createSkillFromThisInternal(std::string skillName) {\n" +
             "\t// nothing to do\n" +
-            "}\n\n\n\n\n";
+            "}\n}\n}\n\n\n\n\n";
 
         return skillHeader + skillImplementation;
     }

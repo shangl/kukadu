@@ -67,6 +67,19 @@ Blockly.Blocks['main_block'] = {
             ['dbchar', 'p', 'args', 'Main', this.getRelativeToSurfaceXY().y, '***']
         ];
         return paramList;
+    },
+
+    onchange: function(){
+        Blockly.cake.installSkill = this.getFieldValue('CheckBoxInstallSkill');
+        console.log(Blockly.cake.installSkill);
+
+        if (!this.workspace) {
+            Blockly.cake.installSkill = false;
+            console.log(Blockly.cake.installSkill);
+
+            // Block has been deleted.
+            return;
+        }
     }
 };
 

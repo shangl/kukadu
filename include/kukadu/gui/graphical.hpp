@@ -52,7 +52,10 @@ namespace kukadu {
         std::vector< QString > getCodeBlocks();
         std::string getPackageName();
         void writeToFileInPackage(std::string filename, QString content);
+        void createProjectInKukadu();
+        void writeToFileAtPath(std::string filepath, QString content);
         std::string getCurrentSkillName();
+        bool isSkillInstalled();
 
     public:
 

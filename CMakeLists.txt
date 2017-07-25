@@ -115,6 +115,7 @@ link_directories(${PYTH_LIB_PATH})
 
 add_subdirectory(external/backward-cpp)
 
+AUX_SOURCE_DIRECTORY(src/generated_skills KUKADUSRC)
 AUX_SOURCE_DIRECTORY(src/robot/ KUKADUSRC)
 AUX_SOURCE_DIRECTORY(src/utils/ KUKADUSRC)
 AUX_SOURCE_DIRECTORY(src/robot/ KUKADUSRC)

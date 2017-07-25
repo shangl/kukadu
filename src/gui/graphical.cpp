@@ -1,10 +1,10 @@
 #include <kukadu/gui/graphical.hpp>
+#include <kukadu/kukadu.hpp>
 
 // very nasty tweak
 //#include <QtWidgets/../QtWebKitWidgets/QWebView>
 //#include <QtWidgets/../QtWebKitWidgets/QWebPage>
 //#include <QtWidgets/../QtWebKitWidgets/QWebFrame>
-
 
 using namespace std;
 
@@ -140,6 +140,8 @@ namespace kukadu {
     }
 
     void KukaduGraphical::executeSlot() {
+        createProjectInKukadu();
+        /*
         std::string packageName = getPackageName();
 
         std::string catkinSources = resolvePath("$KUKADU_HOME/../");
@@ -200,7 +202,104 @@ namespace kukadu {
         argumentString += getCatkinMakeString(packageName) + ";";
         argumentString += "cd devel/lib/" + packageName + ";";
         argumentString += "./" + packageName;
+        system(argumentString.c_str());*/
+    }
+
+    void KukaduGraphical::createProjectInKukadu() {
+        std::string packageName = getPackageName();
+
+        std::string catkinSources = resolvePath("$KUKADU_HOME/../");
+        std::string catkinWorkingDirectory = catkinSources + "../";
+        std::string sourceFolder = resolvePath("$KUKADU_HOME/src/generated_skills");
+        std::string includeFolder = resolvePath("$KUKADU_HOME/include/kukadu/generated_skills");
+
+        std::string argumentString =
+                "cd " + sourceFolder + ";rm -r " + packageName + ";" +
+                "cd " + includeFolder + ";rm -r " + packageName +";" +
+                "cd " + catkinSources + ";rm -r " + packageName +";" +
+                "catkin_create_pkg " + packageName +
+                " geometry_msgs kukadu;cd " + packageName + ";mkdir src";
         system(argumentString.c_str());
+
+        std::string skillName = getCurrentSkillName();
+        writeToFileInPackage("src/main.cpp", getCodeBlocks()[0]);
+        writeToFileAtPath(includeFolder + "/" + skillName + ".hpp", getCodeBlocks()[1]);
+        writeToFileAtPath(sourceFolder + "/" + skillName + ".cpp", getCodeBlocks()[2]);
+
+        std::string gskillHFilePath = catkinSources + "/kukadu/include/kukadu/generated_skills.hpp";
+        QFile generatedSkillsHeaderFile(QString::fromStdString(gskillHFilePath));
+        generatedSkillsHeaderFile.open(QIODevice::ReadOnly);
+        QTextStream gskillHFStream(&generatedSkillsHeaderFile);
+        QString textOfFile("");
+        while (!gskillHFStream.atEnd()) {
+            QString line = gskillHFStream.readLine();
+
+            if(line.startsWith("#endif")) {
+                string includeLine = "\t#include <kukadu/generated_skills/" + skillName + ".hpp>\n";
+                textOfFile += QString::fromStdString(includeLine);
+            }
+
+            textOfFile += line + "\n";
+        }
+
+        generatedSkillsHeaderFile.close();
+        generatedSkillsHeaderFile.open(QIODevice::WriteOnly | QIODevice::Text);
+        gskillHFStream << textOfFile;
+        generatedSkillsHeaderFile.close();
+
+
+        argumentString = catkinSources + packageName + "/CMakeLists.txt";
+        QFile cmakeInFile(argumentString.c_str());
+        argumentString = catkinSources + packageName + "/CMakeLists.txt1";
+        QFile cmakeOutFile(argumentString.c_str());
+        cmakeInFile.open(QIODevice::ReadOnly);
+        cmakeOutFile.open(QIODevice::WriteOnly);
+
+        QTextStream streamIn(&cmakeInFile), streamOut(&cmakeOutFile);
+
+        int arraysize = 124;
+        QString textToAdd[arraysize];
+        textToAdd[3] = QString("set(CMAKE_BUILD_TYPE Debug)");
+        textToAdd[5] = QString(
+                "include(CheckCXXCompilerFlag)\r\nCHECK_CXX_COMPILER_FLAG(\"-std=c++11\" COMPILER_SUPPORTS_CXX11)\r\nCHECK_CXX_COMPILER_FLAG(\"-std=c++0x\" COMPILER_SUPPORTS_CXX0X)\r\nif(COMPILER_SUPPORTS_CXX11)\r\nset(CMAKE_CXX_FLAGS \"${CMAKE_CXX_FLAGS} -std=c++11\")\r\nadd_definitions(-DCPP11SUPPORTED)\r\nelseif(COMPILER_SUPPORTS_CXX0X)\r\nset(CMAKE_CXX_FLAGS \"${CMAKE_CXX_FLAGS} -std=c++0x\")\r\nadd_definitions(-DCPP11SUPPORTED)\r\nelse()\r\nmessage(STATUS \"The compiler ${CMAKE_CXX_COMPILER} has no C++11 support. Please use a different C++ compiler.\")\r\nendif()");
+        argumentString = "add_executable(" + packageName + " src/main.cpp)\r\ntarget_link_libraries(" + packageName +
+                         " ${catkin_LIBRARIES} kukadu kukaduvision)";
+        textToAdd[123] = QString(argumentString.c_str());
+
+        int i = 0;
+        while (!streamIn.atEnd()) {
+            if (i < arraysize) {
+                auto data = textToAdd[i];
+                if (data != NULL) {
+                    streamOut << data << "\r\n";
+                }
+            }
+
+            QString line = streamIn.readLine();
+            if (!line.startsWith("#")) {
+                streamOut << line << "\r\n";
+            }
+
+            i++;
+        }
+        cmakeInFile.close();
+        cmakeOutFile.close();
+
+        cmakeInFile.remove();
+        argumentString = catkinSources + packageName + "/CMakeLists.txt";
+        cmakeOutFile.rename(argumentString.c_str());
+
+        if(isSkillInstalled()) {
+            SkillFactory::addSkill(skillName);
+        }
+
+        argumentString = "cd " + catkinWorkingDirectory + ";";
+        argumentString += getCatkinMakeString(packageName) + ";";
+        argumentString += "cd devel/lib/" + packageName + ";";
+        argumentString += "./" + packageName;
+        cout << argumentString << endl;
+        system(argumentString.c_str());
+        cout << "blub" << endl;
     }
 
     void KukaduGraphical::writeToFileInPackage(std::string filename, QString content){
@@ -208,7 +307,12 @@ namespace kukadu {
         std::string packageName = getPackageName();
         std::string catkinSources = resolvePath("$KUKADU_HOME/../");
         std::string argumentString = catkinSources + packageName + "/" + filename;
-        QFile writeFile(argumentString.c_str());
+        writeToFileAtPath(argumentString, content);
+    }
+
+    void KukaduGraphical::writeToFileAtPath(std::string filepath, QString content){
+
+        QFile writeFile(QString::fromStdString(filepath));
         if (writeFile.exists()) {
             writeFile.remove();
         }
@@ -227,7 +331,6 @@ namespace kukadu {
 
         cmakeCacheFile.open(QIODevice::ReadOnly);
         QTextStream inputStream(&cmakeCacheFile);
-
 
         std::string catkinMakeString = "";
         while (!inputStream.atEnd() && catkinMakeString.empty()) {
@@ -256,12 +359,10 @@ namespace kukadu {
         return catkinMakeString;
     }
 
-    void KukaduGraphical::executeSkillSlot() {
-        QMessageBox::question(this, "Test", "Quit?", QMessageBox::Yes|QMessageBox::No);
-    }
+    bool KukaduGraphical::isSkillInstalled(){
+        auto isSkillInstalled = webView->page()->mainFrame()->evaluateJavaScript("isSkillInstalled()").toString().toStdString();
 
-    void KukaduGraphical::installSkillSlot() {
-        QMessageBox::question(this, "Test", "Quit?", QMessageBox::Yes|QMessageBox::No);
+        return isSkillInstalled == "TRUE";
     }
 
     std::string KukaduGraphical::getPackageName(){
