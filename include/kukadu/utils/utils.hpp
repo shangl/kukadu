@@ -42,7 +42,6 @@
 #include <kukadu/utils/types.hpp>
 #include <kukadu/utils/gnuplot.hpp>
 #include <kukadu/robot/hardware.hpp>
-#include <kukadu/control/controller.hpp>
 #include <kukadu/utils/kukadutokenizer.hpp>
 
 namespace kukadu {
@@ -178,8 +177,6 @@ namespace kukadu {
     tf::Transform affineTransMatrixToTf(arma::mat transMatrix);
 
     std::vector<std::string> readFunctionSignature(std::string prettyFunc);
-
-    std::vector<KUKADU_SHARED_PTR<Hardware> > mergeHardware(std::vector<KUKADU_SHARED_PTR<kukadu::Controller> > controllers);
 
     template<typename S, typename T> std::vector<T> castVector(std::vector<S> vector) {
 

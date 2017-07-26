@@ -5,6 +5,7 @@
 #include <string>
 #include <pcl/point_cloud.h>
 #include <pcl/point_types.h>
+#include <kukadu/robot/hardware.hpp>
 #include <sensor_msgs/PointCloud2.h>
 #include <kukadu/types/kukadutypes.hpp>
 #include <kukadu/vision/pcstdtrans.hpp>
@@ -12,7 +13,7 @@
 
 namespace kukadu {
 
-    class Kinect {
+    class Kinect : public Hardware {
 
     private:
 
@@ -22,6 +23,8 @@ namespace kukadu {
         bool keepRunning;
         bool doTransform;
         bool firstCloudSet;
+
+        bool isStarted;
 
         bool pcRequested;
 
@@ -35,6 +38,7 @@ namespace kukadu {
 
         bool kinectFrameSet;
         std::string kinectFrame;
+        KUKADU_SHARED_PTR<kukadu_thread> listenerThread;
 
         KUKADU_SHARED_PTR<tf::TransformListener> transformListener;
 
@@ -51,11 +55,21 @@ namespace kukadu {
         void callbackKinectPointCloud(const sensor_msgs::PointCloud2& pc);
         void construct(std::string kinectTopic, std::string targetFrame, ros::NodeHandle node, bool doTransform = true);
 
+    protected:
+
+        virtual void installHardwareTypeInternal();
+        virtual void installHardwareInstanceInternal();
+
     public:
 
-        Kinect(ros::NodeHandle node, bool doTransorm = true);
-        Kinect(std::string kinectTopic, std::string targetFrame, ros::NodeHandle node, bool doTransform = true);
-        Kinect(std::string kinectTopic, ros::NodeHandle node, bool doTransform = true);
+        Kinect(StorageSingleton& dbStorage, std::string hardwareName);
+        Kinect(StorageSingleton& dbStorage, ros::NodeHandle node, bool doTransorm = true);
+        Kinect(StorageSingleton& dbStorage, std::string kinectTopic, std::string targetFrame, ros::NodeHandle node, bool doTransform = true);
+        Kinect(StorageSingleton& dbStorage, std::string kinectTopic, ros::NodeHandle node, bool doTransform = true);
+
+        ~Kinect();
+
+        virtual void start();
 
         void stopSensing();
         void visualizeCurrentPc();
@@ -75,6 +89,15 @@ namespace kukadu {
         pcl::PointCloud<pcl::PointXYZI>::Ptr getCurrentIntensityPointCloud();
 
         KUKADU_SHARED_PTR<kukadu_thread> startSensing();
+
+        virtual void storeCurrentSensorDataToDatabase();
+        virtual double getPreferredPollingFrequency();
+
+        /* returns a vector of sensor data of the given hardware and the corresponding time */
+        /* the maximum duration of the whole exported series is 1 hour (3600000 ms) */
+        virtual std::vector<std::pair<long long int, arma::vec> > loadData(long long int startTime, long long int endTime,
+                                                                           long long int maxTotalDuration = 3600000,
+                                                                           long long int maxTimeStepDifference = 5000);
 
     };
 

@@ -2,25 +2,29 @@
 #include <utility>
 #include <sstream>
 #include <iostream>
-#include <kukadu/utils/utils.hpp>
-#include <kukadu/manipulation/skillfactory.hpp>// include all the controllers from which skills can be generated
-#include <kukadu/control/dmp.hpp>
 #include <QtCore/QFile>
 #include <QtCore/QTextStream>
+#include <kukadu/utils/utils.hpp>
+#include <kukadu/control/dmp.hpp>
 #include <kukadu/generated_skills.hpp>
+#include <kukadu/manipulation/skillfactory.hpp>
 
 using namespace std;
 namespace kukadu {
+
     std::map<std::string, std::function<KUKADU_SHARED_PTR<Controller>(
-            StorageSingleton &, int, int, std::vector<KUKADU_SHARED_PTR<Hardware> >)> > SkillFactory::skillFactories{
-        {"DMPExecutor", [](StorageSingleton &storage, int skillId, int controllerType, std::vector<KUKADU_SHARED_PTR<Hardware> > hardwareComponents) {
+            StorageSingleton&, int, int, std::vector<KUKADU_SHARED_PTR<Hardware> >)> > SkillFactory::skillFactories{
+        {"DMPExecutor", [](StorageSingleton& storage, int skillId, int controllerType, std::vector<KUKADU_SHARED_PTR<Hardware> > hardwareComponents) {
         return make_shared<DMPExecutor>(storage, skillId, KUKADU_DYNAMIC_POINTER_CAST<ControlQueue>(hardwareComponents.front()));
         }},
-        {"JointPtp", [](StorageSingleton &storage, int skillId, int controllerType, std::vector<KUKADU_SHARED_PTR<Hardware> > hardwareComponents) {
+        {"JointPtp", [](StorageSingleton& storage, int skillId, int controllerType, std::vector<KUKADU_SHARED_PTR<Hardware> > hardwareComponents) {
             return make_shared<JointPtp>(storage, KUKADU_DYNAMIC_POINTER_CAST<JointHardware>(hardwareComponents.front()));
         }},
-        {"CartesianPtp", [](StorageSingleton &storage, int skillId, int controllerType, std::vector<KUKADU_SHARED_PTR<Hardware> > hardwareComponents) {
+        {"CartesianPtp", [](StorageSingleton& storage, int skillId, int controllerType, std::vector<KUKADU_SHARED_PTR<Hardware> > hardwareComponents) {
             return make_shared<CartesianPtp>(storage, KUKADU_DYNAMIC_POINTER_CAST<ControlQueue>(hardwareComponents.front()));
+        }},
+        {"LocalizeObject", [](StorageSingleton& storage, int skillId, int controllerType, std::vector<KUKADU_SHARED_PTR<Hardware> > hardwareComponents) {
+            return make_shared<LocalizeObject>(storage, KUKADU_DYNAMIC_POINTER_CAST<Kinect>(hardwareComponents.front()));
         }}
         //insertSkill
         //at this line further skills will be inserted automatically - do not remove it
@@ -34,6 +38,7 @@ namespace kukadu {
     }
 
     void SkillFactory::addSkill(std::string skillName) {
+
         std::string skillText = ",{\n\t\t\t\"" + skillName + "\"" +
                                 ", [](StorageSingleton& storage, int skillId, int controllerType, std::vector<KUKADU_SHARED_PTR<Hardware> > hardwareComponents) {\n" +
                                 "\t\t\t\treturn make_shared<skill::" + skillName +

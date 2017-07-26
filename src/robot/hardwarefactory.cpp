@@ -1,3 +1,4 @@
+#include <kukadu/vision/kinect.hpp>
 #include <kukadu/robot/kukiehand.hpp>
 #include <kukadu/robot/kukiequeue.hpp>
 #include <kukadu/robot/hardwarefactory.hpp>
@@ -15,6 +16,11 @@ std::map<std::string, std::function<KUKADU_SHARED_PTR<Hardware>(StorageSingleton
     {
         "KukieHand", [](StorageSingleton& storage, std::string hardwareName, bool simulation) {
             return make_shared<KukieHand>(storage, hardwareName, simulation);
+        }
+    },
+    {
+        "Kinect", [](StorageSingleton& storage, std::string hardwareName, bool simulation) {
+            return make_shared<Kinect>(storage, hardwareName);
         }
     }
 };
@@ -37,11 +43,8 @@ KUKADU_SHARED_PTR<Hardware> HardwareFactory::loadHardware(std::string hardwareNa
     auto hardwareId = storage.getCachedLabelId("hardware_instances", "hardware_id", "instance_name", hardwareName);
     auto className = storage.getCachedLabel("hardware", "hardware_id", "hardware_name", hardwareId);
 
-
     auto& storage = StorageSingleton::get();
-    auto tmp = hardwareFactories[className](storage, hardwareName, this->simulation);
-
-    auto& created = createdHardware[hardwareName] = hardwareFactories[className](StorageSingleton::get(), hardwareName, this->simulation);
+    auto& created = createdHardware[hardwareName] = hardwareFactories[className](storage, hardwareName, this->simulation);
 
     return created;
 

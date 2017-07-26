@@ -4,6 +4,7 @@
 #include <kukadu/utils/utils.hpp>
 #include <tf/transform_listener.h>
 #include <kukadu/vision/kinect.hpp>
+#include <kukadu/utils/kukadutokenizer.hpp>
 #include <pcl_conversions/pcl_conversions.h>
 #include <kukadu/storage/moduleusagesingleton.hpp>
 
@@ -12,20 +13,47 @@ using namespace pcl;
 
 namespace kukadu {
 
-    Kinect::Kinect(ros::NodeHandle node, bool doTransform) {
-        construct("camera/depth_registered/points", "world_link", node, doTransform);
+    std::string extractCameraName(std::string kinectTopic) {
+        KukaduTokenizer tok(kinectTopic, "/");
+        if(!kinectTopic.length())
+            throw KukaduException("(Kinect) emtpy topic string");
+        std::string nextToken;
+        while(!(nextToken = tok.next()).length())
+            return nextToken;
     }
 
-    Kinect::Kinect(std::string kinectTopic, ros::NodeHandle node, bool doTransform) {
-        construct(kinectTopic, "world_link", node, doTransform);
+    Kinect::Kinect(StorageSingleton& dbStorage, std::string hardwareName)
+        : Hardware(dbStorage, HARDWARE_DEPTH_CAMERA, Hardware::loadTypeIdFromName("Kinect"), "Kinect", Hardware::loadInstanceIdFromName(hardwareName), hardwareName) {
+
+        this->node = ros::NodeHandle(); sleep(1);
+        construct(hardwareName + "/depth_registered/points", "origin", node, true);
+
     }
 
-    Kinect::Kinect(std::string kinectTopic, std::string targetFrame, ros::NodeHandle node, bool doTransform) {
+    Kinect::Kinect(StorageSingleton& dbStorage, ros::NodeHandle node, bool doTransform)
+        : Hardware(dbStorage, HARDWARE_DEPTH_CAMERA, Hardware::loadOrCreateTypeIdFromName("Kinect"), "Kinect", Hardware::loadOrCreateInstanceIdFromName("camera"), "camera") {
+        construct("camera/depth_registered/points", "origin", node, doTransform);
+    }
+
+    Kinect::Kinect(StorageSingleton& dbStorage, std::string kinectTopic, ros::NodeHandle node, bool doTransform)
+        : Hardware(dbStorage, HARDWARE_DEPTH_CAMERA, Hardware::loadOrCreateTypeIdFromName("Kinect"), "Kinect",
+                   Hardware::loadOrCreateInstanceIdFromName(extractCameraName(kinectTopic)), extractCameraName(kinectTopic)) {
+        construct(kinectTopic, "origin", node, doTransform);
+    }
+
+    Kinect::Kinect(StorageSingleton& dbStorage, std::string kinectTopic, std::string targetFrame, ros::NodeHandle node, bool doTransform)
+        : Hardware(dbStorage, HARDWARE_DEPTH_CAMERA, Hardware::loadOrCreateTypeIdFromName("Kinect"), "Kinect",
+                   Hardware::loadOrCreateInstanceIdFromName(extractCameraName(kinectTopic)), extractCameraName(kinectTopic)) {
         construct(kinectTopic, targetFrame, node, doTransform);
+    }
+
+    Kinect::~Kinect() {
+        stopSensing();
     }
 
     void Kinect::construct(std::string kinectTopic, std::string targetFrame, ros::NodeHandle node, bool doTransform) {
 
+        isStarted = false;
         kinectFrameSet = false;
         this->doTransform = doTransform;
 
@@ -37,25 +65,60 @@ namespace kukadu {
         firstCloudSet = false;
 
         this->node = node;
-
-        subKinect = node.subscribe(kinectTopic, 1, &Kinect::callbackKinectPointCloud, this);
-
-        this->visPubTopic = stdVisPubTopic;
-        visPublisher = node.advertise<sensor_msgs::PointCloud2>(visPubTopic, 1);
-
-        if(doTransform)
-            transformListener = make_shared<tf::TransformListener>();
-
-        ros::Rate r(10);
-        while(!firstCloudSet) {
-            r.sleep();
-            ros::spinOnce();
-        }
-
-        if(doTransform)
-            transformListener->waitForTransform(targetFrame, currentPc->header.frame_id, ros::Time(0), ros::Duration(5.0));
-
+        this->kinectTopic = kinectTopic;
         this->targetFrame = targetFrame;
+
+        // kinect is started automatically
+        start();
+
+    }
+
+    void Kinect::installHardwareTypeInternal() {
+        // nothing to do
+    }
+
+    void Kinect::installHardwareInstanceInternal() {
+        // nothing to do
+    }
+
+    void Kinect::storeCurrentSensorDataToDatabase() {
+        // throw KukaduException("(Kinect) todo");
+    }
+
+    double Kinect::getPreferredPollingFrequency() {
+        return 1.0;
+    }
+
+    std::vector<std::pair<long long int, arma::vec> > Kinect::loadData(long long int startTime, long long int endTime,
+                                                                       long long int maxTotalDuration,
+                                                                       long long int maxTimeStepDifference) {
+        throw KukaduException("(Kinect) todo");
+    }
+
+    void Kinect::start() {
+
+        if(!isStarted) {
+
+            subKinect = node.subscribe(kinectTopic, 1, &Kinect::callbackKinectPointCloud, this);
+
+            this->visPubTopic = stdVisPubTopic;
+            visPublisher = node.advertise<sensor_msgs::PointCloud2>(visPubTopic, 1);
+
+            if(doTransform)
+                transformListener = make_shared<tf::TransformListener>();
+
+            ros::Rate r(10);
+            while(!firstCloudSet)
+                r.sleep();
+
+            if(doTransform)
+                transformListener->waitForTransform(targetFrame, currentPc->header.frame_id, ros::Time(0), ros::Duration(5.0));
+
+            startSensing();
+
+            isStarted = true;
+
+        }
 
     }
 
@@ -69,9 +132,14 @@ namespace kukadu {
 
         KUKADU_MODULE_START_USAGE();
 
-        keepRunning = true;
-        thr = KUKADU_SHARED_PTR<kukadu_thread>(new kukadu_thread(&Kinect::runThread, this));
-        while(!this->isInitialized());
+        if(!keepRunning) {
+
+            keepRunning = true;
+            if(!thr)
+                thr = KUKADU_SHARED_PTR<kukadu_thread>(new kukadu_thread(&Kinect::runThread, this));
+            while(!this->isInitialized());
+
+        }
 
         KUKADU_MODULE_END_USAGE();
 

@@ -7,6 +7,7 @@
 #include <utility>
 #include <armadillo>
 #include <geometry_msgs/Pose.h>
+#include <kukadu/utils/utils.hpp>
 #include <kukadu/vision/kinect.hpp>
 #include <kukadu/types/kukadutypes.hpp>
 
@@ -51,7 +52,7 @@ namespace kukadu {
 
     public:
 
-        PCBlobDetector(std::shared_ptr<Kinect> kinect, std::string targetFrame, arma::vec center, double xOffset, double yOffset, bool visualizeResult = false);
+        PCBlobDetector(std::shared_ptr<Kinect> kinect, std::string targetFrame = "origin", arma::vec center = stdToArmadilloVec({0.0, 0.0, 0.0}), double xOffset = 0.0, double yOffset = 0.0, bool visualizeResult = false);
 
         virtual std::string getLocalizerFrame();
 

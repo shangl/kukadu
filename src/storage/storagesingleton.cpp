@@ -351,8 +351,9 @@ namespace kukadu {
 
             auto stmt = con->createStatement();
             for(auto& sql : statements)
-                try { stmt->execute(sql); }
-                catch(sql::SQLException& ex) { lastEx = string(ex.what() + string(": ") + sql); }
+                try {
+                    stmt->execute(sql);
+                } catch(sql::SQLException& ex) { lastEx = string(ex.what() + string(": ") + sql); }
                 catch(std::exception& ex) { cerr << ex.what() << endl; }
             delete stmt;
 
@@ -409,6 +410,7 @@ namespace kukadu {
             try {
 
                 retSet = KUKADU_SHARED_PTR<sql::ResultSet>(stmt->executeQuery(sql));
+
             } catch(std::exception& ex) {
                 delete stmt;
                 connectionMutex.unlock();

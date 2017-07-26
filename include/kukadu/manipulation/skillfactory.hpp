@@ -5,6 +5,7 @@
 #include <string>
 #include <functional>
 #include <kukadu/robot/queue.hpp>
+#include <kukadu/vision/kinect.hpp>
 #include <kukadu/types/kukadutypes.hpp>
 #include <kukadu/control/controller.hpp>
 #include <kukadu/storage/storagesingleton.hpp>

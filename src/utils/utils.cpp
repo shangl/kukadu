@@ -1174,17 +1174,6 @@ namespace kukadu {
 
     }
 
-    std::vector<KUKADU_SHARED_PTR<Hardware> > mergeHardware(std::vector<KUKADU_SHARED_PTR<kukadu::Controller> > controllers) {
-
-        std::vector<KUKADU_SHARED_PTR<Hardware> > combinedHardware;
-        for(auto& controller : controllers) {
-            auto hw = controller->getUsedHardware();
-            combinedHardware.insert(combinedHardware.end(), hw.begin(), hw.end());
-        }
-        return combinedHardware;
-
-    }
-
     arma::vec loadJointPosByTimestamp(StorageSingleton& storage, int robotId, std::vector<int> jointIds, long long int timeStamp) {
 
         stringstream s;

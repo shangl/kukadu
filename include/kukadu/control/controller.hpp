@@ -2,11 +2,12 @@
 #define KUKADU_CONTROLLER_H
 
 #include <string>
+#include <kukadu/robot/queue.hpp>
 #include <kukadu/robot/hardware.hpp>
+#include <kukadu/vision/localizer.hpp>
 #include <kukadu/types/kukadutypes.hpp>
 #include <kukadu/types/controllerresult.hpp>
 #include <kukadu/storage/storagesingleton.hpp>
-#include <kukadu/robot/queue.hpp>
 
 namespace kukadu {
 
@@ -100,56 +101,79 @@ namespace kukadu {
 
     class CartesianPtp : public Controller {
 
-        private:
+    private:
 
-            KUKADU_SHARED_PTR<ControlQueue> leftQueue;
+        KUKADU_SHARED_PTR<ControlQueue> leftQueue;
 
-        protected:
+    protected:
 
-            virtual void createSkillFromThisInternal(std::string skillName);
+        virtual void createSkillFromThisInternal(std::string skillName);
 
-        public:
+    public:
 
-            CartesianPtp(StorageSingleton& storage, KUKADU_SHARED_PTR<ControlQueue> leftQueue);
+        CartesianPtp(StorageSingleton& storage, KUKADU_SHARED_PTR<ControlQueue> leftQueue);
 
-            bool requiresGraspInternal();
+        bool requiresGraspInternal();
+        bool producesGraspInternal();
 
-            bool producesGraspInternal();
+        std::shared_ptr<ControllerResult> executeInternal();
 
-            std::shared_ptr<ControllerResult> executeInternal();
+        std::string getClassName();
 
-            std::string getClassName();
-
-        };
+    };
 
 
     class JointPtp : public Controller {
 
-        private:
+    private:
 
-            KUKADU_SHARED_PTR<JointHardware> hardware;
+        std::vector<double> joints;
+        KUKADU_SHARED_PTR<JointHardware> hardware;
 
-            std::vector<double> joints;
+    protected:
 
-        protected:
+        virtual void createSkillFromThisInternal(std::string skillName);
 
-            virtual void createSkillFromThisInternal(std::string skillName);
+    public:
 
-        public:
+        JointPtp(StorageSingleton& storage, KUKADU_SHARED_PTR<JointHardware> hardware);
 
-            JointPtp(StorageSingleton& storage, KUKADU_SHARED_PTR<JointHardware> hardware);
+        bool requiresGraspInternal();
+        bool producesGraspInternal();
 
-            bool requiresGraspInternal();
+        void setJoints(std::vector<double> joints);
 
-            bool producesGraspInternal();
+        std::shared_ptr<ControllerResult> executeInternal();
 
-            void setJoints(std::vector<double> joints);
+        std::string getClassName();
 
-            std::shared_ptr<ControllerResult> executeInternal();
+    };
 
-            std::string getClassName();
+    class LocalizeObject : public Controller {
 
-        };
+    private:
+
+        KUKADU_SHARED_PTR<Localizer> loc;
+
+    protected:
+
+        virtual void createSkillFromThisInternal(std::string skillName);
+
+    public:
+
+        LocalizeObject(StorageSingleton& storage, KUKADU_SHARED_PTR<Kinect> hardware);
+
+        virtual bool requiresGraspInternal();
+        virtual bool producesGraspInternal();
+
+        KUKADU_SHARED_PTR<ControllerResult> executeInternal();
+
+        std::string getClassName();
+
+    };
+
+    std::vector<KUKADU_SHARED_PTR<Hardware> > mergeHardware(std::vector<KUKADU_SHARED_PTR<kukadu::Controller> > controllers);
+
 }
 
 #endif

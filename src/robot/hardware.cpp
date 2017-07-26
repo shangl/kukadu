@@ -1,6 +1,6 @@
 #include <sstream>
-#include <kukadu/robot/hardware.hpp>
 #include <algorithm>
+#include <kukadu/robot/hardware.hpp>
 
 using namespace std;
 using namespace arma;

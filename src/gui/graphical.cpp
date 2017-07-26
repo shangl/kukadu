@@ -1,10 +1,5 @@
 #include <kukadu/gui/graphical.hpp>
-#include <kukadu/kukadu.hpp>
-
-// very nasty tweak
-//#include <QtWidgets/../QtWebKitWidgets/QWebView>
-//#include <QtWidgets/../QtWebKitWidgets/QWebPage>
-//#include <QtWidgets/../QtWebKitWidgets/QWebFrame>
+#include <kukadu/manipulation/skillfactory.hpp>
 
 using namespace std;
 

@@ -224,13 +224,13 @@ add_backward(kukaduvision)
 add_backward(artoolkitplus)
 add_backward(${PROJECT_NAME})
 
-add_dependencies(${PROJECT_NAME} ${catkin_EXPORTED_TARGETS} ${PYTH_LIB} Backward::Backward curl nlohmann_json allegro allegro_primitives allegro_font allegro_ttf svm)
+add_dependencies(${PROJECT_NAME} ${catkin_EXPORTED_TARGETS} ${PYTH_LIB} kukaduvision Backward::Backward curl nlohmann_json allegro allegro_primitives allegro_font allegro_ttf svm)
 add_dependencies(kukaduvision ${catkin_EXPORTED_TARGETS} Backward::Backward curl nlohmann_json allegro allegro_primitives allegro_font allegro_ttf svm)
 add_dependencies(kukadugui ${catkin_EXPORTED_TARGETS} kukadu Backward::Backward curl nlohmann_json allegro allegro_primitives allegro_font allegro_ttf svm)
 
 target_link_libraries(kukadugui ${catkin_LIBRARIES} Qt5::Widgets Qt5::WebKitWidgets kukadu curl nlohmann_json svm)
 
-target_link_libraries(${PROJECT_NAME} ${catkin_LIBRARIES} ${Boost_LIBRARIES} ${ARMADILLO_LIBRARIES}
+target_link_libraries(${PROJECT_NAME} ${catkin_LIBRARIES} ${Boost_LIBRARIES} ${ARMADILLO_LIBRARIES} kukaduvision
     reflexxeslib ncurses gsl gslcblas stdc++ pthread dl util m komo swift algo ann gui ors optim motion rt lapack blas glut GLU GL X11 ${GTK_LIBRARIES} ${GTK2_LIBRARIES}
     gthread-2.0 qhull ${PYTH_LIB} m mysqlcppconn Qt5::Widgets Qt5::WebKitWidgets curl nlohmann_json
     allegro allegro_primitives allegro_font allegro_ttf svm)

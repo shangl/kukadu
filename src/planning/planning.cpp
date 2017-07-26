@@ -1,5 +1,4 @@
 #include <sstream>
-#include <kukadu/control/dmp.hpp>
 #include <kukadu/utils/utils.hpp>
 #include <kukadu/planning/simple.hpp>
 #include <kukadu/planning/planning.hpp>
@@ -128,40 +127,6 @@ namespace kukadu {
     std::vector<arma::vec> PathPlanner::smoothJointPlan(std::vector<arma::vec> jointPlan, arma::vec maxVelocities, double cycleTime) {
 
         return jointPlan;
-
-        /*
-        KUKADU_MODULE_START_USAGE();
-
-        vector<vec> smoothedPlan;
-
-        if(jointPlan.size()) {
-
-            double currentTimeInSeconds = 0.0;
-            vec times(jointPlan.size());
-            mat jointValues(jointPlan.size(), jointPlan.front().n_elem);
-            int i = 0;
-            for(auto& jp : jointPlan) {
-                times(i) = currentTimeInSeconds;
-                currentTimeInSeconds += cycleTime;
-                for(int j = 0; j < jp.n_elem; ++j)
-                    jointValues(i, j) = jp(j);
-                ++i;
-            }
-
-            JointDMPLearner smoothingDmpLearner(48.0, 11.5, times, jointValues);
-            KUKADU_SHARED_PTR<Dmp> smoothedDmp = smoothingDmpLearner.fitTrajectories();
-            DMPExecutor smoothedExec(StorageSingleton::get(), smoothedDmp, nullptr);
-            smoothedExec.setCycleTime(cycleTime);
-            smoothedExec.setExecutionMode(TrajectoryExecutor::SIMULATE_ROBOT);
-            auto dmpRes = smoothedExec.execute();
-            smoothedPlan = dmpRes->getYs();
-
-        }
-
-        KUKADU_MODULE_END_USAGE();
-
-        return smoothedPlan;
-        */
 
     }
 
