@@ -121,7 +121,20 @@ namespace kukadu {
 
     }
 
-    PCBlobDetector::PCBlobDetector(std::shared_ptr<Kinect> kinect, std::string targetFrame,
+    class PoseEstimator : public TimedObject {
+
+        void PoseEstimator::install(){
+            std::vector<std::string> availableObjects = this->getAvailableObjects();
+
+            //todo installPoseEstimator with id and name
+            //todo do installation of missing Objects
+            //todo link objects to PoseEstimator
+
+            this->installInternal();
+        }
+    }
+
+        PCBlobDetector::PCBlobDetector(std::shared_ptr<Kinect> kinect, std::string targetFrame,
                                    arma::vec center, double xOffset, double yOffset, bool visualizeResult) {
 
         this->kinect = kinect;

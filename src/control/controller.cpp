@@ -362,7 +362,8 @@ namespace kukadu {
     LocalizeObject::LocalizeObject(StorageSingleton& dbStorage, KUKADU_SHARED_PTR<Kinect> hardware)
         : Controller(dbStorage, "LocalizeObject", {hardware}, 0.01) {
 
-        loc = make_shared<PCBlobDetector>(hardware);
+        //loc = make_shared<PCBlobDetector>(hardware);
+        loc = make_shared<PCBlobDetector>(hardware, "origin", stdToArmadilloVec({0.0, 0.0, 0.0}), 2.0, 2.0, true);
 
     }
 
