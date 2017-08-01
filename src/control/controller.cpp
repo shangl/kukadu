@@ -380,7 +380,7 @@ namespace kukadu {
     }
 
     KUKADU_SHARED_PTR<ControllerResult> LocalizeObject::executeInternal() {
-        auto pos = loc->localizeObject("undefined");
+        auto pos = loc->localizeObject("something");
         cout << pos.position.x << " " << pos.position.y << " " << pos.position.z << endl;
     }
 

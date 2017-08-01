@@ -132,18 +132,22 @@ namespace kukadu {
     }
 
     std::pair<geometry_msgs::Pose, arma::vec> PoseEstimator::estimatePose(std::string id) {
+        if(storage.checkLabelExists("objects", "object_name", id)){
+
         auto poseVectorPair = estimatePoseInternal(id);
         int poseEstimatorId = storage.getCachedLabelId("pose_estimators", "estimator_id", "class_name", poseEstimatorName);
+        int objectId = storage.getCachedLabelId("objects", "object_id", "object_name", id);
 
         stringstream s;
         s << "INSERT INTO localize_objects (object_id, pose_estimator_id, x_coordinate, y_coordinate, z_coordinate, quat, timestamp, frame_id) ";
-        s << "VALUES (" << id << ", " << poseEstimatorId << ", " << poseVectorPair.first.pose.orientation.x << ", " << poseVectorPair.first.pose.orientation.y << ", " << poseVectorPair.first.pose.orientation.z << ", " << poseVectorPair.first.pose.orientation.w << ", ";
+        s << "VALUES (" << objectId << ", " << poseEstimatorId << ", " << poseVectorPair.first.pose.orientation.x << ", " << poseVectorPair.first.pose.orientation.y << ", " << poseVectorPair.first.pose.orientation.z << ", " << poseVectorPair.first.pose.orientation.w << ", ";
         s << TimedObject::getCurrentTime() << ", ";
         s << storage.getCachedLabelId("reference_frames", "frame_id", "frame_name", poseVectorPair.first.header.frame_id);
         s << ")";
 
         storage.executeStatementPriority(s.str());
         return {poseVectorPair.first.pose, poseVectorPair.second};
+        } else throw KukaduException("This object does not exist in the database. Pose can not be estimated.");
     }
 
 
