@@ -363,7 +363,7 @@ namespace kukadu {
         : Controller(dbStorage, "LocalizeObject", {hardware}, 0.01) {
 
         //loc = make_shared<PCBlobDetector>(hardware);
-        loc = make_shared<PCBlobDetector>(hardware, "origin", stdToArmadilloVec({0.0, 0.0, 0.0}), 2.0, 2.0, true);
+        loc = make_shared<PCBlobDetector>(hardware, dbStorage, "origin", stdToArmadilloVec({0.0, 0.0, 0.0}), 2.0, 2.0, true);
 
     }
 

@@ -38,7 +38,7 @@ namespace kukadu {
         // Segment the largest planar component from the remaining cloud
         seg.setInputCloud(cloud);
         seg.segment(*inliers, *coefficients);
-        if (inliers->indices.size () == 0) {
+        if (inliers->indices.size() == 0) {
             cerr << "Could not estimate a planar model for the given dataset." << endl;
             return cloud_f;
         }
@@ -66,29 +66,34 @@ namespace kukadu {
         pcl::StatisticalOutlierRemoval<pcl::PointXYZRGB> sor;
         sor.setInputCloud(cloud);
         sor.setMeanK(50);
-        sor.setStddevMulThresh (1.0);
+        sor.setStddevMulThresh(1.0);
         sor.filter(*cloud);
 
         int count = 0;
         vector<pcl::PointCloud<pcl::PointXYZRGB>::Ptr> clusterPointers;
-        for(pcl::PointCloud<pcl::PointXYZRGB>::iterator it = cloud->begin(); it != cloud->end(); it++, ++count) {
+        for (pcl::PointCloud<pcl::PointXYZRGB>::iterator it = cloud->begin(); it != cloud->end(); it++, ++count) {
 
-            if(!(count % 4)) {
+            if (!(count % 4)) {
 
                 vec point(3);
-                point(0) = it->x; point(1) = it->y; point(2) = it->z;
+                point(0) = it->x;
+                point(1) = it->y;
+                point(2) = it->z;
 
                 bool foundPlace = false;
-                for(int i = 0; i < clusterPointers.size() && !foundPlace; ++i) {
+                for (int i = 0; i < clusterPointers.size() && !foundPlace; ++i) {
 
                     pcl::PointCloud<pcl::PointXYZRGB>::Ptr currentCluster = clusterPointers.at(i);
-                    for(pcl::PointCloud<pcl::PointXYZRGB>::iterator it2 = currentCluster->begin(); it2 != currentCluster->end(); it2++) {
+                    for (pcl::PointCloud<pcl::PointXYZRGB>::iterator it2 = currentCluster->begin();
+                         it2 != currentCluster->end(); it2++) {
                         vec clusterPoint(3);
-                        clusterPoint(0) = it2->x; clusterPoint(1) = it2->y; clusterPoint(2) = it2->z;
+                        clusterPoint(0) = it2->x;
+                        clusterPoint(1) = it2->y;
+                        clusterPoint(2) = it2->z;
                         vec difVec = point - clusterPoint;
                         vec distVec = difVec.t() * difVec;
                         double distance = distVec(0);
-                        if(distance < pow(0.05, 2)) {
+                        if (distance < pow(0.05, 2)) {
                             foundPlace = true;
                             currentCluster->push_back(*it);
                             break;
@@ -97,7 +102,7 @@ namespace kukadu {
 
                 }
 
-                if(!foundPlace) {
+                if (!foundPlace) {
                     pcl::PointCloud<pcl::PointXYZRGB>::Ptr nextCluster(new pcl::PointCloud<pcl::PointXYZRGB>());
                     nextCluster->push_back(*it);
                     clusterPointers.push_back(nextCluster);
@@ -109,9 +114,9 @@ namespace kukadu {
 
         int maxClusterIdx = 0;
         int maxClusterSize = 0;
-        for(int i = 0; i < clusterPointers.size(); ++i) {
+        for (int i = 0; i < clusterPointers.size(); ++i) {
             int currentClusterSize = (clusterPointers.at(i))->size();
-            if(currentClusterSize > maxClusterSize) {
+            if (currentClusterSize > maxClusterSize) {
                 maxClusterIdx = i;
                 maxClusterSize = currentClusterSize;
             }
@@ -121,21 +126,46 @@ namespace kukadu {
 
     }
 
-    class PoseEstimator : public TimedObject {
+    PoseEstimator::PoseEstimator(StorageSingleton &dbStorage, std::string poseEstimatorName) : storage(dbStorage) {
+        this->poseEstimatorName = poseEstimatorName;
 
-        void PoseEstimator::install(){
+    }
+
+
+    void PoseEstimator::install() {
+        if(!storage.checkLabelExists("pose_estimators", "class_name", this->poseEstimatorName)) {
+            int estimatorId = storage.getNextIdInTable("pose_estimators", "estimator_id");
+
+            stringstream s;
+            s << "INSERT INTO pose_estimators (estimator_id, class_name) VALUES (" << estimatorId << ", " << this->poseEstimatorName << ")";
+            storage.executeStatementPriority(s.str());
+            s.str("");
+
             std::vector<std::string> availableObjects = this->getAvailableObjects();
+            for(auto object = availableObjects.begin(); object != availableObjects.end(); ++object) {
+                int objectId = -1;
+                if(!storage.checkLabelExists("objects", "object_name", *object)) {
+                    objectId = storage.getNextIdInTable("objects", "object_id");
+                    s << "INSERT INTO objects (object_id, object_name) VALUES (" << objectId << ", " <<  *object << ")";
+                    storage.executeStatementPriority(s.str());
+                    s.str("");
+                }
 
-            //todo installPoseEstimator with id and name
-            //todo do installation of missing Objects
-            //todo link objects to PoseEstimator
+                if(objectId == -1) {
+                    objectId = storage.getCachedLabelId("objects", "object_id", "object_name", *object);
+                }
+
+                s << "INSERT INTO recogniseable_objects(estimator_id, object_id) VALUES (" << estimatorId << ", " << objectId << ")";
+                storage.executeStatementPriority(s.str());
+                s.str("");
+            }
 
             this->installInternal();
         }
     }
 
-        PCBlobDetector::PCBlobDetector(std::shared_ptr<Kinect> kinect, std::string targetFrame,
-                                   arma::vec center, double xOffset, double yOffset, bool visualizeResult) {
+    PCBlobDetector::PCBlobDetector(std::shared_ptr<Kinect> kinect, StorageSingleton& dbStorage, std::string targetFrame,
+                                   arma::vec center, double xOffset, double yOffset, bool visualizeResult) : PoseEstimator(dbStorage, "PCBlobDetector") {
 
         this->kinect = kinect;
         this->targetFrame = targetFrame;
@@ -144,6 +174,14 @@ namespace kukadu {
         this->yOffset = yOffset;
         this->visualizeResult = visualizeResult;
 
+    }
+
+    std::vector<std::string> PCBlobDetector::getAvailableObjects(){
+
+    }
+
+    void PCBlobDetector::installInternal() {
+        
     }
 
     std::string PCBlobDetector::getLocalizerFrame() {
@@ -225,8 +263,8 @@ namespace kukadu {
         dimensions(1) = pointMax.y - pointMin.y;
         dimensions(2) = pointMax.z - pointMin.z;
 
-        if(visualizeResult) {
-            auto& vis = VisualizerSingleton::get();
+        if (visualizeResult) {
+            auto &vis = VisualizerSingleton::get();
             vis.showPointCloud("pc", cloud);
             vis.drawBox("fixbox", retPose, dimensions);
         }

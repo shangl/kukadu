@@ -29,17 +29,23 @@ namespace kukadu {
 
     class PoseEstimator : public TimedObject {
 
-    public:
-
-        virtual std::pair<geometry_msgs::Pose, arma::vec> estimatePose(std::string id) = 0;
-
-        void install();
+    private:
+        StorageSingleton& storage;
+        std::string poseEstimatorName;
 
     protected:
 
         virtual std::vector<std::string> getAvailableObjects() = 0;
 
         virtual void installInternal() = 0;
+
+    public:
+
+        PoseEstimator(StorageSingleton& dbStorage, std::string poseEstimatorName);
+
+        virtual std::pair<geometry_msgs::Pose, arma::vec> estimatePose(std::string id) = 0;
+
+        void install();
 
     };
 
@@ -58,9 +64,15 @@ namespace kukadu {
 
         std::shared_ptr<Kinect> kinect;
 
+    protected:
+
+        virtual std::vector<std::string> getAvailableObjects();
+
+        virtual void installInternal();
+
     public:
 
-        PCBlobDetector(std::shared_ptr<Kinect> kinect, std::string targetFrame = "origin", arma::vec center = stdToArmadilloVec({0.0, 0.0, 0.0}), double xOffset = 2.0, double yOffset = 2.0, bool visualizeResult = false);
+        PCBlobDetector(std::shared_ptr<Kinect> kinect, StorageSingleton& dbStorage, std::string targetFrame = "origin", arma::vec center = stdToArmadilloVec({0.0, 0.0, 0.0}), double xOffset = 2.0, double yOffset = 2.0, bool visualizeResult = false);
 
         virtual std::string getLocalizerFrame();
 
