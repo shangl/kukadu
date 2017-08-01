@@ -7,6 +7,7 @@
 #include <utility>
 #include <armadillo>
 #include <geometry_msgs/Pose.h>
+#include <geometry_msgs/PoseStamped.h>
 #include <kukadu/utils/utils.hpp>
 #include <kukadu/vision/kinect.hpp>
 #include <kukadu/types/kukadutypes.hpp>
@@ -39,11 +40,13 @@ namespace kukadu {
 
         virtual void installInternal() = 0;
 
+        virtual std::pair<geometry_msgs::PoseStamped, arma::vec> estimatePoseInternal(std::string id) = 0;
+
     public:
 
         PoseEstimator(StorageSingleton& dbStorage, std::string poseEstimatorName);
 
-        virtual std::pair<geometry_msgs::Pose, arma::vec> estimatePose(std::string id) = 0;
+        virtual std::pair<geometry_msgs::Pose, arma::vec> estimatePose(std::string id);
 
         void install();
 
@@ -70,6 +73,8 @@ namespace kukadu {
 
         virtual void installInternal();
 
+        virtual std::pair<geometry_msgs::PoseStamped, arma::vec> estimatePoseInternal(std::string id);
+
     public:
 
         PCBlobDetector(std::shared_ptr<Kinect> kinect, StorageSingleton& dbStorage, std::string targetFrame = "origin", arma::vec center = stdToArmadilloVec({0.0, 0.0, 0.0}), double xOffset = 2.0, double yOffset = 2.0, bool visualizeResult = false);
@@ -81,8 +86,6 @@ namespace kukadu {
         virtual std::map<std::string, geometry_msgs::Pose> localizeObjects();
 
         virtual std::vector<geometry_msgs::Pose> localizeObjects(std::vector<std::string> ids);
-
-        virtual std::pair<geometry_msgs::Pose, arma::vec> estimatePose(std::string id);
 
     };
 

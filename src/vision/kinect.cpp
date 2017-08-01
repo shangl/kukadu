@@ -146,6 +146,10 @@ namespace kukadu {
         return thr;
     }
 
+    std::string Kinect::getTargetFrame() {
+        return this->targetFrame;
+    }
+
     void Kinect::stopSensing() {
 
         KUKADU_MODULE_START_USAGE();

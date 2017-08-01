@@ -131,6 +131,21 @@ namespace kukadu {
 
     }
 
+    std::pair<geometry_msgs::Pose, arma::vec> PoseEstimator::estimatePose(std::string id) {
+        auto poseVectorPair = estimatePoseInternal(id);
+        int poseEstimatorId = storage.getCachedLabelId("pose_estimators", "estimator_id", "class_name", poseEstimatorName);
+
+        stringstream s;
+        s << "INSERT INTO localize_objects (object_id, pose_estimator_id, x_coordinate, y_coordinate, z_coordinate, quat, timestamp, frame_id) ";
+        s << "VALUES (" << id << ", " << poseEstimatorId << ", " << poseVectorPair.first.pose.orientation.x << ", " << poseVectorPair.first.pose.orientation.y << ", " << poseVectorPair.first.pose.orientation.z << ", " << poseVectorPair.first.pose.orientation.w << ", ";
+        s << TimedObject::getCurrentTime() << ", ";
+        s << storage.getCachedLabelId("reference_frames", "frame_id", "frame_name", poseVectorPair.first.header.frame_id);
+        s << ")";
+
+        storage.executeStatementPriority(s.str());
+        return {poseVectorPair.first.pose, poseVectorPair.second};
+    }
+
 
     void PoseEstimator::install() {
         if(!storage.checkLabelExists("pose_estimators", "class_name", this->poseEstimatorName)) {
@@ -181,20 +196,21 @@ namespace kukadu {
     }
 
     void PCBlobDetector::installInternal() {
-        
+
     }
 
     std::string PCBlobDetector::getLocalizerFrame() {
         return targetFrame;
     }
 
-    std::pair<geometry_msgs::Pose, arma::vec> PCBlobDetector::estimatePose(std::string id) {
+    std::pair<geometry_msgs::PoseStamped, arma::vec> PCBlobDetector::estimatePoseInternal(std::string id) {
 
         KUKADU_MODULE_START_USAGE();
 
-        geometry_msgs::Pose retPose;
+        geometry_msgs::PoseStamped retPose;
 
         pcl::PointCloud<pcl::PointXYZRGB>::Ptr cloud = kinect->getCurrentColorPointCloud();
+        retPose.header.frame_id = kinect->getTargetFrame();
 
         std::vector<int> indices;
         pcl::removeNaNFromPointCloud(*cloud, *cloud, indices);
@@ -219,9 +235,9 @@ namespace kukadu {
         auto objectCenter = pca.getMean().head(3);
         auto eigenVectors = pca.getEigenVectors();
 
-        retPose.position.x = objectCenter(0);
-        retPose.position.y = objectCenter(1);
-        retPose.position.z = objectCenter(2);
+        retPose.pose.position.x = objectCenter(0);
+        retPose.pose.position.y = objectCenter(1);
+        retPose.pose.position.z = objectCenter(2);
 
         /*
 
@@ -253,10 +269,10 @@ namespace kukadu {
         affine_trans.col(1) << eigenVectors.col(1);
 
         Eigen::Quaternionf rotation(affine_trans);
-        retPose.orientation.x = rotation.x();
-        retPose.orientation.y = rotation.y();
-        retPose.orientation.z = rotation.z();
-        retPose.orientation.w = rotation.w();
+        retPose.pose.orientation.x = rotation.x();
+        retPose.pose.orientation.y = rotation.y();
+        retPose.pose.orientation.z = rotation.z();
+        retPose.pose.orientation.w = rotation.w();
 
         vec dimensions(3);
         dimensions(0) = pointMax.x - pointMin.x;
@@ -266,7 +282,7 @@ namespace kukadu {
         if (visualizeResult) {
             auto &vis = VisualizerSingleton::get();
             vis.showPointCloud("pc", cloud);
-            vis.drawBox("fixbox", retPose, dimensions);
+            vis.drawBox("fixbox", retPose.pose, dimensions);
         }
 
         KUKADU_MODULE_END_USAGE();

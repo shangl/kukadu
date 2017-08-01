@@ -71,6 +71,8 @@ namespace kukadu {
 
         virtual void start();
 
+        std::string getTargetFrame();
+
         void stopSensing();
         void visualizeCurrentPc();
 
