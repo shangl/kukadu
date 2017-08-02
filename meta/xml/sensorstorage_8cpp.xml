@@ -1,6 +1,6 @@
 <?xml version='1.0' encoding='UTF-8' standalone='no'?>
-<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.8.6">
-  <compounddef id="sensorstorage_8cpp" kind="file">
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.8.11">
+  <compounddef id="sensorstorage_8cpp" kind="file" language="C++">
     <compoundname>sensorstorage.cpp</compoundname>
     <includes local="no">sstream</includes>
     <includes refid="sensordata_8hpp" local="no">kukadu/types/sensordata.hpp</includes>
@@ -8,500 +8,474 @@
     <includes refid="moduleusagesingleton_8hpp" local="no">kukadu/storage/moduleusagesingleton.hpp</includes>
     <includes refid="sensorstoragesingleton_8hpp" local="no">kukadu/storage/sensorstoragesingleton.hpp</includes>
     <incdepgraph>
-      <node id="5022">
+      <node id="5947">
         <label>sys/stat.h</label>
       </node>
-      <node id="5041">
+      <node id="5966">
         <label>list</label>
       </node>
-      <node id="5025">
+      <node id="5950">
         <label>gsl/gsl_vector.h</label>
       </node>
-      <node id="5021">
+      <node id="5946">
         <label>wordexp.h</label>
       </node>
-      <node id="5020">
+      <node id="5945">
         <label>stdbool.h</label>
       </node>
-      <node id="5015">
+      <node id="5940">
         <label>stdarg.h</label>
       </node>
-      <node id="5053">
+      <node id="5978">
         <label>cppconn/resultset.h</label>
       </node>
-      <node id="5034">
+      <node id="5959">
         <label>sensor_msgs/PointCloud2.h</label>
       </node>
-      <node id="5008">
+      <node id="5933">
         <label>queue</label>
       </node>
-      <node id="5032">
+      <node id="5957">
         <label>pcl/PCLPointCloud2.h</label>
       </node>
-      <node id="5000">
-        <label>kukadu/types/sensordata.hpp</label>
-        <link refid="sensordata_8hpp_source"/>
-        <childnode refid="5001" relation="include">
-        </childnode>
-        <childnode refid="5002" relation="include">
-        </childnode>
-        <childnode refid="5003" relation="include">
-        </childnode>
-        <childnode refid="5004" relation="include">
-        </childnode>
-        <childnode refid="5005" relation="include">
-        </childnode>
-        <childnode refid="5006" relation="include">
-        </childnode>
-      </node>
-      <node id="5009">
+      <node id="5934">
         <label>limits</label>
       </node>
-      <node id="5058">
-        <label>kukadu/robot/filters.hpp</label>
-        <link refid="filters_8hpp_source"/>
-        <childnode refid="5036" relation="include">
+      <node id="5985">
+        <label>kukadu/robot/queue.hpp</label>
+        <link refid="queue_8hpp"/>
+        <childnode refid="5933" relation="include">
         </childnode>
-        <childnode refid="5044" relation="include">
+        <childnode refid="5926" relation="include">
         </childnode>
-      </node>
-      <node id="5037">
-        <label>kukadu/utils/gnuplot.hpp</label>
-        <link refid="gnuplot_8hpp_source"/>
-        <childnode refid="5016" relation="include">
+        <childnode refid="5929" relation="include">
         </childnode>
-        <childnode refid="5002" relation="include">
+        <childnode refid="5930" relation="include">
         </childnode>
-        <childnode refid="5001" relation="include">
+        <childnode refid="5986" relation="include">
         </childnode>
-        <childnode refid="5013" relation="include">
+        <childnode refid="5967" relation="include">
         </childnode>
-        <childnode refid="4999" relation="include">
+        <childnode refid="5969" relation="include">
         </childnode>
-        <childnode refid="5038" relation="include">
+        <childnode refid="5984" relation="include">
         </childnode>
-        <childnode refid="5039" relation="include">
-        </childnode>
-        <childnode refid="5040" relation="include">
-        </childnode>
-        <childnode refid="5041" relation="include">
+        <childnode refid="5968" relation="include">
         </childnode>
       </node>
-      <node id="5029">
+      <node id="5954">
         <label>pcl/point_types.h</label>
       </node>
-      <node id="5064">
+      <node id="5987">
         <label>kukadu/storage/moduleusagesingleton.hpp</label>
         <link refid="moduleusagesingleton_8hpp_source"/>
-        <childnode refid="5007" relation="include">
+        <childnode refid="5932" relation="include">
         </childnode>
-        <childnode refid="5002" relation="include">
+        <childnode refid="5927" relation="include">
         </childnode>
-        <childnode refid="5003" relation="include">
+        <childnode refid="5928" relation="include">
         </childnode>
-        <childnode refid="5006" relation="include">
+        <childnode refid="5931" relation="include">
         </childnode>
-        <childnode refid="5044" relation="include">
+        <childnode refid="5969" relation="include">
         </childnode>
-        <childnode refid="5043" relation="include">
+        <childnode refid="5968" relation="include">
         </childnode>
       </node>
-      <node id="5028">
+      <node id="5968">
+        <label>kukadu/storage/storagesingleton.hpp</label>
+        <link refid="storagesingleton_8hpp_source"/>
+        <childnode refid="5932" relation="include">
+        </childnode>
+        <childnode refid="5933" relation="include">
+        </childnode>
+        <childnode refid="5927" relation="include">
+        </childnode>
+        <childnode refid="5926" relation="include">
+        </childnode>
+        <childnode refid="5941" relation="include">
+        </childnode>
+        <childnode refid="5969" relation="include">
+        </childnode>
+        <childnode refid="5975" relation="include">
+        </childnode>
+        <childnode refid="5976" relation="include">
+        </childnode>
+        <childnode refid="5977" relation="include">
+        </childnode>
+        <childnode refid="5978" relation="include">
+        </childnode>
+        <childnode refid="5979" relation="include">
+        </childnode>
+      </node>
+      <node id="5953">
         <label>pcl/point_cloud.h</label>
       </node>
-      <node id="5038">
+      <node id="5969">
+        <label>kukadu/types/kukadutypes.hpp</label>
+        <link refid="kukadutypes_8hpp_source"/>
+        <childnode refid="5970" relation="include">
+        </childnode>
+        <childnode refid="5971" relation="include">
+        </childnode>
+        <childnode refid="5972" relation="include">
+        </childnode>
+        <childnode refid="5973" relation="include">
+        </childnode>
+        <childnode refid="5974" relation="include">
+        </childnode>
+      </node>
+      <node id="5963">
         <label>stdexcept</label>
       </node>
-      <node id="5019">
+      <node id="5944">
         <label>termios.h</label>
       </node>
-      <node id="5031">
+      <node id="5956">
         <label>eigen3/Eigen/Dense</label>
       </node>
-      <node id="5024">
+      <node id="5967">
+        <label>kukadu/robot/hardware.hpp</label>
+        <link refid="hardware_8hpp_source"/>
+        <childnode refid="5927" relation="include">
+        </childnode>
+        <childnode refid="5929" relation="include">
+        </childnode>
+        <childnode refid="5961" relation="include">
+        </childnode>
+        <childnode refid="5968" relation="include">
+        </childnode>
+      </node>
+      <node id="5949">
         <label>gsl/gsl_poly.h</label>
       </node>
-      <node id="5002">
+      <node id="5927">
         <label>string</label>
       </node>
-      <node id="4998">
-        <label>/home/andreasmennel/iis_robot_sw/iis_catkin_ws/src/kukadu/src/storage/sensorstorage.cpp</label>
-        <link refid="sensorstorage.cpp"/>
-        <childnode refid="4999" relation="include">
-        </childnode>
-        <childnode refid="5000" relation="include">
-        </childnode>
-        <childnode refid="5061" relation="include">
-        </childnode>
-        <childnode refid="5064" relation="include">
-        </childnode>
-        <childnode refid="5065" relation="include">
-        </childnode>
-      </node>
-      <node id="5063">
-        <label>kukadu/robot/hand.hpp</label>
-        <link refid="hand_8hpp_source"/>
-        <childnode refid="5009" relation="include">
-        </childnode>
-        <childnode refid="5001" relation="include">
-        </childnode>
-        <childnode refid="5062" relation="include">
-        </childnode>
-        <childnode refid="5004" relation="include">
-        </childnode>
-        <childnode refid="5036" relation="include">
-        </childnode>
-        <childnode refid="5042" relation="include">
-        </childnode>
-        <childnode refid="5059" relation="include">
-        </childnode>
-        <childnode refid="5043" relation="include">
-        </childnode>
-      </node>
-      <node id="5007">
+      <node id="5932">
         <label>map</label>
       </node>
-      <node id="5004">
+      <node id="5962">
+        <label>kukadu/utils/gnuplot.hpp</label>
+        <link refid="gnuplot_8hpp_source"/>
+        <childnode refid="5941" relation="include">
+        </childnode>
+        <childnode refid="5927" relation="include">
+        </childnode>
+        <childnode refid="5926" relation="include">
+        </childnode>
+        <childnode refid="5938" relation="include">
+        </childnode>
+        <childnode refid="5924" relation="include">
+        </childnode>
+        <childnode refid="5963" relation="include">
+        </childnode>
+        <childnode refid="5964" relation="include">
+        </childnode>
+        <childnode refid="5965" relation="include">
+        </childnode>
+        <childnode refid="5966" relation="include">
+        </childnode>
+      </node>
+      <node id="5929">
         <label>armadillo</label>
       </node>
-      <node id="5045">
+      <node id="5970">
         <label>exception</label>
       </node>
-      <node id="5013">
+      <node id="5938">
         <label>fstream</label>
       </node>
-      <node id="5054">
+      <node id="5980">
+        <label>kukadu/utils/kukadutokenizer.hpp</label>
+        <link refid="kukadutokenizer_8hpp_source"/>
+        <childnode refid="5927" relation="include">
+        </childnode>
+        <childnode refid="5926" relation="include">
+        </childnode>
+      </node>
+      <node id="5979">
         <label>cppconn/statement.h</label>
       </node>
-      <node id="5061">
-        <label>kukadu/storage/sensorstorage.hpp</label>
-        <link refid="sensorstorage_8hpp_source"/>
-        <childnode refid="5002" relation="include">
-        </childnode>
-        <childnode refid="5001" relation="include">
-        </childnode>
-        <childnode refid="5040" relation="include">
-        </childnode>
-        <childnode refid="5016" relation="include">
-        </childnode>
-        <childnode refid="5004" relation="include">
-        </childnode>
-        <childnode refid="5062" relation="include">
-        </childnode>
-        <childnode refid="5005" relation="include">
-        </childnode>
-        <childnode refid="5063" relation="include">
-        </childnode>
-        <childnode refid="5057" relation="include">
-        </childnode>
-        <childnode refid="5036" relation="include">
-        </childnode>
-        <childnode refid="5006" relation="include">
-        </childnode>
-        <childnode refid="5000" relation="include">
-        </childnode>
-        <childnode refid="5044" relation="include">
-        </childnode>
-        <childnode refid="5043" relation="include">
-        </childnode>
-      </node>
-      <node id="5056">
-        <label>kukadu/types/controllerresult.hpp</label>
-        <link refid="controllerresult_8hpp_source"/>
-        <childnode refid="5001" relation="include">
-        </childnode>
-        <childnode refid="5004" relation="include">
-        </childnode>
-      </node>
-      <node id="5049">
+      <node id="5974">
         <label>random</label>
       </node>
-      <node id="5023">
+      <node id="5948">
         <label>sys/types.h</label>
       </node>
-      <node id="5059">
+      <node id="5961">
+        <label>kukadu/utils/types.hpp</label>
+        <link refid="utils_2types_8hpp_source"/>
+        <childnode refid="5926" relation="include">
+        </childnode>
+        <childnode refid="5929" relation="include">
+        </childnode>
+        <childnode refid="5951" relation="include">
+        </childnode>
+      </node>
+      <node id="5958">
+        <label>tf/transform_datatypes.h</label>
+      </node>
+      <node id="5964">
+        <label>cstdio</label>
+      </node>
+      <node id="5931">
+        <label>kukadu/utils/utils.hpp</label>
+        <link refid="utils_2utils_8hpp_source"/>
+        <childnode refid="5932" relation="include">
+        </childnode>
+        <childnode refid="5933" relation="include">
+        </childnode>
+        <childnode refid="5934" relation="include">
+        </childnode>
+        <childnode refid="5926" relation="include">
+        </childnode>
+        <childnode refid="5935" relation="include">
+        </childnode>
+        <childnode refid="5927" relation="include">
+        </childnode>
+        <childnode refid="5936" relation="include">
+        </childnode>
+        <childnode refid="5924" relation="include">
+        </childnode>
+        <childnode refid="5937" relation="include">
+        </childnode>
+        <childnode refid="5938" relation="include">
+        </childnode>
+        <childnode refid="5928" relation="include">
+        </childnode>
+        <childnode refid="5939" relation="include">
+        </childnode>
+        <childnode refid="5940" relation="include">
+        </childnode>
+        <childnode refid="5941" relation="include">
+        </childnode>
+        <childnode refid="5942" relation="include">
+        </childnode>
+        <childnode refid="5943" relation="include">
+        </childnode>
+        <childnode refid="5944" relation="include">
+        </childnode>
+        <childnode refid="5945" relation="include">
+        </childnode>
+        <childnode refid="5929" relation="include">
+        </childnode>
+        <childnode refid="5946" relation="include">
+        </childnode>
+        <childnode refid="5947" relation="include">
+        </childnode>
+        <childnode refid="5948" relation="include">
+        </childnode>
+        <childnode refid="5949" relation="include">
+        </childnode>
+        <childnode refid="5950" relation="include">
+        </childnode>
+        <childnode refid="5951" relation="include">
+        </childnode>
+        <childnode refid="5952" relation="include">
+        </childnode>
+        <childnode refid="5953" relation="include">
+        </childnode>
+        <childnode refid="5954" relation="include">
+        </childnode>
+        <childnode refid="5955" relation="include">
+        </childnode>
+        <childnode refid="5956" relation="include">
+        </childnode>
+        <childnode refid="5957" relation="include">
+        </childnode>
+        <childnode refid="5958" relation="include">
+        </childnode>
+        <childnode refid="5959" relation="include">
+        </childnode>
+        <childnode refid="5960" relation="include">
+        </childnode>
+        <childnode refid="5961" relation="include">
+        </childnode>
+        <childnode refid="5962" relation="include">
+        </childnode>
+        <childnode refid="5967" relation="include">
+        </childnode>
+        <childnode refid="5980" relation="include">
+        </childnode>
+      </node>
+      <node id="5939">
+        <label>unistd.h</label>
+      </node>
+      <node id="5926">
+        <label>vector</label>
+      </node>
+      <node id="5986">
+        <label>kukadu/robot/filters.hpp</label>
+        <link refid="filters_8hpp_source"/>
+        <childnode refid="5961" relation="include">
+        </childnode>
+        <childnode refid="5969" relation="include">
+        </childnode>
+      </node>
+      <node id="5942">
+        <label>signal.h</label>
+      </node>
+      <node id="5981">
+        <label>kukadu/storage/sensorstorage.hpp</label>
+        <link refid="sensorstorage_8hpp_source"/>
+        <childnode refid="5927" relation="include">
+        </childnode>
+        <childnode refid="5926" relation="include">
+        </childnode>
+        <childnode refid="5965" relation="include">
+        </childnode>
+        <childnode refid="5941" relation="include">
+        </childnode>
+        <childnode refid="5929" relation="include">
+        </childnode>
+        <childnode refid="5982" relation="include">
+        </childnode>
+        <childnode refid="5930" relation="include">
+        </childnode>
+        <childnode refid="5983" relation="include">
+        </childnode>
+        <childnode refid="5985" relation="include">
+        </childnode>
+        <childnode refid="5961" relation="include">
+        </childnode>
+        <childnode refid="5931" relation="include">
+        </childnode>
+        <childnode refid="5925" relation="include">
+        </childnode>
+        <childnode refid="5969" relation="include">
+        </childnode>
+        <childnode refid="5968" relation="include">
+        </childnode>
+      </node>
+      <node id="5928">
+        <label>utility</label>
+      </node>
+      <node id="5924">
+        <label>sstream</label>
+      </node>
+      <node id="5976">
+        <label>cppconn/driver.h</label>
+      </node>
+      <node id="5923">
+        <label>/home/agyss/iis_robot_sw/iis_catkin_ws/src/kukadu/src/storage/sensorstorage.cpp</label>
+        <link refid="sensorstorage.cpp"/>
+        <childnode refid="5924" relation="include">
+        </childnode>
+        <childnode refid="5925" relation="include">
+        </childnode>
+        <childnode refid="5981" relation="include">
+        </childnode>
+        <childnode refid="5987" relation="include">
+        </childnode>
+        <childnode refid="5988" relation="include">
+        </childnode>
+      </node>
+      <node id="5977">
+        <label>cppconn/exception.h</label>
+      </node>
+      <node id="5930">
+        <label>geometry_msgs/Pose.h</label>
+      </node>
+      <node id="5982">
+        <label>ros/ros.h</label>
+      </node>
+      <node id="5935">
+        <label>math.h</label>
+      </node>
+      <node id="5965">
+        <label>cstdlib</label>
+      </node>
+      <node id="5941">
+        <label>iostream</label>
+      </node>
+      <node id="5975">
+        <label>mysql_connection.h</label>
+      </node>
+      <node id="5984">
         <label>kukadu/utils/destroyableobject.hpp</label>
         <link refid="destroyableobject_8hpp_source"/>
       </node>
-      <node id="5044">
-        <label>kukadu/types/kukadutypes.hpp</label>
-        <link refid="kukadutypes_8hpp_source"/>
-        <childnode refid="5045" relation="include">
-        </childnode>
-        <childnode refid="5046" relation="include">
-        </childnode>
-        <childnode refid="5047" relation="include">
-        </childnode>
-        <childnode refid="5048" relation="include">
-        </childnode>
-        <childnode refid="5049" relation="include">
-        </childnode>
-      </node>
-      <node id="5033">
-        <label>tf/transform_datatypes.h</label>
-      </node>
-      <node id="5039">
-        <label>cstdio</label>
-      </node>
-      <node id="5057">
-        <label>kukadu/robot/queue.hpp</label>
-        <link refid="queue_8hpp"/>
-        <childnode refid="5008" relation="include">
-        </childnode>
-        <childnode refid="5001" relation="include">
-        </childnode>
-        <childnode refid="5004" relation="include">
-        </childnode>
-        <childnode refid="5005" relation="include">
-        </childnode>
-        <childnode refid="5058" relation="include">
-        </childnode>
-        <childnode refid="5042" relation="include">
-        </childnode>
-        <childnode refid="5044" relation="include">
-        </childnode>
-        <childnode refid="5059" relation="include">
-        </childnode>
-        <childnode refid="5043" relation="include">
-        </childnode>
-      </node>
-      <node id="5014">
-        <label>unistd.h</label>
-      </node>
-      <node id="5042">
-        <label>kukadu/robot/hardware.hpp</label>
-        <link refid="hardware_8hpp_source"/>
-        <childnode refid="5002" relation="include">
-        </childnode>
-        <childnode refid="5004" relation="include">
-        </childnode>
-        <childnode refid="5036" relation="include">
-        </childnode>
-        <childnode refid="5043" relation="include">
-        </childnode>
-      </node>
-      <node id="5001">
-        <label>vector</label>
-      </node>
-      <node id="5017">
-        <label>signal.h</label>
-      </node>
-      <node id="5003">
-        <label>utility</label>
-      </node>
-      <node id="4999">
-        <label>sstream</label>
-      </node>
-      <node id="5051">
-        <label>cppconn/driver.h</label>
-      </node>
-      <node id="5052">
-        <label>cppconn/exception.h</label>
-      </node>
-      <node id="5005">
-        <label>geometry_msgs/Pose.h</label>
-      </node>
-      <node id="5060">
-        <label>kukadu/utils/kukadutokenizer.hpp</label>
-        <link refid="kukadutokenizer_8hpp_source"/>
-        <childnode refid="5002" relation="include">
-        </childnode>
-        <childnode refid="5001" relation="include">
-        </childnode>
-      </node>
-      <node id="5062">
-        <label>ros/ros.h</label>
-      </node>
-      <node id="5010">
-        <label>math.h</label>
-      </node>
-      <node id="5065">
-        <label>kukadu/storage/sensorstoragesingleton.hpp</label>
-        <link refid="sensorstoragesingleton_8hpp_source"/>
-        <childnode refid="5007" relation="include">
-        </childnode>
-        <childnode refid="5048" relation="include">
-        </childnode>
-        <childnode refid="5001" relation="include">
-        </childnode>
-        <childnode refid="5002" relation="include">
-        </childnode>
-        <childnode refid="5042" relation="include">
-        </childnode>
-        <childnode refid="5044" relation="include">
-        </childnode>
-      </node>
-      <node id="5040">
-        <label>cstdlib</label>
-      </node>
-      <node id="5016">
-        <label>iostream</label>
-      </node>
-      <node id="5050">
-        <label>mysql_connection.h</label>
-      </node>
-      <node id="5055">
-        <label>kukadu/control/controller.hpp</label>
-        <link refid="controller_8hpp_source"/>
-        <childnode refid="5002" relation="include">
-        </childnode>
-        <childnode refid="5042" relation="include">
-        </childnode>
-        <childnode refid="5044" relation="include">
-        </childnode>
-        <childnode refid="5056" relation="include">
-        </childnode>
-        <childnode refid="5043" relation="include">
-        </childnode>
-        <childnode refid="5057" relation="include">
-        </childnode>
-      </node>
-      <node id="5048">
+      <node id="5973">
         <label>mutex</label>
       </node>
-      <node id="5030">
+      <node id="5955">
         <label>gsl/gsl_multifit.h</label>
       </node>
-      <node id="5036">
-        <label>kukadu/utils/types.hpp</label>
-        <link refid="utils_2types_8hpp_source"/>
-        <childnode refid="5001" relation="include">
-        </childnode>
-        <childnode refid="5004" relation="include">
-        </childnode>
-        <childnode refid="5026" relation="include">
-        </childnode>
-      </node>
-      <node id="5035">
+      <node id="5960">
         <label>geometry_msgs/Quaternion.h</label>
       </node>
-      <node id="5047">
+      <node id="5972">
         <label>thread</label>
       </node>
-      <node id="5043">
-        <label>kukadu/storage/storagesingleton.hpp</label>
-        <link refid="storagesingleton_8hpp_source"/>
-        <childnode refid="5007" relation="include">
-        </childnode>
-        <childnode refid="5008" relation="include">
-        </childnode>
-        <childnode refid="5002" relation="include">
-        </childnode>
-        <childnode refid="5001" relation="include">
-        </childnode>
-        <childnode refid="5016" relation="include">
-        </childnode>
-        <childnode refid="5044" relation="include">
-        </childnode>
-        <childnode refid="5050" relation="include">
-        </childnode>
-        <childnode refid="5051" relation="include">
-        </childnode>
-        <childnode refid="5052" relation="include">
-        </childnode>
-        <childnode refid="5053" relation="include">
-        </childnode>
-        <childnode refid="5054" relation="include">
-        </childnode>
-      </node>
-      <node id="5027">
+      <node id="5952">
         <label>gsl/gsl_linalg.h</label>
       </node>
-      <node id="5012">
+      <node id="5988">
+        <label>kukadu/storage/sensorstoragesingleton.hpp</label>
+        <link refid="sensorstoragesingleton_8hpp_source"/>
+        <childnode refid="5932" relation="include">
+        </childnode>
+        <childnode refid="5973" relation="include">
+        </childnode>
+        <childnode refid="5926" relation="include">
+        </childnode>
+        <childnode refid="5927" relation="include">
+        </childnode>
+        <childnode refid="5967" relation="include">
+        </childnode>
+        <childnode refid="5969" relation="include">
+        </childnode>
+      </node>
+      <node id="5983">
+        <label>kukadu/robot/hand.hpp</label>
+        <link refid="hand_8hpp_source"/>
+        <childnode refid="5934" relation="include">
+        </childnode>
+        <childnode refid="5926" relation="include">
+        </childnode>
+        <childnode refid="5982" relation="include">
+        </childnode>
+        <childnode refid="5929" relation="include">
+        </childnode>
+        <childnode refid="5961" relation="include">
+        </childnode>
+        <childnode refid="5967" relation="include">
+        </childnode>
+        <childnode refid="5984" relation="include">
+        </childnode>
+        <childnode refid="5968" relation="include">
+        </childnode>
+      </node>
+      <node id="5937">
         <label>stdio.h</label>
       </node>
-      <node id="5011">
+      <node id="5936">
         <label>cstring</label>
       </node>
-      <node id="5026">
+      <node id="5951">
         <label>gsl/gsl_matrix.h</label>
       </node>
-      <node id="5006">
-        <label>kukadu/utils/utils.hpp</label>
-        <link refid="utils_2utils_8hpp_source"/>
-        <childnode refid="5007" relation="include">
-        </childnode>
-        <childnode refid="5008" relation="include">
-        </childnode>
-        <childnode refid="5009" relation="include">
-        </childnode>
-        <childnode refid="5001" relation="include">
-        </childnode>
-        <childnode refid="5010" relation="include">
-        </childnode>
-        <childnode refid="5002" relation="include">
-        </childnode>
-        <childnode refid="5011" relation="include">
-        </childnode>
-        <childnode refid="4999" relation="include">
-        </childnode>
-        <childnode refid="5012" relation="include">
-        </childnode>
-        <childnode refid="5013" relation="include">
-        </childnode>
-        <childnode refid="5003" relation="include">
-        </childnode>
-        <childnode refid="5014" relation="include">
-        </childnode>
-        <childnode refid="5015" relation="include">
-        </childnode>
-        <childnode refid="5016" relation="include">
-        </childnode>
-        <childnode refid="5017" relation="include">
-        </childnode>
-        <childnode refid="5018" relation="include">
-        </childnode>
-        <childnode refid="5019" relation="include">
-        </childnode>
-        <childnode refid="5020" relation="include">
-        </childnode>
-        <childnode refid="5004" relation="include">
-        </childnode>
-        <childnode refid="5021" relation="include">
-        </childnode>
-        <childnode refid="5022" relation="include">
-        </childnode>
-        <childnode refid="5023" relation="include">
-        </childnode>
-        <childnode refid="5024" relation="include">
-        </childnode>
-        <childnode refid="5025" relation="include">
-        </childnode>
-        <childnode refid="5026" relation="include">
-        </childnode>
-        <childnode refid="5027" relation="include">
-        </childnode>
-        <childnode refid="5028" relation="include">
-        </childnode>
-        <childnode refid="5029" relation="include">
-        </childnode>
-        <childnode refid="5030" relation="include">
-        </childnode>
-        <childnode refid="5031" relation="include">
-        </childnode>
-        <childnode refid="5032" relation="include">
-        </childnode>
-        <childnode refid="5033" relation="include">
-        </childnode>
-        <childnode refid="5034" relation="include">
-        </childnode>
-        <childnode refid="5035" relation="include">
-        </childnode>
-        <childnode refid="5036" relation="include">
-        </childnode>
-        <childnode refid="5037" relation="include">
-        </childnode>
-        <childnode refid="5042" relation="include">
-        </childnode>
-        <childnode refid="5055" relation="include">
-        </childnode>
-        <childnode refid="5060" relation="include">
-        </childnode>
-      </node>
-      <node id="5046">
+      <node id="5971">
         <label>memory</label>
       </node>
-      <node id="5018">
+      <node id="5925">
+        <label>kukadu/types/sensordata.hpp</label>
+        <link refid="sensordata_8hpp_source"/>
+        <childnode refid="5926" relation="include">
+        </childnode>
+        <childnode refid="5927" relation="include">
+        </childnode>
+        <childnode refid="5928" relation="include">
+        </childnode>
+        <childnode refid="5929" relation="include">
+        </childnode>
+        <childnode refid="5930" relation="include">
+        </childnode>
+        <childnode refid="5931" relation="include">
+        </childnode>
+      </node>
+      <node id="5943">
         <label>dirent.h</label>
       </node>
     </incdepgraph>
@@ -517,10 +491,10 @@
 <codeline lineno="4"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&lt;kukadu/storage/moduleusagesingleton.hpp&gt;</highlight><highlight class="normal"></highlight></codeline>
 <codeline lineno="5"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&lt;kukadu/storage/sensorstoragesingleton.hpp&gt;</highlight><highlight class="normal"></highlight></codeline>
 <codeline lineno="6"><highlight class="normal"></highlight></codeline>
-<codeline lineno="7"><highlight class="normal"></highlight><highlight class="keyword">using<sp/>namespace<sp/></highlight><highlight class="normal">std;</highlight></codeline>
-<codeline lineno="8"><highlight class="normal"></highlight><highlight class="keyword">using<sp/>namespace<sp/></highlight><highlight class="normal">arma;</highlight></codeline>
+<codeline lineno="7"><highlight class="normal"></highlight><highlight class="keyword">using<sp/>namespace<sp/></highlight><highlight class="normal"><ref refid="namespacestd" kindref="compound">std</ref>;</highlight></codeline>
+<codeline lineno="8"><highlight class="normal"></highlight><highlight class="keyword">using<sp/>namespace<sp/></highlight><highlight class="normal"><ref refid="namespacearma" kindref="compound">arma</ref>;</highlight></codeline>
 <codeline lineno="9"><highlight class="normal"></highlight></codeline>
-<codeline lineno="10"><highlight class="normal"></highlight><highlight class="keyword">namespace<sp/></highlight><highlight class="normal">kukadu<sp/>{</highlight></codeline>
+<codeline lineno="10"><highlight class="normal"></highlight><highlight class="keyword">namespace<sp/></highlight><highlight class="normal"><ref refid="namespacekukadu" kindref="compound">kukadu</ref><sp/>{</highlight></codeline>
 <codeline lineno="11"><highlight class="normal"></highlight></codeline>
 <codeline lineno="12"><highlight class="normal"><sp/><sp/><sp/><sp/>SensorStorageSingleton::SensorStorageSingleton()<sp/>{</highlight></codeline>
 <codeline lineno="13"><highlight class="normal"></highlight></codeline>
@@ -717,7 +691,7 @@
 <codeline lineno="204"><highlight class="normal"></highlight></codeline>
 <codeline lineno="205"><highlight class="normal"><sp/><sp/><sp/><sp/>std::pair&lt;long<sp/>long<sp/>int,<sp/>long<sp/>long<sp/>int&gt;<sp/>SensorStorage::transferArmDataToDb(StorageSingleton&amp;<sp/>dbStorage,<sp/>KUKADU_SHARED_PTR&lt;ControlQueue&gt;<sp/>queue,<sp/>std::string<sp/>file)<sp/>{</highlight></codeline>
 <codeline lineno="206"><highlight class="normal"></highlight></codeline>
-<codeline lineno="207"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">long</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">long</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/>currentTime<sp/>=<sp/><ref refid="classkukadu_1_1TimedObject_1a9c4db6e3f71d4bbddecd12b43e586691" kindref="member">getCurrentTime</ref>();</highlight></codeline>
+<codeline lineno="207"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">long</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">long</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/>currentTime<sp/>=<sp/>getCurrentTime();</highlight></codeline>
 <codeline lineno="208"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">auto</highlight><highlight class="normal"><sp/>robotId<sp/>=<sp/>queue-&gt;getRobotId();</highlight></codeline>
 <codeline lineno="209"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">auto</highlight><highlight class="normal"><sp/>jointIds<sp/>=<sp/>queue-&gt;getJointIds();</highlight></codeline>
 <codeline lineno="210"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>vec<sp/>fakeFrc;</highlight></codeline>
@@ -1623,6 +1597,6 @@
 <codeline lineno="1110"><highlight class="normal"></highlight></codeline>
 <codeline lineno="1111"><highlight class="normal">}</highlight></codeline>
     </programlisting>
-    <location file="/home/andreasmennel/iis_robot_sw/iis_catkin_ws/src/kukadu/src/storage/sensorstorage.cpp"/>
+    <location file="/home/agyss/iis_robot_sw/iis_catkin_ws/src/kukadu/src/storage/sensorstorage.cpp"/>
   </compounddef>
 </doxygen>

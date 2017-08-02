@@ -3,6 +3,22 @@
 goog.provide('Blockly.Blocks.custom');
 goog.require('Blockly.Blocks');
 
+Blockly.Blocks['objectposition'] = {
+    init: function () {
+        this.appendDummyInput()
+            .appendField("VariableName: ")
+            .appendField(new Blockly.FieldTextInput("variableName"), "VariableName");
+        this.appendDummyInput()
+            .appendField("Object to load: ")
+            .appendField(new Blockly.FieldTextInput("hans"), "ObjectType");
+        this.setPreviousStatement(true, null);
+        this.setNextStatement(true, null);
+        this.setColour(230);
+        this.setTooltip('Object Position');
+        this.setHelpUrl('');
+    }
+};
+
 Blockly.Blocks['skillloader'] = {
     init: function () {
         this._hardwareIds = -1;

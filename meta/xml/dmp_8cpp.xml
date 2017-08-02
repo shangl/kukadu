@@ -1,6 +1,6 @@
 <?xml version='1.0' encoding='UTF-8' standalone='no'?>
-<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.8.6">
-  <compounddef id="dmp_8cpp" kind="file">
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.8.11">
+  <compounddef id="dmp_8cpp" kind="file" language="C++">
     <compoundname>dmp.cpp</compoundname>
     <includes local="no">sstream</includes>
     <includes local="no">gsl/gsl_errno.h</includes>
@@ -12,557 +12,625 @@
     <includes refid="conversion__utils_8hpp" local="no">kukadu/utils/conversion_utils.hpp</includes>
     <includes refid="moduleusagesingleton_8hpp" local="no">kukadu/storage/moduleusagesingleton.hpp</includes>
     <incdepgraph>
-      <node id="2844">
+      <node id="3726">
         <label>sys/stat.h</label>
       </node>
-      <node id="2862">
+      <node id="3744">
         <label>list</label>
       </node>
-      <node id="2847">
+      <node id="3729">
         <label>gsl/gsl_vector.h</label>
       </node>
-      <node id="2843">
+      <node id="3725">
         <label>wordexp.h</label>
       </node>
-      <node id="2841">
+      <node id="3723">
         <label>stdbool.h</label>
       </node>
-      <node id="2836">
+      <node id="3718">
         <label>stdarg.h</label>
       </node>
-      <node id="2874">
+      <node id="3756">
         <label>cppconn/resultset.h</label>
       </node>
-      <node id="2855">
+      <node id="3737">
         <label>sensor_msgs/PointCloud2.h</label>
       </node>
-      <node id="2826">
+      <node id="3764">
+        <label>kukadu/control/trajectory.hpp</label>
+        <link refid="trajectory_8hpp_source"/>
+        <childnode refid="3724" relation="include">
+        </childnode>
+        <childnode refid="3760" relation="include">
+        </childnode>
+        <childnode refid="3747" relation="include">
+        </childnode>
+        <childnode refid="3765" relation="include">
+        </childnode>
+      </node>
+      <node id="3702">
+        <label>/home/agyss/iis_robot_sw/iis_catkin_ws/src/kukadu/src/control/dmp.cpp</label>
+        <link refid="dmp.cpp"/>
+        <childnode refid="3703" relation="include">
+        </childnode>
+        <childnode refid="3704" relation="include">
+        </childnode>
+        <childnode refid="3705" relation="include">
+        </childnode>
+        <childnode refid="3706" relation="include">
+        </childnode>
+        <childnode refid="3759" relation="include">
+        </childnode>
+        <childnode refid="3736" relation="include">
+        </childnode>
+        <childnode refid="3777" relation="include">
+        </childnode>
+        <childnode refid="3781" relation="include">
+        </childnode>
+        <childnode refid="3782" relation="include">
+        </childnode>
+      </node>
+      <node id="3708">
         <label>queue</label>
       </node>
-      <node id="2853">
+      <node id="3735">
         <label>pcl/PCLPointCloud2.h</label>
       </node>
-      <node id="2891">
-        <label>kukadu/types/sensordata.hpp</label>
-        <link refid="sensordata_8hpp_source"/>
-        <childnode refid="2828" relation="include">
-        </childnode>
-        <childnode refid="2830" relation="include">
-        </childnode>
-        <childnode refid="2834" relation="include">
-        </childnode>
-        <childnode refid="2842" relation="include">
-        </childnode>
-        <childnode refid="2879" relation="include">
-        </childnode>
-        <childnode refid="2824" relation="include">
-        </childnode>
-      </node>
-      <node id="2883">
-        <label>kukadu/control/dmp.hpp</label>
-        <link refid="dmp_8hpp_source"/>
-        <childnode refid="2828" relation="include">
-        </childnode>
-        <childnode refid="2842" relation="include">
-        </childnode>
-        <childnode refid="2883" relation="include">
-        </childnode>
-        <childnode refid="2857" relation="include">
-        </childnode>
-        <childnode refid="2878" relation="include">
-        </childnode>
-        <childnode refid="2884" relation="include">
-        </childnode>
-        <childnode refid="2885" relation="include">
-        </childnode>
-        <childnode refid="2886" relation="include">
-        </childnode>
-        <childnode refid="2887" relation="include">
-        </childnode>
-      </node>
-      <node id="2827">
+      <node id="3709">
         <label>limits</label>
       </node>
-      <node id="2880">
-        <label>kukadu/robot/filters.hpp</label>
-        <link refid="filters_8hpp_source"/>
-        <childnode refid="2857" relation="include">
+      <node id="3760">
+        <label>kukadu/robot/queue.hpp</label>
+        <link refid="queue_8hpp"/>
+        <childnode refid="3708" relation="include">
         </childnode>
-        <childnode refid="2865" relation="include">
+        <childnode refid="3710" relation="include">
         </childnode>
-      </node>
-      <node id="2858">
-        <label>kukadu/utils/gnuplot.hpp</label>
-        <link refid="gnuplot_8hpp_source"/>
-        <childnode refid="2837" relation="include">
+        <childnode refid="3724" relation="include">
         </childnode>
-        <childnode refid="2830" relation="include">
+        <childnode refid="3761" relation="include">
         </childnode>
-        <childnode refid="2828" relation="include">
+        <childnode refid="3762" relation="include">
         </childnode>
-        <childnode refid="2833" relation="include">
+        <childnode refid="3745" relation="include">
         </childnode>
-        <childnode refid="2821" relation="include">
+        <childnode refid="3747" relation="include">
         </childnode>
-        <childnode refid="2859" relation="include">
+        <childnode refid="3763" relation="include">
         </childnode>
-        <childnode refid="2860" relation="include">
-        </childnode>
-        <childnode refid="2861" relation="include">
-        </childnode>
-        <childnode refid="2862" relation="include">
+        <childnode refid="3746" relation="include">
         </childnode>
       </node>
-      <node id="2850">
+      <node id="3732">
         <label>pcl/point_types.h</label>
       </node>
-      <node id="2893">
+      <node id="3781">
+        <label>kukadu/utils/conversion_utils.hpp</label>
+        <link refid="conversion__utils_8hpp_source"/>
+        <childnode refid="3710" relation="include">
+        </childnode>
+        <childnode refid="3715" relation="include">
+        </childnode>
+        <childnode refid="3719" relation="include">
+        </childnode>
+        <childnode refid="3724" relation="include">
+        </childnode>
+        <childnode refid="3758" relation="include">
+        </childnode>
+      </node>
+      <node id="3782">
         <label>kukadu/storage/moduleusagesingleton.hpp</label>
         <link refid="moduleusagesingleton_8hpp_source"/>
-        <childnode refid="2825" relation="include">
+        <childnode refid="3707" relation="include">
         </childnode>
-        <childnode refid="2830" relation="include">
+        <childnode refid="3712" relation="include">
         </childnode>
-        <childnode refid="2834" relation="include">
+        <childnode refid="3716" relation="include">
         </childnode>
-        <childnode refid="2824" relation="include">
+        <childnode refid="3706" relation="include">
         </childnode>
-        <childnode refid="2865" relation="include">
+        <childnode refid="3747" relation="include">
         </childnode>
-        <childnode refid="2864" relation="include">
+        <childnode refid="3746" relation="include">
         </childnode>
       </node>
-      <node id="2849">
+      <node id="3746">
+        <label>kukadu/storage/storagesingleton.hpp</label>
+        <link refid="storagesingleton_8hpp_source"/>
+        <childnode refid="3707" relation="include">
+        </childnode>
+        <childnode refid="3708" relation="include">
+        </childnode>
+        <childnode refid="3712" relation="include">
+        </childnode>
+        <childnode refid="3710" relation="include">
+        </childnode>
+        <childnode refid="3719" relation="include">
+        </childnode>
+        <childnode refid="3747" relation="include">
+        </childnode>
+        <childnode refid="3753" relation="include">
+        </childnode>
+        <childnode refid="3754" relation="include">
+        </childnode>
+        <childnode refid="3755" relation="include">
+        </childnode>
+        <childnode refid="3756" relation="include">
+        </childnode>
+        <childnode refid="3757" relation="include">
+        </childnode>
+      </node>
+      <node id="3731">
         <label>pcl/point_cloud.h</label>
       </node>
-      <node id="2859">
+      <node id="3747">
+        <label>kukadu/types/kukadutypes.hpp</label>
+        <link refid="kukadutypes_8hpp_source"/>
+        <childnode refid="3748" relation="include">
+        </childnode>
+        <childnode refid="3749" relation="include">
+        </childnode>
+        <childnode refid="3750" relation="include">
+        </childnode>
+        <childnode refid="3751" relation="include">
+        </childnode>
+        <childnode refid="3752" relation="include">
+        </childnode>
+      </node>
+      <node id="3769">
+        <label>kukadu/vision/pcstdtrans.hpp</label>
+        <link refid="pcstdtrans_8hpp_source"/>
+        <childnode refid="3724" relation="include">
+        </childnode>
+        <childnode refid="3770" relation="include">
+        </childnode>
+        <childnode refid="3771" relation="include">
+        </childnode>
+      </node>
+      <node id="3741">
         <label>stdexcept</label>
       </node>
-      <node id="2840">
+      <node id="3722">
         <label>termios.h</label>
       </node>
-      <node id="2852">
+      <node id="3734">
         <label>eigen3/Eigen/Dense</label>
       </node>
-      <node id="2846">
+      <node id="3745">
+        <label>kukadu/robot/hardware.hpp</label>
+        <link refid="hardware_8hpp_source"/>
+        <childnode refid="3712" relation="include">
+        </childnode>
+        <childnode refid="3724" relation="include">
+        </childnode>
+        <childnode refid="3739" relation="include">
+        </childnode>
+        <childnode refid="3746" relation="include">
+        </childnode>
+      </node>
+      <node id="3728">
         <label>gsl/gsl_poly.h</label>
       </node>
-      <node id="2830">
+      <node id="3712">
         <label>string</label>
       </node>
-      <node id="2890">
-        <label>kukadu/robot/hand.hpp</label>
-        <link refid="hand_8hpp_source"/>
-        <childnode refid="2827" relation="include">
-        </childnode>
-        <childnode refid="2828" relation="include">
-        </childnode>
-        <childnode refid="2889" relation="include">
-        </childnode>
-        <childnode refid="2842" relation="include">
-        </childnode>
-        <childnode refid="2857" relation="include">
-        </childnode>
-        <childnode refid="2863" relation="include">
-        </childnode>
-        <childnode refid="2881" relation="include">
-        </childnode>
-        <childnode refid="2864" relation="include">
-        </childnode>
-      </node>
-      <node id="2825">
+      <node id="3707">
         <label>map</label>
       </node>
-      <node id="2886">
+      <node id="3740">
+        <label>kukadu/utils/gnuplot.hpp</label>
+        <link refid="gnuplot_8hpp_source"/>
+        <childnode refid="3719" relation="include">
+        </childnode>
+        <childnode refid="3712" relation="include">
+        </childnode>
+        <childnode refid="3710" relation="include">
+        </childnode>
+        <childnode refid="3715" relation="include">
+        </childnode>
+        <childnode refid="3703" relation="include">
+        </childnode>
+        <childnode refid="3741" relation="include">
+        </childnode>
+        <childnode refid="3742" relation="include">
+        </childnode>
+        <childnode refid="3743" relation="include">
+        </childnode>
+        <childnode refid="3744" relation="include">
+        </childnode>
+      </node>
+      <node id="3775">
         <label>tf/tf.h</label>
       </node>
-      <node id="2842">
+      <node id="3724">
         <label>armadillo</label>
       </node>
-      <node id="2866">
+      <node id="3748">
         <label>exception</label>
       </node>
-      <node id="2833">
+      <node id="3715">
         <label>fstream</label>
       </node>
-      <node id="2875">
+      <node id="3758">
+        <label>kukadu/utils/kukadutokenizer.hpp</label>
+        <link refid="kukadutokenizer_8hpp_source"/>
+        <childnode refid="3712" relation="include">
+        </childnode>
+        <childnode refid="3710" relation="include">
+        </childnode>
+      </node>
+      <node id="3757">
         <label>cppconn/statement.h</label>
       </node>
-      <node id="2888">
-        <label>kukadu/storage/sensorstorage.hpp</label>
-        <link refid="sensorstorage_8hpp_source"/>
-        <childnode refid="2830" relation="include">
-        </childnode>
-        <childnode refid="2828" relation="include">
-        </childnode>
-        <childnode refid="2861" relation="include">
-        </childnode>
-        <childnode refid="2837" relation="include">
-        </childnode>
-        <childnode refid="2842" relation="include">
-        </childnode>
-        <childnode refid="2889" relation="include">
-        </childnode>
-        <childnode refid="2879" relation="include">
-        </childnode>
-        <childnode refid="2890" relation="include">
-        </childnode>
-        <childnode refid="2878" relation="include">
-        </childnode>
-        <childnode refid="2857" relation="include">
-        </childnode>
-        <childnode refid="2824" relation="include">
-        </childnode>
-        <childnode refid="2891" relation="include">
-        </childnode>
-        <childnode refid="2865" relation="include">
-        </childnode>
-        <childnode refid="2864" relation="include">
-        </childnode>
-      </node>
-      <node id="2877">
-        <label>kukadu/types/controllerresult.hpp</label>
-        <link refid="controllerresult_8hpp_source"/>
-        <childnode refid="2828" relation="include">
-        </childnode>
-        <childnode refid="2842" relation="include">
-        </childnode>
-      </node>
-      <node id="2870">
+      <node id="3752">
         <label>random</label>
       </node>
-      <node id="2845">
+      <node id="3727">
         <label>sys/types.h</label>
       </node>
-      <node id="2881">
+      <node id="3759">
+        <label>kukadu/control/dmp.hpp</label>
+        <link refid="dmp_8hpp_source"/>
+        <childnode refid="3710" relation="include">
+        </childnode>
+        <childnode refid="3724" relation="include">
+        </childnode>
+        <childnode refid="3759" relation="include">
+        </childnode>
+        <childnode refid="3739" relation="include">
+        </childnode>
+        <childnode refid="3760" relation="include">
+        </childnode>
+        <childnode refid="3764" relation="include">
+        </childnode>
+        <childnode refid="3774" relation="include">
+        </childnode>
+        <childnode refid="3775" relation="include">
+        </childnode>
+        <childnode refid="3776" relation="include">
+        </childnode>
+      </node>
+      <node id="3739">
+        <label>kukadu/utils/types.hpp</label>
+        <link refid="utils_2types_8hpp_source"/>
+        <childnode refid="3710" relation="include">
+        </childnode>
+        <childnode refid="3724" relation="include">
+        </childnode>
+        <childnode refid="3705" relation="include">
+        </childnode>
+      </node>
+      <node id="3736">
+        <label>tf/transform_datatypes.h</label>
+      </node>
+      <node id="3742">
+        <label>cstdio</label>
+      </node>
+      <node id="3706">
+        <label>kukadu/utils/utils.hpp</label>
+        <link refid="utils_2utils_8hpp_source"/>
+        <childnode refid="3707" relation="include">
+        </childnode>
+        <childnode refid="3708" relation="include">
+        </childnode>
+        <childnode refid="3709" relation="include">
+        </childnode>
+        <childnode refid="3710" relation="include">
+        </childnode>
+        <childnode refid="3711" relation="include">
+        </childnode>
+        <childnode refid="3712" relation="include">
+        </childnode>
+        <childnode refid="3713" relation="include">
+        </childnode>
+        <childnode refid="3703" relation="include">
+        </childnode>
+        <childnode refid="3714" relation="include">
+        </childnode>
+        <childnode refid="3715" relation="include">
+        </childnode>
+        <childnode refid="3716" relation="include">
+        </childnode>
+        <childnode refid="3717" relation="include">
+        </childnode>
+        <childnode refid="3718" relation="include">
+        </childnode>
+        <childnode refid="3719" relation="include">
+        </childnode>
+        <childnode refid="3720" relation="include">
+        </childnode>
+        <childnode refid="3721" relation="include">
+        </childnode>
+        <childnode refid="3722" relation="include">
+        </childnode>
+        <childnode refid="3723" relation="include">
+        </childnode>
+        <childnode refid="3724" relation="include">
+        </childnode>
+        <childnode refid="3725" relation="include">
+        </childnode>
+        <childnode refid="3726" relation="include">
+        </childnode>
+        <childnode refid="3727" relation="include">
+        </childnode>
+        <childnode refid="3728" relation="include">
+        </childnode>
+        <childnode refid="3729" relation="include">
+        </childnode>
+        <childnode refid="3705" relation="include">
+        </childnode>
+        <childnode refid="3730" relation="include">
+        </childnode>
+        <childnode refid="3731" relation="include">
+        </childnode>
+        <childnode refid="3732" relation="include">
+        </childnode>
+        <childnode refid="3733" relation="include">
+        </childnode>
+        <childnode refid="3734" relation="include">
+        </childnode>
+        <childnode refid="3735" relation="include">
+        </childnode>
+        <childnode refid="3736" relation="include">
+        </childnode>
+        <childnode refid="3737" relation="include">
+        </childnode>
+        <childnode refid="3738" relation="include">
+        </childnode>
+        <childnode refid="3739" relation="include">
+        </childnode>
+        <childnode refid="3740" relation="include">
+        </childnode>
+        <childnode refid="3745" relation="include">
+        </childnode>
+        <childnode refid="3758" relation="include">
+        </childnode>
+      </node>
+      <node id="3767">
+        <label>geometry_msgs/PoseStamped.h</label>
+      </node>
+      <node id="3765">
+        <label>kukadu/control/controller.hpp</label>
+        <link refid="controller_8hpp_source"/>
+        <childnode refid="3712" relation="include">
+        </childnode>
+        <childnode refid="3760" relation="include">
+        </childnode>
+        <childnode refid="3745" relation="include">
+        </childnode>
+        <childnode refid="3766" relation="include">
+        </childnode>
+        <childnode refid="3747" relation="include">
+        </childnode>
+        <childnode refid="3773" relation="include">
+        </childnode>
+        <childnode refid="3746" relation="include">
+        </childnode>
+      </node>
+      <node id="3774">
+        <label>kukadu/learning/regression/fitting.hpp</label>
+        <link refid="fitting_8hpp_source"/>
+        <childnode refid="3724" relation="include">
+        </childnode>
+        <childnode refid="3764" relation="include">
+        </childnode>
+      </node>
+      <node id="3717">
+        <label>unistd.h</label>
+      </node>
+      <node id="3710">
+        <label>vector</label>
+      </node>
+      <node id="3762">
+        <label>kukadu/robot/filters.hpp</label>
+        <link refid="filters_8hpp_source"/>
+        <childnode refid="3739" relation="include">
+        </childnode>
+        <childnode refid="3747" relation="include">
+        </childnode>
+      </node>
+      <node id="3720">
+        <label>signal.h</label>
+      </node>
+      <node id="3777">
+        <label>kukadu/storage/sensorstorage.hpp</label>
+        <link refid="sensorstorage_8hpp_source"/>
+        <childnode refid="3712" relation="include">
+        </childnode>
+        <childnode refid="3710" relation="include">
+        </childnode>
+        <childnode refid="3743" relation="include">
+        </childnode>
+        <childnode refid="3719" relation="include">
+        </childnode>
+        <childnode refid="3724" relation="include">
+        </childnode>
+        <childnode refid="3778" relation="include">
+        </childnode>
+        <childnode refid="3761" relation="include">
+        </childnode>
+        <childnode refid="3779" relation="include">
+        </childnode>
+        <childnode refid="3760" relation="include">
+        </childnode>
+        <childnode refid="3739" relation="include">
+        </childnode>
+        <childnode refid="3706" relation="include">
+        </childnode>
+        <childnode refid="3780" relation="include">
+        </childnode>
+        <childnode refid="3747" relation="include">
+        </childnode>
+        <childnode refid="3746" relation="include">
+        </childnode>
+      </node>
+      <node id="3716">
+        <label>utility</label>
+      </node>
+      <node id="3703">
+        <label>sstream</label>
+      </node>
+      <node id="3754">
+        <label>cppconn/driver.h</label>
+      </node>
+      <node id="3755">
+        <label>cppconn/exception.h</label>
+      </node>
+      <node id="3761">
+        <label>geometry_msgs/Pose.h</label>
+      </node>
+      <node id="3778">
+        <label>ros/ros.h</label>
+      </node>
+      <node id="3711">
+        <label>math.h</label>
+      </node>
+      <node id="3743">
+        <label>cstdlib</label>
+      </node>
+      <node id="3719">
+        <label>iostream</label>
+      </node>
+      <node id="3753">
+        <label>mysql_connection.h</label>
+      </node>
+      <node id="3771">
+        <label>pcl/kdtree/kdtree_flann.h</label>
+      </node>
+      <node id="3763">
         <label>kukadu/utils/destroyableobject.hpp</label>
         <link refid="destroyableobject_8hpp_source"/>
       </node>
-      <node id="2865">
-        <label>kukadu/types/kukadutypes.hpp</label>
-        <link refid="kukadutypes_8hpp_source"/>
-        <childnode refid="2866" relation="include">
-        </childnode>
-        <childnode refid="2867" relation="include">
-        </childnode>
-        <childnode refid="2868" relation="include">
-        </childnode>
-        <childnode refid="2869" relation="include">
-        </childnode>
-        <childnode refid="2870" relation="include">
-        </childnode>
-      </node>
-      <node id="2854">
-        <label>tf/transform_datatypes.h</label>
-      </node>
-      <node id="2860">
-        <label>cstdio</label>
-      </node>
-      <node id="2892">
-        <label>kukadu/utils/conversion_utils.hpp</label>
-        <link refid="conversion__utils_8hpp_source"/>
-        <childnode refid="2828" relation="include">
-        </childnode>
-        <childnode refid="2833" relation="include">
-        </childnode>
-        <childnode refid="2837" relation="include">
-        </childnode>
-        <childnode refid="2842" relation="include">
-        </childnode>
-        <childnode refid="2882" relation="include">
-        </childnode>
-      </node>
-      <node id="2878">
-        <label>kukadu/robot/queue.hpp</label>
-        <link refid="queue_8hpp"/>
-        <childnode refid="2826" relation="include">
-        </childnode>
-        <childnode refid="2828" relation="include">
-        </childnode>
-        <childnode refid="2842" relation="include">
-        </childnode>
-        <childnode refid="2879" relation="include">
-        </childnode>
-        <childnode refid="2880" relation="include">
-        </childnode>
-        <childnode refid="2863" relation="include">
-        </childnode>
-        <childnode refid="2865" relation="include">
-        </childnode>
-        <childnode refid="2881" relation="include">
-        </childnode>
-        <childnode refid="2864" relation="include">
-        </childnode>
-      </node>
-      <node id="2885">
-        <label>kukadu/learning/regression/fitting.hpp</label>
-        <link refid="fitting_8hpp_source"/>
-        <childnode refid="2842" relation="include">
-        </childnode>
-        <childnode refid="2884" relation="include">
-        </childnode>
-      </node>
-      <node id="2835">
-        <label>unistd.h</label>
-      </node>
-      <node id="2863">
-        <label>kukadu/robot/hardware.hpp</label>
-        <link refid="hardware_8hpp_source"/>
-        <childnode refid="2830" relation="include">
-        </childnode>
-        <childnode refid="2842" relation="include">
-        </childnode>
-        <childnode refid="2857" relation="include">
-        </childnode>
-        <childnode refid="2864" relation="include">
-        </childnode>
-      </node>
-      <node id="2828">
-        <label>vector</label>
-      </node>
-      <node id="2820">
-        <label>/home/andreasmennel/iis_robot_sw/iis_catkin_ws/src/kukadu/src/control/dmp.cpp</label>
-        <link refid="dmp.cpp"/>
-        <childnode refid="2821" relation="include">
-        </childnode>
-        <childnode refid="2822" relation="include">
-        </childnode>
-        <childnode refid="2823" relation="include">
-        </childnode>
-        <childnode refid="2824" relation="include">
-        </childnode>
-        <childnode refid="2883" relation="include">
-        </childnode>
-        <childnode refid="2854" relation="include">
-        </childnode>
-        <childnode refid="2888" relation="include">
-        </childnode>
-        <childnode refid="2892" relation="include">
-        </childnode>
-        <childnode refid="2893" relation="include">
-        </childnode>
-      </node>
-      <node id="2838">
-        <label>signal.h</label>
-      </node>
-      <node id="2884">
-        <label>kukadu/control/trajectory.hpp</label>
-        <link refid="trajectory_8hpp_source"/>
-        <childnode refid="2842" relation="include">
-        </childnode>
-        <childnode refid="2878" relation="include">
-        </childnode>
-        <childnode refid="2865" relation="include">
-        </childnode>
-        <childnode refid="2876" relation="include">
-        </childnode>
-      </node>
-      <node id="2834">
-        <label>utility</label>
-      </node>
-      <node id="2821">
-        <label>sstream</label>
-      </node>
-      <node id="2872">
-        <label>cppconn/driver.h</label>
-      </node>
-      <node id="2873">
-        <label>cppconn/exception.h</label>
-      </node>
-      <node id="2879">
-        <label>geometry_msgs/Pose.h</label>
-      </node>
-      <node id="2882">
-        <label>kukadu/utils/kukadutokenizer.hpp</label>
-        <link refid="kukadutokenizer_8hpp_source"/>
-        <childnode refid="2830" relation="include">
-        </childnode>
-        <childnode refid="2828" relation="include">
-        </childnode>
-      </node>
-      <node id="2889">
-        <label>ros/ros.h</label>
-      </node>
-      <node id="2829">
-        <label>math.h</label>
-      </node>
-      <node id="2861">
-        <label>cstdlib</label>
-      </node>
-      <node id="2837">
-        <label>iostream</label>
-      </node>
-      <node id="2871">
-        <label>mysql_connection.h</label>
-      </node>
-      <node id="2876">
-        <label>kukadu/control/controller.hpp</label>
-        <link refid="controller_8hpp_source"/>
-        <childnode refid="2830" relation="include">
-        </childnode>
-        <childnode refid="2863" relation="include">
-        </childnode>
-        <childnode refid="2865" relation="include">
-        </childnode>
-        <childnode refid="2877" relation="include">
-        </childnode>
-        <childnode refid="2864" relation="include">
-        </childnode>
-        <childnode refid="2878" relation="include">
-        </childnode>
-      </node>
-      <node id="2869">
+      <node id="3751">
         <label>mutex</label>
       </node>
-      <node id="2851">
+      <node id="3733">
         <label>gsl/gsl_multifit.h</label>
       </node>
-      <node id="2857">
-        <label>kukadu/utils/types.hpp</label>
-        <link refid="utils_2types_8hpp_source"/>
-        <childnode refid="2828" relation="include">
-        </childnode>
-        <childnode refid="2842" relation="include">
-        </childnode>
-        <childnode refid="2823" relation="include">
-        </childnode>
-      </node>
-      <node id="2856">
+      <node id="3738">
         <label>geometry_msgs/Quaternion.h</label>
       </node>
-      <node id="2868">
+      <node id="3750">
         <label>thread</label>
       </node>
-      <node id="2864">
-        <label>kukadu/storage/storagesingleton.hpp</label>
-        <link refid="storagesingleton_8hpp_source"/>
-        <childnode refid="2825" relation="include">
-        </childnode>
-        <childnode refid="2826" relation="include">
-        </childnode>
-        <childnode refid="2830" relation="include">
-        </childnode>
-        <childnode refid="2828" relation="include">
-        </childnode>
-        <childnode refid="2837" relation="include">
-        </childnode>
-        <childnode refid="2865" relation="include">
-        </childnode>
-        <childnode refid="2871" relation="include">
-        </childnode>
-        <childnode refid="2872" relation="include">
-        </childnode>
-        <childnode refid="2873" relation="include">
-        </childnode>
-        <childnode refid="2874" relation="include">
-        </childnode>
-        <childnode refid="2875" relation="include">
-        </childnode>
+      <node id="3770">
+        <label>pcl_ros/transforms.h</label>
       </node>
-      <node id="2887">
+      <node id="3776">
         <label>gsl/gsl_odeiv2.h</label>
       </node>
-      <node id="2848">
+      <node id="3730">
         <label>gsl/gsl_linalg.h</label>
       </node>
-      <node id="2832">
+      <node id="3766">
+        <label>kukadu/vision/localizer.hpp</label>
+        <link refid="localizer_8hpp_source"/>
+        <childnode refid="3749" relation="include">
+        </childnode>
+        <childnode refid="3710" relation="include">
+        </childnode>
+        <childnode refid="3712" relation="include">
+        </childnode>
+        <childnode refid="3716" relation="include">
+        </childnode>
+        <childnode refid="3724" relation="include">
+        </childnode>
+        <childnode refid="3761" relation="include">
+        </childnode>
+        <childnode refid="3767" relation="include">
+        </childnode>
+        <childnode refid="3706" relation="include">
+        </childnode>
+        <childnode refid="3768" relation="include">
+        </childnode>
+        <childnode refid="3747" relation="include">
+        </childnode>
+      </node>
+      <node id="3768">
+        <label>kukadu/vision/kinect.hpp</label>
+        <link refid="kinect_8hpp_source"/>
+        <childnode refid="3710" relation="include">
+        </childnode>
+        <childnode refid="3712" relation="include">
+        </childnode>
+        <childnode refid="3731" relation="include">
+        </childnode>
+        <childnode refid="3732" relation="include">
+        </childnode>
+        <childnode refid="3745" relation="include">
+        </childnode>
+        <childnode refid="3737" relation="include">
+        </childnode>
+        <childnode refid="3747" relation="include">
+        </childnode>
+        <childnode refid="3769" relation="include">
+        </childnode>
+        <childnode refid="3772" relation="include">
+        </childnode>
+      </node>
+      <node id="3772">
+        <label>pcl_conversions/pcl_conversions.h</label>
+      </node>
+      <node id="3779">
+        <label>kukadu/robot/hand.hpp</label>
+        <link refid="hand_8hpp_source"/>
+        <childnode refid="3709" relation="include">
+        </childnode>
+        <childnode refid="3710" relation="include">
+        </childnode>
+        <childnode refid="3778" relation="include">
+        </childnode>
+        <childnode refid="3724" relation="include">
+        </childnode>
+        <childnode refid="3739" relation="include">
+        </childnode>
+        <childnode refid="3745" relation="include">
+        </childnode>
+        <childnode refid="3763" relation="include">
+        </childnode>
+        <childnode refid="3746" relation="include">
+        </childnode>
+      </node>
+      <node id="3714">
         <label>stdio.h</label>
       </node>
-      <node id="2831">
+      <node id="3713">
         <label>cstring</label>
       </node>
-      <node id="2823">
+      <node id="3705">
         <label>gsl/gsl_matrix.h</label>
       </node>
-      <node id="2824">
-        <label>kukadu/utils/utils.hpp</label>
-        <link refid="utils_2utils_8hpp_source"/>
-        <childnode refid="2825" relation="include">
-        </childnode>
-        <childnode refid="2826" relation="include">
-        </childnode>
-        <childnode refid="2827" relation="include">
-        </childnode>
-        <childnode refid="2828" relation="include">
-        </childnode>
-        <childnode refid="2829" relation="include">
-        </childnode>
-        <childnode refid="2830" relation="include">
-        </childnode>
-        <childnode refid="2831" relation="include">
-        </childnode>
-        <childnode refid="2821" relation="include">
-        </childnode>
-        <childnode refid="2832" relation="include">
-        </childnode>
-        <childnode refid="2833" relation="include">
-        </childnode>
-        <childnode refid="2834" relation="include">
-        </childnode>
-        <childnode refid="2835" relation="include">
-        </childnode>
-        <childnode refid="2836" relation="include">
-        </childnode>
-        <childnode refid="2837" relation="include">
-        </childnode>
-        <childnode refid="2838" relation="include">
-        </childnode>
-        <childnode refid="2839" relation="include">
-        </childnode>
-        <childnode refid="2840" relation="include">
-        </childnode>
-        <childnode refid="2841" relation="include">
-        </childnode>
-        <childnode refid="2842" relation="include">
-        </childnode>
-        <childnode refid="2843" relation="include">
-        </childnode>
-        <childnode refid="2844" relation="include">
-        </childnode>
-        <childnode refid="2845" relation="include">
-        </childnode>
-        <childnode refid="2846" relation="include">
-        </childnode>
-        <childnode refid="2847" relation="include">
-        </childnode>
-        <childnode refid="2823" relation="include">
-        </childnode>
-        <childnode refid="2848" relation="include">
-        </childnode>
-        <childnode refid="2849" relation="include">
-        </childnode>
-        <childnode refid="2850" relation="include">
-        </childnode>
-        <childnode refid="2851" relation="include">
-        </childnode>
-        <childnode refid="2852" relation="include">
-        </childnode>
-        <childnode refid="2853" relation="include">
-        </childnode>
-        <childnode refid="2854" relation="include">
-        </childnode>
-        <childnode refid="2855" relation="include">
-        </childnode>
-        <childnode refid="2856" relation="include">
-        </childnode>
-        <childnode refid="2857" relation="include">
-        </childnode>
-        <childnode refid="2858" relation="include">
-        </childnode>
-        <childnode refid="2863" relation="include">
-        </childnode>
-        <childnode refid="2876" relation="include">
-        </childnode>
-        <childnode refid="2882" relation="include">
-        </childnode>
-      </node>
-      <node id="2867">
+      <node id="3749">
         <label>memory</label>
       </node>
-      <node id="2822">
+      <node id="3773">
+        <label>kukadu/types/controllerresult.hpp</label>
+        <link refid="controllerresult_8hpp_source"/>
+        <childnode refid="3710" relation="include">
+        </childnode>
+        <childnode refid="3724" relation="include">
+        </childnode>
+      </node>
+      <node id="3704">
         <label>gsl/gsl_errno.h</label>
       </node>
-      <node id="2839">
+      <node id="3780">
+        <label>kukadu/types/sensordata.hpp</label>
+        <link refid="sensordata_8hpp_source"/>
+        <childnode refid="3710" relation="include">
+        </childnode>
+        <childnode refid="3712" relation="include">
+        </childnode>
+        <childnode refid="3716" relation="include">
+        </childnode>
+        <childnode refid="3724" relation="include">
+        </childnode>
+        <childnode refid="3761" relation="include">
+        </childnode>
+        <childnode refid="3706" relation="include">
+        </childnode>
+      </node>
+      <node id="3721">
         <label>dirent.h</label>
       </node>
     </incdepgraph>
@@ -584,10 +652,10 @@
 <codeline lineno="8"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&lt;kukadu/utils/conversion_utils.hpp&gt;</highlight><highlight class="normal"></highlight></codeline>
 <codeline lineno="9"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&lt;kukadu/storage/moduleusagesingleton.hpp&gt;</highlight><highlight class="normal"></highlight></codeline>
 <codeline lineno="10"><highlight class="normal"></highlight></codeline>
-<codeline lineno="11"><highlight class="normal"></highlight><highlight class="keyword">using<sp/>namespace<sp/></highlight><highlight class="normal">std;</highlight></codeline>
-<codeline lineno="12"><highlight class="normal"></highlight><highlight class="keyword">using<sp/>namespace<sp/></highlight><highlight class="normal">arma;</highlight></codeline>
+<codeline lineno="11"><highlight class="normal"></highlight><highlight class="keyword">using<sp/>namespace<sp/></highlight><highlight class="normal"><ref refid="namespacestd" kindref="compound">std</ref>;</highlight></codeline>
+<codeline lineno="12"><highlight class="normal"></highlight><highlight class="keyword">using<sp/>namespace<sp/></highlight><highlight class="normal"><ref refid="namespacearma" kindref="compound">arma</ref>;</highlight></codeline>
 <codeline lineno="13"><highlight class="normal"></highlight></codeline>
-<codeline lineno="14"><highlight class="normal"></highlight><highlight class="keyword">namespace<sp/></highlight><highlight class="normal">kukadu<sp/>{</highlight></codeline>
+<codeline lineno="14"><highlight class="normal"></highlight><highlight class="keyword">namespace<sp/></highlight><highlight class="normal"><ref refid="namespacekukadu" kindref="compound">kukadu</ref><sp/>{</highlight></codeline>
 <codeline lineno="15"><highlight class="normal"></highlight></codeline>
 <codeline lineno="16"><highlight class="normal"><sp/><sp/><sp/><sp/>std::vector&lt;double&gt;<sp/>constructDmpMys(vec&amp;<sp/>timesInSeconds,<sp/>mat&amp;<sp/>joints)<sp/>{</highlight></codeline>
 <codeline lineno="17"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>vector&lt;double&gt;<sp/>ret;</highlight></codeline>
@@ -1124,19 +1192,19 @@
 <codeline lineno="548"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal"><sp/>make_shared&lt;JointDmp&gt;(*this);</highlight></codeline>
 <codeline lineno="549"><highlight class="normal"><sp/><sp/><sp/><sp/>}</highlight></codeline>
 <codeline lineno="550"><highlight class="normal"></highlight></codeline>
-<codeline lineno="551"><highlight class="normal"><sp/><sp/><sp/><sp/>CartesianDMPLearner::CartesianDMPLearner(std::vector&lt;DMPBase&gt;<sp/>dmpBase,<sp/></highlight><highlight class="keywordtype">double</highlight><highlight class="normal"><sp/>tau,<sp/></highlight><highlight class="keywordtype">double</highlight><highlight class="normal"><sp/>az,<sp/></highlight><highlight class="keywordtype">double</highlight><highlight class="normal"><sp/>bz,<sp/></highlight><highlight class="keywordtype">double</highlight><highlight class="normal"><sp/>ax,<sp/>arma::vec<sp/>timesInSeconds,<sp/>arma::mat<sp/>joints)<sp/>:<sp/>GeneralDmpLearner(dmpBase,<sp/>tau,<sp/>az,<sp/>bz,<sp/>ax,<sp/>timesInSeconds,<sp/>joints)<sp/>{</highlight></codeline>
+<codeline lineno="551"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="classkukadu_1_1CartesianDMPLearner_1a13b6c457b204f3dae0541803ac3f6138" kindref="member">CartesianDMPLearner::CartesianDMPLearner</ref>(std::vector&lt;DMPBase&gt;<sp/>dmpBase,<sp/></highlight><highlight class="keywordtype">double</highlight><highlight class="normal"><sp/>tau,<sp/></highlight><highlight class="keywordtype">double</highlight><highlight class="normal"><sp/>az,<sp/></highlight><highlight class="keywordtype">double</highlight><highlight class="normal"><sp/>bz,<sp/></highlight><highlight class="keywordtype">double</highlight><highlight class="normal"><sp/>ax,<sp/>arma::vec<sp/>timesInSeconds,<sp/>arma::mat<sp/>joints)<sp/>:<sp/>GeneralDmpLearner(dmpBase,<sp/>tau,<sp/>az,<sp/>bz,<sp/>ax,<sp/>timesInSeconds,<sp/>joints)<sp/>{</highlight></codeline>
 <codeline lineno="552"><highlight class="normal"></highlight></codeline>
 <codeline lineno="553"><highlight class="normal"><sp/><sp/><sp/><sp/>}</highlight></codeline>
 <codeline lineno="554"><highlight class="normal"></highlight></codeline>
-<codeline lineno="555"><highlight class="normal"><sp/><sp/><sp/><sp/>CartesianDMPLearner::CartesianDMPLearner(std::vector&lt;double&gt;<sp/>mysDef,<sp/>std::vector&lt;double&gt;<sp/>sigmasDef,<sp/></highlight><highlight class="keywordtype">double</highlight><highlight class="normal"><sp/>az,<sp/></highlight><highlight class="keywordtype">double</highlight><highlight class="normal"><sp/>bz,<sp/>std::string<sp/>file)<sp/>:<sp/>GeneralDmpLearner(mysDef,<sp/>sigmasDef,<sp/>az,<sp/>bz,<sp/>file)<sp/>{</highlight></codeline>
+<codeline lineno="555"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="classkukadu_1_1CartesianDMPLearner_1a13b6c457b204f3dae0541803ac3f6138" kindref="member">CartesianDMPLearner::CartesianDMPLearner</ref>(std::vector&lt;double&gt;<sp/>mysDef,<sp/>std::vector&lt;double&gt;<sp/>sigmasDef,<sp/></highlight><highlight class="keywordtype">double</highlight><highlight class="normal"><sp/>az,<sp/></highlight><highlight class="keywordtype">double</highlight><highlight class="normal"><sp/>bz,<sp/>std::string<sp/>file)<sp/>:<sp/>GeneralDmpLearner(mysDef,<sp/>sigmasDef,<sp/>az,<sp/>bz,<sp/>file)<sp/>{</highlight></codeline>
 <codeline lineno="556"><highlight class="normal"></highlight></codeline>
 <codeline lineno="557"><highlight class="normal"><sp/><sp/><sp/><sp/>}</highlight></codeline>
 <codeline lineno="558"><highlight class="normal"></highlight></codeline>
-<codeline lineno="559"><highlight class="normal"><sp/><sp/><sp/><sp/>CartesianDMPLearner::CartesianDMPLearner(</highlight><highlight class="keywordtype">double</highlight><highlight class="normal"><sp/>az,<sp/></highlight><highlight class="keywordtype">double</highlight><highlight class="normal"><sp/>bz,<sp/>std::string<sp/>file)<sp/>:<sp/>GeneralDmpLearner(az,<sp/>bz,<sp/>file)<sp/>{</highlight></codeline>
+<codeline lineno="559"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="classkukadu_1_1CartesianDMPLearner_1a13b6c457b204f3dae0541803ac3f6138" kindref="member">CartesianDMPLearner::CartesianDMPLearner</ref>(</highlight><highlight class="keywordtype">double</highlight><highlight class="normal"><sp/>az,<sp/></highlight><highlight class="keywordtype">double</highlight><highlight class="normal"><sp/>bz,<sp/>std::string<sp/>file)<sp/>:<sp/>GeneralDmpLearner(az,<sp/>bz,<sp/>file)<sp/>{</highlight></codeline>
 <codeline lineno="560"><highlight class="normal"></highlight></codeline>
 <codeline lineno="561"><highlight class="normal"><sp/><sp/><sp/><sp/>}</highlight></codeline>
 <codeline lineno="562"><highlight class="normal"></highlight></codeline>
-<codeline lineno="563"><highlight class="normal"><sp/><sp/><sp/><sp/>CartesianDMPLearner::CartesianDMPLearner(</highlight><highlight class="keywordtype">double</highlight><highlight class="normal"><sp/>az,<sp/></highlight><highlight class="keywordtype">double</highlight><highlight class="normal"><sp/>bz,<sp/>arma::vec<sp/>timesInSeconds,<sp/>arma::mat<sp/>joints)<sp/>:<sp/>GeneralDmpLearner(az,<sp/>bz,<sp/>timesInSeconds,<sp/>joints)<sp/>{</highlight></codeline>
+<codeline lineno="563"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="classkukadu_1_1CartesianDMPLearner_1a13b6c457b204f3dae0541803ac3f6138" kindref="member">CartesianDMPLearner::CartesianDMPLearner</ref>(</highlight><highlight class="keywordtype">double</highlight><highlight class="normal"><sp/>az,<sp/></highlight><highlight class="keywordtype">double</highlight><highlight class="normal"><sp/>bz,<sp/>arma::vec<sp/>timesInSeconds,<sp/>arma::mat<sp/>joints)<sp/>:<sp/>GeneralDmpLearner(az,<sp/>bz,<sp/>timesInSeconds,<sp/>joints)<sp/>{</highlight></codeline>
 <codeline lineno="564"><highlight class="normal"></highlight></codeline>
 <codeline lineno="565"><highlight class="normal"><sp/><sp/><sp/><sp/>}</highlight></codeline>
 <codeline lineno="566"><highlight class="normal"></highlight></codeline>
@@ -1145,12 +1213,12 @@
 <codeline lineno="569"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal"><sp/>make_shared&lt;CartesianDMP&gt;(convertTimesInSecondsToTimeInMilliseconds(supervisedTsInSeconds),<sp/>sampleYs,<sp/>fitYs,<sp/>dmpCoeffs,<sp/>dmpBase,<sp/>designMatrices,<sp/>tau,<sp/>az,<sp/>bz,<sp/>ax);</highlight></codeline>
 <codeline lineno="570"><highlight class="normal"><sp/><sp/><sp/><sp/>}</highlight></codeline>
 <codeline lineno="571"><highlight class="normal"></highlight></codeline>
-<codeline lineno="572"><highlight class="normal"><sp/><sp/><sp/><sp/>DMPExecutor::DMPExecutor(StorageSingleton&amp;<sp/>dbStorage,<sp/>KUKADU_SHARED_PTR&lt;Dmp&gt;<sp/>traj,<sp/>KUKADU_SHARED_PTR&lt;ControlQueue&gt;<sp/>execQueue,<sp/></highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/>suppressMessages)<sp/>:</highlight></codeline>
+<codeline lineno="572"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="classkukadu_1_1DMPExecutor_1a82f622c76dcdd575db893d86f1a52027" kindref="member">DMPExecutor::DMPExecutor</ref>(StorageSingleton&amp;<sp/>dbStorage,<sp/>KUKADU_SHARED_PTR&lt;Dmp&gt;<sp/>traj,<sp/>KUKADU_SHARED_PTR&lt;ControlQueue&gt;<sp/>execQueue,<sp/></highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/>suppressMessages)<sp/>:</highlight></codeline>
 <codeline lineno="573"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>TrajectoryExecutor(dbStorage,<sp/>execQueue,<sp/>traj)<sp/>{</highlight></codeline>
 <codeline lineno="574"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>construct(execQueue,<sp/>suppressMessages);</highlight></codeline>
 <codeline lineno="575"><highlight class="normal"><sp/><sp/><sp/><sp/>}</highlight></codeline>
 <codeline lineno="576"><highlight class="normal"></highlight></codeline>
-<codeline lineno="577"><highlight class="normal"><sp/><sp/><sp/><sp/>DMPExecutor::DMPExecutor(StorageSingleton&amp;<sp/>dbStorage,<sp/></highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/>skillId,<sp/>KUKADU_SHARED_PTR&lt;ControlQueue&gt;<sp/>execQueue,<sp/></highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/>suppressMessages)<sp/>:</highlight></codeline>
+<codeline lineno="577"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="classkukadu_1_1DMPExecutor_1a82f622c76dcdd575db893d86f1a52027" kindref="member">DMPExecutor::DMPExecutor</ref>(StorageSingleton&amp;<sp/>dbStorage,<sp/></highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/>skillId,<sp/>KUKADU_SHARED_PTR&lt;ControlQueue&gt;<sp/>execQueue,<sp/></highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/>suppressMessages)<sp/>:</highlight></codeline>
 <codeline lineno="578"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>TrajectoryExecutor(dbStorage,<sp/>execQueue,<sp/>loadDmpFromDb(dbStorage,<sp/>skillId,<sp/>execQueue))<sp/>{</highlight></codeline>
 <codeline lineno="579"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>construct(execQueue,<sp/>suppressMessages);</highlight></codeline>
 <codeline lineno="580"><highlight class="normal"><sp/><sp/><sp/><sp/>}</highlight></codeline>
@@ -1596,7 +1664,7 @@
 <codeline lineno="1024"><highlight class="normal"></highlight></codeline>
 <codeline lineno="1025"><highlight class="normal"><sp/><sp/><sp/><sp/>}</highlight></codeline>
 <codeline lineno="1026"><highlight class="normal"></highlight></codeline>
-<codeline lineno="1027"><highlight class="normal"><sp/><sp/><sp/><sp/>DMPTrajectoryGenerator::DMPTrajectoryGenerator(std::vector&lt;DMPBase&gt;<sp/>baseDef,<sp/></highlight><highlight class="keywordtype">double</highlight><highlight class="normal"><sp/>ax,<sp/></highlight><highlight class="keywordtype">double</highlight><highlight class="normal"><sp/>tau)<sp/>{</highlight></codeline>
+<codeline lineno="1027"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="classkukadu_1_1DMPTrajectoryGenerator_1a0bf8fd4b7bc9aded7f0929743228e73a" kindref="member">DMPTrajectoryGenerator::DMPTrajectoryGenerator</ref>(std::vector&lt;DMPBase&gt;<sp/>baseDef,<sp/></highlight><highlight class="keywordtype">double</highlight><highlight class="normal"><sp/>ax,<sp/></highlight><highlight class="keywordtype">double</highlight><highlight class="normal"><sp/>tau)<sp/>{</highlight></codeline>
 <codeline lineno="1028"><highlight class="normal"></highlight></codeline>
 <codeline lineno="1029"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>this-&gt;baseFunctionCount<sp/>=<sp/>-1;</highlight></codeline>
 <codeline lineno="1030"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>this-&gt;baseDef<sp/>=<sp/>baseDef;</highlight></codeline>
@@ -1612,7 +1680,7 @@
 <codeline lineno="1040"><highlight class="normal"></highlight></codeline>
 <codeline lineno="1041"><highlight class="normal"><sp/><sp/><sp/><sp/>}</highlight></codeline>
 <codeline lineno="1042"><highlight class="normal"></highlight></codeline>
-<codeline lineno="1043"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">double</highlight><highlight class="normal"><sp/>DMPTrajectoryGenerator::evaluateByCoefficientsSingle(</highlight><highlight class="keywordtype">double</highlight><highlight class="normal"><sp/>x,<sp/>vec<sp/>coeff)<sp/>{</highlight></codeline>
+<codeline lineno="1043"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">double</highlight><highlight class="normal"><sp/><ref refid="classkukadu_1_1DMPTrajectoryGenerator_1aa14fb2c9ba08e0a8323090593b46d7f4" kindref="member">DMPTrajectoryGenerator::evaluateByCoefficientsSingle</ref>(</highlight><highlight class="keywordtype">double</highlight><highlight class="normal"><sp/>x,<sp/>vec<sp/>coeff)<sp/>{</highlight></codeline>
 <codeline lineno="1044"><highlight class="normal"></highlight></codeline>
 <codeline lineno="1045"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/>coeffDegree<sp/>=<sp/>this-&gt;getBasisFunctionCount();</highlight></codeline>
 <codeline lineno="1046"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">double</highlight><highlight class="normal"><sp/>val<sp/>=<sp/>0.0;</highlight></codeline>
@@ -1631,7 +1699,7 @@
 <codeline lineno="1059"><highlight class="normal"></highlight></codeline>
 <codeline lineno="1060"><highlight class="normal"><sp/><sp/><sp/><sp/>}</highlight></codeline>
 <codeline lineno="1061"><highlight class="normal"></highlight></codeline>
-<codeline lineno="1062"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">double</highlight><highlight class="normal"><sp/>DMPTrajectoryGenerator::evaluateByCoefficientsSingleNonExponential(</highlight><highlight class="keywordtype">double</highlight><highlight class="normal"><sp/>x,<sp/>vec<sp/>coeff)<sp/>{</highlight></codeline>
+<codeline lineno="1062"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">double</highlight><highlight class="normal"><sp/><ref refid="classkukadu_1_1DMPTrajectoryGenerator_1a48f050d0bded75b1babaafda54aa0432" kindref="member">DMPTrajectoryGenerator::evaluateByCoefficientsSingleNonExponential</ref>(</highlight><highlight class="keywordtype">double</highlight><highlight class="normal"><sp/>x,<sp/>vec<sp/>coeff)<sp/>{</highlight></codeline>
 <codeline lineno="1063"><highlight class="normal"></highlight></codeline>
 <codeline lineno="1064"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/>coeffDegree<sp/>=<sp/>this-&gt;getBasisFunctionCount();</highlight></codeline>
 <codeline lineno="1065"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">double</highlight><highlight class="normal"><sp/>val<sp/>=<sp/>0.0;</highlight></codeline>
@@ -1653,7 +1721,7 @@
 <codeline lineno="1081"><highlight class="normal"><sp/><sp/><sp/><sp/>}</highlight></codeline>
 <codeline lineno="1082"><highlight class="normal"></highlight></codeline>
 <codeline lineno="1083"><highlight class="normal"></highlight></codeline>
-<codeline lineno="1084"><highlight class="normal"><sp/><sp/><sp/><sp/>vec<sp/>DMPTrajectoryGenerator::evaluateByCoefficientsMultiple(vec<sp/>x,<sp/></highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/>sampleCount,<sp/>vec<sp/>coeff)<sp/>{</highlight></codeline>
+<codeline lineno="1084"><highlight class="normal"><sp/><sp/><sp/><sp/>vec<sp/><ref refid="classkukadu_1_1DMPTrajectoryGenerator_1affb281e54fbddd566338d3c8e826bd40" kindref="member">DMPTrajectoryGenerator::evaluateByCoefficientsMultiple</ref>(vec<sp/>x,<sp/></highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/>sampleCount,<sp/>vec<sp/>coeff)<sp/>{</highlight></codeline>
 <codeline lineno="1085"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/>coeffDegree<sp/>=<sp/>this-&gt;getBasisFunctionCount();</highlight></codeline>
 <codeline lineno="1086"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>vec<sp/>values(sampleCount);</highlight></codeline>
 <codeline lineno="1087"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">for</highlight><highlight class="normal">(</highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/>i<sp/>=<sp/>0;<sp/>i<sp/>&lt;<sp/>sampleCount;<sp/>++i)<sp/>{</highlight></codeline>
@@ -1662,7 +1730,7 @@
 <codeline lineno="1090"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal"><sp/>values;</highlight></codeline>
 <codeline lineno="1091"><highlight class="normal"><sp/><sp/><sp/><sp/>}</highlight></codeline>
 <codeline lineno="1092"><highlight class="normal"></highlight></codeline>
-<codeline lineno="1093"><highlight class="normal"><sp/><sp/><sp/><sp/>vec<sp/>DMPTrajectoryGenerator::evaluateByCoefficientsMultipleNonExponential(vec<sp/>x,<sp/></highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/>sampleCount,<sp/>vec<sp/>coeff)<sp/>{</highlight></codeline>
+<codeline lineno="1093"><highlight class="normal"><sp/><sp/><sp/><sp/>vec<sp/><ref refid="classkukadu_1_1DMPTrajectoryGenerator_1a759b1a5b259bcc7ab26554232f94a393" kindref="member">DMPTrajectoryGenerator::evaluateByCoefficientsMultipleNonExponential</ref>(vec<sp/>x,<sp/></highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/>sampleCount,<sp/>vec<sp/>coeff)<sp/>{</highlight></codeline>
 <codeline lineno="1094"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/>coeffDegree<sp/>=<sp/>this-&gt;getBasisFunctionCount();</highlight></codeline>
 <codeline lineno="1095"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>vec<sp/>values(sampleCount);</highlight></codeline>
 <codeline lineno="1096"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">for</highlight><highlight class="normal">(</highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/>i<sp/>=<sp/>0;<sp/>i<sp/>&lt;<sp/>sampleCount;<sp/>++i)<sp/>{</highlight></codeline>
@@ -1672,7 +1740,7 @@
 <codeline lineno="1100"><highlight class="normal"><sp/><sp/><sp/><sp/>}</highlight></codeline>
 <codeline lineno="1101"><highlight class="normal"></highlight></codeline>
 <codeline lineno="1102"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="comment">//<sp/>with<sp/>this<sp/>implementation,<sp/>currently<sp/>all<sp/>sigmas<sp/>have<sp/>to<sp/>be<sp/>of<sp/>the<sp/>same<sp/>size<sp/>(see<sp/>DMPTrajectoryGenerator::evaluateBasisFunction<sp/>and<sp/>DMPTrajectoryGenerator::getBasisFunctionCount)</highlight><highlight class="normal"></highlight></codeline>
-<codeline lineno="1103"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">double</highlight><highlight class="normal"><sp/>DMPTrajectoryGenerator::evaluateBasisFunction(</highlight><highlight class="keywordtype">double</highlight><highlight class="normal"><sp/>x,<sp/></highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/>fun)<sp/>{</highlight></codeline>
+<codeline lineno="1103"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">double</highlight><highlight class="normal"><sp/><ref refid="classkukadu_1_1DMPTrajectoryGenerator_1a6072064f086581981d1b1540953d4bd0" kindref="member">DMPTrajectoryGenerator::evaluateBasisFunction</ref>(</highlight><highlight class="keywordtype">double</highlight><highlight class="normal"><sp/>x,<sp/></highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/>fun)<sp/>{</highlight></codeline>
 <codeline lineno="1104"><highlight class="normal"></highlight></codeline>
 <codeline lineno="1105"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/>mypos<sp/>=<sp/>fun<sp/>/<sp/>sigmassize;</highlight></codeline>
 <codeline lineno="1106"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/>sigmapos<sp/>=<sp/>fun<sp/>%<sp/>sigmassize;</highlight></codeline>
@@ -1689,7 +1757,7 @@
 <codeline lineno="1117"><highlight class="normal"></highlight></codeline>
 <codeline lineno="1118"><highlight class="normal"><sp/><sp/><sp/><sp/>}</highlight></codeline>
 <codeline lineno="1119"><highlight class="normal"></highlight></codeline>
-<codeline lineno="1120"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">double</highlight><highlight class="normal"><sp/>DMPTrajectoryGenerator::evaluateBasisFunctionNonExponential(</highlight><highlight class="keywordtype">double</highlight><highlight class="normal"><sp/>x,<sp/></highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/>fun)<sp/>{</highlight></codeline>
+<codeline lineno="1120"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">double</highlight><highlight class="normal"><sp/><ref refid="classkukadu_1_1DMPTrajectoryGenerator_1ad85bfa03fb1b426b9c808607a22d4f95" kindref="member">DMPTrajectoryGenerator::evaluateBasisFunctionNonExponential</ref>(</highlight><highlight class="keywordtype">double</highlight><highlight class="normal"><sp/>x,<sp/></highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/>fun)<sp/>{</highlight></codeline>
 <codeline lineno="1121"><highlight class="normal"></highlight></codeline>
 <codeline lineno="1122"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/>mypos<sp/>=<sp/>fun<sp/>/<sp/>sigmassize;</highlight></codeline>
 <codeline lineno="1123"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/>sigmapos<sp/>=<sp/>fun<sp/>%<sp/>sigmassize;</highlight></codeline>
@@ -1704,7 +1772,7 @@
 <codeline lineno="1132"><highlight class="normal"><sp/><sp/><sp/><sp/>}</highlight></codeline>
 <codeline lineno="1133"><highlight class="normal"></highlight></codeline>
 <codeline lineno="1134"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="comment">//<sp/>with<sp/>this<sp/>implementation,<sp/>currently<sp/>all<sp/>sigmas<sp/>have<sp/>to<sp/>be<sp/>of<sp/>the<sp/>same<sp/>size<sp/>(see<sp/>DMPTrajectoryGenerator::evaluateBasisFunction<sp/>and<sp/>DMPTrajectoryGenerator::getBasisFunctionCount)</highlight><highlight class="normal"></highlight></codeline>
-<codeline lineno="1135"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/>DMPTrajectoryGenerator::getBasisFunctionCount()<sp/>{</highlight></codeline>
+<codeline lineno="1135"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/><ref refid="classkukadu_1_1DMPTrajectoryGenerator_1a2554959c04ce802829324fced3bb872b" kindref="member">DMPTrajectoryGenerator::getBasisFunctionCount</ref>()<sp/>{</highlight></codeline>
 <codeline lineno="1136"><highlight class="normal"></highlight></codeline>
 <codeline lineno="1137"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">if</highlight><highlight class="normal">(baseFunctionCount<sp/>==<sp/>-1)<sp/>{</highlight></codeline>
 <codeline lineno="1138"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/>myssize<sp/>=<sp/>baseDef.size();</highlight></codeline>
@@ -1716,15 +1784,15 @@
 <codeline lineno="1144"><highlight class="normal"></highlight></codeline>
 <codeline lineno="1145"><highlight class="normal"><sp/><sp/><sp/><sp/>}</highlight></codeline>
 <codeline lineno="1146"><highlight class="normal"></highlight></codeline>
-<codeline lineno="1147"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">string</highlight><highlight class="normal"><sp/>DMPTrajectoryGenerator::getTrajectoryType()<sp/>{</highlight></codeline>
+<codeline lineno="1147"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">string</highlight><highlight class="normal"><sp/><ref refid="classkukadu_1_1DMPTrajectoryGenerator_1a9b6535bbc5e82c84238ebe41f04bca3f" kindref="member">DMPTrajectoryGenerator::getTrajectoryType</ref>()<sp/>{</highlight></codeline>
 <codeline lineno="1148"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal"><sp/></highlight><highlight class="stringliteral">&quot;dmp&quot;</highlight><highlight class="normal">;</highlight></codeline>
 <codeline lineno="1149"><highlight class="normal"><sp/><sp/><sp/><sp/>}</highlight></codeline>
 <codeline lineno="1150"><highlight class="normal"></highlight></codeline>
-<codeline lineno="1151"><highlight class="normal"><sp/><sp/><sp/><sp/>GeneralDmpLearner::GeneralDmpLearner(std::vector&lt;DMPBase&gt;<sp/>dmpBase,<sp/></highlight><highlight class="keywordtype">double</highlight><highlight class="normal"><sp/>tau,<sp/></highlight><highlight class="keywordtype">double</highlight><highlight class="normal"><sp/>az,<sp/></highlight><highlight class="keywordtype">double</highlight><highlight class="normal"><sp/>bz,<sp/></highlight><highlight class="keywordtype">double</highlight><highlight class="normal"><sp/>ax,<sp/>arma::vec<sp/>timesInSeconds,<sp/>mat<sp/>joints)<sp/>{</highlight></codeline>
+<codeline lineno="1151"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="classkukadu_1_1GeneralDmpLearner_1ac1d5a121adb29527ee7044d1c1394342" kindref="member">GeneralDmpLearner::GeneralDmpLearner</ref>(std::vector&lt;DMPBase&gt;<sp/>dmpBase,<sp/></highlight><highlight class="keywordtype">double</highlight><highlight class="normal"><sp/>tau,<sp/></highlight><highlight class="keywordtype">double</highlight><highlight class="normal"><sp/>az,<sp/></highlight><highlight class="keywordtype">double</highlight><highlight class="normal"><sp/>bz,<sp/></highlight><highlight class="keywordtype">double</highlight><highlight class="normal"><sp/>ax,<sp/>arma::vec<sp/>timesInSeconds,<sp/>mat<sp/>joints)<sp/>{</highlight></codeline>
 <codeline lineno="1152"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>this-&gt;construct(dmpBase,<sp/>tau,<sp/>az,<sp/>bz,<sp/>ax,<sp/>timesInSeconds,<sp/>joints,<sp/>joints.n_cols);</highlight></codeline>
 <codeline lineno="1153"><highlight class="normal"><sp/><sp/><sp/><sp/>}</highlight></codeline>
 <codeline lineno="1154"><highlight class="normal"></highlight></codeline>
-<codeline lineno="1155"><highlight class="normal"><sp/><sp/><sp/><sp/>GeneralDmpLearner::GeneralDmpLearner(vector&lt;double&gt;<sp/>mysDef,<sp/>vector&lt;double&gt;<sp/>sigmasDef,<sp/></highlight><highlight class="keywordtype">double</highlight><highlight class="normal"><sp/>az,<sp/></highlight><highlight class="keywordtype">double</highlight><highlight class="normal"><sp/>bz,<sp/></highlight><highlight class="keywordtype">string</highlight><highlight class="normal"><sp/>file)<sp/>{</highlight></codeline>
+<codeline lineno="1155"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="classkukadu_1_1GeneralDmpLearner_1ac1d5a121adb29527ee7044d1c1394342" kindref="member">GeneralDmpLearner::GeneralDmpLearner</ref>(vector&lt;double&gt;<sp/>mysDef,<sp/>vector&lt;double&gt;<sp/>sigmasDef,<sp/></highlight><highlight class="keywordtype">double</highlight><highlight class="normal"><sp/>az,<sp/></highlight><highlight class="keywordtype">double</highlight><highlight class="normal"><sp/>bz,<sp/></highlight><highlight class="keywordtype">string</highlight><highlight class="normal"><sp/>file)<sp/>{</highlight></codeline>
 <codeline lineno="1156"><highlight class="normal"></highlight></codeline>
 <codeline lineno="1157"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="comment">//<sp/>reading<sp/>in<sp/>file</highlight><highlight class="normal"></highlight></codeline>
 <codeline lineno="1158"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">auto</highlight><highlight class="normal"><sp/>dmpData<sp/>=<sp/>readDmpData(file);</highlight></codeline>
@@ -1742,7 +1810,7 @@
 <codeline lineno="1170"><highlight class="normal"></highlight></codeline>
 <codeline lineno="1171"><highlight class="normal"><sp/><sp/><sp/><sp/>}</highlight></codeline>
 <codeline lineno="1172"><highlight class="normal"></highlight></codeline>
-<codeline lineno="1173"><highlight class="normal"><sp/><sp/><sp/><sp/>GeneralDmpLearner::GeneralDmpLearner(</highlight><highlight class="keywordtype">double</highlight><highlight class="normal"><sp/>az,<sp/></highlight><highlight class="keywordtype">double</highlight><highlight class="normal"><sp/>bz,<sp/>std::string<sp/>file)<sp/>{</highlight></codeline>
+<codeline lineno="1173"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="classkukadu_1_1GeneralDmpLearner_1ac1d5a121adb29527ee7044d1c1394342" kindref="member">GeneralDmpLearner::GeneralDmpLearner</ref>(</highlight><highlight class="keywordtype">double</highlight><highlight class="normal"><sp/>az,<sp/></highlight><highlight class="keywordtype">double</highlight><highlight class="normal"><sp/>bz,<sp/>std::string<sp/>file)<sp/>{</highlight></codeline>
 <codeline lineno="1174"><highlight class="normal"></highlight></codeline>
 <codeline lineno="1175"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>vector&lt;double&gt;<sp/>tmpmys;</highlight></codeline>
 <codeline lineno="1176"><highlight class="normal"></highlight></codeline>
@@ -1766,7 +1834,7 @@
 <codeline lineno="1194"><highlight class="normal"></highlight></codeline>
 <codeline lineno="1195"><highlight class="normal"><sp/><sp/><sp/><sp/>}</highlight></codeline>
 <codeline lineno="1196"><highlight class="normal"></highlight></codeline>
-<codeline lineno="1197"><highlight class="normal"><sp/><sp/><sp/><sp/>GeneralDmpLearner::GeneralDmpLearner(</highlight><highlight class="keywordtype">double</highlight><highlight class="normal"><sp/>az,<sp/></highlight><highlight class="keywordtype">double</highlight><highlight class="normal"><sp/>bz,<sp/>arma::vec<sp/>timesInSeconds,<sp/>arma::mat<sp/>joints)<sp/>{</highlight></codeline>
+<codeline lineno="1197"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="classkukadu_1_1GeneralDmpLearner_1ac1d5a121adb29527ee7044d1c1394342" kindref="member">GeneralDmpLearner::GeneralDmpLearner</ref>(</highlight><highlight class="keywordtype">double</highlight><highlight class="normal"><sp/>az,<sp/></highlight><highlight class="keywordtype">double</highlight><highlight class="normal"><sp/>bz,<sp/>arma::vec<sp/>timesInSeconds,<sp/>arma::mat<sp/>joints)<sp/>{</highlight></codeline>
 <codeline lineno="1198"><highlight class="normal"></highlight></codeline>
 <codeline lineno="1199"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>vector&lt;double&gt;<sp/>tmpmys;</highlight></codeline>
 <codeline lineno="1200"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>vector&lt;double&gt;<sp/>tmpsigmas;</highlight></codeline>
@@ -1783,7 +1851,7 @@
 <codeline lineno="1211"><highlight class="normal"></highlight></codeline>
 <codeline lineno="1212"><highlight class="normal"><sp/><sp/><sp/><sp/>}</highlight></codeline>
 <codeline lineno="1213"><highlight class="normal"></highlight></codeline>
-<codeline lineno="1214"><highlight class="normal"><sp/><sp/><sp/><sp/>KUKADU_SHARED_PTR&lt;Dmp&gt;<sp/>GeneralDmpLearner::fitTrajectories()<sp/>{</highlight></codeline>
+<codeline lineno="1214"><highlight class="normal"><sp/><sp/><sp/><sp/>KUKADU_SHARED_PTR&lt;Dmp&gt;<sp/><ref refid="classkukadu_1_1GeneralDmpLearner_1a4f2f314a7bfb0d9ff54fabbb038757c8" kindref="member">GeneralDmpLearner::fitTrajectories</ref>()<sp/>{</highlight></codeline>
 <codeline lineno="1215"><highlight class="normal"></highlight></codeline>
 <codeline lineno="1216"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>KUKADU_MODULE_START_USAGE();</highlight></codeline>
 <codeline lineno="1217"><highlight class="normal"></highlight></codeline>
@@ -1850,26 +1918,26 @@
 <codeline lineno="1278"><highlight class="normal"></highlight></codeline>
 <codeline lineno="1279"><highlight class="normal"><sp/><sp/><sp/><sp/>}</highlight></codeline>
 <codeline lineno="1280"><highlight class="normal"></highlight></codeline>
-<codeline lineno="1281"><highlight class="normal"><sp/><sp/><sp/><sp/>JointDMPLearner::JointDMPLearner(std::vector&lt;DMPBase&gt;<sp/>dmpBase,<sp/></highlight><highlight class="keywordtype">double</highlight><highlight class="normal"><sp/>tau,<sp/></highlight><highlight class="keywordtype">double</highlight><highlight class="normal"><sp/>az,<sp/></highlight><highlight class="keywordtype">double</highlight><highlight class="normal"><sp/>bz,<sp/></highlight><highlight class="keywordtype">double</highlight><highlight class="normal"><sp/>ax,<sp/>arma::vec<sp/>timesInSeconds,<sp/>arma::mat<sp/>joints)<sp/>:<sp/>GeneralDmpLearner(dmpBase,<sp/>tau,<sp/>az,<sp/>bz,<sp/>ax,<sp/>timesInSeconds,<sp/>joints)<sp/>{</highlight></codeline>
+<codeline lineno="1281"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="classkukadu_1_1JointDMPLearner_1a6ad6e779ad72fb3320072c52a67ac526" kindref="member">JointDMPLearner::JointDMPLearner</ref>(std::vector&lt;DMPBase&gt;<sp/>dmpBase,<sp/></highlight><highlight class="keywordtype">double</highlight><highlight class="normal"><sp/>tau,<sp/></highlight><highlight class="keywordtype">double</highlight><highlight class="normal"><sp/>az,<sp/></highlight><highlight class="keywordtype">double</highlight><highlight class="normal"><sp/>bz,<sp/></highlight><highlight class="keywordtype">double</highlight><highlight class="normal"><sp/>ax,<sp/>arma::vec<sp/>timesInSeconds,<sp/>arma::mat<sp/>joints)<sp/>:<sp/>GeneralDmpLearner(dmpBase,<sp/>tau,<sp/>az,<sp/>bz,<sp/>ax,<sp/>timesInSeconds,<sp/>joints)<sp/>{</highlight></codeline>
 <codeline lineno="1282"><highlight class="normal"></highlight></codeline>
 <codeline lineno="1283"><highlight class="normal"><sp/><sp/><sp/><sp/>}</highlight></codeline>
 <codeline lineno="1284"><highlight class="normal"></highlight></codeline>
-<codeline lineno="1285"><highlight class="normal"><sp/><sp/><sp/><sp/>JointDMPLearner::JointDMPLearner(std::vector&lt;double&gt;<sp/>mysDef,<sp/>std::vector&lt;double&gt;<sp/>sigmasDef,<sp/></highlight><highlight class="keywordtype">double</highlight><highlight class="normal"><sp/>az,<sp/></highlight><highlight class="keywordtype">double</highlight><highlight class="normal"><sp/>bz,<sp/>std::string<sp/>file)<sp/>:<sp/>GeneralDmpLearner(mysDef,<sp/>sigmasDef,<sp/>az,<sp/>bz,<sp/>file)<sp/>{</highlight></codeline>
+<codeline lineno="1285"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="classkukadu_1_1JointDMPLearner_1a6ad6e779ad72fb3320072c52a67ac526" kindref="member">JointDMPLearner::JointDMPLearner</ref>(std::vector&lt;double&gt;<sp/>mysDef,<sp/>std::vector&lt;double&gt;<sp/>sigmasDef,<sp/></highlight><highlight class="keywordtype">double</highlight><highlight class="normal"><sp/>az,<sp/></highlight><highlight class="keywordtype">double</highlight><highlight class="normal"><sp/>bz,<sp/>std::string<sp/>file)<sp/>:<sp/>GeneralDmpLearner(mysDef,<sp/>sigmasDef,<sp/>az,<sp/>bz,<sp/>file)<sp/>{</highlight></codeline>
 <codeline lineno="1286"><highlight class="normal"></highlight></codeline>
 <codeline lineno="1287"><highlight class="normal"><sp/><sp/><sp/><sp/>}</highlight></codeline>
 <codeline lineno="1288"><highlight class="normal"></highlight></codeline>
-<codeline lineno="1289"><highlight class="normal"><sp/><sp/><sp/><sp/>JointDMPLearner::JointDMPLearner(</highlight><highlight class="keywordtype">double</highlight><highlight class="normal"><sp/>az,<sp/></highlight><highlight class="keywordtype">double</highlight><highlight class="normal"><sp/>bz,<sp/>std::string<sp/>file)<sp/>:<sp/>GeneralDmpLearner(az,<sp/>bz,<sp/>file)<sp/>{</highlight></codeline>
+<codeline lineno="1289"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="classkukadu_1_1JointDMPLearner_1a6ad6e779ad72fb3320072c52a67ac526" kindref="member">JointDMPLearner::JointDMPLearner</ref>(</highlight><highlight class="keywordtype">double</highlight><highlight class="normal"><sp/>az,<sp/></highlight><highlight class="keywordtype">double</highlight><highlight class="normal"><sp/>bz,<sp/>std::string<sp/>file)<sp/>:<sp/>GeneralDmpLearner(az,<sp/>bz,<sp/>file)<sp/>{</highlight></codeline>
 <codeline lineno="1290"><highlight class="normal"></highlight></codeline>
 <codeline lineno="1291"><highlight class="normal"><sp/><sp/><sp/><sp/>}</highlight></codeline>
 <codeline lineno="1292"><highlight class="normal"></highlight></codeline>
-<codeline lineno="1293"><highlight class="normal"><sp/><sp/><sp/><sp/>JointDMPLearner::JointDMPLearner(StorageSingleton&amp;<sp/>storage,<sp/>KUKADU_SHARED_PTR&lt;ControlQueue&gt;<sp/>queue,<sp/></highlight><highlight class="keywordtype">double</highlight><highlight class="normal"><sp/>az,<sp/></highlight><highlight class="keywordtype">double</highlight><highlight class="normal"><sp/>bz,<sp/></highlight><highlight class="keywordtype">long</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">long</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/>startTime,<sp/></highlight><highlight class="keywordtype">long</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">long</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/>endTime)<sp/>:</highlight></codeline>
+<codeline lineno="1293"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="classkukadu_1_1JointDMPLearner_1a6ad6e779ad72fb3320072c52a67ac526" kindref="member">JointDMPLearner::JointDMPLearner</ref>(StorageSingleton&amp;<sp/>storage,<sp/>KUKADU_SHARED_PTR&lt;ControlQueue&gt;<sp/>queue,<sp/></highlight><highlight class="keywordtype">double</highlight><highlight class="normal"><sp/>az,<sp/></highlight><highlight class="keywordtype">double</highlight><highlight class="normal"><sp/>bz,<sp/></highlight><highlight class="keywordtype">long</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">long</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/>startTime,<sp/></highlight><highlight class="keywordtype">long</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">long</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/>endTime)<sp/>:</highlight></codeline>
 <codeline lineno="1294"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>GeneralDmpLearner(az,<sp/>bz,</highlight></codeline>
 <codeline lineno="1295"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>SensorStorage::loadSampleTimesInRangeFromDb(storage,<sp/>queue,<sp/>startTime,<sp/>endTime),</highlight></codeline>
 <codeline lineno="1296"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>SensorStorage::loadJointsFromDb(storage,<sp/>queue,<sp/>startTime,<sp/>endTime))<sp/>{</highlight></codeline>
 <codeline lineno="1297"><highlight class="normal"></highlight></codeline>
 <codeline lineno="1298"><highlight class="normal"><sp/><sp/><sp/><sp/>}</highlight></codeline>
 <codeline lineno="1299"><highlight class="normal"></highlight></codeline>
-<codeline lineno="1300"><highlight class="normal"><sp/><sp/><sp/><sp/>JointDMPLearner::JointDMPLearner(</highlight><highlight class="keywordtype">double</highlight><highlight class="normal"><sp/>az,<sp/></highlight><highlight class="keywordtype">double</highlight><highlight class="normal"><sp/>bz,<sp/>arma::vec&amp;<sp/>timesInSeconds,<sp/>arma::mat<sp/>joints)<sp/>:<sp/>GeneralDmpLearner(az,<sp/>bz,<sp/>timesInSeconds,<sp/>joints)<sp/>{</highlight></codeline>
+<codeline lineno="1300"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="classkukadu_1_1JointDMPLearner_1a6ad6e779ad72fb3320072c52a67ac526" kindref="member">JointDMPLearner::JointDMPLearner</ref>(</highlight><highlight class="keywordtype">double</highlight><highlight class="normal"><sp/>az,<sp/></highlight><highlight class="keywordtype">double</highlight><highlight class="normal"><sp/>bz,<sp/>arma::vec&amp;<sp/>timesInSeconds,<sp/>arma::mat<sp/>joints)<sp/>:<sp/>GeneralDmpLearner(az,<sp/>bz,<sp/>timesInSeconds,<sp/>joints)<sp/>{</highlight></codeline>
 <codeline lineno="1301"><highlight class="normal"></highlight></codeline>
 <codeline lineno="1302"><highlight class="normal"><sp/><sp/><sp/><sp/>}</highlight></codeline>
 <codeline lineno="1303"><highlight class="normal"></highlight></codeline>
@@ -2215,7 +2283,7 @@
 <codeline lineno="1643"><highlight class="normal"></highlight></codeline>
 <codeline lineno="1644"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>gsl_odeiv2_system<sp/>tmp_sys<sp/>=<sp/>{static_func,<sp/>NULL,<sp/>odeSystemSize,<sp/></highlight><highlight class="keyword">this</highlight><highlight class="normal">};</highlight></codeline>
 <codeline lineno="1645"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>sys<sp/>=<sp/>tmp_sys;</highlight></codeline>
-<codeline lineno="1646"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>d<sp/>=<sp/>KUKADU_SHARED_PTR&lt;gsl_odeiv2_driver&gt;(gsl_odeiv2_driver_alloc_y_new(&amp;sys,<sp/>gsl_odeiv2_step_rkf45,<sp/>customCycleTime,<sp/>tolAbsErr,<sp/>tolRelErr),<sp/>gsl_delete_expression());</highlight></codeline>
+<codeline lineno="1646"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>d<sp/>=<sp/>KUKADU_SHARED_PTR&lt;gsl_odeiv2_driver&gt;(gsl_odeiv2_driver_alloc_y_new(&amp;sys,<sp/>gsl_odeiv2_step_rkf45,<sp/>customCycleTime,<sp/>tolAbsErr,<sp/>tolRelErr),<sp/><ref refid="structkukadu_1_1gsl__delete__expression" kindref="compound">gsl_delete_expression</ref>());</highlight></codeline>
 <codeline lineno="1647"><highlight class="normal"></highlight></codeline>
 <codeline lineno="1648"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">for</highlight><highlight class="normal">(</highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/>i<sp/>=<sp/>0;<sp/>i<sp/>&lt;<sp/>odeSystemSize;<sp/>++i)</highlight></codeline>
 <codeline lineno="1649"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>vecYs(i)<sp/>=<sp/>ys[i];</highlight></codeline>
@@ -2225,7 +2293,7 @@
 <codeline lineno="1653"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/>DMPExecutor::initializeIntegrationQuat()<sp/>{</highlight></codeline>
 <codeline lineno="1654"><highlight class="normal"></highlight></codeline>
 <codeline lineno="1655"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">if</highlight><highlight class="normal">(t<sp/>&gt;<sp/>0.0)<sp/>{</highlight></codeline>
-<codeline lineno="1656"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">throw</highlight><highlight class="normal"><sp/>KukaduException(</highlight><highlight class="stringliteral">&quot;(DMPExecutor)<sp/>t<sp/>&gt;<sp/>0<sp/>is<sp/>not<sp/>considered<sp/>yet<sp/>with<sp/>cartesian<sp/>dmp&quot;</highlight><highlight class="normal">);</highlight></codeline>
+<codeline lineno="1656"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">throw</highlight><highlight class="normal"><sp/><ref refid="classkukadu_1_1KukaduException" kindref="compound">KukaduException</ref>(</highlight><highlight class="stringliteral">&quot;(DMPExecutor)<sp/>t<sp/>&gt;<sp/>0<sp/>is<sp/>not<sp/>considered<sp/>yet<sp/>with<sp/>cartesian<sp/>dmp&quot;</highlight><highlight class="normal">);</highlight></codeline>
 <codeline lineno="1657"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>}</highlight></codeline>
 <codeline lineno="1658"><highlight class="normal"></highlight></codeline>
 <codeline lineno="1659"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">if</highlight><highlight class="normal">(isCartesian)<sp/>{</highlight></codeline>
@@ -2268,7 +2336,7 @@
 <codeline lineno="1696"><highlight class="normal"></highlight></codeline>
 <codeline lineno="1697"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">if</highlight><highlight class="normal"><sp/>(s<sp/>!=<sp/>GSL_SUCCESS)<sp/>{</highlight></codeline>
 <codeline lineno="1698"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>cout<sp/>&lt;&lt;<sp/></highlight><highlight class="stringliteral">&quot;(DMPExecutor)<sp/>error:<sp/>driver<sp/>returned<sp/>&quot;</highlight><highlight class="normal"><sp/>&lt;&lt;<sp/>s<sp/>&lt;&lt;<sp/>endl;</highlight></codeline>
-<codeline lineno="1699"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">throw</highlight><highlight class="normal"><sp/>KukaduException(</highlight><highlight class="keywordtype">string</highlight><highlight class="normal">(</highlight><highlight class="stringliteral">&quot;(DMPExecutor)<sp/>error:<sp/>driver<sp/>returned<sp/>&quot;</highlight><highlight class="normal"><sp/>+<sp/>s).c_str());</highlight></codeline>
+<codeline lineno="1699"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">throw</highlight><highlight class="normal"><sp/><ref refid="classkukadu_1_1KukaduException" kindref="compound">KukaduException</ref>(</highlight><highlight class="keywordtype">string</highlight><highlight class="normal">(</highlight><highlight class="stringliteral">&quot;(DMPExecutor)<sp/>error:<sp/>driver<sp/>returned<sp/>&quot;</highlight><highlight class="normal"><sp/>+<sp/>s).c_str());</highlight></codeline>
 <codeline lineno="1700"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>}</highlight></codeline>
 <codeline lineno="1701"><highlight class="normal"></highlight></codeline>
 <codeline lineno="1702"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>}</highlight></codeline>
@@ -2311,11 +2379,11 @@
 <codeline lineno="1739"><highlight class="normal"><sp/><sp/><sp/><sp/>}</highlight></codeline>
 <codeline lineno="1740"><highlight class="normal"></highlight></codeline>
 <codeline lineno="1741"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/>DMPExecutor::static_func(</highlight><highlight class="keywordtype">double</highlight><highlight class="normal"><sp/>t,<sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">double</highlight><highlight class="normal"><sp/>y[],<sp/></highlight><highlight class="keywordtype">double</highlight><highlight class="normal"><sp/>f[],<sp/></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/>*params)<sp/>{</highlight></codeline>
-<codeline lineno="1742"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal"><sp/>((DMPExecutor*)params)-&gt;func(t,<sp/>y,<sp/>f,<sp/>NULL);</highlight></codeline>
+<codeline lineno="1742"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal"><sp/>((<ref refid="classkukadu_1_1DMPExecutor" kindref="compound">DMPExecutor</ref>*)params)-&gt;func(t,<sp/>y,<sp/>f,<sp/>NULL);</highlight></codeline>
 <codeline lineno="1743"><highlight class="normal"><sp/><sp/><sp/><sp/>}</highlight></codeline>
 <codeline lineno="1744"><highlight class="normal"></highlight></codeline>
 <codeline lineno="1745"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/>DMPExecutor::static_jac<sp/>(</highlight><highlight class="keywordtype">double</highlight><highlight class="normal"><sp/>t,<sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">double</highlight><highlight class="normal"><sp/>y[],<sp/></highlight><highlight class="keywordtype">double</highlight><highlight class="normal"><sp/>*dfdy,<sp/></highlight><highlight class="keywordtype">double</highlight><highlight class="normal"><sp/>dfdt[],<sp/></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/>*params)<sp/>{</highlight></codeline>
-<codeline lineno="1746"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal"><sp/>((DMPExecutor*)params)-&gt;jac(t,<sp/>y,<sp/>dfdy,<sp/>dfdt,<sp/>NULL);</highlight></codeline>
+<codeline lineno="1746"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal"><sp/>((<ref refid="classkukadu_1_1DMPExecutor" kindref="compound">DMPExecutor</ref>*)params)-&gt;jac(t,<sp/>y,<sp/>dfdy,<sp/>dfdt,<sp/>NULL);</highlight></codeline>
 <codeline lineno="1747"><highlight class="normal"><sp/><sp/><sp/><sp/>}</highlight></codeline>
 <codeline lineno="1748"><highlight class="normal"></highlight></codeline>
 <codeline lineno="1749"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">double</highlight><highlight class="normal"><sp/>DMPTrajectoryGenerator::computeNormalization(</highlight><highlight class="keywordtype">double</highlight><highlight class="normal"><sp/>x)<sp/>{</highlight></codeline>
@@ -2381,10 +2449,10 @@
 <codeline lineno="1809"><highlight class="normal"></highlight></codeline>
 <codeline lineno="1810"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">for</highlight><highlight class="normal">(</highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/>i<sp/>=<sp/>0;<sp/>i<sp/>&lt;<sp/>fity.n_rows;<sp/>++i)<sp/>{</highlight></codeline>
 <codeline lineno="1811"><highlight class="normal"></highlight></codeline>
-<codeline lineno="1812"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>trajectory_learner_internal<sp/>ret;</highlight></codeline>
-<codeline lineno="1813"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>DMPTrajectoryGenerator<sp/>dmpTrajGen(dmpBase,<sp/>ax,<sp/>tau);</highlight></codeline>
-<codeline lineno="1814"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>GeneralFitter<sp/>dmpGenFit(time,<sp/>fity.row(i).t(),<sp/>dataPointsNum,<sp/>&amp;dmpTrajGen);</highlight></codeline>
-<codeline lineno="1815"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>mat<sp/>designMatrix<sp/>=<sp/>dmpGenFit.computeDesignMatrix();</highlight></codeline>
+<codeline lineno="1812"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><ref refid="structkukadu_1_1trajectory__learner__internal" kindref="compound">trajectory_learner_internal</ref><sp/>ret;</highlight></codeline>
+<codeline lineno="1813"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><ref refid="classkukadu_1_1DMPTrajectoryGenerator" kindref="compound">DMPTrajectoryGenerator</ref><sp/>dmpTrajGen(dmpBase,<sp/>ax,<sp/>tau);</highlight></codeline>
+<codeline lineno="1814"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><ref refid="classkukadu_1_1GeneralFitter" kindref="compound">GeneralFitter</ref><sp/>dmpGenFit(time,<sp/>fity.row(i).t(),<sp/>dataPointsNum,<sp/>&amp;dmpTrajGen);</highlight></codeline>
+<codeline lineno="1815"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>mat<sp/>designMatrix<sp/>=<sp/>dmpGenFit.<ref refid="classkukadu_1_1GeneralFitter_1aa1b7d37f59d0c86185425ec550e6c1b0" kindref="member">computeDesignMatrix</ref>();</highlight></codeline>
 <codeline lineno="1816"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>vec<sp/>dmpCoeff<sp/>=<sp/>dmpGenFit.computeLinFitCoefficients(designMatrix);</highlight></codeline>
 <codeline lineno="1817"><highlight class="normal"></highlight></codeline>
 <codeline lineno="1818"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>ret.fity<sp/>=<sp/>fity.row(i).t();</highlight></codeline>
@@ -2427,6 +2495,6 @@
 <codeline lineno="1855"><highlight class="normal"></highlight></codeline>
 <codeline lineno="1856"><highlight class="normal">}</highlight></codeline>
     </programlisting>
-    <location file="/home/andreasmennel/iis_robot_sw/iis_catkin_ws/src/kukadu/src/control/dmp.cpp"/>
+    <location file="/home/agyss/iis_robot_sw/iis_catkin_ws/src/kukadu/src/control/dmp.cpp"/>
   </compounddef>
 </doxygen>

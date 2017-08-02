@@ -1,6 +1,6 @@
 <?xml version='1.0' encoding='UTF-8' standalone='no'?>
-<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.8.6">
-  <compounddef id="CameraImpl_8cpp" kind="file">
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.8.11">
+  <compounddef id="CameraImpl_8cpp" kind="file" language="C++">
     <compoundname>CameraImpl.cpp</compoundname>
     <includes local="no">math.h</includes>
     <includes local="no">stdio.h</includes>
@@ -8,33 +8,33 @@
     <includes local="no">kukadu/vision/arlocalizer/byteSwap.h</includes>
     <includes local="no">kukadu/vision/arlocalizer/CameraImpl.h</includes>
     <incdepgraph>
-      <node id="5434">
-        <label>/home/andreasmennel/iis_robot_sw/iis_catkin_ws/src/kukadu/src/vision/arlocalizer/CameraImpl.cpp</label>
-        <link refid="CameraImpl.cpp"/>
-        <childnode refid="5435" relation="include">
-        </childnode>
-        <childnode refid="5436" relation="include">
-        </childnode>
-        <childnode refid="5437" relation="include">
-        </childnode>
-        <childnode refid="5438" relation="include">
-        </childnode>
-        <childnode refid="5439" relation="include">
-        </childnode>
-      </node>
-      <node id="5437">
+      <node id="6339">
         <label>stdlib.h</label>
       </node>
-      <node id="5438">
+      <node id="6340">
         <label>kukadu/vision/arlocalizer/byteSwap.h</label>
       </node>
-      <node id="5435">
+      <node id="6336">
+        <label>/home/agyss/iis_robot_sw/iis_catkin_ws/src/kukadu/src/vision/arlocalizer/CameraImpl.cpp</label>
+        <link refid="CameraImpl.cpp"/>
+        <childnode refid="6337" relation="include">
+        </childnode>
+        <childnode refid="6338" relation="include">
+        </childnode>
+        <childnode refid="6339" relation="include">
+        </childnode>
+        <childnode refid="6340" relation="include">
+        </childnode>
+        <childnode refid="6341" relation="include">
+        </childnode>
+      </node>
+      <node id="6337">
         <label>math.h</label>
       </node>
-      <node id="5439">
+      <node id="6341">
         <label>kukadu/vision/arlocalizer/CameraImpl.h</label>
       </node>
-      <node id="5436">
+      <node id="6338">
         <label>stdio.h</label>
       </node>
     </incdepgraph>
@@ -49,7 +49,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/home/andreasmennel/iis_robot_sw/iis_catkin_ws/src/kukadu/src/vision/arlocalizer/CameraImpl.cpp" line="48" column="9" bodyfile="/home/andreasmennel/iis_robot_sw/iis_catkin_ws/src/kukadu/src/vision/arlocalizer/CameraImpl.cpp" bodystart="48" bodyend="-1"/>
+        <location file="/home/agyss/iis_robot_sw/iis_catkin_ws/src/kukadu/src/vision/arlocalizer/CameraImpl.cpp" line="48" column="9" bodyfile="/home/agyss/iis_robot_sw/iis_catkin_ws/src/kukadu/src/vision/arlocalizer/CameraImpl.cpp" bodystart="48" bodyend="-1"/>
       </memberdef>
       </sectiondef>
     <briefdescription>
@@ -102,10 +102,10 @@
 <codeline lineno="43"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&lt;kukadu/vision/arlocalizer/byteSwap.h&gt;</highlight><highlight class="normal"></highlight></codeline>
 <codeline lineno="44"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&lt;kukadu/vision/arlocalizer/CameraImpl.h&gt;</highlight><highlight class="normal"></highlight></codeline>
 <codeline lineno="45"><highlight class="normal"></highlight></codeline>
-<codeline lineno="46"><highlight class="normal"></highlight><highlight class="keyword">namespace<sp/></highlight><highlight class="normal">kukadu<sp/>{</highlight></codeline>
+<codeline lineno="46"><highlight class="normal"></highlight><highlight class="keyword">namespace<sp/></highlight><highlight class="normal"><ref refid="namespacekukadu" kindref="compound">kukadu</ref><sp/>{</highlight></codeline>
 <codeline lineno="47"><highlight class="normal"></highlight></codeline>
-<codeline lineno="48"><highlight class="normal"></highlight><highlight class="preprocessor">#define<sp/>PD_LOOP<sp/>3</highlight></codeline>
-<codeline lineno="49"><highlight class="preprocessor"></highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="48"><highlight class="normal"></highlight><highlight class="preprocessor">#define<sp/>PD_LOOP<sp/>3</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="49"><highlight class="normal"></highlight></codeline>
 <codeline lineno="50"><highlight class="normal">CameraImpl::CameraImpl()<sp/>{}</highlight></codeline>
 <codeline lineno="51"><highlight class="normal"></highlight></codeline>
 <codeline lineno="52"><highlight class="normal">CameraImpl::~CameraImpl()<sp/>{}</highlight></codeline>
@@ -126,10 +126,10 @@
 <codeline lineno="67"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal">(</highlight><highlight class="keyword">false</highlight><highlight class="normal">);</highlight></codeline>
 <codeline lineno="68"><highlight class="normal"><sp/><sp/><sp/><sp/>}</highlight></codeline>
 <codeline lineno="69"><highlight class="normal"></highlight></codeline>
-<codeline lineno="70"><highlight class="normal"></highlight><highlight class="preprocessor">#ifdef<sp/>AR_LITTLE_ENDIAN</highlight></codeline>
-<codeline lineno="71"><highlight class="preprocessor"></highlight><highlight class="normal"><sp/><sp/><sp/><sp/>byteswap(&amp;param);</highlight></codeline>
-<codeline lineno="72"><highlight class="normal"></highlight><highlight class="preprocessor">#endif</highlight></codeline>
-<codeline lineno="73"><highlight class="preprocessor"></highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="70"><highlight class="normal"></highlight><highlight class="preprocessor">#ifdef<sp/>AR_LITTLE_ENDIAN</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="71"><highlight class="normal"><sp/><sp/><sp/><sp/>byteswap(&amp;param);</highlight></codeline>
+<codeline lineno="72"><highlight class="normal"></highlight><highlight class="preprocessor">#endif</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="73"><highlight class="normal"></highlight></codeline>
 <codeline lineno="74"><highlight class="normal"><sp/><sp/><sp/><sp/>fclose(fp);</highlight></codeline>
 <codeline lineno="75"><highlight class="normal"></highlight></codeline>
 <codeline lineno="76"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">unsigned</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/>i,j;</highlight></codeline>
@@ -250,6 +250,6 @@
 <codeline lineno="191"><highlight class="normal"></highlight></codeline>
 <codeline lineno="192"><highlight class="normal">}</highlight></codeline>
     </programlisting>
-    <location file="/home/andreasmennel/iis_robot_sw/iis_catkin_ws/src/kukadu/src/vision/arlocalizer/CameraImpl.cpp"/>
+    <location file="/home/agyss/iis_robot_sw/iis_catkin_ws/src/kukadu/src/vision/arlocalizer/CameraImpl.cpp"/>
   </compounddef>
 </doxygen>

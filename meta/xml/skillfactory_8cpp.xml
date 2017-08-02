@@ -1,278 +1,569 @@
 <?xml version='1.0' encoding='UTF-8' standalone='no'?>
-<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.8.6">
-  <compounddef id="skillfactory_8cpp" kind="file">
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.8.11">
+  <compounddef id="skillfactory_8cpp" kind="file" language="C++">
     <compoundname>skillfactory.cpp</compoundname>
     <includes local="no">memory</includes>
     <includes local="no">utility</includes>
     <includes local="no">sstream</includes>
     <includes local="no">iostream</includes>
-    <includes refid="skillfactory_8hpp" local="no">kukadu/manipulation/skillfactory.hpp</includes>
+    <includes local="no">QtCore/QFile</includes>
+    <includes local="no">QtCore/QTextStream</includes>
+    <includes refid="utils_2utils_8hpp" local="no">kukadu/utils/utils.hpp</includes>
     <includes refid="dmp_8hpp" local="no">kukadu/control/dmp.hpp</includes>
+    <includes refid="generated__skills_8hpp" local="no">kukadu/generated_skills.hpp</includes>
+    <includes refid="skillfactory_8hpp" local="no">kukadu/manipulation/skillfactory.hpp</includes>
     <incdepgraph>
-      <node id="4165">
+      <node id="5070">
+        <label>sys/stat.h</label>
+      </node>
+      <node id="5089">
+        <label>list</label>
+      </node>
+      <node id="5073">
+        <label>gsl/gsl_vector.h</label>
+      </node>
+      <node id="5069">
+        <label>wordexp.h</label>
+      </node>
+      <node id="5067">
+        <label>stdbool.h</label>
+      </node>
+      <node id="5063">
+        <label>stdarg.h</label>
+      </node>
+      <node id="5100">
         <label>cppconn/resultset.h</label>
       </node>
-      <node id="4146">
+      <node id="5082">
+        <label>sensor_msgs/PointCloud2.h</label>
+      </node>
+      <node id="5108">
+        <label>kukadu/control/trajectory.hpp</label>
+        <link refid="trajectory_8hpp_source"/>
+        <childnode refid="5068" relation="include">
+        </childnode>
+        <childnode refid="5104" relation="include">
+        </childnode>
+        <childnode refid="5092" relation="include">
+        </childnode>
+        <childnode refid="5109" relation="include">
+        </childnode>
+      </node>
+      <node id="5123">
         <label>functional</label>
       </node>
-      <node id="4148">
+      <node id="5054">
         <label>queue</label>
       </node>
-      <node id="4170">
-        <label>kukadu/control/dmp.hpp</label>
-        <link refid="dmp_8hpp_source"/>
-        <childnode refid="4149" relation="include">
+      <node id="5080">
+        <label>pcl/PCLPointCloud2.h</label>
+      </node>
+      <node id="5055">
+        <label>limits</label>
+      </node>
+      <node id="5104">
+        <label>kukadu/robot/queue.hpp</label>
+        <link refid="queue_8hpp"/>
+        <childnode refid="5054" relation="include">
         </childnode>
-        <childnode refid="4150" relation="include">
+        <childnode refid="5056" relation="include">
         </childnode>
-        <childnode refid="4170" relation="include">
+        <childnode refid="5068" relation="include">
         </childnode>
-        <childnode refid="4153" relation="include">
+        <childnode refid="5105" relation="include">
         </childnode>
-        <childnode refid="4147" relation="include">
+        <childnode refid="5106" relation="include">
         </childnode>
-        <childnode refid="4171" relation="include">
+        <childnode refid="5090" relation="include">
         </childnode>
-        <childnode refid="4172" relation="include">
+        <childnode refid="5092" relation="include">
         </childnode>
-        <childnode refid="4173" relation="include">
+        <childnode refid="5107" relation="include">
         </childnode>
-        <childnode refid="4174" relation="include">
+        <childnode refid="5091" relation="include">
         </childnode>
       </node>
-      <node id="4152">
-        <label>kukadu/robot/filters.hpp</label>
-        <link refid="filters_8hpp_source"/>
-        <childnode refid="4153" relation="include">
-        </childnode>
-        <childnode refid="4155" relation="include">
-        </childnode>
+      <node id="5077">
+        <label>pcl/point_types.h</label>
       </node>
-      <node id="4138">
-        <label>/home/andreasmennel/iis_robot_sw/iis_catkin_ws/src/kukadu/src/manipulation/skillfactory.cpp</label>
-        <link refid="skillfactory.cpp"/>
-        <childnode refid="4139" relation="include">
-        </childnode>
-        <childnode refid="4140" relation="include">
-        </childnode>
-        <childnode refid="4141" relation="include">
-        </childnode>
-        <childnode refid="4142" relation="include">
-        </childnode>
-        <childnode refid="4143" relation="include">
-        </childnode>
-        <childnode refid="4170" relation="include">
-        </childnode>
-      </node>
-      <node id="4145">
-        <label>string</label>
-      </node>
-      <node id="4144">
-        <label>map</label>
-      </node>
-      <node id="4173">
-        <label>tf/tf.h</label>
-      </node>
-      <node id="4150">
-        <label>armadillo</label>
-      </node>
-      <node id="4156">
-        <label>exception</label>
-      </node>
-      <node id="4166">
-        <label>cppconn/statement.h</label>
-      </node>
-      <node id="4169">
-        <label>kukadu/types/controllerresult.hpp</label>
-        <link refid="controllerresult_8hpp_source"/>
-        <childnode refid="4149" relation="include">
-        </childnode>
-        <childnode refid="4150" relation="include">
-        </childnode>
-      </node>
-      <node id="4143">
+      <node id="5122">
         <label>kukadu/manipulation/skillfactory.hpp</label>
         <link refid="skillfactory_8hpp_source"/>
-        <childnode refid="4144" relation="include">
+        <childnode refid="5053" relation="include">
         </childnode>
-        <childnode refid="4145" relation="include">
+        <childnode refid="5058" relation="include">
         </childnode>
-        <childnode refid="4146" relation="include">
+        <childnode refid="5123" relation="include">
         </childnode>
-        <childnode refid="4147" relation="include">
+        <childnode refid="5104" relation="include">
         </childnode>
-        <childnode refid="4155" relation="include">
+        <childnode refid="5112" relation="include">
         </childnode>
-        <childnode refid="4168" relation="include">
+        <childnode refid="5092" relation="include">
         </childnode>
-        <childnode refid="4161" relation="include">
+        <childnode refid="5109" relation="include">
+        </childnode>
+        <childnode refid="5091" relation="include">
         </childnode>
       </node>
-      <node id="4159">
+      <node id="5091">
+        <label>kukadu/storage/storagesingleton.hpp</label>
+        <link refid="storagesingleton_8hpp_source"/>
+        <childnode refid="5053" relation="include">
+        </childnode>
+        <childnode refid="5054" relation="include">
+        </childnode>
+        <childnode refid="5058" relation="include">
+        </childnode>
+        <childnode refid="5056" relation="include">
+        </childnode>
+        <childnode refid="5049" relation="include">
+        </childnode>
+        <childnode refid="5092" relation="include">
+        </childnode>
+        <childnode refid="5097" relation="include">
+        </childnode>
+        <childnode refid="5098" relation="include">
+        </childnode>
+        <childnode refid="5099" relation="include">
+        </childnode>
+        <childnode refid="5100" relation="include">
+        </childnode>
+        <childnode refid="5101" relation="include">
+        </childnode>
+      </node>
+      <node id="5076">
+        <label>pcl/point_cloud.h</label>
+      </node>
+      <node id="5092">
+        <label>kukadu/types/kukadutypes.hpp</label>
+        <link refid="kukadutypes_8hpp_source"/>
+        <childnode refid="5093" relation="include">
+        </childnode>
+        <childnode refid="5046" relation="include">
+        </childnode>
+        <childnode refid="5094" relation="include">
+        </childnode>
+        <childnode refid="5095" relation="include">
+        </childnode>
+        <childnode refid="5096" relation="include">
+        </childnode>
+      </node>
+      <node id="5113">
+        <label>kukadu/vision/pcstdtrans.hpp</label>
+        <link refid="pcstdtrans_8hpp_source"/>
+        <childnode refid="5068" relation="include">
+        </childnode>
+        <childnode refid="5114" relation="include">
+        </childnode>
+        <childnode refid="5115" relation="include">
+        </childnode>
+      </node>
+      <node id="5086">
+        <label>stdexcept</label>
+      </node>
+      <node id="5066">
+        <label>termios.h</label>
+      </node>
+      <node id="5079">
+        <label>eigen3/Eigen/Dense</label>
+      </node>
+      <node id="5090">
+        <label>kukadu/robot/hardware.hpp</label>
+        <link refid="hardware_8hpp_source"/>
+        <childnode refid="5058" relation="include">
+        </childnode>
+        <childnode refid="5068" relation="include">
+        </childnode>
+        <childnode refid="5084" relation="include">
+        </childnode>
+        <childnode refid="5091" relation="include">
+        </childnode>
+      </node>
+      <node id="5072">
+        <label>gsl/gsl_poly.h</label>
+      </node>
+      <node id="5058">
+        <label>string</label>
+      </node>
+      <node id="5053">
+        <label>map</label>
+      </node>
+      <node id="5085">
+        <label>kukadu/utils/gnuplot.hpp</label>
+        <link refid="gnuplot_8hpp_source"/>
+        <childnode refid="5049" relation="include">
+        </childnode>
+        <childnode refid="5058" relation="include">
+        </childnode>
+        <childnode refid="5056" relation="include">
+        </childnode>
+        <childnode refid="5061" relation="include">
+        </childnode>
+        <childnode refid="5048" relation="include">
+        </childnode>
+        <childnode refid="5086" relation="include">
+        </childnode>
+        <childnode refid="5087" relation="include">
+        </childnode>
+        <childnode refid="5088" relation="include">
+        </childnode>
+        <childnode refid="5089" relation="include">
+        </childnode>
+      </node>
+      <node id="5119">
+        <label>tf/tf.h</label>
+      </node>
+      <node id="5068">
+        <label>armadillo</label>
+      </node>
+      <node id="5093">
+        <label>exception</label>
+      </node>
+      <node id="5061">
+        <label>fstream</label>
+      </node>
+      <node id="5102">
+        <label>kukadu/utils/kukadutokenizer.hpp</label>
+        <link refid="kukadutokenizer_8hpp_source"/>
+        <childnode refid="5058" relation="include">
+        </childnode>
+        <childnode refid="5056" relation="include">
+        </childnode>
+      </node>
+      <node id="5101">
+        <label>cppconn/statement.h</label>
+      </node>
+      <node id="5096">
         <label>random</label>
       </node>
-      <node id="4167">
+      <node id="5121">
+        <label>kukadu/generated_skills.hpp</label>
+        <link refid="generated__skills_8hpp_source"/>
+      </node>
+      <node id="5071">
+        <label>sys/types.h</label>
+      </node>
+      <node id="5051">
+        <label>QtCore/QTextStream</label>
+      </node>
+      <node id="5103">
+        <label>kukadu/control/dmp.hpp</label>
+        <link refid="dmp_8hpp_source"/>
+        <childnode refid="5056" relation="include">
+        </childnode>
+        <childnode refid="5068" relation="include">
+        </childnode>
+        <childnode refid="5103" relation="include">
+        </childnode>
+        <childnode refid="5084" relation="include">
+        </childnode>
+        <childnode refid="5104" relation="include">
+        </childnode>
+        <childnode refid="5108" relation="include">
+        </childnode>
+        <childnode refid="5118" relation="include">
+        </childnode>
+        <childnode refid="5119" relation="include">
+        </childnode>
+        <childnode refid="5120" relation="include">
+        </childnode>
+      </node>
+      <node id="5084">
+        <label>kukadu/utils/types.hpp</label>
+        <link refid="utils_2types_8hpp_source"/>
+        <childnode refid="5056" relation="include">
+        </childnode>
+        <childnode refid="5068" relation="include">
+        </childnode>
+        <childnode refid="5074" relation="include">
+        </childnode>
+      </node>
+      <node id="5081">
+        <label>tf/transform_datatypes.h</label>
+      </node>
+      <node id="5087">
+        <label>cstdio</label>
+      </node>
+      <node id="5052">
+        <label>kukadu/utils/utils.hpp</label>
+        <link refid="utils_2utils_8hpp_source"/>
+        <childnode refid="5053" relation="include">
+        </childnode>
+        <childnode refid="5054" relation="include">
+        </childnode>
+        <childnode refid="5055" relation="include">
+        </childnode>
+        <childnode refid="5056" relation="include">
+        </childnode>
+        <childnode refid="5057" relation="include">
+        </childnode>
+        <childnode refid="5058" relation="include">
+        </childnode>
+        <childnode refid="5059" relation="include">
+        </childnode>
+        <childnode refid="5048" relation="include">
+        </childnode>
+        <childnode refid="5060" relation="include">
+        </childnode>
+        <childnode refid="5061" relation="include">
+        </childnode>
+        <childnode refid="5047" relation="include">
+        </childnode>
+        <childnode refid="5062" relation="include">
+        </childnode>
+        <childnode refid="5063" relation="include">
+        </childnode>
+        <childnode refid="5049" relation="include">
+        </childnode>
+        <childnode refid="5064" relation="include">
+        </childnode>
+        <childnode refid="5065" relation="include">
+        </childnode>
+        <childnode refid="5066" relation="include">
+        </childnode>
+        <childnode refid="5067" relation="include">
+        </childnode>
+        <childnode refid="5068" relation="include">
+        </childnode>
+        <childnode refid="5069" relation="include">
+        </childnode>
+        <childnode refid="5070" relation="include">
+        </childnode>
+        <childnode refid="5071" relation="include">
+        </childnode>
+        <childnode refid="5072" relation="include">
+        </childnode>
+        <childnode refid="5073" relation="include">
+        </childnode>
+        <childnode refid="5074" relation="include">
+        </childnode>
+        <childnode refid="5075" relation="include">
+        </childnode>
+        <childnode refid="5076" relation="include">
+        </childnode>
+        <childnode refid="5077" relation="include">
+        </childnode>
+        <childnode refid="5078" relation="include">
+        </childnode>
+        <childnode refid="5079" relation="include">
+        </childnode>
+        <childnode refid="5080" relation="include">
+        </childnode>
+        <childnode refid="5081" relation="include">
+        </childnode>
+        <childnode refid="5082" relation="include">
+        </childnode>
+        <childnode refid="5083" relation="include">
+        </childnode>
+        <childnode refid="5084" relation="include">
+        </childnode>
+        <childnode refid="5085" relation="include">
+        </childnode>
+        <childnode refid="5090" relation="include">
+        </childnode>
+        <childnode refid="5102" relation="include">
+        </childnode>
+      </node>
+      <node id="5111">
+        <label>geometry_msgs/PoseStamped.h</label>
+      </node>
+      <node id="5109">
+        <label>kukadu/control/controller.hpp</label>
+        <link refid="controller_8hpp_source"/>
+        <childnode refid="5058" relation="include">
+        </childnode>
+        <childnode refid="5104" relation="include">
+        </childnode>
+        <childnode refid="5090" relation="include">
+        </childnode>
+        <childnode refid="5110" relation="include">
+        </childnode>
+        <childnode refid="5092" relation="include">
+        </childnode>
+        <childnode refid="5117" relation="include">
+        </childnode>
+        <childnode refid="5091" relation="include">
+        </childnode>
+      </node>
+      <node id="5118">
+        <label>kukadu/learning/regression/fitting.hpp</label>
+        <link refid="fitting_8hpp_source"/>
+        <childnode refid="5068" relation="include">
+        </childnode>
+        <childnode refid="5108" relation="include">
+        </childnode>
+      </node>
+      <node id="5062">
+        <label>unistd.h</label>
+      </node>
+      <node id="5056">
+        <label>vector</label>
+      </node>
+      <node id="5106">
+        <label>kukadu/robot/filters.hpp</label>
+        <link refid="filters_8hpp_source"/>
+        <childnode refid="5084" relation="include">
+        </childnode>
+        <childnode refid="5092" relation="include">
+        </childnode>
+      </node>
+      <node id="5064">
+        <label>signal.h</label>
+      </node>
+      <node id="5047">
+        <label>utility</label>
+      </node>
+      <node id="5048">
+        <label>sstream</label>
+      </node>
+      <node id="5098">
+        <label>cppconn/driver.h</label>
+      </node>
+      <node id="5099">
+        <label>cppconn/exception.h</label>
+      </node>
+      <node id="5105">
+        <label>geometry_msgs/Pose.h</label>
+      </node>
+      <node id="5057">
+        <label>math.h</label>
+      </node>
+      <node id="5088">
+        <label>cstdlib</label>
+      </node>
+      <node id="5049">
+        <label>iostream</label>
+      </node>
+      <node id="5097">
+        <label>mysql_connection.h</label>
+      </node>
+      <node id="5115">
+        <label>pcl/kdtree/kdtree_flann.h</label>
+      </node>
+      <node id="5107">
         <label>kukadu/utils/destroyableobject.hpp</label>
         <link refid="destroyableobject_8hpp_source"/>
       </node>
-      <node id="4155">
-        <label>kukadu/types/kukadutypes.hpp</label>
-        <link refid="kukadutypes_8hpp_source"/>
-        <childnode refid="4156" relation="include">
-        </childnode>
-        <childnode refid="4139" relation="include">
-        </childnode>
-        <childnode refid="4157" relation="include">
-        </childnode>
-        <childnode refid="4158" relation="include">
-        </childnode>
-        <childnode refid="4159" relation="include">
-        </childnode>
+      <node id="5050">
+        <label>QtCore/QFile</label>
       </node>
-      <node id="4147">
-        <label>kukadu/robot/queue.hpp</label>
-        <link refid="queue_8hpp"/>
-        <childnode refid="4148" relation="include">
-        </childnode>
-        <childnode refid="4149" relation="include">
-        </childnode>
-        <childnode refid="4150" relation="include">
-        </childnode>
-        <childnode refid="4151" relation="include">
-        </childnode>
-        <childnode refid="4152" relation="include">
-        </childnode>
-        <childnode refid="4160" relation="include">
-        </childnode>
-        <childnode refid="4155" relation="include">
-        </childnode>
-        <childnode refid="4167" relation="include">
-        </childnode>
-        <childnode refid="4161" relation="include">
-        </childnode>
-      </node>
-      <node id="4172">
-        <label>kukadu/learning/regression/fitting.hpp</label>
-        <link refid="fitting_8hpp_source"/>
-        <childnode refid="4150" relation="include">
-        </childnode>
-        <childnode refid="4171" relation="include">
-        </childnode>
-      </node>
-      <node id="4160">
-        <label>kukadu/robot/hardware.hpp</label>
-        <link refid="hardware_8hpp_source"/>
-        <childnode refid="4145" relation="include">
-        </childnode>
-        <childnode refid="4150" relation="include">
-        </childnode>
-        <childnode refid="4153" relation="include">
-        </childnode>
-        <childnode refid="4161" relation="include">
-        </childnode>
-      </node>
-      <node id="4149">
-        <label>vector</label>
-      </node>
-      <node id="4171">
-        <label>kukadu/control/trajectory.hpp</label>
-        <link refid="trajectory_8hpp_source"/>
-        <childnode refid="4150" relation="include">
-        </childnode>
-        <childnode refid="4147" relation="include">
-        </childnode>
-        <childnode refid="4155" relation="include">
-        </childnode>
-        <childnode refid="4168" relation="include">
-        </childnode>
-      </node>
-      <node id="4140">
-        <label>utility</label>
-      </node>
-      <node id="4141">
-        <label>sstream</label>
-      </node>
-      <node id="4163">
-        <label>cppconn/driver.h</label>
-      </node>
-      <node id="4164">
-        <label>cppconn/exception.h</label>
-      </node>
-      <node id="4151">
-        <label>geometry_msgs/Pose.h</label>
-      </node>
-      <node id="4142">
-        <label>iostream</label>
-      </node>
-      <node id="4162">
-        <label>mysql_connection.h</label>
-      </node>
-      <node id="4168">
-        <label>kukadu/control/controller.hpp</label>
-        <link refid="controller_8hpp_source"/>
-        <childnode refid="4145" relation="include">
-        </childnode>
-        <childnode refid="4160" relation="include">
-        </childnode>
-        <childnode refid="4155" relation="include">
-        </childnode>
-        <childnode refid="4169" relation="include">
-        </childnode>
-        <childnode refid="4161" relation="include">
-        </childnode>
-        <childnode refid="4147" relation="include">
-        </childnode>
-      </node>
-      <node id="4158">
+      <node id="5095">
         <label>mutex</label>
       </node>
-      <node id="4153">
-        <label>kukadu/utils/types.hpp</label>
-        <link refid="utils_2types_8hpp_source"/>
-        <childnode refid="4149" relation="include">
-        </childnode>
-        <childnode refid="4150" relation="include">
-        </childnode>
-        <childnode refid="4154" relation="include">
-        </childnode>
+      <node id="5078">
+        <label>gsl/gsl_multifit.h</label>
       </node>
-      <node id="4157">
+      <node id="5083">
+        <label>geometry_msgs/Quaternion.h</label>
+      </node>
+      <node id="5094">
         <label>thread</label>
       </node>
-      <node id="4161">
-        <label>kukadu/storage/storagesingleton.hpp</label>
-        <link refid="storagesingleton_8hpp_source"/>
-        <childnode refid="4144" relation="include">
-        </childnode>
-        <childnode refid="4148" relation="include">
-        </childnode>
-        <childnode refid="4145" relation="include">
-        </childnode>
-        <childnode refid="4149" relation="include">
-        </childnode>
-        <childnode refid="4142" relation="include">
-        </childnode>
-        <childnode refid="4155" relation="include">
-        </childnode>
-        <childnode refid="4162" relation="include">
-        </childnode>
-        <childnode refid="4163" relation="include">
-        </childnode>
-        <childnode refid="4164" relation="include">
-        </childnode>
-        <childnode refid="4165" relation="include">
-        </childnode>
-        <childnode refid="4166" relation="include">
-        </childnode>
+      <node id="5114">
+        <label>pcl_ros/transforms.h</label>
       </node>
-      <node id="4174">
+      <node id="5120">
         <label>gsl/gsl_odeiv2.h</label>
       </node>
-      <node id="4154">
+      <node id="5075">
+        <label>gsl/gsl_linalg.h</label>
+      </node>
+      <node id="5110">
+        <label>kukadu/vision/localizer.hpp</label>
+        <link refid="localizer_8hpp_source"/>
+        <childnode refid="5046" relation="include">
+        </childnode>
+        <childnode refid="5056" relation="include">
+        </childnode>
+        <childnode refid="5058" relation="include">
+        </childnode>
+        <childnode refid="5047" relation="include">
+        </childnode>
+        <childnode refid="5068" relation="include">
+        </childnode>
+        <childnode refid="5105" relation="include">
+        </childnode>
+        <childnode refid="5111" relation="include">
+        </childnode>
+        <childnode refid="5052" relation="include">
+        </childnode>
+        <childnode refid="5112" relation="include">
+        </childnode>
+        <childnode refid="5092" relation="include">
+        </childnode>
+      </node>
+      <node id="5112">
+        <label>kukadu/vision/kinect.hpp</label>
+        <link refid="kinect_8hpp_source"/>
+        <childnode refid="5056" relation="include">
+        </childnode>
+        <childnode refid="5058" relation="include">
+        </childnode>
+        <childnode refid="5076" relation="include">
+        </childnode>
+        <childnode refid="5077" relation="include">
+        </childnode>
+        <childnode refid="5090" relation="include">
+        </childnode>
+        <childnode refid="5082" relation="include">
+        </childnode>
+        <childnode refid="5092" relation="include">
+        </childnode>
+        <childnode refid="5113" relation="include">
+        </childnode>
+        <childnode refid="5116" relation="include">
+        </childnode>
+      </node>
+      <node id="5116">
+        <label>pcl_conversions/pcl_conversions.h</label>
+      </node>
+      <node id="5060">
+        <label>stdio.h</label>
+      </node>
+      <node id="5045">
+        <label>/home/agyss/iis_robot_sw/iis_catkin_ws/src/kukadu/src/manipulation/skillfactory.cpp</label>
+        <link refid="skillfactory.cpp"/>
+        <childnode refid="5046" relation="include">
+        </childnode>
+        <childnode refid="5047" relation="include">
+        </childnode>
+        <childnode refid="5048" relation="include">
+        </childnode>
+        <childnode refid="5049" relation="include">
+        </childnode>
+        <childnode refid="5050" relation="include">
+        </childnode>
+        <childnode refid="5051" relation="include">
+        </childnode>
+        <childnode refid="5052" relation="include">
+        </childnode>
+        <childnode refid="5103" relation="include">
+        </childnode>
+        <childnode refid="5121" relation="include">
+        </childnode>
+        <childnode refid="5122" relation="include">
+        </childnode>
+      </node>
+      <node id="5059">
+        <label>cstring</label>
+      </node>
+      <node id="5074">
         <label>gsl/gsl_matrix.h</label>
       </node>
-      <node id="4139">
+      <node id="5046">
         <label>memory</label>
+      </node>
+      <node id="5117">
+        <label>kukadu/types/controllerresult.hpp</label>
+        <link refid="controllerresult_8hpp_source"/>
+        <childnode refid="5056" relation="include">
+        </childnode>
+        <childnode refid="5068" relation="include">
+        </childnode>
+      </node>
+      <node id="5065">
+        <label>dirent.h</label>
       </node>
     </incdepgraph>
     <innernamespace refid="namespacekukadu">kukadu</innernamespace>
@@ -285,139 +576,156 @@
 <codeline lineno="2"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&lt;utility&gt;</highlight><highlight class="normal"></highlight></codeline>
 <codeline lineno="3"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&lt;sstream&gt;</highlight><highlight class="normal"></highlight></codeline>
 <codeline lineno="4"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&lt;iostream&gt;</highlight><highlight class="normal"></highlight></codeline>
-<codeline lineno="5"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&lt;kukadu/manipulation/skillfactory.hpp&gt;</highlight><highlight class="normal"></highlight></codeline>
-<codeline lineno="6"><highlight class="normal"></highlight></codeline>
-<codeline lineno="7"><highlight class="normal"></highlight><highlight class="comment">//<sp/>include<sp/>all<sp/>the<sp/>controllers<sp/>from<sp/>which<sp/>skills<sp/>can<sp/>be<sp/>generated</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="5"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&lt;QtCore/QFile&gt;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="6"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&lt;QtCore/QTextStream&gt;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="7"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&lt;kukadu/utils/utils.hpp&gt;</highlight><highlight class="normal"></highlight></codeline>
 <codeline lineno="8"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&lt;kukadu/control/dmp.hpp&gt;</highlight><highlight class="normal"></highlight></codeline>
-<codeline lineno="9"><highlight class="normal"></highlight></codeline>
-<codeline lineno="10"><highlight class="normal"></highlight><highlight class="keyword">using<sp/>namespace<sp/></highlight><highlight class="normal">std;</highlight></codeline>
+<codeline lineno="9"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&lt;kukadu/generated_skills.hpp&gt;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="10"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&lt;kukadu/manipulation/skillfactory.hpp&gt;</highlight><highlight class="normal"></highlight></codeline>
 <codeline lineno="11"><highlight class="normal"></highlight></codeline>
-<codeline lineno="12"><highlight class="normal"></highlight><highlight class="keyword">namespace<sp/></highlight><highlight class="normal">kukadu<sp/>{</highlight></codeline>
-<codeline lineno="13"><highlight class="normal"></highlight></codeline>
-<codeline lineno="14"><highlight class="normal"><sp/><sp/><sp/><sp/>std::map&lt;std::string,<sp/>std::function&lt;KUKADU_SHARED_PTR&lt;Controller&gt;(StorageSingleton&amp;,<sp/>int,<sp/>int,<sp/>std::vector&lt;KUKADU_SHARED_PTR&lt;Hardware&gt;<sp/>&gt;)&gt;<sp/>&gt;<sp/>SkillFactory::skillFactories{</highlight></codeline>
-<codeline lineno="15"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>{</highlight></codeline>
-<codeline lineno="16"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="stringliteral">&quot;DMPExecutor&quot;</highlight><highlight class="normal">,<sp/>[](StorageSingleton&amp;<sp/>storage,<sp/></highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/>skillId,<sp/></highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/>controllerType,<sp/>std::vector&lt;KUKADU_SHARED_PTR&lt;Hardware&gt;<sp/>&gt;<sp/>hardwareComponents)<sp/>{</highlight></codeline>
-<codeline lineno="17"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal"><sp/>make_shared&lt;DMPExecutor&gt;(storage,<sp/>skillId,<sp/>KUKADU_DYNAMIC_POINTER_CAST&lt;ControlQueue&gt;(hardwareComponents.front()));</highlight></codeline>
-<codeline lineno="18"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>}</highlight></codeline>
-<codeline lineno="19"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>},</highlight></codeline>
-<codeline lineno="20"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>{</highlight></codeline>
-<codeline lineno="21"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="stringliteral">&quot;JointPtp&quot;</highlight><highlight class="normal">,<sp/>[](StorageSingleton&amp;<sp/>storage,<sp/></highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/>skillId,<sp/></highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/>controllerType,<sp/>std::vector&lt;KUKADU_SHARED_PTR&lt;Hardware&gt;<sp/>&gt;<sp/>hardwareComponents)<sp/>{</highlight></codeline>
-<codeline lineno="22"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal"><sp/>make_shared&lt;JointPtp&gt;(storage,<sp/>KUKADU_DYNAMIC_POINTER_CAST&lt;ControlQueue&gt;(hardwareComponents.front()));</highlight></codeline>
-<codeline lineno="23"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>}</highlight></codeline>
-<codeline lineno="24"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>},</highlight></codeline>
-<codeline lineno="25"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>{</highlight></codeline>
-<codeline lineno="26"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="stringliteral">&quot;CartesianPtp&quot;</highlight><highlight class="normal">,<sp/>[](StorageSingleton&amp;<sp/>storage,<sp/></highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/>skillId,<sp/></highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/>controllerType,<sp/>std::vector&lt;KUKADU_SHARED_PTR&lt;Hardware&gt;<sp/>&gt;<sp/>hardwareComponents)<sp/>{</highlight></codeline>
-<codeline lineno="27"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal"><sp/>make_shared&lt;CartesianPtp&gt;(storage,<sp/>KUKADU_DYNAMIC_POINTER_CAST&lt;ControlQueue&gt;(hardwareComponents.front()));</highlight></codeline>
-<codeline lineno="28"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>}</highlight></codeline>
-<codeline lineno="29"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>}</highlight></codeline>
-<codeline lineno="30"><highlight class="normal"><sp/><sp/><sp/><sp/>};</highlight></codeline>
-<codeline lineno="31"><highlight class="normal"></highlight></codeline>
-<codeline lineno="32"><highlight class="normal"><sp/><sp/><sp/><sp/>SkillFactory::SkillFactory()<sp/>:<sp/>storage(StorageSingleton::get())<sp/>{</highlight></codeline>
-<codeline lineno="33"><highlight class="normal"></highlight></codeline>
-<codeline lineno="34"><highlight class="normal"><sp/><sp/><sp/><sp/>}</highlight></codeline>
-<codeline lineno="35"><highlight class="normal"></highlight></codeline>
-<codeline lineno="36"><highlight class="normal"><sp/><sp/><sp/><sp/>SkillFactory&amp;<sp/>SkillFactory::get()<sp/>{</highlight></codeline>
-<codeline lineno="37"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">static</highlight><highlight class="normal"><sp/>SkillFactory<sp/>instance;</highlight></codeline>
-<codeline lineno="38"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal"><sp/>instance;</highlight></codeline>
-<codeline lineno="39"><highlight class="normal"><sp/><sp/><sp/><sp/>}</highlight></codeline>
-<codeline lineno="40"><highlight class="normal"></highlight></codeline>
-<codeline lineno="41"><highlight class="normal"><sp/><sp/><sp/><sp/>KUKADU_SHARED_PTR&lt;Controller&gt;<sp/>SkillFactory::loadSkill(std::string<sp/>skillName,<sp/>std::vector&lt;KUKADU_SHARED_PTR&lt;Hardware&gt;<sp/>&gt;<sp/>hardwareComponents)<sp/>{</highlight></codeline>
-<codeline lineno="42"><highlight class="normal"></highlight></codeline>
-<codeline lineno="43"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>stringstream<sp/>s;</highlight></codeline>
-<codeline lineno="44"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>s<sp/>&lt;&lt;<sp/></highlight><highlight class="stringliteral">&quot;SELECT<sp/>DISTINCT<sp/>skills_robot.robot_config_id<sp/>as<sp/>&apos;roboConfigId&apos;<sp/>FROM<sp/>skills_robot<sp/>INNER<sp/>JOIN<sp/>skills<sp/>ON<sp/>skills.skill_id=skills_robot.skill_id<sp/>WHERE<sp/>skills.label=&apos;&quot;</highlight><highlight class="normal"><sp/>&lt;&lt;<sp/>skillName<sp/>&lt;&lt;<sp/></highlight><highlight class="stringliteral">&quot;&apos;&quot;</highlight><highlight class="normal">;</highlight></codeline>
-<codeline lineno="45"><highlight class="normal"></highlight></codeline>
-<codeline lineno="46"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">auto</highlight><highlight class="normal"><sp/>roboConfigResults<sp/>=<sp/>storage.executeQuery(s.str());</highlight></codeline>
-<codeline lineno="47"><highlight class="normal"></highlight></codeline>
-<codeline lineno="48"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/>roboConfigIdInOrder<sp/>=<sp/>-1;</highlight></codeline>
-<codeline lineno="49"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/>roboConfigIdSet<sp/>=<sp/>-1;</highlight></codeline>
-<codeline lineno="50"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/>roboConfigIdSubset<sp/>=<sp/>-1;</highlight></codeline>
-<codeline lineno="51"><highlight class="normal"></highlight></codeline>
-<codeline lineno="52"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="comment">//find<sp/>ids<sp/>of<sp/>configurations<sp/>which<sp/>match<sp/>given<sp/>hardwarecomponents.<sp/>first<sp/>match<sp/>is<sp/>taken<sp/>and<sp/>not<sp/>overwritten,<sp/>finishes<sp/>when<sp/>InOrderId<sp/>was<sp/>found</highlight><highlight class="normal"></highlight></codeline>
-<codeline lineno="53"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">while</highlight><highlight class="normal">(roboConfigResults-&gt;next()<sp/>&amp;&amp;<sp/>roboConfigIdInOrder<sp/>==<sp/>-1){</highlight></codeline>
-<codeline lineno="54"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/>roboConfigId<sp/>=<sp/>roboConfigResults-&gt;getInt(</highlight><highlight class="stringliteral">&quot;roboConfigId&quot;</highlight><highlight class="normal">);</highlight></codeline>
-<codeline lineno="55"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>RobotConfiguration<sp/>roboConfig(storage,<sp/>roboConfigId);</highlight></codeline>
+<codeline lineno="12"><highlight class="normal"></highlight><highlight class="keyword">using<sp/>namespace<sp/></highlight><highlight class="normal"><ref refid="namespacestd" kindref="compound">std</ref>;</highlight></codeline>
+<codeline lineno="13"><highlight class="normal"></highlight><highlight class="keyword">namespace<sp/></highlight><highlight class="normal"><ref refid="namespacekukadu" kindref="compound">kukadu</ref><sp/>{</highlight></codeline>
+<codeline lineno="14"><highlight class="normal"></highlight></codeline>
+<codeline lineno="15"><highlight class="normal"><sp/><sp/><sp/><sp/>std::map&lt;std::string,<sp/>std::function&lt;KUKADU_SHARED_PTR&lt;Controller&gt;(</highlight></codeline>
+<codeline lineno="16"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>StorageSingleton&amp;,<sp/>int,<sp/>int,<sp/>std::vector&lt;KUKADU_SHARED_PTR&lt;Hardware&gt;<sp/>&gt;)&gt;<sp/>&gt;<sp/>SkillFactory::skillFactories{</highlight></codeline>
+<codeline lineno="17"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>{</highlight><highlight class="stringliteral">&quot;DMPExecutor&quot;</highlight><highlight class="normal">,<sp/>[](StorageSingleton&amp;<sp/>storage,<sp/></highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/>skillId,<sp/></highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/>controllerType,<sp/>std::vector&lt;KUKADU_SHARED_PTR&lt;Hardware&gt;<sp/>&gt;<sp/>hardwareComponents)<sp/>{</highlight></codeline>
+<codeline lineno="18"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal"><sp/>make_shared&lt;DMPExecutor&gt;(storage,<sp/>skillId,<sp/>KUKADU_DYNAMIC_POINTER_CAST&lt;ControlQueue&gt;(hardwareComponents.front()));</highlight></codeline>
+<codeline lineno="19"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>}},</highlight></codeline>
+<codeline lineno="20"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>{</highlight><highlight class="stringliteral">&quot;JointPtp&quot;</highlight><highlight class="normal">,<sp/>[](StorageSingleton&amp;<sp/>storage,<sp/></highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/>skillId,<sp/></highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/>controllerType,<sp/>std::vector&lt;KUKADU_SHARED_PTR&lt;Hardware&gt;<sp/>&gt;<sp/>hardwareComponents)<sp/>{</highlight></codeline>
+<codeline lineno="21"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal"><sp/>make_shared&lt;JointPtp&gt;(storage,<sp/>KUKADU_DYNAMIC_POINTER_CAST&lt;JointHardware&gt;(hardwareComponents.front()));</highlight></codeline>
+<codeline lineno="22"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>}},</highlight></codeline>
+<codeline lineno="23"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>{</highlight><highlight class="stringliteral">&quot;CartesianPtp&quot;</highlight><highlight class="normal">,<sp/>[](StorageSingleton&amp;<sp/>storage,<sp/></highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/>skillId,<sp/></highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/>controllerType,<sp/>std::vector&lt;KUKADU_SHARED_PTR&lt;Hardware&gt;<sp/>&gt;<sp/>hardwareComponents)<sp/>{</highlight></codeline>
+<codeline lineno="24"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal"><sp/>make_shared&lt;CartesianPtp&gt;(storage,<sp/>KUKADU_DYNAMIC_POINTER_CAST&lt;ControlQueue&gt;(hardwareComponents.front()));</highlight></codeline>
+<codeline lineno="25"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>}},</highlight></codeline>
+<codeline lineno="26"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>{</highlight><highlight class="stringliteral">&quot;LocalizeObject&quot;</highlight><highlight class="normal">,<sp/>[](StorageSingleton&amp;<sp/>storage,<sp/></highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/>skillId,<sp/></highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/>controllerType,<sp/>std::vector&lt;KUKADU_SHARED_PTR&lt;Hardware&gt;<sp/>&gt;<sp/>hardwareComponents)<sp/>{</highlight></codeline>
+<codeline lineno="27"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal"><sp/>make_shared&lt;LocalizeObject&gt;(storage,<sp/>KUKADU_DYNAMIC_POINTER_CAST&lt;Kinect&gt;(hardwareComponents.front()));</highlight></codeline>
+<codeline lineno="28"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>}}</highlight></codeline>
+<codeline lineno="29"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="comment">//insertSkill</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="30"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="comment">//at<sp/>this<sp/>line<sp/>further<sp/>skills<sp/>will<sp/>be<sp/>inserted<sp/>automatically<sp/>-<sp/>do<sp/>not<sp/>remove<sp/>it</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="31"><highlight class="normal"><sp/><sp/><sp/><sp/>};</highlight></codeline>
+<codeline lineno="32"><highlight class="normal"></highlight></codeline>
+<codeline lineno="33"><highlight class="normal"><sp/><sp/><sp/><sp/>SkillFactory::SkillFactory()<sp/>:<sp/>storage(StorageSingleton::get())<sp/>{}</highlight></codeline>
+<codeline lineno="34"><highlight class="normal"></highlight></codeline>
+<codeline lineno="35"><highlight class="normal"><sp/><sp/><sp/><sp/>SkillFactory<sp/>&amp;SkillFactory::get()<sp/>{</highlight></codeline>
+<codeline lineno="36"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">static</highlight><highlight class="normal"><sp/>SkillFactory<sp/>instance;</highlight></codeline>
+<codeline lineno="37"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal"><sp/>instance;</highlight></codeline>
+<codeline lineno="38"><highlight class="normal"><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline lineno="39"><highlight class="normal"></highlight></codeline>
+<codeline lineno="40"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/>SkillFactory::addSkill(std::string<sp/>skillName)<sp/>{</highlight></codeline>
+<codeline lineno="41"><highlight class="normal"></highlight></codeline>
+<codeline lineno="42"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>std::string<sp/>skillText<sp/>=<sp/></highlight><highlight class="stringliteral">&quot;,{\n\t\t\t\&quot;&quot;</highlight><highlight class="normal"><sp/>+<sp/>skillName<sp/>+<sp/></highlight><highlight class="stringliteral">&quot;\&quot;&quot;</highlight><highlight class="normal"><sp/>+</highlight></codeline>
+<codeline lineno="43"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="stringliteral">&quot;,<sp/>[](StorageSingleton&amp;<sp/>storage,<sp/>int<sp/>skillId,<sp/>int<sp/>controllerType,<sp/>std::vector&lt;KUKADU_SHARED_PTR&lt;Hardware&gt;<sp/>&gt;<sp/>hardwareComponents)<sp/>{\n&quot;</highlight><highlight class="normal"><sp/>+</highlight></codeline>
+<codeline lineno="44"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="stringliteral">&quot;\t\t\t\treturn<sp/>make_shared&lt;skill::&quot;</highlight><highlight class="normal"><sp/>+<sp/>skillName<sp/>+</highlight></codeline>
+<codeline lineno="45"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="stringliteral">&quot;&gt;(storage,<sp/>hardwareComponents);\n&quot;</highlight><highlight class="normal"><sp/>+<sp/></highlight><highlight class="stringliteral">&quot;\t\t\t}\n&quot;</highlight><highlight class="normal"><sp/>+</highlight></codeline>
+<codeline lineno="46"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="stringliteral">&quot;\t\t}\n&quot;</highlight><highlight class="normal">;</highlight></codeline>
+<codeline lineno="47"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>std::string<sp/>skillFactoryFilePath<sp/>=<sp/>resolvePath(</highlight><highlight class="stringliteral">&quot;$KUKADU_HOME/src/manipulation/skillfactory.cpp&quot;</highlight><highlight class="normal">);</highlight></codeline>
+<codeline lineno="48"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>QFile<sp/>skillFactoryFile(QString::fromStdString(skillFactoryFilePath));</highlight></codeline>
+<codeline lineno="49"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>QFile<sp/>newSkillFactoryFile(QString::fromStdString(skillFactoryFilePath<sp/>+<sp/></highlight><highlight class="stringliteral">&quot;1&quot;</highlight><highlight class="normal">));</highlight></codeline>
+<codeline lineno="50"><highlight class="normal"></highlight></codeline>
+<codeline lineno="51"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>skillFactoryFile.open(QIODevice::ReadOnly);</highlight></codeline>
+<codeline lineno="52"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>newSkillFactoryFile.open(QIODevice::WriteOnly);</highlight></codeline>
+<codeline lineno="53"><highlight class="normal"></highlight></codeline>
+<codeline lineno="54"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>QTextStream<sp/>skillFactoryStream(&amp;skillFactoryFile);</highlight></codeline>
+<codeline lineno="55"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>QTextStream<sp/>newSkillFactoryStream(&amp;newSkillFactoryFile);</highlight></codeline>
 <codeline lineno="56"><highlight class="normal"></highlight></codeline>
-<codeline lineno="57"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">if</highlight><highlight class="normal">(roboConfig.containsHardwareInOrder(hardwareComponents)){</highlight></codeline>
-<codeline lineno="58"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>roboConfigIdInOrder<sp/>=<sp/>roboConfigId;</highlight></codeline>
-<codeline lineno="59"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>}<sp/></highlight><highlight class="keywordflow">else</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordflow">if</highlight><highlight class="normal"><sp/>(roboConfigIdSet<sp/>==<sp/>-1<sp/>&amp;&amp;<sp/>roboConfig.containsHardwareAsSet(hardwareComponents)){</highlight></codeline>
-<codeline lineno="60"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>roboConfigIdSet<sp/>=<sp/>roboConfigId;</highlight></codeline>
-<codeline lineno="61"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>}<sp/></highlight><highlight class="keywordflow">else</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordflow">if</highlight><highlight class="normal"><sp/>(roboConfigIdSubset<sp/>==<sp/>-1<sp/>&amp;&amp;<sp/>roboConfig.containsHardware(hardwareComponents)){</highlight></codeline>
-<codeline lineno="62"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>roboConfigIdSubset<sp/>=<sp/>roboConfigId;</highlight></codeline>
-<codeline lineno="63"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline lineno="57"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>QString<sp/>skillFactoryContent<sp/>=<sp/></highlight><highlight class="stringliteral">&quot;&quot;</highlight><highlight class="normal">;</highlight></codeline>
+<codeline lineno="58"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">while</highlight><highlight class="normal"><sp/>(!skillFactoryStream.atEnd())<sp/>{</highlight></codeline>
+<codeline lineno="59"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>QString<sp/>line<sp/>=<sp/>skillFactoryStream.readLine();</highlight></codeline>
+<codeline lineno="60"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">if</highlight><highlight class="normal"><sp/>(line.startsWith(</highlight><highlight class="stringliteral">&quot;<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>//insertSkill&quot;</highlight><highlight class="normal">))<sp/>{</highlight></codeline>
+<codeline lineno="61"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>newSkillFactoryStream<sp/>&lt;&lt;<sp/>QString::fromStdString(skillText)<sp/>&lt;&lt;<sp/></highlight><highlight class="stringliteral">&quot;\n&quot;</highlight><highlight class="normal">;</highlight></codeline>
+<codeline lineno="62"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline lineno="63"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>newSkillFactoryStream<sp/>&lt;&lt;<sp/>line<sp/>+<sp/></highlight><highlight class="stringliteral">&quot;\n&quot;</highlight><highlight class="normal">;</highlight></codeline>
 <codeline lineno="64"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>}</highlight></codeline>
 <codeline lineno="65"><highlight class="normal"></highlight></codeline>
-<codeline lineno="66"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/>configId<sp/>=<sp/>roboConfigIdInOrder<sp/>!=<sp/>-1<sp/>?<sp/>roboConfigIdInOrder<sp/>:<sp/>roboConfigIdSet<sp/>!=<sp/>-1<sp/>?<sp/>roboConfigIdSet<sp/>:<sp/>roboConfigIdSubset;</highlight></codeline>
-<codeline lineno="67"><highlight class="normal"></highlight></codeline>
-<codeline lineno="68"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>s.str(std::string());</highlight></codeline>
-<codeline lineno="69"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>s<sp/>&lt;&lt;<sp/></highlight><highlight class="stringliteral">&quot;SELECT<sp/>skills.skill_id<sp/>as<sp/>&apos;skillId&apos;,<sp/>skills.controller_type<sp/>as<sp/>&apos;controllerId&apos;,<sp/>skills_robot.robot_config_id<sp/>as<sp/>&apos;roboConfigId&apos;&quot;</highlight><highlight class="normal"><sp/>&lt;&lt;</highlight></codeline>
-<codeline lineno="70"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="stringliteral">&quot;FROM<sp/>skills_robot<sp/>INNER<sp/>JOIN<sp/>skills<sp/>ON<sp/>skills.skill_id=skills_robot.skill_id<sp/>&quot;</highlight><highlight class="normal"><sp/>&lt;&lt;</highlight></codeline>
-<codeline lineno="71"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="stringliteral">&quot;WHERE<sp/>skills.label=&apos;&quot;</highlight><highlight class="normal">&lt;&lt;<sp/>skillName<sp/>&lt;&lt;</highlight><highlight class="stringliteral">&quot;&apos;<sp/>AND<sp/>skills_robot.robot_config_id=&quot;</highlight><highlight class="normal"><sp/>&lt;&lt;<sp/>configId;</highlight></codeline>
-<codeline lineno="72"><highlight class="normal"></highlight></codeline>
-<codeline lineno="73"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">auto</highlight><highlight class="normal"><sp/>skillResult<sp/>=<sp/>storage.executeQuery(s.str());</highlight></codeline>
-<codeline lineno="74"><highlight class="normal"></highlight></codeline>
-<codeline lineno="75"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">if</highlight><highlight class="normal">(skillResult-&gt;next())<sp/>{</highlight></codeline>
-<codeline lineno="76"><highlight class="normal"></highlight></codeline>
-<codeline lineno="77"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">long</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">long</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/>skillId<sp/>=<sp/>skillResult-&gt;getInt64(</highlight><highlight class="stringliteral">&quot;skillId&quot;</highlight><highlight class="normal">);</highlight></codeline>
-<codeline lineno="78"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/>controllerType<sp/>=<sp/>skillResult-&gt;getInt(</highlight><highlight class="stringliteral">&quot;controllerId&quot;</highlight><highlight class="normal">);</highlight></codeline>
-<codeline lineno="79"><highlight class="normal"></highlight></codeline>
-<codeline lineno="80"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">auto</highlight><highlight class="normal"><sp/>controllerClassLabel<sp/>=<sp/>storage.getCachedLabel(</highlight><highlight class="stringliteral">&quot;controller_types&quot;</highlight><highlight class="normal">,<sp/></highlight><highlight class="stringliteral">&quot;controller_id&quot;</highlight><highlight class="normal">,<sp/></highlight><highlight class="stringliteral">&quot;controller_implementation_class&quot;</highlight><highlight class="normal">,<sp/>controllerType);</highlight></codeline>
-<codeline lineno="81"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">if</highlight><highlight class="normal">(skillFactories.find(controllerClassLabel)<sp/>!=<sp/>skillFactories.end())</highlight></codeline>
-<codeline lineno="82"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal"><sp/>skillFactories[controllerClassLabel](storage,<sp/>skillId,<sp/>controllerType,<sp/>hardwareComponents);</highlight></codeline>
-<codeline lineno="83"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">else</highlight><highlight class="normal"></highlight></codeline>
-<codeline lineno="84"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">throw</highlight><highlight class="normal"><sp/>KukaduException(</highlight><highlight class="stringliteral">&quot;(SkillFactory)<sp/>automatic<sp/>loading<sp/>is<sp/>not<sp/>supported<sp/>for<sp/>the<sp/>required<sp/>controller&quot;</highlight><highlight class="normal">);</highlight></codeline>
-<codeline lineno="85"><highlight class="normal"></highlight></codeline>
-<codeline lineno="86"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>}<sp/></highlight><highlight class="keywordflow">else</highlight><highlight class="normal"></highlight></codeline>
-<codeline lineno="87"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">throw</highlight><highlight class="normal"><sp/>KukaduException(</highlight><highlight class="stringliteral">&quot;(SkillFactory)<sp/>requested<sp/>skill<sp/>name<sp/>does<sp/>not<sp/>exist<sp/>in<sp/>the<sp/>data<sp/>base<sp/>or<sp/>is<sp/>not<sp/>available<sp/>for<sp/>your<sp/>robot&quot;</highlight><highlight class="normal">);</highlight></codeline>
-<codeline lineno="88"><highlight class="normal"></highlight></codeline>
-<codeline lineno="89"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal"><sp/></highlight><highlight class="keyword">nullptr</highlight><highlight class="normal">;</highlight></codeline>
-<codeline lineno="90"><highlight class="normal"><sp/><sp/><sp/><sp/>}</highlight></codeline>
-<codeline lineno="91"><highlight class="normal"></highlight></codeline>
-<codeline lineno="92"><highlight class="normal"><sp/><sp/><sp/><sp/>std::vector&lt;std::string&gt;<sp/>SkillFactory::listAvailableSkills()<sp/>{</highlight></codeline>
-<codeline lineno="93"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>vector&lt;string&gt;<sp/>skills;</highlight></codeline>
-<codeline lineno="94"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">auto</highlight><highlight class="normal"><sp/>skillsRes<sp/>=<sp/>storage.executeQuery(</highlight><highlight class="stringliteral">&quot;select<sp/>skill_id,<sp/>label<sp/>from<sp/>skills&quot;</highlight><highlight class="normal">);</highlight></codeline>
-<codeline lineno="95"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">while</highlight><highlight class="normal">(skillsRes-&gt;next())</highlight></codeline>
-<codeline lineno="96"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>skills.push_back(skillsRes-&gt;getString(</highlight><highlight class="stringliteral">&quot;label&quot;</highlight><highlight class="normal">));</highlight></codeline>
-<codeline lineno="97"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal"><sp/>skills;</highlight></codeline>
-<codeline lineno="98"><highlight class="normal"><sp/><sp/><sp/><sp/>}</highlight></codeline>
-<codeline lineno="99"><highlight class="normal"></highlight></codeline>
-<codeline lineno="100"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">bool</highlight><highlight class="normal"><sp/>SkillFactory::skillExists(std::string<sp/>skillName)<sp/>{</highlight></codeline>
-<codeline lineno="101"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">auto</highlight><highlight class="normal"><sp/>skillsList<sp/>=<sp/>listAvailableSkills();</highlight></codeline>
-<codeline lineno="102"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">if</highlight><highlight class="normal">(std::find(skillsList.begin(),<sp/>skillsList.end(),<sp/>skillName)<sp/>!=<sp/>skillsList.end())</highlight></codeline>
-<codeline lineno="103"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal"><sp/></highlight><highlight class="keyword">true</highlight><highlight class="normal">;</highlight></codeline>
-<codeline lineno="104"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal"><sp/></highlight><highlight class="keyword">false</highlight><highlight class="normal">;</highlight></codeline>
-<codeline lineno="105"><highlight class="normal"><sp/><sp/><sp/><sp/>}</highlight></codeline>
-<codeline lineno="106"><highlight class="normal"></highlight></codeline>
-<codeline lineno="107"><highlight class="normal"><sp/><sp/><sp/><sp/>std::string<sp/>SkillFactory::getSkillController(std::string<sp/>skillName)<sp/>{</highlight></codeline>
-<codeline lineno="108"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">auto</highlight><highlight class="normal"><sp/>controllerRes<sp/>=<sp/>storage.executeQuery(</highlight><highlight class="stringliteral">&quot;select<sp/>controller_implementation_class<sp/>from<sp/>skills<sp/>inner<sp/>join<sp/>controller_types<sp/>on<sp/>skills.controller_type<sp/>=<sp/>controller_types.controller_id<sp/>where<sp/>skills.label<sp/>=<sp/>&apos;&quot;</highlight><highlight class="normal"><sp/>+<sp/>skillName<sp/>+<sp/></highlight><highlight class="stringliteral">&quot;&apos;&quot;</highlight><highlight class="normal">);</highlight></codeline>
-<codeline lineno="109"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">if</highlight><highlight class="normal">(controllerRes-&gt;next())</highlight></codeline>
-<codeline lineno="110"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal"><sp/>controllerRes-&gt;getString(</highlight><highlight class="stringliteral">&quot;controller_implementation_class&quot;</highlight><highlight class="normal">).asStdString();</highlight></codeline>
-<codeline lineno="111"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">else</highlight><highlight class="normal"></highlight></codeline>
-<codeline lineno="112"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">throw</highlight><highlight class="normal"><sp/>KukaduException(</highlight><highlight class="stringliteral">&quot;(SkillFactory)<sp/>no<sp/>such<sp/>skill<sp/>in<sp/>database<sp/>or<sp/>controller<sp/>is<sp/>not<sp/>known&quot;</highlight><highlight class="normal">);</highlight></codeline>
-<codeline lineno="113"><highlight class="normal"><sp/><sp/><sp/><sp/>}</highlight></codeline>
-<codeline lineno="114"><highlight class="normal"></highlight></codeline>
-<codeline lineno="115"><highlight class="normal"><sp/><sp/><sp/><sp/>std::vector&lt;std::string&gt;<sp/>SkillFactory::getSupportedRobots(std::string<sp/>skillName)<sp/>{</highlight></codeline>
-<codeline lineno="116"><highlight class="normal"></highlight></codeline>
-<codeline lineno="117"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>stringstream<sp/>s;</highlight></codeline>
-<codeline lineno="118"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>s<sp/>&lt;&lt;<sp/></highlight><highlight class="stringliteral">&quot;select<sp/>skr.instance_name<sp/>as<sp/>rname<sp/>from<sp/>skills<sp/>as<sp/>ski&quot;</highlight><highlight class="normal"><sp/>&lt;&lt;</highlight></codeline>
-<codeline lineno="119"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="stringliteral">&quot;<sp/>inner<sp/>join<sp/>skills_robot<sp/>skr<sp/>on<sp/>skr.skill_id<sp/>=<sp/>ski.skill_id&quot;</highlight><highlight class="normal"><sp/>&lt;&lt;</highlight></codeline>
-<codeline lineno="120"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="stringliteral">&quot;<sp/>inner<sp/>join<sp/>hardware_instances<sp/>as<sp/>hwi<sp/>on<sp/>hwi.instance_id<sp/>=<sp/>skr.hardware_instance_id<sp/>&quot;</highlight><highlight class="normal"></highlight></codeline>
-<codeline lineno="121"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="stringliteral">&quot;<sp/>where<sp/>label<sp/>=<sp/>&apos;&quot;</highlight><highlight class="normal"><sp/>&lt;&lt;<sp/>skillName<sp/>&lt;&lt;<sp/></highlight><highlight class="stringliteral">&quot;&apos;&quot;</highlight><highlight class="normal">;</highlight></codeline>
-<codeline lineno="122"><highlight class="normal"></highlight></codeline>
-<codeline lineno="123"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>vector&lt;string&gt;<sp/>supportedRobots;</highlight></codeline>
-<codeline lineno="124"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">auto</highlight><highlight class="normal"><sp/>robotRes<sp/>=<sp/>storage.executeQuery(s.str());</highlight></codeline>
-<codeline lineno="125"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">bool</highlight><highlight class="normal"><sp/>nothingFound<sp/>=<sp/></highlight><highlight class="keyword">true</highlight><highlight class="normal">;</highlight></codeline>
-<codeline lineno="126"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">while</highlight><highlight class="normal">(robotRes-&gt;next())<sp/>{</highlight></codeline>
-<codeline lineno="127"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">if</highlight><highlight class="normal">(nothingFound)</highlight></codeline>
-<codeline lineno="128"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>nothingFound<sp/>=<sp/></highlight><highlight class="keyword">false</highlight><highlight class="normal">;</highlight></codeline>
-<codeline lineno="129"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>supportedRobots.push_back(robotRes-&gt;getString(</highlight><highlight class="stringliteral">&quot;rname&quot;</highlight><highlight class="normal">));</highlight></codeline>
-<codeline lineno="130"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>}</highlight></codeline>
-<codeline lineno="131"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">if</highlight><highlight class="normal">(nothingFound)</highlight></codeline>
-<codeline lineno="132"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">throw</highlight><highlight class="normal"><sp/>KukaduException(</highlight><highlight class="stringliteral">&quot;(SkillFactory)<sp/>no<sp/>such<sp/>skill<sp/>in<sp/>database<sp/>or<sp/>robot<sp/>is<sp/>not<sp/>known<sp/>anymore&quot;</highlight><highlight class="normal">);</highlight></codeline>
-<codeline lineno="133"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal"><sp/>supportedRobots;</highlight></codeline>
+<codeline lineno="66"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>skillFactoryFile.close();</highlight></codeline>
+<codeline lineno="67"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>newSkillFactoryFile.close();</highlight></codeline>
+<codeline lineno="68"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>skillFactoryFile.remove();</highlight></codeline>
+<codeline lineno="69"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>newSkillFactoryFile.rename(QString::fromStdString(skillFactoryFilePath));</highlight></codeline>
+<codeline lineno="70"><highlight class="normal"><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline lineno="71"><highlight class="normal"></highlight></codeline>
+<codeline lineno="72"><highlight class="normal"><sp/><sp/><sp/><sp/>KUKADU_SHARED_PTR&lt;Controller&gt;<sp/>SkillFactory::loadSkill(std::string<sp/>skillName,</highlight></codeline>
+<codeline lineno="73"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>std::vector&lt;KUKADU_SHARED_PTR&lt;Hardware&gt;<sp/>&gt;<sp/>hardwareComponents)<sp/>{</highlight></codeline>
+<codeline lineno="74"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>stringstream<sp/>s;</highlight></codeline>
+<codeline lineno="75"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>s</highlight></codeline>
+<codeline lineno="76"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>&lt;&lt;<sp/></highlight><highlight class="stringliteral">&quot;SELECT<sp/>DISTINCT<sp/>skills_robot.robot_config_id<sp/>as<sp/>&apos;roboConfigId&apos;<sp/>FROM<sp/>skills_robot<sp/>INNER<sp/>JOIN<sp/>skills<sp/>ON<sp/>skills.skill_id=skills_robot.skill_id<sp/>WHERE<sp/>skills.label=&apos;&quot;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="77"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>&lt;&lt;<sp/>skillName<sp/>&lt;&lt;<sp/></highlight><highlight class="stringliteral">&quot;&apos;&quot;</highlight><highlight class="normal">;</highlight></codeline>
+<codeline lineno="78"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">auto</highlight><highlight class="normal"><sp/>roboConfigResults<sp/>=<sp/>storage.executeQuery(s.str());</highlight></codeline>
+<codeline lineno="79"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/>roboConfigIdInOrder<sp/>=<sp/>-1;</highlight></codeline>
+<codeline lineno="80"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/>roboConfigIdSet<sp/>=<sp/>-1;</highlight></codeline>
+<codeline lineno="81"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/>roboConfigIdSubset<sp/>=<sp/>-1;<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="comment">//find<sp/>ids<sp/>of<sp/>configurations<sp/>which<sp/>match<sp/>given<sp/>hardwarecomponents.<sp/>first<sp/>match<sp/>is<sp/>taken<sp/>and<sp/>not<sp/>overwritten,<sp/>finishes<sp/>when<sp/>InOrderId<sp/>was<sp/>found</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="82"><highlight class="normal"></highlight></codeline>
+<codeline lineno="83"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">while</highlight><highlight class="normal"><sp/>(roboConfigResults-&gt;next()<sp/>&amp;&amp;<sp/>roboConfigIdInOrder<sp/>==<sp/>-1)<sp/>{</highlight></codeline>
+<codeline lineno="84"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/>roboConfigId<sp/>=<sp/>roboConfigResults-&gt;getInt(</highlight><highlight class="stringliteral">&quot;roboConfigId&quot;</highlight><highlight class="normal">);</highlight></codeline>
+<codeline lineno="85"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>RobotConfiguration<sp/>roboConfig(storage,<sp/>roboConfigId);</highlight></codeline>
+<codeline lineno="86"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">if</highlight><highlight class="normal"><sp/>(roboConfig.containsHardwareInOrder(hardwareComponents))<sp/>{<sp/>roboConfigIdInOrder<sp/>=<sp/>roboConfigId;<sp/>}</highlight></codeline>
+<codeline lineno="87"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">else</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordflow">if</highlight><highlight class="normal"><sp/>(roboConfigIdSet<sp/>==<sp/>-1<sp/>&amp;&amp;</highlight></codeline>
+<codeline lineno="88"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>roboConfig.containsHardwareAsSet(hardwareComponents))<sp/>{<sp/>roboConfigIdSet<sp/>=<sp/>roboConfigId;<sp/>}</highlight></codeline>
+<codeline lineno="89"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">else</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordflow">if</highlight><highlight class="normal"><sp/>(roboConfigIdSubset<sp/>==<sp/>-1<sp/>&amp;&amp;</highlight></codeline>
+<codeline lineno="90"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>roboConfig.containsHardware(hardwareComponents))<sp/>{<sp/>roboConfigIdSubset<sp/>=<sp/>roboConfigId;<sp/>}</highlight></codeline>
+<codeline lineno="91"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline lineno="92"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/>configId<sp/>=<sp/>roboConfigIdInOrder<sp/>!=<sp/>-1<sp/>?<sp/>roboConfigIdInOrder<sp/>:<sp/>roboConfigIdSet<sp/>!=<sp/>-1<sp/>?<sp/>roboConfigIdSet</highlight></codeline>
+<codeline lineno="93"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>:<sp/>roboConfigIdSubset;</highlight></codeline>
+<codeline lineno="94"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>s.str(std::string());</highlight></codeline>
+<codeline lineno="95"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>s</highlight></codeline>
+<codeline lineno="96"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>&lt;&lt;<sp/></highlight><highlight class="stringliteral">&quot;SELECT<sp/>skills.skill_id<sp/>as<sp/>&apos;skillId&apos;,<sp/>skills.controller_type<sp/>as<sp/>&apos;controllerId&apos;,<sp/>skills_robot.robot_config_id<sp/>as<sp/>&apos;roboConfigId&apos;&quot;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="97"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>&lt;&lt;<sp/></highlight><highlight class="stringliteral">&quot;FROM<sp/>skills_robot<sp/>INNER<sp/>JOIN<sp/>skills<sp/>ON<sp/>skills.skill_id=skills_robot.skill_id<sp/>&quot;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="98"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>&lt;&lt;<sp/></highlight><highlight class="stringliteral">&quot;WHERE<sp/>skills.label=&apos;&quot;</highlight><highlight class="normal"><sp/>&lt;&lt;<sp/>skillName<sp/>&lt;&lt;<sp/></highlight><highlight class="stringliteral">&quot;&apos;<sp/>AND<sp/>skills_robot.robot_config_id=&quot;</highlight><highlight class="normal"><sp/>&lt;&lt;<sp/>configId;</highlight></codeline>
+<codeline lineno="99"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">auto</highlight><highlight class="normal"><sp/>skillResult<sp/>=<sp/>storage.executeQuery(s.str());</highlight></codeline>
+<codeline lineno="100"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">if</highlight><highlight class="normal"><sp/>(skillResult-&gt;next())<sp/>{</highlight></codeline>
+<codeline lineno="101"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">long</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">long</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/>skillId<sp/>=<sp/>skillResult-&gt;getInt64(</highlight><highlight class="stringliteral">&quot;skillId&quot;</highlight><highlight class="normal">);</highlight></codeline>
+<codeline lineno="102"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/>controllerType<sp/>=<sp/>skillResult-&gt;getInt(</highlight><highlight class="stringliteral">&quot;controllerId&quot;</highlight><highlight class="normal">);</highlight></codeline>
+<codeline lineno="103"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">auto</highlight><highlight class="normal"><sp/>controllerClassLabel<sp/>=<sp/>storage.getCachedLabel(</highlight><highlight class="stringliteral">&quot;controller_types&quot;</highlight><highlight class="normal">,<sp/></highlight><highlight class="stringliteral">&quot;controller_id&quot;</highlight><highlight class="normal">,</highlight></codeline>
+<codeline lineno="104"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="stringliteral">&quot;controller_implementation_class&quot;</highlight><highlight class="normal">,<sp/>controllerType);</highlight></codeline>
+<codeline lineno="105"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">if</highlight><highlight class="normal"><sp/>(skillFactories.find(controllerClassLabel)<sp/>!=<sp/>skillFactories.end())</highlight></codeline>
+<codeline lineno="106"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal"><sp/>skillFactories[controllerClassLabel](storage,<sp/>skillId,<sp/>controllerType,<sp/>hardwareComponents);</highlight></codeline>
+<codeline lineno="107"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">else</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordflow">throw</highlight><highlight class="normal"><sp/>KukaduException(</highlight><highlight class="stringliteral">&quot;(SkillFactory)<sp/>automatic<sp/>loading<sp/>is<sp/>not<sp/>supported<sp/>for<sp/>the<sp/>required<sp/>controller&quot;</highlight><highlight class="normal">);</highlight></codeline>
+<codeline lineno="108"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline lineno="109"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">else</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="110"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">throw</highlight><highlight class="normal"><sp/>KukaduException(</highlight></codeline>
+<codeline lineno="111"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="stringliteral">&quot;(SkillFactory)<sp/>requested<sp/>skill<sp/>name<sp/>does<sp/>not<sp/>exist<sp/>in<sp/>the<sp/>data<sp/>base<sp/>or<sp/>is<sp/>not<sp/>available<sp/>for<sp/>your<sp/>robot&quot;</highlight><highlight class="normal">);</highlight></codeline>
+<codeline lineno="112"><highlight class="normal"><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline lineno="113"><highlight class="normal"></highlight></codeline>
+<codeline lineno="114"><highlight class="normal"><sp/><sp/><sp/><sp/>std::vector&lt;std::string&gt;<sp/>SkillFactory::listAvailableSkills()<sp/>{</highlight></codeline>
+<codeline lineno="115"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>vector&lt;string&gt;<sp/>skills;</highlight></codeline>
+<codeline lineno="116"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">auto</highlight><highlight class="normal"><sp/>skillsRes<sp/>=<sp/>storage.executeQuery(</highlight><highlight class="stringliteral">&quot;select<sp/>skill_id,<sp/>label<sp/>from<sp/>skills&quot;</highlight><highlight class="normal">);</highlight></codeline>
+<codeline lineno="117"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">while</highlight><highlight class="normal"><sp/>(skillsRes-&gt;next())<sp/>skills.push_back(skillsRes-&gt;getString(</highlight><highlight class="stringliteral">&quot;label&quot;</highlight><highlight class="normal">));</highlight></codeline>
+<codeline lineno="118"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal"><sp/>skills;</highlight></codeline>
+<codeline lineno="119"><highlight class="normal"><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline lineno="120"><highlight class="normal"></highlight></codeline>
+<codeline lineno="121"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">bool</highlight><highlight class="normal"><sp/>SkillFactory::skillExists(std::string<sp/>skillName)<sp/>{</highlight></codeline>
+<codeline lineno="122"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">auto</highlight><highlight class="normal"><sp/>skillsList<sp/>=<sp/>listAvailableSkills();</highlight></codeline>
+<codeline lineno="123"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">if</highlight><highlight class="normal"><sp/>(std::find(skillsList.begin(),<sp/>skillsList.end(),<sp/>skillName)<sp/>!=<sp/>skillsList.end())<sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal"><sp/></highlight><highlight class="keyword">true</highlight><highlight class="normal">;</highlight></codeline>
+<codeline lineno="124"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal"><sp/></highlight><highlight class="keyword">false</highlight><highlight class="normal">;</highlight></codeline>
+<codeline lineno="125"><highlight class="normal"><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline lineno="126"><highlight class="normal"></highlight></codeline>
+<codeline lineno="127"><highlight class="normal"><sp/><sp/><sp/><sp/>std::string<sp/>SkillFactory::getSkillController(std::string<sp/>skillName)<sp/>{</highlight></codeline>
+<codeline lineno="128"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">auto</highlight><highlight class="normal"><sp/>controllerRes<sp/>=<sp/>storage.executeQuery(</highlight></codeline>
+<codeline lineno="129"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="stringliteral">&quot;select<sp/>controller_implementation_class<sp/>from<sp/>skills<sp/>inner<sp/>join<sp/>controller_types<sp/>on<sp/>skills.controller_type<sp/>=<sp/>controller_types.controller_id<sp/>where<sp/>skills.label<sp/>=<sp/>&apos;&quot;</highlight><highlight class="normal"><sp/>+</highlight></codeline>
+<codeline lineno="130"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>skillName<sp/>+<sp/></highlight><highlight class="stringliteral">&quot;&apos;&quot;</highlight><highlight class="normal">);</highlight></codeline>
+<codeline lineno="131"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">if</highlight><highlight class="normal"><sp/>(controllerRes-&gt;next())</highlight></codeline>
+<codeline lineno="132"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal"><sp/>controllerRes-&gt;getString(</highlight><highlight class="stringliteral">&quot;controller_implementation_class&quot;</highlight><highlight class="normal">).asStdString();</highlight></codeline>
+<codeline lineno="133"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">else</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordflow">throw</highlight><highlight class="normal"><sp/>KukaduException(</highlight><highlight class="stringliteral">&quot;(SkillFactory)<sp/>no<sp/>such<sp/>skill<sp/>in<sp/>database<sp/>or<sp/>controller<sp/>is<sp/>not<sp/>known&quot;</highlight><highlight class="normal">);</highlight></codeline>
 <codeline lineno="134"><highlight class="normal"><sp/><sp/><sp/><sp/>}</highlight></codeline>
 <codeline lineno="135"><highlight class="normal"></highlight></codeline>
-<codeline lineno="136"><highlight class="normal">}</highlight></codeline>
+<codeline lineno="136"><highlight class="normal"><sp/><sp/><sp/><sp/>std::vector&lt;std::string&gt;<sp/>SkillFactory::getSupportedRobots(std::string<sp/>skillName)<sp/>{</highlight></codeline>
+<codeline lineno="137"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>stringstream<sp/>s;</highlight></codeline>
+<codeline lineno="138"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>s<sp/>&lt;&lt;<sp/></highlight><highlight class="stringliteral">&quot;select<sp/>skr.instance_name<sp/>as<sp/>rname<sp/>from<sp/>skills<sp/>as<sp/>ski&quot;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="139"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>&lt;&lt;<sp/></highlight><highlight class="stringliteral">&quot;<sp/>inner<sp/>join<sp/>skills_robot<sp/>skr<sp/>on<sp/>skr.skill_id<sp/>=<sp/>ski.skill_id&quot;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="140"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>&lt;&lt;<sp/></highlight><highlight class="stringliteral">&quot;<sp/>inner<sp/>join<sp/>hardware_instances<sp/>as<sp/>hwi<sp/>on<sp/>hwi.instance_id<sp/>=<sp/>skr.hardware_instance_id<sp/>&quot;</highlight><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="stringliteral">&quot;<sp/>where<sp/>label<sp/>=<sp/>&apos;&quot;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="141"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>&lt;&lt;<sp/>skillName<sp/>&lt;&lt;<sp/></highlight><highlight class="stringliteral">&quot;&apos;&quot;</highlight><highlight class="normal">;</highlight></codeline>
+<codeline lineno="142"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>vector&lt;string&gt;<sp/>supportedRobots;</highlight></codeline>
+<codeline lineno="143"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">auto</highlight><highlight class="normal"><sp/>robotRes<sp/>=<sp/>storage.executeQuery(s.str());</highlight></codeline>
+<codeline lineno="144"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">bool</highlight><highlight class="normal"><sp/>nothingFound<sp/>=<sp/></highlight><highlight class="keyword">true</highlight><highlight class="normal">;</highlight></codeline>
+<codeline lineno="145"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">while</highlight><highlight class="normal"><sp/>(robotRes-&gt;next())<sp/>{</highlight></codeline>
+<codeline lineno="146"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">if</highlight><highlight class="normal"><sp/>(nothingFound)<sp/>nothingFound<sp/>=<sp/></highlight><highlight class="keyword">false</highlight><highlight class="normal">;</highlight></codeline>
+<codeline lineno="147"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>supportedRobots.push_back(robotRes-&gt;getString(</highlight><highlight class="stringliteral">&quot;rname&quot;</highlight><highlight class="normal">));</highlight></codeline>
+<codeline lineno="148"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline lineno="149"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">if</highlight><highlight class="normal"><sp/>(nothingFound)</highlight></codeline>
+<codeline lineno="150"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">throw</highlight><highlight class="normal"><sp/>KukaduException(</highlight><highlight class="stringliteral">&quot;(SkillFactory)<sp/>no<sp/>such<sp/>skill<sp/>in<sp/>database<sp/>or<sp/>robot<sp/>is<sp/>not<sp/>known<sp/>anymore&quot;</highlight><highlight class="normal">);</highlight></codeline>
+<codeline lineno="151"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal"><sp/>supportedRobots;</highlight></codeline>
+<codeline lineno="152"><highlight class="normal"><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline lineno="153"><highlight class="normal">}</highlight></codeline>
     </programlisting>
-    <location file="/home/andreasmennel/iis_robot_sw/iis_catkin_ws/src/kukadu/src/manipulation/skillfactory.cpp"/>
+    <location file="/home/agyss/iis_robot_sw/iis_catkin_ws/src/kukadu/src/manipulation/skillfactory.cpp"/>
   </compounddef>
 </doxygen>

@@ -1,43 +1,43 @@
 <?xml version='1.0' encoding='UTF-8' standalone='no'?>
-<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.8.6">
-  <compounddef id="tictoc_8hpp" kind="file">
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.8.11">
+  <compounddef id="tictoc_8hpp" kind="file" language="C++">
     <compoundname>tictoc.hpp</compoundname>
     <includes local="no">vector</includes>
     <includes local="no">string</includes>
-    <includedby refid="tictoc_8cpp" local="no">/home/andreasmennel/iis_robot_sw/iis_catkin_ws/src/kukadu/src/utils/tictoc.cpp</includedby>
-    <includedby refid="utils_8hpp" local="no">/home/andreasmennel/iis_robot_sw/iis_catkin_ws/src/kukadu/include/kukadu/utils.hpp</includedby>
+    <includedby refid="tictoc_8cpp" local="no">/home/agyss/iis_robot_sw/iis_catkin_ws/src/kukadu/src/utils/tictoc.cpp</includedby>
+    <includedby refid="utils_8hpp" local="no">/home/agyss/iis_robot_sw/iis_catkin_ws/src/kukadu/include/kukadu/utils.hpp</includedby>
     <incdepgraph>
-      <node id="2457">
+      <node id="3072">
         <label>string</label>
       </node>
-      <node id="2456">
-        <label>vector</label>
-      </node>
-      <node id="2455">
-        <label>/home/andreasmennel/iis_robot_sw/iis_catkin_ws/src/kukadu/include/kukadu/utils/tictoc.hpp</label>
+      <node id="3070">
+        <label>/home/agyss/iis_robot_sw/iis_catkin_ws/src/kukadu/include/kukadu/utils/tictoc.hpp</label>
         <link refid="tictoc.hpp"/>
-        <childnode refid="2456" relation="include">
+        <childnode refid="3071" relation="include">
         </childnode>
-        <childnode refid="2457" relation="include">
+        <childnode refid="3072" relation="include">
         </childnode>
+      </node>
+      <node id="3071">
+        <label>vector</label>
       </node>
     </incdepgraph>
     <invincdepgraph>
-      <node id="2460">
-        <label>/home/andreasmennel/iis_robot_sw/iis_catkin_ws/src/kukadu/include/kukadu/kukadu.hpp</label>
-        <link refid="kukadu_8hpp_source"/>
-      </node>
-      <node id="2459">
-        <label>/home/andreasmennel/iis_robot_sw/iis_catkin_ws/src/kukadu/include/kukadu/utils.hpp</label>
-        <link refid="utils_8hpp_source"/>
-        <childnode refid="2460" relation="include">
-        </childnode>
-      </node>
-      <node id="2458">
-        <label>/home/andreasmennel/iis_robot_sw/iis_catkin_ws/src/kukadu/include/kukadu/utils/tictoc.hpp</label>
+      <node id="3073">
+        <label>/home/agyss/iis_robot_sw/iis_catkin_ws/src/kukadu/include/kukadu/utils/tictoc.hpp</label>
         <link refid="tictoc.hpp"/>
-        <childnode refid="2459" relation="include">
+        <childnode refid="3074" relation="include">
         </childnode>
+      </node>
+      <node id="3074">
+        <label>/home/agyss/iis_robot_sw/iis_catkin_ws/src/kukadu/include/kukadu/utils.hpp</label>
+        <link refid="utils_8hpp_source"/>
+        <childnode refid="3075" relation="include">
+        </childnode>
+      </node>
+      <node id="3075">
+        <label>/home/agyss/iis_robot_sw/iis_catkin_ws/src/kukadu/include/kukadu/kukadu.hpp</label>
+        <link refid="kukadu_8hpp_source"/>
       </node>
     </invincdepgraph>
     <innerclass refid="classkukadu_1_1TicToc" prot="public">kukadu::TicToc</innerclass>
@@ -47,13 +47,13 @@
     <detaileddescription>
     </detaileddescription>
     <programlisting>
-<codeline lineno="1"><highlight class="preprocessor">#ifndef<sp/>KUKADU_TICTOC</highlight></codeline>
-<codeline lineno="2"><highlight class="preprocessor"></highlight><highlight class="preprocessor">#define<sp/>KUKADU_TICTOC</highlight></codeline>
-<codeline lineno="3"><highlight class="preprocessor"></highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="1"><highlight class="preprocessor">#ifndef<sp/>KUKADU_TICTOC</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="2"><highlight class="normal"></highlight><highlight class="preprocessor">#define<sp/>KUKADU_TICTOC</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="3"><highlight class="normal"></highlight></codeline>
 <codeline lineno="4"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&lt;vector&gt;</highlight><highlight class="normal"></highlight></codeline>
 <codeline lineno="5"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&lt;string&gt;</highlight><highlight class="normal"></highlight></codeline>
 <codeline lineno="6"><highlight class="normal"></highlight></codeline>
-<codeline lineno="7"><highlight class="normal"></highlight><highlight class="keyword">namespace<sp/></highlight><highlight class="normal">kukadu<sp/>{</highlight></codeline>
+<codeline lineno="7"><highlight class="normal"></highlight><highlight class="keyword">namespace<sp/></highlight><highlight class="normal"><ref refid="namespacekukadu" kindref="compound">kukadu</ref><sp/>{</highlight></codeline>
 <codeline lineno="8"><highlight class="normal"></highlight></codeline>
 <codeline lineno="9" refid="classkukadu_1_1TicToc" refkind="compound"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">class<sp/></highlight><highlight class="normal"><ref refid="classkukadu_1_1TicToc" kindref="compound">TicToc</ref><sp/>{</highlight></codeline>
 <codeline lineno="10"><highlight class="normal"></highlight></codeline>
@@ -75,6 +75,6 @@
 <codeline lineno="26"><highlight class="normal"></highlight></codeline>
 <codeline lineno="27"><highlight class="normal"></highlight><highlight class="preprocessor">#endif</highlight></codeline>
     </programlisting>
-    <location file="/home/andreasmennel/iis_robot_sw/iis_catkin_ws/src/kukadu/include/kukadu/utils/tictoc.hpp"/>
+    <location file="/home/agyss/iis_robot_sw/iis_catkin_ws/src/kukadu/include/kukadu/utils/tictoc.hpp"/>
   </compounddef>
 </doxygen>

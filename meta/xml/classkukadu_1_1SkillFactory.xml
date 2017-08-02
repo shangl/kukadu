@@ -1,6 +1,6 @@
 <?xml version='1.0' encoding='UTF-8' standalone='no'?>
-<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.8.6">
-  <compounddef id="classkukadu_1_1SkillFactory" kind="class" prot="public">
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.8.11">
+  <compounddef id="classkukadu_1_1SkillFactory" kind="class" language="C++" prot="public">
     <compoundname>kukadu::SkillFactory</compoundname>
       <sectiondef kind="private-attrib">
       <memberdef kind="variable" id="classkukadu_1_1SkillFactory_1af6e069fd37e1dc3ada35954f42143470" prot="private" static="no" mutable="no">
@@ -14,31 +14,30 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/home/andreasmennel/iis_robot_sw/iis_catkin_ws/src/kukadu/include/kukadu/manipulation/skillfactory.hpp" line="18" column="1" bodyfile="/home/andreasmennel/iis_robot_sw/iis_catkin_ws/src/kukadu/include/kukadu/manipulation/skillfactory.hpp" bodystart="18" bodyend="-1"/>
+        <location file="/home/agyss/iis_robot_sw/iis_catkin_ws/src/kukadu/include/kukadu/manipulation/skillfactory.hpp" line="19" column="1" bodyfile="/home/agyss/iis_robot_sw/iis_catkin_ws/src/kukadu/include/kukadu/manipulation/skillfactory.hpp" bodystart="19" bodyend="-1"/>
       </memberdef>
       </sectiondef>
       <sectiondef kind="private-static-attrib">
-      <memberdef kind="variable" id="classkukadu_1_1SkillFactory_1a88cbd36a138cfe552a37f16471b3b176" prot="private" static="yes" mutable="no">
+      <memberdef kind="variable" id="classkukadu_1_1SkillFactory_1ac958f9add57c0890b2d259cdb05561f6" prot="private" static="yes" mutable="no">
         <type>std::map&lt; std::string, std::function&lt; KUKADU_SHARED_PTR&lt; <ref refid="classkukadu_1_1Controller" kindref="compound">Controller</ref> &gt;<ref refid="classkukadu_1_1StorageSingleton" kindref="compound">StorageSingleton</ref> &amp;, int, int, std::vector&lt; KUKADU_SHARED_PTR&lt; <ref refid="classkukadu_1_1Hardware" kindref="compound">Hardware</ref> &gt; &gt;)&gt; &gt;</type>
-        <definition>std::map&lt; std::string, std::function&lt; KUKADU_SHARED_PTR&lt; Controller &gt;StorageSingleton &amp;, int, int, std::vector&lt; KUKADU_SHARED_PTR&lt; Hardware &gt; &gt;)&gt; &gt; kukadu::SkillFactory::skillFactories</definition>
+        <definition>std::map&lt; std::string, std::function&lt; KUKADU_SHARED_PTR&lt; Controller &gt; StorageSingleton &amp;, int, int, std::vector&lt; KUKADU_SHARED_PTR&lt; Hardware &gt; &gt;)&gt; &gt; kukadu::SkillFactory::skillFactories</definition>
         <argsstring></argsstring>
         <name>skillFactories</name>
         <initializer>{
-        {
-            &quot;DMPExecutor&quot;, [](StorageSingleton&amp; storage, int skillId, int controllerType, std::vector&lt;KUKADU_SHARED_PTR&lt;<ref refid="classkukadu_1_1Hardware" kindref="compound">Hardware</ref>&gt; &gt; hardwareComponents) {
-                return make_shared&lt;<ref refid="classkukadu_1_1DMPExecutor" kindref="compound">DMPExecutor</ref>&gt;(storage, skillId, KUKADU_DYNAMIC_POINTER_CAST&lt;<ref refid="classkukadu_1_1ControlQueue" kindref="compound">ControlQueue</ref>&gt;(hardwareComponents.front()));
-            }
-        },
-        {
-            &quot;JointPtp&quot;, [](StorageSingleton&amp; storage, int skillId, int controllerType, std::vector&lt;KUKADU_SHARED_PTR&lt;<ref refid="classkukadu_1_1Hardware" kindref="compound">Hardware</ref>&gt; &gt; hardwareComponents) {
-                return make_shared&lt;<ref refid="classkukadu_1_1JointPtp" kindref="compound">JointPtp</ref>&gt;(storage, KUKADU_DYNAMIC_POINTER_CAST&lt;<ref refid="classkukadu_1_1ControlQueue" kindref="compound">ControlQueue</ref>&gt;(hardwareComponents.front()));
-            }
-        },
-        {
-            &quot;CartesianPtp&quot;, [](StorageSingleton&amp; storage, int skillId, int controllerType, std::vector&lt;KUKADU_SHARED_PTR&lt;<ref refid="classkukadu_1_1Hardware" kindref="compound">Hardware</ref>&gt; &gt; hardwareComponents) {
-                return make_shared&lt;<ref refid="classkukadu_1_1CartesianPtp" kindref="compound">CartesianPtp</ref>&gt;(storage, KUKADU_DYNAMIC_POINTER_CAST&lt;<ref refid="classkukadu_1_1ControlQueue" kindref="compound">ControlQueue</ref>&gt;(hardwareComponents.front()));
-            }
-        }
+        {&quot;DMPExecutor&quot;, [](StorageSingleton&amp; storage, int skillId, int controllerType, std::vector&lt;KUKADU_SHARED_PTR&lt;<ref refid="classkukadu_1_1Hardware" kindref="compound">Hardware</ref>&gt; &gt; hardwareComponents) {
+        return make_shared&lt;<ref refid="classkukadu_1_1DMPExecutor" kindref="compound">DMPExecutor</ref>&gt;(storage, skillId, KUKADU_DYNAMIC_POINTER_CAST&lt;<ref refid="classkukadu_1_1ControlQueue" kindref="compound">ControlQueue</ref>&gt;(hardwareComponents.front()));
+        }},
+        {&quot;JointPtp&quot;, [](StorageSingleton&amp; storage, int skillId, int controllerType, std::vector&lt;KUKADU_SHARED_PTR&lt;<ref refid="classkukadu_1_1Hardware" kindref="compound">Hardware</ref>&gt; &gt; hardwareComponents) {
+            return make_shared&lt;<ref refid="classkukadu_1_1JointPtp" kindref="compound">JointPtp</ref>&gt;(storage, KUKADU_DYNAMIC_POINTER_CAST&lt;<ref refid="classkukadu_1_1JointHardware" kindref="compound">JointHardware</ref>&gt;(hardwareComponents.front()));
+        }},
+        {&quot;CartesianPtp&quot;, [](StorageSingleton&amp; storage, int skillId, int controllerType, std::vector&lt;KUKADU_SHARED_PTR&lt;<ref refid="classkukadu_1_1Hardware" kindref="compound">Hardware</ref>&gt; &gt; hardwareComponents) {
+            return make_shared&lt;<ref refid="classkukadu_1_1CartesianPtp" kindref="compound">CartesianPtp</ref>&gt;(storage, KUKADU_DYNAMIC_POINTER_CAST&lt;<ref refid="classkukadu_1_1ControlQueue" kindref="compound">ControlQueue</ref>&gt;(hardwareComponents.front()));
+        }},
+        {&quot;LocalizeObject&quot;, [](StorageSingleton&amp; storage, int skillId, int controllerType, std::vector&lt;KUKADU_SHARED_PTR&lt;<ref refid="classkukadu_1_1Hardware" kindref="compound">Hardware</ref>&gt; &gt; hardwareComponents) {
+            return make_shared&lt;<ref refid="classkukadu_1_1LocalizeObject" kindref="compound">LocalizeObject</ref>&gt;(storage, KUKADU_DYNAMIC_POINTER_CAST&lt;<ref refid="classkukadu_1_1Kinect" kindref="compound">Kinect</ref>&gt;(hardwareComponents.front()));
+        }}
+        
+        
     }</initializer>
         <briefdescription>
         </briefdescription>
@@ -46,7 +45,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/home/andreasmennel/iis_robot_sw/iis_catkin_ws/src/kukadu/include/kukadu/manipulation/skillfactory.hpp" line="20" column="1" bodyfile="/home/andreasmennel/iis_robot_sw/iis_catkin_ws/src/kukadu/include/kukadu/manipulation/skillfactory.hpp" bodystart="20" bodyend="-1"/>
+        <location file="/home/agyss/iis_robot_sw/iis_catkin_ws/src/kukadu/include/kukadu/manipulation/skillfactory.hpp" line="21" column="1" bodyfile="/home/agyss/iis_robot_sw/iis_catkin_ws/src/kukadu/include/kukadu/manipulation/skillfactory.hpp" bodystart="21" bodyend="-1"/>
       </memberdef>
       </sectiondef>
       <sectiondef kind="private-func">
@@ -61,7 +60,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/home/andreasmennel/iis_robot_sw/iis_catkin_ws/src/kukadu/include/kukadu/manipulation/skillfactory.hpp" line="22" column="1" bodyfile="/home/andreasmennel/iis_robot_sw/iis_catkin_ws/src/kukadu/src/manipulation/skillfactory.cpp" bodystart="32" bodyend="34"/>
+        <location file="/home/agyss/iis_robot_sw/iis_catkin_ws/src/kukadu/include/kukadu/manipulation/skillfactory.hpp" line="23" column="1" bodyfile="/home/agyss/iis_robot_sw/iis_catkin_ws/src/kukadu/src/manipulation/skillfactory.cpp" bodystart="33" bodyend="33"/>
       </memberdef>
       </sectiondef>
       <sectiondef kind="public-static-func">
@@ -76,7 +75,24 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/home/andreasmennel/iis_robot_sw/iis_catkin_ws/src/kukadu/include/kukadu/manipulation/skillfactory.hpp" line="26" column="1" bodyfile="/home/andreasmennel/iis_robot_sw/iis_catkin_ws/src/kukadu/src/manipulation/skillfactory.cpp" bodystart="36" bodyend="39"/>
+        <location file="/home/agyss/iis_robot_sw/iis_catkin_ws/src/kukadu/include/kukadu/manipulation/skillfactory.hpp" line="27" column="1" bodyfile="/home/agyss/iis_robot_sw/iis_catkin_ws/src/kukadu/src/manipulation/skillfactory.cpp" bodystart="35" bodyend="38"/>
+      </memberdef>
+      <memberdef kind="function" id="classkukadu_1_1SkillFactory_1a0048c0b90f590b8c605a5f57f625454f" prot="public" static="yes" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>void kukadu::SkillFactory::addSkill</definition>
+        <argsstring>(std::string skillName)</argsstring>
+        <name>addSkill</name>
+        <param>
+          <type>std::string</type>
+          <declname>skillName</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/agyss/iis_robot_sw/iis_catkin_ws/src/kukadu/include/kukadu/manipulation/skillfactory.hpp" line="28" column="1" bodyfile="/home/agyss/iis_robot_sw/iis_catkin_ws/src/kukadu/src/manipulation/skillfactory.cpp" bodystart="40" bodyend="70"/>
       </memberdef>
       </sectiondef>
       <sectiondef kind="public-func">
@@ -99,7 +115,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/home/andreasmennel/iis_robot_sw/iis_catkin_ws/src/kukadu/include/kukadu/manipulation/skillfactory.hpp" line="28" column="1" bodyfile="/home/andreasmennel/iis_robot_sw/iis_catkin_ws/src/kukadu/src/manipulation/skillfactory.cpp" bodystart="41" bodyend="90"/>
+        <location file="/home/agyss/iis_robot_sw/iis_catkin_ws/src/kukadu/include/kukadu/manipulation/skillfactory.hpp" line="30" column="1" bodyfile="/home/agyss/iis_robot_sw/iis_catkin_ws/src/kukadu/src/manipulation/skillfactory.cpp" bodystart="72" bodyend="112"/>
       </memberdef>
       <memberdef kind="function" id="classkukadu_1_1SkillFactory_1af4ba2108570b3fe21ae7d3b542bebcb9" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
         <type>std::vector&lt; std::string &gt;</type>
@@ -112,7 +128,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/home/andreasmennel/iis_robot_sw/iis_catkin_ws/src/kukadu/include/kukadu/manipulation/skillfactory.hpp" line="30" column="1" bodyfile="/home/andreasmennel/iis_robot_sw/iis_catkin_ws/src/kukadu/src/manipulation/skillfactory.cpp" bodystart="92" bodyend="98"/>
+        <location file="/home/agyss/iis_robot_sw/iis_catkin_ws/src/kukadu/include/kukadu/manipulation/skillfactory.hpp" line="32" column="1" bodyfile="/home/agyss/iis_robot_sw/iis_catkin_ws/src/kukadu/src/manipulation/skillfactory.cpp" bodystart="114" bodyend="119"/>
       </memberdef>
       <memberdef kind="function" id="classkukadu_1_1SkillFactory_1a99bbad47f35201a082c85af15b054816" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
         <type>std::string</type>
@@ -129,7 +145,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/home/andreasmennel/iis_robot_sw/iis_catkin_ws/src/kukadu/include/kukadu/manipulation/skillfactory.hpp" line="31" column="1" bodyfile="/home/andreasmennel/iis_robot_sw/iis_catkin_ws/src/kukadu/src/manipulation/skillfactory.cpp" bodystart="107" bodyend="113"/>
+        <location file="/home/agyss/iis_robot_sw/iis_catkin_ws/src/kukadu/include/kukadu/manipulation/skillfactory.hpp" line="33" column="1" bodyfile="/home/agyss/iis_robot_sw/iis_catkin_ws/src/kukadu/src/manipulation/skillfactory.cpp" bodystart="127" bodyend="134"/>
       </memberdef>
       <memberdef kind="function" id="classkukadu_1_1SkillFactory_1aa536c0de3dbeb048b57d92d1ea710587" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
         <type>std::vector&lt; std::string &gt;</type>
@@ -146,7 +162,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/home/andreasmennel/iis_robot_sw/iis_catkin_ws/src/kukadu/include/kukadu/manipulation/skillfactory.hpp" line="32" column="1" bodyfile="/home/andreasmennel/iis_robot_sw/iis_catkin_ws/src/kukadu/src/manipulation/skillfactory.cpp" bodystart="115" bodyend="134"/>
+        <location file="/home/agyss/iis_robot_sw/iis_catkin_ws/src/kukadu/include/kukadu/manipulation/skillfactory.hpp" line="34" column="1" bodyfile="/home/agyss/iis_robot_sw/iis_catkin_ws/src/kukadu/src/manipulation/skillfactory.cpp" bodystart="136" bodyend="152"/>
       </memberdef>
       <memberdef kind="function" id="classkukadu_1_1SkillFactory_1a589ccbf37993677058e4cb04caa443f1" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
         <type>bool</type>
@@ -163,22 +179,23 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/home/andreasmennel/iis_robot_sw/iis_catkin_ws/src/kukadu/include/kukadu/manipulation/skillfactory.hpp" line="34" column="1" bodyfile="/home/andreasmennel/iis_robot_sw/iis_catkin_ws/src/kukadu/src/manipulation/skillfactory.cpp" bodystart="100" bodyend="105"/>
+        <location file="/home/agyss/iis_robot_sw/iis_catkin_ws/src/kukadu/include/kukadu/manipulation/skillfactory.hpp" line="36" column="1" bodyfile="/home/agyss/iis_robot_sw/iis_catkin_ws/src/kukadu/src/manipulation/skillfactory.cpp" bodystart="121" bodyend="125"/>
       </memberdef>
       </sectiondef>
     <briefdescription>
     </briefdescription>
     <detaileddescription>
     </detaileddescription>
-    <location file="/home/andreasmennel/iis_robot_sw/iis_catkin_ws/src/kukadu/include/kukadu/manipulation/skillfactory.hpp" line="14" column="1" bodyfile="/home/andreasmennel/iis_robot_sw/iis_catkin_ws/src/kukadu/include/kukadu/manipulation/skillfactory.hpp" bodystart="14" bodyend="36"/>
+    <location file="/home/agyss/iis_robot_sw/iis_catkin_ws/src/kukadu/include/kukadu/manipulation/skillfactory.hpp" line="15" column="1" bodyfile="/home/agyss/iis_robot_sw/iis_catkin_ws/src/kukadu/include/kukadu/manipulation/skillfactory.hpp" bodystart="15" bodyend="38"/>
     <listofallmembers>
+      <member refid="classkukadu_1_1SkillFactory_1a0048c0b90f590b8c605a5f57f625454f" prot="public" virt="non-virtual"><scope>kukadu::SkillFactory</scope><name>addSkill</name></member>
       <member refid="classkukadu_1_1SkillFactory_1ae1777d7a32f4d032ff1f30c45c9bfde2" prot="public" virt="non-virtual"><scope>kukadu::SkillFactory</scope><name>get</name></member>
       <member refid="classkukadu_1_1SkillFactory_1a99bbad47f35201a082c85af15b054816" prot="public" virt="non-virtual"><scope>kukadu::SkillFactory</scope><name>getSkillController</name></member>
       <member refid="classkukadu_1_1SkillFactory_1aa536c0de3dbeb048b57d92d1ea710587" prot="public" virt="non-virtual"><scope>kukadu::SkillFactory</scope><name>getSupportedRobots</name></member>
       <member refid="classkukadu_1_1SkillFactory_1af4ba2108570b3fe21ae7d3b542bebcb9" prot="public" virt="non-virtual"><scope>kukadu::SkillFactory</scope><name>listAvailableSkills</name></member>
       <member refid="classkukadu_1_1SkillFactory_1a0b9d5986cd2f0316ada19b23cfe39b18" prot="public" virt="non-virtual"><scope>kukadu::SkillFactory</scope><name>loadSkill</name></member>
       <member refid="classkukadu_1_1SkillFactory_1a589ccbf37993677058e4cb04caa443f1" prot="public" virt="non-virtual"><scope>kukadu::SkillFactory</scope><name>skillExists</name></member>
-      <member refid="classkukadu_1_1SkillFactory_1a88cbd36a138cfe552a37f16471b3b176" prot="private" virt="non-virtual"><scope>kukadu::SkillFactory</scope><name>skillFactories</name></member>
+      <member refid="classkukadu_1_1SkillFactory_1ac958f9add57c0890b2d259cdb05561f6" prot="private" virt="non-virtual"><scope>kukadu::SkillFactory</scope><name>skillFactories</name></member>
       <member refid="classkukadu_1_1SkillFactory_1a2a797d9575d098fd70c53d4b0bdc6f32" prot="private" virt="non-virtual"><scope>kukadu::SkillFactory</scope><name>SkillFactory</name></member>
       <member refid="classkukadu_1_1SkillFactory_1af6e069fd37e1dc3ada35954f42143470" prot="private" virt="non-virtual"><scope>kukadu::SkillFactory</scope><name>storage</name></member>
     </listofallmembers>

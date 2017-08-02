@@ -1,6 +1,6 @@
 <?xml version='1.0' encoding='UTF-8' standalone='no'?>
-<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.8.6">
-  <compounddef id="utils_2utils_8hpp" kind="file">
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.8.11">
+  <compounddef id="utils_2utils_8hpp" kind="file" language="C++">
     <compoundname>utils.hpp</compoundname>
     <includes local="no">map</includes>
     <includes local="no">queue</includes>
@@ -39,488 +39,580 @@
     <includes refid="utils_2types_8hpp" local="no">kukadu/utils/types.hpp</includes>
     <includes refid="gnuplot_8hpp" local="no">kukadu/utils/gnuplot.hpp</includes>
     <includes refid="hardware_8hpp" local="no">kukadu/robot/hardware.hpp</includes>
-    <includes refid="controller_8hpp" local="no">kukadu/control/controller.hpp</includes>
     <includes refid="kukadutokenizer_8hpp" local="no">kukadu/utils/kukadutokenizer.hpp</includes>
-    <includedby refid="dmp_8cpp" local="no">/home/andreasmennel/iis_robot_sw/iis_catkin_ws/src/kukadu/src/control/dmp.cpp</includedby>
-    <includedby refid="generalizer_8cpp" local="no">/home/andreasmennel/iis_robot_sw/iis_catkin_ws/src/kukadu/src/control/generalizer.cpp</includedby>
-    <includedby refid="classifier_8cpp" local="no">/home/andreasmennel/iis_robot_sw/iis_catkin_ws/src/kukadu/src/learning/classification/classifier.cpp</includedby>
-    <includedby refid="learning_2projective__simulation_2core_8cpp" local="no">/home/andreasmennel/iis_robot_sw/iis_catkin_ws/src/kukadu/src/learning/projective_simulation/core.cpp</includedby>
-    <includedby refid="treedrawer_8cpp" local="no">/home/andreasmennel/iis_robot_sw/iis_catkin_ws/src/kukadu/src/learning/projective_simulation/treedrawer.cpp</includedby>
-    <includedby refid="autonomoustester_8cpp" local="no">/home/andreasmennel/iis_robot_sw/iis_catkin_ws/src/kukadu/src/manipulation/autonomoustester.cpp</includedby>
-    <includedby refid="controllers_8cpp" local="no">/home/andreasmennel/iis_robot_sw/iis_catkin_ws/src/kukadu/src/manipulation/playing/controllers.cpp</includedby>
-    <includedby refid="manipulation_2playing_2core_8cpp" local="no">/home/andreasmennel/iis_robot_sw/iis_catkin_ws/src/kukadu/src/manipulation/playing/core.cpp</includedby>
-    <includedby refid="komo_8cpp" local="no">/home/andreasmennel/iis_robot_sw/iis_catkin_ws/src/kukadu/src/planning/komo.cpp</includedby>
-    <includedby refid="moveit_8cpp" local="no">/home/andreasmennel/iis_robot_sw/iis_catkin_ws/src/kukadu/src/planning/moveit.cpp</includedby>
-    <includedby refid="planning_8cpp" local="no">/home/andreasmennel/iis_robot_sw/iis_catkin_ws/src/kukadu/src/planning/planning.cpp</includedby>
-    <includedby refid="calibration_8cpp" local="no">/home/andreasmennel/iis_robot_sw/iis_catkin_ws/src/kukadu/src/robot/calibration.cpp</includedby>
-    <includedby refid="filters_8cpp" local="no">/home/andreasmennel/iis_robot_sw/iis_catkin_ws/src/kukadu/src/robot/filters.cpp</includedby>
-    <includedby refid="hand_8cpp" local="no">/home/andreasmennel/iis_robot_sw/iis_catkin_ws/src/kukadu/src/robot/hand.cpp</includedby>
-    <includedby refid="queue_8cpp" local="no">/home/andreasmennel/iis_robot_sw/iis_catkin_ws/src/kukadu/src/robot/queue.cpp</includedby>
-    <includedby refid="moduleusagesingleton_8cpp" local="no">/home/andreasmennel/iis_robot_sw/iis_catkin_ws/src/kukadu/src/storage/moduleusagesingleton.cpp</includedby>
-    <includedby refid="storagesingleton_8cpp" local="no">/home/andreasmennel/iis_robot_sw/iis_catkin_ws/src/kukadu/src/storage/storagesingleton.cpp</includedby>
-    <includedby refid="utils_8cpp" local="no">/home/andreasmennel/iis_robot_sw/iis_catkin_ws/src/kukadu/src/utils/utils.cpp</includedby>
-    <includedby refid="arlocalizer_8cpp" local="no">/home/andreasmennel/iis_robot_sw/iis_catkin_ws/src/kukadu/src/vision/arlocalizer/arlocalizer.cpp</includedby>
-    <includedby refid="kinect_8cpp" local="no">/home/andreasmennel/iis_robot_sw/iis_catkin_ws/src/kukadu/src/vision/kinect.cpp</includedby>
-    <includedby refid="pcstdtrans_8cpp" local="no">/home/andreasmennel/iis_robot_sw/iis_catkin_ws/src/kukadu/src/vision/pcstdtrans.cpp</includedby>
-    <includedby refid="graphical_8hpp" local="no">/home/andreasmennel/iis_robot_sw/iis_catkin_ws/src/kukadu/include/kukadu/gui/graphical.hpp</includedby>
-    <includedby refid="moduleusagesingleton_8hpp" local="no">/home/andreasmennel/iis_robot_sw/iis_catkin_ws/src/kukadu/include/kukadu/storage/moduleusagesingleton.hpp</includedby>
-    <includedby refid="sensorstorage_8hpp" local="no">/home/andreasmennel/iis_robot_sw/iis_catkin_ws/src/kukadu/include/kukadu/storage/sensorstorage.hpp</includedby>
-    <includedby refid="sensordata_8hpp" local="no">/home/andreasmennel/iis_robot_sw/iis_catkin_ws/src/kukadu/include/kukadu/types/sensordata.hpp</includedby>
-    <includedby refid="utils_8hpp" local="no">/home/andreasmennel/iis_robot_sw/iis_catkin_ws/src/kukadu/include/kukadu/utils.hpp</includedby>
+    <includedby refid="dmp_8cpp" local="no">/home/agyss/iis_robot_sw/iis_catkin_ws/src/kukadu/src/control/dmp.cpp</includedby>
+    <includedby refid="generalizer_8cpp" local="no">/home/agyss/iis_robot_sw/iis_catkin_ws/src/kukadu/src/control/generalizer.cpp</includedby>
+    <includedby refid="classifier_8cpp" local="no">/home/agyss/iis_robot_sw/iis_catkin_ws/src/kukadu/src/learning/classification/classifier.cpp</includedby>
+    <includedby refid="learning_2projective__simulation_2core_8cpp" local="no">/home/agyss/iis_robot_sw/iis_catkin_ws/src/kukadu/src/learning/projective_simulation/core.cpp</includedby>
+    <includedby refid="treedrawer_8cpp" local="no">/home/agyss/iis_robot_sw/iis_catkin_ws/src/kukadu/src/learning/projective_simulation/treedrawer.cpp</includedby>
+    <includedby refid="autonomoustester_8cpp" local="no">/home/agyss/iis_robot_sw/iis_catkin_ws/src/kukadu/src/manipulation/autonomoustester.cpp</includedby>
+    <includedby refid="controllers_8cpp" local="no">/home/agyss/iis_robot_sw/iis_catkin_ws/src/kukadu/src/manipulation/playing/controllers.cpp</includedby>
+    <includedby refid="manipulation_2playing_2core_8cpp" local="no">/home/agyss/iis_robot_sw/iis_catkin_ws/src/kukadu/src/manipulation/playing/core.cpp</includedby>
+    <includedby refid="skillfactory_8cpp" local="no">/home/agyss/iis_robot_sw/iis_catkin_ws/src/kukadu/src/manipulation/skillfactory.cpp</includedby>
+    <includedby refid="komo_8cpp" local="no">/home/agyss/iis_robot_sw/iis_catkin_ws/src/kukadu/src/planning/komo.cpp</includedby>
+    <includedby refid="moveit_8cpp" local="no">/home/agyss/iis_robot_sw/iis_catkin_ws/src/kukadu/src/planning/moveit.cpp</includedby>
+    <includedby refid="planning_8cpp" local="no">/home/agyss/iis_robot_sw/iis_catkin_ws/src/kukadu/src/planning/planning.cpp</includedby>
+    <includedby refid="calibration_8cpp" local="no">/home/agyss/iis_robot_sw/iis_catkin_ws/src/kukadu/src/robot/calibration.cpp</includedby>
+    <includedby refid="filters_8cpp" local="no">/home/agyss/iis_robot_sw/iis_catkin_ws/src/kukadu/src/robot/filters.cpp</includedby>
+    <includedby refid="hand_8cpp" local="no">/home/agyss/iis_robot_sw/iis_catkin_ws/src/kukadu/src/robot/hand.cpp</includedby>
+    <includedby refid="queue_8cpp" local="no">/home/agyss/iis_robot_sw/iis_catkin_ws/src/kukadu/src/robot/queue.cpp</includedby>
+    <includedby refid="moduleusagesingleton_8cpp" local="no">/home/agyss/iis_robot_sw/iis_catkin_ws/src/kukadu/src/storage/moduleusagesingleton.cpp</includedby>
+    <includedby refid="storagesingleton_8cpp" local="no">/home/agyss/iis_robot_sw/iis_catkin_ws/src/kukadu/src/storage/storagesingleton.cpp</includedby>
+    <includedby refid="utils_8cpp" local="no">/home/agyss/iis_robot_sw/iis_catkin_ws/src/kukadu/src/utils/utils.cpp</includedby>
+    <includedby refid="arlocalizer_8cpp" local="no">/home/agyss/iis_robot_sw/iis_catkin_ws/src/kukadu/src/vision/arlocalizer/arlocalizer.cpp</includedby>
+    <includedby refid="kinect_8cpp" local="no">/home/agyss/iis_robot_sw/iis_catkin_ws/src/kukadu/src/vision/kinect.cpp</includedby>
+    <includedby refid="pcstdtrans_8cpp" local="no">/home/agyss/iis_robot_sw/iis_catkin_ws/src/kukadu/src/vision/pcstdtrans.cpp</includedby>
+    <includedby refid="graphical_8hpp" local="no">/home/agyss/iis_robot_sw/iis_catkin_ws/src/kukadu/include/kukadu/gui/graphical.hpp</includedby>
+    <includedby refid="moduleusagesingleton_8hpp" local="no">/home/agyss/iis_robot_sw/iis_catkin_ws/src/kukadu/include/kukadu/storage/moduleusagesingleton.hpp</includedby>
+    <includedby refid="sensorstorage_8hpp" local="no">/home/agyss/iis_robot_sw/iis_catkin_ws/src/kukadu/include/kukadu/storage/sensorstorage.hpp</includedby>
+    <includedby refid="sensordata_8hpp" local="no">/home/agyss/iis_robot_sw/iis_catkin_ws/src/kukadu/include/kukadu/types/sensordata.hpp</includedby>
+    <includedby refid="utils_8hpp" local="no">/home/agyss/iis_robot_sw/iis_catkin_ws/src/kukadu/include/kukadu/utils.hpp</includedby>
+    <includedby refid="localizer_8hpp" local="no">/home/agyss/iis_robot_sw/iis_catkin_ws/src/kukadu/include/kukadu/vision/localizer.hpp</includedby>
     <incdepgraph>
-      <node id="2482">
+      <node id="3097">
         <label>sys/stat.h</label>
       </node>
-      <node id="2501">
+      <node id="3116">
         <label>list</label>
       </node>
-      <node id="2485">
+      <node id="3100">
         <label>gsl/gsl_vector.h</label>
       </node>
-      <node id="2481">
+      <node id="3096">
         <label>wordexp.h</label>
       </node>
-      <node id="2479">
+      <node id="3094">
         <label>stdbool.h</label>
       </node>
-      <node id="2474">
+      <node id="3089">
         <label>stdarg.h</label>
       </node>
-      <node id="2513">
+      <node id="3128">
         <label>cppconn/resultset.h</label>
       </node>
-      <node id="2494">
+      <node id="3109">
         <label>sensor_msgs/PointCloud2.h</label>
       </node>
-      <node id="2463">
+      <node id="3078">
         <label>queue</label>
       </node>
-      <node id="2492">
+      <node id="3107">
         <label>pcl/PCLPointCloud2.h</label>
       </node>
-      <node id="2464">
+      <node id="3079">
         <label>limits</label>
       </node>
-      <node id="2519">
-        <label>kukadu/robot/filters.hpp</label>
-        <link refid="filters_8hpp_source"/>
-        <childnode refid="2496" relation="include">
-        </childnode>
-        <childnode refid="2504" relation="include">
-        </childnode>
-      </node>
-      <node id="2497">
-        <label>kukadu/utils/gnuplot.hpp</label>
-        <link refid="gnuplot_8hpp_source"/>
-        <childnode refid="2475" relation="include">
-        </childnode>
-        <childnode refid="2467" relation="include">
-        </childnode>
-        <childnode refid="2465" relation="include">
-        </childnode>
-        <childnode refid="2471" relation="include">
-        </childnode>
-        <childnode refid="2469" relation="include">
-        </childnode>
-        <childnode refid="2498" relation="include">
-        </childnode>
-        <childnode refid="2499" relation="include">
-        </childnode>
-        <childnode refid="2500" relation="include">
-        </childnode>
-        <childnode refid="2501" relation="include">
-        </childnode>
-      </node>
-      <node id="2489">
+      <node id="3104">
         <label>pcl/point_types.h</label>
       </node>
-      <node id="2488">
-        <label>pcl/point_cloud.h</label>
-      </node>
-      <node id="2498">
-        <label>stdexcept</label>
-      </node>
-      <node id="2478">
-        <label>termios.h</label>
-      </node>
-      <node id="2491">
-        <label>eigen3/Eigen/Dense</label>
-      </node>
-      <node id="2484">
-        <label>gsl/gsl_poly.h</label>
-      </node>
-      <node id="2467">
-        <label>string</label>
-      </node>
-      <node id="2462">
-        <label>map</label>
-      </node>
-      <node id="2480">
-        <label>armadillo</label>
-      </node>
-      <node id="2505">
-        <label>exception</label>
-      </node>
-      <node id="2471">
-        <label>fstream</label>
-      </node>
-      <node id="2514">
-        <label>cppconn/statement.h</label>
-      </node>
-      <node id="2516">
-        <label>kukadu/types/controllerresult.hpp</label>
-        <link refid="controllerresult_8hpp_source"/>
-        <childnode refid="2465" relation="include">
-        </childnode>
-        <childnode refid="2480" relation="include">
-        </childnode>
-      </node>
-      <node id="2509">
-        <label>random</label>
-      </node>
-      <node id="2483">
-        <label>sys/types.h</label>
-      </node>
-      <node id="2520">
-        <label>kukadu/utils/destroyableobject.hpp</label>
-        <link refid="destroyableobject_8hpp_source"/>
-      </node>
-      <node id="2504">
-        <label>kukadu/types/kukadutypes.hpp</label>
-        <link refid="kukadutypes_8hpp_source"/>
-        <childnode refid="2505" relation="include">
-        </childnode>
-        <childnode refid="2506" relation="include">
-        </childnode>
-        <childnode refid="2507" relation="include">
-        </childnode>
-        <childnode refid="2508" relation="include">
-        </childnode>
-        <childnode refid="2509" relation="include">
-        </childnode>
-      </node>
-      <node id="2493">
-        <label>tf/transform_datatypes.h</label>
-      </node>
-      <node id="2499">
-        <label>cstdio</label>
-      </node>
-      <node id="2517">
-        <label>kukadu/robot/queue.hpp</label>
-        <link refid="queue_8hpp"/>
-        <childnode refid="2463" relation="include">
-        </childnode>
-        <childnode refid="2465" relation="include">
-        </childnode>
-        <childnode refid="2480" relation="include">
-        </childnode>
-        <childnode refid="2518" relation="include">
-        </childnode>
-        <childnode refid="2519" relation="include">
-        </childnode>
-        <childnode refid="2502" relation="include">
-        </childnode>
-        <childnode refid="2504" relation="include">
-        </childnode>
-        <childnode refid="2520" relation="include">
-        </childnode>
-        <childnode refid="2503" relation="include">
-        </childnode>
-      </node>
-      <node id="2473">
-        <label>unistd.h</label>
-      </node>
-      <node id="2502">
-        <label>kukadu/robot/hardware.hpp</label>
-        <link refid="hardware_8hpp_source"/>
-        <childnode refid="2467" relation="include">
-        </childnode>
-        <childnode refid="2480" relation="include">
-        </childnode>
-        <childnode refid="2496" relation="include">
-        </childnode>
-        <childnode refid="2503" relation="include">
-        </childnode>
-      </node>
-      <node id="2465">
-        <label>vector</label>
-      </node>
-      <node id="2476">
-        <label>signal.h</label>
-      </node>
-      <node id="2472">
-        <label>utility</label>
-      </node>
-      <node id="2469">
-        <label>sstream</label>
-      </node>
-      <node id="2511">
-        <label>cppconn/driver.h</label>
-      </node>
-      <node id="2512">
-        <label>cppconn/exception.h</label>
-      </node>
-      <node id="2518">
-        <label>geometry_msgs/Pose.h</label>
-      </node>
-      <node id="2521">
-        <label>kukadu/utils/kukadutokenizer.hpp</label>
-        <link refid="kukadutokenizer_8hpp_source"/>
-        <childnode refid="2467" relation="include">
-        </childnode>
-        <childnode refid="2465" relation="include">
-        </childnode>
-      </node>
-      <node id="2466">
-        <label>math.h</label>
-      </node>
-      <node id="2500">
-        <label>cstdlib</label>
-      </node>
-      <node id="2475">
-        <label>iostream</label>
-      </node>
-      <node id="2510">
-        <label>mysql_connection.h</label>
-      </node>
-      <node id="2515">
-        <label>kukadu/control/controller.hpp</label>
-        <link refid="controller_8hpp_source"/>
-        <childnode refid="2467" relation="include">
-        </childnode>
-        <childnode refid="2502" relation="include">
-        </childnode>
-        <childnode refid="2504" relation="include">
-        </childnode>
-        <childnode refid="2516" relation="include">
-        </childnode>
-        <childnode refid="2503" relation="include">
-        </childnode>
-        <childnode refid="2517" relation="include">
-        </childnode>
-      </node>
-      <node id="2508">
-        <label>mutex</label>
-      </node>
-      <node id="2490">
-        <label>gsl/gsl_multifit.h</label>
-      </node>
-      <node id="2496">
-        <label>kukadu/utils/types.hpp</label>
-        <link refid="utils_2types_8hpp_source"/>
-        <childnode refid="2465" relation="include">
-        </childnode>
-        <childnode refid="2480" relation="include">
-        </childnode>
-        <childnode refid="2486" relation="include">
-        </childnode>
-      </node>
-      <node id="2495">
-        <label>geometry_msgs/Quaternion.h</label>
-      </node>
-      <node id="2507">
-        <label>thread</label>
-      </node>
-      <node id="2503">
+      <node id="3118">
         <label>kukadu/storage/storagesingleton.hpp</label>
         <link refid="storagesingleton_8hpp_source"/>
-        <childnode refid="2462" relation="include">
+        <childnode refid="3077" relation="include">
         </childnode>
-        <childnode refid="2463" relation="include">
+        <childnode refid="3078" relation="include">
         </childnode>
-        <childnode refid="2467" relation="include">
+        <childnode refid="3082" relation="include">
         </childnode>
-        <childnode refid="2465" relation="include">
+        <childnode refid="3080" relation="include">
         </childnode>
-        <childnode refid="2475" relation="include">
+        <childnode refid="3090" relation="include">
         </childnode>
-        <childnode refid="2504" relation="include">
+        <childnode refid="3119" relation="include">
         </childnode>
-        <childnode refid="2510" relation="include">
+        <childnode refid="3125" relation="include">
         </childnode>
-        <childnode refid="2511" relation="include">
+        <childnode refid="3126" relation="include">
         </childnode>
-        <childnode refid="2512" relation="include">
+        <childnode refid="3127" relation="include">
         </childnode>
-        <childnode refid="2513" relation="include">
+        <childnode refid="3128" relation="include">
         </childnode>
-        <childnode refid="2514" relation="include">
+        <childnode refid="3129" relation="include">
         </childnode>
       </node>
-      <node id="2487">
+      <node id="3103">
+        <label>pcl/point_cloud.h</label>
+      </node>
+      <node id="3119">
+        <label>kukadu/types/kukadutypes.hpp</label>
+        <link refid="kukadutypes_8hpp_source"/>
+        <childnode refid="3120" relation="include">
+        </childnode>
+        <childnode refid="3121" relation="include">
+        </childnode>
+        <childnode refid="3122" relation="include">
+        </childnode>
+        <childnode refid="3123" relation="include">
+        </childnode>
+        <childnode refid="3124" relation="include">
+        </childnode>
+      </node>
+      <node id="3113">
+        <label>stdexcept</label>
+      </node>
+      <node id="3093">
+        <label>termios.h</label>
+      </node>
+      <node id="3106">
+        <label>eigen3/Eigen/Dense</label>
+      </node>
+      <node id="3117">
+        <label>kukadu/robot/hardware.hpp</label>
+        <link refid="hardware_8hpp_source"/>
+        <childnode refid="3082" relation="include">
+        </childnode>
+        <childnode refid="3095" relation="include">
+        </childnode>
+        <childnode refid="3111" relation="include">
+        </childnode>
+        <childnode refid="3118" relation="include">
+        </childnode>
+      </node>
+      <node id="3099">
+        <label>gsl/gsl_poly.h</label>
+      </node>
+      <node id="3082">
+        <label>string</label>
+      </node>
+      <node id="3077">
+        <label>map</label>
+      </node>
+      <node id="3112">
+        <label>kukadu/utils/gnuplot.hpp</label>
+        <link refid="gnuplot_8hpp_source"/>
+        <childnode refid="3090" relation="include">
+        </childnode>
+        <childnode refid="3082" relation="include">
+        </childnode>
+        <childnode refid="3080" relation="include">
+        </childnode>
+        <childnode refid="3086" relation="include">
+        </childnode>
+        <childnode refid="3084" relation="include">
+        </childnode>
+        <childnode refid="3113" relation="include">
+        </childnode>
+        <childnode refid="3114" relation="include">
+        </childnode>
+        <childnode refid="3115" relation="include">
+        </childnode>
+        <childnode refid="3116" relation="include">
+        </childnode>
+      </node>
+      <node id="3095">
+        <label>armadillo</label>
+      </node>
+      <node id="3120">
+        <label>exception</label>
+      </node>
+      <node id="3086">
+        <label>fstream</label>
+      </node>
+      <node id="3130">
+        <label>kukadu/utils/kukadutokenizer.hpp</label>
+        <link refid="kukadutokenizer_8hpp_source"/>
+        <childnode refid="3082" relation="include">
+        </childnode>
+        <childnode refid="3080" relation="include">
+        </childnode>
+      </node>
+      <node id="3129">
+        <label>cppconn/statement.h</label>
+      </node>
+      <node id="3124">
+        <label>random</label>
+      </node>
+      <node id="3098">
+        <label>sys/types.h</label>
+      </node>
+      <node id="3111">
+        <label>kukadu/utils/types.hpp</label>
+        <link refid="utils_2types_8hpp_source"/>
+        <childnode refid="3080" relation="include">
+        </childnode>
+        <childnode refid="3095" relation="include">
+        </childnode>
+        <childnode refid="3101" relation="include">
+        </childnode>
+      </node>
+      <node id="3108">
+        <label>tf/transform_datatypes.h</label>
+      </node>
+      <node id="3114">
+        <label>cstdio</label>
+      </node>
+      <node id="3076">
+        <label>/home/agyss/iis_robot_sw/iis_catkin_ws/src/kukadu/include/kukadu/utils/utils.hpp</label>
+        <link refid="utils/utils.hpp"/>
+        <childnode refid="3077" relation="include">
+        </childnode>
+        <childnode refid="3078" relation="include">
+        </childnode>
+        <childnode refid="3079" relation="include">
+        </childnode>
+        <childnode refid="3080" relation="include">
+        </childnode>
+        <childnode refid="3081" relation="include">
+        </childnode>
+        <childnode refid="3082" relation="include">
+        </childnode>
+        <childnode refid="3083" relation="include">
+        </childnode>
+        <childnode refid="3084" relation="include">
+        </childnode>
+        <childnode refid="3085" relation="include">
+        </childnode>
+        <childnode refid="3086" relation="include">
+        </childnode>
+        <childnode refid="3087" relation="include">
+        </childnode>
+        <childnode refid="3088" relation="include">
+        </childnode>
+        <childnode refid="3089" relation="include">
+        </childnode>
+        <childnode refid="3090" relation="include">
+        </childnode>
+        <childnode refid="3091" relation="include">
+        </childnode>
+        <childnode refid="3092" relation="include">
+        </childnode>
+        <childnode refid="3093" relation="include">
+        </childnode>
+        <childnode refid="3094" relation="include">
+        </childnode>
+        <childnode refid="3095" relation="include">
+        </childnode>
+        <childnode refid="3096" relation="include">
+        </childnode>
+        <childnode refid="3097" relation="include">
+        </childnode>
+        <childnode refid="3098" relation="include">
+        </childnode>
+        <childnode refid="3099" relation="include">
+        </childnode>
+        <childnode refid="3100" relation="include">
+        </childnode>
+        <childnode refid="3101" relation="include">
+        </childnode>
+        <childnode refid="3102" relation="include">
+        </childnode>
+        <childnode refid="3103" relation="include">
+        </childnode>
+        <childnode refid="3104" relation="include">
+        </childnode>
+        <childnode refid="3105" relation="include">
+        </childnode>
+        <childnode refid="3106" relation="include">
+        </childnode>
+        <childnode refid="3107" relation="include">
+        </childnode>
+        <childnode refid="3108" relation="include">
+        </childnode>
+        <childnode refid="3109" relation="include">
+        </childnode>
+        <childnode refid="3110" relation="include">
+        </childnode>
+        <childnode refid="3111" relation="include">
+        </childnode>
+        <childnode refid="3112" relation="include">
+        </childnode>
+        <childnode refid="3117" relation="include">
+        </childnode>
+        <childnode refid="3130" relation="include">
+        </childnode>
+      </node>
+      <node id="3088">
+        <label>unistd.h</label>
+      </node>
+      <node id="3080">
+        <label>vector</label>
+      </node>
+      <node id="3091">
+        <label>signal.h</label>
+      </node>
+      <node id="3087">
+        <label>utility</label>
+      </node>
+      <node id="3084">
+        <label>sstream</label>
+      </node>
+      <node id="3126">
+        <label>cppconn/driver.h</label>
+      </node>
+      <node id="3127">
+        <label>cppconn/exception.h</label>
+      </node>
+      <node id="3081">
+        <label>math.h</label>
+      </node>
+      <node id="3115">
+        <label>cstdlib</label>
+      </node>
+      <node id="3090">
+        <label>iostream</label>
+      </node>
+      <node id="3125">
+        <label>mysql_connection.h</label>
+      </node>
+      <node id="3123">
+        <label>mutex</label>
+      </node>
+      <node id="3105">
+        <label>gsl/gsl_multifit.h</label>
+      </node>
+      <node id="3110">
+        <label>geometry_msgs/Quaternion.h</label>
+      </node>
+      <node id="3122">
+        <label>thread</label>
+      </node>
+      <node id="3102">
         <label>gsl/gsl_linalg.h</label>
       </node>
-      <node id="2470">
+      <node id="3085">
         <label>stdio.h</label>
       </node>
-      <node id="2468">
+      <node id="3083">
         <label>cstring</label>
       </node>
-      <node id="2486">
+      <node id="3101">
         <label>gsl/gsl_matrix.h</label>
       </node>
-      <node id="2461">
-        <label>/home/andreasmennel/iis_robot_sw/iis_catkin_ws/src/kukadu/include/kukadu/utils/utils.hpp</label>
-        <link refid="utils/utils.hpp"/>
-        <childnode refid="2462" relation="include">
-        </childnode>
-        <childnode refid="2463" relation="include">
-        </childnode>
-        <childnode refid="2464" relation="include">
-        </childnode>
-        <childnode refid="2465" relation="include">
-        </childnode>
-        <childnode refid="2466" relation="include">
-        </childnode>
-        <childnode refid="2467" relation="include">
-        </childnode>
-        <childnode refid="2468" relation="include">
-        </childnode>
-        <childnode refid="2469" relation="include">
-        </childnode>
-        <childnode refid="2470" relation="include">
-        </childnode>
-        <childnode refid="2471" relation="include">
-        </childnode>
-        <childnode refid="2472" relation="include">
-        </childnode>
-        <childnode refid="2473" relation="include">
-        </childnode>
-        <childnode refid="2474" relation="include">
-        </childnode>
-        <childnode refid="2475" relation="include">
-        </childnode>
-        <childnode refid="2476" relation="include">
-        </childnode>
-        <childnode refid="2477" relation="include">
-        </childnode>
-        <childnode refid="2478" relation="include">
-        </childnode>
-        <childnode refid="2479" relation="include">
-        </childnode>
-        <childnode refid="2480" relation="include">
-        </childnode>
-        <childnode refid="2481" relation="include">
-        </childnode>
-        <childnode refid="2482" relation="include">
-        </childnode>
-        <childnode refid="2483" relation="include">
-        </childnode>
-        <childnode refid="2484" relation="include">
-        </childnode>
-        <childnode refid="2485" relation="include">
-        </childnode>
-        <childnode refid="2486" relation="include">
-        </childnode>
-        <childnode refid="2487" relation="include">
-        </childnode>
-        <childnode refid="2488" relation="include">
-        </childnode>
-        <childnode refid="2489" relation="include">
-        </childnode>
-        <childnode refid="2490" relation="include">
-        </childnode>
-        <childnode refid="2491" relation="include">
-        </childnode>
-        <childnode refid="2492" relation="include">
-        </childnode>
-        <childnode refid="2493" relation="include">
-        </childnode>
-        <childnode refid="2494" relation="include">
-        </childnode>
-        <childnode refid="2495" relation="include">
-        </childnode>
-        <childnode refid="2496" relation="include">
-        </childnode>
-        <childnode refid="2497" relation="include">
-        </childnode>
-        <childnode refid="2502" relation="include">
-        </childnode>
-        <childnode refid="2515" relation="include">
-        </childnode>
-        <childnode refid="2521" relation="include">
-        </childnode>
-      </node>
-      <node id="2506">
+      <node id="3121">
         <label>memory</label>
       </node>
-      <node id="2477">
+      <node id="3092">
         <label>dirent.h</label>
       </node>
     </incdepgraph>
     <invincdepgraph>
-      <node id="2530">
-        <label>/home/andreasmennel/iis_robot_sw/iis_catkin_ws/src/kukadu/include/kukadu/types/sensordata.hpp</label>
-        <link refid="sensordata_8hpp_source"/>
-        <childnode refid="2528" relation="include">
-        </childnode>
-        <childnode refid="2531" relation="include">
+      <node id="3161">
+        <label>/home/agyss/iis_robot_sw/iis_catkin_ws/src/kukadu/include/kukadu/vision.hpp</label>
+        <link refid="vision_8hpp_source"/>
+        <childnode refid="3134" relation="include">
         </childnode>
       </node>
-      <node id="2526">
-        <label>/home/andreasmennel/iis_robot_sw/iis_catkin_ws/src/kukadu/include/kukadu/storage/moduleusagesingleton.hpp</label>
-        <link refid="moduleusagesingleton_8hpp_source"/>
-        <childnode refid="2527" relation="include">
+      <node id="3144">
+        <label>/home/agyss/iis_robot_sw/iis_catkin_ws/src/kukadu/include/kukadu/control/trajectory.hpp</label>
+        <link refid="trajectory_8hpp_source"/>
+        <childnode refid="3145" relation="include">
+        </childnode>
+        <childnode refid="3147" relation="include">
+        </childnode>
+        <childnode refid="3150" relation="include">
+        </childnode>
+        <childnode refid="3151" relation="include">
         </childnode>
       </node>
-      <node id="2524">
-        <label>/home/andreasmennel/iis_robot_sw/iis_catkin_ws/src/kukadu/include/kukadu/gui.hpp</label>
-        <link refid="gui_8hpp_source"/>
-        <childnode refid="2525" relation="include">
+      <node id="3149">
+        <label>/home/agyss/iis_robot_sw/iis_catkin_ws/src/kukadu/include/kukadu/learning.hpp</label>
+        <link refid="learning_8hpp_source"/>
+        <childnode refid="3134" relation="include">
         </childnode>
       </node>
-      <node id="2523">
-        <label>/home/andreasmennel/iis_robot_sw/iis_catkin_ws/src/kukadu/include/kukadu/gui/graphical.hpp</label>
-        <link refid="graphical_8hpp_source"/>
-        <childnode refid="2524" relation="include">
-        </childnode>
-      </node>
-      <node id="2531">
-        <label>/home/andreasmennel/iis_robot_sw/iis_catkin_ws/src/kukadu/include/kukadu/types.hpp</label>
-        <link refid="types_8hpp_source"/>
-        <childnode refid="2525" relation="include">
-        </childnode>
-      </node>
-      <node id="2527">
-        <label>/home/andreasmennel/iis_robot_sw/iis_catkin_ws/src/kukadu/include/kukadu/storage.hpp</label>
-        <link refid="storage_8hpp_source"/>
-        <childnode refid="2525" relation="include">
-        </childnode>
-      </node>
-      <node id="2528">
-        <label>/home/andreasmennel/iis_robot_sw/iis_catkin_ws/src/kukadu/include/kukadu/storage/sensorstorage.hpp</label>
-        <link refid="sensorstorage_8hpp_source"/>
-        <childnode refid="2529" relation="include">
-        </childnode>
-        <childnode refid="2527" relation="include">
-        </childnode>
-      </node>
-      <node id="2525">
-        <label>/home/andreasmennel/iis_robot_sw/iis_catkin_ws/src/kukadu/include/kukadu/kukadu.hpp</label>
-        <link refid="kukadu_8hpp_source"/>
-      </node>
-      <node id="2532">
-        <label>/home/andreasmennel/iis_robot_sw/iis_catkin_ws/src/kukadu/include/kukadu/utils.hpp</label>
-        <link refid="utils_8hpp_source"/>
-        <childnode refid="2525" relation="include">
-        </childnode>
-      </node>
-      <node id="2529">
-        <label>/home/andreasmennel/iis_robot_sw/iis_catkin_ws/src/kukadu/include/kukadu/robot/kinestheticteaching.hpp</label>
+      <node id="3138">
+        <label>/home/agyss/iis_robot_sw/iis_catkin_ws/src/kukadu/include/kukadu/robot/kinestheticteaching.hpp</label>
         <link refid="kinestheticteaching_8hpp_source"/>
       </node>
-      <node id="2522">
-        <label>/home/andreasmennel/iis_robot_sw/iis_catkin_ws/src/kukadu/include/kukadu/utils/utils.hpp</label>
+      <node id="3135">
+        <label>/home/agyss/iis_robot_sw/iis_catkin_ws/src/kukadu/include/kukadu/storage/moduleusagesingleton.hpp</label>
+        <link refid="moduleusagesingleton_8hpp_source"/>
+        <childnode refid="3136" relation="include">
+        </childnode>
+      </node>
+      <node id="3156">
+        <label>/home/agyss/iis_robot_sw/iis_catkin_ws/src/kukadu/include/kukadu/manipulation/skillfactory.hpp</label>
+        <link refid="skillfactory_8hpp_source"/>
+        <childnode refid="3153" relation="include">
+        </childnode>
+      </node>
+      <node id="3155">
+        <label>/home/agyss/iis_robot_sw/iis_catkin_ws/src/kukadu/include/kukadu/manipulation/playing/core.hpp</label>
+        <link refid="manipulation_2playing_2core_8hpp_source"/>
+        <childnode refid="3153" relation="include">
+        </childnode>
+      </node>
+      <node id="3159">
+        <label>/home/agyss/iis_robot_sw/iis_catkin_ws/src/kukadu/include/kukadu/robot.hpp</label>
+        <link refid="robot_8hpp_source"/>
+        <childnode refid="3134" relation="include">
+        </childnode>
+      </node>
+      <node id="3141">
+        <label>/home/agyss/iis_robot_sw/iis_catkin_ws/src/kukadu/include/kukadu/utils.hpp</label>
+        <link refid="utils_8hpp_source"/>
+        <childnode refid="3134" relation="include">
+        </childnode>
+      </node>
+      <node id="3140">
+        <label>/home/agyss/iis_robot_sw/iis_catkin_ws/src/kukadu/include/kukadu/types.hpp</label>
+        <link refid="types_8hpp_source"/>
+        <childnode refid="3134" relation="include">
+        </childnode>
+      </node>
+      <node id="3148">
+        <label>/home/agyss/iis_robot_sw/iis_catkin_ws/src/kukadu/include/kukadu/learning/rl/dmprl.hpp</label>
+        <link refid="dmprl_8hpp_source"/>
+        <childnode refid="3149" relation="include">
+        </childnode>
+      </node>
+      <node id="3133">
+        <label>/home/agyss/iis_robot_sw/iis_catkin_ws/src/kukadu/include/kukadu/gui.hpp</label>
+        <link refid="gui_8hpp_source"/>
+        <childnode refid="3134" relation="include">
+        </childnode>
+      </node>
+      <node id="3134">
+        <label>/home/agyss/iis_robot_sw/iis_catkin_ws/src/kukadu/include/kukadu/kukadu.hpp</label>
+        <link refid="kukadu_8hpp_source"/>
+      </node>
+      <node id="3145">
+        <label>/home/agyss/iis_robot_sw/iis_catkin_ws/src/kukadu/include/kukadu/control/dmp.hpp</label>
+        <link refid="dmp_8hpp_source"/>
+        <childnode refid="3145" relation="include">
+        </childnode>
+        <childnode refid="3146" relation="include">
+        </childnode>
+        <childnode refid="3147" relation="include">
+        </childnode>
+        <childnode refid="3148" relation="include">
+        </childnode>
+      </node>
+      <node id="3158">
+        <label>/home/agyss/iis_robot_sw/iis_catkin_ws/src/kukadu/include/kukadu/robot/calibration.hpp</label>
+        <link refid="calibration_8hpp_source"/>
+        <childnode refid="3159" relation="include">
+        </childnode>
+      </node>
+      <node id="3131">
+        <label>/home/agyss/iis_robot_sw/iis_catkin_ws/src/kukadu/include/kukadu/utils/utils.hpp</label>
         <link refid="utils/utils.hpp"/>
-        <childnode refid="2523" relation="include">
+        <childnode refid="3132" relation="include">
         </childnode>
-        <childnode refid="2526" relation="include">
+        <childnode refid="3135" relation="include">
         </childnode>
-        <childnode refid="2528" relation="include">
+        <childnode refid="3137" relation="include">
         </childnode>
-        <childnode refid="2530" relation="include">
+        <childnode refid="3139" relation="include">
         </childnode>
-        <childnode refid="2532" relation="include">
+        <childnode refid="3141" relation="include">
+        </childnode>
+        <childnode refid="3142" relation="include">
+        </childnode>
+      </node>
+      <node id="3143">
+        <label>/home/agyss/iis_robot_sw/iis_catkin_ws/src/kukadu/include/kukadu/control/controller.hpp</label>
+        <link refid="controller_8hpp_source"/>
+        <childnode refid="3144" relation="include">
+        </childnode>
+        <childnode refid="3147" relation="include">
+        </childnode>
+        <childnode refid="3152" relation="include">
+        </childnode>
+        <childnode refid="3154" relation="include">
+        </childnode>
+        <childnode refid="3155" relation="include">
+        </childnode>
+        <childnode refid="3156" relation="include">
+        </childnode>
+      </node>
+      <node id="3151">
+        <label>/home/agyss/iis_robot_sw/iis_catkin_ws/src/kukadu/include/kukadu/learning/rl/policyrl.hpp</label>
+        <link refid="policyrl_8hpp_source"/>
+        <childnode refid="3148" relation="include">
+        </childnode>
+        <childnode refid="3149" relation="include">
+        </childnode>
+      </node>
+      <node id="3152">
+        <label>/home/agyss/iis_robot_sw/iis_catkin_ws/src/kukadu/include/kukadu/manipulation/autonomoustester.hpp</label>
+        <link refid="autonomoustester_8hpp_source"/>
+        <childnode refid="3153" relation="include">
+        </childnode>
+      </node>
+      <node id="3150">
+        <label>/home/agyss/iis_robot_sw/iis_catkin_ws/src/kukadu/include/kukadu/learning/regression/fitting.hpp</label>
+        <link refid="fitting_8hpp_source"/>
+        <childnode refid="3145" relation="include">
+        </childnode>
+      </node>
+      <node id="3137">
+        <label>/home/agyss/iis_robot_sw/iis_catkin_ws/src/kukadu/include/kukadu/storage/sensorstorage.hpp</label>
+        <link refid="sensorstorage_8hpp_source"/>
+        <childnode refid="3138" relation="include">
+        </childnode>
+        <childnode refid="3136" relation="include">
+        </childnode>
+      </node>
+      <node id="3154">
+        <label>/home/agyss/iis_robot_sw/iis_catkin_ws/src/kukadu/include/kukadu/manipulation/playing/controllers.hpp</label>
+        <link refid="controllers_8hpp_source"/>
+        <childnode refid="3155" relation="include">
+        </childnode>
+        <childnode refid="3153" relation="include">
+        </childnode>
+      </node>
+      <node id="3147">
+        <label>/home/agyss/iis_robot_sw/iis_catkin_ws/src/kukadu/include/kukadu/control.hpp</label>
+        <link refid="control_8hpp_source"/>
+        <childnode refid="3134" relation="include">
+        </childnode>
+      </node>
+      <node id="3146">
+        <label>/home/agyss/iis_robot_sw/iis_catkin_ws/src/kukadu/include/kukadu/control/generalizer.hpp</label>
+        <link refid="generalizer_8hpp_source"/>
+        <childnode refid="3147" relation="include">
+        </childnode>
+      </node>
+      <node id="3157">
+        <label>/home/agyss/iis_robot_sw/iis_catkin_ws/src/kukadu/include/kukadu/vision/arlocalizer.hpp</label>
+        <link refid="arlocalizer_8hpp_source"/>
+        <childnode refid="3158" relation="include">
+        </childnode>
+      </node>
+      <node id="3160">
+        <label>/home/agyss/iis_robot_sw/iis_catkin_ws/src/kukadu/include/kukadu/vision/poseestimatorfactory.hpp</label>
+        <link refid="poseestimatorfactory_8hpp_source"/>
+        <childnode refid="3161" relation="include">
+        </childnode>
+      </node>
+      <node id="3142">
+        <label>/home/agyss/iis_robot_sw/iis_catkin_ws/src/kukadu/include/kukadu/vision/localizer.hpp</label>
+        <link refid="localizer_8hpp_source"/>
+        <childnode refid="3143" relation="include">
+        </childnode>
+        <childnode refid="3157" relation="include">
+        </childnode>
+        <childnode refid="3160" relation="include">
+        </childnode>
+        <childnode refid="3161" relation="include">
+        </childnode>
+      </node>
+      <node id="3136">
+        <label>/home/agyss/iis_robot_sw/iis_catkin_ws/src/kukadu/include/kukadu/storage.hpp</label>
+        <link refid="storage_8hpp_source"/>
+        <childnode refid="3134" relation="include">
+        </childnode>
+      </node>
+      <node id="3132">
+        <label>/home/agyss/iis_robot_sw/iis_catkin_ws/src/kukadu/include/kukadu/gui/graphical.hpp</label>
+        <link refid="graphical_8hpp_source"/>
+        <childnode refid="3133" relation="include">
+        </childnode>
+      </node>
+      <node id="3153">
+        <label>/home/agyss/iis_robot_sw/iis_catkin_ws/src/kukadu/include/kukadu/manipulation.hpp</label>
+        <link refid="manipulation_8hpp_source"/>
+        <childnode refid="3134" relation="include">
+        </childnode>
+      </node>
+      <node id="3139">
+        <label>/home/agyss/iis_robot_sw/iis_catkin_ws/src/kukadu/include/kukadu/types/sensordata.hpp</label>
+        <link refid="sensordata_8hpp_source"/>
+        <childnode refid="3137" relation="include">
+        </childnode>
+        <childnode refid="3140" relation="include">
         </childnode>
       </node>
     </invincdepgraph>
@@ -530,9 +622,9 @@
     <detaileddescription>
     </detaileddescription>
     <programlisting>
-<codeline lineno="1"><highlight class="preprocessor">#ifndef<sp/>KUKADU_KUKADUUTILS</highlight></codeline>
-<codeline lineno="2"><highlight class="preprocessor"></highlight><highlight class="preprocessor">#define<sp/>KUKADU_KUKADUUTILS</highlight></codeline>
-<codeline lineno="3"><highlight class="preprocessor"></highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="1"><highlight class="preprocessor">#ifndef<sp/>KUKADU_KUKADUUTILS</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="2"><highlight class="normal"></highlight><highlight class="preprocessor">#define<sp/>KUKADU_KUKADUUTILS</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="3"><highlight class="normal"></highlight></codeline>
 <codeline lineno="4"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&lt;map&gt;</highlight><highlight class="normal"></highlight></codeline>
 <codeline lineno="5"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&lt;queue&gt;</highlight><highlight class="normal"></highlight></codeline>
 <codeline lineno="6"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&lt;limits&gt;</highlight><highlight class="normal"></highlight></codeline>
@@ -574,193 +666,190 @@
 <codeline lineno="42"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&lt;kukadu/utils/types.hpp&gt;</highlight><highlight class="normal"></highlight></codeline>
 <codeline lineno="43"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&lt;kukadu/utils/gnuplot.hpp&gt;</highlight><highlight class="normal"></highlight></codeline>
 <codeline lineno="44"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&lt;kukadu/robot/hardware.hpp&gt;</highlight><highlight class="normal"></highlight></codeline>
-<codeline lineno="45"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&lt;kukadu/control/controller.hpp&gt;</highlight><highlight class="normal"></highlight></codeline>
-<codeline lineno="46"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&lt;kukadu/utils/kukadutokenizer.hpp&gt;</highlight><highlight class="normal"></highlight></codeline>
-<codeline lineno="47"><highlight class="normal"></highlight></codeline>
-<codeline lineno="48"><highlight class="normal"></highlight><highlight class="keyword">namespace<sp/></highlight><highlight class="normal">kukadu<sp/>{</highlight></codeline>
-<codeline lineno="49"><highlight class="normal"></highlight></codeline>
-<codeline lineno="50"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">double</highlight><highlight class="normal"><sp/>sigmoid(</highlight><highlight class="keywordtype">double</highlight><highlight class="normal"><sp/>x);</highlight></codeline>
-<codeline lineno="51"><highlight class="normal"></highlight></codeline>
-<codeline lineno="52"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/>printPose(</highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/>geometry_msgs::Pose<sp/>&amp;p);</highlight></codeline>
-<codeline lineno="53"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/>createDirectory(std::string<sp/>path);</highlight></codeline>
-<codeline lineno="54"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/>deleteFile(std::string<sp/>path);</highlight></codeline>
-<codeline lineno="55"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/>deleteDirectory(std::string<sp/>path);</highlight></codeline>
-<codeline lineno="56"><highlight class="normal"></highlight></codeline>
-<codeline lineno="57"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">bool</highlight><highlight class="normal"><sp/>fileIsEmpty(std::string&amp;<sp/>filePath);</highlight></codeline>
-<codeline lineno="58"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">bool</highlight><highlight class="normal"><sp/>fileIsEmpty(std::ifstream&amp;<sp/>pFile);</highlight></codeline>
-<codeline lineno="59"><highlight class="normal"></highlight></codeline>
-<codeline lineno="60"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/>printDoubleVector(std::vector&lt;double&gt;*<sp/>data);</highlight></codeline>
-<codeline lineno="61"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/>printDoubleVector(</highlight><highlight class="keywordtype">double</highlight><highlight class="normal">*<sp/>data,<sp/></highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/>size);</highlight></codeline>
-<codeline lineno="62"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/>printDoubleMatrix(</highlight><highlight class="keywordtype">double</highlight><highlight class="normal">**<sp/>data,<sp/></highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/>rows,<sp/></highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/>columns);</highlight></codeline>
-<codeline lineno="63"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/>freeDoubleArray(</highlight><highlight class="keywordtype">double</highlight><highlight class="normal">**<sp/>data,<sp/></highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/>columns);</highlight></codeline>
-<codeline lineno="64"><highlight class="normal"><sp/><sp/><sp/><sp/>std::string<sp/>resolvePath(std::string<sp/>path);</highlight></codeline>
-<codeline lineno="65"><highlight class="normal"></highlight></codeline>
-<codeline lineno="66"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/>getch();</highlight></codeline>
-<codeline lineno="67"><highlight class="normal"></highlight></codeline>
-<codeline lineno="68"><highlight class="normal"><sp/><sp/><sp/><sp/>std::pair&lt;std::vector&lt;long<sp/>long<sp/>int&gt;,<sp/>arma::mat&gt;<sp/>readDmpData(std::string<sp/>file,<sp/></highlight><highlight class="keywordtype">bool</highlight><highlight class="normal"><sp/>removeDuplicates<sp/>=<sp/></highlight><highlight class="keyword">true</highlight><highlight class="normal">);</highlight></codeline>
-<codeline lineno="69"><highlight class="normal"><sp/><sp/><sp/><sp/>std::pair&lt;std::vector&lt;long<sp/>long<sp/>int&gt;,<sp/>arma::mat&gt;<sp/>readDmpData(std::ifstream&amp;<sp/>stream,<sp/></highlight><highlight class="keywordtype">bool</highlight><highlight class="normal"><sp/>removeDuplicates<sp/>=<sp/></highlight><highlight class="keyword">true</highlight><highlight class="normal">);</highlight></codeline>
-<codeline lineno="70"><highlight class="normal"></highlight></codeline>
-<codeline lineno="71"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="comment">//<sp/>returns<sp/>the<sp/>labels<sp/>(first<sp/>vector)<sp/>of<sp/>the<sp/>data<sp/>columns,<sp/>the<sp/>time<sp/>vector<sp/>second<sp/>vector.first<sp/>and<sp/>the<sp/>concrete<sp/>measured<sp/>values<sp/>second<sp/>vector.second</highlight><highlight class="normal"></highlight></codeline>
-<codeline lineno="72"><highlight class="normal"><sp/><sp/><sp/><sp/>std::pair&lt;std::vector&lt;std::string&gt;,<sp/>std::pair&lt;std::vector&lt;long<sp/>long<sp/>int&gt;,<sp/>arma::mat&gt;<sp/>&gt;<sp/>readSensorStorage(std::string<sp/>file);</highlight></codeline>
-<codeline lineno="73"><highlight class="normal"></highlight></codeline>
-<codeline lineno="74"><highlight class="normal"><sp/><sp/><sp/><sp/>arma::vec<sp/>readQuery(std::string<sp/>file);</highlight></codeline>
-<codeline lineno="75"><highlight class="normal"><sp/><sp/><sp/><sp/>std::vector&lt;double&gt;*<sp/>createStdVectorFromGslVector(gsl_vector*<sp/>vec);</highlight></codeline>
-<codeline lineno="76"><highlight class="normal"></highlight></codeline>
-<codeline lineno="77"><highlight class="normal"><sp/><sp/><sp/><sp/>arma::vec<sp/>computeDiscreteDerivatives(arma::vec<sp/>x,<sp/>arma::vec<sp/>y);</highlight></codeline>
-<codeline lineno="78"><highlight class="normal"><sp/><sp/><sp/><sp/>arma::mat<sp/>computeDiscreteDerivatives(arma::vec<sp/>t,<sp/>arma::mat<sp/>ys);</highlight></codeline>
-<codeline lineno="79"><highlight class="normal"></highlight></codeline>
-<codeline lineno="80"><highlight class="normal"><sp/><sp/><sp/><sp/>gsl_vector*<sp/>createGslVectorFromStdVector(std::vector&lt;double&gt;*<sp/>data);</highlight></codeline>
-<codeline lineno="81"><highlight class="normal"><sp/><sp/><sp/><sp/>gsl_matrix*<sp/>createMatrixFromQueueArray(std::queue&lt;double&gt;**<sp/>data,<sp/></highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/>columns);</highlight></codeline>
-<codeline lineno="82"><highlight class="normal"><sp/><sp/><sp/><sp/>gsl_matrix*<sp/>invertSquareMatrix(gsl_matrix*<sp/>mat);</highlight></codeline>
-<codeline lineno="83"><highlight class="normal"></highlight></codeline>
-<codeline lineno="84"><highlight class="normal"><sp/><sp/><sp/><sp/>arma::vec<sp/>createArmaVecFromDoubleArray(</highlight><highlight class="keywordtype">double</highlight><highlight class="normal">*<sp/>data,<sp/></highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/>n);</highlight></codeline>
-<codeline lineno="85"><highlight class="normal"></highlight></codeline>
-<codeline lineno="86"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">double</highlight><highlight class="normal">*<sp/>createDoubleArrayFromStdVector(std::vector&lt;double&gt;*<sp/>data);</highlight></codeline>
-<codeline lineno="87"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">double</highlight><highlight class="normal">*<sp/>createDoubleArrayFromArmaVector(arma::vec<sp/>data);</highlight></codeline>
-<codeline lineno="88"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">float</highlight><highlight class="normal">*<sp/>createFloatArrayFromStdVector(std::vector&lt;float&gt;*<sp/>data);</highlight></codeline>
-<codeline lineno="89"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">double</highlight><highlight class="normal">*<sp/>createDoubleArrayFromVector(gsl_vector*<sp/>data);</highlight></codeline>
-<codeline lineno="90"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">double</highlight><highlight class="normal">*<sp/>polyder(</highlight><highlight class="keywordtype">double</highlight><highlight class="normal">*<sp/>c,<sp/></highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/>len);</highlight></codeline>
-<codeline lineno="91"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">double</highlight><highlight class="normal">*<sp/>poly_eval_multiple(</highlight><highlight class="keywordtype">double</highlight><highlight class="normal">*<sp/>data,<sp/></highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/>data_len,<sp/></highlight><highlight class="keywordtype">double</highlight><highlight class="normal">*<sp/>c,<sp/></highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/>c_len);</highlight></codeline>
-<codeline lineno="92"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">float</highlight><highlight class="normal">*<sp/>copyJoints(</highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">float</highlight><highlight class="normal">*<sp/>arr,<sp/></highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/>arrSize);</highlight></codeline>
-<codeline lineno="93"><highlight class="normal"></highlight></codeline>
-<codeline lineno="94"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">double</highlight><highlight class="normal"><sp/>roundByDigits(</highlight><highlight class="keywordtype">double</highlight><highlight class="normal"><sp/>number,<sp/></highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/>numDigitsBehindComma);</highlight></codeline>
-<codeline lineno="95"><highlight class="normal"></highlight></codeline>
-<codeline lineno="96"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">double</highlight><highlight class="normal">**<sp/>createDoubleArrayFromMatrix(gsl_matrix*<sp/>data);</highlight></codeline>
-<codeline lineno="97"><highlight class="normal"></highlight></codeline>
-<codeline lineno="98"><highlight class="normal"><sp/><sp/><sp/><sp/>arma::vec<sp/>stdToArmadilloVec(std::vector&lt;double&gt;<sp/>stdVec);</highlight></codeline>
-<codeline lineno="99"><highlight class="normal"><sp/><sp/><sp/><sp/>std::pair&lt;arma::vec,<sp/>arma::mat&gt;<sp/>fillTrajectoryMatrix(arma::vec<sp/>timesInSec,<sp/>arma::mat<sp/>joints,<sp/></highlight><highlight class="keywordtype">double</highlight><highlight class="normal"><sp/>tMax);</highlight></codeline>
-<codeline lineno="100"><highlight class="normal"></highlight></codeline>
-<codeline lineno="101"><highlight class="normal"><sp/><sp/><sp/><sp/>std::string<sp/>stringFromDouble(</highlight><highlight class="keywordtype">double</highlight><highlight class="normal"><sp/>d);</highlight></codeline>
-<codeline lineno="102"><highlight class="normal"></highlight></codeline>
-<codeline lineno="103"><highlight class="normal"><sp/><sp/><sp/><sp/>std::vector&lt;double&gt;<sp/>armadilloToStdVec(arma::vec<sp/>armadilloVec);</highlight></codeline>
-<codeline lineno="104"><highlight class="normal"></highlight></codeline>
-<codeline lineno="105"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="comment">//<sp/>taken<sp/>from<sp/>http://rosettacode.org/wiki/Polynomial_regression</highlight><highlight class="normal"></highlight></codeline>
-<codeline lineno="106"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">double</highlight><highlight class="normal">*<sp/>polynomialfit(</highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/>obs,<sp/></highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/>degree,<sp/></highlight><highlight class="keywordtype">double</highlight><highlight class="normal"><sp/>*dx,<sp/></highlight><highlight class="keywordtype">double</highlight><highlight class="normal"><sp/>*dy);</highlight></codeline>
-<codeline lineno="107"><highlight class="normal"></highlight></codeline>
-<codeline lineno="108"><highlight class="normal"><sp/><sp/><sp/><sp/>std::vector&lt;std::string&gt;<sp/>getFilesInDirectory(std::string<sp/>folderPath);</highlight></codeline>
-<codeline lineno="109"><highlight class="normal"><sp/><sp/><sp/><sp/>std::vector&lt;std::string&gt;<sp/>sortPrefix(std::vector&lt;std::string&gt;<sp/>list,<sp/>std::string<sp/>prefix);</highlight></codeline>
-<codeline lineno="110"><highlight class="normal"></highlight></codeline>
-<codeline lineno="111"><highlight class="normal"><sp/><sp/><sp/><sp/>std::string<sp/>buildPolynomialEquation(</highlight><highlight class="keywordtype">double</highlight><highlight class="normal">*<sp/>w,<sp/></highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/>paramCount);</highlight></codeline>
-<codeline lineno="112"><highlight class="normal"><sp/><sp/><sp/><sp/>std::vector&lt;double&gt;*<sp/>getDoubleVectorFromArray(</highlight><highlight class="keywordtype">double</highlight><highlight class="normal">*<sp/>arr,<sp/></highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/>size);</highlight></codeline>
-<codeline lineno="113"><highlight class="normal"></highlight></codeline>
-<codeline lineno="114"><highlight class="normal"><sp/><sp/><sp/><sp/>arma::mat<sp/>gslToArmadilloMatrix(gsl_matrix*<sp/>matrix);</highlight></codeline>
-<codeline lineno="115"><highlight class="normal"></highlight></codeline>
-<codeline lineno="116"><highlight class="normal"><sp/><sp/><sp/><sp/>arma::vec<sp/>squareMatrixToColumn(arma::mat<sp/>m);</highlight></codeline>
-<codeline lineno="117"><highlight class="normal"><sp/><sp/><sp/><sp/>arma::mat<sp/>columnToSquareMatrix(arma::vec<sp/>c);</highlight></codeline>
-<codeline lineno="118"><highlight class="normal"></highlight></codeline>
-<codeline lineno="119"><highlight class="normal"><sp/><sp/><sp/><sp/>arma::vec<sp/>symmetricMatrixToColumn(arma::mat<sp/>m);</highlight></codeline>
-<codeline lineno="120"><highlight class="normal"><sp/><sp/><sp/><sp/>arma::mat<sp/>columnToSymmetricMatrix(arma::vec<sp/>c);</highlight></codeline>
-<codeline lineno="121"><highlight class="normal"></highlight></codeline>
-<codeline lineno="122"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/>set_ctrlc_exit_handler();</highlight></codeline>
-<codeline lineno="123"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/>exit_handler(</highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/>s);</highlight></codeline>
-<codeline lineno="124"><highlight class="normal"></highlight></codeline>
-<codeline lineno="125"><highlight class="normal"><sp/><sp/><sp/><sp/>arma::mat<sp/>armaJoinRows(arma::vec<sp/>v1,<sp/>arma::mat<sp/>m2);</highlight></codeline>
-<codeline lineno="126"><highlight class="normal"><sp/><sp/><sp/><sp/>arma::mat<sp/>armaJoinRows(arma::mat<sp/>m1,<sp/>arma::mat<sp/>m2);</highlight></codeline>
-<codeline lineno="127"><highlight class="normal"></highlight></codeline>
-<codeline lineno="128"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">double</highlight><highlight class="normal"><sp/>absolute(</highlight><highlight class="keywordtype">double</highlight><highlight class="normal"><sp/>val);</highlight></codeline>
-<codeline lineno="129"><highlight class="normal"></highlight></codeline>
-<codeline lineno="130"><highlight class="normal"><sp/><sp/><sp/><sp/>geometry_msgs::Pose<sp/>vectorarma2pose(arma::vec*<sp/>vectorpose);</highlight></codeline>
-<codeline lineno="131"><highlight class="normal"><sp/><sp/><sp/><sp/>arma::vec<sp/>pose2vectorarma(geometry_msgs::Pose<sp/>posepose);</highlight></codeline>
-<codeline lineno="132"><highlight class="normal"></highlight></codeline>
-<codeline lineno="133"><highlight class="normal"><sp/><sp/><sp/><sp/>arma::vec<sp/>log(</highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/>tf::Quaternion<sp/>quat);</highlight></codeline>
-<codeline lineno="134"><highlight class="normal"><sp/><sp/><sp/><sp/>tf::Quaternion<sp/>vecExp(arma::vec<sp/>logQuat);</highlight></codeline>
-<codeline lineno="135"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">double</highlight><highlight class="normal"><sp/>distQuat(</highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/>tf::Quaternion&amp;<sp/>q1,<sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/>tf::Quaternion&amp;<sp/>q2);</highlight></codeline>
-<codeline lineno="136"><highlight class="normal"></highlight></codeline>
-<codeline lineno="137"><highlight class="normal"><sp/><sp/><sp/><sp/>tf::Transform<sp/>Matrix4f2Transform(Eigen::Matrix4f<sp/>Tm);</highlight></codeline>
-<codeline lineno="138"><highlight class="normal"></highlight></codeline>
-<codeline lineno="139"><highlight class="normal"><sp/><sp/><sp/><sp/>arma::vec<sp/>quatToRpy(tf::Quaternion<sp/>quat);</highlight></codeline>
-<codeline lineno="140"><highlight class="normal"><sp/><sp/><sp/><sp/>arma::vec<sp/>quatToRpy(geometry_msgs::Quaternion<sp/>quat);</highlight></codeline>
-<codeline lineno="141"><highlight class="normal"></highlight></codeline>
-<codeline lineno="142"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="comment">/*</highlight></codeline>
-<codeline lineno="143"><highlight class="comment"><sp/><sp/><sp/><sp/><sp/>*<sp/>converts<sp/>roll<sp/>pitch<sp/>yaw<sp/>to<sp/>quaternions</highlight></codeline>
-<codeline lineno="144"><highlight class="comment"><sp/><sp/><sp/><sp/><sp/>*/</highlight><highlight class="normal"></highlight></codeline>
-<codeline lineno="145"><highlight class="normal"><sp/><sp/><sp/><sp/>tf::Quaternion<sp/>rpyToQuat(</highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">double</highlight><highlight class="normal"><sp/>roll,<sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">double</highlight><highlight class="normal"><sp/>pitch,<sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">double</highlight><highlight class="normal"><sp/>yaw);</highlight></codeline>
-<codeline lineno="146"><highlight class="normal"><sp/><sp/><sp/><sp/>tf::Quaternion<sp/>axisAngle2Quat<sp/>(</highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">double</highlight><highlight class="normal">&amp;<sp/>xx,<sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">double</highlight><highlight class="normal"><sp/>&amp;yy,<sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">double</highlight><highlight class="normal"><sp/>&amp;zz,<sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">double</highlight><highlight class="normal"><sp/>&amp;a);</highlight></codeline>
-<codeline lineno="147"><highlight class="normal"></highlight></codeline>
-<codeline lineno="148"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">double</highlight><highlight class="normal"><sp/>distancePoint2Line(</highlight><highlight class="keywordtype">double</highlight><highlight class="normal"><sp/>xp,</highlight><highlight class="keywordtype">double</highlight><highlight class="normal"><sp/>yp,</highlight><highlight class="keywordtype">double</highlight><highlight class="normal"><sp/>x1,</highlight><highlight class="keywordtype">double</highlight><highlight class="normal"><sp/>y1,</highlight><highlight class="keywordtype">double</highlight><highlight class="normal"><sp/>x2,</highlight><highlight class="keywordtype">double</highlight><highlight class="normal"><sp/>y2);</highlight></codeline>
-<codeline lineno="149"><highlight class="normal"><sp/><sp/><sp/><sp/>arma::vec<sp/>pointOnLine2Point(</highlight><highlight class="keywordtype">double</highlight><highlight class="normal"><sp/>xp,</highlight><highlight class="keywordtype">double</highlight><highlight class="normal"><sp/>yp,</highlight><highlight class="keywordtype">double</highlight><highlight class="normal"><sp/>x1,</highlight><highlight class="keywordtype">double</highlight><highlight class="normal"><sp/>y1,</highlight><highlight class="keywordtype">double</highlight><highlight class="normal"><sp/>x2,</highlight><highlight class="keywordtype">double</highlight><highlight class="normal"><sp/>y2);</highlight></codeline>
-<codeline lineno="150"><highlight class="normal"></highlight></codeline>
-<codeline lineno="151"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">bool</highlight><highlight class="normal"><sp/>isDirectory(</highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/>std::string<sp/>dirPath);</highlight></codeline>
-<codeline lineno="152"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">bool</highlight><highlight class="normal"><sp/>fileExists(</highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/>std::string<sp/>filePath);</highlight></codeline>
-<codeline lineno="153"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/>copyFile(</highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/>std::string<sp/>source,<sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/>std::string<sp/>destination);</highlight></codeline>
-<codeline lineno="154"><highlight class="normal"></highlight></codeline>
-<codeline lineno="155"><highlight class="normal"><sp/><sp/><sp/><sp/>std::vector&lt;double&gt;<sp/>createJointsVector(</highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/>n_args,<sp/>...);</highlight></codeline>
-<codeline lineno="156"><highlight class="normal"></highlight></codeline>
-<codeline lineno="157"><highlight class="normal"><sp/><sp/><sp/><sp/>pcl::PointCloud&lt;pcl::PointXYZRGB&gt;::Ptr<sp/>sensorMsgsPcToPclPc(sensor_msgs::PointCloud2::Ptr<sp/>pc);</highlight></codeline>
-<codeline lineno="158"><highlight class="normal"><sp/><sp/><sp/><sp/>sensor_msgs::PointCloud2<sp/>pclPcToSensorMsgsPc(pcl::PointCloud&lt;pcl::PointXYZ&gt;<sp/>pc);</highlight></codeline>
-<codeline lineno="159"><highlight class="normal"><sp/><sp/><sp/><sp/>pcl::PCLPointCloud2<sp/>sensorMsgsPcToPclPc2(sensor_msgs::PointCloud2<sp/>pc);</highlight></codeline>
-<codeline lineno="160"><highlight class="normal"><sp/><sp/><sp/><sp/>sensor_msgs::PointCloud2<sp/>pclPcToSensorMsgsPc(pcl::PointCloud&lt;pcl::PointXYZRGB&gt;::Ptr<sp/>pc);</highlight></codeline>
-<codeline lineno="161"><highlight class="normal"></highlight></codeline>
-<codeline lineno="162"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">long</highlight><highlight class="normal"><sp/>getFileSize(std::string<sp/>filename);</highlight></codeline>
-<codeline lineno="163"><highlight class="normal"><sp/><sp/><sp/><sp/>std::wstring<sp/>stringToWString(</highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/>std::string&amp;<sp/>s);</highlight></codeline>
-<codeline lineno="164"><highlight class="normal"></highlight></codeline>
-<codeline lineno="165"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/>preparePathString(std::string&amp;<sp/>s);</highlight></codeline>
-<codeline lineno="166"><highlight class="normal"></highlight></codeline>
-<codeline lineno="167"><highlight class="normal"><sp/><sp/><sp/><sp/>std::pair&lt;int,<sp/>double&gt;<sp/>computeMaxJointDistance(arma::vec<sp/>joints1,<sp/>arma::vec<sp/>joints2);</highlight></codeline>
-<codeline lineno="168"><highlight class="normal"></highlight></codeline>
-<codeline lineno="169"><highlight class="normal"><sp/><sp/><sp/><sp/>arma::vec<sp/>convertAndRemoveOffset(std::vector&lt;long<sp/>long<sp/>int&gt;&amp;<sp/>supervisedTs);</highlight></codeline>
-<codeline lineno="170"><highlight class="normal"><sp/><sp/><sp/><sp/>arma::vec<sp/>convertTimesInMillisecondsToTimeInSeconds(std::vector&lt;long<sp/>long<sp/>int&gt;&amp;<sp/>supervisedTs);</highlight></codeline>
-<codeline lineno="171"><highlight class="normal"><sp/><sp/><sp/><sp/>std::vector&lt;long<sp/>long<sp/>int&gt;<sp/>convertTimesInSecondsToTimeInMilliseconds(arma::vec&amp;<sp/>timesInSeconds);</highlight></codeline>
-<codeline lineno="172"><highlight class="normal"></highlight></codeline>
-<codeline lineno="173"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">bool</highlight><highlight class="normal"><sp/>isRotationMatrix(arma::mat<sp/>rotMatrix);</highlight></codeline>
-<codeline lineno="174"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">bool</highlight><highlight class="normal"><sp/>isEqualThresh(</highlight><highlight class="keywordtype">double</highlight><highlight class="normal"><sp/>value1,<sp/></highlight><highlight class="keywordtype">double</highlight><highlight class="normal"><sp/>value2,<sp/></highlight><highlight class="keywordtype">double</highlight><highlight class="normal"><sp/>threshold);</highlight></codeline>
-<codeline lineno="175"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">bool</highlight><highlight class="normal"><sp/>isEqualThresh(arma::mat<sp/>mat1,<sp/>arma::mat<sp/>mat2,<sp/></highlight><highlight class="keywordtype">double</highlight><highlight class="normal"><sp/>threshold);</highlight></codeline>
-<codeline lineno="176"><highlight class="normal"><sp/><sp/><sp/><sp/>arma::vec<sp/>rotationMatrixToRpy(arma::mat<sp/>rotMatrix);</highlight></codeline>
-<codeline lineno="177"><highlight class="normal"></highlight></codeline>
-<codeline lineno="178"><highlight class="normal"><sp/><sp/><sp/><sp/>tf::Transform<sp/>affineTransMatrixToTf(arma::mat<sp/>transMatrix);</highlight></codeline>
-<codeline lineno="179"><highlight class="normal"></highlight></codeline>
-<codeline lineno="180"><highlight class="normal"><sp/><sp/><sp/><sp/>std::vector&lt;std::string&gt;<sp/>readFunctionSignature(std::string<sp/>prettyFunc);</highlight></codeline>
-<codeline lineno="181"><highlight class="normal"></highlight></codeline>
-<codeline lineno="182"><highlight class="normal"><sp/><sp/><sp/><sp/>std::vector&lt;KUKADU_SHARED_PTR&lt;Hardware&gt;<sp/>&gt;<sp/>mergeHardware(std::vector&lt;KUKADU_SHARED_PTR&lt;kukadu::Controller&gt;<sp/>&gt;<sp/>controllers);</highlight></codeline>
-<codeline lineno="183"><highlight class="normal"></highlight></codeline>
-<codeline lineno="184"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">template</highlight><highlight class="normal">&lt;</highlight><highlight class="keyword">typename</highlight><highlight class="normal"><sp/>S,<sp/></highlight><highlight class="keyword">typename</highlight><highlight class="normal"><sp/>T&gt;<sp/>std::vector&lt;T&gt;<sp/>castVector(std::vector&lt;S&gt;<sp/>vector)<sp/>{</highlight></codeline>
-<codeline lineno="185"><highlight class="normal"></highlight></codeline>
-<codeline lineno="186"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>std::vector&lt;T&gt;<sp/>castedVector;</highlight></codeline>
-<codeline lineno="187"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>castedVector.insert(castedVector.end(),<sp/>vector.begin(),<sp/>vector.end());</highlight></codeline>
-<codeline lineno="188"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal"><sp/>castedVector;</highlight></codeline>
-<codeline lineno="189"><highlight class="normal"></highlight></codeline>
-<codeline lineno="190"><highlight class="normal"><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline lineno="45"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&lt;kukadu/utils/kukadutokenizer.hpp&gt;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="46"><highlight class="normal"></highlight></codeline>
+<codeline lineno="47"><highlight class="normal"></highlight><highlight class="keyword">namespace<sp/></highlight><highlight class="normal"><ref refid="namespacekukadu" kindref="compound">kukadu</ref><sp/>{</highlight></codeline>
+<codeline lineno="48"><highlight class="normal"></highlight></codeline>
+<codeline lineno="49"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">double</highlight><highlight class="normal"><sp/>sigmoid(</highlight><highlight class="keywordtype">double</highlight><highlight class="normal"><sp/>x);</highlight></codeline>
+<codeline lineno="50"><highlight class="normal"></highlight></codeline>
+<codeline lineno="51"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/>printPose(</highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/>geometry_msgs::Pose<sp/>&amp;p);</highlight></codeline>
+<codeline lineno="52"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/>createDirectory(std::string<sp/>path);</highlight></codeline>
+<codeline lineno="53"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/>deleteFile(std::string<sp/>path);</highlight></codeline>
+<codeline lineno="54"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/>deleteDirectory(std::string<sp/>path);</highlight></codeline>
+<codeline lineno="55"><highlight class="normal"></highlight></codeline>
+<codeline lineno="56"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">bool</highlight><highlight class="normal"><sp/>fileIsEmpty(std::string&amp;<sp/>filePath);</highlight></codeline>
+<codeline lineno="57"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">bool</highlight><highlight class="normal"><sp/>fileIsEmpty(std::ifstream&amp;<sp/>pFile);</highlight></codeline>
+<codeline lineno="58"><highlight class="normal"></highlight></codeline>
+<codeline lineno="59"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/>printDoubleVector(std::vector&lt;double&gt;*<sp/>data);</highlight></codeline>
+<codeline lineno="60"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/>printDoubleVector(</highlight><highlight class="keywordtype">double</highlight><highlight class="normal">*<sp/>data,<sp/></highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/>size);</highlight></codeline>
+<codeline lineno="61"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/>printDoubleMatrix(</highlight><highlight class="keywordtype">double</highlight><highlight class="normal">**<sp/>data,<sp/></highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/>rows,<sp/></highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/>columns);</highlight></codeline>
+<codeline lineno="62"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/>freeDoubleArray(</highlight><highlight class="keywordtype">double</highlight><highlight class="normal">**<sp/>data,<sp/></highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/>columns);</highlight></codeline>
+<codeline lineno="63"><highlight class="normal"><sp/><sp/><sp/><sp/>std::string<sp/>resolvePath(std::string<sp/>path);</highlight></codeline>
+<codeline lineno="64"><highlight class="normal"></highlight></codeline>
+<codeline lineno="65"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/>getch();</highlight></codeline>
+<codeline lineno="66"><highlight class="normal"></highlight></codeline>
+<codeline lineno="67"><highlight class="normal"><sp/><sp/><sp/><sp/>std::pair&lt;std::vector&lt;long<sp/>long<sp/>int&gt;,<sp/>arma::mat&gt;<sp/>readDmpData(std::string<sp/>file,<sp/></highlight><highlight class="keywordtype">bool</highlight><highlight class="normal"><sp/>removeDuplicates<sp/>=<sp/></highlight><highlight class="keyword">true</highlight><highlight class="normal">);</highlight></codeline>
+<codeline lineno="68"><highlight class="normal"><sp/><sp/><sp/><sp/>std::pair&lt;std::vector&lt;long<sp/>long<sp/>int&gt;,<sp/>arma::mat&gt;<sp/>readDmpData(std::ifstream&amp;<sp/>stream,<sp/></highlight><highlight class="keywordtype">bool</highlight><highlight class="normal"><sp/>removeDuplicates<sp/>=<sp/></highlight><highlight class="keyword">true</highlight><highlight class="normal">);</highlight></codeline>
+<codeline lineno="69"><highlight class="normal"></highlight></codeline>
+<codeline lineno="70"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="comment">//<sp/>returns<sp/>the<sp/>labels<sp/>(first<sp/>vector)<sp/>of<sp/>the<sp/>data<sp/>columns,<sp/>the<sp/>time<sp/>vector<sp/>second<sp/>vector.first<sp/>and<sp/>the<sp/>concrete<sp/>measured<sp/>values<sp/>second<sp/>vector.second</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="71"><highlight class="normal"><sp/><sp/><sp/><sp/>std::pair&lt;std::vector&lt;std::string&gt;,<sp/>std::pair&lt;std::vector&lt;long<sp/>long<sp/>int&gt;,<sp/>arma::mat&gt;<sp/>&gt;<sp/>readSensorStorage(std::string<sp/>file);</highlight></codeline>
+<codeline lineno="72"><highlight class="normal"></highlight></codeline>
+<codeline lineno="73"><highlight class="normal"><sp/><sp/><sp/><sp/>arma::vec<sp/>readQuery(std::string<sp/>file);</highlight></codeline>
+<codeline lineno="74"><highlight class="normal"><sp/><sp/><sp/><sp/>std::vector&lt;double&gt;*<sp/>createStdVectorFromGslVector(gsl_vector*<sp/>vec);</highlight></codeline>
+<codeline lineno="75"><highlight class="normal"></highlight></codeline>
+<codeline lineno="76"><highlight class="normal"><sp/><sp/><sp/><sp/>arma::vec<sp/>computeDiscreteDerivatives(arma::vec<sp/>x,<sp/>arma::vec<sp/>y);</highlight></codeline>
+<codeline lineno="77"><highlight class="normal"><sp/><sp/><sp/><sp/>arma::mat<sp/>computeDiscreteDerivatives(arma::vec<sp/>t,<sp/>arma::mat<sp/>ys);</highlight></codeline>
+<codeline lineno="78"><highlight class="normal"></highlight></codeline>
+<codeline lineno="79"><highlight class="normal"><sp/><sp/><sp/><sp/>gsl_vector*<sp/>createGslVectorFromStdVector(std::vector&lt;double&gt;*<sp/>data);</highlight></codeline>
+<codeline lineno="80"><highlight class="normal"><sp/><sp/><sp/><sp/>gsl_matrix*<sp/>createMatrixFromQueueArray(std::queue&lt;double&gt;**<sp/>data,<sp/></highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/>columns);</highlight></codeline>
+<codeline lineno="81"><highlight class="normal"><sp/><sp/><sp/><sp/>gsl_matrix*<sp/>invertSquareMatrix(gsl_matrix*<sp/>mat);</highlight></codeline>
+<codeline lineno="82"><highlight class="normal"></highlight></codeline>
+<codeline lineno="83"><highlight class="normal"><sp/><sp/><sp/><sp/>arma::vec<sp/>createArmaVecFromDoubleArray(</highlight><highlight class="keywordtype">double</highlight><highlight class="normal">*<sp/>data,<sp/></highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/>n);</highlight></codeline>
+<codeline lineno="84"><highlight class="normal"></highlight></codeline>
+<codeline lineno="85"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">double</highlight><highlight class="normal">*<sp/>createDoubleArrayFromStdVector(std::vector&lt;double&gt;*<sp/>data);</highlight></codeline>
+<codeline lineno="86"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">double</highlight><highlight class="normal">*<sp/>createDoubleArrayFromArmaVector(arma::vec<sp/>data);</highlight></codeline>
+<codeline lineno="87"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">float</highlight><highlight class="normal">*<sp/>createFloatArrayFromStdVector(std::vector&lt;float&gt;*<sp/>data);</highlight></codeline>
+<codeline lineno="88"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">double</highlight><highlight class="normal">*<sp/>createDoubleArrayFromVector(gsl_vector*<sp/>data);</highlight></codeline>
+<codeline lineno="89"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">double</highlight><highlight class="normal">*<sp/>polyder(</highlight><highlight class="keywordtype">double</highlight><highlight class="normal">*<sp/>c,<sp/></highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/>len);</highlight></codeline>
+<codeline lineno="90"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">double</highlight><highlight class="normal">*<sp/>poly_eval_multiple(</highlight><highlight class="keywordtype">double</highlight><highlight class="normal">*<sp/>data,<sp/></highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/>data_len,<sp/></highlight><highlight class="keywordtype">double</highlight><highlight class="normal">*<sp/>c,<sp/></highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/>c_len);</highlight></codeline>
+<codeline lineno="91"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">float</highlight><highlight class="normal">*<sp/>copyJoints(</highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">float</highlight><highlight class="normal">*<sp/>arr,<sp/></highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/>arrSize);</highlight></codeline>
+<codeline lineno="92"><highlight class="normal"></highlight></codeline>
+<codeline lineno="93"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">double</highlight><highlight class="normal"><sp/>roundByDigits(</highlight><highlight class="keywordtype">double</highlight><highlight class="normal"><sp/>number,<sp/></highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/>numDigitsBehindComma);</highlight></codeline>
+<codeline lineno="94"><highlight class="normal"></highlight></codeline>
+<codeline lineno="95"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">double</highlight><highlight class="normal">**<sp/>createDoubleArrayFromMatrix(gsl_matrix*<sp/>data);</highlight></codeline>
+<codeline lineno="96"><highlight class="normal"></highlight></codeline>
+<codeline lineno="97"><highlight class="normal"><sp/><sp/><sp/><sp/>arma::vec<sp/>stdToArmadilloVec(std::vector&lt;double&gt;<sp/>stdVec);</highlight></codeline>
+<codeline lineno="98"><highlight class="normal"><sp/><sp/><sp/><sp/>std::pair&lt;arma::vec,<sp/>arma::mat&gt;<sp/>fillTrajectoryMatrix(arma::vec<sp/>timesInSec,<sp/>arma::mat<sp/>joints,<sp/></highlight><highlight class="keywordtype">double</highlight><highlight class="normal"><sp/>tMax);</highlight></codeline>
+<codeline lineno="99"><highlight class="normal"></highlight></codeline>
+<codeline lineno="100"><highlight class="normal"><sp/><sp/><sp/><sp/>std::string<sp/>stringFromDouble(</highlight><highlight class="keywordtype">double</highlight><highlight class="normal"><sp/>d);</highlight></codeline>
+<codeline lineno="101"><highlight class="normal"></highlight></codeline>
+<codeline lineno="102"><highlight class="normal"><sp/><sp/><sp/><sp/>std::vector&lt;double&gt;<sp/>armadilloToStdVec(arma::vec<sp/>armadilloVec);</highlight></codeline>
+<codeline lineno="103"><highlight class="normal"></highlight></codeline>
+<codeline lineno="104"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="comment">//<sp/>taken<sp/>from<sp/>http://rosettacode.org/wiki/Polynomial_regression</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="105"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">double</highlight><highlight class="normal">*<sp/>polynomialfit(</highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/>obs,<sp/></highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/>degree,<sp/></highlight><highlight class="keywordtype">double</highlight><highlight class="normal"><sp/>*dx,<sp/></highlight><highlight class="keywordtype">double</highlight><highlight class="normal"><sp/>*dy);</highlight></codeline>
+<codeline lineno="106"><highlight class="normal"></highlight></codeline>
+<codeline lineno="107"><highlight class="normal"><sp/><sp/><sp/><sp/>std::vector&lt;std::string&gt;<sp/>getFilesInDirectory(std::string<sp/>folderPath);</highlight></codeline>
+<codeline lineno="108"><highlight class="normal"><sp/><sp/><sp/><sp/>std::vector&lt;std::string&gt;<sp/>sortPrefix(std::vector&lt;std::string&gt;<sp/>list,<sp/>std::string<sp/>prefix);</highlight></codeline>
+<codeline lineno="109"><highlight class="normal"></highlight></codeline>
+<codeline lineno="110"><highlight class="normal"><sp/><sp/><sp/><sp/>std::string<sp/>buildPolynomialEquation(</highlight><highlight class="keywordtype">double</highlight><highlight class="normal">*<sp/>w,<sp/></highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/>paramCount);</highlight></codeline>
+<codeline lineno="111"><highlight class="normal"><sp/><sp/><sp/><sp/>std::vector&lt;double&gt;*<sp/>getDoubleVectorFromArray(</highlight><highlight class="keywordtype">double</highlight><highlight class="normal">*<sp/>arr,<sp/></highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/>size);</highlight></codeline>
+<codeline lineno="112"><highlight class="normal"></highlight></codeline>
+<codeline lineno="113"><highlight class="normal"><sp/><sp/><sp/><sp/>arma::mat<sp/>gslToArmadilloMatrix(gsl_matrix*<sp/>matrix);</highlight></codeline>
+<codeline lineno="114"><highlight class="normal"></highlight></codeline>
+<codeline lineno="115"><highlight class="normal"><sp/><sp/><sp/><sp/>arma::vec<sp/>squareMatrixToColumn(arma::mat<sp/>m);</highlight></codeline>
+<codeline lineno="116"><highlight class="normal"><sp/><sp/><sp/><sp/>arma::mat<sp/>columnToSquareMatrix(arma::vec<sp/>c);</highlight></codeline>
+<codeline lineno="117"><highlight class="normal"></highlight></codeline>
+<codeline lineno="118"><highlight class="normal"><sp/><sp/><sp/><sp/>arma::vec<sp/>symmetricMatrixToColumn(arma::mat<sp/>m);</highlight></codeline>
+<codeline lineno="119"><highlight class="normal"><sp/><sp/><sp/><sp/>arma::mat<sp/>columnToSymmetricMatrix(arma::vec<sp/>c);</highlight></codeline>
+<codeline lineno="120"><highlight class="normal"></highlight></codeline>
+<codeline lineno="121"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/>set_ctrlc_exit_handler();</highlight></codeline>
+<codeline lineno="122"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/>exit_handler(</highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/>s);</highlight></codeline>
+<codeline lineno="123"><highlight class="normal"></highlight></codeline>
+<codeline lineno="124"><highlight class="normal"><sp/><sp/><sp/><sp/>arma::mat<sp/>armaJoinRows(arma::vec<sp/>v1,<sp/>arma::mat<sp/>m2);</highlight></codeline>
+<codeline lineno="125"><highlight class="normal"><sp/><sp/><sp/><sp/>arma::mat<sp/>armaJoinRows(arma::mat<sp/>m1,<sp/>arma::mat<sp/>m2);</highlight></codeline>
+<codeline lineno="126"><highlight class="normal"></highlight></codeline>
+<codeline lineno="127"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">double</highlight><highlight class="normal"><sp/>absolute(</highlight><highlight class="keywordtype">double</highlight><highlight class="normal"><sp/>val);</highlight></codeline>
+<codeline lineno="128"><highlight class="normal"></highlight></codeline>
+<codeline lineno="129"><highlight class="normal"><sp/><sp/><sp/><sp/>geometry_msgs::Pose<sp/>vectorarma2pose(arma::vec*<sp/>vectorpose);</highlight></codeline>
+<codeline lineno="130"><highlight class="normal"><sp/><sp/><sp/><sp/>arma::vec<sp/>pose2vectorarma(geometry_msgs::Pose<sp/>posepose);</highlight></codeline>
+<codeline lineno="131"><highlight class="normal"></highlight></codeline>
+<codeline lineno="132"><highlight class="normal"><sp/><sp/><sp/><sp/>arma::vec<sp/>log(</highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/>tf::Quaternion<sp/>quat);</highlight></codeline>
+<codeline lineno="133"><highlight class="normal"><sp/><sp/><sp/><sp/>tf::Quaternion<sp/>vecExp(arma::vec<sp/>logQuat);</highlight></codeline>
+<codeline lineno="134"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">double</highlight><highlight class="normal"><sp/>distQuat(</highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/>tf::Quaternion&amp;<sp/>q1,<sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/>tf::Quaternion&amp;<sp/>q2);</highlight></codeline>
+<codeline lineno="135"><highlight class="normal"></highlight></codeline>
+<codeline lineno="136"><highlight class="normal"><sp/><sp/><sp/><sp/>tf::Transform<sp/>Matrix4f2Transform(Eigen::Matrix4f<sp/>Tm);</highlight></codeline>
+<codeline lineno="137"><highlight class="normal"></highlight></codeline>
+<codeline lineno="138"><highlight class="normal"><sp/><sp/><sp/><sp/>arma::vec<sp/>quatToRpy(tf::Quaternion<sp/>quat);</highlight></codeline>
+<codeline lineno="139"><highlight class="normal"><sp/><sp/><sp/><sp/>arma::vec<sp/>quatToRpy(geometry_msgs::Quaternion<sp/>quat);</highlight></codeline>
+<codeline lineno="140"><highlight class="normal"></highlight></codeline>
+<codeline lineno="141"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="comment">/*</highlight></codeline>
+<codeline lineno="142"><highlight class="comment"><sp/><sp/><sp/><sp/><sp/>*<sp/>converts<sp/>roll<sp/>pitch<sp/>yaw<sp/>to<sp/>quaternions</highlight></codeline>
+<codeline lineno="143"><highlight class="comment"><sp/><sp/><sp/><sp/><sp/>*/</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="144"><highlight class="normal"><sp/><sp/><sp/><sp/>tf::Quaternion<sp/>rpyToQuat(</highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">double</highlight><highlight class="normal"><sp/>roll,<sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">double</highlight><highlight class="normal"><sp/>pitch,<sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">double</highlight><highlight class="normal"><sp/>yaw);</highlight></codeline>
+<codeline lineno="145"><highlight class="normal"><sp/><sp/><sp/><sp/>tf::Quaternion<sp/>axisAngle2Quat<sp/>(</highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">double</highlight><highlight class="normal">&amp;<sp/>xx,<sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">double</highlight><highlight class="normal"><sp/>&amp;yy,<sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">double</highlight><highlight class="normal"><sp/>&amp;zz,<sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">double</highlight><highlight class="normal"><sp/>&amp;a);</highlight></codeline>
+<codeline lineno="146"><highlight class="normal"></highlight></codeline>
+<codeline lineno="147"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">double</highlight><highlight class="normal"><sp/>distancePoint2Line(</highlight><highlight class="keywordtype">double</highlight><highlight class="normal"><sp/>xp,</highlight><highlight class="keywordtype">double</highlight><highlight class="normal"><sp/>yp,</highlight><highlight class="keywordtype">double</highlight><highlight class="normal"><sp/>x1,</highlight><highlight class="keywordtype">double</highlight><highlight class="normal"><sp/>y1,</highlight><highlight class="keywordtype">double</highlight><highlight class="normal"><sp/>x2,</highlight><highlight class="keywordtype">double</highlight><highlight class="normal"><sp/>y2);</highlight></codeline>
+<codeline lineno="148"><highlight class="normal"><sp/><sp/><sp/><sp/>arma::vec<sp/>pointOnLine2Point(</highlight><highlight class="keywordtype">double</highlight><highlight class="normal"><sp/>xp,</highlight><highlight class="keywordtype">double</highlight><highlight class="normal"><sp/>yp,</highlight><highlight class="keywordtype">double</highlight><highlight class="normal"><sp/>x1,</highlight><highlight class="keywordtype">double</highlight><highlight class="normal"><sp/>y1,</highlight><highlight class="keywordtype">double</highlight><highlight class="normal"><sp/>x2,</highlight><highlight class="keywordtype">double</highlight><highlight class="normal"><sp/>y2);</highlight></codeline>
+<codeline lineno="149"><highlight class="normal"></highlight></codeline>
+<codeline lineno="150"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">bool</highlight><highlight class="normal"><sp/>isDirectory(</highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/>std::string<sp/>dirPath);</highlight></codeline>
+<codeline lineno="151"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">bool</highlight><highlight class="normal"><sp/>fileExists(</highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/>std::string<sp/>filePath);</highlight></codeline>
+<codeline lineno="152"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/>copyFile(</highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/>std::string<sp/>source,<sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/>std::string<sp/>destination);</highlight></codeline>
+<codeline lineno="153"><highlight class="normal"></highlight></codeline>
+<codeline lineno="154"><highlight class="normal"><sp/><sp/><sp/><sp/>std::vector&lt;double&gt;<sp/>createJointsVector(</highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/>n_args,<sp/>...);</highlight></codeline>
+<codeline lineno="155"><highlight class="normal"></highlight></codeline>
+<codeline lineno="156"><highlight class="normal"><sp/><sp/><sp/><sp/>pcl::PointCloud&lt;pcl::PointXYZRGB&gt;::Ptr<sp/>sensorMsgsPcToPclPc(sensor_msgs::PointCloud2::Ptr<sp/>pc);</highlight></codeline>
+<codeline lineno="157"><highlight class="normal"><sp/><sp/><sp/><sp/>sensor_msgs::PointCloud2<sp/>pclPcToSensorMsgsPc(pcl::PointCloud&lt;pcl::PointXYZ&gt;<sp/>pc);</highlight></codeline>
+<codeline lineno="158"><highlight class="normal"><sp/><sp/><sp/><sp/>pcl::PCLPointCloud2<sp/>sensorMsgsPcToPclPc2(sensor_msgs::PointCloud2<sp/>pc);</highlight></codeline>
+<codeline lineno="159"><highlight class="normal"><sp/><sp/><sp/><sp/>sensor_msgs::PointCloud2<sp/>pclPcToSensorMsgsPc(pcl::PointCloud&lt;pcl::PointXYZRGB&gt;::Ptr<sp/>pc);</highlight></codeline>
+<codeline lineno="160"><highlight class="normal"></highlight></codeline>
+<codeline lineno="161"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">long</highlight><highlight class="normal"><sp/>getFileSize(std::string<sp/>filename);</highlight></codeline>
+<codeline lineno="162"><highlight class="normal"><sp/><sp/><sp/><sp/>std::wstring<sp/>stringToWString(</highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/>std::string&amp;<sp/>s);</highlight></codeline>
+<codeline lineno="163"><highlight class="normal"></highlight></codeline>
+<codeline lineno="164"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/>preparePathString(std::string&amp;<sp/>s);</highlight></codeline>
+<codeline lineno="165"><highlight class="normal"></highlight></codeline>
+<codeline lineno="166"><highlight class="normal"><sp/><sp/><sp/><sp/>std::pair&lt;int,<sp/>double&gt;<sp/>computeMaxJointDistance(arma::vec<sp/>joints1,<sp/>arma::vec<sp/>joints2);</highlight></codeline>
+<codeline lineno="167"><highlight class="normal"></highlight></codeline>
+<codeline lineno="168"><highlight class="normal"><sp/><sp/><sp/><sp/>arma::vec<sp/>convertAndRemoveOffset(std::vector&lt;long<sp/>long<sp/>int&gt;&amp;<sp/>supervisedTs);</highlight></codeline>
+<codeline lineno="169"><highlight class="normal"><sp/><sp/><sp/><sp/>arma::vec<sp/>convertTimesInMillisecondsToTimeInSeconds(std::vector&lt;long<sp/>long<sp/>int&gt;&amp;<sp/>supervisedTs);</highlight></codeline>
+<codeline lineno="170"><highlight class="normal"><sp/><sp/><sp/><sp/>std::vector&lt;long<sp/>long<sp/>int&gt;<sp/>convertTimesInSecondsToTimeInMilliseconds(arma::vec&amp;<sp/>timesInSeconds);</highlight></codeline>
+<codeline lineno="171"><highlight class="normal"></highlight></codeline>
+<codeline lineno="172"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">bool</highlight><highlight class="normal"><sp/>isRotationMatrix(arma::mat<sp/>rotMatrix);</highlight></codeline>
+<codeline lineno="173"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">bool</highlight><highlight class="normal"><sp/>isEqualThresh(</highlight><highlight class="keywordtype">double</highlight><highlight class="normal"><sp/>value1,<sp/></highlight><highlight class="keywordtype">double</highlight><highlight class="normal"><sp/>value2,<sp/></highlight><highlight class="keywordtype">double</highlight><highlight class="normal"><sp/>threshold);</highlight></codeline>
+<codeline lineno="174"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">bool</highlight><highlight class="normal"><sp/>isEqualThresh(arma::mat<sp/>mat1,<sp/>arma::mat<sp/>mat2,<sp/></highlight><highlight class="keywordtype">double</highlight><highlight class="normal"><sp/>threshold);</highlight></codeline>
+<codeline lineno="175"><highlight class="normal"><sp/><sp/><sp/><sp/>arma::vec<sp/>rotationMatrixToRpy(arma::mat<sp/>rotMatrix);</highlight></codeline>
+<codeline lineno="176"><highlight class="normal"></highlight></codeline>
+<codeline lineno="177"><highlight class="normal"><sp/><sp/><sp/><sp/>tf::Transform<sp/>affineTransMatrixToTf(arma::mat<sp/>transMatrix);</highlight></codeline>
+<codeline lineno="178"><highlight class="normal"></highlight></codeline>
+<codeline lineno="179"><highlight class="normal"><sp/><sp/><sp/><sp/>std::vector&lt;std::string&gt;<sp/>readFunctionSignature(std::string<sp/>prettyFunc);</highlight></codeline>
+<codeline lineno="180"><highlight class="normal"></highlight></codeline>
+<codeline lineno="181"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">template</highlight><highlight class="normal">&lt;</highlight><highlight class="keyword">typename</highlight><highlight class="normal"><sp/>S,<sp/></highlight><highlight class="keyword">typename</highlight><highlight class="normal"><sp/>T&gt;<sp/>std::vector&lt;T&gt;<sp/>castVector(std::vector&lt;S&gt;<sp/>vector)<sp/>{</highlight></codeline>
+<codeline lineno="182"><highlight class="normal"></highlight></codeline>
+<codeline lineno="183"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>std::vector&lt;T&gt;<sp/>castedVector;</highlight></codeline>
+<codeline lineno="184"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>castedVector.insert(castedVector.end(),<sp/>vector.begin(),<sp/>vector.end());</highlight></codeline>
+<codeline lineno="185"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal"><sp/>castedVector;</highlight></codeline>
+<codeline lineno="186"><highlight class="normal"></highlight></codeline>
+<codeline lineno="187"><highlight class="normal"><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline lineno="188"><highlight class="normal"></highlight></codeline>
+<codeline lineno="189"><highlight class="normal"><sp/><sp/><sp/><sp/>std::vector&lt;int&gt;<sp/>loadJointIdsFromName(StorageSingleton&amp;<sp/>storage,<sp/></highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/>robotId,<sp/>std::vector&lt;std::string&gt;<sp/>jointNames);</highlight></codeline>
+<codeline lineno="190"><highlight class="normal"><sp/><sp/><sp/><sp/>arma::vec<sp/>loadJointPosByTimestamp(StorageSingleton&amp;<sp/>storage,<sp/></highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/>robotId,<sp/>std::vector&lt;int&gt;<sp/>jointIds,<sp/></highlight><highlight class="keywordtype">long</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">long</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/>timeStamp);</highlight></codeline>
 <codeline lineno="191"><highlight class="normal"></highlight></codeline>
-<codeline lineno="192"><highlight class="normal"><sp/><sp/><sp/><sp/>std::vector&lt;int&gt;<sp/>loadJointIdsFromName(StorageSingleton&amp;<sp/>storage,<sp/></highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/>robotId,<sp/>std::vector&lt;std::string&gt;<sp/>jointNames);</highlight></codeline>
-<codeline lineno="193"><highlight class="normal"><sp/><sp/><sp/><sp/>arma::vec<sp/>loadJointPosByTimestamp(StorageSingleton&amp;<sp/>storage,<sp/></highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/>robotId,<sp/>std::vector&lt;int&gt;<sp/>jointIds,<sp/></highlight><highlight class="keywordtype">long</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">long</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/>timeStamp);</highlight></codeline>
+<codeline lineno="192"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">double</highlight><highlight class="normal"><sp/>armadilloMin(arma::vec&amp;<sp/>v);</highlight></codeline>
+<codeline lineno="193"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">double</highlight><highlight class="normal"><sp/>armadilloMax(arma::vec&amp;<sp/>v);</highlight></codeline>
 <codeline lineno="194"><highlight class="normal"></highlight></codeline>
-<codeline lineno="195"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">double</highlight><highlight class="normal"><sp/>armadilloMin(arma::vec&amp;<sp/>v);</highlight></codeline>
-<codeline lineno="196"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">double</highlight><highlight class="normal"><sp/>armadilloMax(arma::vec&amp;<sp/>v);</highlight></codeline>
+<codeline lineno="195"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">double</highlight><highlight class="normal"><sp/>armadilloMin(arma::mat&amp;<sp/>m);</highlight></codeline>
+<codeline lineno="196"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">double</highlight><highlight class="normal"><sp/>armadilloMax(arma::mat&amp;<sp/>m);</highlight></codeline>
 <codeline lineno="197"><highlight class="normal"></highlight></codeline>
-<codeline lineno="198"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">double</highlight><highlight class="normal"><sp/>armadilloMin(arma::mat&amp;<sp/>m);</highlight></codeline>
-<codeline lineno="199"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">double</highlight><highlight class="normal"><sp/>armadilloMax(arma::mat&amp;<sp/>m);</highlight></codeline>
-<codeline lineno="200"><highlight class="normal"></highlight></codeline>
-<codeline lineno="201"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">bool</highlight><highlight class="normal"><sp/>armadilloHasNan(arma::vec&amp;<sp/>v);</highlight></codeline>
-<codeline lineno="202"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">bool</highlight><highlight class="normal"><sp/>armadilloHasNan(arma::mat&amp;<sp/>m);</highlight></codeline>
-<codeline lineno="203"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight></codeline>
-<codeline lineno="204"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">bool</highlight><highlight class="normal"><sp/>armadilloHasInf(arma::vec&amp;<sp/>v);</highlight></codeline>
-<codeline lineno="205"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">bool</highlight><highlight class="normal"><sp/>armadilloHasInf(arma::mat&amp;<sp/>m);</highlight></codeline>
-<codeline lineno="206"><highlight class="normal"></highlight></codeline>
-<codeline lineno="207"><highlight class="normal"><sp/><sp/><sp/><sp/>arma::mat<sp/>computeRotFromCorrespondences(</highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/>std::vector&lt;arma::vec&gt;&amp;<sp/>cs1,<sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/>std::vector&lt;arma::vec&gt;&amp;<sp/>cs2);</highlight></codeline>
-<codeline lineno="208"><highlight class="normal"></highlight></codeline>
-<codeline lineno="209"><highlight class="normal"></highlight><highlight class="preprocessor">#ifndef<sp/>USEBOOST</highlight></codeline>
-<codeline lineno="210"><highlight class="preprocessor"></highlight><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">template</highlight><highlight class="normal">&lt;</highlight><highlight class="keyword">typename</highlight><highlight class="normal"><sp/>S,<sp/></highlight><highlight class="keyword">typename</highlight><highlight class="normal"><sp/>T&gt;<sp/></highlight><highlight class="keywordtype">bool</highlight><highlight class="normal"><sp/>mapContainsValue(std::map&lt;S,<sp/>T&gt;<sp/>m,<sp/>T<sp/>val)<sp/>{</highlight></codeline>
-<codeline lineno="211"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">for</highlight><highlight class="normal">(</highlight><highlight class="keyword">auto</highlight><highlight class="normal"><sp/>it<sp/>=<sp/>m.begin();<sp/>it<sp/>!=<sp/>m.end();<sp/>++it<sp/>)</highlight></codeline>
-<codeline lineno="212"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">if</highlight><highlight class="normal"><sp/>(it-&gt;second<sp/>==<sp/>val)</highlight></codeline>
-<codeline lineno="213"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal"><sp/></highlight><highlight class="keyword">true</highlight><highlight class="normal">;</highlight></codeline>
-<codeline lineno="214"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal"><sp/></highlight><highlight class="keyword">false</highlight><highlight class="normal">;</highlight></codeline>
-<codeline lineno="215"><highlight class="normal"><sp/><sp/><sp/><sp/>}</highlight></codeline>
-<codeline lineno="216"><highlight class="normal"></highlight></codeline>
-<codeline lineno="217"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">template</highlight><highlight class="normal">&lt;</highlight><highlight class="keyword">typename</highlight><highlight class="normal"><sp/>T&gt;<sp/>std::vector&lt;T&gt;<sp/>flatten(std::vector&lt;std::vector&lt;T&gt;<sp/>&gt;<sp/>vectors)<sp/>{</highlight></codeline>
-<codeline lineno="218"><highlight class="normal"></highlight></codeline>
-<codeline lineno="219"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>std::vector&lt;T&gt;<sp/>flattenedVector;</highlight></codeline>
-<codeline lineno="220"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">for</highlight><highlight class="normal">(std::vector&lt;T&gt;&amp;<sp/>vector<sp/>:<sp/>vectors)<sp/>{</highlight></codeline>
-<codeline lineno="221"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>flattenedVector.insert(flattenedVector.end(),<sp/>vector.begin(),<sp/>vector.end());</highlight></codeline>
-<codeline lineno="222"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>}</highlight></codeline>
-<codeline lineno="223"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal"><sp/>flattenedVector;</highlight></codeline>
+<codeline lineno="198"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">bool</highlight><highlight class="normal"><sp/>armadilloHasNan(arma::vec&amp;<sp/>v);</highlight></codeline>
+<codeline lineno="199"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">bool</highlight><highlight class="normal"><sp/>armadilloHasNan(arma::mat&amp;<sp/>m);</highlight></codeline>
+<codeline lineno="200"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight></codeline>
+<codeline lineno="201"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">bool</highlight><highlight class="normal"><sp/>armadilloHasInf(arma::vec&amp;<sp/>v);</highlight></codeline>
+<codeline lineno="202"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">bool</highlight><highlight class="normal"><sp/>armadilloHasInf(arma::mat&amp;<sp/>m);</highlight></codeline>
+<codeline lineno="203"><highlight class="normal"></highlight></codeline>
+<codeline lineno="204"><highlight class="normal"><sp/><sp/><sp/><sp/>arma::mat<sp/>computeRotFromCorrespondences(</highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/>std::vector&lt;arma::vec&gt;&amp;<sp/>cs1,<sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/>std::vector&lt;arma::vec&gt;&amp;<sp/>cs2);</highlight></codeline>
+<codeline lineno="205"><highlight class="normal"></highlight></codeline>
+<codeline lineno="206"><highlight class="normal"></highlight><highlight class="preprocessor">#ifndef<sp/>USEBOOST</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="207"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">template</highlight><highlight class="normal">&lt;</highlight><highlight class="keyword">typename</highlight><highlight class="normal"><sp/>S,<sp/></highlight><highlight class="keyword">typename</highlight><highlight class="normal"><sp/>T&gt;<sp/></highlight><highlight class="keywordtype">bool</highlight><highlight class="normal"><sp/>mapContainsValue(std::map&lt;S,<sp/>T&gt;<sp/>m,<sp/>T<sp/>val)<sp/>{</highlight></codeline>
+<codeline lineno="208"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">for</highlight><highlight class="normal">(</highlight><highlight class="keyword">auto</highlight><highlight class="normal"><sp/>it<sp/>=<sp/>m.begin();<sp/>it<sp/>!=<sp/>m.end();<sp/>++it<sp/>)</highlight></codeline>
+<codeline lineno="209"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">if</highlight><highlight class="normal"><sp/>(it-&gt;second<sp/>==<sp/>val)</highlight></codeline>
+<codeline lineno="210"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal"><sp/></highlight><highlight class="keyword">true</highlight><highlight class="normal">;</highlight></codeline>
+<codeline lineno="211"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal"><sp/></highlight><highlight class="keyword">false</highlight><highlight class="normal">;</highlight></codeline>
+<codeline lineno="212"><highlight class="normal"><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline lineno="213"><highlight class="normal"></highlight></codeline>
+<codeline lineno="214"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">template</highlight><highlight class="normal">&lt;</highlight><highlight class="keyword">typename</highlight><highlight class="normal"><sp/>T&gt;<sp/>std::vector&lt;T&gt;<sp/>flatten(std::vector&lt;std::vector&lt;T&gt;<sp/>&gt;<sp/>vectors)<sp/>{</highlight></codeline>
+<codeline lineno="215"><highlight class="normal"></highlight></codeline>
+<codeline lineno="216"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>std::vector&lt;T&gt;<sp/>flattenedVector;</highlight></codeline>
+<codeline lineno="217"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">for</highlight><highlight class="normal">(std::vector&lt;T&gt;&amp;<sp/>vector<sp/>:<sp/>vectors)<sp/>{</highlight></codeline>
+<codeline lineno="218"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>flattenedVector.insert(flattenedVector.end(),<sp/>vector.begin(),<sp/>vector.end());</highlight></codeline>
+<codeline lineno="219"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline lineno="220"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal"><sp/>flattenedVector;</highlight></codeline>
+<codeline lineno="221"><highlight class="normal"></highlight></codeline>
+<codeline lineno="222"><highlight class="normal"><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline lineno="223"><highlight class="normal"></highlight><highlight class="preprocessor">#endif</highlight><highlight class="normal"></highlight></codeline>
 <codeline lineno="224"><highlight class="normal"></highlight></codeline>
-<codeline lineno="225"><highlight class="normal"><sp/><sp/><sp/><sp/>}</highlight></codeline>
-<codeline lineno="226"><highlight class="normal"></highlight><highlight class="preprocessor">#endif</highlight></codeline>
-<codeline lineno="227"><highlight class="preprocessor"></highlight><highlight class="normal"></highlight></codeline>
-<codeline lineno="228"><highlight class="normal">}</highlight></codeline>
-<codeline lineno="229"><highlight class="normal"></highlight></codeline>
-<codeline lineno="230"><highlight class="normal"></highlight><highlight class="preprocessor">#endif</highlight></codeline>
+<codeline lineno="225"><highlight class="normal">}</highlight></codeline>
+<codeline lineno="226"><highlight class="normal"></highlight></codeline>
+<codeline lineno="227"><highlight class="normal"></highlight><highlight class="preprocessor">#endif</highlight></codeline>
     </programlisting>
-    <location file="/home/andreasmennel/iis_robot_sw/iis_catkin_ws/src/kukadu/include/kukadu/utils/utils.hpp"/>
+    <location file="/home/agyss/iis_robot_sw/iis_catkin_ws/src/kukadu/include/kukadu/utils/utils.hpp"/>
   </compounddef>
 </doxygen>

@@ -1,48 +1,48 @@
 <?xml version='1.0' encoding='UTF-8' standalone='no'?>
-<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.8.6">
-  <compounddef id="kukadutypes_8cpp" kind="file">
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.8.11">
+  <compounddef id="kukadutypes_8cpp" kind="file" language="C++">
     <compoundname>kukadutypes.cpp</compoundname>
     <includes local="no">chrono</includes>
     <includes refid="kukadutypes_8hpp" local="no">kukadu/types/kukadutypes.hpp</includes>
     <incdepgraph>
-      <node id="5142">
-        <label>exception</label>
-      </node>
-      <node id="5146">
-        <label>random</label>
-      </node>
-      <node id="5141">
+      <node id="6058">
         <label>kukadu/types/kukadutypes.hpp</label>
         <link refid="kukadutypes_8hpp_source"/>
-        <childnode refid="5142" relation="include">
+        <childnode refid="6059" relation="include">
         </childnode>
-        <childnode refid="5143" relation="include">
+        <childnode refid="6060" relation="include">
         </childnode>
-        <childnode refid="5144" relation="include">
+        <childnode refid="6061" relation="include">
         </childnode>
-        <childnode refid="5145" relation="include">
+        <childnode refid="6062" relation="include">
         </childnode>
-        <childnode refid="5146" relation="include">
-        </childnode>
-      </node>
-      <node id="5139">
-        <label>/home/andreasmennel/iis_robot_sw/iis_catkin_ws/src/kukadu/src/types/kukadutypes.cpp</label>
-        <link refid="kukadutypes.cpp"/>
-        <childnode refid="5140" relation="include">
-        </childnode>
-        <childnode refid="5141" relation="include">
+        <childnode refid="6063" relation="include">
         </childnode>
       </node>
-      <node id="5145">
+      <node id="6059">
+        <label>exception</label>
+      </node>
+      <node id="6063">
+        <label>random</label>
+      </node>
+      <node id="6062">
         <label>mutex</label>
       </node>
-      <node id="5140">
+      <node id="6057">
         <label>chrono</label>
       </node>
-      <node id="5144">
+      <node id="6061">
         <label>thread</label>
       </node>
-      <node id="5143">
+      <node id="6056">
+        <label>/home/agyss/iis_robot_sw/iis_catkin_ws/src/kukadu/src/types/kukadutypes.cpp</label>
+        <link refid="kukadutypes.cpp"/>
+        <childnode refid="6057" relation="include">
+        </childnode>
+        <childnode refid="6058" relation="include">
+        </childnode>
+      </node>
+      <node id="6060">
         <label>memory</label>
       </node>
     </incdepgraph>
@@ -56,10 +56,10 @@
 <codeline lineno="1"><highlight class="preprocessor">#include<sp/>&lt;chrono&gt;</highlight><highlight class="normal"></highlight></codeline>
 <codeline lineno="2"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&lt;kukadu/types/kukadutypes.hpp&gt;</highlight><highlight class="normal"></highlight></codeline>
 <codeline lineno="3"><highlight class="normal"></highlight></codeline>
-<codeline lineno="4"><highlight class="normal"></highlight><highlight class="keyword">using<sp/>namespace<sp/></highlight><highlight class="normal">std;</highlight></codeline>
-<codeline lineno="5"><highlight class="normal"></highlight><highlight class="keyword">using<sp/>namespace<sp/></highlight><highlight class="normal">std::chrono;</highlight></codeline>
+<codeline lineno="4"><highlight class="normal"></highlight><highlight class="keyword">using<sp/>namespace<sp/></highlight><highlight class="normal"><ref refid="namespacestd" kindref="compound">std</ref>;</highlight></codeline>
+<codeline lineno="5"><highlight class="normal"></highlight><highlight class="keyword">using<sp/>namespace<sp/></highlight><highlight class="normal"><ref refid="namespacestd_1_1chrono" kindref="compound">std::chrono</ref>;</highlight></codeline>
 <codeline lineno="6"><highlight class="normal"></highlight></codeline>
-<codeline lineno="7"><highlight class="normal"></highlight><highlight class="keyword">namespace<sp/></highlight><highlight class="normal">kukadu<sp/>{</highlight></codeline>
+<codeline lineno="7"><highlight class="normal"></highlight><highlight class="keyword">namespace<sp/></highlight><highlight class="normal"><ref refid="namespacekukadu" kindref="compound">kukadu</ref><sp/>{</highlight></codeline>
 <codeline lineno="8"><highlight class="normal"></highlight></codeline>
 <codeline lineno="9"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">long</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">long</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/>TimedObject::getCurrentTime()<sp/>{</highlight></codeline>
 <codeline lineno="10"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal"><sp/>duration_cast&lt;milliseconds&gt;(system_clock::now().time_since_epoch()).count();</highlight></codeline>
@@ -67,6 +67,6 @@
 <codeline lineno="12"><highlight class="normal"></highlight></codeline>
 <codeline lineno="13"><highlight class="normal">}</highlight></codeline>
     </programlisting>
-    <location file="/home/andreasmennel/iis_robot_sw/iis_catkin_ws/src/kukadu/src/types/kukadutypes.cpp"/>
+    <location file="/home/agyss/iis_robot_sw/iis_catkin_ws/src/kukadu/src/types/kukadutypes.cpp"/>
   </compounddef>
 </doxygen>

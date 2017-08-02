@@ -1,6 +1,6 @@
 <?xml version='1.0' encoding='UTF-8' standalone='no'?>
-<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.8.6">
-  <compounddef id="pcltools_8hpp" kind="file">
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.8.11">
+  <compounddef id="pcltools_8hpp" kind="file" language="C++">
     <compoundname>pcltools.hpp</compoundname>
     <includes local="no">vector</includes>
     <includes local="no">armadillo</includes>
@@ -8,67 +8,67 @@
     <includes local="no">pcl/point_types.h</includes>
     <includes refid="kukadutypes_8hpp" local="no">kukadu/types/kukadutypes.hpp</includes>
     <includes local="no">pcl/visualization/pcl_visualizer.h</includes>
-    <includedby refid="pcltools_8cpp" local="no">/home/andreasmennel/iis_robot_sw/iis_catkin_ws/src/kukadu/src/vision/pcltools.cpp</includedby>
-    <includedby refid="pcstdtrans_8cpp" local="no">/home/andreasmennel/iis_robot_sw/iis_catkin_ws/src/kukadu/src/vision/pcstdtrans.cpp</includedby>
+    <includedby refid="pcltools_8cpp" local="no">/home/agyss/iis_robot_sw/iis_catkin_ws/src/kukadu/src/vision/pcltools.cpp</includedby>
+    <includedby refid="pcstdtrans_8cpp" local="no">/home/agyss/iis_robot_sw/iis_catkin_ws/src/kukadu/src/vision/pcstdtrans.cpp</includedby>
     <incdepgraph>
-      <node id="2718">
+      <node id="3511">
         <label>pcl/point_types.h</label>
       </node>
-      <node id="2717">
+      <node id="3510">
         <label>pcl/point_cloud.h</label>
       </node>
-      <node id="2725">
-        <label>pcl/visualization/pcl_visualizer.h</label>
-      </node>
-      <node id="2716">
-        <label>armadillo</label>
-      </node>
-      <node id="2720">
-        <label>exception</label>
-      </node>
-      <node id="2724">
-        <label>random</label>
-      </node>
-      <node id="2714">
-        <label>/home/andreasmennel/iis_robot_sw/iis_catkin_ws/src/kukadu/include/kukadu/vision/pcltools.hpp</label>
-        <link refid="pcltools.hpp"/>
-        <childnode refid="2715" relation="include">
-        </childnode>
-        <childnode refid="2716" relation="include">
-        </childnode>
-        <childnode refid="2717" relation="include">
-        </childnode>
-        <childnode refid="2718" relation="include">
-        </childnode>
-        <childnode refid="2719" relation="include">
-        </childnode>
-        <childnode refid="2725" relation="include">
-        </childnode>
-      </node>
-      <node id="2719">
+      <node id="3512">
         <label>kukadu/types/kukadutypes.hpp</label>
         <link refid="kukadutypes_8hpp_source"/>
-        <childnode refid="2720" relation="include">
+        <childnode refid="3513" relation="include">
         </childnode>
-        <childnode refid="2721" relation="include">
+        <childnode refid="3514" relation="include">
         </childnode>
-        <childnode refid="2722" relation="include">
+        <childnode refid="3515" relation="include">
         </childnode>
-        <childnode refid="2723" relation="include">
+        <childnode refid="3516" relation="include">
         </childnode>
-        <childnode refid="2724" relation="include">
+        <childnode refid="3517" relation="include">
         </childnode>
       </node>
-      <node id="2715">
+      <node id="3518">
+        <label>pcl/visualization/pcl_visualizer.h</label>
+      </node>
+      <node id="3509">
+        <label>armadillo</label>
+      </node>
+      <node id="3513">
+        <label>exception</label>
+      </node>
+      <node id="3517">
+        <label>random</label>
+      </node>
+      <node id="3508">
         <label>vector</label>
       </node>
-      <node id="2723">
+      <node id="3516">
         <label>mutex</label>
       </node>
-      <node id="2722">
+      <node id="3507">
+        <label>/home/agyss/iis_robot_sw/iis_catkin_ws/src/kukadu/include/kukadu/vision/pcltools.hpp</label>
+        <link refid="pcltools.hpp"/>
+        <childnode refid="3508" relation="include">
+        </childnode>
+        <childnode refid="3509" relation="include">
+        </childnode>
+        <childnode refid="3510" relation="include">
+        </childnode>
+        <childnode refid="3511" relation="include">
+        </childnode>
+        <childnode refid="3512" relation="include">
+        </childnode>
+        <childnode refid="3518" relation="include">
+        </childnode>
+      </node>
+      <node id="3515">
         <label>thread</label>
       </node>
-      <node id="2721">
+      <node id="3514">
         <label>memory</label>
       </node>
     </incdepgraph>
@@ -80,9 +80,9 @@
     <detaileddescription>
     </detaileddescription>
     <programlisting>
-<codeline lineno="1"><highlight class="preprocessor">#ifndef<sp/>KUKADU_PCLTOOLS_H</highlight></codeline>
-<codeline lineno="2"><highlight class="preprocessor"></highlight><highlight class="preprocessor">#define<sp/>KUKADU_PCLTOOLS_H</highlight></codeline>
-<codeline lineno="3"><highlight class="preprocessor"></highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="1"><highlight class="preprocessor">#ifndef<sp/>KUKADU_PCLTOOLS_H</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="2"><highlight class="normal"></highlight><highlight class="preprocessor">#define<sp/>KUKADU_PCLTOOLS_H</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="3"><highlight class="normal"></highlight></codeline>
 <codeline lineno="4"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&lt;vector&gt;</highlight><highlight class="normal"></highlight></codeline>
 <codeline lineno="5"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&lt;armadillo&gt;</highlight><highlight class="normal"></highlight></codeline>
 <codeline lineno="6"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&lt;pcl/point_cloud.h&gt;</highlight><highlight class="normal"></highlight></codeline>
@@ -90,7 +90,7 @@
 <codeline lineno="8"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&lt;kukadu/types/kukadutypes.hpp&gt;</highlight><highlight class="normal"></highlight></codeline>
 <codeline lineno="9"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&lt;pcl/visualization/pcl_visualizer.h&gt;</highlight><highlight class="normal"></highlight></codeline>
 <codeline lineno="10"><highlight class="normal"></highlight></codeline>
-<codeline lineno="11"><highlight class="normal"></highlight><highlight class="keyword">namespace<sp/></highlight><highlight class="normal">kukadu<sp/>{</highlight></codeline>
+<codeline lineno="11"><highlight class="normal"></highlight><highlight class="keyword">namespace<sp/></highlight><highlight class="normal"><ref refid="namespacekukadu" kindref="compound">kukadu</ref><sp/>{</highlight></codeline>
 <codeline lineno="12"><highlight class="normal"></highlight></codeline>
 <codeline lineno="13" refid="structkukadu_1_1FitCube" refkind="compound"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">struct<sp/></highlight><highlight class="normal"><ref refid="structkukadu_1_1FitCube" kindref="compound">FitCube</ref><sp/>{</highlight></codeline>
 <codeline lineno="14"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>Eigen::Vector3f<sp/>translation;</highlight></codeline>
@@ -144,6 +144,6 @@
 <codeline lineno="62"><highlight class="normal"></highlight></codeline>
 <codeline lineno="63"><highlight class="normal"></highlight><highlight class="preprocessor">#endif<sp/>//<sp/>PCLTOOLS_H</highlight></codeline>
     </programlisting>
-    <location file="/home/andreasmennel/iis_robot_sw/iis_catkin_ws/src/kukadu/include/kukadu/vision/pcltools.hpp"/>
+    <location file="/home/agyss/iis_robot_sw/iis_catkin_ws/src/kukadu/include/kukadu/vision/pcltools.hpp"/>
   </compounddef>
 </doxygen>

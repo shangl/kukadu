@@ -5,6 +5,23 @@ goog.require('Blockly.cake');
 
 var skillCounter = 0;
 
+Blockly.cake['objectposition'] = function (block) {
+    var variableName = block.getFieldValue("VariableName");
+    var objectName = block.getFieldValue("ObjectType");
+
+    return "auto " + variableName + " = PoseEstimatorFactory::get().getPoseFor(\"" + objectName + "\");\n" +
+        "    position.pose.position.x = position.pose.position.x - 0.43;\n" +
+        "    position.pose.position.y = position.pose.position.y + 0.42;\n" +
+        "    position.pose.position.z = position.pose.position.z - 0.03;\n" +
+        "    position.pose.position.z = position.pose.position.z + 0.15;\n" +
+        "    tf::Quaternion rot = rpyToQuat(0.0, M_PI, 0.0);\n" +
+        "    position.pose.orientation.x = rot.getX();\n" +
+        "    position.pose.orientation.y = rot.getY();\n" +
+        "    position.pose.orientation.z = rot.getZ();\n" +
+        "    position.pose.orientation.w = rot.getW();"
+};
+
+
 Blockly.cake['skillloader'] = function (block) {
     Blockly.cake.definitions_['include_cake_string'] =
         '#include <stdlib.h>\n#include <kukadu/kukadu.hpp>\n#include <boost/program_options.hpp>';

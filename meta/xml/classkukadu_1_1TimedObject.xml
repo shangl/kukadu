@@ -1,11 +1,12 @@
 <?xml version='1.0' encoding='UTF-8' standalone='no'?>
-<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.8.6">
-  <compounddef id="classkukadu_1_1TimedObject" kind="class" prot="public">
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.8.11">
+  <compounddef id="classkukadu_1_1TimedObject" kind="class" language="C++" prot="public">
     <compoundname>kukadu::TimedObject</compoundname>
     <derivedcompoundref refid="classkukadu_1_1Controller" prot="private" virt="non-virtual">kukadu::Controller</derivedcompoundref>
     <derivedcompoundref refid="classkukadu_1_1ControlQueue" prot="public" virt="non-virtual">kukadu::ControlQueue</derivedcompoundref>
     <derivedcompoundref refid="classkukadu_1_1GenericHand" prot="public" virt="non-virtual">kukadu::GenericHand</derivedcompoundref>
     <derivedcompoundref refid="classkukadu_1_1ModuleUsageSingleton" prot="private" virt="non-virtual">kukadu::ModuleUsageSingleton</derivedcompoundref>
+    <derivedcompoundref refid="classkukadu_1_1PoseEstimator" prot="public" virt="non-virtual">kukadu::PoseEstimator</derivedcompoundref>
     <derivedcompoundref refid="classkukadu_1_1SensorStorage" prot="public" virt="non-virtual">kukadu::SensorStorage</derivedcompoundref>
       <sectiondef kind="public-static-func">
       <memberdef kind="function" id="classkukadu_1_1TimedObject_1a9c4db6e3f71d4bbddecd12b43e586691" prot="public" static="yes" const="no" explicit="no" inline="no" virt="non-virtual">
@@ -20,7 +21,7 @@
 </para>        </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/home/andreasmennel/iis_robot_sw/iis_catkin_ws/src/kukadu/include/kukadu/types/kukadutypes.hpp" line="87" column="1" bodyfile="/home/andreasmennel/iis_robot_sw/iis_catkin_ws/src/kukadu/src/types/kukadutypes.cpp" bodystart="9" bodyend="11"/>
+        <location file="/home/agyss/iis_robot_sw/iis_catkin_ws/src/kukadu/include/kukadu/types/kukadutypes.hpp" line="87" column="1" bodyfile="/home/agyss/iis_robot_sw/iis_catkin_ws/src/kukadu/src/types/kukadutypes.cpp" bodystart="9" bodyend="11"/>
       </memberdef>
       </sectiondef>
     <briefdescription>
@@ -28,114 +29,132 @@
     <detaileddescription>
     </detaileddescription>
     <inheritancegraph>
-      <node id="673">
+      <node id="697">
         <label>kukadu::ModuleUsageSingleton</label>
         <link refid="classkukadu_1_1ModuleUsageSingleton"/>
-        <childnode refid="657" relation="private-inheritance">
+        <childnode refid="680" relation="private-inheritance">
         </childnode>
       </node>
-      <node id="665">
+      <node id="698">
+        <label>kukadu::PoseEstimator</label>
+        <link refid="classkukadu_1_1PoseEstimator"/>
+        <childnode refid="680" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="689">
         <label>kukadu::TrajectoryExecutor</label>
         <link refid="classkukadu_1_1TrajectoryExecutor"/>
-        <childnode refid="658" relation="public-inheritance">
+        <childnode refid="681" relation="public-inheritance">
         </childnode>
       </node>
-      <node id="659">
+      <node id="682">
         <label>kukadu::CartesianPtp</label>
         <link refid="classkukadu_1_1CartesianPtp"/>
-        <childnode refid="658" relation="public-inheritance">
+        <childnode refid="681" relation="public-inheritance">
         </childnode>
       </node>
-      <node id="662">
+      <node id="685">
         <label>kukadu::ControllerActionClip</label>
         <link refid="classkukadu_1_1ControllerActionClip"/>
-        <childnode refid="658" relation="public-inheritance">
+        <childnode refid="681" relation="public-inheritance">
         </childnode>
       </node>
-      <node id="674">
+      <node id="700">
         <label>kukadu::SensorStorage</label>
         <link refid="classkukadu_1_1SensorStorage"/>
-        <childnode refid="657" relation="public-inheritance">
+        <childnode refid="680" relation="public-inheritance">
         </childnode>
       </node>
-      <node id="667">
+      <node id="687">
+        <label>kukadu::LocalizeObject</label>
+        <link refid="classkukadu_1_1LocalizeObject"/>
+        <childnode refid="681" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="691">
         <label>kukadu::ControlQueue</label>
         <link refid="classkukadu_1_1ControlQueue"/>
-        <childnode refid="657" relation="public-inheritance">
+        <childnode refid="680" relation="public-inheritance">
         </childnode>
       </node>
-      <node id="664">
+      <node id="688">
         <label>kukadu::SensingController</label>
         <link refid="classkukadu_1_1SensingController"/>
-        <childnode refid="658" relation="public-inheritance">
+        <childnode refid="681" relation="public-inheritance">
         </childnode>
       </node>
-      <node id="657">
+      <node id="680">
         <label>kukadu::TimedObject</label>
         <link refid="classkukadu_1_1TimedObject"/>
       </node>
-      <node id="663">
+      <node id="686">
         <label>kukadu::JointPtp</label>
         <link refid="classkukadu_1_1JointPtp"/>
-        <childnode refid="658" relation="public-inheritance">
+        <childnode refid="681" relation="public-inheritance">
         </childnode>
       </node>
-      <node id="668">
+      <node id="692">
         <label>kukadu::KukieControlQueue</label>
         <link refid="classkukadu_1_1KukieControlQueue"/>
-        <childnode refid="667" relation="public-inheritance">
+        <childnode refid="691" relation="public-inheritance">
         </childnode>
       </node>
-      <node id="671">
+      <node id="695">
         <label>kukadu::KukieHand</label>
         <link refid="classkukadu_1_1KukieHand"/>
-        <childnode refid="670" relation="public-inheritance">
+        <childnode refid="694" relation="public-inheritance">
         </childnode>
       </node>
-      <node id="672">
+      <node id="696">
         <label>kukadu::PlottingHand</label>
         <link refid="classkukadu_1_1PlottingHand"/>
-        <childnode refid="670" relation="public-inheritance">
+        <childnode refid="694" relation="public-inheritance">
         </childnode>
       </node>
-      <node id="658">
+      <node id="681">
         <label>kukadu::Controller</label>
         <link refid="classkukadu_1_1Controller"/>
-        <childnode refid="657" relation="private-inheritance">
+        <childnode refid="680" relation="private-inheritance">
         </childnode>
       </node>
-      <node id="666">
+      <node id="690">
         <label>kukadu::DMPExecutor</label>
         <link refid="classkukadu_1_1DMPExecutor"/>
-        <childnode refid="665" relation="public-inheritance">
+        <childnode refid="689" relation="public-inheritance">
         </childnode>
       </node>
-      <node id="661">
+      <node id="684">
         <label>kukadu::ConcatController</label>
         <link refid="classkukadu_1_1ConcatController"/>
-        <childnode refid="658" relation="public-inheritance">
+        <childnode refid="681" relation="public-inheritance">
         </childnode>
       </node>
-      <node id="660">
+      <node id="683">
         <label>kukadu::ComplexController</label>
         <link refid="classkukadu_1_1ComplexController"/>
-        <childnode refid="658" relation="public-inheritance">
+        <childnode refid="681" relation="public-inheritance">
         </childnode>
       </node>
-      <node id="670">
+      <node id="699">
+        <label>kukadu::PCBlobDetector</label>
+        <link refid="classkukadu_1_1PCBlobDetector"/>
+        <childnode refid="698" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="694">
         <label>kukadu::GenericHand</label>
         <link refid="classkukadu_1_1GenericHand"/>
-        <childnode refid="657" relation="public-inheritance">
+        <childnode refid="680" relation="public-inheritance">
         </childnode>
       </node>
-      <node id="669">
+      <node id="693">
         <label>kukadu::PlottingControlQueue</label>
         <link refid="classkukadu_1_1PlottingControlQueue"/>
-        <childnode refid="667" relation="public-inheritance">
+        <childnode refid="691" relation="public-inheritance">
         </childnode>
       </node>
     </inheritancegraph>
-    <location file="/home/andreasmennel/iis_robot_sw/iis_catkin_ws/src/kukadu/include/kukadu/types/kukadutypes.hpp" line="78" column="1" bodyfile="/home/andreasmennel/iis_robot_sw/iis_catkin_ws/src/kukadu/include/kukadu/types/kukadutypes.hpp" bodystart="78" bodyend="89"/>
+    <location file="/home/agyss/iis_robot_sw/iis_catkin_ws/src/kukadu/include/kukadu/types/kukadutypes.hpp" line="78" column="1" bodyfile="/home/agyss/iis_robot_sw/iis_catkin_ws/src/kukadu/include/kukadu/types/kukadutypes.hpp" bodystart="78" bodyend="89"/>
     <listofallmembers>
       <member refid="classkukadu_1_1TimedObject_1a9c4db6e3f71d4bbddecd12b43e586691" prot="public" virt="non-virtual"><scope>kukadu::TimedObject</scope><name>getCurrentTime</name></member>
     </listofallmembers>

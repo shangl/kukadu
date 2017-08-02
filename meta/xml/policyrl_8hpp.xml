@@ -1,240 +1,513 @@
 <?xml version='1.0' encoding='UTF-8' standalone='no'?>
-<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.8.6">
-  <compounddef id="policyrl_8hpp" kind="file">
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.8.11">
+  <compounddef id="policyrl_8hpp" kind="file" language="C++">
     <compoundname>policyrl.hpp</compoundname>
     <includes local="no">vector</includes>
     <includes local="no">armadillo</includes>
     <includes refid="queue_8hpp" local="no">kukadu/robot/queue.hpp</includes>
     <includes refid="kukadutypes_8hpp" local="no">kukadu/types/kukadutypes.hpp</includes>
     <includes refid="trajectory_8hpp" local="no">kukadu/control/trajectory.hpp</includes>
-    <includedby refid="policyrl_8cpp" local="no">/home/andreasmennel/iis_robot_sw/iis_catkin_ws/src/kukadu/src/learning/rl/policyrl.cpp</includedby>
-    <includedby refid="dmprl_8hpp" local="no">/home/andreasmennel/iis_robot_sw/iis_catkin_ws/src/kukadu/include/kukadu/learning/rl/dmprl.hpp</includedby>
-    <includedby refid="learning_8hpp" local="no">/home/andreasmennel/iis_robot_sw/iis_catkin_ws/src/kukadu/include/kukadu/learning.hpp</includedby>
+    <includedby refid="policyrl_8cpp" local="no">/home/agyss/iis_robot_sw/iis_catkin_ws/src/kukadu/src/learning/rl/policyrl.cpp</includedby>
+    <includedby refid="dmprl_8hpp" local="no">/home/agyss/iis_robot_sw/iis_catkin_ws/src/kukadu/include/kukadu/learning/rl/dmprl.hpp</includedby>
+    <includedby refid="learning_8hpp" local="no">/home/agyss/iis_robot_sw/iis_catkin_ws/src/kukadu/include/kukadu/learning.hpp</includedby>
     <incdepgraph>
-      <node id="892">
+      <node id="1265">
+        <label>sys/stat.h</label>
+      </node>
+      <node id="1282">
+        <label>list</label>
+      </node>
+      <node id="1268">
+        <label>gsl/gsl_vector.h</label>
+      </node>
+      <node id="1264">
+        <label>wordexp.h</label>
+      </node>
+      <node id="1263">
+        <label>stdbool.h</label>
+      </node>
+      <node id="1259">
+        <label>stdarg.h</label>
+      </node>
+      <node id="1243">
         <label>cppconn/resultset.h</label>
       </node>
-      <node id="873">
+      <node id="1276">
+        <label>sensor_msgs/PointCloud2.h</label>
+      </node>
+      <node id="1246">
+        <label>kukadu/control/trajectory.hpp</label>
+        <link refid="trajectory_8hpp_source"/>
+        <childnode refid="1222" relation="include">
+        </childnode>
+        <childnode refid="1223" relation="include">
+        </childnode>
+        <childnode refid="1229" relation="include">
+        </childnode>
+        <childnode refid="1247" relation="include">
+        </childnode>
+      </node>
+      <node id="1224">
         <label>queue</label>
       </node>
-      <node id="875">
-        <label>kukadu/robot/filters.hpp</label>
-        <link refid="filters_8hpp_source"/>
-        <childnode refid="876" relation="include">
+      <node id="1274">
+        <label>pcl/PCLPointCloud2.h</label>
+      </node>
+      <node id="1252">
+        <label>limits</label>
+      </node>
+      <node id="1223">
+        <label>kukadu/robot/queue.hpp</label>
+        <link refid="queue_8hpp"/>
+        <childnode refid="1224" relation="include">
         </childnode>
-        <childnode refid="878" relation="include">
+        <childnode refid="1221" relation="include">
+        </childnode>
+        <childnode refid="1222" relation="include">
+        </childnode>
+        <childnode refid="1225" relation="include">
+        </childnode>
+        <childnode refid="1226" relation="include">
+        </childnode>
+        <childnode refid="1235" relation="include">
+        </childnode>
+        <childnode refid="1229" relation="include">
+        </childnode>
+        <childnode refid="1245" relation="include">
+        </childnode>
+        <childnode refid="1237" relation="include">
         </childnode>
       </node>
-      <node id="885">
+      <node id="1271">
+        <label>pcl/point_types.h</label>
+      </node>
+      <node id="1237">
+        <label>kukadu/storage/storagesingleton.hpp</label>
+        <link refid="storagesingleton_8hpp_source"/>
+        <childnode refid="1238" relation="include">
+        </childnode>
+        <childnode refid="1224" relation="include">
+        </childnode>
+        <childnode refid="1236" relation="include">
+        </childnode>
+        <childnode refid="1221" relation="include">
+        </childnode>
+        <childnode refid="1239" relation="include">
+        </childnode>
+        <childnode refid="1229" relation="include">
+        </childnode>
+        <childnode refid="1240" relation="include">
+        </childnode>
+        <childnode refid="1241" relation="include">
+        </childnode>
+        <childnode refid="1242" relation="include">
+        </childnode>
+        <childnode refid="1243" relation="include">
+        </childnode>
+        <childnode refid="1244" relation="include">
+        </childnode>
+      </node>
+      <node id="1270">
+        <label>pcl/point_cloud.h</label>
+      </node>
+      <node id="1229">
+        <label>kukadu/types/kukadutypes.hpp</label>
+        <link refid="kukadutypes_8hpp_source"/>
+        <childnode refid="1230" relation="include">
+        </childnode>
+        <childnode refid="1231" relation="include">
+        </childnode>
+        <childnode refid="1232" relation="include">
+        </childnode>
+        <childnode refid="1233" relation="include">
+        </childnode>
+        <childnode refid="1234" relation="include">
+        </childnode>
+      </node>
+      <node id="1285">
+        <label>kukadu/vision/pcstdtrans.hpp</label>
+        <link refid="pcstdtrans_8hpp_source"/>
+        <childnode refid="1222" relation="include">
+        </childnode>
+        <childnode refid="1286" relation="include">
+        </childnode>
+        <childnode refid="1287" relation="include">
+        </childnode>
+      </node>
+      <node id="1279">
+        <label>stdexcept</label>
+      </node>
+      <node id="1262">
+        <label>termios.h</label>
+      </node>
+      <node id="1273">
+        <label>eigen3/Eigen/Dense</label>
+      </node>
+      <node id="1235">
+        <label>kukadu/robot/hardware.hpp</label>
+        <link refid="hardware_8hpp_source"/>
+        <childnode refid="1236" relation="include">
+        </childnode>
+        <childnode refid="1222" relation="include">
+        </childnode>
+        <childnode refid="1227" relation="include">
+        </childnode>
+        <childnode refid="1237" relation="include">
+        </childnode>
+      </node>
+      <node id="1267">
+        <label>gsl/gsl_poly.h</label>
+      </node>
+      <node id="1236">
         <label>string</label>
       </node>
-      <node id="887">
+      <node id="1238">
         <label>map</label>
       </node>
-      <node id="871">
+      <node id="1278">
+        <label>kukadu/utils/gnuplot.hpp</label>
+        <link refid="gnuplot_8hpp_source"/>
+        <childnode refid="1239" relation="include">
+        </childnode>
+        <childnode refid="1236" relation="include">
+        </childnode>
+        <childnode refid="1221" relation="include">
+        </childnode>
+        <childnode refid="1257" relation="include">
+        </childnode>
+        <childnode refid="1255" relation="include">
+        </childnode>
+        <childnode refid="1279" relation="include">
+        </childnode>
+        <childnode refid="1280" relation="include">
+        </childnode>
+        <childnode refid="1281" relation="include">
+        </childnode>
+        <childnode refid="1282" relation="include">
+        </childnode>
+      </node>
+      <node id="1222">
         <label>armadillo</label>
       </node>
-      <node id="879">
+      <node id="1230">
         <label>exception</label>
       </node>
-      <node id="893">
+      <node id="1257">
+        <label>fstream</label>
+      </node>
+      <node id="1283">
+        <label>kukadu/utils/kukadutokenizer.hpp</label>
+        <link refid="kukadutokenizer_8hpp_source"/>
+        <childnode refid="1236" relation="include">
+        </childnode>
+        <childnode refid="1221" relation="include">
+        </childnode>
+      </node>
+      <node id="1244">
         <label>cppconn/statement.h</label>
       </node>
-      <node id="897">
-        <label>kukadu/types/controllerresult.hpp</label>
-        <link refid="controllerresult_8hpp_source"/>
-        <childnode refid="870" relation="include">
-        </childnode>
-        <childnode refid="871" relation="include">
-        </childnode>
-      </node>
-      <node id="883">
+      <node id="1234">
         <label>random</label>
       </node>
-      <node id="894">
+      <node id="1266">
+        <label>sys/types.h</label>
+      </node>
+      <node id="1227">
+        <label>kukadu/utils/types.hpp</label>
+        <link refid="utils_2types_8hpp_source"/>
+        <childnode refid="1221" relation="include">
+        </childnode>
+        <childnode refid="1222" relation="include">
+        </childnode>
+        <childnode refid="1228" relation="include">
+        </childnode>
+      </node>
+      <node id="1275">
+        <label>tf/transform_datatypes.h</label>
+      </node>
+      <node id="1280">
+        <label>cstdio</label>
+      </node>
+      <node id="1251">
+        <label>kukadu/utils/utils.hpp</label>
+        <link refid="utils_2utils_8hpp_source"/>
+        <childnode refid="1238" relation="include">
+        </childnode>
+        <childnode refid="1224" relation="include">
+        </childnode>
+        <childnode refid="1252" relation="include">
+        </childnode>
+        <childnode refid="1221" relation="include">
+        </childnode>
+        <childnode refid="1253" relation="include">
+        </childnode>
+        <childnode refid="1236" relation="include">
+        </childnode>
+        <childnode refid="1254" relation="include">
+        </childnode>
+        <childnode refid="1255" relation="include">
+        </childnode>
+        <childnode refid="1256" relation="include">
+        </childnode>
+        <childnode refid="1257" relation="include">
+        </childnode>
+        <childnode refid="1249" relation="include">
+        </childnode>
+        <childnode refid="1258" relation="include">
+        </childnode>
+        <childnode refid="1259" relation="include">
+        </childnode>
+        <childnode refid="1239" relation="include">
+        </childnode>
+        <childnode refid="1260" relation="include">
+        </childnode>
+        <childnode refid="1261" relation="include">
+        </childnode>
+        <childnode refid="1262" relation="include">
+        </childnode>
+        <childnode refid="1263" relation="include">
+        </childnode>
+        <childnode refid="1222" relation="include">
+        </childnode>
+        <childnode refid="1264" relation="include">
+        </childnode>
+        <childnode refid="1265" relation="include">
+        </childnode>
+        <childnode refid="1266" relation="include">
+        </childnode>
+        <childnode refid="1267" relation="include">
+        </childnode>
+        <childnode refid="1268" relation="include">
+        </childnode>
+        <childnode refid="1228" relation="include">
+        </childnode>
+        <childnode refid="1269" relation="include">
+        </childnode>
+        <childnode refid="1270" relation="include">
+        </childnode>
+        <childnode refid="1271" relation="include">
+        </childnode>
+        <childnode refid="1272" relation="include">
+        </childnode>
+        <childnode refid="1273" relation="include">
+        </childnode>
+        <childnode refid="1274" relation="include">
+        </childnode>
+        <childnode refid="1275" relation="include">
+        </childnode>
+        <childnode refid="1276" relation="include">
+        </childnode>
+        <childnode refid="1277" relation="include">
+        </childnode>
+        <childnode refid="1227" relation="include">
+        </childnode>
+        <childnode refid="1278" relation="include">
+        </childnode>
+        <childnode refid="1235" relation="include">
+        </childnode>
+        <childnode refid="1283" relation="include">
+        </childnode>
+      </node>
+      <node id="1250">
+        <label>geometry_msgs/PoseStamped.h</label>
+      </node>
+      <node id="1247">
+        <label>kukadu/control/controller.hpp</label>
+        <link refid="controller_8hpp_source"/>
+        <childnode refid="1236" relation="include">
+        </childnode>
+        <childnode refid="1223" relation="include">
+        </childnode>
+        <childnode refid="1235" relation="include">
+        </childnode>
+        <childnode refid="1248" relation="include">
+        </childnode>
+        <childnode refid="1229" relation="include">
+        </childnode>
+        <childnode refid="1289" relation="include">
+        </childnode>
+        <childnode refid="1237" relation="include">
+        </childnode>
+      </node>
+      <node id="1220">
+        <label>/home/agyss/iis_robot_sw/iis_catkin_ws/src/kukadu/include/kukadu/learning/rl/policyrl.hpp</label>
+        <link refid="policyrl.hpp"/>
+        <childnode refid="1221" relation="include">
+        </childnode>
+        <childnode refid="1222" relation="include">
+        </childnode>
+        <childnode refid="1223" relation="include">
+        </childnode>
+        <childnode refid="1229" relation="include">
+        </childnode>
+        <childnode refid="1246" relation="include">
+        </childnode>
+      </node>
+      <node id="1258">
+        <label>unistd.h</label>
+      </node>
+      <node id="1221">
+        <label>vector</label>
+      </node>
+      <node id="1226">
+        <label>kukadu/robot/filters.hpp</label>
+        <link refid="filters_8hpp_source"/>
+        <childnode refid="1227" relation="include">
+        </childnode>
+        <childnode refid="1229" relation="include">
+        </childnode>
+      </node>
+      <node id="1260">
+        <label>signal.h</label>
+      </node>
+      <node id="1249">
+        <label>utility</label>
+      </node>
+      <node id="1255">
+        <label>sstream</label>
+      </node>
+      <node id="1241">
+        <label>cppconn/driver.h</label>
+      </node>
+      <node id="1242">
+        <label>cppconn/exception.h</label>
+      </node>
+      <node id="1225">
+        <label>geometry_msgs/Pose.h</label>
+      </node>
+      <node id="1253">
+        <label>math.h</label>
+      </node>
+      <node id="1281">
+        <label>cstdlib</label>
+      </node>
+      <node id="1239">
+        <label>iostream</label>
+      </node>
+      <node id="1240">
+        <label>mysql_connection.h</label>
+      </node>
+      <node id="1287">
+        <label>pcl/kdtree/kdtree_flann.h</label>
+      </node>
+      <node id="1245">
         <label>kukadu/utils/destroyableobject.hpp</label>
         <link refid="destroyableobject_8hpp_source"/>
       </node>
-      <node id="878">
-        <label>kukadu/types/kukadutypes.hpp</label>
-        <link refid="kukadutypes_8hpp_source"/>
-        <childnode refid="879" relation="include">
-        </childnode>
-        <childnode refid="880" relation="include">
-        </childnode>
-        <childnode refid="881" relation="include">
-        </childnode>
-        <childnode refid="882" relation="include">
-        </childnode>
-        <childnode refid="883" relation="include">
-        </childnode>
-      </node>
-      <node id="872">
-        <label>kukadu/robot/queue.hpp</label>
-        <link refid="queue_8hpp"/>
-        <childnode refid="873" relation="include">
-        </childnode>
-        <childnode refid="870" relation="include">
-        </childnode>
-        <childnode refid="871" relation="include">
-        </childnode>
-        <childnode refid="874" relation="include">
-        </childnode>
-        <childnode refid="875" relation="include">
-        </childnode>
-        <childnode refid="884" relation="include">
-        </childnode>
-        <childnode refid="878" relation="include">
-        </childnode>
-        <childnode refid="894" relation="include">
-        </childnode>
-        <childnode refid="886" relation="include">
-        </childnode>
-      </node>
-      <node id="884">
-        <label>kukadu/robot/hardware.hpp</label>
-        <link refid="hardware_8hpp_source"/>
-        <childnode refid="885" relation="include">
-        </childnode>
-        <childnode refid="871" relation="include">
-        </childnode>
-        <childnode refid="876" relation="include">
-        </childnode>
-        <childnode refid="886" relation="include">
-        </childnode>
-      </node>
-      <node id="870">
-        <label>vector</label>
-      </node>
-      <node id="895">
-        <label>kukadu/control/trajectory.hpp</label>
-        <link refid="trajectory_8hpp_source"/>
-        <childnode refid="871" relation="include">
-        </childnode>
-        <childnode refid="872" relation="include">
-        </childnode>
-        <childnode refid="878" relation="include">
-        </childnode>
-        <childnode refid="896" relation="include">
-        </childnode>
-      </node>
-      <node id="890">
-        <label>cppconn/driver.h</label>
-      </node>
-      <node id="891">
-        <label>cppconn/exception.h</label>
-      </node>
-      <node id="874">
-        <label>geometry_msgs/Pose.h</label>
-      </node>
-      <node id="869">
-        <label>/home/andreasmennel/iis_robot_sw/iis_catkin_ws/src/kukadu/include/kukadu/learning/rl/policyrl.hpp</label>
-        <link refid="policyrl.hpp"/>
-        <childnode refid="870" relation="include">
-        </childnode>
-        <childnode refid="871" relation="include">
-        </childnode>
-        <childnode refid="872" relation="include">
-        </childnode>
-        <childnode refid="878" relation="include">
-        </childnode>
-        <childnode refid="895" relation="include">
-        </childnode>
-      </node>
-      <node id="888">
-        <label>iostream</label>
-      </node>
-      <node id="889">
-        <label>mysql_connection.h</label>
-      </node>
-      <node id="896">
-        <label>kukadu/control/controller.hpp</label>
-        <link refid="controller_8hpp_source"/>
-        <childnode refid="885" relation="include">
-        </childnode>
-        <childnode refid="884" relation="include">
-        </childnode>
-        <childnode refid="878" relation="include">
-        </childnode>
-        <childnode refid="897" relation="include">
-        </childnode>
-        <childnode refid="886" relation="include">
-        </childnode>
-        <childnode refid="872" relation="include">
-        </childnode>
-      </node>
-      <node id="882">
+      <node id="1233">
         <label>mutex</label>
       </node>
-      <node id="876">
-        <label>kukadu/utils/types.hpp</label>
-        <link refid="utils_2types_8hpp_source"/>
-        <childnode refid="870" relation="include">
-        </childnode>
-        <childnode refid="871" relation="include">
-        </childnode>
-        <childnode refid="877" relation="include">
-        </childnode>
+      <node id="1272">
+        <label>gsl/gsl_multifit.h</label>
       </node>
-      <node id="881">
+      <node id="1277">
+        <label>geometry_msgs/Quaternion.h</label>
+      </node>
+      <node id="1232">
         <label>thread</label>
       </node>
-      <node id="886">
-        <label>kukadu/storage/storagesingleton.hpp</label>
-        <link refid="storagesingleton_8hpp_source"/>
-        <childnode refid="887" relation="include">
+      <node id="1286">
+        <label>pcl_ros/transforms.h</label>
+      </node>
+      <node id="1269">
+        <label>gsl/gsl_linalg.h</label>
+      </node>
+      <node id="1248">
+        <label>kukadu/vision/localizer.hpp</label>
+        <link refid="localizer_8hpp_source"/>
+        <childnode refid="1231" relation="include">
         </childnode>
-        <childnode refid="873" relation="include">
+        <childnode refid="1221" relation="include">
         </childnode>
-        <childnode refid="885" relation="include">
+        <childnode refid="1236" relation="include">
         </childnode>
-        <childnode refid="870" relation="include">
+        <childnode refid="1249" relation="include">
         </childnode>
-        <childnode refid="888" relation="include">
+        <childnode refid="1222" relation="include">
         </childnode>
-        <childnode refid="878" relation="include">
+        <childnode refid="1225" relation="include">
         </childnode>
-        <childnode refid="889" relation="include">
+        <childnode refid="1250" relation="include">
         </childnode>
-        <childnode refid="890" relation="include">
+        <childnode refid="1251" relation="include">
         </childnode>
-        <childnode refid="891" relation="include">
+        <childnode refid="1284" relation="include">
         </childnode>
-        <childnode refid="892" relation="include">
-        </childnode>
-        <childnode refid="893" relation="include">
+        <childnode refid="1229" relation="include">
         </childnode>
       </node>
-      <node id="877">
+      <node id="1284">
+        <label>kukadu/vision/kinect.hpp</label>
+        <link refid="kinect_8hpp_source"/>
+        <childnode refid="1221" relation="include">
+        </childnode>
+        <childnode refid="1236" relation="include">
+        </childnode>
+        <childnode refid="1270" relation="include">
+        </childnode>
+        <childnode refid="1271" relation="include">
+        </childnode>
+        <childnode refid="1235" relation="include">
+        </childnode>
+        <childnode refid="1276" relation="include">
+        </childnode>
+        <childnode refid="1229" relation="include">
+        </childnode>
+        <childnode refid="1285" relation="include">
+        </childnode>
+        <childnode refid="1288" relation="include">
+        </childnode>
+      </node>
+      <node id="1288">
+        <label>pcl_conversions/pcl_conversions.h</label>
+      </node>
+      <node id="1256">
+        <label>stdio.h</label>
+      </node>
+      <node id="1254">
+        <label>cstring</label>
+      </node>
+      <node id="1228">
         <label>gsl/gsl_matrix.h</label>
       </node>
-      <node id="880">
+      <node id="1231">
         <label>memory</label>
+      </node>
+      <node id="1289">
+        <label>kukadu/types/controllerresult.hpp</label>
+        <link refid="controllerresult_8hpp_source"/>
+        <childnode refid="1221" relation="include">
+        </childnode>
+        <childnode refid="1222" relation="include">
+        </childnode>
+      </node>
+      <node id="1261">
+        <label>dirent.h</label>
       </node>
     </incdepgraph>
     <invincdepgraph>
-      <node id="899">
-        <label>/home/andreasmennel/iis_robot_sw/iis_catkin_ws/src/kukadu/include/kukadu/learning/rl/dmprl.hpp</label>
-        <link refid="dmprl_8hpp_source"/>
-        <childnode refid="900" relation="include">
+      <node id="1292">
+        <label>/home/agyss/iis_robot_sw/iis_catkin_ws/src/kukadu/include/kukadu/learning.hpp</label>
+        <link refid="learning_8hpp_source"/>
+        <childnode refid="1293" relation="include">
         </childnode>
       </node>
-      <node id="901">
-        <label>/home/andreasmennel/iis_robot_sw/iis_catkin_ws/src/kukadu/include/kukadu/kukadu.hpp</label>
+      <node id="1291">
+        <label>/home/agyss/iis_robot_sw/iis_catkin_ws/src/kukadu/include/kukadu/learning/rl/dmprl.hpp</label>
+        <link refid="dmprl_8hpp_source"/>
+        <childnode refid="1292" relation="include">
+        </childnode>
+      </node>
+      <node id="1293">
+        <label>/home/agyss/iis_robot_sw/iis_catkin_ws/src/kukadu/include/kukadu/kukadu.hpp</label>
         <link refid="kukadu_8hpp_source"/>
       </node>
-      <node id="898">
-        <label>/home/andreasmennel/iis_robot_sw/iis_catkin_ws/src/kukadu/include/kukadu/learning/rl/policyrl.hpp</label>
+      <node id="1290">
+        <label>/home/agyss/iis_robot_sw/iis_catkin_ws/src/kukadu/include/kukadu/learning/rl/policyrl.hpp</label>
         <link refid="policyrl.hpp"/>
-        <childnode refid="899" relation="include">
+        <childnode refid="1291" relation="include">
         </childnode>
-        <childnode refid="900" relation="include">
-        </childnode>
-      </node>
-      <node id="900">
-        <label>/home/andreasmennel/iis_robot_sw/iis_catkin_ws/src/kukadu/include/kukadu/learning.hpp</label>
-        <link refid="learning_8hpp_source"/>
-        <childnode refid="901" relation="include">
+        <childnode refid="1292" relation="include">
         </childnode>
       </node>
     </invincdepgraph>
@@ -251,16 +524,16 @@
     <detaileddescription>
     </detaileddescription>
     <programlisting>
-<codeline lineno="1"><highlight class="preprocessor">#ifndef<sp/>KUKADU_POLICYRL_H</highlight></codeline>
-<codeline lineno="2"><highlight class="preprocessor"></highlight><highlight class="preprocessor">#define<sp/>KUKADU_POLICYRL_H</highlight></codeline>
-<codeline lineno="3"><highlight class="preprocessor"></highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="1"><highlight class="preprocessor">#ifndef<sp/>KUKADU_POLICYRL_H</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="2"><highlight class="normal"></highlight><highlight class="preprocessor">#define<sp/>KUKADU_POLICYRL_H</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="3"><highlight class="normal"></highlight></codeline>
 <codeline lineno="4"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&lt;vector&gt;</highlight><highlight class="normal"></highlight></codeline>
 <codeline lineno="5"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&lt;armadillo&gt;</highlight><highlight class="normal"></highlight></codeline>
 <codeline lineno="6"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&lt;<ref refid="queue_8hpp" kindref="compound">kukadu/robot/queue.hpp</ref>&gt;</highlight><highlight class="normal"></highlight></codeline>
 <codeline lineno="7"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&lt;kukadu/types/kukadutypes.hpp&gt;</highlight><highlight class="normal"></highlight></codeline>
 <codeline lineno="8"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&lt;kukadu/control/trajectory.hpp&gt;</highlight><highlight class="normal"></highlight></codeline>
 <codeline lineno="9"><highlight class="normal"></highlight></codeline>
-<codeline lineno="10"><highlight class="normal"></highlight><highlight class="keyword">namespace<sp/></highlight><highlight class="normal">kukadu<sp/>{</highlight></codeline>
+<codeline lineno="10"><highlight class="normal"></highlight><highlight class="keyword">namespace<sp/></highlight><highlight class="normal"><ref refid="namespacekukadu" kindref="compound">kukadu</ref><sp/>{</highlight></codeline>
 <codeline lineno="11"><highlight class="normal"></highlight></codeline>
 <codeline lineno="17" refid="classkukadu_1_1CostComputer" refkind="compound"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">class<sp/></highlight><highlight class="normal"><ref refid="classkukadu_1_1CostComputer" kindref="compound">CostComputer</ref><sp/>{</highlight></codeline>
 <codeline lineno="18"><highlight class="normal"></highlight></codeline>
@@ -291,7 +564,7 @@
 <codeline lineno="47"><highlight class="normal"></highlight></codeline>
 <codeline lineno="48"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/>writeToFile(std::string<sp/>file,<sp/></highlight><highlight class="keywordtype">double</highlight><highlight class="normal"><sp/>tStart,<sp/></highlight><highlight class="keywordtype">double</highlight><highlight class="normal"><sp/>tEnd,<sp/></highlight><highlight class="keywordtype">double</highlight><highlight class="normal"><sp/>stepSize);</highlight></codeline>
 <codeline lineno="49"><highlight class="normal"></highlight></codeline>
-<codeline lineno="50"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">double</highlight><highlight class="normal"><sp/><ref refid="classkukadu_1_1TrajectoryBasedReward_1a320c223ada03c976b2c545203d1b26d8" kindref="member">computeCost</ref>(KUKADU_SHARED_PTR&lt;ControllerResult&gt;<sp/>results);</highlight></codeline>
+<codeline lineno="50"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">double</highlight><highlight class="normal"><sp/><ref refid="classkukadu_1_1CostComputer_1a8d02974e1f097ac0451f03f535843175" kindref="member">computeCost</ref>(KUKADU_SHARED_PTR&lt;ControllerResult&gt;<sp/>results);</highlight></codeline>
 <codeline lineno="51"><highlight class="normal"></highlight></codeline>
 <codeline lineno="52"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>KUKADU_SHARED_PTR&lt;ControllerResult&gt;<sp/>getOptimalTraj();</highlight></codeline>
 <codeline lineno="53"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>KUKADU_SHARED_PTR&lt;ControllerResult&gt;<sp/>getOptimalTraj(</highlight><highlight class="keywordtype">double</highlight><highlight class="normal"><sp/>tmax);</highlight></codeline>
@@ -325,7 +598,7 @@
 <codeline lineno="87"><highlight class="normal"></highlight></codeline>
 <codeline lineno="88"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">public</highlight><highlight class="normal">:</highlight></codeline>
 <codeline lineno="89"><highlight class="normal"></highlight></codeline>
-<codeline lineno="90"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">double</highlight><highlight class="normal"><sp/><ref refid="classkukadu_1_1TerminalCostComputer_1aec0329f108e413d004139f5da01f04e5" kindref="member">computeCost</ref>(KUKADU_SHARED_PTR&lt;ControllerResult&gt;<sp/>results);</highlight></codeline>
+<codeline lineno="90"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">double</highlight><highlight class="normal"><sp/><ref refid="classkukadu_1_1CostComputer_1a8d02974e1f097ac0451f03f535843175" kindref="member">computeCost</ref>(KUKADU_SHARED_PTR&lt;ControllerResult&gt;<sp/>results);</highlight></codeline>
 <codeline lineno="91"><highlight class="normal"></highlight></codeline>
 <codeline lineno="92"><highlight class="normal"><sp/><sp/><sp/><sp/>};</highlight></codeline>
 <codeline lineno="93"><highlight class="normal"></highlight></codeline>
@@ -354,11 +627,11 @@
 <codeline lineno="122"><highlight class="normal"></highlight></codeline>
 <codeline lineno="123"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">public</highlight><highlight class="normal">:</highlight></codeline>
 <codeline lineno="124"><highlight class="normal"></highlight></codeline>
-<codeline lineno="134"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><ref refid="classkukadu_1_1GeneralReinforcer_1a1de3f2b46e82b37454f8095701992c8d" kindref="member">GeneralReinforcer</ref>(KUKADU_SHARED_PTR&lt;TrajectoryExecutor&gt;<sp/>trajEx,<sp/>KUKADU_SHARED_PTR&lt;CostComputer&gt;<sp/>cost,<sp/>KUKADU_SHARED_PTR&lt;ControlQueue&gt;<sp/>simulationQueue,<sp/>KUKADU_SHARED_PTR&lt;ControlQueue&gt;<sp/>executionQueue);</highlight></codeline>
+<codeline lineno="134"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><ref refid="classkukadu_1_1GeneralReinforcer" kindref="compound">GeneralReinforcer</ref>(KUKADU_SHARED_PTR&lt;TrajectoryExecutor&gt;<sp/>trajEx,<sp/>KUKADU_SHARED_PTR&lt;CostComputer&gt;<sp/>cost,<sp/>KUKADU_SHARED_PTR&lt;ControlQueue&gt;<sp/>simulationQueue,<sp/>KUKADU_SHARED_PTR&lt;ControlQueue&gt;<sp/>executionQueue);</highlight></codeline>
 <codeline lineno="135"><highlight class="normal"></highlight></codeline>
-<codeline lineno="139"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">bool</highlight><highlight class="normal"><sp/><ref refid="classkukadu_1_1GeneralReinforcer_1aa384f66bcf7487b449dc67c768e86f5e" kindref="member">getIsFirstIteration</ref>();</highlight></codeline>
+<codeline lineno="139"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">bool</highlight><highlight class="normal"><sp/>getIsFirstIteration();</highlight></codeline>
 <codeline lineno="140"><highlight class="normal"></highlight></codeline>
-<codeline lineno="146"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/><ref refid="classkukadu_1_1GeneralReinforcer_1aee9cbeaac91379e1926088150f9c5063" kindref="member">performRollout</ref>(</highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/>doSimulation,<sp/></highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/>doExecution);</highlight></codeline>
+<codeline lineno="146"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/>performRollout(</highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/>doSimulation,<sp/></highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/>doExecution);</highlight></codeline>
 <codeline lineno="147"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/>setLastUpdate(KUKADU_SHARED_PTR&lt;Trajectory&gt;<sp/>lastUpdate);</highlight></codeline>
 <codeline lineno="148"><highlight class="normal"></highlight></codeline>
 <codeline lineno="149"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">double</highlight><highlight class="normal"><sp/>getLastUpdateReward();</highlight></codeline>
@@ -366,15 +639,15 @@
 <codeline lineno="151"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>KUKADU_SHARED_PTR&lt;Trajectory&gt;<sp/>getLastUpdate();</highlight></codeline>
 <codeline lineno="152"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>KUKADU_SHARED_PTR&lt;ControllerResult&gt;<sp/>getLastUpdateRes();</highlight></codeline>
 <codeline lineno="153"><highlight class="normal"></highlight></codeline>
-<codeline lineno="157"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>std::vector&lt;double&gt;<sp/><ref refid="classkukadu_1_1GeneralReinforcer_1a5c26cdef91f856f34c528547eee94472" kindref="member">getLastRolloutCost</ref>();</highlight></codeline>
+<codeline lineno="157"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>std::vector&lt;double&gt;<sp/>getLastRolloutCost();</highlight></codeline>
 <codeline lineno="158"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>std::vector&lt;KUKADU_SHARED_PTR&lt;Trajectory&gt;<sp/>&gt;<sp/>getLastRolloutParameters();</highlight></codeline>
 <codeline lineno="159"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>std::vector&lt;KUKADU_SHARED_PTR&lt;ControllerResult&gt;<sp/>&gt;<sp/>getLastExecutionResults();</highlight></codeline>
 <codeline lineno="160"><highlight class="normal"></highlight></codeline>
 <codeline lineno="161"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">virtual</highlight><highlight class="normal"><sp/>KUKADU_SHARED_PTR&lt;Trajectory&gt;<sp/>updateStep()<sp/>=<sp/>0;</highlight></codeline>
 <codeline lineno="162"><highlight class="normal"></highlight></codeline>
-<codeline lineno="166"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">virtual</highlight><highlight class="normal"><sp/>std::vector&lt;KUKADU_SHARED_PTR&lt;Trajectory&gt;<sp/>&gt;<sp/><ref refid="classkukadu_1_1GeneralReinforcer_1aa7e72994ca8c009d1331129480d2e49f" kindref="member">getInitialRollout</ref>()<sp/>=<sp/>0;</highlight></codeline>
+<codeline lineno="166"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">virtual</highlight><highlight class="normal"><sp/>std::vector&lt;KUKADU_SHARED_PTR&lt;Trajectory&gt;<sp/>&gt;<sp/>getInitialRollout()<sp/>=<sp/>0;</highlight></codeline>
 <codeline lineno="167"><highlight class="normal"></highlight></codeline>
-<codeline lineno="171"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">virtual</highlight><highlight class="normal"><sp/>std::vector&lt;KUKADU_SHARED_PTR&lt;Trajectory&gt;<sp/>&gt;<sp/><ref refid="classkukadu_1_1GeneralReinforcer_1aec3cde390852d93c52a01926bbc6feb3" kindref="member">computeRolloutParamters</ref>()<sp/>=<sp/>0;</highlight></codeline>
+<codeline lineno="171"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">virtual</highlight><highlight class="normal"><sp/>std::vector&lt;KUKADU_SHARED_PTR&lt;Trajectory&gt;<sp/>&gt;<sp/>computeRolloutParamters()<sp/>=<sp/>0;</highlight></codeline>
 <codeline lineno="172"><highlight class="normal"></highlight></codeline>
 <codeline lineno="173"><highlight class="normal"><sp/><sp/><sp/><sp/>};</highlight></codeline>
 <codeline lineno="174"><highlight class="normal"></highlight></codeline>
@@ -405,8 +678,8 @@
 <codeline lineno="199"><highlight class="normal"></highlight></codeline>
 <codeline lineno="200"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>KUKADU_SHARED_PTR&lt;Trajectory&gt;<sp/>updateStep();</highlight></codeline>
 <codeline lineno="201"><highlight class="normal"></highlight></codeline>
-<codeline lineno="202"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>std::vector&lt;KUKADU_SHARED_PTR&lt;Trajectory&gt;<sp/>&gt;<sp/><ref refid="classkukadu_1_1PoWER_1a944ac3c9811932c00eb085481baa53f8" kindref="member">getInitialRollout</ref>();</highlight></codeline>
-<codeline lineno="203"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>std::vector&lt;KUKADU_SHARED_PTR&lt;Trajectory&gt;<sp/>&gt;<sp/><ref refid="classkukadu_1_1PoWER_1aae0e23c81c88faa2bbd49f4f9a99dd28" kindref="member">computeRolloutParamters</ref>();</highlight></codeline>
+<codeline lineno="202"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>std::vector&lt;KUKADU_SHARED_PTR&lt;Trajectory&gt;<sp/>&gt;<sp/>getInitialRollout();</highlight></codeline>
+<codeline lineno="203"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>std::vector&lt;KUKADU_SHARED_PTR&lt;Trajectory&gt;<sp/>&gt;<sp/>computeRolloutParamters();</highlight></codeline>
 <codeline lineno="204"><highlight class="normal"></highlight></codeline>
 <codeline lineno="205"><highlight class="normal"><sp/><sp/><sp/><sp/>};</highlight></codeline>
 <codeline lineno="206"><highlight class="normal"></highlight></codeline>
@@ -438,8 +711,8 @@
 <codeline lineno="232"><highlight class="normal"></highlight></codeline>
 <codeline lineno="233"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>KUKADU_SHARED_PTR&lt;Trajectory&gt;<sp/>updateStep();</highlight></codeline>
 <codeline lineno="234"><highlight class="normal"></highlight></codeline>
-<codeline lineno="235"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>std::vector&lt;KUKADU_SHARED_PTR&lt;Trajectory&gt;<sp/>&gt;<sp/><ref refid="classkukadu_1_1GradientDescent_1a9a8a9b125c490b1eb93a1f604219fbd6" kindref="member">getInitialRollout</ref>();</highlight></codeline>
-<codeline lineno="236"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>std::vector&lt;KUKADU_SHARED_PTR&lt;Trajectory&gt;<sp/>&gt;<sp/><ref refid="classkukadu_1_1GradientDescent_1abd9d198e248e55a54a346f97a5cce987" kindref="member">computeRolloutParamters</ref>();</highlight></codeline>
+<codeline lineno="235"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>std::vector&lt;KUKADU_SHARED_PTR&lt;Trajectory&gt;<sp/>&gt;<sp/>getInitialRollout();</highlight></codeline>
+<codeline lineno="236"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>std::vector&lt;KUKADU_SHARED_PTR&lt;Trajectory&gt;<sp/>&gt;<sp/>computeRolloutParamters();</highlight></codeline>
 <codeline lineno="237"><highlight class="normal"></highlight></codeline>
 <codeline lineno="238"><highlight class="normal"><sp/><sp/><sp/><sp/>};</highlight></codeline>
 <codeline lineno="239"><highlight class="normal"></highlight></codeline>
@@ -447,6 +720,6 @@
 <codeline lineno="241"><highlight class="normal"></highlight></codeline>
 <codeline lineno="242"><highlight class="normal"></highlight><highlight class="preprocessor">#endif</highlight></codeline>
     </programlisting>
-    <location file="/home/andreasmennel/iis_robot_sw/iis_catkin_ws/src/kukadu/include/kukadu/learning/rl/policyrl.hpp"/>
+    <location file="/home/agyss/iis_robot_sw/iis_catkin_ws/src/kukadu/include/kukadu/learning/rl/policyrl.hpp"/>
   </compounddef>
 </doxygen>

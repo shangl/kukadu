@@ -1,5 +1,5 @@
 <?xml version='1.0' encoding='UTF-8' standalone='no'?>
-<doxygenindex xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="index.xsd" version="1.8.6">
+<doxygenindex xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="index.xsd" version="1.8.11">
   <compound refid="classkukadu_1_1ActionClip" kind="class"><name>kukadu::ActionClip</name>
     <member refid="classkukadu_1_1ActionClip_1a8198e178abb1de01df9735e56866a621" kind="variable"><name>actionId</name></member>
     <member refid="classkukadu_1_1ActionClip_1a78a9145b65cc6688873914a188f77517" kind="variable"><name>label</name></member>
@@ -266,10 +266,12 @@
   </compound>
   <compound refid="classkukadu_1_1CartesianPtp" kind="class"><name>kukadu::CartesianPtp</name>
     <member refid="classkukadu_1_1CartesianPtp_1a33551be141543c13cb3059cd00e9421d" kind="variable"><name>leftQueue</name></member>
+    <member refid="classkukadu_1_1CartesianPtp_1af32811dbd7f6c1bc998acf845667231a" kind="variable"><name>cartesians</name></member>
     <member refid="classkukadu_1_1CartesianPtp_1a600be6b576e5cc8f48ad3dc0a3aff600" kind="function"><name>createSkillFromThisInternal</name></member>
     <member refid="classkukadu_1_1CartesianPtp_1aef52261262091f2c44de05981ce656c9" kind="function"><name>CartesianPtp</name></member>
     <member refid="classkukadu_1_1CartesianPtp_1a940db0a2f6996d368dad9403bbf841dc" kind="function"><name>requiresGraspInternal</name></member>
     <member refid="classkukadu_1_1CartesianPtp_1a3028fe2ded596149391ea1de5f6ecd36" kind="function"><name>producesGraspInternal</name></member>
+    <member refid="classkukadu_1_1CartesianPtp_1ae4d16ed179a8e0a44dba844b3720107c" kind="function"><name>setCartesians</name></member>
     <member refid="classkukadu_1_1CartesianPtp_1a2a9e0b3ebb6abb4dfdb6bc5039890c6b" kind="function"><name>executeInternal</name></member>
     <member refid="classkukadu_1_1CartesianPtp_1a0fb7ceb0cdfd96339eff8f2d24851552" kind="function"><name>getClassName</name></member>
   </compound>
@@ -1325,6 +1327,7 @@
     <member refid="classkukadu_1_1Hardware_1a58f76f5117554f7f2613cdb082addf22" kind="function"><name>loadTypeNameFromInstanceName</name></member>
   </compound>
   <compound refid="classkukadu_1_1HardwareFactory" kind="class"><name>kukadu::HardwareFactory</name>
+    <member refid="classkukadu_1_1HardwareFactory_1ad0c224da773d617685598ce58fa480dd" kind="variable"><name>simulation</name></member>
     <member refid="classkukadu_1_1HardwareFactory_1a2970f4e0e7d328b4ae05962ea06726bc" kind="variable"><name>storage</name></member>
     <member refid="classkukadu_1_1HardwareFactory_1a589a022940de60126024ce902e08bc52" kind="variable"><name>createdHardware</name></member>
     <member refid="classkukadu_1_1HardwareFactory_1a551bedd0793d9793f4de3960d84b1832" kind="variable"><name>hardwareFactories</name></member>
@@ -1333,6 +1336,7 @@
     <member refid="classkukadu_1_1HardwareFactory_1a8d1439f94adc8f7014e67a5f444a99d2" kind="function"><name>loadHardware</name></member>
     <member refid="classkukadu_1_1HardwareFactory_1a47484c5add39e17755cdfb4945238108" kind="function"><name>listAvailableHardware</name></member>
     <member refid="classkukadu_1_1HardwareFactory_1a13a78b7570492e09690228f461724cd5" kind="function"><name>hardwareExists</name></member>
+    <member refid="classkukadu_1_1HardwareFactory_1a44b3608349e6d34a85f2141f1a9c058d" kind="function"><name>setSimulation</name></member>
   </compound>
   <compound refid="classkukadu_1_1InfTheoConstraints" kind="class"><name>kukadu::InfTheoConstraints</name>
     <member refid="classkukadu_1_1InfTheoConstraints_1aaf255dd0b67bf5552b926a368f95cae7" kind="variable"><name>x1s</name></member>
@@ -1415,8 +1419,8 @@
     <member refid="classkukadu_1_1JointHardware_1a6de32ca191c34f6230be7cdec4312f9b" kind="function"><name>jointPtp</name></member>
   </compound>
   <compound refid="classkukadu_1_1JointPtp" kind="class"><name>kukadu::JointPtp</name>
-    <member refid="classkukadu_1_1JointPtp_1adab623672e4813ec39fd66ebdee967f4" kind="variable"><name>hardware</name></member>
     <member refid="classkukadu_1_1JointPtp_1ab81351fb97a176dbb1021e60e5b546df" kind="variable"><name>joints</name></member>
+    <member refid="classkukadu_1_1JointPtp_1adab623672e4813ec39fd66ebdee967f4" kind="variable"><name>hardware</name></member>
     <member refid="classkukadu_1_1JointPtp_1ae8d2ba4ffc5e8bc29ecc684ab5b47646" kind="function"><name>createSkillFromThisInternal</name></member>
     <member refid="classkukadu_1_1JointPtp_1a0d8f96f5f3454a9c88ce6832db24ed9b" kind="function"><name>JointPtp</name></member>
     <member refid="classkukadu_1_1JointPtp_1af669a689640d7ff69977bd1575decca3" kind="function"><name>requiresGraspInternal</name></member>
@@ -1435,6 +1439,7 @@
     <member refid="classkukadu_1_1Kinect_1ad17bb7d1f98e2d73acf43092ae6d7c30" kind="variable"><name>keepRunning</name></member>
     <member refid="classkukadu_1_1Kinect_1aa24b853e7278089d1f92ce8bb1e49990" kind="variable"><name>doTransform</name></member>
     <member refid="classkukadu_1_1Kinect_1ab976ab063962cba4ca20f2c75b6f94cc" kind="variable"><name>firstCloudSet</name></member>
+    <member refid="classkukadu_1_1Kinect_1a413963ab52c00be1117e20a77908337b" kind="variable"><name>isStarted</name></member>
     <member refid="classkukadu_1_1Kinect_1aebdd80ef818292d1c9d2093b34598f0c" kind="variable"><name>pcRequested</name></member>
     <member refid="classkukadu_1_1Kinect_1a448862fae012cfef1c5b3ca0bd913c0b" kind="variable"><name>thr</name></member>
     <member refid="classkukadu_1_1Kinect_1af574fbff2446b36676b76c78886e7af3" kind="variable"><name>pcMutex</name></member>
@@ -1443,6 +1448,7 @@
     <member refid="classkukadu_1_1Kinect_1ab0e62b13fa25ac6858ea7c2b563fd92a" kind="variable"><name>kinectTopic</name></member>
     <member refid="classkukadu_1_1Kinect_1a2b338fac0921e6b3da04f04faa87681d" kind="variable"><name>kinectFrameSet</name></member>
     <member refid="classkukadu_1_1Kinect_1ad63085e2fc3b0db19e02c2769effee03" kind="variable"><name>kinectFrame</name></member>
+    <member refid="classkukadu_1_1Kinect_1ae97bdda3ba54fce0e343742524a09423" kind="variable"><name>listenerThread</name></member>
     <member refid="classkukadu_1_1Kinect_1a9adb2c6a2ef2acf1b6946fbf13e2a232" kind="variable"><name>transformListener</name></member>
     <member refid="classkukadu_1_1Kinect_1aa2c425db3031f0b501ca8971c22b5f1e" kind="variable"><name>currentPc</name></member>
     <member refid="classkukadu_1_1Kinect_1a15fbc2d312a73a3aa0bdce5a7a2d0849" kind="variable"><name>node</name></member>
@@ -1452,9 +1458,15 @@
     <member refid="classkukadu_1_1Kinect_1a8b78f98f68248654e992dbe8f9837686" kind="function"><name>runThread</name></member>
     <member refid="classkukadu_1_1Kinect_1aa92cba62862213c750c931240eb2964c" kind="function"><name>callbackKinectPointCloud</name></member>
     <member refid="classkukadu_1_1Kinect_1a7ee1169e3057aeb45620af011df8ce11" kind="function"><name>construct</name></member>
-    <member refid="classkukadu_1_1Kinect_1a18e2161a03fa72759943c37bf2df6ed9" kind="function"><name>Kinect</name></member>
-    <member refid="classkukadu_1_1Kinect_1ae924ba4f100e3de38d4dd4ebcd27be54" kind="function"><name>Kinect</name></member>
-    <member refid="classkukadu_1_1Kinect_1a4b87b79f3e0c87bd44bfd6e8fbae1b95" kind="function"><name>Kinect</name></member>
+    <member refid="classkukadu_1_1Kinect_1a4c06e1dcbbae10feb45cea0939689ae8" kind="function"><name>installHardwareTypeInternal</name></member>
+    <member refid="classkukadu_1_1Kinect_1aeb63d4a745467adb5bd89fb3e2bc0907" kind="function"><name>installHardwareInstanceInternal</name></member>
+    <member refid="classkukadu_1_1Kinect_1a391952d9e7205bf19a62a2ee4d10c5af" kind="function"><name>Kinect</name></member>
+    <member refid="classkukadu_1_1Kinect_1ad85ac295ea3634a120e8240c06991e4e" kind="function"><name>Kinect</name></member>
+    <member refid="classkukadu_1_1Kinect_1a1ee665a17656c9477c3359c6443daf0e" kind="function"><name>Kinect</name></member>
+    <member refid="classkukadu_1_1Kinect_1a0dd6fceea06577b19a6657b77b3b37cb" kind="function"><name>Kinect</name></member>
+    <member refid="classkukadu_1_1Kinect_1ac0edd2434fb83d76a06128b13af679da" kind="function"><name>~Kinect</name></member>
+    <member refid="classkukadu_1_1Kinect_1a019c4d31e36602ef125dad8036483b11" kind="function"><name>start</name></member>
+    <member refid="classkukadu_1_1Kinect_1ae033f8784a9d2734090e30fc3951952a" kind="function"><name>getTargetFrame</name></member>
     <member refid="classkukadu_1_1Kinect_1aa8f05b757c4a42a25a9cc578451a823d" kind="function"><name>stopSensing</name></member>
     <member refid="classkukadu_1_1Kinect_1aa8041a511f9343ead3b7d1d4c889bc58" kind="function"><name>visualizeCurrentPc</name></member>
     <member refid="classkukadu_1_1Kinect_1a9031c091eb4e7a4400adb5a103d372fa" kind="function"><name>storeCurrentPc</name></member>
@@ -1467,6 +1479,9 @@
     <member refid="classkukadu_1_1Kinect_1a563431a4eec6ce76af8d16b2610fba87" kind="function"><name>getCurrentColorPointCloud</name></member>
     <member refid="classkukadu_1_1Kinect_1a28ec9c63f657db4bf230bbb954ef2f64" kind="function"><name>getCurrentIntensityPointCloud</name></member>
     <member refid="classkukadu_1_1Kinect_1accb63ddb5e6024124d575e7fe229c429" kind="function"><name>startSensing</name></member>
+    <member refid="classkukadu_1_1Kinect_1ae2fc68bd369a49bd7e13818128f714ea" kind="function"><name>storeCurrentSensorDataToDatabase</name></member>
+    <member refid="classkukadu_1_1Kinect_1a1e6971edc32c4500ede5f03628db5c38" kind="function"><name>getPreferredPollingFrequency</name></member>
+    <member refid="classkukadu_1_1Kinect_1a3a3aaa7e671172c270b8081c44c47f65" kind="function"><name>loadData</name></member>
   </compound>
   <compound refid="classkukadu_1_1Kinematics" kind="class"><name>kukadu::Kinematics</name>
     <member refid="classkukadu_1_1Kinematics_1aef784993d076186b66260861c25b1ab8" kind="variable"><name>Constraints</name></member>
@@ -1570,9 +1585,16 @@
     <member refid="classkukadu_1_1KukaduGraphical_1aebabedab58a6b606f0ac48c8d5f1b65f" kind="function"><name>loadInformationFromDatabase</name></member>
     <member refid="classkukadu_1_1KukaduGraphical_1aa5584be5c5c3533673c63a7d068af5b8" kind="function"><name>createUI</name></member>
     <member refid="classkukadu_1_1KukaduGraphical_1ac7873f5a7ceb9849f092898ab013ff01" kind="function"><name>getCatkinMakeString</name></member>
+    <member refid="classkukadu_1_1KukaduGraphical_1afab63947a88e536634334c0a7f09fcf5" kind="function"><name>getCodeBlocks</name></member>
+    <member refid="classkukadu_1_1KukaduGraphical_1a78334a6924ee6a037065faa89858d732" kind="function"><name>getPackageName</name></member>
+    <member refid="classkukadu_1_1KukaduGraphical_1acde2947a5986a9bfd9c45ce977e1ddb5" kind="function"><name>writeToFileInPackage</name></member>
+    <member refid="classkukadu_1_1KukaduGraphical_1a37b1c2cb8bd3898310f9f7e82235aabf" kind="function"><name>createProjectInKukadu</name></member>
+    <member refid="classkukadu_1_1KukaduGraphical_1a86d29d11863ecb4ff7ef790c16cbec30" kind="function"><name>writeToFileAtPath</name></member>
+    <member refid="classkukadu_1_1KukaduGraphical_1a1084fa5c7458d71e804623b9c5065d0d" kind="function"><name>getCurrentSkillName</name></member>
+    <member refid="classkukadu_1_1KukaduGraphical_1a38e4fd9b6a691025c18cf63d1f18359d" kind="function"><name>isSkillInstalled</name></member>
     <member refid="classkukadu_1_1KukaduGraphical_1a36d85203598991752ba176be40349c27" kind="function"><name>KukaduGraphical</name></member>
     <member refid="classkukadu_1_1KukaduGraphical_1a3d3e70a610ecd2a280d800beec8b6516" kind="function"><name>~KukaduGraphical</name></member>
-    <member refid="classkukadu_1_1KukaduGraphical_1abed873be5552734546b9724dbc0109da" kind="slot"><name>simulateSkillSlot</name></member>
+    <member refid="classkukadu_1_1KukaduGraphical_1a65cf35613faf807fff6ecc1d82923afe" kind="slot"><name>executeSlot</name></member>
     <member refid="classkukadu_1_1KukaduGraphical_1ae350ba59c63d5d2abd4bc66ae3371054" kind="slot"><name>onStart</name></member>
   </compound>
   <compound refid="classkukadu_1_1KukaduGui" kind="class"><name>kukadu::KukaduGui</name>
@@ -1803,6 +1825,20 @@
     <member refid="classkukadu_1_1LibSvm_1a5df655d1a805a7725f9e956aba7dc756" kind="function"><name>classify</name></member>
     <member refid="classkukadu_1_1LibSvm_1a456212d6c1019592d0169fb875b25699" kind="function"><name>crossValidate</name></member>
   </compound>
+  <compound refid="classkukadu_1_1LocalizeObject" kind="class"><name>kukadu::LocalizeObject</name>
+    <member refid="classkukadu_1_1LocalizeObject_1a4d379bb7e969512f03c1cc28640aa7ed" kind="variable"><name>loc</name></member>
+    <member refid="classkukadu_1_1LocalizeObject_1a332f6e85430b0879812fa66556058399" kind="function"><name>createSkillFromThisInternal</name></member>
+    <member refid="classkukadu_1_1LocalizeObject_1a07148978476072ffa57817216ba5fbdd" kind="function"><name>LocalizeObject</name></member>
+    <member refid="classkukadu_1_1LocalizeObject_1a6148dc2d2bc11082e76b416b3fbcfb92" kind="function"><name>requiresGraspInternal</name></member>
+    <member refid="classkukadu_1_1LocalizeObject_1a6d42860a17b615eb4484eb81632bf1b7" kind="function"><name>producesGraspInternal</name></member>
+    <member refid="classkukadu_1_1LocalizeObject_1a4ae0c638b5667989d5c97a6bdac330b0" kind="function"><name>executeInternal</name></member>
+    <member refid="classkukadu_1_1LocalizeObject_1affbc5ba0b54fc0ef1d516326aaefcc34" kind="function"><name>setCenterX</name></member>
+    <member refid="classkukadu_1_1LocalizeObject_1a38efacc5b1054c60d08a8a9add5a02f8" kind="function"><name>setCenterY</name></member>
+    <member refid="classkukadu_1_1LocalizeObject_1a8e966afc4f6207101e9b954da20d00e1" kind="function"><name>setCenterZ</name></member>
+    <member refid="classkukadu_1_1LocalizeObject_1ac67cdfd9de8ef90112584a48b0e653c6" kind="function"><name>setBoxDimX</name></member>
+    <member refid="classkukadu_1_1LocalizeObject_1abc9d9771fa94ee0864cfe1723ab50711" kind="function"><name>setBoxDimY</name></member>
+    <member refid="classkukadu_1_1LocalizeObject_1a6b0ff094285cbae804c7168af8ce7b79" kind="function"><name>getClassName</name></member>
+  </compound>
   <compound refid="classkukadu_1_1Localizer" kind="class"><name>kukadu::Localizer</name>
     <member refid="classkukadu_1_1Localizer_1a5cfada2ce8027cdde1389e851e21aa77" kind="function"><name>getLocalizerFrame</name></member>
     <member refid="classkukadu_1_1Localizer_1a93434e46ef64f12a86f9778992d56b1f" kind="function"><name>localizeObject</name></member>
@@ -1991,12 +2027,21 @@
     <member refid="classkukadu_1_1PCBlobDetector_1a5c30084079835576c79d1e58bb83670b" kind="variable"><name>yOffset</name></member>
     <member refid="classkukadu_1_1PCBlobDetector_1a106d2af661b345a0831719de7d1a5af0" kind="variable"><name>center</name></member>
     <member refid="classkukadu_1_1PCBlobDetector_1a1dfd4dca507260425f6363ffde53e2f4" kind="variable"><name>kinect</name></member>
-    <member refid="classkukadu_1_1PCBlobDetector_1a5c8b01b90d67bb2e24c1bd7b6acffc05" kind="function"><name>PCBlobDetector</name></member>
+    <member refid="classkukadu_1_1PCBlobDetector_1ae5b4b7373b5f3ec8179aefe9c39f621b" kind="function"><name>getAvailableObjects</name></member>
+    <member refid="classkukadu_1_1PCBlobDetector_1a6d871ea34c1bf5fe0f8473be989c328a" kind="function"><name>installInternal</name></member>
+    <member refid="classkukadu_1_1PCBlobDetector_1a780ea812a3f96a959f532cc1eea40d46" kind="function"><name>estimatePoseInternal</name></member>
+    <member refid="classkukadu_1_1PCBlobDetector_1a7a771b2c092254fefbd1e550e8f9ef54" kind="function"><name>PCBlobDetector</name></member>
     <member refid="classkukadu_1_1PCBlobDetector_1ab627eaba835158c1463f654935f5463d" kind="function"><name>getLocalizerFrame</name></member>
     <member refid="classkukadu_1_1PCBlobDetector_1ae937318cd29943c4b7b44afa77ea3659" kind="function"><name>localizeObject</name></member>
     <member refid="classkukadu_1_1PCBlobDetector_1aba8ce4d2a86d17367b7b547c465c56c3" kind="function"><name>localizeObjects</name></member>
     <member refid="classkukadu_1_1PCBlobDetector_1a0ff8247ccbe35b03db8e5f022cf28e0c" kind="function"><name>localizeObjects</name></member>
-    <member refid="classkukadu_1_1PCBlobDetector_1a90b55d297f7418a7560df748c88fba32" kind="function"><name>estimatePose</name></member>
+    <member refid="classkukadu_1_1PCBlobDetector_1acf578908fc8abffdf4e91a57efd12b9e" kind="function"><name>setCenter</name></member>
+    <member refid="classkukadu_1_1PCBlobDetector_1a51c717b10b79279f244ae8ebbc83c7d3" kind="function"><name>setBoxDimension</name></member>
+    <member refid="classkukadu_1_1PCBlobDetector_1af4a554f4f12da43cb4fe2556d3a9a9e0" kind="function"><name>setCenterX</name></member>
+    <member refid="classkukadu_1_1PCBlobDetector_1a402e1de4b73f3d02aea3a0d0248e5be7" kind="function"><name>setCenterY</name></member>
+    <member refid="classkukadu_1_1PCBlobDetector_1ab4f8fd955a8b8db7db0ceccd83fcb696" kind="function"><name>setCenterZ</name></member>
+    <member refid="classkukadu_1_1PCBlobDetector_1a0477956057ea75ca7d93b54b6d09f529" kind="function"><name>setBoxDimX</name></member>
+    <member refid="classkukadu_1_1PCBlobDetector_1a19e488d0e52fe59bd2ed975b16b599de" kind="function"><name>setBoxDimY</name></member>
   </compound>
   <compound refid="classkukadu_1_1PCLTools" kind="class"><name>kukadu::PCLTools</name>
     <member refid="classkukadu_1_1PCLTools_1a93015c6b4866fe530266a12c7eb534f4" kind="variable"><name>isVisInit</name></member>
@@ -2144,7 +2189,23 @@
     <member refid="classkukadu_1_1PolyTrajectoryGenerator_1adb937d18031924c54829977211e1d250" kind="function"><name>getTrajectoryType</name></member>
   </compound>
   <compound refid="classkukadu_1_1PoseEstimator" kind="class"><name>kukadu::PoseEstimator</name>
-    <member refid="classkukadu_1_1PoseEstimator_1a4aaabec5499bfa763036c9f5174f69eb" kind="function"><name>estimatePose</name></member>
+    <member refid="classkukadu_1_1PoseEstimator_1a7edede249421bd861e508e2fdc2595c8" kind="variable"><name>storage</name></member>
+    <member refid="classkukadu_1_1PoseEstimator_1a88e6099dd0364a98e81981da2c9f0f15" kind="variable"><name>poseEstimatorName</name></member>
+    <member refid="classkukadu_1_1PoseEstimator_1af95f8a86f8f5ceae34a9acc4ae781299" kind="function"><name>getAvailableObjects</name></member>
+    <member refid="classkukadu_1_1PoseEstimator_1a05fe6b165ef84d2bc24c2701913696af" kind="function"><name>installInternal</name></member>
+    <member refid="classkukadu_1_1PoseEstimator_1aa0e4efe111f7aab91ea6494be54fd322" kind="function"><name>estimatePoseInternal</name></member>
+    <member refid="classkukadu_1_1PoseEstimator_1a191fe0608bd5fa53c0dfd0c1581a0f58" kind="function"><name>PoseEstimator</name></member>
+    <member refid="classkukadu_1_1PoseEstimator_1a7c93937d5d2a7aadeb2f2f073635d2a8" kind="function"><name>estimatePose</name></member>
+    <member refid="classkukadu_1_1PoseEstimator_1ab53d5ef88971b3a315b1bf39f9fa75b4" kind="function"><name>install</name></member>
+  </compound>
+  <compound refid="classkukadu_1_1PoseEstimatorFactory" kind="class"><name>kukadu::PoseEstimatorFactory</name>
+    <member refid="classkukadu_1_1PoseEstimatorFactory_1a970efd2be09590da202d87a481264f90" kind="variable"><name>poseEstimatorFactories</name></member>
+    <member refid="classkukadu_1_1PoseEstimatorFactory_1aea858c8a0bfec36fa18d350cd0515cf1" kind="function"><name>PoseEstimatorFactory</name></member>
+    <member refid="classkukadu_1_1PoseEstimatorFactory_1a59aa0bf226abf4703f98ae517739b260" kind="function"><name>get</name></member>
+    <member refid="classkukadu_1_1PoseEstimatorFactory_1a73c936c8607cbd90e78cee452239720a" kind="function"><name>loadPoseEstimator</name></member>
+    <member refid="classkukadu_1_1PoseEstimatorFactory_1adad4aaead4a67de649aad3a83ca5898f" kind="function"><name>listAvailablePoseEstimators</name></member>
+    <member refid="classkukadu_1_1PoseEstimatorFactory_1a1515bd70f9362757be83e95b22a0174d" kind="function"><name>poseEstimatorExists</name></member>
+    <member refid="classkukadu_1_1PoseEstimatorFactory_1a1f1c8610ca925068849ba11619b912b0" kind="function"><name>getPoseFor</name></member>
   </compound>
   <compound refid="classkukadu_1_1PoWER" kind="class"><name>kukadu::PoWER</name>
     <member refid="classkukadu_1_1PoWER_1a8adead3b9a843c39ab68e3b6c922ec02" kind="variable"><name>updatesPerRollout</name></member>
@@ -2528,9 +2589,10 @@
   </compound>
   <compound refid="classkukadu_1_1SkillFactory" kind="class"><name>kukadu::SkillFactory</name>
     <member refid="classkukadu_1_1SkillFactory_1af6e069fd37e1dc3ada35954f42143470" kind="variable"><name>storage</name></member>
-    <member refid="classkukadu_1_1SkillFactory_1a88cbd36a138cfe552a37f16471b3b176" kind="variable"><name>skillFactories</name></member>
+    <member refid="classkukadu_1_1SkillFactory_1ac958f9add57c0890b2d259cdb05561f6" kind="variable"><name>skillFactories</name></member>
     <member refid="classkukadu_1_1SkillFactory_1a2a797d9575d098fd70c53d4b0bdc6f32" kind="function"><name>SkillFactory</name></member>
     <member refid="classkukadu_1_1SkillFactory_1ae1777d7a32f4d032ff1f30c45c9bfde2" kind="function"><name>get</name></member>
+    <member refid="classkukadu_1_1SkillFactory_1a0048c0b90f590b8c605a5f57f625454f" kind="function"><name>addSkill</name></member>
     <member refid="classkukadu_1_1SkillFactory_1a0b9d5986cd2f0316ada19b23cfe39b18" kind="function"><name>loadSkill</name></member>
     <member refid="classkukadu_1_1SkillFactory_1af4ba2108570b3fe21ae7d3b542bebcb9" kind="function"><name>listAvailableSkills</name></member>
     <member refid="classkukadu_1_1SkillFactory_1a99bbad47f35201a082c85af15b054816" kind="function"><name>getSkillController</name></member>
@@ -2827,9 +2889,6 @@
     <member refid="namespacekukadu_1af2a88faeb228f7b67112e994a3db8179" kind="typedef"><name>ClustersToPoints</name></member>
     <member refid="namespacekukadu_1a5847dd1e58ac4746143040f0733890fc" kind="typedef"><name>PointsToClusters</name></member>
     <member refid="namespacekukadu_1a630f7f65e1f9c65949814a0cd297b182" kind="typedef"><name>Centroids</name></member>
-    <member refid="namespacekukadu_1aaf5b08cf4b4b2706561d7fa3642230a7" kind="variable"><name>joints</name></member>
-    <member refid="namespacekukadu_1a8586e10790c55060aec4a3f3c84e9786" kind="variable"><name>tEnd</name></member>
-    <member refid="namespacekukadu_1a350eac8cbce0d95afc60ddaff972b90c" kind="variable"><name>executionMode</name></member>
     <member refid="namespacekukadu_1abb61c4204f8db773c0c983bf215313c0" kind="variable"><name>momJsonResponse</name></member>
     <member refid="namespacekukadu_1a74c6551366c28524eb14f644f9c80efd" kind="variable"><name>degsOfFreedomMap</name></member>
     <member refid="namespacekukadu_1a3414c24f5ece06d1fca7fcd26091deda" kind="variable"><name>memManager</name></member>
@@ -2839,6 +2898,7 @@
     <member refid="namespacekukadu_1aa4ba01e143f30aaa8331014d8da0f160" kind="variable"><name>maxarg1</name></member>
     <member refid="namespacekukadu_1af1aec9125097d95132766e8a8852f81c" kind="variable"><name>maxarg2</name></member>
     <member refid="namespacekukadu_1a627d5cc15a5c553b373f2e781bd4b338" kind="variable"><name>DEFAULT_DELIMITER</name></member>
+    <member refid="namespacekukadu_1ab8292f47b70080fe31dcbf6c65f88d32" kind="function"><name>mergeHardware</name></member>
     <member refid="namespacekukadu_1a37fce1aa2ed5a847b2f56ce8853de4b5" kind="function"><name>constructDmpMys</name></member>
     <member refid="namespacekukadu_1a818b7bfadd10b3b0387bd99c650da1ac" kind="function"><name>computeDMPMys</name></member>
     <member refid="namespacekukadu_1a383a9d72755140f9dcf797a99e9eb77d" kind="function"><name>buildDMPBase</name></member>
@@ -2861,7 +2921,6 @@
     <member refid="namespacekukadu_1a13f6dc9a722ad4e8f9423b09c5f8891f" kind="function"><name>compareRanks</name></member>
     <member refid="namespacekukadu_1a3d72e272272f9e1876c2b0d2062f36c9" kind="function"><name>writefunction</name></member>
     <member refid="namespacekukadu_1a12c3f942ac0872bcc84f702257b7c459" kind="function"><name>computeSimulationFailingProbability</name></member>
-    <member refid="namespacekukadu_1a92e383e5f0525da3c599eb286041348e" kind="function"><name>dbStorage</name></member>
     <member refid="namespacekukadu_1aed3069e66787dd00d4a535ad7e1ab91d" kind="function"><name>loadClassificationData</name></member>
     <member refid="namespacekukadu_1a5f6f7e69f2cdaa68555f7ed4783a5202" kind="function"><name>fitToDim</name></member>
     <member refid="namespacekukadu_1a7da4063c7c4cd7269933b7e80b5033cb" kind="function"><name>storeExecution</name></member>
@@ -2963,7 +3022,6 @@
     <member refid="namespacekukadu_1a1569839c747b33a4b8dd6f713cc42126" kind="function"><name>rotationMatrixToRpy</name></member>
     <member refid="namespacekukadu_1a784596811a945607bcd7b00ccc3ec688" kind="function"><name>affineTransMatrixToTf</name></member>
     <member refid="namespacekukadu_1a928aee311dfd6d3e4df68dece4fded2a" kind="function"><name>readFunctionSignature</name></member>
-    <member refid="namespacekukadu_1ab8292f47b70080fe31dcbf6c65f88d32" kind="function"><name>mergeHardware</name></member>
     <member refid="namespacekukadu_1a91da90dc1e61e09ec4644d0de0732b3f" kind="function"><name>loadJointPosByTimestamp</name></member>
     <member refid="namespacekukadu_1a86c68c4fd2adcff11d0901b276af4e42" kind="function"><name>loadJointIdsFromName</name></member>
     <member refid="namespacekukadu_1aa69e410b88e68b8aed567e98003b64bd" kind="function"><name>armadilloMin</name></member>
@@ -3101,6 +3159,7 @@
     <member refid="namespacekukadu_1a4b1430357c13f56d3dd02bfcf1d17dde" kind="function"><name>mat33_pow2</name></member>
     <member refid="namespacekukadu_1ad8119e8c07da76d4deb269e0381105a6" kind="function"><name>_dbg_vec3_fprint</name></member>
     <member refid="namespacekukadu_1ad8e124fc2b1df9c77e26a631d5507c4a" kind="function"><name>_dbg_mat33_fprint</name></member>
+    <member refid="namespacekukadu_1afe2075f4c8ad18fd14ccc6b1e09a678f" kind="function"><name>extractCameraName</name></member>
     <member refid="namespacekukadu_1a120438eee5a477e31352ded69063e7cc" kind="function"><name>segmentPlanar</name></member>
     <member refid="namespacekukadu_1a77632af68c3866b398e33681bd047b91" kind="function"><name>filterCluster</name></member>
     <member refid="namespacekukadu_1a1de8efd2d11c3184e95d80f0652ec4b3" kind="function"><name>printDoubleVector</name></member>
@@ -3129,8 +3188,8 @@
   <compound refid="namespacestd_1_1chrono" kind="namespace"><name>std::chrono</name>
   </compound>
   <compound refid="namespacesvmpp" kind="namespace"><name>svmpp</name>
-    <member refid="namespacesvmpp_1adfad9945235b3ef16f61e58b501d7ba6" kind="variable"><name>sAutoTrainFile</name></member>
-    <member refid="namespacesvmpp_1a8e7fdd205beef5dcba1c824fb92f128f" kind="function"><name>print_null</name></member>
+    <member refid="svmpp_8cpp_1adfad9945235b3ef16f61e58b501d7ba6" kind="variable"><name>sAutoTrainFile</name></member>
+    <member refid="svmpp_8cpp_1a8e7fdd205beef5dcba1c824fb92f128f" kind="function"><name>print_null</name></member>
   </compound>
   <compound refid="control_8hpp" kind="file"><name>control.hpp</name>
   </compound>
@@ -3141,6 +3200,10 @@
   <compound refid="generalizer_8hpp" kind="file"><name>generalizer.hpp</name>
   </compound>
   <compound refid="trajectory_8hpp" kind="file"><name>trajectory.hpp</name>
+  </compound>
+  <compound refid="generated__skills_8hpp" kind="file"><name>generated_skills.hpp</name>
+  </compound>
+  <compound refid="_8hpp" kind="file"><name>.hpp</name>
   </compound>
   <compound refid="graphical_8hpp" kind="file"><name>graphical.hpp</name>
   </compound>
@@ -3312,6 +3375,8 @@
   </compound>
   <compound refid="pcstdtrans_8hpp" kind="file"><name>pcstdtrans.hpp</name>
   </compound>
+  <compound refid="poseestimatorfactory_8hpp" kind="file"><name>poseestimatorfactory.hpp</name>
+  </compound>
   <compound refid="visualizersingleton_8hpp" kind="file"><name>visualizersingleton.hpp</name>
   </compound>
   <compound refid="controller_8cpp" kind="file"><name>controller.cpp</name>
@@ -3449,6 +3514,8 @@
   </compound>
   <compound refid="pcstdtrans_8cpp" kind="file"><name>pcstdtrans.cpp</name>
   </compound>
+  <compound refid="poseestimatorfactory_8cpp" kind="file"><name>poseestimatorfactory.cpp</name>
+  </compound>
   <compound refid="visualizersingleton_8cpp" kind="file"><name>visualizersingleton.cpp</name>
   </compound>
   <compound refid="summary_8cpp" kind="file"><name>summary.cpp</name>
@@ -3477,87 +3544,89 @@
   </compound>
   <compound refid="mlpage" kind="page"><name>mlpage</name>
   </compound>
-  <compound refid="dir_5450bc45f7262f2c711745435c02e2c2" kind="dir"><name>/home/andreasmennel/iis_robot_sw/iis_catkin_ws/src/kukadu/src/vision/arlocalizer</name>
+  <compound refid="dir_5450bc45f7262f2c711745435c02e2c2" kind="dir"><name>/home/agyss/iis_robot_sw/iis_catkin_ws/src/kukadu/src/vision/arlocalizer</name>
   </compound>
-  <compound refid="dir_e5f82deed6441f82f5e7a53265458d93" kind="dir"><name>/home/andreasmennel/iis_robot_sw/iis_catkin_ws/src/kukadu/src/learning/classification</name>
+  <compound refid="dir_e5f82deed6441f82f5e7a53265458d93" kind="dir"><name>/home/agyss/iis_robot_sw/iis_catkin_ws/src/kukadu/src/learning/classification</name>
   </compound>
-  <compound refid="dir_96d483a5fb2effc7d87f7e98d57a2c97" kind="dir"><name>/home/andreasmennel/iis_robot_sw/iis_catkin_ws/src/kukadu/include/kukadu/learning/classification</name>
+  <compound refid="dir_96d483a5fb2effc7d87f7e98d57a2c97" kind="dir"><name>/home/agyss/iis_robot_sw/iis_catkin_ws/src/kukadu/include/kukadu/learning/classification</name>
   </compound>
-  <compound refid="dir_8e05d7d444934baaed7f36b57abc4024" kind="dir"><name>/home/andreasmennel/iis_robot_sw/iis_catkin_ws/src/kukadu/src/learning/clustering</name>
+  <compound refid="dir_8e05d7d444934baaed7f36b57abc4024" kind="dir"><name>/home/agyss/iis_robot_sw/iis_catkin_ws/src/kukadu/src/learning/clustering</name>
   </compound>
-  <compound refid="dir_e70b0bb956cbbb2d3b5c8502cf3189b2" kind="dir"><name>/home/andreasmennel/iis_robot_sw/iis_catkin_ws/src/kukadu/include/kukadu/learning/clustering</name>
+  <compound refid="dir_e70b0bb956cbbb2d3b5c8502cf3189b2" kind="dir"><name>/home/agyss/iis_robot_sw/iis_catkin_ws/src/kukadu/include/kukadu/learning/clustering</name>
   </compound>
-  <compound refid="dir_b81b067251166617f9d0a8c0cfc3a4a9" kind="dir"><name>/home/andreasmennel/iis_robot_sw/iis_catkin_ws/src/kukadu/src/control</name>
+  <compound refid="dir_b81b067251166617f9d0a8c0cfc3a4a9" kind="dir"><name>/home/agyss/iis_robot_sw/iis_catkin_ws/src/kukadu/src/control</name>
   </compound>
-  <compound refid="dir_d3f2233308a6a86fce30dd33024d1979" kind="dir"><name>/home/andreasmennel/iis_robot_sw/iis_catkin_ws/src/kukadu/include/kukadu/control</name>
+  <compound refid="dir_d3f2233308a6a86fce30dd33024d1979" kind="dir"><name>/home/agyss/iis_robot_sw/iis_catkin_ws/src/kukadu/include/kukadu/control</name>
   </compound>
-  <compound refid="dir_99d0482cf009f9d97a0877749b817f19" kind="dir"><name>/home/andreasmennel/iis_robot_sw/iis_catkin_ws/src/kukadu/src/gui</name>
+  <compound refid="dir_558ac21bfbb7b49ab102c1406a747a75" kind="dir"><name>/home/agyss/iis_robot_sw/iis_catkin_ws/src/kukadu/include/kukadu/generated_skills</name>
   </compound>
-  <compound refid="dir_aa6d04422a8b0c688ab52fbd47f4f2a7" kind="dir"><name>/home/andreasmennel/iis_robot_sw/iis_catkin_ws/src/kukadu/include/kukadu/gui</name>
+  <compound refid="dir_99d0482cf009f9d97a0877749b817f19" kind="dir"><name>/home/agyss/iis_robot_sw/iis_catkin_ws/src/kukadu/src/gui</name>
   </compound>
-  <compound refid="dir_d44c64559bbebec7f509842c48db8b23" kind="dir"><name>/home/andreasmennel/iis_robot_sw/iis_catkin_ws/src/kukadu/include</name>
+  <compound refid="dir_aa6d04422a8b0c688ab52fbd47f4f2a7" kind="dir"><name>/home/agyss/iis_robot_sw/iis_catkin_ws/src/kukadu/include/kukadu/gui</name>
   </compound>
-  <compound refid="dir_a283349435fa9e5a3d9f00ed67a49f2a" kind="dir"><name>/home/andreasmennel/iis_robot_sw/iis_catkin_ws/src/kukadu/include/kukadu</name>
+  <compound refid="dir_d44c64559bbebec7f509842c48db8b23" kind="dir"><name>/home/agyss/iis_robot_sw/iis_catkin_ws/src/kukadu/include</name>
   </compound>
-  <compound refid="dir_e68b1681d237fa9421ed636acf14b3ec" kind="dir"><name>/home/andreasmennel/iis_robot_sw/iis_catkin_ws/src/kukadu/src/learning</name>
+  <compound refid="dir_a283349435fa9e5a3d9f00ed67a49f2a" kind="dir"><name>/home/agyss/iis_robot_sw/iis_catkin_ws/src/kukadu/include/kukadu</name>
   </compound>
-  <compound refid="dir_a446da0fdc52d77bd7c36a2dd263ecad" kind="dir"><name>/home/andreasmennel/iis_robot_sw/iis_catkin_ws/src/kukadu/include/kukadu/learning</name>
+  <compound refid="dir_e68b1681d237fa9421ed636acf14b3ec" kind="dir"><name>/home/agyss/iis_robot_sw/iis_catkin_ws/src/kukadu/src/learning</name>
   </compound>
-  <compound refid="dir_1b8c89d3abd0c0683d2ba66e75d0c0d7" kind="dir"><name>/home/andreasmennel/iis_robot_sw/iis_catkin_ws/src/kukadu/src/manipulation</name>
+  <compound refid="dir_a446da0fdc52d77bd7c36a2dd263ecad" kind="dir"><name>/home/agyss/iis_robot_sw/iis_catkin_ws/src/kukadu/include/kukadu/learning</name>
   </compound>
-  <compound refid="dir_383ce98826ed44202498c86be5999f4b" kind="dir"><name>/home/andreasmennel/iis_robot_sw/iis_catkin_ws/src/kukadu/include/kukadu/manipulation</name>
+  <compound refid="dir_1b8c89d3abd0c0683d2ba66e75d0c0d7" kind="dir"><name>/home/agyss/iis_robot_sw/iis_catkin_ws/src/kukadu/src/manipulation</name>
   </compound>
-  <compound refid="dir_ebbc965ffbbab5b7e33613be53fc60e4" kind="dir"><name>/home/andreasmennel/iis_robot_sw/iis_catkin_ws/src/kukadu/src/learning/metric_learning</name>
+  <compound refid="dir_383ce98826ed44202498c86be5999f4b" kind="dir"><name>/home/agyss/iis_robot_sw/iis_catkin_ws/src/kukadu/include/kukadu/manipulation</name>
   </compound>
-  <compound refid="dir_7a9628efeacd253ed7fd334915252156" kind="dir"><name>/home/andreasmennel/iis_robot_sw/iis_catkin_ws/src/kukadu/include/kukadu/learning/metric_learning</name>
+  <compound refid="dir_ebbc965ffbbab5b7e33613be53fc60e4" kind="dir"><name>/home/agyss/iis_robot_sw/iis_catkin_ws/src/kukadu/src/learning/metric_learning</name>
   </compound>
-  <compound refid="dir_46b0e589fccff8619305fc89ea463298" kind="dir"><name>/home/andreasmennel/iis_robot_sw/iis_catkin_ws/src/kukadu/src/planning</name>
+  <compound refid="dir_7a9628efeacd253ed7fd334915252156" kind="dir"><name>/home/agyss/iis_robot_sw/iis_catkin_ws/src/kukadu/include/kukadu/learning/metric_learning</name>
   </compound>
-  <compound refid="dir_e4a05e36119810d7d4ef55d111e8fa62" kind="dir"><name>/home/andreasmennel/iis_robot_sw/iis_catkin_ws/src/kukadu/include/kukadu/planning</name>
+  <compound refid="dir_46b0e589fccff8619305fc89ea463298" kind="dir"><name>/home/agyss/iis_robot_sw/iis_catkin_ws/src/kukadu/src/planning</name>
   </compound>
-  <compound refid="dir_45827e974a0733398a0aa2e131e4499c" kind="dir"><name>/home/andreasmennel/iis_robot_sw/iis_catkin_ws/src/kukadu/src/manipulation/playing</name>
+  <compound refid="dir_e4a05e36119810d7d4ef55d111e8fa62" kind="dir"><name>/home/agyss/iis_robot_sw/iis_catkin_ws/src/kukadu/include/kukadu/planning</name>
   </compound>
-  <compound refid="dir_ed299d5a2ab09581bcd95fcc2e9e2a7e" kind="dir"><name>/home/andreasmennel/iis_robot_sw/iis_catkin_ws/src/kukadu/include/kukadu/manipulation/playing</name>
+  <compound refid="dir_45827e974a0733398a0aa2e131e4499c" kind="dir"><name>/home/agyss/iis_robot_sw/iis_catkin_ws/src/kukadu/src/manipulation/playing</name>
   </compound>
-  <compound refid="dir_fbfffea892398a1269c47ba7fa1732d9" kind="dir"><name>/home/andreasmennel/iis_robot_sw/iis_catkin_ws/src/kukadu/src/learning/projective_simulation</name>
+  <compound refid="dir_ed299d5a2ab09581bcd95fcc2e9e2a7e" kind="dir"><name>/home/agyss/iis_robot_sw/iis_catkin_ws/src/kukadu/include/kukadu/manipulation/playing</name>
   </compound>
-  <compound refid="dir_49d4f0e1dfc3e0218dd131e03eea94e5" kind="dir"><name>/home/andreasmennel/iis_robot_sw/iis_catkin_ws/src/kukadu/include/kukadu/learning/projective_simulation</name>
+  <compound refid="dir_fbfffea892398a1269c47ba7fa1732d9" kind="dir"><name>/home/agyss/iis_robot_sw/iis_catkin_ws/src/kukadu/src/learning/projective_simulation</name>
   </compound>
-  <compound refid="dir_e67f95f107de01301f9a40e1f1494383" kind="dir"><name>/home/andreasmennel/iis_robot_sw/iis_catkin_ws/src/kukadu/src/learning/regression</name>
+  <compound refid="dir_49d4f0e1dfc3e0218dd131e03eea94e5" kind="dir"><name>/home/agyss/iis_robot_sw/iis_catkin_ws/src/kukadu/include/kukadu/learning/projective_simulation</name>
   </compound>
-  <compound refid="dir_cdc9eee045c4d30f9f3a82bbd89c1beb" kind="dir"><name>/home/andreasmennel/iis_robot_sw/iis_catkin_ws/src/kukadu/include/kukadu/learning/regression</name>
+  <compound refid="dir_e67f95f107de01301f9a40e1f1494383" kind="dir"><name>/home/agyss/iis_robot_sw/iis_catkin_ws/src/kukadu/src/learning/regression</name>
   </compound>
-  <compound refid="dir_429905255ab436b0494bf4c005e93720" kind="dir"><name>/home/andreasmennel/iis_robot_sw/iis_catkin_ws/src/kukadu/src/learning/rl</name>
+  <compound refid="dir_cdc9eee045c4d30f9f3a82bbd89c1beb" kind="dir"><name>/home/agyss/iis_robot_sw/iis_catkin_ws/src/kukadu/include/kukadu/learning/regression</name>
   </compound>
-  <compound refid="dir_e8128a7fe76da741f2c4b88aa03726ff" kind="dir"><name>/home/andreasmennel/iis_robot_sw/iis_catkin_ws/src/kukadu/include/kukadu/learning/rl</name>
+  <compound refid="dir_429905255ab436b0494bf4c005e93720" kind="dir"><name>/home/agyss/iis_robot_sw/iis_catkin_ws/src/kukadu/src/learning/rl</name>
   </compound>
-  <compound refid="dir_d623b6b26deaaca15238f927e86bbb46" kind="dir"><name>/home/andreasmennel/iis_robot_sw/iis_catkin_ws/src/kukadu/src/robot</name>
+  <compound refid="dir_e8128a7fe76da741f2c4b88aa03726ff" kind="dir"><name>/home/agyss/iis_robot_sw/iis_catkin_ws/src/kukadu/include/kukadu/learning/rl</name>
   </compound>
-  <compound refid="dir_52c3cba6fc66688aa3521dc256ec86a1" kind="dir"><name>/home/andreasmennel/iis_robot_sw/iis_catkin_ws/src/kukadu/include/kukadu/robot</name>
+  <compound refid="dir_d623b6b26deaaca15238f927e86bbb46" kind="dir"><name>/home/agyss/iis_robot_sw/iis_catkin_ws/src/kukadu/src/robot</name>
   </compound>
-  <compound refid="dir_68267d1309a1af8e8297ef4c3efbcdba" kind="dir"><name>/home/andreasmennel/iis_robot_sw/iis_catkin_ws/src/kukadu/src</name>
+  <compound refid="dir_52c3cba6fc66688aa3521dc256ec86a1" kind="dir"><name>/home/agyss/iis_robot_sw/iis_catkin_ws/src/kukadu/include/kukadu/robot</name>
   </compound>
-  <compound refid="dir_65ad14ba617219a91653797a9020c4d5" kind="dir"><name>/home/andreasmennel/iis_robot_sw/iis_catkin_ws/src/kukadu/src/statistics</name>
+  <compound refid="dir_68267d1309a1af8e8297ef4c3efbcdba" kind="dir"><name>/home/agyss/iis_robot_sw/iis_catkin_ws/src/kukadu/src</name>
   </compound>
-  <compound refid="dir_053acd8a63e9d5c8263f6fc85aaf88e6" kind="dir"><name>/home/andreasmennel/iis_robot_sw/iis_catkin_ws/src/kukadu/include/kukadu/statistics</name>
+  <compound refid="dir_65ad14ba617219a91653797a9020c4d5" kind="dir"><name>/home/agyss/iis_robot_sw/iis_catkin_ws/src/kukadu/src/statistics</name>
   </compound>
-  <compound refid="dir_452baf35e1d7639c9f2a5ece4ec85855" kind="dir"><name>/home/andreasmennel/iis_robot_sw/iis_catkin_ws/src/kukadu/src/storage</name>
+  <compound refid="dir_053acd8a63e9d5c8263f6fc85aaf88e6" kind="dir"><name>/home/agyss/iis_robot_sw/iis_catkin_ws/src/kukadu/include/kukadu/statistics</name>
   </compound>
-  <compound refid="dir_6072672ba22159c068c98410c6871d66" kind="dir"><name>/home/andreasmennel/iis_robot_sw/iis_catkin_ws/src/kukadu/include/kukadu/storage</name>
+  <compound refid="dir_452baf35e1d7639c9f2a5ece4ec85855" kind="dir"><name>/home/agyss/iis_robot_sw/iis_catkin_ws/src/kukadu/src/storage</name>
   </compound>
-  <compound refid="dir_0d353d24d0afa59909efab6593124f6d" kind="dir"><name>/home/andreasmennel/iis_robot_sw/iis_catkin_ws/src/kukadu/tutorials</name>
+  <compound refid="dir_6072672ba22159c068c98410c6871d66" kind="dir"><name>/home/agyss/iis_robot_sw/iis_catkin_ws/src/kukadu/include/kukadu/storage</name>
   </compound>
-  <compound refid="dir_0c0c9fa8a58db41e576adc3ce68c5ee9" kind="dir"><name>/home/andreasmennel/iis_robot_sw/iis_catkin_ws/src/kukadu/src/types</name>
+  <compound refid="dir_0d353d24d0afa59909efab6593124f6d" kind="dir"><name>/home/agyss/iis_robot_sw/iis_catkin_ws/src/kukadu/tutorials</name>
   </compound>
-  <compound refid="dir_91b51d265eafa89952d66a8dc1cb355b" kind="dir"><name>/home/andreasmennel/iis_robot_sw/iis_catkin_ws/src/kukadu/include/kukadu/types</name>
+  <compound refid="dir_0c0c9fa8a58db41e576adc3ce68c5ee9" kind="dir"><name>/home/agyss/iis_robot_sw/iis_catkin_ws/src/kukadu/src/types</name>
   </compound>
-  <compound refid="dir_313caf1132e152dd9b58bea13a4052ca" kind="dir"><name>/home/andreasmennel/iis_robot_sw/iis_catkin_ws/src/kukadu/src/utils</name>
+  <compound refid="dir_91b51d265eafa89952d66a8dc1cb355b" kind="dir"><name>/home/agyss/iis_robot_sw/iis_catkin_ws/src/kukadu/include/kukadu/types</name>
   </compound>
-  <compound refid="dir_36078c94e74fef2970d3afd7db36452f" kind="dir"><name>/home/andreasmennel/iis_robot_sw/iis_catkin_ws/src/kukadu/include/kukadu/utils</name>
+  <compound refid="dir_313caf1132e152dd9b58bea13a4052ca" kind="dir"><name>/home/agyss/iis_robot_sw/iis_catkin_ws/src/kukadu/src/utils</name>
   </compound>
-  <compound refid="dir_dc1db25376c64edf07fdc99b5118e152" kind="dir"><name>/home/andreasmennel/iis_robot_sw/iis_catkin_ws/src/kukadu/src/vision</name>
+  <compound refid="dir_36078c94e74fef2970d3afd7db36452f" kind="dir"><name>/home/agyss/iis_robot_sw/iis_catkin_ws/src/kukadu/include/kukadu/utils</name>
   </compound>
-  <compound refid="dir_79be04da4f33c3f20e9fece3acc5c4fe" kind="dir"><name>/home/andreasmennel/iis_robot_sw/iis_catkin_ws/src/kukadu/include/kukadu/vision</name>
+  <compound refid="dir_dc1db25376c64edf07fdc99b5118e152" kind="dir"><name>/home/agyss/iis_robot_sw/iis_catkin_ws/src/kukadu/src/vision</name>
+  </compound>
+  <compound refid="dir_79be04da4f33c3f20e9fece3acc5c4fe" kind="dir"><name>/home/agyss/iis_robot_sw/iis_catkin_ws/src/kukadu/include/kukadu/vision</name>
   </compound>
   <compound refid="indexpage" kind="page"><name>index</name>
   </compound>
