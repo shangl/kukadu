@@ -1,5 +1,13 @@
 #include <kukadu/gui/graphical.hpp>
 #include <kukadu/manipulation/skillfactory.hpp>
+#include <json.hpp>
+#include <QtWidgets/QLayout>
+#include <QtWebKitWidgets/QWebFrame>
+#include <QtWidgets/QListView>
+#include <QtWidgets/QPushButton>
+#include <QtWidgets/QMessageBox>
+#include <QtWebKit/QtWebKit>
+
 
 using namespace std;
 
@@ -135,69 +143,72 @@ namespace kukadu {
     }
 
     void KukaduGraphical::executeSlot() {
-        createProjectInKukadu();
-        /*
-        std::string packageName = getPackageName();
+        if(isSkillInstalled()) {
+            createProjectInKukadu();
+        } else {
+            std::string packageName = getPackageName();
 
-        std::string catkinSources = resolvePath("$KUKADU_HOME/../");
-        std::string catkinWorkingDirectory = catkinSources + "../";
+            std::string catkinSources = resolvePath("$KUKADU_HOME/../");
+            std::string catkinWorkingDirectory = catkinSources + "../";
 
-        std::string argumentString =
-                "cd " + catkinSources + ";rm -r " + packageName + ";catkin_create_pkg " + packageName +
-                " geometry_msgs kukadu;cd " + packageName + ";mkdir src;mkdir include;";
-        system(argumentString.c_str());
+            std::string argumentString =
+                    "cd " + catkinSources + ";rm -r " + packageName + ";catkin_create_pkg " + packageName +
+                    " geometry_msgs kukadu;cd " + packageName + ";mkdir src;mkdir include;";
+            system(argumentString.c_str());
 
-        std::string skillName = getCurrentSkillName();
-        writeToFileInPackage("src/main.cpp", getCodeBlocks()[0]);
-        writeToFileInPackage("include/" + skillName + ".hpp", getCodeBlocks()[1]);
-        writeToFileInPackage("src/" + skillName + ".cpp", getCodeBlocks()[2]);
+            std::string skillName = getCurrentSkillName();
+            writeToFileInPackage("src/main.cpp", getCodeBlocks()[0]);
+            writeToFileInPackage("include/" + skillName + ".hpp", getCodeBlocks()[1]);
+            writeToFileInPackage("src/" + skillName + ".cpp", getCodeBlocks()[2]);
 
-        argumentString = catkinSources + packageName + "/CMakeLists.txt";
-        QFile cmakeInFile(argumentString.c_str());
-        argumentString = catkinSources + packageName + "/CMakeLists.txt1";
-        QFile cmakeOutFile(argumentString.c_str());
-        cmakeInFile.open(QIODevice::ReadOnly);
-        cmakeOutFile.open(QIODevice::WriteOnly);
+            argumentString = catkinSources + packageName + "/CMakeLists.txt";
+            QFile cmakeInFile(argumentString.c_str());
+            argumentString = catkinSources + packageName + "/CMakeLists.txt1";
+            QFile cmakeOutFile(argumentString.c_str());
+            cmakeInFile.open(QIODevice::ReadOnly);
+            cmakeOutFile.open(QIODevice::WriteOnly);
 
-        QTextStream streamIn(&cmakeInFile), streamOut(&cmakeOutFile);
+            QTextStream streamIn(&cmakeInFile), streamOut(&cmakeOutFile);
 
-        int arraysize = 124;
-        QString textToAdd[arraysize];
-        textToAdd[3] = QString("set(CMAKE_BUILD_TYPE Debug)");
-        textToAdd[5] = QString(
-                "include(CheckCXXCompilerFlag)\r\nCHECK_CXX_COMPILER_FLAG(\"-std=c++11\" COMPILER_SUPPORTS_CXX11)\r\nCHECK_CXX_COMPILER_FLAG(\"-std=c++0x\" COMPILER_SUPPORTS_CXX0X)\r\nif(COMPILER_SUPPORTS_CXX11)\r\nset(CMAKE_CXX_FLAGS \"${CMAKE_CXX_FLAGS} -std=c++11\")\r\nadd_definitions(-DCPP11SUPPORTED)\r\nelseif(COMPILER_SUPPORTS_CXX0X)\r\nset(CMAKE_CXX_FLAGS \"${CMAKE_CXX_FLAGS} -std=c++0x\")\r\nadd_definitions(-DCPP11SUPPORTED)\r\nelse()\r\nmessage(STATUS \"The compiler ${CMAKE_CXX_COMPILER} has no C++11 support. Please use a different C++ compiler.\")\r\nendif()");
-        argumentString = "add_executable(" + packageName + " src/main.cpp)\r\ntarget_link_libraries(" + packageName +
-                         " ${catkin_LIBRARIES} kukadu kukaduvision)";
-        textToAdd[115] = "  include";
-        textToAdd[123] = QString(argumentString.c_str());
-        int i = 0;
-        while (!streamIn.atEnd()) {
-            if (i < arraysize) {
-                auto data = textToAdd[i];
-                if (data != NULL) {
-                    streamOut << data << "\r\n";
+            int arraysize = 124;
+            QString textToAdd[arraysize];
+            textToAdd[3] = QString("set(CMAKE_BUILD_TYPE Debug)");
+            textToAdd[5] = QString(
+                    "include(CheckCXXCompilerFlag)\r\nCHECK_CXX_COMPILER_FLAG(\"-std=c++11\" COMPILER_SUPPORTS_CXX11)\r\nCHECK_CXX_COMPILER_FLAG(\"-std=c++0x\" COMPILER_SUPPORTS_CXX0X)\r\nif(COMPILER_SUPPORTS_CXX11)\r\nset(CMAKE_CXX_FLAGS \"${CMAKE_CXX_FLAGS} -std=c++11\")\r\nadd_definitions(-DCPP11SUPPORTED)\r\nelseif(COMPILER_SUPPORTS_CXX0X)\r\nset(CMAKE_CXX_FLAGS \"${CMAKE_CXX_FLAGS} -std=c++0x\")\r\nadd_definitions(-DCPP11SUPPORTED)\r\nelse()\r\nmessage(STATUS \"The compiler ${CMAKE_CXX_COMPILER} has no C++11 support. Please use a different C++ compiler.\")\r\nendif()");
+            argumentString =
+                    "add_executable(" + packageName + " src/main.cpp)\r\ntarget_link_libraries(" + packageName +
+                    " ${catkin_LIBRARIES} kukadu kukaduvision)";
+            textToAdd[115] = "  include";
+            textToAdd[123] = QString(argumentString.c_str());
+            int i = 0;
+            while (!streamIn.atEnd()) {
+                if (i < arraysize) {
+                    auto data = textToAdd[i];
+                    if (data != NULL) {
+                        streamOut << data << "\r\n";
+                    }
                 }
-            }
 
-            QString line = streamIn.readLine();
-            if (!line.startsWith("#")) {
-                streamOut << line << "\r\n";
-            }
+                QString line = streamIn.readLine();
+                if (!line.startsWith("#")) {
+                    streamOut << line << "\r\n";
+                }
 
-            i++;
+                i++;
+            }
+            cmakeInFile.close();
+            cmakeOutFile.close();
+
+            cmakeInFile.remove();
+            argumentString = catkinSources + packageName + "/CMakeLists.txt";
+            cmakeOutFile.rename(argumentString.c_str());
+
+            argumentString = "cd " + catkinWorkingDirectory + ";";
+            argumentString += getCatkinMakeString(packageName) + ";";
+            argumentString += "cd devel/lib/" + packageName + ";";
+            argumentString += "./" + packageName;
+            system(argumentString.c_str());
         }
-        cmakeInFile.close();
-        cmakeOutFile.close();
-
-        cmakeInFile.remove();
-        argumentString = catkinSources + packageName + "/CMakeLists.txt";
-        cmakeOutFile.rename(argumentString.c_str());
-
-        argumentString = "cd " + catkinWorkingDirectory + ";";
-        argumentString += getCatkinMakeString(packageName) + ";";
-        argumentString += "cd devel/lib/" + packageName + ";";
-        argumentString += "./" + packageName;
-        system(argumentString.c_str());*/
     }
 
     void KukaduGraphical::createProjectInKukadu() {
@@ -241,7 +252,6 @@ namespace kukadu {
         generatedSkillsHeaderFile.open(QIODevice::WriteOnly | QIODevice::Text);
         gskillHFStream << textOfFile;
         generatedSkillsHeaderFile.close();
-
 
         argumentString = catkinSources + packageName + "/CMakeLists.txt";
         QFile cmakeInFile(argumentString.c_str());

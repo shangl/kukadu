@@ -10,15 +10,15 @@ Blockly.cake['objectposition'] = function (block) {
     var objectName = block.getFieldValue("ObjectType");
 
     return "auto " + variableName + " = PoseEstimatorFactory::get().getPoseFor(\"" + objectName + "\");\n" +
-        "    position.pose.position.x = position.pose.position.x - 0.43;\n" +
-        "    position.pose.position.y = position.pose.position.y + 0.42;\n" +
-        "    position.pose.position.z = position.pose.position.z - 0.03;\n" +
-        "    position.pose.position.z = position.pose.position.z + 0.15;\n" +
+        variableName + ".pose.position.x = " + variableName + ".pose.position.x - 0.43;\n" +
+        variableName + ".pose.position.y = " + variableName + ".pose.position.y + 0.42;\n" +
+        variableName + ".pose.position.z = " + variableName + ".pose.position.z - 0.03;\n" +
+        variableName + ".pose.position.z = " + variableName + ".pose.position.z + 0.15;\n" +
         "    tf::Quaternion rot = rpyToQuat(0.0, M_PI, 0.0);\n" +
-        "    position.pose.orientation.x = rot.getX();\n" +
-        "    position.pose.orientation.y = rot.getY();\n" +
-        "    position.pose.orientation.z = rot.getZ();\n" +
-        "    position.pose.orientation.w = rot.getW();"
+        variableName + ".pose.orientation.x = rot.getX();\n" +
+        variableName + ".pose.orientation.y = rot.getY();\n" +
+        variableName + ".pose.orientation.z = rot.getZ();\n" +
+        variableName + ".pose.orientation.w = rot.getW();"
 };
 
 

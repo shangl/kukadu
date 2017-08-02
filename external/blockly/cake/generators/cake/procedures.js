@@ -91,7 +91,7 @@ Blockly.cake['main_block'] = function (block) {
         "auto& hardwareFactory = kukadu::HardwareFactory::get();\n";
 
     var executionType = block.getFieldValue('ExecutionMode');
-    if(executionType === 'Simulate') {
+    if (executionType === 'Simulate') {
         roscode += "hardwareFactory.setSimulation(true);"
     } else {
         roscode += "hardwareFactory.setSimulation(false);"
@@ -115,6 +115,7 @@ Blockly.cake['main_block'] = function (block) {
     if (installSkill === 'TRUE') {
         installSkill = "try { skill.createSkillFromThis(\"" + skillName + "\"); } catch(kukadu::KukaduException& ex) {}\n";
     } else {
+        Blockly.cake.definitions_['include_install_not_in_package'] = "#include \"../include/" + skillName + ".h\"\n#include \"" + skillName + ".cpp\"\n";
         installSkill = "\n";
     }
 
@@ -329,7 +330,11 @@ function CodeClass(name, code) {
         var skillHeader = "//Skillheader for Skill\n" +
             Blockly.cake.definitions_['include_cake_string'] + "\n";
 
-        var skillHeaderContent = "namespace kukadu {\n\tnamespace skill\n\t\t{" +
+        var skillHeaderContent = "";
+        if (isSkillInstalled()) {
+            skillHeaderContent += "namespace kukadu {\n\tnamespace skill\n\t\t{";
+        }
+        skillHeaderContent +=
             "class " + name + " : public kukadu::Controller {\n" +
             "\n" +
             "private:\n" +
@@ -352,17 +357,23 @@ function CodeClass(name, code) {
             "\n" +
             "\tstd::string getClassName();\n" +
             "\n" +
-            "};\n}\n}";
+            "};\n";
+        if (isSkillInstalled()) {
+            skillHeaderContent += "}\n}";
+        }
 
 
         skillHeader += skillHeaderContent;
 
 
-        var skillImplementation = "//Skillimplementation for Skill:\n" +
-            "#import <kukadu/generated_skills/" + name + ".hpp>\n";
+        var skillImplementation = "//Skillimplementation for Skill:\n";
+        if (isSkillInstalled()) {
+            skillImplementation += "#import <kukadu/generated_skills/" + name + ".hpp>\nnamespace kukadu {\n\tnamespace skill\n\t\t{";
+        } else {
+            skillImplementation += "#import \"../include/" + name + ".hpp\"";
+        }
 
-        skillImplementation += "namespace kukadu {\n\tnamespace skill\n\t\t{" +
-            name + "::" + name + "(kukadu::StorageSingleton& storage, std::vector< KUKADU_SHARED_PTR< kukadu::Hardware > > hardware)\n" +
+        skillImplementation += name + "::" + name + "(kukadu::StorageSingleton& storage, std::vector< KUKADU_SHARED_PTR< kukadu::Hardware > > hardware)\n" +
             " : Controller(storage, \"" + name + "\", hardware, 0.01) {\n" +
             "\n" +
             "\tthis->hardware = hardware;\n" +
@@ -386,7 +397,11 @@ function CodeClass(name, code) {
             "\n" +
             "void " + name + "::createSkillFromThisInternal(std::string skillName) {\n" +
             "\t// nothing to do\n" +
-            "}\n}\n}\n\n\n\n\n";
+            "}\n";
+
+        if (isSkillInstalled()) {
+            skillImplementation += "}\n}\n\n\n\n\n";
+        }
 
         return skillHeader + skillImplementation;
     }
