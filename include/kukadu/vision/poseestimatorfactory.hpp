@@ -2,18 +2,15 @@
 #define KUKADU_POSEESTIMATORFACTORY_H
 
 #include <kukadu/vision/localizer.hpp>
+#include <kukadu/storage/storagesingleton.hpp>
 
 namespace kukadu {
 
-    class PoseEstimatorFactory {
+    class PoseEstimatorFactory : public StorageHolder {
 
     private:
 
-        StorageSingleton& storage;
-
-        KUKADU_SHARED_PTR<Kinect> kinect;
-
-        static std::map<std::string, std::function<KUKADU_SHARED_PTR<PoseEstimator>(std::shared_ptr<Kinect>, StorageSingleton& )> > poseEstimatorFactories;
+        static std::map<std::string, std::function<KUKADU_SHARED_PTR<PoseEstimator>(KUKADU_SHARED_PTR<Hardware>, StorageSingleton& )> > poseEstimatorFactories;
 
         PoseEstimatorFactory();
 

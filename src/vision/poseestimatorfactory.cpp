@@ -5,14 +5,13 @@
 using namespace std;
 namespace kukadu {
 
-    std::map<std::string, std::function<KUKADU_SHARED_PTR<PoseEstimator>(std::shared_ptr<Kinect>, StorageSingleton& )> > PoseEstimatorFactory::poseEstimatorFactories{
-            {"PCBlobDetector", [](std::shared_ptr<Kinect> kinect, StorageSingleton& dbStorage) {
-                return make_shared<PCBlobDetector>(kinect, storage);
+    std::map<std::string, std::function<KUKADU_SHARED_PTR<PoseEstimator>(KUKADU_SHARED_PTR<Hardware>, StorageSingleton& )> > PoseEstimatorFactory::poseEstimatorFactories{
+            {"PCBlobDetector", [](KUKADU_SHARED_PTR<Hardware> camera, StorageSingleton& dbStorage) {
+                return make_shared<PCBlobDetector>(KUKADU_DYNAMIC_POINTER_CAST<Kinect>(camera), dbStorage);
             }}
     };
 
-    PoseEstimatorFactory::PoseEstimatorFactory() : storage(StorageSingleton::get()) {
-        kinect = HardwareFactory::get().loadHardware("camera");
+    PoseEstimatorFactory::PoseEstimatorFactory() : StorageHolder(StorageSingleton::get()) {
     }
 
     PoseEstimatorFactory &PoseEstimatorFactory::get() {
@@ -21,18 +20,18 @@ namespace kukadu {
     }
 
     KUKADU_SHARED_PTR<PoseEstimator> PoseEstimatorFactory::loadPoseEstimator(std::string poseEstimatorName) {
-        return hardwareFactories[poseEstimatorName](kinect, storage);
+        return poseEstimatorFactories[poseEstimatorName](HardwareFactory::get().loadHardware("camera"), getStorage());
     }
 
     std::vector<std::string> PoseEstimatorFactory::listAvailablePoseEstimators() {
         vector<string> poseEstimators;
-        auto poseEstimatorRes = storage.executeQuery("select class_name from pose_estimators");
+        auto poseEstimatorRes = getStorage().executeQuery("select class_name from pose_estimators");
         while (poseEstimatorRes->next()) poseEstimators.push_back(poseEstimatorRes->getString("class_name"));
         return poseEstimators;
     }
 
     bool PoseEstimatorFactory::poseEstimatorExists(std::string poseEstimatorName) {
-        auto poseEstimatorList = listAvailableSkills();
+        auto poseEstimatorList = listAvailablePoseEstimators();
         if (std::find(poseEstimatorList.begin(), poseEstimatorList.end(), poseEstimatorName) != poseEstimatorList.end()) return true;
         return false;
     }
