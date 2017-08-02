@@ -45,8 +45,6 @@ namespace kukadu {
             s << "SELECT DISTINCT x_position as xp, y_position as yp, z_position as zp, x_orientation as xo, y_orientation as yo, z_orientation as zo, w_orientation as wo, frame_id FROM localized_objects WHERE object_id=";
             s << objectId << " AND timestamp=(SELECT max(timestamp) FROM localized_objects WHERE object_id=" << objectId << ")";
 
-            cout << s.str() << endl;
-
             auto result = storage.executeQuery(s.str());
             geometry_msgs::PoseStamped poseStamped;
 
