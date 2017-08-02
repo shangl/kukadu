@@ -35,4 +35,46 @@ namespace kukadu {
         if (std::find(poseEstimatorList.begin(), poseEstimatorList.end(), poseEstimatorName) != poseEstimatorList.end()) return true;
         return false;
     }
-}
+
+    geometry_msgs::PoseStamped PoseEstimatorFactory::getPoseFor(std::string id) {
+        auto& storage = getStorage();
+        if(storage.checkLabelExists("objects", "object_name", id)) {
+            int objectId = storage.getCachedLabelId("objects", "object_id", "object_name", id);
+
+            stringstream s;
+            s << "SELECT DISTINCT x_position as xp, y_position as yp, z_position as zp, x_orientation as xo, y_orientation as yo, z_orientation as zo, w_orientation as wo, frame_id FROM localized_objects WHERE object_id=";
+            s << objectId << " AND timestamp=(SELECT max(timestamp) FROM localized_objects WHERE object_id=" << objectId << ")";
+
+            cout << s.str() << endl;
+
+            auto result = storage.executeQuery(s.str());
+            geometry_msgs::PoseStamped poseStamped;
+
+            if(result.get()->next()){
+                double xp, yp, zp, xo, yo, zo, wo;
+                int frame_id;
+                xo = result.get()->getDouble("xo");
+                xp = result.get()->getDouble("xp");
+                yo = result.get()->getDouble("yo");
+                yp = result.get()->getDouble("yp");
+                zo = result.get()->getDouble("zo");
+                zp = result.get()->getDouble("zp");
+                wo = result.get()->getDouble("wo");
+                frame_id = result.get()->getInt("frame_id");
+
+                poseStamped.header.frame_id = frame_id;
+                poseStamped.pose.position.x = xp;
+                poseStamped.pose.position.y = yp;
+                poseStamped.pose.position.z = zp;
+                poseStamped.pose.orientation.x = xo;
+                poseStamped.pose.orientation.y = yo;
+                poseStamped.pose.orientation.z = zo;
+                poseStamped.pose.orientation.w = wo;
+
+                return poseStamped;
+            } else throw KukaduException("No position for this object available.");
+            } else throw KukaduException("This object does not exist.");
+        }
+
+
+    }

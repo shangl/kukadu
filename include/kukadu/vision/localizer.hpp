@@ -87,6 +87,16 @@ namespace kukadu {
 
         virtual std::vector<geometry_msgs::Pose> localizeObjects(std::vector<std::string> ids);
 
+        void setCenter(arma::vec center);
+        void setBoxDimension(arma::vec dim);
+
+        void setCenterX(double x);
+        void setCenterY(double y);
+        void setCenterZ(double z);
+
+        void setBoxDimX(double x);
+        void setBoxDimY(double y);
+
     };
 
 }

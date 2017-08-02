@@ -105,6 +105,8 @@ namespace kukadu {
 
         KUKADU_SHARED_PTR<ControlQueue> leftQueue;
 
+        geometry_msgs::Pose cartesians;
+
     protected:
 
         virtual void createSkillFromThisInternal(std::string skillName);
@@ -115,6 +117,8 @@ namespace kukadu {
 
         bool requiresGraspInternal();
         bool producesGraspInternal();
+
+        void setCartesians(geometry_msgs::Pose pose);
 
         std::shared_ptr<ControllerResult> executeInternal();
 
@@ -153,7 +157,7 @@ namespace kukadu {
 
     private:
 
-        KUKADU_SHARED_PTR<Localizer> loc;
+        KUKADU_SHARED_PTR<PCBlobDetector> loc;
 
     protected:
 
@@ -167,6 +171,16 @@ namespace kukadu {
         virtual bool producesGraspInternal();
 
         KUKADU_SHARED_PTR<ControllerResult> executeInternal();
+
+        void setCenterX(double x);
+
+        void setCenterY(double y);
+
+        void setCenterZ(double z);
+
+        void setBoxDimX(double x);
+
+        void setBoxDimY(double y);
 
         std::string getClassName();
 

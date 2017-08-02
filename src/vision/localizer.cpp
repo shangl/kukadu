@@ -139,8 +139,9 @@ namespace kukadu {
         int objectId = storage.getCachedLabelId("objects", "object_id", "object_name", id);
 
         stringstream s;
-        s << "INSERT INTO localize_objects (object_id, pose_estimator_id, x_coordinate, y_coordinate, z_coordinate, quat, timestamp, frame_id) ";
-        s << "VALUES (" << objectId << ", " << poseEstimatorId << ", " << poseVectorPair.first.pose.orientation.x << ", " << poseVectorPair.first.pose.orientation.y << ", " << poseVectorPair.first.pose.orientation.z << ", " << poseVectorPair.first.pose.orientation.w << ", ";
+        s << "INSERT INTO localized_objects (object_id, pose_estimator_id, x_position, y_position, z_position, x_orientation, y_orientation, z_orientation, w_orientation, timestamp, frame_id) ";
+        s << "VALUES (" << objectId << ", " << poseEstimatorId << ", " << poseVectorPair.first.pose.position.x << ", " << poseVectorPair.first.pose.position.y << ", " << poseVectorPair.first.pose.position.z << ", ";
+        s << poseVectorPair.first.pose.orientation.x << ", " << poseVectorPair.first.pose.orientation.y << ", " << poseVectorPair.first.pose.orientation.z << ", " << poseVectorPair.first.pose.orientation.w << ", ";
         s << TimedObject::getCurrentTime() << ", ";
         s << storage.getCachedLabelId("reference_frames", "frame_id", "frame_name", poseVectorPair.first.header.frame_id);
         s << ")";
@@ -331,6 +332,35 @@ namespace kukadu {
 
         return retPoses;
 
+    }
+
+    void PCBlobDetector::setCenter(arma::vec center) {
+        this->center = center;
+    }
+
+    void PCBlobDetector::setBoxDimension(arma::vec dim) {
+        this->xOffset = dim(0);
+        this->yOffset = dim(1);
+    }
+
+    void PCBlobDetector::setCenterX(double x) {
+        center(0) = x;
+    }
+
+    void PCBlobDetector::setCenterY(double y) {
+        center(1) = y;
+    }
+
+    void PCBlobDetector::setCenterZ(double z) {
+        center(2) = z;
+    }
+
+    void PCBlobDetector::setBoxDimX(double x) {
+        xOffset = x;
+    }
+
+    void PCBlobDetector::setBoxDimY(double y) {
+        yOffset = y;
     }
 
 }

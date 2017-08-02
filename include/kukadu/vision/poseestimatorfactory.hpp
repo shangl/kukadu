@@ -3,6 +3,7 @@
 
 #include <kukadu/vision/localizer.hpp>
 #include <kukadu/storage/storagesingleton.hpp>
+#include <geometry_msgs/PoseStamped.h>
 
 namespace kukadu {
 
@@ -23,6 +24,8 @@ namespace kukadu {
         std::vector<std::string> listAvailablePoseEstimators();
 
         bool poseEstimatorExists(std::string poseEstimatorName);
+
+        geometry_msgs::PoseStamped getPoseFor(std::string id);
 
     };
 

@@ -275,17 +275,7 @@ namespace kukadu {
         : Controller(storage, "cartesian_move_skill_wrapper", {leftQueue}, 0.01) {
 
         this->leftQueue = leftQueue;
-    }
 
-    bool CartesianPtp::requiresGraspInternal() {
-        return false;
-    }
-
-    bool CartesianPtp::producesGraspInternal() {
-        return false;
-    }
-
-    std::shared_ptr<ControllerResult> CartesianPtp::executeInternal() {
         geometry_msgs::Pose nextPose;
         nextPose.position.x = 0.5;
         nextPose.position.y = 1.2;
@@ -296,9 +286,24 @@ namespace kukadu {
         nextPose.orientation.z = -0.29;
         nextPose.orientation.w = 0.94;
 
-        leftQueue->cartesianPtp(nextPose);
-        return nullptr;
+        cartesians = nextPose;
+    }
 
+    bool CartesianPtp::requiresGraspInternal() {
+        return false;
+    }
+
+    bool CartesianPtp::producesGraspInternal() {
+        return false;
+    }
+
+    void CartesianPtp::setCartesians(geometry_msgs::Pose pose) {
+        cartesians = pose;
+    }
+
+    std::shared_ptr<ControllerResult> CartesianPtp::executeInternal() {
+        leftQueue->cartesianPtp(cartesians);
+        return nullptr;
     }
 
     std::string CartesianPtp::getClassName() {
@@ -363,7 +368,7 @@ namespace kukadu {
         : Controller(dbStorage, "LocalizeObject", {hardware}, 0.01) {
 
         //loc = make_shared<PCBlobDetector>(hardware);
-        loc = make_shared<PCBlobDetector>(hardware, dbStorage, "origin", stdToArmadilloVec({0.0, 0.0, 0.0}), 2.0, 2.0, true);
+        loc = make_shared<PCBlobDetector>(hardware, dbStorage, "origin", stdToArmadilloVec({0.7, 0.3, 0.04}), 0.3, 0.4, true);
 
     }
 
@@ -382,6 +387,27 @@ namespace kukadu {
     KUKADU_SHARED_PTR<ControllerResult> LocalizeObject::executeInternal() {
         auto pos = loc->localizeObject("something");
         cout << pos.position.x << " " << pos.position.y << " " << pos.position.z << endl;
+        return nullptr;
+    }
+
+    void LocalizeObject::setCenterX(double x) {
+        loc->setCenterX(x);
+    }
+
+    void LocalizeObject::setCenterY(double y) {
+        loc->setCenterY(y);
+    }
+
+    void LocalizeObject::setCenterZ(double z) {
+        loc->setCenterZ(z);
+    }
+
+    void LocalizeObject::setBoxDimX(double x) {
+        loc->setBoxDimX(x);
+    }
+
+    void LocalizeObject::setBoxDimY(double y) {
+        loc->setBoxDimX(y);
     }
 
     std::string LocalizeObject::getClassName() {
