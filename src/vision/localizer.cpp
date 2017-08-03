@@ -300,7 +300,8 @@ namespace kukadu {
 
         KUKADU_MODULE_START_USAGE();
 
-        auto result = estimatePose(id);
+        auto result = estimatePose(id)
+        ;
 
         KUKADU_MODULE_END_USAGE();
 

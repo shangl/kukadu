@@ -107,22 +107,25 @@ Blockly.cake['main_block'] = function (block) {
 
     var skillName = block.getFieldValue('newSkillName');
     Blockly.cake.activeSkill_ = skillName;
-    var executeSkill = "kukadu::skill::" + skillName + " skill(storage, {" + hardwareids + "});\nskill.execute();\n";
-
     var installSkill = block.getFieldValue("CheckBoxInstallSkill");
     Blockly.cake.installSkill = installSkill;
 
+    var executeSkill = skillName + " skill(storage, {" + hardwareids + "});\nskill.execute();\n";
+
     if (installSkill === 'TRUE') {
+        executeSkill = "kukadu::skill::" + executeSkill;
         installSkill = "try { skill.createSkillFromThis(\"" + skillName + "\"); } catch(kukadu::KukaduException& ex) {}\n";
     } else {
-        Blockly.cake.definitions_['include_install_not_in_package'] = "#include \"../include/" + skillName + ".h\"\n#include \"" + skillName + ".cpp\"\n";
+        Blockly.cake.definitions_['include_install_not_in_package'] = "#include \"../include/" + skillName + ".hpp\"\n#include \"" + skillName + ".cpp\"\n";
         installSkill = "\n";
+
     }
+
 
     var codeClass = new CodeClass(skillName, skillCode);
 
     var funcName = 'main';
-    var returnValue = "return EXIT_SUCCESS;\n";
+    var returnValue = "storage.waitForEmptyCache();\nreturn EXIT_SUCCESS;\n";
     var returnType = 'int';
     roscode = Blockly.cake.prefixLines(roscode, Blockly.cake.INDENT);
     installHardware = Blockly.cake.prefixLines(installHardware, Blockly.cake.INDENT);
@@ -370,7 +373,7 @@ function CodeClass(name, code) {
         if (isSkillInstalled()) {
             skillImplementation += "#import <kukadu/generated_skills/" + name + ".hpp>\nnamespace kukadu {\n\tnamespace skill\n\t\t{";
         } else {
-            skillImplementation += "#import \"../include/" + name + ".hpp\"";
+            skillImplementation += "#import \"../include/" + name + ".hpp\"\n";
         }
 
         skillImplementation += name + "::" + name + "(kukadu::StorageSingleton& storage, std::vector< KUKADU_SHARED_PTR< kukadu::Hardware > > hardware)\n" +

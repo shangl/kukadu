@@ -178,7 +178,7 @@ namespace kukadu {
             argumentString =
                     "add_executable(" + packageName + " src/main.cpp)\r\ntarget_link_libraries(" + packageName +
                     " ${catkin_LIBRARIES} kukadu kukaduvision)";
-            textToAdd[115] = "  include";
+            textToAdd[118] = "  include";
             textToAdd[123] = QString(argumentString.c_str());
             int i = 0;
             while (!streamIn.atEnd()) {

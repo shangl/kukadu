@@ -297,8 +297,8 @@ namespace kukadu {
         return false;
     }
 
-    void CartesianPtp::setCartesians(geometry_msgs::Pose pose) {
-        cartesians = pose;
+    void CartesianPtp::setCartesians(geometry_msgs::Pose cartesians) {
+        this->cartesians = cartesians;
     }
 
     std::shared_ptr<ControllerResult> CartesianPtp::executeInternal() {
@@ -368,7 +368,7 @@ namespace kukadu {
         : Controller(dbStorage, "LocalizeObject", {hardware}, 0.01) {
 
         //loc = make_shared<PCBlobDetector>(hardware);
-        loc = make_shared<PCBlobDetector>(hardware, dbStorage, "origin", stdToArmadilloVec({0.7, 0.3, 0.04}), 0.3, 0.4, true);
+        loc = make_shared<PCBlobDetector>(hardware, dbStorage, "origin", stdToArmadilloVec({0.7, 0.3, 0.04}), 0.3, 0.4, false);
 
     }
 

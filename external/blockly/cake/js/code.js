@@ -78,9 +78,7 @@ function getCurrentSkillName(){
 }
 
 function isSkillInstalled() {
-    console.log(Blockly.cake.installSkill);
-
-    return Blockly.cake.installSkill;
+    return Blockly.cake.installSkill === 'TRUE';
 }
 
 function initializeDatabaseloader(jsonString){

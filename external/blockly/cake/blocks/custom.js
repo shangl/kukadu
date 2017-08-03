@@ -16,6 +16,77 @@ Blockly.Blocks['objectposition'] = {
         this.setColour(230);
         this.setTooltip('Object Position');
         this.setHelpUrl('');
+    },
+
+    /**
+     * Return 'variables'.
+     */
+    getDist: function() {
+        return 'c';
+    },
+    /**
+     * Return Variable's Scope
+     */
+    getScope: function() {
+        if (this.getSurroundParent()) {
+            return this.getSurroundParent().getName();
+        }
+    },
+    /**
+     * Return Variable's Scope
+     */
+    getSpec: function() {
+        return null;
+    },
+    /**
+     * Return this block's position
+     */
+    getPos: function(){
+        return this.getRelativeToSurfaceXY().y;
+    },
+    /**
+     * Return all variables's types referenced by this block.
+     * @return {!Array.<string>} List of variable types.
+     * @this Blockly.Block
+     */
+    getTypes: function() {
+        return ['double', 'double', 'double', 'double', 'double', 'double', 'double'];
+    },
+    /**
+     * Return all variables referenced by this block.
+     * @return {!Array.<string>} List of variable names.
+     * @this Blockly.Block
+     */
+    getVars: function() {
+        var initialName = this.getFieldValue('VariableName');
+
+        return [initialName + ".pose.orientation.x",
+                initialName + ".pose.orientation.y",
+                initialName + ".pose.orientation.z",
+                initialName + ".pose.orientation.w",
+                initialName + ".pose.position.x",
+                initialName + ".pose.position.y",
+                initialName + ".pose.position.z"];
+    },
+    /**
+     * Return all variables referenced by this block.
+     * @return {!Array.<string>} List of variable names.
+     * @this Blockly.Block
+     */
+    getDeclare: function() {
+        return this.getVars();
+    },
+    /**
+     * Notification that a variable is renaming.
+     * If the name matches one of this block's variables, rename it.
+     * @param {string} oldName Previous name of variable.
+     * @param {string} newName Renamed variable.
+     * @this Blockly.Block
+     */
+    renameVar: function(oldName, newName) {
+        if (Blockly.Names.equals(oldName, this.getFieldValue('VariableName'))) {
+            this.setFieldValue(newName, 'VariableName');
+        }
     }
 };
 

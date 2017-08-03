@@ -66,6 +66,8 @@ Blockly.cake['variables_set'] = function(block) {
             Blockly.cake.ORDER_ASSIGNMENT) || '0';
     var varName = Blockly.cake.variableDB_.getName(
         block.getFieldValue('VAR'), Blockly.Variables.NAME_TYPE);
+    varName = varName.replace(/_/g, ".");
+
     varName = Blockly.Blocks.checkUnselect(varName);
     return varName + ' = ' + argument0 + ';\n';
 };

@@ -118,7 +118,7 @@ namespace kukadu {
         bool requiresGraspInternal();
         bool producesGraspInternal();
 
-        void setCartesians(geometry_msgs::Pose pose);
+        void setCartesians(geometry_msgs::Pose cartesians);
 
         std::shared_ptr<ControllerResult> executeInternal();
 
