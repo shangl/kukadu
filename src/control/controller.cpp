@@ -369,7 +369,7 @@ namespace kukadu {
 
         //loc = make_shared<PCBlobDetector>(hardware);
         loc = make_shared<PCBlobDetector>(hardware, dbStorage, "origin", stdToArmadilloVec({0.7, 0.3, 0.04}), 0.3, 0.4, false);
-
+        this->objectName = "something";
     }
 
     void LocalizeObject::createSkillFromThisInternal(std::string skillName) {
@@ -384,8 +384,12 @@ namespace kukadu {
         return false;
     }
 
+    void LocalizeObject::setObjectToLoad(std::string objectToLoad){
+        this->objectName = objectToLoad;
+    }
+
     KUKADU_SHARED_PTR<ControllerResult> LocalizeObject::executeInternal() {
-        auto pos = loc->localizeObject("something");
+        auto pos = loc->localizeObject(this->objectName);
         cout << pos.position.x << " " << pos.position.y << " " << pos.position.z << endl;
         return nullptr;
     }

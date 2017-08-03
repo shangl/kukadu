@@ -158,6 +158,7 @@ namespace kukadu {
     private:
 
         KUKADU_SHARED_PTR<PCBlobDetector> loc;
+        std::string objectName;
 
     protected:
 
@@ -169,6 +170,8 @@ namespace kukadu {
 
         virtual bool requiresGraspInternal();
         virtual bool producesGraspInternal();
+
+        void setObjectToLoad(std::string objectToLoad);
 
         KUKADU_SHARED_PTR<ControllerResult> executeInternal();
 

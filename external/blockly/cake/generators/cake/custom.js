@@ -7,18 +7,20 @@ var skillCounter = 0;
 
 Blockly.cake['objectposition'] = function (block) {
     var variableName = block.getFieldValue("VariableName");
+    var tmpVariableName = variableName + "tmp";
     var objectName = block.getFieldValue("ObjectType");
 
-    return "auto " + variableName + " = kukadu::PoseEstimatorFactory::get().getPoseFor(\"" + objectName + "\");\n" +
-        variableName + ".pose.position.x = " + variableName + ".pose.position.x - 0.43;\n" +
-        variableName + ".pose.position.y = " + variableName + ".pose.position.y + 0.42;\n" +
-        variableName + ".pose.position.z = " + variableName + ".pose.position.z - 0.03;\n" +
-        variableName + ".pose.position.z = " + variableName + ".pose.position.z + 0.15;\n" +
-        "    tf::Quaternion rot = kukadu::rpyToQuat(0.0, M_PI, 0.0);\n" +
-        variableName + ".pose.orientation.x = rot.getX();\n" +
-        variableName + ".pose.orientation.y = rot.getY();\n" +
-        variableName + ".pose.orientation.z = rot.getZ();\n" +
-        variableName + ".pose.orientation.w = rot.getW();\n\n"
+    return "auto " + tmpVariableName + " = kukadu::PoseEstimatorFactory::get().getPoseFor(\"" + objectName + "\");\n" +
+        tmpVariableName + ".pose.position.x = " + tmpVariableName + ".pose.position.x - 0.43;\n" +
+        tmpVariableName + ".pose.position.y = " + tmpVariableName + ".pose.position.y + 0.42;\n" +
+        tmpVariableName + ".pose.position.z = " + tmpVariableName + ".pose.position.z - 0.03;\n" +
+        tmpVariableName + ".pose.position.z = " + tmpVariableName + ".pose.position.z + 0.15;\n" +
+        "tf::Quaternion rot = kukadu::rpyToQuat(0.0, M_PI, 0.0);\n" +
+        tmpVariableName + ".pose.orientation.x = rot.getX();\n" +
+        tmpVariableName + ".pose.orientation.y = rot.getY();\n" +
+        tmpVariableName + ".pose.orientation.z = rot.getZ();\n" +
+        tmpVariableName + ".pose.orientation.w = rot.getW();\n" +
+        "auto " + variableName + " = " + tmpVariableName + ".pose;\n\n";
 };
 
 

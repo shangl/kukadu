@@ -18,36 +18,57 @@
     <includes refid="planning_2planning_8hpp" local="no">kukadu/planning/planning.hpp</includes>
     <includes refid="kukadutypes_8hpp" local="no">kukadu/types/kukadutypes.hpp</includes>
     <includes refid="destroyableobject_8hpp" local="no">kukadu/utils/destroyableobject.hpp</includes>
-    <includedby refid="hardwarefactory_8cpp" local="no">/home/andreasmennel/iis_robot_sw/iis_catkin_ws/src/kukadu/src/robot/hardwarefactory.cpp</includedby>
-    <includedby refid="kinestheticteaching_8cpp" local="no">/home/andreasmennel/iis_robot_sw/iis_catkin_ws/src/kukadu/src/robot/kinestheticteaching.cpp</includedby>
-    <includedby refid="queue_8cpp" local="no">/home/andreasmennel/iis_robot_sw/iis_catkin_ws/src/kukadu/src/robot/queue.cpp</includedby>
-    <includedby refid="robot_8hpp" local="no">/home/andreasmennel/iis_robot_sw/iis_catkin_ws/src/kukadu/include/kukadu/robot.hpp</includedby>
+    <includedby refid="hardwarefactory_8cpp" local="no">/home/agyss/iis_robot_sw/iis_catkin_ws/src/kukadu/src/robot/hardwarefactory.cpp</includedby>
+    <includedby refid="kinestheticteaching_8cpp" local="no">/home/agyss/iis_robot_sw/iis_catkin_ws/src/kukadu/src/robot/kinestheticteaching.cpp</includedby>
+    <includedby refid="queue_8cpp" local="no">/home/agyss/iis_robot_sw/iis_catkin_ws/src/kukadu/src/robot/queue.cpp</includedby>
+    <includedby refid="robot_8hpp" local="no">/home/agyss/iis_robot_sw/iis_catkin_ws/src/kukadu/include/kukadu/robot.hpp</includedby>
     <incdepgraph>
+      <node id="2203">
+        <label>kukadu/planning/planning.hpp</label>
+        <link refid="planning_2planning_8hpp_source"/>
+        <childnode refid="2178" relation="include">
+        </childnode>
+        <childnode refid="2173" relation="include">
+        </childnode>
+        <childnode refid="2204" relation="include">
+        </childnode>
+        <childnode refid="2176" relation="include">
+        </childnode>
+        <childnode refid="2182" relation="include">
+        </childnode>
+        <childnode refid="2190" relation="include">
+        </childnode>
+      </node>
       <node id="2195">
         <label>cppconn/resultset.h</label>
       </node>
       <node id="2172">
         <label>queue</label>
       </node>
-      <node id="2179">
-        <label>kukadu/robot/filters.hpp</label>
-        <link refid="filters_8hpp_source"/>
-        <childnode refid="2180" relation="include">
+      <node id="2177">
+        <label>kukadu/robot/queue.hpp</label>
+        <link refid="queue_8hpp"/>
+        <childnode refid="2172" relation="include">
+        </childnode>
+        <childnode refid="2178" relation="include">
+        </childnode>
+        <childnode refid="2173" relation="include">
+        </childnode>
+        <childnode refid="2176" relation="include">
+        </childnode>
+        <childnode refid="2179" relation="include">
+        </childnode>
+        <childnode refid="2188" relation="include">
         </childnode>
         <childnode refid="2182" relation="include">
         </childnode>
-      </node>
-      <node id="2204">
-        <label>Eigen/Core</label>
-      </node>
-      <node id="2189">
-        <label>string</label>
-      </node>
-      <node id="2171">
-        <label>map</label>
+        <childnode refid="2197" relation="include">
+        </childnode>
+        <childnode refid="2190" relation="include">
+        </childnode>
       </node>
       <node id="2170">
-        <label>/home/andreasmennel/iis_robot_sw/iis_catkin_ws/src/kukadu/include/kukadu/robot/kukiequeue.hpp</label>
+        <label>/home/agyss/iis_robot_sw/iis_catkin_ws/src/kukadu/include/kukadu/robot/kukiequeue.hpp</label>
         <link refid="kukiequeue.hpp"/>
         <childnode refid="2171" relation="include">
         </childnode>
@@ -82,132 +103,6 @@
         <childnode refid="2197" relation="include">
         </childnode>
       </node>
-      <node id="2173">
-        <label>armadillo</label>
-      </node>
-      <node id="2183">
-        <label>exception</label>
-      </node>
-      <node id="2175">
-        <label>std_msgs/Float64.h</label>
-      </node>
-      <node id="2196">
-        <label>cppconn/statement.h</label>
-      </node>
-      <node id="2201">
-        <label>std_msgs/Float32MultiArray.h</label>
-      </node>
-      <node id="2187">
-        <label>random</label>
-      </node>
-      <node id="2197">
-        <label>kukadu/utils/destroyableobject.hpp</label>
-        <link refid="destroyableobject_8hpp_source"/>
-      </node>
-      <node id="2199">
-        <label>sensor_msgs/JointState.h</label>
-      </node>
-      <node id="2182">
-        <label>kukadu/types/kukadutypes.hpp</label>
-        <link refid="kukadutypes_8hpp_source"/>
-        <childnode refid="2183" relation="include">
-        </childnode>
-        <childnode refid="2184" relation="include">
-        </childnode>
-        <childnode refid="2185" relation="include">
-        </childnode>
-        <childnode refid="2186" relation="include">
-        </childnode>
-        <childnode refid="2187" relation="include">
-        </childnode>
-      </node>
-      <node id="2177">
-        <label>kukadu/robot/queue.hpp</label>
-        <link refid="queue_8hpp"/>
-        <childnode refid="2172" relation="include">
-        </childnode>
-        <childnode refid="2178" relation="include">
-        </childnode>
-        <childnode refid="2173" relation="include">
-        </childnode>
-        <childnode refid="2176" relation="include">
-        </childnode>
-        <childnode refid="2179" relation="include">
-        </childnode>
-        <childnode refid="2188" relation="include">
-        </childnode>
-        <childnode refid="2182" relation="include">
-        </childnode>
-        <childnode refid="2197" relation="include">
-        </childnode>
-        <childnode refid="2190" relation="include">
-        </childnode>
-      </node>
-      <node id="2188">
-        <label>kukadu/robot/hardware.hpp</label>
-        <link refid="hardware_8hpp_source"/>
-        <childnode refid="2189" relation="include">
-        </childnode>
-        <childnode refid="2173" relation="include">
-        </childnode>
-        <childnode refid="2180" relation="include">
-        </childnode>
-        <childnode refid="2190" relation="include">
-        </childnode>
-      </node>
-      <node id="2178">
-        <label>vector</label>
-      </node>
-      <node id="2193">
-        <label>cppconn/driver.h</label>
-      </node>
-      <node id="2194">
-        <label>cppconn/exception.h</label>
-      </node>
-      <node id="2176">
-        <label>geometry_msgs/Pose.h</label>
-      </node>
-      <node id="2174">
-        <label>ros/ros.h</label>
-      </node>
-      <node id="2191">
-        <label>iostream</label>
-      </node>
-      <node id="2203">
-        <label>kukadu/planning/planning.hpp</label>
-        <link refid="planning_2planning_8hpp_source"/>
-        <childnode refid="2178" relation="include">
-        </childnode>
-        <childnode refid="2173" relation="include">
-        </childnode>
-        <childnode refid="2204" relation="include">
-        </childnode>
-        <childnode refid="2176" relation="include">
-        </childnode>
-        <childnode refid="2182" relation="include">
-        </childnode>
-        <childnode refid="2190" relation="include">
-        </childnode>
-      </node>
-      <node id="2192">
-        <label>mysql_connection.h</label>
-      </node>
-      <node id="2186">
-        <label>mutex</label>
-      </node>
-      <node id="2180">
-        <label>kukadu/utils/types.hpp</label>
-        <link refid="utils_2types_8hpp_source"/>
-        <childnode refid="2178" relation="include">
-        </childnode>
-        <childnode refid="2173" relation="include">
-        </childnode>
-        <childnode refid="2181" relation="include">
-        </childnode>
-      </node>
-      <node id="2185">
-        <label>thread</label>
-      </node>
       <node id="2190">
         <label>kukadu/storage/storagesingleton.hpp</label>
         <link refid="storagesingleton_8hpp_source"/>
@@ -234,6 +129,111 @@
         <childnode refid="2196" relation="include">
         </childnode>
       </node>
+      <node id="2182">
+        <label>kukadu/types/kukadutypes.hpp</label>
+        <link refid="kukadutypes_8hpp_source"/>
+        <childnode refid="2183" relation="include">
+        </childnode>
+        <childnode refid="2184" relation="include">
+        </childnode>
+        <childnode refid="2185" relation="include">
+        </childnode>
+        <childnode refid="2186" relation="include">
+        </childnode>
+        <childnode refid="2187" relation="include">
+        </childnode>
+      </node>
+      <node id="2204">
+        <label>Eigen/Core</label>
+      </node>
+      <node id="2188">
+        <label>kukadu/robot/hardware.hpp</label>
+        <link refid="hardware_8hpp_source"/>
+        <childnode refid="2189" relation="include">
+        </childnode>
+        <childnode refid="2173" relation="include">
+        </childnode>
+        <childnode refid="2180" relation="include">
+        </childnode>
+        <childnode refid="2190" relation="include">
+        </childnode>
+      </node>
+      <node id="2189">
+        <label>string</label>
+      </node>
+      <node id="2171">
+        <label>map</label>
+      </node>
+      <node id="2173">
+        <label>armadillo</label>
+      </node>
+      <node id="2183">
+        <label>exception</label>
+      </node>
+      <node id="2175">
+        <label>std_msgs/Float64.h</label>
+      </node>
+      <node id="2196">
+        <label>cppconn/statement.h</label>
+      </node>
+      <node id="2201">
+        <label>std_msgs/Float32MultiArray.h</label>
+      </node>
+      <node id="2187">
+        <label>random</label>
+      </node>
+      <node id="2199">
+        <label>sensor_msgs/JointState.h</label>
+      </node>
+      <node id="2180">
+        <label>kukadu/utils/types.hpp</label>
+        <link refid="utils_2types_8hpp_source"/>
+        <childnode refid="2178" relation="include">
+        </childnode>
+        <childnode refid="2173" relation="include">
+        </childnode>
+        <childnode refid="2181" relation="include">
+        </childnode>
+      </node>
+      <node id="2178">
+        <label>vector</label>
+      </node>
+      <node id="2179">
+        <label>kukadu/robot/filters.hpp</label>
+        <link refid="filters_8hpp_source"/>
+        <childnode refid="2180" relation="include">
+        </childnode>
+        <childnode refid="2182" relation="include">
+        </childnode>
+      </node>
+      <node id="2193">
+        <label>cppconn/driver.h</label>
+      </node>
+      <node id="2194">
+        <label>cppconn/exception.h</label>
+      </node>
+      <node id="2176">
+        <label>geometry_msgs/Pose.h</label>
+      </node>
+      <node id="2174">
+        <label>ros/ros.h</label>
+      </node>
+      <node id="2191">
+        <label>iostream</label>
+      </node>
+      <node id="2192">
+        <label>mysql_connection.h</label>
+      </node>
+      <node id="2197">
+        <label>kukadu/utils/destroyableobject.hpp</label>
+        <link refid="destroyableobject_8hpp_source"/>
+      </node>
+      <node id="2186">
+        <label>mutex</label>
+      </node>
+      <node id="2185">
+        <label>thread</label>
+      </node>
       <node id="2202">
         <label>std_msgs/Float64MultiArray.h</label>
       </node>
@@ -252,19 +252,19 @@
     </incdepgraph>
     <invincdepgraph>
       <node id="2205">
-        <label>/home/andreasmennel/iis_robot_sw/iis_catkin_ws/src/kukadu/include/kukadu/robot/kukiequeue.hpp</label>
+        <label>/home/agyss/iis_robot_sw/iis_catkin_ws/src/kukadu/include/kukadu/robot/kukiequeue.hpp</label>
         <link refid="kukiequeue.hpp"/>
         <childnode refid="2206" relation="include">
         </childnode>
       </node>
       <node id="2206">
-        <label>/home/andreasmennel/iis_robot_sw/iis_catkin_ws/src/kukadu/include/kukadu/robot.hpp</label>
+        <label>/home/agyss/iis_robot_sw/iis_catkin_ws/src/kukadu/include/kukadu/robot.hpp</label>
         <link refid="robot_8hpp_source"/>
         <childnode refid="2207" relation="include">
         </childnode>
       </node>
       <node id="2207">
-        <label>/home/andreasmennel/iis_robot_sw/iis_catkin_ws/src/kukadu/include/kukadu/kukadu.hpp</label>
+        <label>/home/agyss/iis_robot_sw/iis_catkin_ws/src/kukadu/include/kukadu/kukadu.hpp</label>
         <link refid="kukadu_8hpp_source"/>
       </node>
     </invincdepgraph>
@@ -494,6 +494,6 @@
 <codeline lineno="221"><highlight class="normal"></highlight></codeline>
 <codeline lineno="222"><highlight class="normal"></highlight><highlight class="preprocessor">#endif</highlight></codeline>
     </programlisting>
-    <location file="/home/andreasmennel/iis_robot_sw/iis_catkin_ws/src/kukadu/include/kukadu/robot/kukiequeue.hpp"/>
+    <location file="/home/agyss/iis_robot_sw/iis_catkin_ws/src/kukadu/include/kukadu/robot/kukiequeue.hpp"/>
   </compounddef>
 </doxygen>
