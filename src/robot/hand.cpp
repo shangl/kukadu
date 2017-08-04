@@ -47,6 +47,13 @@ namespace kukadu {
             s << "insert into hardware_joints(hardware_instance_id, joint_id, joint_name) values(" << hardwareInstId << ", " << nextJointId << ", '" << jointName << "')";
             getStorage().executeStatementPriority(s.str());
         }
+    }
+
+    void GenericHand::startInternal() {
+        connectHand();
+    }
+
+    void GenericHand::stopInternal() {
 
     }
 
@@ -175,10 +182,6 @@ namespace kukadu {
     }
 
     std::string GenericHand::getHandName() { return getHardwareInstanceName(); }
-
-    void GenericHand::start(){
-        connectHand();
-    }
 
     KukieHand::KukieHand(StorageSingleton& storage, std::string robotName, bool simulation) :
         GenericHand(storage, loadTypeIdFromName("KukieHand"), "KukieHand", Hardware::loadInstanceIdFromName(robotName), robotName) {

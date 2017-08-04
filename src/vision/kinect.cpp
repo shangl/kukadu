@@ -69,7 +69,7 @@ namespace kukadu {
         this->targetFrame = targetFrame;
 
         // kinect is started automatically
-        start();
+        Hardware::start();
 
     }
 
@@ -79,6 +79,10 @@ namespace kukadu {
 
     void Kinect::installHardwareInstanceInternal() {
         // nothing to do
+    }
+
+    void Kinect::stopInternal() {
+        stopSensing();
     }
 
     void Kinect::storeCurrentSensorDataToDatabase() {
@@ -95,7 +99,7 @@ namespace kukadu {
         throw KukaduException("(Kinect) todo");
     }
 
-    void Kinect::start() {
+    void Kinect::startInternal() {
 
         if(!isStarted) {
 

@@ -217,12 +217,16 @@ namespace kukadu {
 
     }
 
-    void ControlQueue::start(){
+    void ControlQueue::startInternal(){
         startQueue();
         if(getCurrentMode() != kukadu::KukieControlQueue::KUKA_JNT_IMP_MODE) {
             stopCurrentMode();
             switchMode(kukadu::KukieControlQueue::KUKA_JNT_IMP_MODE);
         }
+    }
+
+    void ControlQueue::stopInternal() {
+        stopQueue();
     }
 
     ControlQueue::ControlQueue(StorageSingleton& storage, std::string robotName, std::string className) :

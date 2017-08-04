@@ -183,6 +183,10 @@ namespace kukadu {
 
         int loadDegOfFreedom(StorageSingleton& storage, std::string robotName);
 
+        virtual void startInternal();
+        virtual void stopInternal();
+
+
     public:
 
         ControlQueue(StorageSingleton& storage, std::string robotName, std::string className);
@@ -206,7 +210,9 @@ namespace kukadu {
          */
         KUKADU_SHARED_PTR<kukadu_thread> startQueue();
 
-        virtual void start();
+        void start();
+
+        void stop();
 
         /**
          * \brief Returns the time between two cycles

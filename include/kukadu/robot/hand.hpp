@@ -36,10 +36,17 @@ namespace kukadu {
         virtual void installHardwareTypeInternal();
         virtual void installHardwareInstanceInternal();
 
+        virtual void startInternal();
+        virtual void stopInternal();
+
     public:
 
         GenericHand(StorageSingleton& dbStorage, std::string handInstanceName);
         GenericHand(StorageSingleton& dbStorage, int handTypeId, std::string handTypeName, int handInstanceId, std::string handInstanceName);
+
+        void start();
+
+        void stop();
 
         /** \brief Initializes the connection to the hand
          *
@@ -78,8 +85,6 @@ namespace kukadu {
 
         virtual void storeCurrentSensorDataToDatabase();
         virtual double getPreferredPollingFrequency();
-
-        virtual void start();
     };
 
     /**

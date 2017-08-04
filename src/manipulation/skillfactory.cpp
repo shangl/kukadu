@@ -26,6 +26,24 @@ namespace kukadu {
         {"LocalizeObject", [](StorageSingleton& storage, int skillId, int controllerType, std::vector<KUKADU_SHARED_PTR<Hardware> > hardwareComponents) {
             return make_shared<LocalizeObject>(storage, KUKADU_DYNAMIC_POINTER_CAST<Kinect>(hardwareComponents.front()));
         }}
+,{
+			"ultimateSkill", [](StorageSingleton& storage, int skillId, int controllerType, std::vector<KUKADU_SHARED_PTR<Hardware> > hardwareComponents) {
+				return make_shared<skill::ultimateSkill>(storage, hardwareComponents);
+			}
+		}
+
+,{
+			"ultimateSkill", [](StorageSingleton& storage, int skillId, int controllerType, std::vector<KUKADU_SHARED_PTR<Hardware> > hardwareComponents) {
+				return make_shared<skill::ultimateSkill>(storage, hardwareComponents);
+			}
+		}
+
+,{
+			"ultimateSkill", [](StorageSingleton& storage, int skillId, int controllerType, std::vector<KUKADU_SHARED_PTR<Hardware> > hardwareComponents) {
+				return make_shared<skill::ultimateSkill>(storage, hardwareComponents);
+			}
+		}
+
         //insertSkill
         //at this line further skills will be inserted automatically - do not remove it
     };

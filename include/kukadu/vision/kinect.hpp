@@ -60,6 +60,9 @@ namespace kukadu {
         virtual void installHardwareTypeInternal();
         virtual void installHardwareInstanceInternal();
 
+        virtual void startInternal();
+        virtual void stopInternal();
+
     public:
 
         Kinect(StorageSingleton& dbStorage, std::string hardwareName);
@@ -69,7 +72,9 @@ namespace kukadu {
 
         ~Kinect();
 
-        virtual void start();
+        void start();
+
+        void stop();
 
         std::string getTargetFrame();
 

@@ -32,9 +32,7 @@ Blockly.cake['skillloader'] = function (block) {
     var splitHardware = hardwareSelection.split(", ");
 
     for(var i = 0; i < splitHardware.length; i++) {
-        Blockly.cake.neededHardware_[splitHardware[i]] = "auto " + splitHardware[i] + " = hardwareFactory.loadHardware(\"" + splitHardware[i] + "\");\n" +
-                        splitHardware[i] + "->install();\n" +
-                        splitHardware[i] + "->start();\n";
+        Blockly.cake.neededHardware_[splitHardware[i]] = "auto " + splitHardware[i] + " = hardwareFactory.loadHardware(\"" + splitHardware[i] + "\");\n";
     }
 
     var hardwareCode = "";
@@ -42,7 +40,9 @@ Blockly.cake['skillloader'] = function (block) {
 
     for (var i = 0; i < splitHardware.length; i++) {
         var hardwareVariableName = "simLeftQueue" + skillCounter + i;
-        hardwareCode += "auto " + hardwareVariableName + " = hardwareFactory.loadHardware(\"" + splitHardware[i] + "\");\n";
+        hardwareCode += "auto " + hardwareVariableName + " = hardwareFactory.loadHardware(\"" + splitHardware[i] + "\");\n" +
+            hardwareVariableName + "->install();\n" +
+            hardwareVariableName + "->start();\n";
         hardwareVariableNames.push(hardwareVariableName);
     }
 

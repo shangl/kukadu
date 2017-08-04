@@ -60,13 +60,13 @@ Blockly.Blocks['objectposition'] = {
     getVars: function() {
         var initialName = this.getFieldValue('VariableName');
 
-        return [initialName + ".pose.orientation.x",
-                initialName + ".pose.orientation.y",
-                initialName + ".pose.orientation.z",
-                initialName + ".pose.orientation.w",
-                initialName + ".pose.position.x",
-                initialName + ".pose.position.y",
-                initialName + ".pose.position.z"];
+        return [initialName + ".orientation.x",
+                initialName + ".orientation.y",
+                initialName + ".orientation.z",
+                initialName + ".orientation.w",
+                initialName + ".position.x",
+                initialName + ".position.y",
+                initialName + ".position.z"];
     },
     /**
      * Return all variables referenced by this block.

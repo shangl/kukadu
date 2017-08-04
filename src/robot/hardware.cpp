@@ -122,6 +122,9 @@ namespace kukadu {
         this->hardwareInstanceId = hardwareInstanceId;
         this->hardwareInstanceName = hardwareInstanceName;
         registerHardware();
+
+        this->installed = false;
+        this->started = false;
     }
 
     void Hardware::registerHardware() {
@@ -129,8 +132,25 @@ namespace kukadu {
     }
 
     void Hardware::install() {
-        installHardwareType();
-        installHardwareInstance();
+        if(!this->installed) {
+            installHardwareType();
+            installHardwareInstance();
+            this->installed = true;
+        }
+    }
+
+    void Hardware::start() {
+        if(!this->started) {
+            startInternal();
+            this->started = true;
+        }
+    }
+
+    void Hardware::stop() {
+        if (this->started) {
+            stopInternal();
+            this->started = false;
+        }
     }
 
     void Hardware::installHardwareType() {

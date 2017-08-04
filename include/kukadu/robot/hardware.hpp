@@ -16,6 +16,9 @@ namespace kukadu {
         int hardwareClass;
         int hardwareInstanceId;
 
+        bool started;
+        bool installed;
+
         std::string hardwareTypeName;
         std::string hardwareInstanceName;
 
@@ -34,13 +37,18 @@ namespace kukadu {
         virtual void installHardwareTypeInternal() = 0;
         virtual void installHardwareInstanceInternal() = 0;
 
+        virtual void startInternal() = 0;
+        virtual void stopInternal() = 0;
+
     public:
 
         Hardware(StorageSingleton& dbStorage, int hardwareClass, int hardwareType, std::string hardwareTypeName, int hardwareInstanceId, std::string hardwareInstanceName);
 
-        virtual void install();
+        void install();
 
-        virtual void start() = 0;
+        void start();
+
+        void stop();
 
         int getHardwareType();
         int getHardwareClass();

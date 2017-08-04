@@ -365,7 +365,7 @@ namespace kukadu {
     bool KukaduGraphical::isSkillInstalled(){
         auto isSkillInstalled = webView->page()->mainFrame()->evaluateJavaScript("isSkillInstalled()").toString().toStdString();
 
-        return isSkillInstalled == "TRUE";
+        return isSkillInstalled == "true";
     }
 
     std::string KukaduGraphical::getPackageName(){
