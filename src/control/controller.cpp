@@ -286,7 +286,7 @@ namespace kukadu {
         nextPose.orientation.z = -0.29;
         nextPose.orientation.w = 0.94;
 
-        cartesians = nextPose;
+        this->cartesians = nextPose;
     }
 
     bool CartesianPtp::requiresGraspInternal() {
@@ -302,7 +302,7 @@ namespace kukadu {
     }
 
     std::shared_ptr<ControllerResult> CartesianPtp::executeInternal() {
-        leftQueue->cartesianPtp(cartesians);
+        leftQueue->cartesianPtp(this->cartesians);
         return nullptr;
     }
 
