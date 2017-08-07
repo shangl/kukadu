@@ -226,7 +226,10 @@ namespace kukadu {
     }
 
     ModuleUsageSingleton& ModuleUsageSingleton::get() {
-        static ModuleUsageSingleton instance;
+        static std::mutex m;
+        m.lock();
+            static ModuleUsageSingleton instance;
+        m.unlock();
         return instance;
     }
 

@@ -107,7 +107,8 @@ namespace kukadu {
                     auto& threadPair = this->startedThreads[hardware->getHardwareInstanceName()];
                     auto& runningFlag = threadPair.first;
                     while(runningFlag) {
-                        hardware->storeCurrentSensorDataToDatabase();
+                        if(hardware->isStarted())
+                            hardware->storeCurrentSensorDataToDatabase();
                         r.sleep();
                     }
                     runningFlag = false;

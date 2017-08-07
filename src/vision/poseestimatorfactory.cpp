@@ -19,8 +19,8 @@ namespace kukadu {
         return instance;
     }
 
-    KUKADU_SHARED_PTR<PoseEstimator> PoseEstimatorFactory::loadPoseEstimator(std::string poseEstimatorName) {
-        return poseEstimatorFactories[poseEstimatorName](HardwareFactory::get().loadHardware("camera"), getStorage());
+    KUKADU_SHARED_PTR<PoseEstimator> PoseEstimatorFactory::loadPoseEstimator(std::string poseEstimatorName, std::shared_ptr<kukadu::Hardware> hardware) {
+        return poseEstimatorFactories[poseEstimatorName](hardware, getStorage());
     }
 
     std::vector<std::string> PoseEstimatorFactory::listAvailablePoseEstimators() {
@@ -71,8 +71,10 @@ namespace kukadu {
 
                 return poseStamped;
             } else throw KukaduException("No position for this object available.");
-            } else throw KukaduException("This object does not exist.");
-        }
+        } else throw KukaduException("This object does not exist.");
 
-
+        throw KukaduException("(PoseEstimatorFactory) unknown error");
     }
+
+
+}

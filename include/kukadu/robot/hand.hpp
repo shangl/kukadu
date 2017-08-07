@@ -44,10 +44,6 @@ namespace kukadu {
         GenericHand(StorageSingleton& dbStorage, std::string handInstanceName);
         GenericHand(StorageSingleton& dbStorage, int handTypeId, std::string handTypeName, int handInstanceId, std::string handInstanceName);
 
-        void start();
-
-        void stop();
-
         /** \brief Initializes the connection to the hand
          *
          */

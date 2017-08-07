@@ -72,10 +72,6 @@ namespace kukadu {
 
         ~Kinect();
 
-        void start();
-
-        void stop();
-
         std::string getTargetFrame();
 
         void stopSensing();

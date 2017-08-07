@@ -3,6 +3,9 @@
 #include <kukadu/control/controller.hpp>
 #include <kukadu/storage/moduleusagesingleton.hpp>
 #include <kukadu/storage/sensorstoragesingleton.hpp>
+#include <kukadu/storage/sensorstorage.hpp>
+#include <kukadu/robot/hardwarefactory.hpp>
+#include <kukadu/robot.hpp>
 
 using namespace std;
 
@@ -286,7 +289,7 @@ namespace kukadu {
         nextPose.orientation.z = -0.29;
         nextPose.orientation.w = 0.94;
 
-        cartesians = nextPose;
+        this->cartesians = nextPose;
     }
 
     bool CartesianPtp::requiresGraspInternal() {
@@ -302,7 +305,7 @@ namespace kukadu {
     }
 
     std::shared_ptr<ControllerResult> CartesianPtp::executeInternal() {
-        leftQueue->cartesianPtp(cartesians);
+        leftQueue->cartesianPtp(this->cartesians);
         return nullptr;
     }
 
@@ -417,5 +420,80 @@ namespace kukadu {
     std::string LocalizeObject::getClassName() {
         return "LocalizeObject";
     }
+
+    KinestheticTeaching::KinestheticTeaching(StorageSingleton &storage, KUKADU_SHARED_PTR<JointHardware> hardware)
+            : Controller(storage, "KinestheticTeaching", {hardware}, 0.01) {
+
+    }
+
+    bool KinestheticTeaching::requiresGraspInternal() {
+        return false;
+    }
+
+    bool KinestheticTeaching::producesGraspInternal() {
+        return false;
+    }
+
+
+    std::shared_ptr<ControllerResult> KinestheticTeaching::executeInternal() {
+        std::string storeDir = "/tmp/kukadu_demo/";
+
+        cout << "starting measurement" << endl;
+        //HardwareFactory::setSimulation(false);
+        auto& hardwareFactory = HardwareFactory::get();
+        auto leftQueue = KUKADU_DYNAMIC_POINTER_CAST<ControlQueue>(hardwareFactory.loadHardware("kukie_left_arm"));
+        leftQueue->install();
+        leftQueue->start();
+        auto rightQueue = KUKADU_DYNAMIC_POINTER_CAST<ControlQueue>(hardwareFactory.loadHardware("kukie_right_arm"));
+        rightQueue->install();
+        rightQueue->start();
+        auto leftHand = KUKADU_DYNAMIC_POINTER_CAST<GenericHand>(hardwareFactory.loadHardware("kukiehand_left"));
+        leftHand->install();
+        leftHand->start();
+        auto rightHand = KUKADU_DYNAMIC_POINTER_CAST<GenericHand>(hardwareFactory.loadHardware("kukiehand_right"));
+        rightHand->install();
+        rightHand->start();
+
+        vector<KUKADU_SHARED_PTR<ControlQueue> > queueVectors;
+        queueVectors.push_back(leftQueue);
+        queueVectors.push_back(rightQueue);
+
+        vector<KUKADU_SHARED_PTR<GenericHand> > handVectors;
+        handVectors.push_back(leftHand);
+        handVectors.push_back(rightHand);
+
+
+        //move to this position to make execution possible
+        leftQueue->jointPtp({-0.7, 0.7, 1.5, -1.74, -1.85, 1.27, 0.71});
+
+        SensorStorage sensorStorage(storage, queueVectors, handVectors, 1000);
+        sensorStorage.setExportMode(SensorStorage::STORE_RBT_CART_POS | SensorStorage::STORE_RBT_JNT_POS);
+        sensorStorage.startDataStorage(storeDir);
+        cout << "measurement started" << endl;
+
+        ros::Rate r(2);
+        r.sleep();
+
+        leftQueue->jointPtp({-1.5, 1.56, 2.33, -1.74, -1.85, 1.27, 0.71});
+
+        sensorStorage.stopDataStorage();
+
+
+        leftQueue->stop();
+        rightQueue->stop();
+        rightHand->stop();
+        leftHand->stop();
+        return nullptr;
+    }
+
+    std::string KinestheticTeaching::getClassName() {
+        return "KinestheticTeaching";
+    }
+
+    void KinestheticTeaching::createSkillFromThisInternal(std::string skillName) {
+        // nothing to do
+    }
+
+
 
 }

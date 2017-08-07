@@ -26,7 +26,7 @@ Blockly.cake['objectposition'] = function (block) {
 
 Blockly.cake['skillloader'] = function (block) {
     Blockly.cake.definitions_['include_cake_string'] =
-        '#include <stdlib.h>\n#include <kukadu/kukadu.hpp>\n#include <boost/program_options.hpp>';
+        '#include <stdlib.h>\n#include <kukadu/kukadu.hpp>';
 
     var hardwareSelection = Blockly.cake.valueToCode(block, 'HARDWARE', Blockly.cake.ORDER_ATOMIC);
     var splitHardware = hardwareSelection.split(", ");
@@ -39,7 +39,7 @@ Blockly.cake['skillloader'] = function (block) {
     var hardwareVariableNames = [];
 
     for (var i = 0; i < splitHardware.length; i++) {
-        var hardwareVariableName = "simLeftQueue" + skillCounter + i;
+        var hardwareVariableName = "sLeftQueue" + skillCounter + i;
         hardwareCode += "auto " + hardwareVariableName + " = hardwareFactory.loadHardware(\"" + splitHardware[i] + "\");\n" +
             hardwareVariableName + "->install();\n" +
             hardwareVariableName + "->start();\n";
@@ -109,7 +109,13 @@ Blockly.cake['skillloader'] = function (block) {
             skillCode += ");\n";
         }
 
-        skillCode += "\nskill" + skillCounter++ + "->execute();\n\n";
+        skillCode += "\nskill" + skillCounter++ + "->execute();\n";
+
+        for (var u = 0; u < hardwareVariableNames.length; u++) {
+            skillCode += hardwareVariableNames[u] + "->stop();\n";
+        }
+
+        skillCode += "\n";
     }
     var code = hardwareCode + skillCode;
 

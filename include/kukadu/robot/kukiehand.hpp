@@ -75,10 +75,6 @@ namespace kukadu {
         KukieHand(StorageSingleton& storage, ros::NodeHandle node, bool simulation, std::string hand);
         ~KukieHand();
 
-        void start();
-
-        void stop();
-
         virtual void connectHand();
         virtual void safelyDestroy();
         virtual void disconnectHand();

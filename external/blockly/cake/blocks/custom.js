@@ -7,10 +7,10 @@ Blockly.Blocks['objectposition'] = {
     init: function () {
         this.appendDummyInput()
             .appendField("VariableName: ")
-            .appendField(new Blockly.FieldTextInput("variableName"), "VariableName");
+            .appendField(new Blockly.FieldTextInput("hans"), "VariableName");
         this.appendDummyInput()
             .appendField("Object to load: ")
-            .appendField(new Blockly.FieldTextInput("hans"), "ObjectType");
+            .appendField(new Blockly.FieldTextInput("something"), "ObjectType");
         this.setPreviousStatement(true, null);
         this.setNextStatement(true, null);
         this.setColour(230);
@@ -219,7 +219,7 @@ Blockly.Blocks['skillloader'] = {
                     }
 
                     this.appendDummyInput("attributes" + i)
-                        .appendField(attribute.dataType + " " + attribute.name)
+                        .appendField(attribute.dataType + " " + attribute.name);
                     var input = this.getInput("attributes" + i);
 
                     if (attribute.dataType === "std::vector< double >" || attribute.dataType === "std::vector< int >" || attribute.dataType === "std::vector< string >") {

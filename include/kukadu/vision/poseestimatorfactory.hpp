@@ -19,7 +19,7 @@ namespace kukadu {
 
         static PoseEstimatorFactory& get();
 
-        KUKADU_SHARED_PTR<PoseEstimator> loadPoseEstimator(std::string poseEstimatorName);
+        KUKADU_SHARED_PTR<PoseEstimator> loadPoseEstimator(std::string poseEstimatorName, std::shared_ptr<kukadu::Hardware> hardware);
 
         std::vector<std::string> listAvailablePoseEstimators();
 

@@ -146,6 +146,10 @@ namespace kukadu {
         }
     }
 
+    bool Hardware::isStarted() {
+        return started;
+    }
+
     void Hardware::stop() {
         if (this->started) {
             stopInternal();

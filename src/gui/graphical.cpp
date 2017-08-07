@@ -109,7 +109,8 @@ namespace kukadu {
         std::string blocklyPath = resolvePath("$KUKADU_HOME/external/blockly/cake/test.html");
         auto mainView = new QGroupBox();
         auto mainLayout = new QGridLayout();
-        auto buttonContainer = new QHBoxLayout();
+        auto executeSkillContainer = new QHBoxLayout();
+        auto kinestheticTeachingContainer = new QHBoxLayout();
         packeNameLineEdit = new QLineEdit();
 
         QWebSettings::globalSettings()->setAttribute(QWebSettings::DeveloperExtrasEnabled, true);
@@ -126,14 +127,19 @@ namespace kukadu {
         QObject::connect(webView, SIGNAL(loadFinished(bool)), this, SLOT(onStart()));
         webView->load(QUrl(indexFilePath.c_str()));
 
-        auto simulateButton = new QPushButton("Execute");
-        QObject::connect(simulateButton, SIGNAL(clicked()), this, SLOT(executeSlot()));
+        auto executeButton = new QPushButton("Execute");
+        QObject::connect(executeButton, SIGNAL(clicked()), this, SLOT(executeSlot()));
+
+        auto kinestheticButton = new QPushButton("Teach new Skill");
+        QObject::connect(kinestheticButton, SIGNAL(clicked()), this, SLOT(kinestethicTeachingSlot()));
 
         mainView->setLayout(mainLayout);
-        mainLayout->addLayout(buttonContainer, 1, 0);
+        mainLayout->addLayout(executeSkillContainer, 1, 0);
+        mainLayout->addLayout(kinestheticTeachingContainer, 2, 0);
         mainLayout->addWidget(webView, 0, 0);
-        buttonContainer->addWidget(simulateButton);
-        buttonContainer->addWidget(packeNameLineEdit);
+        executeSkillContainer->addWidget(executeButton);
+        executeSkillContainer->addWidget(packeNameLineEdit);
+        kinestheticTeachingContainer->addWidget(kinestheticButton);
 
         return mainView;
     }
@@ -153,12 +159,12 @@ namespace kukadu {
 
             std::string argumentString =
                     "cd " + catkinSources + ";rm -r " + packageName + ";catkin_create_pkg " + packageName +
-                    " geometry_msgs kukadu;cd " + packageName + ";mkdir src;mkdir include;";
+                    " geometry_msgs kukadu;cd " + packageName + ";mkdir src;mkdir include;cd include; mkdir " + packageName;
             system(argumentString.c_str());
 
             std::string skillName = getCurrentSkillName();
             writeToFileInPackage("src/main.cpp", getCodeBlocks()[0]);
-            writeToFileInPackage("include/" + skillName + ".hpp", getCodeBlocks()[1]);
+            writeToFileInPackage("include/" + packageName + "/" + skillName + ".hpp", getCodeBlocks()[1]);
             writeToFileInPackage("src/" + skillName + ".cpp", getCodeBlocks()[2]);
 
             argumentString = catkinSources + packageName + "/CMakeLists.txt";
@@ -176,7 +182,7 @@ namespace kukadu {
             textToAdd[5] = QString(
                     "include(CheckCXXCompilerFlag)\r\nCHECK_CXX_COMPILER_FLAG(\"-std=c++11\" COMPILER_SUPPORTS_CXX11)\r\nCHECK_CXX_COMPILER_FLAG(\"-std=c++0x\" COMPILER_SUPPORTS_CXX0X)\r\nif(COMPILER_SUPPORTS_CXX11)\r\nset(CMAKE_CXX_FLAGS \"${CMAKE_CXX_FLAGS} -std=c++11\")\r\nadd_definitions(-DCPP11SUPPORTED)\r\nelseif(COMPILER_SUPPORTS_CXX0X)\r\nset(CMAKE_CXX_FLAGS \"${CMAKE_CXX_FLAGS} -std=c++0x\")\r\nadd_definitions(-DCPP11SUPPORTED)\r\nelse()\r\nmessage(STATUS \"The compiler ${CMAKE_CXX_COMPILER} has no C++11 support. Please use a different C++ compiler.\")\r\nendif()");
             argumentString =
-                    "add_executable(" + packageName + " src/main.cpp)\r\ntarget_link_libraries(" + packageName +
+                    "add_executable(" + packageName + " src/main.cpp src/" + skillName + ".cpp)\r\ntarget_link_libraries(" + packageName +
                     " ${catkin_LIBRARIES} kukadu kukaduvision)";
             textToAdd[118] = "  include";
             textToAdd[123] = QString(argumentString.c_str());
@@ -388,6 +394,10 @@ namespace kukadu {
         replacement.append("\")");
         mainCode.replace(textToReplace, replacement);
 
+        textToReplace = "..placeholder..";
+        replacement = QString::fromStdString(getPackageName());
+        mainCode.replace(textToReplace, replacement);
+
         auto headerStartPosition = mainCode.indexOf(QString("//Skillheader for Skill\n")) + 24;
         auto implementationStartPosition = mainCode.indexOf(QString("//Skillimplementation for Skill:\n")) + 33;
         QString headerCode = mainCode.mid(headerStartPosition, implementationStartPosition-headerStartPosition-33);
@@ -399,5 +409,10 @@ namespace kukadu {
 
     std::string KukaduGraphical::getCurrentSkillName() {
         return webView->page()->mainFrame()->evaluateJavaScript("getCurrentSkillName()").toString().toStdString();
+    }
+
+    void KukaduGraphical::kinestethicTeachingSlot() {
+        int i = 0;
+        i++;
     }
 }

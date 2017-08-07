@@ -189,6 +189,27 @@ namespace kukadu {
 
     };
 
+    class KinestheticTeaching : public Controller {
+
+    private:
+
+    protected:
+
+        virtual void createSkillFromThisInternal(std::string skillName);
+
+    public:
+
+        KinestheticTeaching (StorageSingleton& storage, KUKADU_SHARED_PTR<JointHardware> hardware);
+
+        bool requiresGraspInternal();
+        bool producesGraspInternal();
+
+        std::shared_ptr<ControllerResult> executeInternal();
+
+        std::string getClassName();
+
+    };
+
     std::vector<KUKADU_SHARED_PTR<Hardware> > mergeHardware(std::vector<KUKADU_SHARED_PTR<kukadu::Controller> > controllers);
 
 }

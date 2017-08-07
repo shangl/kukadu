@@ -46,9 +46,10 @@ namespace kukadu {
 
         void install();
 
-        void start();
+        virtual bool isStarted();
 
-        void stop();
+        virtual void start();
+        virtual void stop();
 
         int getHardwareType();
         int getHardwareClass();
