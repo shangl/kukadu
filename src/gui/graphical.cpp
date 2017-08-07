@@ -412,7 +412,8 @@ namespace kukadu {
     }
 
     void KukaduGraphical::kinestethicTeachingSlot() {
-        int i = 0;
-        i++;
+        auto& storage = StorageSingleton::get();
+        kukadu::KinestheticTeaching skill(storage, nullptr);
+        skill.execute();
     }
 }
