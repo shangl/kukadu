@@ -182,6 +182,7 @@ namespace kukadu {
         if(controllerId != CONTROLLER_ID_NOT_FOUND)
             return true;
         else
+
             return false;
 
     }
@@ -371,7 +372,8 @@ namespace kukadu {
         : Controller(dbStorage, "LocalizeObject", {hardware}, 0.01) {
 
         //loc = make_shared<PCBlobDetector>(hardware);
-        loc = make_shared<PCBlobDetector>(hardware, dbStorage, "origin", stdToArmadilloVec({0.7, 0.3, 0.04}), 0.3, 0.4, false);
+        loc = make_shared<PCBlobDetector>(hardware, dbStorage, "origin", stdToArmadilloVec({0.2, 0.63, 0.0}), 0.2, 0.2
+                , false);
         this->objectName = "something";
     }
 

@@ -10,11 +10,11 @@
     <includes refid="hardware_8hpp" local="no">kukadu/robot/hardware.hpp</includes>
     <includes refid="destroyableobject_8hpp" local="no">kukadu/utils/destroyableobject.hpp</includes>
     <includes refid="storagesingleton_8hpp" local="no">kukadu/storage/storagesingleton.hpp</includes>
-    <includedby refid="hand_8cpp" local="no">/home/agyss/iis_robot_sw/iis_catkin_ws/src/kukadu/src/robot/hand.cpp</includedby>
-    <includedby refid="controllers_8hpp" local="no">/home/agyss/iis_robot_sw/iis_catkin_ws/src/kukadu/include/kukadu/manipulation/playing/controllers.hpp</includedby>
-    <includedby refid="kukiehand_8hpp" local="no">/home/agyss/iis_robot_sw/iis_catkin_ws/src/kukadu/include/kukadu/robot/kukiehand.hpp</includedby>
-    <includedby refid="robot_8hpp" local="no">/home/agyss/iis_robot_sw/iis_catkin_ws/src/kukadu/include/kukadu/robot.hpp</includedby>
-    <includedby refid="sensorstorage_8hpp" local="no">/home/agyss/iis_robot_sw/iis_catkin_ws/src/kukadu/include/kukadu/storage/sensorstorage.hpp</includedby>
+    <includedby refid="hand_8cpp" local="no">/home/andreasmennel/iis_robot_sw/iis_catkin_ws/src/kukadu/src/robot/hand.cpp</includedby>
+    <includedby refid="controllers_8hpp" local="no">/home/andreasmennel/iis_robot_sw/iis_catkin_ws/src/kukadu/include/kukadu/manipulation/playing/controllers.hpp</includedby>
+    <includedby refid="kukiehand_8hpp" local="no">/home/andreasmennel/iis_robot_sw/iis_catkin_ws/src/kukadu/include/kukadu/robot/kukiehand.hpp</includedby>
+    <includedby refid="robot_8hpp" local="no">/home/andreasmennel/iis_robot_sw/iis_catkin_ws/src/kukadu/include/kukadu/robot.hpp</includedby>
+    <includedby refid="sensorstorage_8hpp" local="no">/home/andreasmennel/iis_robot_sw/iis_catkin_ws/src/kukadu/include/kukadu/storage/sensorstorage.hpp</includedby>
     <incdepgraph>
       <node id="1963">
         <label>cppconn/resultset.h</label>
@@ -25,31 +25,47 @@
       <node id="1942">
         <label>limits</label>
       </node>
-      <node id="1950">
-        <label>kukadu/storage/storagesingleton.hpp</label>
-        <link refid="storagesingleton_8hpp_source"/>
-        <childnode refid="1951" relation="include">
-        </childnode>
-        <childnode refid="1952" relation="include">
-        </childnode>
-        <childnode refid="1949" relation="include">
+      <node id="1949">
+        <label>string</label>
+      </node>
+      <node id="1951">
+        <label>map</label>
+      </node>
+      <node id="1941">
+        <label>/home/andreasmennel/iis_robot_sw/iis_catkin_ws/src/kukadu/include/kukadu/robot/hand.hpp</label>
+        <link refid="hand.hpp"/>
+        <childnode refid="1942" relation="include">
         </childnode>
         <childnode refid="1943" relation="include">
         </childnode>
-        <childnode refid="1953" relation="include">
+        <childnode refid="1944" relation="include">
         </childnode>
-        <childnode refid="1954" relation="include">
+        <childnode refid="1945" relation="include">
         </childnode>
-        <childnode refid="1960" relation="include">
+        <childnode refid="1946" relation="include">
         </childnode>
-        <childnode refid="1961" relation="include">
+        <childnode refid="1948" relation="include">
         </childnode>
-        <childnode refid="1962" relation="include">
+        <childnode refid="1965" relation="include">
         </childnode>
-        <childnode refid="1963" relation="include">
+        <childnode refid="1950" relation="include">
         </childnode>
-        <childnode refid="1964" relation="include">
-        </childnode>
+      </node>
+      <node id="1945">
+        <label>armadillo</label>
+      </node>
+      <node id="1955">
+        <label>exception</label>
+      </node>
+      <node id="1964">
+        <label>cppconn/statement.h</label>
+      </node>
+      <node id="1959">
+        <label>random</label>
+      </node>
+      <node id="1965">
+        <label>kukadu/utils/destroyableobject.hpp</label>
+        <link refid="destroyableobject_8hpp_source"/>
       </node>
       <node id="1954">
         <label>kukadu/types/kukadutypes.hpp</label>
@@ -77,34 +93,6 @@
         <childnode refid="1950" relation="include">
         </childnode>
       </node>
-      <node id="1949">
-        <label>string</label>
-      </node>
-      <node id="1951">
-        <label>map</label>
-      </node>
-      <node id="1945">
-        <label>armadillo</label>
-      </node>
-      <node id="1955">
-        <label>exception</label>
-      </node>
-      <node id="1964">
-        <label>cppconn/statement.h</label>
-      </node>
-      <node id="1959">
-        <label>random</label>
-      </node>
-      <node id="1946">
-        <label>kukadu/utils/types.hpp</label>
-        <link refid="utils_2types_8hpp_source"/>
-        <childnode refid="1943" relation="include">
-        </childnode>
-        <childnode refid="1945" relation="include">
-        </childnode>
-        <childnode refid="1947" relation="include">
-        </childnode>
-      </node>
       <node id="1943">
         <label>vector</label>
       </node>
@@ -123,34 +111,46 @@
       <node id="1960">
         <label>mysql_connection.h</label>
       </node>
-      <node id="1965">
-        <label>kukadu/utils/destroyableobject.hpp</label>
-        <link refid="destroyableobject_8hpp_source"/>
-      </node>
       <node id="1958">
         <label>mutex</label>
+      </node>
+      <node id="1946">
+        <label>kukadu/utils/types.hpp</label>
+        <link refid="utils_2types_8hpp_source"/>
+        <childnode refid="1943" relation="include">
+        </childnode>
+        <childnode refid="1945" relation="include">
+        </childnode>
+        <childnode refid="1947" relation="include">
+        </childnode>
       </node>
       <node id="1957">
         <label>thread</label>
       </node>
-      <node id="1941">
-        <label>/home/agyss/iis_robot_sw/iis_catkin_ws/src/kukadu/include/kukadu/robot/hand.hpp</label>
-        <link refid="hand.hpp"/>
-        <childnode refid="1942" relation="include">
+      <node id="1950">
+        <label>kukadu/storage/storagesingleton.hpp</label>
+        <link refid="storagesingleton_8hpp_source"/>
+        <childnode refid="1951" relation="include">
+        </childnode>
+        <childnode refid="1952" relation="include">
+        </childnode>
+        <childnode refid="1949" relation="include">
         </childnode>
         <childnode refid="1943" relation="include">
         </childnode>
-        <childnode refid="1944" relation="include">
+        <childnode refid="1953" relation="include">
         </childnode>
-        <childnode refid="1945" relation="include">
+        <childnode refid="1954" relation="include">
         </childnode>
-        <childnode refid="1946" relation="include">
+        <childnode refid="1960" relation="include">
         </childnode>
-        <childnode refid="1948" relation="include">
+        <childnode refid="1961" relation="include">
         </childnode>
-        <childnode refid="1965" relation="include">
+        <childnode refid="1962" relation="include">
         </childnode>
-        <childnode refid="1950" relation="include">
+        <childnode refid="1963" relation="include">
+        </childnode>
+        <childnode refid="1964" relation="include">
         </childnode>
       </node>
       <node id="1947">
@@ -161,56 +161,22 @@
       </node>
     </incdepgraph>
     <invincdepgraph>
-      <node id="1974">
-        <label>/home/agyss/iis_robot_sw/iis_catkin_ws/src/kukadu/include/kukadu/robot/kinestheticteaching.hpp</label>
-        <link refid="kinestheticteaching_8hpp_source"/>
-      </node>
       <node id="1968">
-        <label>/home/agyss/iis_robot_sw/iis_catkin_ws/src/kukadu/include/kukadu/manipulation/playing/core.hpp</label>
+        <label>/home/andreasmennel/iis_robot_sw/iis_catkin_ws/src/kukadu/include/kukadu/manipulation/playing/core.hpp</label>
         <link refid="manipulation_2playing_2core_8hpp_source"/>
         <childnode refid="1969" relation="include">
         </childnode>
       </node>
-      <node id="1972">
-        <label>/home/agyss/iis_robot_sw/iis_catkin_ws/src/kukadu/include/kukadu/robot.hpp</label>
-        <link refid="robot_8hpp_source"/>
-        <childnode refid="1970" relation="include">
-        </childnode>
-      </node>
-      <node id="1970">
-        <label>/home/agyss/iis_robot_sw/iis_catkin_ws/src/kukadu/include/kukadu/kukadu.hpp</label>
-        <link refid="kukadu_8hpp_source"/>
-      </node>
-      <node id="1971">
-        <label>/home/agyss/iis_robot_sw/iis_catkin_ws/src/kukadu/include/kukadu/robot/kukiehand.hpp</label>
-        <link refid="kukiehand_8hpp_source"/>
-        <childnode refid="1972" relation="include">
-        </childnode>
-      </node>
-      <node id="1973">
-        <label>/home/agyss/iis_robot_sw/iis_catkin_ws/src/kukadu/include/kukadu/storage/sensorstorage.hpp</label>
-        <link refid="sensorstorage_8hpp_source"/>
-        <childnode refid="1974" relation="include">
-        </childnode>
-        <childnode refid="1975" relation="include">
-        </childnode>
-      </node>
       <node id="1967">
-        <label>/home/agyss/iis_robot_sw/iis_catkin_ws/src/kukadu/include/kukadu/manipulation/playing/controllers.hpp</label>
+        <label>/home/andreasmennel/iis_robot_sw/iis_catkin_ws/src/kukadu/include/kukadu/manipulation/playing/controllers.hpp</label>
         <link refid="controllers_8hpp_source"/>
         <childnode refid="1968" relation="include">
         </childnode>
         <childnode refid="1969" relation="include">
         </childnode>
       </node>
-      <node id="1975">
-        <label>/home/agyss/iis_robot_sw/iis_catkin_ws/src/kukadu/include/kukadu/storage.hpp</label>
-        <link refid="storage_8hpp_source"/>
-        <childnode refid="1970" relation="include">
-        </childnode>
-      </node>
       <node id="1966">
-        <label>/home/agyss/iis_robot_sw/iis_catkin_ws/src/kukadu/include/kukadu/robot/hand.hpp</label>
+        <label>/home/andreasmennel/iis_robot_sw/iis_catkin_ws/src/kukadu/include/kukadu/robot/hand.hpp</label>
         <link refid="hand.hpp"/>
         <childnode refid="1967" relation="include">
         </childnode>
@@ -221,8 +187,42 @@
         <childnode refid="1973" relation="include">
         </childnode>
       </node>
+      <node id="1972">
+        <label>/home/andreasmennel/iis_robot_sw/iis_catkin_ws/src/kukadu/include/kukadu/robot.hpp</label>
+        <link refid="robot_8hpp_source"/>
+        <childnode refid="1970" relation="include">
+        </childnode>
+      </node>
+      <node id="1975">
+        <label>/home/andreasmennel/iis_robot_sw/iis_catkin_ws/src/kukadu/include/kukadu/storage.hpp</label>
+        <link refid="storage_8hpp_source"/>
+        <childnode refid="1970" relation="include">
+        </childnode>
+      </node>
+      <node id="1973">
+        <label>/home/andreasmennel/iis_robot_sw/iis_catkin_ws/src/kukadu/include/kukadu/storage/sensorstorage.hpp</label>
+        <link refid="sensorstorage_8hpp_source"/>
+        <childnode refid="1974" relation="include">
+        </childnode>
+        <childnode refid="1975" relation="include">
+        </childnode>
+      </node>
+      <node id="1970">
+        <label>/home/andreasmennel/iis_robot_sw/iis_catkin_ws/src/kukadu/include/kukadu/kukadu.hpp</label>
+        <link refid="kukadu_8hpp_source"/>
+      </node>
+      <node id="1971">
+        <label>/home/andreasmennel/iis_robot_sw/iis_catkin_ws/src/kukadu/include/kukadu/robot/kukiehand.hpp</label>
+        <link refid="kukiehand_8hpp_source"/>
+        <childnode refid="1972" relation="include">
+        </childnode>
+      </node>
+      <node id="1974">
+        <label>/home/andreasmennel/iis_robot_sw/iis_catkin_ws/src/kukadu/include/kukadu/robot/kinestheticteaching.hpp</label>
+        <link refid="kinestheticteaching_8hpp_source"/>
+      </node>
       <node id="1969">
-        <label>/home/agyss/iis_robot_sw/iis_catkin_ws/src/kukadu/include/kukadu/manipulation.hpp</label>
+        <label>/home/andreasmennel/iis_robot_sw/iis_catkin_ws/src/kukadu/include/kukadu/manipulation.hpp</label>
         <link refid="manipulation_8hpp_source"/>
         <childnode refid="1970" relation="include">
         </childnode>
@@ -267,80 +267,81 @@
 <codeline lineno="36"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">virtual</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/>installHardwareTypeInternal();</highlight></codeline>
 <codeline lineno="37"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">virtual</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/>installHardwareInstanceInternal();</highlight></codeline>
 <codeline lineno="38"><highlight class="normal"></highlight></codeline>
-<codeline lineno="39"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">public</highlight><highlight class="normal">:</highlight></codeline>
-<codeline lineno="40"><highlight class="normal"></highlight></codeline>
-<codeline lineno="41"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><ref refid="classkukadu_1_1GenericHand" kindref="compound">GenericHand</ref>(<ref refid="classkukadu_1_1StorageSingleton" kindref="compound">StorageSingleton</ref>&amp;<sp/>dbStorage,<sp/>std::string<sp/>handInstanceName);</highlight></codeline>
-<codeline lineno="42"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><ref refid="classkukadu_1_1GenericHand" kindref="compound">GenericHand</ref>(<ref refid="classkukadu_1_1StorageSingleton" kindref="compound">StorageSingleton</ref>&amp;<sp/>dbStorage,<sp/></highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/>handTypeId,<sp/>std::string<sp/>handTypeName,<sp/></highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/>handInstanceId,<sp/>std::string<sp/>handInstanceName);</highlight></codeline>
+<codeline lineno="39"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">virtual</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/>startInternal();</highlight></codeline>
+<codeline lineno="40"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">virtual</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/>stopInternal();</highlight></codeline>
+<codeline lineno="41"><highlight class="normal"></highlight></codeline>
+<codeline lineno="42"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">public</highlight><highlight class="normal">:</highlight></codeline>
 <codeline lineno="43"><highlight class="normal"></highlight></codeline>
-<codeline lineno="47"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">virtual</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/><ref refid="classkukadu_1_1GenericHand_1a965ed8a8d225fb36eabf5089fa5d4f32" kindref="member">connectHand</ref>()<sp/>=<sp/>0;</highlight></codeline>
-<codeline lineno="48"><highlight class="normal"></highlight></codeline>
-<codeline lineno="53"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">virtual</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/><ref refid="classkukadu_1_1GenericHand_1a000e4d03e93f50d7101c50e6096d28a0" kindref="member">closeHand</ref>(</highlight><highlight class="keywordtype">double</highlight><highlight class="normal"><sp/>percentage,<sp/></highlight><highlight class="keywordtype">double</highlight><highlight class="normal"><sp/>velocity)<sp/>=<sp/>0;</highlight></codeline>
-<codeline lineno="54"><highlight class="normal"></highlight></codeline>
-<codeline lineno="55"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">virtual</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/>moveJoints(arma::vec<sp/>joints)<sp/>=<sp/>0;</highlight></codeline>
-<codeline lineno="56"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">virtual</highlight><highlight class="normal"><sp/>std::vector&lt;std::string&gt;<sp/>getJointNames()<sp/>=<sp/>0;</highlight></codeline>
+<codeline lineno="44"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><ref refid="classkukadu_1_1GenericHand" kindref="compound">GenericHand</ref>(<ref refid="classkukadu_1_1StorageSingleton" kindref="compound">StorageSingleton</ref>&amp;<sp/>dbStorage,<sp/>std::string<sp/>handInstanceName);</highlight></codeline>
+<codeline lineno="45"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><ref refid="classkukadu_1_1GenericHand" kindref="compound">GenericHand</ref>(<ref refid="classkukadu_1_1StorageSingleton" kindref="compound">StorageSingleton</ref>&amp;<sp/>dbStorage,<sp/></highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/>handTypeId,<sp/>std::string<sp/>handTypeName,<sp/></highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/>handInstanceId,<sp/>std::string<sp/>handInstanceName);</highlight></codeline>
+<codeline lineno="46"><highlight class="normal"></highlight></codeline>
+<codeline lineno="50"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">virtual</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/><ref refid="classkukadu_1_1GenericHand_1a965ed8a8d225fb36eabf5089fa5d4f32" kindref="member">connectHand</ref>()<sp/>=<sp/>0;</highlight></codeline>
+<codeline lineno="51"><highlight class="normal"></highlight></codeline>
+<codeline lineno="56"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">virtual</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/><ref refid="classkukadu_1_1GenericHand_1a000e4d03e93f50d7101c50e6096d28a0" kindref="member">closeHand</ref>(</highlight><highlight class="keywordtype">double</highlight><highlight class="normal"><sp/>percentage,<sp/></highlight><highlight class="keywordtype">double</highlight><highlight class="normal"><sp/>velocity)<sp/>=<sp/>0;</highlight></codeline>
 <codeline lineno="57"><highlight class="normal"></highlight></codeline>
-<codeline lineno="58"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">virtual</highlight><highlight class="normal"><sp/>arma::vec<sp/>getCurrentJoints()<sp/>=<sp/>0;</highlight></codeline>
-<codeline lineno="59"><highlight class="normal"></highlight></codeline>
-<codeline lineno="63"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">virtual</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/><ref refid="classkukadu_1_1GenericHand_1a94c4a983aae8562bda7711a71baa7502" kindref="member">disconnectHand</ref>()<sp/>=<sp/>0;</highlight></codeline>
-<codeline lineno="64"><highlight class="normal"></highlight></codeline>
-<codeline lineno="69"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">virtual</highlight><highlight class="normal"><sp/>std::vector&lt;mes_result&gt;<sp/><ref refid="classkukadu_1_1GenericHand_1ace10b9b686606d9637f2061016664580" kindref="member">jointPtp</ref>(arma::vec<sp/>joints);</highlight></codeline>
-<codeline lineno="70"><highlight class="normal"></highlight></codeline>
-<codeline lineno="71"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">virtual</highlight><highlight class="normal"><sp/>std::vector&lt;arma::mat&gt;<sp/>getTactileSensing()<sp/>=<sp/>0;</highlight></codeline>
-<codeline lineno="72"><highlight class="normal"></highlight></codeline>
-<codeline lineno="73"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">virtual</highlight><highlight class="normal"><sp/>std::string<sp/>getHandName();</highlight></codeline>
-<codeline lineno="74"><highlight class="normal"></highlight></codeline>
-<codeline lineno="75"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">virtual</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/>setWaitForReached(</highlight><highlight class="keywordtype">bool</highlight><highlight class="normal"><sp/>waitForReached)<sp/>=<sp/>0;</highlight></codeline>
-<codeline lineno="76"><highlight class="normal"></highlight></codeline>
-<codeline lineno="77"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">virtual</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/>setGrasp(kukadu_grasps<sp/>grasp)<sp/>=<sp/>0;</highlight></codeline>
-<codeline lineno="78"><highlight class="normal"></highlight></codeline>
-<codeline lineno="79"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">virtual</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/>storeCurrentSensorDataToDatabase();</highlight></codeline>
-<codeline lineno="80"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">virtual</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">double</highlight><highlight class="normal"><sp/>getPreferredPollingFrequency();</highlight></codeline>
+<codeline lineno="58"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">virtual</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/>moveJoints(arma::vec<sp/>joints)<sp/>=<sp/>0;</highlight></codeline>
+<codeline lineno="59"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">virtual</highlight><highlight class="normal"><sp/>std::vector&lt;std::string&gt;<sp/>getJointNames()<sp/>=<sp/>0;</highlight></codeline>
+<codeline lineno="60"><highlight class="normal"></highlight></codeline>
+<codeline lineno="61"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">virtual</highlight><highlight class="normal"><sp/>arma::vec<sp/>getCurrentJoints()<sp/>=<sp/>0;</highlight></codeline>
+<codeline lineno="62"><highlight class="normal"></highlight></codeline>
+<codeline lineno="66"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">virtual</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/><ref refid="classkukadu_1_1GenericHand_1a94c4a983aae8562bda7711a71baa7502" kindref="member">disconnectHand</ref>()<sp/>=<sp/>0;</highlight></codeline>
+<codeline lineno="67"><highlight class="normal"></highlight></codeline>
+<codeline lineno="72"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">virtual</highlight><highlight class="normal"><sp/>std::vector&lt;mes_result&gt;<sp/><ref refid="classkukadu_1_1GenericHand_1ace10b9b686606d9637f2061016664580" kindref="member">jointPtp</ref>(arma::vec<sp/>joints);</highlight></codeline>
+<codeline lineno="73"><highlight class="normal"></highlight></codeline>
+<codeline lineno="74"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">virtual</highlight><highlight class="normal"><sp/>std::vector&lt;arma::mat&gt;<sp/>getTactileSensing()<sp/>=<sp/>0;</highlight></codeline>
+<codeline lineno="75"><highlight class="normal"></highlight></codeline>
+<codeline lineno="76"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">virtual</highlight><highlight class="normal"><sp/>std::string<sp/>getHandName();</highlight></codeline>
+<codeline lineno="77"><highlight class="normal"></highlight></codeline>
+<codeline lineno="78"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">virtual</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/>setWaitForReached(</highlight><highlight class="keywordtype">bool</highlight><highlight class="normal"><sp/>waitForReached)<sp/>=<sp/>0;</highlight></codeline>
+<codeline lineno="79"><highlight class="normal"></highlight></codeline>
+<codeline lineno="80"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">virtual</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/>setGrasp(kukadu_grasps<sp/>grasp)<sp/>=<sp/>0;</highlight></codeline>
 <codeline lineno="81"><highlight class="normal"></highlight></codeline>
-<codeline lineno="82"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">virtual</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/>start();</highlight></codeline>
-<codeline lineno="83"><highlight class="normal"><sp/><sp/><sp/><sp/>};</highlight></codeline>
-<codeline lineno="84"><highlight class="normal"></highlight></codeline>
-<codeline lineno="92" refid="classkukadu_1_1PlottingHand" refkind="compound"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">class<sp/></highlight><highlight class="normal"><ref refid="classkukadu_1_1PlottingHand" kindref="compound">PlottingHand</ref><sp/>:<sp/></highlight><highlight class="keyword">public</highlight><highlight class="normal"><sp/><ref refid="classkukadu_1_1GenericHand" kindref="compound">GenericHand</ref><sp/>{</highlight></codeline>
-<codeline lineno="93"><highlight class="normal"></highlight></codeline>
-<codeline lineno="94"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">private</highlight><highlight class="normal">:</highlight></codeline>
-<codeline lineno="95"><highlight class="normal"></highlight></codeline>
-<codeline lineno="96"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/>degOfFreedom;</highlight></codeline>
-<codeline lineno="97"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/>sensingPatchCount;</highlight></codeline>
-<codeline lineno="98"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>std::pair&lt;int,<sp/>int&gt;<sp/>patchDimensions;</highlight></codeline>
-<codeline lineno="99"><highlight class="normal"></highlight></codeline>
-<codeline lineno="100"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>std::vector&lt;std::string&gt;<sp/>jointNames;</highlight></codeline>
-<codeline lineno="101"><highlight class="normal"></highlight></codeline>
-<codeline lineno="102"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>arma::vec<sp/>currentJoints;</highlight></codeline>
-<codeline lineno="103"><highlight class="normal"></highlight></codeline>
-<codeline lineno="104"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">public</highlight><highlight class="normal">:</highlight></codeline>
-<codeline lineno="105"><highlight class="normal"></highlight></codeline>
-<codeline lineno="106"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><ref refid="classkukadu_1_1PlottingHand" kindref="compound">PlottingHand</ref>(<ref refid="classkukadu_1_1StorageSingleton" kindref="compound">StorageSingleton</ref>&amp;<sp/>storage,<sp/></highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/>degOfFreedom,<sp/></highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/>sensingPatchCount,<sp/>std::pair&lt;int,<sp/>int&gt;<sp/>patchDimensions);</highlight></codeline>
-<codeline lineno="107"><highlight class="normal"></highlight></codeline>
-<codeline lineno="108"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">virtual</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/><ref refid="classkukadu_1_1GenericHand_1a965ed8a8d225fb36eabf5089fa5d4f32" kindref="member">connectHand</ref>();</highlight></codeline>
-<codeline lineno="109"><highlight class="normal"></highlight></codeline>
-<codeline lineno="110"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">virtual</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/><ref refid="classkukadu_1_1GenericHand_1a000e4d03e93f50d7101c50e6096d28a0" kindref="member">closeHand</ref>(</highlight><highlight class="keywordtype">double</highlight><highlight class="normal"><sp/>percentage,<sp/></highlight><highlight class="keywordtype">double</highlight><highlight class="normal"><sp/>velocity);</highlight></codeline>
-<codeline lineno="111"><highlight class="normal"></highlight></codeline>
-<codeline lineno="112"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">virtual</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/>moveJoints(arma::vec<sp/>joints);</highlight></codeline>
-<codeline lineno="113"><highlight class="normal"></highlight></codeline>
-<codeline lineno="114"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">virtual</highlight><highlight class="normal"><sp/>std::vector&lt;std::string&gt;<sp/>getJointNames();</highlight></codeline>
-<codeline lineno="115"><highlight class="normal"></highlight></codeline>
-<codeline lineno="116"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">virtual</highlight><highlight class="normal"><sp/>arma::vec<sp/>getCurrentJoints();</highlight></codeline>
-<codeline lineno="117"><highlight class="normal"></highlight></codeline>
-<codeline lineno="118"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">virtual</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/><ref refid="classkukadu_1_1GenericHand_1a94c4a983aae8562bda7711a71baa7502" kindref="member">disconnectHand</ref>();</highlight></codeline>
-<codeline lineno="119"><highlight class="normal"></highlight></codeline>
-<codeline lineno="120"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">virtual</highlight><highlight class="normal"><sp/>std::vector&lt;arma::mat&gt;<sp/>getTactileSensing();</highlight></codeline>
-<codeline lineno="121"><highlight class="normal"></highlight></codeline>
-<codeline lineno="122" refid="classkukadu_1_1PlottingHand_1ac6bd32e47c044f6b7ee5dede4eb5941f" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">virtual</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/><ref refid="classkukadu_1_1PlottingHand_1ac6bd32e47c044f6b7ee5dede4eb5941f" kindref="member">safelyDestroy</ref>()<sp/>{}</highlight></codeline>
-<codeline lineno="123"><highlight class="normal"></highlight></codeline>
-<codeline lineno="124"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">virtual</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/>setWaitForReached(</highlight><highlight class="keywordtype">bool</highlight><highlight class="normal"><sp/>waitForReached)<sp/>{<sp/>}</highlight></codeline>
-<codeline lineno="125"><highlight class="normal"></highlight></codeline>
-<codeline lineno="126"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">virtual</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/>setGrasp(kukadu_grasps<sp/>grasp)<sp/>{<sp/>}</highlight></codeline>
-<codeline lineno="127"><highlight class="normal"></highlight></codeline>
-<codeline lineno="128"><highlight class="normal"><sp/><sp/><sp/><sp/>};</highlight></codeline>
-<codeline lineno="129"><highlight class="normal"></highlight></codeline>
-<codeline lineno="130"><highlight class="normal">}</highlight></codeline>
-<codeline lineno="131"><highlight class="normal"></highlight></codeline>
-<codeline lineno="132"><highlight class="normal"></highlight><highlight class="preprocessor">#endif</highlight></codeline>
+<codeline lineno="82"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">virtual</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/>storeCurrentSensorDataToDatabase();</highlight></codeline>
+<codeline lineno="83"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">virtual</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">double</highlight><highlight class="normal"><sp/>getPreferredPollingFrequency();</highlight></codeline>
+<codeline lineno="84"><highlight class="normal"><sp/><sp/><sp/><sp/>};</highlight></codeline>
+<codeline lineno="85"><highlight class="normal"></highlight></codeline>
+<codeline lineno="93" refid="classkukadu_1_1PlottingHand" refkind="compound"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">class<sp/></highlight><highlight class="normal"><ref refid="classkukadu_1_1PlottingHand" kindref="compound">PlottingHand</ref><sp/>:<sp/></highlight><highlight class="keyword">public</highlight><highlight class="normal"><sp/><ref refid="classkukadu_1_1GenericHand" kindref="compound">GenericHand</ref><sp/>{</highlight></codeline>
+<codeline lineno="94"><highlight class="normal"></highlight></codeline>
+<codeline lineno="95"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">private</highlight><highlight class="normal">:</highlight></codeline>
+<codeline lineno="96"><highlight class="normal"></highlight></codeline>
+<codeline lineno="97"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/>degOfFreedom;</highlight></codeline>
+<codeline lineno="98"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/>sensingPatchCount;</highlight></codeline>
+<codeline lineno="99"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>std::pair&lt;int,<sp/>int&gt;<sp/>patchDimensions;</highlight></codeline>
+<codeline lineno="100"><highlight class="normal"></highlight></codeline>
+<codeline lineno="101"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>std::vector&lt;std::string&gt;<sp/>jointNames;</highlight></codeline>
+<codeline lineno="102"><highlight class="normal"></highlight></codeline>
+<codeline lineno="103"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>arma::vec<sp/>currentJoints;</highlight></codeline>
+<codeline lineno="104"><highlight class="normal"></highlight></codeline>
+<codeline lineno="105"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">public</highlight><highlight class="normal">:</highlight></codeline>
+<codeline lineno="106"><highlight class="normal"></highlight></codeline>
+<codeline lineno="107"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><ref refid="classkukadu_1_1PlottingHand" kindref="compound">PlottingHand</ref>(<ref refid="classkukadu_1_1StorageSingleton" kindref="compound">StorageSingleton</ref>&amp;<sp/>storage,<sp/></highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/>degOfFreedom,<sp/></highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/>sensingPatchCount,<sp/>std::pair&lt;int,<sp/>int&gt;<sp/>patchDimensions);</highlight></codeline>
+<codeline lineno="108"><highlight class="normal"></highlight></codeline>
+<codeline lineno="109"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">virtual</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/><ref refid="classkukadu_1_1GenericHand_1a965ed8a8d225fb36eabf5089fa5d4f32" kindref="member">connectHand</ref>();</highlight></codeline>
+<codeline lineno="110"><highlight class="normal"></highlight></codeline>
+<codeline lineno="111"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">virtual</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/><ref refid="classkukadu_1_1GenericHand_1a000e4d03e93f50d7101c50e6096d28a0" kindref="member">closeHand</ref>(</highlight><highlight class="keywordtype">double</highlight><highlight class="normal"><sp/>percentage,<sp/></highlight><highlight class="keywordtype">double</highlight><highlight class="normal"><sp/>velocity);</highlight></codeline>
+<codeline lineno="112"><highlight class="normal"></highlight></codeline>
+<codeline lineno="113"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">virtual</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/>moveJoints(arma::vec<sp/>joints);</highlight></codeline>
+<codeline lineno="114"><highlight class="normal"></highlight></codeline>
+<codeline lineno="115"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">virtual</highlight><highlight class="normal"><sp/>std::vector&lt;std::string&gt;<sp/>getJointNames();</highlight></codeline>
+<codeline lineno="116"><highlight class="normal"></highlight></codeline>
+<codeline lineno="117"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">virtual</highlight><highlight class="normal"><sp/>arma::vec<sp/>getCurrentJoints();</highlight></codeline>
+<codeline lineno="118"><highlight class="normal"></highlight></codeline>
+<codeline lineno="119"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">virtual</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/><ref refid="classkukadu_1_1GenericHand_1a94c4a983aae8562bda7711a71baa7502" kindref="member">disconnectHand</ref>();</highlight></codeline>
+<codeline lineno="120"><highlight class="normal"></highlight></codeline>
+<codeline lineno="121"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">virtual</highlight><highlight class="normal"><sp/>std::vector&lt;arma::mat&gt;<sp/>getTactileSensing();</highlight></codeline>
+<codeline lineno="122"><highlight class="normal"></highlight></codeline>
+<codeline lineno="123" refid="classkukadu_1_1PlottingHand_1ac6bd32e47c044f6b7ee5dede4eb5941f" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">virtual</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/><ref refid="classkukadu_1_1PlottingHand_1ac6bd32e47c044f6b7ee5dede4eb5941f" kindref="member">safelyDestroy</ref>()<sp/>{}</highlight></codeline>
+<codeline lineno="124"><highlight class="normal"></highlight></codeline>
+<codeline lineno="125"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">virtual</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/>setWaitForReached(</highlight><highlight class="keywordtype">bool</highlight><highlight class="normal"><sp/>waitForReached)<sp/>{<sp/>}</highlight></codeline>
+<codeline lineno="126"><highlight class="normal"></highlight></codeline>
+<codeline lineno="127"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">virtual</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/>setGrasp(kukadu_grasps<sp/>grasp)<sp/>{<sp/>}</highlight></codeline>
+<codeline lineno="128"><highlight class="normal"></highlight></codeline>
+<codeline lineno="129"><highlight class="normal"><sp/><sp/><sp/><sp/>};</highlight></codeline>
+<codeline lineno="130"><highlight class="normal"></highlight></codeline>
+<codeline lineno="131"><highlight class="normal">}</highlight></codeline>
+<codeline lineno="132"><highlight class="normal"></highlight></codeline>
+<codeline lineno="133"><highlight class="normal"></highlight><highlight class="preprocessor">#endif</highlight></codeline>
     </programlisting>
-    <location file="/home/agyss/iis_robot_sw/iis_catkin_ws/src/kukadu/include/kukadu/robot/hand.hpp"/>
+    <location file="/home/andreasmennel/iis_robot_sw/iis_catkin_ws/src/kukadu/include/kukadu/robot/hand.hpp"/>
   </compounddef>
 </doxygen>

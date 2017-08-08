@@ -646,12 +646,13 @@
     <member refid="classkukadu_1_1ControlQueue_1a87d7c2d918d0ca720eeae609959d4d78" kind="function"><name>startQueueHook</name></member>
     <member refid="classkukadu_1_1ControlQueue_1a6ebb66d1bd2188e1fca3ee1440b8c0fe" kind="function"><name>stopQueueWhilePtp</name></member>
     <member refid="classkukadu_1_1ControlQueue_1a3b67b32a4724ad089741b51377c98054" kind="function"><name>loadDegOfFreedom</name></member>
+    <member refid="classkukadu_1_1ControlQueue_1abcead86ed81508b8251dbcb168394da8" kind="function"><name>startInternal</name></member>
+    <member refid="classkukadu_1_1ControlQueue_1a8fabb6662b9258d815b8bef32a59ff3d" kind="function"><name>stopInternal</name></member>
     <member refid="classkukadu_1_1ControlQueue_1a5fd9ac0af1ae27114a5380e6ff1165e8" kind="function"><name>ControlQueue</name></member>
     <member refid="classkukadu_1_1ControlQueue_1a7d67178e0204a4bbc8daa60be8cd6e70" kind="function"><name>ControlQueue</name></member>
     <member refid="classkukadu_1_1ControlQueue_1a90e78528f686215996715d225c6c4804" kind="function"><name>getQueueSize</name></member>
     <member refid="classkukadu_1_1ControlQueue_1a5245ff31c7dea26070743d1f6560801c" kind="function"><name>setCycleTime</name></member>
     <member refid="classkukadu_1_1ControlQueue_1a35d6a6e4e7c8467691c11567fe21f340" kind="function"><name>startQueue</name></member>
-    <member refid="classkukadu_1_1ControlQueue_1a2ab6ba8079a3e42efc1d9616188b2fe7" kind="function"><name>start</name></member>
     <member refid="classkukadu_1_1ControlQueue_1a82349f67c4ea6f2dc2689e765717d8e2" kind="function"><name>getCycleTime</name></member>
     <member refid="classkukadu_1_1ControlQueue_1aa02fcb2c8cd2c1c8ca553ae636000beb" kind="function"><name>getQueueRunning</name></member>
     <member refid="classkukadu_1_1ControlQueue_1a8d413404960c7597032876396777e38f" kind="function"><name>stopQueue</name></member>
@@ -1113,6 +1114,8 @@
     <member refid="classkukadu_1_1GenericHand_1a76ac21116709ce8b46bfdde51b6279c6" kind="variable"><name>nowJoints</name></member>
     <member refid="classkukadu_1_1GenericHand_1ac784c881aaa1f6db378bff64407384a4" kind="function"><name>installHardwareTypeInternal</name></member>
     <member refid="classkukadu_1_1GenericHand_1ac13a2cd5234361b3483f0cc88467cbd7" kind="function"><name>installHardwareInstanceInternal</name></member>
+    <member refid="classkukadu_1_1GenericHand_1af940a655ef803ce6249866093dd5b395" kind="function"><name>startInternal</name></member>
+    <member refid="classkukadu_1_1GenericHand_1ac3a799508fb22f62af80f3c4cd8d5480" kind="function"><name>stopInternal</name></member>
     <member refid="classkukadu_1_1GenericHand_1aa249fecba3926e7c8e2d313b68be37e1" kind="function"><name>GenericHand</name></member>
     <member refid="classkukadu_1_1GenericHand_1acc1027f8a563e38c6b8dee0163b3ae66" kind="function"><name>GenericHand</name></member>
     <member refid="classkukadu_1_1GenericHand_1a965ed8a8d225fb36eabf5089fa5d4f32" kind="function"><name>connectHand</name></member>
@@ -1128,7 +1131,6 @@
     <member refid="classkukadu_1_1GenericHand_1ad64a2319fec86b037f7383d2657ed601" kind="function"><name>setGrasp</name></member>
     <member refid="classkukadu_1_1GenericHand_1ab1d138bbbf8575eb6e981c5f5fd91376" kind="function"><name>storeCurrentSensorDataToDatabase</name></member>
     <member refid="classkukadu_1_1GenericHand_1ada5ce87f83585abeb39709e50388e60f" kind="function"><name>getPreferredPollingFrequency</name></member>
-    <member refid="classkukadu_1_1GenericHand_1ade6010a937cdf6fec3933fbd7c2048bf" kind="function"><name>start</name></member>
   </compound>
   <compound refid="classkukadu_1_1GenericKernel" kind="class"><name>kukadu::GenericKernel</name>
     <member refid="classkukadu_1_1GenericKernel_1a9392e79e7da5d8473ac9e42f74e8ef3e" kind="function"><name>GenericKernel</name></member>
@@ -1300,6 +1302,8 @@
     <member refid="classkukadu_1_1Hardware_1a281f95f6c0f0d2c232f82111f7f3d3c7" kind="variable"><name>hardwareType</name></member>
     <member refid="classkukadu_1_1Hardware_1a752a7f920b1071ce4386e248728ac118" kind="variable"><name>hardwareClass</name></member>
     <member refid="classkukadu_1_1Hardware_1a871a322dd8865d7cbde2311850a6c701" kind="variable"><name>hardwareInstanceId</name></member>
+    <member refid="classkukadu_1_1Hardware_1a2f64715f38d972a1463ab518f0647c9d" kind="variable"><name>started</name></member>
+    <member refid="classkukadu_1_1Hardware_1ab8bdab4515308593d2172600bf95d0a6" kind="variable"><name>installed</name></member>
     <member refid="classkukadu_1_1Hardware_1aa09667993ed6a9eee68864e94a3baa5a" kind="variable"><name>hardwareTypeName</name></member>
     <member refid="classkukadu_1_1Hardware_1a6f9275e976bdb70acef33bc2a5886446" kind="variable"><name>hardwareInstanceName</name></member>
     <member refid="classkukadu_1_1Hardware_1abefe4f69b80145b6f0414ad05c14356a" kind="function"><name>registerHardware</name></member>
@@ -1307,9 +1311,13 @@
     <member refid="classkukadu_1_1Hardware_1abd31e642cb546c6b983854208ca2747a" kind="function"><name>installHardwareInstance</name></member>
     <member refid="classkukadu_1_1Hardware_1af353cdce2e2bb25ec341374a30b6b85a" kind="function"><name>installHardwareTypeInternal</name></member>
     <member refid="classkukadu_1_1Hardware_1a2636d7484a9435d8131fcf4ddff36fed" kind="function"><name>installHardwareInstanceInternal</name></member>
+    <member refid="classkukadu_1_1Hardware_1a8a02d8b8cd19f7a6feb0f0af1510b3a5" kind="function"><name>startInternal</name></member>
+    <member refid="classkukadu_1_1Hardware_1a0279ab56724dce35b0877e6388357648" kind="function"><name>stopInternal</name></member>
     <member refid="classkukadu_1_1Hardware_1af7a1355a6d8c10e68b7bfd783bc9d8a2" kind="function"><name>Hardware</name></member>
     <member refid="classkukadu_1_1Hardware_1a694ca4d7b1cb52b17d2bdb8a4c64d16c" kind="function"><name>install</name></member>
-    <member refid="classkukadu_1_1Hardware_1a6840d87bd3eb9eb98150aa913353d2d8" kind="function"><name>start</name></member>
+    <member refid="classkukadu_1_1Hardware_1aac291d24667e5fb61ff6f1c7cdbad47f" kind="function"><name>isStarted</name></member>
+    <member refid="classkukadu_1_1Hardware_1a17872a3fd43ecfb47b4b8259e1b2358b" kind="function"><name>start</name></member>
+    <member refid="classkukadu_1_1Hardware_1af56fcd591caa43babd5d5f1615d51a9f" kind="function"><name>stop</name></member>
     <member refid="classkukadu_1_1Hardware_1a34e793c453fe444d98905f7a64d1720b" kind="function"><name>getHardwareType</name></member>
     <member refid="classkukadu_1_1Hardware_1a33e1b7ba05ccb5f7b9f9f7c9455efa4e" kind="function"><name>getHardwareClass</name></member>
     <member refid="classkukadu_1_1Hardware_1a7739a3df264205b2587f37c1828c8fb6" kind="function"><name>getHardwareInstance</name></member>
@@ -1460,12 +1468,13 @@
     <member refid="classkukadu_1_1Kinect_1a7ee1169e3057aeb45620af011df8ce11" kind="function"><name>construct</name></member>
     <member refid="classkukadu_1_1Kinect_1a4c06e1dcbbae10feb45cea0939689ae8" kind="function"><name>installHardwareTypeInternal</name></member>
     <member refid="classkukadu_1_1Kinect_1aeb63d4a745467adb5bd89fb3e2bc0907" kind="function"><name>installHardwareInstanceInternal</name></member>
+    <member refid="classkukadu_1_1Kinect_1a6d009149465e4abe13a1268eb7b02c55" kind="function"><name>startInternal</name></member>
+    <member refid="classkukadu_1_1Kinect_1a78dab1d6cc9e418a795d391c3267c2a7" kind="function"><name>stopInternal</name></member>
     <member refid="classkukadu_1_1Kinect_1a391952d9e7205bf19a62a2ee4d10c5af" kind="function"><name>Kinect</name></member>
     <member refid="classkukadu_1_1Kinect_1ad85ac295ea3634a120e8240c06991e4e" kind="function"><name>Kinect</name></member>
     <member refid="classkukadu_1_1Kinect_1a1ee665a17656c9477c3359c6443daf0e" kind="function"><name>Kinect</name></member>
     <member refid="classkukadu_1_1Kinect_1a0dd6fceea06577b19a6657b77b3b37cb" kind="function"><name>Kinect</name></member>
     <member refid="classkukadu_1_1Kinect_1ac0edd2434fb83d76a06128b13af679da" kind="function"><name>~Kinect</name></member>
-    <member refid="classkukadu_1_1Kinect_1a019c4d31e36602ef125dad8036483b11" kind="function"><name>start</name></member>
     <member refid="classkukadu_1_1Kinect_1ae033f8784a9d2734090e30fc3951952a" kind="function"><name>getTargetFrame</name></member>
     <member refid="classkukadu_1_1Kinect_1aa8f05b757c4a42a25a9cc578451a823d" kind="function"><name>stopSensing</name></member>
     <member refid="classkukadu_1_1Kinect_1aa8041a511f9343ead3b7d1d4c889bc58" kind="function"><name>visualizeCurrentPc</name></member>
@@ -1511,6 +1520,14 @@
     <member refid="classkukadu_1_1KinestheticTeacher_1ac8a52a845a0bc0ca43769f1681c775e9" kind="function"><name>startRecording</name></member>
     <member refid="classkukadu_1_1KinestheticTeacher_1a39c920dbf87df91176eda98bd9f3d08f" kind="function"><name>stopRecording</name></member>
     <member refid="classkukadu_1_1KinestheticTeacher_1a8e46e752559e33cffc3da7bae204d595" kind="function"><name>quit</name></member>
+  </compound>
+  <compound refid="classkukadu_1_1KinestheticTeaching" kind="class"><name>kukadu::KinestheticTeaching</name>
+    <member refid="classkukadu_1_1KinestheticTeaching_1ac8befe53277a9d7b306c27eb920fcc32" kind="function"><name>createSkillFromThisInternal</name></member>
+    <member refid="classkukadu_1_1KinestheticTeaching_1a60993f3579cb5a0545432b911ca4dd5e" kind="function"><name>KinestheticTeaching</name></member>
+    <member refid="classkukadu_1_1KinestheticTeaching_1aca9f11d0119cd24e7ce916588d3431c5" kind="function"><name>requiresGraspInternal</name></member>
+    <member refid="classkukadu_1_1KinestheticTeaching_1af19408505f84c77180300cf1e10284c8" kind="function"><name>producesGraspInternal</name></member>
+    <member refid="classkukadu_1_1KinestheticTeaching_1a5bad21c0e44952684c8b6fcf0cce0e33" kind="function"><name>executeInternal</name></member>
+    <member refid="classkukadu_1_1KinestheticTeaching_1a896ad3e1558d2b1478a04616e7a874bb" kind="function"><name>getClassName</name></member>
   </compound>
   <compound refid="classkukadu_1_1Komo" kind="class"><name>kukadu::Komo</name>
     <member refid="classkukadu_1_1Komo_1ac38b296a0e9d295ada957cdf074be8cb" kind="variable"><name>acceptCollision</name></member>
@@ -1595,6 +1612,7 @@
     <member refid="classkukadu_1_1KukaduGraphical_1a36d85203598991752ba176be40349c27" kind="function"><name>KukaduGraphical</name></member>
     <member refid="classkukadu_1_1KukaduGraphical_1a3d3e70a610ecd2a280d800beec8b6516" kind="function"><name>~KukaduGraphical</name></member>
     <member refid="classkukadu_1_1KukaduGraphical_1a65cf35613faf807fff6ecc1d82923afe" kind="slot"><name>executeSlot</name></member>
+    <member refid="classkukadu_1_1KukaduGraphical_1ae7c92c4477ecddf80605bd80a6488b12" kind="slot"><name>kinestethicTeachingSlot</name></member>
     <member refid="classkukadu_1_1KukaduGraphical_1ae350ba59c63d5d2abd4bc66ae3371054" kind="slot"><name>onStart</name></member>
   </compound>
   <compound refid="classkukadu_1_1KukaduGui" kind="class"><name>kukadu::KukaduGui</name>
@@ -2204,7 +2222,7 @@
     <member refid="classkukadu_1_1PoseEstimatorFactory_1a970efd2be09590da202d87a481264f90" kind="variable"><name>poseEstimatorFactories</name></member>
     <member refid="classkukadu_1_1PoseEstimatorFactory_1aea858c8a0bfec36fa18d350cd0515cf1" kind="function"><name>PoseEstimatorFactory</name></member>
     <member refid="classkukadu_1_1PoseEstimatorFactory_1a59aa0bf226abf4703f98ae517739b260" kind="function"><name>get</name></member>
-    <member refid="classkukadu_1_1PoseEstimatorFactory_1a73c936c8607cbd90e78cee452239720a" kind="function"><name>loadPoseEstimator</name></member>
+    <member refid="classkukadu_1_1PoseEstimatorFactory_1a0e69fc112498399cf49957b86120e8e1" kind="function"><name>loadPoseEstimator</name></member>
     <member refid="classkukadu_1_1PoseEstimatorFactory_1adad4aaead4a67de649aad3a83ca5898f" kind="function"><name>listAvailablePoseEstimators</name></member>
     <member refid="classkukadu_1_1PoseEstimatorFactory_1a1515bd70f9362757be83e95b22a0174d" kind="function"><name>poseEstimatorExists</name></member>
     <member refid="classkukadu_1_1PoseEstimatorFactory_1a1f1c8610ca925068849ba11619b912b0" kind="function"><name>getPoseFor</name></member>
@@ -3544,87 +3562,87 @@
   </compound>
   <compound refid="mlpage" kind="page"><name>mlpage</name>
   </compound>
-  <compound refid="dir_5450bc45f7262f2c711745435c02e2c2" kind="dir"><name>/home/agyss/iis_robot_sw/iis_catkin_ws/src/kukadu/src/vision/arlocalizer</name>
+  <compound refid="dir_5450bc45f7262f2c711745435c02e2c2" kind="dir"><name>/home/andreasmennel/iis_robot_sw/iis_catkin_ws/src/kukadu/src/vision/arlocalizer</name>
   </compound>
-  <compound refid="dir_e5f82deed6441f82f5e7a53265458d93" kind="dir"><name>/home/agyss/iis_robot_sw/iis_catkin_ws/src/kukadu/src/learning/classification</name>
+  <compound refid="dir_e5f82deed6441f82f5e7a53265458d93" kind="dir"><name>/home/andreasmennel/iis_robot_sw/iis_catkin_ws/src/kukadu/src/learning/classification</name>
   </compound>
-  <compound refid="dir_96d483a5fb2effc7d87f7e98d57a2c97" kind="dir"><name>/home/agyss/iis_robot_sw/iis_catkin_ws/src/kukadu/include/kukadu/learning/classification</name>
+  <compound refid="dir_96d483a5fb2effc7d87f7e98d57a2c97" kind="dir"><name>/home/andreasmennel/iis_robot_sw/iis_catkin_ws/src/kukadu/include/kukadu/learning/classification</name>
   </compound>
-  <compound refid="dir_8e05d7d444934baaed7f36b57abc4024" kind="dir"><name>/home/agyss/iis_robot_sw/iis_catkin_ws/src/kukadu/src/learning/clustering</name>
+  <compound refid="dir_8e05d7d444934baaed7f36b57abc4024" kind="dir"><name>/home/andreasmennel/iis_robot_sw/iis_catkin_ws/src/kukadu/src/learning/clustering</name>
   </compound>
-  <compound refid="dir_e70b0bb956cbbb2d3b5c8502cf3189b2" kind="dir"><name>/home/agyss/iis_robot_sw/iis_catkin_ws/src/kukadu/include/kukadu/learning/clustering</name>
+  <compound refid="dir_e70b0bb956cbbb2d3b5c8502cf3189b2" kind="dir"><name>/home/andreasmennel/iis_robot_sw/iis_catkin_ws/src/kukadu/include/kukadu/learning/clustering</name>
   </compound>
-  <compound refid="dir_b81b067251166617f9d0a8c0cfc3a4a9" kind="dir"><name>/home/agyss/iis_robot_sw/iis_catkin_ws/src/kukadu/src/control</name>
+  <compound refid="dir_b81b067251166617f9d0a8c0cfc3a4a9" kind="dir"><name>/home/andreasmennel/iis_robot_sw/iis_catkin_ws/src/kukadu/src/control</name>
   </compound>
-  <compound refid="dir_d3f2233308a6a86fce30dd33024d1979" kind="dir"><name>/home/agyss/iis_robot_sw/iis_catkin_ws/src/kukadu/include/kukadu/control</name>
+  <compound refid="dir_d3f2233308a6a86fce30dd33024d1979" kind="dir"><name>/home/andreasmennel/iis_robot_sw/iis_catkin_ws/src/kukadu/include/kukadu/control</name>
   </compound>
-  <compound refid="dir_99d0482cf009f9d97a0877749b817f19" kind="dir"><name>/home/agyss/iis_robot_sw/iis_catkin_ws/src/kukadu/src/gui</name>
+  <compound refid="dir_99d0482cf009f9d97a0877749b817f19" kind="dir"><name>/home/andreasmennel/iis_robot_sw/iis_catkin_ws/src/kukadu/src/gui</name>
   </compound>
-  <compound refid="dir_aa6d04422a8b0c688ab52fbd47f4f2a7" kind="dir"><name>/home/agyss/iis_robot_sw/iis_catkin_ws/src/kukadu/include/kukadu/gui</name>
+  <compound refid="dir_aa6d04422a8b0c688ab52fbd47f4f2a7" kind="dir"><name>/home/andreasmennel/iis_robot_sw/iis_catkin_ws/src/kukadu/include/kukadu/gui</name>
   </compound>
-  <compound refid="dir_d44c64559bbebec7f509842c48db8b23" kind="dir"><name>/home/agyss/iis_robot_sw/iis_catkin_ws/src/kukadu/include</name>
+  <compound refid="dir_d44c64559bbebec7f509842c48db8b23" kind="dir"><name>/home/andreasmennel/iis_robot_sw/iis_catkin_ws/src/kukadu/include</name>
   </compound>
-  <compound refid="dir_a283349435fa9e5a3d9f00ed67a49f2a" kind="dir"><name>/home/agyss/iis_robot_sw/iis_catkin_ws/src/kukadu/include/kukadu</name>
+  <compound refid="dir_a283349435fa9e5a3d9f00ed67a49f2a" kind="dir"><name>/home/andreasmennel/iis_robot_sw/iis_catkin_ws/src/kukadu/include/kukadu</name>
   </compound>
-  <compound refid="dir_e68b1681d237fa9421ed636acf14b3ec" kind="dir"><name>/home/agyss/iis_robot_sw/iis_catkin_ws/src/kukadu/src/learning</name>
+  <compound refid="dir_e68b1681d237fa9421ed636acf14b3ec" kind="dir"><name>/home/andreasmennel/iis_robot_sw/iis_catkin_ws/src/kukadu/src/learning</name>
   </compound>
-  <compound refid="dir_a446da0fdc52d77bd7c36a2dd263ecad" kind="dir"><name>/home/agyss/iis_robot_sw/iis_catkin_ws/src/kukadu/include/kukadu/learning</name>
+  <compound refid="dir_a446da0fdc52d77bd7c36a2dd263ecad" kind="dir"><name>/home/andreasmennel/iis_robot_sw/iis_catkin_ws/src/kukadu/include/kukadu/learning</name>
   </compound>
-  <compound refid="dir_1b8c89d3abd0c0683d2ba66e75d0c0d7" kind="dir"><name>/home/agyss/iis_robot_sw/iis_catkin_ws/src/kukadu/src/manipulation</name>
+  <compound refid="dir_1b8c89d3abd0c0683d2ba66e75d0c0d7" kind="dir"><name>/home/andreasmennel/iis_robot_sw/iis_catkin_ws/src/kukadu/src/manipulation</name>
   </compound>
-  <compound refid="dir_383ce98826ed44202498c86be5999f4b" kind="dir"><name>/home/agyss/iis_robot_sw/iis_catkin_ws/src/kukadu/include/kukadu/manipulation</name>
+  <compound refid="dir_383ce98826ed44202498c86be5999f4b" kind="dir"><name>/home/andreasmennel/iis_robot_sw/iis_catkin_ws/src/kukadu/include/kukadu/manipulation</name>
   </compound>
-  <compound refid="dir_ebbc965ffbbab5b7e33613be53fc60e4" kind="dir"><name>/home/agyss/iis_robot_sw/iis_catkin_ws/src/kukadu/src/learning/metric_learning</name>
+  <compound refid="dir_ebbc965ffbbab5b7e33613be53fc60e4" kind="dir"><name>/home/andreasmennel/iis_robot_sw/iis_catkin_ws/src/kukadu/src/learning/metric_learning</name>
   </compound>
-  <compound refid="dir_7a9628efeacd253ed7fd334915252156" kind="dir"><name>/home/agyss/iis_robot_sw/iis_catkin_ws/src/kukadu/include/kukadu/learning/metric_learning</name>
+  <compound refid="dir_7a9628efeacd253ed7fd334915252156" kind="dir"><name>/home/andreasmennel/iis_robot_sw/iis_catkin_ws/src/kukadu/include/kukadu/learning/metric_learning</name>
   </compound>
-  <compound refid="dir_46b0e589fccff8619305fc89ea463298" kind="dir"><name>/home/agyss/iis_robot_sw/iis_catkin_ws/src/kukadu/src/planning</name>
+  <compound refid="dir_46b0e589fccff8619305fc89ea463298" kind="dir"><name>/home/andreasmennel/iis_robot_sw/iis_catkin_ws/src/kukadu/src/planning</name>
   </compound>
-  <compound refid="dir_e4a05e36119810d7d4ef55d111e8fa62" kind="dir"><name>/home/agyss/iis_robot_sw/iis_catkin_ws/src/kukadu/include/kukadu/planning</name>
+  <compound refid="dir_e4a05e36119810d7d4ef55d111e8fa62" kind="dir"><name>/home/andreasmennel/iis_robot_sw/iis_catkin_ws/src/kukadu/include/kukadu/planning</name>
   </compound>
-  <compound refid="dir_45827e974a0733398a0aa2e131e4499c" kind="dir"><name>/home/agyss/iis_robot_sw/iis_catkin_ws/src/kukadu/src/manipulation/playing</name>
+  <compound refid="dir_45827e974a0733398a0aa2e131e4499c" kind="dir"><name>/home/andreasmennel/iis_robot_sw/iis_catkin_ws/src/kukadu/src/manipulation/playing</name>
   </compound>
-  <compound refid="dir_ed299d5a2ab09581bcd95fcc2e9e2a7e" kind="dir"><name>/home/agyss/iis_robot_sw/iis_catkin_ws/src/kukadu/include/kukadu/manipulation/playing</name>
+  <compound refid="dir_ed299d5a2ab09581bcd95fcc2e9e2a7e" kind="dir"><name>/home/andreasmennel/iis_robot_sw/iis_catkin_ws/src/kukadu/include/kukadu/manipulation/playing</name>
   </compound>
-  <compound refid="dir_fbfffea892398a1269c47ba7fa1732d9" kind="dir"><name>/home/agyss/iis_robot_sw/iis_catkin_ws/src/kukadu/src/learning/projective_simulation</name>
+  <compound refid="dir_fbfffea892398a1269c47ba7fa1732d9" kind="dir"><name>/home/andreasmennel/iis_robot_sw/iis_catkin_ws/src/kukadu/src/learning/projective_simulation</name>
   </compound>
-  <compound refid="dir_49d4f0e1dfc3e0218dd131e03eea94e5" kind="dir"><name>/home/agyss/iis_robot_sw/iis_catkin_ws/src/kukadu/include/kukadu/learning/projective_simulation</name>
+  <compound refid="dir_49d4f0e1dfc3e0218dd131e03eea94e5" kind="dir"><name>/home/andreasmennel/iis_robot_sw/iis_catkin_ws/src/kukadu/include/kukadu/learning/projective_simulation</name>
   </compound>
-  <compound refid="dir_e67f95f107de01301f9a40e1f1494383" kind="dir"><name>/home/agyss/iis_robot_sw/iis_catkin_ws/src/kukadu/src/learning/regression</name>
+  <compound refid="dir_e67f95f107de01301f9a40e1f1494383" kind="dir"><name>/home/andreasmennel/iis_robot_sw/iis_catkin_ws/src/kukadu/src/learning/regression</name>
   </compound>
-  <compound refid="dir_cdc9eee045c4d30f9f3a82bbd89c1beb" kind="dir"><name>/home/agyss/iis_robot_sw/iis_catkin_ws/src/kukadu/include/kukadu/learning/regression</name>
+  <compound refid="dir_cdc9eee045c4d30f9f3a82bbd89c1beb" kind="dir"><name>/home/andreasmennel/iis_robot_sw/iis_catkin_ws/src/kukadu/include/kukadu/learning/regression</name>
   </compound>
-  <compound refid="dir_429905255ab436b0494bf4c005e93720" kind="dir"><name>/home/agyss/iis_robot_sw/iis_catkin_ws/src/kukadu/src/learning/rl</name>
+  <compound refid="dir_429905255ab436b0494bf4c005e93720" kind="dir"><name>/home/andreasmennel/iis_robot_sw/iis_catkin_ws/src/kukadu/src/learning/rl</name>
   </compound>
-  <compound refid="dir_e8128a7fe76da741f2c4b88aa03726ff" kind="dir"><name>/home/agyss/iis_robot_sw/iis_catkin_ws/src/kukadu/include/kukadu/learning/rl</name>
+  <compound refid="dir_e8128a7fe76da741f2c4b88aa03726ff" kind="dir"><name>/home/andreasmennel/iis_robot_sw/iis_catkin_ws/src/kukadu/include/kukadu/learning/rl</name>
   </compound>
-  <compound refid="dir_d623b6b26deaaca15238f927e86bbb46" kind="dir"><name>/home/agyss/iis_robot_sw/iis_catkin_ws/src/kukadu/src/robot</name>
+  <compound refid="dir_d623b6b26deaaca15238f927e86bbb46" kind="dir"><name>/home/andreasmennel/iis_robot_sw/iis_catkin_ws/src/kukadu/src/robot</name>
   </compound>
-  <compound refid="dir_52c3cba6fc66688aa3521dc256ec86a1" kind="dir"><name>/home/agyss/iis_robot_sw/iis_catkin_ws/src/kukadu/include/kukadu/robot</name>
+  <compound refid="dir_52c3cba6fc66688aa3521dc256ec86a1" kind="dir"><name>/home/andreasmennel/iis_robot_sw/iis_catkin_ws/src/kukadu/include/kukadu/robot</name>
   </compound>
-  <compound refid="dir_68267d1309a1af8e8297ef4c3efbcdba" kind="dir"><name>/home/agyss/iis_robot_sw/iis_catkin_ws/src/kukadu/src</name>
+  <compound refid="dir_68267d1309a1af8e8297ef4c3efbcdba" kind="dir"><name>/home/andreasmennel/iis_robot_sw/iis_catkin_ws/src/kukadu/src</name>
   </compound>
-  <compound refid="dir_65ad14ba617219a91653797a9020c4d5" kind="dir"><name>/home/agyss/iis_robot_sw/iis_catkin_ws/src/kukadu/src/statistics</name>
+  <compound refid="dir_65ad14ba617219a91653797a9020c4d5" kind="dir"><name>/home/andreasmennel/iis_robot_sw/iis_catkin_ws/src/kukadu/src/statistics</name>
   </compound>
-  <compound refid="dir_053acd8a63e9d5c8263f6fc85aaf88e6" kind="dir"><name>/home/agyss/iis_robot_sw/iis_catkin_ws/src/kukadu/include/kukadu/statistics</name>
+  <compound refid="dir_053acd8a63e9d5c8263f6fc85aaf88e6" kind="dir"><name>/home/andreasmennel/iis_robot_sw/iis_catkin_ws/src/kukadu/include/kukadu/statistics</name>
   </compound>
-  <compound refid="dir_452baf35e1d7639c9f2a5ece4ec85855" kind="dir"><name>/home/agyss/iis_robot_sw/iis_catkin_ws/src/kukadu/src/storage</name>
+  <compound refid="dir_452baf35e1d7639c9f2a5ece4ec85855" kind="dir"><name>/home/andreasmennel/iis_robot_sw/iis_catkin_ws/src/kukadu/src/storage</name>
   </compound>
-  <compound refid="dir_6072672ba22159c068c98410c6871d66" kind="dir"><name>/home/agyss/iis_robot_sw/iis_catkin_ws/src/kukadu/include/kukadu/storage</name>
+  <compound refid="dir_6072672ba22159c068c98410c6871d66" kind="dir"><name>/home/andreasmennel/iis_robot_sw/iis_catkin_ws/src/kukadu/include/kukadu/storage</name>
   </compound>
-  <compound refid="dir_0d353d24d0afa59909efab6593124f6d" kind="dir"><name>/home/agyss/iis_robot_sw/iis_catkin_ws/src/kukadu/tutorials</name>
+  <compound refid="dir_0d353d24d0afa59909efab6593124f6d" kind="dir"><name>/home/andreasmennel/iis_robot_sw/iis_catkin_ws/src/kukadu/tutorials</name>
   </compound>
-  <compound refid="dir_0c0c9fa8a58db41e576adc3ce68c5ee9" kind="dir"><name>/home/agyss/iis_robot_sw/iis_catkin_ws/src/kukadu/src/types</name>
+  <compound refid="dir_0c0c9fa8a58db41e576adc3ce68c5ee9" kind="dir"><name>/home/andreasmennel/iis_robot_sw/iis_catkin_ws/src/kukadu/src/types</name>
   </compound>
-  <compound refid="dir_91b51d265eafa89952d66a8dc1cb355b" kind="dir"><name>/home/agyss/iis_robot_sw/iis_catkin_ws/src/kukadu/include/kukadu/types</name>
+  <compound refid="dir_91b51d265eafa89952d66a8dc1cb355b" kind="dir"><name>/home/andreasmennel/iis_robot_sw/iis_catkin_ws/src/kukadu/include/kukadu/types</name>
   </compound>
-  <compound refid="dir_313caf1132e152dd9b58bea13a4052ca" kind="dir"><name>/home/agyss/iis_robot_sw/iis_catkin_ws/src/kukadu/src/utils</name>
+  <compound refid="dir_313caf1132e152dd9b58bea13a4052ca" kind="dir"><name>/home/andreasmennel/iis_robot_sw/iis_catkin_ws/src/kukadu/src/utils</name>
   </compound>
-  <compound refid="dir_36078c94e74fef2970d3afd7db36452f" kind="dir"><name>/home/agyss/iis_robot_sw/iis_catkin_ws/src/kukadu/include/kukadu/utils</name>
+  <compound refid="dir_36078c94e74fef2970d3afd7db36452f" kind="dir"><name>/home/andreasmennel/iis_robot_sw/iis_catkin_ws/src/kukadu/include/kukadu/utils</name>
   </compound>
-  <compound refid="dir_dc1db25376c64edf07fdc99b5118e152" kind="dir"><name>/home/agyss/iis_robot_sw/iis_catkin_ws/src/kukadu/src/vision</name>
+  <compound refid="dir_dc1db25376c64edf07fdc99b5118e152" kind="dir"><name>/home/andreasmennel/iis_robot_sw/iis_catkin_ws/src/kukadu/src/vision</name>
   </compound>
-  <compound refid="dir_79be04da4f33c3f20e9fece3acc5c4fe" kind="dir"><name>/home/agyss/iis_robot_sw/iis_catkin_ws/src/kukadu/include/kukadu/vision</name>
+  <compound refid="dir_79be04da4f33c3f20e9fece3acc5c4fe" kind="dir"><name>/home/andreasmennel/iis_robot_sw/iis_catkin_ws/src/kukadu/include/kukadu/vision</name>
   </compound>
   <compound refid="indexpage" kind="page"><name>index</name>
   </compound>

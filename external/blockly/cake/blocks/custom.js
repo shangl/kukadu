@@ -7,7 +7,7 @@ Blockly.Blocks['objectposition'] = {
     init: function () {
         this.appendDummyInput()
             .appendField("VariableName: ")
-            .appendField(new Blockly.FieldTextInput("hans"), "VariableName");
+            .appendField(new Blockly.FieldTextInput("variableName"), "VariableName");
         this.appendDummyInput()
             .appendField("Object to load: ")
             .appendField(new Blockly.FieldTextInput("something"), "ObjectType");
