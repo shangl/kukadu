@@ -125,7 +125,7 @@ Blockly.cake['main_block'] = function (block) {
     var codeClass = new CodeClass(skillName, skillCode);
 
     var funcName = 'main';
-    var returnValue = "storage.waitForEmptyCache();\nreturn EXIT_SUCCESS;\n";
+    var returnValue = "hardwareFactory.stopAllCreatedHardware();\nstorage.waitForEmptyCache();\nreturn EXIT_SUCCESS;\n";
     var returnType = 'int';
     roscode = Blockly.cake.prefixLines(roscode, Blockly.cake.INDENT);
     installHardware = Blockly.cake.prefixLines(installHardware, Blockly.cake.INDENT);
@@ -331,6 +331,8 @@ function CodeClass(name, code) {
 
     this.generateClass = function () {
         var skillHeader = "//Skillheader for Skill\n" +
+            "#ifndef KUKADU_GENERATED_SKILLS_" + getCurrentSkillName().toUpperCase() + "_H\n" +
+            "#define KUKADU_GENERATED_SKILLS_" + getCurrentSkillName().toUpperCase() + "_H\n\n" +
             Blockly.cake.definitions_['include_cake_string'] + "\n";
 
         var skillHeaderContent = "";
@@ -365,6 +367,8 @@ function CodeClass(name, code) {
 
 
         skillHeader += skillHeaderContent;
+
+        skillHeader += "\n\n#endif\n";
 
 
         var skillImplementation = "//Skillimplementation for Skill:\n";

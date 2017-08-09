@@ -74,4 +74,10 @@ bool HardwareFactory::hardwareExists(std::string hardwareName) {
 
 }
 
+void HardwareFactory::stopAllCreatedHardware() {
+    for(auto& created : createdHardware)
+        if(created.second)
+            created.second->stop();
+}
+
 }

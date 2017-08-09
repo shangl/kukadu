@@ -107,10 +107,6 @@ Blockly.cake['skillloader'] = function (block) {
 
         skillCode += "\nskill" + skillCounter++ + "->execute();\n";
 
-        for (var u = 0; u < hardwareVariableNames.length; u++) {
-            skillCode += "//" + hardwareVariableNames[u] + "->stop();\n";
-        }
-
         skillCode += "\n";
     }
     var code = hardwareCode + skillCode;

@@ -41,7 +41,7 @@ Blockly.Blocks['main_block'] = {
             .appendField(new Blockly.FieldCheckbox('FALSE'), 'CheckBoxInstallSkill');
         this.appendDummyInput()
             .appendField("Skillname: ")
-            .appendField(new Blockly.FieldTextInput("ultimateSkill"), "newSkillName");
+            .appendField(new Blockly.FieldTextInput("newSkillName"), "newSkillName");
         this.appendStatementInput('STACK')
             .appendField(Blockly.Msg.PROCEDURES_DEFRETURN_DO);
         this.setTooltip(Blockly.Msg.PROCEDURES_DEFRETURN_TOOLTIP);

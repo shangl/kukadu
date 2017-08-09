@@ -355,7 +355,7 @@ namespace kukadu {
                     catkinMakeString = "catkin_make";
                 } else {
                     catkinMakeString =
-                            "catkin_make --only-pkg-with-deps " + std::string(arguments.toUtf8().constData()) + ";" +
+                            "catkin_make --only-pkg-with-deps " + std::string(arguments.toUtf8().constData()) + " " +
                             packageName;
                 }
             }

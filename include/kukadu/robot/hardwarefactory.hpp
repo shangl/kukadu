@@ -30,6 +30,9 @@ namespace kukadu {
         bool hardwareExists(std::string hardwareName);
 
         void setSimulation(bool isSimulation);
+
+        void stopAllCreatedHardware();
+
     };
 
 }

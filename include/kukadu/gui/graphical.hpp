@@ -17,8 +17,8 @@ namespace kukadu {
 
     private:
 
-        static auto constexpr DEFAULT_WIDTH = 1800;
-        static auto constexpr DEFAULT_HEIGHT = 900;
+        static auto constexpr DEFAULT_WIDTH = 1900;
+        static auto constexpr DEFAULT_HEIGHT = 1000;
 
         QTabWidget *mainTab;
         QWebView *webView;

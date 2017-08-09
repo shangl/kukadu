@@ -29,6 +29,23 @@ namespace kukadu {
         {"KinestheticTeaching", [](StorageSingleton& storage, int skillId, int controllerType, std::vector<KUKADU_SHARED_PTR<Hardware> > hardwareComponents) {
             return make_shared<KinestheticTeaching>(storage, nullptr);
         }}
+,{
+			"MoveHome", [](StorageSingleton& storage, int skillId, int controllerType, std::vector<KUKADU_SHARED_PTR<Hardware> > hardwareComponents) {
+				return make_shared<skill::MoveHome>(storage, hardwareComponents);
+			}
+		}
+
+,{
+			"OpenHand", [](StorageSingleton& storage, int skillId, int controllerType, std::vector<KUKADU_SHARED_PTR<Hardware> > hardwareComponents) {
+				return make_shared<skill::OpenHand>(storage, hardwareComponents);
+			}
+		}
+
+,{
+			"CloseHand", [](StorageSingleton& storage, int skillId, int controllerType, std::vector<KUKADU_SHARED_PTR<Hardware> > hardwareComponents) {
+				return make_shared<skill::CloseHand>(storage, hardwareComponents);
+			}
+		}
 
         //insertSkill
         //at this line further skills will be inserted automatically - do not remove it
