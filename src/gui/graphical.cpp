@@ -112,6 +112,9 @@ namespace kukadu {
         auto executeSkillContainer = new QHBoxLayout();
         auto kinestheticTeachingContainer = new QHBoxLayout();
         packeNameLineEdit = new QLineEdit();
+        packeNameLineEdit->setText("Name of execution Package");
+        teachSkillNameLineEdit = new QLineEdit();
+        teachSkillNameLineEdit->setText("Name of teached Skill");
 
         QWebSettings::globalSettings()->setAttribute(QWebSettings::DeveloperExtrasEnabled, true);
         QWebSettings::globalSettings()->setAttribute(QWebSettings::LocalContentCanAccessRemoteUrls, true);
@@ -140,6 +143,7 @@ namespace kukadu {
         executeSkillContainer->addWidget(executeButton);
         executeSkillContainer->addWidget(packeNameLineEdit);
         kinestheticTeachingContainer->addWidget(kinestheticButton);
+        kinestheticTeachingContainer->addWidget(teachSkillNameLineEdit);
 
         return mainView;
     }
@@ -212,7 +216,7 @@ namespace kukadu {
             argumentString = "cd " + catkinWorkingDirectory + ";";
             argumentString += getCatkinMakeString(packageName) + ";";
             argumentString += "cd devel/lib/" + packageName + ";";
-            argumentString += "./" + packageName;
+            argumentString += "./" + packageName + " &";
             system(argumentString.c_str());
         }
     }
@@ -413,7 +417,9 @@ namespace kukadu {
 
     void KukaduGraphical::kinestethicTeachingSlot() {
         auto& storage = StorageSingleton::get();
-        kukadu::KinestheticTeaching skill(storage, nullptr);
-        skill.execute();
+        auto skillName = teachSkillNameLineEdit->text().toUtf8().constData();
+
+/*        kukadu::KinestheticTeaching skill(storage, nullptr);
+        skill.execute();*/
     }
 }

@@ -23,6 +23,7 @@ namespace kukadu {
         QTabWidget *mainTab;
         QWebView *webView;
         QLineEdit *packeNameLineEdit;
+        QLineEdit *teachSkillNameLineEdit;
 
         void loadInformationFromDatabase();
 

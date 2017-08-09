@@ -7,7 +7,6 @@ var skillCounter = 0;
 
 Blockly.cake['objectposition'] = function (block) {
     var variableName = block.getFieldValue("VariableName");
-    var tmpVariableName = variableName + "tmp";
     var objectName = block.getFieldValue("ObjectType");
 
     return "auto " + variableName + " = kukadu::PoseEstimatorFactory::get().getPoseFor(\"" + objectName + "\").pose;\n";
@@ -46,7 +45,7 @@ Blockly.cake['skillloader'] = function (block) {
 
         skillCode += hardwareVariableNames[hardwareVariableNames.length - 1] + "});\n\n";
 
-        var skillAttributeInformation = skillSelection.getAttributes();
+        var skillAttributeInformation = skillSelection.getSetterFunctions();
 
         var additionalLimitForVectors = 0;
         var attributes = getValuesFromMap(skillAttributeInformation);
@@ -98,8 +97,8 @@ Blockly.cake['skillloader'] = function (block) {
                 }
             }
 
-            skillCode += "std::dynamic_pointer_cast<kukadu::" + skillSelection.controller + ">(skill" + skillCounter + ")->set" + attribute.name + "(";
-            skillCode += attribute.dataType == "string" ? "'" : "";
+            skillCode += "std::dynamic_pointer_cast<kukadu::" + skillSelection.controller + ">(skill" + skillCounter + ")->" + attribute.name + "(";
+            skillCode += attribute.dataType === "string" ? "'" : "";
             skillCode += attributeCode;
             skillCode += attribute.dataType === "string" ? "'" : "";
             skillCode += ");\n";
