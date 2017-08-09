@@ -463,6 +463,7 @@ namespace kukadu {
             teachingHardware->start();
 
             teachingHardware->startKinestheticTeachingStiffness();
+            teachingHardware->jointPtp({-1.0, 1.56, 2.33, -1.74, -1.85, 1.27, 0.71});
 
         }
 
