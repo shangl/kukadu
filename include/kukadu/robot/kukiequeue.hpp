@@ -54,10 +54,25 @@ namespace kukadu {
 
         double maxDistPerCycle;
 
+        float maxforce;
+        float cpdamping;
+        float cpmaxdelta;
+        float cpstiffnessxyz;
+        float cpstiffnessabc;
+        float axismaxdeltatrq;
+
+        float prevMaxforce;
+        float prevCpdamping;
+        float prevCpmaxdelta;
+        float prevCpstiffnessxyz;
+        float prevCpstiffnessabc;
+        float prevAxismaxdeltatrq;
+
         arma::vec currJoints;
         arma::vec currentJntFrqTrq;
         arma::vec currentCartFrqTrq;
 
+        kukadu_mutex jointFrcMutex;
         kukadu_mutex planAndKinMutex;
         kukadu_mutex cartFrcTrqMutex;
         kukadu_mutex currentJointsMutex;
@@ -199,6 +214,9 @@ namespace kukadu {
 
         virtual std::string getCartesianLinkName();
         virtual std::string getCartesianReferenceFrame();
+
+        virtual void startKinestheticTeachingStiffness();
+        virtual void stopKinestheticTeachingStiffness();
 
         KUKADU_SHARED_PTR<PathPlanner> getPlanner();
         KUKADU_SHARED_PTR<Kinematics> getKinematics();

@@ -11,7 +11,7 @@
 
 namespace kukadu {
 
-    class Controller : private TimedObject {
+    class Controller : protected TimedObject, public StorageHolder {
 
     private:
 
@@ -38,8 +38,6 @@ namespace kukadu {
     protected:
 
         bool isShutUp;
-
-        StorageSingleton& storage;
 
         // is called by set simulation mode
         virtual void setSimulationModeInChain(bool simulationMode);
@@ -184,27 +182,6 @@ namespace kukadu {
         void setBoxDimX(double x);
 
         void setBoxDimY(double y);
-
-        std::string getClassName();
-
-    };
-
-    class KinestheticTeaching : public Controller {
-
-    private:
-
-    protected:
-
-        virtual void createSkillFromThisInternal(std::string skillName);
-
-    public:
-
-        KinestheticTeaching (StorageSingleton& storage, KUKADU_SHARED_PTR<JointHardware> hardware);
-
-        bool requiresGraspInternal();
-        bool producesGraspInternal();
-
-        std::shared_ptr<ControllerResult> executeInternal();
 
         std::string getClassName();
 

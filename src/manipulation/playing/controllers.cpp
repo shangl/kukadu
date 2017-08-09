@@ -174,7 +174,7 @@ namespace kukadu {
                 } else if(level == Clip::CLIP_H_LEVEL_FINAL) {
 
                     if(this->availablePreparatoryControllers.find(label) != this->availablePreparatoryControllers.end() && (this->availablePreparatoryControllers)[label]) {
-                        auto ac = make_shared<ControllerActionClip>(storage, atoi(tok.next().c_str()), (this->availablePreparatoryControllers)[label], generator);
+                        auto ac = make_shared<ControllerActionClip>(getStorage(), atoi(tok.next().c_str()), (this->availablePreparatoryControllers)[label], generator);
                         return ac;
                     } else
                         return nullptr;
@@ -220,7 +220,7 @@ namespace kukadu {
 
             for(int i = 0; i < preparationControllers.size(); ++i) {
 
-                auto prepActionClip = make_shared<ControllerActionClip>(storage, i, preparationControllers.at(i), generator);
+                auto prepActionClip = make_shared<ControllerActionClip>(getStorage(), i, preparationControllers.at(i), generator);
                 prepActions->push_back(prepActionClip);
                 prepActionsCasted->push_back(prepActionClip);
                 prepWeights.push_back(stdPrepWeight);
@@ -534,7 +534,7 @@ namespace kukadu {
                     for(auto cont : splits)
                         controllerParts.push_back(availablePreparatoryControllers[cont]);
 
-                    auto conc = make_shared<ConcatController>(storage, controllerParts);
+                    auto conc = make_shared<ConcatController>(getStorage(), controllerParts);
                     preparationControllers.push_back(conc);
 
                     availablePreparatoryControllers[line] = conc;
@@ -871,7 +871,7 @@ cout << endl;
                                         auto currentActionClip = KUKADU_DYNAMIC_POINTER_CAST<ControllerActionClip>(clipPath.at(i));
                                         controllerPath.push_back(currentActionClip->getActionController());
                                     }
-                                    auto newConcatController = make_shared<ConcatController>(storage, controllerPath);
+                                    auto newConcatController = make_shared<ConcatController>(getStorage(), controllerPath);
                                     const auto& controllerLabel = newConcatController->getCaption();
 
                                     auto creativeActionClipInEcm = projSim->findClipInLevelByLabel(controllerLabel, Clip::CLIP_H_LEVEL_FINAL);
@@ -883,7 +883,7 @@ cout << endl;
                                     else {
 
                                         // first create action clip
-                                        auto newConcatClip = make_shared<ControllerActionClip>(storage, projSim->generateNewActionId(), newConcatController, generator);
+                                        auto newConcatClip = make_shared<ControllerActionClip>(getStorage(), projSim->generateNewActionId(), newConcatController, generator);
 
                                         cout << "creative proposal of " << newConcatClip->toString() << endl;
 

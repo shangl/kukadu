@@ -413,9 +413,15 @@ namespace kukadu {
 
     }
 
-    void SensorStorage::stopDataStorage() {
+    long long int SensorStorage::stopDataStorage() {
 
         KUKADU_MODULE_START_USAGE();
+
+        long long int endTime = 0;
+        if(queues.size())
+            endTime = queues.front()->getCurrentTime();
+        else if(hands.size())
+            endTime = hands.front()->getCurrentTime();
 
         stopped = true;
         if(thr && thr->joinable())
@@ -430,6 +436,8 @@ namespace kukadu {
         handStreams.clear();
 
         KUKADU_MODULE_END_USAGE();
+
+        return endTime;
 
     }
 
@@ -731,7 +739,8 @@ namespace kukadu {
                             }
 
                             // store the data in the database
-                            storeJointInfoToDatabase(dbStorage, robotId, time, jointIdsVec.at(i), joints.joints, vel, acc, true, jntFrcTrq.joints);
+                            auto& jointIds = jointIdsVec.at(i);
+                            storeJointInfoToDatabase(dbStorage, robotId, time, jointIds, joints.joints, vel, acc, true, jntFrcTrq.joints);
 
                         }
 
@@ -873,7 +882,7 @@ namespace kukadu {
             else
                 s << "NULL, NULL, NULL, NULL, ";
 
-            if(storeForces)
+            if(storeForces && i < jointForces.n_elem)
                 s << jointForces(i) << ");";
             else
                 s << "NULL);";

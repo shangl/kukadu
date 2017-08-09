@@ -445,6 +445,11 @@ namespace kukadu {
          */
         virtual int getCurrentMode() = 0;
 
+        // makes the robot unstiff such that users can do kinesthetic teaching
+        virtual void startKinestheticTeachingStiffness() = 0;
+        // switches back to previous stiffness values
+        virtual void stopKinestheticTeachingStiffness() = 0;
+
         virtual int getRobotId();
 
         int getJointId(std::string jointName);
@@ -543,6 +548,9 @@ namespace kukadu {
 
         virtual std::string getCartesianLinkName();
         virtual std::string getCartesianReferenceFrame();
+
+        virtual void startKinestheticTeachingStiffness();
+        virtual void stopKinestheticTeachingStiffness();
 
     };
 

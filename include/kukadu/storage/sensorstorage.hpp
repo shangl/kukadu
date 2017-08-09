@@ -71,7 +71,7 @@ namespace kukadu {
 
         SensorStorage(StorageSingleton& storage, std::vector<KUKADU_SHARED_PTR<ControlQueue> > queues, std::vector<KUKADU_SHARED_PTR<GenericHand> > hands, double pollingFrequency);
 
-        void stopDataStorage();
+        long long stopDataStorage();
         void setExportMode(int mode);
 
         /*

@@ -7,6 +7,7 @@
 #include <QtWidgets/QPushButton>
 #include <QtWidgets/QMessageBox>
 #include <QtWebKit/QtWebKit>
+#include <kukadu/generated_skills/KinestheticTeaching.hpp>
 
 
 using namespace std;
@@ -413,7 +414,7 @@ namespace kukadu {
 
     void KukaduGraphical::kinestethicTeachingSlot() {
         auto& storage = StorageSingleton::get();
-        kukadu::KinestheticTeaching skill(storage, nullptr);
+        kukadu::skill::KinestheticTeaching skill(storage, nullptr);
         skill.execute();
     }
 }

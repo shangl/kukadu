@@ -1531,9 +1531,31 @@ namespace kukadu {
 
     }
 
+    void KukieControlQueue::startKinestheticTeachingStiffness() {
+        setStiffness(0.2, 0.01, 0.2, 15000, 150, 1500);
+    }
+
+    void KukieControlQueue::stopKinestheticTeachingStiffness() {
+        setStiffness(prevCpstiffnessxyz, prevCpstiffnessabc, prevCpdamping, prevCpmaxdelta, prevMaxforce, prevAxismaxdeltatrq);
+    }
+
     void KukieControlQueue::setStiffness(float cpstiffnessxyz, float cpstiffnessabc, float cpdamping, float cpmaxdelta, float maxforce, float axismaxdeltatrq) {
 
         KUKADU_MODULE_START_USAGE();
+
+        this->prevCpstiffnessxyz = this->cpstiffnessxyz;
+        this->prevCpstiffnessabc = this->cpstiffnessabc;
+        this->prevCpdamping = this->cpdamping;
+        this->prevCpmaxdelta = this->cpmaxdelta;
+        this->prevMaxforce = this->maxforce;
+        this->prevAxismaxdeltatrq = this->axismaxdeltatrq;
+
+        this->cpstiffnessxyz = cpstiffnessxyz;
+        this->cpstiffnessabc = cpstiffnessabc;
+        this->cpdamping = cpdamping;
+        this->cpmaxdelta = cpmaxdelta;
+        this->maxforce = maxforce;
+        this->axismaxdeltatrq = axismaxdeltatrq;
 
         if(isRealRobot) {
 
@@ -1557,7 +1579,7 @@ namespace kukadu {
 
             pub_set_cart_stiffness.publish(imp);
             pub_set_joint_stiffness.publish(newImpedance);
-            ros::spinOnce();
+
         } else {
             if(!isShutUp())
                 ROS_INFO("(setStiffness) this functionality is not available in simulator - ignored");
@@ -1609,6 +1631,14 @@ namespace kukadu {
 
     void PlottingControlQueue::startQueueHook() {
 
+    }
+
+    void PlottingControlQueue::startKinestheticTeachingStiffness() {
+        // nothing to do
+    }
+
+    void PlottingControlQueue::stopKinestheticTeachingStiffness() {
+        // nothing to do
     }
 
     void PlottingControlQueue::setInitValues() {

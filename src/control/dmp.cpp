@@ -760,13 +760,13 @@ namespace kukadu {
             // robot information
             auto jointIds = controlQueue->getJointIds();
 
-            auto skillId = storage.getCachedLabelId("skills", "skill_id", "label", skillName);
+            auto skillId = getStorage().getCachedLabelId("skills", "skill_id", "label", skillName);
 
             stringstream s;
             s.str("");
             s << "insert into skill_dmp(skill_id, tau, az, bz, ax, step_size, tol_abs_err, tol_rel_err, tmax) values(" << skillId << ", " << tau << ", " <<
                  az << ", " << bz << ", " << ax << ", " << dmpStepSize << ", " << tolAbsErr << ", " << tolRelErr << ", " << tMax << ")";
-            storage.executeStatementPriority(s.str());
+            getStorage().executeStatementPriority(s.str());
 
             stringstream goalStream;
             stringstream dy0Stream;
@@ -778,9 +778,9 @@ namespace kukadu {
                 s << "insert into skill_dmp_y0(skill_id, joint_id, position) values(" << skillId << ", " << currentJointId << ", " << y0(i) << ")";
                 goalStream << "insert into skill_dmp_g(skill_id, joint_id, position) values(" << skillId << ", " << currentJointId << ", " << g(i) << ")";
                 dy0Stream << "insert into skill_dmp_dy0(skill_id, joint_id, position) values(" << skillId << ", " << currentJointId << ", " << dy0(i) << ")";
-                storage.executeStatementPriority(s.str());
-                storage.executeStatementPriority(goalStream.str());
-                storage.executeStatementPriority(dy0Stream.str());
+                getStorage().executeStatementPriority(s.str());
+                getStorage().executeStatementPriority(goalStream.str());
+                getStorage().executeStatementPriority(dy0Stream.str());
             }
 
             // the dmp basis functions are the same for all joints --> but this is not fixed forever,
@@ -800,7 +800,7 @@ namespace kukadu {
                         double& sigma = currentSigmas.at(k);
                         s.str("");
                         s << firstPart << ", " << sigma << ", " << currentCoeffs(m) << ")";
-                        storage.executeStatementPriority(s.str());
+                        getStorage().executeStatementPriority(s.str());
                         ++m;
                     }
 

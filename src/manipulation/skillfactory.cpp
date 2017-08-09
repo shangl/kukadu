@@ -27,7 +27,7 @@ namespace kukadu {
             return make_shared<LocalizeObject>(storage, KUKADU_DYNAMIC_POINTER_CAST<Kinect>(hardwareComponents.front()));
         }},
         {"KinestheticTeaching", [](StorageSingleton& storage, int skillId, int controllerType, std::vector<KUKADU_SHARED_PTR<Hardware> > hardwareComponents) {
-            return make_shared<KinestheticTeaching>(storage, nullptr);
+            return make_shared<skill::KinestheticTeaching>(storage, KUKADU_DYNAMIC_POINTER_CAST<ControlQueue>(hardwareComponents.front()));
         }}
 ,{
 			"MoveHome", [](StorageSingleton& storage, int skillId, int controllerType, std::vector<KUKADU_SHARED_PTR<Hardware> > hardwareComponents) {
