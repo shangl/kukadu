@@ -53,7 +53,7 @@ Blockly.Blocks['math_number'] = {
       if (num == 0) {
           this.changeOutput('Number');
       }
-      else if (num % 1 === 0 || num.match(/-/)) {
+      else if (num.indexOf(".") == -1 || num.match(/-/)) {
           if (num > 0) {
               this.changeOutput('INT');
           }

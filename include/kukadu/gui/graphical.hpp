@@ -23,6 +23,8 @@ namespace kukadu {
         QTabWidget *mainTab;
         QWebView *webView;
         QLineEdit *packeNameLineEdit;
+        QLineEdit *kinestheticSkillName;
+        QWidget *kinestheticTeachingView;
 
         void loadInformationFromDatabase();
 
@@ -58,6 +60,15 @@ namespace kukadu {
 
         void onStart();
 
+        void goToStartPositionSlot();
+
+        void startKinestheticTeachingSlot();
+
+        void testTaughtSkillSlot();
+
+        void installSkillSlot();
+
+        void exitViewSlot();
     };
 
 }

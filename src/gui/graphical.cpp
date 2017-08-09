@@ -113,6 +113,7 @@ namespace kukadu {
         auto executeSkillContainer = new QHBoxLayout();
         auto kinestheticTeachingContainer = new QHBoxLayout();
         packeNameLineEdit = new QLineEdit();
+        packeNameLineEdit->setText("Name of execution Package");
 
         QWebSettings::globalSettings()->setAttribute(QWebSettings::DeveloperExtrasEnabled, true);
         QWebSettings::globalSettings()->setAttribute(QWebSettings::LocalContentCanAccessRemoteUrls, true);
@@ -150,7 +151,7 @@ namespace kukadu {
     }
 
     void KukaduGraphical::executeSlot() {
-        if(isSkillInstalled()) {
+        if (isSkillInstalled()) {
             createProjectInKukadu();
         } else {
             std::string packageName = getPackageName();
@@ -160,7 +161,8 @@ namespace kukadu {
 
             std::string argumentString =
                     "cd " + catkinSources + ";rm -r " + packageName + ";catkin_create_pkg " + packageName +
-                    " geometry_msgs kukadu;cd " + packageName + ";mkdir src;mkdir include;cd include; mkdir " + packageName;
+                    " geometry_msgs kukadu;cd " + packageName + ";mkdir src;mkdir include;cd include; mkdir " +
+                    packageName;
             system(argumentString.c_str());
 
             std::string skillName = getCurrentSkillName();
@@ -183,7 +185,8 @@ namespace kukadu {
             textToAdd[5] = QString(
                     "include(CheckCXXCompilerFlag)\r\nCHECK_CXX_COMPILER_FLAG(\"-std=c++11\" COMPILER_SUPPORTS_CXX11)\r\nCHECK_CXX_COMPILER_FLAG(\"-std=c++0x\" COMPILER_SUPPORTS_CXX0X)\r\nif(COMPILER_SUPPORTS_CXX11)\r\nset(CMAKE_CXX_FLAGS \"${CMAKE_CXX_FLAGS} -std=c++11\")\r\nadd_definitions(-DCPP11SUPPORTED)\r\nelseif(COMPILER_SUPPORTS_CXX0X)\r\nset(CMAKE_CXX_FLAGS \"${CMAKE_CXX_FLAGS} -std=c++0x\")\r\nadd_definitions(-DCPP11SUPPORTED)\r\nelse()\r\nmessage(STATUS \"The compiler ${CMAKE_CXX_COMPILER} has no C++11 support. Please use a different C++ compiler.\")\r\nendif()");
             argumentString =
-                    "add_executable(" + packageName + " src/main.cpp src/" + skillName + ".cpp)\r\ntarget_link_libraries(" + packageName +
+                    "add_executable(" + packageName + " src/main.cpp src/" + skillName +
+                    ".cpp)\r\ntarget_link_libraries(" + packageName +
                     " ${catkin_LIBRARIES} kukadu kukaduvision)";
             textToAdd[118] = "  include";
             textToAdd[123] = QString(argumentString.c_str());
@@ -213,7 +216,7 @@ namespace kukadu {
             argumentString = "cd " + catkinWorkingDirectory + ";";
             argumentString += getCatkinMakeString(packageName) + ";";
             argumentString += "cd devel/lib/" + packageName + ";";
-            argumentString += "./" + packageName;
+            argumentString += "./" + packageName + " &";
             system(argumentString.c_str());
         }
     }
@@ -228,8 +231,8 @@ namespace kukadu {
 
         std::string argumentString =
                 "cd " + sourceFolder + ";rm -r " + packageName + ";" +
-                "cd " + includeFolder + ";rm -r " + packageName +";" +
-                "cd " + catkinSources + ";rm -r " + packageName +";" +
+                "cd " + includeFolder + ";rm -r " + packageName + ";" +
+                "cd " + catkinSources + ";rm -r " + packageName + ";" +
                 "catkin_create_pkg " + packageName +
                 " geometry_msgs kukadu;cd " + packageName + ";mkdir src";
         system(argumentString.c_str());
@@ -247,7 +250,7 @@ namespace kukadu {
         while (!gskillHFStream.atEnd()) {
             QString line = gskillHFStream.readLine();
 
-            if(line.startsWith("#endif")) {
+            if (line.startsWith("#endif")) {
                 string includeLine = "\t#include <kukadu/generated_skills/" + skillName + ".hpp>\n";
                 textOfFile += QString::fromStdString(includeLine);
             }
@@ -301,7 +304,7 @@ namespace kukadu {
         argumentString = catkinSources + packageName + "/CMakeLists.txt";
         cmakeOutFile.rename(argumentString.c_str());
 
-        if(isSkillInstalled()) {
+        if (isSkillInstalled()) {
             SkillFactory::addSkill(skillName);
         }
 
@@ -312,7 +315,7 @@ namespace kukadu {
         system(argumentString.c_str());
     }
 
-    void KukaduGraphical::writeToFileInPackage(std::string filename, QString content){
+    void KukaduGraphical::writeToFileInPackage(std::string filename, QString content) {
 
         std::string packageName = getPackageName();
         std::string catkinSources = resolvePath("$KUKADU_HOME/../");
@@ -320,7 +323,7 @@ namespace kukadu {
         writeToFileAtPath(argumentString, content);
     }
 
-    void KukaduGraphical::writeToFileAtPath(std::string filepath, QString content){
+    void KukaduGraphical::writeToFileAtPath(std::string filepath, QString content) {
 
         QFile writeFile(QString::fromStdString(filepath));
         if (writeFile.exists()) {
@@ -369,13 +372,14 @@ namespace kukadu {
         return catkinMakeString;
     }
 
-    bool KukaduGraphical::isSkillInstalled(){
-        auto isSkillInstalled = webView->page()->mainFrame()->evaluateJavaScript("isSkillInstalled()").toString().toStdString();
+    bool KukaduGraphical::isSkillInstalled() {
+        auto isSkillInstalled = webView->page()->mainFrame()->evaluateJavaScript(
+                "isSkillInstalled()").toString().toStdString();
 
         return isSkillInstalled == "true";
     }
 
-    std::string KukaduGraphical::getPackageName(){
+    std::string KukaduGraphical::getPackageName() {
         std::string packageName = packeNameLineEdit->text().toUtf8().constData();
         if (packageName.empty()) {
             packageName = "graphical_test";
@@ -384,7 +388,7 @@ namespace kukadu {
         return packageName;
     }
 
-    std::vector< QString > KukaduGraphical::getCodeBlocks(){
+    std::vector<QString> KukaduGraphical::getCodeBlocks() {
         QVariant codeVariant = webView->page()->mainFrame()->evaluateJavaScript("getCode()");
         std::string packageName = getPackageName();
 
@@ -401,7 +405,7 @@ namespace kukadu {
 
         auto headerStartPosition = mainCode.indexOf(QString("//Skillheader for Skill\n")) + 24;
         auto implementationStartPosition = mainCode.indexOf(QString("//Skillimplementation for Skill:\n")) + 33;
-        QString headerCode = mainCode.mid(headerStartPosition, implementationStartPosition-headerStartPosition-33);
+        QString headerCode = mainCode.mid(headerStartPosition, implementationStartPosition - headerStartPosition - 33);
         QString implementationCode = mainCode.mid(implementationStartPosition);
         mainCode = mainCode.mid(0, headerStartPosition - 24);
 
@@ -413,8 +417,46 @@ namespace kukadu {
     }
 
     void KukaduGraphical::kinestethicTeachingSlot() {
-        auto& storage = StorageSingleton::get();
-        kukadu::skill::KinestheticTeaching skill(storage, nullptr);
-        skill.execute();
+        kinestheticTeachingView = new QWidget;
+
+        auto mainLayout = new QGridLayout();
+        auto goToStartPosButton = new QPushButton("Guide to start Position");
+        auto executeButton = new QPushButton("Let's go");
+        auto testButton = new QPushButton("Test this Skill");
+        auto installButton = new QPushButton("Install this Skill with name:");
+        auto exitButton = new QPushButton("Exit");
+        kinestheticSkillName = new QLineEdit();
+
+        QObject::connect(goToStartPosButton, SIGNAL(clicked()), this, SLOT(goToStartPositionSlot()));
+        QObject::connect(executeButton, SIGNAL(clicked()), this, SLOT(startKinestheticTeachingSlot()));
+        QObject::connect(testButton, SIGNAL(clicked()), this, SLOT(testTaughtSkillSlot()));
+        QObject::connect(installButton, SIGNAL(clicked()), this, SLOT(installSkillSlot()));
+        QObject::connect(exitButton, SIGNAL(clicked()), this, SLOT(exitViewSlot()));
+
+        mainLayout->addWidget(goToStartPosButton, 0, 0);
+        mainLayout->addWidget(executeButton, 1, 0);
+        mainLayout->addWidget(testButton, 2, 0);
+        mainLayout->addWidget(installButton, 3, 0);
+        mainLayout->addWidget(kinestheticSkillName, 3, 1);
+        mainLayout->addWidget(exitButton, 4, 0);
+
+        kinestheticTeachingView->setLayout(mainLayout);
+        kinestheticTeachingView->show();
+    }
+
+    void KukaduGraphical::goToStartPositionSlot() {}
+
+    void KukaduGraphical::startKinestheticTeachingSlot() {}
+
+    void KukaduGraphical::testTaughtSkillSlot() {}
+
+    void KukaduGraphical::installSkillSlot() {
+        std::string skillName = kinestheticSkillName->text().toUtf8().constData();
+
+    }
+
+    void KukaduGraphical::exitViewSlot() {
+        kinestheticTeachingView->close();
+        webView->reload();
     }
 }

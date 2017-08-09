@@ -205,7 +205,7 @@ Blockly.Blocks['skillloader'] = {
             var skillId = currentSkill.id;
             var configId = Databaseloader.roboConfigMap[idsToKey(this._hardwareIds)].id;
             var skill = Databaseloader.roboConfigToSkillMap[configId][skillId];
-            var attributes = getValuesFromMap(skill.getAttributes());
+            var attributes = getValuesFromMap(skill.getSetterFunctions());
 
             if (attributes != null) {
                 var additionalLimitForVectors = 0;
@@ -340,7 +340,7 @@ var Databaseloader = new function () {
 
             skillInstance.setConfigs(configIds);
 
-            skillInstance.setAttributes(Databaseloader.getAttributes(skillInstance.name, skillInstance.controller));
+            skillInstance.setSetterFunctions(Databaseloader.getSetterFunctions(skillInstance.name, skillInstance.controller));
 
             Databaseloader.skillMap[skillInstance.name] = skillInstance;
         }
@@ -369,8 +369,8 @@ var Databaseloader = new function () {
         }
     };
 
-    this.getAttributes = function (skill, controllerClass) {
-        var attributes = {};
+    this.getSetterFunctions = function (skill, controllerClass) {
+        var setFunctions = {};
         $.ajax({
             type: "GET",
             url: this.attributePath + "classkukadu_1_1" + controllerClass + ".xml",
@@ -398,11 +398,9 @@ var Databaseloader = new function () {
                             var match = m[0];   //only get full match
                             var subStringIndex = match.lastIndexOf(" ");
                             var dataType = match.substr(0, subStringIndex);
-                            var variableName = match.substr(subStringIndex + 1);
-                            variableName = variableName.substr(0, 1).toUpperCase() + variableName.substr(1);
 
-                            var attribute = new Attribute(variableName, dataType, "not defined");
-                            attributes[attribute.name] = attribute;
+                            var setFunction = new SetterFunction(functionname, dataType, "not defined");
+                            setFunctions[setFunction.name] = setFunction;
                         }
                     }
 
@@ -410,7 +408,7 @@ var Databaseloader = new function () {
             }
         });
 
-        return attributes;
+        return setFunctions;
     }
 };
 
@@ -440,11 +438,11 @@ function Skill(id, name, controller) {
     this.name = name;
     this.controller = controller;
 
-    this.setAttributes = function (attributes) {
+    this.setSetterFunctions = function (attributes) {
         this.attributes = attributes;
     };
 
-    this.getAttributes = function () {
+    this.getSetterFunctions = function () {
         return this.attributes;
     };
 
@@ -463,7 +461,7 @@ function Hardware(id, name, degOfFreedom) {
     this.degOfFreedom = degOfFreedom;
 }
 
-function Attribute(name, dataType, defaultValue) {
+function SetterFunction(name, dataType, defaultValue) {
     this.name = name;
     this.dataType = dataType;
     this.defaultValue = defaultValue;
