@@ -450,6 +450,8 @@ namespace kukadu {
             ros::Rate r(2);
             r.sleep();
 
+            startTime = getCurrentTime();
+
             cout << "measurement started" << endl;
             teachingHardware->jointPtp({-1.5, 1.56, 2.33, -1.74, -1.85, 1.27, 0.71});
 
@@ -470,7 +472,6 @@ namespace kukadu {
         std::pair<long long int, long long int> KinestheticTeaching::showDmp() {
 
             cout << "starting measurement" << endl;
-            long long int startTime = getCurrentTime();
 
             execute();
 
@@ -510,6 +511,8 @@ namespace kukadu {
 
             DMPExecutor teachingExecutor(getStorage(), teachingDmp, teachingHardware);
             teachingExecutor.setExecutionMode(TrajectoryExecutor::EXECUTE_ROBOT);
+            cout << teachingDmp->getY0().t() << endl;
+            cout << teachingDmp->getSampleYs().back().t() << endl;
             teachingExecutor.execute();
 
         }

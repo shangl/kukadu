@@ -8,6 +8,7 @@
 #include <string>
 #include <vector>
 #include <QtCore/QString>
+#include <kukadu/generated_skills/KinestheticTeaching.hpp>
 
 
 namespace kukadu {
@@ -25,6 +26,8 @@ namespace kukadu {
         QLineEdit *packeNameLineEdit;
         QLineEdit *kinestheticSkillName;
         QWidget *kinestheticTeachingView;
+        KUKADU_SHARED_PTR<skill::KinestheticTeaching> teachingObject;
+        std::pair< long long int, long long int > teachingTimes;
 
         void loadInformationFromDatabase();
 
@@ -63,6 +66,8 @@ namespace kukadu {
         void goToStartPositionSlot();
 
         void startKinestheticTeachingSlot();
+
+        void finishedExecutionSlot();
 
         void testTaughtSkillSlot();
 

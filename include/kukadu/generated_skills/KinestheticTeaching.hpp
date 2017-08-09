@@ -12,6 +12,9 @@ namespace kukadu {
 
 		private:
 
+			long long int startTime;
+			long long int endTime;
+
 			KUKADU_SHARED_PTR<Dmp> teachingDmp;
 			KUKADU_SHARED_PTR<ControlQueue> teachingHardware;
 

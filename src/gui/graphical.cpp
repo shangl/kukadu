@@ -8,6 +8,7 @@
 #include <QtWidgets/QMessageBox>
 #include <QtWebKit/QtWebKit>
 #include <kukadu/generated_skills/KinestheticTeaching.hpp>
+#include <kukadu/robot.hpp>
 
 
 using namespace std;
@@ -422,6 +423,7 @@ namespace kukadu {
         auto mainLayout = new QGridLayout();
         auto goToStartPosButton = new QPushButton("Guide to start Position");
         auto executeButton = new QPushButton("Let's go");
+        auto finishedExecuteButton = new QPushButton("Teaching done");
         auto testButton = new QPushButton("Test this Skill");
         auto installButton = new QPushButton("Install this Skill with name:");
         auto exitButton = new QPushButton("Exit");
@@ -429,30 +431,48 @@ namespace kukadu {
 
         QObject::connect(goToStartPosButton, SIGNAL(clicked()), this, SLOT(goToStartPositionSlot()));
         QObject::connect(executeButton, SIGNAL(clicked()), this, SLOT(startKinestheticTeachingSlot()));
+        QObject::connect(finishedExecuteButton, SIGNAL(clicked()), this, SLOT(finishedExecutionSlot()));
         QObject::connect(testButton, SIGNAL(clicked()), this, SLOT(testTaughtSkillSlot()));
         QObject::connect(installButton, SIGNAL(clicked()), this, SLOT(installSkillSlot()));
         QObject::connect(exitButton, SIGNAL(clicked()), this, SLOT(exitViewSlot()));
 
         mainLayout->addWidget(goToStartPosButton, 0, 0);
         mainLayout->addWidget(executeButton, 1, 0);
-        mainLayout->addWidget(testButton, 2, 0);
-        mainLayout->addWidget(installButton, 3, 0);
-        mainLayout->addWidget(kinestheticSkillName, 3, 1);
-        mainLayout->addWidget(exitButton, 4, 0);
+        mainLayout->addWidget(finishedExecuteButton, 2, 0);
+        mainLayout->addWidget(testButton, 3, 0);
+        mainLayout->addWidget(installButton, 4, 0);
+        mainLayout->addWidget(kinestheticSkillName, 4, 1);
+        mainLayout->addWidget(exitButton, 5, 0);
 
         kinestheticTeachingView->setLayout(mainLayout);
+
+        teachingObject = KUKADU_DYNAMIC_POINTER_CAST<skill::KinestheticTeaching>(SkillFactory::get().loadSkill("kinesthetic_teaching", {HardwareFactory::get().loadHardware("kukie_left_arm")}));
+
+//        skill::KinestheticTeaching skill(StorageSingleton::get(), KUKADU_DYNAMIC_POINTER_CAST<ControlQueue>(HardwareFactory::get().loadHardware("kukie_left_arm")));
+ //       skill.createSkillFromThis("kinesthetic_teaching");
+
         kinestheticTeachingView->show();
     }
 
-    void KukaduGraphical::goToStartPositionSlot() {}
+    void KukaduGraphical::goToStartPositionSlot() {
+        teachingObject->bringToStartPos();
+    }
 
-    void KukaduGraphical::startKinestheticTeachingSlot() {}
+    void KukaduGraphical::startKinestheticTeachingSlot() {
+        teachingTimes = teachingObject->showDmp();
+    }
 
-    void KukaduGraphical::testTaughtSkillSlot() {}
+    void KukaduGraphical::finishedExecutionSlot() {
+        teachingObject->endTeachingAndTrainDmp(teachingTimes.first, teachingTimes.second);
+    }
+
+    void KukaduGraphical::testTaughtSkillSlot() {
+        teachingObject->testTrainedDmp();
+    }
 
     void KukaduGraphical::installSkillSlot() {
         std::string skillName = kinestheticSkillName->text().toUtf8().constData();
-
+        teachingObject->installDmp(skillName);
     }
 
     void KukaduGraphical::exitViewSlot() {
