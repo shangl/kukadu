@@ -29,7 +29,8 @@ Blockly.cake['skillloader'] = function (block) {
 
     for (var i = 0; i < splitHardware.length; i++) {
         var hardwareVariableName = "sLeftQueue" + skillCounter + i;
-        hardwareCode += "auto " + hardwareVariableName + " = hardwareFactory.loadHardware(\"" + splitHardware[i] + "\");\n" +
+        //hardwareCode += "auto " + hardwareVariableName + " = hardwareFactory.loadHardware(\"" + splitHardware[i] + "\");\n" +
+        hardwareCode += "auto " + hardwareVariableName + " = getUsedHardware()[" + getKeyIdForValueFromMap(Blockly.cake.neededHardware_, splitHardware[i]) + "];\n" +
             hardwareVariableName + "->install();\n" +
             hardwareVariableName + "->start();\n";
         hardwareVariableNames.push(hardwareVariableName);
