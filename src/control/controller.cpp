@@ -42,8 +42,13 @@ namespace kukadu {
     }
 
     void Controller::createSkillFromThis(std::string skillName) {
+
         this->isSkill = true;
         this->skillName = skillName;
+
+        bool didExist = false;
+        if(getStorage().checkLabelExists("skills", "label", skillName))
+            didExist = true;
 
         auto usedHw = getUsedHardware();
         if(getStorage().checkLabelExists("skills", "label", skillName) && RobotConfiguration::configurationExists(usedHw)) {
@@ -65,7 +70,9 @@ namespace kukadu {
             } else {
                 throw KukaduException("(Controller) skill with provided name and robot configuration already exists");
             }
-        }  else if (getStorage().checkLabelExists("skills", "label", skillName)) {
+
+        }  else if(getStorage().checkLabelExists("skills", "label", skillName)) {
+
             auto idForNewConfig = getStorage().getNextIdInTable("robot_config", "robot_config_id");
 
             stringstream s;
@@ -82,7 +89,9 @@ namespace kukadu {
             auto skillId = getStorage().getCachedLabelId("skills", "skill_id", "label", skillName);
             s << "INSERT INTO skills_robot (skill_id, robot_config_id) VALUES (" << skillId << ", " << idForNewConfig << ")";
             getStorage().executeStatementPriority(s.str());
+
         } else if (RobotConfiguration::configurationExists(usedHw)) {
+
             int configId = RobotConfiguration::getConfigurationId(usedHw);
             auto controllerId = getControllerId();
 
@@ -94,7 +103,9 @@ namespace kukadu {
             auto skillId = getStorage().getCachedLabelId("skills", "skill_id", "label", skillName);
             s << "INSERT INTO skills_robot (skill_id, robot_config_id) VALUES (" << skillId << ", " << configId << ")";
             getStorage().executeStatementPriority(s.str());
+
         } else {
+
             auto idForNewConfig = getStorage().getNextIdInTable("robot_config", "robot_config_id");
 
             stringstream s;
@@ -116,7 +127,12 @@ namespace kukadu {
             auto skillId = getStorage().getCachedLabelId("skills", "skill_id", "label", skillName);
             s << "INSERT INTO skills_robot (skill_id, robot_config_id) VALUES (" << skillId << ", " << idForNewConfig << ")";
             getStorage().executeStatementPriority(s.str());
+
         }
+
+        if(!didExist)
+            createSkillFromThisInternal(skillName);
+
     }
 
     int Controller::getControllerId() {

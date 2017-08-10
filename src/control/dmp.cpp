@@ -1360,6 +1360,8 @@ namespace kukadu {
 
         this->odeSystemSizeMinOne = odeSystemSize - 1;
 
+        setExecutionMode(kukadu::TrajectoryExecutor::EXECUTE_ROBOT);
+
     }
 
     arma::mat CartesianDMPLearner::computeFitY(arma::vec& time, arma::mat &y, arma::mat &dy, arma::mat &ddy, arma::vec& vec_g) {

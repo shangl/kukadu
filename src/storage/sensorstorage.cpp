@@ -269,7 +269,7 @@ namespace kukadu {
         s << ") order by time_stamp asc, joint_id asc";
 
         auto jointRes = storage.executeQuery(s.str());
-cout << s.str() << endl;
+
         vector<bool> degOfFreedomRetrieved;
         for(int i = 0; i < jointIds.size(); ++i)
             degOfFreedomRetrieved.push_back(false);
