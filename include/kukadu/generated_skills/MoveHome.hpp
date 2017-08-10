@@ -4,29 +4,33 @@
 #include <stdlib.h>
 #include <kukadu/kukadu.hpp>
 namespace kukadu {
-	namespace skill
-		{class MoveHome : public kukadu::Controller {
 
-private:
+    namespace skill {
 
-protected:
+        class MoveHome : public kukadu::Controller {
 
-	virtual void createSkillFromThisInternal(std::string skillName);
+        private:
 
-public:
+        protected:
 
-	MoveHome(kukadu::StorageSingleton& storage, std::vector< KUKADU_SHARED_PTR< kukadu::Hardware > > hardware);
+                virtual void createSkillFromThisInternal(std::string skillName);
 
-	bool requiresGraspInternal();
+        public:
 
-	bool producesGraspInternal();
+                MoveHome(kukadu::StorageSingleton& storage, std::vector< KUKADU_SHARED_PTR< kukadu::Hardware > > hardware);
 
-	std::shared_ptr<kukadu::ControllerResult> executeInternal();
+                bool requiresGraspInternal();
 
-	std::string getClassName();
+                bool producesGraspInternal();
 
-};
-}
+                std::shared_ptr<kukadu::ControllerResult> executeInternal();
+
+                std::string getClassName();
+
+        };
+
+    }
+
 }
 
 #endif

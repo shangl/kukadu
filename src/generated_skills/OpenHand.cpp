@@ -22,7 +22,7 @@ namespace kukadu {
             hand->install();
             hand->start();
 
-            KUKADU_DYNAMIC_POINTER_CAST<kukadu::GenericHand>(hand)->setGrasp(eGID_CYLINDRICAL);
+            KUKADU_DYNAMIC_POINTER_CAST<kukadu::GenericHand>(hand)->setGrasp(eGID_SPHERICAL);
             KUKADU_DYNAMIC_POINTER_CAST<kukadu::GenericHand>(hand)->closeHand(0.0, 0.8);
 
             return nullptr;
