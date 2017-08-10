@@ -13,42 +13,58 @@ using namespace std;
 namespace kukadu {
 
     std::map<std::string, std::function<KUKADU_SHARED_PTR<Controller>(
-            StorageSingleton&, int, int, std::vector<KUKADU_SHARED_PTR<Hardware> >)> > SkillFactory::skillFactories{
-        {"DMPExecutor", [](StorageSingleton& storage, int skillId, int controllerType, std::vector<KUKADU_SHARED_PTR<Hardware> > hardwareComponents) {
-        return make_shared<DMPExecutor>(storage, skillId, KUKADU_DYNAMIC_POINTER_CAST<ControlQueue>(hardwareComponents.front()));
-        }},
-        {"JointPtp", [](StorageSingleton& storage, int skillId, int controllerType, std::vector<KUKADU_SHARED_PTR<Hardware> > hardwareComponents) {
-            return make_shared<JointPtp>(storage, KUKADU_DYNAMIC_POINTER_CAST<JointHardware>(hardwareComponents.front()));
-        }},
-        {"CartesianPtp", [](StorageSingleton& storage, int skillId, int controllerType, std::vector<KUKADU_SHARED_PTR<Hardware> > hardwareComponents) {
-            return make_shared<CartesianPtp>(storage, KUKADU_DYNAMIC_POINTER_CAST<ControlQueue>(hardwareComponents.front()));
-        }},
-        {"LocalizeObject", [](StorageSingleton& storage, int skillId, int controllerType, std::vector<KUKADU_SHARED_PTR<Hardware> > hardwareComponents) {
-            return make_shared<LocalizeObject>(storage, KUKADU_DYNAMIC_POINTER_CAST<Kinect>(hardwareComponents.front()));
-        }},
-        {"KinestheticTeaching", [](StorageSingleton& storage, int skillId, int controllerType, std::vector<KUKADU_SHARED_PTR<Hardware> > hardwareComponents) {
-            return make_shared<skill::KinestheticTeaching>(storage, KUKADU_DYNAMIC_POINTER_CAST<ControlQueue>(hardwareComponents.front()));
-        }}
+            StorageSingleton &, int, int, std::vector<KUKADU_SHARED_PTR<Hardware> >)> > SkillFactory::skillFactories{
+            {"DMPExecutor",         [](StorageSingleton &storage, int skillId, int controllerType,
+                                       std::vector<KUKADU_SHARED_PTR<Hardware> > hardwareComponents) {
+                return make_shared<DMPExecutor>(storage, skillId,
+                                                KUKADU_DYNAMIC_POINTER_CAST<ControlQueue>(hardwareComponents.front()));
+            }},
+            {"JointPtp",            [](StorageSingleton &storage, int skillId, int controllerType,
+                                       std::vector<KUKADU_SHARED_PTR<Hardware> > hardwareComponents) {
+                return make_shared<JointPtp>(storage,
+                                             KUKADU_DYNAMIC_POINTER_CAST<JointHardware>(hardwareComponents.front()));
+            }},
+            {"CartesianPtp",        [](StorageSingleton &storage, int skillId, int controllerType,
+                                       std::vector<KUKADU_SHARED_PTR<Hardware> > hardwareComponents) {
+                return make_shared<CartesianPtp>(storage,
+                                                 KUKADU_DYNAMIC_POINTER_CAST<ControlQueue>(hardwareComponents.front()));
+            }},
+            {"LocalizeObject",      [](StorageSingleton &storage, int skillId, int controllerType,
+                                       std::vector<KUKADU_SHARED_PTR<Hardware> > hardwareComponents) {
+                return make_shared<LocalizeObject>(storage,
+                                                   KUKADU_DYNAMIC_POINTER_CAST<Kinect>(hardwareComponents.front()));
+            }},
+            {"KinestheticTeaching", [](StorageSingleton &storage, int skillId, int controllerType,
+                                       std::vector<KUKADU_SHARED_PTR<Hardware> > hardwareComponents) {
+                return make_shared<skill::KinestheticTeaching>(storage, KUKADU_DYNAMIC_POINTER_CAST<ControlQueue>(
+                        hardwareComponents.front()));
+            }},
+            {
+             "MoveHome",            [](StorageSingleton &storage, int skillId, int controllerType,
+                                       std::vector<KUKADU_SHARED_PTR<Hardware> > hardwareComponents) {
+                return make_shared<skill::MoveHome>(storage, hardwareComponents);
+            }
+            },
+            {
+             "OpenHand",            [](StorageSingleton &storage, int skillId, int controllerType,
+                                       std::vector<KUKADU_SHARED_PTR<Hardware> > hardwareComponents) {
+                return make_shared<skill::OpenHand>(storage, hardwareComponents);
+            }
+            },
+            {
+             "CloseHand",           [](StorageSingleton &storage, int skillId, int controllerType,
+                                       std::vector<KUKADU_SHARED_PTR<Hardware> > hardwareComponents) {
+                return make_shared<skill::CloseHand>(storage, hardwareComponents);
+            }
+            }
 ,{
-			"MoveHome", [](StorageSingleton& storage, int skillId, int controllerType, std::vector<KUKADU_SHARED_PTR<Hardware> > hardwareComponents) {
-				return make_shared<skill::MoveHome>(storage, hardwareComponents);
+			"asdftest", [](StorageSingleton& storage, int skillId, int controllerType, std::vector<KUKADU_SHARED_PTR<Hardware> > hardwareComponents) {
+				return make_shared<skill::asdftest>(storage, hardwareComponents);
 			}
 		}
 
-,{
-			"OpenHand", [](StorageSingleton& storage, int skillId, int controllerType, std::vector<KUKADU_SHARED_PTR<Hardware> > hardwareComponents) {
-				return make_shared<skill::OpenHand>(storage, hardwareComponents);
-			}
-		}
-
-,{
-			"CloseHand", [](StorageSingleton& storage, int skillId, int controllerType, std::vector<KUKADU_SHARED_PTR<Hardware> > hardwareComponents) {
-				return make_shared<skill::CloseHand>(storage, hardwareComponents);
-			}
-		}
-
-        //insertSkill
-        //at this line further skills will be inserted automatically - do not remove it
+            //insertSkill
+            //at this line further skills will be inserted automatically - do not remove it
     };
 
     SkillFactory::SkillFactory() : storage(StorageSingleton::get()) {}
@@ -76,9 +92,13 @@ namespace kukadu {
         QTextStream newSkillFactoryStream(&newSkillFactoryFile);
 
         QString skillFactoryContent = "";
+        std::string containedString = "/";
+        containedString += "/insertSkill"; //keep this here like this to not have the text replaced here
+
         while (!skillFactoryStream.atEnd()) {
             QString line = skillFactoryStream.readLine();
-            if (line.startsWith("        //insertSkill")) {
+
+            if (line.contains(QString::fromStdString(containedString))) {
                 newSkillFactoryStream << QString::fromStdString(skillText) << "\n";
             }
             newSkillFactoryStream << line + "\n";
@@ -126,8 +146,7 @@ namespace kukadu {
             if (skillFactories.find(controllerClassLabel) != skillFactories.end())
                 return skillFactories[controllerClassLabel](storage, skillId, controllerType, hardwareComponents);
             else throw KukaduException("(SkillFactory) automatic loading is not supported for the required controller");
-        }
-        else
+        } else
             throw KukaduException(
                     "(SkillFactory) requested skill name does not exist in the data base or is not available for your robot");
     }

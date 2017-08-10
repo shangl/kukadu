@@ -113,11 +113,9 @@ Blockly.cake['main_block'] = function (block) {
         executeSkill = "kukadu::skill::" + executeSkill;
         installSkill = "try { skill.createSkillFromThis(\"" + skillName + "\"); } catch(kukadu::KukaduException& ex) {}\n";
     } else {
-        Blockly.cake.definitions_['include_install_not_in_package'] = "#include <..placeholder../" + skillName + ".hpp>\n";
+        Blockly.cake.definitions_['include_install_not_in_package'] = "#include <generated_graphical_programming/header.hpp>\n";
         installSkill = "\n";
-
     }
-
 
     var codeClass = new CodeClass(skillName, skillCode);
 
@@ -372,7 +370,7 @@ function CodeClass(name, code) {
         if (isSkillInstalled()) {
             skillImplementation += "#include <kukadu/generated_skills/" + name + ".hpp>\nnamespace kukadu {\n\tnamespace skill\n\t\t{";
         } else {
-            skillImplementation += "#include <..placeholder../" + name + ".hpp>\n\n\n";
+            skillImplementation += "#include <generated_graphical_programming/header.hpp>\n\n\n";
         }
 
         skillImplementation += name + "::" + name + "(kukadu::StorageSingleton& storage, std::vector< KUKADU_SHARED_PTR< kukadu::Hardware > > hardware)\n" +

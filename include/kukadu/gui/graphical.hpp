@@ -23,7 +23,6 @@ namespace kukadu {
 
         QTabWidget *mainTab;
         QWebView *webView;
-        QLineEdit *packeNameLineEdit;
         QLineEdit *kinestheticSkillName;
         QWidget *kinestheticTeachingView;
         KUKADU_SHARED_PTR<skill::KinestheticTeaching> teachingObject;
@@ -41,6 +40,8 @@ namespace kukadu {
 
         void writeToFileInPackage(std::string filename, QString content);
 
+        void createProjectInPackage();
+
         void createProjectInKukadu();
 
         void writeToFileAtPath(std::string filepath, QString content);
@@ -50,6 +51,10 @@ namespace kukadu {
         bool isSkillInstalled();
 
         std::string getExecutionMode();
+
+        void createCatkinPackage();
+
+        void createCMakeLists();
 
     public:
 
