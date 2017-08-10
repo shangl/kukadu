@@ -487,5 +487,6 @@ namespace kukadu {
         kinestheticTeachingView->close();
         //webView->reload();
         loadInformationFromDatabase();
+        HardwareFactory::get().stopAllCreatedHardware();
     }
 }
