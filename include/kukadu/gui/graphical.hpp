@@ -27,7 +27,6 @@ namespace kukadu {
         QLineEdit *kinestheticSkillName;
         QWidget *kinestheticTeachingView;
         KUKADU_SHARED_PTR<skill::KinestheticTeaching> teachingObject;
-        std::pair< long long int, long long int > teachingTimes;
 
         void loadInformationFromDatabase();
 

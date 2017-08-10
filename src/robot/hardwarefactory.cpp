@@ -7,6 +7,12 @@ using namespace std;
 
 namespace kukadu {
 
+std::string createHardwareName(std::string hardware, bool simulate) {
+    stringstream s;
+    s << hardware << "...sim=" << simulate;
+    return s.str();
+}
+
 std::map<std::string, std::function<KUKADU_SHARED_PTR<Hardware>(StorageSingleton&, std::string, bool)> > HardwareFactory::hardwareFactories{
     {
         "KukieControlQueue", [](StorageSingleton& storage, std::string hardwareName, bool simulation) {
@@ -36,15 +42,15 @@ HardwareFactory& HardwareFactory::get() {
 
 KUKADU_SHARED_PTR<Hardware> HardwareFactory::loadHardware(std::string hardwareName) {
 
-    if(createdHardware[hardwareName])
-        return createdHardware[hardwareName];
+    if(createdHardware[createHardwareName(hardwareName, this->simulation)])
+        return createdHardware[createHardwareName(hardwareName, this->simulation)];
 
     // if the hardware was not created yet
     auto hardwareId = storage.getCachedLabelId("hardware_instances", "hardware_id", "instance_name", hardwareName);
     auto className = storage.getCachedLabel("hardware", "hardware_id", "hardware_name", hardwareId);
 
     auto& storage = StorageSingleton::get();
-    auto& created = createdHardware[hardwareName] = hardwareFactories[className](storage, hardwareName, this->simulation);
+    auto& created = createdHardware[createHardwareName(hardwareName, this->simulation)] = hardwareFactories[className](storage, hardwareName, this->simulation);
 
     return created;
 
@@ -53,6 +59,10 @@ KUKADU_SHARED_PTR<Hardware> HardwareFactory::loadHardware(std::string hardwareNa
 
 void HardwareFactory::setSimulation(bool isSimulation) {
     this->simulation = isSimulation;
+}
+
+bool HardwareFactory::getSimulation() {
+    return simulation;
 }
 
 std::vector<std::string> HardwareFactory::listAvailableHardware() {

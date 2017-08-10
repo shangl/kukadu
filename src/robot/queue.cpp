@@ -1536,7 +1536,27 @@ namespace kukadu {
     }
 
     void KukieControlQueue::stopKinestheticTeachingStiffness() {
-        setStiffness(prevCpstiffnessxyz, prevCpstiffnessabc, prevCpdamping, prevCpmaxdelta, prevMaxforce, prevAxismaxdeltatrq);
+
+        int diffCount = 20;
+
+        double deltaCpStiffXyz = (prevCpstiffnessxyz - 0.2) / diffCount;
+        double deltaCpStiffAbc = (prevCpstiffnessabc - 0.01) / diffCount;
+        double deltaCpDamping = (prevCpdamping - 0.2) / diffCount;
+        double deltaCpMaxDelta = (prevCpmaxdelta - 15000) / diffCount;
+        double deltaMaxFrc = (prevMaxforce - 150) / diffCount;
+        double deltaAxisMaxDeltaTrq = (prevAxismaxdeltatrq - 1500) / diffCount;
+
+        ros::Rate r(5);
+        auto currJnts = getCurrentJoints().joints;
+        for(int i = 0; i < 1000; ++i)
+            move(currJnts);
+        for(int i = 0; i < diffCount; ++i) {
+            setStiffness(0.2 + deltaCpStiffXyz * i, 0.01 + deltaCpStiffAbc * i, 0.2 + deltaCpDamping * i,
+                         15000 + deltaCpMaxDelta * i, 150 + deltaMaxFrc * i, 1500 + deltaAxisMaxDeltaTrq * i);
+            move(currJnts);
+            r.sleep();
+        }
+
     }
 
     void KukieControlQueue::setStiffness(float cpstiffnessxyz, float cpstiffnessabc, float cpdamping, float cpmaxdelta, float maxforce, float axismaxdeltatrq) {

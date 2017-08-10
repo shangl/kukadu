@@ -451,12 +451,15 @@ namespace kukadu {
 
         kinestheticTeachingView->setLayout(mainLayout);
 
+        auto& factory = HardwareFactory::get();
+        auto prevSim = factory.getSimulation();
+
+        // teaching only on the real robot
+        factory.setSimulation(false);
         teachingObject = KUKADU_DYNAMIC_POINTER_CAST<skill::KinestheticTeaching>(SkillFactory::get().loadSkill("kinesthetic_teaching", {HardwareFactory::get().loadHardware("kukie_left_arm")}));
-
-//        skill::KinestheticTeaching skill(StorageSingleton::get(), KUKADU_DYNAMIC_POINTER_CAST<ControlQueue>(HardwareFactory::get().loadHardware("kukie_left_arm")));
- //       skill.createSkillFromThis("kinesthetic_teaching");
-
+        factory.setSimulation(prevSim);
         kinestheticTeachingView->show();
+
     }
 
     void KukaduGraphical::goToStartPositionSlot() {
@@ -464,11 +467,11 @@ namespace kukadu {
     }
 
     void KukaduGraphical::startKinestheticTeachingSlot() {
-        teachingTimes = teachingObject->showDmp();
+        teachingObject->showDmp();
     }
 
     void KukaduGraphical::finishedExecutionSlot() {
-        teachingObject->endTeachingAndTrainDmp(teachingTimes.first, teachingTimes.second);
+        teachingObject->endTeachingAndTrainDmp();
     }
 
     void KukaduGraphical::testTaughtSkillSlot() {

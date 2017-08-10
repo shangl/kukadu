@@ -448,6 +448,7 @@ namespace kukadu {
                 : Controller(storage, "KinestheticTeaching", {hardware}, 0.01) {
 
             teachingHardware = hardware;
+            teachingRunning = false;
 
         }
 
@@ -462,14 +463,13 @@ namespace kukadu {
 
         KUKADU_SHARED_PTR<ControllerResult> KinestheticTeaching::executeInternal() {
 
-            // no sensor storage is required because the skill execution triggers storage of sensor data anyways
-            ros::Rate r(2);
-            r.sleep();
-
             startTime = getCurrentTime();
 
-            cout << "measurement started" << endl;
-            teachingHardware->jointPtp({-1.5, 1.56, 2.33, -1.74, -1.85, 1.27, 0.71});
+            //teachingHardware->jointPtp({-1.5, 1.56, 2.33, -1.74, -1.85, 1.27, 0.71});
+
+            ros::Rate r(10);
+            while(teachingRunning)
+                r.sleep();
 
             return nullptr;
 
@@ -477,27 +477,38 @@ namespace kukadu {
 
         void KinestheticTeaching::bringToStartPos() {
 
+            cout << "(KinestheticTeaching) start preparing teaching" << endl;
+
             teachingHardware->install();
             teachingHardware->start();
 
             teachingHardware->startKinestheticTeachingStiffness();
-            teachingHardware->jointPtp({-1.0, 1.56, 2.33, -1.74, -1.85, 1.27, 0.71});
+
+            //teachingHardware->jointPtp({-1.0, 1.56, 2.33, -1.74, -1.85, 1.27, 0.71});
+
+            cout << "(KinestheticTeaching) teaching prepared" << endl;
 
         }
 
-        std::pair<long long int, long long int> KinestheticTeaching::showDmp() {
+        void KinestheticTeaching::showDmp() {
 
-            cout << "starting measurement" << endl;
+            cout << "(KinestheticTeaching) starting measurement" << endl;
 
-            execute();
-
-            long long int endTime = getCurrentTime();
-
-            return {startTime, endTime};
+            teachingRunning = true;
+            if(!teachingThread)
+                teachingThread = make_shared<kukadu_thread>(&KinestheticTeaching::execute, this);
+            else
+                throw KukaduException("(KinestheticTeaching) the teaching thread is already running");
 
         }
 
-        void KinestheticTeaching::endTeachingAndTrainDmp(long long int startTime, long long int endTime) {
+        void KinestheticTeaching::endTeachingAndTrainDmp() {
+
+            endTime = getCurrentTime();
+            teachingRunning = false;
+
+            teachingThread->join();
+            teachingThread = nullptr;
 
             teachingHardware->stopKinestheticTeachingStiffness();
 
@@ -516,6 +527,7 @@ namespace kukadu {
                 throw KukaduException("(KinestheticTeaching) A skill with this name is already installed; choose a different name");
 
             DMPExecutor teachingExecutor(getStorage(), teachingDmp, teachingHardware);
+
             teachingExecutor.createSkillFromThis(dmpName);
 
         }
@@ -525,10 +537,25 @@ namespace kukadu {
             if(!teachingDmp)
                 throw KukaduException("(KinestheticTeaching) Dmp has not been trained yet");
 
+            /*
+            auto& fac = HardwareFactory::get();
+            bool prevSim = fac.getSimulation();
+            fac.setSimulation(true);
+            auto simHardware = fac.loadHardware(teachingHardware->getHardwareInstanceName());
+            fac.setSimulation(prevSim);
+
+            simHardware->install();
+            simHardware->start();
+
+            DMPExecutor teachingExecutor(getStorage(), teachingDmp, KUKADU_DYNAMIC_POINTER_CAST<ControlQueue>(simHardware));
+
+            if(teachingHardware != simHardware)
+                simHardware->stop();
+            */
+
             DMPExecutor teachingExecutor(getStorage(), teachingDmp, teachingHardware);
+
             teachingExecutor.setExecutionMode(TrajectoryExecutor::EXECUTE_ROBOT);
-            cout << teachingDmp->getY0().t() << endl;
-            cout << teachingDmp->getSampleYs().back().t() << endl;
             teachingExecutor.execute();
 
         }
