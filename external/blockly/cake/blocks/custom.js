@@ -485,6 +485,19 @@ function getValuesFromMap(map) {
     return values;
 }
 
+function getKeyIdForValueFromMap(map, value) {
+    var i = 0;
+    for (var key in map) {
+        if(key === value){
+            return i;
+        } else {
+            i++;
+        }
+    }
+
+    return -1;
+}
+
 function idsToKey(ids) {
     var key = "";
 
