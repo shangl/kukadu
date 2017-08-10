@@ -217,7 +217,7 @@ namespace kukadu {
             argumentString = "cd " + catkinWorkingDirectory + ";";
             argumentString += getCatkinMakeString(packageName) + ";";
             argumentString += "cd devel/lib/" + packageName + ";";
-            argumentString += "./" + packageName + " &";
+            argumentString += "./" + packageName + " " + getExecutionMode() + " &";
             system(argumentString.c_str());
         }
     }
@@ -378,6 +378,11 @@ namespace kukadu {
                 "isSkillInstalled()").toString().toStdString();
 
         return isSkillInstalled == "true";
+    }
+
+    std::string KukaduGraphical::getExecutionMode() {
+        std::string executionMode = webView->page()->mainFrame()->evaluateJavaScript("getExecutionMode()").toString().toStdString();
+        return executionMode;
     }
 
     std::string KukaduGraphical::getPackageName() {

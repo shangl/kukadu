@@ -90,12 +90,9 @@ Blockly.cake['main_block'] = function (block) {
         "auto& storage = kukadu::StorageSingleton::get();\n" +
         "auto& hardwareFactory = kukadu::HardwareFactory::get();\n";
 
-    var executionType = block.getFieldValue('ExecutionMode');
-    if (executionType === 'Simulate') {
-        roscode += "hardwareFactory.setSimulation(true);"
-    } else {
-        roscode += "hardwareFactory.setSimulation(false);"
-    }
+    Blockly.cake.executionMode = block.getFieldValue('ExecutionMode');
+    roscode += "std::string executionType = args[1];\n" +
+        "hardwareFactory.setSimulation(executionType == \"Simulate\");"
 
     var installHardware = "";
     var hardwareids = [];
