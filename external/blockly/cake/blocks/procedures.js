@@ -71,6 +71,7 @@ Blockly.Blocks['main_block'] = {
 
     onchange: function(){
         Blockly.cake.installSkill = this.getFieldValue('CheckBoxInstallSkill');
+        Blockly.cake.executionMode = this.getFieldValue('ExecutionMode');
 
         if (!this.workspace) {
             Blockly.cake.installSkill = false;

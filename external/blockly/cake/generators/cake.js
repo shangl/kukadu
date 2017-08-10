@@ -108,6 +108,8 @@ Blockly.cake.init = function() {
 
     Blockly.cake.installSkill = false;
 
+    Blockly.cake.executionMode = "";
+
     Blockly.cake.times_ = Object.create(null);
   // Create a dictionary mapping desired function names in definitions_
   // to actual function names (to avoid collisions with user functions).

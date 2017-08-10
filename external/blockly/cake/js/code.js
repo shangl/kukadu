@@ -68,17 +68,24 @@ function downloadCode() {
   saveAs(codeBlob, "code.c");
 }
 
-function getCode() {
-    console.log("got code");
-  return Blockly.cake.workspaceToCode();
-}
-
 function getCurrentSkillName(){
     return Blockly.cake.activeSkill_;
 }
 
 function isSkillInstalled() {
     return Blockly.cake.installSkill === 'TRUE';
+}
+
+
+
+//Do not delete these unused functions - they are used from the c++ application
+function getExecutionMode() {
+    return Blockly.cake.executionMode;
+}
+
+function getCode() {
+    console.log("got code");
+    return Blockly.cake.workspaceToCode();
 }
 
 function initializeDatabaseloader(jsonString){

@@ -49,6 +49,8 @@ namespace kukadu {
 
         bool isSkillInstalled();
 
+        std::string getExecutionMode();
+
     public:
 
         explicit KukaduGraphical();
