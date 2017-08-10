@@ -453,12 +453,7 @@ namespace kukadu {
 
         kinestheticTeachingView->setLayout(mainLayout);
 
-        teachingObject = KUKADU_DYNAMIC_POINTER_CAST<skill::KinestheticTeaching>(
-                SkillFactory::get().loadSkill("kinesthetic_teaching",
-                                              {HardwareFactory::get().loadHardware("kukie_left_arm")}));
-
-//        skill::KinestheticTeaching skill(StorageSingleton::get(), KUKADU_DYNAMIC_POINTER_CAST<ControlQueue>(HardwareFactory::get().loadHardware("kukie_left_arm")));
-        //       skill.createSkillFromThis("kinesthetic_teaching");
+        teachingObject = KUKADU_DYNAMIC_POINTER_CAST<skill::KinestheticTeaching>(SkillFactory::get().loadSkill("kinesthetic_teaching", {HardwareFactory::get().loadHardware("kukie_left_arm")}));
 
         kinestheticTeachingView->show();
     }
@@ -468,11 +463,11 @@ namespace kukadu {
     }
 
     void KukaduGraphical::startKinestheticTeachingSlot() {
-        teachingTimes = teachingObject->showDmp();
+        teachingObject->showDmp();
     }
 
     void KukaduGraphical::finishedExecutionSlot() {
-        teachingObject->endTeachingAndTrainDmp(teachingTimes.first, teachingTimes.second);
+        teachingObject->endTeachingAndTrainDmp();
     }
 
     void KukaduGraphical::testTaughtSkillSlot() {
@@ -486,6 +481,8 @@ namespace kukadu {
 
     void KukaduGraphical::exitViewSlot() {
         kinestheticTeachingView->close();
-        webView->reload();
+        //webView->reload();
+        loadInformationFromDatabase();
+        HardwareFactory::get().stopAllCreatedHardware();
     }
 }

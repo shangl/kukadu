@@ -564,12 +564,12 @@ namespace kukadu {
 
                     } else {
 
-                        if(stopQueueWhilePtp())
-                            movement = getCurrentJoints().joints;
+                        movement = getCurrentJoints().joints;
 
                     }
 
-                    submitNextJointMove(movement);
+                    if(!stopQueueWhilePtp() || stopQueueWhilePtp() && jointPtpRunning)
+                        submitNextJointMove(movement);
 
                 } else if(currentControlType == CONTROLQUEUE_CART_IMP_MODE) {
 
@@ -1536,19 +1536,58 @@ namespace kukadu {
     }
 
     void KukieControlQueue::stopKinestheticTeachingStiffness() {
-        setStiffness(prevCpstiffnessxyz, prevCpstiffnessabc, prevCpdamping, prevCpmaxdelta, prevMaxforce, prevAxismaxdeltatrq);
+
+        int diffCount = 5;
+
+        double deltaCpStiffXyz = (prevCpstiffnessxyz - 0.2) / diffCount;
+        double deltaCpStiffAbc = (prevCpstiffnessabc - 0.01) / diffCount;
+        double deltaCpDamping = (prevCpdamping - 0.2) / diffCount;
+        double deltaCpMaxDelta = (prevCpmaxdelta - 15000) / diffCount;
+        double deltaMaxFrc = (prevMaxforce - 150) / diffCount;
+        double deltaAxisMaxDeltaTrq = (prevAxismaxdeltatrq - 1500) / diffCount;
+
+        ros::Rate r2(2);
+        r2.sleep();
+
+        ros::Rate r(5);
+        for(int i = 0; i < diffCount; ++i) {
+            setStiffness(0.2 + deltaCpStiffXyz * i, 0.01 + deltaCpStiffAbc * i, 0.2 + deltaCpDamping * i,
+                         15000, 150, 1500, false);
+            r.sleep();
+        }
+
+        r2.sleep();
+
+        for(int i = 0; i < diffCount; ++i) {
+            setStiffness(prevCpstiffnessxyz, prevCpstiffnessabc, prevCpdamping,
+                         15000 + deltaCpMaxDelta * i, 150 + deltaMaxFrc * i, 1500 + deltaAxisMaxDeltaTrq * i, false);
+            r.sleep();
+        }
+
+        /*
+        r2.sleep();
+        setStiffness(prevCpstiffnessxyz, prevCpstiffnessabc, prevCpdamping,
+                     prevCpmaxdelta, prevMaxforce, prevMaxforce);
+                     */
+
     }
 
     void KukieControlQueue::setStiffness(float cpstiffnessxyz, float cpstiffnessabc, float cpdamping, float cpmaxdelta, float maxforce, float axismaxdeltatrq) {
+        setStiffness(cpstiffnessxyz, cpstiffnessabc, cpdamping, cpmaxdelta, maxforce, axismaxdeltatrq, true);
+    }
+
+    void KukieControlQueue::setStiffness(float cpstiffnessxyz, float cpstiffnessabc, float cpdamping, float cpmaxdelta, float maxforce, float axismaxdeltatrq, bool storePrevValues) {
 
         KUKADU_MODULE_START_USAGE();
 
-        this->prevCpstiffnessxyz = this->cpstiffnessxyz;
-        this->prevCpstiffnessabc = this->cpstiffnessabc;
-        this->prevCpdamping = this->cpdamping;
-        this->prevCpmaxdelta = this->cpmaxdelta;
-        this->prevMaxforce = this->maxforce;
-        this->prevAxismaxdeltatrq = this->axismaxdeltatrq;
+        if(storePrevValues) {
+            this->prevCpstiffnessxyz = this->cpstiffnessxyz;
+            this->prevCpstiffnessabc = this->cpstiffnessabc;
+            this->prevCpdamping = this->cpdamping;
+            this->prevCpmaxdelta = this->cpmaxdelta;
+            this->prevMaxforce = this->maxforce;
+            this->prevAxismaxdeltatrq = this->axismaxdeltatrq;
+        }
 
         this->cpstiffnessxyz = cpstiffnessxyz;
         this->cpstiffnessabc = cpstiffnessabc;

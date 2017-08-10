@@ -18,13 +18,17 @@ namespace kukadu {
 			KUKADU_SHARED_PTR<Dmp> teachingDmp;
 			KUKADU_SHARED_PTR<ControlQueue> teachingHardware;
 
+                        bool teachingRunning;
+
+                        KUKADU_SHARED_PTR<kukadu_thread> teachingThread;
+
 		protected:
 
 			virtual void createSkillFromThisInternal(std::string skillName);
 
 		public:
 
-			KinestheticTeaching (StorageSingleton& storage, KUKADU_SHARED_PTR<ControlQueue> hardware);
+                        KinestheticTeaching(StorageSingleton& storage, KUKADU_SHARED_PTR<ControlQueue> hardware);
 
 			bool requiresGraspInternal();
 			bool producesGraspInternal();
@@ -32,8 +36,8 @@ namespace kukadu {
 			KUKADU_SHARED_PTR<ControllerResult> executeInternal();
 
 			void bringToStartPos();
-			std::pair<long long int, long long int> showDmp();
-			void endTeachingAndTrainDmp(long long int startTime, long long int endTime);
+                        void showDmp();
+                        void endTeachingAndTrainDmp();
 			void testTrainedDmp();
 			void installDmp(std::string dmpName);
 

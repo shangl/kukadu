@@ -193,6 +193,7 @@ namespace kukadu {
 
         void setAdditionalLoad(float loadMass, float loadPos);
         void setStiffness(float cpstiffnessxyz, float cpstiffnessabc, float cpdamping, float cpmaxdelta, float maxforce, float axismaxdeltatrq);
+        void setStiffness(float cpstiffnessxyz, float cpstiffnessabc, float cpdamping, float cpmaxdelta, float maxforce, float axismaxdeltatrq, bool storePrevValues);
 
         int getCurrentMode();
 
