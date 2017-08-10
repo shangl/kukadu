@@ -485,6 +485,7 @@ namespace kukadu {
 
     void KukaduGraphical::exitViewSlot() {
         kinestheticTeachingView->close();
-        webView->reload();
+        //webView->reload();
+        loadInformationFromDatabase();
     }
 }

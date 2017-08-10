@@ -507,8 +507,10 @@ namespace kukadu {
             endTime = getCurrentTime();
             teachingRunning = false;
 
-            teachingThread->join();
-            teachingThread = nullptr;
+            if(teachingThread) {
+                teachingThread->join();
+                teachingThread = nullptr;
+            }
 
             teachingHardware->stopKinestheticTeachingStiffness();
 
