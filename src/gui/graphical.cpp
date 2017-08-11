@@ -9,6 +9,7 @@
 #include <QtWebKit/QtWebKit>
 #include <kukadu/generated_skills/KinestheticTeaching.hpp>
 #include <kukadu/robot.hpp>
+#include <QtWidgets/QFileDialog>
 
 
 using namespace std;
@@ -113,6 +114,7 @@ namespace kukadu {
         auto mainLayout = new QGridLayout();
         auto executeSkillContainer = new QHBoxLayout();
         auto kinestheticTeachingContainer = new QHBoxLayout();
+        auto loadAndSaveContainer = new QHBoxLayout();
 
         QWebSettings::globalSettings()->setAttribute(QWebSettings::DeveloperExtrasEnabled, true);
         QWebSettings::globalSettings()->setAttribute(QWebSettings::LocalContentCanAccessRemoteUrls, true);
@@ -134,13 +136,21 @@ namespace kukadu {
         auto kinestheticButton = new QPushButton("Teach new Skill");
         QObject::connect(kinestheticButton, SIGNAL(clicked()), this, SLOT(kinestethicTeachingSlot()));
 
+        auto saveButton = new QPushButton("Save");
+        QObject::connect(saveButton, SIGNAL(clicked()), this, SLOT(saveSlot()));
+        auto loadButton = new QPushButton("Load");
+        QObject::connect(loadButton, SIGNAL(clicked()), this, SLOT(loadSlot()));
+
+
         mainView->setLayout(mainLayout);
         mainLayout->addLayout(executeSkillContainer, 1, 0);
         mainLayout->addLayout(kinestheticTeachingContainer, 2, 0);
+        mainLayout->addLayout(loadAndSaveContainer, 3, 0);
         mainLayout->addWidget(webView, 0, 0);
         executeSkillContainer->addWidget(executeButton);
         kinestheticTeachingContainer->addWidget(kinestheticButton);
-
+        loadAndSaveContainer->addWidget(saveButton);
+        loadAndSaveContainer->addWidget(loadButton);
         return mainView;
     }
 
@@ -481,8 +491,34 @@ namespace kukadu {
 
     void KukaduGraphical::exitViewSlot() {
         kinestheticTeachingView->close();
-        //webView->reload();
         loadInformationFromDatabase();
         HardwareFactory::get().stopAllCreatedHardware();
+    }
+
+    void KukaduGraphical::loadSlot() {
+        QString fileName = QFileDialog::getOpenFileName(this,
+                                                        tr("Load Blocks"), "",
+                                                        tr("Blockly File (*.xml);;All Files (*)"));
+
+        QString xml = "";
+        QFile f(fileName);
+        f.open(QFile::ReadOnly | QFile::Text);
+        QTextStream in(&f);
+
+        xml = in.readAll();
+        cout << xml.toStdString() << endl;
+        QString info = QString("reloadBlocks('%1')").arg(xml);
+        webView->page()->mainFrame()->evaluateJavaScript(info);
+    }
+
+    void KukaduGraphical::saveSlot() {
+        QString fileName = QFileDialog::getSaveFileName(this,
+                                                        tr("Save Blocks"), "new BlocklyFile.xml",
+                                                        tr("Blockly File (*.xml);;All Files (*)"));
+        auto xml = webView->page()->mainFrame()->evaluateJavaScript("downloadBlocks()");
+
+        cout << xml.toString().toStdString() << endl;
+
+        writeToFileAtPath(fileName.toStdString(), xml.toString());
     }
 }

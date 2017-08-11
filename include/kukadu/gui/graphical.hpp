@@ -80,6 +80,10 @@ namespace kukadu {
         void installSkillSlot();
 
         void exitViewSlot();
+
+        void loadSlot();
+
+        void saveSlot();
     };
 
 }

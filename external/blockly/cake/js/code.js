@@ -68,6 +68,16 @@ function downloadCode() {
   saveAs(codeBlob, "code.c");
 }
 
+function downloadBlocks() {
+    var xml = Blockly.Xml.workspaceToDom(Blockly.mainWorkspace);
+    return Blockly.Xml.domToText(xml);
+}
+
+function reloadBlocks(xmlText) {
+    var dom = Blockly.Xml.textToDom(xmlText);
+    Blockly.Xml.domToWorkspace(Blockly.mainWorkspace, dom);
+}
+
 function getCurrentSkillName(){
     return Blockly.cake.activeSkill_;
 }
