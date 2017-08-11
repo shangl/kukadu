@@ -132,6 +132,8 @@ namespace kukadu {
 
         auto executeButton = new QPushButton("Execute");
         QObject::connect(executeButton, SIGNAL(clicked()), this, SLOT(executeSlot()));
+        auto stopExecutionButton = new QPushButton("Stop Execution");
+        QObject::connect(stopExecutionButton, SIGNAL(clicked()), this, SLOT(stopExecutionSlot()));
 
         auto kinestheticButton = new QPushButton("Teach new Skill");
         QObject::connect(kinestheticButton, SIGNAL(clicked()), this, SLOT(kinestethicTeachingSlot()));
@@ -148,6 +150,7 @@ namespace kukadu {
         mainLayout->addLayout(loadAndSaveContainer, 3, 0);
         mainLayout->addWidget(webView, 0, 0);
         executeSkillContainer->addWidget(executeButton);
+        executeSkillContainer->addWidget(stopExecutionButton);
         kinestheticTeachingContainer->addWidget(kinestheticButton);
         loadAndSaveContainer->addWidget(saveButton);
         loadAndSaveContainer->addWidget(loadButton);
@@ -520,5 +523,10 @@ namespace kukadu {
         cout << xml.toString().toStdString() << endl;
 
         writeToFileAtPath(fileName.toStdString(), xml.toString());
+    }
+
+    void KukaduGraphical::stopExecutionSlot() {
+        //todo
+        cout << "implement this" << endl;
     }
 }

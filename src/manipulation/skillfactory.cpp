@@ -57,7 +57,6 @@ namespace kukadu {
                 return make_shared<skill::CloseHand>(storage, hardwareComponents);
             }
             }
-
             //insertSkill
             //at this line further skills will be inserted automatically - do not remove it
     };

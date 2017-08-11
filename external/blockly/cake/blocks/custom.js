@@ -1,5 +1,7 @@
 'use strict';
 
+var loading = false;
+
 goog.provide('Blockly.Blocks.custom');
 goog.require('Blockly.Blocks');
 
@@ -21,13 +23,13 @@ Blockly.Blocks['objectposition'] = {
     /**
      * Return 'variables'.
      */
-    getDist: function() {
+    getDist: function () {
         return 'c';
     },
     /**
      * Return Variable's Scope
      */
-    getScope: function() {
+    getScope: function () {
         if (this.getSurroundParent()) {
             return this.getSurroundParent().getName();
         }
@@ -35,13 +37,13 @@ Blockly.Blocks['objectposition'] = {
     /**
      * Return Variable's Scope
      */
-    getSpec: function() {
+    getSpec: function () {
         return null;
     },
     /**
      * Return this block's position
      */
-    getPos: function(){
+    getPos: function () {
         return this.getRelativeToSurfaceXY().y;
     },
     /**
@@ -49,7 +51,7 @@ Blockly.Blocks['objectposition'] = {
      * @return {!Array.<string>} List of variable types.
      * @this Blockly.Block
      */
-    getTypes: function() {
+    getTypes: function () {
         return ['double', 'double', 'double', 'double', 'double', 'double', 'double'];
     },
     /**
@@ -57,23 +59,23 @@ Blockly.Blocks['objectposition'] = {
      * @return {!Array.<string>} List of variable names.
      * @this Blockly.Block
      */
-    getVars: function() {
+    getVars: function () {
         var initialName = this.getFieldValue('VariableName');
 
         return [initialName + ".orientation.x",
-                initialName + ".orientation.y",
-                initialName + ".orientation.z",
-                initialName + ".orientation.w",
-                initialName + ".position.x",
-                initialName + ".position.y",
-                initialName + ".position.z"];
+            initialName + ".orientation.y",
+            initialName + ".orientation.z",
+            initialName + ".orientation.w",
+            initialName + ".position.x",
+            initialName + ".position.y",
+            initialName + ".position.z"];
     },
     /**
      * Return all variables referenced by this block.
      * @return {!Array.<string>} List of variable names.
      * @this Blockly.Block
      */
-    getDeclare: function() {
+    getDeclare: function () {
         return this.getVars();
     },
     /**
@@ -83,12 +85,51 @@ Blockly.Blocks['objectposition'] = {
      * @param {string} newName Renamed variable.
      * @this Blockly.Block
      */
-    renameVar: function(oldName, newName) {
+    renameVar: function (oldName, newName) {
         if (Blockly.Names.equals(oldName, this.getFieldValue('VariableName'))) {
             this.setFieldValue(newName, 'VariableName');
         }
     }
 };
+
+function realOnChange(event) {
+    if(!loading) {
+        var addedHardwareSet = this.getCurrentHardware();
+        var hardwareKey = idsToKey(getKeysFromMap(addedHardwareSet));
+        var chosenConfig = Databaseloader.roboConfigMap[hardwareKey];
+        if (getKeysFromMap(addedHardwareSet).length > 0 && hardwareKey !== this._hardwareIds) {    //if addedHardware Changed
+            this._hardwareIds = hardwareKey;
+
+            if (typeof chosenConfig == 'undefined') {
+                this.setNoSkillsAvailable();
+            } else {
+                var availableSkills = Databaseloader.roboConfigToSkillMap[chosenConfig.id];
+                this.setAvailableSkills(availableSkills)
+            }
+        } else if (getKeysFromMap(addedHardwareSet).length == 0 && hardwareKey !== this._hardwareIds) {
+            this._hardwareIds = -1;
+            var skillsInput = this.getInput('SKILL');
+            if (skillsInput != null) {
+                skillsInput.fieldRow[1].menuGenerator_ = [];
+                skillsInput.fieldRow[1].setValue("No Elements available");
+            }
+        }
+
+        var currentSkill = this.getCurrentSkill();
+        if (typeof currentSkill != 'undefined' && this._skillId != currentSkill.id) {      //skill changed
+            this.setInputsForSelectedSkill();
+            this._skillId = this.getCurrentSkill().id;
+        } else if (typeof currentSkill === 'undefined') {
+            this.setInputsForSelectedSkill();
+            this._skillId = -1;
+        }
+    }
+}
+
+function doNothing(event) {
+    if(!loading)
+        realOnChange(event);
+}
 
 Blockly.Blocks['skillloader'] = {
     init: function () {
@@ -135,39 +176,7 @@ Blockly.Blocks['skillloader'] = {
         return Databaseloader.skillMap[blockvalue];
     },
 
-    onchange: function (event) {
-        Blockly.Blocks.requireInFunction(this);
-        var addedHardwareSet = this.getCurrentHardware();
-        var hardwareKey = idsToKey(getKeysFromMap(addedHardwareSet));
-        var chosenConfig = Databaseloader.roboConfigMap[hardwareKey];
-
-        if (getKeysFromMap(addedHardwareSet).length > 0 && hardwareKey !== this._hardwareIds) {    //if addedHardware Changed
-            this._hardwareIds = hardwareKey;
-
-            if (typeof chosenConfig == 'undefined') {
-                this.setNoSkillsAvailable();
-            } else {
-                var availableSkills = Databaseloader.roboConfigToSkillMap[chosenConfig.id];
-                this.setAvailableSkills(availableSkills)
-            }
-        } else if (getKeysFromMap(addedHardwareSet).length == 0 && hardwareKey !== this._hardwareIds) {
-            this._hardwareIds = -1;
-            var skillsInput = this.getInput('SKILL');
-            if (skillsInput != null) {
-                skillsInput.fieldRow[1].menuGenerator_ = [];
-                skillsInput.fieldRow[1].setValue("No Elements available");
-            }
-        }
-
-        var currentSkill = this.getCurrentSkill();
-        if (typeof currentSkill != 'undefined' && this._skillId != currentSkill.id) {      //skill changed
-            this.setInputsForSelectedSkill();
-            this._skillId = this.getCurrentSkill().id;
-        } else if (typeof currentSkill === 'undefined') {
-            this.setInputsForSelectedSkill();
-            this._skillId = -1;
-        }
-    },
+    onchange: realOnChange,
 
     setNoSkillsAvailable: function () {
         var skillsInput = this.getInput('SKILL');
@@ -488,7 +497,7 @@ function getValuesFromMap(map) {
 function getKeyIdForValueFromMap(map, value) {
     var i = 0;
     for (var key in map) {
-        if(key === value){
+        if (key === value) {
             return i;
         } else {
             i++;

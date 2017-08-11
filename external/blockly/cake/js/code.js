@@ -71,11 +71,31 @@ function downloadCode() {
 function downloadBlocks() {
     var xml = Blockly.Xml.workspaceToDom(Blockly.mainWorkspace);
     return Blockly.Xml.domToText(xml);
+    /*
+    var all = [];
+    all["html"] = document.getElementById("main-wrapper").innerHTML;
+    all["blockly"] = Blockly;
+    //var desAll =  JSON.parse(ws);
+    Blockly = all["blockly"];
+    document.getElementById("main-wrapper").innerHTML = all["html"];
+    console.log(Blockly.mainWorkspace.getAllBlocks());
+    $(Blockly.mainWorkspace.getAllBlocks()).each(function() { console.log(this); this.init(); });
+*/
+
 }
 
 function reloadBlocks(xmlText) {
+
+    console.log(Blockly.mainWorkspace);
+    loading = true;
+
+    //Blockly.Blocks['skillloader'].onchange = doNothing;
     var dom = Blockly.Xml.textToDom(xmlText);
     Blockly.Xml.domToWorkspace(Blockly.mainWorkspace, dom);
+    //Blockly.Blocks['skillloader'].onchange = realOnChange;
+
+    loading = false;
+
 }
 
 function getCurrentSkillName(){
@@ -94,7 +114,6 @@ function getExecutionMode() {
 }
 
 function getCode() {
-    console.log("got code");
     return Blockly.cake.workspaceToCode();
 }
 
