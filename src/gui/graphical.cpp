@@ -520,8 +520,6 @@ namespace kukadu {
                                                         tr("Blockly File (*.xml);;All Files (*)"));
         auto xml = webView->page()->mainFrame()->evaluateJavaScript("downloadBlocks()");
 
-        cout << xml.toString().toStdString() << endl;
-
         writeToFileAtPath(fileName.toStdString(), xml.toString());
     }
 
