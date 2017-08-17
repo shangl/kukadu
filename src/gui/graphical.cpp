@@ -115,6 +115,7 @@ namespace kukadu {
         auto executeSkillContainer = new QHBoxLayout();
         auto kinestheticTeachingContainer = new QHBoxLayout();
         auto loadAndSaveContainer = new QHBoxLayout();
+        auto playingContainer = new QHBoxLayout();
 
         QWebSettings::globalSettings()->setAttribute(QWebSettings::DeveloperExtrasEnabled, true);
         QWebSettings::globalSettings()->setAttribute(QWebSettings::LocalContentCanAccessRemoteUrls, true);
@@ -143,17 +144,21 @@ namespace kukadu {
         auto loadButton = new QPushButton("Load");
         QObject::connect(loadButton, SIGNAL(clicked()), this, SLOT(loadSlot()));
 
+        auto playButton = new QPushButton("Play");
+        QObject::connect(loadButton, SIGNAL(clicked()), this, SLOT(playSlot()));
 
         mainView->setLayout(mainLayout);
         mainLayout->addLayout(executeSkillContainer, 1, 0);
         mainLayout->addLayout(kinestheticTeachingContainer, 2, 0);
         mainLayout->addLayout(loadAndSaveContainer, 3, 0);
+        mainLayout->addLayout(playingContainer, 4, 0);
         mainLayout->addWidget(webView, 0, 0);
         executeSkillContainer->addWidget(executeButton);
         executeSkillContainer->addWidget(stopExecutionButton);
         kinestheticTeachingContainer->addWidget(kinestheticButton);
         loadAndSaveContainer->addWidget(saveButton);
         loadAndSaveContainer->addWidget(loadButton);
+        playingContainer->addWidget(playButton);
         return mainView;
     }
 
@@ -524,6 +529,11 @@ namespace kukadu {
     }
 
     void KukaduGraphical::stopExecutionSlot() {
+        //todo
+        cout << "implement this" << endl;
+    }
+
+    void KukaduGraphical::playSlot() {
         //todo
         cout << "implement this" << endl;
     }
