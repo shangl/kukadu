@@ -81,6 +81,11 @@ namespace kukadu {
 
         virtual void storeCurrentSensorDataToDatabase();
         virtual double getPreferredPollingFrequency();
+
+        virtual void startRollBackMode(double);
+        virtual void rollBack(double);
+        virtual void stopJointRollBackMode();
+
     };
 
     /**

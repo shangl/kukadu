@@ -57,6 +57,18 @@ namespace kukadu {
 
     }
 
+    void GenericHand::startRollBackMode(double) {
+        throw KukaduException("(GenericHand) rollback mode not available yet for hands");
+    }
+
+    void GenericHand::rollBack(double) {
+        throw KukaduException("(GenericHand) rollback mode not available yet for hands");
+    }
+
+    void GenericHand::stopJointRollBackMode() {
+        throw KukaduException("(GenericHand) rollback mode not available yet for hands");
+    }
+
     std::vector<int> JointHardware::getJointIds() {
         return getJointIds(getJointNames());
     }
@@ -68,7 +80,7 @@ namespace kukadu {
         return jointIds;
     }
 
-    std::vector<mes_result> GenericHand::jointPtp(arma::vec joints){
+    std::vector<mes_result> GenericHand::jointPtp(arma::vec joints) {
         moveJoints(joints);
         return {};
     }

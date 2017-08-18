@@ -119,6 +119,10 @@ namespace kukadu {
 
         virtual std::vector<kukadu::mes_result> jointPtp(arma::vec joints) = 0;
 
+        virtual void startRollBackMode(double) = 0;
+        virtual void rollBack(double) = 0;
+        virtual void stopJointRollBackMode() = 0;
+
     };
 
 }
