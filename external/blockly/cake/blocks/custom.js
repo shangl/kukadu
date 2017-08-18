@@ -248,7 +248,7 @@ Blockly.Blocks['skillloader'] = {
                                 case "std::vector< int >":
                                     validator = Blockly.FieldTextInput.integerValidator;
                                     break;
-                                case "std::vector< string>":
+                                case "std::vector< string >":
                                     validator = Blockly.FieldTextInput.dummyValidator;
                                     break;
                             }
