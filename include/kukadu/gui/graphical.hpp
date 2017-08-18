@@ -86,6 +86,8 @@ namespace kukadu {
         void saveSlot();
 
         void stopExecutionSlot();
+
+        void playSlot();
     };
 
 }

@@ -4,4 +4,5 @@
 	#include <kukadu/generated_skills/OpenHand.hpp>
 	#include <kukadu/generated_skills/CloseHand.hpp>
 	#include <kukadu/generated_skills/KinestheticTeaching.hpp>
+	#include <kukadu/generated_skills/PushPosition.hpp>
 #endif

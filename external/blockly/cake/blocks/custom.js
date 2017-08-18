@@ -31,7 +31,9 @@ Blockly.Blocks['objectposition'] = {
      */
     getScope: function () {
         if (this.getSurroundParent()) {
-            return this.getSurroundParent().getName();
+            if (this.getSurroundParent().getName) {
+                return this.getSurroundParent().getName();
+            }
         }
     },
     /**
@@ -89,11 +91,16 @@ Blockly.Blocks['objectposition'] = {
         if (Blockly.Names.equals(oldName, this.getFieldValue('VariableName'))) {
             this.setFieldValue(newName, 'VariableName');
         }
+    },
+
+    //when the block is changed,
+    onchange: function () {
+        Blockly.Blocks.requireInFunction(this);
     }
 };
 
 function realOnChange(event) {
-    if(!loading) {
+    if (!loading) {
         var addedHardwareSet = this.getCurrentHardware();
         var hardwareKey = idsToKey(getKeysFromMap(addedHardwareSet));
         var chosenConfig = Databaseloader.roboConfigMap[hardwareKey];
@@ -127,7 +134,7 @@ function realOnChange(event) {
 }
 
 function doNothing(event) {
-    if(!loading)
+    if (!loading)
         realOnChange(event);
 }
 
@@ -212,62 +219,64 @@ Blockly.Blocks['skillloader'] = {
             return;
         } else {
             var skillId = currentSkill.id;
-            var configId = Databaseloader.roboConfigMap[idsToKey(this._hardwareIds)].id;
+            var configId = Databaseloader.roboConfigMap[this._hardwareIds].id;
             var skill = Databaseloader.roboConfigToSkillMap[configId][skillId];
-            var attributes = getValuesFromMap(skill.getSetterFunctions());
+            if (typeof skill !== 'undefined') {
+                var attributes = getValuesFromMap(skill.getSetterFunctions());
 
-            if (attributes != null) {
-                var additionalLimitForVectors = 0;
-                for (var i = 0; i < attributes.length + additionalLimitForVectors; i++) {
-                    var attribute = attributes[i];
-                    var validator = Blockly.FieldTextInput.dummyValidator;
-                    if (attribute.dataType === "int") {
-                        validator = Blockly.FieldTextInput.integerValidator;
-                    } else if (attribute.dataType === "double") {
-                        validator = Blockly.FieldTextInput.floatValidator;
+                if (attributes != null) {
+                    var additionalLimitForVectors = 0;
+                    for (var i = 0; i < attributes.length + additionalLimitForVectors; i++) {
+                        var attribute = attributes[i];
+                        var validator = Blockly.FieldTextInput.dummyValidator;
+                        if (attribute.dataType === "int") {
+                            validator = Blockly.FieldTextInput.integerValidator;
+                        } else if (attribute.dataType === "double") {
+                            validator = Blockly.FieldTextInput.floatValidator;
+                        }
+
+                        this.appendDummyInput("attributes" + i)
+                            .appendField(attribute.dataType + " " + attribute.name);
+                        var input = this.getInput("attributes" + i);
+
+                        if (attribute.dataType === "std::vector< double >" || attribute.dataType === "std::vector< int >" || attribute.dataType === "std::vector< string >") {
+                            switch (attribute.dataType) {
+                                case "std::vector< double >":
+                                    validator = Blockly.FieldTextInput.floatValidator;
+                                    break;
+                                case "std::vector< int >":
+                                    validator = Blockly.FieldTextInput.integerValidator;
+                                    break;
+                                case "std::vector< string>":
+                                    validator = Blockly.FieldTextInput.dummyValidator;
+                                    break;
+                            }
+
+                            var degOfFreedom = 0;
+                            var addedHardwareSet = this.getCurrentHardware();
+                            var hardwareKey = idsToKey(getKeysFromMap(addedHardwareSet));
+                            var chosenConfig = Databaseloader.roboConfigMap[hardwareKey];
+
+                            for (var j = 0; j < chosenConfig.hardwareInOrder.length; j++) {
+                                var hardware = chosenConfig.hardwareInOrder[j];
+                                degOfFreedom = hardware.degOfFreedom > degOfFreedom ? hardware.degOfFreedom : degOfFreedom;
+                            }
+
+                            for (var j = 0; j < degOfFreedom; j++) {
+                                input.appendField(new Blockly.FieldTextInput(attribute.defaultValue + "", validator), "attribute" + i++);
+                                additionalLimitForVectors++;
+                            }
+                            if (degOfFreedom > 0) {
+                                i--;    //set i to old value for incrementation in loopheader
+                                additionalLimitForVectors--; //decrease by one to match amount of added fields
+                            }
+                        } else {
+                            input.appendField(new Blockly.FieldTextInput(attribute.defaultValue + "", validator), "attribute" + i);
+                        }
                     }
 
-                    this.appendDummyInput("attributes" + i)
-                        .appendField(attribute.dataType + " " + attribute.name);
-                    var input = this.getInput("attributes" + i);
-
-                    if (attribute.dataType === "std::vector< double >" || attribute.dataType === "std::vector< int >" || attribute.dataType === "std::vector< string >") {
-                        switch (attribute.dataType) {
-                            case "std::vector< double >":
-                                validator = Blockly.FieldTextInput.floatValidator;
-                                break;
-                            case "std::vector< int >":
-                                validator = Blockly.FieldTextInput.integerValidator;
-                                break;
-                            case "std::vector< string>":
-                                validator = Blockly.FieldTextInput.dummyValidator;
-                                break;
-                        }
-
-                        var degOfFreedom = 0;
-                        var addedHardwareSet = this.getCurrentHardware();
-                        var hardwareKey = idsToKey(getKeysFromMap(addedHardwareSet));
-                        var chosenConfig = Databaseloader.roboConfigMap[hardwareKey];
-
-                        for (var j = 0; j < chosenConfig.hardwareInOrder.length; j++) {
-                            var hardware = chosenConfig.hardwareInOrder[j];
-                            degOfFreedom = hardware.degOfFreedom > degOfFreedom ? hardware.degOfFreedom : degOfFreedom;
-                        }
-
-                        for (var j = 0; j < degOfFreedom; j++) {
-                            input.appendField(new Blockly.FieldTextInput(attribute.defaultValue + "", validator), "attribute" + i++);
-                            additionalLimitForVectors++;
-                        }
-                        if (degOfFreedom > 0) {
-                            i--;    //set i to old value for incrementation in loopheader
-                            additionalLimitForVectors--; //decrease by one to match amount of added fields
-                        }
-                    } else {
-                        input.appendField(new Blockly.FieldTextInput(attribute.defaultValue + "", validator), "attribute" + i);
-                    }
+                    this._inputsCount = attributes.length;
                 }
-
-                this._inputsCount = attributes.length;
             }
         }
     }
@@ -276,7 +285,7 @@ Blockly.Blocks['skillloader'] = {
 Blockly.Blocks['hardware'] = {
     init: function () {
         this.appendDummyInput()
-            .appendField(new Blockly.FieldDropdown(Databaseloader.hardwareTupleArray), "HardwareOptions");
+            .appendField(new Blockly.FieldDropdown(Databaseloader.hardwareTupleArray, null, this), "HardwareOptions");
         this.appendValueInput("Further")
             .setCheck("Hardware");
         this.setInputsInline(true);

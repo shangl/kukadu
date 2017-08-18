@@ -57,6 +57,12 @@ namespace kukadu {
                 return make_shared<skill::CloseHand>(storage, hardwareComponents);
             }
             }
+,{
+			"PushPosition", [](StorageSingleton& storage, int skillId, int controllerType, std::vector<KUKADU_SHARED_PTR<Hardware> > hardwareComponents) {
+				return make_shared<skill::PushPosition>(storage, hardwareComponents);
+			}
+		}
+
             //insertSkill
             //at this line further skills will be inserted automatically - do not remove it
     };
