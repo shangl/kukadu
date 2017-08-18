@@ -65,9 +65,11 @@ Blockly.cake['skillloader'] = function (block) {
 
                 attributeCode = "{";
 
+                var attributeId;
                 for (var j = 0; j < vectorsize - 1; j++) {
                     attributeCode += isString ? "'" : "";
-                    var attributeValue = block.getFieldValue('attribute' + i + vectorIdOffset);
+                    attributeId = i + vectorIdOffset;
+                    var attributeValue = block.getFieldValue('attribute' + attributeId);
                     vectorIdOffset++;
 
                     if (attributeValue === "not defined") {
@@ -78,7 +80,8 @@ Blockly.cake['skillloader'] = function (block) {
                     attributeCode += isString ? "'" : "";
                 }
 
-                var attributeValue = block.getFieldValue('attribute' + i + vectorIdOffset);
+                attributeId = i + vectorIdOffset;
+                var attributeValue = block.getFieldValue('attribute' + attributeId);
                 everyAttributeIsSet = attributeValue !== "not defined";
                 attributeCode += attributeValue + "}";
 
@@ -86,12 +89,14 @@ Blockly.cake['skillloader'] = function (block) {
                     continue;
                 }
             } else if (attribute.dataType === "std::string") {
-                attributeCode = "\"" + block.getFieldValue('attribute' + i + vectorIdOffset) + "\"";
+                var attributeId = i + vectorIdOffset;
+                attributeCode = "\"" + block.getFieldValue('attribute' + attributeId) + "\"";
                 if (attributeCode === "not defined") {
                     continue;
                 }
             } else {
-                attributeCode = block.getFieldValue('attribute' + i + vectorIdOffset);
+                var attributeId = i + vectorIdOffset;
+                attributeCode = block.getFieldValue('attribute' + attributeId);
                 if (attributeCode === "not defined") {
                     continue;
                 }

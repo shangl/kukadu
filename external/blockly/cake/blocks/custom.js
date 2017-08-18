@@ -163,7 +163,7 @@ Blockly.Blocks['skillloader'] = {
 					this.setNoSkillsAvailable();
 				} else {
 					var availableSkills = Databaseloader.roboConfigToSkillMap[chosenConfig.id];
-					this.setAvailableSkills(availableSkills)
+					this.setAvailableSkills(availableSkills);
 				}
 			} else if (getKeysFromMap(addedHardwareSet).length == 0 && hardwareKey !== this._hardwareIds) {
 				this._hardwareIds = -1;
@@ -266,12 +266,14 @@ Blockly.Blocks['skillloader'] = {
 
                             var vectorIdOffsetTmp = vectorIdOffset;
                             for (var j = 0; j < degOfFreedom; j++) {
-                                input.appendField(new Blockly.FieldTextInput(attribute.defaultValue + "", validator), "attribute" + i + vectorIdOffset);
+                                var attributeId = i + vectorIdOffset;
+                                input.appendField(new Blockly.FieldTextInput(attribute.defaultValue + "", validator), "attribute" + attributeId);
                                 vectorIdOffset++;
                             }
                             vectorIdOffset = degOfFreedom > 0 ? vectorIdOffsetTmp + degOfFreedom - 1 : vectorIdOffset;
                         } else {
-                            input.appendField(new Blockly.FieldTextInput(attribute.defaultValue + "", validator), "attribute" + i + vectorIdOffset);
+                            var attributeId = i + vectorIdOffset;
+                            input.appendField(new Blockly.FieldTextInput(attribute.defaultValue + "", validator), "attribute" + attributeId);
                         }
                     }
 
