@@ -16,15 +16,15 @@ bool RightHandBlocking::producesGraspInternal() {
 
 std::shared_ptr<kukadu::ControllerResult> RightHandBlocking::executeInternal() {
 	auto& hardwareFactory = kukadu::HardwareFactory::get();
-		auto sLeftQueue650 = getUsedHardware()[0];
-		sLeftQueue650->install();
-		sLeftQueue650->start();
+    auto sLeftQueue650 = getUsedHardware()[0];
+    sLeftQueue650->install();
+    sLeftQueue650->start();
 
-		auto skill65 = kukadu::SkillFactory::get().loadSkill("JointPtp", {sLeftQueue650});
+    auto skill65 = kukadu::SkillFactory::get().loadSkill("JointPtp", {sLeftQueue650});
 
-		std::dynamic_pointer_cast<kukadu::JointPtp>(skill65)->setJoints({0, 0.13, -0.65, 1.06, 0.46, 0.18, -0.88});
+    std::dynamic_pointer_cast<kukadu::JointPtp>(skill65)->setJoints({0, 0.13, -0.65, 1.06, 0.46, 0.18, -0.88});
 
-		skill65->execute();
+    skill65->execute();
 
 	return nullptr;
 }
