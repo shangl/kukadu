@@ -10,6 +10,7 @@ namespace kukadu {
 
         private:
             int stiffnessType;
+            double damping;
 
         protected:
 
@@ -30,6 +31,7 @@ namespace kukadu {
 
             void setStiffnessType(int type);
 
+            void setStandardStiffnessDamping(double damping);
         };
     }
 }

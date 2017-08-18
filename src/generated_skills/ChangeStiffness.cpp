@@ -6,6 +6,7 @@ namespace kukadu {
                                          std::vector<KUKADU_SHARED_PTR<kukadu::Hardware> > hardware)
                 : Controller(storage, "ChangeStiffness", hardware, 0.01) {
             stiffnessType = 0;
+            damping = -1;
         }
 
         bool ChangeStiffness::requiresGraspInternal() {
@@ -18,6 +19,10 @@ namespace kukadu {
 
         void ChangeStiffness::setStiffnessType(int type) {
             stiffnessType = type;
+        }
+
+        void ChangeStiffness::setStandardStiffnessDamping(double dampingValue){
+            damping = dampingValue;
         }
 
         std::shared_ptr<kukadu::ControllerResult> ChangeStiffness::executeInternal() {
@@ -35,7 +40,7 @@ namespace kukadu {
                 case 0:
                 default:
                     queue->setStiffness(KukieControlQueue::KUKA_STD_XYZ_STIFF, KukieControlQueue::KUKA_STD_ABC_STIFF,
-                                        -1, 99, 150, 1500);
+                                        damping, 99, 150, 1500);
                     break;
             }
 
