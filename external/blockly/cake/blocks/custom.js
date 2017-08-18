@@ -106,45 +106,6 @@ Blockly.Blocks['objectposition'] = {
     }
 };
 
-function realOnChange(event) {
-    if (!loading) {
-        var addedHardwareSet = this.getCurrentHardware();
-        var hardwareKey = idsToKey(getKeysFromMap(addedHardwareSet));
-        var chosenConfig = Databaseloader.roboConfigMap[hardwareKey];
-        if (getKeysFromMap(addedHardwareSet).length > 0 && hardwareKey !== this._hardwareIds) {    //if addedHardware Changed
-            this._hardwareIds = hardwareKey;
-
-            if (typeof chosenConfig == 'undefined') {
-                this.setNoSkillsAvailable();
-            } else {
-                var availableSkills = Databaseloader.roboConfigToSkillMap[chosenConfig.id];
-                this.setAvailableSkills(availableSkills)
-            }
-        } else if (getKeysFromMap(addedHardwareSet).length == 0 && hardwareKey !== this._hardwareIds) {
-            this._hardwareIds = -1;
-            var skillsInput = this.getInput('SKILL');
-            if (skillsInput != null) {
-                skillsInput.fieldRow[1].menuGenerator_ = [];
-                skillsInput.fieldRow[1].setValue("No Elements available");
-            }
-        }
-
-        var currentSkill = this.getCurrentSkill();
-        if (typeof currentSkill != 'undefined' && this._skillId != currentSkill.id) {      //skill changed
-            this.setInputsForSelectedSkill();
-            this._skillId = this.getCurrentSkill().id;
-        } else if (typeof currentSkill === 'undefined') {
-            this.setInputsForSelectedSkill();
-            this._skillId = -1;
-        }
-    }
-}
-
-function doNothing(event) {
-    if (!loading)
-        realOnChange(event);
-}
-
 Blockly.Blocks['skillloader'] = {
     init: function () {
         this._hardwareIds = -1;
@@ -190,8 +151,39 @@ Blockly.Blocks['skillloader'] = {
         return Databaseloader.skillMap[blockvalue];
     },
 
-    onchange: realOnChange,
+    onchange: function(event) {
+		if (loading == false) {
+			var addedHardwareSet = this.getCurrentHardware();
+			var hardwareKey = idsToKey(getKeysFromMap(addedHardwareSet));
+			var chosenConfig = Databaseloader.roboConfigMap[hardwareKey];
+			if (getKeysFromMap(addedHardwareSet).length > 0 && hardwareKey !== this._hardwareIds) {    //if addedHardware Changed
+				this._hardwareIds = hardwareKey;
 
+				if (typeof chosenConfig == 'undefined') {
+					this.setNoSkillsAvailable();
+				} else {
+					var availableSkills = Databaseloader.roboConfigToSkillMap[chosenConfig.id];
+					this.setAvailableSkills(availableSkills)
+				}
+			} else if (getKeysFromMap(addedHardwareSet).length == 0 && hardwareKey !== this._hardwareIds) {
+				this._hardwareIds = -1;
+				var skillsInput = this.getInput('SKILL');
+				if (skillsInput != null) {
+					skillsInput.fieldRow[1].menuGenerator_ = [];
+					skillsInput.fieldRow[1].setValue("No Elements available");
+				}
+			}
+
+			var currentSkill = this.getCurrentSkill();
+			if (typeof currentSkill != 'undefined' && this._skillId != currentSkill.id) {      //skill changed
+				this.setInputsForSelectedSkill();
+				this._skillId = this.getCurrentSkill().id;
+			} else if (typeof currentSkill === 'undefined') {
+				this.setInputsForSelectedSkill();
+				this._skillId = -1;
+			}
+		}
+	},
     setNoSkillsAvailable: function () {
         var skillsInput = this.getInput('SKILL');
         skillsInput.fieldRow[1].menuGenerator_ = [];
