@@ -70,7 +70,11 @@ Blockly.setUidCounter = function(val) {
  * whether we are in single user or realtime collaborative mode.
  * @return {string}
  */
-Blockly.genUid = function() {
+Blockly.genUid = function(id) {
+  if((typeof id !== 'undefined') && id != null) {
+    Blockly.uidCounter_ = Math.max(Blockly.uidCounter_, id) + 1;
+    return id;
+  }
   var uid = (++Blockly.uidCounter_).toString();
   if (Blockly.Realtime.isEnabled()) {
     return Blockly.Realtime.genUid(uid);
@@ -97,12 +101,12 @@ Blockly.Block = function() {
  *     type-specific functions for this block.
  * @return {!Blockly.Block} The created block
  */
-Blockly.Block.obtain = function(workspace, prototypeName) {
+Blockly.Block.obtain = function(workspace, prototypeName, id) {
   if (Blockly.Realtime.isEnabled()) {
     return Blockly.Realtime.obtainBlock(workspace, prototypeName);
   } else {
     var newBlock = new Blockly.Block();
-    newBlock.initialize(workspace, prototypeName);
+    newBlock.initialize(workspace, prototypeName, id);
     return newBlock;
   }
 };
@@ -113,8 +117,8 @@ Blockly.Block.obtain = function(workspace, prototypeName) {
  * @param {?string} prototypeName Name of the language object containing
  *     type-specific functions for this block.
  */
-Blockly.Block.prototype.initialize = function(workspace, prototypeName) {
-  this.id = Blockly.genUid();
+Blockly.Block.prototype.initialize = function(workspace, prototypeName, id) {
+  this.id = Blockly.genUid(id);
   workspace.addTopBlock(this);
   this.fill(workspace, prototypeName);
   // Bind an onchange function, if it exists.

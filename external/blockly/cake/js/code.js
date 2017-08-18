@@ -74,64 +74,47 @@ function downloadBlocks() {
 }
 
 function reloadBlocks(xmlText) {
+		
+	loading = true;
 
-    loading = true;
+	Blockly.mainWorkspace.clear();
+	
+	$('#xmlparsediv').html(xmlText);
+	$('#xmlparsediv field[name*="attribute"]').remove();
+	
+	var dom = Blockly.Xml.textToDom($('#xmlparsediv').html());
+	Blockly.Xml.domToWorkspace(Blockly.mainWorkspace, dom);
+	
+	loading = false;
 
-    Blockly.mainWorkspace.clear();
-    var dom = Blockly.Xml.textToDom(xmlText);
-    var domCopy = Blockly.Xml.textToDom(xmlText);
+	var currentId = 0;
+	$('#xmlparsediv').html(xmlText);
+	$(Blockly.mainWorkspace.getAllBlocks()).each(function(idx, el) {
+		
+		if(el.type == "skillloader") {
+			
+			var dataElement = $('#xmlparsediv block[id="' + el.id + '"]');
+			var selectedSkill = dataElement.find('[name=SkillOptions]').html();
+			el.onchange();
+			el.setFieldValue(selectedSkill, "SkillOptions");
+			el.onchange();
+			
+			$('#xmlparsediv block[id="' + el.id + '"]').children('field[name*="attribute"]').each(
+				function(idx, attributeElement) {
+					var jqEl = $(attributeElement);
+					var attributeName = jqEl.attr("name");
+					var attributeValue = jqEl.html();
+					el.onchange();
+					el.setFieldValue(attributeValue, attributeName);
+					el.onchange();
+				}
+			);
+			
+		}
+		
+	});
+	
 
-    var allBlocks = dom.getElementsByTagName("block");
-    var allBlocksCopy = domCopy.getElementsByTagName("block");
-
-    var skillLoaderBlocks = [];
-
-    var j = 0;
-    for (var i = 0; i < allBlocks.length; i++) {
-        if (allBlocks[i].getAttribute("type") === "skillloader") {
-            var childBlocks = allBlocks[i].childNodes;
-            for (var k = 0; k < childBlocks.length; k++) {
-                var blockName = childBlocks[k].getAttribute("name");
-                if (blockName !== null && (blockName === "SkillOptions" || blockName.substr(0, 9) === "attribute")) {
-                    childBlocks[k].parentNode.removeChild(childBlocks[k]);
-                    k = k - 1;
-                }
-            }
-
-            skillLoaderBlocks[j++] = allBlocksCopy[i];
-        }
-    }
-
-    Blockly.Xml.domToWorkspace(Blockly.mainWorkspace, dom);
-    loading = false;
-
-    var allBlocksInWorkspace = Blockly.mainWorkspace.getAllBlocks();
-    var blocksToModify = [];
-
-    for (var i = 0; i < allBlocksInWorkspace.length; i++) {
-        if (allBlocksInWorkspace[i].type === "skillloader") {
-            blocksToModify.push(allBlocksInWorkspace[i]);
-        } else {
-            if(allBlocksInWorkspace[i].onchange) {
-                allBlocksInWorkspace[i].onchange();
-            }
-        }
-    }
-
-    for (var i = 0; i < skillLoaderBlocks.length; i++) {
-        var block = blocksToModify[i];
-        var childBlocks = skillLoaderBlocks[i].childNodes;
-
-        for (var k = 0; k < childBlocks.length; k++) {
-            var name = childBlocks[k].getAttribute('name');
-            if (name != null && (name === "SkillOptions" || name.substr(0, 9) === "attribute")) {
-                var content = childBlocks[k].textContent;
-
-                block.onchange();
-                block.setFieldValue(content, name);
-            }
-        }
-    }
 }
 
 function getCurrentSkillName() {
@@ -141,7 +124,6 @@ function getCurrentSkillName() {
 function isSkillInstalled() {
     return Blockly.cake.installSkill === 'TRUE';
 }
-
 
 //Do not delete these unused functions - they are used from the c++ application
 function getExecutionMode() {
