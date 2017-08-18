@@ -136,7 +136,7 @@ namespace kukadu {
          * jointPtp() calls the jointPtpInternal() function that actually plans the
          * movement in joint space and executes it.
          */
-        virtual void jointPtpInternal(arma::vec joints) = 0;
+        virtual void jointPtpInternal(arma::vec joints, double maxForce = -1.0) = 0;
 
         /**
          * @brief This method is called by the run() method once per clock
@@ -274,7 +274,7 @@ namespace kukadu {
          * \brief Implements simple point to point movement in joint space (blocks until target reached)
          * \param joints array of joint positions
          */
-        virtual std::vector<mes_result> jointPtp(arma::vec joints);
+        virtual std::vector<mes_result> jointPtp(arma::vec joints, double maxForce = -1.0);
 
         /**
          * \brief Implements simple point to point movement in joint space (not blocking)

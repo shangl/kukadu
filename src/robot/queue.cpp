@@ -614,7 +614,7 @@ namespace kukadu {
 
     }
 
-    std::vector<mes_result> ControlQueue::jointPtp(arma::vec joints) {
+    std::vector<mes_result> ControlQueue::jointPtp(arma::vec joints, double maxForce) {
 
         KUKADU_MODULE_START_USAGE();
 
@@ -624,7 +624,7 @@ namespace kukadu {
 
             continueCollecting = true;
             jointsColletorThr = make_shared<kukadu_thread>(&ControlQueue::jointsCollector, this);
-            jointPtpInternal(joints);
+            jointPtpInternal(joints, maxForce);
             continueCollecting = false;
 
             if(jointsColletorThr && jointsColletorThr->joinable())
@@ -1453,7 +1453,7 @@ namespace kukadu {
 
     }
 
-    void KukieControlQueue::jointPtpInternal(arma::vec joints) {
+    void KukieControlQueue::jointPtpInternal(arma::vec joints, double maxForce) {
 
         ptpReached = false;
         loadPlanner();
@@ -1478,18 +1478,34 @@ namespace kukadu {
 
         }
 
+        bool checkMaxForce = false;
+        if(maxForce >= 0.0)
+            checkMaxForce = true;
+
+        if(checkMaxForce)
+            startRollBackMode(1.5);
+
         if(performPtp) {
             if(desiredJointPlan.size() > 0) {
 
                 for(int i = 0; i < desiredJointPlan.size(); ++i) {
-                    move(desiredJointPlan.at(i));
-                    synchronizeToQueue(1);
+
+                    if(rightQueue->getAbsoluteCartForce() > maxForce) {
+                        rightQueue->rollBack(1.0);
+                        break;
+                    } else {
+                        move(desiredJointPlan.at(i));
+                        synchronizeToQueue(1);
+                    }
                 }
 
             } else {
                 ROS_ERROR("(KukieControlQueue) Joint plan not reachable");
             }
         }
+
+        if(checkMaxForce)
+            stopJointRollBackMode();
 
     }
 

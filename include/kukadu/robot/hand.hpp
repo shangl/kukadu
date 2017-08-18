@@ -69,7 +69,7 @@ namespace kukadu {
          * \brief Implements simple point to point movement in joint space (blocks until target reached)
          * \param joints array of joint positions
          */
-        virtual std::vector<mes_result> jointPtp(arma::vec joints);
+        virtual std::vector<mes_result> jointPtp(arma::vec joints, double maxForce = -1.0);
 
         virtual std::vector<arma::mat> getTactileSensing() = 0;
 
