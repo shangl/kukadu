@@ -1819,7 +1819,7 @@ namespace kukadu {
         fakeCurrentPose = pos;
     }
 
-    void PlottingControlQueue::jointPtpInternal(arma::vec joints) {
+    void PlottingControlQueue::jointPtpInternal(arma::vec joints, double maxForce) {
         currJoints = joints;
     }
 
