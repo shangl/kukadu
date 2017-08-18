@@ -136,7 +136,7 @@ namespace kukadu {
          * jointPtp() calls the jointPtpInternal() function that actually plans the
          * movement in joint space and executes it.
          */
-        virtual void jointPtpInternal(arma::vec joints, double maxForce = -1.0) = 0;
+        virtual void jointPtpInternal(arma::vec joints, double maxForce) = 0;
 
         /**
          * @brief This method is called by the run() method once per clock
@@ -518,7 +518,7 @@ namespace kukadu {
         void setInitValues();
         void stopCurrentMode();
         void switchMode(int mode);
-        void jointPtpInternal(arma::vec joints);
+        void jointPtpInternal(arma::vec joints, double maxForce);
         void setJntPtpThresh(double thresh);
         void setStartingJoints(arma::vec joints);
         void cartPtpInternal(geometry_msgs::Pose pos, double maxForce);

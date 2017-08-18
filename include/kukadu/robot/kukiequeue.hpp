@@ -166,7 +166,7 @@ namespace kukadu {
         virtual void setInitValues();
         virtual void startQueueHook();
         virtual void installHardwareInstanceInternal();
-        virtual void jointPtpInternal(arma::vec joints);
+        virtual void jointPtpInternal(arma::vec joints, double maxForce);
         virtual void submitNextJointMove(arma::vec joints);
         virtual void cartPtpInternal(geometry_msgs::Pose pos, double maxForce);
         virtual void submitNextCartMove(geometry_msgs::Pose pose);
