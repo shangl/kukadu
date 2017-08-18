@@ -16,15 +16,15 @@ bool BlockingPos::producesGraspInternal() {
 
 std::shared_ptr<kukadu::ControllerResult> BlockingPos::executeInternal() {
 	auto& hardwareFactory = kukadu::HardwareFactory::get();
-		auto sLeftQueue1150 = getUsedHardware()[0];
-		sLeftQueue1150->install();
-		sLeftQueue1150->start();
+    auto sLeftQueue1150 = getUsedHardware()[0];
+    sLeftQueue1150->install();
+    sLeftQueue1150->start();
 
-		auto skill115 = kukadu::SkillFactory::get().loadSkill("JointPtp", {sLeftQueue1150});
+    auto skill115 = kukadu::SkillFactory::get().loadSkill("JointPtp", {sLeftQueue1150});
 
-		std::dynamic_pointer_cast<kukadu::JointPtp>(skill115)->setJoints({-2.4132, 1.62996, -2.22251, 2.01567, 2.18936, -1.65823, -0.956807});
+    std::dynamic_pointer_cast<kukadu::JointPtp>(skill115)->setJoints({-2.4132, 1.62996, -2.22251, 2.01567, 2.18936, -1.65823, -0.956807});
 
-		skill115->execute();
+    skill115->execute();
 
 	return nullptr;
 }

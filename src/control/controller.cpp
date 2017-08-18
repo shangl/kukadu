@@ -379,13 +379,9 @@ namespace kukadu {
 
     std::shared_ptr<ControllerResult> JointPtp::executeInternal() {
 
-        if (hardware) {
-            if (maxForce != -1) {
-                hardware->jointPtp(stdToArmadilloVec(this->joints));
-            }
-            else {
-            }
-        }
+        if (hardware)
+            hardware->jointPtp(stdToArmadilloVec(this->joints), maxForce);
+
         return nullptr;
 
     }

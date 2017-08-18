@@ -16,15 +16,15 @@ bool MoveHome::producesGraspInternal() {
 
 std::shared_ptr<kukadu::ControllerResult> MoveHome::executeInternal() {
 	auto& hardwareFactory = kukadu::HardwareFactory::get();
-		auto sLeftQueue650 = hardwareFactory.loadHardware("kukie_left_arm");
-		sLeftQueue650->install();
-		sLeftQueue650->start();
+    auto sLeftQueue650 = hardwareFactory.loadHardware("kukie_left_arm");
+    sLeftQueue650->install();
+    sLeftQueue650->start();
 
-		auto skill65 = kukadu::SkillFactory::get().loadSkill("JointPtp", {sLeftQueue650});
+    auto skill65 = kukadu::SkillFactory::get().loadSkill("JointPtp", {sLeftQueue650});
 
-		std::dynamic_pointer_cast<kukadu::JointPtp>(skill65)->setJoints({-1.5, 1.56, 2.33, -1.74, -1.85, 1.27, 0.71});
+    std::dynamic_pointer_cast<kukadu::JointPtp>(skill65)->setJoints({-1.5, 1.56, 2.33, -1.74, -1.85, 1.27, 0.71});
 
-		skill65->execute();
+    skill65->execute();
 
 	return nullptr;
 }

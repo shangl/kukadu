@@ -16,15 +16,15 @@ bool PushHandPos::producesGraspInternal() {
 
 std::shared_ptr<kukadu::ControllerResult> PushHandPos::executeInternal() {
 	auto& hardwareFactory = kukadu::HardwareFactory::get();
-		auto sLeftQueue1160 = getUsedHardware()[0];
-		sLeftQueue1160->install();
-		sLeftQueue1160->start();
+    auto sLeftQueue1160 = getUsedHardware()[0];
+    sLeftQueue1160->install();
+    sLeftQueue1160->start();
 
-		auto skill116 = kukadu::SkillFactory::get().loadSkill("JointPtp", {sLeftQueue1160});
+    auto skill116 = kukadu::SkillFactory::get().loadSkill("JointPtp", {sLeftQueue1160});
 
-		std::dynamic_pointer_cast<kukadu::JointPtp>(skill116)->setJoints({0, -1.57, 0, -1.57, 0, -1.57, 0});
+    std::dynamic_pointer_cast<kukadu::JointPtp>(skill116)->setJoints({0, -1.57, 0, -1.57, 0, -1.57, 0});
 
-		skill116->execute();
+    skill116->execute();
 
 	return nullptr;
 }
