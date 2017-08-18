@@ -1490,7 +1490,7 @@ namespace kukadu {
 
                 for(int i = 0; i < desiredJointPlan.size(); ++i) {
 
-                    if(rightQueue->getAbsoluteCartForce() > maxForce) {
+                    if(getAbsoluteCartForce() > maxForce) {
                         rollBack(1.0);
                         break;
                     } else {
