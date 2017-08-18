@@ -1,13 +1,13 @@
 #ifndef KUKADU_GRAPHICAL_H
 #define KUKADU_GRAPHICAL_H
 
-#include <QtWidgets/QTabWidget>
-#include <QtWebKitWidgets/QWebView>
-#include <QtWidgets/QLineEdit>
-#include <QtWidgets/QGroupBox>
 #include <string>
 #include <vector>
 #include <QtCore/QString>
+#include <QtWidgets/QGroupBox>
+#include <QtWidgets/QLineEdit>
+#include <QtWidgets/QTabWidget>
+#include <QtWebKitWidgets/QWebView>
 #include <kukadu/generated_skills/KinestheticTeaching.hpp>
 
 
@@ -54,6 +54,8 @@ namespace kukadu {
         void createCatkinPackage();
 
         void createCMakeLists();
+
+        void loadMetafilesString();
 
     public:
 

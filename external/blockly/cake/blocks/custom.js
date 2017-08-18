@@ -1,9 +1,16 @@
 'use strict';
 
 var loading = false;
+var availableFiles = "";
 
 goog.provide('Blockly.Blocks.custom');
 goog.require('Blockly.Blocks');
+
+function set_available_files(files) {
+	
+	availableFiles = files.split(';');
+	
+}
 
 Blockly.Blocks['objectposition'] = {
     init: function () {
@@ -386,85 +393,74 @@ var Databaseloader = new function () {
             Databaseloader.hardwareTupleArray.push([hw.name, hw.name]);
         }
     };
+    
+    function check_doc_exists(f) {
+		return ($.inArray(f, availableFiles) >= 0);
+	}
+	
+	function loadFile(filePath) {
+		
+		return $.ajax({
+            type: "GET",
+            url: filePath,
+            dataType: "xml",
+            async: false
+        }).responseText;
+        
+	}
 
     this.getSetterFunctions = function (skill, controllerClass) {
         var setFunctions = {};
-        $.ajax({
-            type: "GET",
-            url: Databaseloader.attributePath + "classkukadu_1_1" + controllerClass + ".xml",
-            dataType: "xml",
-            async: false,
-            success: function (xml) {
-                if (xml === null) {
-                    $.ajax({
-                        type: "GET",
-                        url: Databaseloader.attributePath + "classkukadu_1_1skill_1_1" + controllerClass + ".xml",
-                        dataType: "xml",
-                        async: false,
-                        success: function (xml) {
-                            var pubfunctionBlock = $(xml).find('sectiondef').filter(function () {
-                                return $(this).attr('kind') === "public-func";
-                            });
+        var fileName = "classkukadu_1_1" + controllerClass + ".xml";
+        var filePath = Databaseloader.attributePath + fileName;
+        var nonFound = false;
+        var xml = '';
+        if(check_doc_exists(fileName)) {
+			xml = loadFile(filePath);
+		} else {
+			var newFileName = "classkukadu_1_1skill_1_1" + controllerClass + ".xml";
+			var newFilePath = Databaseloader.attributePath + newFileName;
+			if(check_doc_exists(newFileName)) {
+				xml = loadFile(newFilePath);
+			} else {
+				nonFound = true;
+				console.log("neither " + fileName + " nor " + newFileName + " found");
+			}
+		}
+		
+		if(!nonFound) {
+			
+			var pubfunctionBlock = $(xml).find('sectiondef').filter(function () {
+				return $(this).attr('kind') === "public-func";
+			});
 
-                            $(pubfunctionBlock).find('memberdef').each(function () {
-                                var functionname = $(this).find('name').text();
-                                if (functionname.substring(0, 3) === "set") {
-                                    var argumentString = $(this).find('argsstring').text();
+			$(pubfunctionBlock).find('memberdef').each(function () {
+				var functionname = $(this).find('name').text();
+				if (functionname.substring(0, 3) === "set") {
+					var argumentString = $(this).find('argsstring').text();
 
-                                    var regex = /\w+(<[\w:<>*,\s]+>\s\w+|[\w+\s:*]+)+/g;
-                                    var m;
+					var regex = /\w+(<[\w:<>*,\s]+>\s\w+|[\w+\s:*]+)+/g;
+					var m;
 
-                                    while ((m = regex.exec(argumentString)) !== null) {
-                                        // This is necessary to avoid infinite loops with zero-width matches
-                                        if (m.index === regex.lastIndex) {
-                                            regex.lastIndex++;
-                                        }
+					while ((m = regex.exec(argumentString)) !== null) {
+						// This is necessary to avoid infinite loops with zero-width matches
+						if (m.index === regex.lastIndex) {
+							regex.lastIndex++;
+						}
 
-                                        var match = m[0];   //only get full match
-                                        var subStringIndex = match.lastIndexOf(" ");
-                                        var dataType = match.substr(0, subStringIndex);
+						var match = m[0];   //only get full match
+						var subStringIndex = match.lastIndexOf(" ");
+						var dataType = match.substr(0, subStringIndex);
 
-                                        var setFunction = new SetterFunction(functionname, dataType, "not defined");
-                                        setFunctions[setFunction.name] = setFunction;
-                                    }
-                                }
+						var setFunction = new SetterFunction(functionname, dataType, "not defined");
+						setFunctions[setFunction.name] = setFunction;
+					}
+				}
 
-                            });
-                        }
-                    });
-                } else {
-                    var pubfunctionBlock = $(xml).find('sectiondef').filter(function () {
-                        return $(this).attr('kind') === "public-func";
-                    });
-
-                    $(pubfunctionBlock).find('memberdef').each(function () {
-                        var functionname = $(this).find('name').text();
-                        if (functionname.substring(0, 3) === "set") {
-                            var argumentString = $(this).find('argsstring').text();
-
-                            var regex = /\w+(<[\w:<>*,\s]+>\s\w+|[\w+\s:*]+)+/g;
-                            var m;
-
-                            while ((m = regex.exec(argumentString)) !== null) {
-                                // This is necessary to avoid infinite loops with zero-width matches
-                                if (m.index === regex.lastIndex) {
-                                    regex.lastIndex++;
-                                }
-
-                                var match = m[0];   //only get full match
-                                var subStringIndex = match.lastIndexOf(" ");
-                                var dataType = match.substr(0, subStringIndex);
-
-                                var setFunction = new SetterFunction(functionname, dataType, "not defined");
-                                setFunctions[setFunction.name] = setFunction;
-                            }
-                        }
-
-                    });
-                }
-            }
-        });
-
+			});
+			
+		}
+		
         return setFunctions;
     }
 };

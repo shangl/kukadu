@@ -1,16 +1,15 @@
-#include <kukadu/gui/graphical.hpp>
-#include <kukadu/manipulation/skillfactory.hpp>
 #include <json.hpp>
+#include <kukadu/robot.hpp>
 #include <QtWidgets/QLayout>
-#include <QtWebKitWidgets/QWebFrame>
+#include <QtWebKit/QtWebKit>
 #include <QtWidgets/QListView>
 #include <QtWidgets/QPushButton>
 #include <QtWidgets/QMessageBox>
-#include <QtWebKit/QtWebKit>
-#include <kukadu/generated_skills/KinestheticTeaching.hpp>
-#include <kukadu/robot.hpp>
 #include <QtWidgets/QFileDialog>
-
+#include <kukadu/gui/graphical.hpp>
+#include <QtWebKitWidgets/QWebFrame>
+#include <kukadu/manipulation/skillfactory.hpp>
+#include <kukadu/generated_skills/KinestheticTeaching.hpp>
 
 using namespace std;
 
@@ -159,10 +158,23 @@ namespace kukadu {
         loadAndSaveContainer->addWidget(saveButton);
         loadAndSaveContainer->addWidget(loadButton);
         playingContainer->addWidget(playButton);
+
         return mainView;
+
+    }
+
+    void KukaduGraphical::loadMetafilesString() {
+        auto files = getFilesInDirectory(resolvePath("$KUKADU_HOME/meta/xml"));
+        stringstream filesStream;
+        for(auto& f : files)
+            if(f != "." && f != "..")
+                filesStream << f << ";";
+        QString callString = QString("set_available_files('%1')").arg(QString::fromStdString(filesStream.str()));
+        webView->page()->mainFrame()->evaluateJavaScript(callString);
     }
 
     void KukaduGraphical::onStart() {
+        loadMetafilesString();
         loadInformationFromDatabase();
     }
 
@@ -342,6 +354,8 @@ namespace kukadu {
 
         SkillFactory::addSkill(skillName);
 
+        loadMetafilesString();
+
     }
 
     void KukaduGraphical::writeToFileInPackage(std::string filename, QString content) {
@@ -397,7 +411,6 @@ namespace kukadu {
         cmakeCacheFile.close();
 
         std::replace(catkinMakeString.begin(), catkinMakeString.end(), ';', ' ');
-        std::cout << catkinMakeString << std::endl;
         return catkinMakeString;
     }
 
@@ -443,6 +456,7 @@ namespace kukadu {
     }
 
     void KukaduGraphical::kinestethicTeachingSlot() {
+
         kinestheticTeachingView = new QWidget;
 
         auto mainLayout = new QGridLayout();
@@ -495,6 +509,7 @@ namespace kukadu {
     void KukaduGraphical::installSkillSlot() {
         std::string skillName = kinestheticSkillName->text().toUtf8().constData();
         teachingObject->installDmp(skillName);
+        loadMetafilesString();
     }
 
     void KukaduGraphical::exitViewSlot() {
@@ -504,23 +519,31 @@ namespace kukadu {
     }
 
     void KukaduGraphical::loadSlot() {
+
+        loadMetafilesString();
+
         QString fileName = QFileDialog::getOpenFileName(this,
                                                         tr("Load Blocks"), "",
                                                         tr("Blockly File (*.xml);;All Files (*)"));
-        QString xml = "";
-        QFile f(fileName);
-        f.open(QFile::ReadOnly | QFile::Text);
-        QTextStream in(&f);
 
-        xml = in.readAll();
-        cout << xml.toStdString() << endl;
-        QString info = QString("reloadBlocks('%1')").arg(xml);
-        webView->page()->mainFrame()->evaluateJavaScript(info);
+        if(fileName != "") {
+
+            QString xml = "";
+            QFile f(fileName);
+            f.open(QFile::ReadOnly | QFile::Text);
+            QTextStream in(&f);
+
+            xml = in.readAll();
+            QString info = QString("reloadBlocks('%1')").arg(xml);
+            webView->page()->mainFrame()->evaluateJavaScript(info);
+
+        }
+
     }
 
     void KukaduGraphical::saveSlot() {
         QString fileName = QFileDialog::getSaveFileName(this,
-                                                        tr("Save Blocks"), "new BlocklyFile.xml",
+                                                        tr("Save Blocks"), "skill.xml",
                                                         tr("Blockly File (*.xml);;All Files (*)"));
         auto xml = webView->page()->mainFrame()->evaluateJavaScript("downloadBlocks()");
 
@@ -533,6 +556,5 @@ namespace kukadu {
 
     void KukaduGraphical::playSlot() {
         //todo
-        cout << "implement this" << endl;
     }
 }
