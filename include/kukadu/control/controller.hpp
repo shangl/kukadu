@@ -160,7 +160,7 @@ namespace kukadu {
 
         std::string getClassName();
 
-        void setMaxForce(double force);
+        void setMaxForce(double maxForce);
 
     };
 

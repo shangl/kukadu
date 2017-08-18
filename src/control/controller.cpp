@@ -390,8 +390,8 @@ namespace kukadu {
         return "JointPtp";
     }
 
-    void JointPtp::setMaxForce(double force) {
-        maxForce = force;
+    void JointPtp::setMaxForce(double maxForce) {
+        this->maxForce = maxForce;
     }
 
     void JointPtp::createSkillFromThisInternal(std::string skillName) {

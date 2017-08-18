@@ -48,10 +48,10 @@ Blockly.cake['skillloader'] = function (block) {
 
         var skillAttributeInformation = skillSelection.getSetterFunctions();
 
-        var additionalLimitForVectors = 0;
+        var vectorIdOffset = 0;
         var attributes = getValuesFromMap(skillAttributeInformation);
 
-        for (var i = 0; i < attributes.length + additionalLimitForVectors; i++) {
+        for (var i = 0; i < attributes.length; i++) {
             var attribute = attributes[i];
             var attributeCode = "";
             var everyAttributeIsSet = true;
@@ -67,8 +67,8 @@ Blockly.cake['skillloader'] = function (block) {
 
                 for (var j = 0; j < vectorsize - 1; j++) {
                     attributeCode += isString ? "'" : "";
-                    var attributeValue = block.getFieldValue('attribute' + i++);
-                    additionalLimitForVectors++;
+                    var attributeValue = block.getFieldValue('attribute' + i+vectorIdOffset);
+                    vectorIdOffset++;
 
                     if (attributeValue === "not defined") {
                         everyAttributeIsSet = false;
@@ -78,7 +78,7 @@ Blockly.cake['skillloader'] = function (block) {
                     attributeCode += isString ? "'" : "";
                 }
 
-                var attributeValue = block.getFieldValue('attribute' + i);
+                var attributeValue = block.getFieldValue('attribute' + i + vectorIdOffset);
                 everyAttributeIsSet = attributeValue !== "not defined";
                 attributeCode += attributeValue + "}";
 
@@ -86,13 +86,13 @@ Blockly.cake['skillloader'] = function (block) {
                     continue;
                 }
             } else if (attribute.dataType === "std::string") {
-                attributeCode = "\"" + block.getFieldValue('attribute' + i) + "\"";
+                attributeCode = "\"" + block.getFieldValue('attribute' + i  + vectorIdOffset) + "\"";
                 if (attributeCode === "not defined") {
                     continue;
                 }
             } else
             {
-                attributeCode = block.getFieldValue('attribute' + i);
+                attributeCode = block.getFieldValue('attribute' + i  + vectorIdOffset);
                 if (attributeCode === "not defined") {
                     continue;
                 }
