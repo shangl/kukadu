@@ -107,8 +107,6 @@ function reloadBlocks(xmlText) {
 			el.setFieldValue(selectedSkill, "SkillOptions");
 			el.onchange();
 			
-			console.log(el);
-			
 			$('#xmlparsediv block[id="' + el.id + '"]').children('field[name*="attribute"]').each(
 				function(idx, attributeElement) {
 					var jqEl = $(attributeElement);

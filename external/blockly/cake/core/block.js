@@ -71,7 +71,7 @@ Blockly.setUidCounter = function(val) {
  * @return {string}
  */
 Blockly.genUid = function(id) {
-  if((typeof id !== 'undefined')) {
+  if((typeof id !== 'undefined') && id != null) {
     Blockly.uidCounter_ = Math.max(Blockly.uidCounter_, id) + 1;
     return id;
   }

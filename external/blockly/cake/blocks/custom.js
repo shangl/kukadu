@@ -221,6 +221,7 @@ Blockly.Blocks['skillloader'] = {
             var configId = Databaseloader.roboConfigMap[this._hardwareIds].id;
             var skill = Databaseloader.roboConfigToSkillMap[configId][skillId];
             if (typeof skill !== 'undefined') {
+				
                 var attributes = getValuesFromMap(skill.getSetterFunctions());
 
                 if (attributes != null) {
@@ -239,6 +240,7 @@ Blockly.Blocks['skillloader'] = {
                         var input = this.getInput("attributes" + i);
 
                         if (attribute.dataType === "std::vector< double >" || attribute.dataType === "std::vector< int >" || attribute.dataType === "std::vector< string >") {
+
                             switch (attribute.dataType) {
                                 case "std::vector< double >":
                                     validator = Blockly.FieldTextInput.floatValidator;
@@ -269,6 +271,7 @@ Blockly.Blocks['skillloader'] = {
                                 i--;    //set i to old value for incrementation in loopheader
                                 additionalLimitForVectors--; //decrease by one to match amount of added fields
                             }
+
                         } else {
                             input.appendField(new Blockly.FieldTextInput(attribute.defaultValue + "", validator), "attribute" + i);
                         }
