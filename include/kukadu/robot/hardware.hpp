@@ -117,7 +117,7 @@ namespace kukadu {
                                                                            long long int maxTotalDuration = 3600000,
                                                                            long long maxTimeStepDifference = 5000);
 
-        virtual std::vector<kukadu::mes_result> jointPtp(arma::vec joints) = 0;
+        virtual std::vector<kukadu::mes_result> jointPtp(arma::vec joints, double maxForce = -1.0) = 0;
 
         virtual void startRollBackMode(double) = 0;
         virtual void rollBack(double) = 0;

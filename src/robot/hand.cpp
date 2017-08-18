@@ -80,7 +80,9 @@ namespace kukadu {
         return jointIds;
     }
 
-    std::vector<mes_result> GenericHand::jointPtp(arma::vec joints) {
+    std::vector<mes_result> GenericHand::jointPtp(arma::vec joints, double maxForce) {
+        if(maxForce >= 0.0)
+            throw KukaduException("(GenericHand) max force is currently not supported yet");
         moveJoints(joints);
         return {};
     }
