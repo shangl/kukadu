@@ -232,8 +232,8 @@ Blockly.Blocks['skillloader'] = {
                 var attributes = getValuesFromMap(skill.getSetterFunctions());
 
                 if (attributes != null) {
-                    var additionalLimitForVectors = 0;
-                    for (var i = 0; i < attributes.length + additionalLimitForVectors; i++) {
+                    var vectorIdOffset = 0;
+                    for (var i = 0; i < attributes.length; i++) {
                         var attribute = attributes[i];
                         var validator = Blockly.FieldTextInput.dummyValidator;
                         if (attribute.dataType === "int") {
@@ -269,16 +269,14 @@ Blockly.Blocks['skillloader'] = {
                                 degOfFreedom = hardware.degOfFreedom > degOfFreedom ? hardware.degOfFreedom : degOfFreedom;
                             }
 
+                            var vectorIdOffsetTmp = vectorIdOffset;
                             for (var j = 0; j < degOfFreedom; j++) {
-                                input.appendField(new Blockly.FieldTextInput(attribute.defaultValue + "", validator), "attribute" + i++);
-                                additionalLimitForVectors++;
+                                input.appendField(new Blockly.FieldTextInput(attribute.defaultValue + "", validator), "attribute" + i + vectorIdOffset);
+                                vectorIdOffset++;
                             }
-                            if (degOfFreedom > 0) {
-                                i--;    //set i to old value for incrementation in loopheader
-                                additionalLimitForVectors--; //decrease by one to match amount of added fields
-                            }
+                            vectorIdOffset = degOfFreedom > 0 ? vectorIdOffsetTmp + degOfFreedom - 1 : vectorIdOffset;
                         } else {
-                            input.appendField(new Blockly.FieldTextInput(attribute.defaultValue + "", validator), "attribute" + i);
+                            input.appendField(new Blockly.FieldTextInput(attribute.defaultValue + "", validator), "attribute" + i + vectorIdOffset);
                         }
                     }
 

@@ -20,7 +20,7 @@ Blockly.cake['skillloader'] = function (block) {
     var hardwareSelection = Blockly.cake.valueToCode(block, 'HARDWARE', Blockly.cake.ORDER_ATOMIC);
     var splitHardware = hardwareSelection.split(", ");
 
-    for(var i = 0; i < splitHardware.length; i++) {
+    for (var i = 0; i < splitHardware.length; i++) {
         Blockly.cake.neededHardware_[splitHardware[i]] = "auto " + splitHardware[i] + " = hardwareFactory.loadHardware(\"" + splitHardware[i] + "\");\n";
     }
 
@@ -67,7 +67,7 @@ Blockly.cake['skillloader'] = function (block) {
 
                 for (var j = 0; j < vectorsize - 1; j++) {
                     attributeCode += isString ? "'" : "";
-                    var attributeValue = block.getFieldValue('attribute' + i+vectorIdOffset);
+                    var attributeValue = block.getFieldValue('attribute' + i + vectorIdOffset);
                     vectorIdOffset++;
 
                     if (attributeValue === "not defined") {
@@ -86,13 +86,12 @@ Blockly.cake['skillloader'] = function (block) {
                     continue;
                 }
             } else if (attribute.dataType === "std::string") {
-                attributeCode = "\"" + block.getFieldValue('attribute' + i  + vectorIdOffset) + "\"";
+                attributeCode = "\"" + block.getFieldValue('attribute' + i + vectorIdOffset) + "\"";
                 if (attributeCode === "not defined") {
                     continue;
                 }
-            } else
-            {
-                attributeCode = block.getFieldValue('attribute' + i  + vectorIdOffset);
+            } else {
+                attributeCode = block.getFieldValue('attribute' + i + vectorIdOffset);
                 if (attributeCode === "not defined") {
                     continue;
                 }
