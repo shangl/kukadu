@@ -122,6 +122,11 @@ namespace kukadu {
         virtual void startRollBackMode(double) = 0;
         virtual void rollBack(double) = 0;
         virtual void stopJointRollBackMode() = 0;
+        /*virtual mes_result getCurrentJoints() = 0;
+        virtual double getAbsoluteCartForce();
+        virtual void synchronizeToQueue(int maxNumJointsInQueue);
+        virtual void move(arma::vec joints);*/
+
 
     };
 

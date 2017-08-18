@@ -564,7 +564,7 @@ namespace kukadu {
 
                     } else {
 
-                        movement = getCurrentJoints().joints;
+                        //movement = getCurrentJoints().joints;
 
                     }
 

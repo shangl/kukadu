@@ -56,10 +56,29 @@ namespace kukadu {
                                        std::vector<KUKADU_SHARED_PTR<Hardware> > hardwareComponents) {
                 return make_shared<skill::CloseHand>(storage, hardwareComponents);
             }
+            },
+            {
+             "ChangeStiffness",     [](StorageSingleton &storage, int skillId, int controllerType,
+                                       std::vector<KUKADU_SHARED_PTR<Hardware> > hardwareComponents) {
+                return make_shared<skill::ChangeStiffness>(storage, hardwareComponents);
             }
+            },
+            {
+             "PushHandPos",         [](StorageSingleton &storage, int skillId, int controllerType,
+                                       std::vector<KUKADU_SHARED_PTR<Hardware> > hardwareComponents) {
+                return make_shared<skill::PushHandPos>(storage, hardwareComponents);
+            }
+            }
+
 ,{
-			"PushPosition", [](StorageSingleton& storage, int skillId, int controllerType, std::vector<KUKADU_SHARED_PTR<Hardware> > hardwareComponents) {
-				return make_shared<skill::PushPosition>(storage, hardwareComponents);
+			"BlockingPos", [](StorageSingleton& storage, int skillId, int controllerType, std::vector<KUKADU_SHARED_PTR<Hardware> > hardwareComponents) {
+				return make_shared<skill::BlockingPos>(storage, hardwareComponents);
+			}
+		}
+
+,{
+			"RightHandBlocking", [](StorageSingleton& storage, int skillId, int controllerType, std::vector<KUKADU_SHARED_PTR<Hardware> > hardwareComponents) {
+				return make_shared<skill::RightHandBlocking>(storage, hardwareComponents);
 			}
 		}
 

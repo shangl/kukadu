@@ -9,13 +9,18 @@
 #include <kukadu/storage/moduleusagesingleton.hpp>
 #include <kukadu/storage/sensorstoragesingleton.hpp>
 #include <kukadu/generated_skills/KinestheticTeaching.hpp>
+#include <kukadu/planning/simple.hpp>
+#include <armadillo>
 
+using namespace arma;
 using namespace std;
 
 namespace kukadu {
 
-    Controller::Controller(StorageSingleton& dbStorage, std::string caption, std::vector<KUKADU_SHARED_PTR<Hardware> > usedHardware,
-                           double simulationFailingProbability, bool isSkill, std::string skillName) : StorageHolder(dbStorage) {
+    Controller::Controller(StorageSingleton &dbStorage, std::string caption,
+                           std::vector<KUKADU_SHARED_PTR<Hardware> > usedHardware,
+                           double simulationFailingProbability, bool isSkill, std::string skillName) : StorageHolder(
+            dbStorage) {
 
         isInstalled = false;
         this->isSkill = isSkill;
@@ -47,11 +52,12 @@ namespace kukadu {
         this->skillName = skillName;
 
         bool didExist = false;
-        if(getStorage().checkLabelExists("skills", "label", skillName))
+        if (getStorage().checkLabelExists("skills", "label", skillName))
             didExist = true;
 
         auto usedHw = getUsedHardware();
-        if(getStorage().checkLabelExists("skills", "label", skillName) && RobotConfiguration::configurationExists(usedHw)) {
+        if (getStorage().checkLabelExists("skills", "label", skillName) &&
+            RobotConfiguration::configurationExists(usedHw)) {
 
             int configId = RobotConfiguration::getConfigurationId(usedHw);
             auto skillId = getStorage().getCachedLabelId("skills", "skill_id", "label", skillName);
@@ -63,31 +69,33 @@ namespace kukadu {
 
             auto result = getStorage().executeQuery(s.str());
             result->next();
-            if(result->getInt("c") == 0) {
+            if (result->getInt("c") == 0) {
                 s.str("");
-                s << "INSERT INTO skills_robot (skill_id, robot_config_id) VALUES (" << skillId << ", " << configId << ")";
+                s << "INSERT INTO skills_robot (skill_id, robot_config_id) VALUES (" << skillId << ", " << configId
+                  << ")";
                 getStorage().executeStatementPriority(s.str());
             } else {
                 throw KukaduException("(Controller) skill with provided name and robot configuration already exists");
             }
 
-        }  else if(getStorage().checkLabelExists("skills", "label", skillName)) {
+        } else if (getStorage().checkLabelExists("skills", "label", skillName)) {
 
             auto idForNewConfig = getStorage().getNextIdInTable("robot_config", "robot_config_id");
 
             stringstream s;
             s << "INSERT INTO robot_config (robot_config_id, hardware_instance_id, order_id) VALUES ";
             unsigned int i = 0;
-            for(; i < usedHw.size()-1; i++){
-                s << "(" << idForNewConfig << ", " << (usedHw.at(i))->getHardwareInstance() << ", " << i+1 << "), ";
+            for (; i < usedHw.size() - 1; i++) {
+                s << "(" << idForNewConfig << ", " << (usedHw.at(i))->getHardwareInstance() << ", " << i + 1 << "), ";
             }
-            s << "(" << idForNewConfig << ", "  << (usedHw.at(i))->getHardwareInstance() << ", " << i+1 << ")";
+            s << "(" << idForNewConfig << ", " << (usedHw.at(i))->getHardwareInstance() << ", " << i + 1 << ")";
 
             getStorage().executeStatementPriority(s.str());
             s.str(string());
 
             auto skillId = getStorage().getCachedLabelId("skills", "skill_id", "label", skillName);
-            s << "INSERT INTO skills_robot (skill_id, robot_config_id) VALUES (" << skillId << ", " << idForNewConfig << ")";
+            s << "INSERT INTO skills_robot (skill_id, robot_config_id) VALUES (" << skillId << ", " << idForNewConfig
+              << ")";
             getStorage().executeStatementPriority(s.str());
 
         } else if (RobotConfiguration::configurationExists(usedHw)) {
@@ -111,10 +119,10 @@ namespace kukadu {
             stringstream s;
             s << "INSERT INTO robot_config (robot_config_id, hardware_instance_id, order_id) VALUES ";
             unsigned int i = 0;
-            for(; i < usedHw.size()-1; i++){
-                s << "(" << idForNewConfig << ", " << (usedHw.at(i))->getHardwareInstance() << ", " << i+1 << "), ";
+            for (; i < usedHw.size() - 1; i++) {
+                s << "(" << idForNewConfig << ", " << (usedHw.at(i))->getHardwareInstance() << ", " << i + 1 << "), ";
             }
-            s << "(" << idForNewConfig << ", "  << (usedHw.at(i))->getHardwareInstance() << ", " << i+1 << ")";
+            s << "(" << idForNewConfig << ", " << (usedHw.at(i))->getHardwareInstance() << ", " << i + 1 << ")";
 
             getStorage().executeStatementPriority(s.str());
 
@@ -125,18 +133,19 @@ namespace kukadu {
 
             s.str(string());
             auto skillId = getStorage().getCachedLabelId("skills", "skill_id", "label", skillName);
-            s << "INSERT INTO skills_robot (skill_id, robot_config_id) VALUES (" << skillId << ", " << idForNewConfig << ")";
+            s << "INSERT INTO skills_robot (skill_id, robot_config_id) VALUES (" << skillId << ", " << idForNewConfig
+              << ")";
             getStorage().executeStatementPriority(s.str());
 
         }
 
-        if(!didExist)
+        if (!didExist)
             createSkillFromThisInternal(skillName);
 
     }
 
     int Controller::getControllerId() {
-        if(!isInstalled)
+        if (!isInstalled)
             installDb();
         return controllerId;
     }
@@ -145,10 +154,10 @@ namespace kukadu {
 
         KUKADU_MODULE_START_USAGE();
 
-        if(!isInstalled)
+        if (!isInstalled)
             installDb();
 
-        auto& stSingleton = SensorStorageSingleton::get();
+        auto &stSingleton = SensorStorageSingleton::get();
 
         auto usedHardware = getUsedHardware();
         stSingleton.registerHardware(usedHardware);
@@ -158,13 +167,15 @@ namespace kukadu {
         long long int startTime = getCurrentTime();
 
         stringstream s;
-        s << "insert into controller_executions(controller_id, start_timestamp, end_timestamp, successful) values(" << controllerId << ", " << startTime << ", null, false)";
+        s << "insert into controller_executions(controller_id, start_timestamp, end_timestamp, successful) values("
+          << controllerId << ", " << startTime << ", null, false)";
         getStorage().executeStatementPriority(s.str());
 
-        if(isSkill) {
+        if (isSkill) {
             s.str("");
             skillId = getStorage().getCachedLabelId("skills", "skill_id", "label", skillName);
-            s << "insert into skill_executions(skill_id, start_timestamp, end_timestamp, successful) values(" << skillId << ", "
+            s << "insert into skill_executions(skill_id, start_timestamp, end_timestamp, successful) values(" << skillId
+              << ", "
               << startTime << ", null, false)";
             getStorage().executeStatementPriority(s.str());
         }
@@ -174,16 +185,17 @@ namespace kukadu {
         stSingleton.stopStorage(usedHardware);
 
         s.str("");
-        s << "update controller_executions set end_timestamp = " << getCurrentTime() << ", successful = true where controller_id = " <<
-             controllerId << " and start_timestamp = " << startTime;
+        s << "update controller_executions set end_timestamp = " << getCurrentTime()
+          << ", successful = true where controller_id = " <<
+          controllerId << " and start_timestamp = " << startTime;
 
-        if(isSkill) {
+        if (isSkill) {
             auto skillSuccessful = getLastSkillExecutionSuccessful();
             s.str("");
             s << "update skill_executions set end_timestamp = " << getCurrentTime() <<
-                 ", successful = " << ((skillSuccessful) ? "true" : "false") <<
-                 " where skill_id = " <<
-                 skillId << " and start_timestamp = " << startTime;
+              ", successful = " << ((skillSuccessful) ? "true" : "false") <<
+              " where skill_id = " <<
+              skillId << " and start_timestamp = " << startTime;
             getStorage().executeStatementPriority(s.str());
         }
 
@@ -197,8 +209,12 @@ namespace kukadu {
 
     bool Controller::isControllerInstalled() {
 
-        try { int controllerIdTmp = getStorage().getCachedLabelId("controller_types", "controller_id", "controller_implementation_class", getClassName()); controllerId = controllerIdTmp; } catch(KukaduException& ex) {}
-        if(controllerId != CONTROLLER_ID_NOT_FOUND)
+        try {
+            int controllerIdTmp = getStorage().getCachedLabelId("controller_types", "controller_id",
+                                                                "controller_implementation_class", getClassName());
+            controllerId = controllerIdTmp;
+        } catch (KukaduException &ex) {}
+        if (controllerId != CONTROLLER_ID_NOT_FOUND)
             return true;
         else
 
@@ -208,14 +224,17 @@ namespace kukadu {
 
     void Controller::installDb() {
 
-        if(!isControllerInstalled()) {
+        if (!isControllerInstalled()) {
 
             auto augmentedInfo = getAugmentedInfoTableName();
 
-            auto insertSql = "insert into controller_types(controller_implementation_class, augmented_info_table) values('" + getClassName() + "', '" + ((augmentedInfo.first) ? augmentedInfo.second : "") + "')";
+            auto insertSql =
+                    "insert into controller_types(controller_implementation_class, augmented_info_table) values('" +
+                    getClassName() + "', '" + ((augmentedInfo.first) ? augmentedInfo.second : "") + "')";
             getStorage().executeStatementPriority(insertSql);
 
-            controllerId = getStorage().getCachedLabelId("controller_types", "controller_id", "controller_implementation_class", getClassName());
+            controllerId = getStorage().getCachedLabelId("controller_types", "controller_id",
+                                                         "controller_implementation_class", getClassName());
 
         }
 
@@ -228,13 +247,13 @@ namespace kukadu {
     }
 
     bool Controller::requiresGrasp() {
-        if(!isInstalled)
+        if (!isInstalled)
             installDb();
         return requiresGraspInternal();
     }
 
     bool Controller::producesGrasp() {
-        if(!isInstalled)
+        if (!isInstalled)
             installDb();
         return producesGraspInternal();
     }
@@ -279,7 +298,7 @@ namespace kukadu {
     }
 
     bool Controller::getLastSkillExecutionSuccessful() {
-        if(!getIsSkill())
+        if (!getIsSkill())
             throw KukaduException("(Controller) controller does not represent a skill");
         return true;
     }
@@ -294,8 +313,8 @@ namespace kukadu {
 
 
     /*****************CartesianPtp *************************/
-    CartesianPtp::CartesianPtp(StorageSingleton& storage, KUKADU_SHARED_PTR<ControlQueue> leftQueue)
-        : Controller(storage, "cartesian_move_skill_wrapper", {leftQueue}, 0.01) {
+    CartesianPtp::CartesianPtp(StorageSingleton &storage, KUKADU_SHARED_PTR<ControlQueue> leftQueue)
+            : Controller(storage, "cartesian_move_skill_wrapper", {leftQueue}, 0.01) {
 
         this->leftQueue = leftQueue;
 
@@ -338,12 +357,12 @@ namespace kukadu {
     }
 
     /************************* JointPtp *********************************/
-    JointPtp::JointPtp(StorageSingleton& storage, KUKADU_SHARED_PTR<JointHardware> hardware)
-        : Controller(storage, "JointPtp", {hardware}, 0.01) {
+    JointPtp::JointPtp(StorageSingleton &storage, KUKADU_SHARED_PTR<JointHardware> hardware)
+            : Controller(storage, "JointPtp", {hardware}, 0.01) {
 
         this->hardware = hardware;
         this->joints = {0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0};
-
+        maxForce = -1.0;
     }
 
     bool JointPtp::requiresGraspInternal() {
@@ -360,9 +379,13 @@ namespace kukadu {
 
     std::shared_ptr<ControllerResult> JointPtp::executeInternal() {
 
-        if(hardware)
-            hardware->jointPtp(stdToArmadilloVec(this->joints));
-
+        if (hardware) {
+            if (maxForce != -1) {
+                hardware->jointPtp(stdToArmadilloVec(this->joints));
+            }
+            else {
+            }
+        }
         return nullptr;
 
     }
@@ -371,14 +394,19 @@ namespace kukadu {
         return "JointPtp";
     }
 
+    void JointPtp::setMaxForce(double force) {
+        maxForce = force;
+    }
+
     void JointPtp::createSkillFromThisInternal(std::string skillName) {
         // nothing to do
     }
 
-    std::vector<KUKADU_SHARED_PTR<Hardware> > mergeHardware(std::vector<KUKADU_SHARED_PTR<kukadu::Controller> > controllers) {
+    std::vector<KUKADU_SHARED_PTR<Hardware> >
+    mergeHardware(std::vector<KUKADU_SHARED_PTR<kukadu::Controller> > controllers) {
 
         std::vector<KUKADU_SHARED_PTR<Hardware> > combinedHardware;
-        for(auto& controller : controllers) {
+        for (auto &controller : controllers) {
             auto hw = controller->getUsedHardware();
             combinedHardware.insert(combinedHardware.end(), hw.begin(), hw.end());
         }\
@@ -387,12 +415,12 @@ namespace kukadu {
 
     }
 
-    LocalizeObject::LocalizeObject(StorageSingleton& dbStorage, KUKADU_SHARED_PTR<Kinect> hardware)
-        : Controller(dbStorage, "LocalizeObject", {hardware}, 0.01) {
+    LocalizeObject::LocalizeObject(StorageSingleton &dbStorage, KUKADU_SHARED_PTR<Kinect> hardware)
+            : Controller(dbStorage, "LocalizeObject", {hardware}, 0.01) {
 
         //loc = make_shared<PCBlobDetector>(hardware);
-        loc = make_shared<PCBlobDetector>(hardware, dbStorage, "origin", stdToArmadilloVec({0.2, 0.63, 0.0}), 0.2, 0.2
-                , false);
+        loc = make_shared<PCBlobDetector>(hardware, dbStorage, "origin", stdToArmadilloVec({0.2, 0.63, 0.0}), 0.2, 0.2,
+                                          false);
         this->objectName = "something";
     }
 
@@ -408,7 +436,7 @@ namespace kukadu {
         return false;
     }
 
-    void LocalizeObject::setObjectToLoad(std::string objectToLoad){
+    void LocalizeObject::setObjectToLoad(std::string objectToLoad) {
         this->objectName = objectToLoad;
     }
 
@@ -444,7 +472,7 @@ namespace kukadu {
 
     namespace skill {
 
-        KinestheticTeaching::KinestheticTeaching(StorageSingleton& storage, KUKADU_SHARED_PTR<ControlQueue> hardware)
+        KinestheticTeaching::KinestheticTeaching(StorageSingleton &storage, KUKADU_SHARED_PTR<ControlQueue> hardware)
                 : Controller(storage, "KinestheticTeaching", {hardware}, 0.01) {
 
             teachingHardware = hardware;
@@ -468,7 +496,7 @@ namespace kukadu {
             //teachingHardware->jointPtp({-1.5, 1.56, 2.33, -1.74, -1.85, 1.27, 0.71});
 
             ros::Rate r(10);
-            while(teachingRunning)
+            while (teachingRunning)
                 r.sleep();
 
             return nullptr;
@@ -495,7 +523,7 @@ namespace kukadu {
             cout << "(KinestheticTeaching) starting measurement" << endl;
 
             teachingRunning = true;
-            if(!teachingThread)
+            if (!teachingThread)
                 teachingThread = make_shared<kukadu_thread>(&KinestheticTeaching::execute, this);
             else
                 throw KukaduException("(KinestheticTeaching) the teaching thread is already running");
@@ -507,7 +535,7 @@ namespace kukadu {
             endTime = getCurrentTime();
             teachingRunning = false;
 
-            if(teachingThread) {
+            if (teachingThread) {
                 teachingThread->join();
                 teachingThread = nullptr;
             }
@@ -521,12 +549,13 @@ namespace kukadu {
 
         void KinestheticTeaching::installDmp(std::string dmpName) {
 
-            if(!teachingDmp)
+            if (!teachingDmp)
                 throw KukaduException("(KinestheticTeaching) Dmp has not been trained yet");
 
             auto availableSkills = SkillFactory::get().listAvailableSkills();
-            if(std::find(availableSkills.begin(), availableSkills.end(), dmpName) != availableSkills.end())
-                throw KukaduException("(KinestheticTeaching) A skill with this name is already installed; choose a different name");
+            if (std::find(availableSkills.begin(), availableSkills.end(), dmpName) != availableSkills.end())
+                throw KukaduException(
+                        "(KinestheticTeaching) A skill with this name is already installed; choose a different name");
 
             DMPExecutor teachingExecutor(getStorage(), teachingDmp, teachingHardware);
 
@@ -536,7 +565,7 @@ namespace kukadu {
 
         void KinestheticTeaching::testTrainedDmp() {
 
-            if(!teachingDmp)
+            if (!teachingDmp)
                 throw KukaduException("(KinestheticTeaching) Dmp has not been trained yet");
 
             /*

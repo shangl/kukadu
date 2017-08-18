@@ -41,9 +41,11 @@ namespace kukadu {
 
         // is called by set simulation mode
         virtual void setSimulationModeInChain(bool simulationMode);
+
         virtual KUKADU_SHARED_PTR<ControllerResult> executeInternal() = 0;
 
         virtual bool requiresGraspInternal() = 0;
+
         virtual bool producesGraspInternal() = 0;
 
         // provides information whether or not a separated database table is required to store more information
@@ -52,6 +54,7 @@ namespace kukadu {
         virtual std::pair<bool, std::string> getAugmentedInfoTableName();
 
         virtual void installDb();
+
         bool isControllerInstalled();
 
         // stores the current controller instance as skill (which solves a specific problem) to the database
@@ -59,16 +62,20 @@ namespace kukadu {
 
     public:
 
-        Controller(StorageSingleton& dbStorage, std::string caption, std::vector<KUKADU_SHARED_PTR<Hardware> > usedHardware,
+        Controller(StorageSingleton &dbStorage, std::string caption,
+                   std::vector<KUKADU_SHARED_PTR<Hardware> > usedHardware,
                    double simulationFailingProbability, bool isSkill = false, std::string skillName = "");
 
         void shutUp();
+
         void startTalking();
+
         virtual void setSimulationMode(bool simulationMode);
 
         virtual std::vector<KUKADU_SHARED_PTR<Hardware> > getUsedHardware();
 
         virtual bool requiresGrasp();
+
         virtual bool producesGrasp();
 
         virtual void initialize();
@@ -77,7 +84,7 @@ namespace kukadu {
         // returns false otherwise
         virtual bool getSimulationMode();
 
-        virtual void prepare() { }
+        virtual void prepare() {}
 
         double getSimFailingProb();
 
@@ -86,6 +93,7 @@ namespace kukadu {
         int getControllerId();
 
         bool getIsSkill();
+
         virtual bool getLastSkillExecutionSuccessful();
 
         virtual KUKADU_SHARED_PTR<ControllerResult> execute();
@@ -111,9 +119,10 @@ namespace kukadu {
 
     public:
 
-        CartesianPtp(StorageSingleton& storage, KUKADU_SHARED_PTR<ControlQueue> leftQueue);
+        CartesianPtp(StorageSingleton &storage, KUKADU_SHARED_PTR<ControlQueue> leftQueue);
 
         bool requiresGraspInternal();
+
         bool producesGraspInternal();
 
         void setCartesians(geometry_msgs::Pose cartesians);
@@ -131,6 +140,7 @@ namespace kukadu {
 
         std::vector<double> joints;
         KUKADU_SHARED_PTR<JointHardware> hardware;
+        double maxForce;
 
     protected:
 
@@ -138,9 +148,10 @@ namespace kukadu {
 
     public:
 
-        JointPtp(StorageSingleton& storage, KUKADU_SHARED_PTR<JointHardware> hardware);
+        JointPtp(StorageSingleton &storage, KUKADU_SHARED_PTR<JointHardware> hardware);
 
         bool requiresGraspInternal();
+
         bool producesGraspInternal();
 
         void setJoints(std::vector<double> joints);
@@ -148,6 +159,8 @@ namespace kukadu {
         std::shared_ptr<ControllerResult> executeInternal();
 
         std::string getClassName();
+
+        void setMaxForce(double force);
 
     };
 
@@ -164,9 +177,10 @@ namespace kukadu {
 
     public:
 
-        LocalizeObject(StorageSingleton& storage, KUKADU_SHARED_PTR<Kinect> hardware);
+        LocalizeObject(StorageSingleton &storage, KUKADU_SHARED_PTR<Kinect> hardware);
 
         virtual bool requiresGraspInternal();
+
         virtual bool producesGraspInternal();
 
         void setObjectToLoad(std::string objectToLoad);
@@ -187,7 +201,8 @@ namespace kukadu {
 
     };
 
-    std::vector<KUKADU_SHARED_PTR<Hardware> > mergeHardware(std::vector<KUKADU_SHARED_PTR<kukadu::Controller> > controllers);
+    std::vector<KUKADU_SHARED_PTR<Hardware> >
+    mergeHardware(std::vector<KUKADU_SHARED_PTR<kukadu::Controller> > controllers);
 
 }
 

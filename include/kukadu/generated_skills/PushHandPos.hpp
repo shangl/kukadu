@@ -1,11 +1,11 @@
-#ifndef KUKADU_GENERATED_SKILLS_PUSHPOSITION_H
-#define KUKADU_GENERATED_SKILLS_PUSHPOSITION_H
+#ifndef KUKADU_GENERATED_SKILLS_PUSHHANDPOS_H
+#define KUKADU_GENERATED_SKILLS_PUSHHANDPOS_H
 
 #include <stdlib.h>
 #include <kukadu/kukadu.hpp>
 namespace kukadu {
 	namespace skill
-		{class PushPosition : public kukadu::Controller {
+		{class PushHandPos : public kukadu::Controller {
 
 private:
 
@@ -15,7 +15,7 @@ protected:
 
 public:
 
-	PushPosition(kukadu::StorageSingleton& storage, std::vector< KUKADU_SHARED_PTR< kukadu::Hardware > > hardware);
+	PushHandPos(kukadu::StorageSingleton& storage, std::vector< KUKADU_SHARED_PTR< kukadu::Hardware > > hardware);
 
 	bool requiresGraspInternal();
 
