@@ -86,14 +86,6 @@ function reloadBlocks(xmlText) {
 	Blockly.Xml.domToWorkspace(Blockly.mainWorkspace, dom);
 	
 	loading = false;
-	
-	
-	$('#xmlparsediv').html(xmlText);
-	$('#xmlparsediv block[type="skillloader"]').each(function(idx, el) {
-		console.log(idx);
-		console.log(el);
-	});
-	
 
 	var currentId = 0;
 	$('#xmlparsediv').html(xmlText);
