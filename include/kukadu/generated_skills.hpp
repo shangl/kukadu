@@ -8,4 +8,5 @@
 	#include <kukadu/generated_skills/PushHandPos.hpp>
 	#include <kukadu/generated_skills/BlockingPos.hpp>
 	#include <kukadu/generated_skills/RightHandBlocking.hpp>
+	#include <kukadu/generated_skills/ChangeModeToIMP.hpp>
 #endif

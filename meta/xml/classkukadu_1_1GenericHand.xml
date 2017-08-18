@@ -294,15 +294,20 @@
         </inbodydescription>
         <location file="/home/andreasmennel/iis_robot_sw/iis_catkin_ws/src/kukadu/include/kukadu/robot/hand.hpp" line="66" column="1"/>
       </memberdef>
-      <memberdef kind="function" id="classkukadu_1_1GenericHand_1ace10b9b686606d9637f2061016664580" prot="public" static="no" const="no" explicit="no" inline="no" virt="virtual">
+      <memberdef kind="function" id="classkukadu_1_1GenericHand_1a567c7208de102e4f23abac5bece3fc74" prot="public" static="no" const="no" explicit="no" inline="no" virt="virtual">
         <type>std::vector&lt; <ref refid="structkukadu_1_1mes__result" kindref="compound">mes_result</ref> &gt;</type>
         <definition>std::vector&lt; mes_result &gt; kukadu::GenericHand::jointPtp</definition>
-        <argsstring>(arma::vec joints)</argsstring>
+        <argsstring>(arma::vec joints, double maxForce=-1.0)</argsstring>
         <name>jointPtp</name>
-        <reimplements refid="classkukadu_1_1JointHardware_1a6de32ca191c34f6230be7cdec4312f9b">jointPtp</reimplements>
+        <reimplements refid="classkukadu_1_1JointHardware_1a2624d1e4155c8bc437ef659f3b93905b">jointPtp</reimplements>
         <param>
           <type>arma::vec</type>
           <declname>joints</declname>
+        </param>
+        <param>
+          <type>double</type>
+          <declname>maxForce</declname>
+          <defval>-1.0</defval>
         </param>
         <briefdescription>
 <para>Implements simple point to point movement in joint space (blocks until target reached) </para>        </briefdescription>
@@ -318,7 +323,7 @@
 </para>        </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/home/andreasmennel/iis_robot_sw/iis_catkin_ws/src/kukadu/include/kukadu/robot/hand.hpp" line="72" column="1" bodyfile="/home/andreasmennel/iis_robot_sw/iis_catkin_ws/src/kukadu/src/robot/hand.cpp" bodystart="83" bodyend="86"/>
+        <location file="/home/andreasmennel/iis_robot_sw/iis_catkin_ws/src/kukadu/include/kukadu/robot/hand.hpp" line="72" column="1" bodyfile="/home/andreasmennel/iis_robot_sw/iis_catkin_ws/src/kukadu/src/robot/hand.cpp" bodystart="83" bodyend="88"/>
       </memberdef>
       <memberdef kind="function" id="classkukadu_1_1GenericHand_1a85b4263bc45c19fb64fd167d58ca7e43" prot="public" static="no" const="no" explicit="no" inline="no" virt="pure-virtual">
         <type>std::vector&lt; arma::mat &gt;</type>
@@ -346,7 +351,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/home/andreasmennel/iis_robot_sw/iis_catkin_ws/src/kukadu/include/kukadu/robot/hand.hpp" line="76" column="1" bodyfile="/home/andreasmennel/iis_robot_sw/iis_catkin_ws/src/kukadu/src/robot/hand.cpp" bodystart="196" bodyend="196"/>
+        <location file="/home/andreasmennel/iis_robot_sw/iis_catkin_ws/src/kukadu/include/kukadu/robot/hand.hpp" line="76" column="1" bodyfile="/home/andreasmennel/iis_robot_sw/iis_catkin_ws/src/kukadu/src/robot/hand.cpp" bodystart="198" bodyend="198"/>
       </memberdef>
       <memberdef kind="function" id="classkukadu_1_1GenericHand_1ad2a3163741664b6777e148343d22879a" prot="public" static="no" const="no" explicit="no" inline="no" virt="pure-virtual">
         <type>void</type>
@@ -398,7 +403,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/home/andreasmennel/iis_robot_sw/iis_catkin_ws/src/kukadu/include/kukadu/robot/hand.hpp" line="82" column="1" bodyfile="/home/andreasmennel/iis_robot_sw/iis_catkin_ws/src/kukadu/src/robot/hand.cpp" bodystart="92" bodyend="132"/>
+        <location file="/home/andreasmennel/iis_robot_sw/iis_catkin_ws/src/kukadu/include/kukadu/robot/hand.hpp" line="82" column="1" bodyfile="/home/andreasmennel/iis_robot_sw/iis_catkin_ws/src/kukadu/src/robot/hand.cpp" bodystart="94" bodyend="134"/>
       </memberdef>
       <memberdef kind="function" id="classkukadu_1_1GenericHand_1ada5ce87f83585abeb39709e50388e60f" prot="public" static="no" const="no" explicit="no" inline="no" virt="virtual">
         <type>double</type>
@@ -412,7 +417,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/home/andreasmennel/iis_robot_sw/iis_catkin_ws/src/kukadu/include/kukadu/robot/hand.hpp" line="83" column="1" bodyfile="/home/andreasmennel/iis_robot_sw/iis_catkin_ws/src/kukadu/src/robot/hand.cpp" bodystart="88" bodyend="90"/>
+        <location file="/home/andreasmennel/iis_robot_sw/iis_catkin_ws/src/kukadu/include/kukadu/robot/hand.hpp" line="83" column="1" bodyfile="/home/andreasmennel/iis_robot_sw/iis_catkin_ws/src/kukadu/src/robot/hand.cpp" bodystart="90" bodyend="92"/>
       </memberdef>
       <memberdef kind="function" id="classkukadu_1_1GenericHand_1a143ad4b435a3c0449175409317c49ade" prot="public" static="no" const="no" explicit="no" inline="no" virt="virtual">
         <type>void</type>
@@ -468,86 +473,86 @@
     <detaileddescription>
     </detaileddescription>
     <inheritancegraph>
-      <node id="301">
+      <node id="310">
         <label>kukadu::TimedObject</label>
         <link refid="classkukadu_1_1TimedObject"/>
       </node>
-      <node id="297">
+      <node id="306">
         <label>kukadu::JointHardware</label>
         <link refid="classkukadu_1_1JointHardware"/>
-        <childnode refid="298" relation="public-inheritance">
+        <childnode refid="307" relation="public-inheritance">
         </childnode>
       </node>
-      <node id="302">
+      <node id="311">
         <label>kukadu::KukieHand</label>
         <link refid="classkukadu_1_1KukieHand"/>
-        <childnode refid="296" relation="public-inheritance">
+        <childnode refid="305" relation="public-inheritance">
         </childnode>
       </node>
-      <node id="303">
+      <node id="312">
         <label>kukadu::PlottingHand</label>
         <link refid="classkukadu_1_1PlottingHand"/>
-        <childnode refid="296" relation="public-inheritance">
+        <childnode refid="305" relation="public-inheritance">
         </childnode>
       </node>
-      <node id="299">
+      <node id="308">
         <label>kukadu::StorageHolder</label>
         <link refid="classkukadu_1_1StorageHolder"/>
       </node>
-      <node id="298">
+      <node id="307">
         <label>kukadu::Hardware</label>
         <link refid="classkukadu_1_1Hardware"/>
-        <childnode refid="299" relation="public-inheritance">
+        <childnode refid="308" relation="public-inheritance">
         </childnode>
       </node>
-      <node id="300">
+      <node id="309">
         <label>kukadu::DestroyableObject</label>
         <link refid="classkukadu_1_1DestroyableObject"/>
       </node>
-      <node id="296">
+      <node id="305">
         <label>kukadu::GenericHand</label>
         <link refid="classkukadu_1_1GenericHand"/>
-        <childnode refid="297" relation="public-inheritance">
+        <childnode refid="306" relation="public-inheritance">
         </childnode>
-        <childnode refid="300" relation="public-inheritance">
+        <childnode refid="309" relation="public-inheritance">
         </childnode>
-        <childnode refid="301" relation="public-inheritance">
+        <childnode refid="310" relation="public-inheritance">
         </childnode>
       </node>
     </inheritancegraph>
     <collaborationgraph>
-      <node id="309">
+      <node id="318">
         <label>kukadu::TimedObject</label>
         <link refid="classkukadu_1_1TimedObject"/>
       </node>
-      <node id="305">
+      <node id="314">
         <label>kukadu::JointHardware</label>
         <link refid="classkukadu_1_1JointHardware"/>
-        <childnode refid="306" relation="public-inheritance">
+        <childnode refid="315" relation="public-inheritance">
         </childnode>
       </node>
-      <node id="307">
+      <node id="316">
         <label>kukadu::StorageHolder</label>
         <link refid="classkukadu_1_1StorageHolder"/>
       </node>
-      <node id="306">
+      <node id="315">
         <label>kukadu::Hardware</label>
         <link refid="classkukadu_1_1Hardware"/>
-        <childnode refid="307" relation="public-inheritance">
+        <childnode refid="316" relation="public-inheritance">
         </childnode>
       </node>
-      <node id="308">
+      <node id="317">
         <label>kukadu::DestroyableObject</label>
         <link refid="classkukadu_1_1DestroyableObject"/>
       </node>
-      <node id="304">
+      <node id="313">
         <label>kukadu::GenericHand</label>
         <link refid="classkukadu_1_1GenericHand"/>
-        <childnode refid="305" relation="public-inheritance">
+        <childnode refid="314" relation="public-inheritance">
         </childnode>
-        <childnode refid="308" relation="public-inheritance">
+        <childnode refid="317" relation="public-inheritance">
         </childnode>
-        <childnode refid="309" relation="public-inheritance">
+        <childnode refid="318" relation="public-inheritance">
         </childnode>
       </node>
     </collaborationgraph>
@@ -581,7 +586,7 @@
       <member refid="classkukadu_1_1GenericHand_1a2d60e0d3403d0f037b5dd9ec08cac651" prot="private" virt="non-virtual"><scope>kukadu::GenericHand</scope><name>isFirstStorage</name></member>
       <member refid="classkukadu_1_1Hardware_1aac291d24667e5fb61ff6f1c7cdbad47f" prot="public" virt="virtual"><scope>kukadu::GenericHand</scope><name>isStarted</name></member>
       <member refid="classkukadu_1_1JointHardware_1a0514e200c960e5246107dff0dbee11da" prot="public" virt="non-virtual"><scope>kukadu::GenericHand</scope><name>JointHardware</name></member>
-      <member refid="classkukadu_1_1GenericHand_1ace10b9b686606d9637f2061016664580" prot="public" virt="virtual"><scope>kukadu::GenericHand</scope><name>jointPtp</name></member>
+      <member refid="classkukadu_1_1GenericHand_1a567c7208de102e4f23abac5bece3fc74" prot="public" virt="virtual"><scope>kukadu::GenericHand</scope><name>jointPtp</name></member>
       <member refid="classkukadu_1_1JointHardware_1a8145b779bc5fbda910d4c412e18dabe8" prot="public" virt="virtual"><scope>kukadu::GenericHand</scope><name>loadData</name></member>
       <member refid="classkukadu_1_1Hardware_1a4ea17ba6cb91d1a5f53e5b2c96c0cd8c" prot="public" virt="pure-virtual" ambiguityscope="kukadu::Hardware::"><scope>kukadu::GenericHand</scope><name>loadData</name></member>
       <member refid="classkukadu_1_1Hardware_1ac1f3b6662e4446c2dd67d702fccc8b7e" prot="public" virt="non-virtual"><scope>kukadu::GenericHand</scope><name>loadInstanceIdFromName</name></member>

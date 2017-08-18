@@ -120,7 +120,7 @@ Blockly.cake['main_block'] = function (block) {
     var codeClass = new CodeClass(skillName, skillCode);
 
     var funcName = 'main';
-    var returnValue = "hardwareFactory.stopAllCreatedHardware();\nstorage.waitForEmptyCache();\nreturn EXIT_SUCCESS;\n";
+    var returnValue = "hardwareFactory.stopAllCreatedHardware();\nkukadu::ModuleUsageSingleton::get().stopStatisticsModule();\nstorage.waitForEmptyCache();\nreturn EXIT_SUCCESS;\n";
     var returnType = 'int';
     roscode = Blockly.cake.prefixLines(roscode, Blockly.cake.INDENT);
     installHardware = Blockly.cake.prefixLines(installHardware, Blockly.cake.INDENT);

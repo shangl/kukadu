@@ -694,19 +694,23 @@
         </inbodydescription>
         <location file="/home/andreasmennel/iis_robot_sw/iis_catkin_ws/src/kukadu/include/kukadu/robot/queue.hpp" line="131" column="1"/>
       </memberdef>
-      <memberdef kind="function" id="classkukadu_1_1ControlQueue_1a89a7b21307ccd0759a9e8b8e483cb919" prot="protected" static="no" const="no" explicit="no" inline="no" virt="pure-virtual">
+      <memberdef kind="function" id="classkukadu_1_1ControlQueue_1a589ab7c4d832e363bf6455388c53bc1f" prot="protected" static="no" const="no" explicit="no" inline="no" virt="pure-virtual">
         <type>void</type>
         <definition>virtual void kukadu::ControlQueue::jointPtpInternal</definition>
-        <argsstring>(arma::vec joints)=0</argsstring>
+        <argsstring>(arma::vec joints, double maxForce)=0</argsstring>
         <name>jointPtpInternal</name>
-        <reimplementedby refid="classkukadu_1_1KukieControlQueue_1a73687ba516b2cfb5f9124ae9f165fc57">jointPtpInternal</reimplementedby>
-        <reimplementedby refid="classkukadu_1_1PlottingControlQueue_1aa7ce40e835eeccff82acafea0f069c83">jointPtpInternal</reimplementedby>
+        <reimplementedby refid="classkukadu_1_1KukieControlQueue_1ae1211a177e71bcd56d2581b2390c9fe9">jointPtpInternal</reimplementedby>
+        <reimplementedby refid="classkukadu_1_1PlottingControlQueue_1ad76da884253e785b62be16339cadb22f">jointPtpInternal</reimplementedby>
         <param>
           <type>arma::vec</type>
           <declname>joints</declname>
         </param>
+        <param>
+          <type>double</type>
+          <declname>maxForce</declname>
+        </param>
         <briefdescription>
-<para>The control queue collects the data about the actually executed trajectory during a point to point movement. This is automatically done by <ref refid="classkukadu_1_1ControlQueue_1ad11059100321b24a1af8ef7de8314353" kindref="member">jointPtp()</ref>. <ref refid="classkukadu_1_1ControlQueue_1ad11059100321b24a1af8ef7de8314353" kindref="member">jointPtp()</ref> calls the <ref refid="classkukadu_1_1ControlQueue_1a89a7b21307ccd0759a9e8b8e483cb919" kindref="member">jointPtpInternal()</ref> function that actually plans the movement in joint space and executes it. </para>        </briefdescription>
+<para>The control queue collects the data about the actually executed trajectory during a point to point movement. This is automatically done by <ref refid="classkukadu_1_1ControlQueue_1a8abede34ed4751bb855e055f24b61a09" kindref="member">jointPtp()</ref>. <ref refid="classkukadu_1_1ControlQueue_1a8abede34ed4751bb855e055f24b61a09" kindref="member">jointPtp()</ref> calls the <ref refid="classkukadu_1_1ControlQueue_1a589ab7c4d832e363bf6455388c53bc1f" kindref="member">jointPtpInternal()</ref> function that actually plans the movement in joint space and executes it. </para>        </briefdescription>
         <detaileddescription>
         </detaileddescription>
         <inbodydescription>
@@ -1176,7 +1180,7 @@
           <declname>joints</declname>
         </param>
         <briefdescription>
-<para>If this is set, the robot moves to the desired position by <ref refid="classkukadu_1_1ControlQueue_1ad11059100321b24a1af8ef7de8314353" kindref="member">jointPtp()</ref> before the queue is started. </para>        </briefdescription>
+<para>If this is set, the robot moves to the desired position by <ref refid="classkukadu_1_1ControlQueue_1a8abede34ed4751bb855e055f24b61a09" kindref="member">jointPtp()</ref> before the queue is started. </para>        </briefdescription>
         <detaileddescription>
 <para><parameterlist kind="param"><parameteritem>
 <parameternamelist>
@@ -1191,15 +1195,20 @@
         </inbodydescription>
         <location file="/home/andreasmennel/iis_robot_sw/iis_catkin_ws/src/kukadu/include/kukadu/robot/queue.hpp" line="271" column="1" bodyfile="/home/andreasmennel/iis_robot_sw/iis_catkin_ws/src/kukadu/src/robot/queue.cpp" bodystart="327" bodyend="329"/>
       </memberdef>
-      <memberdef kind="function" id="classkukadu_1_1ControlQueue_1ad11059100321b24a1af8ef7de8314353" prot="public" static="no" const="no" explicit="no" inline="no" virt="virtual">
+      <memberdef kind="function" id="classkukadu_1_1ControlQueue_1a8abede34ed4751bb855e055f24b61a09" prot="public" static="no" const="no" explicit="no" inline="no" virt="virtual">
         <type>std::vector&lt; <ref refid="structkukadu_1_1mes__result" kindref="compound">mes_result</ref> &gt;</type>
         <definition>std::vector&lt; mes_result &gt; kukadu::ControlQueue::jointPtp</definition>
-        <argsstring>(arma::vec joints)</argsstring>
+        <argsstring>(arma::vec joints, double maxForce=-1.0)</argsstring>
         <name>jointPtp</name>
-        <reimplements refid="classkukadu_1_1JointHardware_1a6de32ca191c34f6230be7cdec4312f9b">jointPtp</reimplements>
+        <reimplements refid="classkukadu_1_1JointHardware_1a2624d1e4155c8bc437ef659f3b93905b">jointPtp</reimplements>
         <param>
           <type>arma::vec</type>
           <declname>joints</declname>
+        </param>
+        <param>
+          <type>double</type>
+          <declname>maxForce</declname>
+          <defval>-1.0</defval>
         </param>
         <briefdescription>
 <para>Implements simple point to point movement in joint space (blocks until target reached) </para>        </briefdescription>
@@ -1986,59 +1995,6 @@
     <detaileddescription>
 <para>The <ref refid="classkukadu_1_1ControlQueue" kindref="compound">ControlQueue</ref> interface is the bridge between all implemented control methods (DMPs, ...) and the robot hardware. It supports functionlity such as trajectory following, simple point to point planning or security mechanisms such as maximum force values for execution. </para>    </detaileddescription>
     <inheritancegraph>
-      <node id="177">
-        <label>kukadu::ControlQueue</label>
-        <link refid="classkukadu_1_1ControlQueue"/>
-        <childnode refid="178" relation="public-inheritance">
-        </childnode>
-        <childnode refid="181" relation="public-inheritance">
-        </childnode>
-        <childnode refid="182" relation="public-inheritance">
-        </childnode>
-        <childnode refid="183" relation="public-inheritance">
-        </childnode>
-      </node>
-      <node id="183">
-        <label>kukadu::TimedObject</label>
-        <link refid="classkukadu_1_1TimedObject"/>
-      </node>
-      <node id="184">
-        <label>kukadu::KukieControlQueue</label>
-        <link refid="classkukadu_1_1KukieControlQueue"/>
-        <childnode refid="177" relation="public-inheritance">
-        </childnode>
-      </node>
-      <node id="182">
-        <label>KUKADU_ENABLE_SHARED_FROM_THIS&lt; ControlQueue &gt;</label>
-      </node>
-      <node id="178">
-        <label>kukadu::JointHardware</label>
-        <link refid="classkukadu_1_1JointHardware"/>
-        <childnode refid="179" relation="public-inheritance">
-        </childnode>
-      </node>
-      <node id="180">
-        <label>kukadu::StorageHolder</label>
-        <link refid="classkukadu_1_1StorageHolder"/>
-      </node>
-      <node id="179">
-        <label>kukadu::Hardware</label>
-        <link refid="classkukadu_1_1Hardware"/>
-        <childnode refid="180" relation="public-inheritance">
-        </childnode>
-      </node>
-      <node id="181">
-        <label>kukadu::DestroyableObject</label>
-        <link refid="classkukadu_1_1DestroyableObject"/>
-      </node>
-      <node id="185">
-        <label>kukadu::PlottingControlQueue</label>
-        <link refid="classkukadu_1_1PlottingControlQueue"/>
-        <childnode refid="177" relation="public-inheritance">
-        </childnode>
-      </node>
-    </inheritancegraph>
-    <collaborationgraph>
       <node id="186">
         <label>kukadu::ControlQueue</label>
         <link refid="classkukadu_1_1ControlQueue"/>
@@ -2054,6 +2010,12 @@
       <node id="192">
         <label>kukadu::TimedObject</label>
         <link refid="classkukadu_1_1TimedObject"/>
+      </node>
+      <node id="193">
+        <label>kukadu::KukieControlQueue</label>
+        <link refid="classkukadu_1_1KukieControlQueue"/>
+        <childnode refid="186" relation="public-inheritance">
+        </childnode>
       </node>
       <node id="191">
         <label>KUKADU_ENABLE_SHARED_FROM_THIS&lt; ControlQueue &gt;</label>
@@ -2075,6 +2037,53 @@
         </childnode>
       </node>
       <node id="190">
+        <label>kukadu::DestroyableObject</label>
+        <link refid="classkukadu_1_1DestroyableObject"/>
+      </node>
+      <node id="194">
+        <label>kukadu::PlottingControlQueue</label>
+        <link refid="classkukadu_1_1PlottingControlQueue"/>
+        <childnode refid="186" relation="public-inheritance">
+        </childnode>
+      </node>
+    </inheritancegraph>
+    <collaborationgraph>
+      <node id="195">
+        <label>kukadu::ControlQueue</label>
+        <link refid="classkukadu_1_1ControlQueue"/>
+        <childnode refid="196" relation="public-inheritance">
+        </childnode>
+        <childnode refid="199" relation="public-inheritance">
+        </childnode>
+        <childnode refid="200" relation="public-inheritance">
+        </childnode>
+        <childnode refid="201" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="201">
+        <label>kukadu::TimedObject</label>
+        <link refid="classkukadu_1_1TimedObject"/>
+      </node>
+      <node id="200">
+        <label>KUKADU_ENABLE_SHARED_FROM_THIS&lt; ControlQueue &gt;</label>
+      </node>
+      <node id="196">
+        <label>kukadu::JointHardware</label>
+        <link refid="classkukadu_1_1JointHardware"/>
+        <childnode refid="197" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="198">
+        <label>kukadu::StorageHolder</label>
+        <link refid="classkukadu_1_1StorageHolder"/>
+      </node>
+      <node id="197">
+        <label>kukadu::Hardware</label>
+        <link refid="classkukadu_1_1Hardware"/>
+        <childnode refid="198" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="199">
         <label>kukadu::DestroyableObject</label>
         <link refid="classkukadu_1_1DestroyableObject"/>
       </node>
@@ -2150,8 +2159,8 @@
       <member refid="classkukadu_1_1ControlQueue_1aab655546199f0bb0a268cbc8fdfcb32d" prot="private" virt="non-virtual"><scope>kukadu::ControlQueue</scope><name>isShutUpFlag</name></member>
       <member refid="classkukadu_1_1Hardware_1aac291d24667e5fb61ff6f1c7cdbad47f" prot="public" virt="virtual"><scope>kukadu::ControlQueue</scope><name>isStarted</name></member>
       <member refid="classkukadu_1_1JointHardware_1a0514e200c960e5246107dff0dbee11da" prot="public" virt="non-virtual"><scope>kukadu::ControlQueue</scope><name>JointHardware</name></member>
-      <member refid="classkukadu_1_1ControlQueue_1ad11059100321b24a1af8ef7de8314353" prot="public" virt="virtual"><scope>kukadu::ControlQueue</scope><name>jointPtp</name></member>
-      <member refid="classkukadu_1_1ControlQueue_1a89a7b21307ccd0759a9e8b8e483cb919" prot="protected" virt="pure-virtual"><scope>kukadu::ControlQueue</scope><name>jointPtpInternal</name></member>
+      <member refid="classkukadu_1_1ControlQueue_1a8abede34ed4751bb855e055f24b61a09" prot="public" virt="virtual"><scope>kukadu::ControlQueue</scope><name>jointPtp</name></member>
+      <member refid="classkukadu_1_1ControlQueue_1a589ab7c4d832e363bf6455388c53bc1f" prot="protected" virt="pure-virtual"><scope>kukadu::ControlQueue</scope><name>jointPtpInternal</name></member>
       <member refid="classkukadu_1_1ControlQueue_1aaf35ae626b08ac53508acdc84ab58c8f" prot="public" virt="non-virtual"><scope>kukadu::ControlQueue</scope><name>jointPtpNb</name></member>
       <member refid="classkukadu_1_1ControlQueue_1a2a09888eb67a39dbb7a599af66cd2300" prot="private" virt="non-virtual"><scope>kukadu::ControlQueue</scope><name>jointPtpRunning</name></member>
       <member refid="classkukadu_1_1ControlQueue_1adafb46399d4855b3c6d6cf85e6290ed8" prot="private" virt="non-virtual"><scope>kukadu::ControlQueue</scope><name>jointPtpThr</name></member>

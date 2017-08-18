@@ -1,16 +1,14 @@
-#ifndef KUKADU_GENERATED_SKILLS_CHANGESTIFFNESS_H
-#define KUKADU_GENERATED_SKILLS_CHANGESTIFFNESS_H
+#ifndef KUKADU_GENERATED_SKILLS_CHANGEMODETOIMP_H
+#define KUKADU_GENERATED_SKILLS_CHANGEMODETOIMP_H
 
 #include <stdlib.h>
 #include <kukadu/kukadu.hpp>
 
 namespace kukadu {
     namespace skill {
-        class ChangeStiffness : public kukadu::Controller {
+        class ChangeModeToIMP : public kukadu::Controller {
 
         private:
-            int stiffnessType;
-            double damping;
 
         protected:
 
@@ -18,7 +16,7 @@ namespace kukadu {
 
         public:
 
-            ChangeStiffness(kukadu::StorageSingleton &storage,
+            ChangeModeToIMP(kukadu::StorageSingleton &storage,
                             std::vector<KUKADU_SHARED_PTR<kukadu::Hardware> > hardware);
 
             bool requiresGraspInternal();
@@ -29,9 +27,6 @@ namespace kukadu {
 
             std::string getClassName();
 
-            void setStiffnessType(int StiffnessType);
-
-            void setStandardStiffnessDamping(double StandardStiffnessDamping);
         };
     }
 }

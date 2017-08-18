@@ -391,38 +391,77 @@ var Databaseloader = new function () {
         var setFunctions = {};
         $.ajax({
             type: "GET",
-            url: this.attributePath + "classkukadu_1_1" + controllerClass + ".xml",
+            url: Databaseloader.attributePath + "classkukadu_1_1" + controllerClass + ".xml",
             dataType: "xml",
             async: false,
             success: function (xml) {
-                var pubfunctionBlock = $(xml).find('sectiondef').filter(function () {
-                    return $(this).attr('kind') === "public-func";
-                });
+                if (xml === null) {
+                    $.ajax({
+                        type: "GET",
+                        url: Databaseloader.attributePath + "classkukadu_1_1skill_1_1" + controllerClass + ".xml",
+                        dataType: "xml",
+                        async: false,
+                        success: function (xml) {
+                            var pubfunctionBlock = $(xml).find('sectiondef').filter(function () {
+                                return $(this).attr('kind') === "public-func";
+                            });
 
-                $(pubfunctionBlock).find('memberdef').each(function () {
-                    var functionname = $(this).find('name').text();
-                    if (functionname.substring(0, 3) === "set") {
-                        var argumentString = $(this).find('argsstring').text();
+                            $(pubfunctionBlock).find('memberdef').each(function () {
+                                var functionname = $(this).find('name').text();
+                                if (functionname.substring(0, 3) === "set") {
+                                    var argumentString = $(this).find('argsstring').text();
 
-                        var regex = /\w+(<[\w:<>*,\s]+>\s\w+|[\w+\s:*]+)+/g;
-                        var m;
+                                    var regex = /\w+(<[\w:<>*,\s]+>\s\w+|[\w+\s:*]+)+/g;
+                                    var m;
 
-                        while ((m = regex.exec(argumentString)) !== null) {
-                            // This is necessary to avoid infinite loops with zero-width matches
-                            if (m.index === regex.lastIndex) {
-                                regex.lastIndex++;
-                            }
+                                    while ((m = regex.exec(argumentString)) !== null) {
+                                        // This is necessary to avoid infinite loops with zero-width matches
+                                        if (m.index === regex.lastIndex) {
+                                            regex.lastIndex++;
+                                        }
 
-                            var match = m[0];   //only get full match
-                            var subStringIndex = match.lastIndexOf(" ");
-                            var dataType = match.substr(0, subStringIndex);
+                                        var match = m[0];   //only get full match
+                                        var subStringIndex = match.lastIndexOf(" ");
+                                        var dataType = match.substr(0, subStringIndex);
 
-                            var setFunction = new SetterFunction(functionname, dataType, "not defined");
-                            setFunctions[setFunction.name] = setFunction;
+                                        var setFunction = new SetterFunction(functionname, dataType, "not defined");
+                                        setFunctions[setFunction.name] = setFunction;
+                                    }
+                                }
+
+                            });
                         }
-                    }
+                    });
+                } else {
+                    var pubfunctionBlock = $(xml).find('sectiondef').filter(function () {
+                        return $(this).attr('kind') === "public-func";
+                    });
 
-                });
+                    $(pubfunctionBlock).find('memberdef').each(function () {
+                        var functionname = $(this).find('name').text();
+                        if (functionname.substring(0, 3) === "set") {
+                            var argumentString = $(this).find('argsstring').text();
+
+                            var regex = /\w+(<[\w:<>*,\s]+>\s\w+|[\w+\s:*]+)+/g;
+                            var m;
+
+                            while ((m = regex.exec(argumentString)) !== null) {
+                                // This is necessary to avoid infinite loops with zero-width matches
+                                if (m.index === regex.lastIndex) {
+                                    regex.lastIndex++;
+                                }
+
+                                var match = m[0];   //only get full match
+                                var subStringIndex = match.lastIndexOf(" ");
+                                var dataType = match.substr(0, subStringIndex);
+
+                                var setFunction = new SetterFunction(functionname, dataType, "not defined");
+                                setFunctions[setFunction.name] = setFunction;
+                            }
+                        }
+
+                    });
+                }
             }
         });
 

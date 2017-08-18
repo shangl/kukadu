@@ -157,16 +157,21 @@
         </inbodydescription>
         <location file="/home/andreasmennel/iis_robot_sw/iis_catkin_ws/src/kukadu/include/kukadu/robot/hardware.hpp" line="140" column="1" bodyfile="/home/andreasmennel/iis_robot_sw/iis_catkin_ws/src/kukadu/src/robot/hardware.cpp" bodystart="308" bodyend="421"/>
       </memberdef>
-      <memberdef kind="function" id="classkukadu_1_1JointHardware_1a6de32ca191c34f6230be7cdec4312f9b" prot="public" static="no" const="no" explicit="no" inline="no" virt="pure-virtual">
+      <memberdef kind="function" id="classkukadu_1_1JointHardware_1a2624d1e4155c8bc437ef659f3b93905b" prot="public" static="no" const="no" explicit="no" inline="no" virt="pure-virtual">
         <type>std::vector&lt; <ref refid="structkukadu_1_1mes__result" kindref="compound">kukadu::mes_result</ref> &gt;</type>
         <definition>virtual std::vector&lt;kukadu::mes_result&gt; kukadu::JointHardware::jointPtp</definition>
-        <argsstring>(arma::vec joints)=0</argsstring>
+        <argsstring>(arma::vec joints, double maxForce=-1.0)=0</argsstring>
         <name>jointPtp</name>
-        <reimplementedby refid="classkukadu_1_1GenericHand_1ace10b9b686606d9637f2061016664580">jointPtp</reimplementedby>
-        <reimplementedby refid="classkukadu_1_1ControlQueue_1ad11059100321b24a1af8ef7de8314353">jointPtp</reimplementedby>
+        <reimplementedby refid="classkukadu_1_1GenericHand_1a567c7208de102e4f23abac5bece3fc74">jointPtp</reimplementedby>
+        <reimplementedby refid="classkukadu_1_1ControlQueue_1a8abede34ed4751bb855e055f24b61a09">jointPtp</reimplementedby>
         <param>
           <type>arma::vec</type>
           <declname>joints</declname>
+        </param>
+        <param>
+          <type>double</type>
+          <declname>maxForce</declname>
+          <defval>-1.0</defval>
         </param>
         <briefdescription>
         </briefdescription>
@@ -235,64 +240,34 @@
     <detaileddescription>
     </detaileddescription>
     <inheritancegraph>
-      <node id="386">
+      <node id="395">
         <label>kukadu::ControlQueue</label>
         <link refid="classkukadu_1_1ControlQueue"/>
-        <childnode refid="383" relation="public-inheritance">
+        <childnode refid="392" relation="public-inheritance">
         </childnode>
       </node>
-      <node id="387">
+      <node id="396">
         <label>kukadu::KukieControlQueue</label>
         <link refid="classkukadu_1_1KukieControlQueue"/>
-        <childnode refid="386" relation="public-inheritance">
+        <childnode refid="395" relation="public-inheritance">
         </childnode>
       </node>
-      <node id="383">
-        <label>kukadu::JointHardware</label>
-        <link refid="classkukadu_1_1JointHardware"/>
-        <childnode refid="384" relation="public-inheritance">
-        </childnode>
-      </node>
-      <node id="390">
-        <label>kukadu::KukieHand</label>
-        <link refid="classkukadu_1_1KukieHand"/>
-        <childnode refid="389" relation="public-inheritance">
-        </childnode>
-      </node>
-      <node id="391">
-        <label>kukadu::PlottingHand</label>
-        <link refid="classkukadu_1_1PlottingHand"/>
-        <childnode refid="389" relation="public-inheritance">
-        </childnode>
-      </node>
-      <node id="385">
-        <label>kukadu::StorageHolder</label>
-        <link refid="classkukadu_1_1StorageHolder"/>
-      </node>
-      <node id="384">
-        <label>kukadu::Hardware</label>
-        <link refid="classkukadu_1_1Hardware"/>
-        <childnode refid="385" relation="public-inheritance">
-        </childnode>
-      </node>
-      <node id="389">
-        <label>kukadu::GenericHand</label>
-        <link refid="classkukadu_1_1GenericHand"/>
-        <childnode refid="383" relation="public-inheritance">
-        </childnode>
-      </node>
-      <node id="388">
-        <label>kukadu::PlottingControlQueue</label>
-        <link refid="classkukadu_1_1PlottingControlQueue"/>
-        <childnode refid="386" relation="public-inheritance">
-        </childnode>
-      </node>
-    </inheritancegraph>
-    <collaborationgraph>
       <node id="392">
         <label>kukadu::JointHardware</label>
         <link refid="classkukadu_1_1JointHardware"/>
         <childnode refid="393" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="399">
+        <label>kukadu::KukieHand</label>
+        <link refid="classkukadu_1_1KukieHand"/>
+        <childnode refid="398" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="400">
+        <label>kukadu::PlottingHand</label>
+        <link refid="classkukadu_1_1PlottingHand"/>
+        <childnode refid="398" relation="public-inheritance">
         </childnode>
       </node>
       <node id="394">
@@ -303,6 +278,36 @@
         <label>kukadu::Hardware</label>
         <link refid="classkukadu_1_1Hardware"/>
         <childnode refid="394" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="398">
+        <label>kukadu::GenericHand</label>
+        <link refid="classkukadu_1_1GenericHand"/>
+        <childnode refid="392" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="397">
+        <label>kukadu::PlottingControlQueue</label>
+        <link refid="classkukadu_1_1PlottingControlQueue"/>
+        <childnode refid="395" relation="public-inheritance">
+        </childnode>
+      </node>
+    </inheritancegraph>
+    <collaborationgraph>
+      <node id="401">
+        <label>kukadu::JointHardware</label>
+        <link refid="classkukadu_1_1JointHardware"/>
+        <childnode refid="402" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="403">
+        <label>kukadu::StorageHolder</label>
+        <link refid="classkukadu_1_1StorageHolder"/>
+      </node>
+      <node id="402">
+        <label>kukadu::Hardware</label>
+        <link refid="classkukadu_1_1Hardware"/>
+        <childnode refid="403" relation="public-inheritance">
         </childnode>
       </node>
     </collaborationgraph>
@@ -326,7 +331,7 @@
       <member refid="classkukadu_1_1Hardware_1af353cdce2e2bb25ec341374a30b6b85a" prot="protected" virt="pure-virtual"><scope>kukadu::JointHardware</scope><name>installHardwareTypeInternal</name></member>
       <member refid="classkukadu_1_1Hardware_1aac291d24667e5fb61ff6f1c7cdbad47f" prot="public" virt="virtual"><scope>kukadu::JointHardware</scope><name>isStarted</name></member>
       <member refid="classkukadu_1_1JointHardware_1a0514e200c960e5246107dff0dbee11da" prot="public" virt="non-virtual"><scope>kukadu::JointHardware</scope><name>JointHardware</name></member>
-      <member refid="classkukadu_1_1JointHardware_1a6de32ca191c34f6230be7cdec4312f9b" prot="public" virt="pure-virtual"><scope>kukadu::JointHardware</scope><name>jointPtp</name></member>
+      <member refid="classkukadu_1_1JointHardware_1a2624d1e4155c8bc437ef659f3b93905b" prot="public" virt="pure-virtual"><scope>kukadu::JointHardware</scope><name>jointPtp</name></member>
       <member refid="classkukadu_1_1JointHardware_1a8145b779bc5fbda910d4c412e18dabe8" prot="public" virt="virtual"><scope>kukadu::JointHardware</scope><name>loadData</name></member>
       <member refid="classkukadu_1_1Hardware_1a4ea17ba6cb91d1a5f53e5b2c96c0cd8c" prot="public" virt="pure-virtual" ambiguityscope="kukadu::Hardware::"><scope>kukadu::JointHardware</scope><name>loadData</name></member>
       <member refid="classkukadu_1_1Hardware_1ac1f3b6662e4446c2dd67d702fccc8b7e" prot="public" virt="non-virtual"><scope>kukadu::JointHardware</scope><name>loadInstanceIdFromName</name></member>

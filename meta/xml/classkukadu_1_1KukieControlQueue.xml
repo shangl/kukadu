@@ -1504,7 +1504,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/home/andreasmennel/iis_robot_sw/iis_catkin_ws/src/kukadu/include/kukadu/robot/kukiequeue.hpp" line="151" column="1" bodyfile="/home/andreasmennel/iis_robot_sw/iis_catkin_ws/src/kukadu/src/robot/queue.cpp" bodystart="1496" bodyend="1503"/>
+        <location file="/home/andreasmennel/iis_robot_sw/iis_catkin_ws/src/kukadu/include/kukadu/robot/kukiequeue.hpp" line="151" column="1" bodyfile="/home/andreasmennel/iis_robot_sw/iis_catkin_ws/src/kukadu/src/robot/queue.cpp" bodystart="1512" bodyend="1519"/>
       </memberdef>
       <memberdef kind="function" id="classkukadu_1_1KukieControlQueue_1a0b8275bfebaa2554c54e44627c5ece9b" prot="private" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
         <type>void</type>
@@ -1693,23 +1693,27 @@
         </inbodydescription>
         <location file="/home/andreasmennel/iis_robot_sw/iis_catkin_ws/src/kukadu/include/kukadu/robot/kukiequeue.hpp" line="168" column="1" bodyfile="/home/andreasmennel/iis_robot_sw/iis_catkin_ws/src/kukadu/src/robot/queue.cpp" bodystart="793" bodyend="815"/>
       </memberdef>
-      <memberdef kind="function" id="classkukadu_1_1KukieControlQueue_1a73687ba516b2cfb5f9124ae9f165fc57" prot="protected" static="no" const="no" explicit="no" inline="no" virt="virtual">
+      <memberdef kind="function" id="classkukadu_1_1KukieControlQueue_1ae1211a177e71bcd56d2581b2390c9fe9" prot="protected" static="no" const="no" explicit="no" inline="no" virt="virtual">
         <type>void</type>
         <definition>void kukadu::KukieControlQueue::jointPtpInternal</definition>
-        <argsstring>(arma::vec joints)</argsstring>
+        <argsstring>(arma::vec joints, double maxForce)</argsstring>
         <name>jointPtpInternal</name>
-        <reimplements refid="classkukadu_1_1ControlQueue_1a89a7b21307ccd0759a9e8b8e483cb919">jointPtpInternal</reimplements>
+        <reimplements refid="classkukadu_1_1ControlQueue_1a589ab7c4d832e363bf6455388c53bc1f">jointPtpInternal</reimplements>
         <param>
           <type>arma::vec</type>
           <declname>joints</declname>
         </param>
+        <param>
+          <type>double</type>
+          <declname>maxForce</declname>
+        </param>
         <briefdescription>
-<para>The control queue collects the data about the actually executed trajectory during a point to point movement. This is automatically done by <ref refid="classkukadu_1_1ControlQueue_1ad11059100321b24a1af8ef7de8314353" kindref="member">jointPtp()</ref>. <ref refid="classkukadu_1_1ControlQueue_1ad11059100321b24a1af8ef7de8314353" kindref="member">jointPtp()</ref> calls the <ref refid="classkukadu_1_1KukieControlQueue_1a73687ba516b2cfb5f9124ae9f165fc57" kindref="member">jointPtpInternal()</ref> function that actually plans the movement in joint space and executes it. </para>        </briefdescription>
+<para>The control queue collects the data about the actually executed trajectory during a point to point movement. This is automatically done by <ref refid="classkukadu_1_1ControlQueue_1a8abede34ed4751bb855e055f24b61a09" kindref="member">jointPtp()</ref>. <ref refid="classkukadu_1_1ControlQueue_1a8abede34ed4751bb855e055f24b61a09" kindref="member">jointPtp()</ref> calls the <ref refid="classkukadu_1_1KukieControlQueue_1ae1211a177e71bcd56d2581b2390c9fe9" kindref="member">jointPtpInternal()</ref> function that actually plans the movement in joint space and executes it. </para>        </briefdescription>
         <detaileddescription>
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/home/andreasmennel/iis_robot_sw/iis_catkin_ws/src/kukadu/include/kukadu/robot/kukiequeue.hpp" line="169" column="1" bodyfile="/home/andreasmennel/iis_robot_sw/iis_catkin_ws/src/kukadu/src/robot/queue.cpp" bodystart="1456" bodyend="1494"/>
+        <location file="/home/andreasmennel/iis_robot_sw/iis_catkin_ws/src/kukadu/include/kukadu/robot/kukiequeue.hpp" line="169" column="1" bodyfile="/home/andreasmennel/iis_robot_sw/iis_catkin_ws/src/kukadu/src/robot/queue.cpp" bodystart="1456" bodyend="1510"/>
       </memberdef>
       <memberdef kind="function" id="classkukadu_1_1KukieControlQueue_1a801f4d00e4eed9c11a53cb1521db42f0" prot="protected" static="no" const="no" explicit="no" inline="no" virt="virtual">
         <type>void</type>
@@ -1895,7 +1899,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/home/andreasmennel/iis_robot_sw/iis_catkin_ws/src/kukadu/include/kukadu/robot/kukiequeue.hpp" line="186" column="1" bodyfile="/home/andreasmennel/iis_robot_sw/iis_catkin_ws/src/kukadu/src/robot/queue.cpp" bodystart="1644" bodyend="1646"/>
+        <location file="/home/andreasmennel/iis_robot_sw/iis_catkin_ws/src/kukadu/include/kukadu/robot/kukiequeue.hpp" line="186" column="1" bodyfile="/home/andreasmennel/iis_robot_sw/iis_catkin_ws/src/kukadu/src/robot/queue.cpp" bodystart="1660" bodyend="1662"/>
       </memberdef>
       <memberdef kind="function" id="classkukadu_1_1KukieControlQueue_1ad3f9dc447a06533dc04242e8c1c692b1" prot="public" static="no" const="no" explicit="no" inline="no" virt="virtual">
         <type>int</type>
@@ -2006,7 +2010,7 @@
 </para>        </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/home/andreasmennel/iis_robot_sw/iis_catkin_ws/src/kukadu/include/kukadu/robot/kukiequeue.hpp" line="194" column="1" bodyfile="/home/andreasmennel/iis_robot_sw/iis_catkin_ws/src/kukadu/src/robot/queue.cpp" bodystart="1505" bodyend="1532"/>
+        <location file="/home/andreasmennel/iis_robot_sw/iis_catkin_ws/src/kukadu/include/kukadu/robot/kukiequeue.hpp" line="194" column="1" bodyfile="/home/andreasmennel/iis_robot_sw/iis_catkin_ws/src/kukadu/src/robot/queue.cpp" bodystart="1521" bodyend="1548"/>
       </memberdef>
       <memberdef kind="function" id="classkukadu_1_1KukieControlQueue_1a3145cfcb1dc4879e2e3f16ad4829ce09" prot="public" static="no" const="no" explicit="no" inline="no" virt="virtual">
         <type>void</type>
@@ -2087,7 +2091,7 @@
 </para>        </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/home/andreasmennel/iis_robot_sw/iis_catkin_ws/src/kukadu/include/kukadu/robot/kukiequeue.hpp" line="195" column="1" bodyfile="/home/andreasmennel/iis_robot_sw/iis_catkin_ws/src/kukadu/src/robot/queue.cpp" bodystart="1575" bodyend="1577"/>
+        <location file="/home/andreasmennel/iis_robot_sw/iis_catkin_ws/src/kukadu/include/kukadu/robot/kukiequeue.hpp" line="195" column="1" bodyfile="/home/andreasmennel/iis_robot_sw/iis_catkin_ws/src/kukadu/src/robot/queue.cpp" bodystart="1591" bodyend="1593"/>
       </memberdef>
       <memberdef kind="function" id="classkukadu_1_1KukieControlQueue_1a2fc7e8a253f488e89d423a810d59087c" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
         <type>void</type>
@@ -2128,7 +2132,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/home/andreasmennel/iis_robot_sw/iis_catkin_ws/src/kukadu/include/kukadu/robot/kukiequeue.hpp" line="196" column="1" bodyfile="/home/andreasmennel/iis_robot_sw/iis_catkin_ws/src/kukadu/src/robot/queue.cpp" bodystart="1579" bodyend="1629"/>
+        <location file="/home/andreasmennel/iis_robot_sw/iis_catkin_ws/src/kukadu/include/kukadu/robot/kukiequeue.hpp" line="196" column="1" bodyfile="/home/andreasmennel/iis_robot_sw/iis_catkin_ws/src/kukadu/src/robot/queue.cpp" bodystart="1595" bodyend="1645"/>
       </memberdef>
       <memberdef kind="function" id="classkukadu_1_1KukieControlQueue_1aecd7cca5bf0b7dd990d061acdee56ce3" prot="public" static="no" const="no" explicit="no" inline="no" virt="virtual">
         <type>int</type>
@@ -2214,7 +2218,7 @@
 </para>        </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/home/andreasmennel/iis_robot_sw/iis_catkin_ws/src/kukadu/include/kukadu/robot/kukiequeue.hpp" line="206" column="1" bodyfile="/home/andreasmennel/iis_robot_sw/iis_catkin_ws/src/kukadu/src/robot/queue.cpp" bodystart="1631" bodyend="1642"/>
+        <location file="/home/andreasmennel/iis_robot_sw/iis_catkin_ws/src/kukadu/include/kukadu/robot/kukiequeue.hpp" line="206" column="1" bodyfile="/home/andreasmennel/iis_robot_sw/iis_catkin_ws/src/kukadu/src/robot/queue.cpp" bodystart="1647" bodyend="1658"/>
       </memberdef>
       <memberdef kind="function" id="classkukadu_1_1KukieControlQueue_1a947d5f2d42060bdd6d7271d80ac40e7a" prot="public" static="no" const="no" explicit="no" inline="no" virt="virtual">
         <type><ref refid="structkukadu_1_1mes__result" kindref="compound">mes_result</ref></type>
@@ -2348,7 +2352,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/home/andreasmennel/iis_robot_sw/iis_catkin_ws/src/kukadu/include/kukadu/robot/kukiequeue.hpp" line="219" column="1" bodyfile="/home/andreasmennel/iis_robot_sw/iis_catkin_ws/src/kukadu/src/robot/queue.cpp" bodystart="1534" bodyend="1536"/>
+        <location file="/home/andreasmennel/iis_robot_sw/iis_catkin_ws/src/kukadu/include/kukadu/robot/kukiequeue.hpp" line="219" column="1" bodyfile="/home/andreasmennel/iis_robot_sw/iis_catkin_ws/src/kukadu/src/robot/queue.cpp" bodystart="1550" bodyend="1552"/>
       </memberdef>
       <memberdef kind="function" id="classkukadu_1_1KukieControlQueue_1aa375b9307d8fd31706168047cfb7f72c" prot="public" static="no" const="no" explicit="no" inline="no" virt="virtual">
         <type>void</type>
@@ -2362,7 +2366,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/home/andreasmennel/iis_robot_sw/iis_catkin_ws/src/kukadu/include/kukadu/robot/kukiequeue.hpp" line="220" column="1" bodyfile="/home/andreasmennel/iis_robot_sw/iis_catkin_ws/src/kukadu/src/robot/queue.cpp" bodystart="1538" bodyend="1573"/>
+        <location file="/home/andreasmennel/iis_robot_sw/iis_catkin_ws/src/kukadu/include/kukadu/robot/kukiequeue.hpp" line="220" column="1" bodyfile="/home/andreasmennel/iis_robot_sw/iis_catkin_ws/src/kukadu/src/robot/queue.cpp" bodystart="1554" bodyend="1589"/>
       </memberdef>
       <memberdef kind="function" id="classkukadu_1_1KukieControlQueue_1abbb48ae5adf3cfdcd7baf3cade4bc751" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
         <type>KUKADU_SHARED_PTR&lt; <ref refid="classkukadu_1_1PathPlanner" kindref="compound">PathPlanner</ref> &gt;</type>
@@ -2396,95 +2400,95 @@
     <detaileddescription>
     </detaileddescription>
     <inheritancegraph>
-      <node id="456">
+      <node id="465">
         <label>kukadu::ControlQueue</label>
         <link refid="classkukadu_1_1ControlQueue"/>
-        <childnode refid="457" relation="public-inheritance">
-        </childnode>
-        <childnode refid="460" relation="public-inheritance">
-        </childnode>
-        <childnode refid="461" relation="public-inheritance">
-        </childnode>
-        <childnode refid="462" relation="public-inheritance">
-        </childnode>
-      </node>
-      <node id="462">
-        <label>kukadu::TimedObject</label>
-        <link refid="classkukadu_1_1TimedObject"/>
-      </node>
-      <node id="455">
-        <label>kukadu::KukieControlQueue</label>
-        <link refid="classkukadu_1_1KukieControlQueue"/>
-        <childnode refid="456" relation="public-inheritance">
-        </childnode>
-      </node>
-      <node id="461">
-        <label>KUKADU_ENABLE_SHARED_FROM_THIS&lt; ControlQueue &gt;</label>
-      </node>
-      <node id="457">
-        <label>kukadu::JointHardware</label>
-        <link refid="classkukadu_1_1JointHardware"/>
-        <childnode refid="458" relation="public-inheritance">
-        </childnode>
-      </node>
-      <node id="459">
-        <label>kukadu::StorageHolder</label>
-        <link refid="classkukadu_1_1StorageHolder"/>
-      </node>
-      <node id="458">
-        <label>kukadu::Hardware</label>
-        <link refid="classkukadu_1_1Hardware"/>
-        <childnode refid="459" relation="public-inheritance">
-        </childnode>
-      </node>
-      <node id="460">
-        <label>kukadu::DestroyableObject</label>
-        <link refid="classkukadu_1_1DestroyableObject"/>
-      </node>
-    </inheritancegraph>
-    <collaborationgraph>
-      <node id="464">
-        <label>kukadu::ControlQueue</label>
-        <link refid="classkukadu_1_1ControlQueue"/>
-        <childnode refid="465" relation="public-inheritance">
-        </childnode>
-        <childnode refid="468" relation="public-inheritance">
+        <childnode refid="466" relation="public-inheritance">
         </childnode>
         <childnode refid="469" relation="public-inheritance">
         </childnode>
         <childnode refid="470" relation="public-inheritance">
         </childnode>
+        <childnode refid="471" relation="public-inheritance">
+        </childnode>
       </node>
-      <node id="470">
+      <node id="471">
         <label>kukadu::TimedObject</label>
         <link refid="classkukadu_1_1TimedObject"/>
       </node>
-      <node id="463">
+      <node id="464">
         <label>kukadu::KukieControlQueue</label>
         <link refid="classkukadu_1_1KukieControlQueue"/>
-        <childnode refid="464" relation="public-inheritance">
+        <childnode refid="465" relation="public-inheritance">
         </childnode>
       </node>
-      <node id="469">
+      <node id="470">
         <label>KUKADU_ENABLE_SHARED_FROM_THIS&lt; ControlQueue &gt;</label>
       </node>
-      <node id="465">
+      <node id="466">
         <label>kukadu::JointHardware</label>
         <link refid="classkukadu_1_1JointHardware"/>
-        <childnode refid="466" relation="public-inheritance">
-        </childnode>
-      </node>
-      <node id="467">
-        <label>kukadu::StorageHolder</label>
-        <link refid="classkukadu_1_1StorageHolder"/>
-      </node>
-      <node id="466">
-        <label>kukadu::Hardware</label>
-        <link refid="classkukadu_1_1Hardware"/>
         <childnode refid="467" relation="public-inheritance">
         </childnode>
       </node>
       <node id="468">
+        <label>kukadu::StorageHolder</label>
+        <link refid="classkukadu_1_1StorageHolder"/>
+      </node>
+      <node id="467">
+        <label>kukadu::Hardware</label>
+        <link refid="classkukadu_1_1Hardware"/>
+        <childnode refid="468" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="469">
+        <label>kukadu::DestroyableObject</label>
+        <link refid="classkukadu_1_1DestroyableObject"/>
+      </node>
+    </inheritancegraph>
+    <collaborationgraph>
+      <node id="473">
+        <label>kukadu::ControlQueue</label>
+        <link refid="classkukadu_1_1ControlQueue"/>
+        <childnode refid="474" relation="public-inheritance">
+        </childnode>
+        <childnode refid="477" relation="public-inheritance">
+        </childnode>
+        <childnode refid="478" relation="public-inheritance">
+        </childnode>
+        <childnode refid="479" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="479">
+        <label>kukadu::TimedObject</label>
+        <link refid="classkukadu_1_1TimedObject"/>
+      </node>
+      <node id="472">
+        <label>kukadu::KukieControlQueue</label>
+        <link refid="classkukadu_1_1KukieControlQueue"/>
+        <childnode refid="473" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="478">
+        <label>KUKADU_ENABLE_SHARED_FROM_THIS&lt; ControlQueue &gt;</label>
+      </node>
+      <node id="474">
+        <label>kukadu::JointHardware</label>
+        <link refid="classkukadu_1_1JointHardware"/>
+        <childnode refid="475" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="476">
+        <label>kukadu::StorageHolder</label>
+        <link refid="classkukadu_1_1StorageHolder"/>
+      </node>
+      <node id="475">
+        <label>kukadu::Hardware</label>
+        <link refid="classkukadu_1_1Hardware"/>
+        <childnode refid="476" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="477">
         <label>kukadu::DestroyableObject</label>
         <link refid="classkukadu_1_1DestroyableObject"/>
       </node>
@@ -2597,8 +2601,8 @@
       <member refid="classkukadu_1_1KukieControlQueue_1a4baa640909f6ec554694fa25d6b303d0" prot="private" virt="non-virtual"><scope>kukadu::KukieControlQueue</scope><name>jntStiffnessTopic</name></member>
       <member refid="classkukadu_1_1KukieControlQueue_1a33906611b426865eeb19bd7b3f9061bf" prot="private" virt="non-virtual"><scope>kukadu::KukieControlQueue</scope><name>jointFrcMutex</name></member>
       <member refid="classkukadu_1_1JointHardware_1a0514e200c960e5246107dff0dbee11da" prot="public" virt="non-virtual"><scope>kukadu::KukieControlQueue</scope><name>JointHardware</name></member>
-      <member refid="classkukadu_1_1ControlQueue_1ad11059100321b24a1af8ef7de8314353" prot="public" virt="virtual"><scope>kukadu::KukieControlQueue</scope><name>jointPtp</name></member>
-      <member refid="classkukadu_1_1KukieControlQueue_1a73687ba516b2cfb5f9124ae9f165fc57" prot="protected" virt="virtual"><scope>kukadu::KukieControlQueue</scope><name>jointPtpInternal</name></member>
+      <member refid="classkukadu_1_1ControlQueue_1a8abede34ed4751bb855e055f24b61a09" prot="public" virt="virtual"><scope>kukadu::KukieControlQueue</scope><name>jointPtp</name></member>
+      <member refid="classkukadu_1_1KukieControlQueue_1ae1211a177e71bcd56d2581b2390c9fe9" prot="protected" virt="virtual"><scope>kukadu::KukieControlQueue</scope><name>jointPtpInternal</name></member>
       <member refid="classkukadu_1_1ControlQueue_1aaf35ae626b08ac53508acdc84ab58c8f" prot="public" virt="non-virtual"><scope>kukadu::KukieControlQueue</scope><name>jointPtpNb</name></member>
       <member refid="classkukadu_1_1KukieControlQueue_1a25bbad3bb667d11648405f47abf27da9" prot="private" virt="non-virtual"><scope>kukadu::KukieControlQueue</scope><name>kin</name></member>
       <member refid="classkukadu_1_1KukieControlQueue_1a9432608c427ce455d4410b160aa69b16" prot="private" virt="non-virtual"><scope>kukadu::KukieControlQueue</scope><name>kinematicsInitialized</name></member>

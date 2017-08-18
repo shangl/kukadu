@@ -17,12 +17,12 @@ namespace kukadu {
             return false;
         }
 
-        void ChangeStiffness::setStiffnessType(int type) {
-            stiffnessType = type;
+        void ChangeStiffness::setStiffnessType(int stiffnessType) {
+            this->stiffnessType = stiffnessType;
         }
 
-        void ChangeStiffness::setStandardStiffnessDamping(double dampingValue){
-            damping = dampingValue;
+        void ChangeStiffness::setStandardStiffnessDamping(double standardStiffnessDamping){
+            damping = standardStiffnessDamping;
         }
 
         std::shared_ptr<kukadu::ControllerResult> ChangeStiffness::executeInternal() {

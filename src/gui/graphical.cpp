@@ -507,7 +507,6 @@ namespace kukadu {
         QString fileName = QFileDialog::getOpenFileName(this,
                                                         tr("Load Blocks"), "",
                                                         tr("Blockly File (*.xml);;All Files (*)"));
-
         QString xml = "";
         QFile f(fileName);
         f.open(QFile::ReadOnly | QFile::Text);
@@ -529,8 +528,7 @@ namespace kukadu {
     }
 
     void KukaduGraphical::stopExecutionSlot() {
-        //todo
-        cout << "implement this" << endl;
+        system("kill %");
     }
 
     void KukaduGraphical::playSlot() {
