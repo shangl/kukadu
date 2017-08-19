@@ -1,0 +1,36 @@
+#ifndef KUKADU_GENERATED_SKILLS_WAITFORREACHED_H
+#define KUKADU_GENERATED_SKILLS_WAITFORREACHED_H
+
+#include <stdlib.h>
+#include <kukadu/kukadu.hpp>
+
+namespace kukadu {
+    namespace skill {
+        class WaitForReached : public kukadu::Controller {
+
+        private:
+            bool wait = false;
+
+        protected:
+
+            virtual void createSkillFromThisInternal(std::string skillName);
+
+        public:
+
+            WaitForReached(kukadu::StorageSingleton &storage,
+                           std::vector<KUKADU_SHARED_PTR<kukadu::Hardware> > hardware);
+
+            bool requiresGraspInternal();
+
+            bool producesGraspInternal();
+
+            std::shared_ptr<kukadu::ControllerResult> executeInternal();
+
+            std::string getClassName();
+
+            void setWait(bool wait);
+        };
+    }
+}
+
+#endif

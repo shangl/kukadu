@@ -871,12 +871,37 @@ namespace kukadu {
 
     }
 
+    void DMPExecutor::setExecutionMode(enum execution_modes mode) {
+        TrajectoryExecutor::setExecutionMode(mode);
+    }
+
+    void DMPExecutor::setDoRollBackOnMaxForceEvent(bool doRollBackOnMaxForceEvent) {
+        this->doRollBackOnMaxForceEvent(doRollBackOnMaxForceEvent);
+    }
+
     void DMPExecutor::doRollBackOnMaxForceEvent(bool doRollback) {
         KUKADU_MODULE_START_USAGE();
         this->doRollback = doRollback;
         cout << "(DMPExecutor) doRollback was set to " << this->doRollback << endl;
         KUKADU_MODULE_END_USAGE();
     }
+
+    void DMPExecutor::setMaxAbsForce(double maxAbsForce) {
+        this->maxAllowedForce = maxAbsForce;
+    }
+
+    void DMPExecutor::setMaxXForce(double maxXForce) {
+        this->maxXForce = maxXForce;
+    }
+
+    void DMPExecutor::setMaxYForce(double maxYForce) {
+        this->maxXForce = maxXForce;
+    }
+
+    void DMPExecutor::setMaxZForce(double maxZForce) {
+        this->maxXForce = maxXForce;
+    }
+
 
     void DMPExecutor::enableMaxForceMode(double maxAbsForce, double maxXForce, double maxYForce, double maxZForce) {
         KUKADU_MODULE_START_USAGE();
@@ -887,17 +912,17 @@ namespace kukadu {
             maxAllowedForce = maxAbsForce;
 
         if(maxXForce == IGNORE_FORCE)
-            maxXForce = DBL_MAX;
+            this->maxXForce = DBL_MAX;
         else
             this->maxXForce = maxXForce;
 
         if(maxYForce == IGNORE_FORCE)
-            maxYForce = DBL_MAX;
+            this->maxYForce = DBL_MAX;
         else
             this->maxYForce = maxYForce;
 
         if(maxZForce == IGNORE_FORCE)
-            maxZForce = DBL_MAX;
+            this->maxZForce = DBL_MAX;
         else
             this->maxZForce = maxZForce;
 

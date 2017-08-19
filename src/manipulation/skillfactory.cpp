@@ -88,6 +88,18 @@ namespace kukadu {
 			}
 		}
 
+,{
+			"WaitForReached", [](StorageSingleton& storage, int skillId, int controllerType, std::vector<KUKADU_SHARED_PTR<Hardware> > hardwareComponents) {
+				return make_shared<skill::WaitForReached>(storage, hardwareComponents);
+			}
+		}
+
+,{
+			"PushForward", [](StorageSingleton& storage, int skillId, int controllerType, std::vector<KUKADU_SHARED_PTR<Hardware> > hardwareComponents) {
+				return make_shared<skill::PushForward>(storage, hardwareComponents);
+			}
+		}
+
             //insertSkill
             //at this line further skills will be inserted automatically - do not remove it
     };

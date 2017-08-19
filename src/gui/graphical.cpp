@@ -551,7 +551,7 @@ namespace kukadu {
     }
 
     void KukaduGraphical::stopExecutionSlot() {
-        system("kill %");
+        loadInformationFromDatabase();
     }
 
     void KukaduGraphical::playSlot() {

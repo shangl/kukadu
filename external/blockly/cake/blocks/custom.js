@@ -129,7 +129,7 @@ Blockly.Blocks['skillloader'] = {
         var target = null;
 
         if (input != null) {
-            target = input.connection.targetConnection
+            target = input.connection.targetConnection;
         }
 
         var hardwareNames = [];
@@ -137,10 +137,10 @@ Blockly.Blocks['skillloader'] = {
             hardwareNames = target.sourceBlock_.getSelectedHardware();
         }
 
-        var hardwareInstances = {};
+        var hardwareInstances = [];
         for (var i = 0; i < hardwareNames.length; i++) {
             var instance = Databaseloader.hardwareMap[hardwareNames[i]];
-            hardwareInstances[instance.id] = instance;
+            hardwareInstances.push(instance);
         }
 
         return hardwareInstances;
@@ -153,10 +153,10 @@ Blockly.Blocks['skillloader'] = {
 
     onchange: function(event) {
 		if (loading == false) {
-			var addedHardwareSet = this.getCurrentHardware();
-			var hardwareKey = idsToKey(getKeysFromMap(addedHardwareSet));
+			var addedHardwareList = this.getCurrentHardware();
+			var hardwareKey = hardwareListToKeys(addedHardwareList);
 			var chosenConfig = Databaseloader.roboConfigMap[hardwareKey];
-			if (getKeysFromMap(addedHardwareSet).length > 0 && hardwareKey !== this._hardwareIds) {    //if addedHardware Changed
+			if (getKeysFromMap(addedHardwareList).length > 0 && hardwareKey !== this._hardwareIds) {    //if addedHardware Changed
 				this._hardwareIds = hardwareKey;
 
 				if (typeof chosenConfig == 'undefined') {
@@ -165,7 +165,7 @@ Blockly.Blocks['skillloader'] = {
 					var availableSkills = Databaseloader.roboConfigToSkillMap[chosenConfig.id];
 					this.setAvailableSkills(availableSkills);
 				}
-			} else if (getKeysFromMap(addedHardwareSet).length == 0 && hardwareKey !== this._hardwareIds) {
+			} else if (getKeysFromMap(addedHardwareList).length == 0 && hardwareKey !== this._hardwareIds) {
 				this._hardwareIds = -1;
 				var skillsInput = this.getInput('SKILL');
 				if (skillsInput != null) {
@@ -255,8 +255,8 @@ Blockly.Blocks['skillloader'] = {
                             }
 
                             var degOfFreedom = 0;
-                            var addedHardwareSet = this.getCurrentHardware();
-                            var hardwareKey = idsToKey(getKeysFromMap(addedHardwareSet));
+                            var addedHardwareList = this.getCurrentHardware();
+                            var hardwareKey = hardwareListToKeys(addedHardwareList);
                             var chosenConfig = Databaseloader.roboConfigMap[hardwareKey];
 
                             for (var j = 0; j < chosenConfig.hardwareInOrder.length; j++) {
@@ -306,7 +306,7 @@ Blockly.Blocks['hardware'] = {
             selectedHardware = child.sourceBlock_.getSelectedHardware();        //this works because it is a hardware Block
         }
 
-        return selectedHardware.concat([currentSelection]);
+        return [currentSelection].concat(selectedHardware);
     },
 
     onchange: function (event) {
@@ -554,6 +554,20 @@ function idsToKey(ids) {
             key += ids[i];
         } else {
             key += ids[i] + ", ";
+        }
+    }
+
+    return key;
+}
+
+function hardwareListToKeys(hardwareList) {
+    var key = "";
+
+    for(var i = 0; i < hardwareList.length; i++){
+        if (i === hardwareList.length - 1) {
+            key += hardwareList[i].id;
+        } else {
+            key += hardwareList[i].id + ", ";
         }
     }
 

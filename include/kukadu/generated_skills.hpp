@@ -9,4 +9,6 @@
 	#include <kukadu/generated_skills/BlockingPos.hpp>
 	#include <kukadu/generated_skills/RightHandBlocking.hpp>
 	#include <kukadu/generated_skills/ChangeModeToIMP.hpp>
+	#include <kukadu/generated_skills/WaitForReached.hpp>
+	#include <kukadu/generated_skills/PushForward.hpp>
 #endif
