@@ -16,8 +16,7 @@ namespace kukadu {
         }
 
         std::shared_ptr<kukadu::ControllerResult> MoveHome::executeInternal() {
-            auto &hardwareFactory = kukadu::HardwareFactory::get();
-            auto sLeftQueue650 = getUsedHardware()[0];
+            auto sLeftQueue650 = KUKADU_DYNAMIC_POINTER_CAST<ControlQueue>(getUsedHardware()[0]);
             sLeftQueue650->install();
             sLeftQueue650->start();
 
