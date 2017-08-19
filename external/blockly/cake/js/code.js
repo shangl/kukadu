@@ -3,7 +3,7 @@
 var rtl = (document.location.search == '?rtl');
 var block = null;
 
-setFieldValueError = false;
+var setFieldValueError = false;
 
 function start() {
     Blockly.inject(document.getElementById('blocklyDiv'),
