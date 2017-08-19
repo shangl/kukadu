@@ -83,7 +83,7 @@ function reloadBlocks(xmlText) {
 	$('#xmlparsediv field[name*="attribute"]').remove();
 	
 	var dom = Blockly.Xml.textToDom($('#xmlparsediv').html());
-	Blockly.Xml.domToWorkspace(Blockly.mainWorkspace, dom);
+	Blockly.Xml.domToWorkspace(Blockly.mainWorkspace, dom, true);
 	
 	loading = false;
 

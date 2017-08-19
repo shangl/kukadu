@@ -72,7 +72,7 @@ Blockly.setUidCounter = function(val) {
  */
 Blockly.genUid = function(id) {
   if((typeof id !== 'undefined') && id != null) {
-    Blockly.uidCounter_ = Math.max(Blockly.uidCounter_, id) + 1;
+    Blockly.uidCounter_ = Math.max(Blockly.uidCounter_, parseInt(id)) + 1;
     return id;
   }
   var uid = (++Blockly.uidCounter_).toString();
@@ -1261,8 +1261,11 @@ Blockly.Block.prototype.getTitleValue = function(name) {
  */
 Blockly.Block.prototype.setFieldValue = function(newValue, name) {
   var field = this.getField_(name);
-  goog.asserts.assertObject(field, 'Field "%s" not found.', name);
-  field.setValue(newValue);
+  if((typeof field !== 'undefined') && field != null) {
+    goog.asserts.assertObject(field, 'Field "%s" not found.', name);
+    field.setValue(newValue);
+  } else
+	console.log("attribute " + name + " could not be set");
 };
 
 /**

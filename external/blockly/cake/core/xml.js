@@ -211,14 +211,14 @@ Blockly.Xml.textToDom = function(text) {
  * @param {!Blockly.Workspace} workspace The SVG workspace.
  * @param {!Element} xml XML DOM.
  */
-Blockly.Xml.domToWorkspace = function(workspace, xml) {
+Blockly.Xml.domToWorkspace = function(workspace, xml, useForLoad) {
   var width
   if (Blockly.RTL) {
     width = workspace.getMetrics().viewWidth;
   }
   for (var x = 0, xmlChild; xmlChild = xml.childNodes[x]; x++) {
     if (xmlChild.nodeName.toLowerCase() == 'block') {
-      var block = Blockly.Xml.domToBlock(workspace, xmlChild);
+      var block = Blockly.Xml.domToBlock(workspace, xmlChild, false, useForLoad);
       var blockX = parseInt(xmlChild.getAttribute('x'), 10);
       var blockY = parseInt(xmlChild.getAttribute('y'), 10);
       if (!isNaN(blockX) && !isNaN(blockY)) {
@@ -238,7 +238,7 @@ Blockly.Xml.domToWorkspace = function(workspace, xml) {
  * @return {!Blockly.Block} The root block created.
  * @private
  */
-Blockly.Xml.domToBlock = function(workspace, xmlBlock, opt_reuseBlock) {
+Blockly.Xml.domToBlock = function(workspace, xmlBlock, opt_reuseBlock, useForLoad) {
   var block = null;
   var prototypeName = xmlBlock.getAttribute('type');
   if (!prototypeName) {
@@ -260,7 +260,12 @@ Blockly.Xml.domToBlock = function(workspace, xmlBlock, opt_reuseBlock) {
     block.fill(workspace, prototypeName);
     block.parent_ = parentBlock;
   } else {
-    block = Blockly.Block.obtain(workspace, prototypeName, id);
+	if((typeof useForLoad !== 'undefined') && useForLoad != null && useForLoad != false) {
+		//console.log("bliblablub " + soString(id));
+      block = Blockly.Block.obtain(workspace, prototypeName, id);
+    } else {
+      block = Blockly.Block.obtain(workspace, prototypeName);
+    }
     //if (id) {
     //  block.id = parseInt(id, 10);
     //}
@@ -346,7 +351,7 @@ Blockly.Xml.domToBlock = function(workspace, xmlBlock, opt_reuseBlock) {
         if (firstRealGrandchild &&
             firstRealGrandchild.nodeName.toLowerCase() == 'block') {
           blockChild = Blockly.Xml.domToBlock(workspace, firstRealGrandchild,
-              opt_reuseBlock);
+              opt_reuseBlock, useForLoad);
           if (blockChild.outputConnection) {
             input.connection.connect(blockChild.outputConnection);
           } else if (blockChild.previousConnection) {
@@ -366,7 +371,7 @@ Blockly.Xml.domToBlock = function(workspace, xmlBlock, opt_reuseBlock) {
             throw 'Next statement is already connected.';
           }
           blockChild = Blockly.Xml.domToBlock(workspace, firstRealGrandchild,
-              opt_reuseBlock);
+              opt_reuseBlock, useForLoad);
           if (!blockChild.previousConnection) {
             throw 'Next block does not have previous statement.';
           }
