@@ -1,7 +1,6 @@
 #include <kukadu/generated_skills/CloseHand.hpp>
 
 namespace kukadu {
-    namespace skill {
         CloseHand::CloseHand(kukadu::StorageSingleton &storage,
                              std::vector<KUKADU_SHARED_PTR<kukadu::Hardware> > hardware)
                 : Controller(storage, "CloseHand", hardware, 0.01) {
@@ -35,5 +34,4 @@ namespace kukadu {
         void CloseHand::createSkillFromThisInternal(std::string skillName) {
             // nothing to do
         }
-    }
 }

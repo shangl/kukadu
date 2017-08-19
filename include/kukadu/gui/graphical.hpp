@@ -25,7 +25,7 @@ namespace kukadu {
         QWebView *webView;
         QLineEdit *kinestheticSkillName;
         QWidget *kinestheticTeachingView;
-        KUKADU_SHARED_PTR<skill::KinestheticTeaching> teachingObject;
+        KUKADU_SHARED_PTR<KinestheticTeaching> teachingObject;
 
         void loadInformationFromDatabase();
 

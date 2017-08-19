@@ -1,7 +1,6 @@
 #include <kukadu/generated_skills/ChangeStiffness.hpp>
 
 namespace kukadu {
-    namespace skill {
         ChangeStiffness::ChangeStiffness(kukadu::StorageSingleton &storage,
                                          std::vector<KUKADU_SHARED_PTR<kukadu::Hardware> > hardware)
                 : Controller(storage, "ChangeStiffness", hardware, 0.01) {
@@ -59,5 +58,4 @@ namespace kukadu {
         void ChangeStiffness::createSkillFromThisInternal(std::string skillName) {
             // nothing to do
         }
-    }
 }

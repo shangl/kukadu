@@ -5,7 +5,6 @@
 #include <kukadu/kukadu.hpp>
 
 namespace kukadu {
-    namespace skill {
         class WaitForReached : public kukadu::Controller {
 
         private:
@@ -30,7 +29,6 @@ namespace kukadu {
 
             void setWait(bool wait);
         };
-    }
 }
 
 #endif

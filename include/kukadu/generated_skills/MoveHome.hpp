@@ -5,7 +5,6 @@
 #include <kukadu/kukadu.hpp>
 namespace kukadu {
 
-    namespace skill {
 
         class MoveHome : public kukadu::Controller {
 
@@ -29,7 +28,6 @@ namespace kukadu {
 
         };
 
-    }
 
 }
 

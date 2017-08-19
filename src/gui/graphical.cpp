@@ -485,7 +485,7 @@ namespace kukadu {
 
         kinestheticTeachingView->setLayout(mainLayout);
 
-        teachingObject = KUKADU_DYNAMIC_POINTER_CAST<skill::KinestheticTeaching>(SkillFactory::get().loadSkill("kinesthetic_teaching", {HardwareFactory::get().loadHardware("kukie_left_arm")}));
+        teachingObject = KUKADU_DYNAMIC_POINTER_CAST<KinestheticTeaching>(SkillFactory::get().loadSkill("kinesthetic_teaching", {HardwareFactory::get().loadHardware("kukie_left_arm")}));
 
         kinestheticTeachingView->show();
     }

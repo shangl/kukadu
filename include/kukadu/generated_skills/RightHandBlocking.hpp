@@ -3,30 +3,30 @@
 
 #include <stdlib.h>
 #include <kukadu/kukadu.hpp>
+
 namespace kukadu {
-	namespace skill
-		{class RightHandBlocking : public kukadu::Controller {
+        class RightHandBlocking : public kukadu::Controller {
 
-private:
+        private:
 
-protected:
+        protected:
 
-	virtual void createSkillFromThisInternal(std::string skillName);
+            virtual void createSkillFromThisInternal(std::string skillName);
 
-public:
+        public:
 
-	RightHandBlocking(kukadu::StorageSingleton& storage, std::vector< KUKADU_SHARED_PTR< kukadu::Hardware > > hardware);
+            RightHandBlocking(kukadu::StorageSingleton &storage,
+                              std::vector<KUKADU_SHARED_PTR<kukadu::Hardware> > hardware);
 
-	bool requiresGraspInternal();
+            bool requiresGraspInternal();
 
-	bool producesGraspInternal();
+            bool producesGraspInternal();
 
-	std::shared_ptr<kukadu::ControllerResult> executeInternal();
+            std::shared_ptr<kukadu::ControllerResult> executeInternal();
 
-	std::string getClassName();
+            std::string getClassName();
 
-};
-}
+        };
 }
 
 #endif

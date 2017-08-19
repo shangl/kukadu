@@ -36,67 +36,72 @@ namespace kukadu {
             }},
             {"KinestheticTeaching", [](StorageSingleton &storage, int skillId, int controllerType,
                                        std::vector<KUKADU_SHARED_PTR<Hardware> > hardwareComponents) {
-                return make_shared<skill::KinestheticTeaching>(storage, KUKADU_DYNAMIC_POINTER_CAST<ControlQueue>(
+                return make_shared<KinestheticTeaching>(storage, KUKADU_DYNAMIC_POINTER_CAST<ControlQueue>(
                         hardwareComponents.front()));
             }},
             {
              "MoveHome",            [](StorageSingleton &storage, int skillId, int controllerType,
                                        std::vector<KUKADU_SHARED_PTR<Hardware> > hardwareComponents) {
-                return make_shared<skill::MoveHome>(storage, hardwareComponents);
+                return make_shared<MoveHome>(storage, hardwareComponents);
             }
             },
             {
              "OpenHand",            [](StorageSingleton &storage, int skillId, int controllerType,
                                        std::vector<KUKADU_SHARED_PTR<Hardware> > hardwareComponents) {
-                return make_shared<skill::OpenHand>(storage, hardwareComponents);
+                return make_shared<OpenHand>(storage, hardwareComponents);
             }
             },
             {
              "CloseHand",           [](StorageSingleton &storage, int skillId, int controllerType,
                                        std::vector<KUKADU_SHARED_PTR<Hardware> > hardwareComponents) {
-                return make_shared<skill::CloseHand>(storage, hardwareComponents);
+                return make_shared<CloseHand>(storage, hardwareComponents);
             }
             },
             {
              "ChangeStiffness",     [](StorageSingleton &storage, int skillId, int controllerType,
                                        std::vector<KUKADU_SHARED_PTR<Hardware> > hardwareComponents) {
-                return make_shared<skill::ChangeStiffness>(storage, hardwareComponents);
+                return make_shared<ChangeStiffness>(storage, hardwareComponents);
             }
             },
             {
              "PushHandPos",         [](StorageSingleton &storage, int skillId, int controllerType,
                                        std::vector<KUKADU_SHARED_PTR<Hardware> > hardwareComponents) {
-                return make_shared<skill::PushHandPos>(storage, hardwareComponents);
+                return make_shared<PushHandPos>(storage, hardwareComponents);
+            }
+            },
+            {
+             "BlockingPos",         [](StorageSingleton &storage, int skillId, int controllerType,
+                                       std::vector<KUKADU_SHARED_PTR<Hardware> > hardwareComponents) {
+                return make_shared<BlockingPos>(storage, hardwareComponents);
+            }
+            },
+            {
+             "RightHandBlocking",   [](StorageSingleton &storage, int skillId, int controllerType,
+                                       std::vector<KUKADU_SHARED_PTR<Hardware> > hardwareComponents) {
+                return make_shared<RightHandBlocking>(storage, hardwareComponents);
+            }
+            },
+            {
+             "ChangeModeToIMP",     [](StorageSingleton &storage, int skillId, int controllerType,
+                                       std::vector<KUKADU_SHARED_PTR<Hardware> > hardwareComponents) {
+                return make_shared<ChangeModeToIMP>(storage, hardwareComponents);
+            }
+            },
+            {
+             "WaitForReached",      [](StorageSingleton &storage, int skillId, int controllerType,
+                                       std::vector<KUKADU_SHARED_PTR<Hardware> > hardwareComponents) {
+                return make_shared<WaitForReached>(storage, hardwareComponents);
+            }
+            },
+            {
+             "PushForward",         [](StorageSingleton &storage, int skillId, int controllerType,
+                                       std::vector<KUKADU_SHARED_PTR<Hardware> > hardwareComponents) {
+                return make_shared<PushForward>(storage, hardwareComponents);
             }
             }
-
 ,{
-			"BlockingPos", [](StorageSingleton& storage, int skillId, int controllerType, std::vector<KUKADU_SHARED_PTR<Hardware> > hardwareComponents) {
-				return make_shared<skill::BlockingPos>(storage, hardwareComponents);
-			}
-		}
-
-,{
-			"RightHandBlocking", [](StorageSingleton& storage, int skillId, int controllerType, std::vector<KUKADU_SHARED_PTR<Hardware> > hardwareComponents) {
-				return make_shared<skill::RightHandBlocking>(storage, hardwareComponents);
-			}
-		}
-
-,{
-			"ChangeModeToIMP", [](StorageSingleton& storage, int skillId, int controllerType, std::vector<KUKADU_SHARED_PTR<Hardware> > hardwareComponents) {
-				return make_shared<skill::ChangeModeToIMP>(storage, hardwareComponents);
-			}
-		}
-
-,{
-			"WaitForReached", [](StorageSingleton& storage, int skillId, int controllerType, std::vector<KUKADU_SHARED_PTR<Hardware> > hardwareComponents) {
-				return make_shared<skill::WaitForReached>(storage, hardwareComponents);
-			}
-		}
-
-,{
-			"PushForward", [](StorageSingleton& storage, int skillId, int controllerType, std::vector<KUKADU_SHARED_PTR<Hardware> > hardwareComponents) {
-				return make_shared<skill::PushForward>(storage, hardwareComponents);
+			"testasdfasdf", [](StorageSingleton& storage, int skillId, int controllerType, std::vector<KUKADU_SHARED_PTR<Hardware> > hardwareComponents) {
+				return make_shared<testasdfasdf>(storage, hardwareComponents);
 			}
 		}
 
@@ -115,7 +120,7 @@ namespace kukadu {
 
         std::string skillText = ",{\n\t\t\t\"" + skillName + "\"" +
                                 ", [](StorageSingleton& storage, int skillId, int controllerType, std::vector<KUKADU_SHARED_PTR<Hardware> > hardwareComponents) {\n" +
-                                "\t\t\t\treturn make_shared<skill::" + skillName +
+                                "\t\t\t\treturn make_shared<" + skillName +
                                 ">(storage, hardwareComponents);\n" + "\t\t\t}\n" +
                                 "\t\t}\n";
         std::string skillFactoryFilePath = resolvePath("$KUKADU_HOME/src/manipulation/skillfactory.cpp");

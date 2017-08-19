@@ -5,7 +5,6 @@
 #include <kukadu/kukadu.hpp>
 
 namespace kukadu {
-    namespace skill {
         class ChangeModeToIMP : public kukadu::Controller {
 
         private:
@@ -28,7 +27,6 @@ namespace kukadu {
             std::string getClassName();
 
         };
-    }
 }
 
 #endif

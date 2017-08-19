@@ -1,7 +1,6 @@
 #include <kukadu/generated_skills/WaitForReached.hpp>
 
 namespace kukadu {
-    namespace skill {
         WaitForReached::WaitForReached(kukadu::StorageSingleton &storage,
                                        std::vector<KUKADU_SHARED_PTR<kukadu::Hardware> > hardware)
                 : Controller(storage, "WaitForReached", hardware, 0.01) {
@@ -37,5 +36,4 @@ namespace kukadu {
         void WaitForReached::createSkillFromThisInternal(std::string skillName) {
             // nothing to do
         }
-    }
 }

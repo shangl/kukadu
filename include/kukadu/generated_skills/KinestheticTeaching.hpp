@@ -6,8 +6,6 @@
 
 namespace kukadu {
 	
-	namespace skill {
-
 		class KinestheticTeaching : public Controller {
 
 		private:
@@ -45,8 +43,7 @@ namespace kukadu {
 
 		};
     
-	}
-    
+
 }
 
 #endif

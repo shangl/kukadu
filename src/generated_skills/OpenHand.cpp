@@ -1,7 +1,6 @@
 #include <kukadu/generated_skills/OpenHand.hpp>
 
 namespace kukadu {
-    namespace skill {
         OpenHand::OpenHand(kukadu::StorageSingleton &storage,
                            std::vector<KUKADU_SHARED_PTR<kukadu::Hardware> > hardware)
                 : Controller(storage, "OpenHand", hardware, 0.01) {
@@ -35,5 +34,4 @@ namespace kukadu {
         void OpenHand::createSkillFromThisInternal(std::string skillName) {
             // nothing to do
         }
-    }
 }

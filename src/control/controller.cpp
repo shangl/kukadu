@@ -466,135 +466,132 @@ namespace kukadu {
         return "LocalizeObject";
     }
 
-    namespace skill {
+    KinestheticTeaching::KinestheticTeaching(StorageSingleton &storage, KUKADU_SHARED_PTR<ControlQueue> hardware)
+            : Controller(storage, "KinestheticTeaching", {hardware}, 0.01) {
 
-        KinestheticTeaching::KinestheticTeaching(StorageSingleton &storage, KUKADU_SHARED_PTR<ControlQueue> hardware)
-                : Controller(storage, "KinestheticTeaching", {hardware}, 0.01) {
-
-            teachingHardware = hardware;
-            teachingRunning = false;
-
-        }
-
-        bool KinestheticTeaching::requiresGraspInternal() {
-            return false;
-        }
-
-        bool KinestheticTeaching::producesGraspInternal() {
-            return false;
-        }
-
-
-        KUKADU_SHARED_PTR<ControllerResult> KinestheticTeaching::executeInternal() {
-
-            startTime = getCurrentTime();
-
-            //teachingHardware->jointPtp({-1.5, 1.56, 2.33, -1.74, -1.85, 1.27, 0.71});
-
-            ros::Rate r(10);
-            while (teachingRunning)
-                r.sleep();
-
-            return nullptr;
-
-        }
-
-        void KinestheticTeaching::bringToStartPos() {
-
-            cout << "(KinestheticTeaching) start preparing teaching" << endl;
-
-            teachingHardware->install();
-            teachingHardware->start();
-
-            teachingHardware->startKinestheticTeachingStiffness();
-
-            //teachingHardware->jointPtp({-1.0, 1.56, 2.33, -1.74, -1.85, 1.27, 0.71});
-
-            cout << "(KinestheticTeaching) teaching prepared" << endl;
-
-        }
-
-        void KinestheticTeaching::showDmp() {
-
-            cout << "(KinestheticTeaching) starting measurement" << endl;
-
-            teachingRunning = true;
-            if (!teachingThread)
-                teachingThread = make_shared<kukadu_thread>(&KinestheticTeaching::execute, this);
-            else
-                throw KukaduException("(KinestheticTeaching) the teaching thread is already running");
-
-        }
-
-        void KinestheticTeaching::endTeachingAndTrainDmp() {
-
-            endTime = getCurrentTime();
-            teachingRunning = false;
-
-            if (teachingThread) {
-                teachingThread->join();
-                teachingThread = nullptr;
-            }
-
-            teachingHardware->stopKinestheticTeachingStiffness();
-
-            JointDMPLearner learner(getStorage(), teachingHardware, 48.0, 11.75, startTime, endTime);
-            teachingDmp = learner.fitTrajectories();
-
-        }
-
-        void KinestheticTeaching::installDmp(std::string dmpName) {
-
-            if (!teachingDmp)
-                throw KukaduException("(KinestheticTeaching) Dmp has not been trained yet");
-
-            auto availableSkills = SkillFactory::get().listAvailableSkills();
-            if (std::find(availableSkills.begin(), availableSkills.end(), dmpName) != availableSkills.end())
-                throw KukaduException(
-                        "(KinestheticTeaching) A skill with this name is already installed; choose a different name");
-
-            DMPExecutor teachingExecutor(getStorage(), teachingDmp, teachingHardware);
-
-            teachingExecutor.createSkillFromThis(dmpName);
-
-        }
-
-        void KinestheticTeaching::testTrainedDmp() {
-
-            if (!teachingDmp)
-                throw KukaduException("(KinestheticTeaching) Dmp has not been trained yet");
-
-            /*
-            auto& fac = HardwareFactory::get();
-            bool prevSim = fac.getSimulation();
-            fac.setSimulation(true);
-            auto simHardware = fac.loadHardware(teachingHardware->getHardwareInstanceName());
-            fac.setSimulation(prevSim);
-
-            simHardware->install();
-            simHardware->start();
-
-            DMPExecutor teachingExecutor(getStorage(), teachingDmp, KUKADU_DYNAMIC_POINTER_CAST<ControlQueue>(simHardware));
-
-            if(teachingHardware != simHardware)
-                simHardware->stop();
-            */
-
-            DMPExecutor teachingExecutor(getStorage(), teachingDmp, teachingHardware);
-
-            teachingExecutor.setExecutionMode(TrajectoryExecutor::EXECUTE_ROBOT);
-            teachingExecutor.execute();
-
-        }
-
-        std::string KinestheticTeaching::getClassName() {
-            return "KinestheticTeaching";
-        }
-
-        void KinestheticTeaching::createSkillFromThisInternal(std::string skillName) {
-            // nothing to do
-        }
+        teachingHardware = hardware;
+        teachingRunning = false;
 
     }
+
+    bool KinestheticTeaching::requiresGraspInternal() {
+        return false;
+    }
+
+    bool KinestheticTeaching::producesGraspInternal() {
+        return false;
+    }
+
+
+    KUKADU_SHARED_PTR<ControllerResult> KinestheticTeaching::executeInternal() {
+
+        startTime = getCurrentTime();
+
+        //teachingHardware->jointPtp({-1.5, 1.56, 2.33, -1.74, -1.85, 1.27, 0.71});
+
+        ros::Rate r(10);
+        while (teachingRunning)
+            r.sleep();
+
+        return nullptr;
+
+    }
+
+    void KinestheticTeaching::bringToStartPos() {
+
+        cout << "(KinestheticTeaching) start preparing teaching" << endl;
+
+        teachingHardware->install();
+        teachingHardware->start();
+
+        teachingHardware->startKinestheticTeachingStiffness();
+
+        //teachingHardware->jointPtp({-1.0, 1.56, 2.33, -1.74, -1.85, 1.27, 0.71});
+
+        cout << "(KinestheticTeaching) teaching prepared" << endl;
+
+    }
+
+    void KinestheticTeaching::showDmp() {
+
+        cout << "(KinestheticTeaching) starting measurement" << endl;
+
+        teachingRunning = true;
+        if (!teachingThread)
+            teachingThread = make_shared<kukadu_thread>(&KinestheticTeaching::execute, this);
+        else
+            throw KukaduException("(KinestheticTeaching) the teaching thread is already running");
+
+    }
+
+    void KinestheticTeaching::endTeachingAndTrainDmp() {
+
+        endTime = getCurrentTime();
+        teachingRunning = false;
+
+        if (teachingThread) {
+            teachingThread->join();
+            teachingThread = nullptr;
+        }
+
+        teachingHardware->stopKinestheticTeachingStiffness();
+
+        JointDMPLearner learner(getStorage(), teachingHardware, 48.0, 11.75, startTime, endTime);
+        teachingDmp = learner.fitTrajectories();
+
+    }
+
+    void KinestheticTeaching::installDmp(std::string dmpName) {
+
+        if (!teachingDmp)
+            throw KukaduException("(KinestheticTeaching) Dmp has not been trained yet");
+
+        auto availableSkills = SkillFactory::get().listAvailableSkills();
+        if (std::find(availableSkills.begin(), availableSkills.end(), dmpName) != availableSkills.end())
+            throw KukaduException(
+                    "(KinestheticTeaching) A skill with this name is already installed; choose a different name");
+
+        DMPExecutor teachingExecutor(getStorage(), teachingDmp, teachingHardware);
+
+        teachingExecutor.createSkillFromThis(dmpName);
+
+    }
+
+    void KinestheticTeaching::testTrainedDmp() {
+
+        if (!teachingDmp)
+            throw KukaduException("(KinestheticTeaching) Dmp has not been trained yet");
+
+        /*
+        auto& fac = HardwareFactory::get();
+        bool prevSim = fac.getSimulation();
+        fac.setSimulation(true);
+        auto simHardware = fac.loadHardware(teachingHardware->getHardwareInstanceName());
+        fac.setSimulation(prevSim);
+
+        simHardware->install();
+        simHardware->start();
+
+        DMPExecutor teachingExecutor(getStorage(), teachingDmp, KUKADU_DYNAMIC_POINTER_CAST<ControlQueue>(simHardware));
+
+        if(teachingHardware != simHardware)
+            simHardware->stop();
+        */
+
+        DMPExecutor teachingExecutor(getStorage(), teachingDmp, teachingHardware);
+
+        teachingExecutor.setExecutionMode(TrajectoryExecutor::EXECUTE_ROBOT);
+        teachingExecutor.execute();
+
+    }
+
+    std::string KinestheticTeaching::getClassName() {
+        return "KinestheticTeaching";
+    }
+
+    void KinestheticTeaching::createSkillFromThisInternal(std::string skillName) {
+        // nothing to do
+    }
+
 
 }

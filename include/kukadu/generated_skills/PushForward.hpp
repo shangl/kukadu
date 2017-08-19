@@ -3,30 +3,31 @@
 
 #include <stdlib.h>
 #include <kukadu/kukadu.hpp>
+
 namespace kukadu {
-	namespace skill
-		{class PushForward : public kukadu::Controller {
+        class PushForward : public kukadu::Controller {
 
-private:
+        private:
+            bool goBackToBlockingPos;
 
-protected:
+        protected:
 
-	virtual void createSkillFromThisInternal(std::string skillName);
+            virtual void createSkillFromThisInternal(std::string skillName);
 
-public:
+        public:
 
-	PushForward(kukadu::StorageSingleton& storage, std::vector< KUKADU_SHARED_PTR< kukadu::Hardware > > hardware);
+            PushForward(kukadu::StorageSingleton &storage, std::vector<KUKADU_SHARED_PTR<kukadu::Hardware> > hardware);
 
-	bool requiresGraspInternal();
+            bool requiresGraspInternal();
 
-	bool producesGraspInternal();
+            bool producesGraspInternal();
 
-	std::shared_ptr<kukadu::ControllerResult> executeInternal();
+            std::shared_ptr<kukadu::ControllerResult> executeInternal();
 
-	std::string getClassName();
+            std::string getClassName();
 
-};
-}
+            void setGoBackToBlockingPos(bool goBackToBlockingPos);
+        };
 }
 
 #endif

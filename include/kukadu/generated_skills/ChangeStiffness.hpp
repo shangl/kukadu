@@ -5,7 +5,6 @@
 #include <kukadu/kukadu.hpp>
 
 namespace kukadu {
-    namespace skill {
         class ChangeStiffness : public kukadu::Controller {
 
         private:
@@ -33,7 +32,6 @@ namespace kukadu {
 
             void setStandardStiffnessDamping(double StandardStiffnessDamping);
         };
-    }
 }
 
 #endif

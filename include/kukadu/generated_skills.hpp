@@ -11,4 +11,5 @@
 	#include <kukadu/generated_skills/ChangeModeToIMP.hpp>
 	#include <kukadu/generated_skills/WaitForReached.hpp>
 	#include <kukadu/generated_skills/PushForward.hpp>
+	#include <kukadu/generated_skills/testasdfasdf.hpp>
 #endif

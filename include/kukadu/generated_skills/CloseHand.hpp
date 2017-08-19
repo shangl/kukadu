@@ -4,7 +4,6 @@
 #include <stdlib.h>
 #include <kukadu/kukadu.hpp>
 namespace kukadu {
-    namespace skill {
 
         class CloseHand : public kukadu::Controller {
 
@@ -27,7 +26,6 @@ namespace kukadu {
                 std::string getClassName();
 
         };
-    }
 }
 
 #endif
