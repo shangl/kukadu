@@ -1264,8 +1264,10 @@ Blockly.Block.prototype.setFieldValue = function(newValue, name) {
   if((typeof field !== 'undefined') && field != null) {
     goog.asserts.assertObject(field, 'Field "%s" not found.', name);
     field.setValue(newValue);
-  } else
+  } else {
+	setFieldValueError = true;
 	console.log("attribute " + name + " could not be set");
+  }
 };
 
 /**

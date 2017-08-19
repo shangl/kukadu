@@ -4,8 +4,8 @@
     <compoundname>fitting.hpp</compoundname>
     <includes local="no">armadillo</includes>
     <includes refid="trajectory_8hpp" local="no">kukadu/control/trajectory.hpp</includes>
-    <includedby refid="fitting_8cpp" local="no">/home/agyss/iis_robot_sw/iis_catkin_ws/src/kukadu/src/learning/regression/fitting.cpp</includedby>
-    <includedby refid="dmp_8hpp" local="no">/home/agyss/iis_robot_sw/iis_catkin_ws/src/kukadu/include/kukadu/control/dmp.hpp</includedby>
+    <includedby refid="fitting_8cpp" local="no">/home/c7031109/iis_robot_sw/iis_catkin_ws/src/kukadu/src/learning/regression/fitting.cpp</includedby>
+    <includedby refid="dmp_8hpp" local="no">/home/c7031109/iis_robot_sw/iis_catkin_ws/src/kukadu/include/kukadu/control/dmp.hpp</includedby>
     <incdepgraph>
       <node id="3075">
         <label>sys/stat.h</label>
@@ -31,16 +31,14 @@
       <node id="3086">
         <label>sensor_msgs/PointCloud2.h</label>
       </node>
-      <node id="3032">
-        <label>kukadu/control/trajectory.hpp</label>
-        <link refid="trajectory_8hpp_source"/>
+      <node id="3038">
+        <label>kukadu/utils/types.hpp</label>
+        <link refid="utils_2types_8hpp_source"/>
+        <childnode refid="3035" relation="include">
+        </childnode>
         <childnode refid="3031" relation="include">
         </childnode>
-        <childnode refid="3033" relation="include">
-        </childnode>
-        <childnode refid="3040" relation="include">
-        </childnode>
-        <childnode refid="3057" relation="include">
+        <childnode refid="3039" relation="include">
         </childnode>
       </node>
       <node id="3034">
@@ -52,177 +50,8 @@
       <node id="3062">
         <label>limits</label>
       </node>
-      <node id="3033">
-        <label>kukadu/robot/queue.hpp</label>
-        <link refid="queue_8hpp"/>
-        <childnode refid="3034" relation="include">
-        </childnode>
-        <childnode refid="3035" relation="include">
-        </childnode>
-        <childnode refid="3031" relation="include">
-        </childnode>
-        <childnode refid="3036" relation="include">
-        </childnode>
-        <childnode refid="3037" relation="include">
-        </childnode>
-        <childnode refid="3046" relation="include">
-        </childnode>
-        <childnode refid="3040" relation="include">
-        </childnode>
-        <childnode refid="3056" relation="include">
-        </childnode>
-        <childnode refid="3048" relation="include">
-        </childnode>
-      </node>
       <node id="3081">
         <label>pcl/point_types.h</label>
-      </node>
-      <node id="3048">
-        <label>kukadu/storage/storagesingleton.hpp</label>
-        <link refid="storagesingleton_8hpp_source"/>
-        <childnode refid="3049" relation="include">
-        </childnode>
-        <childnode refid="3034" relation="include">
-        </childnode>
-        <childnode refid="3047" relation="include">
-        </childnode>
-        <childnode refid="3035" relation="include">
-        </childnode>
-        <childnode refid="3050" relation="include">
-        </childnode>
-        <childnode refid="3040" relation="include">
-        </childnode>
-        <childnode refid="3051" relation="include">
-        </childnode>
-        <childnode refid="3052" relation="include">
-        </childnode>
-        <childnode refid="3053" relation="include">
-        </childnode>
-        <childnode refid="3054" relation="include">
-        </childnode>
-        <childnode refid="3055" relation="include">
-        </childnode>
-      </node>
-      <node id="3080">
-        <label>pcl/point_cloud.h</label>
-      </node>
-      <node id="3040">
-        <label>kukadu/types/kukadutypes.hpp</label>
-        <link refid="kukadutypes_8hpp_source"/>
-        <childnode refid="3041" relation="include">
-        </childnode>
-        <childnode refid="3042" relation="include">
-        </childnode>
-        <childnode refid="3043" relation="include">
-        </childnode>
-        <childnode refid="3044" relation="include">
-        </childnode>
-        <childnode refid="3045" relation="include">
-        </childnode>
-      </node>
-      <node id="3095">
-        <label>kukadu/vision/pcstdtrans.hpp</label>
-        <link refid="pcstdtrans_8hpp_source"/>
-        <childnode refid="3031" relation="include">
-        </childnode>
-        <childnode refid="3096" relation="include">
-        </childnode>
-        <childnode refid="3097" relation="include">
-        </childnode>
-      </node>
-      <node id="3089">
-        <label>stdexcept</label>
-      </node>
-      <node id="3072">
-        <label>termios.h</label>
-      </node>
-      <node id="3083">
-        <label>eigen3/Eigen/Dense</label>
-      </node>
-      <node id="3046">
-        <label>kukadu/robot/hardware.hpp</label>
-        <link refid="hardware_8hpp_source"/>
-        <childnode refid="3047" relation="include">
-        </childnode>
-        <childnode refid="3031" relation="include">
-        </childnode>
-        <childnode refid="3038" relation="include">
-        </childnode>
-        <childnode refid="3048" relation="include">
-        </childnode>
-      </node>
-      <node id="3077">
-        <label>gsl/gsl_poly.h</label>
-      </node>
-      <node id="3047">
-        <label>string</label>
-      </node>
-      <node id="3049">
-        <label>map</label>
-      </node>
-      <node id="3088">
-        <label>kukadu/utils/gnuplot.hpp</label>
-        <link refid="gnuplot_8hpp_source"/>
-        <childnode refid="3050" relation="include">
-        </childnode>
-        <childnode refid="3047" relation="include">
-        </childnode>
-        <childnode refid="3035" relation="include">
-        </childnode>
-        <childnode refid="3067" relation="include">
-        </childnode>
-        <childnode refid="3065" relation="include">
-        </childnode>
-        <childnode refid="3089" relation="include">
-        </childnode>
-        <childnode refid="3090" relation="include">
-        </childnode>
-        <childnode refid="3091" relation="include">
-        </childnode>
-        <childnode refid="3092" relation="include">
-        </childnode>
-      </node>
-      <node id="3031">
-        <label>armadillo</label>
-      </node>
-      <node id="3041">
-        <label>exception</label>
-      </node>
-      <node id="3067">
-        <label>fstream</label>
-      </node>
-      <node id="3093">
-        <label>kukadu/utils/kukadutokenizer.hpp</label>
-        <link refid="kukadutokenizer_8hpp_source"/>
-        <childnode refid="3047" relation="include">
-        </childnode>
-        <childnode refid="3035" relation="include">
-        </childnode>
-      </node>
-      <node id="3055">
-        <label>cppconn/statement.h</label>
-      </node>
-      <node id="3045">
-        <label>random</label>
-      </node>
-      <node id="3076">
-        <label>sys/types.h</label>
-      </node>
-      <node id="3038">
-        <label>kukadu/utils/types.hpp</label>
-        <link refid="utils_2types_8hpp_source"/>
-        <childnode refid="3035" relation="include">
-        </childnode>
-        <childnode refid="3031" relation="include">
-        </childnode>
-        <childnode refid="3039" relation="include">
-        </childnode>
-      </node>
-      <node id="3085">
-        <label>tf/transform_datatypes.h</label>
-      </node>
-      <node id="3090">
-        <label>cstdio</label>
       </node>
       <node id="3061">
         <label>kukadu/utils/utils.hpp</label>
@@ -304,8 +133,206 @@
         <childnode refid="3093" relation="include">
         </childnode>
       </node>
+      <node id="3033">
+        <label>kukadu/robot/queue.hpp</label>
+        <link refid="queue_8hpp"/>
+        <childnode refid="3034" relation="include">
+        </childnode>
+        <childnode refid="3035" relation="include">
+        </childnode>
+        <childnode refid="3031" relation="include">
+        </childnode>
+        <childnode refid="3036" relation="include">
+        </childnode>
+        <childnode refid="3037" relation="include">
+        </childnode>
+        <childnode refid="3046" relation="include">
+        </childnode>
+        <childnode refid="3040" relation="include">
+        </childnode>
+        <childnode refid="3056" relation="include">
+        </childnode>
+        <childnode refid="3048" relation="include">
+        </childnode>
+      </node>
+      <node id="3080">
+        <label>pcl/point_cloud.h</label>
+      </node>
+      <node id="3048">
+        <label>kukadu/storage/storagesingleton.hpp</label>
+        <link refid="storagesingleton_8hpp_source"/>
+        <childnode refid="3049" relation="include">
+        </childnode>
+        <childnode refid="3034" relation="include">
+        </childnode>
+        <childnode refid="3047" relation="include">
+        </childnode>
+        <childnode refid="3035" relation="include">
+        </childnode>
+        <childnode refid="3050" relation="include">
+        </childnode>
+        <childnode refid="3040" relation="include">
+        </childnode>
+        <childnode refid="3051" relation="include">
+        </childnode>
+        <childnode refid="3052" relation="include">
+        </childnode>
+        <childnode refid="3053" relation="include">
+        </childnode>
+        <childnode refid="3054" relation="include">
+        </childnode>
+        <childnode refid="3055" relation="include">
+        </childnode>
+      </node>
+      <node id="3099">
+        <label>kukadu/types/controllerresult.hpp</label>
+        <link refid="controllerresult_8hpp_source"/>
+        <childnode refid="3035" relation="include">
+        </childnode>
+        <childnode refid="3031" relation="include">
+        </childnode>
+      </node>
+      <node id="3089">
+        <label>stdexcept</label>
+      </node>
+      <node id="3072">
+        <label>termios.h</label>
+      </node>
+      <node id="3083">
+        <label>eigen3/Eigen/Dense</label>
+      </node>
+      <node id="3077">
+        <label>gsl/gsl_poly.h</label>
+      </node>
+      <node id="3047">
+        <label>string</label>
+      </node>
+      <node id="3049">
+        <label>map</label>
+      </node>
+      <node id="3031">
+        <label>armadillo</label>
+      </node>
+      <node id="3041">
+        <label>exception</label>
+      </node>
+      <node id="3067">
+        <label>fstream</label>
+      </node>
+      <node id="3095">
+        <label>kukadu/vision/pcstdtrans.hpp</label>
+        <link refid="pcstdtrans_8hpp_source"/>
+        <childnode refid="3031" relation="include">
+        </childnode>
+        <childnode refid="3096" relation="include">
+        </childnode>
+        <childnode refid="3097" relation="include">
+        </childnode>
+      </node>
+      <node id="3055">
+        <label>cppconn/statement.h</label>
+      </node>
+      <node id="3045">
+        <label>random</label>
+      </node>
+      <node id="3076">
+        <label>sys/types.h</label>
+      </node>
+      <node id="3085">
+        <label>tf/transform_datatypes.h</label>
+      </node>
+      <node id="3090">
+        <label>cstdio</label>
+      </node>
       <node id="3060">
         <label>geometry_msgs/PoseStamped.h</label>
+      </node>
+      <node id="3068">
+        <label>unistd.h</label>
+      </node>
+      <node id="3035">
+        <label>vector</label>
+      </node>
+      <node id="3094">
+        <label>kukadu/vision/kinect.hpp</label>
+        <link refid="kinect_8hpp_source"/>
+        <childnode refid="3035" relation="include">
+        </childnode>
+        <childnode refid="3047" relation="include">
+        </childnode>
+        <childnode refid="3080" relation="include">
+        </childnode>
+        <childnode refid="3081" relation="include">
+        </childnode>
+        <childnode refid="3046" relation="include">
+        </childnode>
+        <childnode refid="3086" relation="include">
+        </childnode>
+        <childnode refid="3040" relation="include">
+        </childnode>
+        <childnode refid="3095" relation="include">
+        </childnode>
+        <childnode refid="3098" relation="include">
+        </childnode>
+      </node>
+      <node id="3070">
+        <label>signal.h</label>
+      </node>
+      <node id="3093">
+        <label>kukadu/utils/kukadutokenizer.hpp</label>
+        <link refid="kukadutokenizer_8hpp_source"/>
+        <childnode refid="3047" relation="include">
+        </childnode>
+        <childnode refid="3035" relation="include">
+        </childnode>
+      </node>
+      <node id="3059">
+        <label>utility</label>
+      </node>
+      <node id="3056">
+        <label>kukadu/utils/destroyableobject.hpp</label>
+        <link refid="destroyableobject_8hpp_source"/>
+      </node>
+      <node id="3065">
+        <label>sstream</label>
+      </node>
+      <node id="3052">
+        <label>cppconn/driver.h</label>
+      </node>
+      <node id="3053">
+        <label>cppconn/exception.h</label>
+      </node>
+      <node id="3036">
+        <label>geometry_msgs/Pose.h</label>
+      </node>
+      <node id="3063">
+        <label>math.h</label>
+      </node>
+      <node id="3040">
+        <label>kukadu/types/kukadutypes.hpp</label>
+        <link refid="kukadutypes_8hpp_source"/>
+        <childnode refid="3041" relation="include">
+        </childnode>
+        <childnode refid="3042" relation="include">
+        </childnode>
+        <childnode refid="3043" relation="include">
+        </childnode>
+        <childnode refid="3044" relation="include">
+        </childnode>
+        <childnode refid="3045" relation="include">
+        </childnode>
+      </node>
+      <node id="3091">
+        <label>cstdlib</label>
+      </node>
+      <node id="3050">
+        <label>iostream</label>
+      </node>
+      <node id="3051">
+        <label>mysql_connection.h</label>
+      </node>
+      <node id="3097">
+        <label>pcl/kdtree/kdtree_flann.h</label>
       </node>
       <node id="3057">
         <label>kukadu/control/controller.hpp</label>
@@ -325,82 +352,11 @@
         <childnode refid="3048" relation="include">
         </childnode>
       </node>
-      <node id="3030">
-        <label>/home/agyss/iis_robot_sw/iis_catkin_ws/src/kukadu/include/kukadu/learning/regression/fitting.hpp</label>
-        <link refid="fitting.hpp"/>
-        <childnode refid="3031" relation="include">
-        </childnode>
-        <childnode refid="3032" relation="include">
-        </childnode>
-      </node>
-      <node id="3068">
-        <label>unistd.h</label>
-      </node>
-      <node id="3035">
-        <label>vector</label>
-      </node>
-      <node id="3037">
-        <label>kukadu/robot/filters.hpp</label>
-        <link refid="filters_8hpp_source"/>
-        <childnode refid="3038" relation="include">
-        </childnode>
-        <childnode refid="3040" relation="include">
-        </childnode>
-      </node>
-      <node id="3070">
-        <label>signal.h</label>
-      </node>
-      <node id="3059">
-        <label>utility</label>
-      </node>
-      <node id="3065">
-        <label>sstream</label>
-      </node>
-      <node id="3052">
-        <label>cppconn/driver.h</label>
-      </node>
-      <node id="3053">
-        <label>cppconn/exception.h</label>
-      </node>
-      <node id="3036">
-        <label>geometry_msgs/Pose.h</label>
-      </node>
-      <node id="3063">
-        <label>math.h</label>
-      </node>
-      <node id="3091">
-        <label>cstdlib</label>
-      </node>
-      <node id="3050">
-        <label>iostream</label>
-      </node>
-      <node id="3051">
-        <label>mysql_connection.h</label>
-      </node>
-      <node id="3097">
-        <label>pcl/kdtree/kdtree_flann.h</label>
-      </node>
-      <node id="3056">
-        <label>kukadu/utils/destroyableobject.hpp</label>
-        <link refid="destroyableobject_8hpp_source"/>
-      </node>
       <node id="3044">
         <label>mutex</label>
       </node>
       <node id="3082">
         <label>gsl/gsl_multifit.h</label>
-      </node>
-      <node id="3087">
-        <label>geometry_msgs/Quaternion.h</label>
-      </node>
-      <node id="3043">
-        <label>thread</label>
-      </node>
-      <node id="3096">
-        <label>pcl_ros/transforms.h</label>
-      </node>
-      <node id="3079">
-        <label>gsl/gsl_linalg.h</label>
       </node>
       <node id="3058">
         <label>kukadu/vision/localizer.hpp</label>
@@ -426,33 +382,77 @@
         <childnode refid="3040" relation="include">
         </childnode>
       </node>
-      <node id="3094">
-        <label>kukadu/vision/kinect.hpp</label>
-        <link refid="kinect_8hpp_source"/>
-        <childnode refid="3035" relation="include">
+      <node id="3032">
+        <label>kukadu/control/trajectory.hpp</label>
+        <link refid="trajectory_8hpp_source"/>
+        <childnode refid="3031" relation="include">
         </childnode>
-        <childnode refid="3047" relation="include">
-        </childnode>
-        <childnode refid="3080" relation="include">
-        </childnode>
-        <childnode refid="3081" relation="include">
-        </childnode>
-        <childnode refid="3046" relation="include">
-        </childnode>
-        <childnode refid="3086" relation="include">
+        <childnode refid="3033" relation="include">
         </childnode>
         <childnode refid="3040" relation="include">
         </childnode>
-        <childnode refid="3095" relation="include">
+        <childnode refid="3057" relation="include">
         </childnode>
-        <childnode refid="3098" relation="include">
+      </node>
+      <node id="3037">
+        <label>kukadu/robot/filters.hpp</label>
+        <link refid="filters_8hpp_source"/>
+        <childnode refid="3038" relation="include">
         </childnode>
+        <childnode refid="3040" relation="include">
+        </childnode>
+      </node>
+      <node id="3087">
+        <label>geometry_msgs/Quaternion.h</label>
+      </node>
+      <node id="3043">
+        <label>thread</label>
+      </node>
+      <node id="3096">
+        <label>pcl_ros/transforms.h</label>
+      </node>
+      <node id="3046">
+        <label>kukadu/robot/hardware.hpp</label>
+        <link refid="hardware_8hpp_source"/>
+        <childnode refid="3047" relation="include">
+        </childnode>
+        <childnode refid="3031" relation="include">
+        </childnode>
+        <childnode refid="3038" relation="include">
+        </childnode>
+        <childnode refid="3048" relation="include">
+        </childnode>
+      </node>
+      <node id="3079">
+        <label>gsl/gsl_linalg.h</label>
       </node>
       <node id="3098">
         <label>pcl_conversions/pcl_conversions.h</label>
       </node>
       <node id="3066">
         <label>stdio.h</label>
+      </node>
+      <node id="3088">
+        <label>kukadu/utils/gnuplot.hpp</label>
+        <link refid="gnuplot_8hpp_source"/>
+        <childnode refid="3050" relation="include">
+        </childnode>
+        <childnode refid="3047" relation="include">
+        </childnode>
+        <childnode refid="3035" relation="include">
+        </childnode>
+        <childnode refid="3067" relation="include">
+        </childnode>
+        <childnode refid="3065" relation="include">
+        </childnode>
+        <childnode refid="3089" relation="include">
+        </childnode>
+        <childnode refid="3090" relation="include">
+        </childnode>
+        <childnode refid="3091" relation="include">
+        </childnode>
+        <childnode refid="3092" relation="include">
+        </childnode>
       </node>
       <node id="3064">
         <label>cstring</label>
@@ -463,12 +463,12 @@
       <node id="3042">
         <label>memory</label>
       </node>
-      <node id="3099">
-        <label>kukadu/types/controllerresult.hpp</label>
-        <link refid="controllerresult_8hpp_source"/>
-        <childnode refid="3035" relation="include">
-        </childnode>
+      <node id="3030">
+        <label>/home/c7031109/iis_robot_sw/iis_catkin_ws/src/kukadu/include/kukadu/learning/regression/fitting.hpp</label>
+        <link refid="fitting.hpp"/>
         <childnode refid="3031" relation="include">
+        </childnode>
+        <childnode refid="3032" relation="include">
         </childnode>
       </node>
       <node id="3071">
@@ -476,68 +476,76 @@
       </node>
     </incdepgraph>
     <invincdepgraph>
+      <node id="3103">
+        <label>/home/c7031109/iis_robot_sw/iis_catkin_ws/src/kukadu/include/kukadu/control.hpp</label>
+        <link refid="control_8hpp_source"/>
+        <childnode refid="3104" relation="include">
+        </childnode>
+      </node>
       <node id="3108">
-        <label>/home/agyss/iis_robot_sw/iis_catkin_ws/src/kukadu/include/kukadu/generated_skills/ChangeStiffness.hpp</label>
+        <label>/home/c7031109/iis_robot_sw/iis_catkin_ws/src/kukadu/include/kukadu/generated_skills/ChangeStiffness.hpp</label>
         <link refid="ChangeStiffness_8hpp_source"/>
         <childnode refid="3106" relation="include">
         </childnode>
       </node>
-      <node id="3118">
-        <label>/home/agyss/iis_robot_sw/iis_catkin_ws/src/kukadu/include/kukadu/learning.hpp</label>
-        <link refid="learning_8hpp_source"/>
-        <childnode refid="3104" relation="include">
-        </childnode>
-      </node>
-      <node id="3111">
-        <label>/home/agyss/iis_robot_sw/iis_catkin_ws/src/kukadu/include/kukadu/generated_skills/OpenHand.hpp</label>
-        <link refid="OpenHand_8hpp_source"/>
-        <childnode refid="3106" relation="include">
-        </childnode>
-      </node>
       <node id="3107">
-        <label>/home/agyss/iis_robot_sw/iis_catkin_ws/src/kukadu/include/kukadu/generated_skills/ChangeModeToIMP.hpp</label>
+        <label>/home/c7031109/iis_robot_sw/iis_catkin_ws/src/kukadu/include/kukadu/generated_skills/ChangeModeToIMP.hpp</label>
         <link refid="ChangeModeToIMP_8hpp_source"/>
         <childnode refid="3106" relation="include">
         </childnode>
       </node>
-      <node id="3113">
-        <label>/home/agyss/iis_robot_sw/iis_catkin_ws/src/kukadu/include/kukadu/generated_skills/RightHandBlocking.hpp</label>
-        <link refid="RightHandBlocking_8hpp_source"/>
-        <childnode refid="3106" relation="include">
-        </childnode>
-      </node>
-      <node id="3109">
-        <label>/home/agyss/iis_robot_sw/iis_catkin_ws/src/kukadu/include/kukadu/generated_skills/CloseHand.hpp</label>
-        <link refid="CloseHand_8hpp_source"/>
-        <childnode refid="3106" relation="include">
-        </childnode>
-      </node>
-      <node id="3117">
-        <label>/home/agyss/iis_robot_sw/iis_catkin_ws/src/kukadu/include/kukadu/learning/rl/dmprl.hpp</label>
-        <link refid="dmprl_8hpp_source"/>
-        <childnode refid="3118" relation="include">
-        </childnode>
-      </node>
-      <node id="3116">
-        <label>/home/agyss/iis_robot_sw/iis_catkin_ws/src/kukadu/include/kukadu/gui.hpp</label>
-        <link refid="gui_8hpp_source"/>
-        <childnode refid="3104" relation="include">
-        </childnode>
-      </node>
-      <node id="3106">
-        <label>/home/agyss/iis_robot_sw/iis_catkin_ws/src/kukadu/include/kukadu/generated_skills.hpp</label>
-        <link refid="generated__skills_8hpp_source"/>
-        <childnode refid="3104" relation="include">
-        </childnode>
-      </node>
       <node id="3110">
-        <label>/home/agyss/iis_robot_sw/iis_catkin_ws/src/kukadu/include/kukadu/generated_skills/MoveHome.hpp</label>
+        <label>/home/c7031109/iis_robot_sw/iis_catkin_ws/src/kukadu/include/kukadu/generated_skills/MoveHome.hpp</label>
         <link refid="MoveHome_8hpp_source"/>
         <childnode refid="3106" relation="include">
         </childnode>
       </node>
+      <node id="3102">
+        <label>/home/c7031109/iis_robot_sw/iis_catkin_ws/src/kukadu/include/kukadu/control/generalizer.hpp</label>
+        <link refid="generalizer_8hpp_source"/>
+        <childnode refid="3103" relation="include">
+        </childnode>
+      </node>
+      <node id="3116">
+        <label>/home/c7031109/iis_robot_sw/iis_catkin_ws/src/kukadu/include/kukadu/gui.hpp</label>
+        <link refid="gui_8hpp_source"/>
+        <childnode refid="3104" relation="include">
+        </childnode>
+      </node>
+      <node id="3105">
+        <label>/home/c7031109/iis_robot_sw/iis_catkin_ws/src/kukadu/include/kukadu/generated_skills/BlockingPos.hpp</label>
+        <link refid="BlockingPos_8hpp_source"/>
+        <childnode refid="3106" relation="include">
+        </childnode>
+      </node>
+      <node id="3106">
+        <label>/home/c7031109/iis_robot_sw/iis_catkin_ws/src/kukadu/include/kukadu/generated_skills.hpp</label>
+        <link refid="generated__skills_8hpp_source"/>
+        <childnode refid="3104" relation="include">
+        </childnode>
+      </node>
+      <node id="3114">
+        <label>/home/c7031109/iis_robot_sw/iis_catkin_ws/src/kukadu/include/kukadu/generated_skills/KinestheticTeaching.hpp</label>
+        <link refid="KinestheticTeaching_8hpp_source"/>
+        <childnode refid="3106" relation="include">
+        </childnode>
+        <childnode refid="3115" relation="include">
+        </childnode>
+      </node>
+      <node id="3117">
+        <label>/home/c7031109/iis_robot_sw/iis_catkin_ws/src/kukadu/include/kukadu/learning/rl/dmprl.hpp</label>
+        <link refid="dmprl_8hpp_source"/>
+        <childnode refid="3118" relation="include">
+        </childnode>
+      </node>
+      <node id="3115">
+        <label>/home/c7031109/iis_robot_sw/iis_catkin_ws/src/kukadu/include/kukadu/gui/graphical.hpp</label>
+        <link refid="graphical_8hpp_source"/>
+        <childnode refid="3116" relation="include">
+        </childnode>
+      </node>
       <node id="3104">
-        <label>/home/agyss/iis_robot_sw/iis_catkin_ws/src/kukadu/include/kukadu/kukadu.hpp</label>
+        <label>/home/c7031109/iis_robot_sw/iis_catkin_ws/src/kukadu/include/kukadu/kukadu.hpp</label>
         <link refid="kukadu_8hpp_source"/>
         <childnode refid="3105" relation="include">
         </childnode>
@@ -556,8 +564,14 @@
         <childnode refid="3113" relation="include">
         </childnode>
       </node>
+      <node id="3109">
+        <label>/home/c7031109/iis_robot_sw/iis_catkin_ws/src/kukadu/include/kukadu/generated_skills/CloseHand.hpp</label>
+        <link refid="CloseHand_8hpp_source"/>
+        <childnode refid="3106" relation="include">
+        </childnode>
+      </node>
       <node id="3101">
-        <label>/home/agyss/iis_robot_sw/iis_catkin_ws/src/kukadu/include/kukadu/control/dmp.hpp</label>
+        <label>/home/c7031109/iis_robot_sw/iis_catkin_ws/src/kukadu/include/kukadu/control/dmp.hpp</label>
         <link refid="dmp_8hpp_source"/>
         <childnode refid="3102" relation="include">
         </childnode>
@@ -568,48 +582,34 @@
         <childnode refid="3117" relation="include">
         </childnode>
       </node>
+      <node id="3111">
+        <label>/home/c7031109/iis_robot_sw/iis_catkin_ws/src/kukadu/include/kukadu/generated_skills/OpenHand.hpp</label>
+        <link refid="OpenHand_8hpp_source"/>
+        <childnode refid="3106" relation="include">
+        </childnode>
+      </node>
+      <node id="3113">
+        <label>/home/c7031109/iis_robot_sw/iis_catkin_ws/src/kukadu/include/kukadu/generated_skills/RightHandBlocking.hpp</label>
+        <link refid="RightHandBlocking_8hpp_source"/>
+        <childnode refid="3106" relation="include">
+        </childnode>
+      </node>
+      <node id="3118">
+        <label>/home/c7031109/iis_robot_sw/iis_catkin_ws/src/kukadu/include/kukadu/learning.hpp</label>
+        <link refid="learning_8hpp_source"/>
+        <childnode refid="3104" relation="include">
+        </childnode>
+      </node>
       <node id="3112">
-        <label>/home/agyss/iis_robot_sw/iis_catkin_ws/src/kukadu/include/kukadu/generated_skills/PushHandPos.hpp</label>
+        <label>/home/c7031109/iis_robot_sw/iis_catkin_ws/src/kukadu/include/kukadu/generated_skills/PushHandPos.hpp</label>
         <link refid="PushHandPos_8hpp_source"/>
         <childnode refid="3106" relation="include">
         </childnode>
       </node>
       <node id="3100">
-        <label>/home/agyss/iis_robot_sw/iis_catkin_ws/src/kukadu/include/kukadu/learning/regression/fitting.hpp</label>
+        <label>/home/c7031109/iis_robot_sw/iis_catkin_ws/src/kukadu/include/kukadu/learning/regression/fitting.hpp</label>
         <link refid="fitting.hpp"/>
         <childnode refid="3101" relation="include">
-        </childnode>
-      </node>
-      <node id="3105">
-        <label>/home/agyss/iis_robot_sw/iis_catkin_ws/src/kukadu/include/kukadu/generated_skills/BlockingPos.hpp</label>
-        <link refid="BlockingPos_8hpp_source"/>
-        <childnode refid="3106" relation="include">
-        </childnode>
-      </node>
-      <node id="3114">
-        <label>/home/agyss/iis_robot_sw/iis_catkin_ws/src/kukadu/include/kukadu/generated_skills/KinestheticTeaching.hpp</label>
-        <link refid="KinestheticTeaching_8hpp_source"/>
-        <childnode refid="3106" relation="include">
-        </childnode>
-        <childnode refid="3115" relation="include">
-        </childnode>
-      </node>
-      <node id="3103">
-        <label>/home/agyss/iis_robot_sw/iis_catkin_ws/src/kukadu/include/kukadu/control.hpp</label>
-        <link refid="control_8hpp_source"/>
-        <childnode refid="3104" relation="include">
-        </childnode>
-      </node>
-      <node id="3102">
-        <label>/home/agyss/iis_robot_sw/iis_catkin_ws/src/kukadu/include/kukadu/control/generalizer.hpp</label>
-        <link refid="generalizer_8hpp_source"/>
-        <childnode refid="3103" relation="include">
-        </childnode>
-      </node>
-      <node id="3115">
-        <label>/home/agyss/iis_robot_sw/iis_catkin_ws/src/kukadu/include/kukadu/gui/graphical.hpp</label>
-        <link refid="graphical_8hpp_source"/>
-        <childnode refid="3116" relation="include">
         </childnode>
       </node>
     </invincdepgraph>
@@ -659,6 +659,6 @@
 <codeline lineno="71"><highlight class="normal"></highlight></codeline>
 <codeline lineno="72"><highlight class="normal"></highlight><highlight class="preprocessor">#endif</highlight></codeline>
     </programlisting>
-    <location file="/home/agyss/iis_robot_sw/iis_catkin_ws/src/kukadu/include/kukadu/learning/regression/fitting.hpp"/>
+    <location file="/home/c7031109/iis_robot_sw/iis_catkin_ws/src/kukadu/include/kukadu/learning/regression/fitting.hpp"/>
   </compounddef>
 </doxygen>

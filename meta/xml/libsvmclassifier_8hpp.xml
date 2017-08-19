@@ -4,13 +4,10 @@
     <compoundname>libsvmclassifier.hpp</compoundname>
     <includes refid="svmpp_8hpp" local="no">kukadu/learning/classification/svmpp.hpp</includes>
     <includes refid="classifier_8hpp" local="no">kukadu/learning/classification/classifier.hpp</includes>
-    <includedby refid="classifier_8cpp" local="no">/home/agyss/iis_robot_sw/iis_catkin_ws/src/kukadu/src/learning/classification/classifier.cpp</includedby>
-    <includedby refid="learning_8hpp" local="no">/home/agyss/iis_robot_sw/iis_catkin_ws/src/kukadu/include/kukadu/learning.hpp</includedby>
-    <includedby refid="controllers_8hpp" local="no">/home/agyss/iis_robot_sw/iis_catkin_ws/src/kukadu/include/kukadu/manipulation/playing/controllers.hpp</includedby>
+    <includedby refid="classifier_8cpp" local="no">/home/c7031109/iis_robot_sw/iis_catkin_ws/src/kukadu/src/learning/classification/classifier.cpp</includedby>
+    <includedby refid="learning_8hpp" local="no">/home/c7031109/iis_robot_sw/iis_catkin_ws/src/kukadu/include/kukadu/learning.hpp</includedby>
+    <includedby refid="controllers_8hpp" local="no">/home/c7031109/iis_robot_sw/iis_catkin_ws/src/kukadu/include/kukadu/manipulation/playing/controllers.hpp</includedby>
     <incdepgraph>
-      <node id="2771">
-        <label>string</label>
-      </node>
       <node id="2770">
         <label>kukadu/learning/classification/svmpp.hpp</label>
         <link refid="svmpp_8hpp_source"/>
@@ -23,13 +20,18 @@
         <childnode refid="2774" relation="include">
         </childnode>
       </node>
+      <node id="2771">
+        <label>string</label>
+      </node>
       <node id="2776">
         <label>armadillo</label>
       </node>
-      <node id="2775">
-        <label>kukadu/learning/classification/classifier.hpp</label>
-        <link refid="classifier_8hpp_source"/>
-        <childnode refid="2776" relation="include">
+      <node id="2769">
+        <label>/home/c7031109/iis_robot_sw/iis_catkin_ws/src/kukadu/include/kukadu/learning/classification/libsvmclassifier.hpp</label>
+        <link refid="libsvmclassifier.hpp"/>
+        <childnode refid="2770" relation="include">
+        </childnode>
+        <childnode refid="2775" relation="include">
         </childnode>
       </node>
       <node id="2772">
@@ -38,12 +40,10 @@
       <node id="2773">
         <label>libsvm/svm.h</label>
       </node>
-      <node id="2769">
-        <label>/home/agyss/iis_robot_sw/iis_catkin_ws/src/kukadu/include/kukadu/learning/classification/libsvmclassifier.hpp</label>
-        <link refid="libsvmclassifier.hpp"/>
-        <childnode refid="2770" relation="include">
-        </childnode>
-        <childnode refid="2775" relation="include">
+      <node id="2775">
+        <label>kukadu/learning/classification/classifier.hpp</label>
+        <link refid="classifier_8hpp_source"/>
+        <childnode refid="2776" relation="include">
         </childnode>
       </node>
       <node id="2774">
@@ -51,62 +51,58 @@
       </node>
     </incdepgraph>
     <invincdepgraph>
-      <node id="2783">
-        <label>/home/agyss/iis_robot_sw/iis_catkin_ws/src/kukadu/include/kukadu/generated_skills/ChangeStiffness.hpp</label>
-        <link refid="ChangeStiffness_8hpp_source"/>
-        <childnode refid="2781" relation="include">
-        </childnode>
-      </node>
-      <node id="2778">
-        <label>/home/agyss/iis_robot_sw/iis_catkin_ws/src/kukadu/include/kukadu/learning.hpp</label>
-        <link refid="learning_8hpp_source"/>
-        <childnode refid="2779" relation="include">
-        </childnode>
-      </node>
-      <node id="2786">
-        <label>/home/agyss/iis_robot_sw/iis_catkin_ws/src/kukadu/include/kukadu/generated_skills/OpenHand.hpp</label>
-        <link refid="OpenHand_8hpp_source"/>
-        <childnode refid="2781" relation="include">
-        </childnode>
-      </node>
-      <node id="2782">
-        <label>/home/agyss/iis_robot_sw/iis_catkin_ws/src/kukadu/include/kukadu/generated_skills/ChangeModeToIMP.hpp</label>
-        <link refid="ChangeModeToIMP_8hpp_source"/>
-        <childnode refid="2781" relation="include">
-        </childnode>
-      </node>
       <node id="2790">
-        <label>/home/agyss/iis_robot_sw/iis_catkin_ws/src/kukadu/include/kukadu/manipulation/playing/core.hpp</label>
+        <label>/home/c7031109/iis_robot_sw/iis_catkin_ws/src/kukadu/include/kukadu/manipulation/playing/core.hpp</label>
         <link refid="manipulation_2playing_2core_8hpp_source"/>
         <childnode refid="2791" relation="include">
         </childnode>
       </node>
-      <node id="2788">
-        <label>/home/agyss/iis_robot_sw/iis_catkin_ws/src/kukadu/include/kukadu/generated_skills/RightHandBlocking.hpp</label>
-        <link refid="RightHandBlocking_8hpp_source"/>
+      <node id="2789">
+        <label>/home/c7031109/iis_robot_sw/iis_catkin_ws/src/kukadu/include/kukadu/manipulation/playing/controllers.hpp</label>
+        <link refid="controllers_8hpp_source"/>
+        <childnode refid="2790" relation="include">
+        </childnode>
+        <childnode refid="2791" relation="include">
+        </childnode>
+      </node>
+      <node id="2783">
+        <label>/home/c7031109/iis_robot_sw/iis_catkin_ws/src/kukadu/include/kukadu/generated_skills/ChangeStiffness.hpp</label>
+        <link refid="ChangeStiffness_8hpp_source"/>
         <childnode refid="2781" relation="include">
         </childnode>
       </node>
-      <node id="2784">
-        <label>/home/agyss/iis_robot_sw/iis_catkin_ws/src/kukadu/include/kukadu/generated_skills/CloseHand.hpp</label>
-        <link refid="CloseHand_8hpp_source"/>
+      <node id="2782">
+        <label>/home/c7031109/iis_robot_sw/iis_catkin_ws/src/kukadu/include/kukadu/generated_skills/ChangeModeToIMP.hpp</label>
+        <link refid="ChangeModeToIMP_8hpp_source"/>
         <childnode refid="2781" relation="include">
-        </childnode>
-      </node>
-      <node id="2781">
-        <label>/home/agyss/iis_robot_sw/iis_catkin_ws/src/kukadu/include/kukadu/generated_skills.hpp</label>
-        <link refid="generated__skills_8hpp_source"/>
-        <childnode refid="2779" relation="include">
         </childnode>
       </node>
       <node id="2785">
-        <label>/home/agyss/iis_robot_sw/iis_catkin_ws/src/kukadu/include/kukadu/generated_skills/MoveHome.hpp</label>
+        <label>/home/c7031109/iis_robot_sw/iis_catkin_ws/src/kukadu/include/kukadu/generated_skills/MoveHome.hpp</label>
         <link refid="MoveHome_8hpp_source"/>
         <childnode refid="2781" relation="include">
         </childnode>
       </node>
+      <node id="2791">
+        <label>/home/c7031109/iis_robot_sw/iis_catkin_ws/src/kukadu/include/kukadu/manipulation.hpp</label>
+        <link refid="manipulation_8hpp_source"/>
+        <childnode refid="2779" relation="include">
+        </childnode>
+      </node>
+      <node id="2780">
+        <label>/home/c7031109/iis_robot_sw/iis_catkin_ws/src/kukadu/include/kukadu/generated_skills/BlockingPos.hpp</label>
+        <link refid="BlockingPos_8hpp_source"/>
+        <childnode refid="2781" relation="include">
+        </childnode>
+      </node>
+      <node id="2781">
+        <label>/home/c7031109/iis_robot_sw/iis_catkin_ws/src/kukadu/include/kukadu/generated_skills.hpp</label>
+        <link refid="generated__skills_8hpp_source"/>
+        <childnode refid="2779" relation="include">
+        </childnode>
+      </node>
       <node id="2779">
-        <label>/home/agyss/iis_robot_sw/iis_catkin_ws/src/kukadu/include/kukadu/kukadu.hpp</label>
+        <label>/home/c7031109/iis_robot_sw/iis_catkin_ws/src/kukadu/include/kukadu/kukadu.hpp</label>
         <link refid="kukadu_8hpp_source"/>
         <childnode refid="2780" relation="include">
         </childnode>
@@ -125,38 +121,42 @@
         <childnode refid="2788" relation="include">
         </childnode>
       </node>
-      <node id="2787">
-        <label>/home/agyss/iis_robot_sw/iis_catkin_ws/src/kukadu/include/kukadu/generated_skills/PushHandPos.hpp</label>
-        <link refid="PushHandPos_8hpp_source"/>
+      <node id="2784">
+        <label>/home/c7031109/iis_robot_sw/iis_catkin_ws/src/kukadu/include/kukadu/generated_skills/CloseHand.hpp</label>
+        <link refid="CloseHand_8hpp_source"/>
         <childnode refid="2781" relation="include">
         </childnode>
       </node>
-      <node id="2789">
-        <label>/home/agyss/iis_robot_sw/iis_catkin_ws/src/kukadu/include/kukadu/manipulation/playing/controllers.hpp</label>
-        <link refid="controllers_8hpp_source"/>
-        <childnode refid="2790" relation="include">
-        </childnode>
-        <childnode refid="2791" relation="include">
-        </childnode>
-      </node>
       <node id="2777">
-        <label>/home/agyss/iis_robot_sw/iis_catkin_ws/src/kukadu/include/kukadu/learning/classification/libsvmclassifier.hpp</label>
+        <label>/home/c7031109/iis_robot_sw/iis_catkin_ws/src/kukadu/include/kukadu/learning/classification/libsvmclassifier.hpp</label>
         <link refid="libsvmclassifier.hpp"/>
         <childnode refid="2778" relation="include">
         </childnode>
         <childnode refid="2789" relation="include">
         </childnode>
       </node>
-      <node id="2780">
-        <label>/home/agyss/iis_robot_sw/iis_catkin_ws/src/kukadu/include/kukadu/generated_skills/BlockingPos.hpp</label>
-        <link refid="BlockingPos_8hpp_source"/>
+      <node id="2786">
+        <label>/home/c7031109/iis_robot_sw/iis_catkin_ws/src/kukadu/include/kukadu/generated_skills/OpenHand.hpp</label>
+        <link refid="OpenHand_8hpp_source"/>
         <childnode refid="2781" relation="include">
         </childnode>
       </node>
-      <node id="2791">
-        <label>/home/agyss/iis_robot_sw/iis_catkin_ws/src/kukadu/include/kukadu/manipulation.hpp</label>
-        <link refid="manipulation_8hpp_source"/>
+      <node id="2788">
+        <label>/home/c7031109/iis_robot_sw/iis_catkin_ws/src/kukadu/include/kukadu/generated_skills/RightHandBlocking.hpp</label>
+        <link refid="RightHandBlocking_8hpp_source"/>
+        <childnode refid="2781" relation="include">
+        </childnode>
+      </node>
+      <node id="2778">
+        <label>/home/c7031109/iis_robot_sw/iis_catkin_ws/src/kukadu/include/kukadu/learning.hpp</label>
+        <link refid="learning_8hpp_source"/>
         <childnode refid="2779" relation="include">
+        </childnode>
+      </node>
+      <node id="2787">
+        <label>/home/c7031109/iis_robot_sw/iis_catkin_ws/src/kukadu/include/kukadu/generated_skills/PushHandPos.hpp</label>
+        <link refid="PushHandPos_8hpp_source"/>
+        <childnode refid="2781" relation="include">
         </childnode>
       </node>
     </invincdepgraph>
@@ -209,6 +209,6 @@
 <codeline lineno="40"><highlight class="normal"></highlight></codeline>
 <codeline lineno="41"><highlight class="normal"></highlight><highlight class="preprocessor">#endif</highlight></codeline>
     </programlisting>
-    <location file="/home/agyss/iis_robot_sw/iis_catkin_ws/src/kukadu/include/kukadu/learning/classification/libsvmclassifier.hpp"/>
+    <location file="/home/c7031109/iis_robot_sw/iis_catkin_ws/src/kukadu/include/kukadu/learning/classification/libsvmclassifier.hpp"/>
   </compounddef>
 </doxygen>

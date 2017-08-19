@@ -3,6 +3,8 @@
 var rtl = (document.location.search == '?rtl');
 var block = null;
 
+setFieldValueError = false;
+
 function start() {
     Blockly.inject(document.getElementById('blocklyDiv'),
         {
@@ -76,6 +78,7 @@ function downloadBlocks() {
 function reloadBlocks(xmlText) {
 		
 	loading = true;
+	setFieldValueError = false;
 
 	Blockly.mainWorkspace.clear();
 	
@@ -114,6 +117,8 @@ function reloadBlocks(xmlText) {
 		
 	});
 	
+	if(setFieldValueError)
+		alert("warning: there were errors loading the file (check the debug console");
 
 }
 
