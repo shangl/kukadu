@@ -4,24 +4,28 @@
     <compoundname>kukadu::Controller</compoundname>
     <basecompoundref refid="classkukadu_1_1TimedObject" prot="protected" virt="non-virtual">kukadu::TimedObject</basecompoundref>
     <basecompoundref refid="classkukadu_1_1StorageHolder" prot="public" virt="non-virtual">kukadu::StorageHolder</basecompoundref>
+    <derivedcompoundref refid="classkukadu_1_1BlockingPos" prot="public" virt="non-virtual">kukadu::BlockingPos</derivedcompoundref>
     <derivedcompoundref refid="classkukadu_1_1CartesianPtp" prot="public" virt="non-virtual">kukadu::CartesianPtp</derivedcompoundref>
+    <derivedcompoundref refid="classkukadu_1_1ChangeModeToIMP" prot="public" virt="non-virtual">kukadu::ChangeModeToIMP</derivedcompoundref>
+    <derivedcompoundref refid="classkukadu_1_1ChangeStiffness" prot="public" virt="non-virtual">kukadu::ChangeStiffness</derivedcompoundref>
+    <derivedcompoundref refid="classkukadu_1_1CloseHand" prot="public" virt="non-virtual">kukadu::CloseHand</derivedcompoundref>
     <derivedcompoundref refid="classkukadu_1_1ComplexController" prot="public" virt="non-virtual">kukadu::ComplexController</derivedcompoundref>
     <derivedcompoundref refid="classkukadu_1_1ConcatController" prot="public" virt="non-virtual">kukadu::ConcatController</derivedcompoundref>
     <derivedcompoundref refid="classkukadu_1_1ControllerActionClip" prot="public" virt="non-virtual">kukadu::ControllerActionClip</derivedcompoundref>
+    <derivedcompoundref refid="classkukadu_1_1FinalPush" prot="public" virt="non-virtual">kukadu::FinalPush</derivedcompoundref>
     <derivedcompoundref refid="classkukadu_1_1JointPtp" prot="public" virt="non-virtual">kukadu::JointPtp</derivedcompoundref>
+    <derivedcompoundref refid="classkukadu_1_1KinestheticTeaching" prot="public" virt="non-virtual">kukadu::KinestheticTeaching</derivedcompoundref>
     <derivedcompoundref refid="classkukadu_1_1LocalizeObject" prot="public" virt="non-virtual">kukadu::LocalizeObject</derivedcompoundref>
+    <derivedcompoundref refid="classkukadu_1_1MoveHome" prot="public" virt="non-virtual">kukadu::MoveHome</derivedcompoundref>
+    <derivedcompoundref refid="classkukadu_1_1OpenHand" prot="public" virt="non-virtual">kukadu::OpenHand</derivedcompoundref>
+    <derivedcompoundref refid="classkukadu_1_1PushForward" prot="public" virt="non-virtual">kukadu::PushForward</derivedcompoundref>
+    <derivedcompoundref refid="classkukadu_1_1PushHandPos" prot="public" virt="non-virtual">kukadu::PushHandPos</derivedcompoundref>
+    <derivedcompoundref refid="classkukadu_1_1PushTranslation" prot="public" virt="non-virtual">kukadu::PushTranslation</derivedcompoundref>
+    <derivedcompoundref refid="classkukadu_1_1RightHandBlocking" prot="public" virt="non-virtual">kukadu::RightHandBlocking</derivedcompoundref>
     <derivedcompoundref refid="classkukadu_1_1SensingController" prot="public" virt="non-virtual">kukadu::SensingController</derivedcompoundref>
-    <derivedcompoundref refid="classkukadu_1_1skill_1_1BlockingPos" prot="public" virt="non-virtual">kukadu::skill::BlockingPos</derivedcompoundref>
-    <derivedcompoundref refid="classkukadu_1_1skill_1_1ChangeModeToIMP" prot="public" virt="non-virtual">kukadu::skill::ChangeModeToIMP</derivedcompoundref>
-    <derivedcompoundref refid="classkukadu_1_1skill_1_1ChangeStiffness" prot="public" virt="non-virtual">kukadu::skill::ChangeStiffness</derivedcompoundref>
-    <derivedcompoundref refid="classkukadu_1_1skill_1_1CloseHand" prot="public" virt="non-virtual">kukadu::skill::CloseHand</derivedcompoundref>
-    <derivedcompoundref refid="classkukadu_1_1skill_1_1KinestheticTeaching" prot="public" virt="non-virtual">kukadu::skill::KinestheticTeaching</derivedcompoundref>
-    <derivedcompoundref refid="classkukadu_1_1skill_1_1MoveHome" prot="public" virt="non-virtual">kukadu::skill::MoveHome</derivedcompoundref>
-    <derivedcompoundref refid="classkukadu_1_1skill_1_1OpenHand" prot="public" virt="non-virtual">kukadu::skill::OpenHand</derivedcompoundref>
-    <derivedcompoundref refid="classkukadu_1_1skill_1_1PushHandPos" prot="public" virt="non-virtual">kukadu::skill::PushHandPos</derivedcompoundref>
-    <derivedcompoundref refid="classkukadu_1_1skill_1_1RightHandBlocking" prot="public" virt="non-virtual">kukadu::skill::RightHandBlocking</derivedcompoundref>
-    <derivedcompoundref refid="classkukadu_1_1skill_1_1WaitForReached" prot="public" virt="non-virtual">kukadu::skill::WaitForReached</derivedcompoundref>
+    <derivedcompoundref refid="classkukadu_1_1SimpleJointPtp" prot="public" virt="non-virtual">kukadu::SimpleJointPtp</derivedcompoundref>
     <derivedcompoundref refid="classkukadu_1_1TrajectoryExecutor" prot="public" virt="non-virtual">kukadu::TrajectoryExecutor</derivedcompoundref>
+    <derivedcompoundref refid="classkukadu_1_1WaitForReached" prot="public" virt="non-virtual">kukadu::WaitForReached</derivedcompoundref>
       <sectiondef kind="private-static-attrib">
       <memberdef kind="variable" id="classkukadu_1_1Controller_1a9dfc9464f52ad4fd32d8aca69c784a36" prot="private" static="yes" mutable="no">
         <type>auto constexpr</type>
@@ -183,16 +187,20 @@
         <definition>virtual KUKADU_SHARED_PTR&lt;ControllerResult&gt; kukadu::Controller::executeInternal</definition>
         <argsstring>()=0</argsstring>
         <name>executeInternal</name>
-        <reimplementedby refid="classkukadu_1_1skill_1_1RightHandBlocking_1a2531f7745bb3eaba00c7ae39ffa14bae">executeInternal</reimplementedby>
-        <reimplementedby refid="classkukadu_1_1skill_1_1PushHandPos_1afed683c99e1113fbec4caac19d978bd6">executeInternal</reimplementedby>
-        <reimplementedby refid="classkukadu_1_1skill_1_1BlockingPos_1a1e7283997e5457c690c0850da4f68e0d">executeInternal</reimplementedby>
-        <reimplementedby refid="classkukadu_1_1skill_1_1OpenHand_1a3d37891da442fc46ceca55f007189a48">executeInternal</reimplementedby>
-        <reimplementedby refid="classkukadu_1_1skill_1_1CloseHand_1a07dcb4cffb4dd8367ae5133c7487ad5a">executeInternal</reimplementedby>
-        <reimplementedby refid="classkukadu_1_1skill_1_1MoveHome_1a783bec2d092290c30957c221c9a9dc03">executeInternal</reimplementedby>
-        <reimplementedby refid="classkukadu_1_1skill_1_1ChangeModeToIMP_1a77f369781b6b336190cc9d6b83200b86">executeInternal</reimplementedby>
-        <reimplementedby refid="classkukadu_1_1skill_1_1WaitForReached_1a9f73012c327ac375fb59a7b458c9e218">executeInternal</reimplementedby>
-        <reimplementedby refid="classkukadu_1_1skill_1_1ChangeStiffness_1a4abc7b29663c85374f764c951378ca4f">executeInternal</reimplementedby>
-        <reimplementedby refid="classkukadu_1_1skill_1_1KinestheticTeaching_1ad551f19a7ae18c6ca4fa0b596a95e151">executeInternal</reimplementedby>
+        <reimplementedby refid="classkukadu_1_1FinalPush_1a4ecf2571758a5f35546ede9f90668cfc">executeInternal</reimplementedby>
+        <reimplementedby refid="classkukadu_1_1PushHandPos_1a3b41d0cd5361eee43d2161c24a7b9e3f">executeInternal</reimplementedby>
+        <reimplementedby refid="classkukadu_1_1OpenHand_1a9face10952b2480cd5cc9c73742f4170">executeInternal</reimplementedby>
+        <reimplementedby refid="classkukadu_1_1CloseHand_1aac5d8a72ab3027c9a919c33000d53869">executeInternal</reimplementedby>
+        <reimplementedby refid="classkukadu_1_1BlockingPos_1a69165f54358a92c3863377b780b2fa0d">executeInternal</reimplementedby>
+        <reimplementedby refid="classkukadu_1_1RightHandBlocking_1a41f7c0eb84b04f90b206dcc73314604e">executeInternal</reimplementedby>
+        <reimplementedby refid="classkukadu_1_1PushTranslation_1a37680334c5980f9c720f34b786099859">executeInternal</reimplementedby>
+        <reimplementedby refid="classkukadu_1_1PushForward_1ab6efe70f7ae149181b5a567b9fb41fff">executeInternal</reimplementedby>
+        <reimplementedby refid="classkukadu_1_1MoveHome_1a69cc57862b714d2fd0811c40b6c9ce2c">executeInternal</reimplementedby>
+        <reimplementedby refid="classkukadu_1_1ChangeModeToIMP_1a955f430bfeee83db693e0451836ba538">executeInternal</reimplementedby>
+        <reimplementedby refid="classkukadu_1_1WaitForReached_1a829e6d731b44915ab9acba34ca2ab043">executeInternal</reimplementedby>
+        <reimplementedby refid="classkukadu_1_1SimpleJointPtp_1aa1e58dba75cec81b6bbd798af7a1cdf6">executeInternal</reimplementedby>
+        <reimplementedby refid="classkukadu_1_1ChangeStiffness_1ae3f286ab1f586867f60881203e125f91">executeInternal</reimplementedby>
+        <reimplementedby refid="classkukadu_1_1KinestheticTeaching_1ab84362c786130687474536068f310068">executeInternal</reimplementedby>
         <reimplementedby refid="classkukadu_1_1SensingController_1afe31e275dcc4178bd05cfb962e05941a">executeInternal</reimplementedby>
         <reimplementedby refid="classkukadu_1_1CartesianPtp_1a2a9e0b3ebb6abb4dfdb6bc5039890c6b">executeInternal</reimplementedby>
         <reimplementedby refid="classkukadu_1_1JointPtp_1aa34e8754f54d94e062a920bca1c39c69">executeInternal</reimplementedby>
@@ -214,16 +222,20 @@
         <definition>virtual bool kukadu::Controller::requiresGraspInternal</definition>
         <argsstring>()=0</argsstring>
         <name>requiresGraspInternal</name>
-        <reimplementedby refid="classkukadu_1_1skill_1_1RightHandBlocking_1ac8fd70d4e4e71ea035f908ba17518cec">requiresGraspInternal</reimplementedby>
-        <reimplementedby refid="classkukadu_1_1skill_1_1PushHandPos_1a0f154975eff447aa128eae5182de8b06">requiresGraspInternal</reimplementedby>
-        <reimplementedby refid="classkukadu_1_1skill_1_1BlockingPos_1a65ace81d91e6a8064b1384a81bc86ab6">requiresGraspInternal</reimplementedby>
-        <reimplementedby refid="classkukadu_1_1skill_1_1OpenHand_1a3786d6872067439819b241c178ea34b4">requiresGraspInternal</reimplementedby>
-        <reimplementedby refid="classkukadu_1_1skill_1_1CloseHand_1a37ddfa8ec474d640a3a10afdc68715b3">requiresGraspInternal</reimplementedby>
-        <reimplementedby refid="classkukadu_1_1skill_1_1MoveHome_1ab1ccb97281daac145ce1e8e73a61e1a9">requiresGraspInternal</reimplementedby>
-        <reimplementedby refid="classkukadu_1_1skill_1_1ChangeModeToIMP_1a2e04870c029f8531bfc713d48d072e1e">requiresGraspInternal</reimplementedby>
-        <reimplementedby refid="classkukadu_1_1skill_1_1WaitForReached_1a097639d42643121d8a553063099fd330">requiresGraspInternal</reimplementedby>
-        <reimplementedby refid="classkukadu_1_1skill_1_1ChangeStiffness_1a20dafb8ac8267f623ecd69069c35dd8a">requiresGraspInternal</reimplementedby>
-        <reimplementedby refid="classkukadu_1_1skill_1_1KinestheticTeaching_1a707701283f513d3ba0ccdd4d121544d8">requiresGraspInternal</reimplementedby>
+        <reimplementedby refid="classkukadu_1_1FinalPush_1a14a1249f2c23f1815121f5fbd9833084">requiresGraspInternal</reimplementedby>
+        <reimplementedby refid="classkukadu_1_1PushHandPos_1a5efc4191049d85f8807cec0e057053ef">requiresGraspInternal</reimplementedby>
+        <reimplementedby refid="classkukadu_1_1OpenHand_1a26470a6a62c3b409bc5de6a6ad37aa4e">requiresGraspInternal</reimplementedby>
+        <reimplementedby refid="classkukadu_1_1CloseHand_1af1c87f1bb58d81826c04e095fef5093f">requiresGraspInternal</reimplementedby>
+        <reimplementedby refid="classkukadu_1_1BlockingPos_1a3d6f6c3b81c3e44f48de2217853122a1">requiresGraspInternal</reimplementedby>
+        <reimplementedby refid="classkukadu_1_1RightHandBlocking_1ab98af5d57aa0f830804c587e7f97c104">requiresGraspInternal</reimplementedby>
+        <reimplementedby refid="classkukadu_1_1PushTranslation_1a3bc902d960814525886e0da3563826f8">requiresGraspInternal</reimplementedby>
+        <reimplementedby refid="classkukadu_1_1PushForward_1aa435b45a2b44c6391594b172e56f2015">requiresGraspInternal</reimplementedby>
+        <reimplementedby refid="classkukadu_1_1MoveHome_1abaf0b79e2dd0ef85cf00220e3a7b63d2">requiresGraspInternal</reimplementedby>
+        <reimplementedby refid="classkukadu_1_1ChangeModeToIMP_1ae01e47374ddb1d37e891f8952a892add">requiresGraspInternal</reimplementedby>
+        <reimplementedby refid="classkukadu_1_1WaitForReached_1a356aa34525fe1f4aa987a8f6514f0348">requiresGraspInternal</reimplementedby>
+        <reimplementedby refid="classkukadu_1_1SimpleJointPtp_1a67b8b3c67194a46ed8ce9442dd02c0d2">requiresGraspInternal</reimplementedby>
+        <reimplementedby refid="classkukadu_1_1ChangeStiffness_1a947570ea38db48ccf8632e81e9b60523">requiresGraspInternal</reimplementedby>
+        <reimplementedby refid="classkukadu_1_1KinestheticTeaching_1aca9f11d0119cd24e7ce916588d3431c5">requiresGraspInternal</reimplementedby>
         <reimplementedby refid="classkukadu_1_1CartesianPtp_1a940db0a2f6996d368dad9403bbf841dc">requiresGraspInternal</reimplementedby>
         <reimplementedby refid="classkukadu_1_1JointPtp_1af669a689640d7ff69977bd1575decca3">requiresGraspInternal</reimplementedby>
         <reimplementedby refid="classkukadu_1_1ConcatController_1a484ae26504bb10e138b1696490efcbca">requiresGraspInternal</reimplementedby>
@@ -244,16 +256,20 @@
         <definition>virtual bool kukadu::Controller::producesGraspInternal</definition>
         <argsstring>()=0</argsstring>
         <name>producesGraspInternal</name>
-        <reimplementedby refid="classkukadu_1_1skill_1_1RightHandBlocking_1a0d876b34a98f1ddf54bd07fb60842020">producesGraspInternal</reimplementedby>
-        <reimplementedby refid="classkukadu_1_1skill_1_1PushHandPos_1a9738735155e861759b1a9a99370e27bd">producesGraspInternal</reimplementedby>
-        <reimplementedby refid="classkukadu_1_1skill_1_1BlockingPos_1a0b1b57a010a480ee1ebbb2ef2c3169b5">producesGraspInternal</reimplementedby>
-        <reimplementedby refid="classkukadu_1_1skill_1_1OpenHand_1a34db919aee65440a152164e171a48b61">producesGraspInternal</reimplementedby>
-        <reimplementedby refid="classkukadu_1_1skill_1_1CloseHand_1a372c22c291b8ef5531476ccff98ffc43">producesGraspInternal</reimplementedby>
-        <reimplementedby refid="classkukadu_1_1skill_1_1MoveHome_1a27528ab7f21b8ac404fc9e5680bb8d4c">producesGraspInternal</reimplementedby>
-        <reimplementedby refid="classkukadu_1_1skill_1_1ChangeModeToIMP_1ae45c92797e161a41297fffe367022677">producesGraspInternal</reimplementedby>
-        <reimplementedby refid="classkukadu_1_1skill_1_1WaitForReached_1a59e06c1d0f5289dc0d47ceaf76ec6733">producesGraspInternal</reimplementedby>
-        <reimplementedby refid="classkukadu_1_1skill_1_1ChangeStiffness_1a657284ef11a472bf7b38e6bfba13b76a">producesGraspInternal</reimplementedby>
-        <reimplementedby refid="classkukadu_1_1skill_1_1KinestheticTeaching_1ab074a84adaae3408b1ff87f6c267baa3">producesGraspInternal</reimplementedby>
+        <reimplementedby refid="classkukadu_1_1FinalPush_1a5825606e8ec41ac78274be23f5e9e734">producesGraspInternal</reimplementedby>
+        <reimplementedby refid="classkukadu_1_1PushHandPos_1add7a9c4483df1f28afab5aa2b30a582e">producesGraspInternal</reimplementedby>
+        <reimplementedby refid="classkukadu_1_1OpenHand_1adf72248f377d534f693fcf7abba87e38">producesGraspInternal</reimplementedby>
+        <reimplementedby refid="classkukadu_1_1CloseHand_1a0be49856fea10c68b89820036f2197c7">producesGraspInternal</reimplementedby>
+        <reimplementedby refid="classkukadu_1_1BlockingPos_1a1c7ed3e119a5f26cf31a69c69914e89b">producesGraspInternal</reimplementedby>
+        <reimplementedby refid="classkukadu_1_1RightHandBlocking_1a885183c09399ea39d233dc2637e0cdae">producesGraspInternal</reimplementedby>
+        <reimplementedby refid="classkukadu_1_1PushTranslation_1afde6ec05a68cea840b0e75c657cec983">producesGraspInternal</reimplementedby>
+        <reimplementedby refid="classkukadu_1_1PushForward_1ae27e71ef23ed7f96fe2f10487f29e04e">producesGraspInternal</reimplementedby>
+        <reimplementedby refid="classkukadu_1_1MoveHome_1a370c35b0a19b777397571e99dfcb4b46">producesGraspInternal</reimplementedby>
+        <reimplementedby refid="classkukadu_1_1ChangeModeToIMP_1a038d4c8012b33710c31ba415df904d64">producesGraspInternal</reimplementedby>
+        <reimplementedby refid="classkukadu_1_1WaitForReached_1a86457356a41a70591025284a25c00929">producesGraspInternal</reimplementedby>
+        <reimplementedby refid="classkukadu_1_1SimpleJointPtp_1a9bcfeeba1c4ac7e910a456de2ce569ff">producesGraspInternal</reimplementedby>
+        <reimplementedby refid="classkukadu_1_1ChangeStiffness_1afae1aad2ebacf57858d011792cfa0778">producesGraspInternal</reimplementedby>
+        <reimplementedby refid="classkukadu_1_1KinestheticTeaching_1af19408505f84c77180300cf1e10284c8">producesGraspInternal</reimplementedby>
         <reimplementedby refid="classkukadu_1_1CartesianPtp_1a3028fe2ded596149391ea1de5f6ecd36">producesGraspInternal</reimplementedby>
         <reimplementedby refid="classkukadu_1_1JointPtp_1aaf6903ed027c9a1667c057ef8458ea88">producesGraspInternal</reimplementedby>
         <reimplementedby refid="classkukadu_1_1ConcatController_1a6ee16ba5bf9fdbd96c2acad0f2b5296d">producesGraspInternal</reimplementedby>
@@ -314,16 +330,20 @@
         <definition>virtual void kukadu::Controller::createSkillFromThisInternal</definition>
         <argsstring>(std::string skillName)=0</argsstring>
         <name>createSkillFromThisInternal</name>
-        <reimplementedby refid="classkukadu_1_1skill_1_1RightHandBlocking_1abc8bae1e7d84c792992be97a1d888e56">createSkillFromThisInternal</reimplementedby>
-        <reimplementedby refid="classkukadu_1_1skill_1_1PushHandPos_1ab32462d9468699044d7a7d1a70a99e80">createSkillFromThisInternal</reimplementedby>
-        <reimplementedby refid="classkukadu_1_1skill_1_1BlockingPos_1a78b7d6765e318261366e8a8add1a8356">createSkillFromThisInternal</reimplementedby>
-        <reimplementedby refid="classkukadu_1_1skill_1_1OpenHand_1abf20a460351eb338ad9d0f4754eb9a9b">createSkillFromThisInternal</reimplementedby>
-        <reimplementedby refid="classkukadu_1_1skill_1_1CloseHand_1a1e6e565989c5b3c985a9180ef35cfe6f">createSkillFromThisInternal</reimplementedby>
-        <reimplementedby refid="classkukadu_1_1skill_1_1ChangeModeToIMP_1a07ec236bcfbf4b916dcddcb42175e093">createSkillFromThisInternal</reimplementedby>
-        <reimplementedby refid="classkukadu_1_1skill_1_1WaitForReached_1a18d36933b62c1e5a651bebd49f9b607d">createSkillFromThisInternal</reimplementedby>
-        <reimplementedby refid="classkukadu_1_1skill_1_1MoveHome_1a60f585c44d3855c8672d0250e4d18a87">createSkillFromThisInternal</reimplementedby>
-        <reimplementedby refid="classkukadu_1_1skill_1_1ChangeStiffness_1a9d9b788ec1fa0d2a7f8354b182b72b65">createSkillFromThisInternal</reimplementedby>
-        <reimplementedby refid="classkukadu_1_1skill_1_1KinestheticTeaching_1a56ab25e7218537ad625b5439722f688e">createSkillFromThisInternal</reimplementedby>
+        <reimplementedby refid="classkukadu_1_1FinalPush_1a2460f59f9b6d42ec1be6420f8fdaddd6">createSkillFromThisInternal</reimplementedby>
+        <reimplementedby refid="classkukadu_1_1RightHandBlocking_1a6faf7ce68886ed2049f9c8d5b189cfbf">createSkillFromThisInternal</reimplementedby>
+        <reimplementedby refid="classkukadu_1_1PushHandPos_1aacc158055296e9fccc53055ea2861ae0">createSkillFromThisInternal</reimplementedby>
+        <reimplementedby refid="classkukadu_1_1OpenHand_1a2d8d587aa5096b39bcdaa52627db0bd8">createSkillFromThisInternal</reimplementedby>
+        <reimplementedby refid="classkukadu_1_1CloseHand_1a4df238589d670be65938dfd7b5879643">createSkillFromThisInternal</reimplementedby>
+        <reimplementedby refid="classkukadu_1_1ChangeModeToIMP_1a69cdb253921036aec778d38d9594c82a">createSkillFromThisInternal</reimplementedby>
+        <reimplementedby refid="classkukadu_1_1BlockingPos_1a1d0854538d456046539c353a303a5405">createSkillFromThisInternal</reimplementedby>
+        <reimplementedby refid="classkukadu_1_1WaitForReached_1a2809e56248a8883e0192dc387b8d4a5d">createSkillFromThisInternal</reimplementedby>
+        <reimplementedby refid="classkukadu_1_1PushTranslation_1a138a365e1e1b56d46b3e8dcfaf99cbd2">createSkillFromThisInternal</reimplementedby>
+        <reimplementedby refid="classkukadu_1_1PushForward_1a531ba99d58337c2568d832b2500a17b5">createSkillFromThisInternal</reimplementedby>
+        <reimplementedby refid="classkukadu_1_1MoveHome_1a44bec932dc663fd092619990ee28a0a8">createSkillFromThisInternal</reimplementedby>
+        <reimplementedby refid="classkukadu_1_1SimpleJointPtp_1ad021c5bda45fdc56b440e0cb67af5a64">createSkillFromThisInternal</reimplementedby>
+        <reimplementedby refid="classkukadu_1_1ChangeStiffness_1ab2e0baedaad58d7ecfa58c04a9fc0447">createSkillFromThisInternal</reimplementedby>
+        <reimplementedby refid="classkukadu_1_1KinestheticTeaching_1ac8befe53277a9d7b306c27eb920fcc32">createSkillFromThisInternal</reimplementedby>
         <reimplementedby refid="classkukadu_1_1CartesianPtp_1a600be6b576e5cc8f48ad3dc0a3aff600">createSkillFromThisInternal</reimplementedby>
         <reimplementedby refid="classkukadu_1_1SensingController_1a50c7f9b186b6ef90661d27820fc9040c">createSkillFromThisInternal</reimplementedby>
         <reimplementedby refid="classkukadu_1_1JointPtp_1ae8d2ba4ffc5e8bc29ecc684ab5b47646">createSkillFromThisInternal</reimplementedby>
@@ -593,16 +613,20 @@
         <definition>virtual std::string kukadu::Controller::getClassName</definition>
         <argsstring>()=0</argsstring>
         <name>getClassName</name>
-        <reimplementedby refid="classkukadu_1_1skill_1_1RightHandBlocking_1af2ec3fd9b07aaa0bd3c02d076020ded7">getClassName</reimplementedby>
-        <reimplementedby refid="classkukadu_1_1skill_1_1PushHandPos_1a4fd6e1c2ee613f6acfa29be0ab60ccf6">getClassName</reimplementedby>
-        <reimplementedby refid="classkukadu_1_1skill_1_1BlockingPos_1a95f5ecd01906b7f1a67e6b894373557e">getClassName</reimplementedby>
-        <reimplementedby refid="classkukadu_1_1skill_1_1OpenHand_1a3fdd74411f63837ae750ec6082c45832">getClassName</reimplementedby>
-        <reimplementedby refid="classkukadu_1_1skill_1_1CloseHand_1afe0d13e559787b1a48588dbddc7dec4b">getClassName</reimplementedby>
-        <reimplementedby refid="classkukadu_1_1skill_1_1MoveHome_1a4f8b462f31a8fe89be424e48e4022958">getClassName</reimplementedby>
-        <reimplementedby refid="classkukadu_1_1skill_1_1ChangeModeToIMP_1acc0c6304d1a237e87bff23c0f94f7723">getClassName</reimplementedby>
-        <reimplementedby refid="classkukadu_1_1skill_1_1WaitForReached_1ada64c0bcdbd12664259ae5619e631e90">getClassName</reimplementedby>
-        <reimplementedby refid="classkukadu_1_1skill_1_1ChangeStiffness_1af251854b32593b83024369d1b5f393f6">getClassName</reimplementedby>
-        <reimplementedby refid="classkukadu_1_1skill_1_1KinestheticTeaching_1aecc8588810b70d3e9edf78b70148c5ab">getClassName</reimplementedby>
+        <reimplementedby refid="classkukadu_1_1FinalPush_1a5d0eb257fc9db3e0dcb8841e01690eba">getClassName</reimplementedby>
+        <reimplementedby refid="classkukadu_1_1PushHandPos_1a4c63e005b7ff301ed95157a2afe6e3ae">getClassName</reimplementedby>
+        <reimplementedby refid="classkukadu_1_1OpenHand_1a8b39c1a02dfa938482de488a3bf791fe">getClassName</reimplementedby>
+        <reimplementedby refid="classkukadu_1_1CloseHand_1a27373ced547b5eee94165cecdc8b623a">getClassName</reimplementedby>
+        <reimplementedby refid="classkukadu_1_1BlockingPos_1ac3b1cdc2605e38aed51c74ab7a6493db">getClassName</reimplementedby>
+        <reimplementedby refid="classkukadu_1_1RightHandBlocking_1a20eef7534062b1461eb3c8c4e7fe1e74">getClassName</reimplementedby>
+        <reimplementedby refid="classkukadu_1_1PushTranslation_1aa15725f28c6e2e02e796ffcf5aa111fc">getClassName</reimplementedby>
+        <reimplementedby refid="classkukadu_1_1PushForward_1ab69e6503d0b81f977d06f03511d3cf57">getClassName</reimplementedby>
+        <reimplementedby refid="classkukadu_1_1MoveHome_1a0ca815c415fef05b993f51309f1f3359">getClassName</reimplementedby>
+        <reimplementedby refid="classkukadu_1_1ChangeModeToIMP_1a0adf397ffe06f233e83b7e9f21f8fe71">getClassName</reimplementedby>
+        <reimplementedby refid="classkukadu_1_1WaitForReached_1abbe109128ca5d124e94cc0e5d986b9f0">getClassName</reimplementedby>
+        <reimplementedby refid="classkukadu_1_1SimpleJointPtp_1aae0f004834d73f68b2c0918894c285d8">getClassName</reimplementedby>
+        <reimplementedby refid="classkukadu_1_1ChangeStiffness_1a6ac5ea594a7c1b946995f98483cb03cd">getClassName</reimplementedby>
+        <reimplementedby refid="classkukadu_1_1KinestheticTeaching_1a896ad3e1558d2b1478a04616e7a874bb">getClassName</reimplementedby>
         <reimplementedby refid="classkukadu_1_1CartesianPtp_1a0fb7ceb0cdfd96339eff8f2d24851552">getClassName</reimplementedby>
         <reimplementedby refid="classkukadu_1_1JointPtp_1a159e270825c4a016872edab69ef4767a">getClassName</reimplementedby>
         <reimplementedby refid="classkukadu_1_1TrajectoryExecutor_1a7466b6793fb5e1467e554f56c6b0fbf4">getClassName</reimplementedby>
@@ -642,31 +666,43 @@
     <detaileddescription>
     </detaileddescription>
     <inheritancegraph>
-      <node id="165">
+      <node id="164">
+        <label>kukadu::PushTranslation</label>
+        <link refid="classkukadu_1_1PushTranslation"/>
+        <childnode refid="145" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="168">
         <label>kukadu::TrajectoryExecutor</label>
         <link refid="classkukadu_1_1TrajectoryExecutor"/>
         <childnode refid="145" relation="public-inheritance">
         </childnode>
       </node>
-      <node id="148">
+      <node id="163">
+        <label>kukadu::PushHandPos</label>
+        <link refid="classkukadu_1_1PushHandPos"/>
+        <childnode refid="145" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="149">
         <label>kukadu::CartesianPtp</label>
         <link refid="classkukadu_1_1CartesianPtp"/>
         <childnode refid="145" relation="public-inheritance">
         </childnode>
       </node>
-      <node id="151">
+      <node id="155">
         <label>kukadu::ControllerActionClip</label>
         <link refid="classkukadu_1_1ControllerActionClip"/>
         <childnode refid="145" relation="public-inheritance">
         </childnode>
       </node>
-      <node id="153">
+      <node id="159">
         <label>kukadu::LocalizeObject</label>
         <link refid="classkukadu_1_1LocalizeObject"/>
         <childnode refid="145" relation="public-inheritance">
         </childnode>
       </node>
-      <node id="154">
+      <node id="166">
         <label>kukadu::SensingController</label>
         <link refid="classkukadu_1_1SensingController"/>
         <childnode refid="145" relation="public-inheritance">
@@ -676,45 +712,51 @@
         <label>kukadu::TimedObject</label>
         <link refid="classkukadu_1_1TimedObject"/>
       </node>
-      <node id="155">
-        <label>kukadu::skill::BlockingPos</label>
-        <link refid="classkukadu_1_1skill_1_1BlockingPos"/>
-        <childnode refid="145" relation="public-inheritance">
-        </childnode>
-      </node>
-      <node id="152">
+      <node id="157">
         <label>kukadu::JointPtp</label>
         <link refid="classkukadu_1_1JointPtp"/>
         <childnode refid="145" relation="public-inheritance">
         </childnode>
       </node>
-      <node id="163">
-        <label>kukadu::skill::RightHandBlocking</label>
-        <link refid="classkukadu_1_1skill_1_1RightHandBlocking"/>
+      <node id="148">
+        <label>kukadu::BlockingPos</label>
+        <link refid="classkukadu_1_1BlockingPos"/>
         <childnode refid="145" relation="public-inheritance">
         </childnode>
       </node>
-      <node id="159">
-        <label>kukadu::skill::KinestheticTeaching</label>
-        <link refid="classkukadu_1_1skill_1_1KinestheticTeaching"/>
+      <node id="165">
+        <label>kukadu::RightHandBlocking</label>
+        <link refid="classkukadu_1_1RightHandBlocking"/>
         <childnode refid="145" relation="public-inheritance">
         </childnode>
       </node>
-      <node id="160">
-        <label>kukadu::skill::MoveHome</label>
-        <link refid="classkukadu_1_1skill_1_1MoveHome"/>
+      <node id="151">
+        <label>kukadu::ChangeStiffness</label>
+        <link refid="classkukadu_1_1ChangeStiffness"/>
         <childnode refid="145" relation="public-inheritance">
         </childnode>
       </node>
-      <node id="157">
-        <label>kukadu::skill::ChangeStiffness</label>
-        <link refid="classkukadu_1_1skill_1_1ChangeStiffness"/>
+      <node id="150">
+        <label>kukadu::ChangeModeToIMP</label>
+        <link refid="classkukadu_1_1ChangeModeToIMP"/>
         <childnode refid="145" relation="public-inheritance">
         </childnode>
       </node>
-      <node id="158">
-        <label>kukadu::skill::CloseHand</label>
-        <link refid="classkukadu_1_1skill_1_1CloseHand"/>
+      <node id="156">
+        <label>kukadu::FinalPush</label>
+        <link refid="classkukadu_1_1FinalPush"/>
+        <childnode refid="145" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="161">
+        <label>kukadu::OpenHand</label>
+        <link refid="classkukadu_1_1OpenHand"/>
+        <childnode refid="145" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="167">
+        <label>kukadu::SimpleJointPtp</label>
+        <link refid="classkukadu_1_1SimpleJointPtp"/>
         <childnode refid="145" relation="public-inheritance">
         </childnode>
       </node>
@@ -726,21 +768,33 @@
         <childnode refid="147" relation="public-inheritance">
         </childnode>
       </node>
-      <node id="161">
-        <label>kukadu::skill::OpenHand</label>
-        <link refid="classkukadu_1_1skill_1_1OpenHand"/>
+      <node id="170">
+        <label>kukadu::WaitForReached</label>
+        <link refid="classkukadu_1_1WaitForReached"/>
         <childnode refid="145" relation="public-inheritance">
         </childnode>
       </node>
-      <node id="166">
-        <label>kukadu::DMPExecutor</label>
-        <link refid="classkukadu_1_1DMPExecutor"/>
-        <childnode refid="165" relation="public-inheritance">
+      <node id="158">
+        <label>kukadu::KinestheticTeaching</label>
+        <link refid="classkukadu_1_1KinestheticTeaching"/>
+        <childnode refid="145" relation="public-inheritance">
         </childnode>
       </node>
-      <node id="164">
-        <label>kukadu::skill::WaitForReached</label>
-        <link refid="classkukadu_1_1skill_1_1WaitForReached"/>
+      <node id="169">
+        <label>kukadu::DMPExecutor</label>
+        <link refid="classkukadu_1_1DMPExecutor"/>
+        <childnode refid="168" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="162">
+        <label>kukadu::PushForward</label>
+        <link refid="classkukadu_1_1PushForward"/>
+        <childnode refid="145" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="160">
+        <label>kukadu::MoveHome</label>
+        <link refid="classkukadu_1_1MoveHome"/>
         <childnode refid="145" relation="public-inheritance">
         </childnode>
       </node>
@@ -748,45 +802,39 @@
         <label>kukadu::StorageHolder</label>
         <link refid="classkukadu_1_1StorageHolder"/>
       </node>
-      <node id="150">
+      <node id="154">
         <label>kukadu::ConcatController</label>
         <link refid="classkukadu_1_1ConcatController"/>
         <childnode refid="145" relation="public-inheritance">
         </childnode>
       </node>
-      <node id="156">
-        <label>kukadu::skill::ChangeModeToIMP</label>
-        <link refid="classkukadu_1_1skill_1_1ChangeModeToIMP"/>
-        <childnode refid="145" relation="public-inheritance">
-        </childnode>
-      </node>
-      <node id="162">
-        <label>kukadu::skill::PushHandPos</label>
-        <link refid="classkukadu_1_1skill_1_1PushHandPos"/>
-        <childnode refid="145" relation="public-inheritance">
-        </childnode>
-      </node>
-      <node id="149">
+      <node id="153">
         <label>kukadu::ComplexController</label>
         <link refid="classkukadu_1_1ComplexController"/>
         <childnode refid="145" relation="public-inheritance">
         </childnode>
       </node>
+      <node id="152">
+        <label>kukadu::CloseHand</label>
+        <link refid="classkukadu_1_1CloseHand"/>
+        <childnode refid="145" relation="public-inheritance">
+        </childnode>
+      </node>
     </inheritancegraph>
     <collaborationgraph>
-      <node id="168">
+      <node id="172">
         <label>kukadu::TimedObject</label>
         <link refid="classkukadu_1_1TimedObject"/>
       </node>
-      <node id="167">
+      <node id="171">
         <label>kukadu::Controller</label>
         <link refid="classkukadu_1_1Controller"/>
-        <childnode refid="168" relation="protected-inheritance">
+        <childnode refid="172" relation="protected-inheritance">
         </childnode>
-        <childnode refid="169" relation="public-inheritance">
+        <childnode refid="173" relation="public-inheritance">
         </childnode>
       </node>
-      <node id="169">
+      <node id="173">
         <label>kukadu::StorageHolder</label>
         <link refid="classkukadu_1_1StorageHolder"/>
       </node>
