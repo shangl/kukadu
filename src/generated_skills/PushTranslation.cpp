@@ -1,10 +1,23 @@
 #include <kukadu/generated_skills/PushTranslation.hpp>
 
+using namespace arma;
+
 namespace kukadu {
+    namespace skill {
+        struct rectAlignment {
+            bool aligned;
+            int alignmentType;
+            double rotationError;
+        };
+    }
+
+
     PushTranslation::PushTranslation(kukadu::StorageSingleton &storage,
                                      std::vector<KUKADU_SHARED_PTR<kukadu::Hardware> > hardware)
             : Controller(storage, "PushTranslation", hardware, 0.01) {
         this->pushForward = false;
+        auto queue = KUKADU_DYNAMIC_POINTER_CAST<ControlQueue>(getUsedHardware()[0]);
+        komoPlanner = std::make_shared<Komo>(queue, resolvePath("$KUKADU_HOME/external/komo/share/data/kuka/data/iis_robot.kvg"), resolvePath("$KUKADU_HOME/external/komo/share/data/kuka/config/MT.cfg"), "left");
     }
 
     bool PushTranslation::requiresGraspInternal() {
@@ -14,7 +27,8 @@ namespace kukadu {
     bool PushTranslation::producesGraspInternal() {
         return false;
     }
-	void PushTranslation::setPushForward(bool pushForward) {
+
+    void PushTranslation::setPushForward(bool pushForward) {
         this->pushForward = pushForward;
     }
 
@@ -39,14 +53,16 @@ namespace kukadu {
         auto handBlockingSkill = kukadu::SkillFactory::get().loadSkill("PushHandPos", {hand});
         handBlockingSkill->execute();
 
-        auto kinect = KUKADU_DYNAMIC_POINTER_CAST<Camera>(getUsedHardware()[2]);
+        auto kinect = KUKADU_DYNAMIC_POINTER_CAST<Kinect>(getUsedHardware()[2]);
         hand->install();
         hand->start();
-       // auto localizer = std::make_shared<PCBlobDetector>(kinect, getStorage(), "origin", stdToArmadilloVec({0.7, 0.3, 0.04}), 0.3, 0.4, true);
+        auto localizer = std::make_shared<PCBlobDetector>(kinect, getStorage(), "origin",
+                                                          stdToArmadilloVec({0.7, 0.3, 0.04}), 0.3, 0.4, true);
 
-        //auto response = localizer->estimatePose("");
 
-        /*vec rpy = quatToRpy(response.first.orientation);
+        auto response = localizer->estimatePose("");
+
+        vec rpy = quatToRpy(response.first.orientation);
 
         double roll = rpy(0);
         double pitch = rpy(1);
@@ -77,7 +93,7 @@ namespace kukadu {
         auto quadrantInfo = checkQuadrant(yaw);
         yaw = quadrantInfo.first;
 
-        struct rectAlignment rectAligned;
+        struct skill::rectAlignment rectAligned;
 
         cout << yaw << endl;
         if ((yaw >= (7.0 * M_PI / 4.0) || yaw <= (M_PI / 4.0)) ||
@@ -95,14 +111,14 @@ namespace kukadu {
         while (!finishedPushing) {
 
             double horicontalDistance = bookLocation(1) - pushTo(1);
-*/
+
             /*
             if(horicontalDistance > 0.02)
                 horicontalDistance -= 0.02;
             else if(horicontalDistance < -0.02)
                 horicontalDistance += 0.02;
                 */
-/*
+
             double verticalDistance = bookLocation(0) - pushTo(0);
 
             int pushDirection;
@@ -144,8 +160,15 @@ namespace kukadu {
                 geometry_msgs::Pose startPose = pushStartPose(pushDirection, bookLocation, length, width, height,
                                                               rectAligned.alignmentType, 0.12, 0.3, 0.0);
 
-                ptpWithSimulation(startPoseWithOffset, executionQueue, executionQueue, useReal);
-                ptpWithSimulation(startPoseWoHeightOffset, executionQueue, executionQueue, useReal);
+
+                auto cartesianPtpSkill = kukadu::SkillFactory::get().loadSkill("CartesianPtp", {queue});
+
+                std::dynamic_pointer_cast<kukadu::CartesianPtp>(cartesianPtpSkill)->setCartesians(startPoseWithOffset);
+                cartesianPtpSkill->execute();
+
+                std::dynamic_pointer_cast<kukadu::CartesianPtp>(cartesianPtpSkill)->setCartesians(
+                        startPoseWoHeightOffset);
+                cartesianPtpSkill->execute();
 
                 geometry_msgs::Pose lastPose = startPose;
 
@@ -178,14 +201,143 @@ namespace kukadu {
                 }
 
                 lastPose.position.z += 0.1;
-                ptpWithSimulation(lastPose, executionQueue, executionQueue, useReal);
-
+                std::dynamic_pointer_cast<kukadu::CartesianPtp>(cartesianPtpSkill)->setCartesians(lastPose);
+                cartesianPtpSkill->execute();
             }
 
-        }*/
+        }
 
         return nullptr;
     }
+
+    geometry_msgs::Pose
+    PushTranslation::pushStartPose(int pushDirection, arma::vec bookLocation, double bookLength, double bookWidth,
+                                   double bookHeight, int bookAlignment,
+                                   double fingerPalmOffset, double zOffset, double desiredBookDistance) {
+
+        geometry_msgs::Pose handPose;
+
+        vec bookOffset;
+
+        // not very efficient written, but should work out
+        if (bookAlignment == HORICONTAL_ALIGNMENT) {
+
+            if (pushDirection == PUSH_LEFT) {
+
+                // standard offset for pushing to the right (seen from the robot)
+                bookOffset = stdToArmadilloVec(
+                        createJointsVector(3, 0.0, -bookLength / 2.0 + fingerPalmOffset - desiredBookDistance,
+                                           zOffset));
+
+                tf::Quaternion rot = rpyToQuat(-M_PI / 2.0, M_PI / 2.0, 0.0);
+                handPose.orientation.x = rot.getX();
+                handPose.orientation.y = rot.getY();
+                handPose.orientation.z = rot.getZ();
+                handPose.orientation.w = rot.getW();
+
+            } else if (pushDirection == PUSH_RIGHT) {
+
+                // standard offset for `` to the right (seen from the robot)
+                bookOffset = stdToArmadilloVec(
+                        createJointsVector(3, 0.0, bookLength / 2.0 + fingerPalmOffset + desiredBookDistance, zOffset));
+
+                tf::Quaternion rot = rpyToQuat(-M_PI / 2.0, M_PI / 2.0, 0.0);
+                handPose.orientation.x = rot.getX();
+                handPose.orientation.y = rot.getY();
+                handPose.orientation.z = rot.getZ();
+                handPose.orientation.w = rot.getW();
+
+            } else if (pushDirection == PUSH_DOWN) {
+
+                // standard offset for pushing towards the robot body (down)
+                bookOffset = stdToArmadilloVec(
+                        createJointsVector(3, bookWidth / 2.0 - fingerPalmOffset + desiredBookDistance, 0.0, zOffset));
+
+                //tf::Quaternion rot = rpyToQuat(M_PI, 0.0, -M_PI / 2.0);
+                tf::Quaternion rot = rpyToQuat(M_PI, M_PI, -M_PI / 2.0);
+                handPose.orientation.x = rot.getX();
+                handPose.orientation.y = rot.getY();
+                handPose.orientation.z = rot.getZ();
+                handPose.orientation.w = rot.getW();
+
+            } else if (pushDirection == PUSH_UP) {
+
+                // standard offset for pushing away from the robot body (up)
+                bookOffset = stdToArmadilloVec(
+                        createJointsVector(3, -bookWidth / 2.0 + fingerPalmOffset - desiredBookDistance, 0.0, zOffset));
+
+                tf::Quaternion rot = rpyToQuat(M_PI, 0.0, -M_PI / 2.0);
+                handPose.orientation.x = rot.getX();
+                handPose.orientation.y = rot.getY();
+                handPose.orientation.z = rot.getZ();
+                handPose.orientation.w = rot.getW();
+
+            } else {
+                throw "(PushingTranslationController) push direction not known";
+            }
+
+        } else {
+
+            if (pushDirection == PUSH_LEFT || pushDirection == PUSH_RIGHT) {
+
+                // standard offset for pushing to the right (seen from the robot)
+                if (pushDirection == PUSH_LEFT)
+                    bookOffset = stdToArmadilloVec(
+                            createJointsVector(3, 0.0, -bookWidth / 2.0 + fingerPalmOffset - desiredBookDistance,
+                                               zOffset));
+                else
+                    bookOffset = stdToArmadilloVec(
+                            createJointsVector(3, 0.0, bookWidth / 2.0 + fingerPalmOffset + desiredBookDistance,
+                                               zOffset));
+
+                tf::Quaternion rot = rpyToQuat(-M_PI / 2.0, M_PI / 2.0, 0.0);
+                handPose.orientation.x = rot.getX();
+                handPose.orientation.y = rot.getY();
+                handPose.orientation.z = rot.getZ();
+                handPose.orientation.w = rot.getW();
+
+            } else if (pushDirection == PUSH_DOWN) {
+
+                // standard offset for pushing towards the robot body (down)
+                bookOffset = stdToArmadilloVec(
+                        createJointsVector(3, bookLength / 2.0 - fingerPalmOffset + desiredBookDistance, 0.0, zOffset));
+
+                //tf::Quaternion rot = rpyToQuat(M_PI, 0.0, -M_PI / 2.0);
+                tf::Quaternion rot = rpyToQuat(M_PI, M_PI, -M_PI / 2.0);
+                handPose.orientation.x = rot.getX();
+                handPose.orientation.y = rot.getY();
+                handPose.orientation.z = rot.getZ();
+                handPose.orientation.w = rot.getW();
+
+            } else if (pushDirection == PUSH_UP) {
+
+                // standard offset for pushing away from the robot body (up)
+                bookOffset = stdToArmadilloVec(
+                        createJointsVector(3, -bookLength / 2.0 + fingerPalmOffset - desiredBookDistance, 0.0,
+                                           zOffset));
+
+                tf::Quaternion rot = rpyToQuat(M_PI, 0.0, -M_PI / 2.0);
+                handPose.orientation.x = rot.getX();
+                handPose.orientation.y = rot.getY();
+                handPose.orientation.z = rot.getZ();
+                handPose.orientation.w = rot.getW();
+
+            } else {
+                throw "(PushingTranslationController) push direction not known";
+            }
+
+
+        }
+
+        vec finalPalmPosition = bookLocation + bookOffset;
+        handPose.position.x = finalPalmPosition(0);
+        handPose.position.y = finalPalmPosition(1);
+        handPose.position.z = finalPalmPosition(2);
+
+        return handPose;
+
+    }
+
 
     std::string PushTranslation::getClassName() {
         return "PushTranslation";
@@ -194,4 +346,83 @@ namespace kukadu {
     void PushTranslation::createSkillFromThisInternal(std::string skillName) {
         // nothing to do
     }
+
+    double PushTranslation::computeBookOrientation(double angle) {
+
+        double yaw = angle;
+
+        yaw = fmod(yaw, M_PI);
+        cout << "yaw after first calculation: " << yaw << endl;
+        if (yaw > M_PI / 2.0)
+            yaw = yaw - M_PI;
+
+        return yaw;
+
+    }
+
+    std::pair<double, int> PushTranslation::checkQuadrant(double alpha) {
+
+        // normalize it
+        alpha = fmod(alpha, (2.0 * M_PI));
+
+        // shift it to positive
+        alpha += 2.0 * M_PI;
+
+        // normalize again
+        alpha = fmod(alpha, (2.0 * M_PI));
+
+        if (alpha >= 0 && alpha < (M_PI / 2.0))
+            return {alpha, 0};
+        else if (alpha >= (M_PI / 2.0) && alpha < M_PI)
+            return {alpha, 1};
+        else if (alpha >= M_PI && alpha < (3.0 / 2.0 * M_PI))
+            return {alpha, 2};
+        else if (alpha >= (3.0 / 2.0 * M_PI) && alpha < (2.0 * M_PI))
+            return {alpha, 3};
+
+        throw KukaduException("(PushControllers.checkQuadrant) internal logic error");
+
+    }
+
+    geometry_msgs::Pose PushTranslation::executePush(geometry_msgs::Pose startPose, double distance, int direction) {
+
+        jumpingStep = 0.01;
+
+        std::vector<vec> pushJointPlan;
+        std::vector<geometry_msgs::Pose> pushCartIntermedPlan;
+
+        auto queue = KUKADU_DYNAMIC_POINTER_CAST<ControlQueue>(getUsedHardware()[0]);
+        queue->install();
+        queue->start();
+
+        auto cartesianPtpSkill = kukadu::SkillFactory::get().loadSkill("CartesianPtp", {queue});
+
+        std::dynamic_pointer_cast<kukadu::CartesianPtp>(cartesianPtpSkill)->setCartesians(startPose);
+        cartesianPtpSkill->execute();
+
+        geometry_msgs::Pose lastCart = startPose;
+        for(double i = 0.0; i < distance; i += std::min(jumpingStep, std::abs(distance - i))) {
+
+            if(direction == PUSH_DOWN)
+                startPose.position.x -= jumpingStep;
+            else if(direction == PUSH_UP)
+                startPose.position.x += jumpingStep;
+            else if(direction == PUSH_LEFT)
+                startPose.position.y += jumpingStep;
+            else if(direction == PUSH_RIGHT)
+                startPose.position.y -= jumpingStep;
+
+            pushCartIntermedPlan.push_back(startPose);
+
+        }
+
+        pushJointPlan = komoPlanner->planCartesianTrajectory(pushCartIntermedPlan, true);
+
+        queue->setNextTrajectory(pushJointPlan);
+        queue->synchronizeToQueue(1);
+
+        return lastCart;
+
+    }
 }
+

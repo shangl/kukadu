@@ -8,7 +8,23 @@ namespace kukadu {
     class PushTranslation : public kukadu::Controller {
 
     private:
-		bool pushForward;
+        double jumpingStep;
+
+        bool pushForward;
+
+        double computeBookOrientation(double angle);
+
+        KUKADU_SHARED_PTR<kukadu::Komo> komoPlanner;
+
+        std::pair<double, int> checkQuadrant(double alpha);
+
+        arma::vec pushTo;
+
+        geometry_msgs::Pose
+        pushStartPose(int pushDirection, arma::vec bookLocation, double bookLength, double bookWidth, double bookHeight,
+                      int bookAlignment, double fingerPalmOffset, double zOffset, double desiredBookDistance);
+
+        geometry_msgs::Pose executePush(geometry_msgs::Pose startPose, double distance, int direction);
 
     protected:
 
@@ -27,6 +43,18 @@ namespace kukadu {
         std::string getClassName();
 
         void setPushForward(bool pushForward);
+
+        static constexpr int HORICONTAL_ALIGNMENT = 0;
+        static constexpr int VERTICAL_ALIGNMENT = 1;
+
+        static constexpr double ROTATION_TOLERANCE = 0.3;
+        static constexpr double Y_TRANSLATION_TOLERANCE = 0.02;
+        static constexpr double X_TRANSLATION_TOLERANCE = 0.02;
+
+        static constexpr int PUSH_UP = 0;
+        static constexpr int PUSH_DOWN = 1;
+        static constexpr int PUSH_LEFT = 2;
+        static constexpr int PUSH_RIGHT = 3;
     };
 }
 

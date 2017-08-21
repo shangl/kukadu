@@ -13,26 +13,10 @@
     <includes refid="kukadutypes_8hpp" local="no">kukadu/types/kukadutypes.hpp</includes>
     <includes refid="planning_2planning_8hpp" local="no">kukadu/planning/planning.hpp</includes>
     <includes local="no">trajectory_msgs/JointTrajectory.h</includes>
-    <includedby refid="komo_8cpp" local="no">/home/agyss/iis_robot_sw/iis_catkin_ws/src/kukadu/src/planning/komo.cpp</includedby>
-    <includedby refid="queue_8cpp" local="no">/home/agyss/iis_robot_sw/iis_catkin_ws/src/kukadu/src/robot/queue.cpp</includedby>
-    <includedby refid="planning_8hpp" local="no">/home/agyss/iis_robot_sw/iis_catkin_ws/src/kukadu/include/kukadu/planning.hpp</includedby>
+    <includedby refid="komo_8cpp" local="no">/home/andreasmennel/iis_robot_sw/iis_catkin_ws/src/kukadu/src/planning/komo.cpp</includedby>
+    <includedby refid="queue_8cpp" local="no">/home/andreasmennel/iis_robot_sw/iis_catkin_ws/src/kukadu/src/robot/queue.cpp</includedby>
+    <includedby refid="planning_8hpp" local="no">/home/andreasmennel/iis_robot_sw/iis_catkin_ws/src/kukadu/include/kukadu/planning.hpp</includedby>
     <incdepgraph>
-      <node id="4961">
-        <label>kukadu/planning/planning.hpp</label>
-        <link refid="planning_2planning_8hpp_source"/>
-        <childnode refid="4929" relation="include">
-        </childnode>
-        <childnode refid="4936" relation="include">
-        </childnode>
-        <childnode refid="4959" relation="include">
-        </childnode>
-        <childnode refid="4937" relation="include">
-        </childnode>
-        <childnode refid="4941" relation="include">
-        </childnode>
-        <childnode refid="4948" relation="include">
-        </childnode>
-      </node>
       <node id="4954">
         <label>cppconn/resultset.h</label>
       </node>
@@ -41,6 +25,62 @@
       </node>
       <node id="4935">
         <label>queue</label>
+      </node>
+      <node id="4938">
+        <label>kukadu/robot/filters.hpp</label>
+        <link refid="filters_8hpp_source"/>
+        <childnode refid="4939" relation="include">
+        </childnode>
+        <childnode refid="4941" relation="include">
+        </childnode>
+      </node>
+      <node id="4933">
+        <label>Motion/motion.h</label>
+      </node>
+      <node id="4959">
+        <label>Eigen/Core</label>
+      </node>
+      <node id="4930">
+        <label>string</label>
+      </node>
+      <node id="4949">
+        <label>map</label>
+      </node>
+      <node id="4936">
+        <label>armadillo</label>
+      </node>
+      <node id="4942">
+        <label>exception</label>
+      </node>
+      <node id="4931">
+        <label>Ors/ors.h</label>
+      </node>
+      <node id="4955">
+        <label>cppconn/statement.h</label>
+      </node>
+      <node id="4946">
+        <label>random</label>
+      </node>
+      <node id="4956">
+        <label>kukadu/utils/destroyableobject.hpp</label>
+        <link refid="destroyableobject_8hpp_source"/>
+      </node>
+      <node id="4957">
+        <label>sensor_msgs/JointState.h</label>
+      </node>
+      <node id="4941">
+        <label>kukadu/types/kukadutypes.hpp</label>
+        <link refid="kukadutypes_8hpp_source"/>
+        <childnode refid="4942" relation="include">
+        </childnode>
+        <childnode refid="4943" relation="include">
+        </childnode>
+        <childnode refid="4944" relation="include">
+        </childnode>
+        <childnode refid="4945" relation="include">
+        </childnode>
+        <childnode refid="4946" relation="include">
+        </childnode>
       </node>
       <node id="4934">
         <label>kukadu/robot/queue.hpp</label>
@@ -64,8 +104,93 @@
         <childnode refid="4948" relation="include">
         </childnode>
       </node>
-      <node id="4933">
-        <label>Motion/motion.h</label>
+      <node id="4962">
+        <label>trajectory_msgs/JointTrajectory.h</label>
+      </node>
+      <node id="4947">
+        <label>kukadu/robot/hardware.hpp</label>
+        <link refid="hardware_8hpp_source"/>
+        <childnode refid="4930" relation="include">
+        </childnode>
+        <childnode refid="4936" relation="include">
+        </childnode>
+        <childnode refid="4939" relation="include">
+        </childnode>
+        <childnode refid="4948" relation="include">
+        </childnode>
+      </node>
+      <node id="4929">
+        <label>vector</label>
+      </node>
+      <node id="4932">
+        <label>Ors/ors_swift.h</label>
+      </node>
+      <node id="4952">
+        <label>cppconn/driver.h</label>
+      </node>
+      <node id="4958">
+        <label>kukadu/planning/simple.hpp</label>
+        <link refid="simple_8hpp_source"/>
+        <childnode refid="4929" relation="include">
+        </childnode>
+        <childnode refid="4936" relation="include">
+        </childnode>
+        <childnode refid="4959" relation="include">
+        </childnode>
+        <childnode refid="4960" relation="include">
+        </childnode>
+        <childnode refid="4937" relation="include">
+        </childnode>
+        <childnode refid="4934" relation="include">
+        </childnode>
+        <childnode refid="4961" relation="include">
+        </childnode>
+        <childnode refid="4941" relation="include">
+        </childnode>
+      </node>
+      <node id="4953">
+        <label>cppconn/exception.h</label>
+      </node>
+      <node id="4937">
+        <label>geometry_msgs/Pose.h</label>
+      </node>
+      <node id="4950">
+        <label>iostream</label>
+      </node>
+      <node id="4961">
+        <label>kukadu/planning/planning.hpp</label>
+        <link refid="planning_2planning_8hpp_source"/>
+        <childnode refid="4929" relation="include">
+        </childnode>
+        <childnode refid="4936" relation="include">
+        </childnode>
+        <childnode refid="4959" relation="include">
+        </childnode>
+        <childnode refid="4937" relation="include">
+        </childnode>
+        <childnode refid="4941" relation="include">
+        </childnode>
+        <childnode refid="4948" relation="include">
+        </childnode>
+      </node>
+      <node id="4951">
+        <label>mysql_connection.h</label>
+      </node>
+      <node id="4945">
+        <label>mutex</label>
+      </node>
+      <node id="4939">
+        <label>kukadu/utils/types.hpp</label>
+        <link refid="utils_2types_8hpp_source"/>
+        <childnode refid="4929" relation="include">
+        </childnode>
+        <childnode refid="4936" relation="include">
+        </childnode>
+        <childnode refid="4940" relation="include">
+        </childnode>
+      </node>
+      <node id="4944">
+        <label>thread</label>
       </node>
       <node id="4948">
         <label>kukadu/storage/storagesingleton.hpp</label>
@@ -93,46 +218,8 @@
         <childnode refid="4955" relation="include">
         </childnode>
       </node>
-      <node id="4941">
-        <label>kukadu/types/kukadutypes.hpp</label>
-        <link refid="kukadutypes_8hpp_source"/>
-        <childnode refid="4942" relation="include">
-        </childnode>
-        <childnode refid="4943" relation="include">
-        </childnode>
-        <childnode refid="4944" relation="include">
-        </childnode>
-        <childnode refid="4945" relation="include">
-        </childnode>
-        <childnode refid="4946" relation="include">
-        </childnode>
-      </node>
-      <node id="4959">
-        <label>Eigen/Core</label>
-      </node>
-      <node id="4947">
-        <label>kukadu/robot/hardware.hpp</label>
-        <link refid="hardware_8hpp_source"/>
-        <childnode refid="4930" relation="include">
-        </childnode>
-        <childnode refid="4936" relation="include">
-        </childnode>
-        <childnode refid="4939" relation="include">
-        </childnode>
-        <childnode refid="4948" relation="include">
-        </childnode>
-      </node>
-      <node id="4930">
-        <label>string</label>
-      </node>
-      <node id="4949">
-        <label>map</label>
-      </node>
-      <node id="4936">
-        <label>armadillo</label>
-      </node>
       <node id="4928">
-        <label>/home/agyss/iis_robot_sw/iis_catkin_ws/src/kukadu/include/kukadu/planning/komo.hpp</label>
+        <label>/home/andreasmennel/iis_robot_sw/iis_catkin_ws/src/kukadu/include/kukadu/planning/komo.hpp</label>
         <link refid="komo.hpp"/>
         <childnode refid="4929" relation="include">
         </childnode>
@@ -157,93 +244,6 @@
         <childnode refid="4962" relation="include">
         </childnode>
       </node>
-      <node id="4942">
-        <label>exception</label>
-      </node>
-      <node id="4931">
-        <label>Ors/ors.h</label>
-      </node>
-      <node id="4955">
-        <label>cppconn/statement.h</label>
-      </node>
-      <node id="4946">
-        <label>random</label>
-      </node>
-      <node id="4957">
-        <label>sensor_msgs/JointState.h</label>
-      </node>
-      <node id="4958">
-        <label>kukadu/planning/simple.hpp</label>
-        <link refid="simple_8hpp_source"/>
-        <childnode refid="4929" relation="include">
-        </childnode>
-        <childnode refid="4936" relation="include">
-        </childnode>
-        <childnode refid="4959" relation="include">
-        </childnode>
-        <childnode refid="4960" relation="include">
-        </childnode>
-        <childnode refid="4937" relation="include">
-        </childnode>
-        <childnode refid="4934" relation="include">
-        </childnode>
-        <childnode refid="4961" relation="include">
-        </childnode>
-        <childnode refid="4941" relation="include">
-        </childnode>
-      </node>
-      <node id="4939">
-        <label>kukadu/utils/types.hpp</label>
-        <link refid="utils_2types_8hpp_source"/>
-        <childnode refid="4929" relation="include">
-        </childnode>
-        <childnode refid="4936" relation="include">
-        </childnode>
-        <childnode refid="4940" relation="include">
-        </childnode>
-      </node>
-      <node id="4962">
-        <label>trajectory_msgs/JointTrajectory.h</label>
-      </node>
-      <node id="4929">
-        <label>vector</label>
-      </node>
-      <node id="4938">
-        <label>kukadu/robot/filters.hpp</label>
-        <link refid="filters_8hpp_source"/>
-        <childnode refid="4939" relation="include">
-        </childnode>
-        <childnode refid="4941" relation="include">
-        </childnode>
-      </node>
-      <node id="4932">
-        <label>Ors/ors_swift.h</label>
-      </node>
-      <node id="4952">
-        <label>cppconn/driver.h</label>
-      </node>
-      <node id="4953">
-        <label>cppconn/exception.h</label>
-      </node>
-      <node id="4937">
-        <label>geometry_msgs/Pose.h</label>
-      </node>
-      <node id="4950">
-        <label>iostream</label>
-      </node>
-      <node id="4951">
-        <label>mysql_connection.h</label>
-      </node>
-      <node id="4956">
-        <label>kukadu/utils/destroyableobject.hpp</label>
-        <link refid="destroyableobject_8hpp_source"/>
-      </node>
-      <node id="4945">
-        <label>mutex</label>
-      </node>
-      <node id="4944">
-        <label>thread</label>
-      </node>
       <node id="4940">
         <label>gsl/gsl_matrix.h</label>
       </node>
@@ -252,74 +252,68 @@
       </node>
     </incdepgraph>
     <invincdepgraph>
-      <node id="4974">
-        <label>/home/agyss/iis_robot_sw/iis_catkin_ws/src/kukadu/include/kukadu/generated_skills/PushForward.hpp</label>
-        <link refid="PushForward_8hpp_source"/>
+      <node id="4978">
+        <label>/home/andreasmennel/iis_robot_sw/iis_catkin_ws/src/kukadu/include/kukadu/generated_skills/SimpleJointPtp.hpp</label>
+        <link refid="SimpleJointPtp_8hpp_source"/>
         <childnode refid="4967" relation="include">
         </childnode>
       </node>
       <node id="4969">
-        <label>/home/agyss/iis_robot_sw/iis_catkin_ws/src/kukadu/include/kukadu/generated_skills/ChangeStiffness.hpp</label>
+        <label>/home/andreasmennel/iis_robot_sw/iis_catkin_ws/src/kukadu/include/kukadu/generated_skills/ChangeStiffness.hpp</label>
         <link refid="ChangeStiffness_8hpp_source"/>
         <childnode refid="4967" relation="include">
         </childnode>
       </node>
       <node id="4973">
-        <label>/home/agyss/iis_robot_sw/iis_catkin_ws/src/kukadu/include/kukadu/generated_skills/OpenHand.hpp</label>
+        <label>/home/andreasmennel/iis_robot_sw/iis_catkin_ws/src/kukadu/include/kukadu/generated_skills/OpenHand.hpp</label>
         <link refid="OpenHand_8hpp_source"/>
         <childnode refid="4967" relation="include">
         </childnode>
       </node>
-      <node id="4968">
-        <label>/home/agyss/iis_robot_sw/iis_catkin_ws/src/kukadu/include/kukadu/generated_skills/ChangeModeToIMP.hpp</label>
-        <link refid="ChangeModeToIMP_8hpp_source"/>
-        <childnode refid="4967" relation="include">
-        </childnode>
-      </node>
-      <node id="4976">
-        <label>/home/agyss/iis_robot_sw/iis_catkin_ws/src/kukadu/include/kukadu/generated_skills/PushTranslation.hpp</label>
-        <link refid="PushTranslation_8hpp_source"/>
+      <node id="4975">
+        <label>/home/andreasmennel/iis_robot_sw/iis_catkin_ws/src/kukadu/include/kukadu/generated_skills/PushHandPos.hpp</label>
+        <link refid="PushHandPos_8hpp_source"/>
         <childnode refid="4967" relation="include">
         </childnode>
       </node>
       <node id="4977">
-        <label>/home/agyss/iis_robot_sw/iis_catkin_ws/src/kukadu/include/kukadu/generated_skills/RightHandBlocking.hpp</label>
+        <label>/home/andreasmennel/iis_robot_sw/iis_catkin_ws/src/kukadu/include/kukadu/generated_skills/RightHandBlocking.hpp</label>
         <link refid="RightHandBlocking_8hpp_source"/>
         <childnode refid="4967" relation="include">
         </childnode>
       </node>
-      <node id="4963">
-        <label>/home/agyss/iis_robot_sw/iis_catkin_ws/src/kukadu/include/kukadu/planning/komo.hpp</label>
-        <link refid="komo.hpp"/>
-        <childnode refid="4964" relation="include">
-        </childnode>
-      </node>
-      <node id="4970">
-        <label>/home/agyss/iis_robot_sw/iis_catkin_ws/src/kukadu/include/kukadu/generated_skills/CloseHand.hpp</label>
-        <link refid="CloseHand_8hpp_source"/>
+      <node id="4966">
+        <label>/home/andreasmennel/iis_robot_sw/iis_catkin_ws/src/kukadu/include/kukadu/generated_skills/BlockingPos.hpp</label>
+        <link refid="BlockingPos_8hpp_source"/>
         <childnode refid="4967" relation="include">
         </childnode>
       </node>
-      <node id="4978">
-        <label>/home/agyss/iis_robot_sw/iis_catkin_ws/src/kukadu/include/kukadu/generated_skills/SimpleJointPtp.hpp</label>
-        <link refid="SimpleJointPtp_8hpp_source"/>
+      <node id="4979">
+        <label>/home/andreasmennel/iis_robot_sw/iis_catkin_ws/src/kukadu/include/kukadu/generated_skills/WaitForReached.hpp</label>
+        <link refid="WaitForReached_8hpp_source"/>
+        <childnode refid="4967" relation="include">
+        </childnode>
+      </node>
+      <node id="4964">
+        <label>/home/andreasmennel/iis_robot_sw/iis_catkin_ws/src/kukadu/include/kukadu/planning.hpp</label>
+        <link refid="planning_8hpp_source"/>
+        <childnode refid="4965" relation="include">
+        </childnode>
+      </node>
+      <node id="4968">
+        <label>/home/andreasmennel/iis_robot_sw/iis_catkin_ws/src/kukadu/include/kukadu/generated_skills/ChangeModeToIMP.hpp</label>
+        <link refid="ChangeModeToIMP_8hpp_source"/>
         <childnode refid="4967" relation="include">
         </childnode>
       </node>
       <node id="4967">
-        <label>/home/agyss/iis_robot_sw/iis_catkin_ws/src/kukadu/include/kukadu/generated_skills.hpp</label>
+        <label>/home/andreasmennel/iis_robot_sw/iis_catkin_ws/src/kukadu/include/kukadu/generated_skills.hpp</label>
         <link refid="generated__skills_8hpp_source"/>
         <childnode refid="4965" relation="include">
         </childnode>
       </node>
-      <node id="4972">
-        <label>/home/agyss/iis_robot_sw/iis_catkin_ws/src/kukadu/include/kukadu/generated_skills/MoveHome.hpp</label>
-        <link refid="MoveHome_8hpp_source"/>
-        <childnode refid="4967" relation="include">
-        </childnode>
-      </node>
       <node id="4965">
-        <label>/home/agyss/iis_robot_sw/iis_catkin_ws/src/kukadu/include/kukadu/kukadu.hpp</label>
+        <label>/home/andreasmennel/iis_robot_sw/iis_catkin_ws/src/kukadu/include/kukadu/kukadu.hpp</label>
         <link refid="kukadu_8hpp_source"/>
         <childnode refid="4966" relation="include">
         </childnode>
@@ -348,34 +342,40 @@
         <childnode refid="4979" relation="include">
         </childnode>
       </node>
-      <node id="4975">
-        <label>/home/agyss/iis_robot_sw/iis_catkin_ws/src/kukadu/include/kukadu/generated_skills/PushHandPos.hpp</label>
-        <link refid="PushHandPos_8hpp_source"/>
+      <node id="4972">
+        <label>/home/andreasmennel/iis_robot_sw/iis_catkin_ws/src/kukadu/include/kukadu/generated_skills/MoveHome.hpp</label>
+        <link refid="MoveHome_8hpp_source"/>
         <childnode refid="4967" relation="include">
         </childnode>
       </node>
-      <node id="4979">
-        <label>/home/agyss/iis_robot_sw/iis_catkin_ws/src/kukadu/include/kukadu/generated_skills/WaitForReached.hpp</label>
-        <link refid="WaitForReached_8hpp_source"/>
-        <childnode refid="4967" relation="include">
-        </childnode>
-      </node>
-      <node id="4966">
-        <label>/home/agyss/iis_robot_sw/iis_catkin_ws/src/kukadu/include/kukadu/generated_skills/BlockingPos.hpp</label>
-        <link refid="BlockingPos_8hpp_source"/>
+      <node id="4976">
+        <label>/home/andreasmennel/iis_robot_sw/iis_catkin_ws/src/kukadu/include/kukadu/generated_skills/PushTranslation.hpp</label>
+        <link refid="PushTranslation_8hpp_source"/>
         <childnode refid="4967" relation="include">
         </childnode>
       </node>
       <node id="4971">
-        <label>/home/agyss/iis_robot_sw/iis_catkin_ws/src/kukadu/include/kukadu/generated_skills/FinalPush.hpp</label>
+        <label>/home/andreasmennel/iis_robot_sw/iis_catkin_ws/src/kukadu/include/kukadu/generated_skills/FinalPush.hpp</label>
         <link refid="FinalPush_8hpp_source"/>
         <childnode refid="4967" relation="include">
         </childnode>
       </node>
-      <node id="4964">
-        <label>/home/agyss/iis_robot_sw/iis_catkin_ws/src/kukadu/include/kukadu/planning.hpp</label>
-        <link refid="planning_8hpp_source"/>
-        <childnode refid="4965" relation="include">
+      <node id="4970">
+        <label>/home/andreasmennel/iis_robot_sw/iis_catkin_ws/src/kukadu/include/kukadu/generated_skills/CloseHand.hpp</label>
+        <link refid="CloseHand_8hpp_source"/>
+        <childnode refid="4967" relation="include">
+        </childnode>
+      </node>
+      <node id="4974">
+        <label>/home/andreasmennel/iis_robot_sw/iis_catkin_ws/src/kukadu/include/kukadu/generated_skills/PushForward.hpp</label>
+        <link refid="PushForward_8hpp_source"/>
+        <childnode refid="4967" relation="include">
+        </childnode>
+      </node>
+      <node id="4963">
+        <label>/home/andreasmennel/iis_robot_sw/iis_catkin_ws/src/kukadu/include/kukadu/planning/komo.hpp</label>
+        <link refid="komo.hpp"/>
+        <childnode refid="4964" relation="include">
         </childnode>
       </node>
     </invincdepgraph>
@@ -491,6 +491,6 @@
 <codeline lineno="109"><highlight class="normal"></highlight></codeline>
 <codeline lineno="110"><highlight class="normal"></highlight><highlight class="preprocessor">#endif</highlight></codeline>
     </programlisting>
-    <location file="/home/agyss/iis_robot_sw/iis_catkin_ws/src/kukadu/include/kukadu/planning/komo.hpp"/>
+    <location file="/home/andreasmennel/iis_robot_sw/iis_catkin_ws/src/kukadu/include/kukadu/planning/komo.hpp"/>
   </compounddef>
 </doxygen>
