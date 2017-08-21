@@ -514,6 +514,7 @@ Blockly.Msg.DEFINE_SET_TYPE_MACRO = 'macro';
 Blockly.Msg.MAIN_BLOCK = 'Execution Type: ';
 Blockly.Msg.MAIN_BLOCK_INSTALL = 'Install: ';
 Blockly.Msg.MAIN_BLOCK_RETURN = "int type return value:";
+Blockly.Msg.MAIN_BLOCK_BEHAVIOUR = "Behaviour: ";
 
 Blockly.Msg.CONTROLS_SWITCH = 'switch ';
 Blockly.Msg.CONTROLS_SWITCH_CASE = 'case';

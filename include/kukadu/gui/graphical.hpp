@@ -4,6 +4,7 @@
 #include <string>
 #include <vector>
 #include <QtCore/QString>
+#include <QComboBox>
 #include <QtWidgets/QGroupBox>
 #include <QtWidgets/QLineEdit>
 #include <QtWidgets/QTabWidget>
@@ -25,11 +26,14 @@ namespace kukadu {
         QWebView *webView;
         QLineEdit *kinestheticSkillName;
         QWidget *kinestheticTeachingView;
+        QComboBox *hardwareSelector;
         KUKADU_SHARED_PTR<KinestheticTeaching> teachingObject;
 
         void loadInformationFromDatabase();
 
         QGroupBox *createUI();
+
+        std::string selectedTeachingHardware;
 
         std::string getCatkinMakeString(const std::string &packageName);
 
@@ -90,6 +94,8 @@ namespace kukadu {
         void stopExecutionSlot();
 
         void playSlot();
+
+        void selectionChangedSlot(QString text);
     };
 
 }

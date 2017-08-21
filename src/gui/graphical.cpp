@@ -22,6 +22,7 @@ namespace kukadu {
 
         auto tab = createUI();
         mainTab->addTab(tab, "Blockly");
+        selectedTeachingHardware = "kukie_left_arm";
     }
 
     KukaduGraphical::~KukaduGraphical() {
@@ -116,6 +117,12 @@ namespace kukadu {
         auto loadAndSaveContainer = new QHBoxLayout();
         auto playingContainer = new QHBoxLayout();
 
+        hardwareSelector = new QComboBox();
+        hardwareSelector->addItem("kukie_left_arm");
+        hardwareSelector->addItem("kukie_right_arm");
+        QObject::connect(hardwareSelector, SIGNAL(currentIndexChanged(QString)), this, SLOT(selectionChangedSlot(QString)));
+
+
         QWebSettings::globalSettings()->setAttribute(QWebSettings::DeveloperExtrasEnabled, true);
         QWebSettings::globalSettings()->setAttribute(QWebSettings::LocalContentCanAccessRemoteUrls, true);
         QWebSettings::globalSettings()->setAttribute(QWebSettings::LocalContentCanAccessFileUrls, true);
@@ -154,6 +161,7 @@ namespace kukadu {
         mainLayout->addWidget(webView, 0, 0);
         executeSkillContainer->addWidget(executeButton);
         executeSkillContainer->addWidget(stopExecutionButton);
+        kinestheticTeachingContainer->addWidget(hardwareSelector);
         kinestheticTeachingContainer->addWidget(kinestheticButton);
         loadAndSaveContainer->addWidget(saveButton);
         loadAndSaveContainer->addWidget(loadButton);
@@ -475,17 +483,18 @@ namespace kukadu {
         QObject::connect(installButton, SIGNAL(clicked()), this, SLOT(installSkillSlot()));
         QObject::connect(exitButton, SIGNAL(clicked()), this, SLOT(exitViewSlot()));
 
-        mainLayout->addWidget(goToStartPosButton, 0, 0);
-        mainLayout->addWidget(executeButton, 1, 0);
-        mainLayout->addWidget(finishedExecuteButton, 2, 0);
-        mainLayout->addWidget(testButton, 3, 0);
-        mainLayout->addWidget(installButton, 4, 0);
-        mainLayout->addWidget(kinestheticSkillName, 4, 1);
-        mainLayout->addWidget(exitButton, 5, 0);
+        int i = 0;
+        mainLayout->addWidget(goToStartPosButton, i++, 0);
+        mainLayout->addWidget(executeButton, i++, 0);
+        mainLayout->addWidget(finishedExecuteButton, i++, 0);
+        mainLayout->addWidget(testButton, i++, 0);
+        mainLayout->addWidget(installButton, i, 0);
+        mainLayout->addWidget(kinestheticSkillName, i++, 1);
+        mainLayout->addWidget(exitButton, i++, 0);
 
         kinestheticTeachingView->setLayout(mainLayout);
 
-        teachingObject = KUKADU_DYNAMIC_POINTER_CAST<KinestheticTeaching>(SkillFactory::get().loadSkill("kinesthetic_teaching", {HardwareFactory::get().loadHardware("kukie_left_arm")}));
+        teachingObject = KUKADU_DYNAMIC_POINTER_CAST<KinestheticTeaching>(SkillFactory::get().loadSkill("kinesthetic_teaching", {HardwareFactory::get().loadHardware(selectedTeachingHardware)}));
 
         kinestheticTeachingView->show();
     }
@@ -551,10 +560,15 @@ namespace kukadu {
     }
 
     void KukaduGraphical::stopExecutionSlot() {
-        loadInformationFromDatabase();
+        //todo
     }
 
     void KukaduGraphical::playSlot() {
         //todo
     }
+
+    void KukaduGraphical::selectionChangedSlot(QString text) {
+        selectedTeachingHardware = text.toStdString();
+    }
+
 }

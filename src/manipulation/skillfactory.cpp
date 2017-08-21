@@ -135,6 +135,18 @@ namespace kukadu {
 			}
 		}
 
+,{
+			"DropInBoxController", [](StorageSingleton& storage, int skillId, int controllerType, std::vector<KUKADU_SHARED_PTR<Hardware> > hardwareComponents) {
+				return make_shared<DropInBoxController>(storage, hardwareComponents);
+			}
+		}
+
+,{
+			"PressButtonController", [](StorageSingleton& storage, int skillId, int controllerType, std::vector<KUKADU_SHARED_PTR<Hardware> > hardwareComponents) {
+				return make_shared<PressButtonController>(storage, hardwareComponents);
+			}
+		}
+
             //insertSkill
             //at this line further skills will be inserted automatically - do not remove it
     };

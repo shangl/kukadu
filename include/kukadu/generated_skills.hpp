@@ -16,4 +16,6 @@
 	#include <kukadu/generated_skills/SimpleJointPtp.hpp>
 	#include <kukadu/generated_skills/ShelfAlignment.hpp>
 	#include <kukadu/generated_skills/ShelfPlacementController.hpp>
+	#include <kukadu/generated_skills/DropInBoxController.hpp>
+	#include <kukadu/generated_skills/PressButtonController.hpp>
 #endif

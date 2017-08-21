@@ -12,6 +12,30 @@ function set_available_files(files) {
 	
 }
 
+Blockly.Blocks['startCore'] = {
+    init:function () {
+        this.appendDummyInput()
+            .appendField("Here starts Code of Core for Sensing");
+        this.setPreviousStatement(true, null);
+        this.setNextStatement(true, null);
+        this.setColour(230);
+        this.setTooltip('Start Core');
+        this.setHelpUrl('');
+    }
+};
+
+Blockly.Blocks['startCleanup'] = {
+    init:function () {
+        this.appendDummyInput()
+            .appendField("Here starts Code of Cleanup for Sensing");
+        this.setPreviousStatement(true, null);
+        this.setNextStatement(true, null);
+        this.setColour(230);
+        this.setTooltip('Start Core');
+        this.setHelpUrl('');
+    }
+};
+
 Blockly.Blocks['objectposition'] = {
     init: function () {
         this.appendDummyInput()

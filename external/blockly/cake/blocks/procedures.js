@@ -38,7 +38,9 @@ Blockly.Blocks['main_block'] = {
             .appendField(Blockly.Msg.MAIN_BLOCK)
             .appendField(new Blockly.FieldDropdown([['Simulate', 'Simulate'], ['Execute', 'Execute']]), "ExecutionMode")
             .appendField(Blockly.Msg.MAIN_BLOCK_INSTALL)
-            .appendField(new Blockly.FieldCheckbox('FALSE'), 'CheckBoxInstallSkill');
+            .appendField(new Blockly.FieldCheckbox('FALSE'), 'CheckBoxInstallSkill')
+            .appendField(Blockly.Msg.MAIN_BLOCK_BEHAVIOUR)
+            .appendField(new Blockly.FieldDropdown([['Behaviour', 'Behaviour'], ['Complex Behaviour', 'ComplexBehaviour'], ['Sensing Behaviour', 'SensingBehaviour']]), "BehaviourMode");
         this.appendDummyInput()
             .appendField("Skillname: ")
             .appendField(new Blockly.FieldTextInput("newSkillName"), "newSkillName");

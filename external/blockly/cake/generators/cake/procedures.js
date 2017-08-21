@@ -117,7 +117,8 @@ Blockly.cake['main_block'] = function (block) {
         installSkill = "\n";
     }
 
-    var codeClass = new CodeClass(skillName, skillCode);
+    var behaviour = block.getFieldValue('BehaviourMode');
+    var codeClass = new CodeClass(skillName, skillCode, behaviour);
 
     var funcName = 'main';
     var returnValue = "hardwareFactory.stopAllCreatedHardware();\nkukadu::ModuleUsageSingleton::get().stopStatisticsModule();\nstorage.waitForEmptyCache();\nreturn EXIT_SUCCESS;\n";
@@ -320,16 +321,32 @@ Blockly.cake['procedures_callnoreturn'] = function (block) {
     return code;
 };
 
-function CodeClass(name, code) {
+function CodeClass(name, code, behaviour) {
     this.name = name;
     this.code = code;
+    this.behaviour = behaviour;
 
     this.generateClass = function () {
-        var skillHeader = "//Skillheader for Skill\n" +
+        var splitCode = "//Skillheader for Skill\n" +
             "#ifndef KUKADU_GENERATED_SKILLS_" + getCurrentSkillName().toUpperCase() + "_H\n" +
             "#define KUKADU_GENERATED_SKILLS_" + getCurrentSkillName().toUpperCase() + "_H\n\n" +
             Blockly.cake.definitions_['include_cake_string'] + "\n";
 
+        switch (behaviour) {
+            case 'Behaviour':
+                splitCode += this.getBehaviourCode();
+                break;
+            case 'ComplexBehaviour':
+                break;
+            case 'SensingBehaviour':
+                splitCode += this.getSensingBehaviourCode();
+                break;
+        }
+
+        return splitCode;
+    };
+
+    this.getBehaviourCode = function () {
         var skillHeaderContent = "";
         if (isSkillInstalled()) {
             skillHeaderContent += "namespace kukadu {\n\t";
@@ -361,7 +378,7 @@ function CodeClass(name, code) {
         }
 
 
-        skillHeader += skillHeaderContent;
+        var skillHeader = skillHeaderContent;
 
         skillHeader += "\n\n#endif\n";
 
@@ -403,5 +420,106 @@ function CodeClass(name, code) {
         }
 
         return skillHeader + skillImplementation;
+    };
+
+    this.getSensingBehaviourCode = function () {
+
+        var skillHeaderContent = "";
+        if (isSkillInstalled()) {
+            skillHeaderContent += "namespace kukadu {\n\t";
+        }
+        skillHeaderContent +=
+            "class " + name + " : public kukadu::SensingController {\n" +
+            "\n" +
+            "private:\n" +
+            "\n" +
+            "protected:\n" +
+            "\n" +
+            "    virtual bool requiresGraspInternal();\n" +
+            "    virtual bool producesGraspInternal();\n" +
+            "\n" +
+            "    virtual void createSkillFromThisInternal(std::string skillName);\n" +
+            "\n" +
+            "public:\n" +
+            "\n" +
+            name + "(StorageSingleton& storage, KUKADU_SHARED_PTR<kukadu_mersenne_twister> generator, int hapticMode, string caption,\n" +
+            "                                         std::vector<KUKADU_SHARED_PTR<ControlQueue> > queues, vector<KUKADU_SHARED_PTR<GenericHand> > hands,\n" +
+            "                                         std::string tmpPath, int simClassificationPrecision)" +
+            "\n" +
+            "    virtual void prepare();\n" +
+            "    virtual void cleanUp();\n" +
+            "    virtual void performCore();\n" +
+            "\n" +
+            "    virtual std::string getClassName();" +
+            "\n" +
+            "};\n";
+        if (isSkillInstalled()) {
+            skillHeaderContent += "}";
+        }
+
+
+        var skillHeader = skillHeaderContent;
+
+        skillHeader += "\n\n#endif\n";
+
+
+        var skillImplementation = "//Skillimplementation for Skill:\n";
+        if (isSkillInstalled()) {
+            skillImplementation += "#include <kukadu/generated_skills/" + name + ".hpp>\nnamespace kukadu {\n\t";
+        } else {
+            skillImplementation += "#include <generated_graphical_programming/header.hpp>\n\n\n";
+        }
+
+        var splitCodeForSensing = this.getSplitCode();
+
+        skillImplementation += name + "::" + name + "(kukadu::StorageSingleton& storage, std::vector< KUKADU_SHARED_PTR< kukadu::Hardware > > hardware)\n" +
+            " : SensingController(storage, \"" + name + "\", hardware, 0.01) {\n" +
+            "\n" +
+            "}\n" +
+            "\n" +
+            "bool " + name + "::requiresGraspInternal() {\n" +
+            "\treturn false;\n" +
+            "}\n" +
+            "\n" +
+            "bool " + name + "::producesGraspInternal() {\n" +
+            "\treturn false;\n" +
+            "}\n" +
+            "\n" +
+            "void " + name + "::prepare() {\n" +
+            splitCodeForSensing[0] + "\n" +
+            "}\n" +
+            "void " + name + "::cleanUp() {\n" +
+            splitCodeForSensing[1] + "\n" +
+            "}\n" +
+            "void " + name + "::performCore() {\n" +
+            splitCodeForSensing[2] + "\n" +
+            "}\n" +
+            "\n" +
+            "std::string " + name + "::getClassName() {\n" +
+            "\treturn \"" + name + "\";\n" +
+            "}\n" +
+            "\n" +
+            "}\n";
+
+        if (isSkillInstalled()) {
+            skillImplementation += "}\n\n\n\n\n";
+        }
+
+        return skillHeader + skillImplementation;
+    };
+
+    this.getComplexBehaviourCode = function () {
+
+    };
+
+    this.getSplitCode = function () {
+        var code = [];
+        var codeBlocks = this.code.split("//StartCoreHere");
+        code.push(codeBlocks[0]);
+        codeBlocks = codeBlocks[1].split("//StartCleanupHere");
+        code.push(codeBlocks[0]);
+        code.push(codeBlocks[1]);
+
+        return code;
     };
 }

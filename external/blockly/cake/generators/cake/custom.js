@@ -5,6 +5,15 @@ goog.require('Blockly.cake');
 
 var skillCounter = 0;
 
+
+Blockly.cake['startCore'] = function (block) {
+    return "\n//StartCoreHere\n";
+};
+
+Blockly.cake['startCleanup'] = function (block) {
+    return "\n//StartCleanupHere\n";
+};
+
 Blockly.cake['objectposition'] = function (block) {
     var variableName = block.getFieldValue("VariableName");
     var objectName = block.getFieldValue("ObjectType");
