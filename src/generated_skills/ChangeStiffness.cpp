@@ -43,11 +43,6 @@ namespace kukadu {
                     break;
             }
 
-
-            auto skill32 = kukadu::SkillFactory::get().loadSkill("MoveHome", {queue});
-
-            skill32->execute();
-
             return nullptr;
         }
 

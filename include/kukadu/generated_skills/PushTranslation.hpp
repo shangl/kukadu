@@ -42,8 +42,6 @@ namespace kukadu {
 
         std::string getClassName();
 
-        void setPushForward(bool pushForward);
-
         static constexpr int HORICONTAL_ALIGNMENT = 0;
         static constexpr int VERTICAL_ALIGNMENT = 1;
 

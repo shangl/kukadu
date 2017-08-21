@@ -123,6 +123,18 @@ namespace kukadu {
 			}
 		}
 
+,{
+			"ShelfAlignment", [](StorageSingleton& storage, int skillId, int controllerType, std::vector<KUKADU_SHARED_PTR<Hardware> > hardwareComponents) {
+				return make_shared<ShelfAlignment>(storage, hardwareComponents);
+			}
+		}
+
+,{
+			"ShelfPlacementController", [](StorageSingleton& storage, int skillId, int controllerType, std::vector<KUKADU_SHARED_PTR<Hardware> > hardwareComponents) {
+				return make_shared<ShelfPlacementController>(storage, hardwareComponents);
+			}
+		}
+
             //insertSkill
             //at this line further skills will be inserted automatically - do not remove it
     };

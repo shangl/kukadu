@@ -55,6 +55,7 @@ namespace kukadu {
                 sLeftQueue2040->start();
 
                 auto skill13 = kukadu::SkillFactory::get().loadSkill("BlockingPos", {sLeftQueue2040});
+                skill13->execute();
             }
 
             skill203->execute();

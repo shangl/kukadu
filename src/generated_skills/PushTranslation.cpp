@@ -15,7 +15,6 @@ namespace kukadu {
     PushTranslation::PushTranslation(kukadu::StorageSingleton &storage,
                                      std::vector<KUKADU_SHARED_PTR<kukadu::Hardware> > hardware)
             : Controller(storage, "PushTranslation", hardware, 0.01) {
-        this->pushForward = false;
         auto queue = KUKADU_DYNAMIC_POINTER_CAST<ControlQueue>(getUsedHardware()[0]);
         komoPlanner = std::make_shared<Komo>(queue, resolvePath("$KUKADU_HOME/external/komo/share/data/kuka/data/iis_robot.kvg"), resolvePath("$KUKADU_HOME/external/komo/share/data/kuka/config/MT.cfg"), "left");
     }
@@ -26,10 +25,6 @@ namespace kukadu {
 
     bool PushTranslation::producesGraspInternal() {
         return false;
-    }
-
-    void PushTranslation::setPushForward(bool pushForward) {
-        this->pushForward = pushForward;
     }
 
     std::shared_ptr<kukadu::ControllerResult> PushTranslation::executeInternal() {

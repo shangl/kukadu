@@ -14,4 +14,6 @@
 	#include <kukadu/generated_skills/PushTranslation.hpp>
 	#include <kukadu/generated_skills/FinalPush.hpp>
 	#include <kukadu/generated_skills/SimpleJointPtp.hpp>
+	#include <kukadu/generated_skills/ShelfAlignment.hpp>
+	#include <kukadu/generated_skills/ShelfPlacementController.hpp>
 #endif

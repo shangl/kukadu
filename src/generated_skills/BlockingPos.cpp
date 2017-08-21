@@ -21,9 +21,9 @@ namespace kukadu {
             sLeftQueue1150->install();
             sLeftQueue1150->start();
 
-            auto skill115 = kukadu::SkillFactory::get().loadSkill("JointPtp", {sLeftQueue1150});
+            auto skill115 = kukadu::SkillFactory::get().loadSkill("SimpleJointPtp", {sLeftQueue1150});
 
-            std::dynamic_pointer_cast<kukadu::JointPtp>(skill115)->setJoints(
+            std::dynamic_pointer_cast<kukadu::SimpleJointPtp>(skill115)->setJoints(
                     {-2.4132, 1.62996, -2.22251, 2.01567, 2.18936, -1.65823, -0.956807});
 
             skill115->execute();
