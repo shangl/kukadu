@@ -109,7 +109,16 @@ Blockly.cake['main_block'] = function (block) {
     var installSkill = block.getFieldValue("CheckBoxInstallSkill");
     Blockly.cake.installSkill = installSkill;
 
-    var executeSkill = skillName + " skill(storage, {" + hardwareids + "});\nskill.execute();\n";
+    var executeSkill = skillName + " skill(storage, {";
+    for(var i = 0; i < hardwareids.length; i++){
+        if(i < hardwareids.length-1){
+            executeSkill += hardwareids[i] + ", ";
+        } else {
+            executeSkill += hardwareids[i];
+        }
+    }
+
+    executeSkill += "});\nskill.execute();\n";
 
     if (installSkill === 'TRUE') {
         executeSkill = "kukadu::" + executeSkill;
@@ -332,7 +341,7 @@ function CodeClass(name, code, behaviour) {
         var splitCode = "//Skillheader for Skill\n" +
             "#ifndef KUKADU_GENERATED_SKILLS_" + getCurrentSkillName().toUpperCase() + "_H\n" +
             "#define KUKADU_GENERATED_SKILLS_" + getCurrentSkillName().toUpperCase() + "_H\n\n" +
-            Blockly.cake.definitions_['include_cake_string'] + "\n";
+            Blockly.cake.definitions_['include_cake_string'] + "\n\n";
 
         switch (behaviour) {
             case 'Behaviour':
@@ -407,7 +416,7 @@ function CodeClass(name, code, behaviour) {
             "\n" +
             "std::shared_ptr<kukadu::ControllerResult> " + name + "::executeInternal() {\n" +
             Blockly.cake.prefixLines(this.code, Blockly.cake.INDENT) + "\n" +
-            "\nreturn nullptr;" +
+            "\n\treturn nullptr;\n" +
             "}\n" +
             "\n" +
             "std::string " + name + "::getClassName() {\n" +
