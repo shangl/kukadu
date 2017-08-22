@@ -1564,7 +1564,7 @@ cout << endl;
 
     SensingController::SensingController(StorageSingleton& storage, KUKADU_SHARED_PTR<kukadu_mersenne_twister> generator, int hapticMode, string caption,
                                          std::vector<KUKADU_SHARED_PTR<ControlQueue> > queues, vector<KUKADU_SHARED_PTR<GenericHand> > hands,
-                                         std::string tmpPath, int simClassificationPrecision)
+                                         std::string tmpPath, double simClassificationPrecision)
         : Controller(storage, caption, flatten<KUKADU_SHARED_PTR<Hardware> >({castVector<KUKADU_SHARED_PTR<ControlQueue>, KUKADU_SHARED_PTR<Hardware> >(queues)}), 1), dbStorage(storage) {
 
         currentIterationNum = 0;
@@ -1611,7 +1611,7 @@ cout << endl;
         return hapticMode;
     }
 
-    int SensingController::getSimClassificationPrecision() {
+    double SensingController::getSimClassificationPrecision() {
         return simulatedClassificationPrecision;
     }
 

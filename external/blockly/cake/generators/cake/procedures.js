@@ -418,9 +418,9 @@ function CodeClass(name, code, behaviour) {
             "}" + newLine +
             newLine +
             "std::shared_ptr<kukadu::ControllerResult> " + name + "::executeInternal() {" + newLine +
-            Blockly.cake.prefixLines(this.code, Blockly.cake.INDENT) + newLine +
-            "return nullptr;" + newLine +
-            "}" + newLine +
+            this.code + newLine +
+            "\treturn nullptr;" + newLine +
+            "}\n" + newLine +
             newLine +
             "std::string " + name + "::getClassName() {" + newLine +
             "\treturn \"" + name + "\";" + newLine +
@@ -453,15 +453,11 @@ function CodeClass(name, code, behaviour) {
             "protected:" + newLine +
             newLine +
             "    virtual bool requiresGraspInternal();" + newLine +
-            "    virtual bool producesGraspInternal();\\" + newLine +
-            newLine +
-            "    virtual void createSkillFromThisInternal(std::string skillName);" + newLine +
+            "    virtual bool producesGraspInternal();" + newLine +
             newLine +
             "public:" + newLine +
             newLine +
-            name + "(StorageSingleton& storage, KUKADU_SHARED_PTR<kukadu_mersenne_twister> generator, int hapticMode, string caption,\n" +
-            "                                         std::vector<KUKADU_SHARED_PTR<ControlQueue> > queues, vector<KUKADU_SHARED_PTR<GenericHand> > hands,\n" +
-            "                                         std::string tmpPath, int simClassificationPrecision)" +
+            "    " + name + "(kukadu::StorageSingleton& storage, std::vector< KUKADU_SHARED_PTR< kukadu::Hardware > > hardware);" +
             newLine +
             "    virtual void prepare();" + newLine +
             "    virtual void cleanUp();" + newLine +
@@ -469,6 +465,7 @@ function CodeClass(name, code, behaviour) {
             newLine +
             "    virtual std::string getClassName();" +
             newLine +
+            "    virtual KUKADU_SHARED_PTR<kukadu::SensingController> clone();" + newLine +
             "};\n";
         if (isSkillInstalled()) {
             skillHeaderContent += "}";
@@ -490,7 +487,8 @@ function CodeClass(name, code, behaviour) {
         var splitCodeForSensing = this.getSplitCode();
 
         skillImplementation += name + "::" + name + "(kukadu::StorageSingleton& storage, std::vector< KUKADU_SHARED_PTR< kukadu::Hardware > > hardware)" + newLine +
-            " : SensingController(storage, \"" + name + "\", hardware, 0.01) {" + newLine +
+            " : SensingController(storage, kukadu::SkillFactory::get().getGenerator(), kukadu::SensingController::HAPTIC_MODE_CLASSIFIER, " + newLine +
+            "\"" + name + "\", {KUKADU_DYNAMIC_POINTER_CAST<kukadu::ControlQueue>(hardware.at(0))}, {KUKADU_DYNAMIC_POINTER_CAST<kukadu::GenericHand>(hardware.at(0))}, \"/tmp/\", 1.0) {" + newLine +
             newLine +
             "}" + newLine +
             newLine +
@@ -516,6 +514,8 @@ function CodeClass(name, code, behaviour) {
             "\treturn \"" + name + "\";" + newLine +
             "}" + newLine +
             newLine +
+            "KUKADU_SHARED_PTR<kukadu::SensingController> " + name + "::clone() {" + newLine +
+            "\treturn std::make_shared<" + name + ">(getStorage(), getUsedHardware());" + newLine +
             "}\n";
 
         if (isSkillInstalled()) {

@@ -1,3 +1,4 @@
+#include <time.h>
 #include <memory>
 #include <utility>
 #include <sstream>
@@ -274,4 +275,11 @@ namespace kukadu {
             throw KukaduException("(SkillFactory) no such skill in database or robot is not known anymore");
         return supportedRobots;
     }
+
+    KUKADU_SHARED_PTR<kukadu_mersenne_twister> SkillFactory::getGenerator() {
+        if(generator)
+            return generator;
+        return generator = make_shared<kukadu_mersenne_twister>(time(NULL));
+    }
+
 }

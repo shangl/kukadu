@@ -16,6 +16,8 @@ namespace kukadu {
 
     private:
 
+        KUKADU_SHARED_PTR<kukadu_mersenne_twister> generator;
+
         StorageSingleton& storage;
 
         static std::map<std::string, std::function<KUKADU_SHARED_PTR<Controller>(StorageSingleton&, int, int, std::vector<KUKADU_SHARED_PTR<Hardware> >)> > skillFactories;
@@ -34,6 +36,8 @@ namespace kukadu {
         std::vector<std::string> getSupportedRobots(std::string skillName);
 
         bool skillExists(std::string skillName);
+
+        KUKADU_SHARED_PTR<kukadu_mersenne_twister> getGenerator();
 
     };
 

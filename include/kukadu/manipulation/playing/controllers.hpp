@@ -79,7 +79,7 @@ namespace kukadu {
         int stateCount;
         int currentIterationNum;
         int simulationGroundTruth;
-        int simulatedClassificationPrecision;
+        double simulatedClassificationPrecision;
 
         KUKADU_DISCRETE_DISTRIBUTION<int> classifierDist;
         KUKADU_SHARED_PTR<kukadu::Controller> parentController;
@@ -110,7 +110,7 @@ namespace kukadu {
         std::vector<KUKADU_SHARED_PTR<GenericHand> > getHands();
         std::string getTmpPath();
         int getHapticMode();
-        int getSimClassificationPrecision();
+        double getSimClassificationPrecision();
 
         KUKADU_SHARED_PTR<Classifier> classifier;
 
@@ -124,7 +124,7 @@ namespace kukadu {
                           std::string caption,
                           std::vector<KUKADU_SHARED_PTR<ControlQueue> > queues, std::vector<KUKADU_SHARED_PTR<GenericHand> > hands,
                           std::string tmpPath,
-                          int simClassificationPrecision);
+                          double simClassificationPrecision);
 
         void setSimulationGroundTruth(int idx);
         void setSimulationClassificationPrecision(int percent);
