@@ -8,6 +8,16 @@ namespace kukadu {
                                    std::vector<KUKADU_SHARED_PTR<kukadu::Hardware> > hardware)
             : Controller(storage, "SimpleJointPtp", hardware, 0.01) {
 
+        maxForce = 15.0;
+        auto queue = KUKADU_DYNAMIC_POINTER_CAST<KukieControlQueue>(hardware.front());
+        queue->install();
+        queue->start();
+
+        joints.clear();
+        int degOfFreedom = queue->getDegreesOfFreedom();
+        for(int i = 0; i < degOfFreedom; ++i)
+            joints.push_back(0.0);
+
     }
 
     bool SimpleJointPtp::requiresGraspInternal() {
@@ -19,10 +29,8 @@ namespace kukadu {
     }
 
     std::shared_ptr<kukadu::ControllerResult> SimpleJointPtp::executeInternal() {
-        auto sLeftQueue13000 = KUKADU_DYNAMIC_POINTER_CAST<KukieControlQueue>(getUsedHardware()[0]);
-        sLeftQueue13000->install();
-        sLeftQueue13000->start();
 
+        auto sLeftQueue13000 = KUKADU_DYNAMIC_POINTER_CAST<KukieControlQueue>(getUsedHardware()[0]);
         auto kin = KUKADU_DYNAMIC_POINTER_CAST<KukieControlQueue>(sLeftQueue13000)->getKinematics();
 
         SimplePlanner sp(sLeftQueue13000, kin);

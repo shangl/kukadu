@@ -45,7 +45,7 @@ namespace kukadu {
 
         void createProjectInPackage();
 
-        void createProjectInKukadu();
+        bool createProjectInKukadu();
 
         void writeToFileAtPath(std::string filepath, QString content);
 
@@ -60,6 +60,8 @@ namespace kukadu {
         void createCMakeLists();
 
         void loadMetafilesString();
+
+        bool checkSkillNameIsNew(std::string skillName);
 
     public:
 

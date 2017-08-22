@@ -582,11 +582,12 @@ namespace kukadu {
                 while(!posQueueTmp.empty()) {
 
                     auto& previousCurrentPos = posQueueTmp.front();
-                    bool deviates = vectorsDeviate(previousCurrentPos, armadilloToStdVec(getCurrentJoints()), 0.01);
+                    bool deviates = vectorsDeviate(previousCurrentPos, armadilloToStdVec(currJoints), 0.01);
                     if(deviates) {
                         stillMoving = true;
                         break;
                     }
+                    currJoints = getCurrentJoints();
                     posQueueTmp.pop();
 
                 }

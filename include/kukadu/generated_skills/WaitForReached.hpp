@@ -8,7 +8,7 @@ namespace kukadu {
         class WaitForReached : public kukadu::Controller {
 
         private:
-            bool wait = false;
+            bool wait;
 
         protected:
 

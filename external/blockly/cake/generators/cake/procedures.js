@@ -30,7 +30,7 @@ goog.require('Blockly.cake');
 
 Blockly.cake['main_block'] = function (block) {
     // Define a procedure with a return value.
-    var skillCode = Blockly.cake.statementToCode(block, 'STACK') + "\nreturn nullptr;";
+    var skillCode = Blockly.cake.statementToCode(block, 'STACK');
 
     if (Blockly.cake.STATEMENT_PREFIX) {
         skillCode = Blockly.cake.prefixLines(
@@ -91,7 +91,9 @@ Blockly.cake['main_block'] = function (block) {
         "auto& hardwareFactory = kukadu::HardwareFactory::get();\n";
 
     Blockly.cake.executionMode = block.getFieldValue('ExecutionMode');
-    roscode += "std::string executionType = args[1];\n" +
+    roscode += "std::string executionType = \"Simulate\";\n" +
+        "if(argc > 1)\n" +
+        "\texecutionType = args[1];\n" +
         "hardwareFactory.setSimulation(executionType == \"Simulate\");"
 
     var installHardware = "";
@@ -405,6 +407,7 @@ function CodeClass(name, code, behaviour) {
             "\n" +
             "std::shared_ptr<kukadu::ControllerResult> " + name + "::executeInternal() {\n" +
             Blockly.cake.prefixLines(this.code, Blockly.cake.INDENT) + "\n" +
+            "\nreturn nullptr;" +
             "}\n" +
             "\n" +
             "std::string " + name + "::getClassName() {\n" +

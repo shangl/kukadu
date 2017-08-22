@@ -17,6 +17,19 @@ namespace kukadu {
             : Controller(storage, "PushTranslation", hardware, 0.01) {
         auto queue = KUKADU_DYNAMIC_POINTER_CAST<ControlQueue>(getUsedHardware()[0]);
         komoPlanner = std::make_shared<Komo>(queue, resolvePath("$KUKADU_HOME/external/komo/share/data/kuka/data/iis_robot.kvg"), resolvePath("$KUKADU_HOME/external/komo/share/data/kuka/config/MT.cfg"), "left");
+
+        pushTo = stdToArmadilloVec({0.21, 0.675});
+        jumpingStep = 0.015;
+
+
+    }
+
+    void  PushTranslation::setPushToX(double x) {
+        pushTo(0) = x;
+    }
+
+    void  PushTranslation::setPushToY(double y) {
+        pushTo(1) = y;
     }
 
     bool PushTranslation::requiresGraspInternal() {
@@ -28,10 +41,6 @@ namespace kukadu {
     }
 
     std::shared_ptr<kukadu::ControllerResult> PushTranslation::executeInternal() {
-        /* think pushForward is never set
-        if (pushForward)
-            pushForward->execute();
-        */
         auto queue = KUKADU_DYNAMIC_POINTER_CAST<ControlQueue>(getUsedHardware()[0]);
         queue->install();
         queue->start();
@@ -49,13 +58,11 @@ namespace kukadu {
         handBlockingSkill->execute();
 
         auto kinect = KUKADU_DYNAMIC_POINTER_CAST<Kinect>(getUsedHardware()[2]);
-        hand->install();
-        hand->start();
-        auto localizer = std::make_shared<PCBlobDetector>(kinect, getStorage(), "origin",
-                                                          stdToArmadilloVec({0.7, 0.3, 0.04}), 0.3, 0.4, true);
+        kinect->install();
+        kinect->start();
+        auto localizer = std::make_shared<PCBlobDetector>(kinect, getStorage());
+        auto response = localizer->estimatePose("something");
 
-
-        auto response = localizer->estimatePose("");
 
         vec rpy = quatToRpy(response.first.orientation);
 
@@ -75,8 +82,6 @@ namespace kukadu {
                 {response.first.position.x, response.first.position.y, response.first.position.z});
 
         // correction for shifted frame
-        bookLocation(0) = bookLocation(0) - 0.41;
-        bookLocation(1) = bookLocation(1) + 0.42;
         bookLocation(2) = -0.03;
 
         cout << "book with dimensions (length = " << length << ", width = " << width << ", height = " << height
@@ -117,9 +122,9 @@ namespace kukadu {
             double verticalDistance = bookLocation(0) - pushTo(0);
 
             int pushDirection;
-            if (abs(horicontalDistance) > Y_TRANSLATION_TOLERANCE)
+            if (std::abs(horicontalDistance) > Y_TRANSLATION_TOLERANCE)
                 pushDirection = (horicontalDistance > 0) ? PUSH_RIGHT : PUSH_LEFT;
-            else if (abs(verticalDistance) > X_TRANSLATION_TOLERANCE) {
+            else if (std::abs(verticalDistance) > X_TRANSLATION_TOLERANCE) {
 
                 pushDirection = (verticalDistance > 0) ? PUSH_DOWN : PUSH_UP;
 
@@ -171,25 +176,25 @@ namespace kukadu {
                 switch (pushDirection) {
                     case PUSH_RIGHT:
                         cout << "pushing right" << endl;
-                        distance = abs(horicontalDistance) + 0.00;
+                        distance = std::abs(horicontalDistance) + 0.00;
                         lastPose = executePush(startPose, distance, pushDirection);
                         bookLocation(1) = pushTo(1);
                         break;
                     case PUSH_LEFT:
                         cout << "pushing left" << endl;
-                        distance = abs(horicontalDistance) - 0.00;
+                        distance = std::abs(horicontalDistance) - 0.00;
                         lastPose = executePush(startPose, distance, pushDirection);
                         bookLocation(1) = pushTo(1);
                         break;
                     case PUSH_UP:
                         cout << "pushing up" << endl;
-                        distance = abs(verticalDistance);
+                        distance = std::abs(verticalDistance);
                         lastPose = executePush(startPose, distance, pushDirection);
                         bookLocation(0) = pushTo(0);
                         break;
                     case PUSH_DOWN:
                         cout << "pushing down" << endl;
-                        distance = abs(verticalDistance);
+                        distance = std::abs(verticalDistance);
                         lastPose = executePush(startPose, distance, pushDirection);
                         bookLocation(0) = pushTo(0);
                         break;

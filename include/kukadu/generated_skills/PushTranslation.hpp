@@ -10,15 +10,13 @@ namespace kukadu {
     private:
         double jumpingStep;
 
-        bool pushForward;
-
-        double computeBookOrientation(double angle);
-
         KUKADU_SHARED_PTR<kukadu::Komo> komoPlanner;
+
+        arma::vec pushTo;
 
         std::pair<double, int> checkQuadrant(double alpha);
 
-        arma::vec pushTo;
+        double computeBookOrientation(double angle);
 
         geometry_msgs::Pose
         pushStartPose(int pushDirection, arma::vec bookLocation, double bookLength, double bookWidth, double bookHeight,
@@ -41,6 +39,9 @@ namespace kukadu {
         std::shared_ptr<kukadu::ControllerResult> executeInternal();
 
         std::string getClassName();
+
+        void setPushToX(double x);
+        void setPushToY(double y);
 
         static constexpr int HORICONTAL_ALIGNMENT = 0;
         static constexpr int VERTICAL_ALIGNMENT = 1;

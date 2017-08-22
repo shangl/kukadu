@@ -4,7 +4,7 @@ namespace kukadu {
         WaitForReached::WaitForReached(kukadu::StorageSingleton &storage,
                                        std::vector<KUKADU_SHARED_PTR<kukadu::Hardware> > hardware)
                 : Controller(storage, "WaitForReached", hardware, 0.01) {
-
+            wait = false;
         }
 
         bool WaitForReached::requiresGraspInternal() {
@@ -24,7 +24,7 @@ namespace kukadu {
             hand->install();
             hand->start();
 
-            hand->setWaitForReached(this->wait);
+            hand->setWaitForReached(wait);
 
             return nullptr;
         }

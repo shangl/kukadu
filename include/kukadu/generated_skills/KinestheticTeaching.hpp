@@ -5,44 +5,49 @@
 #include <kukadu/control/controller.hpp>
 
 namespace kukadu {
-	
-		class KinestheticTeaching : public Controller {
 
-		private:
+    class KinestheticTeaching : public Controller {
 
-			long long int startTime;
-			long long int endTime;
+    private:
 
-			KUKADU_SHARED_PTR<Dmp> teachingDmp;
-			KUKADU_SHARED_PTR<ControlQueue> teachingHardware;
+        long long int startTime;
+        long long int endTime;
 
-                        bool teachingRunning;
+        KUKADU_SHARED_PTR<Dmp> teachingDmp;
+        KUKADU_SHARED_PTR<ControlQueue> teachingHardware;
 
-                        KUKADU_SHARED_PTR<kukadu_thread> teachingThread;
+        bool teachingRunning;
 
-		protected:
+        KUKADU_SHARED_PTR<kukadu_thread> teachingThread;
 
-			virtual void createSkillFromThisInternal(std::string skillName);
+    protected:
 
-		public:
+        virtual void createSkillFromThisInternal(std::string skillName);
 
-                        KinestheticTeaching(StorageSingleton& storage, KUKADU_SHARED_PTR<ControlQueue> hardware);
+    public:
 
-			bool requiresGraspInternal();
-			bool producesGraspInternal();
+        KinestheticTeaching(StorageSingleton &storage, KUKADU_SHARED_PTR<ControlQueue> hardware);
 
-			KUKADU_SHARED_PTR<ControllerResult> executeInternal();
+        bool requiresGraspInternal();
 
-			void bringToStartPos();
-                        void showDmp();
-                        void endTeachingAndTrainDmp();
-			void testTrainedDmp();
-			void installDmp(std::string dmpName);
+        bool producesGraspInternal();
 
-			std::string getClassName();
+        KUKADU_SHARED_PTR<ControllerResult> executeInternal();
 
-		};
-    
+        void bringToStartPos();
+
+        void showDmp();
+
+        void endTeachingAndTrainDmp();
+
+        void testTrainedDmp();
+
+        void installDmp(std::string dmpName);
+
+        std::string getClassName();
+
+    };
+
 
 }
 

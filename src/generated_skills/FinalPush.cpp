@@ -53,94 +53,6 @@ namespace kukadu {
 
         skill2139->execute();
 
-        auto sLeftQueue21400 = getUsedHardware()[0];
-        sLeftQueue21400->install();
-        sLeftQueue21400->start();
-
-        auto skill2140 = kukadu::SkillFactory::get().loadSkill("JointPtp", {sLeftQueue21400});
-
-        std::dynamic_pointer_cast<kukadu::JointPtp>(skill2140)->setJoints(
-                {-0.109378, 1.55693, 1.50002, -0.224965, -0.553483, -0.614582, -0.658589});
-
-        skill2140->execute();
-
-        auto sLeftQueue21410 = getUsedHardware()[0];
-        sLeftQueue21410->install();
-        sLeftQueue21410->start();
-
-        auto skill2141 = kukadu::SkillFactory::get().loadSkill("JointPtp", {sLeftQueue21410});
-
-        std::dynamic_pointer_cast<kukadu::JointPtp>(skill2141)->setJoints(
-                {-0.1002, 1.54825, 1.51948, -0.22662, -0.543338, -0.614317, -0.658062});
-
-        skill2141->execute();
-
-        auto sLeftQueue21420 = getUsedHardware()[0];
-        sLeftQueue21420->install();
-        sLeftQueue21420->start();
-
-        auto skill2142 = kukadu::SkillFactory::get().loadSkill("JointPtp", {sLeftQueue21420});
-
-        std::dynamic_pointer_cast<kukadu::JointPtp>(skill2142)->setJoints(
-                {-0.0793886, 1.54343, 1.5273, -0.222725, -0.54333, -0.607497, -0.669542});
-
-        skill2142->execute();
-
-        auto sLeftQueue21430 = getUsedHardware()[0];
-        sLeftQueue21430->install();
-        sLeftQueue21430->start();
-
-        auto skill2143 = kukadu::SkillFactory::get().loadSkill("JointPtp", {sLeftQueue21430});
-
-        std::dynamic_pointer_cast<kukadu::JointPtp>(skill2143)->setJoints(
-                {-0.0529747, 1.53886, 1.52831, -0.217783, -0.524916, -0.607438, -0.692989});
-
-        skill2143->execute();
-
-        auto sLeftQueue21440 = getUsedHardware()[0];
-        sLeftQueue21440->install();
-        sLeftQueue21440->start();
-
-        auto skill2144 = kukadu::SkillFactory::get().loadSkill("JointPtp", {sLeftQueue21440});
-
-        std::dynamic_pointer_cast<kukadu::JointPtp>(skill2144)->setJoints(
-                {-0.0422586, 1.53685, 1.52831, -0.21765, -0.515485, -0.606345, -0.705268});
-
-        skill2144->execute();
-
-        auto sLeftQueue21450 = getUsedHardware()[0];
-        sLeftQueue21450->install();
-        sLeftQueue21450->start();
-
-        auto skill2145 = kukadu::SkillFactory::get().loadSkill("JointPtp", {sLeftQueue21450});
-
-        std::dynamic_pointer_cast<kukadu::JointPtp>(skill2145)->setJoints(
-                {-0.0237716, 1.53687, 1.52831, -0.21757, -0.515368, -0.604097, -0.705288});
-
-        skill2145->execute();
-
-        auto sLeftQueue21460 = getUsedHardware()[0];
-        sLeftQueue21460->install();
-        sLeftQueue21460->start();
-
-        auto skill2146 = kukadu::SkillFactory::get().loadSkill("JointPtp", {sLeftQueue21460});
-
-        std::dynamic_pointer_cast<kukadu::JointPtp>(skill2146)->setJoints(
-                {-0.0156862, 1.53686, 1.52831, -0.217573, -0.515372, -0.59964, -0.708731});
-
-        skill2146->execute();
-
-        auto sLeftQueue21470 = getUsedHardware()[0];
-        sLeftQueue21470->install();
-        sLeftQueue21470->start();
-
-        auto skill2147 = kukadu::SkillFactory::get().loadSkill("JointPtp", {sLeftQueue21470});
-
-        std::dynamic_pointer_cast<kukadu::JointPtp>(skill2147)->setJoints(
-                {-0.0156172, 1.53727, 1.52831, -0.219744, -0.511537, -0.566932, -0.708706});
-
-        skill2147->execute();
-
         auto sLeftQueue21480 = getUsedHardware()[0];
         sLeftQueue21480->install();
         sLeftQueue21480->start();
@@ -161,9 +73,9 @@ namespace kukadu {
         std::dynamic_pointer_cast<kukadu::DMPExecutor>(skill2149)->setExecutionMode(
                 kukadu::TrajectoryExecutor::EXECUTE_ROBOT);
         std::dynamic_pointer_cast<kukadu::DMPExecutor>(skill2149)->setDoRollBackOnMaxForceEvent(false);
-        std::dynamic_pointer_cast<kukadu::DMPExecutor>(skill2149)->setMaxXForce(14);
-        std::dynamic_pointer_cast<kukadu::DMPExecutor>(skill2149)->setMaxYForce(14);
-        std::dynamic_pointer_cast<kukadu::DMPExecutor>(skill2149)->setMaxZForce(14);
+        std::dynamic_pointer_cast<kukadu::DMPExecutor>(skill2149)->setMaxXForce(10);
+        std::dynamic_pointer_cast<kukadu::DMPExecutor>(skill2149)->setMaxYForce(10);
+        std::dynamic_pointer_cast<kukadu::DMPExecutor>(skill2149)->setMaxZForce(10);
 
         skill2149->execute();
 

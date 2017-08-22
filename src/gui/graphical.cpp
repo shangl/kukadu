@@ -120,7 +120,8 @@ namespace kukadu {
         hardwareSelector = new QComboBox();
         hardwareSelector->addItem("kukie_left_arm");
         hardwareSelector->addItem("kukie_right_arm");
-        QObject::connect(hardwareSelector, SIGNAL(currentIndexChanged(QString)), this, SLOT(selectionChangedSlot(QString)));
+        QObject::connect(hardwareSelector, SIGNAL(currentIndexChanged(QString)), this,
+                         SLOT(selectionChangedSlot(QString)));
 
 
         QWebSettings::globalSettings()->setAttribute(QWebSettings::DeveloperExtrasEnabled, true);
@@ -174,8 +175,8 @@ namespace kukadu {
     void KukaduGraphical::loadMetafilesString() {
         auto files = getFilesInDirectory(resolvePath("$KUKADU_HOME/meta/xml"));
         stringstream filesStream;
-        for(auto& f : files)
-            if(f != "." && f != "..")
+        for (auto &f : files)
+            if (f != "." && f != "..")
                 filesStream << f << ";";
         QString callString = QString("set_available_files('%1')").arg(QString::fromStdString(filesStream.str()));
         webView->page()->mainFrame()->evaluateJavaScript(callString);
@@ -189,19 +190,24 @@ namespace kukadu {
     void KukaduGraphical::executeSlot() {
         createCatkinPackage();
 
+        bool execute = true;
         if (isSkillInstalled()) {
-            createProjectInKukadu();
+            execute = createProjectInKukadu();
         } else {
             createProjectInPackage();
         }
 
-        std::string packageName = getPackageName();
-        std::string catkinWorkingDirectory = resolvePath("$KUKADU_HOME/../../");
-        std::string argumentString = "cd " + catkinWorkingDirectory + ";";
-        argumentString += getCatkinMakeString(packageName) + ";";
-        argumentString += "cd devel/lib/" + packageName + ";";
-        argumentString += "./" + packageName + " " + getExecutionMode() + " &";
-        system(argumentString.c_str());
+        if (execute) {
+            std::string packageName = getPackageName();
+            std::string catkinWorkingDirectory = resolvePath("$KUKADU_HOME/../../");
+            std::string argumentString = "cd " + catkinWorkingDirectory + ";";
+            argumentString += getCatkinMakeString(packageName);
+            system(argumentString.c_str());
+
+            argumentString = "cd " + catkinWorkingDirectory + "devel/lib/" + packageName + ";";
+            argumentString += " ./" + packageName + " " + getExecutionMode() + " &";
+            system(argumentString.c_str());
+        }
     }
 
     void KukaduGraphical::createCatkinPackage() {
@@ -234,16 +240,16 @@ namespace kukadu {
 
             bool lineFound = false;
             std::string lineToFind = "add_executable(" + packageName + " src/main.cpp src/skill.cpp)";
-            if(isSkillInstalled())
+            if (isSkillInstalled())
                 lineToFind = "add_executable(" + packageName + " src/main.cpp)";
 
             while (!streamIn.atEnd() && !lineFound) {
                 std::string line = streamIn.readLine().toUtf8().constData();
-                lineFound = lineToFind==line;
+                lineFound = lineToFind == line;
             }
             cmakeListsFile.close();
 
-            if(!lineFound){
+            if (!lineFound) {
                 cmakeListsFile.remove();
                 std::string origCMakeListsFilePath = packagePath + "/CMakeLists.txt.org";
                 QFile origCMakeListsFile(origCMakeListsFilePath.c_str());
@@ -282,7 +288,7 @@ namespace kukadu {
                 "include(CheckCXXCompilerFlag)\r\nCHECK_CXX_COMPILER_FLAG(\"-std=c++11\" COMPILER_SUPPORTS_CXX11)\r\nCHECK_CXX_COMPILER_FLAG(\"-std=c++0x\" COMPILER_SUPPORTS_CXX0X)\r\nif(COMPILER_SUPPORTS_CXX11)\r\nset(CMAKE_CXX_FLAGS \"${CMAKE_CXX_FLAGS} -std=c++11\")\r\nadd_definitions(-DCPP11SUPPORTED)\r\nelseif(COMPILER_SUPPORTS_CXX0X)\r\nset(CMAKE_CXX_FLAGS \"${CMAKE_CXX_FLAGS} -std=c++0x\")\r\nadd_definitions(-DCPP11SUPPORTED)\r\nelse()\r\nmessage(STATUS \"The compiler ${CMAKE_CXX_COMPILER} has no C++11 support. Please use a different C++ compiler.\")\r\nendif()");
         textToAdd[118] = "  include";
 
-        if(isSkillInstalled()) {
+        if (isSkillInstalled()) {
             argumentString = "add_executable(" + packageName + " src/main.cpp)\r\n";
         } else {
             argumentString = "add_executable(" + packageName + " src/main.cpp src/skill.cpp)\r\n";
@@ -327,43 +333,47 @@ namespace kukadu {
         writeToFileInPackage("src/skill.cpp", getCodeBlocks()[2]);
     }
 
-    void KukaduGraphical::createProjectInKukadu() {
-        std::string packageName = getPackageName();
-        std::string catkinSources = resolvePath("$KUKADU_HOME/../");
-        std::string catkinWorkingDirectory = catkinSources + "../";
-        std::string sourceFolder = resolvePath("$KUKADU_HOME/src/generated_skills");
-        std::string includeFolder = resolvePath("$KUKADU_HOME/include/kukadu/generated_skills");
-
+    bool KukaduGraphical::createProjectInKukadu() {
         std::string skillName = getCurrentSkillName();
-        writeToFileInPackage("src/main.cpp", getCodeBlocks()[0]);
-        writeToFileAtPath(includeFolder + "/" + skillName + ".hpp", getCodeBlocks()[1]);
-        writeToFileAtPath(sourceFolder + "/" + skillName + ".cpp", getCodeBlocks()[2]);
+        if (checkSkillNameIsNew(skillName)) {
+            std::string packageName = getPackageName();
+            std::string catkinSources = resolvePath("$KUKADU_HOME/../");
+            std::string catkinWorkingDirectory = catkinSources + "../";
+            std::string sourceFolder = resolvePath("$KUKADU_HOME/src/generated_skills");
+            std::string includeFolder = resolvePath("$KUKADU_HOME/include/kukadu/generated_skills");
 
-        std::string gskillHFilePath = catkinSources + "/kukadu/include/kukadu/generated_skills.hpp";
-        QFile generatedSkillsHeaderFile(QString::fromStdString(gskillHFilePath));
-        generatedSkillsHeaderFile.open(QIODevice::ReadOnly);
-        QTextStream gskillHFStream(&generatedSkillsHeaderFile);
-        QString textOfFile("");
-        while (!gskillHFStream.atEnd()) {
-            QString line = gskillHFStream.readLine();
+            writeToFileInPackage("src/main.cpp", getCodeBlocks()[0]);
+            writeToFileAtPath(includeFolder + "/" + skillName + ".hpp", getCodeBlocks()[1]);
+            writeToFileAtPath(sourceFolder + "/" + skillName + ".cpp", getCodeBlocks()[2]);
 
-            if (line.startsWith("#endif")) {
-                string includeLine = "\t#include <kukadu/generated_skills/" + skillName + ".hpp>\n";
-                textOfFile += QString::fromStdString(includeLine);
+            std::string gskillHFilePath = catkinSources + "/kukadu/include/kukadu/generated_skills.hpp";
+            QFile generatedSkillsHeaderFile(QString::fromStdString(gskillHFilePath));
+            generatedSkillsHeaderFile.open(QIODevice::ReadOnly);
+            QTextStream gskillHFStream(&generatedSkillsHeaderFile);
+            QString textOfFile("");
+            while (!gskillHFStream.atEnd()) {
+                QString line = gskillHFStream.readLine();
+
+                if (line.startsWith("#endif")) {
+                    string includeLine = "\t#include <kukadu/generated_skills/" + skillName + ".hpp>\n";
+                    textOfFile += QString::fromStdString(includeLine);
+                }
+
+                textOfFile += line + "\n";
             }
 
-            textOfFile += line + "\n";
+            generatedSkillsHeaderFile.close();
+            generatedSkillsHeaderFile.open(QIODevice::WriteOnly | QIODevice::Text);
+            gskillHFStream << textOfFile;
+            generatedSkillsHeaderFile.close();
+
+            SkillFactory::addSkill(skillName);
+
+            loadMetafilesString();
+            return true;
+        } else {
+            return false;
         }
-
-        generatedSkillsHeaderFile.close();
-        generatedSkillsHeaderFile.open(QIODevice::WriteOnly | QIODevice::Text);
-        gskillHFStream << textOfFile;
-        generatedSkillsHeaderFile.close();
-
-        SkillFactory::addSkill(skillName);
-
-        loadMetafilesString();
-
     }
 
     void KukaduGraphical::writeToFileInPackage(std::string filename, QString content) {
@@ -494,7 +504,9 @@ namespace kukadu {
 
         kinestheticTeachingView->setLayout(mainLayout);
 
-        teachingObject = KUKADU_DYNAMIC_POINTER_CAST<KinestheticTeaching>(SkillFactory::get().loadSkill("kinesthetic_teaching", {HardwareFactory::get().loadHardware(selectedTeachingHardware)}));
+        teachingObject = KUKADU_DYNAMIC_POINTER_CAST<KinestheticTeaching>(
+                SkillFactory::get().loadSkill("kinesthetic_teaching",
+                                              {HardwareFactory::get().loadHardware(selectedTeachingHardware)}));
 
         kinestheticTeachingView->show();
     }
@@ -535,7 +547,7 @@ namespace kukadu {
                                                         tr("Load Blocks"), "",
                                                         tr("Blockly File (*.xml);;All Files (*)"));
 
-        if(fileName != "") {
+        if (fileName != "") {
 
             QString xml = "";
             QFile f(fileName);
@@ -560,7 +572,8 @@ namespace kukadu {
     }
 
     void KukaduGraphical::stopExecutionSlot() {
-        //todo
+        string argumentString = "pkill generated_graph";
+        system(argumentString.c_str());
     }
 
     void KukaduGraphical::playSlot() {
@@ -571,4 +584,20 @@ namespace kukadu {
         selectedTeachingHardware = text.toStdString();
     }
 
+    bool KukaduGraphical::checkSkillNameIsNew(std::string skillName) {
+        std::string checkline = "#include <kukadu/generated_skills/" + skillName + ".hpp>";
+        std::string gskillHFilePath = resolvePath("$KUKADU_HOME/../") + "/kukadu/include/kukadu/generated_skills.hpp";
+
+        QFile mainFile(QString::fromStdString(gskillHFilePath));
+        mainFile.open(QIODevice::ReadOnly);
+        QTextStream streamIn(&mainFile);
+
+        while (!streamIn.atEnd()) {
+            auto line = streamIn.readLine();
+            if (line.contains(QString::fromStdString(checkline)))
+                return false;
+        }
+
+        return true;
+    }
 }
