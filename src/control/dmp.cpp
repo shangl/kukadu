@@ -887,19 +887,31 @@ namespace kukadu {
     }
 
     void DMPExecutor::setMaxAbsForce(double maxAbsForce) {
-        this->maxAllowedForce = maxAbsForce;
+        if(maxAbsForce == IGNORE_FORCE)
+            this->maxAllowedForce = DBL_MAX;
+        else
+            this->maxAllowedForce = maxAbsForce;
     }
 
     void DMPExecutor::setMaxXForce(double maxXForce) {
-        this->maxXForce = maxXForce;
+        if(maxXForce == IGNORE_FORCE)
+            this->maxXForce = DBL_MAX;
+        else
+            this->maxXForce = maxXForce;
     }
 
     void DMPExecutor::setMaxYForce(double maxYForce) {
-        this->maxXForce = maxXForce;
+        if(maxYForce == IGNORE_FORCE)
+            this->maxYForce = DBL_MAX;
+        else
+            this->maxYForce = maxYForce;
     }
 
     void DMPExecutor::setMaxZForce(double maxZForce) {
-        this->maxXForce = maxXForce;
+        if(maxZForce == IGNORE_FORCE)
+            this->maxZForce = DBL_MAX;
+        else
+            this->maxZForce = maxZForce;
     }
 
 
@@ -987,7 +999,7 @@ namespace kukadu {
             if(!isCartesian) {
                 vec currentState = controlQueue->getCurrentJoints().joints;
                 for(int i = 0; i < y0s.n_elem; ++i)
-                    if(abs(currentState(i) - y0s(i)) > 0.01) {
+                    if(std::abs(currentState(i) - y0s(i)) > 0.01) {
                         controlQueue->jointPtp(y0s);
                         ros::Rate r(2); r.sleep();
                         break;
@@ -1464,9 +1476,9 @@ namespace kukadu {
             mes_result currentFrcTrq = controlQueue->getCurrentCartesianFrcTrq();
 
             if((currentForce > maxAllowedForce && maxAllowedForce != IGNORE_FORCE)
-                    || (abs(currentFrcTrq.joints(0)) > maxXForce && maxXForce != IGNORE_FORCE)
-                    || (abs(currentFrcTrq.joints(1)) > maxYForce && maxYForce != IGNORE_FORCE)
-                    || (abs(currentFrcTrq.joints(2)) > maxZForce && maxZForce != IGNORE_FORCE)) {
+                    || (std::abs(currentFrcTrq.joints(0)) > maxXForce && maxXForce != IGNORE_FORCE)
+                    || (std::abs(currentFrcTrq.joints(1)) > maxYForce && maxYForce != IGNORE_FORCE)
+                    || (std::abs(currentFrcTrq.joints(2)) > maxZForce && maxZForce != IGNORE_FORCE)) {
                 executionRunning = false;
                 rollBack = true;
             }

@@ -359,30 +359,33 @@ function CodeClass(name, code, behaviour) {
 
     this.getBehaviourCode = function () {
         var skillHeaderContent = "";
+        var newLine = "\n";
+
         if (isSkillInstalled()) {
             skillHeaderContent += "namespace kukadu {\n\t";
+            newLine= "\n\t";
         }
         skillHeaderContent +=
-            "class " + name + " : public kukadu::Controller {\n" +
-            "\n" +
-            "private:\n" +
-            "\n" +
-            "protected:\n" +
-            "\n" +
-            "\tvirtual void createSkillFromThisInternal(std::string skillName);\n" +
-            "\n" +
-            "public:\n" +
-            "\n" +
-            "\t" + name + "(kukadu::StorageSingleton& storage, std::vector< KUKADU_SHARED_PTR< kukadu::Hardware > > hardware);\n" +
-            "\n" +
-            "\tbool requiresGraspInternal();\n" +
-            "\n" +
-            "\tbool producesGraspInternal();\n" +
-            "\n" +
-            "\tstd::shared_ptr<kukadu::ControllerResult> executeInternal();\n" +
-            "\n" +
-            "\tstd::string getClassName();\n" +
-            "\n" +
+            "class " + name + " : public kukadu::Controller {" + newLine +
+            newLine +
+            "private:" + newLine +
+            newLine +
+            "protected:" + newLine +
+            newLine +
+            "\tvirtual void createSkillFromThisInternal(std::string skillName);" + newLine +
+            newLine +
+            "public:" + newLine +
+            newLine +
+            "\t" + name + "(kukadu::StorageSingleton& storage, std::vector< KUKADU_SHARED_PTR< kukadu::Hardware > > hardware);" + newLine +
+            newLine +
+            "\tbool requiresGraspInternal();" + newLine +
+            newLine +
+            "\tbool producesGraspInternal();" + newLine +
+            newLine +
+            "\tstd::shared_ptr<kukadu::ControllerResult> executeInternal();" + newLine +
+            newLine +
+            "\tstd::string getClassName();" + newLine +
+            newLine +
             "};\n";
         if (isSkillInstalled()) {
             skillHeaderContent += "}";
@@ -402,29 +405,29 @@ function CodeClass(name, code, behaviour) {
         }
 
         skillImplementation += name + "::" + name + "(kukadu::StorageSingleton& storage, std::vector< KUKADU_SHARED_PTR< kukadu::Hardware > > hardware)\n" +
-            " : Controller(storage, \"" + name + "\", hardware, 0.01) {\n" +
-            "\n" +
-            "}\n" +
-            "\n" +
-            "bool " + name + "::requiresGraspInternal() {\n" +
-            "\treturn false;\n" +
-            "}\n" +
-            "\n" +
-            "bool " + name + "::producesGraspInternal() {\n" +
-            "\treturn false;\n" +
-            "}\n" +
-            "\n" +
-            "std::shared_ptr<kukadu::ControllerResult> " + name + "::executeInternal() {\n" +
-            Blockly.cake.prefixLines(this.code, Blockly.cake.INDENT) + "\n" +
-            "\n\treturn nullptr;\n" +
-            "}\n" +
-            "\n" +
-            "std::string " + name + "::getClassName() {\n" +
-            "\treturn \"" + name + "\";\n" +
-            "}\n" +
-            "\n" +
-            "void " + name + "::createSkillFromThisInternal(std::string skillName) {\n" +
-            "\t// nothing to do\n" +
+            " : Controller(storage, \"" + name + "\", hardware, 0.01) {" + newLine +
+            newLine +
+            "}" + newLine +
+            newLine +
+            "bool " + name + "::requiresGraspInternal() {" + newLine +
+            "\treturn false;" + newLine +
+            "}" + newLine +
+            newLine +
+            "bool " + name + "::producesGraspInternal() {" + newLine +
+            "\treturn false;" + newLine +
+            "}" + newLine +
+            newLine +
+            "std::shared_ptr<kukadu::ControllerResult> " + name + "::executeInternal() {" + newLine +
+            Blockly.cake.prefixLines(this.code, Blockly.cake.INDENT) + newLine +
+            "return nullptr;" + newLine +
+            "}" + newLine +
+            newLine +
+            "std::string " + name + "::getClassName() {" + newLine +
+            "\treturn \"" + name + "\";" + newLine +
+            "}" + newLine +
+            newLine +
+            "void " + name + "::createSkillFromThisInternal(std::string skillName) {" + newLine +
+            "\t// nothing to do" + newLine +
             "}\n";
 
         if (isSkillInstalled()) {
@@ -437,33 +440,35 @@ function CodeClass(name, code, behaviour) {
     this.getSensingBehaviourCode = function () {
 
         var skillHeaderContent = "";
+        var newLine= "\n";
         if (isSkillInstalled()) {
             skillHeaderContent += "namespace kukadu {\n\t";
+            newLine = "\n\t";
         }
         skillHeaderContent +=
-            "class " + name + " : public kukadu::SensingController {\n" +
-            "\n" +
-            "private:\n" +
-            "\n" +
-            "protected:\n" +
-            "\n" +
-            "    virtual bool requiresGraspInternal();\n" +
-            "    virtual bool producesGraspInternal();\n" +
-            "\n" +
-            "    virtual void createSkillFromThisInternal(std::string skillName);\n" +
-            "\n" +
-            "public:\n" +
-            "\n" +
+            "class " + name + " : public kukadu::SensingController {" + newLine +
+            newLine +
+            "private:" + newLine +
+            newLine +
+            "protected:" + newLine +
+            newLine +
+            "    virtual bool requiresGraspInternal();" + newLine +
+            "    virtual bool producesGraspInternal();\\" + newLine +
+            newLine +
+            "    virtual void createSkillFromThisInternal(std::string skillName);" + newLine +
+            newLine +
+            "public:" + newLine +
+            newLine +
             name + "(StorageSingleton& storage, KUKADU_SHARED_PTR<kukadu_mersenne_twister> generator, int hapticMode, string caption,\n" +
             "                                         std::vector<KUKADU_SHARED_PTR<ControlQueue> > queues, vector<KUKADU_SHARED_PTR<GenericHand> > hands,\n" +
             "                                         std::string tmpPath, int simClassificationPrecision)" +
-            "\n" +
-            "    virtual void prepare();\n" +
-            "    virtual void cleanUp();\n" +
-            "    virtual void performCore();\n" +
-            "\n" +
+            newLine +
+            "    virtual void prepare();" + newLine +
+            "    virtual void cleanUp();" + newLine +
+            "    virtual void performCore();" + newLine +
+            newLine +
             "    virtual std::string getClassName();" +
-            "\n" +
+            newLine +
             "};\n";
         if (isSkillInstalled()) {
             skillHeaderContent += "}";
@@ -484,33 +489,33 @@ function CodeClass(name, code, behaviour) {
 
         var splitCodeForSensing = this.getSplitCode();
 
-        skillImplementation += name + "::" + name + "(kukadu::StorageSingleton& storage, std::vector< KUKADU_SHARED_PTR< kukadu::Hardware > > hardware)\n" +
-            " : SensingController(storage, \"" + name + "\", hardware, 0.01) {\n" +
-            "\n" +
-            "}\n" +
-            "\n" +
-            "bool " + name + "::requiresGraspInternal() {\n" +
-            "\treturn false;\n" +
-            "}\n" +
-            "\n" +
-            "bool " + name + "::producesGraspInternal() {\n" +
-            "\treturn false;\n" +
-            "}\n" +
-            "\n" +
-            "void " + name + "::prepare() {\n" +
-            splitCodeForSensing[0] + "\n" +
-            "}\n" +
-            "void " + name + "::cleanUp() {\n" +
-            splitCodeForSensing[1] + "\n" +
-            "}\n" +
-            "void " + name + "::performCore() {\n" +
-            splitCodeForSensing[2] + "\n" +
-            "}\n" +
-            "\n" +
-            "std::string " + name + "::getClassName() {\n" +
-            "\treturn \"" + name + "\";\n" +
-            "}\n" +
-            "\n" +
+        skillImplementation += name + "::" + name + "(kukadu::StorageSingleton& storage, std::vector< KUKADU_SHARED_PTR< kukadu::Hardware > > hardware)" + newLine +
+            " : SensingController(storage, \"" + name + "\", hardware, 0.01) {" + newLine +
+            newLine +
+            "}" + newLine +
+            newLine +
+            "bool " + name + "::requiresGraspInternal() {" + newLine +
+            "\treturn false;" + newLine +
+            "}" + newLine +
+            newLine +
+            "bool " + name + "::producesGraspInternal() {" + newLine +
+            "\treturn false;" + newLine +
+            "}" + newLine +
+            newLine +
+            "void " + name + "::prepare() {" + newLine +
+            splitCodeForSensing[0] + newLine +
+            "}" + newLine +
+            "void " + name + "::cleanUp() {" + newLine +
+            splitCodeForSensing[1] + newLine +
+            "}" + newLine +
+            "void " + name + "::performCore() {" + newLine +
+            splitCodeForSensing[2] + newLine +
+            "}" + newLine +
+            newLine +
+            "std::string " + name + "::getClassName() {" + newLine +
+            "\treturn \"" + name + "\";" + newLine +
+            "}" + newLine +
+            newLine +
             "}\n";
 
         if (isSkillInstalled()) {

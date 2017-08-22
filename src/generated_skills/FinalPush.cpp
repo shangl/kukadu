@@ -73,9 +73,9 @@ namespace kukadu {
         std::dynamic_pointer_cast<kukadu::DMPExecutor>(skill2149)->setExecutionMode(
                 kukadu::TrajectoryExecutor::EXECUTE_ROBOT);
         std::dynamic_pointer_cast<kukadu::DMPExecutor>(skill2149)->setDoRollBackOnMaxForceEvent(false);
-        std::dynamic_pointer_cast<kukadu::DMPExecutor>(skill2149)->setMaxXForce(10);
-        std::dynamic_pointer_cast<kukadu::DMPExecutor>(skill2149)->setMaxYForce(10);
-        std::dynamic_pointer_cast<kukadu::DMPExecutor>(skill2149)->setMaxZForce(10);
+        std::dynamic_pointer_cast<kukadu::DMPExecutor>(skill2149)->setMaxXForce(19);
+        std::dynamic_pointer_cast<kukadu::DMPExecutor>(skill2149)->setMaxYForce(19);
+        std::dynamic_pointer_cast<kukadu::DMPExecutor>(skill2149)->setMaxZForce(19);
 
         skill2149->execute();
 

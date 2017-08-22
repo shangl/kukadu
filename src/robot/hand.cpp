@@ -2,6 +2,7 @@
 #include <sstream>
 #include <kukadu/robot/hand.hpp>
 #include <kukadu/utils/utils.hpp>
+#include <kukadu/utils/tictoc.hpp>
 #include <kukadu/robot/kukiehand.hpp>
 #include <kukadu/types/kukadutypes.hpp>
 #include <std_msgs/Float64MultiArray.h>
@@ -568,11 +569,18 @@ namespace kukadu {
         if(waitForReached) {
 
             currJoints = getCurrentJoints();
-            targetReached = !vectorsDeviate(armadilloToStdVec(currJoints), armadilloToStdVec(positions), 0.03);
+            targetReached = !vectorsDeviate(armadilloToStdVec(currJoints), armadilloToStdVec(positions), 0.05);
 
-            while(!targetReached) {
+            TicToc tic;
 
-                bool stillMoving = false;
+            tic.tic("hand_timeout");
+
+            double elapsedTime = tic.toc("hand_timeout");
+            bool stillMoving = false;
+
+            while(!targetReached && !(elapsedTime > 1.0 && !stillMoving)) {
+
+                stillMoving = false;
 
                 // check if the fingers are still moving
                 currentPosMutex.lock();
@@ -597,6 +605,8 @@ namespace kukadu {
                     movementStarted = true;
                 else if(movementStarted && !stillMoving)
                     targetReached = true;
+
+                elapsedTime = tic.toc("hand_timeout");
 
             }
 
