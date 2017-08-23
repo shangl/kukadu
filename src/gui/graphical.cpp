@@ -637,9 +637,9 @@ namespace kukadu {
 
     }
 
-    template<typename T> std::vector<T> extractAndGenerateControllers(std::string controllerList, std::string hardwareToUse) {
+    template<typename T> std::vector<KUKADU_SHARED_PTR<T> > extractAndGenerateControllers(std::string controllerList, std::string hardwareToUse) {
 
-        vector< T > retVec;
+        vector<KUKADU_SHARED_PTR<T > > retVec;
 
         KukaduTokenizer tok(controllerList, ",");
         string currentBehaviour = "";
@@ -667,10 +667,24 @@ namespace kukadu {
         auto behaviourControllerNames = usedPlayingBehaviours->text().toStdString();
 
         string allUsedHardware = webView->page()->mainFrame()->evaluateJavaScript("getRequiredHardware()").toString().toStdString();;
-        auto sensingControllers = extractAndGenerateControllers<KUKADU_SHARED_PTR<kukadu::SensingController> >(sensingControllerNames, allUsedHardware);
-        auto playingControllers = extractAndGenerateControllers<KUKADU_SHARED_PTR<kukadu::Controller> >(behaviourControllerNames, allUsedHardware);
+        auto sensingControllers = extractAndGenerateControllers<kukadu::SensingController>(sensingControllerNames, allUsedHardware);
+        auto playingControllers = extractAndGenerateControllers<kukadu::Controller>(behaviourControllerNames, allUsedHardware);
+        auto nothingSkill = SkillFactory::get().loadSkill("nothing", {});
 
-        currentHapticPlanner = make_shared<HapticPlanner>(resolvePath("$KUKADU_HOME/skills/"), sensingControllers, playingControllers, {}, SkillFactory::get().loadSkill("nothing"), SkillFactory::get().getGenerator());
+        playingControllerName = "";
+        cout << "playingcontrollername not set yet" << endl;
+
+        HapticPlanner h(resolvePath("$KUKADU_HOME/skills/"), sensingControllers,
+                                                                  playingControllers, vector<KUKADU_SHARED_PTR<Controller> >{},
+                                                                  nothingSkill,
+                                                                  SkillFactory::get().getGenerator());
+
+        /*
+        currentHapticPlanner = make_shared<HapticPlanner>(resolvePath("$KUKADU_HOME/skills/"), sensingControllers,
+                                                          playingControllers, KUKADU_SHARED_PTR<ComplexController>{},
+                                                          nothingSkill,
+                                                          SkillFactory::get().getGenerator());
+                                                          */
 
     }
 
@@ -679,7 +693,7 @@ namespace kukadu {
         playingEnded = false;
         keepPlaying = true;
         while(keepPlaying) {
-            currentHapticPlanner->performComplexSkill(selectedSkill);
+            currentHapticPlanner->performComplexSkill(playingControllerName);
             currentHapticPlanner->updateModels();
         }
         playingEnded = true;
