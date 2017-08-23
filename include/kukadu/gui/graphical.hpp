@@ -3,14 +3,14 @@
 
 #include <string>
 #include <vector>
-#include <QtCore/QString>
 #include <QComboBox>
+#include <QtCore/QString>
 #include <QtWidgets/QGroupBox>
 #include <QtWidgets/QLineEdit>
 #include <QtWidgets/QTabWidget>
 #include <QtWebKitWidgets/QWebView>
+#include <kukadu/manipulation/playing/core.hpp>
 #include <kukadu/generated_skills/KinestheticTeaching.hpp>
-
 
 namespace kukadu {
 
@@ -22,46 +22,49 @@ namespace kukadu {
         static auto constexpr DEFAULT_WIDTH = 1900;
         static auto constexpr DEFAULT_HEIGHT = 1000;
 
-        QTabWidget *mainTab;
-        QWebView *webView;
-        QLineEdit *kinestheticSkillName;
-        QWidget *kinestheticTeachingView;
-        QComboBox *hardwareSelector;
+        QTabWidget* mainTab;
+
+        QWidget* playingView;
+        QWidget* kinestheticTeachingView;
+
+        QWebView* webView;
+
+        QComboBox* hardwareSelector;
+
+        QLineEdit* kinestheticSkillName;
+        QLineEdit* usedSensingBehaviours;
+        QLineEdit* usedPlayingBehaviours;
+
         KUKADU_SHARED_PTR<KinestheticTeaching> teachingObject;
 
-        void loadInformationFromDatabase();
-
-        QGroupBox *createUI();
+        bool keepPlaying;
+        bool playingEnded;
+        std::string playingControllerName;
+        KUKADU_SHARED_PTR<Controller> playingController;
+        KUKADU_SHARED_PTR<HapticPlanner> currentHapticPlanner;
 
         std::string selectedTeachingHardware;
 
+        void createCMakeLists();
+        void createCatkinPackage();
+        void loadMetafilesString();
+        void createProjectInPackage();
+        void loadInformationFromDatabase();
+        void writeToFileAtPath(std::string filepath, QString content);
+        void writeToFileInPackage(std::string filename, QString content);
+
+        bool isSkillInstalled();
+        bool createProjectInKukadu();
+        bool checkSkillNameIsNew(std::string skillName);
+
+        std::string getPackageName();
+        std::string getExecutionMode();
+        std::string getCurrentSkillName();
         std::string getCatkinMakeString(const std::string &packageName);
 
         std::vector<QString> getCodeBlocks();
 
-        std::string getPackageName();
-
-        void writeToFileInPackage(std::string filename, QString content);
-
-        void createProjectInPackage();
-
-        bool createProjectInKukadu();
-
-        void writeToFileAtPath(std::string filepath, QString content);
-
-        std::string getCurrentSkillName();
-
-        bool isSkillInstalled();
-
-        std::string getExecutionMode();
-
-        void createCatkinPackage();
-
-        void createCMakeLists();
-
-        void loadMetafilesString();
-
-        bool checkSkillNameIsNew(std::string skillName);
+        QGroupBox *createUI();
 
     public:
 
@@ -71,33 +74,26 @@ namespace kukadu {
 
     public slots:
 
-        void executeSlot();
-
-        void kinestethicTeachingSlot();
-
         void onStart();
-
+        void playSlot();
+        void saveSlot();
+        void loadSlot();
+        void executeSlot();
+        void exitViewSlot();
+        void installSkillSlot();
+        void stopExecutionSlot();
+        void testTaughtSkillSlot();
+        void finishedExecutionSlot();
         void goToStartPositionSlot();
-
+        void kinestethicTeachingSlot();
         void startKinestheticTeachingSlot();
 
-        void finishedExecutionSlot();
-
-        void testTaughtSkillSlot();
-
-        void installSkillSlot();
-
-        void exitViewSlot();
-
-        void loadSlot();
-
-        void saveSlot();
-
-        void stopExecutionSlot();
-
-        void playSlot();
+        void exitPlayingslot();
+        void performPlayingSlot();
+        void trainPerceptualStatesSlot();
 
         void selectionChangedSlot(QString text);
+
     };
 
 }

@@ -15,6 +15,10 @@ namespace kukadu {
 
     std::map<std::string, std::function<KUKADU_SHARED_PTR<Controller>(
             StorageSingleton &, int, int, std::vector<KUKADU_SHARED_PTR<Hardware> >)> > SkillFactory::skillFactories{
+            {"nothing",              [](StorageSingleton &storage, int skillId, int controllerType,
+                                            std::vector<KUKADU_SHARED_PTR<Hardware> > hardwareComponents) {
+                return make_shared<Nothing>(storage);
+            }},
             {"DMPExecutor",              [](StorageSingleton &storage, int skillId, int controllerType,
                                             std::vector<KUKADU_SHARED_PTR<Hardware> > hardwareComponents) {
                 return make_shared<DMPExecutor>(storage, skillId,
@@ -197,6 +201,10 @@ namespace kukadu {
 
     KUKADU_SHARED_PTR<Controller> SkillFactory::loadSkill(std::string skillName,
                                                           std::vector<KUKADU_SHARED_PTR<Hardware> > hardwareComponents) {
+
+        if(!hardwareComponents.size())
+            hardwareComponents.push_back(HardwareFactory::get().loadHardware("no_hardware"));
+
         stringstream s;
         s
                 << "SELECT DISTINCT skills_robot.robot_config_id as 'roboConfigId' FROM skills_robot INNER JOIN skills ON skills.skill_id=skills_robot.skill_id WHERE skills.label='"
