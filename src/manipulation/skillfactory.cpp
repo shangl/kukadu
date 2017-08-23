@@ -235,9 +235,12 @@ namespace kukadu {
             if (skillFactories.find(controllerClassLabel) != skillFactories.end())
                 return skillFactories[controllerClassLabel](storage, skillId, controllerType, hardwareComponents);
             else throw KukaduException("(SkillFactory) automatic loading is not supported for the required controller");
-        } else
-            throw KukaduException(
-                    "(SkillFactory) requested skill name does not exist in the data base or is not available for your robot");
+        } else {
+            stringstream s;
+            s << "(SkillFactory) requested skill \"" << skillName
+              << "\" does not exist in the data base or is not available for your robot";
+            throw KukaduException(s.str().c_str());
+        }
     }
 
     std::vector<std::string> SkillFactory::listAvailableSkills() {
