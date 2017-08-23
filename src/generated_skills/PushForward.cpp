@@ -50,7 +50,7 @@ namespace kukadu {
             std::dynamic_pointer_cast<kukadu::DMPExecutor>(skill203)->setMaxAbsForce(15);
 
             if (goBackToBlockingPos) {
-                auto sLeftQueue2040 = getUsedHardware()[0];
+                auto sLeftQueue2040 = getUsedHardware()[1];
                 sLeftQueue2040->install();
                 sLeftQueue2040->start();
 
