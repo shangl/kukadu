@@ -367,9 +367,11 @@ namespace kukadu {
     public:
 
         ComplexController(StorageSingleton& dbStorage, std::string caption, std::vector<KUKADU_SHARED_PTR<Hardware> > usedHardware, std::string storePath,
-                          bool storeReward, double senseStretch, double boredom, KUKADU_SHARED_PTR<kukadu_mersenne_twister> generator,
-                          int stdReward, double punishReward, double gamma, int stdPrepWeight, bool collectPrevRewards, int simulationFailingProbability,
+                          KUKADU_SHARED_PTR<kukadu_mersenne_twister> generator,
                           KUKADU_SHARED_PTR<Controller> nothingController,
+                          bool storeReward = false, double senseStretch = 15.0, double boredom = 1.0,
+                          int stdReward = 100, double punishReward = -15.0, double gamma = 0.001,
+                          int stdPrepWeight = 30, bool collectPrevRewards = false, int simulationFailingProbability = 0.0,
                           int maxEnvPathLength = 4, double pathLengthCost = 0.01, double stdEnvironmentReward = 10.0,
                           double creativityAlpha1 = 0.1, double creativityAlpha2 = 0.9, double creativityBeta = 0.3, double creativityCthresh = 0.8,
                           double nothingStateProbThresh = 0.8, double creativityMultiplier = 3.0);

@@ -582,7 +582,7 @@ function CodeClass(name, code, behaviour) {
         }
 
         skillImplementation += name + "::" + name + "(kukadu::StorageSingleton& storage, std::vector< KUKADU_SHARED_PTR< kukadu::Hardware > > hardware)" + newLine +
-            "    : ComplexController(storage, \"" + name + "\", hardware, resolvePath(\"$KUKADU_HOME/movements/humanoids_2014/pouring_gries/peel_book\"), false, 15, 1, kukadu::SkillFactory::get().getGenerator(), 0.0, -15.0, 0, 30, true, 0.0, kukadu::SkillFactory::get().loadSkill(\"nothing\", {kukadu::HardwareFactory::get().loadHardware(\"no_hardware_instance\")})) {\n" +
+            "    : ComplexController(storage, \"" + name + "\", hardware, kukadu::resolvePath(\"$KUKADU_HOME/skills/\" + \"newSkillName\"), kukadu::SkillFactory::get().getGenerator(), kukadu::SkillFactory::get().loadSkill(\"nothing\", {})) {\n" +
             "}" + newLine +
             newLine +
             "void " + name + "::cleanupAfterAction() {" + newLine +

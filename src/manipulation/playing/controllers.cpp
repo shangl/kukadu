@@ -17,11 +17,13 @@ namespace pf = boost::filesystem;
 
 namespace kukadu {
 
-    ComplexController::ComplexController(StorageSingleton& dbStorage, std::string caption, std::vector<KUKADU_SHARED_PTR<Hardware> > usedHardware, std::string storePath,
-                                         bool storeReward, double senseStretch, double boredom, KUKADU_SHARED_PTR<kukadu_mersenne_twister> generator,
+    ComplexController::ComplexController(StorageSingleton& dbStorage, std::string caption,
+                                         std::vector<KUKADU_SHARED_PTR<Hardware> > usedHardware, std::string storePath,
+                                         KUKADU_SHARED_PTR<kukadu_mersenne_twister> generator,
+                                         KUKADU_SHARED_PTR<Controller> nothingController,
+                                         bool storeReward, double senseStretch, double boredom,
                                          int stdReward, double punishReward, double gamma, int stdPrepWeight, bool collectPrevRewards,
                                          int simulationFailingProbability,
-                                         KUKADU_SHARED_PTR<Controller> nothingController,
                                          int maxEnvPathLength, double pathLengthCost, double stdEnvironmentReward,
                                          double creativityAlpha1, double creativityAlpha2, double creativityBeta, double creativityCthresh,
                                          double nothingStateProbThresh, double creativityMultiplier)
