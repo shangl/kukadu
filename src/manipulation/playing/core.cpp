@@ -165,6 +165,9 @@ namespace kukadu {
 
         auto complSkill = KUKADU_DYNAMIC_POINTER_CAST<ComplexController>(registeredComplexControllers[skillId]);
 
+        auto executeModeBefore = complSkill->getExecuteBasicBehaviourOnly();
+        complSkill->setExecuteBasicBehaviourOnly(false);
+
         // for learning, it has to cleanup afterwards as well
         auto prevCleanup = complSkill->getCleanup();
         auto prevGenerateNewGroundTruth = complSkill->getGenerateNewGroundTruth();
@@ -188,6 +191,8 @@ namespace kukadu {
 
         if(updateModels)
             complSkill->updateFiles();
+
+        complSkill->setExecuteBasicBehaviourOnly(executeModeBefore);
 
         KUKADU_MODULE_END_USAGE();
 

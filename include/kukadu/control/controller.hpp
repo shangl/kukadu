@@ -48,6 +48,8 @@ namespace kukadu {
 
         virtual bool producesGraspInternal() = 0;
 
+        virtual bool isPlayable() { return false; }
+
         // provides information whether or not a separated database table is required to store more information
         // pair.first = true if an additional table is required
         // pair.second = name of the required additional table (will be ignored if pair.first == false)

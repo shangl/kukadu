@@ -263,6 +263,8 @@ namespace kukadu {
 
         bool creativeControllerCreated;
 
+        bool executeBasicBehaviourOnly;
+
         int stdPrepWeight;
         int maxEnvPathLength;
         int currentIterationNum;
@@ -364,6 +366,8 @@ namespace kukadu {
         virtual bool requiresGraspInternal() = 0;
         virtual bool producesGraspInternal() = 0;
 
+        virtual bool isPlayable() { return true; }
+
     public:
 
         ComplexController(StorageSingleton& dbStorage, std::string caption, std::vector<KUKADU_SHARED_PTR<Hardware> > usedHardware, std::string storePath,
@@ -426,6 +430,9 @@ namespace kukadu {
 
         void setCleanup(bool cleanup);
         void setGenerateNewGroundTruth(bool groundTruth);
+
+        void setExecuteBasicBehaviourOnly(bool executeBasicBehaviourOnly);
+        bool getExecuteBasicBehaviourOnly();
 
         KUKADU_SHARED_PTR<ProjectiveSimulator> getProjectiveSimulator();
         KUKADU_SHARED_PTR<PerceptClip> generateNextPerceptClip(int immunity);

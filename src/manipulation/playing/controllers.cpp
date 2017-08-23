@@ -30,13 +30,14 @@ namespace kukadu {
         : Controller(dbStorage, caption, usedHardware, simulationFailingProbability), Reward(generator, collectPrevRewards) {
 
         this->useCreativity = false;
+        this->executeBasicBehaviourOnly = true;
         this->creativeControllerCreated = false;
         this->creativityAlpha1 = creativityAlpha1;
         this->creativityAlpha2 = creativityAlpha2;
         this->creativityBeta = creativityBeta;
         this->creativityCthresh = creativityCthresh;
-        this->nothingStateProbThresh = nothingStateProbThresh;
         this->creativityMultiplier = creativityMultiplier;
+        this->nothingStateProbThresh = nothingStateProbThresh;
 
         this->creativityGamma = (atanh(1.0 - 2 * creativityAlpha1) - atanh(1.0 - 2 * creativityAlpha2)) / (creativityCthresh * creativityBeta);
         this->creativityDelta = ((2 * creativityBeta - 1.0) * tanh(1.0 - 2 * creativityAlpha1) + atanh(1.0 - 2 * creativityAlpha2)) / creativityBeta;
@@ -146,6 +147,7 @@ namespace kukadu {
     void ComplexController::initialize() {
 
         creativeControllerCreated = false;
+        executeBasicBehaviourOnly = true;
 
         nothingStateClips.clear();
 
@@ -753,10 +755,10 @@ namespace kukadu {
         // if probability of success after using "nothing" action is high enough, the state clip might be considered in future reasoning
         // e.g. for guided clip creation
         if(maxWeight > stdPrepWeight) {
-cout << "potential target state: " << sensedState << " " << *sensedState << endl;
+
             if(maxProb > nothingStateProbThresh && KUKADU_DYNAMIC_POINTER_CAST<ControllerActionClip>(maxPrepClip)->toString() == nothingController->getCaption() && !nothingStateClips[sensingClip->toString()][sensedState->toString()]) {
                 nothingStateClips[sensingClip->toString()][sensedState->toString()] = sensedState;
-cout << "actual target state: " << sensedState << " " << *sensedState << endl;
+
             // if there is a state where the strongest action is "nothing" but the probability is below 0.8, remove it (even if it is not in there yet - checking
             // this would just make it slower)
             } else if(maxProb <= nothingStateProbThresh && KUKADU_DYNAMIC_POINTER_CAST<ControllerActionClip>(maxPrepClip)->toString() == "nothing")
@@ -765,412 +767,424 @@ cout << "actual target state: " << sensedState << " " << *sensedState << endl;
 
     }
 
+    void ComplexController::setExecuteBasicBehaviourOnly(bool executeBasicBehaviourOnly) {
+        this->executeBasicBehaviourOnly = executeBasicBehaviourOnly;
+    }
+
+    bool ComplexController::getExecuteBasicBehaviourOnly() {
+        return executeBasicBehaviourOnly;
+    }
+
     KUKADU_SHARED_PTR<ControllerResult> ComplexController::executeInternal() {
 
         KUKADU_MODULE_START_USAGE();
 
         KUKADU_SHARED_PTR<ControllerResult> ret = nullptr;
-cout << "nothing state: " << nothingStateClips["pressing"]["(9)"] << endl;
-        // if simulation - set observed state as ground truth for each sensing action (it is not yet know, which sensing action will be selected)
-        if(getSimulationMode() && generateNewGroundTruth) {
-            for(auto sensCont : sensingControllers) {
-                auto nextGroundTruth = getNextSimulatedGroundTruth(sensCont);
-                sensCont->setSimulationGroundTruth(nextGroundTruth);
+
+        if(executeBasicBehaviourOnly) {
+            executeComplexAction();
+            cleanupAfterAction();
+            return ret;
+        } else {
+
+            // if simulation - set observed state as ground truth for each sensing action (it is not yet know, which sensing action will be selected)
+            if(getSimulationMode() && generateNewGroundTruth) {
+                for(auto sensCont : sensingControllers) {
+                    auto nextGroundTruth = getNextSimulatedGroundTruth(sensCont);
+                    sensCont->setSimulationGroundTruth(nextGroundTruth);
+                }
             }
-        }
 
-        ++currentIterationNum;
+            ++currentIterationNum;
 
-        auto walkRet = projSim->performRandomWalk(2);
-        auto wasBored = projSim->nextHopIsBored();
+            auto walkRet = projSim->performRandomWalk(2);
+            auto wasBored = projSim->nextHopIsBored();
 
-        double reward = 0.0;
-        std::tuple<double, KUKADU_SHARED_PTR<Clip>, std::vector<KUKADU_SHARED_PTR<Clip> >, int> selectedPath;
+            double reward = 0.0;
+            std::tuple<double, KUKADU_SHARED_PTR<Clip>, std::vector<KUKADU_SHARED_PTR<Clip> >, int> selectedPath;
 
-        // if the last clip is an action clip, PS was not bored
-        if(!wasBored) {
+            // if the last clip is an action clip, PS was not bored
+            if(!wasBored) {
 
-            auto hopPath = projSim->getIntermediateHopIdx();
+                auto hopPath = projSim->getIntermediateHopIdx();
 
-            // if not bored, eventually add a new preparatory skill by creative composition before going on with the walk
-            auto newClips = extractClipsFromPath(*hopPath);
-            auto sensingClip = get<0>(newClips);
-            auto stateClip = get<1>(newClips);
-            auto stateId = stateClip->getClipDimensions()->at(0);
+                // if not bored, eventually add a new preparatory skill by creative composition before going on with the walk
+                auto newClips = extractClipsFromPath(*hopPath);
+                auto sensingClip = get<0>(newClips);
+                auto stateClip = get<1>(newClips);
+                auto stateId = stateClip->getClipDimensions()->at(0);
 
-            cout << "(ComplexController::executeInternal) creativity activated: " << useCreativity << endl;
+                cout << "(ComplexController::executeInternal) creativity activated: " << useCreativity << endl;
 
-            // block for creativity mode
-            if(useCreativity) {
+                // block for creativity mode
+                if(useCreativity) {
 
-                cout << "(ComplexController::executeInternal) i may be creative" << endl;
+                    cout << "(ComplexController::executeInternal) i may be creative" << endl;
 
-                // only add new prep skill if current state is not already a "nothing" skill
-                if(!nothingStateClips[sensingClip->toString()][stateClip->toString()]) {
+                    // only add new prep skill if current state is not already a "nothing" skill
+                    if(!nothingStateClips[sensingClip->toString()][stateClip->toString()]) {
 
-                    // compute all paths with maximum length of 4 and minimal confidence 0.4
-                    auto possiblePaths = computeEnvironmentPaths(sensingClip, stateClip, 4, 0.4);
+                        // compute all paths with maximum length of 4 and minimal confidence 0.4
+                        auto possiblePaths = computeEnvironmentPaths(sensingClip, stateClip, 4, 0.4);
 
-                    // find out if there is a transition to a "nothing" state
-                    // sort them according to confidence
-                    std::sort(possiblePaths.begin(), possiblePaths.end(), [] (std::tuple<double, KUKADU_SHARED_PTR<Clip>, std::vector<KUKADU_SHARED_PTR<Clip> >, int> p1, std::tuple<double, KUKADU_SHARED_PTR<Clip>, std::vector<KUKADU_SHARED_PTR<Clip> >, int> p2) {
-                                  return std::get<0>(p1) > std::get<0>(p2);
-                              });
+                        // find out if there is a transition to a "nothing" state
+                        // sort them according to confidence
+                        std::sort(possiblePaths.begin(), possiblePaths.end(), [] (std::tuple<double, KUKADU_SHARED_PTR<Clip>, std::vector<KUKADU_SHARED_PTR<Clip> >, int> p1, std::tuple<double, KUKADU_SHARED_PTR<Clip>, std::vector<KUKADU_SHARED_PTR<Clip> >, int> p2) {
+                                      return std::get<0>(p1) > std::get<0>(p2);
+                                  });
 
-                    cout << "(ComplexController::executeInternal) i enumerated paths" << endl;
+                        cout << "(ComplexController::executeInternal) i enumerated paths" << endl;
 
 
-                    cout << "nothing state clips: " << nothingStateClips.size() << endl;
-                    for(auto& c : nothingStateClips[sensingClip->toString()]) {
-                        if(c.second) {
-                            cout << "nothing state clip: " << c.first << " " << c.second << endl;
-                            cout << *(c.second) << endl;
-                        }
-                    }
-
-                    for(auto&  path : possiblePaths) {
-
-                        bool pathCanBeChosen = false;
-                        double nothingProb = 0.0;
-                        auto& resultingState = std::get<1>(path);
-                        auto& clipPath = std::get<2>(path);
-
-for(auto& c : clipPath)
-    cout << *c;
-cout << endl;
-
-                        // path has to contain more than 1 preparatory action (path here is state -> prep action -> state -> ... -> final state). therefore length
-                        // must be at least 4
-                        if(clipPath.size() >= 4) {
-                            auto& senseNothingStateClips = nothingStateClips[sensingClip->toString()];
-                            for(auto& nothingStateClip : senseNothingStateClips) {
-                                // found a proper transition - it may be added as a new preparatory controller
-                                if(resultingState == nothingStateClip.second && resultingState != stateClip && !hasDuplicateStatesInPath(clipPath)) {// && !projSim->findClipInLevelByIdVec()) {
-                                    pathCanBeChosen = true;
-                                    nothingProb = std::get<1>(resultingState->getMaxProbability());
-                                    break;
-                                }
+                        cout << "nothing state clips: " << nothingStateClips.size() << endl;
+                        for(auto& c : nothingStateClips[sensingClip->toString()]) {
+                            if(c.second) {
+                                cout << "nothing state clip: " << c.first << " " << c.second << endl;
+                                cout << *(c.second) << endl;
                             }
+                        }
 
-                            cout << "(ComplexController::executeInternal) i found a path that may be chosen with prob " << nothingProb << endl;
+                        for(auto&  path : possiblePaths) {
 
-                            if(pathCanBeChosen) {
+                            bool pathCanBeChosen = false;
+                            double nothingProb = 0.0;
+                            auto& resultingState = std::get<1>(path);
+                            auto& clipPath = std::get<2>(path);
 
-                                // compute probability for adding a new clip from clip composition (will be referred as creativity in the paper)
-                                double pathConfidence = std::get<0>(path);
-                                double creativityProb = sigmoid(creativityGamma * pathConfidence * nothingProb + creativityDelta);
-                                KUKADU_DISCRETE_DISTRIBUTION<int> creativityDist({1.0 - creativityProb, creativityProb});
-                                int beCreative = creativityDist(*generator);
-
-                                cout << "(ComplexController::executeInternal) creative: " << beCreative << endl;
-
-                                if(beCreative) {
-
-                                    // extract controller from clip path
-                                    int pathSize = clipPath.size();
-                                    vector<KUKADU_SHARED_PTR<Controller> > controllerPath;
-                                    for(int i = 1; i < pathSize; i += 2) {
-                                        auto currentActionClip = KUKADU_DYNAMIC_POINTER_CAST<ControllerActionClip>(clipPath.at(i));
-                                        controllerPath.push_back(currentActionClip->getActionController());
+                            // path has to contain more than 1 preparatory action (path here is state -> prep action -> state -> ... -> final state). therefore length
+                            // must be at least 4
+                            if(clipPath.size() >= 4) {
+                                auto& senseNothingStateClips = nothingStateClips[sensingClip->toString()];
+                                for(auto& nothingStateClip : senseNothingStateClips) {
+                                    // found a proper transition - it may be added as a new preparatory controller
+                                    if(resultingState == nothingStateClip.second && resultingState != stateClip && !hasDuplicateStatesInPath(clipPath)) {// && !projSim->findClipInLevelByIdVec()) {
+                                        pathCanBeChosen = true;
+                                        nothingProb = std::get<1>(resultingState->getMaxProbability());
+                                        break;
                                     }
-                                    auto newConcatController = make_shared<ConcatController>(getStorage(), controllerPath);
-                                    const auto& controllerLabel = newConcatController->getCaption();
+                                }
 
-                                    auto creativeActionClipInEcm = projSim->findClipInLevelByLabel(controllerLabel, Clip::CLIP_H_LEVEL_FINAL);
-                                    // if clip is already in ecm, (for now) leave it as it is
-                                    if(creativeActionClipInEcm) {
+                                cout << "(ComplexController::executeInternal) i found a path that may be chosen with prob " << nothingProb << endl;
 
-                                    }
-                                    // else insert it to the skill ecm and the environment ecm and connect it properly
-                                    else {
+                                if(pathCanBeChosen) {
 
-                                        // first create action clip
-                                        auto newConcatClip = make_shared<ControllerActionClip>(getStorage(), projSim->generateNewActionId(), newConcatController, generator);
+                                    // compute probability for adding a new clip from clip composition (will be referred as creativity in the paper)
+                                    double pathConfidence = std::get<0>(path);
+                                    double creativityProb = sigmoid(creativityGamma * pathConfidence * nothingProb + creativityDelta);
+                                    KUKADU_DISCRETE_DISTRIBUTION<int> creativityDist({1.0 - creativityProb, creativityProb});
+                                    int beCreative = creativityDist(*generator);
 
-                                        cout << "creative proposal of " << newConcatClip->toString() << endl;
+                                    cout << "(ComplexController::executeInternal) creative: " << beCreative << endl;
 
-                                        bool isCorrectSensingClip = false;
-                                        auto senseLayer = projSim->getClipLayers()->at(1);
-                                        for(auto& currentSenseClip : *senseLayer) {
+                                    if(beCreative) {
 
-                                            // if the sensing clip is the same as the currently observed one, the new action should be connected strongly in here
-                                            if(currentSenseClip == sensingClip) isCorrectSensingClip = true;
-                                            // connect it with h_init
-                                            else isCorrectSensingClip = false;
+                                        // extract controller from clip path
+                                        int pathSize = clipPath.size();
+                                        vector<KUKADU_SHARED_PTR<Controller> > controllerPath;
+                                        for(int i = 1; i < pathSize; i += 2) {
+                                            auto currentActionClip = KUKADU_DYNAMIC_POINTER_CAST<ControllerActionClip>(clipPath.at(i));
+                                            controllerPath.push_back(currentActionClip->getActionController());
+                                        }
+                                        auto newConcatController = make_shared<ConcatController>(getStorage(), controllerPath);
+                                        const auto& controllerLabel = newConcatController->getCaption();
 
-                                            for(auto& currentStateClip : *currentSenseClip->getSubClips()) {
+                                        auto creativeActionClipInEcm = projSim->findClipInLevelByLabel(controllerLabel, Clip::CLIP_H_LEVEL_FINAL);
+                                        // if clip is already in ecm, (for now) leave it as it is
+                                        if(creativeActionClipInEcm) {
 
-                                                // first add it to skill ecm...
-                                                // if we are at the currently observed state --> connect it strongly
-                                                if(isCorrectSensingClip && currentStateClip == stateClip)
-                                                    currentStateClip->addSubClip(newConcatClip, stdPrepWeight * (1.0 + creativityMultiplier * pathConfidence));
-                                                else
-                                                    currentStateClip->addSubClip(newConcatClip, stdPrepWeight);
+                                        }
+                                        // else insert it to the skill ecm and the environment ecm and connect it properly
+                                        else {
 
-                                                projSim->addActionClip(newConcatClip);
+                                            // first create action clip
+                                            auto newConcatClip = make_shared<ControllerActionClip>(getStorage(), projSim->generateNewActionId(), newConcatController, generator);
 
-                                                // ...then add it to environment model ecm
-                                                auto idVec = make_shared<vector<int> >(2);
-                                                idVec->at(0) = currentStateClip->getClipDimensions()->at(0);
-                                                idVec->at(1) = newConcatClip->getClipDimensions()->at(0);
+                                            cout << "creative proposal of " << newConcatClip->toString() << endl;
 
-                                                auto& currentEnvModel = environmentModels[currentSenseClip->toString()];
-                                                stringstream s;
-                                                s << "(E" << idVec->at(0) << ",P" << idVec->at(1) << ")";
-                                                auto newPercept = make_shared<PerceptClip>(currentEnvModel->generateNewPerceptId(), s.str(), generator, idVec, INT_MAX);
-                                                auto firstEnvModelPercept = currentEnvModel->getPerceptClips()->front();
-                                                auto children = firstEnvModelPercept->getSubClips();
-                                                auto childrenCopy = make_shared<vector<KUKADU_SHARED_PTR<Clip> > >(children->begin(), children->end());
-                                                newPercept->setChildren(childrenCopy);
-                                                currentEnvModel->addPerceptClip(newPercept);
+                                            bool isCorrectSensingClip = false;
+                                            auto senseLayer = projSim->getClipLayers()->at(1);
+                                            for(auto& currentSenseClip : *senseLayer) {
 
-                                                stringstream s2; s2 << "E" << idVec->at(0);
-                                                auto envChildEnhanceClip = currentEnvModel->findClipInLevelByLabel(s2.str(), 1);
-                                                newPercept->setSpecificWeight(envChildEnhanceClip, get<3>(path));
+                                                // if the sensing clip is the same as the currently observed one, the new action should be connected strongly in here
+                                                if(currentSenseClip == sensingClip) isCorrectSensingClip = true;
+                                                // connect it with h_init
+                                                else isCorrectSensingClip = false;
 
+                                                for(auto& currentStateClip : *currentSenseClip->getSubClips()) {
+
+                                                    // first add it to skill ecm...
+                                                    // if we are at the currently observed state --> connect it strongly
+                                                    if(isCorrectSensingClip && currentStateClip == stateClip)
+                                                        currentStateClip->addSubClip(newConcatClip, stdPrepWeight * (1.0 + creativityMultiplier * pathConfidence));
+                                                    else
+                                                        currentStateClip->addSubClip(newConcatClip, stdPrepWeight);
+
+                                                    projSim->addActionClip(newConcatClip);
+
+                                                    // ...then add it to environment model ecm
+                                                    auto idVec = make_shared<vector<int> >(2);
+                                                    idVec->at(0) = currentStateClip->getClipDimensions()->at(0);
+                                                    idVec->at(1) = newConcatClip->getClipDimensions()->at(0);
+
+                                                    auto& currentEnvModel = environmentModels[currentSenseClip->toString()];
+                                                    stringstream s;
+                                                    s << "(E" << idVec->at(0) << ",P" << idVec->at(1) << ")";
+                                                    auto newPercept = make_shared<PerceptClip>(currentEnvModel->generateNewPerceptId(), s.str(), generator, idVec, INT_MAX);
+                                                    auto firstEnvModelPercept = currentEnvModel->getPerceptClips()->front();
+                                                    auto children = firstEnvModelPercept->getSubClips();
+                                                    auto childrenCopy = make_shared<vector<KUKADU_SHARED_PTR<Clip> > >(children->begin(), children->end());
+                                                    newPercept->setChildren(childrenCopy);
+                                                    currentEnvModel->addPerceptClip(newPercept);
+
+                                                    stringstream s2; s2 << "E" << idVec->at(0);
+                                                    auto envChildEnhanceClip = currentEnvModel->findClipInLevelByLabel(s2.str(), 1);
+                                                    newPercept->setSpecificWeight(envChildEnhanceClip, get<3>(path));
+
+                                                }
                                             }
+
+                                            creativeControllerCreated = true;
+
                                         }
 
-                                        creativeControllerCreated = true;
-
+                                    } else {
+                                        // it didn't chose to be creative
                                     }
 
-                                } else {
-                                    // it didn't chose to be creative
+                                    // only the most confident path can be selected as a creatively created clip (so after the first one that fulfills the properties, the execution is stopped)
+                                    break;
+
                                 }
 
-                                // only the most confident path can be selected as a creatively created clip (so after the first one that fulfills the properties, the execution is stopped)
-                                break;
-
                             }
-
                         }
+
                     }
 
                 }
 
-            }
+                // continue last walk if it was not bored
+                walkRet = projSim->performRandomWalk(ProjectiveSimulator::PS_WALK_UNTIL_END, true);
+                consecutiveBoredomCount = 0;
 
-            // continue last walk if it was not bored
-            walkRet = projSim->performRandomWalk(ProjectiveSimulator::PS_WALK_UNTIL_END, true);
-            consecutiveBoredomCount = 0;
+                hopPath = projSim->getIntermediateHopIdx();
+                newClips = extractClipsFromPath(*hopPath);
+                sensingClip = get<0>(newClips);
+                stateClip = get<1>(newClips);
+                stateId = stateClip->getClipDimensions()->at(0);
+                auto actionClip = get<2>(newClips);
+                auto actionId = actionClip->getClipDimensions()->at(0);
 
-            hopPath = projSim->getIntermediateHopIdx();
-            newClips = extractClipsFromPath(*hopPath);
-            sensingClip = get<0>(newClips);
-            stateClip = get<1>(newClips);
-            stateId = stateClip->getClipDimensions()->at(0);
-            auto actionClip = get<2>(newClips);
-            auto actionId = actionClip->getClipDimensions()->at(0);
+                int executeIt = 0;
+                if(!getSimulationMode()) {
+                    auto sensedLabel = getClassLabel(sensingClip, stateClip);
+                    cout << "(ComplexController::execute) selected sensing action \"" << *sensingClip << "\" predicted class " << sensedLabel <<
+                            " and selected preparation action \"" << *actionClip << "\"" << endl;
 
-            int executeIt = 0;
-            if(!getSimulationMode()) {
-                auto sensedLabel = getClassLabel(sensingClip, stateClip);
-                cout << "(ComplexController::execute) selected sensing action \"" << *sensingClip << "\" predicted class " << sensedLabel <<
-                        " and selected preparation action \"" << *actionClip << "\"" << endl;
+                    cout << "(ComplexController::execute) do you want to execute it? (0 = no, 1 = yes)" << endl;
+                    cin >> executeIt;
+                } else
+                    executeIt = 1;
 
-                cout << "(ComplexController::execute) do you want to execute it? (0 = no, 1 = yes)" << endl;
-                cin >> executeIt;
-            } else
-                executeIt = 1;
+                auto sensedState = stateClip;
+                if(executeIt == 1) {
 
-            auto sensedState = stateClip;
-            if(executeIt == 1) {
+                    auto actionController = KUKADU_DYNAMIC_POINTER_CAST<ControllerActionClip>(actionClip);
+                    cout << actionController->getCaption() << endl;
+                    actionController->execute();
 
-                auto actionController = KUKADU_DYNAMIC_POINTER_CAST<ControllerActionClip>(actionClip);
-                cout << actionController->getCaption() << endl;
-                actionController->execute();
+                    // no environment model measuring in case the nothing controller was used
+                    // by definition it does not change the state
+                    // also don't do environment model update for controller that change the grasp type (would destroy a used grasp again)
+                    if(actionClip->toString() != nothingController->getCaption() && this->requiresGrasp() == actionController->producesGrasp()) {
 
-                // no environment model measuring in case the nothing controller was used
-                // by definition it does not change the state
-                // also don't do environment model update for controller that change the grasp type (would destroy a used grasp again)
-                if(actionClip->toString() != nothingController->getCaption() && this->requiresGrasp() == actionController->producesGrasp()) {
+                        auto sensingController = sensingClip->getSensingController();
 
-                    auto sensingController = sensingClip->getSensingController();
+                        // if simulation mode, retrieve ground truth
+                        KUKADU_SHARED_PTR<Clip> groundTruthStartClip;
+                        if(getSimulationMode()) {
+                            auto groundTruthIdx = sensingController->getSimulationGroundTruthIdx();
+                            groundTruthStartClip = sensingClip->getSubClipByIdx(groundTruthIdx);
+                        }
 
-                    // if simulation mode, retrieve ground truth
+                        // not bored, the preparatory action was executed --> so sense again in order to improve environment model
+                        // if simulation mode --> set new ground truth after the execution
+                        if(getSimulationMode()) {
+
+                            auto groundTruthStateClip = computeGroundTruthTransition(sensingClip, groundTruthStartClip, actionClip);
+
+                            if(!isShutUp)
+                                cout << "ground truth: " << *groundTruthStartClip << " (predicted: " << *stateClip << ") + " << *actionClip << " = " << *groundTruthStateClip << endl;
+
+                            sensingClip->getSensingController()->setSimulationGroundTruth(sensingClip->getSubClipIdx(groundTruthStateClip));
+
+                        }
+
+                        // check state after preparatory action
+                        int resultingStateChildIdx = sensingController->performClassification();
+
+                        sensedState = sensingClip->getSubClipByIdx(resultingStateChildIdx);
+                        int resultingStateId = sensedState->getClipDimensions()->at(0);
+
+                        if(!getSimulationMode()) {
+                            auto sensedLabel = getClassLabel(sensingClip, sensedState);
+                            cout << "(ComplexController::execute) classifier result is category " << sensedLabel << endl;
+                        }
+
+                        vector<int> stateVector{stateId, actionId};
+
+                        cout << "updating environment model for: " << sensingClip->toString() << endl;
+
+                        auto currentEnvModel = environmentModels[sensingClip->toString()];
+                        auto environmentClip = currentEnvModel->retrieveClipsOnLayer(stateVector, 0).at(0);
+
+                        //if(!isShutUp)
+                            cout << "(" << stateId << ", " << actionId << ") - " << *environmentClip << " --> " << "E" << resultingStateId << " (idx: " << resultingStateChildIdx << ")" << endl;
+
+                        auto resultingEnvironmentClip = currentEnvModel->retrieveClipsOnLayer({-resultingStateId, -resultingStateId}, 1).at(0);
+
+                        cout << "rewarding clip: " << *resultingEnvironmentClip << endl;
+
+                        vector<KUKADU_SHARED_PTR<Clip> > envClipPath{environmentClip, resultingEnvironmentClip};
+                        currentEnvModel->setNextPredefinedPath(envClipPath);
+                        currentEnvModel->performRandomWalk();
+                        currentEnvModel->performRewarding();
+                        cout << "i am updating" << endl;
+                        currentEnvModel->updatePsFile();
+                        cout << "updating done" << endl;
+
+                    }
+
+                    executeComplexAction();
+                    cleanupAfterAction();
+
+                }
+
+                // after doing everything --> perform the complex action and reward it accordingly
+                auto rewRet = projSim->performRewarding();
+                reward = get<1>(rewRet);
+
+                lastSkillWasSuccessful = (reward > 0) ? true : false;
+
+                // block for determining the "nothing" states is only required if creativity is switched on
+                if(useCreativity) {
+
+                    loadTargetClips(sensingClip, sensedState);
+
+                }
+
+            } else {
+
+                cout << "(ComplexController) i am bored - i will try to produce another perceptual state" << endl;
+
+                ++consecutiveBoredomCount;
+                walkRet = projSim->performRandomWalk(ProjectiveSimulator::PS_WALK_UNTIL_END, true);
+
+                auto stateClip = walkRet.second;
+                auto sensingClip = *(stateClip->getParents()->begin());
+                auto sensingController = KUKADU_DYNAMIC_POINTER_CAST<IntermediateEventClip>(sensingClip)->getSensingController();
+
+                // it was bored
+                auto possiblePaths = computeEnvironmentPaths(sensingClip, stateClip, maxEnvPathLength, 0.4);
+                computeTotalPathCost(KUKADU_DYNAMIC_POINTER_CAST<IntermediateEventClip>(sensingClip), possiblePaths);
+                std::sort(possiblePaths.begin(), possiblePaths.end(), [] (std::tuple<double, KUKADU_SHARED_PTR<Clip>, std::vector<KUKADU_SHARED_PTR<Clip> >, int> p1, std::tuple<double, KUKADU_SHARED_PTR<Clip>, std::vector<KUKADU_SHARED_PTR<Clip> >, int> p2) {
+                              return std::get<0>(p1) > std::get<0>(p2);
+                          });
+
+                selectedPath = possiblePaths.at(0);
+                for(auto cl : possiblePaths) {
+                    auto targetPercept = get<1>(cl);
+                    if(*targetPercept != *stateClip) {
+                        selectedPath = cl;
+                        break;
+                    }
+                }
+
+                if(!isShutUp) {
+                    cout << "(ComplexController) got bored" << endl;
+                    cout << "selected path info:" << endl;
+                    cout << "source clip: " << *stateClip << endl;
+                    cout << "target clip: " << *get<1>(selectedPath) << endl;
+                    cout << "selected path: ";
+                    for(auto cl : get<2>(selectedPath))
+                        cout << *cl << " - ";
+                    cout << endl;
+                }
+
+                // if controller is in real execution mode, execute the preparatory path
+                if(!getSimulationMode()) {
+
+                    // executing path
+                    auto path = get<2>(selectedPath);
+                    for(int i = 0; i < path.size(); ++i) {
+                        auto cl = path.at(i);
+                        // if clip number is odd, that clip is a preparatory action
+                        if(i % 2) {
+                            if(!isShutUp)
+                                cout << "(ComplexController) next action is " << *cl;
+                            KUKADU_DYNAMIC_POINTER_CAST<ControllerActionClip>(cl)->execute();
+                        } else {
+                            if(!isShutUp)
+                                cout << "(ComplexController) current state should be " << *cl;
+                        }
+                    }
+
+                } else {
+
+                    // if controller is in simulation mode, check ground truth
+
+                    // retrieve ground truth
                     KUKADU_SHARED_PTR<Clip> groundTruthStartClip;
                     if(getSimulationMode()) {
                         auto groundTruthIdx = sensingController->getSimulationGroundTruthIdx();
                         groundTruthStartClip = sensingClip->getSubClipByIdx(groundTruthIdx);
                     }
 
-                    // not bored, the preparatory action was executed --> so sense again in order to improve environment model
-                    // if simulation mode --> set new ground truth after the execution
-                    if(getSimulationMode()) {
-
-                        auto groundTruthStateClip = computeGroundTruthTransition(sensingClip, groundTruthStartClip, actionClip);
-
-                        if(!isShutUp)
-                            cout << "ground truth: " << *groundTruthStartClip << " (predicted: " << *stateClip << ") + " << *actionClip << " = " << *groundTruthStateClip << endl;
-
-                        sensingClip->getSensingController()->setSimulationGroundTruth(sensingClip->getSubClipIdx(groundTruthStateClip));
-
+                    auto groundTruthStateClip = groundTruthStartClip;
+                    auto path = get<2>(selectedPath);
+                    for(int i = 0; i < path.size(); ++i) {
+                        auto cl = path.at(i);
+                        // if clip number is odd, that clip is a preparatory action
+                        if(i % 2) {
+                            if(!isShutUp)
+                                cout << "(ComplexController) next action is " << *cl;
+                            groundTruthStateClip = computeGroundTruthTransition(sensingClip, groundTruthStateClip, cl);
+                        } else {
+                            if(!isShutUp)
+                                cout << "(ComplexController) current state should be " << *cl;
+                        }
                     }
 
-                    // check state after preparatory action
-                    int resultingStateChildIdx = sensingController->performClassification();
-
-                    sensedState = sensingClip->getSubClipByIdx(resultingStateChildIdx);
-                    int resultingStateId = sensedState->getClipDimensions()->at(0);
-
-                    if(!getSimulationMode()) {
-                        auto sensedLabel = getClassLabel(sensingClip, sensedState);
-                        cout << "(ComplexController::execute) classifier result is category " << sensedLabel << endl;
-                    }
-
-                    vector<int> stateVector{stateId, actionId};
-
-                    cout << "updating environment model for: " << sensingClip->toString() << endl;
-
-                    auto currentEnvModel = environmentModels[sensingClip->toString()];
-                    auto environmentClip = currentEnvModel->retrieveClipsOnLayer(stateVector, 0).at(0);
-
-                    //if(!isShutUp)
-                        cout << "(" << stateId << ", " << actionId << ") - " << *environmentClip << " --> " << "E" << resultingStateId << " (idx: " << resultingStateChildIdx << ")" << endl;
-
-                    auto resultingEnvironmentClip = currentEnvModel->retrieveClipsOnLayer({-resultingStateId, -resultingStateId}, 1).at(0);
-
-                    cout << "rewarding clip: " << *resultingEnvironmentClip << endl;
-
-                    vector<KUKADU_SHARED_PTR<Clip> > envClipPath{environmentClip, resultingEnvironmentClip};
-                    currentEnvModel->setNextPredefinedPath(envClipPath);
-                    currentEnvModel->performRandomWalk();
-                    currentEnvModel->performRewarding();
-                    cout << "i am updating" << endl;
-                    currentEnvModel->updatePsFile();
-                    cout << "updating done" << endl;
+                    // setting new ground truth state
+                    auto castedSensingClip = KUKADU_DYNAMIC_POINTER_CAST<IntermediateEventClip>(sensingClip);
+                    auto sensingController = castedSensingClip->getSensingController();
+                    int groundTruthIdx = sensingClip->getSubClipIdx(groundTruthStateClip);
+                    sensingController->setSimulationGroundTruth(groundTruthIdx);
 
                 }
 
-                executeComplexAction();
-                cleanupAfterAction();
+                // new state is present now --> perform action again without boredom should be enough
+                this->setBoredom(false);
+
+                // perform action again
+                auto prevGenerateNewGroundTruth = generateNewGroundTruth;
+                setGenerateNewGroundTruth(false);
+                ret = execute();
+                setGenerateNewGroundTruth(prevGenerateNewGroundTruth);
+                KUKADU_DYNAMIC_POINTER_CAST<HapticControllerResult>(ret)->setWasBored(true);
+
+                // switching on boredom again
+                this->setBoredom(true);
 
             }
 
-            // after doing everything --> perform the complex action and reward it accordingly
-            auto rewRet = projSim->performRewarding();
-            reward = get<1>(rewRet);
+            auto selectedPathPointer = KUKADU_SHARED_PTR<std::tuple<double, KUKADU_SHARED_PTR<kukadu::Clip>, std::vector<KUKADU_SHARED_PTR<kukadu::Clip> > > >(new std::tuple<double, KUKADU_SHARED_PTR<kukadu::Clip>, std::vector<KUKADU_SHARED_PTR<kukadu::Clip> > >(get<0>(selectedPath), get<1>(selectedPath), get<2>(selectedPath)));
 
-            lastSkillWasSuccessful = (reward > 0) ? true : false;
-
-            // block for determining the "nothing" states is only required if creativity is switched on
-            if(useCreativity) {
-
-                loadTargetClips(sensingClip, sensedState);
-
-            }
-
-        } else {
-
-            cout << "(ComplexController) i am bored - i will try to produce another perceptual state" << endl;
-
-            ++consecutiveBoredomCount;
-            walkRet = projSim->performRandomWalk(ProjectiveSimulator::PS_WALK_UNTIL_END, true);
-
-            auto stateClip = walkRet.second;
-            auto sensingClip = *(stateClip->getParents()->begin());
-            auto sensingController = KUKADU_DYNAMIC_POINTER_CAST<IntermediateEventClip>(sensingClip)->getSensingController();
-
-            // it was bored
-            auto possiblePaths = computeEnvironmentPaths(sensingClip, stateClip, maxEnvPathLength, 0.4);
-            computeTotalPathCost(KUKADU_DYNAMIC_POINTER_CAST<IntermediateEventClip>(sensingClip), possiblePaths);
-            std::sort(possiblePaths.begin(), possiblePaths.end(), [] (std::tuple<double, KUKADU_SHARED_PTR<Clip>, std::vector<KUKADU_SHARED_PTR<Clip> >, int> p1, std::tuple<double, KUKADU_SHARED_PTR<Clip>, std::vector<KUKADU_SHARED_PTR<Clip> >, int> p2) {
-                          return std::get<0>(p1) > std::get<0>(p2);
-                      });
-
-            selectedPath = possiblePaths.at(0);
-            for(auto cl : possiblePaths) {
-                auto targetPercept = get<1>(cl);
-                if(*targetPercept != *stateClip) {
-                    selectedPath = cl;
-                    break;
-                }
-            }
-
-            if(!isShutUp) {
-                cout << "(ComplexController) got bored" << endl;
-                cout << "selected path info:" << endl;
-                cout << "source clip: " << *stateClip << endl;
-                cout << "target clip: " << *get<1>(selectedPath) << endl;
-                cout << "selected path: ";
-                for(auto cl : get<2>(selectedPath))
-                    cout << *cl << " - ";
-                cout << endl;
-            }
-
-            // if controller is in real execution mode, execute the preparatory path
-            if(!getSimulationMode()) {
-
-                // executing path
-                auto path = get<2>(selectedPath);
-                for(int i = 0; i < path.size(); ++i) {
-                    auto cl = path.at(i);
-                    // if clip number is odd, that clip is a preparatory action
-                    if(i % 2) {
-                        if(!isShutUp)
-                            cout << "(ComplexController) next action is " << *cl;
-                        KUKADU_DYNAMIC_POINTER_CAST<ControllerActionClip>(cl)->execute();
-                    } else {
-                        if(!isShutUp)
-                            cout << "(ComplexController) current state should be " << *cl;
-                    }
-                }
-
-            } else {
-
-                // if controller is in simulation mode, check ground truth
-
-                // retrieve ground truth
-                KUKADU_SHARED_PTR<Clip> groundTruthStartClip;
-                if(getSimulationMode()) {
-                    auto groundTruthIdx = sensingController->getSimulationGroundTruthIdx();
-                    groundTruthStartClip = sensingClip->getSubClipByIdx(groundTruthIdx);
-                }
-
-                auto groundTruthStateClip = groundTruthStartClip;
-                auto path = get<2>(selectedPath);
-                for(int i = 0; i < path.size(); ++i) {
-                    auto cl = path.at(i);
-                    // if clip number is odd, that clip is a preparatory action
-                    if(i % 2) {
-                        if(!isShutUp)
-                            cout << "(ComplexController) next action is " << *cl;
-                        groundTruthStateClip = computeGroundTruthTransition(sensingClip, groundTruthStateClip, cl);
-                    } else {
-                        if(!isShutUp)
-                            cout << "(ComplexController) current state should be " << *cl;
-                    }
-                }
-
-                // setting new ground truth state
-                auto castedSensingClip = KUKADU_DYNAMIC_POINTER_CAST<IntermediateEventClip>(sensingClip);
-                auto sensingController = castedSensingClip->getSensingController();
-                int groundTruthIdx = sensingClip->getSubClipIdx(groundTruthStateClip);
-                sensingController->setSimulationGroundTruth(groundTruthIdx);
-
-            }
-
-            // new state is present now --> perform action again without boredom should be enough
-            this->setBoredom(false);
-
-            // perform action again
-            auto prevGenerateNewGroundTruth = generateNewGroundTruth;
-            setGenerateNewGroundTruth(false);
-            ret = execute();
-            setGenerateNewGroundTruth(prevGenerateNewGroundTruth);
-            KUKADU_DYNAMIC_POINTER_CAST<HapticControllerResult>(ret)->setWasBored(true);
-
-            // switching on boredom again
-            this->setBoredom(true);
+            // this behaviour could be improved --> TODO
+            if(!ret)
+                ret = make_shared<HapticControllerResult>(vec(), vector<vec>(), (reward > 0.0) ? true : false, false, *(projSim->getIntermediateHopIdx()), selectedPathPointer);
 
         }
-
-        auto selectedPathPointer = KUKADU_SHARED_PTR<std::tuple<double, KUKADU_SHARED_PTR<kukadu::Clip>, std::vector<KUKADU_SHARED_PTR<kukadu::Clip> > > >(new std::tuple<double, KUKADU_SHARED_PTR<kukadu::Clip>, std::vector<KUKADU_SHARED_PTR<kukadu::Clip> > >(get<0>(selectedPath), get<1>(selectedPath), get<2>(selectedPath)));
-
-        // this behaviour could be improved --> TODO
-        if(!ret)
-            ret = make_shared<HapticControllerResult>(vec(), vector<vec>(), (reward > 0.0) ? true : false, false, *(projSim->getIntermediateHopIdx()), selectedPathPointer);
 
         KUKADU_MODULE_END_USAGE();
 

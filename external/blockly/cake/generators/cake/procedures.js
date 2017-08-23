@@ -610,14 +610,14 @@ function CodeClass(name, code, behaviour) {
             newLine +
             "}" + newLine +
             newLine +
-            "double newSkillName::getSimulatedReward(KUKADU_SHARED_PTR<kukadu::IntermediateEventClip> sensingClip," + newLine +
+            "double " + name + "::getSimulatedReward(KUKADU_SHARED_PTR<kukadu::IntermediateEventClip> sensingClip," + newLine +
             "KUKADU_SHARED_PTR<kukadu::Clip> stateClip," + newLine +
             "\t\tKUKADU_SHARED_PTR<kukadu::ControllerActionClip> actionClip) {" + newLine +
             newLine +
             "\t\tthrow kukadu::KukaduException(\"(" + name + ") simulated reward not supported for generated skills\");" + newLine +
             "}" + newLine +
             newLine +
-            "KUKADU_SHARED_PTR<kukadu::Clip> newSkillName::computeGroundTruthTransition(KUKADU_SHARED_PTR<kukadu::Clip> sensingClip, KUKADU_SHARED_PTR<kukadu::Clip> stateClip, KUKADU_SHARED_PTR<kukadu::Clip> actionClip) {\n" +
+            "KUKADU_SHARED_PTR<kukadu::Clip> " + name + "::computeGroundTruthTransition(KUKADU_SHARED_PTR<kukadu::Clip> sensingClip, KUKADU_SHARED_PTR<kukadu::Clip> stateClip, KUKADU_SHARED_PTR<kukadu::Clip> actionClip) {\n" +
             newLine +
             "\tthrow kukadu::KukaduException(\"(" + name + ") ground truth not available for generated skills\");" + newLine +
             newLine +
