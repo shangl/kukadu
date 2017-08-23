@@ -15,7 +15,7 @@ namespace kukadu {
 
     std::map<std::string, std::function<KUKADU_SHARED_PTR<Controller>(
             StorageSingleton &, int, int, std::vector<KUKADU_SHARED_PTR<Hardware> >)> > SkillFactory::skillFactories{
-            {"nothing",              [](StorageSingleton &storage, int skillId, int controllerType,
+            {"Nothing",              [](StorageSingleton &storage, int skillId, int controllerType,
                                             std::vector<KUKADU_SHARED_PTR<Hardware> > hardwareComponents) {
                 return make_shared<Nothing>(storage);
             }},
@@ -203,7 +203,7 @@ namespace kukadu {
                                                           std::vector<KUKADU_SHARED_PTR<Hardware> > hardwareComponents) {
 
         if(!hardwareComponents.size())
-            hardwareComponents.push_back(HardwareFactory::get().loadHardware("no_hardware"));
+            hardwareComponents.push_back(HardwareFactory::get().loadHardware("no_hardware_instance"));
 
         stringstream s;
         s
@@ -238,7 +238,11 @@ namespace kukadu {
                                                                "controller_implementation_class", controllerType);
             if (skillFactories.find(controllerClassLabel) != skillFactories.end())
                 return skillFactories[controllerClassLabel](storage, skillId, controllerType, hardwareComponents);
-            else throw KukaduException("(SkillFactory) automatic loading is not supported for the required controller");
+            else {
+                cerr << "(SkillFactory) automatic loading of the skill " << skillName << " is not supported for the required controller " <<
+                    controllerClassLabel << endl;
+                throw KukaduException("(SkillFactory) automatic loading is not supported for the required controller");
+            }
         } else {
             stringstream s;
             s << "(SkillFactory) requested skill \"" << skillName

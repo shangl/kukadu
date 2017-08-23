@@ -7,6 +7,33 @@ using namespace std;
 
 namespace kukadu {
 
+class NoHardware : public Hardware {
+
+protected:
+
+    virtual void installHardwareTypeInternal() { }
+    virtual void installHardwareInstanceInternal() { }
+    virtual void startInternal() { }
+    virtual void stopInternal() { }
+
+public:
+
+    NoHardware(StorageSingleton& nothingStorage) : Hardware(nothingStorage, 0, 0, "no_hardware",
+    0, "no_hardware_instance") { }
+
+    virtual void storeCurrentSensorDataToDatabase() { }
+
+    virtual double getPreferredPollingFrequency() { return 1.0; }
+
+    virtual std::vector<std::pair<long long int, arma::vec> >
+    loadData(long long int startTime, long long int endTime,
+             long long int maxTotalDuration = 3600000,
+             long long int maxTimeStepDifference = 5000) {
+        return {};
+    };
+
+};
+
 std::string createHardwareName(std::string hardware, bool simulate) {
     stringstream s;
     s << hardware << "...sim=" << simulate;
@@ -28,6 +55,11 @@ std::map<std::string, std::function<KUKADU_SHARED_PTR<Hardware>(StorageSingleton
         "Kinect", [](StorageSingleton& storage, std::string hardwareName, bool simulation) {
             return make_shared<Kinect>(storage, hardwareName);
         }
+    },
+    {
+            "no_hardware", [](StorageSingleton& storage, std::string hardwareName, bool simulation) {
+        return make_shared<NoHardware>(storage);
+    }
     }
 };
 
@@ -49,8 +81,12 @@ KUKADU_SHARED_PTR<Hardware> HardwareFactory::loadHardware(std::string hardwareNa
     auto hardwareId = storage.getCachedLabelId("hardware_instances", "hardware_id", "instance_name", hardwareName);
     auto className = storage.getCachedLabel("hardware", "hardware_id", "hardware_name", hardwareId);
 
+    KUKADU_SHARED_PTR<Hardware> created = nullptr;
     auto& storage = StorageSingleton::get();
-    auto& created = createdHardware[createHardwareName(hardwareName, this->simulation)] = hardwareFactories[className](storage, hardwareName, this->simulation);
+    if(hardwareFactories.find(className) != hardwareFactories.end())
+        created = createdHardware[createHardwareName(hardwareName, this->simulation)] = hardwareFactories[className](storage, hardwareName, this->simulation);
+    else
+        throw KukaduException("(HardwareFactory) hardware type is not installed to the factory");
 
     return created;
 

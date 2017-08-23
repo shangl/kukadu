@@ -251,8 +251,10 @@ namespace kukadu {
             }
 
             // if no label was found
-            if(firstRun)
+            if(firstRun) {
+                cerr << "(StorageSingleton) retrieving label id for label " << label << " in table " << table << " failed" << endl;
                 throw KukaduException("(StorageSingleton) retrieving label id failed");
+            }
 
 
             return labelIdsMap[key];

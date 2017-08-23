@@ -27,7 +27,7 @@ namespace kukadu {
         this->skillName = skillName;
 
         if(!usedHardware.size())
-            usedHardware.push_back(HardwareFactory::get().loadHardware("no_hardware"));
+            usedHardware.push_back(HardwareFactory::get().loadHardware("no_hardware_instance"));
 
         this->usedHardware = usedHardware;
 
@@ -619,6 +619,10 @@ namespace kukadu {
 
     std::string Nothing::getClassName() {
         return "Nothing";
+    }
+
+    void Nothing::createSkillFromThisInternal(std::string skillName) {
+        // nothing to do
     }
 
 }

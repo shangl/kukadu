@@ -561,8 +561,10 @@ function CodeClass(name, code, behaviour) {
             newLine +
             "    virtual std::string getClassName();" + newLine +
             "    int getStateCount(const std::string& sensingName);" + newLine +
-            "    void newSkillName::prepareNextState(KUKADU_SHARED_PTR<kukadu::SensingController> cont, int currentStateIdx);" + newLine +
-            newLine +
+            "    void prepareNextState(KUKADU_SHARED_PTR<kukadu::SensingController> cont, int currentStateIdx);" + newLine +
+            "    virtual double getSimulatedReward(KUKADU_SHARED_PTR<kukadu::IntermediateEventClip> sensingClip, KUKADU_SHARED_PTR<kukadu::Clip> stateClip, KUKADU_SHARED_PTR<kukadu::ControllerActionClip> actionClip);" + newLine +
+            "    virtual KUKADU_SHARED_PTR<kukadu::Clip> computeGroundTruthTransition(KUKADU_SHARED_PTR<kukadu::Clip> sensingClip, KUKADU_SHARED_PTR<kukadu::Clip> stateClip, KUKADU_SHARED_PTR<kukadu::Clip> actionClip);" + newLine +
+                newLine +
             "};";
         if (isSkillInstalled()) {
             skillHeaderContent += "}";
@@ -582,7 +584,7 @@ function CodeClass(name, code, behaviour) {
         }
 
         skillImplementation += name + "::" + name + "(kukadu::StorageSingleton& storage, std::vector< KUKADU_SHARED_PTR< kukadu::Hardware > > hardware)" + newLine +
-            "    : ComplexController(storage, \"" + name + "\", hardware, kukadu::resolvePath(\"$KUKADU_HOME/skills/\" + \"newSkillName\"), kukadu::SkillFactory::get().getGenerator(), kukadu::SkillFactory::get().loadSkill(\"nothing\", {})) {\n" +
+            "    : ComplexController(storage, \"" + name + "\", hardware, kukadu::resolvePath(\"$KUKADU_HOME/skills/" + name + "\"), kukadu::SkillFactory::get().getGenerator(), kukadu::SkillFactory::get().loadSkill(\"nothing\", {})) {\n" +
             "}" + newLine +
             newLine +
             "void " + name + "::cleanupAfterAction() {" + newLine +
@@ -602,10 +604,22 @@ function CodeClass(name, code, behaviour) {
             "}" + newLine +
             newLine +
             "void " + name + "::createSkillFromThisInternal(std::string skillName) {" + newLine +
-            "    //throw KukaduException(\"(ShelfPlacement) skill creation not supported\");" + newLine +
             "}" + newLine +
             newLine +
             "int " + name + "::getStateCount(const std::string& sensingName) {" + newLine +
+            newLine +
+            "}" + newLine +
+            newLine +
+            "double newSkillName::getSimulatedReward(KUKADU_SHARED_PTR<kukadu::IntermediateEventClip> sensingClip," + newLine +
+            "KUKADU_SHARED_PTR<kukadu::Clip> stateClip," + newLine +
+            "\t\tKUKADU_SHARED_PTR<kukadu::ControllerActionClip> actionClip) {" + newLine +
+            newLine +
+            "\t\tthrow kukadu::KukaduException(\"(" + name + ") simulated reward not supported for generated skills\");" + newLine +
+            "}" + newLine +
+            newLine +
+            "KUKADU_SHARED_PTR<kukadu::Clip> newSkillName::computeGroundTruthTransition(KUKADU_SHARED_PTR<kukadu::Clip> sensingClip, KUKADU_SHARED_PTR<kukadu::Clip> stateClip, KUKADU_SHARED_PTR<kukadu::Clip> actionClip) {\n" +
+            newLine +
+            "\tthrow kukadu::KukaduException(\"(" + name + ") ground truth not available for generated skills\");" + newLine +
             newLine +
             "}" + newLine +
             newLine +
