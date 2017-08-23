@@ -449,6 +449,8 @@ function CodeClass(name, code, behaviour) {
             "class " + name + " : public kukadu::SensingController {" + newLine +
             newLine +
             "private:" + newLine +
+                "    std::vector< KUKADU_SHARED_PTR< kukadu::Hardware > > hardware;" + newLine +
+                "    virtual std::vector<KUKADU_SHARED_PTR< kukadu::Hardware> > getUsedHardware();" + newLine +
             newLine +
             "protected:" + newLine +
             newLine +
@@ -488,8 +490,12 @@ function CodeClass(name, code, behaviour) {
 
         skillImplementation += name + "::" + name + "(kukadu::StorageSingleton& storage, std::vector< KUKADU_SHARED_PTR< kukadu::Hardware > > hardware)" + newLine +
             " : SensingController(storage, kukadu::SkillFactory::get().getGenerator(), kukadu::SensingController::HAPTIC_MODE_CLASSIFIER, " + newLine +
-            "\"" + name + "\", {KUKADU_DYNAMIC_POINTER_CAST<kukadu::ControlQueue>(hardware.at(0))}, {KUKADU_DYNAMIC_POINTER_CAST<kukadu::GenericHand>(hardware.at(0))}, \"/tmp/\", 1.0) {" + newLine +
+            "\"" + name + "\", {KUKADU_DYNAMIC_POINTER_CAST<kukadu::ControlQueue>(hardware.at(0))}, {KUKADU_DYNAMIC_POINTER_CAST<kukadu::GenericHand>(hardware.at(1))}, \"/tmp/\", 1.0) {" + newLine +
+            "\tthis->hardware = hardware;" + newLine +
+            "}" + newLine +
             newLine +
+            "std::vector<KUKADU_SHARED_PTR< kukadu::Hardware> > " + name + "::getUsedHardware() {" + newLine +
+            "\treturn hardware;" + newLine +
             "}" + newLine +
             newLine +
             "bool " + name + "::requiresGraspInternal() {" + newLine +
