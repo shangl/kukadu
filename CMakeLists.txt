@@ -80,7 +80,7 @@ pkg_check_modules(GTK REQUIRED gtkglext-1.0)
 
 catkin_package(
     INCLUDE_DIRS include external/ReflexxesTypeII/include external/komo/share/src ${PYTH_INC}
-    LIBRARIES ${PROJECT_NAME} kukaduvision reflexxeslib artoolkitplus kukadugui
+    LIBRARIES ${PROJECT_NAME} kukaduvision reflexxeslib artoolkitplus kukadugui kukadugeneratedskills
     CATKIN_DEPENDS cmake_modules actionlib_msgs control_msgs control_msgs eigen_conversions
         geometry_msgs iis_robot_dep message_generation moveit_core moveit_msgs
         moveit_ros_planning_interface pcl_conversions pcl_ros roscpp sensor_msgs std_msgs
@@ -115,7 +115,6 @@ link_directories(${PYTH_LIB_PATH})
 
 add_subdirectory(external/backward-cpp)
 
-AUX_SOURCE_DIRECTORY(src/generated_skills KUKADUSRC)
 AUX_SOURCE_DIRECTORY(src/robot/ KUKADUSRC)
 AUX_SOURCE_DIRECTORY(src/utils/ KUKADUSRC)
 AUX_SOURCE_DIRECTORY(src/robot/ KUKADUSRC)
@@ -137,6 +136,8 @@ AUX_SOURCE_DIRECTORY(src/utils/easyloggingpp/src/ KUKADUSRC)
 AUX_SOURCE_DIRECTORY(src/learning/metric_learning/ KUKADUSRC)
 AUX_SOURCE_DIRECTORY(src/robot/kinematics/constraints KUKADUSRC)
 AUX_SOURCE_DIRECTORY(src/learning/projective_simulation KUKADUSRC)
+
+AUX_SOURCE_DIRECTORY(src/generated_skills KUKADUSKILLSSRC)
 
 AUX_SOURCE_DIRECTORY(src/gui/ KUKADUGUISRC)
 
@@ -186,6 +187,11 @@ if(COMPILER_SUPPORTS_CXX11)
         COMPILE_FLAGS "-std=c++11"
     )
     SET_SOURCE_FILES_PROPERTIES(
+        ${KUKADUSKILLSSRC}
+        PROPERTIES
+        COMPILE_FLAGS "-std=c++11"
+    )
+    SET_SOURCE_FILES_PROPERTIES(
         ${kukaduguilib_hdr_moc}
         PROPERTIES
         COMPILE_FLAGS "-std=c++11"
@@ -199,6 +205,11 @@ elseif(COMPILER_SUPPORTS_CXX0X)
     )
     SET_SOURCE_FILES_PROPERTIES(
         ${KUKADUSRC}
+        PROPERTIES
+        COMPILE_FLAGS "-std=c++0x"
+    )
+    SET_SOURCE_FILES_PROPERTIES(
+        ${KUKADUSKILLSSRC}
         PROPERTIES
         COMPILE_FLAGS "-std=c++0x"
     )
@@ -217,6 +228,7 @@ add_library(reflexxeslib ${REFLEXXESSRC})
 add_library(kukaduvision ${KUKADUVISIONSRC})
 add_library(artoolkitplus ${ARTOOLKITPLUSSRC})
 add_library(${PROJECT_NAME} ${KUKADUSRC})
+add_library(kukadugeneratedskills ${KUKADUSKILLSSRC})
 
 add_backward(kukadugui)
 add_backward(reflexxeslib)
@@ -224,16 +236,22 @@ add_backward(kukaduvision)
 add_backward(artoolkitplus)
 add_backward(${PROJECT_NAME})
 
-add_dependencies(${PROJECT_NAME} ${catkin_EXPORTED_TARGETS} ${PYTH_LIB} kukaduvision Backward::Backward curl nlohmann_json allegro allegro_primitives allegro_font allegro_ttf svm)
+add_dependencies(kukadugeneratedskills ${catkin_EXPORTED_TARGETS} ${PYTH_LIB} kukaduvision Backward::Backward curl nlohmann_json allegro allegro_primitives allegro_font allegro_ttf svm)
+add_dependencies(${PROJECT_NAME} ${catkin_EXPORTED_TARGETS} ${PYTH_LIB} kukaduvision Backward::Backward curl nlohmann_json allegro allegro_primitives allegro_font allegro_ttf svm kukadugeneratedskills)
 add_dependencies(kukaduvision ${catkin_EXPORTED_TARGETS} Backward::Backward curl nlohmann_json allegro allegro_primitives allegro_font allegro_ttf svm)
 add_dependencies(kukadugui ${catkin_EXPORTED_TARGETS} kukadu Backward::Backward curl nlohmann_json allegro allegro_primitives allegro_font allegro_ttf svm)
 
-target_link_libraries(kukadugui ${catkin_LIBRARIES} Qt5::Widgets Qt5::WebKitWidgets kukadu curl nlohmann_json svm)
+target_link_libraries(kukadugui ${catkin_LIBRARIES} Qt5::Widgets Qt5::WebKitWidgets kukadu kukadugeneratedskills curl nlohmann_json svm)
+
+target_link_libraries(kukadugeneratedskills ${catkin_LIBRARIES} ${Boost_LIBRARIES} ${ARMADILLO_LIBRARIES} kukaduvision
+    reflexxeslib ncurses gsl gslcblas stdc++ pthread dl util m komo swift algo ann gui ors optim motion rt lapack blas glut GLU GL X11 ${GTK_LIBRARIES} ${GTK2_LIBRARIES}
+    gthread-2.0 qhull ${PYTH_LIB} m mysqlcppconn Qt5::Widgets Qt5::WebKitWidgets curl nlohmann_json
+    allegro allegro_primitives allegro_font allegro_ttf svm)
 
 target_link_libraries(${PROJECT_NAME} ${catkin_LIBRARIES} ${Boost_LIBRARIES} ${ARMADILLO_LIBRARIES} kukaduvision
     reflexxeslib ncurses gsl gslcblas stdc++ pthread dl util m komo swift algo ann gui ors optim motion rt lapack blas glut GLU GL X11 ${GTK_LIBRARIES} ${GTK2_LIBRARIES}
     gthread-2.0 qhull ${PYTH_LIB} m mysqlcppconn Qt5::Widgets Qt5::WebKitWidgets curl nlohmann_json
-    allegro allegro_primitives allegro_font allegro_ttf svm)
+    allegro allegro_primitives allegro_font allegro_ttf svm kukadugeneratedskills)
 
 target_link_libraries(kukaduvision ${catkin_LIBRARIES} ${Boost_LIBRARIES} ${PCL_LIBRARIES} ${ARMADILLO_LIBRARIES} ${OpenCV_LIBRARIES} nlohmann_json svm)
 target_link_libraries(artoolkitplus ${catkin_LIBRARIES} ${OpenCV_LIBRARIES} curl nlohmann_json svm)

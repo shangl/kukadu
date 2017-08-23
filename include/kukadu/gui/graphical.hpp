@@ -30,6 +30,7 @@ namespace kukadu {
         QWebView* webView;
 
         QComboBox* hardwareSelector;
+        QComboBox* playableSkillsBox;
 
         QLineEdit* kinestheticSkillName;
         QLineEdit* usedSensingBehaviours;
@@ -93,6 +94,8 @@ namespace kukadu {
         void trainPerceptualStatesSlot();
 
         void selectionChangedSlot(QString text);
+
+        void setPrevSkillIncludes();
 
     };
 

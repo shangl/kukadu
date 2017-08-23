@@ -1,4 +1,5 @@
 #include <kukadu/generated_skills/OpenHand.hpp>
+#include <kukadu/manipulation/skillfactory.hpp>
 
 namespace kukadu {
         OpenHand::OpenHand(kukadu::StorageSingleton &storage,

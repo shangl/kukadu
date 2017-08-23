@@ -2,14 +2,22 @@
 
 var loading = false;
 var availableFiles = "";
+var previousIncludes = "";
 
 goog.provide('Blockly.Blocks.custom');
 goog.require('Blockly.Blocks');
 
 function set_available_files(files) {
-
     availableFiles = files.split(';');
 
+}
+
+function setPreviousIncludes(prevIncludes) {
+	previousIncludes = "";
+	var splittedPrevIncludes = prevIncludes.split(",");
+	$(splittedPrevIncludes).each(function(idx, el) {
+		previousIncludes += "#include <kukadu/generated_skills/" + el + ">\n";
+	});
 }
 
 Blockly.Blocks['startCore'] = {

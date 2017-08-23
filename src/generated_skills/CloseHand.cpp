@@ -1,4 +1,5 @@
 #include <kukadu/generated_skills/CloseHand.hpp>
+#include <kukadu/manipulation/skillfactory.hpp>
 
 namespace kukadu {
         CloseHand::CloseHand(kukadu::StorageSingleton &storage,

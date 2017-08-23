@@ -1,8 +1,9 @@
 #ifndef KUKADU_GENERATED_SKILLS_PUSHTRANSLATION_H
 #define KUKADU_GENERATED_SKILLS_PUSHTRANSLATION_H
 
-#include <stdlib.h>
-#include <kukadu/kukadu.hpp>
+#include <kukadu/robot.hpp>
+#include <kukadu/control.hpp>
+#include <kukadu/planning/komo.hpp>
 
 namespace kukadu {
     class PushTranslation : public kukadu::Controller {

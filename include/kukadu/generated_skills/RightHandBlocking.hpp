@@ -1,8 +1,8 @@
 #ifndef KUKADU_GENERATED_SKILLS_RIGHTHANDBLOCKING_H
 #define KUKADU_GENERATED_SKILLS_RIGHTHANDBLOCKING_H
 
-#include <stdlib.h>
-#include <kukadu/kukadu.hpp>
+#include <kukadu/robot.hpp>
+#include <kukadu/control.hpp>
 
 namespace kukadu {
         class RightHandBlocking : public kukadu::Controller {

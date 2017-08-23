@@ -39,6 +39,8 @@ namespace kukadu {
 
         KUKADU_SHARED_PTR<kukadu_mersenne_twister> getGenerator();
 
+        std::vector<std::string> loadPlayableSkills();
+
     };
 
 }

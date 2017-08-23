@@ -1,8 +1,8 @@
 #ifndef KUKADU_GENERATED_SKILLS_PUSHFORWARD_H
 #define KUKADU_GENERATED_SKILLS_PUSHFORWARD_H
 
-#include <stdlib.h>
-#include <kukadu/kukadu.hpp>
+#include <kukadu/robot.hpp>
+#include <kukadu/control.hpp>
 
 namespace kukadu {
         class PushForward : public kukadu::Controller {

@@ -1,4 +1,5 @@
 #include <kukadu/generated_skills/WaitForReached.hpp>
+#include <kukadu/manipulation/skillfactory.hpp>
 
 namespace kukadu {
         WaitForReached::WaitForReached(kukadu::StorageSingleton &storage,

@@ -234,7 +234,7 @@ namespace kukadu {
 
             auto insertSql =
                     "insert into controller_types(controller_implementation_class, augmented_info_table, is_playable) values('" +
-                    getClassName() + "', '" + ((augmentedInfo.first) ? augmentedInfo.second : "") + ", " + (isPlayable() ? "1" : "0") + "')";
+                    getClassName() + "', '" + ((augmentedInfo.first) ? augmentedInfo.second : "") + "', " + (isPlayable() ? "1" : "0") + ")";
             getStorage().executeStatementPriority(insertSql);
 
             controllerId = getStorage().getCachedLabelId("controller_types", "controller_id",

@@ -1,4 +1,7 @@
 #include <kukadu/generated_skills/PressButtonController.hpp>
+#include <kukadu/generated_skills/ChangeStiffness.hpp>
+#include <kukadu/manipulation/skillfactory.hpp>
+
 namespace kukadu {
 	PressButtonController::PressButtonController(kukadu::StorageSingleton& storage, std::vector< KUKADU_SHARED_PTR< kukadu::Hardware > > hardware)
  : Controller(storage, "PressButtonController", hardware, 0.01) {

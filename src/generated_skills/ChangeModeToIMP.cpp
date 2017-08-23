@@ -1,4 +1,6 @@
 #include <kukadu/generated_skills/ChangeModeToIMP.hpp>
+#include <kukadu/generated_skills/ChangeStiffness.hpp>
+#include <kukadu/manipulation/skillfactory.hpp>
 
 namespace kukadu {
         ChangeModeToIMP::ChangeModeToIMP(kukadu::StorageSingleton &storage,

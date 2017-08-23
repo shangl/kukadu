@@ -1,8 +1,8 @@
 #ifndef KUKADU_GENERATED_SKILLS_CHANGEMODETOIMP_H
 #define KUKADU_GENERATED_SKILLS_CHANGEMODETOIMP_H
 
-#include <stdlib.h>
-#include <kukadu/kukadu.hpp>
+#include <kukadu/robot.hpp>
+#include <kukadu/control.hpp>
 
 namespace kukadu {
         class ChangeModeToIMP : public kukadu::Controller {

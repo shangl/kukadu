@@ -1,4 +1,6 @@
 #include <kukadu/generated_skills/DropInBoxController.hpp>
+#include <kukadu/manipulation/skillfactory.hpp>
+
 namespace kukadu {
 	DropInBoxController::DropInBoxController(kukadu::StorageSingleton& storage, std::vector< KUKADU_SHARED_PTR< kukadu::Hardware > > hardware)
  : Controller(storage, "DropInBoxController", hardware, 0.01) {

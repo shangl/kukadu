@@ -1,4 +1,6 @@
 #include <kukadu/generated_skills/BlockingPos.hpp>
+#include <kukadu/generated_skills/SimpleJointPtp.hpp>
+#include <kukadu/manipulation/skillfactory.hpp>
 
 namespace kukadu {
         BlockingPos::BlockingPos(kukadu::StorageSingleton &storage,

@@ -15,7 +15,7 @@ Blockly.cake['startCleanup'] = function (block) {
 };
 
 Blockly.cake['objectposition'] = function (block) {
-    Blockly.cake.definitions_['include_kukadu_string'] = '#include <kukadu/kukadu.hpp>';
+    Blockly.cake.definitions_['include_kukadu_string'] = "#include <kukadu/robot.hpp>\n#include <kukadu/control.hpp>\n#include <kukadu/manipulation/skillfactory.hpp>.hpp>\n#include <kukadu/manipulation/playing/controllers.hpp>";
 
     var variableName = block.getFieldValue("VariableName");
     var objectName = block.getFieldValue("ObjectType");
@@ -24,7 +24,7 @@ Blockly.cake['objectposition'] = function (block) {
 };
 
 Blockly.cake['objectdimension'] = function (block) {
-    Blockly.cake.definitions_['include_kukadu_string'] = '#include <kukadu/kukadu.hpp>';
+    Blockly.cake.definitions_['include_kukadu_string'] = "#include <kukadu/robot.hpp>\n#include <kukadu/control.hpp>\n#include <kukadu/manipulation/skillfactory.hpp>#include <kukadu/manipulation/playing/controllers.hpp>";
 
     var variableName = block.getFieldValue("VariableName");
     var objectName = block.getFieldValue("ObjectType");
@@ -34,7 +34,7 @@ Blockly.cake['objectdimension'] = function (block) {
 
 
 Blockly.cake['skillloader'] = function (block) {
-    Blockly.cake.definitions_['include_kukadu_string'] = '#include <kukadu/kukadu.hpp>';
+    Blockly.cake.definitions_['include_kukadu_string'] = "#include <kukadu/robot.hpp>\n#include <kukadu/control.hpp>\n#include <kukadu/manipulation/skillfactory.hpp>#include <kukadu/manipulation/playing/controllers.hpp>";
 
     var hardwareSelection = Blockly.cake.valueToCode(block, 'HARDWARE', Blockly.cake.ORDER_ATOMIC);
     var splitHardware = hardwareSelection.split(", ");

@@ -1,4 +1,6 @@
 #include <kukadu/generated_skills/ShelfAlignment.hpp>
+#include <kukadu/manipulation/skillfactory.hpp>
+
 namespace kukadu {
 	ShelfAlignment::ShelfAlignment(kukadu::StorageSingleton& storage, std::vector< KUKADU_SHARED_PTR< kukadu::Hardware > > hardware)
  : Controller(storage, "ShelfAlignment", hardware, 0.01) {

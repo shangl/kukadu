@@ -1,9 +1,11 @@
+#include <sstream>
 #include <json.hpp>
 #include <QtWidgets/QLabel>
 #include <kukadu/robot.hpp>
 #include <QtWidgets/QLayout>
 #include <QtWebKit/QtWebKit>
 #include <QtWidgets/QListView>
+#include <QtWidgets/QComboBox>
 #include <QtWidgets/QPushButton>
 #include <QtWidgets/QMessageBox>
 #include <QtWidgets/QFileDialog>
@@ -183,8 +185,30 @@ namespace kukadu {
         webView->page()->mainFrame()->evaluateJavaScript(callString);
     }
 
+    void KukaduGraphical::setPrevSkillIncludes() {
+
+        string includeString = "";
+        auto allFiles = getFilesInDirectory(resolvePath("$KUKADU_HOME/include/kukadu/generated_skills/"));
+
+        bool firstTime = true;
+        for(string& includeFile : allFiles) {
+            if(includeFile.find(".hpp") != std::string::npos) {
+                if(firstTime)
+                    firstTime = false;
+                else
+                    includeString += ",";
+                includeString += includeFile;
+            }
+        }
+
+        QString callString = QString("setPreviousIncludes('%1')").arg(QString::fromStdString(includeString));
+        webView->page()->mainFrame()->evaluateJavaScript(callString);
+
+    }
+
     void KukaduGraphical::onStart() {
         loadMetafilesString();
+        setPrevSkillIncludes();
         loadInformationFromDatabase();
     }
 
@@ -209,6 +233,9 @@ namespace kukadu {
             argumentString += " ./" + packageName + " " + getExecutionMode() + " &";
             system(argumentString.c_str());
         }
+
+        setPrevSkillIncludes();
+
     }
 
     void KukaduGraphical::createCatkinPackage() {
@@ -584,11 +611,17 @@ namespace kukadu {
 
         auto mainLayout = new QGridLayout();
 
+        playableSkillsBox = new QComboBox();
+        auto playableSkills = SkillFactory::get().loadPlayableSkills();
+        for(auto& skill : playableSkills)
+            playableSkillsBox->addItem(QString::fromStdString(skill));
+
         auto trainPerceptualStatesButton = new QPushButton("Train perceptual states");
         auto playButton = new QPushButton("Play");
         auto exitButton = new QPushButton("Exit");
 
         QLabel* noteLabel = new QLabel("Note: separate the behaviour names with a comma");
+        QLabel* playWhichLabel = new QLabel("For which skill do you want to extend the DoA?");
         QLabel* usedSensingLabel = new QLabel("List of sensing behaviours:");
         QLabel* usedBehavioursLabel = new QLabel("List of playing behaviours:");
 
@@ -600,6 +633,9 @@ namespace kukadu {
         QObject::connect(exitButton, SIGNAL(clicked()), this, SLOT(exitPlayingslot()));
 
         int i = 0;
+        mainLayout->addWidget(playWhichLabel, i, 0);
+        mainLayout->addWidget(playableSkillsBox, i++, 1);
+
         mainLayout->addWidget(noteLabel, i++, 0);
         mainLayout->addWidget(usedSensingLabel, i, 0);
         mainLayout->addWidget(usedSensingBehaviours, i, 1);

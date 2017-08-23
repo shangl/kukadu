@@ -1,4 +1,5 @@
 #include <kukadu/generated_skills/PushHandPos.hpp>
+#include <kukadu/manipulation/skillfactory.hpp>
 
 namespace kukadu {
         PushHandPos::PushHandPos(kukadu::StorageSingleton &storage,

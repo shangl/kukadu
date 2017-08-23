@@ -1,5 +1,6 @@
 #include <kukadu/generated_skills/SimpleJointPtp.hpp>
-#include <armadillo>
+#include <kukadu/planning/simple.hpp>
+#include <kukadu/manipulation/skillfactory.hpp>
 
 using namespace arma;
 
@@ -33,7 +34,7 @@ namespace kukadu {
         auto sLeftQueue13000 = KUKADU_DYNAMIC_POINTER_CAST<KukieControlQueue>(getUsedHardware()[0]);
         auto kin = KUKADU_DYNAMIC_POINTER_CAST<KukieControlQueue>(sLeftQueue13000)->getKinematics();
 
-        SimplePlanner sp(sLeftQueue13000, kin);
+        kukadu::SimplePlanner sp(sLeftQueue13000, kin);
         sLeftQueue13000->startRollBackMode(1.5);
 
         std::vector <vec> desiredJoints;

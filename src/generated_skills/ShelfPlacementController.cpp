@@ -1,4 +1,6 @@
 #include <kukadu/generated_skills/ShelfPlacementController.hpp>
+#include <kukadu/manipulation/skillfactory.hpp>
+
 namespace kukadu {
 	ShelfPlacementController::ShelfPlacementController(kukadu::StorageSingleton& storage, std::vector< KUKADU_SHARED_PTR< kukadu::Hardware > > hardware)
  : Controller(storage, "ShelfPlacementController", hardware, 0.01) {

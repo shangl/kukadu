@@ -18,4 +18,7 @@
 	#include <kukadu/generated_skills/ShelfPlacementController.hpp>
 	#include <kukadu/generated_skills/DropInBoxController.hpp>
 	#include <kukadu/generated_skills/PressButtonController.hpp>
+	#include <kukadu/generated_skills/BookGrasping.hpp>
+	#include <kukadu/generated_skills/SensingSlide.hpp>
+	#include <kukadu/generated_skills/SensingPoke.hpp>
 #endif

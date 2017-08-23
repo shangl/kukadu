@@ -1,4 +1,5 @@
 #include <kukadu/generated_skills/PushTranslation.hpp>
+#include <kukadu/manipulation/skillfactory.hpp>
 
 using namespace arma;
 

@@ -105,23 +105,25 @@ Blockly.cake['main_block'] = function (block) {
 
 
     var skillName = block.getFieldValue('newSkillName');
+    
     Blockly.cake.activeSkill_ = skillName;
     var installSkill = block.getFieldValue("CheckBoxInstallSkill");
     Blockly.cake.installSkill = installSkill;
 
-    var executeSkill = skillName + " skill(storage, {";
+    var createSkill = skillName + " skill(storage, {";
     for(var i = 0; i < hardwareids.length; i++){
         if(i < hardwareids.length-1){
-            executeSkill += hardwareids[i] + ", ";
+            createSkill += hardwareids[i] + ", ";
         } else {
-            executeSkill += hardwareids[i];
+            createSkill += hardwareids[i];
         }
     }
 
-    executeSkill += "});\nskill.execute();\n";
+	createSkill += "});\n";
+    var executeSkill = "skill.execute();\n";
 
     if (installSkill === 'TRUE') {
-        executeSkill = "kukadu::" + executeSkill;
+        createSkill = "kukadu::" + createSkill;
         installSkill = "try { skill.createSkillFromThis(\"" + skillName + "\"); } catch(kukadu::KukaduException& ex) {}\n";
     } else {
         Blockly.cake.definitions_['include_install_not_in_package'] = "#include <generated_graphical_programming/header.hpp>\n";
@@ -142,7 +144,7 @@ Blockly.cake['main_block'] = function (block) {
 
     var code = returnType + ' ' + funcName + '(' + typePlusArgs.join(', ') + ') {' + "\n" +
         roscode +
-        allDefs.replace(/\n\n+/g, '\n\n').replace(/\n*$/, '\n') + installHardware + executeSkill + installSkill + returnValue + '}\n\n\n\n' + codeClass.generateClass();
+        allDefs.replace(/\n\n+/g, '\n\n').replace(/\n*$/, '\n') + installHardware + createSkill + installSkill + executeSkill + returnValue + '}\n\n\n\n' + codeClass.generateClass();
     code = Blockly.cake.scrub_(block, code);
 
     Blockly.cake.definitions_[funcName] = code;
@@ -397,12 +399,11 @@ function CodeClass(name, code, behaviour) {
 
         skillHeader += "\n\n#endif\n";
 
-
         var skillImplementation = "//Skillimplementation for Skill:\n";
         if (isSkillInstalled()) {
-            skillImplementation += "#include <kukadu/generated_skills/" + name + ".hpp>\nnamespace kukadu {\n\t";
+            skillImplementation += "#include <kukadu/generated_skills/" + name + ".hpp>\n#include <kukadu/manipulation/skillfactory.hpp>\n" + "" + "\nnamespace kukadu {\n\t";
         } else {
-            skillImplementation += "#include <generated_graphical_programming/header.hpp>\n\n\n";
+            skillImplementation += "#include <generated_graphical_programming/header.hpp>\n#include <kukadu/manipulation/skillfactory.hpp>\n\n\n";
         }
 
         skillImplementation += name + "::" + name + "(kukadu::StorageSingleton& storage, std::vector< KUKADU_SHARED_PTR< kukadu::Hardware > > hardware)\n" +
@@ -482,9 +483,9 @@ function CodeClass(name, code, behaviour) {
 
         var skillImplementation = "//Skillimplementation for Skill:\n";
         if (isSkillInstalled()) {
-            skillImplementation += "#include <kukadu/generated_skills/" + name + ".hpp>\nnamespace kukadu {\n\t";
+            skillImplementation += "#include <kukadu/generated_skills/" + name + ".hpp>\n" + previousIncludes + "\n namespace kukadu {\n\t";
         } else {
-            skillImplementation += "#include <generated_graphical_programming/header.hpp>\n\n\n";
+            skillImplementation += "#include <generated_graphical_programming/header.hpp>\n" + previousIncludes + "\n\n";
         }
 
         var splitCodeForSensing = this.getSplitCode();

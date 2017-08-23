@@ -1,8 +1,8 @@
 #ifndef KUKADU_GENERATED_SKILLS_WAITFORREACHED_H
 #define KUKADU_GENERATED_SKILLS_WAITFORREACHED_H
 
-#include <stdlib.h>
-#include <kukadu/kukadu.hpp>
+#include <kukadu/robot.hpp>
+#include <kukadu/control.hpp>
 
 namespace kukadu {
         class WaitForReached : public kukadu::Controller {

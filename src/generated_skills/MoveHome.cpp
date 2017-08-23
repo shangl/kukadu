@@ -1,4 +1,5 @@
 #include <kukadu/generated_skills/MoveHome.hpp>
+#include <kukadu/manipulation/skillfactory.hpp>
 
 namespace kukadu {
         MoveHome::MoveHome(kukadu::StorageSingleton &storage,

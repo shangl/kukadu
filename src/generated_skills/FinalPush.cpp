@@ -1,4 +1,6 @@
 #include <kukadu/generated_skills/FinalPush.hpp>
+#include <kukadu/generated_skills/ChangeStiffness.hpp>
+#include <kukadu/manipulation/skillfactory.hpp>
 
 namespace kukadu {
     FinalPush::FinalPush(kukadu::StorageSingleton &storage, std::vector<KUKADU_SHARED_PTR<kukadu::Hardware> > hardware)

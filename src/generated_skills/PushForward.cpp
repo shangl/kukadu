@@ -1,4 +1,5 @@
 #include <kukadu/generated_skills/PushForward.hpp>
+#include <kukadu/manipulation/skillfactory.hpp>
 
 namespace kukadu {
         PushForward::PushForward(kukadu::StorageSingleton &storage,
