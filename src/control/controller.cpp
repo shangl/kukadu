@@ -617,4 +617,8 @@ namespace kukadu {
         return nullptr;
     }
 
+    std::string Nothing::getClassName() {
+        return "Nothing";
+    }
+
 }
