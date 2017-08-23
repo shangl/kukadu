@@ -204,6 +204,20 @@ namespace kukadu {
     std::vector<KUKADU_SHARED_PTR<Hardware> >
     mergeHardware(std::vector<KUKADU_SHARED_PTR<kukadu::Controller> > controllers);
 
+    class Nothing : public kukadu::Controller {
+    private:
+        static int currentInstanceCount;
+        static std::string nextInstanceLabel();
+    protected:
+        virtual KUKADU_SHARED_PTR<kukadu::ControllerResult> executeInternal();
+        virtual bool requiresGraspInternal();
+        virtual bool producesGraspInternal();
+        virtual void createSkillFromThisInternal(std::string skillName);
+    public:
+        Nothing(kukadu::StorageSingleton& storage);
+        virtual std::string getClassName();
+    };
+
 }
 
 #endif

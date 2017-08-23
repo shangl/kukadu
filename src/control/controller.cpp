@@ -1,7 +1,9 @@
 #include <map>
+#include <armadillo>
 #include <algorithm>
 #include <kukadu/robot.hpp>
 #include <kukadu/control/dmp.hpp>
+#include <kukadu/planning/simple.hpp>
 #include <kukadu/control/controller.hpp>
 #include <kukadu/storage/sensorstorage.hpp>
 #include <kukadu/robot/hardwarefactory.hpp>
@@ -9,8 +11,6 @@
 #include <kukadu/storage/moduleusagesingleton.hpp>
 #include <kukadu/storage/sensorstoragesingleton.hpp>
 #include <kukadu/generated_skills/KinestheticTeaching.hpp>
-#include <kukadu/planning/simple.hpp>
-#include <armadillo>
 
 using namespace arma;
 using namespace std;
@@ -25,6 +25,10 @@ namespace kukadu {
         isInstalled = false;
         this->isSkill = isSkill;
         this->skillName = skillName;
+
+        if(!usedHardware.size())
+            usedHardware.push_back(HardwareFactory::get().loadHardware("no_hardware"));
+
         this->usedHardware = usedHardware;
 
         std::replace(caption.begin(), caption.end(), ' ', '_');
@@ -593,5 +597,24 @@ namespace kukadu {
         // nothing to do
     }
 
+    int Nothing::currentInstanceCount = 0;
+    std::string Nothing::nextInstanceLabel() {
+        stringstream s;
+        ++currentInstanceCount;
+        return s.str();
+    }
+    Nothing::Nothing(StorageSingleton& storage)
+        : Controller(storage, nextInstanceLabel(), {}, 0) {
+
+    }
+    bool Nothing::requiresGraspInternal() {
+        return false;
+    }
+    bool Nothing::producesGraspInternal() {
+        return false;
+    }
+    KUKADU_SHARED_PTR<ControllerResult> Nothing::executeInternal() {
+        return nullptr;
+    }
 
 }

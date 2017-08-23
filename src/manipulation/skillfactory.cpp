@@ -15,6 +15,10 @@ namespace kukadu {
 
     std::map<std::string, std::function<KUKADU_SHARED_PTR<Controller>(
             StorageSingleton &, int, int, std::vector<KUKADU_SHARED_PTR<Hardware> >)> > SkillFactory::skillFactories{
+            {"nothing",              [](StorageSingleton &storage, int skillId, int controllerType,
+                                            std::vector<KUKADU_SHARED_PTR<Hardware> > hardwareComponents) {
+                return make_shared<Nothing>(storage);
+            }},
             {"DMPExecutor",              [](StorageSingleton &storage, int skillId, int controllerType,
                                             std::vector<KUKADU_SHARED_PTR<Hardware> > hardwareComponents) {
                 return make_shared<DMPExecutor>(storage, skillId,

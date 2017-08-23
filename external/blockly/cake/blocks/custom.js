@@ -130,6 +130,21 @@ Blockly.Blocks['objectposition'] = {
     }
 };
 
+function getRequiredHardware() {
+	var hardwareIds = "";
+	var firstTime = true;
+	for(var key in Blockly.cake.neededHardware_) {
+		if(key != undefined && key != null) {
+			if(firstTime == true)
+				firstTime = false;
+			else
+				hardwareIds += ",";
+			hardwareIds += key;
+		}
+	}
+	return hardwareIds;
+}
+
 Blockly.Blocks['skillloader'] = {
     init: function () {
         this._hardwareIds = -1;

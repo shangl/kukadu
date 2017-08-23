@@ -1,4 +1,5 @@
 #include <json.hpp>
+#include <QtWidgets/QLabel>
 #include <kukadu/robot.hpp>
 #include <QtWidgets/QLayout>
 #include <QtWebKit/QtWebKit>
@@ -152,7 +153,7 @@ namespace kukadu {
         QObject::connect(loadButton, SIGNAL(clicked()), this, SLOT(loadSlot()));
 
         auto playButton = new QPushButton("Play");
-        QObject::connect(loadButton, SIGNAL(clicked()), this, SLOT(playSlot()));
+        QObject::connect(playButton, SIGNAL(clicked()), this, SLOT(playSlot()));
 
         mainView->setLayout(mainLayout);
         mainLayout->addLayout(executeSkillContainer, 1, 0);
@@ -509,6 +510,7 @@ namespace kukadu {
                                               {HardwareFactory::get().loadHardware(selectedTeachingHardware)}));
 
         kinestheticTeachingView->show();
+
     }
 
     void KukaduGraphical::goToStartPositionSlot() {
@@ -577,7 +579,124 @@ namespace kukadu {
     }
 
     void KukaduGraphical::playSlot() {
-        //todo
+
+        playingView = new QWidget;
+
+        auto mainLayout = new QGridLayout();
+
+        auto trainPerceptualStatesButton = new QPushButton("Train perceptual states");
+        auto playButton = new QPushButton("Play");
+        auto exitButton = new QPushButton("Exit");
+
+        QLabel* noteLabel = new QLabel("Note: separate the behaviour names with a comma");
+        QLabel* usedSensingLabel = new QLabel("List of sensing behaviours:");
+        QLabel* usedBehavioursLabel = new QLabel("List of playing behaviours:");
+
+        usedSensingBehaviours = new QLineEdit();
+        usedPlayingBehaviours = new QLineEdit();
+
+        QObject::connect(trainPerceptualStatesButton, SIGNAL(clicked()), this, SLOT(trainPerceptualStatesSlot()));
+        QObject::connect(playButton, SIGNAL(clicked()), this, SLOT(performPlayingSlot()));
+        QObject::connect(exitButton, SIGNAL(clicked()), this, SLOT(exitPlayingslot()));
+
+        int i = 0;
+        mainLayout->addWidget(noteLabel, i++, 0);
+        mainLayout->addWidget(usedSensingLabel, i, 0);
+        mainLayout->addWidget(usedSensingBehaviours, i, 1);
+        mainLayout->addWidget(trainPerceptualStatesButton, i++, 2);
+
+        mainLayout->addWidget(usedBehavioursLabel, i, 0);
+        mainLayout->addWidget(usedPlayingBehaviours, i, 1);
+        mainLayout->addWidget(playButton, i++, 2);
+
+        mainLayout->addWidget(exitButton, i++, 0);
+
+        playingView->setLayout(mainLayout);
+        playingView->show();
+
+    }
+
+    std::vector<KUKADU_SHARED_PTR<kukadu::Hardware> > extractAndGenerateHardware(std::string hardwareList) {
+
+        std::vector<KUKADU_SHARED_PTR<kukadu::Hardware> > retHardware;
+
+        auto hwFactory = HardwareFactory::get();
+        //hwFactory.setSimulation(false);
+        KukaduTokenizer tok(hardwareList, ",");
+        string currentHardware = "";
+        while((currentHardware = tok.next()) != "") {
+            auto currentHwInstance = hwFactory.loadHardware(currentHardware);
+            if(currentHwInstance) {
+                currentHwInstance->install();
+                currentHwInstance->start();
+                retHardware.push_back(currentHwInstance);
+            }
+        }
+
+        return retHardware;
+
+    }
+
+    template<typename T> std::vector<T> extractAndGenerateControllers(std::string controllerList, std::string hardwareToUse) {
+
+        vector< T > retVec;
+
+        KukaduTokenizer tok(controllerList, ",");
+        string currentBehaviour = "";
+
+        auto hardwareInstances = extractAndGenerateHardware(hardwareToUse);
+
+        SkillFactory& factory = SkillFactory::get();
+        while((currentBehaviour = tok.next()) != "") {
+            try {
+                auto currentBehaviourController = KUKADU_DYNAMIC_POINTER_CAST< T >(factory.loadSkill(currentBehaviour, hardwareInstances));
+                retVec.push_back(currentBehaviourController);
+            } catch(KukaduException& ex) {
+                cerr << "(KukaduGraphical) could not load controller for behaviour " << currentBehaviour <<
+                        ". it will ignored" << endl;
+            }
+        }
+
+        return retVec;
+
+    }
+
+    void KukaduGraphical::trainPerceptualStatesSlot() {
+
+        auto sensingControllerNames = usedSensingBehaviours->text().toStdString();
+        auto behaviourControllerNames = usedPlayingBehaviours->text().toStdString();
+
+        string allUsedHardware = webView->page()->mainFrame()->evaluateJavaScript("getRequiredHardware()").toString().toStdString();;
+        auto sensingControllers = extractAndGenerateControllers<KUKADU_SHARED_PTR<kukadu::SensingController> >(sensingControllerNames, allUsedHardware);
+        auto playingControllers = extractAndGenerateControllers<KUKADU_SHARED_PTR<kukadu::Controller> >(behaviourControllerNames, allUsedHardware);
+
+        currentHapticPlanner = make_shared<HapticPlanner>(resolvePath("$KUKADU_HOME/skills/"), sensingControllers, playingControllers, {}, SkillFactory::get().loadSkill("nothing"), SkillFactory::get().getGenerator());
+
+    }
+
+    void KukaduGraphical::performPlayingSlot() {
+
+        playingEnded = false;
+        keepPlaying = true;
+        while(keepPlaying) {
+            currentHapticPlanner->performComplexSkill(selectedSkill);
+            currentHapticPlanner->updateModels();
+        }
+        playingEnded = true;
+
+    }
+
+    void KukaduGraphical::exitPlayingslot() {
+
+        keepPlaying = false;
+        cout << "the playing will be stopped after the current rollout" << endl;
+
+        ros::Rate r(3);
+        while(!playingEnded)
+            r.sleep();
+
+        playingView->close();
+
     }
 
     void KukaduGraphical::selectionChangedSlot(QString text) {
