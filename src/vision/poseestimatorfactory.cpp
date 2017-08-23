@@ -72,8 +72,28 @@ namespace kukadu {
                 return poseStamped;
             } else throw KukaduException("No position for this object available.");
         } else throw KukaduException("This object does not exist.");
+    }
 
-        throw KukaduException("(PoseEstimatorFactory) unknown error");
+    std::vector< double > PoseEstimatorFactory::getDimensionsFor(std::string id) {
+        auto& storage = getStorage();
+        if(storage.checkLabelExists("objects", "object_name", id)) {
+            int objectId = storage.getCachedLabelId("objects", "object_id", "object_name", id);
+
+            stringstream s;
+            s << "SELECT DISTINCT x_dimension as xd, y_dimension as yd, z_dimension as zd FROM localized_objects WHERE object_id=";
+            s << objectId << " AND timestamp=(SELECT max(timestamp) FROM localized_objects WHERE object_id=" << objectId << ")";
+
+            auto result = storage.executeQuery(s.str());
+
+            if(result.get()->next()){
+                double xd, yd, zd;
+                xd = result.get()->getDouble("xd");
+                yd = result.get()->getDouble("yd");
+                zd = result.get()->getDouble("zd");
+
+                return {xd, yd, zd};
+            } else throw KukaduException("No dimensions for this object available.");
+        } else throw KukaduException("This object does not exist.");
     }
 
 

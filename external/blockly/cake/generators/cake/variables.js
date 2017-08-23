@@ -167,7 +167,7 @@ Blockly.cake['variables_array_get'] = function(block) {
 
     // index over -> msg
     if ((isAvbNum1 == false && length_1 != -1) || (isAvbNum2 == false && length_2 != -1) || (isAvbNum3 == false && length_3 != -1)) {
-        window.alert('인덱스 초과');
+        window.alert('Index out of Bound');
         block.initIdx(isAvbNum1, isAvbNum2, isAvbNum3);
     }
 
@@ -234,7 +234,7 @@ Blockly.cake['variables_array_set'] = function(block) {
 
     // index over -> msg
     if ((isAvbNum1 == false && length_1 != -1) || (isAvbNum2 == false && length_2 != -1) || (isAvbNum3 == false && length_3 != -1)) {
-        window.alert('인덱스 초과');
+        window.alert('Index out of Bound');
         block.initIdx(isAvbNum1, isAvbNum2, isAvbNum3);
     }
     else if (isAvbNum1 == true && isAvbNum2 == false)

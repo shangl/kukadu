@@ -341,13 +341,14 @@ function CodeClass(name, code, behaviour) {
         var splitCode = "//Skillheader for Skill\n" +
             "#ifndef KUKADU_GENERATED_SKILLS_" + getCurrentSkillName().toUpperCase() + "_H\n" +
             "#define KUKADU_GENERATED_SKILLS_" + getCurrentSkillName().toUpperCase() + "_H\n\n" +
-            Blockly.cake.definitions_['include_cake_string'] + "\n\n";
+            Blockly.cake.definitions_['include_kukadu_string'] + "\n\n";
 
         switch (behaviour) {
             case 'Behaviour':
                 splitCode += this.getBehaviourCode();
                 break;
             case 'ComplexBehaviour':
+                splitCode += this.getComplexBehaviourCode();
                 break;
             case 'SensingBehaviour':
                 splitCode += this.getSensingBehaviourCode();
@@ -532,7 +533,95 @@ function CodeClass(name, code, behaviour) {
     };
 
     this.getComplexBehaviourCode = function () {
+        var skillHeaderContent = "";
+        var newLine = "\n";
 
+        if (isSkillInstalled()) {
+            skillHeaderContent += "namespace kukadu {\n\t";
+            newLine= "\n\t";
+        }
+        skillHeaderContent +=
+            "class " + name + " : public kukadu::ComplexController {" + newLine +
+            newLine +
+            "private:" + newLine +
+            newLine +
+            "protected:" + newLine +
+            newLine +
+            "    virtual bool requiresGraspInternal();" + newLine +
+            "    virtual bool producesGraspInternal();" + newLine +
+            newLine +
+            "    virtual void createSkillFromThisInternal(std::string skillName);" + newLine +
+            newLine +
+            "public:" + newLine +
+            newLine +
+            "    " + name + "(kukadu::StorageSingleton& storage, std::vector< KUKADU_SHARED_PTR< kukadu::Hardware > > hardware);" + newLine +
+            newLine +
+            "    virtual void executeComplexAction();" + newLine +
+            "    virtual void cleanupAfterAction();" + newLine +
+            newLine +
+            "    virtual std::string getClassName();" + newLine +
+            "    int getStateCount(const std::string& sensingName);" + newLine +
+            "    void newSkillName::prepareNextState(KUKADU_SHARED_PTR<kukadu::SensingController> cont, int currentStateIdx);" + newLine +
+            newLine +
+            "};";
+        if (isSkillInstalled()) {
+            skillHeaderContent += "}";
+        }
+
+
+        var skillHeader = skillHeaderContent;
+
+        skillHeader += "\n\n#endif\n";
+
+
+        var skillImplementation = "//Skillimplementation for Skill:\n";
+        if (isSkillInstalled()) {
+            skillImplementation += "#include <kukadu/generated_skills/" + name + ".hpp>\nnamespace kukadu {\n\t";
+        } else {
+            skillImplementation += "#include <generated_graphical_programming/header.hpp>\n\n\n";
+        }
+
+        skillImplementation += name + "::" + name + "(kukadu::StorageSingleton& storage, std::vector< KUKADU_SHARED_PTR< kukadu::Hardware > > hardware)" + newLine +
+            "    : ComplexController(storage, \"" + name + "\", hardware, resolvePath(\"$KUKADU_HOME/movements/humanoids_2014/pouring_gries/peel_book\"), false, 15, 1, kukadu::SkillFactory::get().getGenerator(), 0.0, -15.0, 0, 30, true, 0.0, kukadu::SkillFactory::get().loadSkill(\"nothing\", {kukadu::HardwareFactory::get().loadHardware(\"no_hardware_instance\")})) {\n" +
+            "}" + newLine +
+            newLine +
+            "void " + name + "::cleanupAfterAction() {" + newLine +
+            newLine +
+            "}" + newLine +
+            newLine +
+            "bool " + name + "::requiresGraspInternal() {" + newLine +
+            "    return false;" + newLine +
+            "}" + newLine +
+            newLine +
+            "bool " + name + "::producesGraspInternal() {" + newLine +
+            "    return false;" + newLine +
+            "}" + newLine +
+            newLine +
+            "std::string " + name + "::getClassName() {" + newLine +
+            "    return \"" + name + "\";" + newLine +
+            "}" + newLine +
+            newLine +
+            "void " + name + "::createSkillFromThisInternal(std::string skillName) {" + newLine +
+            "    //throw KukaduException(\"(ShelfPlacement) skill creation not supported\");" + newLine +
+            "}" + newLine +
+            newLine +
+            "int " + name + "::getStateCount(const std::string& sensingName) {" + newLine +
+            newLine +
+            "}" + newLine +
+            newLine +
+            "void " + name + "::prepareNextState(KUKADU_SHARED_PTR<kukadu::SensingController> cont, int currentStateIdx) {" + newLine +
+            "    // nothing to do" + newLine +
+            "}" + newLine +
+            newLine +
+            "void " + name + "::executeComplexAction() {" + newLine +
+            this.code + newLine +
+            "}\n";
+
+        if (isSkillInstalled()) {
+            skillImplementation += "}\n\n\n\n\n";
+        }
+
+        return skillHeader + skillImplementation;
     };
 
     this.getSplitCode = function () {

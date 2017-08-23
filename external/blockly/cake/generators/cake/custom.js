@@ -15,16 +15,26 @@ Blockly.cake['startCleanup'] = function (block) {
 };
 
 Blockly.cake['objectposition'] = function (block) {
+    Blockly.cake.definitions_['include_kukadu_string'] = '#include <kukadu/kukadu.hpp>';
+
     var variableName = block.getFieldValue("VariableName");
     var objectName = block.getFieldValue("ObjectType");
 
     return "auto " + variableName + " = kukadu::PoseEstimatorFactory::get().getPoseFor(\"" + objectName + "\").pose;\n";
 };
 
+Blockly.cake['objectdimension'] = function (block) {
+    Blockly.cake.definitions_['include_kukadu_string'] = '#include <kukadu/kukadu.hpp>';
+
+    var variableName = block.getFieldValue("VariableName");
+    var objectName = block.getFieldValue("ObjectType");
+
+    return "auto " + variableName + " = kukadu::PoseEstimatorFactory::get().getDimensionsFor(\"" + objectName + "\");\n";
+};
+
 
 Blockly.cake['skillloader'] = function (block) {
-    Blockly.cake.definitions_['include_cake_string'] =
-        '#include <stdlib.h>\n#include <kukadu/kukadu.hpp>';
+    Blockly.cake.definitions_['include_kukadu_string'] = '#include <kukadu/kukadu.hpp>';
 
     var hardwareSelection = Blockly.cake.valueToCode(block, 'HARDWARE', Blockly.cake.ORDER_ATOMIC);
     var splitHardware = hardwareSelection.split(", ");

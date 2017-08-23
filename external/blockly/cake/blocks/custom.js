@@ -7,13 +7,13 @@ goog.provide('Blockly.Blocks.custom');
 goog.require('Blockly.Blocks');
 
 function set_available_files(files) {
-	
-	availableFiles = files.split(';');
-	
+
+    availableFiles = files.split(';');
+
 }
 
 Blockly.Blocks['startCore'] = {
-    init:function () {
+    init: function () {
         this.appendDummyInput()
             .appendField("Here starts Code of Core for Sensing");
         this.setPreviousStatement(true, null);
@@ -25,7 +25,7 @@ Blockly.Blocks['startCore'] = {
 };
 
 Blockly.Blocks['startCleanup'] = {
-    init:function () {
+    init: function () {
         this.appendDummyInput()
             .appendField("Here starts Code of Cleanup for Sensing");
         this.setPreviousStatement(true, null);
@@ -38,6 +38,8 @@ Blockly.Blocks['startCleanup'] = {
 
 Blockly.Blocks['objectposition'] = {
     init: function () {
+        this.appendDummyInput()
+            .appendField("Load Objectposition");
         this.appendDummyInput()
             .appendField("VariableName: ")
             .appendField(new Blockly.FieldTextInput("variableName"), "VariableName");
@@ -130,6 +132,96 @@ Blockly.Blocks['objectposition'] = {
     }
 };
 
+Blockly.Blocks['objectdimension'] = {
+    init: function () {
+        this.appendDummyInput()
+            .appendField("Load Objectdimensions");
+        this.appendDummyInput()
+            .appendField("VariableName: ")
+            .appendField(new Blockly.FieldTextInput("variableName"), "VariableName");
+        this.appendDummyInput()
+            .appendField("Object to load: ")
+            .appendField(new Blockly.FieldTextInput("something"), "ObjectType");
+        this.setPreviousStatement(true, null);
+        this.setNextStatement(true, null);
+        this.setColour(230);
+        this.setTooltip('Object Position');
+        this.setHelpUrl('');
+    },
+
+    /**
+     * Return 'array'.
+     */
+    getDist: function () {
+        return 'a';
+    },
+    /**
+     * Return Variable's Scope
+     */
+    getScope: function () {
+        if (this.getSurroundParent()) {
+            if (this.getSurroundParent().getName) {
+                return this.getSurroundParent().getName();
+            }
+        }
+    },
+    /**
+     * Return Variable's Scope
+     */
+    getSpec: function () {
+        return [1, 3];
+    },
+    /**
+     * Return this block's position
+     */
+    getPos: function () {
+        return this.getRelativeToSurfaceXY().y;
+    },
+    /**
+     * Return all variables's types referenced by this block.
+     * @return {!Array.<string>} List of variable types.
+     * @this Blockly.Block
+     */
+    getTypes: function () {
+        return ['double', 'double', 'double'];
+    },
+    /**
+     * Return all variables referenced by this block.
+     * @return {!Array.<string>} List of variable names.
+     * @this Blockly.Block
+     */
+    getVars: function () {
+        var initialName = this.getFieldValue('VariableName');
+
+        return [initialName];
+    },
+    /**
+     * Return all variables referenced by this block.
+     * @return {!Array.<string>} List of variable names.
+     * @this Blockly.Block
+     */
+    getDeclare: function () {
+        return this.getVars();
+    },
+    /**
+     * Notification that a variable is renaming.
+     * If the name matches one of this block's variables, rename it.
+     * @param {string} oldName Previous name of variable.
+     * @param {string} newName Renamed variable.
+     * @this Blockly.Block
+     */
+    renameVar: function (oldName, newName) {
+        if (Blockly.Names.equals(oldName, this.getFieldValue('VariableName'))) {
+            this.setFieldValue(newName, 'VariableName');
+        }
+    },
+
+    //when the block is changed,
+    onchange: function () {
+        Blockly.Blocks.requireInFunction(this);
+    }
+};
+
 Blockly.Blocks['skillloader'] = {
     init: function () {
         this._hardwareIds = -1;
@@ -175,39 +267,39 @@ Blockly.Blocks['skillloader'] = {
         return Databaseloader.skillMap[blockvalue];
     },
 
-    onchange: function(event) {
-		if (loading == false) {
-			var addedHardwareList = this.getCurrentHardware();
-			var hardwareKey = hardwareListToKeys(addedHardwareList);
-			var chosenConfig = Databaseloader.roboConfigMap[hardwareKey];
-			if (getKeysFromMap(addedHardwareList).length > 0 && hardwareKey !== this._hardwareIds) {    //if addedHardware Changed
-				this._hardwareIds = hardwareKey;
+    onchange: function (event) {
+        if (loading == false) {
+            var addedHardwareList = this.getCurrentHardware();
+            var hardwareKey = hardwareListToKeys(addedHardwareList);
+            var chosenConfig = Databaseloader.roboConfigMap[hardwareKey];
+            if (getKeysFromMap(addedHardwareList).length > 0 && hardwareKey !== this._hardwareIds) {    //if addedHardware Changed
+                this._hardwareIds = hardwareKey;
 
-				if (typeof chosenConfig == 'undefined') {
-					this.setNoSkillsAvailable();
-				} else {
-					var availableSkills = Databaseloader.roboConfigToSkillMap[chosenConfig.id];
-					this.setAvailableSkills(availableSkills);
-				}
-			} else if (getKeysFromMap(addedHardwareList).length == 0 && hardwareKey !== this._hardwareIds) {
-				this._hardwareIds = -1;
-				var skillsInput = this.getInput('SKILL');
-				if (skillsInput != null) {
-					skillsInput.fieldRow[1].menuGenerator_ = [];
-					skillsInput.fieldRow[1].setValue("No Elements available");
-				}
-			}
+                if (typeof chosenConfig == 'undefined') {
+                    this.setNoSkillsAvailable();
+                } else {
+                    var availableSkills = Databaseloader.roboConfigToSkillMap[chosenConfig.id];
+                    this.setAvailableSkills(availableSkills);
+                }
+            } else if (getKeysFromMap(addedHardwareList).length == 0 && hardwareKey !== this._hardwareIds) {
+                this._hardwareIds = -1;
+                var skillsInput = this.getInput('SKILL');
+                if (skillsInput != null) {
+                    skillsInput.fieldRow[1].menuGenerator_ = [];
+                    skillsInput.fieldRow[1].setValue("No Elements available");
+                }
+            }
 
-			var currentSkill = this.getCurrentSkill();
-			if (typeof currentSkill != 'undefined' && this._skillId != currentSkill.id) {      //skill changed
-				this.setInputsForSelectedSkill();
-				this._skillId = this.getCurrentSkill().id;
-			} else if (typeof currentSkill === 'undefined') {
-				this.setInputsForSelectedSkill();
-				this._skillId = -1;
-			}
-		}
-	},
+            var currentSkill = this.getCurrentSkill();
+            if (typeof currentSkill != 'undefined' && this._skillId != currentSkill.id) {      //skill changed
+                this.setInputsForSelectedSkill();
+                this._skillId = this.getCurrentSkill().id;
+            } else if (typeof currentSkill === 'undefined') {
+                this.setInputsForSelectedSkill();
+                this._skillId = -1;
+            }
+        }
+    },
 
     setNoSkillsAvailable: function () {
         var skillsInput = this.getInput('SKILL');
@@ -246,7 +338,7 @@ Blockly.Blocks['skillloader'] = {
             var configId = Databaseloader.roboConfigMap[this._hardwareIds].id;
             var skill = Databaseloader.roboConfigToSkillMap[configId][skillId];
             if (typeof skill !== 'undefined') {
-				
+
                 var attributes = getValuesFromMap(skill.getSetterFunctions());
 
                 if (attributes != null) {
@@ -412,21 +504,21 @@ var Databaseloader = new function () {
             Databaseloader.hardwareTupleArray.push([hw.name, hw.name]);
         }
     };
-    
+
     function check_doc_exists(f) {
-		return ($.inArray(f, availableFiles) >= 0);
-	}
-	
-	function loadFile(filePath) {
-		
-		return $.ajax({
+        return ($.inArray(f, availableFiles) >= 0);
+    }
+
+    function loadFile(filePath) {
+
+        return $.ajax({
             type: "GET",
             url: filePath,
             dataType: "xml",
             async: false
         }).responseText;
-        
-	}
+
+    }
 
     this.getSetterFunctions = function (skill, controllerClass) {
         var setFunctions = {};
@@ -434,52 +526,52 @@ var Databaseloader = new function () {
         var filePath = Databaseloader.attributePath + fileName;
         var nonFound = false;
         var xml = '';
-        if(check_doc_exists(fileName)) {
-			xml = loadFile(filePath);
-		} else {
-			var newFileName = "classkukadu_1_1skill_1_1" + controllerClass + ".xml";
-			var newFilePath = Databaseloader.attributePath + newFileName;
-			if(check_doc_exists(newFileName)) {
-				xml = loadFile(newFilePath);
-			} else {
-				nonFound = true;
-				console.log("neither " + fileName + " nor " + newFileName + " found");
-			}
-		}
-		
-		if(!nonFound) {
-			
-			var pubfunctionBlock = $(xml).find('sectiondef').filter(function () {
-				return $(this).attr('kind') === "public-func";
-			});
+        if (check_doc_exists(fileName)) {
+            xml = loadFile(filePath);
+        } else {
+            var newFileName = "classkukadu_1_1skill_1_1" + controllerClass + ".xml";
+            var newFilePath = Databaseloader.attributePath + newFileName;
+            if (check_doc_exists(newFileName)) {
+                xml = loadFile(newFilePath);
+            } else {
+                nonFound = true;
+                console.log("neither " + fileName + " nor " + newFileName + " found");
+            }
+        }
 
-			$(pubfunctionBlock).find('memberdef').each(function () {
-				var functionname = $(this).find('name').text();
-				if (functionname.substring(0, 3) === "set") {
-					var argumentString = $(this).find('argsstring').text();
+        if (!nonFound) {
 
-					var regex = /\w+(<[\w:<>*,\s]+>\s\w+|[\w+\s:*]+)+/g;
-					var m;
+            var pubfunctionBlock = $(xml).find('sectiondef').filter(function () {
+                return $(this).attr('kind') === "public-func";
+            });
 
-					while ((m = regex.exec(argumentString)) !== null) {
-						// This is necessary to avoid infinite loops with zero-width matches
-						if (m.index === regex.lastIndex) {
-							regex.lastIndex++;
-						}
+            $(pubfunctionBlock).find('memberdef').each(function () {
+                var functionname = $(this).find('name').text();
+                if (functionname.substring(0, 3) === "set") {
+                    var argumentString = $(this).find('argsstring').text();
 
-						var match = m[0];   //only get full match
-						var subStringIndex = match.lastIndexOf(" ");
-						var dataType = match.substr(0, subStringIndex);
+                    var regex = /\w+(<[\w:<>*,\s]+>\s\w+|[\w+\s:*]+)+/g;
+                    var m;
 
-						var setFunction = new SetterFunction(functionname, dataType, "not defined");
-						setFunctions[setFunction.name] = setFunction;
-					}
-				}
+                    while ((m = regex.exec(argumentString)) !== null) {
+                        // This is necessary to avoid infinite loops with zero-width matches
+                        if (m.index === regex.lastIndex) {
+                            regex.lastIndex++;
+                        }
 
-			});
-			
-		}
-		
+                        var match = m[0];   //only get full match
+                        var subStringIndex = match.lastIndexOf(" ");
+                        var dataType = match.substr(0, subStringIndex);
+
+                        var setFunction = new SetterFunction(functionname, dataType, "not defined");
+                        setFunctions[setFunction.name] = setFunction;
+                    }
+                }
+
+            });
+
+        }
+
         return setFunctions;
     }
 };
@@ -587,7 +679,7 @@ function idsToKey(ids) {
 function hardwareListToKeys(hardwareList) {
     var key = "";
 
-    for(var i = 0; i < hardwareList.length; i++){
+    for (var i = 0; i < hardwareList.length; i++) {
         if (i === hardwareList.length - 1) {
             key += hardwareList[i].id;
         } else {

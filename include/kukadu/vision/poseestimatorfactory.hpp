@@ -27,6 +27,8 @@ namespace kukadu {
 
         geometry_msgs::PoseStamped getPoseFor(std::string id);
 
+        std::vector< double > getDimensionsFor(std::string id);
+
     };
 
 }

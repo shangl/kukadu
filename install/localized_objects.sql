@@ -8,7 +8,10 @@ CREATE TABLE IF NOT EXISTS `localized_objects` (
   `y_orientation` float NOT NULL,
   `z_orientation` float NOT NULL,
   `w_orientation` float NOT NULL,
+  `x_dimension` float NOT NULL,
+  `y_dimension` float NOT NULL,
+  `z_dimension` float NOT NULL,
   `timestamp` bigint(20) NOT NULL,
   `frame_id` int(11) NOT NULL,  
-  PRIMARY KEY (`object_id`, `pose_estimator_id`, `x_position`, `y_position`, `z_position`, `x_orientation`, `y_orientation`, `z_orientation`, `w_orientation`, `timestamp`, `frame_id`)
+  PRIMARY KEY (`object_id`, `pose_estimator_id`, `x_position`, `y_position`, `z_position`, `x_orientation`, `y_orientation`, `z_orientation`, `w_orientation`, `x_dimension`, `y_dimension`, `z_dimension`, `timestamp`, `frame_id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;

@@ -139,9 +139,10 @@ namespace kukadu {
         int objectId = storage.getCachedLabelId("objects", "object_id", "object_name", id);
 
         stringstream s;
-        s << "INSERT INTO localized_objects (object_id, pose_estimator_id, x_position, y_position, z_position, x_orientation, y_orientation, z_orientation, w_orientation, timestamp, frame_id) ";
+        s << "INSERT INTO localized_objects (object_id, pose_estimator_id, x_position, y_position, z_position, x_orientation, y_orientation, z_orientation, w_orientation, x_dimension, y_dimension, z_dimension, timestamp, frame_id) ";
         s << "VALUES (" << objectId << ", " << poseEstimatorId << ", " << poseVectorPair.first.pose.position.x << ", " << poseVectorPair.first.pose.position.y << ", " << poseVectorPair.first.pose.position.z << ", ";
         s << poseVectorPair.first.pose.orientation.x << ", " << poseVectorPair.first.pose.orientation.y << ", " << poseVectorPair.first.pose.orientation.z << ", " << poseVectorPair.first.pose.orientation.w << ", ";
+        s << poseVectorPair.second(0) << ", " << poseVectorPair.second(1) << ", " << poseVectorPair.second(2) << ", ";
         s << TimedObject::getCurrentTime() << ", ";
         s << storage.getCachedLabelId("reference_frames", "frame_id", "frame_name", poseVectorPair.first.header.frame_id);
         s << ")";
