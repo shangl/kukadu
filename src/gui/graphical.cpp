@@ -794,9 +794,10 @@ namespace kukadu {
     void KukaduGraphical::deleteIncludesOfSkill(std::string skillName) {
         std::string checkline = "#include <kukadu/generated_skills/" + skillName + ".hpp>";
 
-        auto files = getFilesInDirectory(resolvePath("$KUKADU_HOME/meta/xml"));
+        auto files = getFilesInDirectory(resolvePath("$KUKADU_HOME/src/generated_skills"));
         for (auto &f : files)
-            deleteLineFromFiles(checkline, f);
+            if (f != "." && f != "..")
+                deleteLineFromFiles(checkline, resolvePath("$KUKADU_HOME/src/generated_skills")+ "/" + f);
 
         std::string gskillHFilePath = resolvePath("$KUKADU_HOME/../") + "/kukadu/include/kukadu/generated_skills.hpp";
         deleteLineFromFiles(checkline, gskillHFilePath);
