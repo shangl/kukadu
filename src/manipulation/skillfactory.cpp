@@ -141,12 +141,6 @@ namespace kukadu {
             }
             },
             {
-             "BookGrasping",             [](StorageSingleton &storage, int skillId, int controllerType,
-                                            std::vector<KUKADU_SHARED_PTR<Hardware> > hardwareComponents) {
-                return make_shared<BookGrasping>(storage, hardwareComponents);
-            }
-            },
-            {
              "SensingSlide",             [](StorageSingleton &storage, int skillId, int controllerType,
                                             std::vector<KUKADU_SHARED_PTR<Hardware> > hardwareComponents) {
                 return make_shared<SensingSlide>(storage, hardwareComponents);

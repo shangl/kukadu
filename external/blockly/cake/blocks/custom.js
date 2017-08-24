@@ -341,10 +341,19 @@ Blockly.Blocks['skillloader'] = {
         }
 
         skillsInput.fieldRow[1].menuGenerator_ = skillsNameArray;
-        skillsInput.fieldRow[1].setValue(skillsNameArray[0][0]);
+        
+        if(skillsNameArray != undefined && skillsNameArray != null && skillsNameArray[0] != undefined && skillsNameArray[0] != null && skillsNameArray[0][0] != undefined && skillsNameArray[0][0] != null) {
+			
+			skillsInput.fieldRow[1].setValue(skillsNameArray[0][0]);
 
-        this._skillId = this.getCurrentSkill();
-        this.setInputsForSelectedSkill();
+			this._skillId = this.getCurrentSkill();
+			this.setInputsForSelectedSkill();
+			
+		} else {
+			console.log("problem with setting the available skills");
+			setFieldValueError = true;
+		}
+		
     },
 
     setInputsForSelectedSkill: function () {
@@ -359,66 +368,71 @@ Blockly.Blocks['skillloader'] = {
         } else {
             var skillId = currentSkill.id;
             var configId = Databaseloader.roboConfigMap[this._hardwareIds].id;
-            var skill = Databaseloader.roboConfigToSkillMap[configId][skillId];
-            if (typeof skill !== 'undefined') {
+            if(configId != undefined && configId != null && Databaseloader.roboConfigToSkillMap[configId] != undefined && Databaseloader.roboConfigToSkillMap[configId] != null) {
+				var skill = Databaseloader.roboConfigToSkillMap[configId][skillId];
+				if (typeof skill !== 'undefined') {
 
-                var attributes = getValuesFromMap(skill.getSetterFunctions());
+					var attributes = getValuesFromMap(skill.getSetterFunctions());
 
-                if (attributes != null) {
-                    var vectorIdOffset = 0;
-                    for (var i = 0; i < attributes.length; i++) {
-                        var attribute = attributes[i];
-                        var validator = Blockly.FieldTextInput.dummyValidator;
-                        if (attribute.dataType === "int") {
-                            validator = Blockly.FieldTextInput.integerValidator;
-                        } else if (attribute.dataType === "double") {
-                            validator = Blockly.FieldTextInput.floatValidator;
-                        }
+					if (attributes != null) {
+						var vectorIdOffset = 0;
+						for (var i = 0; i < attributes.length; i++) {
+							var attribute = attributes[i];
+							var validator = Blockly.FieldTextInput.dummyValidator;
+							if (attribute.dataType === "int") {
+								validator = Blockly.FieldTextInput.integerValidator;
+							} else if (attribute.dataType === "double") {
+								validator = Blockly.FieldTextInput.floatValidator;
+							}
 
-                        this.appendDummyInput("attributes" + i)
-                            .appendField(attribute.dataType + " " + attribute.name);
-                        var input = this.getInput("attributes" + i);
+							this.appendDummyInput("attributes" + i)
+								.appendField(attribute.dataType + " " + attribute.name);
+							var input = this.getInput("attributes" + i);
 
-                        if (attribute.dataType === "std::vector< double >" || attribute.dataType === "std::vector< int >" || attribute.dataType === "std::vector< string >") {
+							if (attribute.dataType === "std::vector< double >" || attribute.dataType === "std::vector< int >" || attribute.dataType === "std::vector< string >") {
 
-                            switch (attribute.dataType) {
-                                case "std::vector< double >":
-                                    validator = Blockly.FieldTextInput.floatValidator;
-                                    break;
-                                case "std::vector< int >":
-                                    validator = Blockly.FieldTextInput.integerValidator;
-                                    break;
-                                case "std::vector< string >":
-                                    validator = Blockly.FieldTextInput.dummyValidator;
-                                    break;
-                            }
+								switch (attribute.dataType) {
+									case "std::vector< double >":
+										validator = Blockly.FieldTextInput.floatValidator;
+										break;
+									case "std::vector< int >":
+										validator = Blockly.FieldTextInput.integerValidator;
+										break;
+									case "std::vector< string >":
+										validator = Blockly.FieldTextInput.dummyValidator;
+										break;
+								}
 
-                            var degOfFreedom = 0;
-                            var addedHardwareList = this.getCurrentHardware();
-                            var hardwareKey = hardwareListToKeys(addedHardwareList);
-                            var chosenConfig = Databaseloader.roboConfigMap[hardwareKey];
+								var degOfFreedom = 0;
+								var addedHardwareList = this.getCurrentHardware();
+								var hardwareKey = hardwareListToKeys(addedHardwareList);
+								var chosenConfig = Databaseloader.roboConfigMap[hardwareKey];
 
-                            for (var j = 0; j < chosenConfig.hardwareInOrder.length; j++) {
-                                var hardware = chosenConfig.hardwareInOrder[j];
-                                degOfFreedom = hardware.degOfFreedom > degOfFreedom ? hardware.degOfFreedom : degOfFreedom;
-                            }
+								for (var j = 0; j < chosenConfig.hardwareInOrder.length; j++) {
+									var hardware = chosenConfig.hardwareInOrder[j];
+									degOfFreedom = hardware.degOfFreedom > degOfFreedom ? hardware.degOfFreedom : degOfFreedom;
+								}
 
-                            var vectorIdOffsetTmp = vectorIdOffset;
-                            for (var j = 0; j < degOfFreedom; j++) {
-                                var attributeId = i + vectorIdOffset;
-                                input.appendField(new Blockly.FieldTextInput(attribute.defaultValue + "", validator), "attribute" + attributeId);
-                                vectorIdOffset++;
-                            }
-                            vectorIdOffset = degOfFreedom > 0 ? vectorIdOffsetTmp + degOfFreedom - 1 : vectorIdOffset;
-                        } else {
-                            var attributeId = i + vectorIdOffset;
-                            input.appendField(new Blockly.FieldTextInput(attribute.defaultValue + "", validator), "attribute" + attributeId);
-                        }
-                    }
+								var vectorIdOffsetTmp = vectorIdOffset;
+								for (var j = 0; j < degOfFreedom; j++) {
+									var attributeId = i + vectorIdOffset;
+									input.appendField(new Blockly.FieldTextInput(attribute.defaultValue + "", validator), "attribute" + attributeId);
+									vectorIdOffset++;
+								}
+								vectorIdOffset = degOfFreedom > 0 ? vectorIdOffsetTmp + degOfFreedom - 1 : vectorIdOffset;
+							} else {
+								var attributeId = i + vectorIdOffset;
+								input.appendField(new Blockly.FieldTextInput(attribute.defaultValue + "", validator), "attribute" + attributeId);
+							}
+						}
 
-                    this._inputsCount = attributes.length;
-                }
-            }
+						this._inputsCount = attributes.length;
+					}
+				}
+			} else {
+				console.log("problem while loading skill " + skillId.toString());
+				setFieldValueError = true;
+			}
         }
     }
 };
