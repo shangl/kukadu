@@ -1580,8 +1580,9 @@ namespace kukadu {
 
     SensingController::SensingController(StorageSingleton& storage, KUKADU_SHARED_PTR<kukadu_mersenne_twister> generator, int hapticMode, string caption,
                                          std::vector<KUKADU_SHARED_PTR<ControlQueue> > queues, vector<KUKADU_SHARED_PTR<GenericHand> > hands,
-                                         std::string tmpPath, double simClassificationPrecision)
-        : Controller(storage, caption, flatten<KUKADU_SHARED_PTR<Hardware> >({castVector<KUKADU_SHARED_PTR<ControlQueue>, KUKADU_SHARED_PTR<Hardware> >(queues)}), 1), dbStorage(storage) {
+                                         std::string tmpPath, double simClassificationPrecision,
+                                         std::vector<KUKADU_SHARED_PTR<Hardware> > allHardware)
+        : Controller(storage, caption, (allHardware.size()) ? allHardware : flatten<KUKADU_SHARED_PTR<Hardware> >({castVector<KUKADU_SHARED_PTR<ControlQueue>, KUKADU_SHARED_PTR<Hardware> >(cQueues)}), dbStorage(storage) {
 
         currentIterationNum = 0;
         simulationGroundTruth = 0;
@@ -1912,8 +1913,8 @@ namespace kukadu {
                 } else if(sampleIds.at(i) < minSampleCount) {
                     cout << "(SensingController) you have less than " << minSampleCount << " samples for state " << i << " under sensing action " << getCaption() <<
                             ". do you want to collect more? (0 = no, 1 = yes)" << endl;
-                    int answer;
-                    cin >> answer;
+                    int answer = 1;
+                    //cin >> answer;
                     if(answer == 1)
                         perceptualStateId = i;
                     break;

@@ -122,9 +122,10 @@ namespace kukadu {
 
         SensingController(StorageSingleton& storage, KUKADU_SHARED_PTR<kukadu_mersenne_twister> generator, int hapticMode,
                           std::string caption,
-                          std::vector<KUKADU_SHARED_PTR<ControlQueue> > queues, std::vector<KUKADU_SHARED_PTR<GenericHand> > hands,
+                          std::vector<KUKADU_SHARED_PTR<ControlQueue> > cQueues, std::vector<KUKADU_SHARED_PTR<GenericHand> > hands,
                           std::string tmpPath,
-                          double simClassificationPrecision);
+                          double simClassificationPrecision,
+                          std::vector<KUKADU_SHARED_PTR<Hardware> > allHardware = {});
 
         void setSimulationGroundTruth(int idx);
         void setSimulationClassificationPrecision(int percent);

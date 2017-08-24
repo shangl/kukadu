@@ -756,7 +756,6 @@ cout << allUsedHardware << endl;
         }
     }
 
-
     void KukaduGraphical::exitPlayingslot() {
 
         keepPlaying = false;

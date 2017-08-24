@@ -21,9 +21,22 @@
 #include <kukadu/manipulation/skillfactory.hpp>
 
  namespace kukadu {
+
+     template<typename T > KUKADU_SHARED_PTR< T > retrieveHardwareWithId(std::vector<KUKADU_SHARED_PTR<kukadu::Hardware> > list, std::string instanceName) {
+         for(auto& hw : list) {
+             if(hw->getHardwareInstanceName() == instanceName)
+                 return KUKADU_DYNAMIC_POINTER_CAST< T >(hw);
+         }
+         throw kukadu::KukaduException("(utils) hardware to search is not in the list");
+     }
+
 	SensingPoke::SensingPoke(kukadu::StorageSingleton& storage, std::vector< KUKADU_SHARED_PTR< kukadu::Hardware > > hardware)
 	 : SensingController(storage, kukadu::SkillFactory::get().getGenerator(), kukadu::SensingController::HAPTIC_MODE_CLASSIFIER,
-	"SensingPoke", {KUKADU_DYNAMIC_POINTER_CAST<kukadu::ControlQueue>(hardware.at(0))}, {KUKADU_DYNAMIC_POINTER_CAST<kukadu::GenericHand>(hardware.at(1))}, "/tmp/", 1.0) {
+    "SensingPoke",
+    {retrieveHardwareWithId <ControlQueue> (hardware, "kukie_left_arm")},
+    {retrieveHardwareWithId <GenericHand>(hardware, "kukiehand_left")},
+                         "/tmp/", 1.0,
+                         hardware) {
 		this->hardware = hardware;
 	}
 
