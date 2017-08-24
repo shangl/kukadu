@@ -20,6 +20,7 @@ namespace kukadu {
         std::string stdVisPubTopic;
 
         bool isInit;
+        bool simulate;
         bool keepRunning;
         bool doTransform;
         bool firstCloudSet;
@@ -43,6 +44,7 @@ namespace kukadu {
         KUKADU_SHARED_PTR<tf::TransformListener> transformListener;
 
         sensor_msgs::PointCloud2::Ptr currentPc;
+        sensor_msgs::PointCloud2::Ptr simulatedPc;
 
         ros::NodeHandle node;
 
@@ -66,6 +68,7 @@ namespace kukadu {
     public:
 
         Kinect(StorageSingleton& dbStorage, std::string hardwareName);
+        Kinect(StorageSingleton& dbStorage, std::string hardwareName, bool simulate);
         Kinect(StorageSingleton& dbStorage, ros::NodeHandle node, bool doTransorm = true);
         Kinect(StorageSingleton& dbStorage, std::string kinectTopic, std::string targetFrame, ros::NodeHandle node, bool doTransform = true);
         Kinect(StorageSingleton& dbStorage, std::string kinectTopic, ros::NodeHandle node, bool doTransform = true);

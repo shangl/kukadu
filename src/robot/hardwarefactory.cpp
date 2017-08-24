@@ -53,7 +53,7 @@ std::map<std::string, std::function<KUKADU_SHARED_PTR<Hardware>(StorageSingleton
     },
     {
         "Kinect", [](StorageSingleton& storage, std::string hardwareName, bool simulation) {
-            return make_shared<Kinect>(storage, hardwareName);
+            return make_shared<Kinect>(storage, hardwareName, simulation);
         }
     },
     {

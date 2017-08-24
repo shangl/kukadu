@@ -13,6 +13,13 @@ using namespace pcl;
 
 namespace kukadu {
 
+    pcl::PointCloud<pcl::PointXYZ>::Ptr loadPointCloudFromFile(std::string file) {
+        pcl::PointCloud<pcl::PointXYZ>::Ptr cloud(new pcl::PointCloud<pcl::PointXYZ>);
+        if (pcl::io::loadPCDFile<pcl::PointXYZ> (file.c_str(), *cloud) == -1)
+            throw KukaduException("(Kinect) could not load point cloud from file");
+        return cloud;
+    }
+
     std::string extractCameraName(std::string kinectTopic) {
         KukaduTokenizer tok(kinectTopic, "/");
         if(!kinectTopic.length())
@@ -27,6 +34,20 @@ namespace kukadu {
 
         this->node = ros::NodeHandle(); sleep(1);
         construct(hardwareName + "/depth_registered/points", "origin", node, true);
+
+    }
+
+    Kinect::Kinect(StorageSingleton& dbStorage, std::string hardwareName, bool simulate)
+        : Hardware(dbStorage, HARDWARE_DEPTH_CAMERA, Hardware::loadTypeIdFromName("Kinect"), "Kinect", Hardware::loadInstanceIdFromName(hardwareName), hardwareName) {
+
+        this->simulate = simulate;
+        if(!simulate) {
+            this->node = ros::NodeHandle(); sleep(1);
+            construct(hardwareName + "/depth_registered/points", "origin", node, true);
+        } else {
+            simulatedPc = sensor_msgs::PointCloud2::Ptr(new sensor_msgs::PointCloud2());
+            pcl::toROSMsg(*loadPointCloudFromFile(resolvePath("$KUKADU_HOME/misc/simulatedPc.pcd")), *simulatedPc);
+        }
 
     }
 
@@ -202,41 +223,55 @@ namespace kukadu {
 
         KUKADU_MODULE_START_USAGE();
 
-        pcRequested = true;
+        if(!simulate) {
 
-        ros::Rate kinectRate(10);
-        while(pcRequested)
-            kinectRate.sleep();
+            pcRequested = true;
 
-        sensor_msgs::PointCloud2::Ptr retCloud;
+            ros::Rate kinectRate(10);
+            while(pcRequested)
+                kinectRate.sleep();
 
-        pcMutex.lock();
+            sensor_msgs::PointCloud2::Ptr retCloud;
 
-            bool tfWorked = false;
+            pcMutex.lock();
 
-            while(!tfWorked) {
-                retCloud = currentPc;
-                try {
-                    tf::StampedTransform trans;
-                    retCloud->header.stamp = ros::Time::now();
-                    if(doTransform) {
-                        transformListener->waitForTransform(targetFrame, retCloud->header.frame_id, retCloud->header.stamp, ros::Duration(5.0));
-                        transformListener->lookupTransform(targetFrame, retCloud->header.frame_id, ros::Time(0), trans);
-                        pcl_ros::transformPointCloud(targetFrame, *retCloud, *retCloud, *transformListener);
+                bool tfWorked = false;
+
+                while(!tfWorked) {
+                    retCloud = currentPc;
+                    try {
+                        tf::StampedTransform trans;
+                        retCloud->header.stamp = ros::Time::now();
+                        if(doTransform) {
+                            transformListener->waitForTransform(targetFrame, retCloud->header.frame_id, retCloud->header.stamp, ros::Duration(5.0));
+                            transformListener->lookupTransform(targetFrame, retCloud->header.frame_id, ros::Time(0), trans);
+                            pcl_ros::transformPointCloud(targetFrame, *retCloud, *retCloud, *transformListener);
+                        }
+                        tfWorked = true;
+                    } catch(tf::TransformException ex) {
+                        cerr << "transformation not found" << endl;
                     }
-                    tfWorked = true;
-                } catch(tf::TransformException ex) {
-                    cerr << "transformation not found" << endl;
                 }
-            }
 
-            firstCloudSet = false;
+                firstCloudSet = false;
 
-        pcMutex.unlock();
+            pcMutex.unlock();
+
+            return retCloud;
+
+        } else {
+
+            pcMutex.lock();
+
+            currentPc = sensor_msgs::PointCloud2::Ptr(new sensor_msgs::PointCloud2(*simulatedPc));
+
+            pcMutex.unlock();
+
+            return currentPc;
+
+        }
 
         KUKADU_MODULE_END_USAGE();
-
-        return retCloud;
 
     }
 

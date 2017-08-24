@@ -1604,7 +1604,6 @@ namespace kukadu {
     }
 
     void SensingController::createSkillFromThisInternal(std::string skillName) {
-        throw KukaduException("(SensingController) creating a skill from instance not supported yet");
     }
 
     KUKADU_SHARED_PTR<kukadu_mersenne_twister> SensingController::getGenerator() {
