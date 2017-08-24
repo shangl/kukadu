@@ -11,7 +11,6 @@
 	#include <kukadu/generated_skills/ChangeModeToIMP.hpp>
 	#include <kukadu/generated_skills/WaitForReached.hpp>
 	#include <kukadu/generated_skills/PushForward.hpp>
-	#include <kukadu/generated_skills/PushTranslation.hpp>
 	#include <kukadu/generated_skills/FinalPush.hpp>
 	#include <kukadu/generated_skills/SimpleJointPtp.hpp>
 	#include <kukadu/generated_skills/ShelfAlignment.hpp>
@@ -21,4 +20,5 @@
 	#include <kukadu/generated_skills/BookGrasping.hpp>
 	#include <kukadu/generated_skills/SensingSlide.hpp>
 	#include <kukadu/generated_skills/SensingPoke.hpp>
+	#include <kukadu/generated_skills/PushTranslation.hpp>
 #endif

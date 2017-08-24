@@ -105,18 +105,6 @@ namespace kukadu {
             }
             },
             {
-             "PushTranslation",          [](StorageSingleton &storage, int skillId, int controllerType,
-                                            std::vector<KUKADU_SHARED_PTR<Hardware> > hardwareComponents) {
-                return make_shared<PushTranslation>(storage, hardwareComponents);
-            }
-            },
-            {
-             "PushTranslation",          [](StorageSingleton &storage, int skillId, int controllerType,
-                                            std::vector<KUKADU_SHARED_PTR<Hardware> > hardwareComponents) {
-                return make_shared<PushTranslation>(storage, hardwareComponents);
-            }
-            },
-            {
              "FinalPush",                [](StorageSingleton &storage, int skillId, int controllerType,
                                             std::vector<KUKADU_SHARED_PTR<Hardware> > hardwareComponents) {
                 return make_shared<FinalPush>(storage, hardwareComponents);
@@ -170,6 +158,12 @@ namespace kukadu {
                 return make_shared<SensingPoke>(storage, hardwareComponents);
             }
             }
+,{
+			"PushTranslation", [](StorageSingleton& storage, int skillId, int controllerType, std::vector<KUKADU_SHARED_PTR<Hardware> > hardwareComponents) {
+				return make_shared<PushTranslation>(storage, hardwareComponents);
+			}
+		}
+
             //insertSkill
             //at this line further skills will be inserted automatically - do not remove it
     };
