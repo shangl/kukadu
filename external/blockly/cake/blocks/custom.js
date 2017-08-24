@@ -469,6 +469,8 @@ Blockly.Blocks['hardware'] = {
 
 var Databaseloader = new function () {
     this.hardwareTupleArray = [];
+    this.queuePlayingTupleArray = [];
+    this.handPlayingTupleArray = [];
     this.roboConfigToSkillMap = {};
     this.skillMap = {};          //name to skill
     this.hardwareMap = {};       //name to hardware
@@ -476,6 +478,8 @@ var Databaseloader = new function () {
 
     this.init = function (data) {
         Databaseloader.hardwareTupleArray = [];
+        Databaseloader.queuePlayingTupleArray = [];
+        Databaseloader.handPlayingTupleArray = [];
         Databaseloader.roboConfigToSkillMap = {};
         Databaseloader.skillMap = {};
         Databaseloader.hardwareMap = {};
@@ -539,6 +543,11 @@ var Databaseloader = new function () {
         for (var k = 0; k < hardwareArray.length; k++) {
             var hw = hardwareArray[k];
             Databaseloader.hardwareTupleArray.push([hw.name, hw.name]);
+            if(hw.classId >= 100 && hw.classId < 200) {
+                Databaseloader.handPlayingTupleArray.push([hw.name, hw.name]);
+            } else if (hw.classId >= 200 && hw.classId < 300) {
+                Databaseloader.queuePlayingTupleArray.push([hw.name, hw.name]);
+            }
         }
     };
 
@@ -726,29 +735,4 @@ function hardwareListToKeys(hardwareList) {
     }
 
     return key;
-}
-
-function getQueuePlayingHardware() {
-    var queuePlayingHardware = [];
-    var hardware = getValuesFromMap(Databaseloader.hardwareMap);
-    for (var i = 0; i < hardware.length; i++) {
-        if (hardware[i].classId >= 200 && hardware[i].classId < 300) {
-            queuePlayingHardware.push([hardware.name, hardware.name])
-        }
-    }
-
-    return queuePlayingHardware;
-}
-
-
-function getHandPlayingHardware() {
-    var handPlayingHardware = [];
-    var hardware = getValuesFromMap(Databaseloader.hardwareMap);
-    for (var i = 0; i < hardware.length; i++) {
-        if (hardware[i].classId >= 100 && hardware[i].classId < 200) {
-            handPlayingHardware.push([hardware.name, hardware.name])
-        }
-    }
-
-    return handPlayingHardware;
 }
