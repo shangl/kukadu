@@ -1582,7 +1582,7 @@ namespace kukadu {
                                          std::vector<KUKADU_SHARED_PTR<ControlQueue> > queues, vector<KUKADU_SHARED_PTR<GenericHand> > hands,
                                          std::string tmpPath, double simClassificationPrecision,
                                          std::vector<KUKADU_SHARED_PTR<Hardware> > allHardware)
-        : Controller(storage, caption, (allHardware.size()) ? allHardware : flatten<KUKADU_SHARED_PTR<Hardware> >({castVector<KUKADU_SHARED_PTR<ControlQueue>, KUKADU_SHARED_PTR<Hardware> >(cQueues)}), dbStorage(storage) {
+        : Controller(storage, caption, (allHardware.size()) ? allHardware : flatten<KUKADU_SHARED_PTR<Hardware> >({castVector<KUKADU_SHARED_PTR<ControlQueue>, KUKADU_SHARED_PTR<Hardware> >(queues)}), 0.0), dbStorage(storage) {
 
         currentIterationNum = 0;
         simulationGroundTruth = 0;
