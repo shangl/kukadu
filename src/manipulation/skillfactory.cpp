@@ -231,7 +231,6 @@ namespace kukadu {
 
         while (!skillFactoryStream.atEnd()) {
             QString line = skillFactoryStream.readLine();
-            std::cout << line.toStdString() << std::endl;
 
             if (!skilldeleted) {
                 if (line.contains("{")) {
