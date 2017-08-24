@@ -42,6 +42,11 @@ Blockly.Blocks['main_block'] = {
             .appendField(Blockly.Msg.MAIN_BLOCK_BEHAVIOUR)
             .appendField(new Blockly.FieldDropdown([['Behaviour', 'Behaviour'], ['Complex Behaviour', 'ComplexBehaviour'], ['Sensing Behaviour', 'SensingBehaviour']]), "BehaviourMode");
         this.appendDummyInput()
+            .appendField("Playingqueue: ")
+            .appendField(new Blockly.FieldDropdown([['Behaviour', 'Behaviour'], ['Complex Behaviour', 'ComplexBehaviour'], ['Sensing Behaviour', 'SensingBehaviour']]), "PlayingQueueHardware")
+            .appendField("Playinghand: ")
+            .appendField(new Blockly.FieldDropdown([['Behaviour', 'Behaviour'], ['Complex Behaviour', 'ComplexBehaviour'], ['Sensing Behaviour', 'SensingBehaviour']]), "PlayingHandHardware");
+        this.appendDummyInput()
             .appendField("Skillname: ")
             .appendField(new Blockly.FieldTextInput("newSkillName"), "newSkillName");
         this.appendStatementInput('STACK')

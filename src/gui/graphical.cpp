@@ -87,7 +87,8 @@ namespace kukadu {
 
         nlohmann::json hardwareJson;
         auto hardwareResult = storage.executeQuery(
-                "SELECT hardware_instances.instance_id AS hardwareId, hardware_instances.instance_name as hardwareName ,IFNULL(kukie_hardware.deg_of_freedom, 0) AS degOfFreedom FROM hardware_instances LEFT OUTER JOIN kukie_hardware ON hardware_instances.instance_id=kukie_hardware.hardware_instance_id");
+        "SELECT hardware_instances.instance_id AS hardwareId, hardware_instances.instance_name as hardwareName ,IFNULL(kukie_hardware.deg_of_freedom, 0) AS degOfFreedom, hw.hardware_class as classId FROM hardware_instances LEFT OUTER JOIN kukie_hardware ON hardware_instances.instance_id=kukie_hardware.hardware_instance_id INNER JOIN hardware hw ON hw.hardware_id=hardware_instances.hardware_id");
+        //"SELECT hardware_instances.instance_id AS hardwareId, hardware_instances.instance_name as hardwareName ,IFNULL(kukie_hardware.deg_of_freedom, 0) AS degOfFreedom FROM hardware_instances LEFT OUTER JOIN kukie_hardware ON hardware_instances.instance_id=kukie_hardware.hardware_instance_id");
         while (hardwareResult->next()) {
             nlohmann::json hardwareInformation;
             int id = hardwareResult->getInt("hardwareId");
@@ -96,6 +97,8 @@ namespace kukadu {
             hardwareInformation["hardwareName"] = name;
             int defOfFreedom = hardwareResult->getInt("degOfFreedom");
             hardwareInformation["degOfFreedom"] = defOfFreedom;
+            int classId = hardwareResult->getInt("classId");
+            hardwareInformation["classId"] = classId;
 
             hardwareJson.push_back(hardwareInformation);
         }
@@ -714,18 +717,6 @@ namespace kukadu {
         auto behaviourControllerNames = usedPlayingBehaviours->text().toStdString();
         playingControllerName = playableSkillsBox->currentText().toStdString();
 
-/*<<<<<<< HEAD
-        string allUsedHardware = webView->page()->mainFrame()->evaluateJavaScript(
-                "getRequiredHardware()").toString().toStdString();;
-        auto sensingControllers = extractAndGenerateControllers<kukadu::SensingController>(sensingControllerNames,
-                                                                                           allUsedHardware);
-        auto playingControllers = extractAndGenerateControllers<kukadu::Controller>(behaviourControllerNames,
-                                                                                    allUsedHardware);
-        auto nothingSkill = SkillFactory::get().loadSkill("nothing", {});
-*/
-        playingControllerName = "";
-        cout << "playingcontrollername not set yet" << endl;
-
         string allUsedHardware = webView->page()->mainFrame()->evaluateJavaScript("getRequiredHardware()").toString().toStdString();;
 
 cout << allUsedHardware << endl;
@@ -734,11 +725,6 @@ cout << allUsedHardware << endl;
         auto playingControllers = extractAndGenerateControllers<kukadu::Controller>(behaviourControllerNames, allUsedHardware);
         auto toTrainController = extractAndGenerateControllers<kukadu::Controller>({playingControllerName}, allUsedHardware);
         auto nothingSkill = SkillFactory::get().loadSkill("nothing", {});
-
-        HapticPlanner h(resolvePath("$KUKADU_HOME/skills/"), sensingControllers,
-                        playingControllers, vector<KUKADU_SHARED_PTR<Controller> >{},
-                        nothingSkill,
-                        SkillFactory::get().getGenerator());
 
         currentHapticPlanner = make_shared<HapticPlanner>(resolvePath("$KUKADU_HOME/skills/"), sensingControllers,
                                                           playingControllers,
