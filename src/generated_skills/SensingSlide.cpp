@@ -34,7 +34,9 @@
     "SensingSlide",
     {retrieveHardwareWithId <ControlQueue> (hardware, "kukie_left_arm")},
     {retrieveHardwareWithId <GenericHand>(hardware, "kukiehand_left")},
-                         "/tmp/", 1.0) {
+                         "/tmp/", 1.0,
+                         hardware) {
+
 		this->hardware = hardware;
 	}
 
