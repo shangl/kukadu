@@ -44,12 +44,10 @@ namespace kukadu {
                 return make_shared<KinestheticTeaching>(storage, KUKADU_DYNAMIC_POINTER_CAST<ControlQueue>(
                         hardwareComponents.front()));
             }},
-            {
-             "MoveHome",                 [](StorageSingleton &storage, int skillId, int controllerType,
+            {"MoveHome",                 [](StorageSingleton &storage, int skillId, int controllerType,
                                             std::vector<KUKADU_SHARED_PTR<Hardware> > hardwareComponents) {
                 return make_shared<MoveHome>(storage, hardwareComponents);
-            }
-            },
+            }},
             {
              "OpenHand",                 [](StorageSingleton &storage, int skillId, int controllerType,
                                             std::vector<KUKADU_SHARED_PTR<Hardware> > hardwareComponents) {
@@ -157,11 +155,17 @@ namespace kukadu {
                                             std::vector<KUKADU_SHARED_PTR<Hardware> > hardwareComponents) {
                 return make_shared<PushTranslation>(storage, hardwareComponents);
             }
+            },
+            {
+             "BookGrasping",             [](StorageSingleton &storage, int skillId, int controllerType,
+                                            std::vector<KUKADU_SHARED_PTR<Hardware> > hardwareComponents) {
+                return make_shared<BookGrasping>(storage, hardwareComponents);
+            }
             }
 
 ,{
-			"BookGrasping", [](StorageSingleton& storage, int skillId, int controllerType, std::vector<KUKADU_SHARED_PTR<Hardware> > hardwareComponents) {
-				return make_shared<BookGrasping>(storage, hardwareComponents);
+			"testasdfasdf", [](StorageSingleton& storage, int skillId, int controllerType, std::vector<KUKADU_SHARED_PTR<Hardware> > hardwareComponents) {
+				return make_shared<testasdfasdf>(storage, hardwareComponents);
 			}
 		}
 
@@ -223,33 +227,45 @@ namespace kukadu {
         QTextStream skillFactoryStream(&skillFactoryFile);
         QTextStream newSkillFactoryStream(&newSkillFactoryFile);
 
+        bool skilldeleted = false;
+
         while (!skillFactoryStream.atEnd()) {
             QString line = skillFactoryStream.readLine();
             std::cout << line.toStdString() << std::endl;
 
-            if (line.contains("{")) {
-                std::string textToCheckStd = "{\"" +skillName + "\", []";
-                QString textToCheck = QString::fromStdString(textToCheckStd);
+            if (!skilldeleted) {
+                if (line.contains("{")) {
+                    std::string textToCheckStd = "{\"" + skillName + "\",";
+                    QString textToCheck = QString::fromStdString(textToCheckStd);
 
-                if(line.contains(textToCheck)) {
-                    line = skillFactoryStream.readLine();
-                    line = skillFactoryStream.readLine();
-                    line = skillFactoryStream.readLine();
-                    line = skillFactoryStream.readLine();
+                    if (line.contains(textToCheck)) {
+                        line = skillFactoryStream.readLine();
+                        line = skillFactoryStream.readLine();
+                        line = skillFactoryStream.readLine();
+                        line = skillFactoryStream.readLine();
+                        skilldeleted = true;
+                    } else {
+                        QString nextLine = skillFactoryStream.readLine();
+                        textToCheckStd = "\"" + skillName +
+                                         "\",                 []";
+                        textToCheck = QString::fromStdString(textToCheckStd);
+                        std::string textToCheckStdB = "\"" + skillName + "\", []";
+                        QString textToCheckB = QString::fromStdString(textToCheckStdB);
+                        if (nextLine.contains(textToCheck) || nextLine.contains(textToCheckB)) {
+                            line = skillFactoryStream.readLine();
+                            line = skillFactoryStream.readLine();
+                            line = skillFactoryStream.readLine();
+                            line = skillFactoryStream.readLine();
+                            if(nextLine.contains(textToCheck)) {
+                                line = skillFactoryStream.readLine();
+                            }
+                            skilldeleted = true;
+                        } else {
+                            newSkillFactoryStream << line + "\n";
+                            line = nextLine;
+                        }
+                    }
                 }
-
-                /*
-                QString tline = skillFactoryStream.readLine();
-                if (tline.contains(textToCheck)) {
-                    line = skillFactoryStream.readLine();
-                    line = skillFactoryStream.readLine();
-                    line = skillFactoryStream.readLine();
-                    line = skillFactoryStream.readLine();
-                    line = skillFactoryStream.readLine();
-                } else {
-                    newSkillFactoryStream << line + "\n";
-                    newSkillFactoryStream << tline + "\n";
-                }*/
             }
             newSkillFactoryStream << line + "\n";
         }

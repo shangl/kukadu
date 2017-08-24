@@ -749,9 +749,9 @@ cout << allUsedHardware << endl;
     void KukaduGraphical::deleteSlot() {
         std::string skillName = deleteSkillName->text().toStdString();
         if (!checkSkillNameIsNew(skillName)) {
-            //deleteSkillFromGeneratedSkillsHeader(skillName);
-            //deleteSkillHeaderFile(skillName);
-            //deleteSkillCppFile(skillName);
+            deleteSkillFromGeneratedSkillsHeader(skillName);
+            deleteSkillHeaderFile(skillName);
+            deleteSkillCppFile(skillName);
             deleteFromSkillFactory(skillName);
         }
     }

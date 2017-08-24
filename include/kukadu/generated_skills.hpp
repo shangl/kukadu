@@ -21,4 +21,5 @@
 	#include <kukadu/generated_skills/SensingPoke.hpp>
 	#include <kukadu/generated_skills/PushTranslation.hpp>
 	#include <kukadu/generated_skills/BookGrasping.hpp>
+	#include <kukadu/generated_skills/testasdfasdf.hpp>
 #endif
