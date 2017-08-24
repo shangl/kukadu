@@ -232,7 +232,6 @@
         <definition>virtual bool kukadu::Controller::requiresGraspInternal</definition>
         <argsstring>()=0</argsstring>
         <name>requiresGraspInternal</name>
-        <reimplementedby refid="classkukadu_1_1BookGrasping_1a51bb3340afb75729c0d30be72f90fa50">requiresGraspInternal</reimplementedby>
         <reimplementedby refid="classkukadu_1_1SensingSlide_1a7c62b5e25c97f95d24ca89424da1e41d">requiresGraspInternal</reimplementedby>
         <reimplementedby refid="classkukadu_1_1SensingPoke_1a6be4e3b301fb726719168c4b47efefe6">requiresGraspInternal</reimplementedby>
         <reimplementedby refid="classkukadu_1_1ShelfPlacementController_1afd28a0d80ab24d6fa1d48e4676aa19b7">requiresGraspInternal</reimplementedby>
@@ -274,7 +273,6 @@
         <definition>virtual bool kukadu::Controller::producesGraspInternal</definition>
         <argsstring>()=0</argsstring>
         <name>producesGraspInternal</name>
-        <reimplementedby refid="classkukadu_1_1BookGrasping_1a831c7ee47087d2eceea504c621a0f686">producesGraspInternal</reimplementedby>
         <reimplementedby refid="classkukadu_1_1SensingSlide_1af123c606cb19b7f6391c6e8ac8dfa259">producesGraspInternal</reimplementedby>
         <reimplementedby refid="classkukadu_1_1SensingPoke_1a670239328c972feeba9ab0d966704cc2">producesGraspInternal</reimplementedby>
         <reimplementedby refid="classkukadu_1_1ShelfPlacementController_1a9bb71bb40b63f3ca91d31d2a2de5aef5">producesGraspInternal</reimplementedby>
@@ -387,7 +385,6 @@
         <reimplementedby refid="classkukadu_1_1MoveHome_1a44bec932dc663fd092619990ee28a0a8">createSkillFromThisInternal</reimplementedby>
         <reimplementedby refid="classkukadu_1_1ChangeStiffness_1ab2e0baedaad58d7ecfa58c04a9fc0447">createSkillFromThisInternal</reimplementedby>
         <reimplementedby refid="classkukadu_1_1PushTranslation_1a138a365e1e1b56d46b3e8dcfaf99cbd2">createSkillFromThisInternal</reimplementedby>
-        <reimplementedby refid="classkukadu_1_1BookGrasping_1a6a48ab711db0d7463b60cb724f64d443">createSkillFromThisInternal</reimplementedby>
         <reimplementedby refid="classkukadu_1_1KinestheticTeaching_1ac8befe53277a9d7b306c27eb920fcc32">createSkillFromThisInternal</reimplementedby>
         <reimplementedby refid="classkukadu_1_1SensingController_1a50c7f9b186b6ef90661d27820fc9040c">createSkillFromThisInternal</reimplementedby>
         <reimplementedby refid="classkukadu_1_1CartesianPtp_1a600be6b576e5cc8f48ad3dc0a3aff600">createSkillFromThisInternal</reimplementedby>
@@ -677,7 +674,6 @@
         <reimplementedby refid="classkukadu_1_1OpenHand_1a8b39c1a02dfa938482de488a3bf791fe">getClassName</reimplementedby>
         <reimplementedby refid="classkukadu_1_1CloseHand_1a27373ced547b5eee94165cecdc8b623a">getClassName</reimplementedby>
         <reimplementedby refid="classkukadu_1_1ChangeModeToIMP_1a0adf397ffe06f233e83b7e9f21f8fe71">getClassName</reimplementedby>
-        <reimplementedby refid="classkukadu_1_1BookGrasping_1aa30c5107c2e6c7c0c3bad7abd1c8aaa8">getClassName</reimplementedby>
         <reimplementedby refid="classkukadu_1_1WaitForReached_1abbe109128ca5d124e94cc0e5d986b9f0">getClassName</reimplementedby>
         <reimplementedby refid="classkukadu_1_1SimpleJointPtp_1aae0f004834d73f68b2c0918894c285d8">getClassName</reimplementedby>
         <reimplementedby refid="classkukadu_1_1MoveHome_1a0ca815c415fef05b993f51309f1f3359">getClassName</reimplementedby>
@@ -724,223 +720,217 @@
     <detaileddescription>
     </detaileddescription>
     <inheritancegraph>
-      <node id="178">
+      <node id="162">
         <label>kukadu::Nothing</label>
         <link refid="classkukadu_1_1Nothing"/>
-        <childnode refid="160" relation="public-inheritance">
-        </childnode>
-      </node>
-      <node id="183">
-        <label>kukadu::PushTranslation</label>
-        <link refid="classkukadu_1_1PushTranslation"/>
-        <childnode refid="160" relation="public-inheritance">
-        </childnode>
-      </node>
-      <node id="191">
-        <label>kukadu::TrajectoryExecutor</label>
-        <link refid="classkukadu_1_1TrajectoryExecutor"/>
-        <childnode refid="160" relation="public-inheritance">
-        </childnode>
-      </node>
-      <node id="182">
-        <label>kukadu::PushHandPos</label>
-        <link refid="classkukadu_1_1PushHandPos"/>
-        <childnode refid="160" relation="public-inheritance">
-        </childnode>
-      </node>
-      <node id="164">
-        <label>kukadu::CartesianPtp</label>
-        <link refid="classkukadu_1_1CartesianPtp"/>
-        <childnode refid="160" relation="public-inheritance">
-        </childnode>
-      </node>
-      <node id="171">
-        <label>kukadu::ControllerActionClip</label>
-        <link refid="classkukadu_1_1ControllerActionClip"/>
-        <childnode refid="160" relation="public-inheritance">
-        </childnode>
-      </node>
-      <node id="176">
-        <label>kukadu::LocalizeObject</label>
-        <link refid="classkukadu_1_1LocalizeObject"/>
-        <childnode refid="160" relation="public-inheritance">
-        </childnode>
-      </node>
-      <node id="185">
-        <label>kukadu::SensingController</label>
-        <link refid="classkukadu_1_1SensingController"/>
-        <childnode refid="160" relation="public-inheritance">
-        </childnode>
-      </node>
-      <node id="161">
-        <label>kukadu::TimedObject</label>
-        <link refid="classkukadu_1_1TimedObject"/>
-      </node>
-      <node id="188">
-        <label>kukadu::ShelfAlignment</label>
-        <link refid="classkukadu_1_1ShelfAlignment"/>
-        <childnode refid="160" relation="public-inheritance">
-        </childnode>
-      </node>
-      <node id="174">
-        <label>kukadu::JointPtp</label>
-        <link refid="classkukadu_1_1JointPtp"/>
-        <childnode refid="160" relation="public-inheritance">
-        </childnode>
-      </node>
-      <node id="163">
-        <label>kukadu::BlockingPos</label>
-        <link refid="classkukadu_1_1BlockingPos"/>
-        <childnode refid="160" relation="public-inheritance">
-        </childnode>
-      </node>
-      <node id="169">
-        <label>kukadu::BookGrasping</label>
-        <link refid="classkukadu_1_1BookGrasping"/>
-        <childnode refid="168" relation="public-inheritance">
-        </childnode>
-      </node>
-      <node id="184">
-        <label>kukadu::RightHandBlocking</label>
-        <link refid="classkukadu_1_1RightHandBlocking"/>
-        <childnode refid="160" relation="public-inheritance">
-        </childnode>
-      </node>
-      <node id="166">
-        <label>kukadu::ChangeStiffness</label>
-        <link refid="classkukadu_1_1ChangeStiffness"/>
-        <childnode refid="160" relation="public-inheritance">
-        </childnode>
-      </node>
-      <node id="165">
-        <label>kukadu::ChangeModeToIMP</label>
-        <link refid="classkukadu_1_1ChangeModeToIMP"/>
-        <childnode refid="160" relation="public-inheritance">
-        </childnode>
-      </node>
-      <node id="173">
-        <label>kukadu::FinalPush</label>
-        <link refid="classkukadu_1_1FinalPush"/>
-        <childnode refid="160" relation="public-inheritance">
-        </childnode>
-      </node>
-      <node id="180">
-        <label>kukadu::PressButtonController</label>
-        <link refid="classkukadu_1_1PressButtonController"/>
-        <childnode refid="160" relation="public-inheritance">
-        </childnode>
-      </node>
-      <node id="179">
-        <label>kukadu::OpenHand</label>
-        <link refid="classkukadu_1_1OpenHand"/>
-        <childnode refid="160" relation="public-inheritance">
-        </childnode>
-      </node>
-      <node id="190">
-        <label>kukadu::SimpleJointPtp</label>
-        <link refid="classkukadu_1_1SimpleJointPtp"/>
-        <childnode refid="160" relation="public-inheritance">
-        </childnode>
-      </node>
-      <node id="172">
-        <label>kukadu::DropInBoxController</label>
-        <link refid="classkukadu_1_1DropInBoxController"/>
-        <childnode refid="160" relation="public-inheritance">
-        </childnode>
-      </node>
-      <node id="160">
-        <label>kukadu::Controller</label>
-        <link refid="classkukadu_1_1Controller"/>
-        <childnode refid="161" relation="protected-inheritance">
-        </childnode>
-        <childnode refid="162" relation="public-inheritance">
-        </childnode>
-      </node>
-      <node id="193">
-        <label>kukadu::WaitForReached</label>
-        <link refid="classkukadu_1_1WaitForReached"/>
-        <childnode refid="160" relation="public-inheritance">
-        </childnode>
-      </node>
-      <node id="175">
-        <label>kukadu::KinestheticTeaching</label>
-        <link refid="classkukadu_1_1KinestheticTeaching"/>
-        <childnode refid="160" relation="public-inheritance">
-        </childnode>
-      </node>
-      <node id="192">
-        <label>kukadu::DMPExecutor</label>
-        <link refid="classkukadu_1_1DMPExecutor"/>
-        <childnode refid="191" relation="public-inheritance">
-        </childnode>
-      </node>
-      <node id="181">
-        <label>kukadu::PushForward</label>
-        <link refid="classkukadu_1_1PushForward"/>
-        <childnode refid="160" relation="public-inheritance">
-        </childnode>
-      </node>
-      <node id="177">
-        <label>kukadu::MoveHome</label>
-        <link refid="classkukadu_1_1MoveHome"/>
-        <childnode refid="160" relation="public-inheritance">
-        </childnode>
-      </node>
-      <node id="162">
-        <label>kukadu::StorageHolder</label>
-        <link refid="classkukadu_1_1StorageHolder"/>
-      </node>
-      <node id="170">
-        <label>kukadu::ConcatController</label>
-        <link refid="classkukadu_1_1ConcatController"/>
-        <childnode refid="160" relation="public-inheritance">
-        </childnode>
-      </node>
-      <node id="187">
-        <label>kukadu::SensingSlide</label>
-        <link refid="classkukadu_1_1SensingSlide"/>
-        <childnode refid="185" relation="public-inheritance">
-        </childnode>
-      </node>
-      <node id="186">
-        <label>kukadu::SensingPoke</label>
-        <link refid="classkukadu_1_1SensingPoke"/>
-        <childnode refid="185" relation="public-inheritance">
-        </childnode>
-      </node>
-      <node id="168">
-        <label>kukadu::ComplexController</label>
-        <link refid="classkukadu_1_1ComplexController"/>
-        <childnode refid="160" relation="public-inheritance">
-        </childnode>
-      </node>
-      <node id="189">
-        <label>kukadu::ShelfPlacementController</label>
-        <link refid="classkukadu_1_1ShelfPlacementController"/>
-        <childnode refid="160" relation="public-inheritance">
+        <childnode refid="145" relation="public-inheritance">
         </childnode>
       </node>
       <node id="167">
+        <label>kukadu::PushTranslation</label>
+        <link refid="classkukadu_1_1PushTranslation"/>
+        <childnode refid="145" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="175">
+        <label>kukadu::TrajectoryExecutor</label>
+        <link refid="classkukadu_1_1TrajectoryExecutor"/>
+        <childnode refid="145" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="166">
+        <label>kukadu::PushHandPos</label>
+        <link refid="classkukadu_1_1PushHandPos"/>
+        <childnode refid="145" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="149">
+        <label>kukadu::CartesianPtp</label>
+        <link refid="classkukadu_1_1CartesianPtp"/>
+        <childnode refid="145" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="155">
+        <label>kukadu::ControllerActionClip</label>
+        <link refid="classkukadu_1_1ControllerActionClip"/>
+        <childnode refid="145" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="160">
+        <label>kukadu::LocalizeObject</label>
+        <link refid="classkukadu_1_1LocalizeObject"/>
+        <childnode refid="145" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="169">
+        <label>kukadu::SensingController</label>
+        <link refid="classkukadu_1_1SensingController"/>
+        <childnode refid="145" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="146">
+        <label>kukadu::TimedObject</label>
+        <link refid="classkukadu_1_1TimedObject"/>
+      </node>
+      <node id="172">
+        <label>kukadu::ShelfAlignment</label>
+        <link refid="classkukadu_1_1ShelfAlignment"/>
+        <childnode refid="145" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="158">
+        <label>kukadu::JointPtp</label>
+        <link refid="classkukadu_1_1JointPtp"/>
+        <childnode refid="145" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="148">
+        <label>kukadu::BlockingPos</label>
+        <link refid="classkukadu_1_1BlockingPos"/>
+        <childnode refid="145" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="168">
+        <label>kukadu::RightHandBlocking</label>
+        <link refid="classkukadu_1_1RightHandBlocking"/>
+        <childnode refid="145" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="151">
+        <label>kukadu::ChangeStiffness</label>
+        <link refid="classkukadu_1_1ChangeStiffness"/>
+        <childnode refid="145" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="150">
+        <label>kukadu::ChangeModeToIMP</label>
+        <link refid="classkukadu_1_1ChangeModeToIMP"/>
+        <childnode refid="145" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="157">
+        <label>kukadu::FinalPush</label>
+        <link refid="classkukadu_1_1FinalPush"/>
+        <childnode refid="145" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="164">
+        <label>kukadu::PressButtonController</label>
+        <link refid="classkukadu_1_1PressButtonController"/>
+        <childnode refid="145" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="163">
+        <label>kukadu::OpenHand</label>
+        <link refid="classkukadu_1_1OpenHand"/>
+        <childnode refid="145" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="174">
+        <label>kukadu::SimpleJointPtp</label>
+        <link refid="classkukadu_1_1SimpleJointPtp"/>
+        <childnode refid="145" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="156">
+        <label>kukadu::DropInBoxController</label>
+        <link refid="classkukadu_1_1DropInBoxController"/>
+        <childnode refid="145" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="145">
+        <label>kukadu::Controller</label>
+        <link refid="classkukadu_1_1Controller"/>
+        <childnode refid="146" relation="protected-inheritance">
+        </childnode>
+        <childnode refid="147" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="177">
+        <label>kukadu::WaitForReached</label>
+        <link refid="classkukadu_1_1WaitForReached"/>
+        <childnode refid="145" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="159">
+        <label>kukadu::KinestheticTeaching</label>
+        <link refid="classkukadu_1_1KinestheticTeaching"/>
+        <childnode refid="145" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="176">
+        <label>kukadu::DMPExecutor</label>
+        <link refid="classkukadu_1_1DMPExecutor"/>
+        <childnode refid="175" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="165">
+        <label>kukadu::PushForward</label>
+        <link refid="classkukadu_1_1PushForward"/>
+        <childnode refid="145" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="161">
+        <label>kukadu::MoveHome</label>
+        <link refid="classkukadu_1_1MoveHome"/>
+        <childnode refid="145" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="147">
+        <label>kukadu::StorageHolder</label>
+        <link refid="classkukadu_1_1StorageHolder"/>
+      </node>
+      <node id="154">
+        <label>kukadu::ConcatController</label>
+        <link refid="classkukadu_1_1ConcatController"/>
+        <childnode refid="145" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="171">
+        <label>kukadu::SensingSlide</label>
+        <link refid="classkukadu_1_1SensingSlide"/>
+        <childnode refid="169" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="170">
+        <label>kukadu::SensingPoke</label>
+        <link refid="classkukadu_1_1SensingPoke"/>
+        <childnode refid="169" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="153">
+        <label>kukadu::ComplexController</label>
+        <link refid="classkukadu_1_1ComplexController"/>
+        <childnode refid="145" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="173">
+        <label>kukadu::ShelfPlacementController</label>
+        <link refid="classkukadu_1_1ShelfPlacementController"/>
+        <childnode refid="145" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="152">
         <label>kukadu::CloseHand</label>
         <link refid="classkukadu_1_1CloseHand"/>
-        <childnode refid="160" relation="public-inheritance">
+        <childnode refid="145" relation="public-inheritance">
         </childnode>
       </node>
     </inheritancegraph>
     <collaborationgraph>
-      <node id="195">
+      <node id="179">
         <label>kukadu::TimedObject</label>
         <link refid="classkukadu_1_1TimedObject"/>
       </node>
-      <node id="194">
+      <node id="178">
         <label>kukadu::Controller</label>
         <link refid="classkukadu_1_1Controller"/>
-        <childnode refid="195" relation="protected-inheritance">
+        <childnode refid="179" relation="protected-inheritance">
         </childnode>
-        <childnode refid="196" relation="public-inheritance">
+        <childnode refid="180" relation="public-inheritance">
         </childnode>
       </node>
-      <node id="196">
+      <node id="180">
         <label>kukadu::StorageHolder</label>
         <link refid="classkukadu_1_1StorageHolder"/>
       </node>

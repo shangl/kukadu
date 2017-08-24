@@ -141,12 +141,6 @@ namespace kukadu {
             }
             },
             {
-             "BookGrasping",             [](StorageSingleton &storage, int skillId, int controllerType,
-                                            std::vector<KUKADU_SHARED_PTR<Hardware> > hardwareComponents) {
-                return make_shared<BookGrasping>(storage, hardwareComponents);
-            }
-            },
-            {
              "SensingSlide",             [](StorageSingleton &storage, int skillId, int controllerType,
                                             std::vector<KUKADU_SHARED_PTR<Hardware> > hardwareComponents) {
                 return make_shared<SensingSlide>(storage, hardwareComponents);
@@ -230,9 +224,10 @@ namespace kukadu {
         while (!skillFactoryStream.atEnd()) {
             QString line = skillFactoryStream.readLine();
 
-          /*  if (line.startsWith(",{") {
+            if (line.startsWith(",{") {
+
                 newSkillFactoryStream << QString::fromStdString(skillText) << "\n";
-            }*/
+            }
             newSkillFactoryStream << line + "\n";
         }
 

@@ -408,9 +408,9 @@ function CodeClass(name, code, behaviour) {
 
         var skillImplementation = "//Skillimplementation for Skill:\n";
         if (isSkillInstalled()) {
-            skillImplementation += "#include <kukadu/generated_skills/" + name + ".hpp>\n#include <kukadu/manipulation/skillfactory.hpp>\n" + "" + "\nnamespace kukadu {\n\t";
+            skillImplementation += "#include <kukadu/generated_skills/" + name + ".hpp>\n" + previousIncludes + "\n namespace kukadu {\n\t";
         } else {
-            skillImplementation += "#include <generated_graphical_programming/header.hpp>\n#include <kukadu/manipulation/skillfactory.hpp>\n\n\n";
+            skillImplementation += "#include <generated_graphical_programming/header.hpp>\n" + previousIncludes + "\n\n";
         }
 
         skillImplementation += name + "::" + name + "(kukadu::StorageSingleton& storage, std::vector< KUKADU_SHARED_PTR< kukadu::Hardware > > hardware)\n" +
@@ -586,9 +586,9 @@ function CodeClass(name, code, behaviour) {
 
         var skillImplementation = "//Skillimplementation for Skill:\n";
         if (isSkillInstalled()) {
-            skillImplementation += "#include <kukadu/generated_skills/" + name + ".hpp>\nnamespace kukadu {\n\t";
+            skillImplementation += "#include <kukadu/generated_skills/" + name + ".hpp>\n" + previousIncludes + "\n namespace kukadu {\n\t";
         } else {
-            skillImplementation += "#include <generated_graphical_programming/header.hpp>\n\n\n";
+            skillImplementation += "#include <generated_graphical_programming/header.hpp>\n" + previousIncludes + "\n\n";
         }
 
         skillImplementation += name + "::" + name + "(kukadu::StorageSingleton& storage, std::vector< KUKADU_SHARED_PTR< kukadu::Hardware > > hardware)" + newLine +

@@ -178,19 +178,6 @@
     <member refid="classkukadu_1_1BlockingPos_1a69165f54358a92c3863377b780b2fa0d" kind="function"><name>executeInternal</name></member>
     <member refid="classkukadu_1_1BlockingPos_1ac3b1cdc2605e38aed51c74ab7a6493db" kind="function"><name>getClassName</name></member>
   </compound>
-  <compound refid="classkukadu_1_1BookGrasping" kind="class"><name>kukadu::BookGrasping</name>
-    <member refid="classkukadu_1_1BookGrasping_1a51bb3340afb75729c0d30be72f90fa50" kind="function"><name>requiresGraspInternal</name></member>
-    <member refid="classkukadu_1_1BookGrasping_1a831c7ee47087d2eceea504c621a0f686" kind="function"><name>producesGraspInternal</name></member>
-    <member refid="classkukadu_1_1BookGrasping_1a6a48ab711db0d7463b60cb724f64d443" kind="function"><name>createSkillFromThisInternal</name></member>
-    <member refid="classkukadu_1_1BookGrasping_1af9eb2955813479444796ed736aeb783e" kind="function"><name>BookGrasping</name></member>
-    <member refid="classkukadu_1_1BookGrasping_1a4a67bed491aaaf1c0e2e05b6f32ecde3" kind="function"><name>executeComplexAction</name></member>
-    <member refid="classkukadu_1_1BookGrasping_1a22b433a3c7e933a2c27cb15fbd3ca5f8" kind="function"><name>cleanupAfterAction</name></member>
-    <member refid="classkukadu_1_1BookGrasping_1aa30c5107c2e6c7c0c3bad7abd1c8aaa8" kind="function"><name>getClassName</name></member>
-    <member refid="classkukadu_1_1BookGrasping_1aa92fd278a8d9d3d14a545e8dd5fbf12c" kind="function"><name>getStateCount</name></member>
-    <member refid="classkukadu_1_1BookGrasping_1aa29b3fa6887b122f4bce1e30e9472db1" kind="function"><name>prepareNextState</name></member>
-    <member refid="classkukadu_1_1BookGrasping_1a00ffb6dbec0e755125a0ecd2b4002226" kind="function"><name>getSimulatedReward</name></member>
-    <member refid="classkukadu_1_1BookGrasping_1a21fe6d0960ec8238080ffbbed7a97e78" kind="function"><name>computeGroundTruthTransition</name></member>
-  </compound>
   <compound refid="classkukadu_1_1CachedPlanner" kind="class"><name>kukadu::CachedPlanner</name>
     <member refid="classkukadu_1_1CachedPlanner_1af02bf57d47f85c36005f10460357a5bb" kind="variable"><name>robotId</name></member>
     <member refid="classkukadu_1_1CachedPlanner_1a94535d4a219fd4dac0f813901dcdff81" kind="variable"><name>queue</name></member>
@@ -1709,6 +1696,7 @@
     <member refid="classkukadu_1_1KukaduGraphical_1a2edcad98649bc808a3ce5afe821ec7be" kind="variable"><name>kinestheticSkillName</name></member>
     <member refid="classkukadu_1_1KukaduGraphical_1a3d542a20d4f0a7bb44a1b9951462b24a" kind="variable"><name>usedSensingBehaviours</name></member>
     <member refid="classkukadu_1_1KukaduGraphical_1a6bd89292ff3d62e4221dc97219e86350" kind="variable"><name>usedPlayingBehaviours</name></member>
+    <member refid="classkukadu_1_1KukaduGraphical_1a67653d6c04da5e8667ec6a4caaf863c1" kind="variable"><name>deleteSkillName</name></member>
     <member refid="classkukadu_1_1KukaduGraphical_1a126bded05989ab6f7b02ceaa24e7fcdb" kind="variable"><name>teachingObject</name></member>
     <member refid="classkukadu_1_1KukaduGraphical_1abc97bb0a017258e0c8715babba96ebc5" kind="variable"><name>keepPlaying</name></member>
     <member refid="classkukadu_1_1KukaduGraphical_1a1ab7c90193b45c1582a8455a7dcc70b3" kind="variable"><name>playingEnded</name></member>
@@ -1730,8 +1718,12 @@
     <member refid="classkukadu_1_1KukaduGraphical_1a4c31147259dcb47211c83fc98e950fa6" kind="function"><name>getExecutionMode</name></member>
     <member refid="classkukadu_1_1KukaduGraphical_1a1084fa5c7458d71e804623b9c5065d0d" kind="function"><name>getCurrentSkillName</name></member>
     <member refid="classkukadu_1_1KukaduGraphical_1ac7873f5a7ceb9849f092898ab013ff01" kind="function"><name>getCatkinMakeString</name></member>
-    <member refid="classkukadu_1_1KukaduGraphical_1afab63947a88e536634334c0a7f09fcf5" kind="function"><name>getCodeBlocks</name></member>
-    <member refid="classkukadu_1_1KukaduGraphical_1aa5584be5c5c3533673c63a7d068af5b8" kind="function"><name>createUI</name></member>
+    <member refid="classkukadu_1_1KukaduGraphical_1a099cecde4f3ac58702b23ddce4547322" kind="function"><name>getCodeBlocks</name></member>
+    <member refid="classkukadu_1_1KukaduGraphical_1aa900db9d7a00b4b3995d590a7f0bce61" kind="function"><name>createUI</name></member>
+    <member refid="classkukadu_1_1KukaduGraphical_1ae278367a915a4e0528bbc9f666bd176f" kind="function"><name>deleteSkillFromGeneratedSkillsHeader</name></member>
+    <member refid="classkukadu_1_1KukaduGraphical_1a232089646ccd6de3fac15bd34e116502" kind="function"><name>deleteSkillHeaderFile</name></member>
+    <member refid="classkukadu_1_1KukaduGraphical_1a944138b16c2173870d2e47fccc314572" kind="function"><name>deleteSkillCppFile</name></member>
+    <member refid="classkukadu_1_1KukaduGraphical_1a50de34de61684763ee922125ae24b330" kind="function"><name>deleteFromSkillFactory</name></member>
     <member refid="classkukadu_1_1KukaduGraphical_1a36d85203598991752ba176be40349c27" kind="function"><name>KukaduGraphical</name></member>
     <member refid="classkukadu_1_1KukaduGraphical_1a3d3e70a610ecd2a280d800beec8b6516" kind="function"><name>~KukaduGraphical</name></member>
     <member refid="classkukadu_1_1KukaduGraphical_1ae350ba59c63d5d2abd4bc66ae3371054" kind="slot"><name>onStart</name></member>
@@ -1751,6 +1743,7 @@
     <member refid="classkukadu_1_1KukaduGraphical_1ac5e6269aaf2c678f502ce825aad5747c" kind="slot"><name>performPlayingSlot</name></member>
     <member refid="classkukadu_1_1KukaduGraphical_1a6849f69666db1e8e884f7cef46423b7b" kind="slot"><name>trainPerceptualStatesSlot</name></member>
     <member refid="classkukadu_1_1KukaduGraphical_1a8754ad64dd7a1f46ef5ab787118f4dae" kind="slot"><name>selectionChangedSlot</name></member>
+    <member refid="classkukadu_1_1KukaduGraphical_1ac08da93f010ec02d517c0a9c149ee07e" kind="slot"><name>deleteSlot</name></member>
     <member refid="classkukadu_1_1KukaduGraphical_1a89900ce59ca987f9b638664b36ee65ca" kind="slot"><name>setPrevSkillIncludes</name></member>
   </compound>
   <compound refid="classkukadu_1_1KukaduGui" kind="class"><name>kukadu::KukaduGui</name>
@@ -2901,6 +2894,7 @@
     <member refid="classkukadu_1_1SkillFactory_1a2a797d9575d098fd70c53d4b0bdc6f32" kind="function"><name>SkillFactory</name></member>
     <member refid="classkukadu_1_1SkillFactory_1ae1777d7a32f4d032ff1f30c45c9bfde2" kind="function"><name>get</name></member>
     <member refid="classkukadu_1_1SkillFactory_1a0048c0b90f590b8c605a5f57f625454f" kind="function"><name>addSkill</name></member>
+    <member refid="classkukadu_1_1SkillFactory_1a39cc490a3d7b9164698c3bf56220475a" kind="function"><name>removeSkill</name></member>
     <member refid="classkukadu_1_1SkillFactory_1a0b9d5986cd2f0316ada19b23cfe39b18" kind="function"><name>loadSkill</name></member>
     <member refid="classkukadu_1_1SkillFactory_1af4ba2108570b3fe21ae7d3b542bebcb9" kind="function"><name>listAvailableSkills</name></member>
     <member refid="classkukadu_1_1SkillFactory_1a99bbad47f35201a082c85af15b054816" kind="function"><name>getSkillController</name></member>
@@ -3226,8 +3220,6 @@
     <member refid="namespacekukadu_1a415d604d0d5cdaf3e6a27eb17e90ae75" kind="function"><name>loadBaseAndCoefficients</name></member>
     <member refid="namespacekukadu_1a4b33998271e81b551233bda624571fef" kind="function"><name>loadJointsFromTable</name></member>
     <member refid="namespacekukadu_1a4f76458c0cce80d420fd1ad8ccbfa456" kind="function"><name>loadDmpParameters</name></member>
-    <member refid="namespacekukadu_1a9d29d370cc042ccabb2859cd67555e8e" kind="function"><name>extractAndGenerateHardware</name></member>
-    <member refid="namespacekukadu_1a56567e41ca0a64e87defe0cccdbb0aec" kind="function"><name>extractAndGenerateControllers</name></member>
     <member refid="namespacekukadu_1afdd79ce5ef09244ffe751c0cd8d15cf7" kind="function"><name>showInfoBox</name></member>
     <member refid="namespacekukadu_1ad61f9dd761429127b2f7f7635f9ae639" kind="function"><name>loadLibsvmFile</name></member>
     <member refid="namespacekukadu_1a9bfeb4f544ea51231d88a65026029571" kind="function"><name>operator&lt;&lt;</name></member>
@@ -3529,8 +3521,6 @@
   </compound>
   <compound refid="BlockingPos_8hpp" kind="file"><name>BlockingPos.hpp</name>
   </compound>
-  <compound refid="BookGrasping_8hpp" kind="file"><name>BookGrasping.hpp</name>
-  </compound>
   <compound refid="ChangeModeToIMP_8hpp" kind="file"><name>ChangeModeToIMP.hpp</name>
   </compound>
   <compound refid="ChangeStiffness_8hpp" kind="file"><name>ChangeStiffness.hpp</name>
@@ -3752,8 +3742,6 @@
   <compound refid="trajectory_8cpp" kind="file"><name>trajectory.cpp</name>
   </compound>
   <compound refid="BlockingPos_8cpp" kind="file"><name>BlockingPos.cpp</name>
-  </compound>
-  <compound refid="BookGrasping_8cpp" kind="file"><name>BookGrasping.cpp</name>
   </compound>
   <compound refid="ChangeModeToIMP_8cpp" kind="file"><name>ChangeModeToIMP.cpp</name>
   </compound>

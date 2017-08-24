@@ -712,7 +712,9 @@ namespace kukadu {
 
         auto sensingControllerNames = usedSensingBehaviours->text().toStdString();
         auto behaviourControllerNames = usedPlayingBehaviours->text().toStdString();
+        playingControllerName = playableSkillsBox->currentText().toStdString();
 
+<<<<<<< HEAD
         string allUsedHardware = webView->page()->mainFrame()->evaluateJavaScript(
                 "getRequiredHardware()").toString().toStdString();;
         auto sensingControllers = extractAndGenerateControllers<kukadu::SensingController>(sensingControllerNames,
@@ -730,11 +732,19 @@ namespace kukadu {
                         SkillFactory::get().getGenerator());
 
         /*
+=======
+        string allUsedHardware = webView->page()->mainFrame()->evaluateJavaScript("getRequiredHardware()").toString().toStdString();;
+        auto sensingControllers = extractAndGenerateControllers<kukadu::SensingController>(sensingControllerNames, allUsedHardware);
+        auto playingControllers = extractAndGenerateControllers<kukadu::Controller>(behaviourControllerNames, allUsedHardware);
+        auto toTrainController = extractAndGenerateControllers<kukadu::Controller>({playingControllerName}, allUsedHardware);
+        auto nothingSkill = SkillFactory::get().loadSkill("nothing", {});
+
+>>>>>>> c4d5677262d390dfb06dee10a1d1a5f7d13b4a18
         currentHapticPlanner = make_shared<HapticPlanner>(resolvePath("$KUKADU_HOME/skills/"), sensingControllers,
-                                                          playingControllers, KUKADU_SHARED_PTR<ComplexController>{},
+                                                          playingControllers,
+                                                          toTrainController,
                                                           nothingSkill,
                                                           SkillFactory::get().getGenerator());
-                                                          */
 
     }
 

@@ -5,7 +5,6 @@
     <basecompoundref refid="classkukadu_1_1Controller" prot="public" virt="non-virtual">kukadu::Controller</basecompoundref>
     <basecompoundref refid="classkukadu_1_1Reward" prot="public" virt="non-virtual">kukadu::Reward</basecompoundref>
     <basecompoundref prot="public" virt="non-virtual">KUKADU_ENABLE_SHARED_FROM_THIS&lt; ComplexController &gt;</basecompoundref>
-    <derivedcompoundref refid="classkukadu_1_1BookGrasping" prot="public" virt="non-virtual">kukadu::BookGrasping</derivedcompoundref>
       <sectiondef kind="private-attrib">
       <memberdef kind="variable" id="classkukadu_1_1ComplexController_1ad5000f3b5228dab83a49f166bbce18de" prot="private" static="no" mutable="no">
         <type>bool</type>
@@ -1011,7 +1010,6 @@
         <definition>virtual double kukadu::ComplexController::getSimulatedReward</definition>
         <argsstring>(KUKADU_SHARED_PTR&lt; kukadu::IntermediateEventClip &gt; sensingClip, KUKADU_SHARED_PTR&lt; kukadu::Clip &gt; stateClip, KUKADU_SHARED_PTR&lt; kukadu::ControllerActionClip &gt; actionClip)=0</argsstring>
         <name>getSimulatedReward</name>
-        <reimplementedby refid="classkukadu_1_1BookGrasping_1a00ffb6dbec0e755125a0ecd2b4002226">getSimulatedReward</reimplementedby>
         <param>
           <type>KUKADU_SHARED_PTR&lt; <ref refid="classkukadu_1_1IntermediateEventClip" kindref="compound">kukadu::IntermediateEventClip</ref> &gt;</type>
           <declname>sensingClip</declname>
@@ -1077,7 +1075,6 @@
         <argsstring>(std::string skillName)</argsstring>
         <name>createSkillFromThisInternal</name>
         <reimplements refid="classkukadu_1_1Controller_1a83ec6ad1794980392e897edc2916c9ce">createSkillFromThisInternal</reimplements>
-        <reimplementedby refid="classkukadu_1_1BookGrasping_1a6a48ab711db0d7463b60cb724f64d443">createSkillFromThisInternal</reimplementedby>
         <param>
           <type>std::string</type>
           <declname>skillName</declname>
@@ -1096,7 +1093,6 @@
         <argsstring>()=0</argsstring>
         <name>requiresGraspInternal</name>
         <reimplements refid="classkukadu_1_1Controller_1ae67659a3a55cef09b2a5575107d88145">requiresGraspInternal</reimplements>
-        <reimplementedby refid="classkukadu_1_1BookGrasping_1a51bb3340afb75729c0d30be72f90fa50">requiresGraspInternal</reimplementedby>
         <briefdescription>
         </briefdescription>
         <detaileddescription>
@@ -1111,7 +1107,6 @@
         <argsstring>()=0</argsstring>
         <name>producesGraspInternal</name>
         <reimplements refid="classkukadu_1_1Controller_1a5566a7cf711318f1bf4dcd939ba7fe76">producesGraspInternal</reimplements>
-        <reimplementedby refid="classkukadu_1_1BookGrasping_1a831c7ee47087d2eceea504c621a0f686">producesGraspInternal</reimplementedby>
         <briefdescription>
         </briefdescription>
         <detaileddescription>
@@ -1281,7 +1276,6 @@
         <definition>virtual void kukadu::ComplexController::cleanupAfterAction</definition>
         <argsstring>()=0</argsstring>
         <name>cleanupAfterAction</name>
-        <reimplementedby refid="classkukadu_1_1BookGrasping_1a22b433a3c7e933a2c27cb15fbd3ca5f8">cleanupAfterAction</reimplementedby>
         <briefdescription>
         </briefdescription>
         <detaileddescription>
@@ -1295,7 +1289,6 @@
         <definition>virtual void kukadu::ComplexController::executeComplexAction</definition>
         <argsstring>()=0</argsstring>
         <name>executeComplexAction</name>
-        <reimplementedby refid="classkukadu_1_1BookGrasping_1a4a67bed491aaaf1c0e2e05b6f32ecde3">executeComplexAction</reimplementedby>
         <briefdescription>
         </briefdescription>
         <detaileddescription>
@@ -1309,7 +1302,6 @@
         <definition>virtual int kukadu::ComplexController::getStateCount</definition>
         <argsstring>(const std::string &amp;sensingName)=0</argsstring>
         <name>getStateCount</name>
-        <reimplementedby refid="classkukadu_1_1BookGrasping_1aa92fd278a8d9d3d14a545e8dd5fbf12c">getStateCount</reimplementedby>
         <param>
           <type>const std::string &amp;</type>
           <declname>sensingName</declname>
@@ -1890,7 +1882,6 @@
         <argsstring>()</argsstring>
         <name>getClassName</name>
         <reimplements refid="classkukadu_1_1Controller_1aaad4258aa03d4f941cdf8e5d9400212b">getClassName</reimplements>
-        <reimplementedby refid="classkukadu_1_1BookGrasping_1aa30c5107c2e6c7c0c3bad7abd1c8aaa8">getClassName</reimplementedby>
         <briefdescription>
         </briefdescription>
         <detaileddescription>
@@ -1904,7 +1895,6 @@
         <definition>virtual void kukadu::ComplexController::prepareNextState</definition>
         <argsstring>(KUKADU_SHARED_PTR&lt; kukadu::SensingController &gt; cont, int currentStateIdx)=0</argsstring>
         <name>prepareNextState</name>
-        <reimplementedby refid="classkukadu_1_1BookGrasping_1aa29b3fa6887b122f4bce1e30e9472db1">prepareNextState</reimplementedby>
         <param>
           <type>KUKADU_SHARED_PTR&lt; <ref refid="classkukadu_1_1SensingController" kindref="compound">kukadu::SensingController</ref> &gt;</type>
           <declname>cont</declname>
@@ -1927,78 +1917,72 @@
     <detaileddescription>
     </detaileddescription>
     <inheritancegraph>
-      <node id="140">
+      <node id="126">
         <label>KUKADU_ENABLE_SHARED_FROM_THIS&lt; ComplexController &gt;</label>
       </node>
-      <node id="137">
+      <node id="123">
         <label>kukadu::TimedObject</label>
         <link refid="classkukadu_1_1TimedObject"/>
       </node>
-      <node id="141">
-        <label>kukadu::BookGrasping</label>
-        <link refid="classkukadu_1_1BookGrasping"/>
-        <childnode refid="135" relation="public-inheritance">
-        </childnode>
-      </node>
-      <node id="139">
+      <node id="125">
         <label>kukadu::Reward</label>
         <link refid="classkukadu_1_1Reward"/>
       </node>
-      <node id="136">
+      <node id="122">
         <label>kukadu::Controller</label>
         <link refid="classkukadu_1_1Controller"/>
-        <childnode refid="137" relation="protected-inheritance">
+        <childnode refid="123" relation="protected-inheritance">
         </childnode>
-        <childnode refid="138" relation="public-inheritance">
+        <childnode refid="124" relation="public-inheritance">
         </childnode>
       </node>
-      <node id="138">
+      <node id="124">
         <label>kukadu::StorageHolder</label>
         <link refid="classkukadu_1_1StorageHolder"/>
       </node>
-      <node id="135">
+      <node id="121">
         <label>kukadu::ComplexController</label>
         <link refid="classkukadu_1_1ComplexController"/>
-        <childnode refid="136" relation="public-inheritance">
+        <childnode refid="122" relation="public-inheritance">
         </childnode>
-        <childnode refid="139" relation="public-inheritance">
+        <childnode refid="125" relation="public-inheritance">
         </childnode>
-        <childnode refid="140" relation="public-inheritance">
+        <childnode refid="126" relation="public-inheritance">
         </childnode>
       </node>
     </inheritancegraph>
     <collaborationgraph>
-      <node id="147">
+      <node id="132">
         <label>KUKADU_ENABLE_SHARED_FROM_THIS&lt; ComplexController &gt;</label>
       </node>
-      <node id="144">
+      <node id="129">
         <label>kukadu::TimedObject</label>
         <link refid="classkukadu_1_1TimedObject"/>
       </node>
-      <node id="146">
+      <node id="131">
         <label>kukadu::Reward</label>
         <link refid="classkukadu_1_1Reward"/>
       </node>
-      <node id="143">
+      <node id="128">
         <label>kukadu::Controller</label>
         <link refid="classkukadu_1_1Controller"/>
-        <childnode refid="144" relation="protected-inheritance">
+        <childnode refid="129" relation="protected-inheritance">
         </childnode>
-        <childnode refid="145" relation="public-inheritance">
+        <childnode refid="130" relation="public-inheritance">
         </childnode>
       </node>
-      <node id="145">
+      <node id="130">
         <label>kukadu::StorageHolder</label>
         <link refid="classkukadu_1_1StorageHolder"/>
       </node>
-      <node id="142">
+      <node id="127">
         <label>kukadu::ComplexController</label>
         <link refid="classkukadu_1_1ComplexController"/>
-        <childnode refid="143" relation="public-inheritance">
+        <childnode refid="128" relation="public-inheritance">
         </childnode>
-        <childnode refid="146" relation="public-inheritance">
+        <childnode refid="131" relation="public-inheritance">
         </childnode>
-        <childnode refid="147" relation="public-inheritance">
+        <childnode refid="132" relation="public-inheritance">
         </childnode>
       </node>
     </collaborationgraph>
