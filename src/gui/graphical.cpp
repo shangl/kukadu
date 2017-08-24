@@ -87,7 +87,7 @@ namespace kukadu {
 
         nlohmann::json hardwareJson;
         auto hardwareResult = storage.executeQuery(
-        "SELECT hardware_instances.instance_id AS hardwareId, hardware_instances.instance_name as hardwareName ,IFNULL(kukie_hardware.deg_of_freedom, 0) AS degOfFreedom, hw.hardware_class as classId FROM hardware_instances LEFT OUTER JOIN kukie_hardware ON hardware_instances.instance_id=kukie_hardware.hardware_instance_id INNER JOIN hardware hw ON hw.hardware_id=hardware_instances.hardware_id");
+                "SELECT hardware_instances.instance_id AS hardwareId, hardware_instances.instance_name as hardwareName ,IFNULL(kukie_hardware.deg_of_freedom, 0) AS degOfFreedom, hw.hardware_class as classId FROM hardware_instances LEFT OUTER JOIN kukie_hardware ON hardware_instances.instance_id=kukie_hardware.hardware_instance_id INNER JOIN hardware hw ON hw.hardware_id=hardware_instances.hardware_id");
         //"SELECT hardware_instances.instance_id AS hardwareId, hardware_instances.instance_name as hardwareName ,IFNULL(kukie_hardware.deg_of_freedom, 0) AS degOfFreedom FROM hardware_instances LEFT OUTER JOIN kukie_hardware ON hardware_instances.instance_id=kukie_hardware.hardware_instance_id");
         while (hardwareResult->next()) {
             nlohmann::json hardwareInformation;
@@ -719,7 +719,7 @@ namespace kukadu {
 
         string allUsedHardware = webView->page()->mainFrame()->evaluateJavaScript("getRequiredHardware()").toString().toStdString();;
 
-cout << allUsedHardware << endl;
+        cout << allUsedHardware << endl;
 
         auto sensingControllers = extractAndGenerateControllers<kukadu::SensingController>(sensingControllerNames, allUsedHardware);
         auto playingControllers = extractAndGenerateControllers<kukadu::Controller>(behaviourControllerNames, allUsedHardware);
@@ -794,13 +794,18 @@ cout << allUsedHardware << endl;
     void KukaduGraphical::deleteSkillFromGeneratedSkillsHeader(std::string skillName) {
         std::string checkline = "#include <kukadu/generated_skills/" + skillName + ".hpp>";
         std::string gskillHFilePath = resolvePath("$KUKADU_HOME/../") + "/kukadu/include/kukadu/generated_skills.hpp";
-        std::string gskillHFilePathTmp =
-                resolvePath("$KUKADU_HOME/../") + "/kukadu/include/kukadu/generated_skills.hpp.tmp";
+
+        deleteLineFromFiles(checkline, gskillHFilePath);
+    }
+
+    void KukaduGraphical::deleteLineFromFiles(std::string checkline, std::string filepath) {
+        std::string gskillHFilePath = filepath;
+        std::string gskillHFilePathTmp = filepath + "2";
 
         QFile mainFile(QString::fromStdString(gskillHFilePath));
         mainFile.open(QIODevice::ReadOnly);
         QFile mainFileTmp(QString::fromStdString(gskillHFilePathTmp));
-        mainFile.open(QIODevice::WriteOnly);
+        mainFileTmp.open(QIODevice::WriteOnly);
         QTextStream streamIn(&mainFile);
         QTextStream streamOut(&mainFileTmp);
 
@@ -820,11 +825,13 @@ cout << allUsedHardware << endl;
     void KukaduGraphical::deleteSkillHeaderFile(std::string skillName) {
         std::string filePath = resolvePath("$KUKADU_HOME/include/kukadu/generated_skills") + "/" + skillName + ".hpp";
         QFile headerFile(QString::fromStdString(filePath));
+        headerFile.remove();
     }
 
     void KukaduGraphical::deleteSkillCppFile(std::string skillName) {
         std::string filePath = resolvePath("$KUKADU_HOME/src/generated_skills") + "/" + skillName + ".cpp";
         QFile sourceFile(QString::fromStdString(filePath));
+        sourceFile.remove();
     }
 
     void KukaduGraphical::deleteFromSkillFactory(std::string skillName) {

@@ -88,6 +88,8 @@ namespace kukadu {
 
         void deleteFromSkillFactory(std::string skillName);
 
+        void deleteLineFromFiles(std::string checkline, std::string filepath);
+
     public:
 
         explicit KukaduGraphical();
