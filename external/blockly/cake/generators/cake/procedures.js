@@ -29,6 +29,8 @@ goog.provide('Blockly.cake.procedures');
 goog.require('Blockly.cake');
 
 Blockly.cake['main_block'] = function (block) {
+    Blockly.cake.definitions_['include_kukaduImport_string'] = "#include<kukadu/kukadu.hpp>";
+
     // Define a procedure with a return value.
     var skillCode = Blockly.cake.statementToCode(block, 'STACK');
 
@@ -343,7 +345,12 @@ function CodeClass(name, code, behaviour) {
         var splitCode = "//Skillheader for Skill\n" +
             "#ifndef KUKADU_GENERATED_SKILLS_" + getCurrentSkillName().toUpperCase() + "_H\n" +
             "#define KUKADU_GENERATED_SKILLS_" + getCurrentSkillName().toUpperCase() + "_H\n\n" +
-            Blockly.cake.definitions_['include_kukadu_string'] + "\n\n";
+            Blockly.cake.definitions_['include_kukadu_string'] + "\n";
+            if (typeof Blockly.cake.definitions_['include_PoseEstimatorFactory_string'] != "undefined") {
+                splitCode += Blockly.cake.definitions_['include_PoseEstimatorFactory_string'];
+            }
+
+            splitCode += "\n";
 
         switch (behaviour) {
             case 'Behaviour':

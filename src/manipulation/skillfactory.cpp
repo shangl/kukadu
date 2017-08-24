@@ -15,7 +15,7 @@ namespace kukadu {
 
     std::map<std::string, std::function<KUKADU_SHARED_PTR<Controller>(
             StorageSingleton &, int, int, std::vector<KUKADU_SHARED_PTR<Hardware> >)> > SkillFactory::skillFactories{
-            {"Nothing",              [](StorageSingleton &storage, int skillId, int controllerType,
+            {"Nothing",                  [](StorageSingleton &storage, int skillId, int controllerType,
                                             std::vector<KUKADU_SHARED_PTR<Hardware> > hardwareComponents) {
                 return make_shared<Nothing>(storage);
             }},
@@ -151,24 +151,25 @@ namespace kukadu {
                                             std::vector<KUKADU_SHARED_PTR<Hardware> > hardwareComponents) {
                 return make_shared<PressButtonController>(storage, hardwareComponents);
             }
+            },
+            {
+             "BookGrasping",             [](StorageSingleton &storage, int skillId, int controllerType,
+                                            std::vector<KUKADU_SHARED_PTR<Hardware> > hardwareComponents) {
+                return make_shared<BookGrasping>(storage, hardwareComponents);
             }
-,{
-			"BookGrasping", [](StorageSingleton& storage, int skillId, int controllerType, std::vector<KUKADU_SHARED_PTR<Hardware> > hardwareComponents) {
-				return make_shared<BookGrasping>(storage, hardwareComponents);
-			}
-		}
-,{
-			"SensingSlide", [](StorageSingleton& storage, int skillId, int controllerType, std::vector<KUKADU_SHARED_PTR<Hardware> > hardwareComponents) {
-				return make_shared<SensingSlide>(storage, hardwareComponents);
-			}
-		}
-
-,{
-			"SensingPoke", [](StorageSingleton& storage, int skillId, int controllerType, std::vector<KUKADU_SHARED_PTR<Hardware> > hardwareComponents) {
-				return make_shared<SensingPoke>(storage, hardwareComponents);
-			}
-		}
-
+            },
+            {
+             "SensingSlide",             [](StorageSingleton &storage, int skillId, int controllerType,
+                                            std::vector<KUKADU_SHARED_PTR<Hardware> > hardwareComponents) {
+                return make_shared<SensingSlide>(storage, hardwareComponents);
+            }
+            },
+            {
+             "SensingPoke",              [](StorageSingleton &storage, int skillId, int controllerType,
+                                            std::vector<KUKADU_SHARED_PTR<Hardware> > hardwareComponents) {
+                return make_shared<SensingPoke>(storage, hardwareComponents);
+            }
+            }
             //insertSkill
             //at this line further skills will be inserted automatically - do not remove it
     };
@@ -219,7 +220,7 @@ namespace kukadu {
     KUKADU_SHARED_PTR<Controller> SkillFactory::loadSkill(std::string skillName,
                                                           std::vector<KUKADU_SHARED_PTR<Hardware> > hardwareComponents) {
 
-        if(!hardwareComponents.size())
+        if (!hardwareComponents.size())
             hardwareComponents.push_back(HardwareFactory::get().loadHardware("no_hardware_instance"));
 
         stringstream s;
@@ -256,8 +257,9 @@ namespace kukadu {
             if (skillFactories.find(controllerClassLabel) != skillFactories.end())
                 return skillFactories[controllerClassLabel](storage, skillId, controllerType, hardwareComponents);
             else {
-                cerr << "(SkillFactory) automatic loading of the skill " << skillName << " is not supported for the required controller " <<
-                    controllerClassLabel << endl;
+                cerr << "(SkillFactory) automatic loading of the skill " << skillName
+                     << " is not supported for the required controller " <<
+                     controllerClassLabel << endl;
                 throw KukaduException("(SkillFactory) automatic loading is not supported for the required controller");
             }
         } else {
@@ -309,7 +311,7 @@ namespace kukadu {
     }
 
     KUKADU_SHARED_PTR<kukadu_mersenne_twister> SkillFactory::getGenerator() {
-        if(generator)
+        if (generator)
             return generator;
         return generator = make_shared<kukadu_mersenne_twister>(time(NULL));
     }
@@ -318,8 +320,9 @@ namespace kukadu {
 
         vector<string> retVec;
 
-        auto res = StorageSingleton::get().executeQuery("select label from skills inner join controller_types on skills.controller_type = controller_types.controller_id where is_playable = 1");
-        while(res->next()) {
+        auto res = StorageSingleton::get().executeQuery(
+                "select label from skills inner join controller_types on skills.controller_type = controller_types.controller_id where is_playable = 1");
+        while (res->next()) {
             retVec.push_back(res->getString("label"));
         }
 
