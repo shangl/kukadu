@@ -625,8 +625,8 @@ namespace kukadu {
         QLabel* usedSensingLabel = new QLabel("List of sensing behaviours:");
         QLabel* usedBehavioursLabel = new QLabel("List of playing behaviours:");
 
-        usedSensingBehaviours = new QLineEdit();
-        usedPlayingBehaviours = new QLineEdit();
+        usedSensingBehaviours = new QLineEdit("Slide,Poke");
+        usedPlayingBehaviours = new QLineEdit("PushTranslation");
 
         QObject::connect(trainPerceptualStatesButton, SIGNAL(clicked()), this, SLOT(trainPerceptualStatesSlot()));
         QObject::connect(playButton, SIGNAL(clicked()), this, SLOT(performPlayingSlot()));
@@ -704,6 +704,9 @@ namespace kukadu {
         playingControllerName = playableSkillsBox->currentText().toStdString();
 
         string allUsedHardware = webView->page()->mainFrame()->evaluateJavaScript("getRequiredHardware()").toString().toStdString();;
+
+cout << allUsedHardware << endl;
+
         auto sensingControllers = extractAndGenerateControllers<kukadu::SensingController>(sensingControllerNames, allUsedHardware);
         auto playingControllers = extractAndGenerateControllers<kukadu::Controller>(behaviourControllerNames, allUsedHardware);
         auto toTrainController = extractAndGenerateControllers<kukadu::Controller>({playingControllerName}, allUsedHardware);

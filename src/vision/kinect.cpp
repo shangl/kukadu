@@ -122,27 +122,29 @@ namespace kukadu {
 
     void Kinect::startInternal() {
 
-        if(!isStarted) {
+        if(!simulate) {
+            if(!isStarted) {
 
-            subKinect = node.subscribe(kinectTopic, 1, &Kinect::callbackKinectPointCloud, this);
+                subKinect = node.subscribe(kinectTopic, 1, &Kinect::callbackKinectPointCloud, this);
 
-            this->visPubTopic = stdVisPubTopic;
-            visPublisher = node.advertise<sensor_msgs::PointCloud2>(visPubTopic, 1);
+                this->visPubTopic = stdVisPubTopic;
+                visPublisher = node.advertise<sensor_msgs::PointCloud2>(visPubTopic, 1);
 
-            if(doTransform)
-                transformListener = make_shared<tf::TransformListener>();
+                if(doTransform)
+                    transformListener = make_shared<tf::TransformListener>();
 
-            ros::Rate r(10);
-            while(!firstCloudSet)
-                r.sleep();
+                ros::Rate r(10);
+                while(!firstCloudSet)
+                    r.sleep();
 
-            if(doTransform)
-                transformListener->waitForTransform(targetFrame, currentPc->header.frame_id, ros::Time(0), ros::Duration(5.0));
+                if(doTransform)
+                    transformListener->waitForTransform(targetFrame, currentPc->header.frame_id, ros::Time(0), ros::Duration(5.0));
 
-            startSensing();
+                startSensing();
 
-            isStarted = true;
+                isStarted = true;
 
+            }
         }
 
     }
