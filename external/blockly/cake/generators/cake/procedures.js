@@ -132,8 +132,10 @@ Blockly.cake['main_block'] = function (block) {
         installSkill = "\n";
     }
 
+    var playingQueue = block.getFieldValue('PlayingQueueHardware');
+    var playingHand = block.getFieldValue('PlayingHandHardware');
     var behaviour = block.getFieldValue('BehaviourMode');
-    var codeClass = new CodeClass(skillName, skillCode, behaviour);
+    var codeClass = new CodeClass(skillName, skillCode, behaviour, playingQueue, playingHand);
 
     var funcName = 'main';
     var returnValue = "hardwareFactory.stopAllCreatedHardware();\nkukadu::ModuleUsageSingleton::get().stopStatisticsModule();\nstorage.waitForEmptyCache();\nreturn EXIT_SUCCESS;\n";
@@ -336,10 +338,12 @@ Blockly.cake['procedures_callnoreturn'] = function (block) {
     return code;
 };
 
-function CodeClass(name, code, behaviour) {
+function CodeClass(name, code, behaviour, playingQueue, playingHand) {
     this.name = name;
     this.code = code;
     this.behaviour = behaviour;
+    this.playingQueue = playingQueue;
+    this.playingHand = playingHand;
 
     this.generateClass = function () {
         var splitCode = "//Skillheader for Skill\n" +
@@ -497,9 +501,19 @@ function CodeClass(name, code, behaviour) {
 
         var splitCodeForSensing = this.getSplitCode();
 
-        skillImplementation += name + "::" + name + "(kukadu::StorageSingleton& storage, std::vector< KUKADU_SHARED_PTR< kukadu::Hardware > > hardware)" + newLine +
+        skillImplementation +=
+            "template<typename T > KUKADU_SHARED_PTR< T > retrieveHardwareWithId(std::vector<KUKADU_SHARED_PTR<kukadu::Hardware> > list, std::string instanceName) {" + newLine +
+            "\tfor(auto& hw : list) {" + newLine +
+            "\t\tif(hw->getHardwareInstanceName() == instanceName)" + newLine +
+            "\t\t\treturn KUKADU_DYNAMIC_POINTER_CAST< T >(hw);" + newLine +
+            "\t}" + newLine +
+            "\tthrow kukadu::KukaduException(\"(utils) hardware to search is not in the list\");" + newLine +
+            "}" + newLine +
+            newLine +
+            name + "::" + name + "(kukadu::StorageSingleton& storage, std::vector< KUKADU_SHARED_PTR< kukadu::Hardware > > hardware)" + newLine +
             " : SensingController(storage, kukadu::SkillFactory::get().getGenerator(), kukadu::SensingController::HAPTIC_MODE_CLASSIFIER, " + newLine +
-            "\"" + name + "\", {KUKADU_DYNAMIC_POINTER_CAST<kukadu::ControlQueue>(hardware.at(0))}, {KUKADU_DYNAMIC_POINTER_CAST<kukadu::GenericHand>(hardware.at(1))}, \"/tmp/\", 1.0) {" + newLine +
+            "\"" + name + "\", {retrieveHardwareWithId <ControlQueue> (hardware, \"" + playingQueue + "\")},\n" +
+            "    {retrieveHardwareWithId <GenericHand>(hardware, \"" + playingHand + "\")}, \"/tmp/\", 1.0) {" + newLine +
             "\tthis->hardware = hardware;" + newLine +
             "}" + newLine +
             newLine +
