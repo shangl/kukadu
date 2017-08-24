@@ -288,12 +288,15 @@
   <compound refid="classkukadu_1_1CartesianPtp" kind="class"><name>kukadu::CartesianPtp</name>
     <member refid="classkukadu_1_1CartesianPtp_1a33551be141543c13cb3059cd00e9421d" kind="variable"><name>leftQueue</name></member>
     <member refid="classkukadu_1_1CartesianPtp_1af32811dbd7f6c1bc998acf845667231a" kind="variable"><name>cartesians</name></member>
+    <member refid="classkukadu_1_1CartesianPtp_1a0c6dc13e728341c15de5738192207dd8" kind="variable"><name>maxForce</name></member>
+    <member refid="classkukadu_1_1CartesianPtp_1a65ca188ebc590d99980df0f6250d41ba" kind="variable"><name>maxForceSet</name></member>
     <member refid="classkukadu_1_1CartesianPtp_1a600be6b576e5cc8f48ad3dc0a3aff600" kind="function"><name>createSkillFromThisInternal</name></member>
     <member refid="classkukadu_1_1CartesianPtp_1aef52261262091f2c44de05981ce656c9" kind="function"><name>CartesianPtp</name></member>
     <member refid="classkukadu_1_1CartesianPtp_1a940db0a2f6996d368dad9403bbf841dc" kind="function"><name>requiresGraspInternal</name></member>
     <member refid="classkukadu_1_1CartesianPtp_1a3028fe2ded596149391ea1de5f6ecd36" kind="function"><name>producesGraspInternal</name></member>
     <member refid="classkukadu_1_1CartesianPtp_1a3adca8675fb3096ba017588b667e7631" kind="function"><name>setCartesians</name></member>
     <member refid="classkukadu_1_1CartesianPtp_1a2a9e0b3ebb6abb4dfdb6bc5039890c6b" kind="function"><name>executeInternal</name></member>
+    <member refid="classkukadu_1_1CartesianPtp_1a5c4257ddef9727831bf5820fd04de1c4" kind="function"><name>setMaxForce</name></member>
     <member refid="classkukadu_1_1CartesianPtp_1a0fb7ceb0cdfd96339eff8f2d24851552" kind="function"><name>getClassName</name></member>
   </compound>
   <compound refid="classkukadu_1_1ChangeModeToIMP" kind="class"><name>kukadu::ChangeModeToIMP</name>
@@ -1531,6 +1534,7 @@
   <compound refid="classkukadu_1_1Kinect" kind="class"><name>kukadu::Kinect</name>
     <member refid="classkukadu_1_1Kinect_1a14ae9fe9b3ef712977cafbc77953185c" kind="variable"><name>stdVisPubTopic</name></member>
     <member refid="classkukadu_1_1Kinect_1a57919a1c2dfa8b8e4a03619d72212e51" kind="variable"><name>isInit</name></member>
+    <member refid="classkukadu_1_1Kinect_1a10aeb22d027a3ca56744f72f63ad060f" kind="variable"><name>simulate</name></member>
     <member refid="classkukadu_1_1Kinect_1ad17bb7d1f98e2d73acf43092ae6d7c30" kind="variable"><name>keepRunning</name></member>
     <member refid="classkukadu_1_1Kinect_1aa24b853e7278089d1f92ce8bb1e49990" kind="variable"><name>doTransform</name></member>
     <member refid="classkukadu_1_1Kinect_1ab976ab063962cba4ca20f2c75b6f94cc" kind="variable"><name>firstCloudSet</name></member>
@@ -1546,6 +1550,7 @@
     <member refid="classkukadu_1_1Kinect_1ae97bdda3ba54fce0e343742524a09423" kind="variable"><name>listenerThread</name></member>
     <member refid="classkukadu_1_1Kinect_1a9adb2c6a2ef2acf1b6946fbf13e2a232" kind="variable"><name>transformListener</name></member>
     <member refid="classkukadu_1_1Kinect_1aa2c425db3031f0b501ca8971c22b5f1e" kind="variable"><name>currentPc</name></member>
+    <member refid="classkukadu_1_1Kinect_1ac42f0bdba8937ada612bea9ef713890a" kind="variable"><name>simulatedPc</name></member>
     <member refid="classkukadu_1_1Kinect_1a15fbc2d312a73a3aa0bdce5a7a2d0849" kind="variable"><name>node</name></member>
     <member refid="classkukadu_1_1Kinect_1a32b95cc7eeb804c65f21131da112b742" kind="variable"><name>subKinect</name></member>
     <member refid="classkukadu_1_1Kinect_1a066e74cdf3df491777f348f0fcb5a2c1" kind="variable"><name>subTransformation</name></member>
@@ -1558,6 +1563,7 @@
     <member refid="classkukadu_1_1Kinect_1a6d009149465e4abe13a1268eb7b02c55" kind="function"><name>startInternal</name></member>
     <member refid="classkukadu_1_1Kinect_1a78dab1d6cc9e418a795d391c3267c2a7" kind="function"><name>stopInternal</name></member>
     <member refid="classkukadu_1_1Kinect_1a391952d9e7205bf19a62a2ee4d10c5af" kind="function"><name>Kinect</name></member>
+    <member refid="classkukadu_1_1Kinect_1ad95af9eb1e25fc6f835af3802997b4b5" kind="function"><name>Kinect</name></member>
     <member refid="classkukadu_1_1Kinect_1ad85ac295ea3634a120e8240c06991e4e" kind="function"><name>Kinect</name></member>
     <member refid="classkukadu_1_1Kinect_1a1ee665a17656c9477c3359c6443daf0e" kind="function"><name>Kinect</name></member>
     <member refid="classkukadu_1_1Kinect_1a0dd6fceea06577b19a6657b77b3b37cb" kind="function"><name>Kinect</name></member>
@@ -3499,6 +3505,7 @@
     <member refid="namespacekukadu_1a4b1430357c13f56d3dd02bfcf1d17dde" kind="function"><name>mat33_pow2</name></member>
     <member refid="namespacekukadu_1ad8119e8c07da76d4deb269e0381105a6" kind="function"><name>_dbg_vec3_fprint</name></member>
     <member refid="namespacekukadu_1ad8e124fc2b1df9c77e26a631d5507c4a" kind="function"><name>_dbg_mat33_fprint</name></member>
+    <member refid="namespacekukadu_1a1e31c7f7cf7b81c1ff16aa2bbb8d5dc9" kind="function"><name>loadPointCloudFromFile</name></member>
     <member refid="namespacekukadu_1afe2075f4c8ad18fd14ccc6b1e09a678f" kind="function"><name>extractCameraName</name></member>
     <member refid="namespacekukadu_1a120438eee5a477e31352ded69063e7cc" kind="function"><name>segmentPlanar</name></member>
     <member refid="namespacekukadu_1a77632af68c3866b398e33681bd047b91" kind="function"><name>filterCluster</name></member>

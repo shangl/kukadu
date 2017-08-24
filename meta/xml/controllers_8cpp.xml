@@ -2290,500 +2290,499 @@
 <codeline lineno="1604"><highlight class="normal"><sp/><sp/><sp/><sp/>}</highlight></codeline>
 <codeline lineno="1605"><highlight class="normal"></highlight></codeline>
 <codeline lineno="1606"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/>SensingController::createSkillFromThisInternal(std::string<sp/>skillName)<sp/>{</highlight></codeline>
-<codeline lineno="1607"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">throw</highlight><highlight class="normal"><sp/>KukaduException(</highlight><highlight class="stringliteral">&quot;(SensingController)<sp/>creating<sp/>a<sp/>skill<sp/>from<sp/>instance<sp/>not<sp/>supported<sp/>yet&quot;</highlight><highlight class="normal">);</highlight></codeline>
-<codeline lineno="1608"><highlight class="normal"><sp/><sp/><sp/><sp/>}</highlight></codeline>
-<codeline lineno="1609"><highlight class="normal"></highlight></codeline>
-<codeline lineno="1610"><highlight class="normal"><sp/><sp/><sp/><sp/>KUKADU_SHARED_PTR&lt;kukadu_mersenne_twister&gt;<sp/>SensingController::getGenerator()<sp/>{</highlight></codeline>
-<codeline lineno="1611"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal"><sp/>generator;</highlight></codeline>
-<codeline lineno="1612"><highlight class="normal"><sp/><sp/><sp/><sp/>}</highlight></codeline>
-<codeline lineno="1613"><highlight class="normal"></highlight></codeline>
-<codeline lineno="1614"><highlight class="normal"><sp/><sp/><sp/><sp/>std::vector&lt;KUKADU_SHARED_PTR&lt;ControlQueue&gt;<sp/>&gt;<sp/>SensingController::getQueues()<sp/>{</highlight></codeline>
-<codeline lineno="1615"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal"><sp/>queues;</highlight></codeline>
-<codeline lineno="1616"><highlight class="normal"><sp/><sp/><sp/><sp/>}</highlight></codeline>
-<codeline lineno="1617"><highlight class="normal"></highlight></codeline>
-<codeline lineno="1618"><highlight class="normal"><sp/><sp/><sp/><sp/>std::vector&lt;KUKADU_SHARED_PTR&lt;GenericHand&gt;<sp/>&gt;<sp/>SensingController::getHands()<sp/>{</highlight></codeline>
-<codeline lineno="1619"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal"><sp/>hands;</highlight></codeline>
-<codeline lineno="1620"><highlight class="normal"><sp/><sp/><sp/><sp/>}</highlight></codeline>
-<codeline lineno="1621"><highlight class="normal"></highlight></codeline>
-<codeline lineno="1622"><highlight class="normal"><sp/><sp/><sp/><sp/>std::string<sp/>SensingController::getTmpPath()<sp/>{</highlight></codeline>
-<codeline lineno="1623"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal"><sp/>tmpPath;</highlight></codeline>
-<codeline lineno="1624"><highlight class="normal"><sp/><sp/><sp/><sp/>}</highlight></codeline>
-<codeline lineno="1625"><highlight class="normal"></highlight></codeline>
-<codeline lineno="1626"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/>SensingController::getHapticMode()<sp/>{</highlight></codeline>
-<codeline lineno="1627"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal"><sp/>hapticMode;</highlight></codeline>
-<codeline lineno="1628"><highlight class="normal"><sp/><sp/><sp/><sp/>}</highlight></codeline>
-<codeline lineno="1629"><highlight class="normal"></highlight></codeline>
-<codeline lineno="1630"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">double</highlight><highlight class="normal"><sp/>SensingController::getSimClassificationPrecision()<sp/>{</highlight></codeline>
-<codeline lineno="1631"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal"><sp/>simulatedClassificationPrecision;</highlight></codeline>
-<codeline lineno="1632"><highlight class="normal"><sp/><sp/><sp/><sp/>}</highlight></codeline>
-<codeline lineno="1633"><highlight class="normal"></highlight></codeline>
-<codeline lineno="1634"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/>SensingController::gatherData(std::string<sp/>dataBasePath,<sp/>std::string<sp/>dataName)<sp/>{</highlight></codeline>
-<codeline lineno="1635"><highlight class="normal"></highlight></codeline>
-<codeline lineno="1636"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>KUKADU_MODULE_START_USAGE();</highlight></codeline>
-<codeline lineno="1637"><highlight class="normal"></highlight></codeline>
-<codeline lineno="1638"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">if</highlight><highlight class="normal">(!fileExists(dataBasePath))</highlight></codeline>
-<codeline lineno="1639"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>createDirectory(dataBasePath);</highlight></codeline>
-<codeline lineno="1640"><highlight class="normal"></highlight></codeline>
-<codeline lineno="1641"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>gatherData(dataBasePath<sp/>+<sp/>dataName);</highlight></codeline>
-<codeline lineno="1642"><highlight class="normal"></highlight></codeline>
-<codeline lineno="1643"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>KUKADU_MODULE_END_USAGE();</highlight></codeline>
-<codeline lineno="1644"><highlight class="normal"></highlight></codeline>
-<codeline lineno="1645"><highlight class="normal"><sp/><sp/><sp/><sp/>}</highlight></codeline>
-<codeline lineno="1646"><highlight class="normal"></highlight></codeline>
-<codeline lineno="1647"><highlight class="normal"><sp/><sp/><sp/><sp/>std::string<sp/>SensingController::getDatabasePath()<sp/>{</highlight></codeline>
-<codeline lineno="1648"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal"><sp/>databasePath;</highlight></codeline>
-<codeline lineno="1649"><highlight class="normal"><sp/><sp/><sp/><sp/>}</highlight></codeline>
-<codeline lineno="1650"><highlight class="normal"></highlight></codeline>
-<codeline lineno="1651"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/>SensingController::setDatabasePath(std::string<sp/>databasePath)<sp/>{</highlight></codeline>
-<codeline lineno="1652"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>this-&gt;databasePath<sp/>=<sp/>databasePath;</highlight></codeline>
-<codeline lineno="1653"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>databaseAlreadySet<sp/>=<sp/></highlight><highlight class="keyword">true</highlight><highlight class="normal">;</highlight></codeline>
-<codeline lineno="1654"><highlight class="normal"><sp/><sp/><sp/><sp/>}</highlight></codeline>
-<codeline lineno="1655"><highlight class="normal"></highlight></codeline>
-<codeline lineno="1656"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/>SensingController::gatherData(std::string<sp/>completePath)<sp/>{</highlight></codeline>
-<codeline lineno="1657"><highlight class="normal"></highlight></codeline>
-<codeline lineno="1658"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>KUKADU_MODULE_START_USAGE();</highlight></codeline>
-<codeline lineno="1659"><highlight class="normal"></highlight></codeline>
-<codeline lineno="1660"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>vector&lt;KUKADU_SHARED_PTR&lt;ControlQueue&gt;<sp/>&gt;<sp/>castedQueues;</highlight></codeline>
-<codeline lineno="1661"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">for</highlight><highlight class="normal">(</highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/>i<sp/>=<sp/>0;<sp/>i<sp/>&lt;<sp/>queues.size();<sp/>++i)<sp/>{</highlight></codeline>
-<codeline lineno="1662"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>KUKADU_SHARED_PTR&lt;ControlQueue&gt;<sp/>queue<sp/>=<sp/>queues.at(i);</highlight></codeline>
-<codeline lineno="1663"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>castedQueues.push_back(queue);</highlight></codeline>
-<codeline lineno="1664"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>}</highlight></codeline>
-<codeline lineno="1665"><highlight class="normal"></highlight></codeline>
-<codeline lineno="1666"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>SensorStorage<sp/>store(dbStorage,<sp/>castedQueues,<sp/>hands,<sp/>100);</highlight></codeline>
-<codeline lineno="1667"><highlight class="normal"></highlight></codeline>
-<codeline lineno="1668"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>prepare();</highlight></codeline>
-<codeline lineno="1669"><highlight class="normal"></highlight></codeline>
-<codeline lineno="1670"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>store.startDataStorage(completePath);</highlight></codeline>
-<codeline lineno="1671"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>performCore();</highlight></codeline>
-<codeline lineno="1672"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>store.stopDataStorage();</highlight></codeline>
-<codeline lineno="1673"><highlight class="normal"></highlight></codeline>
-<codeline lineno="1674"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>KUKADU_MODULE_END_USAGE();</highlight></codeline>
-<codeline lineno="1675"><highlight class="normal"></highlight></codeline>
-<codeline lineno="1676"><highlight class="normal"><sp/><sp/><sp/><sp/>}</highlight></codeline>
-<codeline lineno="1677"><highlight class="normal"></highlight></codeline>
-<codeline lineno="1678"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/>SensingController::getStateCount()<sp/>{</highlight></codeline>
-<codeline lineno="1679"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal"><sp/>stateCount;</highlight></codeline>
-<codeline lineno="1680"><highlight class="normal"><sp/><sp/><sp/><sp/>}</highlight></codeline>
-<codeline lineno="1681"><highlight class="normal"></highlight></codeline>
-<codeline lineno="1682"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/>SensingController::setStateCount(</highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">int</highlight><highlight class="normal">&amp;<sp/>stateCount)<sp/>{</highlight></codeline>
-<codeline lineno="1683"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>this-&gt;stateCount<sp/>=<sp/>stateCount;</highlight></codeline>
-<codeline lineno="1684"><highlight class="normal"><sp/><sp/><sp/><sp/>}</highlight></codeline>
-<codeline lineno="1685"><highlight class="normal"></highlight></codeline>
-<codeline lineno="1686"><highlight class="normal"><sp/><sp/><sp/><sp/>std::string<sp/>SensingController::getFirstRobotFileName()<sp/>{</highlight></codeline>
-<codeline lineno="1687"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal"><sp/>queues.at(0)-&gt;getRobotFileName();</highlight></codeline>
-<codeline lineno="1688"><highlight class="normal"><sp/><sp/><sp/><sp/>}</highlight></codeline>
-<codeline lineno="1689"><highlight class="normal"></highlight></codeline>
-<codeline lineno="1690"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/>SensingController::callClassifier()<sp/>{</highlight></codeline>
-<codeline lineno="1691"><highlight class="normal"></highlight></codeline>
-<codeline lineno="1692"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">if</highlight><highlight class="normal">(!databaseAlreadySet)</highlight></codeline>
-<codeline lineno="1693"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">throw</highlight><highlight class="normal"><sp/>KukaduException(</highlight><highlight class="stringliteral">&quot;(SensingController::callClassifier)<sp/>database<sp/>not<sp/>defined<sp/>yet&quot;</highlight><highlight class="normal">);</highlight></codeline>
-<codeline lineno="1694"><highlight class="normal"></highlight></codeline>
-<codeline lineno="1695"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal"><sp/>callClassifier(tmpPath<sp/>+<sp/></highlight><highlight class="stringliteral">&quot;hapticTest/&quot;</highlight><highlight class="normal"><sp/>+<sp/>queues.at(0)-&gt;getRobotFileName()<sp/>+<sp/></highlight><highlight class="stringliteral">&quot;_0&quot;</highlight><highlight class="normal">);</highlight></codeline>
-<codeline lineno="1696"><highlight class="normal"></highlight></codeline>
-<codeline lineno="1697"><highlight class="normal"><sp/><sp/><sp/><sp/>}</highlight></codeline>
-<codeline lineno="1698"><highlight class="normal"></highlight></codeline>
-<codeline lineno="1699"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/>SensingController::performClassification()<sp/>{</highlight></codeline>
-<codeline lineno="1700"><highlight class="normal"></highlight></codeline>
-<codeline lineno="1701"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>KUKADU_MODULE_START_USAGE();</highlight></codeline>
-<codeline lineno="1702"><highlight class="normal"></highlight></codeline>
-<codeline lineno="1703"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">if</highlight><highlight class="normal">(!databaseAlreadySet)</highlight></codeline>
-<codeline lineno="1704"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">throw</highlight><highlight class="normal"><sp/>KukaduException(</highlight><highlight class="stringliteral">&quot;(SensingController::performClassification)<sp/>database<sp/>not<sp/>defined<sp/>yet&quot;</highlight><highlight class="normal">);</highlight></codeline>
-<codeline lineno="1705"><highlight class="normal"></highlight></codeline>
-<codeline lineno="1706"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/>classifierRes<sp/>=<sp/>-1;</highlight></codeline>
-<codeline lineno="1707"><highlight class="normal"></highlight></codeline>
-<codeline lineno="1708"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>KUKADU_SHARED_PTR&lt;kukadu_thread&gt;<sp/>cleanupThread;</highlight></codeline>
-<codeline lineno="1709"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">if</highlight><highlight class="normal">(!getSimulationMode())<sp/>{</highlight></codeline>
-<codeline lineno="1710"><highlight class="normal"></highlight></codeline>
-<codeline lineno="1711"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/>executeIt<sp/>=<sp/>1;</highlight></codeline>
-<codeline lineno="1712"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/>temporaryHapticMode<sp/>=<sp/>hapticMode;</highlight></codeline>
-<codeline lineno="1713"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>cout<sp/>&lt;&lt;<sp/></highlight><highlight class="stringliteral">&quot;(SensingController)<sp/>selected<sp/>sensing<sp/>action<sp/>is<sp/>\&quot;&quot;</highlight><highlight class="normal"><sp/>&lt;&lt;<sp/>getCaption()<sp/>&lt;&lt;<sp/></highlight><highlight class="stringliteral">&quot;\&quot;&quot;</highlight><highlight class="normal"><sp/>&lt;&lt;<sp/>endl;</highlight></codeline>
-<codeline lineno="1714"><highlight class="normal"></highlight><highlight class="comment">//<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>cin<sp/>&gt;&gt;<sp/>executeIt;</highlight><highlight class="normal"></highlight></codeline>
-<codeline lineno="1715"><highlight class="normal"></highlight></codeline>
-<codeline lineno="1716"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">if</highlight><highlight class="normal">(executeIt<sp/>==<sp/>1)<sp/>{</highlight></codeline>
-<codeline lineno="1717"><highlight class="normal"></highlight></codeline>
-<codeline lineno="1718"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>pf::remove_all(tmpPath<sp/>+<sp/></highlight><highlight class="stringliteral">&quot;hapticTest&quot;</highlight><highlight class="normal">);</highlight></codeline>
-<codeline lineno="1719"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>gatherData(tmpPath,<sp/></highlight><highlight class="stringliteral">&quot;hapticTest&quot;</highlight><highlight class="normal">);</highlight></codeline>
-<codeline lineno="1720"><highlight class="normal"></highlight></codeline>
-<codeline lineno="1721"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="comment">//<sp/>start<sp/>clean<sp/>up<sp/>in<sp/>a<sp/>separate<sp/>thread</highlight><highlight class="normal"></highlight></codeline>
-<codeline lineno="1722"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>cleanupThread<sp/>=<sp/>make_shared&lt;kukadu_thread&gt;(&amp;SensingController::cleanUp,<sp/></highlight><highlight class="keyword">this</highlight><highlight class="normal">);</highlight></codeline>
-<codeline lineno="1723"><highlight class="normal"></highlight></codeline>
-<codeline lineno="1724"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>stringstream<sp/>s;</highlight></codeline>
-<codeline lineno="1725"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>s<sp/>&lt;&lt;<sp/>tmpPath<sp/>&lt;&lt;<sp/></highlight><highlight class="stringliteral">&quot;hapticTest_&quot;</highlight><highlight class="normal"><sp/>&lt;&lt;<sp/>queues.at(0)-&gt;getRobotFileName()<sp/>&lt;&lt;<sp/></highlight><highlight class="stringliteral">&quot;_0_&quot;</highlight><highlight class="normal"><sp/>&lt;&lt;<sp/>currentIterationNum;</highlight></codeline>
-<codeline lineno="1726"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>copyFile(tmpPath<sp/>+<sp/></highlight><highlight class="stringliteral">&quot;hapticTest/&quot;</highlight><highlight class="normal"><sp/>+<sp/>queues.at(0)-&gt;getRobotFileName()<sp/>+<sp/></highlight><highlight class="stringliteral">&quot;_0&quot;</highlight><highlight class="normal">,<sp/>s.str());</highlight></codeline>
-<codeline lineno="1727"><highlight class="normal"></highlight></codeline>
-<codeline lineno="1728"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>}<sp/></highlight><highlight class="keywordflow">else</highlight><highlight class="normal"><sp/>{</highlight></codeline>
-<codeline lineno="1729"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">if</highlight><highlight class="normal">(!isShutUp)<sp/>{</highlight></codeline>
-<codeline lineno="1730"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>cout<sp/>&lt;&lt;<sp/></highlight><highlight class="stringliteral">&quot;(SensinController)<sp/>you<sp/>decided<sp/>not<sp/>to<sp/>perform<sp/>the<sp/>action&quot;</highlight><highlight class="normal"><sp/>&lt;&lt;<sp/>endl;</highlight></codeline>
-<codeline lineno="1731"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>cout<sp/>&lt;&lt;<sp/></highlight><highlight class="stringliteral">&quot;(SensinController)<sp/>switching<sp/>temporarily<sp/>to<sp/>haptic<sp/>mode<sp/>HAPTIC_MODE_TERMINAL;<sp/>continue&quot;</highlight><highlight class="normal"><sp/>&lt;&lt;<sp/>endl;</highlight></codeline>
-<codeline lineno="1732"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>}</highlight></codeline>
-<codeline lineno="1733"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>temporaryHapticMode<sp/>=<sp/>SensingController::HAPTIC_MODE_TERMINAL;</highlight></codeline>
-<codeline lineno="1734"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>}</highlight></codeline>
-<codeline lineno="1735"><highlight class="normal"></highlight></codeline>
-<codeline lineno="1736"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">if</highlight><highlight class="normal">(temporaryHapticMode<sp/>==<sp/>SensingController::HAPTIC_MODE_TERMINAL)<sp/>{</highlight></codeline>
-<codeline lineno="1737"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>cout<sp/>&lt;&lt;<sp/></highlight><highlight class="stringliteral">&quot;(SensingController)<sp/>what<sp/>was<sp/>the<sp/>haptic<sp/>result?<sp/>[0,<sp/>&quot;</highlight><highlight class="normal"><sp/>&lt;&lt;<sp/>(getStateCount()<sp/>-<sp/>1)<sp/>&lt;&lt;<sp/></highlight><highlight class="stringliteral">&quot;]&quot;</highlight><highlight class="normal"><sp/>&lt;&lt;<sp/>endl;</highlight></codeline>
-<codeline lineno="1738"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>cin<sp/>&gt;&gt;<sp/>classifierRes;</highlight></codeline>
-<codeline lineno="1739"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>}<sp/></highlight><highlight class="keywordflow">else</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordflow">if</highlight><highlight class="normal">(temporaryHapticMode<sp/>==<sp/>SensingController::HAPTIC_MODE_CLASSIFIER)<sp/>{</highlight></codeline>
-<codeline lineno="1740"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">auto</highlight><highlight class="normal"><sp/>res<sp/>=<sp/>callClassifier(tmpPath<sp/>+<sp/></highlight><highlight class="stringliteral">&quot;hapticTest/&quot;</highlight><highlight class="normal"><sp/>+<sp/>queues.at(0)-&gt;getRobotFileName()<sp/>+<sp/></highlight><highlight class="stringliteral">&quot;_0&quot;</highlight><highlight class="normal">);</highlight></codeline>
-<codeline lineno="1741"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>classifierRes<sp/>=<sp/>res;</highlight></codeline>
-<codeline lineno="1742"><highlight class="normal"></highlight></codeline>
-<codeline lineno="1743"><highlight class="normal"></highlight><highlight class="comment">/*</highlight></codeline>
-<codeline lineno="1744"><highlight class="comment"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>cout<sp/>&lt;&lt;<sp/>&quot;is<sp/>the<sp/>result<sp/>&quot;<sp/>&lt;&lt;<sp/>classifierRes<sp/>&lt;&lt;<sp/>&quot;<sp/>correct?<sp/>(1<sp/>=<sp/>yes,<sp/>0<sp/>=<sp/>no)&quot;<sp/>&lt;&lt;<sp/>endl;</highlight></codeline>
-<codeline lineno="1745"><highlight class="comment"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>int<sp/>corr;</highlight></codeline>
-<codeline lineno="1746"><highlight class="comment"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>cin<sp/>&gt;&gt;<sp/>corr;</highlight></codeline>
-<codeline lineno="1747"><highlight class="comment"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>if(!corr)<sp/>{</highlight></codeline>
-<codeline lineno="1748"><highlight class="comment"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>cout<sp/>&lt;&lt;<sp/>&quot;what<sp/>was<sp/>the<sp/>correct<sp/>result?&quot;<sp/>&lt;&lt;<sp/>endl;</highlight></codeline>
-<codeline lineno="1749"><highlight class="comment"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>cin<sp/>&gt;&gt;<sp/>classifierRes;</highlight></codeline>
-<codeline lineno="1750"><highlight class="comment"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>}</highlight></codeline>
-<codeline lineno="1751"><highlight class="comment">*/</highlight><highlight class="normal"></highlight></codeline>
-<codeline lineno="1752"><highlight class="normal"></highlight></codeline>
-<codeline lineno="1753"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>}<sp/></highlight><highlight class="keywordflow">else</highlight><highlight class="normal"><sp/>{</highlight></codeline>
-<codeline lineno="1754"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">throw</highlight><highlight class="normal"><sp/>KukaduException(</highlight><highlight class="stringliteral">&quot;haptic<sp/>mode<sp/>not<sp/>known&quot;</highlight><highlight class="normal">);</highlight></codeline>
-<codeline lineno="1755"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>}</highlight></codeline>
-<codeline lineno="1756"><highlight class="normal"></highlight></codeline>
-<codeline lineno="1757"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>pf::remove_all(tmpPath<sp/>+<sp/></highlight><highlight class="stringliteral">&quot;hapticTest&quot;</highlight><highlight class="normal">);</highlight></codeline>
-<codeline lineno="1758"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>++currentIterationNum;</highlight></codeline>
+<codeline lineno="1607"><highlight class="normal"><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline lineno="1608"><highlight class="normal"></highlight></codeline>
+<codeline lineno="1609"><highlight class="normal"><sp/><sp/><sp/><sp/>KUKADU_SHARED_PTR&lt;kukadu_mersenne_twister&gt;<sp/>SensingController::getGenerator()<sp/>{</highlight></codeline>
+<codeline lineno="1610"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal"><sp/>generator;</highlight></codeline>
+<codeline lineno="1611"><highlight class="normal"><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline lineno="1612"><highlight class="normal"></highlight></codeline>
+<codeline lineno="1613"><highlight class="normal"><sp/><sp/><sp/><sp/>std::vector&lt;KUKADU_SHARED_PTR&lt;ControlQueue&gt;<sp/>&gt;<sp/>SensingController::getQueues()<sp/>{</highlight></codeline>
+<codeline lineno="1614"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal"><sp/>queues;</highlight></codeline>
+<codeline lineno="1615"><highlight class="normal"><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline lineno="1616"><highlight class="normal"></highlight></codeline>
+<codeline lineno="1617"><highlight class="normal"><sp/><sp/><sp/><sp/>std::vector&lt;KUKADU_SHARED_PTR&lt;GenericHand&gt;<sp/>&gt;<sp/>SensingController::getHands()<sp/>{</highlight></codeline>
+<codeline lineno="1618"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal"><sp/>hands;</highlight></codeline>
+<codeline lineno="1619"><highlight class="normal"><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline lineno="1620"><highlight class="normal"></highlight></codeline>
+<codeline lineno="1621"><highlight class="normal"><sp/><sp/><sp/><sp/>std::string<sp/>SensingController::getTmpPath()<sp/>{</highlight></codeline>
+<codeline lineno="1622"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal"><sp/>tmpPath;</highlight></codeline>
+<codeline lineno="1623"><highlight class="normal"><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline lineno="1624"><highlight class="normal"></highlight></codeline>
+<codeline lineno="1625"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/>SensingController::getHapticMode()<sp/>{</highlight></codeline>
+<codeline lineno="1626"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal"><sp/>hapticMode;</highlight></codeline>
+<codeline lineno="1627"><highlight class="normal"><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline lineno="1628"><highlight class="normal"></highlight></codeline>
+<codeline lineno="1629"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">double</highlight><highlight class="normal"><sp/>SensingController::getSimClassificationPrecision()<sp/>{</highlight></codeline>
+<codeline lineno="1630"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal"><sp/>simulatedClassificationPrecision;</highlight></codeline>
+<codeline lineno="1631"><highlight class="normal"><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline lineno="1632"><highlight class="normal"></highlight></codeline>
+<codeline lineno="1633"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/>SensingController::gatherData(std::string<sp/>dataBasePath,<sp/>std::string<sp/>dataName)<sp/>{</highlight></codeline>
+<codeline lineno="1634"><highlight class="normal"></highlight></codeline>
+<codeline lineno="1635"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>KUKADU_MODULE_START_USAGE();</highlight></codeline>
+<codeline lineno="1636"><highlight class="normal"></highlight></codeline>
+<codeline lineno="1637"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">if</highlight><highlight class="normal">(!fileExists(dataBasePath))</highlight></codeline>
+<codeline lineno="1638"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>createDirectory(dataBasePath);</highlight></codeline>
+<codeline lineno="1639"><highlight class="normal"></highlight></codeline>
+<codeline lineno="1640"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>gatherData(dataBasePath<sp/>+<sp/>dataName);</highlight></codeline>
+<codeline lineno="1641"><highlight class="normal"></highlight></codeline>
+<codeline lineno="1642"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>KUKADU_MODULE_END_USAGE();</highlight></codeline>
+<codeline lineno="1643"><highlight class="normal"></highlight></codeline>
+<codeline lineno="1644"><highlight class="normal"><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline lineno="1645"><highlight class="normal"></highlight></codeline>
+<codeline lineno="1646"><highlight class="normal"><sp/><sp/><sp/><sp/>std::string<sp/>SensingController::getDatabasePath()<sp/>{</highlight></codeline>
+<codeline lineno="1647"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal"><sp/>databasePath;</highlight></codeline>
+<codeline lineno="1648"><highlight class="normal"><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline lineno="1649"><highlight class="normal"></highlight></codeline>
+<codeline lineno="1650"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/>SensingController::setDatabasePath(std::string<sp/>databasePath)<sp/>{</highlight></codeline>
+<codeline lineno="1651"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>this-&gt;databasePath<sp/>=<sp/>databasePath;</highlight></codeline>
+<codeline lineno="1652"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>databaseAlreadySet<sp/>=<sp/></highlight><highlight class="keyword">true</highlight><highlight class="normal">;</highlight></codeline>
+<codeline lineno="1653"><highlight class="normal"><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline lineno="1654"><highlight class="normal"></highlight></codeline>
+<codeline lineno="1655"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/>SensingController::gatherData(std::string<sp/>completePath)<sp/>{</highlight></codeline>
+<codeline lineno="1656"><highlight class="normal"></highlight></codeline>
+<codeline lineno="1657"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>KUKADU_MODULE_START_USAGE();</highlight></codeline>
+<codeline lineno="1658"><highlight class="normal"></highlight></codeline>
+<codeline lineno="1659"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>vector&lt;KUKADU_SHARED_PTR&lt;ControlQueue&gt;<sp/>&gt;<sp/>castedQueues;</highlight></codeline>
+<codeline lineno="1660"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">for</highlight><highlight class="normal">(</highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/>i<sp/>=<sp/>0;<sp/>i<sp/>&lt;<sp/>queues.size();<sp/>++i)<sp/>{</highlight></codeline>
+<codeline lineno="1661"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>KUKADU_SHARED_PTR&lt;ControlQueue&gt;<sp/>queue<sp/>=<sp/>queues.at(i);</highlight></codeline>
+<codeline lineno="1662"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>castedQueues.push_back(queue);</highlight></codeline>
+<codeline lineno="1663"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline lineno="1664"><highlight class="normal"></highlight></codeline>
+<codeline lineno="1665"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>SensorStorage<sp/>store(dbStorage,<sp/>castedQueues,<sp/>hands,<sp/>100);</highlight></codeline>
+<codeline lineno="1666"><highlight class="normal"></highlight></codeline>
+<codeline lineno="1667"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>prepare();</highlight></codeline>
+<codeline lineno="1668"><highlight class="normal"></highlight></codeline>
+<codeline lineno="1669"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>store.startDataStorage(completePath);</highlight></codeline>
+<codeline lineno="1670"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>performCore();</highlight></codeline>
+<codeline lineno="1671"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>store.stopDataStorage();</highlight></codeline>
+<codeline lineno="1672"><highlight class="normal"></highlight></codeline>
+<codeline lineno="1673"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>KUKADU_MODULE_END_USAGE();</highlight></codeline>
+<codeline lineno="1674"><highlight class="normal"></highlight></codeline>
+<codeline lineno="1675"><highlight class="normal"><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline lineno="1676"><highlight class="normal"></highlight></codeline>
+<codeline lineno="1677"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/>SensingController::getStateCount()<sp/>{</highlight></codeline>
+<codeline lineno="1678"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal"><sp/>stateCount;</highlight></codeline>
+<codeline lineno="1679"><highlight class="normal"><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline lineno="1680"><highlight class="normal"></highlight></codeline>
+<codeline lineno="1681"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/>SensingController::setStateCount(</highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">int</highlight><highlight class="normal">&amp;<sp/>stateCount)<sp/>{</highlight></codeline>
+<codeline lineno="1682"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>this-&gt;stateCount<sp/>=<sp/>stateCount;</highlight></codeline>
+<codeline lineno="1683"><highlight class="normal"><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline lineno="1684"><highlight class="normal"></highlight></codeline>
+<codeline lineno="1685"><highlight class="normal"><sp/><sp/><sp/><sp/>std::string<sp/>SensingController::getFirstRobotFileName()<sp/>{</highlight></codeline>
+<codeline lineno="1686"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal"><sp/>queues.at(0)-&gt;getRobotFileName();</highlight></codeline>
+<codeline lineno="1687"><highlight class="normal"><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline lineno="1688"><highlight class="normal"></highlight></codeline>
+<codeline lineno="1689"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/>SensingController::callClassifier()<sp/>{</highlight></codeline>
+<codeline lineno="1690"><highlight class="normal"></highlight></codeline>
+<codeline lineno="1691"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">if</highlight><highlight class="normal">(!databaseAlreadySet)</highlight></codeline>
+<codeline lineno="1692"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">throw</highlight><highlight class="normal"><sp/>KukaduException(</highlight><highlight class="stringliteral">&quot;(SensingController::callClassifier)<sp/>database<sp/>not<sp/>defined<sp/>yet&quot;</highlight><highlight class="normal">);</highlight></codeline>
+<codeline lineno="1693"><highlight class="normal"></highlight></codeline>
+<codeline lineno="1694"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal"><sp/>callClassifier(tmpPath<sp/>+<sp/></highlight><highlight class="stringliteral">&quot;hapticTest/&quot;</highlight><highlight class="normal"><sp/>+<sp/>queues.at(0)-&gt;getRobotFileName()<sp/>+<sp/></highlight><highlight class="stringliteral">&quot;_0&quot;</highlight><highlight class="normal">);</highlight></codeline>
+<codeline lineno="1695"><highlight class="normal"></highlight></codeline>
+<codeline lineno="1696"><highlight class="normal"><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline lineno="1697"><highlight class="normal"></highlight></codeline>
+<codeline lineno="1698"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/>SensingController::performClassification()<sp/>{</highlight></codeline>
+<codeline lineno="1699"><highlight class="normal"></highlight></codeline>
+<codeline lineno="1700"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>KUKADU_MODULE_START_USAGE();</highlight></codeline>
+<codeline lineno="1701"><highlight class="normal"></highlight></codeline>
+<codeline lineno="1702"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">if</highlight><highlight class="normal">(!databaseAlreadySet)</highlight></codeline>
+<codeline lineno="1703"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">throw</highlight><highlight class="normal"><sp/>KukaduException(</highlight><highlight class="stringliteral">&quot;(SensingController::performClassification)<sp/>database<sp/>not<sp/>defined<sp/>yet&quot;</highlight><highlight class="normal">);</highlight></codeline>
+<codeline lineno="1704"><highlight class="normal"></highlight></codeline>
+<codeline lineno="1705"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/>classifierRes<sp/>=<sp/>-1;</highlight></codeline>
+<codeline lineno="1706"><highlight class="normal"></highlight></codeline>
+<codeline lineno="1707"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>KUKADU_SHARED_PTR&lt;kukadu_thread&gt;<sp/>cleanupThread;</highlight></codeline>
+<codeline lineno="1708"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">if</highlight><highlight class="normal">(!getSimulationMode())<sp/>{</highlight></codeline>
+<codeline lineno="1709"><highlight class="normal"></highlight></codeline>
+<codeline lineno="1710"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/>executeIt<sp/>=<sp/>1;</highlight></codeline>
+<codeline lineno="1711"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/>temporaryHapticMode<sp/>=<sp/>hapticMode;</highlight></codeline>
+<codeline lineno="1712"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>cout<sp/>&lt;&lt;<sp/></highlight><highlight class="stringliteral">&quot;(SensingController)<sp/>selected<sp/>sensing<sp/>action<sp/>is<sp/>\&quot;&quot;</highlight><highlight class="normal"><sp/>&lt;&lt;<sp/>getCaption()<sp/>&lt;&lt;<sp/></highlight><highlight class="stringliteral">&quot;\&quot;&quot;</highlight><highlight class="normal"><sp/>&lt;&lt;<sp/>endl;</highlight></codeline>
+<codeline lineno="1713"><highlight class="normal"></highlight><highlight class="comment">//<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>cin<sp/>&gt;&gt;<sp/>executeIt;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="1714"><highlight class="normal"></highlight></codeline>
+<codeline lineno="1715"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">if</highlight><highlight class="normal">(executeIt<sp/>==<sp/>1)<sp/>{</highlight></codeline>
+<codeline lineno="1716"><highlight class="normal"></highlight></codeline>
+<codeline lineno="1717"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>pf::remove_all(tmpPath<sp/>+<sp/></highlight><highlight class="stringliteral">&quot;hapticTest&quot;</highlight><highlight class="normal">);</highlight></codeline>
+<codeline lineno="1718"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>gatherData(tmpPath,<sp/></highlight><highlight class="stringliteral">&quot;hapticTest&quot;</highlight><highlight class="normal">);</highlight></codeline>
+<codeline lineno="1719"><highlight class="normal"></highlight></codeline>
+<codeline lineno="1720"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="comment">//<sp/>start<sp/>clean<sp/>up<sp/>in<sp/>a<sp/>separate<sp/>thread</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="1721"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>cleanupThread<sp/>=<sp/>make_shared&lt;kukadu_thread&gt;(&amp;SensingController::cleanUp,<sp/></highlight><highlight class="keyword">this</highlight><highlight class="normal">);</highlight></codeline>
+<codeline lineno="1722"><highlight class="normal"></highlight></codeline>
+<codeline lineno="1723"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>stringstream<sp/>s;</highlight></codeline>
+<codeline lineno="1724"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>s<sp/>&lt;&lt;<sp/>tmpPath<sp/>&lt;&lt;<sp/></highlight><highlight class="stringliteral">&quot;hapticTest_&quot;</highlight><highlight class="normal"><sp/>&lt;&lt;<sp/>queues.at(0)-&gt;getRobotFileName()<sp/>&lt;&lt;<sp/></highlight><highlight class="stringliteral">&quot;_0_&quot;</highlight><highlight class="normal"><sp/>&lt;&lt;<sp/>currentIterationNum;</highlight></codeline>
+<codeline lineno="1725"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>copyFile(tmpPath<sp/>+<sp/></highlight><highlight class="stringliteral">&quot;hapticTest/&quot;</highlight><highlight class="normal"><sp/>+<sp/>queues.at(0)-&gt;getRobotFileName()<sp/>+<sp/></highlight><highlight class="stringliteral">&quot;_0&quot;</highlight><highlight class="normal">,<sp/>s.str());</highlight></codeline>
+<codeline lineno="1726"><highlight class="normal"></highlight></codeline>
+<codeline lineno="1727"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>}<sp/></highlight><highlight class="keywordflow">else</highlight><highlight class="normal"><sp/>{</highlight></codeline>
+<codeline lineno="1728"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">if</highlight><highlight class="normal">(!isShutUp)<sp/>{</highlight></codeline>
+<codeline lineno="1729"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>cout<sp/>&lt;&lt;<sp/></highlight><highlight class="stringliteral">&quot;(SensinController)<sp/>you<sp/>decided<sp/>not<sp/>to<sp/>perform<sp/>the<sp/>action&quot;</highlight><highlight class="normal"><sp/>&lt;&lt;<sp/>endl;</highlight></codeline>
+<codeline lineno="1730"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>cout<sp/>&lt;&lt;<sp/></highlight><highlight class="stringliteral">&quot;(SensinController)<sp/>switching<sp/>temporarily<sp/>to<sp/>haptic<sp/>mode<sp/>HAPTIC_MODE_TERMINAL;<sp/>continue&quot;</highlight><highlight class="normal"><sp/>&lt;&lt;<sp/>endl;</highlight></codeline>
+<codeline lineno="1731"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline lineno="1732"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>temporaryHapticMode<sp/>=<sp/>SensingController::HAPTIC_MODE_TERMINAL;</highlight></codeline>
+<codeline lineno="1733"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline lineno="1734"><highlight class="normal"></highlight></codeline>
+<codeline lineno="1735"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">if</highlight><highlight class="normal">(temporaryHapticMode<sp/>==<sp/>SensingController::HAPTIC_MODE_TERMINAL)<sp/>{</highlight></codeline>
+<codeline lineno="1736"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>cout<sp/>&lt;&lt;<sp/></highlight><highlight class="stringliteral">&quot;(SensingController)<sp/>what<sp/>was<sp/>the<sp/>haptic<sp/>result?<sp/>[0,<sp/>&quot;</highlight><highlight class="normal"><sp/>&lt;&lt;<sp/>(getStateCount()<sp/>-<sp/>1)<sp/>&lt;&lt;<sp/></highlight><highlight class="stringliteral">&quot;]&quot;</highlight><highlight class="normal"><sp/>&lt;&lt;<sp/>endl;</highlight></codeline>
+<codeline lineno="1737"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>cin<sp/>&gt;&gt;<sp/>classifierRes;</highlight></codeline>
+<codeline lineno="1738"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>}<sp/></highlight><highlight class="keywordflow">else</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordflow">if</highlight><highlight class="normal">(temporaryHapticMode<sp/>==<sp/>SensingController::HAPTIC_MODE_CLASSIFIER)<sp/>{</highlight></codeline>
+<codeline lineno="1739"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">auto</highlight><highlight class="normal"><sp/>res<sp/>=<sp/>callClassifier(tmpPath<sp/>+<sp/></highlight><highlight class="stringliteral">&quot;hapticTest/&quot;</highlight><highlight class="normal"><sp/>+<sp/>queues.at(0)-&gt;getRobotFileName()<sp/>+<sp/></highlight><highlight class="stringliteral">&quot;_0&quot;</highlight><highlight class="normal">);</highlight></codeline>
+<codeline lineno="1740"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>classifierRes<sp/>=<sp/>res;</highlight></codeline>
+<codeline lineno="1741"><highlight class="normal"></highlight></codeline>
+<codeline lineno="1742"><highlight class="normal"></highlight><highlight class="comment">/*</highlight></codeline>
+<codeline lineno="1743"><highlight class="comment"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>cout<sp/>&lt;&lt;<sp/>&quot;is<sp/>the<sp/>result<sp/>&quot;<sp/>&lt;&lt;<sp/>classifierRes<sp/>&lt;&lt;<sp/>&quot;<sp/>correct?<sp/>(1<sp/>=<sp/>yes,<sp/>0<sp/>=<sp/>no)&quot;<sp/>&lt;&lt;<sp/>endl;</highlight></codeline>
+<codeline lineno="1744"><highlight class="comment"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>int<sp/>corr;</highlight></codeline>
+<codeline lineno="1745"><highlight class="comment"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>cin<sp/>&gt;&gt;<sp/>corr;</highlight></codeline>
+<codeline lineno="1746"><highlight class="comment"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>if(!corr)<sp/>{</highlight></codeline>
+<codeline lineno="1747"><highlight class="comment"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>cout<sp/>&lt;&lt;<sp/>&quot;what<sp/>was<sp/>the<sp/>correct<sp/>result?&quot;<sp/>&lt;&lt;<sp/>endl;</highlight></codeline>
+<codeline lineno="1748"><highlight class="comment"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>cin<sp/>&gt;&gt;<sp/>classifierRes;</highlight></codeline>
+<codeline lineno="1749"><highlight class="comment"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline lineno="1750"><highlight class="comment">*/</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="1751"><highlight class="normal"></highlight></codeline>
+<codeline lineno="1752"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>}<sp/></highlight><highlight class="keywordflow">else</highlight><highlight class="normal"><sp/>{</highlight></codeline>
+<codeline lineno="1753"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">throw</highlight><highlight class="normal"><sp/>KukaduException(</highlight><highlight class="stringliteral">&quot;haptic<sp/>mode<sp/>not<sp/>known&quot;</highlight><highlight class="normal">);</highlight></codeline>
+<codeline lineno="1754"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline lineno="1755"><highlight class="normal"></highlight></codeline>
+<codeline lineno="1756"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>pf::remove_all(tmpPath<sp/>+<sp/></highlight><highlight class="stringliteral">&quot;hapticTest&quot;</highlight><highlight class="normal">);</highlight></codeline>
+<codeline lineno="1757"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>++currentIterationNum;</highlight></codeline>
+<codeline lineno="1758"><highlight class="normal"></highlight></codeline>
 <codeline lineno="1759"><highlight class="normal"></highlight></codeline>
-<codeline lineno="1760"><highlight class="normal"></highlight></codeline>
-<codeline lineno="1761"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>}<sp/></highlight><highlight class="keywordflow">else</highlight><highlight class="normal"><sp/>{</highlight></codeline>
-<codeline lineno="1762"><highlight class="normal"></highlight></codeline>
-<codeline lineno="1763"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="comment">//<sp/>this<sp/>is<sp/>here<sp/>for<sp/>simulating<sp/>a<sp/>non-perfect<sp/>classifier</highlight><highlight class="normal"></highlight></codeline>
-<codeline lineno="1764"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>vector&lt;double&gt;<sp/>precisionProbVec;</highlight></codeline>
-<codeline lineno="1765"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>precisionProbVec.push_back((</highlight><highlight class="keywordtype">double</highlight><highlight class="normal">)<sp/>simulatedClassificationPrecision);</highlight></codeline>
-<codeline lineno="1766"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>precisionProbVec.push_back((</highlight><highlight class="keywordtype">double</highlight><highlight class="normal">)<sp/>(100<sp/>-<sp/>simulatedClassificationPrecision));</highlight></codeline>
-<codeline lineno="1767"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>KUKADU_DISCRETE_DISTRIBUTION&lt;int&gt;<sp/>precisionProb(precisionProbVec.begin(),<sp/>precisionProbVec.end());</highlight></codeline>
-<codeline lineno="1768"><highlight class="normal"></highlight></codeline>
-<codeline lineno="1769"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/>correctClass<sp/>=<sp/>precisionProb(*generator);</highlight></codeline>
-<codeline lineno="1770"><highlight class="normal"></highlight></codeline>
-<codeline lineno="1771"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="comment">//<sp/>simulate<sp/>correct<sp/>classification</highlight><highlight class="normal"></highlight></codeline>
-<codeline lineno="1772"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">if</highlight><highlight class="normal">(!correctClass)</highlight></codeline>
-<codeline lineno="1773"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>classifierRes<sp/>=<sp/>simulationGroundTruth;</highlight></codeline>
-<codeline lineno="1774"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">else</highlight><highlight class="normal"><sp/>{</highlight></codeline>
-<codeline lineno="1775"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="comment">//<sp/>classify<sp/>it<sp/>wrongly<sp/>(random)</highlight><highlight class="normal"></highlight></codeline>
-<codeline lineno="1776"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>classifierRes<sp/>=<sp/>simulationGroundTruth;</highlight></codeline>
-<codeline lineno="1777"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">while</highlight><highlight class="normal">(classifierRes<sp/>==<sp/>simulationGroundTruth)</highlight></codeline>
-<codeline lineno="1778"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>classifierRes<sp/>=<sp/>createRandomGroundTruthIdx();</highlight></codeline>
-<codeline lineno="1779"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>}</highlight></codeline>
-<codeline lineno="1780"><highlight class="normal"></highlight></codeline>
-<codeline lineno="1781"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>}</highlight></codeline>
-<codeline lineno="1782"><highlight class="normal"></highlight></codeline>
-<codeline lineno="1783"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">if</highlight><highlight class="normal">(cleanupThread<sp/>&amp;&amp;<sp/>cleanupThread-&gt;joinable())</highlight></codeline>
-<codeline lineno="1784"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>cleanupThread-&gt;join();</highlight></codeline>
-<codeline lineno="1785"><highlight class="normal"></highlight></codeline>
-<codeline lineno="1786"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>KUKADU_MODULE_END_USAGE();</highlight></codeline>
-<codeline lineno="1787"><highlight class="normal"></highlight></codeline>
-<codeline lineno="1788"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal"><sp/>classifierRes;</highlight></codeline>
-<codeline lineno="1789"><highlight class="normal"></highlight></codeline>
-<codeline lineno="1790"><highlight class="normal"><sp/><sp/><sp/><sp/>}</highlight></codeline>
-<codeline lineno="1791"><highlight class="normal"></highlight></codeline>
-<codeline lineno="1792"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/>SensingController::getSimulationGroundTruthIdx()<sp/>{</highlight></codeline>
-<codeline lineno="1793"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal"><sp/>simulationGroundTruth;</highlight></codeline>
-<codeline lineno="1794"><highlight class="normal"><sp/><sp/><sp/><sp/>}</highlight></codeline>
-<codeline lineno="1795"><highlight class="normal"></highlight></codeline>
-<codeline lineno="1796"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/>SensingController::createRandomGroundTruthIdx()<sp/>{</highlight></codeline>
-<codeline lineno="1797"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>vector&lt;int&gt;<sp/>randValues;</highlight></codeline>
-<codeline lineno="1798"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">for</highlight><highlight class="normal">(</highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/>i<sp/>=<sp/>0;<sp/>i<sp/>&lt;<sp/>getStateCount();<sp/>++i)</highlight></codeline>
-<codeline lineno="1799"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>randValues.push_back(1);</highlight></codeline>
-<codeline lineno="1800"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>classifierDist<sp/>=<sp/>KUKADU_DISCRETE_DISTRIBUTION&lt;int&gt;(randValues.begin(),randValues.end());</highlight></codeline>
-<codeline lineno="1801"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal"><sp/>classifierDist(*generator);</highlight></codeline>
-<codeline lineno="1802"><highlight class="normal"><sp/><sp/><sp/><sp/>}</highlight></codeline>
-<codeline lineno="1803"><highlight class="normal"></highlight></codeline>
-<codeline lineno="1804"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/>SensingController::setSimulationClassificationPrecision(</highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/>percent)<sp/>{</highlight></codeline>
-<codeline lineno="1805"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>simulatedClassificationPrecision<sp/>=<sp/>percent;</highlight></codeline>
-<codeline lineno="1806"><highlight class="normal"><sp/><sp/><sp/><sp/>}</highlight></codeline>
-<codeline lineno="1807"><highlight class="normal"></highlight></codeline>
-<codeline lineno="1808"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/>SensingController::setSimulationGroundTruth(</highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/>idx)<sp/>{</highlight></codeline>
-<codeline lineno="1809"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>simulationGroundTruth<sp/>=<sp/>idx;</highlight></codeline>
-<codeline lineno="1810"><highlight class="normal"><sp/><sp/><sp/><sp/>}</highlight></codeline>
-<codeline lineno="1811"><highlight class="normal"></highlight></codeline>
-<codeline lineno="1812"><highlight class="normal"><sp/><sp/><sp/><sp/>std::pair&lt;std::vector&lt;int&gt;,<sp/>std::vector&lt;arma::mat&gt;<sp/>&gt;<sp/>loadClassificationData(std::vector&lt;int&gt;<sp/>classIds,<sp/>std::vector&lt;std::string&gt;<sp/>fileNames)<sp/>{</highlight></codeline>
-<codeline lineno="1813"><highlight class="normal"></highlight></codeline>
-<codeline lineno="1814"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>vector&lt;mat&gt;<sp/>sampleVectors;</highlight></codeline>
-<codeline lineno="1815"><highlight class="normal"></highlight></codeline>
-<codeline lineno="1816"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">for</highlight><highlight class="normal">(</highlight><highlight class="keyword">auto</highlight><highlight class="normal">&amp;<sp/>fileName<sp/>:<sp/>fileNames)<sp/>{</highlight></codeline>
-<codeline lineno="1817"><highlight class="normal"></highlight></codeline>
-<codeline lineno="1818"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">auto</highlight><highlight class="normal"><sp/>sensorData<sp/>=<sp/>readDmpData(fileName,<sp/></highlight><highlight class="keyword">false</highlight><highlight class="normal">).second;</highlight></codeline>
-<codeline lineno="1819"><highlight class="normal"></highlight></codeline>
-<codeline lineno="1820"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>mat<sp/>concatenatedData;</highlight></codeline>
-<codeline lineno="1821"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="comment">//<sp/>not<sp/>very<sp/>efficient</highlight><highlight class="normal"></highlight></codeline>
-<codeline lineno="1822"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">for</highlight><highlight class="normal">(</highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/>i<sp/>=<sp/>0;<sp/>i<sp/>&lt;<sp/>sensorData.n_rows;<sp/>++i)</highlight></codeline>
-<codeline lineno="1823"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>concatenatedData<sp/>=<sp/>join_rows(concatenatedData,<sp/>sensorData.row(i));</highlight></codeline>
-<codeline lineno="1824"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>sampleVectors.push_back(concatenatedData);</highlight></codeline>
-<codeline lineno="1825"><highlight class="normal"></highlight></codeline>
-<codeline lineno="1826"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>}</highlight></codeline>
-<codeline lineno="1827"><highlight class="normal"></highlight></codeline>
-<codeline lineno="1828"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="comment">//<sp/>find<sp/>the<sp/>minimum<sp/>length<sp/>of<sp/>all<sp/>files<sp/>(thats<sp/>the<sp/>length<sp/>we<sp/>will<sp/>be<sp/>able<sp/>to<sp/>use</highlight><highlight class="normal"></highlight></codeline>
-<codeline lineno="1829"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/>minDim<sp/>=<sp/>std::numeric_limits&lt;int&gt;::max();</highlight></codeline>
-<codeline lineno="1830"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">for</highlight><highlight class="normal">(</highlight><highlight class="keyword">auto</highlight><highlight class="normal">&amp;<sp/>sample<sp/>:<sp/>sampleVectors)</highlight></codeline>
-<codeline lineno="1831"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>minDim<sp/>=<sp/>std::min(minDim,<sp/>(</highlight><highlight class="keywordtype">int</highlight><highlight class="normal">)<sp/>sample.n_cols);</highlight></codeline>
-<codeline lineno="1832"><highlight class="normal"></highlight></codeline>
-<codeline lineno="1833"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>vector&lt;int&gt;<sp/>uniqueClassIds;</highlight></codeline>
-<codeline lineno="1834"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>vector&lt;mat&gt;<sp/>samples;</highlight></codeline>
-<codeline lineno="1835"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="comment">//<sp/>initialize<sp/>the<sp/>data<sp/>for<sp/>all<sp/>classes</highlight><highlight class="normal"></highlight></codeline>
-<codeline lineno="1836"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">for</highlight><highlight class="normal">(</highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/>i<sp/>=<sp/>0;<sp/>i<sp/>&lt;<sp/>classIds.size();<sp/>++i)<sp/>{</highlight></codeline>
-<codeline lineno="1837"><highlight class="normal"></highlight></codeline>
-<codeline lineno="1838"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>mat<sp/>reducedSample<sp/>=<sp/>sampleVectors.at(i).cols(0,<sp/>minDim<sp/>-<sp/>1);</highlight></codeline>
-<codeline lineno="1839"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">auto</highlight><highlight class="normal"><sp/>currentClassId<sp/>=<sp/>classIds.at(i);</highlight></codeline>
-<codeline lineno="1840"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">auto</highlight><highlight class="normal"><sp/>currentIdIt<sp/>=<sp/>std::find(uniqueClassIds.begin(),<sp/>uniqueClassIds.end(),<sp/>currentClassId);</highlight></codeline>
-<codeline lineno="1841"><highlight class="normal"></highlight></codeline>
-<codeline lineno="1842"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">if</highlight><highlight class="normal">(currentIdIt<sp/>==<sp/>uniqueClassIds.end())<sp/>{</highlight></codeline>
-<codeline lineno="1843"><highlight class="normal"></highlight></codeline>
-<codeline lineno="1844"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>uniqueClassIds.push_back(currentClassId);</highlight></codeline>
-<codeline lineno="1845"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>currentIdIt<sp/>=<sp/>uniqueClassIds.end()<sp/>-<sp/>1;</highlight></codeline>
-<codeline lineno="1846"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>samples.push_back(reducedSample);</highlight></codeline>
-<codeline lineno="1847"><highlight class="normal"></highlight></codeline>
-<codeline lineno="1848"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>}<sp/></highlight><highlight class="keywordflow">else</highlight><highlight class="normal"><sp/>{</highlight></codeline>
-<codeline lineno="1849"><highlight class="normal"></highlight></codeline>
-<codeline lineno="1850"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/>currentIdIdx<sp/>=<sp/>(int)<sp/>(currentIdIt<sp/>-<sp/>uniqueClassIds.begin());</highlight></codeline>
-<codeline lineno="1851"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>samples.at(currentIdIdx)<sp/>=<sp/>join_cols(samples.at(currentIdIdx),<sp/>reducedSample);</highlight></codeline>
-<codeline lineno="1852"><highlight class="normal"></highlight></codeline>
-<codeline lineno="1853"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>}</highlight></codeline>
-<codeline lineno="1854"><highlight class="normal"></highlight></codeline>
-<codeline lineno="1855"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>}</highlight></codeline>
-<codeline lineno="1856"><highlight class="normal"></highlight></codeline>
-<codeline lineno="1857"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal"><sp/>{uniqueClassIds,<sp/>samples};</highlight></codeline>
-<codeline lineno="1858"><highlight class="normal"></highlight></codeline>
-<codeline lineno="1859"><highlight class="normal"><sp/><sp/><sp/><sp/>}</highlight></codeline>
-<codeline lineno="1860"><highlight class="normal"></highlight></codeline>
-<codeline lineno="1861"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/>SensingController::setParentComplexController(KUKADU_SHARED_PTR&lt;kukadu::Controller&gt;<sp/>parent)<sp/>{</highlight></codeline>
-<codeline lineno="1862"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>parentController<sp/>=<sp/>KUKADU_DYNAMIC_POINTER_CAST&lt;ComplexController&gt;(parent);</highlight></codeline>
-<codeline lineno="1863"><highlight class="normal"><sp/><sp/><sp/><sp/>}</highlight></codeline>
-<codeline lineno="1864"><highlight class="normal"></highlight></codeline>
-<codeline lineno="1865"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">double</highlight><highlight class="normal"><sp/>SensingController::createDataBase(</highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/>perceptualStateId)<sp/>{</highlight></codeline>
-<codeline lineno="1866"><highlight class="normal"></highlight></codeline>
-<codeline lineno="1867"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>KUKADU_MODULE_START_USAGE();</highlight></codeline>
-<codeline lineno="1868"><highlight class="normal"></highlight></codeline>
-<codeline lineno="1869"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">if</highlight><highlight class="normal">(requiresDatabase())<sp/>{</highlight></codeline>
-<codeline lineno="1870"><highlight class="normal"></highlight></codeline>
-<codeline lineno="1871"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">if</highlight><highlight class="normal">(!databaseAlreadySet)</highlight></codeline>
-<codeline lineno="1872"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">throw</highlight><highlight class="normal"><sp/>KukaduException(</highlight><highlight class="stringliteral">&quot;(SensingController::createDataBase)<sp/>database<sp/>not<sp/>defined<sp/>yet&quot;</highlight><highlight class="normal">);</highlight></codeline>
-<codeline lineno="1873"><highlight class="normal"></highlight></codeline>
-<codeline lineno="1874"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/>numClasses<sp/>=<sp/>getStateCount();</highlight></codeline>
-<codeline lineno="1875"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">string</highlight><highlight class="normal"><sp/>path<sp/>=<sp/>getDatabasePath();</highlight></codeline>
-<codeline lineno="1876"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>vector&lt;pair&lt;int,<sp/>string&gt;<sp/>&gt;<sp/>collectedSamples;</highlight></codeline>
-<codeline lineno="1877"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">if</highlight><highlight class="normal">(!isShutUp)</highlight></codeline>
-<codeline lineno="1878"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>cout<sp/>&lt;&lt;<sp/></highlight><highlight class="stringliteral">&quot;(SensingController)<sp/>data<sp/>is<sp/>stored<sp/>to<sp/>&quot;</highlight><highlight class="normal"><sp/>&lt;&lt;<sp/>path<sp/>&lt;&lt;<sp/>endl;</highlight></codeline>
-<codeline lineno="1879"><highlight class="normal"></highlight></codeline>
-<codeline lineno="1880"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">bool</highlight><highlight class="normal"><sp/>databaseExisted<sp/>=<sp/>fileExists(path);</highlight></codeline>
-<codeline lineno="1881"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">if</highlight><highlight class="normal">(!databaseExisted)<sp/>{</highlight></codeline>
-<codeline lineno="1882"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">if</highlight><highlight class="normal">(!isShutUp)</highlight></codeline>
-<codeline lineno="1883"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>cout<sp/>&lt;&lt;<sp/></highlight><highlight class="stringliteral">&quot;(SensingController)<sp/>folder<sp/>doesn&apos;t<sp/>exist<sp/>-<sp/>create&quot;</highlight><highlight class="normal"><sp/>&lt;&lt;<sp/>endl;</highlight></codeline>
-<codeline lineno="1884"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>createDirectory(path);</highlight></codeline>
-<codeline lineno="1885"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>}</highlight></codeline>
-<codeline lineno="1886"><highlight class="normal"></highlight></codeline>
-<codeline lineno="1887"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>vector&lt;int&gt;<sp/>sampleIds;</highlight></codeline>
-<codeline lineno="1888"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">for</highlight><highlight class="normal">(</highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/>i<sp/>=<sp/>0;<sp/>i<sp/>&lt;<sp/>numClasses;<sp/>++i)</highlight></codeline>
-<codeline lineno="1889"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>sampleIds.push_back(0);</highlight></codeline>
-<codeline lineno="1890"><highlight class="normal"></highlight></codeline>
-<codeline lineno="1891"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">if</highlight><highlight class="normal">(databaseExisted)<sp/>{</highlight></codeline>
-<codeline lineno="1892"><highlight class="normal"></highlight></codeline>
-<codeline lineno="1893"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>ifstream<sp/>labelsFile;</highlight></codeline>
-<codeline lineno="1894"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>labelsFile.open((path<sp/>+<sp/></highlight><highlight class="stringliteral">&quot;/labels&quot;</highlight><highlight class="normal">).c_str());</highlight></codeline>
-<codeline lineno="1895"><highlight class="normal"></highlight></codeline>
-<codeline lineno="1896"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">string</highlight><highlight class="normal"><sp/>line;</highlight></codeline>
-<codeline lineno="1897"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">while</highlight><highlight class="normal">(getline(labelsFile,<sp/>line))<sp/>{</highlight></codeline>
-<codeline lineno="1898"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>KukaduTokenizer<sp/>tok(line);</highlight></codeline>
-<codeline lineno="1899"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>tok.next();</highlight></codeline>
-<codeline lineno="1900"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/>classId<sp/>=<sp/>atoi(tok.next().c_str());</highlight></codeline>
-<codeline lineno="1901"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>sampleIds.at(classId)++;</highlight></codeline>
-<codeline lineno="1902"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>}</highlight></codeline>
-<codeline lineno="1903"><highlight class="normal"></highlight></codeline>
-<codeline lineno="1904"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>labelsFile.close();</highlight></codeline>
-<codeline lineno="1905"><highlight class="normal"></highlight></codeline>
-<codeline lineno="1906"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>}</highlight></codeline>
-<codeline lineno="1907"><highlight class="normal"></highlight></codeline>
-<codeline lineno="1908"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/>minSampleCount<sp/>=<sp/>10;</highlight></codeline>
-<codeline lineno="1909"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">for</highlight><highlight class="normal">(</highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/>i<sp/>=<sp/>0;<sp/>i<sp/>&lt;<sp/>sampleIds.size();<sp/>++i)<sp/>{</highlight></codeline>
-<codeline lineno="1910"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">if</highlight><highlight class="normal">(sampleIds.at(i)<sp/>==<sp/>-1)<sp/>{</highlight></codeline>
-<codeline lineno="1911"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>perceptualStateId<sp/>=<sp/>i;</highlight></codeline>
-<codeline lineno="1912"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">break</highlight><highlight class="normal">;</highlight></codeline>
-<codeline lineno="1913"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>}<sp/></highlight><highlight class="keywordflow">else</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordflow">if</highlight><highlight class="normal">(sampleIds.at(i)<sp/>&lt;<sp/>minSampleCount)<sp/>{</highlight></codeline>
-<codeline lineno="1914"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>cout<sp/>&lt;&lt;<sp/></highlight><highlight class="stringliteral">&quot;(SensingController)<sp/>you<sp/>have<sp/>less<sp/>than<sp/>&quot;</highlight><highlight class="normal"><sp/>&lt;&lt;<sp/>minSampleCount<sp/>&lt;&lt;<sp/></highlight><highlight class="stringliteral">&quot;<sp/>samples<sp/>for<sp/>state<sp/>&quot;</highlight><highlight class="normal"><sp/>&lt;&lt;<sp/>i<sp/>&lt;&lt;<sp/></highlight><highlight class="stringliteral">&quot;<sp/>under<sp/>sensing<sp/>action<sp/>&quot;</highlight><highlight class="normal"><sp/>&lt;&lt;<sp/>getCaption()<sp/>&lt;&lt;</highlight></codeline>
-<codeline lineno="1915"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="stringliteral">&quot;.<sp/>do<sp/>you<sp/>want<sp/>to<sp/>collect<sp/>more?<sp/>(0<sp/>=<sp/>no,<sp/>1<sp/>=<sp/>yes)&quot;</highlight><highlight class="normal"><sp/>&lt;&lt;<sp/>endl;</highlight></codeline>
-<codeline lineno="1916"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/>answer;</highlight></codeline>
-<codeline lineno="1917"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>cin<sp/>&gt;&gt;<sp/>answer;</highlight></codeline>
-<codeline lineno="1918"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">if</highlight><highlight class="normal">(answer<sp/>==<sp/>1)</highlight></codeline>
-<codeline lineno="1919"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>perceptualStateId<sp/>=<sp/>i;</highlight></codeline>
-<codeline lineno="1920"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">break</highlight><highlight class="normal">;</highlight></codeline>
-<codeline lineno="1921"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>}</highlight></codeline>
-<codeline lineno="1922"><highlight class="normal"></highlight></codeline>
-<codeline lineno="1923"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>}</highlight></codeline>
-<codeline lineno="1924"><highlight class="normal"></highlight></codeline>
-<codeline lineno="1925"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">if</highlight><highlight class="normal">(!databaseExisted<sp/>||<sp/>perceptualStateId<sp/>!=<sp/>-1)<sp/>{</highlight></codeline>
-<codeline lineno="1926"><highlight class="normal"></highlight></codeline>
-<codeline lineno="1927"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="comment">//<sp/>create<sp/>the<sp/>database</highlight><highlight class="normal"></highlight></codeline>
-<codeline lineno="1928"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">if</highlight><highlight class="normal">(!isShutUp)</highlight></codeline>
-<codeline lineno="1929"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>cout<sp/>&lt;&lt;<sp/></highlight><highlight class="stringliteral">&quot;(SensingController)<sp/>&quot;</highlight><highlight class="normal"><sp/>&lt;&lt;<sp/>getCaption()<sp/>&lt;&lt;<sp/></highlight><highlight class="stringliteral">&quot;<sp/>offers<sp/>&quot;</highlight><highlight class="normal"><sp/>&lt;&lt;<sp/>numClasses<sp/>&lt;&lt;<sp/></highlight><highlight class="stringliteral">&quot;<sp/>classes&quot;</highlight><highlight class="normal"><sp/>&lt;&lt;<sp/>endl;</highlight></codeline>
-<codeline lineno="1930"><highlight class="normal"></highlight></codeline>
-<codeline lineno="1931"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>ofstream<sp/>labelFile;</highlight></codeline>
-<codeline lineno="1932"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>labelFile.open((path<sp/>+<sp/></highlight><highlight class="stringliteral">&quot;labels&quot;</highlight><highlight class="normal">).c_str(),<sp/>std::ios_base::app);</highlight></codeline>
-<codeline lineno="1933"><highlight class="normal"></highlight></codeline>
-<codeline lineno="1934"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">if</highlight><highlight class="normal">(perceptualStateId<sp/>==<sp/>-1)</highlight></codeline>
-<codeline lineno="1935"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>perceptualStateId<sp/>=<sp/>0;</highlight></codeline>
-<codeline lineno="1936"><highlight class="normal"></highlight></codeline>
-<codeline lineno="1937"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">for</highlight><highlight class="normal">(</highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/>currClass<sp/>=<sp/>perceptualStateId;<sp/>currClass<sp/>&lt;<sp/>numClasses;<sp/>++currClass)<sp/>{</highlight></codeline>
-<codeline lineno="1938"><highlight class="normal"></highlight></codeline>
-<codeline lineno="1939"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">if</highlight><highlight class="normal">(currClass<sp/>!=<sp/>perceptualStateId)</highlight></codeline>
-<codeline lineno="1940"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>KUKADU_DYNAMIC_POINTER_CAST&lt;ComplexController&gt;(parentController)-&gt;prepareNextState(shared_from_this(),<sp/>currClass);</highlight></codeline>
-<codeline lineno="1941"><highlight class="normal"></highlight></codeline>
-<codeline lineno="1942"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/>cont<sp/>=<sp/>1;</highlight></codeline>
-<codeline lineno="1943"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">for</highlight><highlight class="normal">(</highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/>sampleNum<sp/>=<sp/>sampleIds.at(currClass)<sp/>+<sp/>1;<sp/>cont<sp/>==<sp/>1;<sp/>++sampleNum)<sp/>{</highlight></codeline>
-<codeline lineno="1944"><highlight class="normal"></highlight></codeline>
-<codeline lineno="1945"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>cout<sp/>&lt;&lt;<sp/></highlight><highlight class="stringliteral">&quot;(SensingController)<sp/>collecting<sp/>sample<sp/>number<sp/>&quot;</highlight><highlight class="normal"><sp/>&lt;&lt;<sp/>sampleNum<sp/>&lt;&lt;<sp/></highlight><highlight class="stringliteral">&quot;<sp/>for<sp/>class<sp/>&quot;</highlight><highlight class="normal"><sp/>&lt;&lt;<sp/>currClass<sp/>&lt;&lt;<sp/></highlight><highlight class="stringliteral">&quot;<sp/>with<sp/>sensing<sp/>controller<sp/>&quot;</highlight><highlight class="normal"><sp/>&lt;&lt;<sp/>this-&gt;getCaption()<sp/>&lt;&lt;<sp/>endl;</highlight></codeline>
-<codeline lineno="1946"><highlight class="normal"></highlight></codeline>
-<codeline lineno="1947"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>stringstream<sp/>s;</highlight></codeline>
-<codeline lineno="1948"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>s<sp/>&lt;&lt;<sp/></highlight><highlight class="stringliteral">&quot;class_&quot;</highlight><highlight class="normal"><sp/>&lt;&lt;<sp/>currClass<sp/>&lt;&lt;<sp/></highlight><highlight class="stringliteral">&quot;_sample_&quot;</highlight><highlight class="normal"><sp/>&lt;&lt;<sp/>sampleNum;</highlight></codeline>
-<codeline lineno="1949"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">string</highlight><highlight class="normal"><sp/>relativePath<sp/>=<sp/>s.str();</highlight></codeline>
-<codeline lineno="1950"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">string</highlight><highlight class="normal"><sp/>relativeClassifyPath<sp/>=<sp/>relativePath<sp/>+<sp/></highlight><highlight class="stringliteral">&quot;/&quot;</highlight><highlight class="normal"><sp/>+<sp/>getFirstRobotFileName()<sp/>+<sp/></highlight><highlight class="stringliteral">&quot;_0&quot;</highlight><highlight class="normal">;</highlight></codeline>
-<codeline lineno="1951"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">string</highlight><highlight class="normal"><sp/>nextSamplePath<sp/>=<sp/>path<sp/>+<sp/>relativePath;</highlight></codeline>
-<codeline lineno="1952"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>gatherData(nextSamplePath);</highlight></codeline>
-<codeline lineno="1953"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>cleanUp();</highlight></codeline>
-<codeline lineno="1954"><highlight class="normal"></highlight></codeline>
-<codeline lineno="1955"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>collectedSamples.push_back(pair&lt;int,<sp/>string&gt;(currClass,<sp/>relativeClassifyPath));</highlight></codeline>
-<codeline lineno="1956"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>labelFile<sp/>&lt;&lt;<sp/>relativeClassifyPath<sp/>&lt;&lt;<sp/></highlight><highlight class="stringliteral">&quot;<sp/>&quot;</highlight><highlight class="normal"><sp/>&lt;&lt;<sp/>currClass<sp/>&lt;&lt;<sp/>endl;</highlight></codeline>
-<codeline lineno="1957"><highlight class="normal"></highlight></codeline>
-<codeline lineno="1958"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>cout<sp/>&lt;&lt;<sp/></highlight><highlight class="stringliteral">&quot;(SensingController)<sp/>want<sp/>to<sp/>collect<sp/>another<sp/>sample<sp/>for<sp/>class<sp/>&quot;</highlight><highlight class="normal"><sp/>&lt;&lt;<sp/>currClass<sp/>&lt;&lt;<sp/></highlight><highlight class="stringliteral">&quot;?<sp/>(0<sp/>=<sp/>no<sp/>/<sp/>1<sp/>=<sp/>yes):<sp/>&quot;</highlight><highlight class="normal">;</highlight></codeline>
-<codeline lineno="1959"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>cin<sp/>&gt;&gt;<sp/>cont;</highlight></codeline>
-<codeline lineno="1960"><highlight class="normal"></highlight></codeline>
-<codeline lineno="1961"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>}</highlight></codeline>
-<codeline lineno="1962"><highlight class="normal"></highlight></codeline>
-<codeline lineno="1963"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>}</highlight></codeline>
-<codeline lineno="1964"><highlight class="normal"></highlight></codeline>
-<codeline lineno="1965"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>labelFile.close();</highlight></codeline>
-<codeline lineno="1966"><highlight class="normal"></highlight></codeline>
-<codeline lineno="1967"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>}<sp/></highlight><highlight class="keywordflow">else</highlight><highlight class="normal"></highlight></codeline>
-<codeline lineno="1968"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">if</highlight><highlight class="normal">(!isShutUp)</highlight></codeline>
-<codeline lineno="1969"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>cout<sp/>&lt;&lt;<sp/></highlight><highlight class="stringliteral">&quot;(SensingController)<sp/>database<sp/>for<sp/>controller<sp/>&quot;</highlight><highlight class="normal"><sp/>&lt;&lt;<sp/>getCaption()<sp/>&lt;&lt;<sp/></highlight><highlight class="stringliteral">&quot;<sp/>exists<sp/>-<sp/>no<sp/>collection<sp/>required&quot;</highlight><highlight class="normal"><sp/>&lt;&lt;<sp/>endl;</highlight></codeline>
-<codeline lineno="1970"><highlight class="normal"></highlight></codeline>
-<codeline lineno="1971"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>ifstream<sp/>labelsFile;</highlight></codeline>
-<codeline lineno="1972"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>labelsFile.open((path<sp/>+<sp/></highlight><highlight class="stringliteral">&quot;/labels&quot;</highlight><highlight class="normal">).c_str());</highlight></codeline>
-<codeline lineno="1973"><highlight class="normal"></highlight></codeline>
-<codeline lineno="1974"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">string</highlight><highlight class="normal"><sp/>line;</highlight></codeline>
-<codeline lineno="1975"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>vector&lt;int&gt;<sp/>classIds;</highlight></codeline>
-<codeline lineno="1976"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>vector&lt;string&gt;<sp/>fileNames;</highlight></codeline>
-<codeline lineno="1977"><highlight class="normal"></highlight></codeline>
-<codeline lineno="1978"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="comment">//<sp/>load<sp/>all<sp/>the<sp/>files<sp/>and<sp/>concatenated<sp/>the<sp/>rows<sp/>for<sp/>each<sp/>file</highlight><highlight class="normal"></highlight></codeline>
-<codeline lineno="1979"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">while</highlight><highlight class="normal">(getline(labelsFile,<sp/>line))<sp/>{</highlight></codeline>
-<codeline lineno="1980"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>KukaduTokenizer<sp/>tok(line);</highlight></codeline>
-<codeline lineno="1981"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">auto</highlight><highlight class="normal"><sp/>filePath<sp/>=<sp/>tok.next();</highlight></codeline>
-<codeline lineno="1982"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">if</highlight><highlight class="normal">(filePath<sp/>!=<sp/></highlight><highlight class="stringliteral">&quot;&quot;</highlight><highlight class="normal">)<sp/>{</highlight></codeline>
-<codeline lineno="1983"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">auto</highlight><highlight class="normal"><sp/>classId<sp/>=<sp/>atoi(tok.next().c_str());</highlight></codeline>
-<codeline lineno="1984"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>classIds.push_back(classId);</highlight></codeline>
-<codeline lineno="1985"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>fileNames.push_back(path<sp/>+<sp/></highlight><highlight class="stringliteral">&quot;/&quot;</highlight><highlight class="normal"><sp/>+<sp/>filePath);</highlight></codeline>
-<codeline lineno="1986"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>}</highlight></codeline>
-<codeline lineno="1987"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>}</highlight></codeline>
-<codeline lineno="1988"><highlight class="normal"></highlight></codeline>
-<codeline lineno="1989"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">auto</highlight><highlight class="normal"><sp/>loadedData<sp/>=<sp/>loadClassificationData(classIds,<sp/>fileNames);</highlight></codeline>
-<codeline lineno="1990"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">auto</highlight><highlight class="normal"><sp/>uniqueClassIds<sp/>=<sp/>loadedData.first;</highlight></codeline>
-<codeline lineno="1991"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">auto</highlight><highlight class="normal"><sp/>samples<sp/>=<sp/>loadedData.second;</highlight></codeline>
-<codeline lineno="1992"><highlight class="normal"></highlight></codeline>
-<codeline lineno="1993"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>classifier<sp/>=<sp/>make_shared&lt;LibSvm&gt;(uniqueClassIds,<sp/>samples);</highlight></codeline>
-<codeline lineno="1994"><highlight class="normal"></highlight></codeline>
-<codeline lineno="1995"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="comment">//<sp/>if<sp/>no<sp/>classifier<sp/>file<sp/>exists</highlight><highlight class="normal"></highlight></codeline>
-<codeline lineno="1996"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">if</highlight><highlight class="normal">(!fileExists(path<sp/>+<sp/></highlight><highlight class="stringliteral">&quot;classRes&quot;</highlight><highlight class="normal">))<sp/>{</highlight></codeline>
-<codeline lineno="1997"><highlight class="normal"></highlight></codeline>
-<codeline lineno="1998"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>cout<sp/>&lt;&lt;<sp/></highlight><highlight class="stringliteral">&quot;(SensingController)<sp/>determinining<sp/>confidence...&quot;</highlight><highlight class="normal"><sp/>&lt;&lt;<sp/>endl;</highlight></codeline>
-<codeline lineno="1999"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">double</highlight><highlight class="normal"><sp/>confidence<sp/>=<sp/>classifier-&gt;crossValidate();</highlight></codeline>
-<codeline lineno="2000"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>cout<sp/>&lt;&lt;<sp/></highlight><highlight class="stringliteral">&quot;(SensingController)<sp/>found<sp/>a<sp/>confidence<sp/>of<sp/>&quot;</highlight><highlight class="normal"><sp/>&lt;&lt;<sp/>confidence<sp/>&lt;&lt;<sp/>endl;</highlight></codeline>
-<codeline lineno="2001"><highlight class="normal"></highlight></codeline>
-<codeline lineno="2002"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>ofstream<sp/>ofile;</highlight></codeline>
-<codeline lineno="2003"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>ofile.open((path<sp/>+<sp/></highlight><highlight class="stringliteral">&quot;classRes&quot;</highlight><highlight class="normal">).c_str());</highlight></codeline>
-<codeline lineno="2004"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>ofile<sp/>&lt;&lt;<sp/>confidence<sp/>&lt;&lt;<sp/>endl;</highlight></codeline>
-<codeline lineno="2005"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>ofile.close();</highlight></codeline>
-<codeline lineno="2006"><highlight class="normal"></highlight></codeline>
-<codeline lineno="2007"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>}</highlight></codeline>
-<codeline lineno="2008"><highlight class="normal"></highlight></codeline>
-<codeline lineno="2009"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>classifier-&gt;train();</highlight></codeline>
-<codeline lineno="2010"><highlight class="normal"></highlight></codeline>
-<codeline lineno="2011"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>ifstream<sp/>infile;</highlight></codeline>
-<codeline lineno="2012"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>infile.open((path<sp/>+<sp/></highlight><highlight class="stringliteral">&quot;classRes&quot;</highlight><highlight class="normal">).c_str());</highlight></codeline>
-<codeline lineno="2013"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">double</highlight><highlight class="normal"><sp/>confidence<sp/>=<sp/>0.0;</highlight></codeline>
-<codeline lineno="2014"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>infile<sp/>&gt;&gt;<sp/>confidence;</highlight></codeline>
-<codeline lineno="2015"><highlight class="normal"></highlight></codeline>
-<codeline lineno="2016"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">if</highlight><highlight class="normal">(!isShutUp)</highlight></codeline>
-<codeline lineno="2017"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>cout<sp/>&lt;&lt;<sp/></highlight><highlight class="stringliteral">&quot;(SensingController)<sp/>determined<sp/>a<sp/>confidence<sp/>of<sp/>&quot;</highlight><highlight class="normal"><sp/>&lt;&lt;<sp/>confidence<sp/>&lt;&lt;<sp/>endl;</highlight></codeline>
-<codeline lineno="2018"><highlight class="normal"></highlight></codeline>
-<codeline lineno="2019"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal"><sp/>confidence;</highlight></codeline>
-<codeline lineno="2020"><highlight class="normal"></highlight></codeline>
-<codeline lineno="2021"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>}</highlight></codeline>
-<codeline lineno="2022"><highlight class="normal"></highlight></codeline>
-<codeline lineno="2023"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal"><sp/>1.0;</highlight></codeline>
-<codeline lineno="2024"><highlight class="normal"></highlight></codeline>
-<codeline lineno="2025"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>KUKADU_MODULE_END_USAGE();</highlight></codeline>
-<codeline lineno="2026"><highlight class="normal"></highlight></codeline>
-<codeline lineno="2027"><highlight class="normal"><sp/><sp/><sp/><sp/>}</highlight></codeline>
-<codeline lineno="2028"><highlight class="normal"></highlight></codeline>
-<codeline lineno="2029"><highlight class="normal"><sp/><sp/><sp/><sp/>KUKADU_SHARED_PTR&lt;ControllerResult&gt;<sp/>SensingController::executeInternal()<sp/>{</highlight></codeline>
-<codeline lineno="2030"><highlight class="normal"></highlight></codeline>
-<codeline lineno="2031"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>KUKADU_MODULE_START_USAGE();</highlight></codeline>
-<codeline lineno="2032"><highlight class="normal"></highlight></codeline>
-<codeline lineno="2033"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>prepare();</highlight></codeline>
-<codeline lineno="2034"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>performCore();</highlight></codeline>
-<codeline lineno="2035"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>cleanUp();</highlight></codeline>
-<codeline lineno="2036"><highlight class="normal"></highlight></codeline>
-<codeline lineno="2037"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>KUKADU_MODULE_END_USAGE();</highlight></codeline>
-<codeline lineno="2038"><highlight class="normal"></highlight></codeline>
-<codeline lineno="2039"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal"><sp/>KUKADU_SHARED_PTR&lt;ControllerResult&gt;();</highlight></codeline>
-<codeline lineno="2040"><highlight class="normal"></highlight></codeline>
-<codeline lineno="2041"><highlight class="normal"><sp/><sp/><sp/><sp/>}</highlight></codeline>
-<codeline lineno="2042"><highlight class="normal"></highlight></codeline>
-<codeline lineno="2043"><highlight class="normal"><sp/><sp/><sp/><sp/>arma::vec<sp/>fitToDim(arma::mat<sp/>v,<sp/></highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/>dim)<sp/>{</highlight></codeline>
-<codeline lineno="2044"><highlight class="normal"></highlight></codeline>
-<codeline lineno="2045"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">if</highlight><highlight class="normal">(v.n_cols<sp/>&gt;<sp/>dim)</highlight></codeline>
-<codeline lineno="2046"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal"><sp/>v.cols(0,<sp/>dim<sp/>-<sp/>1).t();</highlight></codeline>
-<codeline lineno="2047"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">else</highlight><highlight class="normal"><sp/>{</highlight></codeline>
-<codeline lineno="2048"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>arma::vec<sp/>retVec(dim);</highlight></codeline>
-<codeline lineno="2049"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">for</highlight><highlight class="normal">(</highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/>i<sp/>=<sp/>0;<sp/>i<sp/>&lt;<sp/>dim;<sp/>++i)</highlight></codeline>
-<codeline lineno="2050"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">if</highlight><highlight class="normal">(i<sp/>&lt;<sp/>v.n_cols)</highlight></codeline>
-<codeline lineno="2051"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>retVec(i)<sp/>=<sp/>v(i);</highlight></codeline>
-<codeline lineno="2052"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">else</highlight><highlight class="normal"></highlight></codeline>
-<codeline lineno="2053"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>retVec(i)<sp/>=<sp/>v(v.n_cols-<sp/>1);</highlight></codeline>
-<codeline lineno="2054"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal"><sp/>retVec;</highlight></codeline>
-<codeline lineno="2055"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>}</highlight></codeline>
-<codeline lineno="2056"><highlight class="normal"></highlight></codeline>
-<codeline lineno="2057"><highlight class="normal"><sp/><sp/><sp/><sp/>}</highlight></codeline>
-<codeline lineno="2058"><highlight class="normal"></highlight></codeline>
-<codeline lineno="2059"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/>SensingController::hardcodedClassification()<sp/>{</highlight></codeline>
-<codeline lineno="2060"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">throw</highlight><highlight class="normal"><sp/>KukaduException(</highlight><highlight class="stringliteral">&quot;(SensingController)<sp/>custom<sp/>classification<sp/>procedure<sp/>has<sp/>to<sp/>be<sp/>written<sp/>if<sp/>no<sp/>database<sp/>is<sp/>needed&quot;</highlight><highlight class="normal">);</highlight></codeline>
-<codeline lineno="2061"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal"><sp/>0;</highlight></codeline>
-<codeline lineno="2062"><highlight class="normal"><sp/><sp/><sp/><sp/>}</highlight></codeline>
-<codeline lineno="2063"><highlight class="normal"></highlight></codeline>
-<codeline lineno="2064"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/>SensingController::callClassifier(std::string<sp/>passedFilePath)<sp/>{</highlight></codeline>
-<codeline lineno="2065"><highlight class="normal"></highlight></codeline>
-<codeline lineno="2066"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>KUKADU_MODULE_START_USAGE();</highlight></codeline>
-<codeline lineno="2067"><highlight class="normal"></highlight></codeline>
-<codeline lineno="2068"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/>res<sp/>=<sp/>0;</highlight></codeline>
-<codeline lineno="2069"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">if</highlight><highlight class="normal">(requiresDatabase())<sp/>{</highlight></codeline>
-<codeline lineno="2070"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">auto</highlight><highlight class="normal"><sp/>toClassify<sp/>=<sp/>loadClassificationData({0},<sp/>{passedFilePath});</highlight></codeline>
-<codeline lineno="2071"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>vec<sp/>toClassifyVec<sp/>=<sp/>fitToDim(toClassify.second.front(),<sp/>classifier-&gt;getSampleDimensionality());</highlight></codeline>
-<codeline lineno="2072"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>res<sp/>=<sp/>classifier-&gt;classify(toClassifyVec);</highlight></codeline>
-<codeline lineno="2073"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>}<sp/></highlight><highlight class="keywordflow">else</highlight><highlight class="normal"><sp/>{</highlight></codeline>
-<codeline lineno="2074"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>res<sp/>=<sp/>hardcodedClassification();</highlight></codeline>
-<codeline lineno="2075"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>}</highlight></codeline>
-<codeline lineno="2076"><highlight class="normal"></highlight></codeline>
-<codeline lineno="2077"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>KUKADU_MODULE_END_USAGE();</highlight></codeline>
-<codeline lineno="2078"><highlight class="normal"></highlight></codeline>
-<codeline lineno="2079"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal"><sp/>res;</highlight></codeline>
-<codeline lineno="2080"><highlight class="normal"></highlight></codeline>
-<codeline lineno="2081"><highlight class="normal"><sp/><sp/><sp/><sp/>}</highlight></codeline>
-<codeline lineno="2082"><highlight class="normal"></highlight></codeline>
-<codeline lineno="2083"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/>SensingController::writeLabelFile(std::string<sp/>baseFolderPath,<sp/>std::vector&lt;std::pair&lt;int,<sp/>std::string&gt;<sp/>&gt;<sp/>collectedSamples)<sp/>{</highlight></codeline>
-<codeline lineno="2084"><highlight class="normal"></highlight></codeline>
-<codeline lineno="2085"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>ofstream<sp/>outFile;</highlight></codeline>
-<codeline lineno="2086"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>outFile.open((baseFolderPath<sp/>+<sp/></highlight><highlight class="stringliteral">&quot;labels&quot;</highlight><highlight class="normal">).c_str());</highlight></codeline>
-<codeline lineno="2087"><highlight class="normal"></highlight></codeline>
-<codeline lineno="2088"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">for</highlight><highlight class="normal">(</highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/>i<sp/>=<sp/>0;<sp/>i<sp/>&lt;<sp/>collectedSamples.size();<sp/>++i)<sp/>{</highlight></codeline>
-<codeline lineno="2089"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>pair&lt;int,<sp/>string&gt;<sp/>sample<sp/>=<sp/>collectedSamples.at(i);</highlight></codeline>
-<codeline lineno="2090"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>outFile<sp/>&lt;&lt;<sp/>sample.second<sp/>&lt;&lt;<sp/></highlight><highlight class="stringliteral">&quot;<sp/>&quot;</highlight><highlight class="normal"><sp/>&lt;&lt;<sp/>sample.first<sp/>&lt;&lt;<sp/>endl;</highlight></codeline>
-<codeline lineno="2091"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>}</highlight></codeline>
-<codeline lineno="2092"><highlight class="normal"></highlight></codeline>
-<codeline lineno="2093"><highlight class="normal"><sp/><sp/><sp/><sp/>}</highlight></codeline>
-<codeline lineno="2094"><highlight class="normal"></highlight></codeline>
-<codeline lineno="2095"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">bool</highlight><highlight class="normal"><sp/>SensingController::requiresDatabase()<sp/>{</highlight></codeline>
-<codeline lineno="2096"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="comment">//<sp/>by<sp/>default<sp/>sensing<sp/>requires<sp/>a<sp/>database</highlight><highlight class="normal"></highlight></codeline>
-<codeline lineno="2097"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal"><sp/></highlight><highlight class="keyword">true</highlight><highlight class="normal">;</highlight></codeline>
-<codeline lineno="2098"><highlight class="normal"><sp/><sp/><sp/><sp/>}</highlight></codeline>
-<codeline lineno="2099"><highlight class="normal"></highlight></codeline>
-<codeline lineno="2100"><highlight class="normal">}</highlight></codeline>
+<codeline lineno="1760"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>}<sp/></highlight><highlight class="keywordflow">else</highlight><highlight class="normal"><sp/>{</highlight></codeline>
+<codeline lineno="1761"><highlight class="normal"></highlight></codeline>
+<codeline lineno="1762"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="comment">//<sp/>this<sp/>is<sp/>here<sp/>for<sp/>simulating<sp/>a<sp/>non-perfect<sp/>classifier</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="1763"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>vector&lt;double&gt;<sp/>precisionProbVec;</highlight></codeline>
+<codeline lineno="1764"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>precisionProbVec.push_back((</highlight><highlight class="keywordtype">double</highlight><highlight class="normal">)<sp/>simulatedClassificationPrecision);</highlight></codeline>
+<codeline lineno="1765"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>precisionProbVec.push_back((</highlight><highlight class="keywordtype">double</highlight><highlight class="normal">)<sp/>(100<sp/>-<sp/>simulatedClassificationPrecision));</highlight></codeline>
+<codeline lineno="1766"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>KUKADU_DISCRETE_DISTRIBUTION&lt;int&gt;<sp/>precisionProb(precisionProbVec.begin(),<sp/>precisionProbVec.end());</highlight></codeline>
+<codeline lineno="1767"><highlight class="normal"></highlight></codeline>
+<codeline lineno="1768"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/>correctClass<sp/>=<sp/>precisionProb(*generator);</highlight></codeline>
+<codeline lineno="1769"><highlight class="normal"></highlight></codeline>
+<codeline lineno="1770"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="comment">//<sp/>simulate<sp/>correct<sp/>classification</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="1771"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">if</highlight><highlight class="normal">(!correctClass)</highlight></codeline>
+<codeline lineno="1772"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>classifierRes<sp/>=<sp/>simulationGroundTruth;</highlight></codeline>
+<codeline lineno="1773"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">else</highlight><highlight class="normal"><sp/>{</highlight></codeline>
+<codeline lineno="1774"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="comment">//<sp/>classify<sp/>it<sp/>wrongly<sp/>(random)</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="1775"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>classifierRes<sp/>=<sp/>simulationGroundTruth;</highlight></codeline>
+<codeline lineno="1776"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">while</highlight><highlight class="normal">(classifierRes<sp/>==<sp/>simulationGroundTruth)</highlight></codeline>
+<codeline lineno="1777"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>classifierRes<sp/>=<sp/>createRandomGroundTruthIdx();</highlight></codeline>
+<codeline lineno="1778"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline lineno="1779"><highlight class="normal"></highlight></codeline>
+<codeline lineno="1780"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline lineno="1781"><highlight class="normal"></highlight></codeline>
+<codeline lineno="1782"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">if</highlight><highlight class="normal">(cleanupThread<sp/>&amp;&amp;<sp/>cleanupThread-&gt;joinable())</highlight></codeline>
+<codeline lineno="1783"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>cleanupThread-&gt;join();</highlight></codeline>
+<codeline lineno="1784"><highlight class="normal"></highlight></codeline>
+<codeline lineno="1785"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>KUKADU_MODULE_END_USAGE();</highlight></codeline>
+<codeline lineno="1786"><highlight class="normal"></highlight></codeline>
+<codeline lineno="1787"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal"><sp/>classifierRes;</highlight></codeline>
+<codeline lineno="1788"><highlight class="normal"></highlight></codeline>
+<codeline lineno="1789"><highlight class="normal"><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline lineno="1790"><highlight class="normal"></highlight></codeline>
+<codeline lineno="1791"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/>SensingController::getSimulationGroundTruthIdx()<sp/>{</highlight></codeline>
+<codeline lineno="1792"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal"><sp/>simulationGroundTruth;</highlight></codeline>
+<codeline lineno="1793"><highlight class="normal"><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline lineno="1794"><highlight class="normal"></highlight></codeline>
+<codeline lineno="1795"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/>SensingController::createRandomGroundTruthIdx()<sp/>{</highlight></codeline>
+<codeline lineno="1796"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>vector&lt;int&gt;<sp/>randValues;</highlight></codeline>
+<codeline lineno="1797"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">for</highlight><highlight class="normal">(</highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/>i<sp/>=<sp/>0;<sp/>i<sp/>&lt;<sp/>getStateCount();<sp/>++i)</highlight></codeline>
+<codeline lineno="1798"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>randValues.push_back(1);</highlight></codeline>
+<codeline lineno="1799"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>classifierDist<sp/>=<sp/>KUKADU_DISCRETE_DISTRIBUTION&lt;int&gt;(randValues.begin(),randValues.end());</highlight></codeline>
+<codeline lineno="1800"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal"><sp/>classifierDist(*generator);</highlight></codeline>
+<codeline lineno="1801"><highlight class="normal"><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline lineno="1802"><highlight class="normal"></highlight></codeline>
+<codeline lineno="1803"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/>SensingController::setSimulationClassificationPrecision(</highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/>percent)<sp/>{</highlight></codeline>
+<codeline lineno="1804"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>simulatedClassificationPrecision<sp/>=<sp/>percent;</highlight></codeline>
+<codeline lineno="1805"><highlight class="normal"><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline lineno="1806"><highlight class="normal"></highlight></codeline>
+<codeline lineno="1807"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/>SensingController::setSimulationGroundTruth(</highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/>idx)<sp/>{</highlight></codeline>
+<codeline lineno="1808"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>simulationGroundTruth<sp/>=<sp/>idx;</highlight></codeline>
+<codeline lineno="1809"><highlight class="normal"><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline lineno="1810"><highlight class="normal"></highlight></codeline>
+<codeline lineno="1811"><highlight class="normal"><sp/><sp/><sp/><sp/>std::pair&lt;std::vector&lt;int&gt;,<sp/>std::vector&lt;arma::mat&gt;<sp/>&gt;<sp/>loadClassificationData(std::vector&lt;int&gt;<sp/>classIds,<sp/>std::vector&lt;std::string&gt;<sp/>fileNames)<sp/>{</highlight></codeline>
+<codeline lineno="1812"><highlight class="normal"></highlight></codeline>
+<codeline lineno="1813"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>vector&lt;mat&gt;<sp/>sampleVectors;</highlight></codeline>
+<codeline lineno="1814"><highlight class="normal"></highlight></codeline>
+<codeline lineno="1815"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">for</highlight><highlight class="normal">(</highlight><highlight class="keyword">auto</highlight><highlight class="normal">&amp;<sp/>fileName<sp/>:<sp/>fileNames)<sp/>{</highlight></codeline>
+<codeline lineno="1816"><highlight class="normal"></highlight></codeline>
+<codeline lineno="1817"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">auto</highlight><highlight class="normal"><sp/>sensorData<sp/>=<sp/>readDmpData(fileName,<sp/></highlight><highlight class="keyword">false</highlight><highlight class="normal">).second;</highlight></codeline>
+<codeline lineno="1818"><highlight class="normal"></highlight></codeline>
+<codeline lineno="1819"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>mat<sp/>concatenatedData;</highlight></codeline>
+<codeline lineno="1820"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="comment">//<sp/>not<sp/>very<sp/>efficient</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="1821"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">for</highlight><highlight class="normal">(</highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/>i<sp/>=<sp/>0;<sp/>i<sp/>&lt;<sp/>sensorData.n_rows;<sp/>++i)</highlight></codeline>
+<codeline lineno="1822"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>concatenatedData<sp/>=<sp/>join_rows(concatenatedData,<sp/>sensorData.row(i));</highlight></codeline>
+<codeline lineno="1823"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>sampleVectors.push_back(concatenatedData);</highlight></codeline>
+<codeline lineno="1824"><highlight class="normal"></highlight></codeline>
+<codeline lineno="1825"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline lineno="1826"><highlight class="normal"></highlight></codeline>
+<codeline lineno="1827"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="comment">//<sp/>find<sp/>the<sp/>minimum<sp/>length<sp/>of<sp/>all<sp/>files<sp/>(thats<sp/>the<sp/>length<sp/>we<sp/>will<sp/>be<sp/>able<sp/>to<sp/>use</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="1828"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/>minDim<sp/>=<sp/>std::numeric_limits&lt;int&gt;::max();</highlight></codeline>
+<codeline lineno="1829"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">for</highlight><highlight class="normal">(</highlight><highlight class="keyword">auto</highlight><highlight class="normal">&amp;<sp/>sample<sp/>:<sp/>sampleVectors)</highlight></codeline>
+<codeline lineno="1830"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>minDim<sp/>=<sp/>std::min(minDim,<sp/>(</highlight><highlight class="keywordtype">int</highlight><highlight class="normal">)<sp/>sample.n_cols);</highlight></codeline>
+<codeline lineno="1831"><highlight class="normal"></highlight></codeline>
+<codeline lineno="1832"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>vector&lt;int&gt;<sp/>uniqueClassIds;</highlight></codeline>
+<codeline lineno="1833"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>vector&lt;mat&gt;<sp/>samples;</highlight></codeline>
+<codeline lineno="1834"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="comment">//<sp/>initialize<sp/>the<sp/>data<sp/>for<sp/>all<sp/>classes</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="1835"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">for</highlight><highlight class="normal">(</highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/>i<sp/>=<sp/>0;<sp/>i<sp/>&lt;<sp/>classIds.size();<sp/>++i)<sp/>{</highlight></codeline>
+<codeline lineno="1836"><highlight class="normal"></highlight></codeline>
+<codeline lineno="1837"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>mat<sp/>reducedSample<sp/>=<sp/>sampleVectors.at(i).cols(0,<sp/>minDim<sp/>-<sp/>1);</highlight></codeline>
+<codeline lineno="1838"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">auto</highlight><highlight class="normal"><sp/>currentClassId<sp/>=<sp/>classIds.at(i);</highlight></codeline>
+<codeline lineno="1839"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">auto</highlight><highlight class="normal"><sp/>currentIdIt<sp/>=<sp/>std::find(uniqueClassIds.begin(),<sp/>uniqueClassIds.end(),<sp/>currentClassId);</highlight></codeline>
+<codeline lineno="1840"><highlight class="normal"></highlight></codeline>
+<codeline lineno="1841"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">if</highlight><highlight class="normal">(currentIdIt<sp/>==<sp/>uniqueClassIds.end())<sp/>{</highlight></codeline>
+<codeline lineno="1842"><highlight class="normal"></highlight></codeline>
+<codeline lineno="1843"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>uniqueClassIds.push_back(currentClassId);</highlight></codeline>
+<codeline lineno="1844"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>currentIdIt<sp/>=<sp/>uniqueClassIds.end()<sp/>-<sp/>1;</highlight></codeline>
+<codeline lineno="1845"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>samples.push_back(reducedSample);</highlight></codeline>
+<codeline lineno="1846"><highlight class="normal"></highlight></codeline>
+<codeline lineno="1847"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>}<sp/></highlight><highlight class="keywordflow">else</highlight><highlight class="normal"><sp/>{</highlight></codeline>
+<codeline lineno="1848"><highlight class="normal"></highlight></codeline>
+<codeline lineno="1849"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/>currentIdIdx<sp/>=<sp/>(int)<sp/>(currentIdIt<sp/>-<sp/>uniqueClassIds.begin());</highlight></codeline>
+<codeline lineno="1850"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>samples.at(currentIdIdx)<sp/>=<sp/>join_cols(samples.at(currentIdIdx),<sp/>reducedSample);</highlight></codeline>
+<codeline lineno="1851"><highlight class="normal"></highlight></codeline>
+<codeline lineno="1852"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline lineno="1853"><highlight class="normal"></highlight></codeline>
+<codeline lineno="1854"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline lineno="1855"><highlight class="normal"></highlight></codeline>
+<codeline lineno="1856"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal"><sp/>{uniqueClassIds,<sp/>samples};</highlight></codeline>
+<codeline lineno="1857"><highlight class="normal"></highlight></codeline>
+<codeline lineno="1858"><highlight class="normal"><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline lineno="1859"><highlight class="normal"></highlight></codeline>
+<codeline lineno="1860"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/>SensingController::setParentComplexController(KUKADU_SHARED_PTR&lt;kukadu::Controller&gt;<sp/>parent)<sp/>{</highlight></codeline>
+<codeline lineno="1861"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>parentController<sp/>=<sp/>KUKADU_DYNAMIC_POINTER_CAST&lt;ComplexController&gt;(parent);</highlight></codeline>
+<codeline lineno="1862"><highlight class="normal"><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline lineno="1863"><highlight class="normal"></highlight></codeline>
+<codeline lineno="1864"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">double</highlight><highlight class="normal"><sp/>SensingController::createDataBase(</highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/>perceptualStateId)<sp/>{</highlight></codeline>
+<codeline lineno="1865"><highlight class="normal"></highlight></codeline>
+<codeline lineno="1866"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>KUKADU_MODULE_START_USAGE();</highlight></codeline>
+<codeline lineno="1867"><highlight class="normal"></highlight></codeline>
+<codeline lineno="1868"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">if</highlight><highlight class="normal">(requiresDatabase())<sp/>{</highlight></codeline>
+<codeline lineno="1869"><highlight class="normal"></highlight></codeline>
+<codeline lineno="1870"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">if</highlight><highlight class="normal">(!databaseAlreadySet)</highlight></codeline>
+<codeline lineno="1871"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">throw</highlight><highlight class="normal"><sp/>KukaduException(</highlight><highlight class="stringliteral">&quot;(SensingController::createDataBase)<sp/>database<sp/>not<sp/>defined<sp/>yet&quot;</highlight><highlight class="normal">);</highlight></codeline>
+<codeline lineno="1872"><highlight class="normal"></highlight></codeline>
+<codeline lineno="1873"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/>numClasses<sp/>=<sp/>getStateCount();</highlight></codeline>
+<codeline lineno="1874"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">string</highlight><highlight class="normal"><sp/>path<sp/>=<sp/>getDatabasePath();</highlight></codeline>
+<codeline lineno="1875"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>vector&lt;pair&lt;int,<sp/>string&gt;<sp/>&gt;<sp/>collectedSamples;</highlight></codeline>
+<codeline lineno="1876"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">if</highlight><highlight class="normal">(!isShutUp)</highlight></codeline>
+<codeline lineno="1877"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>cout<sp/>&lt;&lt;<sp/></highlight><highlight class="stringliteral">&quot;(SensingController)<sp/>data<sp/>is<sp/>stored<sp/>to<sp/>&quot;</highlight><highlight class="normal"><sp/>&lt;&lt;<sp/>path<sp/>&lt;&lt;<sp/>endl;</highlight></codeline>
+<codeline lineno="1878"><highlight class="normal"></highlight></codeline>
+<codeline lineno="1879"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">bool</highlight><highlight class="normal"><sp/>databaseExisted<sp/>=<sp/>fileExists(path);</highlight></codeline>
+<codeline lineno="1880"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">if</highlight><highlight class="normal">(!databaseExisted)<sp/>{</highlight></codeline>
+<codeline lineno="1881"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">if</highlight><highlight class="normal">(!isShutUp)</highlight></codeline>
+<codeline lineno="1882"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>cout<sp/>&lt;&lt;<sp/></highlight><highlight class="stringliteral">&quot;(SensingController)<sp/>folder<sp/>doesn&apos;t<sp/>exist<sp/>-<sp/>create&quot;</highlight><highlight class="normal"><sp/>&lt;&lt;<sp/>endl;</highlight></codeline>
+<codeline lineno="1883"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>createDirectory(path);</highlight></codeline>
+<codeline lineno="1884"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline lineno="1885"><highlight class="normal"></highlight></codeline>
+<codeline lineno="1886"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>vector&lt;int&gt;<sp/>sampleIds;</highlight></codeline>
+<codeline lineno="1887"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">for</highlight><highlight class="normal">(</highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/>i<sp/>=<sp/>0;<sp/>i<sp/>&lt;<sp/>numClasses;<sp/>++i)</highlight></codeline>
+<codeline lineno="1888"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>sampleIds.push_back(0);</highlight></codeline>
+<codeline lineno="1889"><highlight class="normal"></highlight></codeline>
+<codeline lineno="1890"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">if</highlight><highlight class="normal">(databaseExisted)<sp/>{</highlight></codeline>
+<codeline lineno="1891"><highlight class="normal"></highlight></codeline>
+<codeline lineno="1892"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>ifstream<sp/>labelsFile;</highlight></codeline>
+<codeline lineno="1893"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>labelsFile.open((path<sp/>+<sp/></highlight><highlight class="stringliteral">&quot;/labels&quot;</highlight><highlight class="normal">).c_str());</highlight></codeline>
+<codeline lineno="1894"><highlight class="normal"></highlight></codeline>
+<codeline lineno="1895"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">string</highlight><highlight class="normal"><sp/>line;</highlight></codeline>
+<codeline lineno="1896"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">while</highlight><highlight class="normal">(getline(labelsFile,<sp/>line))<sp/>{</highlight></codeline>
+<codeline lineno="1897"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>KukaduTokenizer<sp/>tok(line);</highlight></codeline>
+<codeline lineno="1898"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>tok.next();</highlight></codeline>
+<codeline lineno="1899"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/>classId<sp/>=<sp/>atoi(tok.next().c_str());</highlight></codeline>
+<codeline lineno="1900"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>sampleIds.at(classId)++;</highlight></codeline>
+<codeline lineno="1901"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline lineno="1902"><highlight class="normal"></highlight></codeline>
+<codeline lineno="1903"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>labelsFile.close();</highlight></codeline>
+<codeline lineno="1904"><highlight class="normal"></highlight></codeline>
+<codeline lineno="1905"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline lineno="1906"><highlight class="normal"></highlight></codeline>
+<codeline lineno="1907"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/>minSampleCount<sp/>=<sp/>10;</highlight></codeline>
+<codeline lineno="1908"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">for</highlight><highlight class="normal">(</highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/>i<sp/>=<sp/>0;<sp/>i<sp/>&lt;<sp/>sampleIds.size();<sp/>++i)<sp/>{</highlight></codeline>
+<codeline lineno="1909"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">if</highlight><highlight class="normal">(sampleIds.at(i)<sp/>==<sp/>-1)<sp/>{</highlight></codeline>
+<codeline lineno="1910"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>perceptualStateId<sp/>=<sp/>i;</highlight></codeline>
+<codeline lineno="1911"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">break</highlight><highlight class="normal">;</highlight></codeline>
+<codeline lineno="1912"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>}<sp/></highlight><highlight class="keywordflow">else</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordflow">if</highlight><highlight class="normal">(sampleIds.at(i)<sp/>&lt;<sp/>minSampleCount)<sp/>{</highlight></codeline>
+<codeline lineno="1913"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>cout<sp/>&lt;&lt;<sp/></highlight><highlight class="stringliteral">&quot;(SensingController)<sp/>you<sp/>have<sp/>less<sp/>than<sp/>&quot;</highlight><highlight class="normal"><sp/>&lt;&lt;<sp/>minSampleCount<sp/>&lt;&lt;<sp/></highlight><highlight class="stringliteral">&quot;<sp/>samples<sp/>for<sp/>state<sp/>&quot;</highlight><highlight class="normal"><sp/>&lt;&lt;<sp/>i<sp/>&lt;&lt;<sp/></highlight><highlight class="stringliteral">&quot;<sp/>under<sp/>sensing<sp/>action<sp/>&quot;</highlight><highlight class="normal"><sp/>&lt;&lt;<sp/>getCaption()<sp/>&lt;&lt;</highlight></codeline>
+<codeline lineno="1914"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="stringliteral">&quot;.<sp/>do<sp/>you<sp/>want<sp/>to<sp/>collect<sp/>more?<sp/>(0<sp/>=<sp/>no,<sp/>1<sp/>=<sp/>yes)&quot;</highlight><highlight class="normal"><sp/>&lt;&lt;<sp/>endl;</highlight></codeline>
+<codeline lineno="1915"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/>answer;</highlight></codeline>
+<codeline lineno="1916"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>cin<sp/>&gt;&gt;<sp/>answer;</highlight></codeline>
+<codeline lineno="1917"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">if</highlight><highlight class="normal">(answer<sp/>==<sp/>1)</highlight></codeline>
+<codeline lineno="1918"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>perceptualStateId<sp/>=<sp/>i;</highlight></codeline>
+<codeline lineno="1919"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">break</highlight><highlight class="normal">;</highlight></codeline>
+<codeline lineno="1920"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline lineno="1921"><highlight class="normal"></highlight></codeline>
+<codeline lineno="1922"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline lineno="1923"><highlight class="normal"></highlight></codeline>
+<codeline lineno="1924"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">if</highlight><highlight class="normal">(!databaseExisted<sp/>||<sp/>perceptualStateId<sp/>!=<sp/>-1)<sp/>{</highlight></codeline>
+<codeline lineno="1925"><highlight class="normal"></highlight></codeline>
+<codeline lineno="1926"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="comment">//<sp/>create<sp/>the<sp/>database</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="1927"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">if</highlight><highlight class="normal">(!isShutUp)</highlight></codeline>
+<codeline lineno="1928"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>cout<sp/>&lt;&lt;<sp/></highlight><highlight class="stringliteral">&quot;(SensingController)<sp/>&quot;</highlight><highlight class="normal"><sp/>&lt;&lt;<sp/>getCaption()<sp/>&lt;&lt;<sp/></highlight><highlight class="stringliteral">&quot;<sp/>offers<sp/>&quot;</highlight><highlight class="normal"><sp/>&lt;&lt;<sp/>numClasses<sp/>&lt;&lt;<sp/></highlight><highlight class="stringliteral">&quot;<sp/>classes&quot;</highlight><highlight class="normal"><sp/>&lt;&lt;<sp/>endl;</highlight></codeline>
+<codeline lineno="1929"><highlight class="normal"></highlight></codeline>
+<codeline lineno="1930"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>ofstream<sp/>labelFile;</highlight></codeline>
+<codeline lineno="1931"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>labelFile.open((path<sp/>+<sp/></highlight><highlight class="stringliteral">&quot;labels&quot;</highlight><highlight class="normal">).c_str(),<sp/>std::ios_base::app);</highlight></codeline>
+<codeline lineno="1932"><highlight class="normal"></highlight></codeline>
+<codeline lineno="1933"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">if</highlight><highlight class="normal">(perceptualStateId<sp/>==<sp/>-1)</highlight></codeline>
+<codeline lineno="1934"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>perceptualStateId<sp/>=<sp/>0;</highlight></codeline>
+<codeline lineno="1935"><highlight class="normal"></highlight></codeline>
+<codeline lineno="1936"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">for</highlight><highlight class="normal">(</highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/>currClass<sp/>=<sp/>perceptualStateId;<sp/>currClass<sp/>&lt;<sp/>numClasses;<sp/>++currClass)<sp/>{</highlight></codeline>
+<codeline lineno="1937"><highlight class="normal"></highlight></codeline>
+<codeline lineno="1938"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">if</highlight><highlight class="normal">(currClass<sp/>!=<sp/>perceptualStateId)</highlight></codeline>
+<codeline lineno="1939"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>KUKADU_DYNAMIC_POINTER_CAST&lt;ComplexController&gt;(parentController)-&gt;prepareNextState(shared_from_this(),<sp/>currClass);</highlight></codeline>
+<codeline lineno="1940"><highlight class="normal"></highlight></codeline>
+<codeline lineno="1941"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/>cont<sp/>=<sp/>1;</highlight></codeline>
+<codeline lineno="1942"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">for</highlight><highlight class="normal">(</highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/>sampleNum<sp/>=<sp/>sampleIds.at(currClass)<sp/>+<sp/>1;<sp/>cont<sp/>==<sp/>1;<sp/>++sampleNum)<sp/>{</highlight></codeline>
+<codeline lineno="1943"><highlight class="normal"></highlight></codeline>
+<codeline lineno="1944"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>cout<sp/>&lt;&lt;<sp/></highlight><highlight class="stringliteral">&quot;(SensingController)<sp/>collecting<sp/>sample<sp/>number<sp/>&quot;</highlight><highlight class="normal"><sp/>&lt;&lt;<sp/>sampleNum<sp/>&lt;&lt;<sp/></highlight><highlight class="stringliteral">&quot;<sp/>for<sp/>class<sp/>&quot;</highlight><highlight class="normal"><sp/>&lt;&lt;<sp/>currClass<sp/>&lt;&lt;<sp/></highlight><highlight class="stringliteral">&quot;<sp/>with<sp/>sensing<sp/>controller<sp/>&quot;</highlight><highlight class="normal"><sp/>&lt;&lt;<sp/>this-&gt;getCaption()<sp/>&lt;&lt;<sp/>endl;</highlight></codeline>
+<codeline lineno="1945"><highlight class="normal"></highlight></codeline>
+<codeline lineno="1946"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>stringstream<sp/>s;</highlight></codeline>
+<codeline lineno="1947"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>s<sp/>&lt;&lt;<sp/></highlight><highlight class="stringliteral">&quot;class_&quot;</highlight><highlight class="normal"><sp/>&lt;&lt;<sp/>currClass<sp/>&lt;&lt;<sp/></highlight><highlight class="stringliteral">&quot;_sample_&quot;</highlight><highlight class="normal"><sp/>&lt;&lt;<sp/>sampleNum;</highlight></codeline>
+<codeline lineno="1948"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">string</highlight><highlight class="normal"><sp/>relativePath<sp/>=<sp/>s.str();</highlight></codeline>
+<codeline lineno="1949"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">string</highlight><highlight class="normal"><sp/>relativeClassifyPath<sp/>=<sp/>relativePath<sp/>+<sp/></highlight><highlight class="stringliteral">&quot;/&quot;</highlight><highlight class="normal"><sp/>+<sp/>getFirstRobotFileName()<sp/>+<sp/></highlight><highlight class="stringliteral">&quot;_0&quot;</highlight><highlight class="normal">;</highlight></codeline>
+<codeline lineno="1950"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">string</highlight><highlight class="normal"><sp/>nextSamplePath<sp/>=<sp/>path<sp/>+<sp/>relativePath;</highlight></codeline>
+<codeline lineno="1951"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>gatherData(nextSamplePath);</highlight></codeline>
+<codeline lineno="1952"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>cleanUp();</highlight></codeline>
+<codeline lineno="1953"><highlight class="normal"></highlight></codeline>
+<codeline lineno="1954"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>collectedSamples.push_back(pair&lt;int,<sp/>string&gt;(currClass,<sp/>relativeClassifyPath));</highlight></codeline>
+<codeline lineno="1955"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>labelFile<sp/>&lt;&lt;<sp/>relativeClassifyPath<sp/>&lt;&lt;<sp/></highlight><highlight class="stringliteral">&quot;<sp/>&quot;</highlight><highlight class="normal"><sp/>&lt;&lt;<sp/>currClass<sp/>&lt;&lt;<sp/>endl;</highlight></codeline>
+<codeline lineno="1956"><highlight class="normal"></highlight></codeline>
+<codeline lineno="1957"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>cout<sp/>&lt;&lt;<sp/></highlight><highlight class="stringliteral">&quot;(SensingController)<sp/>want<sp/>to<sp/>collect<sp/>another<sp/>sample<sp/>for<sp/>class<sp/>&quot;</highlight><highlight class="normal"><sp/>&lt;&lt;<sp/>currClass<sp/>&lt;&lt;<sp/></highlight><highlight class="stringliteral">&quot;?<sp/>(0<sp/>=<sp/>no<sp/>/<sp/>1<sp/>=<sp/>yes):<sp/>&quot;</highlight><highlight class="normal">;</highlight></codeline>
+<codeline lineno="1958"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>cin<sp/>&gt;&gt;<sp/>cont;</highlight></codeline>
+<codeline lineno="1959"><highlight class="normal"></highlight></codeline>
+<codeline lineno="1960"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline lineno="1961"><highlight class="normal"></highlight></codeline>
+<codeline lineno="1962"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline lineno="1963"><highlight class="normal"></highlight></codeline>
+<codeline lineno="1964"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>labelFile.close();</highlight></codeline>
+<codeline lineno="1965"><highlight class="normal"></highlight></codeline>
+<codeline lineno="1966"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>}<sp/></highlight><highlight class="keywordflow">else</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="1967"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">if</highlight><highlight class="normal">(!isShutUp)</highlight></codeline>
+<codeline lineno="1968"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>cout<sp/>&lt;&lt;<sp/></highlight><highlight class="stringliteral">&quot;(SensingController)<sp/>database<sp/>for<sp/>controller<sp/>&quot;</highlight><highlight class="normal"><sp/>&lt;&lt;<sp/>getCaption()<sp/>&lt;&lt;<sp/></highlight><highlight class="stringliteral">&quot;<sp/>exists<sp/>-<sp/>no<sp/>collection<sp/>required&quot;</highlight><highlight class="normal"><sp/>&lt;&lt;<sp/>endl;</highlight></codeline>
+<codeline lineno="1969"><highlight class="normal"></highlight></codeline>
+<codeline lineno="1970"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>ifstream<sp/>labelsFile;</highlight></codeline>
+<codeline lineno="1971"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>labelsFile.open((path<sp/>+<sp/></highlight><highlight class="stringliteral">&quot;/labels&quot;</highlight><highlight class="normal">).c_str());</highlight></codeline>
+<codeline lineno="1972"><highlight class="normal"></highlight></codeline>
+<codeline lineno="1973"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">string</highlight><highlight class="normal"><sp/>line;</highlight></codeline>
+<codeline lineno="1974"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>vector&lt;int&gt;<sp/>classIds;</highlight></codeline>
+<codeline lineno="1975"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>vector&lt;string&gt;<sp/>fileNames;</highlight></codeline>
+<codeline lineno="1976"><highlight class="normal"></highlight></codeline>
+<codeline lineno="1977"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="comment">//<sp/>load<sp/>all<sp/>the<sp/>files<sp/>and<sp/>concatenated<sp/>the<sp/>rows<sp/>for<sp/>each<sp/>file</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="1978"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">while</highlight><highlight class="normal">(getline(labelsFile,<sp/>line))<sp/>{</highlight></codeline>
+<codeline lineno="1979"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>KukaduTokenizer<sp/>tok(line);</highlight></codeline>
+<codeline lineno="1980"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">auto</highlight><highlight class="normal"><sp/>filePath<sp/>=<sp/>tok.next();</highlight></codeline>
+<codeline lineno="1981"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">if</highlight><highlight class="normal">(filePath<sp/>!=<sp/></highlight><highlight class="stringliteral">&quot;&quot;</highlight><highlight class="normal">)<sp/>{</highlight></codeline>
+<codeline lineno="1982"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">auto</highlight><highlight class="normal"><sp/>classId<sp/>=<sp/>atoi(tok.next().c_str());</highlight></codeline>
+<codeline lineno="1983"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>classIds.push_back(classId);</highlight></codeline>
+<codeline lineno="1984"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>fileNames.push_back(path<sp/>+<sp/></highlight><highlight class="stringliteral">&quot;/&quot;</highlight><highlight class="normal"><sp/>+<sp/>filePath);</highlight></codeline>
+<codeline lineno="1985"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline lineno="1986"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline lineno="1987"><highlight class="normal"></highlight></codeline>
+<codeline lineno="1988"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">auto</highlight><highlight class="normal"><sp/>loadedData<sp/>=<sp/>loadClassificationData(classIds,<sp/>fileNames);</highlight></codeline>
+<codeline lineno="1989"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">auto</highlight><highlight class="normal"><sp/>uniqueClassIds<sp/>=<sp/>loadedData.first;</highlight></codeline>
+<codeline lineno="1990"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">auto</highlight><highlight class="normal"><sp/>samples<sp/>=<sp/>loadedData.second;</highlight></codeline>
+<codeline lineno="1991"><highlight class="normal"></highlight></codeline>
+<codeline lineno="1992"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>classifier<sp/>=<sp/>make_shared&lt;LibSvm&gt;(uniqueClassIds,<sp/>samples);</highlight></codeline>
+<codeline lineno="1993"><highlight class="normal"></highlight></codeline>
+<codeline lineno="1994"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="comment">//<sp/>if<sp/>no<sp/>classifier<sp/>file<sp/>exists</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="1995"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">if</highlight><highlight class="normal">(!fileExists(path<sp/>+<sp/></highlight><highlight class="stringliteral">&quot;classRes&quot;</highlight><highlight class="normal">))<sp/>{</highlight></codeline>
+<codeline lineno="1996"><highlight class="normal"></highlight></codeline>
+<codeline lineno="1997"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>cout<sp/>&lt;&lt;<sp/></highlight><highlight class="stringliteral">&quot;(SensingController)<sp/>determinining<sp/>confidence...&quot;</highlight><highlight class="normal"><sp/>&lt;&lt;<sp/>endl;</highlight></codeline>
+<codeline lineno="1998"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">double</highlight><highlight class="normal"><sp/>confidence<sp/>=<sp/>classifier-&gt;crossValidate();</highlight></codeline>
+<codeline lineno="1999"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>cout<sp/>&lt;&lt;<sp/></highlight><highlight class="stringliteral">&quot;(SensingController)<sp/>found<sp/>a<sp/>confidence<sp/>of<sp/>&quot;</highlight><highlight class="normal"><sp/>&lt;&lt;<sp/>confidence<sp/>&lt;&lt;<sp/>endl;</highlight></codeline>
+<codeline lineno="2000"><highlight class="normal"></highlight></codeline>
+<codeline lineno="2001"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>ofstream<sp/>ofile;</highlight></codeline>
+<codeline lineno="2002"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>ofile.open((path<sp/>+<sp/></highlight><highlight class="stringliteral">&quot;classRes&quot;</highlight><highlight class="normal">).c_str());</highlight></codeline>
+<codeline lineno="2003"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>ofile<sp/>&lt;&lt;<sp/>confidence<sp/>&lt;&lt;<sp/>endl;</highlight></codeline>
+<codeline lineno="2004"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>ofile.close();</highlight></codeline>
+<codeline lineno="2005"><highlight class="normal"></highlight></codeline>
+<codeline lineno="2006"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline lineno="2007"><highlight class="normal"></highlight></codeline>
+<codeline lineno="2008"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>classifier-&gt;train();</highlight></codeline>
+<codeline lineno="2009"><highlight class="normal"></highlight></codeline>
+<codeline lineno="2010"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>ifstream<sp/>infile;</highlight></codeline>
+<codeline lineno="2011"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>infile.open((path<sp/>+<sp/></highlight><highlight class="stringliteral">&quot;classRes&quot;</highlight><highlight class="normal">).c_str());</highlight></codeline>
+<codeline lineno="2012"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">double</highlight><highlight class="normal"><sp/>confidence<sp/>=<sp/>0.0;</highlight></codeline>
+<codeline lineno="2013"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>infile<sp/>&gt;&gt;<sp/>confidence;</highlight></codeline>
+<codeline lineno="2014"><highlight class="normal"></highlight></codeline>
+<codeline lineno="2015"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">if</highlight><highlight class="normal">(!isShutUp)</highlight></codeline>
+<codeline lineno="2016"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>cout<sp/>&lt;&lt;<sp/></highlight><highlight class="stringliteral">&quot;(SensingController)<sp/>determined<sp/>a<sp/>confidence<sp/>of<sp/>&quot;</highlight><highlight class="normal"><sp/>&lt;&lt;<sp/>confidence<sp/>&lt;&lt;<sp/>endl;</highlight></codeline>
+<codeline lineno="2017"><highlight class="normal"></highlight></codeline>
+<codeline lineno="2018"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal"><sp/>confidence;</highlight></codeline>
+<codeline lineno="2019"><highlight class="normal"></highlight></codeline>
+<codeline lineno="2020"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline lineno="2021"><highlight class="normal"></highlight></codeline>
+<codeline lineno="2022"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal"><sp/>1.0;</highlight></codeline>
+<codeline lineno="2023"><highlight class="normal"></highlight></codeline>
+<codeline lineno="2024"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>KUKADU_MODULE_END_USAGE();</highlight></codeline>
+<codeline lineno="2025"><highlight class="normal"></highlight></codeline>
+<codeline lineno="2026"><highlight class="normal"><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline lineno="2027"><highlight class="normal"></highlight></codeline>
+<codeline lineno="2028"><highlight class="normal"><sp/><sp/><sp/><sp/>KUKADU_SHARED_PTR&lt;ControllerResult&gt;<sp/>SensingController::executeInternal()<sp/>{</highlight></codeline>
+<codeline lineno="2029"><highlight class="normal"></highlight></codeline>
+<codeline lineno="2030"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>KUKADU_MODULE_START_USAGE();</highlight></codeline>
+<codeline lineno="2031"><highlight class="normal"></highlight></codeline>
+<codeline lineno="2032"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>prepare();</highlight></codeline>
+<codeline lineno="2033"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>performCore();</highlight></codeline>
+<codeline lineno="2034"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>cleanUp();</highlight></codeline>
+<codeline lineno="2035"><highlight class="normal"></highlight></codeline>
+<codeline lineno="2036"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>KUKADU_MODULE_END_USAGE();</highlight></codeline>
+<codeline lineno="2037"><highlight class="normal"></highlight></codeline>
+<codeline lineno="2038"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal"><sp/>KUKADU_SHARED_PTR&lt;ControllerResult&gt;();</highlight></codeline>
+<codeline lineno="2039"><highlight class="normal"></highlight></codeline>
+<codeline lineno="2040"><highlight class="normal"><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline lineno="2041"><highlight class="normal"></highlight></codeline>
+<codeline lineno="2042"><highlight class="normal"><sp/><sp/><sp/><sp/>arma::vec<sp/>fitToDim(arma::mat<sp/>v,<sp/></highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/>dim)<sp/>{</highlight></codeline>
+<codeline lineno="2043"><highlight class="normal"></highlight></codeline>
+<codeline lineno="2044"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">if</highlight><highlight class="normal">(v.n_cols<sp/>&gt;<sp/>dim)</highlight></codeline>
+<codeline lineno="2045"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal"><sp/>v.cols(0,<sp/>dim<sp/>-<sp/>1).t();</highlight></codeline>
+<codeline lineno="2046"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">else</highlight><highlight class="normal"><sp/>{</highlight></codeline>
+<codeline lineno="2047"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>arma::vec<sp/>retVec(dim);</highlight></codeline>
+<codeline lineno="2048"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">for</highlight><highlight class="normal">(</highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/>i<sp/>=<sp/>0;<sp/>i<sp/>&lt;<sp/>dim;<sp/>++i)</highlight></codeline>
+<codeline lineno="2049"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">if</highlight><highlight class="normal">(i<sp/>&lt;<sp/>v.n_cols)</highlight></codeline>
+<codeline lineno="2050"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>retVec(i)<sp/>=<sp/>v(i);</highlight></codeline>
+<codeline lineno="2051"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">else</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="2052"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>retVec(i)<sp/>=<sp/>v(v.n_cols-<sp/>1);</highlight></codeline>
+<codeline lineno="2053"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal"><sp/>retVec;</highlight></codeline>
+<codeline lineno="2054"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline lineno="2055"><highlight class="normal"></highlight></codeline>
+<codeline lineno="2056"><highlight class="normal"><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline lineno="2057"><highlight class="normal"></highlight></codeline>
+<codeline lineno="2058"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/>SensingController::hardcodedClassification()<sp/>{</highlight></codeline>
+<codeline lineno="2059"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">throw</highlight><highlight class="normal"><sp/>KukaduException(</highlight><highlight class="stringliteral">&quot;(SensingController)<sp/>custom<sp/>classification<sp/>procedure<sp/>has<sp/>to<sp/>be<sp/>written<sp/>if<sp/>no<sp/>database<sp/>is<sp/>needed&quot;</highlight><highlight class="normal">);</highlight></codeline>
+<codeline lineno="2060"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal"><sp/>0;</highlight></codeline>
+<codeline lineno="2061"><highlight class="normal"><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline lineno="2062"><highlight class="normal"></highlight></codeline>
+<codeline lineno="2063"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/>SensingController::callClassifier(std::string<sp/>passedFilePath)<sp/>{</highlight></codeline>
+<codeline lineno="2064"><highlight class="normal"></highlight></codeline>
+<codeline lineno="2065"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>KUKADU_MODULE_START_USAGE();</highlight></codeline>
+<codeline lineno="2066"><highlight class="normal"></highlight></codeline>
+<codeline lineno="2067"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/>res<sp/>=<sp/>0;</highlight></codeline>
+<codeline lineno="2068"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">if</highlight><highlight class="normal">(requiresDatabase())<sp/>{</highlight></codeline>
+<codeline lineno="2069"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">auto</highlight><highlight class="normal"><sp/>toClassify<sp/>=<sp/>loadClassificationData({0},<sp/>{passedFilePath});</highlight></codeline>
+<codeline lineno="2070"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>vec<sp/>toClassifyVec<sp/>=<sp/>fitToDim(toClassify.second.front(),<sp/>classifier-&gt;getSampleDimensionality());</highlight></codeline>
+<codeline lineno="2071"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>res<sp/>=<sp/>classifier-&gt;classify(toClassifyVec);</highlight></codeline>
+<codeline lineno="2072"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>}<sp/></highlight><highlight class="keywordflow">else</highlight><highlight class="normal"><sp/>{</highlight></codeline>
+<codeline lineno="2073"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>res<sp/>=<sp/>hardcodedClassification();</highlight></codeline>
+<codeline lineno="2074"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline lineno="2075"><highlight class="normal"></highlight></codeline>
+<codeline lineno="2076"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>KUKADU_MODULE_END_USAGE();</highlight></codeline>
+<codeline lineno="2077"><highlight class="normal"></highlight></codeline>
+<codeline lineno="2078"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal"><sp/>res;</highlight></codeline>
+<codeline lineno="2079"><highlight class="normal"></highlight></codeline>
+<codeline lineno="2080"><highlight class="normal"><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline lineno="2081"><highlight class="normal"></highlight></codeline>
+<codeline lineno="2082"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/>SensingController::writeLabelFile(std::string<sp/>baseFolderPath,<sp/>std::vector&lt;std::pair&lt;int,<sp/>std::string&gt;<sp/>&gt;<sp/>collectedSamples)<sp/>{</highlight></codeline>
+<codeline lineno="2083"><highlight class="normal"></highlight></codeline>
+<codeline lineno="2084"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>ofstream<sp/>outFile;</highlight></codeline>
+<codeline lineno="2085"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>outFile.open((baseFolderPath<sp/>+<sp/></highlight><highlight class="stringliteral">&quot;labels&quot;</highlight><highlight class="normal">).c_str());</highlight></codeline>
+<codeline lineno="2086"><highlight class="normal"></highlight></codeline>
+<codeline lineno="2087"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">for</highlight><highlight class="normal">(</highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/>i<sp/>=<sp/>0;<sp/>i<sp/>&lt;<sp/>collectedSamples.size();<sp/>++i)<sp/>{</highlight></codeline>
+<codeline lineno="2088"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>pair&lt;int,<sp/>string&gt;<sp/>sample<sp/>=<sp/>collectedSamples.at(i);</highlight></codeline>
+<codeline lineno="2089"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>outFile<sp/>&lt;&lt;<sp/>sample.second<sp/>&lt;&lt;<sp/></highlight><highlight class="stringliteral">&quot;<sp/>&quot;</highlight><highlight class="normal"><sp/>&lt;&lt;<sp/>sample.first<sp/>&lt;&lt;<sp/>endl;</highlight></codeline>
+<codeline lineno="2090"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline lineno="2091"><highlight class="normal"></highlight></codeline>
+<codeline lineno="2092"><highlight class="normal"><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline lineno="2093"><highlight class="normal"></highlight></codeline>
+<codeline lineno="2094"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">bool</highlight><highlight class="normal"><sp/>SensingController::requiresDatabase()<sp/>{</highlight></codeline>
+<codeline lineno="2095"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="comment">//<sp/>by<sp/>default<sp/>sensing<sp/>requires<sp/>a<sp/>database</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="2096"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal"><sp/></highlight><highlight class="keyword">true</highlight><highlight class="normal">;</highlight></codeline>
+<codeline lineno="2097"><highlight class="normal"><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline lineno="2098"><highlight class="normal"></highlight></codeline>
+<codeline lineno="2099"><highlight class="normal">}</highlight></codeline>
     </programlisting>
     <location file="/home/andreasmennel/iis_robot_sw/iis_catkin_ws/src/kukadu/src/manipulation/playing/controllers.cpp"/>
   </compounddef>

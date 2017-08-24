@@ -115,6 +115,9 @@ namespace kukadu {
 
         geometry_msgs::Pose cartesians;
 
+        double maxForce;
+        bool maxForceSet;
+
     protected:
 
         virtual void createSkillFromThisInternal(std::string skillName);
@@ -130,6 +133,8 @@ namespace kukadu {
         void setCartesians(geometry_msgs::Pose cartesians);
 
         std::shared_ptr<ControllerResult> executeInternal();
+
+        void setMaxForce(double maxForce);
 
         std::string getClassName();
 

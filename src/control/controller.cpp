@@ -333,6 +333,8 @@ namespace kukadu {
         nextPose.orientation.w = 0.94;
 
         this->cartesians = nextPose;
+        this->maxForce = -1;
+        this->maxForceSet = false;
     }
 
     bool CartesianPtp::requiresGraspInternal() {
@@ -348,8 +350,17 @@ namespace kukadu {
     }
 
     std::shared_ptr<ControllerResult> CartesianPtp::executeInternal() {
-        leftQueue->cartesianPtp(this->cartesians);
+        if(this->maxForceSet)
+            leftQueue->cartesianPtp(this->cartesians, this->maxForce);
+        else
+            leftQueue->cartesianPtp(this->cartesians);
         return nullptr;
+    }
+
+    void CartesianPtp::setMaxForce(double maxForce)
+    {
+        this->maxForce = maxForce;
+        this->maxForceSet = true;
     }
 
     std::string CartesianPtp::getClassName() {

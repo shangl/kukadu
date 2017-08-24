@@ -519,10 +519,10 @@ function CodeClass(name, code, behaviour) {
             splitCodeForSensing[0] + newLine +
             "}" + newLine +
             "void " + name + "::cleanUp() {" + newLine +
-            splitCodeForSensing[1] + newLine +
+            splitCodeForSensing[2] + newLine +
             "}" + newLine +
             "void " + name + "::performCore() {" + newLine +
-            splitCodeForSensing[2] + newLine +
+            splitCodeForSensing[1] + newLine +
             "}" + newLine +
             newLine +
             "std::string " + name + "::getClassName() {" + newLine +
