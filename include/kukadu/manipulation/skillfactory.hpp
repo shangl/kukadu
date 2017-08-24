@@ -28,6 +28,7 @@ namespace kukadu {
 
         static SkillFactory& get();
         static void addSkill(std::string skillName);
+        static void removeSkill(std::string skillName);
 
         KUKADU_SHARED_PTR<Controller> loadSkill(std::string skillName, std::vector<KUKADU_SHARED_PTR<Hardware> > hardwareComponents);
 
@@ -40,6 +41,7 @@ namespace kukadu {
         KUKADU_SHARED_PTR<kukadu_mersenne_twister> getGenerator();
 
         std::vector<std::string> loadPlayableSkills();
+
 
     };
 

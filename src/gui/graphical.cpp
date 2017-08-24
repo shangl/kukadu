@@ -119,6 +119,8 @@ namespace kukadu {
         auto kinestheticTeachingContainer = new QHBoxLayout();
         auto loadAndSaveContainer = new QHBoxLayout();
         auto playingContainer = new QHBoxLayout();
+        auto deleteContainer = new QHBoxLayout();
+        deleteSkillName = new QLineEdit();
 
         hardwareSelector = new QComboBox();
         hardwareSelector->addItem("kukie_left_arm");
@@ -157,11 +159,15 @@ namespace kukadu {
         auto playButton = new QPushButton("Play");
         QObject::connect(playButton, SIGNAL(clicked()), this, SLOT(playSlot()));
 
+        auto deleteButton = new QPushButton("DeleteSkill");
+        QObject::connect(deleteButton, SIGNAL(clicked()), this, SLOT(deleteSlot()));
+
         mainView->setLayout(mainLayout);
         mainLayout->addLayout(executeSkillContainer, 1, 0);
         mainLayout->addLayout(kinestheticTeachingContainer, 2, 0);
         mainLayout->addLayout(loadAndSaveContainer, 3, 0);
         mainLayout->addLayout(playingContainer, 4, 0);
+        mainLayout->addLayout(deleteContainer, 5, 0);
         mainLayout->addWidget(webView, 0, 0);
         executeSkillContainer->addWidget(executeButton);
         executeSkillContainer->addWidget(stopExecutionButton);
@@ -170,6 +176,8 @@ namespace kukadu {
         loadAndSaveContainer->addWidget(saveButton);
         loadAndSaveContainer->addWidget(loadButton);
         playingContainer->addWidget(playButton);
+        deleteContainer->addWidget(deleteSkillName);
+        deleteContainer->addWidget(deleteButton);
 
         return mainView;
 
@@ -191,9 +199,9 @@ namespace kukadu {
         auto allFiles = getFilesInDirectory(resolvePath("$KUKADU_HOME/include/kukadu/generated_skills/"));
 
         bool firstTime = true;
-        for(string& includeFile : allFiles) {
-            if(includeFile.find(".hpp") != std::string::npos) {
-                if(firstTime)
+        for (string &includeFile : allFiles) {
+            if (includeFile.find(".hpp") != std::string::npos) {
+                if (firstTime)
                     firstTime = false;
                 else
                     includeString += ",";
@@ -613,17 +621,17 @@ namespace kukadu {
 
         playableSkillsBox = new QComboBox();
         auto playableSkills = SkillFactory::get().loadPlayableSkills();
-        for(auto& skill : playableSkills)
+        for (auto &skill : playableSkills)
             playableSkillsBox->addItem(QString::fromStdString(skill));
 
         auto trainPerceptualStatesButton = new QPushButton("Train perceptual states");
         auto playButton = new QPushButton("Play");
         auto exitButton = new QPushButton("Exit");
 
-        QLabel* noteLabel = new QLabel("Note: separate the behaviour names with a comma");
-        QLabel* playWhichLabel = new QLabel("For which skill do you want to extend the DoA?");
-        QLabel* usedSensingLabel = new QLabel("List of sensing behaviours:");
-        QLabel* usedBehavioursLabel = new QLabel("List of playing behaviours:");
+        QLabel *noteLabel = new QLabel("Note: separate the behaviour names with a comma");
+        QLabel *playWhichLabel = new QLabel("For which skill do you want to extend the DoA?");
+        QLabel *usedSensingLabel = new QLabel("List of sensing behaviours:");
+        QLabel *usedBehavioursLabel = new QLabel("List of playing behaviours:");
 
         usedSensingBehaviours = new QLineEdit("Slide,Poke");
         usedPlayingBehaviours = new QLineEdit("PushTranslation");
@@ -660,9 +668,9 @@ namespace kukadu {
         //hwFactory.setSimulation(false);
         KukaduTokenizer tok(hardwareList, ",");
         string currentHardware = "";
-        while((currentHardware = tok.next()) != "") {
+        while ((currentHardware = tok.next()) != "") {
             auto currentHwInstance = hwFactory.loadHardware(currentHardware);
-            if(currentHwInstance) {
+            if (currentHwInstance) {
                 currentHwInstance->install();
                 currentHwInstance->start();
                 retHardware.push_back(currentHwInstance);
@@ -673,23 +681,26 @@ namespace kukadu {
 
     }
 
-    template<typename T> std::vector<KUKADU_SHARED_PTR<T> > extractAndGenerateControllers(std::string controllerList, std::string hardwareToUse) {
+    template<typename T>
+    std::vector<KUKADU_SHARED_PTR<T> >
+    extractAndGenerateControllers(std::string controllerList, std::string hardwareToUse) {
 
-        vector<KUKADU_SHARED_PTR<T > > retVec;
+        vector<KUKADU_SHARED_PTR<T> > retVec;
 
         KukaduTokenizer tok(controllerList, ",");
         string currentBehaviour = "";
 
         auto hardwareInstances = extractAndGenerateHardware(hardwareToUse);
 
-        SkillFactory& factory = SkillFactory::get();
-        while((currentBehaviour = tok.next()) != "") {
+        SkillFactory &factory = SkillFactory::get();
+        while ((currentBehaviour = tok.next()) != "") {
             try {
-                auto currentBehaviourController = KUKADU_DYNAMIC_POINTER_CAST< T >(factory.loadSkill(currentBehaviour, hardwareInstances));
+                auto currentBehaviourController = KUKADU_DYNAMIC_POINTER_CAST<T>(
+                        factory.loadSkill(currentBehaviour, hardwareInstances));
                 retVec.push_back(currentBehaviourController);
-            } catch(KukaduException& ex) {
+            } catch (KukaduException &ex) {
                 cerr << "(KukaduGraphical) could not load controller for behaviour " << currentBehaviour <<
-                        ". it will ignored" << endl;
+                     ". it will ignored" << endl;
             }
         }
 
@@ -703,6 +714,25 @@ namespace kukadu {
         auto behaviourControllerNames = usedPlayingBehaviours->text().toStdString();
         playingControllerName = playableSkillsBox->currentText().toStdString();
 
+<<<<<<< HEAD
+        string allUsedHardware = webView->page()->mainFrame()->evaluateJavaScript(
+                "getRequiredHardware()").toString().toStdString();;
+        auto sensingControllers = extractAndGenerateControllers<kukadu::SensingController>(sensingControllerNames,
+                                                                                           allUsedHardware);
+        auto playingControllers = extractAndGenerateControllers<kukadu::Controller>(behaviourControllerNames,
+                                                                                    allUsedHardware);
+        auto nothingSkill = SkillFactory::get().loadSkill("nothing", {});
+
+        playingControllerName = "";
+        cout << "playingcontrollername not set yet" << endl;
+
+        HapticPlanner h(resolvePath("$KUKADU_HOME/skills/"), sensingControllers,
+                        playingControllers, vector<KUKADU_SHARED_PTR<Controller> >{},
+                        nothingSkill,
+                        SkillFactory::get().getGenerator());
+
+        /*
+=======
         string allUsedHardware = webView->page()->mainFrame()->evaluateJavaScript("getRequiredHardware()").toString().toStdString();;
 
 cout << allUsedHardware << endl;
@@ -712,6 +742,7 @@ cout << allUsedHardware << endl;
         auto toTrainController = extractAndGenerateControllers<kukadu::Controller>({playingControllerName}, allUsedHardware);
         auto nothingSkill = SkillFactory::get().loadSkill("nothing", {});
 
+>>>>>>> c4d5677262d390dfb06dee10a1d1a5f7d13b4a18
         currentHapticPlanner = make_shared<HapticPlanner>(resolvePath("$KUKADU_HOME/skills/"), sensingControllers,
                                                           playingControllers,
                                                           toTrainController,
@@ -724,7 +755,7 @@ cout << allUsedHardware << endl;
 
         playingEnded = false;
         keepPlaying = true;
-        while(keepPlaying) {
+        while (keepPlaying) {
             currentHapticPlanner->performComplexSkill(playingControllerName);
             currentHapticPlanner->updateModels();
         }
@@ -732,13 +763,24 @@ cout << allUsedHardware << endl;
 
     }
 
+    void KukaduGraphical::deleteSlot() {
+        std::string skillName = deleteSkillName->text().toStdString();
+        if (!checkSkillNameIsNew(skillName)) {
+            deleteSkillFromGeneratedSkillsHeader(skillName);
+            deleteSkillHeaderFile(skillName);
+            deleteSkillCppFile(skillName);
+            deleteFromSkillFactory(skillName);
+        }
+    }
+
+
     void KukaduGraphical::exitPlayingslot() {
 
         keepPlaying = false;
         cout << "the playing will be stopped after the current rollout" << endl;
 
         ros::Rate r(3);
-        while(!playingEnded)
+        while (!playingEnded)
             r.sleep();
 
         playingView->close();
@@ -765,4 +807,46 @@ cout << allUsedHardware << endl;
 
         return true;
     }
+
+
+    void KukaduGraphical::deleteSkillFromGeneratedSkillsHeader(std::string skillName) {
+        std::string checkline = "#include <kukadu/generated_skills/" + skillName + ".hpp>";
+        std::string gskillHFilePath = resolvePath("$KUKADU_HOME/../") + "/kukadu/include/kukadu/generated_skills.hpp";
+        std::string gskillHFilePathTmp =
+                resolvePath("$KUKADU_HOME/../") + "/kukadu/include/kukadu/generated_skills.hpp.tmp";
+
+        QFile mainFile(QString::fromStdString(gskillHFilePath));
+        mainFile.open(QIODevice::ReadOnly);
+        QFile mainFileTmp(QString::fromStdString(gskillHFilePathTmp));
+        mainFile.open(QIODevice::WriteOnly);
+        QTextStream streamIn(&mainFile);
+        QTextStream streamOut(&mainFileTmp);
+
+        while (!streamIn.atEnd()) {
+            auto line = streamIn.readLine();
+            if (!line.contains(QString::fromStdString(checkline)))
+                streamOut << line << "\r\n";
+        }
+
+        mainFile.close();
+        mainFileTmp.close();
+
+        mainFile.remove();
+        mainFileTmp.rename(gskillHFilePath.c_str());
+    }
+
+    void KukaduGraphical::deleteSkillHeaderFile(std::string skillName) {
+        std::string filePath = resolvePath("$KUKADU_HOME/include/kukadu/generated_skills") + "/" + skillName + ".hpp";
+        QFile headerFile(QString::fromStdString(filePath));
+    }
+
+    void KukaduGraphical::deleteSkillCppFile(std::string skillName) {
+        std::string filePath = resolvePath("$KUKADU_HOME/src/generated_skills") + "/" + skillName + ".cpp";
+        QFile sourceFile(QString::fromStdString(filePath));
+    }
+
+    void KukaduGraphical::deleteFromSkillFactory(std::string skillName) {
+        SkillFactory::removeSkill(skillName);
+    }
+
 }

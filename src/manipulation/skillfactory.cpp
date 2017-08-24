@@ -211,6 +211,38 @@ namespace kukadu {
         newSkillFactoryFile.rename(QString::fromStdString(skillFactoryFilePath));
     }
 
+    void SkillFactory::removeSkill(std::string skillName) {
+        std::string skillText = ",{\n\t\t\t\"" + skillName + "\"" +
+                                ", [](StorageSingleton& storage, int skillId, int controllerType, std::vector<KUKADU_SHARED_PTR<Hardware> > hardwareComponents) {\n" +
+                                "\t\t\t\treturn make_shared<" + skillName +
+                                ">(storage, hardwareComponents);\n" + "\t\t\t}\n" +
+                                "\t\t}\n";
+        std::string skillFactoryFilePath = resolvePath("$KUKADU_HOME/src/manipulation/skillfactory.cpp");
+        QFile skillFactoryFile(QString::fromStdString(skillFactoryFilePath));
+        QFile newSkillFactoryFile(QString::fromStdString(skillFactoryFilePath + "1"));
+
+        skillFactoryFile.open(QIODevice::ReadOnly);
+        newSkillFactoryFile.open(QIODevice::WriteOnly);
+
+        QTextStream skillFactoryStream(&skillFactoryFile);
+        QTextStream newSkillFactoryStream(&newSkillFactoryFile);
+
+        while (!skillFactoryStream.atEnd()) {
+            QString line = skillFactoryStream.readLine();
+
+            if (line.startsWith(",{") {
+
+                newSkillFactoryStream << QString::fromStdString(skillText) << "\n";
+            }
+            newSkillFactoryStream << line + "\n";
+        }
+
+        skillFactoryFile.close();
+        newSkillFactoryFile.close();
+        skillFactoryFile.remove();
+        newSkillFactoryFile.rename(QString::fromStdString(skillFactoryFilePath));
+    }
+
     KUKADU_SHARED_PTR<Controller> SkillFactory::loadSkill(std::string skillName,
                                                           std::vector<KUKADU_SHARED_PTR<Hardware> > hardwareComponents) {
 
