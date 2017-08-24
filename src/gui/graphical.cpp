@@ -667,7 +667,7 @@ namespace kukadu {
 
         std::vector<KUKADU_SHARED_PTR<kukadu::Hardware> > retHardware;
 
-        auto hwFactory = HardwareFactory::get();
+        auto& hwFactory = HardwareFactory::get();
         //hwFactory.setSimulation(false);
         KukaduTokenizer tok(hardwareList, ",");
         string currentHardware = "";
@@ -697,14 +697,9 @@ namespace kukadu {
 
         SkillFactory &factory = SkillFactory::get();
         while ((currentBehaviour = tok.next()) != "") {
-            try {
-                auto currentBehaviourController = KUKADU_DYNAMIC_POINTER_CAST<T>(
-                        factory.loadSkill(currentBehaviour, hardwareInstances));
-                retVec.push_back(currentBehaviourController);
-            } catch (KukaduException &ex) {
-                cerr << "(KukaduGraphical) could not load controller for behaviour " << currentBehaviour <<
-                     ". it will ignored" << endl;
-            }
+            auto currentBehaviourController = KUKADU_DYNAMIC_POINTER_CAST<T>(
+                    factory.loadSkill(currentBehaviour, hardwareInstances));
+            retVec.push_back(currentBehaviourController);
         }
 
         return retVec;
@@ -718,8 +713,6 @@ namespace kukadu {
         playingControllerName = playableSkillsBox->currentText().toStdString();
 
         string allUsedHardware = webView->page()->mainFrame()->evaluateJavaScript("getRequiredHardware()").toString().toStdString();;
-
-        cout << allUsedHardware << endl;
 
         auto sensingControllers = extractAndGenerateControllers<kukadu::SensingController>(sensingControllerNames, allUsedHardware);
         auto playingControllers = extractAndGenerateControllers<kukadu::Controller>(behaviourControllerNames, allUsedHardware);

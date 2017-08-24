@@ -27,6 +27,9 @@
              if(hw->getHardwareInstanceName() == instanceName)
                  return KUKADU_DYNAMIC_POINTER_CAST< T >(hw);
          }
+         for(auto& hw : list)
+             std::cerr << hw->getHardwareInstanceName() << std::endl;
+         std::cerr << "(utils) hardware " << instanceName << " not in the list" << std::endl;
          throw kukadu::KukaduException("(utils) hardware to search is not in the list");
      }
 

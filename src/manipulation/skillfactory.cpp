@@ -331,7 +331,7 @@ namespace kukadu {
 
         if(configId != -1) {
 
-            hardwareComponents = filterComponentsByConfig(configId,     hardwareComponents);
+            hardwareComponents = filterComponentsByConfig(configId, hardwareComponents);
 
             s.str(std::string());
             s

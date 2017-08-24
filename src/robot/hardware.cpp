@@ -18,7 +18,7 @@ namespace kukadu {
         }
     }
 
-    bool RobotConfiguration::containsHardwareInOrder(std::vector<KUKADU_SHARED_PTR<Hardware> > hardwareComponents){
+    bool RobotConfiguration::containsHardwareInOrder(std::vector<KUKADU_SHARED_PTR<Hardware> > hardwareComponents) {
         if(hardwareComponents.size() != hardwareIds.size()) {
             return false;
         }
@@ -31,11 +31,11 @@ namespace kukadu {
         return (*argumentIterator)->getHardwareInstance() == *propertyIterator;
     }
 
-    bool RobotConfiguration::containsHardwareAsSet(std::vector<KUKADU_SHARED_PTR<Hardware> > hardwareComponents){
+    bool RobotConfiguration::containsHardwareAsSet(std::vector<KUKADU_SHARED_PTR<Hardware> > hardwareComponents) {
         auto propertyIterator = hardwareIds.begin();
         auto argumentContainsAllProperties = hardwareComponents.size() == hardwareIds.size();
 
-        for(; propertyIterator != hardwareIds.end() && argumentContainsAllProperties; ++propertyIterator){
+        for(; propertyIterator != hardwareIds.end() && argumentContainsAllProperties; ++propertyIterator) {
             auto elementFound = false;
             for(auto argumentIterator = hardwareComponents.begin(); !elementFound && argumentIterator != hardwareComponents.end(); ++argumentIterator){
                 elementFound = (*argumentIterator)->getHardwareInstance()==*propertyIterator;
@@ -47,20 +47,23 @@ namespace kukadu {
         return argumentContainsAllProperties;
     }
 
-    bool RobotConfiguration::containsHardware(std::vector<KUKADU_SHARED_PTR<Hardware> > hardwareComponents){        
-        auto propertyIterator = hardwareIds.begin();
-        auto argumentContainsAllProperties = hardwareComponents.size() >= hardwareIds.size();
+    bool RobotConfiguration::containsHardware(std::vector<KUKADU_SHARED_PTR<Hardware> > hardwareComponents) {
 
-        for(; propertyIterator != hardwareIds.end() && argumentContainsAllProperties; ++propertyIterator){
-            auto elementFound = false;
-            for(auto argumentIterator = hardwareComponents.begin(); !elementFound && argumentIterator != hardwareComponents.end(); ++argumentIterator){
-                elementFound = (*argumentIterator)->getHardwareInstance()==*propertyIterator;
+        if(hardwareComponents.size() < hardwareIds.size())
+            return false;
+
+        for(auto& desiredHwId : hardwareIds) {
+            bool found = false;
+            for(auto& hw : hardwareComponents) {
+                if(hw->getHardwareInstance() == desiredHwId)
+                    found = true;
             }
-
-            argumentContainsAllProperties &= elementFound;
+            if(!found)
+                return false;
         }
 
-        return argumentContainsAllProperties;
+        return true;
+
     }
 
     bool RobotConfiguration::configurationExists(std::vector<std::shared_ptr<kukadu::Hardware>> hardware) {
@@ -140,10 +143,12 @@ namespace kukadu {
     }
 
     void Hardware::start() {
+
         if(!this->started) {
             startInternal();
             this->started = true;
         }
+
     }
 
     bool Hardware::isStarted() {
