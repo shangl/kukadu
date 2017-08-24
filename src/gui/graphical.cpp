@@ -817,7 +817,7 @@ namespace kukadu {
         while (!streamIn.atEnd()) {
             auto line = streamIn.readLine();
             if (!line.contains(QString::fromStdString(checkline)))
-                streamOut << line << "\r\n";
+                streamOut << line << "\n";
         }
 
         mainFile.close();
