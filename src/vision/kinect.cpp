@@ -263,10 +263,11 @@ namespace kukadu {
 
             pcMutex.lock();
 
-            currentPc = simulatedPc;
-            return currentPc;
+            currentPc = sensor_msgs::PointCloud2::Ptr(new sensor_msgs::PointCloud2(*simulatedPc));
 
             pcMutex.unlock();
+
+            return currentPc;
 
         }
 
