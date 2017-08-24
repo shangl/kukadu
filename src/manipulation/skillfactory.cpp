@@ -163,11 +163,6 @@ namespace kukadu {
             }
             }
 
-,{
-			"testasdfasdf", [](StorageSingleton& storage, int skillId, int controllerType, std::vector<KUKADU_SHARED_PTR<Hardware> > hardwareComponents) {
-				return make_shared<testasdfasdf>(storage, hardwareComponents);
-			}
-		}
 
             //insertSkill
             //at this line further skills will be inserted automatically - do not remove it
