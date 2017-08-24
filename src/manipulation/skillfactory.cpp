@@ -151,12 +151,13 @@ namespace kukadu {
                                             std::vector<KUKADU_SHARED_PTR<Hardware> > hardwareComponents) {
                 return make_shared<SensingPoke>(storage, hardwareComponents);
             }
+            },
+            {
+             "PushTranslation",          [](StorageSingleton &storage, int skillId, int controllerType,
+                                            std::vector<KUKADU_SHARED_PTR<Hardware> > hardwareComponents) {
+                return make_shared<PushTranslation>(storage, hardwareComponents);
             }
-,{
-			"PushTranslation", [](StorageSingleton& storage, int skillId, int controllerType, std::vector<KUKADU_SHARED_PTR<Hardware> > hardwareComponents) {
-				return make_shared<PushTranslation>(storage, hardwareComponents);
-			}
-		}
+            }
 
             //insertSkill
             //at this line further skills will be inserted automatically - do not remove it
@@ -206,11 +207,6 @@ namespace kukadu {
     }
 
     void SkillFactory::removeSkill(std::string skillName) {
-        std::string skillText = ",{\n\t\t\t\"" + skillName + "\"" +
-                                ", [](StorageSingleton& storage, int skillId, int controllerType, std::vector<KUKADU_SHARED_PTR<Hardware> > hardwareComponents) {\n" +
-                                "\t\t\t\treturn make_shared<" + skillName +
-                                ">(storage, hardwareComponents);\n" + "\t\t\t}\n" +
-                                "\t\t}\n";
         std::string skillFactoryFilePath = resolvePath("$KUKADU_HOME/src/manipulation/skillfactory.cpp");
         QFile skillFactoryFile(QString::fromStdString(skillFactoryFilePath));
         QFile newSkillFactoryFile(QString::fromStdString(skillFactoryFilePath + "1"));
@@ -223,10 +219,31 @@ namespace kukadu {
 
         while (!skillFactoryStream.atEnd()) {
             QString line = skillFactoryStream.readLine();
+            std::cout << line.toStdString() << std::endl;
 
-            if (line.startsWith(",{") {
+            if (line.contains("{")) {
+                std::string textToCheckStd = "{\"" +skillName + "\", []";
+                QString textToCheck = QString::fromStdString(textToCheckStd);
 
-                newSkillFactoryStream << QString::fromStdString(skillText) << "\n";
+                if(line.contains(textToCheck)) {
+                    line = skillFactoryStream.readLine();
+                    line = skillFactoryStream.readLine();
+                    line = skillFactoryStream.readLine();
+                    line = skillFactoryStream.readLine();
+                }
+
+                /*
+                QString tline = skillFactoryStream.readLine();
+                if (tline.contains(textToCheck)) {
+                    line = skillFactoryStream.readLine();
+                    line = skillFactoryStream.readLine();
+                    line = skillFactoryStream.readLine();
+                    line = skillFactoryStream.readLine();
+                    line = skillFactoryStream.readLine();
+                } else {
+                    newSkillFactoryStream << line + "\n";
+                    newSkillFactoryStream << tline + "\n";
+                }*/
             }
             newSkillFactoryStream << line + "\n";
         }

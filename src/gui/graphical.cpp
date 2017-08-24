@@ -714,7 +714,7 @@ namespace kukadu {
         auto behaviourControllerNames = usedPlayingBehaviours->text().toStdString();
         playingControllerName = playableSkillsBox->currentText().toStdString();
 
-<<<<<<< HEAD
+/*<<<<<<< HEAD
         string allUsedHardware = webView->page()->mainFrame()->evaluateJavaScript(
                 "getRequiredHardware()").toString().toStdString();;
         auto sensingControllers = extractAndGenerateControllers<kukadu::SensingController>(sensingControllerNames,
@@ -722,24 +722,21 @@ namespace kukadu {
         auto playingControllers = extractAndGenerateControllers<kukadu::Controller>(behaviourControllerNames,
                                                                                     allUsedHardware);
         auto nothingSkill = SkillFactory::get().loadSkill("nothing", {});
-
+*/
         playingControllerName = "";
         cout << "playingcontrollername not set yet" << endl;
 
-        HapticPlanner h(resolvePath("$KUKADU_HOME/skills/"), sensingControllers,
-                        playingControllers, vector<KUKADU_SHARED_PTR<Controller> >{},
-                        nothingSkill,
-                        SkillFactory::get().getGenerator());
-
-        /*
-=======
         string allUsedHardware = webView->page()->mainFrame()->evaluateJavaScript("getRequiredHardware()").toString().toStdString();;
         auto sensingControllers = extractAndGenerateControllers<kukadu::SensingController>(sensingControllerNames, allUsedHardware);
         auto playingControllers = extractAndGenerateControllers<kukadu::Controller>(behaviourControllerNames, allUsedHardware);
         auto toTrainController = extractAndGenerateControllers<kukadu::Controller>({playingControllerName}, allUsedHardware);
         auto nothingSkill = SkillFactory::get().loadSkill("nothing", {});
 
->>>>>>> c4d5677262d390dfb06dee10a1d1a5f7d13b4a18
+        HapticPlanner h(resolvePath("$KUKADU_HOME/skills/"), sensingControllers,
+                        playingControllers, vector<KUKADU_SHARED_PTR<Controller> >{},
+                        nothingSkill,
+                        SkillFactory::get().getGenerator());
+
         currentHapticPlanner = make_shared<HapticPlanner>(resolvePath("$KUKADU_HOME/skills/"), sensingControllers,
                                                           playingControllers,
                                                           toTrainController,
@@ -763,9 +760,9 @@ namespace kukadu {
     void KukaduGraphical::deleteSlot() {
         std::string skillName = deleteSkillName->text().toStdString();
         if (!checkSkillNameIsNew(skillName)) {
-            deleteSkillFromGeneratedSkillsHeader(skillName);
-            deleteSkillHeaderFile(skillName);
-            deleteSkillCppFile(skillName);
+            //deleteSkillFromGeneratedSkillsHeader(skillName);
+            //deleteSkillHeaderFile(skillName);
+            //deleteSkillCppFile(skillName);
             deleteFromSkillFactory(skillName);
         }
     }

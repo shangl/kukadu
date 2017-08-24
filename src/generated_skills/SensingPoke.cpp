@@ -2,7 +2,6 @@
 #include <kukadu/generated_skills/BlockingPos.hpp>
 #include <kukadu/generated_skills/CloseHand.hpp>
 #include <kukadu/generated_skills/PressButtonController.hpp>
-#include <kukadu/generated_skills/BookGrasping.hpp>
 #include <kukadu/generated_skills/ShelfAlignment.hpp>
 #include <kukadu/generated_skills/FinalPush.hpp>
 #include <kukadu/generated_skills/PushHandPos.hpp>
