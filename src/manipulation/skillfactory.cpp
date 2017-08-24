@@ -260,6 +260,38 @@ namespace kukadu {
         newSkillFactoryFile.rename(QString::fromStdString(skillFactoryFilePath));
     }
 
+    std::vector<KUKADU_SHARED_PTR<Hardware> > filterComponentsByConfig(int configId, std::vector<KUKADU_SHARED_PTR<Hardware> > hardwareComponents) {
+
+        std::vector<KUKADU_SHARED_PTR<Hardware> > retConfig;
+
+        stringstream s;
+        s << "select hwi.instance_name as hwname FROM robot_config as rc " <<
+             " inner join hardware_instances as hwi on rc.hardware_instance_id = hwi.instance_id " <<
+             " WHERE rc.robot_config_id=" << configId << " ORDER BY rc.order_id ASC";
+
+        auto res = StorageSingleton::get().executeQuery(s.str());
+        while(res->next()) {
+            string hardwareString = res->getString("hwname");
+
+            KUKADU_SHARED_PTR<Hardware> nextHw;
+            // not very efficient
+            for(auto& hw : hardwareComponents) {
+                if(hw->getHardwareInstanceName() == hardwareString) {
+                    nextHw = hw;
+                    break;
+                }
+            }
+            if(nextHw)
+                retConfig.push_back(nextHw);
+            else
+                throw KukaduException("(SkillFactory) hardware was not found");
+
+        }
+
+        return retConfig;
+
+    }
+
     KUKADU_SHARED_PTR<Controller> SkillFactory::loadSkill(std::string skillName,
                                                           std::vector<KUKADU_SHARED_PTR<Hardware> > hardwareComponents) {
 
@@ -286,29 +318,36 @@ namespace kukadu {
         }
         int configId = roboConfigIdInOrder != -1 ? roboConfigIdInOrder : roboConfigIdSet != -1 ? roboConfigIdSet
                                                                                                : roboConfigIdSubset;
-        s.str(std::string());
-        s
-                << "SELECT skills.skill_id as 'skillId', skills.controller_type as 'controllerId', skills_robot.robot_config_id as 'roboConfigId'"
-                << "FROM skills_robot INNER JOIN skills ON skills.skill_id=skills_robot.skill_id "
-                << "WHERE skills.label='" << skillName << "' AND skills_robot.robot_config_id=" << configId;
-        auto skillResult = storage.executeQuery(s.str());
-        if (skillResult->next()) {
-            long long int skillId = skillResult->getInt64("skillId");
-            int controllerType = skillResult->getInt("controllerId");
-            auto controllerClassLabel = storage.getCachedLabel("controller_types", "controller_id",
-                                                               "controller_implementation_class", controllerType);
-            if (skillFactories.find(controllerClassLabel) != skillFactories.end())
-                return skillFactories[controllerClassLabel](storage, skillId, controllerType, hardwareComponents);
-            else {
-                cerr << "(SkillFactory) automatic loading of the skill " << skillName
-                     << " is not supported for the required controller " <<
-                     controllerClassLabel << endl;
-                throw KukaduException("(SkillFactory) automatic loading is not supported for the required controller");
+
+        if(configId != -1) {
+
+            hardwareComponents = filterComponentsByConfig(configId,     hardwareComponents);
+
+            s.str(std::string());
+            s
+                    << "SELECT skills.skill_id as 'skillId', skills.controller_type as 'controllerId', skills_robot.robot_config_id as 'roboConfigId'"
+                    << "FROM skills_robot INNER JOIN skills ON skills.skill_id=skills_robot.skill_id "
+                    << "WHERE skills.label='" << skillName << "' AND skills_robot.robot_config_id=" << configId;
+            auto skillResult = storage.executeQuery(s.str());
+            if (skillResult->next()) {
+                long long int skillId = skillResult->getInt64("skillId");
+                int controllerType = skillResult->getInt("controllerId");
+                auto controllerClassLabel = storage.getCachedLabel("controller_types", "controller_id",
+                                                                   "controller_implementation_class", controllerType);
+                if (skillFactories.find(controllerClassLabel) != skillFactories.end())
+                    return skillFactories[controllerClassLabel](storage, skillId, controllerType, hardwareComponents);
+                else {
+                    cerr << "(SkillFactory) automatic loading of the skill " << skillName
+                         << " is not supported for the required controller " <<
+                         controllerClassLabel << endl;
+                    throw KukaduException("(SkillFactory) automatic loading is not supported for the required controller");
+                }
             }
         } else {
             stringstream s;
             s << "(SkillFactory) requested skill \"" << skillName
               << "\" does not exist in the data base or is not available for your robot";
+            cerr << s.str() << endl;
             throw KukaduException(s.str().c_str());
         }
     }
