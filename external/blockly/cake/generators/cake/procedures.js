@@ -512,8 +512,8 @@ function CodeClass(name, code, behaviour, playingQueue, playingHand) {
             newLine +
             name + "::" + name + "(kukadu::StorageSingleton& storage, std::vector< KUKADU_SHARED_PTR< kukadu::Hardware > > hardware)" + newLine +
             " : SensingController(storage, kukadu::SkillFactory::get().getGenerator(), kukadu::SensingController::HAPTIC_MODE_CLASSIFIER, " + newLine +
-            "\"" + name + "\", {retrieveHardwareWithId <ControlQueue> (hardware, \"" + playingQueue + "\")},\n" +
-            "    {retrieveHardwareWithId <GenericHand>(hardware, \"" + playingHand + "\")}, \"/tmp/\", 1.0) {" + newLine +
+            "\"" + name + "\", {retrieveHardwareWithId <kukadu::ControlQueue> (hardware, \"" + playingQueue + "\")},\n" +
+            "    {retrieveHardwareWithId <kukadu::GenericHand>(hardware, \"" + playingHand + "\")}, \"/tmp/\", 1.0) {" + newLine +
             "\tthis->hardware = hardware;" + newLine +
             "}" + newLine +
             newLine +
