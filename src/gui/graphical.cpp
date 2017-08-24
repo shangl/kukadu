@@ -749,7 +749,7 @@ namespace kukadu {
     void KukaduGraphical::deleteSlot() {
         std::string skillName = deleteSkillName->text().toStdString();
         if (!checkSkillNameIsNew(skillName)) {
-            deleteSkillFromGeneratedSkillsHeader(skillName);
+            deleteIncludesOfSkill(skillName);
             deleteSkillHeaderFile(skillName);
             deleteSkillCppFile(skillName);
             deleteFromSkillFactory(skillName);
@@ -791,10 +791,14 @@ namespace kukadu {
     }
 
 
-    void KukaduGraphical::deleteSkillFromGeneratedSkillsHeader(std::string skillName) {
+    void KukaduGraphical::deleteIncludesOfSkill(std::string skillName) {
         std::string checkline = "#include <kukadu/generated_skills/" + skillName + ".hpp>";
-        std::string gskillHFilePath = resolvePath("$KUKADU_HOME/../") + "/kukadu/include/kukadu/generated_skills.hpp";
 
+        auto files = getFilesInDirectory(resolvePath("$KUKADU_HOME/meta/xml"));
+        for (auto &f : files)
+            deleteLineFromFiles(checkline, f);
+
+        std::string gskillHFilePath = resolvePath("$KUKADU_HOME/../") + "/kukadu/include/kukadu/generated_skills.hpp";
         deleteLineFromFiles(checkline, gskillHFilePath);
     }
 

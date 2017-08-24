@@ -80,7 +80,7 @@ namespace kukadu {
 
         QGroupBox *createUI();
 
-        void deleteSkillFromGeneratedSkillsHeader(std::string skillName);
+        void deleteIncludesOfSkill(std::string skillName);
 
         void deleteSkillHeaderFile(std::string skillName);
 

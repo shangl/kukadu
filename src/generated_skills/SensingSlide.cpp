@@ -17,6 +17,7 @@
 #include <kukadu/generated_skills/RightHandBlocking.hpp>
 #include <kukadu/generated_skills/ChangeStiffness.hpp>
 #include <kukadu/generated_skills/SimpleJointPtp.hpp>
+#include <kukadu/generated_skills/testasdfasdf.hpp>
 #include <kukadu/manipulation/skillfactory.hpp>
 
  namespace kukadu {
