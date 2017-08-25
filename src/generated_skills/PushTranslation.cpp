@@ -79,7 +79,7 @@ namespace kukadu {
 	while (finishedPushing != 1) {
 		horizontalDistance = (pos.position.y - targety);
 		verticalDistance = (pos.position.x - targetx);
-		booleanHelper = (sqrt(pow(horizontalDistance,2))) < 0.02;
+        booleanHelper = (std::sqrt(std::pow(horizontalDistance,2))) < 0.02;
 		if (booleanHelper) {
 			finishedPushing = 1;
 		}
@@ -137,6 +137,8 @@ namespace kukadu {
 			sLeftQueue760->install();
 			sLeftQueue760->start();
 
+            std::cout << startPoseWithOffset.position.x << " " << startPoseWithOffset.position.y << " " << startPoseWithOffset.position.z << std::endl;
+
 			auto skill76 = kukadu::SkillFactory::get().loadSkill("CartesianPtp", {sLeftQueue760});
 
 			std::dynamic_pointer_cast<kukadu::CartesianPtp>(skill76)->setCartesians(startPoseWithOffset);
@@ -153,7 +155,7 @@ namespace kukadu {
 
 			skill77->execute();
 
-			distance = (sqrt(pow(horizontalDistance,2)));
+            distance = (std::sqrt(std::pow(horizontalDistance,2)));
 			while (i < distance) {
 				auto sLeftQueue780 = getUsedHardware()[2];
 				sLeftQueue780->install();
@@ -166,11 +168,11 @@ namespace kukadu {
 				skill78->execute();
 
 				startPose.position.y = (startPose.position.y - jumpingSteps);
-				booleanHelper = jumpingSteps < (sqrt(pow((distance - i),2)));
+                booleanHelper = jumpingSteps < (std::sqrt(std::pow((distance - i),2)));
 				if (booleanHelper) {
 					i = (i + jumpingSteps);
 				} else {
-					i = (i + (sqrt(pow((distance - i),2))));
+                    i = (i + (std::sqrt(std::pow((distance - i),2))));
 				}
 			}
 			//keep this CartesianPtp for last Push

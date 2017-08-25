@@ -668,7 +668,7 @@ namespace kukadu {
         std::vector<KUKADU_SHARED_PTR<kukadu::Hardware> > retHardware;
 
         auto& hwFactory = HardwareFactory::get();
-        //hwFactory.setSimulation(false);
+        hwFactory.setSimulation(false);
         KukaduTokenizer tok(hardwareList, ",");
         string currentHardware = "";
         while ((currentHardware = tok.next()) != "") {

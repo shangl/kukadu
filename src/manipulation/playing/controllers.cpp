@@ -709,14 +709,17 @@ namespace kukadu {
 
         if(!getSimulationMode()) {
 
-//            cout << "(ComplexController) do you want to execute complex action now? (0 = no / 1 = yes)" << endl;
-//            cin >> executeIt;
+            cout << "(ComplexController) do you want to execute complex action now? (0 = no / 1 = yes)" << endl;
+            cin >> executeIt;
+
+//            executeIt = 1;
 
             if(executeIt)
                 executeComplexAction();
 
             cout << "did the complex action succeed? (0 = no / 1 = yes)" << endl;
-            cin >> worked;
+//            cin >> worked;
+            worked = 1;
 
             if(worked) {
                 cout << "preparation action worked; rewarded with " << stdReward << endl;
@@ -983,6 +986,7 @@ namespace kukadu {
 
                     cout << "(ComplexController::execute) do you want to execute it? (0 = no, 1 = yes)" << endl;
                     cin >> executeIt;
+//                    executeIt = 1;
                 } else
                     executeIt = 1;
 
@@ -1555,7 +1559,7 @@ namespace kukadu {
 
             int executeIt = 1;
             cout << "(ControllerActionClip) selected preparation action is \"" << actionController->getCaption() << "\"" << endl;
-//            cin >> executeIt;
+            cin >> executeIt;
 
             if(executeIt == 1)
                 retVal = actionController->execute();
@@ -1711,7 +1715,7 @@ namespace kukadu {
             int executeIt = 1;
             int temporaryHapticMode = hapticMode;
             cout << "(SensingController) selected sensing action is \"" << getCaption() << "\"" << endl;
-//            cin >> executeIt;
+            cin >> executeIt;
 
             if(executeIt == 1) {
 
@@ -1914,7 +1918,7 @@ namespace kukadu {
                     cout << "(SensingController) you have less than " << minSampleCount << " samples for state " << i << " under sensing action " << getCaption() <<
                             ". do you want to collect more? (0 = no, 1 = yes)" << endl;
                     int answer = 1;
-                    //cin >> answer;
+//                    cin >> answer;
                     if(answer == 1)
                         perceptualStateId = i;
                     break;

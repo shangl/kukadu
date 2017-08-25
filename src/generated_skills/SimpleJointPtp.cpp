@@ -9,7 +9,7 @@ namespace kukadu {
                                    std::vector<KUKADU_SHARED_PTR<kukadu::Hardware> > hardware)
             : Controller(storage, "SimpleJointPtp", hardware, 0.01) {
 
-        maxForce = 15.0;
+        maxForce = 30.0;
         auto queue = KUKADU_DYNAMIC_POINTER_CAST<KukieControlQueue>(hardware.front());
         queue->install();
         queue->start();
@@ -45,8 +45,9 @@ namespace kukadu {
         for (vec joint : jointPlan) {
 
             if (sLeftQueue13000->getAbsoluteCartForce() > this->maxForce) {
-                sLeftQueue13000->rollBack(1.0);
-                break;
+                cerr << "(SimpleJointPtp) exceeded max force with force " << sLeftQueue13000->getAbsoluteCartForce() << " > " << this->maxForce << "; doing rollback" << endl;
+                //sLeftQueue13000->rollBack(1.0);
+                //break;
             } else {
                 sLeftQueue13000->move(joint);
                 sLeftQueue13000->synchronizeToQueue(1);

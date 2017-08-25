@@ -610,20 +610,22 @@ namespace kukadu {
 
     int Nothing::currentInstanceCount = 0;
     std::string Nothing::nextInstanceLabel() {
-        stringstream s;
-        ++currentInstanceCount;
-        return s.str();
+        return "nothing";
     }
+
     Nothing::Nothing(StorageSingleton& storage)
         : Controller(storage, nextInstanceLabel(), {}, 0) {
 
     }
+
     bool Nothing::requiresGraspInternal() {
         return false;
     }
+
     bool Nothing::producesGraspInternal() {
         return false;
     }
+
     KUKADU_SHARED_PTR<ControllerResult> Nothing::executeInternal() {
         return nullptr;
     }

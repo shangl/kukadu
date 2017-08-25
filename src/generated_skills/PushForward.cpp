@@ -50,6 +50,8 @@ namespace kukadu {
             std::dynamic_pointer_cast<kukadu::DMPExecutor>(skill203)->setExecutionDuration(3.5);
             std::dynamic_pointer_cast<kukadu::DMPExecutor>(skill203)->setMaxAbsForce(15);
 
+            skill203->execute();
+
             if (goBackToBlockingPos) {
                 auto sLeftQueue2040 = getUsedHardware()[1];
                 sLeftQueue2040->install();
@@ -58,8 +60,6 @@ namespace kukadu {
                 auto skill13 = kukadu::SkillFactory::get().loadSkill("BlockingPos", {sLeftQueue2040});
                 skill13->execute();
             }
-
-            skill203->execute();
 
             return nullptr;
         }

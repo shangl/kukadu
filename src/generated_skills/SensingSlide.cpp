@@ -251,71 +251,29 @@
 
 	skill617->execute();
 
-
 	}
+
 	void SensingSlide::cleanUp() {
 
-	auto sLeftQueue6180 = getUsedHardware()[1];
-	sLeftQueue6180->install();
-	sLeftQueue6180->start();
+        auto sLeftQueue6050 = getUsedHardware()[2];
+        sLeftQueue6050->install();
+        sLeftQueue6050->start();
 
-	auto skill618 = kukadu::SkillFactory::get().loadSkill("JointPtp", {sLeftQueue6180});
-
-	std::dynamic_pointer_cast<kukadu::JointPtp>(skill618)->setJoints({0, -1.5, -1, 0.4, 1.2, -1.5, -1});
-
-	skill618->execute();
-
+        auto skill605 = kukadu::SkillFactory::get().loadSkill("MoveHome", {sLeftQueue6050});
 
 	}
+
 	void SensingSlide::performCore() {
 
-	auto sLeftQueue6190 = getUsedHardware()[0];
-	sLeftQueue6190->install();
-	sLeftQueue6190->start();
+        auto sLeftQueue6170 = getUsedHardware()[1];
+        sLeftQueue6170->install();
+        sLeftQueue6170->start();
 
-	auto skill619 = kukadu::SkillFactory::get().loadSkill("ChangeStiffness", {sLeftQueue6190});
+        auto skill619 = kukadu::SkillFactory::get().loadSkill("JointPtp", {sLeftQueue6170});
 
-	std::dynamic_pointer_cast<kukadu::ChangeStiffness>(skill619)->setStiffnessType(0);
-	std::dynamic_pointer_cast<kukadu::ChangeStiffness>(skill619)->setStandardStiffnessDamping(-1);
+        std::dynamic_pointer_cast<kukadu::JointPtp>(skill619)->setJoints({0.0, -1.5, -1.0, 0.4, 1.2, -1.5, -1});
 
-	skill619->execute();
-
-	auto sLeftQueue6200 = getUsedHardware()[0];
-	sLeftQueue6200->install();
-	sLeftQueue6200->start();
-
-	auto skill620 = kukadu::SkillFactory::get().loadSkill("BlockingPos", {sLeftQueue6200});
-
-	skill620->execute();
-
-	auto sLeftQueue6210 = getUsedHardware()[2];
-	sLeftQueue6210->install();
-	sLeftQueue6210->start();
-
-	auto skill621 = kukadu::SkillFactory::get().loadSkill("MoveHome", {sLeftQueue6210});
-
-	skill621->execute();
-
-	auto sLeftQueue6220 = getUsedHardware()[1];
-	sLeftQueue6220->install();
-	sLeftQueue6220->start();
-
-	auto skill622 = kukadu::SkillFactory::get().loadSkill("PushHandPos", {sLeftQueue6220});
-
-	skill622->execute();
-
-	auto sLeftQueue6230 = getUsedHardware()[3];
-	sLeftQueue6230->install();
-	sLeftQueue6230->start();
-	auto sLeftQueue6231 = getUsedHardware()[0];
-	sLeftQueue6231->install();
-	sLeftQueue6231->start();
-
-	auto skill623 = kukadu::SkillFactory::get().loadSkill("PushForward", {sLeftQueue6230, sLeftQueue6231});
-
-	std::dynamic_pointer_cast<kukadu::PushForward>(skill623)->setGoBackToBlockingPos(true);
-
-	skill623->execute();
+        skill619->execute();
 
 	}
 
