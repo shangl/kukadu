@@ -631,7 +631,7 @@ function CodeClass(name, code, behaviour, playingQueue, playingHand, stateCount)
             "}" + newLine +
             newLine +
             "int " + name + "::getStateCount(const std::string& sensingName) {" + newLine +
-            "return " + stateCount + ";" + newLine +
+            "\treturn " + stateCount + ";" + newLine +
             "}" + newLine +
             newLine +
             "double " + name + "::getSimulatedReward(KUKADU_SHARED_PTR<kukadu::IntermediateEventClip> sensingClip," + newLine +
