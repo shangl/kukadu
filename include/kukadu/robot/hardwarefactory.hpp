@@ -1,6 +1,7 @@
 #ifndef KUKADU_HARDWARE_FACTORY
 #define KUKADU_HARDWARE_FACTORY
 
+#include <mutex>
 #include <kukadu/robot/hardware.hpp>
 #include <kukadu/storage/storagesingleton.hpp>
 
@@ -9,7 +10,10 @@ namespace kukadu {
     class HardwareFactory {
 
     private:
+
         bool simulation = true;
+
+        std::mutex loadHardwareMutex;
 
         StorageSingleton& storage;
 
@@ -18,6 +22,10 @@ namespace kukadu {
         std::map<std::string, KUKADU_SHARED_PTR<Hardware> > createdHardware;
 
         HardwareFactory();
+
+        // cannot copy hardware factory
+        HardwareFactory(const HardwareFactory& cp) : storage(cp.storage) {}
+        HardwareFactory& operator=(const HardwareFactory& fac) { return *(new HardwareFactory()); }
 
     public:
 

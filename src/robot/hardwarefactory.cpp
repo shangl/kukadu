@@ -74,8 +74,13 @@ HardwareFactory& HardwareFactory::get() {
 
 KUKADU_SHARED_PTR<Hardware> HardwareFactory::loadHardware(std::string hardwareName) {
 
-    if(createdHardware[createHardwareName(hardwareName, this->simulation)])
-        return createdHardware[createHardwareName(hardwareName, this->simulation)];
+    loadHardwareMutex.lock();
+
+    std::string mapHardwareName = createHardwareName(hardwareName, this->simulation);
+    if(createdHardware.find(mapHardwareName) != createdHardware.end()) {
+        loadHardwareMutex.unlock();
+        return createdHardware[mapHardwareName];
+    }
 
     // if the hardware was not created yet
     auto hardwareId = storage.getCachedLabelId("hardware_instances", "hardware_id", "instance_name", hardwareName);
@@ -83,10 +88,15 @@ KUKADU_SHARED_PTR<Hardware> HardwareFactory::loadHardware(std::string hardwareNa
 
     KUKADU_SHARED_PTR<Hardware> created = nullptr;
     auto& storage = StorageSingleton::get();
-    if(hardwareFactories.find(className) != hardwareFactories.end())
-        created = createdHardware[createHardwareName(hardwareName, this->simulation)] = hardwareFactories[className](storage, hardwareName, this->simulation);
-    else
+    if(hardwareFactories.find(className) != hardwareFactories.end()) {
+        created = hardwareFactories[className](storage, hardwareName, this->simulation);
+        createdHardware[mapHardwareName] = created;
+    } else {
+        loadHardwareMutex.unlock();
         throw KukaduException("(HardwareFactory) hardware type is not installed to the factory");
+    }
+
+    loadHardwareMutex.unlock();
 
     return created;
 

@@ -120,17 +120,23 @@ namespace kukadu {
 
 	skill229->execute();
 
-	auto sLeftQueue2300 = getUsedHardware()[0];
-	sLeftQueue2300->install();
-	sLeftQueue2300->start();
-	auto sLeftQueue2301 = getUsedHardware()[3];
-	sLeftQueue2301->install();
-	sLeftQueue2301->start();
-	auto sLeftQueue2302 = getUsedHardware()[4];
-	sLeftQueue2302->install();
-	sLeftQueue2302->start();
+    auto sLeftQueue2300 = getUsedHardware()[0];
+    sLeftQueue2300->install();
+    sLeftQueue2300->start();
+    auto sLeftQueue2301 = getUsedHardware()[1];
+    sLeftQueue2301->install();
+    sLeftQueue2301->start();
+    auto sLeftQueue2302 = getUsedHardware()[2];
+    sLeftQueue2302->install();
+    sLeftQueue2302->start();
+    auto sLeftQueue2303 = getUsedHardware()[3];
+    sLeftQueue2303->install();
+    sLeftQueue2303->start();
+    auto sLeftQueue2304 = getUsedHardware()[4];
+    sLeftQueue2304->install();
+    sLeftQueue2304->start();
 
-	auto skill230 = kukadu::SkillFactory::get().loadSkill("PushTranslation", {sLeftQueue2300, sLeftQueue2301, sLeftQueue2302});
+    auto skill230 = kukadu::SkillFactory::get().loadSkill("PushTranslation", {sLeftQueue2300, sLeftQueue2301, sLeftQueue2302, sLeftQueue2303, sLeftQueue2304});
 
 	skill230->execute();
 

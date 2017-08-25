@@ -26,6 +26,9 @@
             if(hw->getHardwareInstanceName() == instanceName)
                 return KUKADU_DYNAMIC_POINTER_CAST< T >(hw);
         }
+        for(auto& hw : list)
+            std::cerr << hw->getHardwareInstanceName() << std::endl;
+        std::cerr << "(utils) hardware " << instanceName << " not in the list" << std::endl;
         throw kukadu::KukaduException("(utils) hardware to search is not in the list");
     }
 
@@ -123,31 +126,43 @@
 
 	skill607->execute();
 
-	auto sLeftQueue6080 = getUsedHardware()[2];
-	sLeftQueue6080->install();
-	sLeftQueue6080->start();
-	auto sLeftQueue6081 = getUsedHardware()[1];
-	sLeftQueue6081->install();
-	sLeftQueue6081->start();
-	auto sLeftQueue6082 = getUsedHardware()[4];
-	sLeftQueue6082->install();
-	sLeftQueue6082->start();
+    auto sLeftQueue2300 = getUsedHardware()[0];
+    sLeftQueue2300->install();
+    sLeftQueue2300->start();
+    auto sLeftQueue2301 = getUsedHardware()[1];
+    sLeftQueue2301->install();
+    sLeftQueue2301->start();
+    auto sLeftQueue2302 = getUsedHardware()[2];
+    sLeftQueue2302->install();
+    sLeftQueue2302->start();
+    auto sLeftQueue2303 = getUsedHardware()[3];
+    sLeftQueue2303->install();
+    sLeftQueue2303->start();
+    auto sLeftQueue2304 = getUsedHardware()[4];
+    sLeftQueue2304->install();
+    sLeftQueue2304->start();
 
-	auto skill608 = kukadu::SkillFactory::get().loadSkill("PushTranslation", {sLeftQueue6080, sLeftQueue6081, sLeftQueue6082});
+    auto skill608 = kukadu::SkillFactory::get().loadSkill("PushTranslation", {sLeftQueue2300, sLeftQueue2301, sLeftQueue2302, sLeftQueue2303, sLeftQueue2304});
 
 	skill608->execute();
 
-	auto sLeftQueue6090 = getUsedHardware()[2];
-	sLeftQueue6090->install();
-	sLeftQueue6090->start();
-	auto sLeftQueue6091 = getUsedHardware()[1];
-	sLeftQueue6091->install();
-	sLeftQueue6091->start();
-	auto sLeftQueue6092 = getUsedHardware()[4];
-	sLeftQueue6092->install();
-	sLeftQueue6092->start();
+    auto sLeftQueue2310 = getUsedHardware()[0];
+    sLeftQueue2310->install();
+    sLeftQueue2310->start();
+    auto sLeftQueue2311 = getUsedHardware()[1];
+    sLeftQueue2311->install();
+    sLeftQueue2311->start();
+    auto sLeftQueue2312 = getUsedHardware()[2];
+    sLeftQueue2312->install();
+    sLeftQueue2312->start();
+    auto sLeftQueue2313 = getUsedHardware()[3];
+    sLeftQueue2313->install();
+    sLeftQueue2313->start();
+    auto sLeftQueue2314 = getUsedHardware()[4];
+    sLeftQueue2314->install();
+    sLeftQueue2314->start();
 
-	auto skill609 = kukadu::SkillFactory::get().loadSkill("PushTranslation", {sLeftQueue6090, sLeftQueue6091, sLeftQueue6092});
+    auto skill609 = kukadu::SkillFactory::get().loadSkill("PushTranslation", {sLeftQueue2310, sLeftQueue2311, sLeftQueue2312, sLeftQueue2313, sLeftQueue2314});
 
 	skill609->execute();
 
