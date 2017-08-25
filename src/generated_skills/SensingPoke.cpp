@@ -111,36 +111,37 @@
 	}
 	void SensingPoke::cleanUp() {
 
-	auto sLeftQueue420 = getUsedHardware()[2];
-	sLeftQueue420->install();
-	sLeftQueue420->start();
-	auto sLeftQueue421 = getUsedHardware()[1];
-	sLeftQueue421->install();
-	sLeftQueue421->start();
+		auto sLeftQueue430 = getUsedHardware()[0];
+		sLeftQueue430->install();
+		sLeftQueue430->start();
 
-	auto skill42 = kukadu::SkillFactory::get().loadSkill("FinalPush", {sLeftQueue420, sLeftQueue421});
+		auto skill43 = kukadu::SkillFactory::get().loadSkill("BlockingPos", {sLeftQueue430});
 
-	skill42->execute();
+		skill43->execute();
+
+		auto sLeftQueue440 = getUsedHardware()[2];
+		sLeftQueue440->install();
+		sLeftQueue440->start();
+
+		auto skill44 = kukadu::SkillFactory::get().loadSkill("MoveHome", {sLeftQueue440});
+
+		skill44->execute();
+
 
 
 	}
 	void SensingPoke::performCore() {
 
-	auto sLeftQueue430 = getUsedHardware()[0];
-	sLeftQueue430->install();
-	sLeftQueue430->start();
+		auto sLeftQueue420 = getUsedHardware()[2];
+		sLeftQueue420->install();
+		sLeftQueue420->start();
+		auto sLeftQueue421 = getUsedHardware()[1];
+		sLeftQueue421->install();
+		sLeftQueue421->start();
 
-	auto skill43 = kukadu::SkillFactory::get().loadSkill("BlockingPos", {sLeftQueue430});
+		auto skill42 = kukadu::SkillFactory::get().loadSkill("FinalPush", {sLeftQueue420, sLeftQueue421});
 
-	skill43->execute();
-
-	auto sLeftQueue440 = getUsedHardware()[2];
-	sLeftQueue440->install();
-	sLeftQueue440->start();
-
-	auto skill44 = kukadu::SkillFactory::get().loadSkill("MoveHome", {sLeftQueue440});
-
-	skill44->execute();
+		skill42->execute();
 
 	}
 

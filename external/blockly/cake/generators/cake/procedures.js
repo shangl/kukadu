@@ -134,8 +134,9 @@ Blockly.cake['main_block'] = function (block) {
 
     var playingQueue = block.getFieldValue('PlayingQueueHardware');
     var playingHand = block.getFieldValue('PlayingHandHardware');
+    var stateCount = block.getFieldValue('StateCount');
     var behaviour = block.getFieldValue('BehaviourMode');
-    var codeClass = new CodeClass(skillName, skillCode, behaviour, playingQueue, playingHand);
+    var codeClass = new CodeClass(skillName, skillCode, behaviour, playingQueue, playingHand, stateCount);
 
     var funcName = 'main';
     var returnValue = "hardwareFactory.stopAllCreatedHardware();\nkukadu::ModuleUsageSingleton::get().stopStatisticsModule();\nstorage.waitForEmptyCache();\nreturn EXIT_SUCCESS;\n";
@@ -338,12 +339,13 @@ Blockly.cake['procedures_callnoreturn'] = function (block) {
     return code;
 };
 
-function CodeClass(name, code, behaviour, playingQueue, playingHand) {
+function CodeClass(name, code, behaviour, playingQueue, playingHand, stateCount) {
     this.name = name;
     this.code = code;
     this.behaviour = behaviour;
     this.playingQueue = playingQueue;
     this.playingHand = playingHand;
+    this.stateCount = stateCount;
 
     this.generateClass = function () {
         var splitCode = "//Skillheader for Skill\n" +
@@ -629,7 +631,7 @@ function CodeClass(name, code, behaviour, playingQueue, playingHand) {
             "}" + newLine +
             newLine +
             "int " + name + "::getStateCount(const std::string& sensingName) {" + newLine +
-            newLine +
+            "\treturn " + stateCount + ";" + newLine +
             "}" + newLine +
             newLine +
             "double " + name + "::getSimulatedReward(KUKADU_SHARED_PTR<kukadu::IntermediateEventClip> sensingClip," + newLine +
