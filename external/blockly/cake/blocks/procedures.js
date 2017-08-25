@@ -47,6 +47,9 @@ Blockly.Blocks['main_block'] = {
             .appendField("Playinghand: ")
             .appendField(new Blockly.FieldDropdown(Databaseloader.handPlayingTupleArray, null, this), "PlayingHandHardware");
         this.appendDummyInput()
+            .appendField("Statecount: ")
+            .appendField(new Blockly.FieldTextInput("0", Blockly.FieldTextInput.integerValidator), "StateCount");
+        this.appendDummyInput()
             .appendField("Skillname: ")
             .appendField(new Blockly.FieldTextInput("newSkillName"), "newSkillName");
         this.appendStatementInput('STACK')
