@@ -1,0 +1,65 @@
+this project comes under the GPL v3.0 (see license). please also see
+the helpful external software in the folder external.
+i am curious about cool stuff that is done using my software. if you
+use it, i am glad if you let me know :)
+
+contact: shangl1988@gmail.com
+
+install:
+
+set up a catkin workspace
+clone https://github.com/shangl/uibk_moveit_tools to your catkin_ws/src
+install dependencies
+
+at least:
+
+cmake 3
+g++ 5
+armadillo 7
++ ros packages (see below)
+
+(all packages come from ubuntu 16.04; if you use 14.04, see end of the readme)
+
+==============================================================
+
+ros indigo:
+
+sudo apt-get install libmysqlcppconn-dev libgsl0-dev gnuplot gnuplot-x11 libarmadillo-dev libboost-all-dev libncurses5-dev libarmadillo-dev liballegro5-dev ros-indigo-pcl-ros ros-indigo-moveit-ros-planning-interface python3.4-dev liblapacke-dev gtk+2.0 \
+bison build-essential cmake doxygen fabric flex freeglut3-dev g++ gcc gfortran git-core gnuplot graphviz-dev libann-dev libcv-dev libcvaux-dev libdc1394-22-dev libf2c2-dev libgtest-dev libgtkglext1-dev libhighgui-dev liblapack-dev libplib-dev \
+libqhull-dev libsdl1.2-dev libx11-dev libx11-dev libxi-dev libxmu-dev make meld python-nose python-unittest2 realpath regexxer swig2.0 tcl8.5-dev tk-dev tk8.5-dev libfreenect-dev qt5-default libsvm-dev libdw-dev binutils-dev zlib1g-dev
+
+ros kinetic:
+
+sudo apt-get install libmysqlcppconn-dev libgsl-dev gnuplot gnuplot-x11 libarmadillo-dev libboost-all-dev libncurses5-dev libarmadillo-dev liballegro5-dev ros-kinetic-pcl-ros ros-kinetic-moveit-ros-planning-interface python3.5-dev liblapacke-dev \
+libgtk2.0-bin librccgtk2-0 libgtk2.0-cil libgtk2.0-dev libgtk2.0-doc gtk2.0-examples libwebkitgtk2.0-cil libgtk2.0-0 libwebkitgtk2.0-cil-dev libtopmenu-client-gtk2-0 monodoc-gtk2.0-manual libgtk2.0-common libgtk2.0-0-dbg libgtk2.0-cil-dev monodoc-webkitgtk2.0-manual \
+uim-gtk2.0 libgtk2.0-0 libgwengui-gtk2-0 libtopmenu-server-gtk2-0 \
+bison build-essential cmake doxygen fabric flex freeglut3-dev g++ gcc gfortran git-core gnuplot graphviz-dev libann-dev libcv-dev libcvaux-dev libdc1394-22-dev libf2c2-dev libgtest-dev libgtkglext1-dev libhighgui-dev liblapack-dev libplib-dev \
+libqhull-dev libsdl1.2-dev libx11-dev libx11-dev libxi-dev libxmu-dev make meld python-nose python-unittest2 realpath regexxer swig2.0 tcl8.5-dev tk-dev tk8.5-dev libfreenect-dev qt5-default libsvm-dev libdw-dev binutils-dev zlib1g-dev
+
+==============================================================
+
+cmake 3, example:
+
+sudo apt-get install software-properties-common
+sudo add-apt-repository ppa:george-edison55/cmake-3.x
+sudo apt-get update
+
+if older version not yet installed:
+
+sudo apt-get install cmake
+
+if installed:
+
+sudo apt-get upgrade
+
+==============================================================
+
+g++-5, example:
+
+sudo add-apt-repository ppa:ubuntu-toolchain-r/test
+sudo apt-get update
+sudo apt-get install gcc-5 g++-5
+
+sudo update-alternatives --install /usr/bin/gcc gcc /usr/bin/gcc-5 60 --slave /usr/bin/g++ g++ /usr/bin/g++-5
+
+==============================================================

@@ -1,0 +1,35 @@
+[dmp]
+tau = 20.0
+az = 48.0
+bz = 11.75
+dmpStepSize = 0.014
+tolAbsErr = 0.1
+tolRelErr = 0.1
+ac = 0
+[pick]
+trajectory = $KUKADU_HOME/movements/book_pickup/left/kuka_lwr_real_left_arm_0
+[prep]
+rothor90deg = $KUKADU_HOME/movements/icra2016/rothor90deg/kuka_lwr_real_left_arm_0
+rotvert90deg = $KUKADU_HOME/movements/icra2016/rotvert90deg/kuka_lwr_real_left_arm_0
+rothor90degpushback = $KUKADU_HOME/movements/icra2016/rothor90degpushback/kuka_lwr_real_left_arm_0
+rotvert90degpushback = $KUKADU_HOME/movements/icra2016/rotvert90degpushback/kuka_lwr_real_left_arm_0
+transfinalpush = $KUKADU_HOME/movements/icra2016/rotvert90degpushbackblocking/kuka_lwr_real_left_arm_0
+transpushforward = $KUKADU_HOME/movements/icra2016/blockingpushforward/kuka_lwr_real_right_arm_0
+[control]
+usehands = 1
+simulation = 1
+hapticmode = 1
+[ps]
+useprojectivesimulation = 0
+loadps = 0
+numberofactions = 4
+numberofpercepts = 4
+gamma = 0.001
+stdreward = 100
+psfile = $KUKADU_HOME/movements/icra2016/trainedps.txt
+[class]
+mmrpath = $KUKADU_HOME/scripts/trajectory_classifier
+mmrfile = trajlab_main
+mmrfunction = runClassifier
+database = $HOME/data/studium/informatik/phd/projects/squirrel/books/2015-05-11_data_with_labels/
+tmppath = $HOME/tmp/

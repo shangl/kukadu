@@ -1,0 +1,322 @@
+// modules are marked by []
+// namespaces are marked by -
+// classes are marked by +
+// functions are marked by #
+// non-class-member functions have to be listed before class-member functions
+// functions have further settings separated by whitespaces
+//			- function id under which the function statistics are stored in the database
+//			- storage mode:
+//				- 0: store each call of the function (meant for normal functions)
+//				- 1 x: pools the function calls in an approximate time period x (in milliseconds)
+//
+// the id for new functions must be larger than all other id's --> otherwise it might affect other kukadu functionality
+//
+[planning]
+-kukadu
+	+Komo
+		#planJointTrajectory		1	0
+		#planCartesianTrajectory	2	0
+		#computeFk					3	1	2000
+	+MoveIt
+		#computeFk					4	1	2000
+		#computeIk					5	0
+		#planJointTrajectory		6	0
+		#planCartesianTrajectory	7	0
+		#getJacobian				8	1	2000
+	+TableConstraint
+		#stateOk					9	1	2000
+	+Kinematics
+		#addConstraint				10	0
+		#removeConstraint			11	0
+		#getConstraintsCount		12	1	2000
+		#getConstraintIdx			13	1	2000
+		#checkAllConstraints		14	1	2000
+		#computeIk					15	0
+	+PathPlanner
+		#smoothJointPlan			16	0
+	+SimplePlanner
+		#isColliding				17	0
+		#getJacobian				18	0
+		#computeIk					19	0
+		#computeFk					20	0
+		#planJointTrajectory		21	0
+		#planCartesianTrajectory	22	0
+	+CachedPlanner
+		#planCartesianTrajectory	231	0
+		#computeIk					232 0
+[control]
+-kukadu
+	+Controller
+		#setSimulationMode			23	0
+		#execute					230	0
+	+DMPExecutor
+		#setRollbackTime			24	0
+		#useExternalError			25	0
+		#executeTrajectory			26	0
+		#simulateTrajectory			27	0
+		#doRollbackOnMaxForceEvent	28	0
+		#enableMaxForceMode			29	0
+		#executeDMP					30	0
+	+GeneralDmpLearner
+		#fitTrajectories			31	0
+	+CartesianDMPLearner
+		#computeFitY				32	0
+	+JointDMPLearner
+		#computeFitY				33	0
+	+DMPGeneralizer
+		#generalizeDmp				34	0
+		#operator==					35	0
+	+TrajectoryExecutor
+		#executeInternal			36	0
+[learning]
+-kukadu
+	+Clusters
+		#k_means					37	0
+	+Mahalanobis
+		#getDecomposition			38	0
+	+InfTheoMetricLearner
+		#learnMetric				39	0
+	+TogersonMetricLearner
+		#learnMetric				40	0
+	+ActionClip
+		#jumpNextRandom				41	0
+	+Clip
+		#getMaxProbability			42	0
+		#getSubClips				43	0
+		#computeSubEntropy			44	0
+		#jumpNextRandom				45	0
+		#updateWeights				46	0
+		#getLikeliestChildWithWeight	47	0
+	+ManualReward
+		#computeRewardInternal		48	0
+	+PSEvaluator
+		#evaluateStatistics			49	0
+		#produceStatistics			50	0
+	+ProjectiveSimulator
+		#loadPsConstructor			51	0
+		#setBoredom					52	0
+		#eliminateClip				53	0
+		#cleanByRank				54	0
+		#performRandomWalk			55	0
+		#computeBoredom				56	0
+		#performRewarding			57	0
+		#generalize					58	0
+		#connectNewClip				59	0
+		#createNewClips				60	0
+		#computeRankVec				61	0
+		#storePS					62	0
+	+GeneralFitter
+		#computeLinFitCoefficients	63	0
+	+GaussianKernel
+		#evaluateKernel				64	1	2000
+	+TricubeKernel
+		#evaluateKernel				65	1	2000
+	+QuadraticKernel
+		#evaluateKernel				66	1	2000
+	+GaussianProcessRegressor
+		#fitAtPosition				67	1	2000
+	+DMPReinforcer
+		#performRollout				68	0
+	+GeneralReinforcer
+		#performRollout				69	0
+	+GradientDescent
+		#computeRolloutParamters	70	0
+		#updateStep					71	0
+	+TerminalCostComputer
+		#computeCost				72	0
+	+TrajectoryBasedReward
+		#computeCost				73	0
+	+LibSvm
+		#scaleDimensions			233	0
+		#train						234	0
+		#generateTrainSet			235	0
+		#setStdParams				236	0
+		#classify					237	0
+		#crossValidate				238	0
+[robot]
+-kukadu
+	+Calibrator
+		#calibrateTfTransform		74	0
+		#calibrateAffineTransMatrix	75	0
+		#setReadDataFromFile		76	0
+		#startDataCollection		77	0
+		#endDataCollection			78	0
+		#calibrate					79	0
+	+StandardFilter
+		#updateFilter				80	1	2000
+		#getProcessedReading		81	1	2000
+	+AutoCompensatingFilter
+		#updateFilter				82	1	2000
+		#getProcessedReading		83	1	2000
+	+PlottingHand
+		#connectHand				84	0
+		#closeHand					85	0
+		#moveJoints					86	0
+		#disconnectHand				87	0
+		#getTactileSensing			88	1	2000
+	+KukieHand
+		#connectHand				89	0
+		#closeHand					90	0
+		#disconnectHand				91	0
+		#moveJoints					92	0
+		#getTactileSensing			93	1	2000
+	+StandardKinestheticTeacher
+		#startRecording				94	0
+		#stopRecording				95	0
+		#startTeaching				96	0
+		#stopTeaching				97	0
+	+Robot
+		#loadRobotJoints			98	0
+		#reload						99	0
+		#insertJoint				100	0
+		#deleteRobot				101	0
+		#deleteJoint				102	0
+		#loadRobotName				103	0
+		#loadRobotId				104	0
+		#loadDegOfFreedom			105	0
+		#createRobot				106	0
+	+ControlQueue
+		#getRobotId					107	0
+		#startQueue					108	0
+		#setFrcTrqSensorFilter		109	0
+		#getCurrentProcessedCartesianFrcTrq	110	0
+		#setCycleTime				111	1	2000
+		#getAbsoluteCartForce		112	1	2000
+		#getCycleTime				113	1	4000
+		#setNextTrajectory			114	0
+		#move						115	1	2000
+		#switchMode					116	0
+		#stopQueue					117	0
+		#getCurrentCartesianPos		118	1	2000
+		#synchronizeToQueue			119	1	2000
+		#stopCurrentMode			120	1	2000
+		#jointPtpNb					121	0
+		#cartesianPtpNb				122	0
+		#jointPtp					123	0
+		#cartesianPtp				124	0
+		#startRollBackMode			125	0
+		#stopJointRollBackMode		126	0
+		#rollBack					127	0
+	+KukieControlQueue
+		#setKinematics				128	0
+		#setPathPlanner				129	0
+		#moveCartesianRelativeWf	130	1	2000
+		#getCurrentCartesianPose	131 1	2000
+		#getCurrentMode				132	0
+		#getCurrentCartesianFrcTrq	133	1	2000
+		#getCurrentJntFrc			134	1	2000
+		#setAdditionalLoad			135	0
+		#setStiffness				136	0
+		#getCurrentJoints			137	1	2000
+		#getCurrentCartesianPoseRf	138	1	2000
+	+PlottingControlQueue
+		#setKinematics				148	0
+		#setPathPlanner				149	0
+		#moveCartesianRelativeWf	150	1	2000
+		#getCurrentCartesianPose	151 1	2000
+		#getCurrentMode				152	0
+		#getCurrentCartesianFrcTrq	153	1	2000
+		#getCurrentJntFrc			154	1	2000
+		#setAdditionalLoad			155	0
+		#setStiffness				156	0
+		#getCurrentJoints			157	1	2000
+		#getCurrentCartesianPoseRf	158	1	2000
+[manipulation]
+-kukadu
+	+ComplexController
+		#updateFiles				159	0
+		#computeEntropyMeanAndVariance	160	0
+		#setBoredom					161	0
+		#setSimulationModeInChain	162	0
+		#createEnvironmentModelForSensingAction	163	0
+		#load						164	0
+		#store						165	0
+		#storeNextIteration			166	0
+		#getSimulatedRewardInternal	167	0
+		#computeRewardInternal		168	0
+		#executeInternal				169	0
+		#computeTotalPathCost		170	0
+		#computeEnvironmentPaths	171	0
+		#computeEnvironmentTransitionConfidence	172	1	2000
+		#setUseCreativity			173	0
+		#setTrainingMode			174	0
+		#createSensingDatabase		175	0
+	+ConcatController
+		#executeInternal				176	0
+	+IntermediateEventClip
+		#jumpNextRandom				177	0
+	+ControllerActionClip
+		#executeInternal				178	0
+	+SensingController
+		#gatherData					179	0
+		#performClassification		180	0
+		#createDataBase				181	0
+		#executeInternal				182	0
+		#callClassifier				239	0
+	+HapticPlanner
+		#pickAndPerformComplexSkill	183	0
+		#performComplexSkill		184	0
+		#updateModels				185	0
+		#setSimulationMode			186	0
+		#pickComplexSkill			187	0
+		#generateNextPerceptClip	188	0
+		#generateActionClips		189	0
+		#generatePerceptClips		190	0
+		#computeRewardInternal		191	0
+		#getDimensionality			192	0
+		#copySensingControllers		193	1	2000
+[storage]
+-kukadu
+	+SensorStorage
+		#setExportMode				194	0
+		#startDataStorage			195	0
+		#stopDataStorage			196	0
+		#store						197	0
+		#storeCartInformation		198	1	2000
+		#storeJointInfoToDatabase	199	1	2000
+		#readStorage				200	0
+[statistics]
+-kukadu
+		#computeUnalikeability		201	0
+[vision]
+-kukadu
+	+ArLocalizer
+		#localizeObject				202	1	2000
+		#localizeObjects			203	1	2000
+	+Kinect
+		#startSensing				204	0
+		#stopSensing				205	0
+		#getCurrentPointCloud		206	1	2000
+		#getCurrentColorPointCloud	207	1	2000
+		#getCurrentIntensityPointCloud	209	1	2000
+		#visualizeCurrentPc			210	1	2000
+		#storeCurrentPc				211	0
+	+PCLTools
+		#visualizePointCloud		212	1	2000
+		#stopVisualizationWindow	213	0
+		#runVisThread				214	0
+		#initializeVisualizationWindow	215	0
+		#fitBox						216	0
+		#segmentPlanar				217	0
+		#visDrawPlaneWithNormal		218	0
+		#updateVisualizedPointCloud	219	1	2000
+		#filterCluster				220	0
+	+PCTransformator
+		#removeRgb					221	1	2000
+		#fakeRgb					222	1	2000
+		#removeIntensity			223	1	2000
+	+PlanarCutTransformator
+		#transformPc				224	0
+		#setPlane					225	0
+	+OpenBoxFilter
+		#setBox						226	0
+		#transformPc				227	0
+	+ColorFilter
+		#transformPc				228	1	2000
+	+CustomLambdaFilter
+		#transformPc				229	1	2000
+	+PCBlobDetector
+		#localizeObject				240	0
+		#localizeObjects			241	0
+[gui]
+
